@@ -17,6 +17,7 @@ import AGB from './components/AGB';
 import SubmitBusiness from './components/SubmitBusiness';
 import PricingTable from './components/PricingTable';
 import JobsBoard from './components/JobsBoard';
+import CookieConsent from './components/CookieConsent';
 import AdminPanel from './components/AdminPanel';
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from 'firebase/firestore';
@@ -1474,6 +1475,8 @@ export default function App() {
           </div>
         </div>
       )}
+
+      <CookieConsent theme={theme} />
 
       {/* Footer */}
       <footer className="max-w-7xl mx-auto px-4 md:px-8 py-8 mt-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4">
