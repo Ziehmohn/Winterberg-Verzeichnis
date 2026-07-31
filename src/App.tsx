@@ -610,7 +610,7 @@ export default function App() {
             activeThemeKey={activeThemeKey} 
             businesses={businesses} 
             setBusinesses={setBusinesses} 
-            onBusinessAdded={fetchBusinesses} 
+            onBusinessAdded={loadBusinesses} 
             reviewsEnabled={reviewsEnabled} 
             setReviewsEnabled={(v: boolean) => { setReviewsEnabled(v); localStorage.setItem('premium_reviews_enabled', String(v)); }} 
             seoSettings={seoSettings} 
