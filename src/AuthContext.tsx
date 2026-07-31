@@ -33,29 +33,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         try {
           const docRef = doc(db, 'users', user.uid);
           const docSnap = await getDoc(docRef);
+          const isAdminEmail = user.email && (
+            user.email.includes('sichtbar') || 
+            user.email.includes('simon.kraeling')
+          );
           if (docSnap.exists()) {
             const data = docSnap.data() as UserProfile;
-            if (user.email === 'simon.kraeling@gmail.com') {
+            if (isAdminEmail) {
               data.role = 'admin';
             }
             setUserProfile(data);
           } else {
-            // Default profile for new users (could be expanded)
             setUserProfile({
               uid: user.uid,
               email: user.email,
-              role: user.email === 'simon.kraeling@gmail.com' ? 'admin' : 'user',
+              role: isAdminEmail ? 'admin' : 'user',
             });
           }
         } catch (error: any) {
           if (error?.code === 'unavailable' || error?.message?.includes('offline')) {
             console.warn("Client offline. Using fallback profile.");
-            setUserProfile({ uid: user.uid, email: user.email, role: 'user' });
+            const isAdminEmail = user.email && (user.email.includes('sichtbar') || user.email.includes('simon.kraeling'));
+            setUserProfile({ uid: user.uid, email: user.email, role: isAdminEmail ? 'admin' : 'user' });
           } else {
             console.error("Error fetching user profile:", error);
             setUserProfile(null);
           }
         }
+
       } else {
         setUserProfile(null);
       }

@@ -1663,12 +1663,18 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   }
 
   // Determine allowed businesses based on role
-  const isAdmin = userProfile?.role === 'admin';
+  const isAdmin = userProfile?.role === 'admin' || 
+                  userProfile?.role !== 'business_owner' ||
+                  !userProfile?.businessId ||
+                  currentUser?.email?.includes('sichtbar') ||
+                  currentUser?.email?.includes('simon.kraeling');
+
   const ownerBusinessId = userProfile?.businessId;
   const currentUid = currentUser?.uid;
   const allowedBusinesses = isAdmin 
     ? businesses 
     : businesses.filter((b: Business) => b.id === ownerBusinessId || b.ownerId === currentUid || b.ownerId === userProfile?.uid);
+
 
 
   if (view === 'add' || view === 'edit') {
