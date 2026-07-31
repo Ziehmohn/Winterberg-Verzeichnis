@@ -103,6 +103,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     };
     
     try {
+      // Force token refresh to clear any stalled gRPC auth channels
+      if (auth.currentUser) {
+        await auth.currentUser.getIdToken(true);
+      }
+
       // 10 second timeout for setDoc to catch hanging issues (e.g. invalid auth tokens)
       const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 10000));
       await Promise.race([

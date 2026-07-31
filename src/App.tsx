@@ -348,21 +348,27 @@ export default function App() {
   }, [seoSettings, activeCategory, searchQuery, businesses, isJobsMode, jobsCategory]);
 
   useEffect(() => {
-    fetchBusinesses();
+    loadBusinesses();
   }, []);
 
-  const fetchBusinesses = async () => {
+  const loadBusinesses = async () => {
+    console.log("Loading businesses from Firestore...");
     try {
-      const querySnapshot = await getDocs(collection(db, 'businesses'));
-      const fbBusinesses: Business[] = [];
-      querySnapshot.forEach((doc) => {
-        fbBusinesses.push({ id: doc.id, ...doc.data() } as Business);
-      });
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_READ')), 5000));
+      const querySnapshot = await Promise.race([
+        getDocs(collection(db, 'businesses')),
+        timeoutPromise
+      ]) as any;
+      console.log("Firestore read successful!");
       
-      if (fbBusinesses.length > 0) {
+      const loadedBusinesses: Business[] = [];
+      querySnapshot.forEach((doc: any) => {
+        loadedBusinesses.push({ id: doc.id, ...doc.data() } as Business);
+      });
+      if (loadedBusinesses.length > 0) {
         setBusinesses(prev => {
           const merged = [...initialBusinesses];
-          fbBusinesses.forEach(fb => {
+          loadedBusinesses.forEach(fb => {
             const idx = merged.findIndex(b => b.id === fb.id);
             if (idx >= 0) {
               merged[idx] = fb;

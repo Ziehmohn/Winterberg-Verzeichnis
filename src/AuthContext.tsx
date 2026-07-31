@@ -32,12 +32,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Fetch user profile from Firestore
         try {
           const docRef = doc(db, 'users', user.uid);
-          const docSnap = await getDoc(docRef);
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_AUTH')), 5000));
+          const docSnap = await Promise.race([
+            getDoc(docRef),
+            timeoutPromise
+          ]) as any;
+
           const isAdminEmail = user.email && (
             user.email.includes('sichtbar') || 
             user.email.includes('simon.kraeling')
           );
-          if (docSnap.exists()) {
+          if (docSnap && docSnap.exists && docSnap.exists()) {
             const data = docSnap.data() as UserProfile;
             if (isAdminEmail) {
               data.role = 'admin';
