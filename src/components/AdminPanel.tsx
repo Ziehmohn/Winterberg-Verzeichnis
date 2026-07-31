@@ -1,40 +1,45 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload } from 'lucide-react';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { db, storage } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 
 export default function AdminPanel({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onCancel, businessToEdit }: any) {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<Business>(businessToEdit || {
-    id: '',
-    name: '',
-    category: categories[0].name,
-    subcategory: '',
-    description: '',
-    address: '',
-    district: '',
-    phone: '',
-    email: '',
-    website: '',
-    uploadedImage: '',
-    imageLink: '',
-    services: [],
-    openingHours: { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
-    gallery: [],
-    isPremium: false,
-    extendedDescription: '',
-    ownerId: ''
+  const [formData, setFormData] = useState<Business>(() => {
+    const base = businessToEdit || {};
+    return {
+      id: base.id || '',
+      name: base.name || '',
+      category: base.category || (categories[0] ? categories[0].name : 'Handwerk'),
+      subcategory: base.subcategory || '',
+      description: base.description || '',
+      address: base.address || '',
+      district: base.district || '',
+      phone: base.phone || '',
+      email: base.email || '',
+      website: base.website || '',
+      uploadedImage: base.uploadedImage || '',
+      imageLink: base.imageLink || '',
+      services: Array.isArray(base.services) ? [...base.services] : [],
+      openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
+      gallery: Array.isArray(base.gallery) ? [...base.gallery] : [],
+      isPremium: !!base.isPremium,
+      extendedDescription: base.extendedDescription || '',
+      ownerId: base.ownerId || '',
+      status: base.status || 'approved'
+    };
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [newService, setNewService] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -178,9 +183,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
         <div>
           <label className={labelClass}>Kurzbeschreibung * (max. 90 Zeichen für Suchergebnisse & Vorschau)</label>
-          <textarea required maxLength={90} value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={2} placeholder="Kurze Zusammenfassung für die Suchliste..." />
-          <div className="text-right text-xs opacity-70 mt-1">{formData.description.length}/90 Zeichen</div>
+          <textarea required maxLength={90} value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={2} placeholder="Kurze Zusammenfassung für die Suchliste..." />
+          <div className="text-right text-xs opacity-70 mt-1">{(formData.description || '').length}/90 Zeichen</div>
         </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
