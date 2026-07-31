@@ -16,12 +16,13 @@ function getStripe(): Stripe {
 }
 
 
-const PROJECT_ID = "gen-lang-client-0671429103";
+const PROJECT_ID = "winterberger-unternehmen";
 let redirectsMap = new Map<string, string>();
 
 async function fetchRedirects() {
   try {
-    const res = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319/documents/redirects`);
+    const res = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/redirects`);
+
     const data = await res.json();
     const newMap = new Map<string, string>();
     if (data.documents) {
