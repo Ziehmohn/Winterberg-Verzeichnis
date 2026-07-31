@@ -103,16 +103,26 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     };
     
     try {
-      await setDoc(doc(db, 'businesses', newId), dataToSubmit);
+      // 10 second timeout for setDoc to catch hanging issues (e.g. invalid auth tokens)
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 10000));
+      await Promise.race([
+        setDoc(doc(db, 'businesses', newId), dataToSubmit),
+        timeoutPromise
+      ]);
+      
       if (formData.id) {
         setBusinesses((prev: Business[]) => prev.map((b: Business) => b.id === formData.id ? dataToSubmit : b));
       } else {
         setBusinesses((prev: Business[]) => [...prev, dataToSubmit]);
       }
       onBusinessAdded();
-    } catch (err) {
-      console.error(err);
-      alert('Fehler beim Speichern');
+    } catch (err: any) {
+      console.error("Firestore Save Error:", err);
+      if (err.message === 'TIMEOUT') {
+        alert('Fehler: Zeitüberschreitung beim Speichern. Bitte logge dich einmal aus und wieder ein (Logout-Button), da dein Sicherheitsschlüssel veraltet sein könnte!');
+      } else {
+        alert('Fehler beim Speichern. Prüfe deine Internetverbindung und Berechtigungen.');
+      }
     } finally {
       setIsSubmitting(false);
     }

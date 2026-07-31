@@ -97,3 +97,11 @@ export interface ThemeConfig {
   backgroundOpacity?: string;
   bottomRightImage?: string;
 }
+
+export interface TrackingScript {
+  id: string;
+  name: string;
+  category: 'analytics' | 'marketing' | 'externalMedia';
+  code: string;
+  isActive: boolean;
+}

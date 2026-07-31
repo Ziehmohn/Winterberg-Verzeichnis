@@ -52,6 +52,9 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
     setSettings(newSettings);
     setShowBanner(false);
     setShowSettings(false);
+    
+    // Dispatch event to notify DynamicScriptLoader
+    window.dispatchEvent(new Event('cookie_consent_updated'));
     applyScripts(newSettings);
   };
 

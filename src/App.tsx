@@ -19,6 +19,9 @@ import PricingTable from './components/PricingTable';
 import JobsBoard from './components/JobsBoard';
 import CookieConsent from './components/CookieConsent';
 import AdminPanel from './components/AdminPanel';
+import ScriptManager from './components/ScriptManager';
+import DynamicScriptLoader from './components/DynamicScriptLoader';
+import Datenschutz from './components/Datenschutz';
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
@@ -1476,13 +1479,15 @@ export default function App() {
         </div>
       )}
 
+      <DynamicScriptLoader />
       <CookieConsent theme={theme} />
 
       {/* Footer */}
       <footer className="max-w-7xl mx-auto px-4 md:px-8 py-8 mt-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className={`text-center text-sm flex-1 flex flex-col items-center justify-center gap-2 ${theme.textMuted}`}>
           <div>© {new Date().getFullYear()} Winterberg Wirtschaft. {t("footerInitiative")}</div>
-          <div className="flex items-center justify-center gap-4 mt-2">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2">
+            <button onClick={() => { setView('datenschutz'); window.scrollTo(0,0); }} className="hover:text-orange-500 transition-colors underline">Datenschutzerklärung</button>
             <div className="flex items-center justify-center gap-2">
               <span className="text-xs text-black/60 dark:text-white/60">{t("projectBy")}</span>
               <a href="https://sichtbar-online.com/seo-freelancer" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-opacity">
@@ -1674,7 +1679,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'reviews' | 'abrechnung' | 'redirects'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'reviews' | 'abrechnung' | 'redirects' | 'scripts'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
@@ -1862,6 +1867,9 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
           <button onClick={() => setActiveTab('redirects')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'redirects' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
             <Globe className="w-4 h-4" /> 301 Redirects
+          </button>
+          <button onClick={() => setActiveTab('scripts')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'scripts' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
+            <Code2 className="w-4 h-4" /> Skripte & Tracking
           </button>
         </div>
 
@@ -2088,9 +2096,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         
         ) : activeTab === 'redirects' ? (
           <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
+        ) : activeTab === 'scripts' ? (
+          <ScriptManager theme={theme} activeThemeKey={activeThemeKey} />
         ) : (
-          <SeoAdminPanel
- theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
+          <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
         )}
       </div>
     </>
