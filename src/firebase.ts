@@ -4,7 +4,7 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqpSLrA6PiSFSXJiN4hFWsyfyUXTawhSw",
+  apiKey: "AIzaSyAqpsLrA6PiSFSXJiN4hFWsyfyUXTawhSw",
   authDomain: "winterberger-unternehmen.firebaseapp.com",
   projectId: "winterberger-unternehmen",
   storageBucket: "winterberger-unternehmen.firebasestorage.app",
