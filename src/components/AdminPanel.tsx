@@ -118,7 +118,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, isTitleUpload = false) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'gallery' | 'title' | 'logo' = 'gallery') => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
     setUploadingImage(true);
@@ -140,16 +140,22 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       }
       
       setFormData(prev => {
+        if (target === 'logo') {
+          return { ...prev, logoUrl: url };
+        }
+        
         const newGallery = prev.gallery ? [...prev.gallery] : [];
         if (!newGallery.includes(url)) {
           newGallery.push(url);
         }
+        
         const currentCover = prev.imageLink || prev.uploadedImage;
+        const isTitle = target === 'title';
         return {
           ...prev,
           gallery: newGallery,
-          uploadedImage: isTitleUpload ? url : (currentCover || url),
-          imageLink: isTitleUpload ? url : (currentCover || url)
+          uploadedImage: isTitle ? url : (currentCover || url),
+          imageLink: isTitle ? url : (currentCover || url)
         };
       });
     } catch (err) {
@@ -334,14 +340,26 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           
             <div className="border-b border-orange-200/50 pb-5">
               <label className={labelClass}>Unternehmens-Logo (URL) (Premium-Feature)</label>
-              <input 
-                type="text" 
-                value={formData.logoUrl || ''} 
-                onChange={e => setFormData({...formData, logoUrl: e.target.value})} 
-                className={inputClass} 
-                placeholder="https://beispiel.de/logo.png" 
-              />
+              <div className="flex gap-2 mb-1">
+                <input 
+                  type="text" 
+                  value={formData.logoUrl || ''} 
+                  onChange={e => setFormData({...formData, logoUrl: e.target.value})} 
+                  className={inputClass} 
+                  placeholder="https://beispiel.de/logo.png" 
+                />
+                <label className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} cursor-pointer flex items-center justify-center shrink-0 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${uploadingImage ? 'opacity-50' : ''}`}>
+                  {uploadingImage ? 'Lädt...' : 'Hochladen'}
+                  <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'logo')} disabled={uploadingImage} />
+                </label>
+              </div>
               <p className="text-xs opacity-70 mt-1">Das Logo wird in den Suchergebnissen auf der Karte angezeigt. **Voraussetzung:** Das Logo muss quadratisch sein (idealerweise 400x400 Pixel), damit es optimal und scharf dargestellt wird.</p>
+              {formData.logoUrl && (
+                <div className="mt-3 relative w-16 h-16 border rounded bg-white p-1">
+                  <img src={formData.logoUrl} alt="Logo Preview" className="w-full h-full object-contain" />
+                  <button type="button" onClick={() => setFormData({...formData, logoUrl: ''})} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-0.5 shadow hover:bg-red-600"><X className="w-3 h-3" /></button>
+                </div>
+              )}
             </div>
 
             <div className="border-b border-orange-200/50 pb-5">
@@ -442,7 +460,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium shrink-0 transition-colors bg-white border border-black/20 hover:bg-black/5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
                     <Upload className="w-4 h-4" />
                     {uploadingImage ? 'Lädt...' : 'Direkt hochladen'}
-                    <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, true)} disabled={uploadingImage} />
+                    <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'title')} disabled={uploadingImage} />
                   </label>
                 </div>
               </div>
@@ -506,7 +524,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors bg-white border border-black/20 hover:bg-black/5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
                   <Upload className="w-4 h-4" />
                   {uploadingImage ? 'Lädt...' : 'Galerie-Bild hochladen'}
-                  <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, false)} disabled={uploadingImage} />
+                  <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'gallery')} disabled={uploadingImage} />
                 </label>
               </div>
             </div>
