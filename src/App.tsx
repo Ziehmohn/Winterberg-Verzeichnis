@@ -831,7 +831,7 @@ export default function App() {
                     filteredBusinesses.map((bus) => (
                       <div 
                         key={bus.id} 
-                        className={`group flex flex-col overflow-hidden transition-all hover:-translate-y-1 bg-white ${bus.isPremium ? 'border-2 border-orange-400 shadow-lg shadow-orange-500/20' : 'border ' + theme.cardBorder + ' ' + theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}
+                        className={`relative group flex flex-col overflow-hidden transition-all hover:-translate-y-1 bg-white ${bus.isPremium ? 'border-2 border-orange-400 shadow-lg shadow-orange-500/20' : 'border ' + theme.cardBorder + ' ' + theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}
                       >
                         {/* Image Header */}
                         <div className="h-48 w-full bg-black/5 relative overflow-hidden">
@@ -853,8 +853,14 @@ export default function App() {
                           )}
                         </div>
 
+                        {bus.isPremium && bus.logoUrl && (
+                          <div className="absolute top-[164px] left-6 w-14 h-14 bg-white rounded-md shadow-md border border-gray-100 z-10 flex items-center justify-center p-1.5">
+                            <img src={bus.logoUrl} alt="Logo" className="max-w-full max-h-full object-contain" />
+                          </div>
+                        )}
+
                         <div className={`p-6 flex-1 flex flex-col ${theme.cardBg} transition-colors`}>
-                          <div className="flex items-start justify-between gap-2 mb-2">
+                          <div className={`flex items-start justify-between gap-2 mb-2 ${bus.isPremium && bus.logoUrl ? 'mt-4' : ''}`}>
                             <a 
                               href={`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`}
                               onClick={(e) => {

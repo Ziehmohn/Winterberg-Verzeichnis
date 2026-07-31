@@ -307,6 +307,18 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
         {formData.isPremium && (
           <div className="p-5 bg-orange-50/50 border border-orange-200 rounded-lg space-y-6">
+          
+            <div className="border-b border-orange-200/50 pb-5">
+              <label className={labelClass}>Unternehmens-Logo (URL) (Premium-Feature)</label>
+              <input 
+                type="text" 
+                value={formData.logoUrl || ''} 
+                onChange={e => setFormData({...formData, logoUrl: e.target.value})} 
+                className={inputClass} 
+                placeholder="https://beispiel.de/logo.png" 
+              />
+              <p className="text-xs opacity-70 mt-1">Das Logo wird in den Suchergebnissen auf der Karte angezeigt (idealerweise quadratisch).</p>
+            </div>
 
             <div className="border-b border-orange-200/50 pb-5">
               <label className={labelClass}>Leistungen & Services (Premium-Feature)</label>

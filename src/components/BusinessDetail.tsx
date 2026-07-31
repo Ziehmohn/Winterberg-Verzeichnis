@@ -122,7 +122,12 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       <div className={`p-6 md:p-8 lg:p-10 ${theme.cardBg} transition-colors`}>
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8 text-center md:text-left">
           <div className="w-full">
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 mb-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-3">
+              {business.isPremium && business.logoUrl && (
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg shadow-sm border border-gray-100 p-1.5 shrink-0">
+                  <img src={business.logoUrl} alt="Logo" className="w-full h-full object-contain" />
+                </div>
+              )}
               <div className="relative inline-block">
                 <h1 className="text-3xl md:text-4xl font-display font-bold relative z-10">{business.name}</h1>
                 <svg 

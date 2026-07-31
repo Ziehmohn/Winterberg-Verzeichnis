@@ -61,6 +61,7 @@ export interface Business {
   jobs?: Job[];
   isPremium?: boolean;
   gallery?: string[];
+  logoUrl?: string;
   extendedDescription?: string;
   ownerId?: string;
   status?: 'pending' | 'approved';
