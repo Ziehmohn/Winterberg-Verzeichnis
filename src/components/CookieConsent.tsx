@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Fingerprint, Check, Settings, X } from 'lucide-react';
+import { Shield, Check, Settings, X } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig } from '../types';
 
@@ -115,7 +115,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
           className="fixed bottom-6 left-6 z-50 p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 group"
           title="Cookie-Einstellungen öffnen"
         >
-          <Fingerprint className="w-6 h-6 text-orange-500" />
+          <Shield className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
         </button>
       )}
 
@@ -127,7 +127,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
-                    <Fingerprint className="w-6 h-6 text-orange-500" />
+                    <Shield className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
                   </div>
                   <h2 className="text-2xl font-bold font-display">Datenschutz & Cookies</h2>
                 </div>
@@ -177,7 +177,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900">Statistiken (Google Analytics)</h3>
-                      <p className="text-sm text-gray-600 mt-1">Erlaubt uns, anonymisierte Daten über das Nutzerverhalten zu sammeln, um die Webseite zu verbessern.</p>
+                      <p className="text-sm text-gray-600 mt-1">Erfasst anonymisierte Daten (z.B. besuchte Seiten, Verweildauer) zur Verbesserung unseres Angebots. <br/><b>Anbieter:</b> Google Ireland Limited.<br/><b>Speicherdauer:</b> bis zu 2 Jahre.</p>
                     </div>
                   </div>
 
@@ -188,7 +188,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900">Marketing</h3>
-                      <p className="text-sm text-gray-600 mt-1">Wird verwendet, um personalisierte Werbeanzeigen auszuspielen und deren Erfolg zu messen (z.B. Facebook Pixel).</p>
+                      <p className="text-sm text-gray-600 mt-1">Wird verwendet, um personalisierte Werbeanzeigen auszuspielen und deren Erfolg über Websites hinweg zu messen (z.B. Facebook Pixel).</p>
                     </div>
                   </div>
 
