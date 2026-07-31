@@ -1,0 +1,126 @@
+{
+  "projectInfo": {
+    "name": "Winterberg Wirtschaft",
+    "description": "Business directory with premium features"
+  },
+  "collections": {
+    "users": {
+      "description": "User accounts, roles and ownership",
+      "fields": {
+        "email": {
+          "type": "string",
+          "description": "User email address",
+          "validation": "Must be valid email"
+        },
+        "role": {
+          "type": "string",
+          "description": "User role: 'admin', 'business_owner', 'user'",
+          "validation": "Enum: admin, business_owner, user"
+        },
+        "businessId": {
+          "type": "string",
+          "description": "Optional business ID if they own a business",
+          "validation": "Must match a document in businesses collection"
+        },
+        "createdAt": {
+          "type": "timestamp",
+          "description": "Creation timestamp"
+        }
+      }
+    },
+    "businesses": {
+      "description": "Business listings",
+      "fields": {
+        "name": {
+          "type": "string",
+          "description": "Business name"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category"
+        },
+        "subcategory": {
+          "type": "string",
+          "description": "Subcategory"
+        },
+        "address": {
+          "type": "string",
+          "description": "Address"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number"
+        },
+        "website": {
+          "type": "string",
+          "description": "Website URL"
+        },
+        "isPremium": {
+          "type": "boolean",
+          "description": "Premium status flag"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "description": "Verified status flag"
+        },
+        "gallery": {
+          "type": "array",
+          "description": "Array of image URLs for premium users"
+        },
+        "extendedDescription": {
+          "type": "string",
+          "description": "Extended description for premium users"
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "User UID of the owner"
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL slug"
+        }
+      }
+    },
+    "reviews": {
+      "description": "Business reviews",
+      "fields": {
+        "businessId": {
+          "type": "string",
+          "description": "ID of the reviewed business"
+        },
+        "userId": {
+          "type": "string",
+          "description": "ID of the user who wrote the review"
+        },
+        "authorName": {
+          "type": "string",
+          "description": "Display name of the author"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating out of 5"
+        },
+        "text": {
+          "type": "string",
+          "description": "Review text"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status: pending, approved, rejected"
+        },
+        "ownerReply": {
+          "type": "string",
+          "description": "Reply from the business owner"
+        },
+        "createdAt": {
+          "type": "timestamp",
+          "description": "When the review was created"
+        }
+      }
+    }
+  }
+}

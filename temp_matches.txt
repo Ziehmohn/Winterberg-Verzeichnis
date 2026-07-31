@@ -1,0 +1,71 @@
+86-  const [searchQuery, setSearchQuery] = useState(defaultSearchQuery);
+87:  const [activeCategory, setActiveCategory] = useState<string>(defaultCategory);
+88-  const [isNotFound, setIsNotFound] = useState(initialNotFound);
+89-  const [activeLocation, setActiveLocation] = useState<string>('Alle');
+90-  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+91-  const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
+92-  const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
+--
+429-                    setSearchQuery('');
+430:                    setActiveCategory('Alle');
+431-                    setActiveLocation('Alle');
+432-                    setIsAdminMode(false);
+433-                  }}
+434-                >
+435-                  <Logo 
+--
+439-                      setSearchQuery('');
+440:                      setActiveCategory('Alle');
+441-                      setActiveLocation('Alle');
+442-                      setIsAdminMode(false);
+443-                    }}
+444-                  />
+445-                </a>
+--
+556-                        window.history.pushState(null, '', '/');
+557:                        setActiveCategory('Alle');
+558-                      }}
+559-                      className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
+560-                        activeCategory === 'Alle' ? theme.categoryTagActive : theme.categoryTagInactive
+561-                      } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+562-                    >
+--
+575-                                window.history.pushState(null, '', `/${encodeURIComponent(group.name)}`);
+576:                                setActiveCategory(group.name);
+577-                                if (!isExpanded) {
+578-                                  setExpandedGroups(prev => [...prev, group.name]);
+579-                                }
+580-                              }}
+581-                              className={`flex-1 block text-left px-4 py-2 text-sm font-medium transition-colors ${
+--
+609-                                    window.history.pushState(null, '', `/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`);
+610:                                    setActiveCategory(sub);
+611-                                  }}
+612-                                  className={`block w-full text-left px-3 py-2 text-xs font-medium transition-colors ${
+613-                                    activeCategory === sub ? theme.categoryTagActive : theme.categoryTagInactive
+614-                                  } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+615-                                >
+--
+1237-                window.history.pushState(null, '', '/');
+1238:                setActiveCategory('Alle');
+1239-                setIsMobileCategoriesOpen(false);
+1240-              }}
+1241-              className={`block w-full text-left px-4 py-3 text-base font-medium transition-colors ${
+1242-                activeCategory === 'Alle' ? theme.categoryTagActive : theme.categoryTagInactive
+1243-              } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+--
+1257-                        window.history.pushState(null, '', `/${encodeURIComponent(group.name)}`);
+1258:                        setActiveCategory(group.name);
+1259-                        if (!isExpanded) {
+1260-                          setExpandedGroups(prev => [...prev, group.name]);
+1261-                        }
+1262-                        setIsMobileCategoriesOpen(false);
+1263-                      }}
+--
+1292-                            window.history.pushState(null, '', `/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`);
+1293:                            setActiveCategory(sub);
+1294-                            setIsMobileCategoriesOpen(false);
+1295-                          }}
+1296-                          className={`block w-full text-left px-3 py-3 text-sm font-medium transition-colors ${
+1297-                            activeCategory === sub ? theme.categoryTagActive : theme.categoryTagInactive
+1298-                          } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}

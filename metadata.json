@@ -1,0 +1,6 @@
+{
+  "name": "Winterberg Unternehmens-Verzeichnis",
+  "description": "Ein Verzeichnis für sämtliche Unternehmen in Winterberg zur Förderung der lokalen Wirtschaft.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
