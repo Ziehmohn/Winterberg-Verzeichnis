@@ -151,8 +151,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               )}
             </div>
             <p className={`text-lg md:text-xl leading-relaxed ${theme.textMuted} max-w-3xl mx-auto md:mx-0`}>
-              {business.description}
+              {business.description && business.description.length > 90 
+                ? business.description.substring(0, 90) + '…' 
+                : business.description}
             </p>
+
           </div>
         </div>
 

@@ -875,8 +875,11 @@ export default function App() {
                             )}
                           </div>
                           <p className={`text-sm mb-6 flex-1 ${theme.textMuted}`}>
-                            {bus.description}
+                            {bus.description && bus.description.length > 90 
+                              ? bus.description.substring(0, 90) + '…' 
+                              : bus.description}
                           </p>
+
                           
                           <div className="space-y-3 pt-4 border-t border-black/5">
                             {bus.isPremium && bus.openingHours && (() => {
