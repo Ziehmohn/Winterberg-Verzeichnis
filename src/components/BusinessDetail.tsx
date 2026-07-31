@@ -279,7 +279,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             )}
 
-            {!!business.openingHours && (() => {
+            {business.isPremium && !!business.openingHours && (() => {
+
               const openState = isOpenNow(business.openingHours, t);
               return (
                 <div className="pt-4 border-t border-black/10">

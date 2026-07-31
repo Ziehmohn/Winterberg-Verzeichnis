@@ -6,11 +6,60 @@ import { useTranslation } from '../i18n';
 import { db, storage } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+// Polyfill findDOMNode for React 19 compatibility with legacy ReactQuill
+if (typeof window !== 'undefined' && !(ReactDOM as any).findDOMNode) {
+  (ReactDOM as any).findDOMNode = (inst: any) => {
+    if (!inst) return null;
+    if (inst instanceof HTMLElement) return inst;
+    if (inst.current instanceof HTMLElement) return inst.current;
+    return null;
+  };
+}
+
+function SafeRichTextEditor({ value, onChange }: { value: string, onChange: (val: string) => void }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <div className="flex flex-col gap-2">
+        <textarea
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          className="w-full h-64 p-3 border border-black/20 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+          placeholder="Erweiterte Beschreibung (HTML)..."
+        />
+        <span className="text-xs text-black/50">HTML-Editor aktiv.</span>
+      </div>
+    );
+  }
+
+  try {
+    return (
+      <ReactQuill 
+        theme="snow"
+        value={value || ''}
+        onChange={onChange}
+        className="h-64"
+      />
+    );
+  } catch (err) {
+    console.error("ReactQuill render error:", err);
+    return (
+      <textarea
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        className="w-full h-64 p-3 border border-black/20 rounded-md font-mono text-sm focus:outline-none"
+      />
+    );
+  }
+}
 
 export default function AdminPanel({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onCancel, businessToEdit }: any) {
+
   const { t } = useTranslation();
   const [formData, setFormData] = useState<Business>(() => {
     const base = businessToEdit || {};
@@ -277,27 +326,6 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </div>
         </div>
 
-        <div className="border-t border-black/10 pt-5">
-          <label className={labelClass}>Öffnungszeiten</label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
-              <div key={day} className="flex items-center gap-2">
-                <span className="w-24 text-sm font-medium capitalize">{day === 'monday' ? 'Montag' : day === 'tuesday' ? 'Dienstag' : day === 'wednesday' ? 'Mittwoch' : day === 'thursday' ? 'Donnerstag' : day === 'friday' ? 'Freitag' : day === 'saturday' ? 'Samstag' : 'Sonntag'}</span>
-                <input 
-                  type="text" 
-                  value={formData.openingHours?.[day as keyof typeof formData.openingHours] || ''} 
-                  onChange={e => setFormData(prev => ({
-                    ...prev,
-                    openingHours: { ...(prev.openingHours || {}), [day]: e.target.value }
-                  }))}
-                  className={`${inputClass} py-1.5`} 
-                  placeholder="09:00 - 18:00 (oder Geschlossen)" 
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className="mt-4 pt-4 border-t border-black/10">
           <label className={labelClass}>Besitzer Benutzer-ID (UID)</label>
           <input 
@@ -320,11 +348,33 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             onChange={e => setFormData({...formData, isPremium: e.target.checked})} 
             className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" 
           />
-          <label htmlFor="isPremium" className={`text-lg font-bold ${theme.textBase}`}>Premium (Erweiterte Beschreibung, Galerie)</label>
+          <label htmlFor="isPremium" className={`text-lg font-bold ${theme.textBase}`}>Premium-Funktionen (Erweiterte Beschreibung, Öffnungszeiten, Galerie)</label>
         </div>
 
         {formData.isPremium && (
           <div className="p-5 bg-orange-50/50 border border-orange-200 rounded-lg space-y-6">
+            
+            <div className="border-b border-orange-200/50 pb-5">
+              <label className={labelClass}>Öffnungszeiten (Premium-Feature)</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
+                  <div key={day} className="flex items-center gap-2">
+                    <span className="w-24 text-sm font-medium capitalize">{day === 'monday' ? 'Montag' : day === 'tuesday' ? 'Dienstag' : day === 'wednesday' ? 'Mittwoch' : day === 'thursday' ? 'Donnerstag' : day === 'friday' ? 'Freitag' : day === 'saturday' ? 'Samstag' : 'Sonntag'}</span>
+                    <input 
+                      type="text" 
+                      value={formData.openingHours?.[day as keyof typeof formData.openingHours] || ''} 
+                      onChange={e => setFormData(prev => ({
+                        ...prev,
+                        openingHours: { ...(prev.openingHours || {}), [day]: e.target.value }
+                      }))}
+                      className={`${inputClass} py-1.5`} 
+                      placeholder="09:00 - 18:00 (oder Geschlossen)" 
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
             
             <div>
               <label className={labelClass}>Titelbild (Hauptbild)</label>
@@ -421,13 +471,12 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <label className={labelClass}>Ausführliche Premium-Beschreibung ("Über uns")</label>
               <p className="text-xs opacity-70 mb-2">Hier können Sie umfangreiche Texte, Formatierungen und Bilder über den WYSIWYG-Editor gestalten.</p>
               <div className="bg-white rounded-md border border-black/10">
-                <ReactQuill 
-                  theme="snow"
+                <SafeRichTextEditor 
                   value={formData.extendedDescription || ''}
                   onChange={(val) => setFormData({...formData, extendedDescription: val})}
-                  className="h-64"
                 />
               </div>
+
               <div className="h-12"></div>
             </div>
             

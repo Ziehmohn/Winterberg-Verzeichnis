@@ -879,7 +879,8 @@ export default function App() {
                           </p>
                           
                           <div className="space-y-3 pt-4 border-t border-black/5">
-                            {bus.openingHours && (() => {
+                            {bus.isPremium && bus.openingHours && (() => {
+
                               const openState = isOpenNow(bus.openingHours, t);
                               return (
                                 <div className="flex items-start gap-3">
