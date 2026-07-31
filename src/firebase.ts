@@ -4,13 +4,13 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqpsLrA6PiSFSXJiN4hFWsyfyUXTawhSw",
-  authDomain: "winterberger-unternehmen.firebaseapp.com",
-  projectId: "winterberger-unternehmen",
-  storageBucket: "winterberger-unternehmen.firebasestorage.app",
-  messagingSenderId: "923063046759",
-  appId: "1:923063046759:web:03c7023ebaaff2c6b93ac2",
-  measurementId: "G-MXFC2V1GXZ"
+  apiKey: "AIzaSyCU_-ygCWdyCrGvoNXeyIjmt9YnbZgp0Dk",
+  authDomain: "gen-lang-client-0671429103.firebaseapp.com",
+  projectId: "gen-lang-client-0671429103",
+  storageBucket: "gen-lang-client-0671429103.firebasestorage.app",
+  messagingSenderId: "363603639368",
+  appId: "1:363603639368:web:665f56c570afba7869ac7d",
+  measurementId: "G-MXFC2V1GXZ" // optional
 };
 
 export const app = initializeApp(firebaseConfig);

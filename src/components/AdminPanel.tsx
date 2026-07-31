@@ -5,7 +5,7 @@ import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { db, storage } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -157,6 +157,30 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       alert("Fehler beim Verarbeiten des Bildes");
     } finally {
       setUploadingImage(false);
+    }
+  };
+
+  const handleDeleteImage = async (imgUrl: string) => {
+    // Remove from UI first
+    setFormData(prev => {
+      const newGallery = (prev.gallery || []).filter(url => url !== imgUrl);
+      const isCover = imgUrl === prev.imageLink || imgUrl === prev.uploadedImage;
+      return {
+        ...prev,
+        gallery: newGallery,
+        imageLink: isCover ? '' : prev.imageLink,
+        uploadedImage: isCover ? '' : prev.uploadedImage
+      };
+    });
+    
+    // Optionally delete from Firebase Storage if it's a firebase storage URL
+    if (imgUrl.includes('firebasestorage')) {
+      try {
+        const imageRef = ref(storage, imgUrl);
+        await deleteObject(imageRef);
+      } catch (e) {
+        console.warn("Could not delete from storage", e);
+      }
     }
   };
 
@@ -317,7 +341,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 className={inputClass} 
                 placeholder="https://beispiel.de/logo.png" 
               />
-              <p className="text-xs opacity-70 mt-1">Das Logo wird in den Suchergebnissen auf der Karte angezeigt (idealerweise quadratisch).</p>
+              <p className="text-xs opacity-70 mt-1">Das Logo wird in den Suchergebnissen auf der Karte angezeigt. **Voraussetzung:** Das Logo muss quadratisch sein (idealerweise 400x400 Pixel), damit es optimal und scharf dargestellt wird.</p>
             </div>
 
             <div className="border-b border-orange-200/50 pb-5">
@@ -448,6 +472,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             Als Titelbild
                           </button>
                         )}
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteImage(imgUrl)}
+                          className="absolute top-1 right-1 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow"
+                          title="Bild löschen"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
                         <button 
                           type="button" 
                           onClick={() => setFormData(prev => {

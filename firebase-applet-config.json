@@ -1,10 +1,10 @@
 {
-  "projectId": "winterberger-unternehmen",
-  "appId": "1:923063046759:web:03c7023ebaaff2c6b93ac2",
-  "apiKey": "AIzaSyAqpsLrA6PiSFSXJiN4hFWsyfyUXTawhSw",
-  "authDomain": "winterberger-unternehmen.firebaseapp.com",
+  "projectId": "gen-lang-client-0671429103",
+  "appId": "1:363603639368:web:665f56c570afba7869ac7d",
+  "apiKey": "AIzaSyCU_-ygCWdyCrGvoNXeyIjmt9YnbZgp0Dk",
+  "authDomain": "gen-lang-client-0671429103.firebaseapp.com",
   "firestoreDatabaseId": "(default)",
-  "storageBucket": "winterberger-unternehmen.firebasestorage.app",
+  "storageBucket": "gen-lang-client-0671429103.firebasestorage.app",
   "messagingSenderId": "923063046759",
   "measurementId": "G-MXFC2V1GXZ"
 }

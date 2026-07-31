@@ -16,7 +16,7 @@ function getStripe(): Stripe {
 }
 
 
-const PROJECT_ID = "winterberger-unternehmen";
+const PROJECT_ID = 'gen-lang-client-0671429103';
 let redirectsMap = new Map<string, string>();
 
 async function fetchRedirects() {

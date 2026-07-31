@@ -2,6 +2,17 @@ import { Business, ThemeConfig, ThemeKey, CategoryGroup } from './types';
 
 export const businesses: Business[] = [
   {
+    id: 'rewe-winterberg',
+    name: 'REWE',
+    category: 'Einzelhandel',
+    subcategory: 'Supermarkt',
+    description: 'Dein REWE Supermarkt in Winterberg.',
+    address: 'Poststraße 6, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 7736',
+    isPremium: false,
+  },
+  {
     id: '142',
     name: 'Hessenkeller Winterberg',
     category: 'Gastronomie',
