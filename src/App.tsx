@@ -174,15 +174,20 @@ export default function App() {
       }
       return b;
     }));
+
+    if (selectedBusiness && selectedBusiness.id === businessId) {
+      setSelectedBusiness(prev => prev ? { ...prev, reviews: updatedReviews } : null);
+    }
     
     try {
-      // Create a copy of the business object without changing the local state reference here
       const bToUpdate = { ...business, reviews: updatedReviews };
       await setDoc(doc(db, 'businesses', businessId), bToUpdate);
     } catch (err) {
-      console.error(err);
+      console.error("Review save error", err);
+      alert("Fehler beim Speichern der Bewertung");
     }
   };
+
 
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isImpressumMode, setIsImpressumMode] = useState(false);
@@ -684,8 +689,9 @@ export default function App() {
             {/* Main Area */}
             <div className="flex-1 min-w-0">
               {selectedBusiness ? (
-                <BusinessDetail business={selectedBusiness} onBack={() => setSelectedBusiness(null)} theme={theme} activeThemeKey={activeThemeKey} />
+                <BusinessDetail business={selectedBusiness} onBack={() => setSelectedBusiness(null)} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
               ) : (
+
                 <>
                   {/* Top Search Bar */}
                   <div className="mb-8">
@@ -1642,16 +1648,14 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       return b;
     }));
     
-    // Using a tiny delay to allow React state update, or just write directly since we have the updatedBusiness
-    setTimeout(async () => {
-       if (updatedBusiness) {
-         try {
-           await setDoc(doc(db, 'businesses', businessId), updatedBusiness);
-         } catch(e) {
-           console.error("Firestore update failed", e);
-         }
-       }
-    }, 0);
+    if (updatedBusiness) {
+      try {
+        await setDoc(doc(db, 'businesses', businessId), updatedBusiness);
+      } catch(e) {
+        console.error("Firestore update failed", e);
+        alert("Fehler beim Speichern in der Datenbank.");
+      }
+    }
   };
 
   if (!currentUser) {
@@ -1661,7 +1665,11 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   // Determine allowed businesses based on role
   const isAdmin = userProfile?.role === 'admin';
   const ownerBusinessId = userProfile?.businessId;
-  const allowedBusinesses = isAdmin ? businesses : businesses.filter((b: Business) => b.id === ownerBusinessId || b.ownerId === userProfile?.uid);
+  const currentUid = currentUser?.uid;
+  const allowedBusinesses = isAdmin 
+    ? businesses 
+    : businesses.filter((b: Business) => b.id === ownerBusinessId || b.ownerId === currentUid || b.ownerId === userProfile?.uid);
+
 
   if (view === 'add' || view === 'edit') {
     return (

@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase } from 'lucide-react';
-import { Business, ThemeConfig } from '../types';
+import { Business, ThemeConfig, Review } from '../types';
 import { isOpenNow } from '../utils';
+import ReviewForm from './ReviewForm';
 
 interface BusinessDetailProps {
   business: Business;
   onBack: () => void;
   theme: ThemeConfig;
   activeThemeKey: string;
+  onReviewSubmit?: (businessId: string, review: Review) => void;
 }
 
-export default function BusinessDetail({ business, onBack, theme, activeThemeKey }: BusinessDetailProps) {
+export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit }: BusinessDetailProps) {
+
   const { t } = useTranslation();
   const [showClaimScreen, setShowClaimScreen] = useState(false);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
@@ -219,8 +222,14 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             )}
             
-            {/* Can add more detailed sections here if needed */}
+            {/* Reviews Section */}
+            {onReviewSubmit && (
+              <div className="pt-6 border-t border-black/5">
+                <ReviewForm business={business} onReviewSubmit={onReviewSubmit} />
+              </div>
+            )}
           </div>
+
 
           <div className={`space-y-6 p-6 border bg-black/[0.02] ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
             {!business.isPremium && (
