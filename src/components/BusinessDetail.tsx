@@ -158,7 +158,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            {business.services && business.services.length > 0 && (
+            {business.isPremium && business.services && business.services.length > 0 && (
               <div>
                 <h3 className="text-xl font-display font-bold mb-4 flex items-center gap-2">
                   <ListIcon className={`w-5 h-5 ${theme.iconAccent}`} />
@@ -197,7 +197,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             )}
             
-            {business.jobs && business.jobs.length > 0 && (
+            {business.isPremium && business.jobs && business.jobs.length > 0 && (
               <div className="pt-6 border-t border-black/5">
                 <h3 className="text-xl font-display font-bold mb-4 flex items-center gap-2">
                   <Briefcase className="w-5 h-5 text-black/40" />

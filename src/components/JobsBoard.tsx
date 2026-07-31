@@ -19,15 +19,16 @@ export default function JobsBoard({ businesses, theme, activeThemeKey, initialCa
   const [filterCategory, setFilterCategory] = useState<string>(initialCategory || 'Alle');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Extract all jobs from businesses
+  // Extract all jobs from Premium businesses only
   const allJobs: { job: Job, business: Business }[] = [];
   businesses.forEach(business => {
-    if (business.jobs && business.jobs.length > 0) {
+    if (business.isPremium && business.jobs && business.jobs.length > 0) {
       business.jobs.forEach(job => {
         allJobs.push({ job, business });
       });
     }
   });
+
 
   // Unique job categories
   const jobCategories = ['Alle', ...Array.from(new Set(allJobs.map(j => j.job.type)))];

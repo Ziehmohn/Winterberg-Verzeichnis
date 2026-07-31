@@ -1914,13 +1914,24 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                               <BadgeCheck className="w-4 h-4" />
                             </button>
                           )}
-                          <button 
-                            onClick={() => { setEditingBusiness(bus); setView('edit'); }}
-                            className={`p-2 bg-black/5 hover:bg-black/10 rounded-md transition-colors ${theme.textBase}`}
-                            title="Bearbeiten"
-                          >
-                            <Edit2 className="w-4 h-4" />
-                          </button>
+                          {(isAdmin || bus.isPremium) ? (
+                            <button 
+                              onClick={() => { setEditingBusiness(bus); setView('edit'); }}
+                              className={`p-2 bg-black/5 hover:bg-black/10 rounded-md transition-colors ${theme.textBase}`}
+                              title="Bearbeiten"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                            </button>
+                          ) : (
+                            <button 
+                              onClick={() => alert('Bearbeiten ist ein Premium-Feature. Bitte upgraden Sie auf Premium, um Ihren Eintrag jederzeit bearbeiten zu können.')}
+                              className="p-2 bg-black/5 hover:bg-black/10 rounded-md transition-colors text-black/30"
+                              title="Premium erforderlich"
+                            >
+                              <Lock className="w-4 h-4" />
+                            </button>
+                          )}
+
                           <button 
                             onClick={() => handleDelete(bus.id)}
                             className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-600 rounded-md transition-colors"

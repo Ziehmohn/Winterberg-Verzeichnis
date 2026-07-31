@@ -280,52 +280,6 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </div>
         </div>
 
-        <div className="border-t border-black/10 pt-5">
-          <label className={labelClass}>Leistungen & Services</label>
-          <div className="flex gap-2 mb-1">
-            <input 
-              type="text" 
-              value={newService} 
-              onChange={e => {
-                const val = e.target.value;
-                if (val.includes(',')) {
-                  addServicesFromInput(val);
-                } else {
-                  setNewService(val);
-                }
-              }} 
-              onKeyDown={e => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  addServicesFromInput(newService);
-                }
-              }}
-              className={inputClass} 
-              placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
-            />
-            <button 
-              type="button" 
-              onClick={() => addServicesFromInput(newService)}
-              className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-            >
-              Hinzufügen
-            </button>
-          </div>
-          <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
-          <div className="flex flex-wrap gap-2">
-            {(formData.services || []).map((service, idx) => (
-              <div key={idx} className="flex items-center gap-2 bg-black/5 px-3 py-1.5 rounded-full text-sm">
-                <span>{service}</span>
-                <button type="button" onClick={() => {
-                  setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));
-                }} className="text-red-500 hover:text-red-700">
-                  <X className="w-3 h-3" />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className="mt-4 pt-4 border-t border-black/10">
           <label className={labelClass}>Besitzer Benutzer-ID (UID)</label>
           <input 
@@ -348,11 +302,57 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             onChange={e => setFormData({...formData, isPremium: e.target.checked})} 
             className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" 
           />
-          <label htmlFor="isPremium" className={`text-lg font-bold ${theme.textBase}`}>Premium-Funktionen (Erweiterte Beschreibung, Öffnungszeiten, Galerie)</label>
+          <label htmlFor="isPremium" className={`text-lg font-bold ${theme.textBase}`}>Premium-Funktionen (Öffnungszeiten, Leistungen, Beschreibung, Galerie, Stellenanzeigen)</label>
         </div>
 
         {formData.isPremium && (
           <div className="p-5 bg-orange-50/50 border border-orange-200 rounded-lg space-y-6">
+
+            <div className="border-b border-orange-200/50 pb-5">
+              <label className={labelClass}>Leistungen & Services (Premium-Feature)</label>
+              <div className="flex gap-2 mb-1">
+                <input 
+                  type="text" 
+                  value={newService} 
+                  onChange={e => {
+                    const val = e.target.value;
+                    if (val.includes(',')) {
+                      addServicesFromInput(val);
+                    } else {
+                      setNewService(val);
+                    }
+                  }} 
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      addServicesFromInput(newService);
+                    }
+                  }}
+                  className={inputClass} 
+                  placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
+                />
+                <button 
+                  type="button" 
+                  onClick={() => addServicesFromInput(newService)}
+                  className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                >
+                  Hinzufügen
+                </button>
+              </div>
+              <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
+              <div className="flex flex-wrap gap-2">
+                {(formData.services || []).map((service, idx) => (
+                  <div key={idx} className="flex items-center gap-2 bg-black/5 px-3 py-1.5 rounded-full text-sm">
+                    <span>{service}</span>
+                    <button type="button" onClick={() => {
+                      setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));
+                    }} className="text-red-500 hover:text-red-700">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
             
             <div className="border-b border-orange-200/50 pb-5">
               <label className={labelClass}>Öffnungszeiten (Premium-Feature)</label>
