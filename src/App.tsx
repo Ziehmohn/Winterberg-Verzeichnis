@@ -22,7 +22,46 @@ import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from 'firebase/fi
 import { useTranslation } from './i18n';
 import { signOut } from 'firebase/auth';
 
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error: Error | null }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: any) {
+    console.error("React ErrorBoundary caught error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="w-full max-w-xl mx-auto p-8 my-10 bg-white border border-red-200 rounded-xl text-center shadow-lg">
+          <h2 className="text-xl font-bold text-red-700 mb-2">Ein Anzeigefehler ist aufgetreten</h2>
+          <p className="text-sm text-gray-600 mb-4 font-mono bg-red-50 p-3 rounded text-left overflow-auto max-h-32">
+            {this.state.error?.message || 'Laufzeitfehler'}
+          </p>
+          <button 
+            onClick={() => { this.setState({ hasError: false, error: null }); window.location.reload(); }}
+            className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition-colors"
+          >
+            Seite neu laden
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
+
   const { currentUser, userProfile } = useAuth();
   const { t, lang, setLang } = useTranslation();
   const [activeThemeKey, setActiveThemeKey] = useState<ThemeKey>('nature');
@@ -521,7 +560,8 @@ export default function App() {
 
       {/* Main Content */}
       <main className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 flex flex-col md:flex-row gap-8">
-        
+        <ErrorBoundary>
+
         {isJobsMode ? (
           <JobsBoard 
             businesses={businesses} 
@@ -1298,7 +1338,9 @@ export default function App() {
 
           </>
         )}
+        </ErrorBoundary>
       </main>
+
       
       {/* Mobile Full Screen Menu */}
       {isMobileCategoriesOpen && (

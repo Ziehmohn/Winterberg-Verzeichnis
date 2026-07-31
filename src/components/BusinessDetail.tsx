@@ -247,9 +247,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
             <h3 className="text-lg font-display font-bold mb-2">{t("contactDetails")}</h3>
             
-            {business.address && (
+            {!!business.address && typeof business.address === 'string' && (
               <div className="flex items-start gap-3">
-                <MapPin className={`w-5 h-5 mt-0.5 shrink-0 ${theme.iconAccent}`} />
+                <MapPin className={`w-5 h-5 mt-0.5 shrink-0 ${theme?.iconAccent || 'text-orange-500'}`} />
                 <span className="font-medium leading-tight">
                   {business.address.split(',').map((part, i) => (
                     <React.Fragment key={i}>
@@ -261,16 +261,16 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             )}
 
-            {business.phone && (
+            {!!business.phone && (
               <div className="flex items-center gap-3">
-                <Phone className={`w-5 h-5 shrink-0 ${theme.iconAccent}`} />
+                <Phone className={`w-5 h-5 shrink-0 ${theme?.iconAccent || 'text-orange-500'}`} />
                 <span className="font-medium">{business.phone}</span>
               </div>
             )}
 
-            {business.website && (
+            {!!business.website && typeof business.website === 'string' && (
               <div className="flex items-center gap-3">
-                <Globe className={`w-5 h-5 shrink-0 ${theme.iconAccent}`} />
+                <Globe className={`w-5 h-5 shrink-0 ${theme?.iconAccent || 'text-orange-500'}`} />
                 <span className="font-medium">
                   <a href={business.website.startsWith('http') ? business.website : `https://${business.website}`} target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-600 hover:text-blue-800">
                     {business.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
@@ -279,10 +279,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             )}
 
-            {business.openingHours && (() => {
+            {!!business.openingHours && (() => {
               const openState = isOpenNow(business.openingHours, t);
               return (
                 <div className="pt-4 border-t border-black/10">
+
                   <div className="flex items-start gap-3 mb-3">
                     <Clock className={`w-5 h-5 mt-0.5 shrink-0 ${openState.isOpen ? 'text-emerald-500' : 'text-red-500'}`} />
                     <span className={`font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>{openState.text}</span>

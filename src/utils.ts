@@ -12,9 +12,10 @@ export function isOpenNow(openingHours: OpeningHours | undefined, t: (key: strin
   const todayName = dayNames[now.getDay()];
   const todayHours = openingHours[todayName];
 
-  if (!todayHours || todayHours.toLowerCase() === 'geschlossen') {
+  if (!todayHours || typeof todayHours !== 'string' || todayHours.toLowerCase() === 'geschlossen') {
     return { isOpen: false, text: 'Geschlossen' };
   }
+
 
   // Handle formats like "08:00 - 17:00"
   const times = todayHours.split('-').map(t => t.trim());
