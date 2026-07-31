@@ -17,10 +17,13 @@ import AGB from './components/AGB';
 import SubmitBusiness from './components/SubmitBusiness';
 import PricingTable from './components/PricingTable';
 import JobsBoard from './components/JobsBoard';
+import AdminPanel from './components/AdminPanel';
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
 import { signOut } from 'firebase/auth';
+
+
 
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
