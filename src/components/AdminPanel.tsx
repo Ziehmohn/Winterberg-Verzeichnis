@@ -121,12 +121,12 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         setBusinesses((prev: Business[]) => [...prev, dataToSubmit]);
       }
       onBusinessAdded();
-    } catch (err: any) {
-      console.error("Firestore Save Error:", err);
-      if (err.message === 'TIMEOUT') {
-        alert('Fehler: Zeitüberschreitung beim Speichern. Bitte logge dich einmal aus und wieder ein (Logout-Button), da dein Sicherheitsschlüssel veraltet sein könnte!');
+    } catch (error: any) {
+      console.error("Save error:", error);
+      if (error.message === 'TIMEOUT') {
+        alert("Fehler: Zeitüberschreitung beim Speichern. Bitte logge dich einmal aus und wieder ein (Logout-Button), da dein Sicherheitsschlüssel veraltet sein könnte!");
       } else {
-        alert('Fehler beim Speichern. Prüfe deine Internetverbindung und Berechtigungen.');
+        alert("Fehler beim Speichern: " + (error.message || JSON.stringify(error)));
       }
     } finally {
       setIsSubmitting(false);

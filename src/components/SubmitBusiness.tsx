@@ -184,6 +184,19 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
           </div>
         </div>
 
+        <div className="pt-4 pb-2 border-t border-black/10 mt-4">
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <input 
+              type="checkbox" 
+              required
+              className="mt-1 w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 flex-shrink-0 cursor-pointer"
+            />
+            <span className="text-sm text-black/70 group-hover:text-black transition-colors leading-relaxed">
+              Ich habe die <strong>AGB</strong> und die <strong>Datenschutzerklärung</strong> gelesen und akzeptiere diese. Ich bestätige hiermit außerdem ausdrücklich, dass ich <strong>gewerblich (B2B)</strong> handle.
+            </span>
+          </label>
+        </div>
+
         <div className="pt-4 flex flex-col md:flex-row gap-3">
           <button type="submit" disabled={isSubmitting} className={`px-6 py-3 md:py-2 font-medium flex-1 text-center transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} disabled:opacity-50`}>
             {isSubmitting ? 'Bitte warten...' : selectedPlan === 'premium' ? t("bookPaid") : t("createEntry")}

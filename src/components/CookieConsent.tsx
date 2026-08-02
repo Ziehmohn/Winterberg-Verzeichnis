@@ -29,17 +29,27 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
     // Check local storage on mount
     const saved = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (saved) {
+      let parsedSettings: CookieSettings | null = null;
       try {
         const parsed = JSON.parse(saved);
         // Check if expired
         if (parsed.expires && new Date().getTime() > parsed.expires) {
           setShowBanner(true);
         } else {
+          parsedSettings = parsed.settings;
           setSettings(parsed.settings);
-          applyScripts(parsed.settings);
         }
       } catch(e) {
         setShowBanner(true);
+      }
+      
+      // Execute outside try-catch so an error here doesn't reset the banner
+      if (parsedSettings) {
+        try {
+          applyScripts(parsedSettings);
+        } catch (scriptErr) {
+          console.error("Error applying scripts:", scriptErr);
+        }
       }
     } else {
       setShowBanner(true);
