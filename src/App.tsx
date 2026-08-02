@@ -17,10 +17,8 @@ import AGB from './components/AGB';
 import SubmitBusiness from './components/SubmitBusiness';
 import PricingTable from './components/PricingTable';
 import JobsBoard from './components/JobsBoard';
-import CookieConsent from './components/CookieConsent';
 import AdminPanel from './components/AdminPanel';
 import ScriptManager from './components/ScriptManager';
-import DynamicScriptLoader from './components/DynamicScriptLoader';
 import Datenschutz from './components/Datenschutz';
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from 'firebase/firestore';
@@ -599,9 +597,9 @@ export default function App() {
             }}
           />
         ) : isImpressumMode ? (
-          <Impressum theme={theme} activeThemeKey={activeThemeKey} onBack={() => setIsImpressumMode(false)} />
+          <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
-          <AGB theme={theme} activeThemeKey={activeThemeKey} onBack={() => setIsAGBMode(false)} />
+          <AGB theme={theme} activeThemeKey={activeThemeKey} />
         ) : view === 'datenschutz' ? (
           <Datenschutz theme={theme} onBack={() => setView('directory')} />
         ) : isSubmitMode ? (
@@ -1486,9 +1484,6 @@ export default function App() {
           </div>
         </div>
       )}
-
-      <DynamicScriptLoader />
-      <CookieConsent theme={theme} />
 
       {/* Footer */}
       <footer className="max-w-7xl mx-auto px-4 md:px-8 py-8 mt-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4">
