@@ -151,6 +151,7 @@ export default function App() {
     setIsAdminMode(false);
     setIsImpressumMode(false);
     setIsAGBMode(false);
+    setIsDatenschutzMode(false);
     setIsSubmitMode(false);
     setIsPricingMode(false);
     setIsJobsMode(false);
@@ -236,6 +237,7 @@ export default function App() {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isImpressumMode, setIsImpressumMode] = useState(false);
   const [isAGBMode, setIsAGBMode] = useState(false);
+  const [isDatenschutzMode, setIsDatenschutzMode] = useState(false);
   const [isSubmitMode, setIsSubmitMode] = useState(false);
   const [isPricingMode, setIsPricingMode] = useState(false);
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
@@ -600,8 +602,8 @@ export default function App() {
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
           <AGB theme={theme} activeThemeKey={activeThemeKey} />
-        ) : view === 'datenschutz' ? (
-          <Datenschutz theme={theme} onBack={() => setView('directory')} />
+        ) : isDatenschutzMode ? (
+          <Datenschutz theme={theme} onBack={() => setIsDatenschutzMode(false)} />
         ) : isSubmitMode ? (
           <SubmitBusiness theme={theme} activeThemeKey={activeThemeKey} onCancel={() => setIsSubmitMode(false)} />
         ) : isAdminMode ? (
@@ -1492,7 +1494,7 @@ export default function App() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2">
             <button onClick={() => { 
               setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
-              setView('datenschutz'); 
+              setIsDatenschutzMode(true); 
               window.scrollTo(0,0); 
             }} className="hover:text-orange-500 transition-colors underline">Datenschutzerklärung</button>
             <div className="flex items-center justify-center gap-2">
@@ -1503,7 +1505,7 @@ export default function App() {
             </div>
             <button 
               onClick={() => {
-                setIsAdminMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
+                setIsAdminMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
                 setIsImpressumMode(true);
               }} 
               className={`text-xs hover:underline`}
@@ -1511,7 +1513,7 @@ export default function App() {
             <span className="text-xs text-black/20 dark:text-white/20">•</span>
             <button 
               onClick={() => {
-                setIsAdminMode(false); setIsImpressumMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
+                setIsAdminMode(false); setIsImpressumMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
                 setIsAGBMode(true);
               }} 
               className={`text-xs hover:underline`}
@@ -1519,7 +1521,7 @@ export default function App() {
             <span className="text-xs text-black/20 dark:text-white/20">•</span>
             <button 
               onClick={() => {
-                setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsJobsMode(false);
+                setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
                 setIsPricingMode(true);
               }} 
               className={`text-xs hover:underline`}
