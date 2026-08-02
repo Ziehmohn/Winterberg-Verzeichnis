@@ -599,9 +599,11 @@ export default function App() {
             }}
           />
         ) : isImpressumMode ? (
-          <Impressum theme={theme} activeThemeKey={activeThemeKey} />
+          <Impressum theme={theme} activeThemeKey={activeThemeKey} onBack={() => setIsImpressumMode(false)} />
         ) : isAGBMode ? (
-          <AGB theme={theme} activeThemeKey={activeThemeKey} />
+          <AGB theme={theme} activeThemeKey={activeThemeKey} onBack={() => setIsAGBMode(false)} />
+        ) : view === 'datenschutz' ? (
+          <Datenschutz theme={theme} onBack={() => setView('directory')} />
         ) : isSubmitMode ? (
           <SubmitBusiness theme={theme} activeThemeKey={activeThemeKey} onCancel={() => setIsSubmitMode(false)} />
         ) : isAdminMode ? (
@@ -1493,7 +1495,11 @@ export default function App() {
         <div className={`text-center text-sm flex-1 flex flex-col items-center justify-center gap-2 ${theme.textMuted}`}>
           <div>© {new Date().getFullYear()} Winterberg Wirtschaft. {t("footerInitiative")}</div>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2">
-            <button onClick={() => { setView('datenschutz'); window.scrollTo(0,0); }} className="hover:text-orange-500 transition-colors underline">Datenschutzerklärung</button>
+            <button onClick={() => { 
+              setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
+              setView('datenschutz'); 
+              window.scrollTo(0,0); 
+            }} className="hover:text-orange-500 transition-colors underline">Datenschutzerklärung</button>
             <div className="flex items-center justify-center gap-2">
               <span className="text-xs text-black/60 dark:text-white/60">{t("projectBy")}</span>
               <a href="https://sichtbar-online.com/seo-freelancer" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-opacity">
@@ -1501,17 +1507,26 @@ export default function App() {
               </a>
             </div>
             <button 
-              onClick={() => setIsImpressumMode(true)} 
+              onClick={() => {
+                setIsAdminMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
+                setIsImpressumMode(true);
+              }} 
               className={`text-xs hover:underline`}
             >{t("impressum")}</button>
             <span className="text-xs text-black/20 dark:text-white/20">•</span>
             <button 
-              onClick={() => setIsAGBMode(true)} 
+              onClick={() => {
+                setIsAdminMode(false); setIsImpressumMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
+                setIsAGBMode(true);
+              }} 
               className={`text-xs hover:underline`}
             >{t("agb")}</button>
             <span className="text-xs text-black/20 dark:text-white/20">•</span>
             <button 
-              onClick={() => setIsPricingMode(true)} 
+              onClick={() => {
+                setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsJobsMode(false);
+                setIsPricingMode(true);
+              }} 
               className={`text-xs hover:underline`}
             >{t("pricing")}</button>
             <span className="text-xs text-black/20 dark:text-white/20">•</span>
