@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2 } from 'lucide-react';
 import { categories, themes, businesses as initialBusinesses } from './data';
 import { ThemeKey, CategoryGroup, Business, SeoSettings } from './types';
-import DirectoryMap from './components/DirectoryMap';
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
@@ -12,14 +11,17 @@ import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
 import { useAuth } from './AuthContext';
 import Login from './components/Login';
-import Impressum from './components/Impressum';
-import AGB from './components/AGB';
-import SubmitBusiness from './components/SubmitBusiness';
-import PricingTable from './components/PricingTable';
-import JobsBoard from './components/JobsBoard';
-import AdminPanel from './components/AdminPanel';
-import ScriptManager from './components/ScriptManager';
-import Datenschutz from './components/Datenschutz';
+
+// Lazy-load heavy components that most visitors never see (code-splitting)
+const DirectoryMap = React.lazy(() => import('./components/DirectoryMap'));
+const Impressum = React.lazy(() => import('./components/Impressum'));
+const AGB = React.lazy(() => import('./components/AGB'));
+const SubmitBusiness = React.lazy(() => import('./components/SubmitBusiness'));
+const PricingTable = React.lazy(() => import('./components/PricingTable'));
+const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
+const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
+const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
+const Datenschutz = React.lazy(() => import('./components/Datenschutz'));
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
@@ -583,6 +585,7 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col">
         <ErrorBoundary>
+        <Suspense fallback={<div className="flex-1 flex items-center justify-center py-20"><div style={{width:40,height:40,border:'3px solid rgba(15,76,46,0.1)',borderRadius:'50%',borderTopColor:'#0F4C2E',animation:'spin 1s ease-in-out infinite'}} /></div>}>
 
         {selectedBusiness ? (
           <BusinessDetail business={selectedBusiness} onBack={() => { 
@@ -1072,6 +1075,7 @@ export default function App() {
 
           </>
         )}
+        </Suspense>
         </ErrorBoundary>
       </main>
 

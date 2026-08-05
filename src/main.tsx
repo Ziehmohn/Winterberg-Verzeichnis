@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import 'react-quill/dist/quill.snow.css';
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
