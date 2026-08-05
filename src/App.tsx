@@ -833,6 +833,7 @@ export default function App() {
                     </button>
                   </div>
                 </div>
+                </div>
               </div>
             </aside>
 
@@ -841,7 +842,7 @@ export default function App() {
               {selectedBusiness ? (
                 <BusinessDetail business={selectedBusiness} onBack={() => setSelectedBusiness(null)} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
               ) : (
-
+                <>
                 <div className="w-full flex flex-col">
                   {/* Full-bleed Green Header Block */}
                   <div className="w-screen relative left-1/2 -translate-x-1/2 bg-[#0F4C2E] text-white -mt-8 mb-8 pb-10">
@@ -1412,6 +1413,7 @@ export default function App() {
               })()}
                 </>
               )}
+            </div>
             </div>
 
           </>
