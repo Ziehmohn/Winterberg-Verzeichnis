@@ -553,7 +553,7 @@ export default function App() {
         </header>
 
       {/* Main Content */}
-      <main className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 flex flex-col md:flex-row gap-8">
+      <main className="flex-1 w-full flex flex-col">
         <ErrorBoundary>
 
         {isJobsMode ? (
@@ -605,8 +605,8 @@ export default function App() {
             {/* Conditional Claude Home View */}
             {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode ? (
               <div className="w-full flex flex-col mb-8">
-                <section className="relative text-white w-[100vw] ml-[calc(-50vw+50%)] mr-[calc(-50vw+50%)] -mt-8" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
-                  <div className="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-24">
+                <section className="relative text-white w-full" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
+                  <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px]">
                     <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm font-medium tracking-wide">
                       <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
                       Für die Kernstadt und alle 14 Ortsteile
@@ -661,16 +661,11 @@ export default function App() {
                 </section>
                 
                 {/* Claude Home Sections */}
-                <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-                  {/* Kategorien */}
+                <div className="max-w-[1180px] mx-auto px-6 pt-[68px] pb-[20px]">
+                  <h2 className="font-display text-[34px] font-bold m-0 mb-[6px]">Kategorien</h2>
+                  <p className="text-[16px] text-[#5F6B63] m-0 mb-[30px]">Sechs Bereiche, {categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} Branchen — such dir aus, was du brauchst.</p>
+                  
                   <div className="mb-16">
-                    <div className="mb-8 relative inline-block">
-                      <h2 className="font-display text-3xl font-bold mb-0 leading-tight">Kategorien</h2>
-                      <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-[2px]">
-                        <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                    <p className="text-gray-600 mb-8">Finde schnell, wonach du suchst in {categories.length} Hauptkategorien.</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
                       {categories.map(cat => (
                         <div 
@@ -696,15 +691,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Ortsteile */}
                   <div className="mb-16">
-                    <div className="mb-6 relative inline-block">
-                      <h2 className="font-display text-2xl font-bold mb-0 leading-tight">Alle Ortsteile</h2>
-                      <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[6px] block mt-[2px]">
-                        <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                    <p className="text-gray-600 mb-6">Kernstadt und alle Dörfer der Stadt Winterberg.</p>
                     <div className="flex flex-wrap gap-[10px]">
                       {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
                         <button 
@@ -721,15 +708,9 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Empfohlene */}
                   <div>
                     <div className="flex items-baseline justify-between gap-4 flex-wrap mb-[22px]">
-                      <div className="mb-0 relative inline-block">
-                        <h2 className="font-display text-3xl font-bold mb-0 leading-tight">Empfohlene Unternehmen</h2>
-                        <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-[2px]">
-                          <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
-                        </svg>
-                      </div>
+                      <h2 className="font-display text-[34px] font-bold m-0 leading-tight">Empfohlene Unternehmen</h2>
                       <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); window.scrollTo({ top: 500, behavior: 'smooth' }); }} className="font-semibold text-[15px] text-[#0F4C2E] hover:text-[#F2761B]">Alle {businesses.length} ansehen →</a>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
@@ -781,8 +762,8 @@ export default function App() {
 
             {/* List View Header */}
             {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (
-              <div className="w-[100vw] ml-[calc(-50vw+50%)] mr-[calc(-50vw+50%)] bg-[#0F4C2E] text-white -mt-8 md:-mt-12 mb-8">
-                <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-11">
+              <div className="w-full bg-[#0F4C2E] text-white">
+                <div className="max-w-[1180px] mx-auto px-6 py-[40px] pb-[44px]">
                   <div className="text-[14px] text-white/70 mb-2.5">
                     <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
                   </div>
@@ -800,7 +781,7 @@ export default function App() {
               </div>
             )}
 
-            <div className={`w-full flex flex-col md:flex-row gap-8 ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
+            <div className={`w-full max-w-[1180px] mx-auto px-6 pt-[28px] pb-[80px] flex flex-col md:flex-row gap-[30px] items-start ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}
             <aside className="w-full md:w-[270px] shrink-0 mb-6 md:mb-0 bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
               
