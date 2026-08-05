@@ -21,8 +21,9 @@ import AdminPanel from './components/AdminPanel';
 import ScriptManager from './components/ScriptManager';
 import Datenschutz from './components/Datenschutz';
 import { db, auth } from './firebase';
-import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
+import { getSeoContent } from './utils/seoContent';
 import { signOut } from 'firebase/auth';
 
 
@@ -136,6 +137,29 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState(defaultSearchQuery);
   const [activeCategory, setActiveCategory] = useState<string>(defaultCategory);
   const [isNotFound, setIsNotFound] = useState(initialNotFound);
+
+  useEffect(() => {
+    if (isNotFound) {
+      const checkRedirect = async () => {
+        try {
+          const snap = await getDocs(collection(db, 'redirects'));
+          const currentPath = window.location.pathname;
+          let redirectTarget = null;
+          snap.forEach(docSnap => {
+            const data = docSnap.data();
+            if (data.source === currentPath || data.source + '/' === currentPath || data.source === currentPath + '/') {
+              redirectTarget = data.target;
+            }
+          });
+          if (redirectTarget) {
+            window.location.replace(redirectTarget);
+          }
+        } catch(e) { console.error("Error fetching redirects", e); }
+      };
+      checkRedirect();
+    }
+  }, [isNotFound]);
+
   const [activeLocation, setActiveLocation] = useState<string>('Alle');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [isAllMode, setIsAllMode] = useState(initialAllMode);
@@ -252,11 +276,16 @@ export default function App() {
     }
     
     try {
-      const bToUpdate = { ...business, reviews: updatedReviews };
-      await setDoc(doc(db, 'businesses', businessId), bToUpdate);
+      await updateDoc(doc(db, 'businesses', businessId), { reviews: updatedReviews });
     } catch (err) {
       console.error("Review save error", err);
-      alert("Fehler beim Speichern der Bewertung");
+      // Fallback if doc doesn't exist yet
+      try {
+        const bToUpdate = { ...business, reviews: updatedReviews };
+        await setDoc(doc(db, 'businesses', businessId), bToUpdate, { merge: true });
+      } catch (e2) {
+        console.error("Fallback review save error", e2);
+      }
     }
   };
 
@@ -519,7 +548,6 @@ export default function App() {
                 <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>VERZEICHNIS</span>
               </span>
             </div>
-            
             <nav className="hidden md:flex" style={{ gap: '22px', fontSize: '15px', fontWeight: 500, marginLeft: 'auto' }}>
               <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
               <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
@@ -527,7 +555,7 @@ export default function App() {
               <a href={getPath('/preise')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/preise')); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
               {!isAdminMode && (
                 <button 
-                  onClick={() => setIsAdminMode(true)}
+                  onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
                   className="flex items-center justify-center text-[#0F4C2E] hover:text-orange-500 transition-colors ml-2"
                   title={currentUser ? 'Dashboard' : t("adminLogin")}
                 >
@@ -983,22 +1011,48 @@ export default function App() {
                 </motion.div>
                 
                 {/* SEO Text Footer */}
-                {activeCategory !== 'Alle' && (
-                  <section className="mt-[34px] bg-white border border-[#EDE8E0] rounded-[22px] p-[32px]">
-                    <h2 className="font-display text-[26px] font-bold m-0 mb-[14px]">
-                      {seoSettings?.title || `Lokale Anbieter in der Kategorie ${activeCategory}`}
-                    </h2>
-                    <div className="text-[16px] leading-[1.75] text-[#4A544D] max-w-[78ch]">
-                      {seoSettings?.text || `Finden Sie hier die besten Dienstleister, Handwerker und Geschäfte für den Bereich ${activeCategory} in Winterberg und seinen 14 Ortsteilen. Wir haben alle wichtigen Informationen, Öffnungszeiten und Kontaktdaten für Sie zusammengefasst.`}
-                    </div>
-                    <div className="mt-[22px] pt-[20px] border-t border-[#F3F0EA] flex gap-[14px] items-center flex-wrap">
-                      <span className="text-[15px] text-[#4A544D]">Ihr Betrieb fehlt in dieser Kategorie?</span>
-                      <button type="button" onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }} className="bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">
-                        Kostenlos eintragen
-                      </button>
-                    </div>
-                  </section>
-                )}
+                {(() => {
+                  const seoData = getSeoContent(activeCategory, activeLocation, filteredBusinesses.length);
+                  return (
+                    <section className="mt-[34px] bg-white border border-[#EDE8E0] rounded-[22px] p-[32px]">
+                      <h2 className="font-display text-[26px] font-bold m-0 mb-[14px]">
+                        {seoSettings?.title || seoData.introTitle}
+                      </h2>
+                      <div className="text-[16px] leading-[1.75] text-[#4A544D] max-w-[78ch] mb-8">
+                        {seoSettings?.text || seoData.introText}
+                      </div>
+                      
+                      {/* FAQ Section */}
+                      {seoData.faqs.length > 0 && (
+                        <div className="mt-8 border-t border-[#F3F0EA] pt-8">
+                          <h3 className="font-display text-[20px] font-bold mb-[18px]">Häufig gestellte Fragen (FAQ)</h3>
+                          <div className="grid gap-[12px]">
+                            {seoData.faqs.map((faq, idx) => (
+                              <details key={idx} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] overflow-hidden group">
+                                <summary className="font-semibold text-[15.5px] p-[18px] cursor-pointer flex justify-between items-center outline-none">
+                                  {faq.question}
+                                  <span className="text-[#0F4C2E] group-open:rotate-180 transition-transform duration-200">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                  </span>
+                                </summary>
+                                <div className="px-[18px] pb-[20px] pt-0 text-[15px] text-[#4A544D] leading-relaxed">
+                                  {faq.answer}
+                                </div>
+                              </details>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="mt-[32px] pt-[20px] border-t border-[#F3F0EA] flex gap-[14px] items-center flex-wrap">
+                        <span className="text-[15px] text-[#4A544D]">Ihr Betrieb fehlt in dieser Kategorie?</span>
+                        <button type="button" onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }} className="bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">
+                          Kostenlos eintragen
+                        </button>
+                      </div>
+                    </section>
+                  );
+                })()}
                 </>
               )}
             </div>
@@ -1244,7 +1298,6 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
       setSource('');
       setTarget('');
       loadRedirects();
-      fetch('/api/refresh-redirects', { method: 'POST' }).catch(console.error);
     } catch(e) {
       console.error(e);
       alert('Fehler beim Speichern');
@@ -1256,7 +1309,6 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
     try {
       await deleteDoc(doc(db, 'redirects', id));
       loadRedirects();
-      fetch('/api/refresh-redirects', { method: 'POST' }).catch(console.error);
     } catch(e) {
       console.error(e);
     }
