@@ -644,16 +644,26 @@ export default function App() {
                       </svg>
                     </div>
                     <p className="text-gray-600 mb-8">Finde schnell, wonach du suchst in {categories.length} Hauptkategorien.</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
                       {categories.map(cat => (
                         <div 
                           key={cat.name}
                           onClick={() => { setActiveCategory(cat.name); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-white border border-gray-200 rounded-2xl p-6 cursor-pointer hover:border-[#0F4C2E] hover:-translate-y-1 hover:shadow-lg transition-all"
+                          className="bg-white border border-[#EDE8E0] rounded-[20px] p-[26px] cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
                         >
-                          <h3 className="font-display text-xl font-semibold mb-2 text-[#0F4C2E]">{cat.name}</h3>
-                          <p className="text-sm text-gray-500 mb-4">{cat.subcategories.join(', ')}</p>
-                          <div className="text-sm font-medium text-[#F2761B]">Entdecken →</div>
+                          <div className="flex items-center gap-[14px]">
+                            <div className="w-[52px] h-[52px] rounded-[15px] bg-[#E4F0F4] text-[#146C82] flex items-center justify-center shrink-0">
+                               {cat.name === 'Dienstleistungen' ? <Briefcase className="w-6 h-6" /> : cat.name === 'Freizeit' ? <Sun className="w-6 h-6" /> : cat.name === 'Hotels & Unterkünfte' ? <Bed className="w-6 h-6" /> : cat.name === 'Einkaufen' ? <ShoppingBag className="w-6 h-6" /> : cat.name === 'Gastronomie' ? <Utensils className="w-6 h-6" /> : <BadgeCheck className="w-6 h-6" />}
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-display text-[21px] font-semibold text-gray-900 leading-tight">{cat.name}</div>
+                              <div className="text-[14px] text-[#5F6B63]">{businesses.filter(b => b.category === cat.name || b.subcategory === cat.name).length} Betriebe</div>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-[#B9B2A8]" />
+                          </div>
+                          <div className="mt-[16px] text-[14px] text-[#5F6B63] leading-[1.6]">
+                            {cat.subcategories.join(', ')}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -668,14 +678,17 @@ export default function App() {
                       </svg>
                     </div>
                     <p className="text-gray-600 mb-6">Kernstadt und alle Dörfer der Stadt Winterberg.</p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-[10px]">
                       {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
                         <button 
                           key={d}
                           onClick={() => { setActiveLocation(d); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="px-4 py-2 bg-[#FAF8F5] border border-gray-200 rounded-full text-sm font-medium hover:border-[#0F4C2E] transition-colors"
+                          className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-full px-[18px] py-[11px] text-[15px] font-medium text-[#1B211D] cursor-pointer inline-flex items-center gap-[9px] hover:border-[#0F4C2E] transition-colors"
                         >
                           {d}
+                          <span className="bg-[#F3F0EA] rounded-full px-[9px] py-[2px] text-[12px] font-semibold text-[#5F6B63]">
+                            {businesses.filter(b => (b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg') === d).length}
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -683,37 +696,57 @@ export default function App() {
 
                   {/* Empfohlene */}
                   <div>
-                    <div className="mb-8 relative inline-block">
-                      <h2 className="font-display text-3xl font-bold mb-0 leading-tight">Empfohlene Unternehmen</h2>
-                      <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-[2px]">
-                        <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
-                      </svg>
+                    <div className="flex items-baseline justify-between gap-4 flex-wrap mb-[22px]">
+                      <div className="mb-0 relative inline-block">
+                        <h2 className="font-display text-3xl font-bold mb-0 leading-tight">Empfohlene Unternehmen</h2>
+                        <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-[2px]">
+                          <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
+                        </svg>
+                      </div>
+                      <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); window.scrollTo({ top: 500, behavior: 'smooth' }); }} className="font-semibold text-[15px] text-[#0F4C2E] hover:text-[#F2761B]">Alle {businesses.length} ansehen →</a>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
                       {businesses.filter(b => b.isPremium).slice(0, 6).map(b => (
                         <div 
                           key={b.id}
                           onClick={() => { setSelectedBusiness(b); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-white border border-[#E7E2DA] rounded-2xl p-6 cursor-pointer flex flex-col gap-3 hover:-translate-y-1 hover:shadow-lg transition-all"
+                          className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] cursor-pointer flex flex-col gap-[12px] shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
                         >
-                          <div className="flex items-start gap-3">
-                            <div className="w-12 h-12 rounded-xl bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-lg shrink-0">
+                          <div className="flex items-start gap-[13px]">
+                            <div className="w-[46px] h-[46px] rounded-[14px] bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[15px] shrink-0">
                               {b.name.charAt(0)}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="font-display text-lg font-semibold truncate leading-tight">{b.name}</div>
-                              <div className="text-sm text-gray-500 mt-1">{b.subcategory} · {b.district || 'Winterberg'}</div>
+                              <div className="font-display text-[18px] font-semibold truncate leading-[1.25]">{b.name}</div>
+                              <div className="text-[13px] text-[#5F6B63] mt-[3px]">{b.subcategory || 'Andere'} · {b.district || 'Winterberg'}</div>
                             </div>
-                            <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider">Premium</span>
+                            {b.isPremium && (
+                              <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-[10px] py-[4px] text-[11px] font-bold uppercase tracking-[0.04em]">Premium</span>
+                            )}
                           </div>
-                          <p className="text-sm text-gray-600 line-clamp-3 my-2">{b.description}</p>
-                          <div className="flex items-center gap-2 text-sm text-gray-500 mt-auto pt-2">
-                            <MapPin className="w-4 h-4" /> {b.address}
+                          <p className="text-[14.5px] text-[#4A544D] leading-[1.55] m-0 line-clamp-3">{b.description}</p>
+                          <div className="flex items-center gap-[7px] text-[13px] text-[#5F6B63] mt-auto pt-[4px]">
+                            <MapPin className="w-[14px] h-[14px]" /> {b.address}
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
+
+                  {/* Footer CTA */}
+                  <div className="mt-[62px] mb-[14px] bg-gradient-to-br from-[#0F4C2E] to-[#06301C] rounded-[26px] p-8 md:p-[52px] text-white flex flex-col md:flex-row gap-8 items-center justify-between">
+                    <div className="max-w-[46ch]">
+                      <h2 className="font-display text-[34px] font-bold m-0 mb-[12px]">Ihr Unternehmen fehlt noch?</h2>
+                      <p className="text-[17px] leading-[1.6] text-white/85 m-0">
+                        Kostenlos eintragen und von Kundinnen und Kunden aus der Region gefunden werden. Mit Premium gibt es Bildergalerie, ausführliches Profil und Top-Platzierung.
+                      </p>
+                    </div>
+                    <div className="flex gap-[12px] flex-wrap">
+                      <button type="button" onClick={() => setIsSubmitMode(true)} className="bg-[#F2761B] text-white border-none rounded-full px-[28px] py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">Jetzt eintragen</button>
+                      <button type="button" onClick={() => setIsPricingMode(true)} className="bg-transparent text-white border border-white/40 rounded-full px-[28px] py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-white/10 transition-colors">Preise ansehen</button>
+                    </div>
+                  </div>
+
                 </div>
 
               </div>
