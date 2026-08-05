@@ -87,7 +87,7 @@ export default function App() {
     
     if (pathParts[0]) {
       const decodedPart1 = decodeURIComponent(pathParts[0]);
-      if (decodedPart1.toLowerCase() === 'alle') {
+      if (decodedPart1.toLowerCase() === 'alle-unternehmen') {
         initialAllMode = true;
       } else if (decodedPart1.toLowerCase() === 'stellenangebote' || decodedPart1.toLowerCase() === 'jobs') {
         initialJobsMode = true;
@@ -219,7 +219,7 @@ export default function App() {
       
       if (pathParts[0]) {
         const p1 = decodeURIComponent(pathParts[0]).toLowerCase();
-        if (p1 === 'alle') {
+        if (p1 === 'alle-unternehmen') {
           setIsAllMode(true);
         } else if (p1 === 'stellenangebote' || p1 === 'jobs') {
           setIsJobsMode(true);
@@ -459,7 +459,7 @@ export default function App() {
 
   if (isNotFound) {
     return (
-      <div className={`min-h-screen relative overflow-x-hidden transition-colors duration-300 ${theme.bgPage} ${theme.textBase}`}>
+      <div className={`min-h-screen relative transition-colors duration-300 ${theme.bgPage} ${theme.textBase}`}>
         {/* Background Decorators */}
         {theme.backgroundImage && (
           <div 
@@ -475,7 +475,7 @@ export default function App() {
   }
 
   return (
-    <div className={`min-h-screen relative overflow-x-hidden transition-colors duration-300 ${theme.bgPage} ${theme.textBase}`}>
+    <div className={`min-h-screen relative transition-colors duration-300 ${theme.bgPage} ${theme.textBase}`}>
       
       {/* Background Decorators */}
       {theme.backgroundImage && (
@@ -522,7 +522,7 @@ export default function App() {
             
             <nav className="hidden md:flex" style={{ gap: '22px', fontSize: '15px', fontWeight: 500, marginLeft: 'auto' }}>
               <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
-              <a href={getPath('/alle')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
+              <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
               <a href={getPath('/preise')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/preise')); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
               {!isAdminMode && (
@@ -556,7 +556,16 @@ export default function App() {
       <main className="flex-1 w-full flex flex-col">
         <ErrorBoundary>
 
-        {isJobsMode ? (
+        {selectedBusiness ? (
+          <BusinessDetail business={selectedBusiness} onBack={() => { 
+            const basePath = activeCategory !== 'Alle' 
+              ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
+              : '/alle-unternehmen';
+            const url = getPath(basePath);
+            window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
+            setSelectedBusiness(null); 
+          }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
+        ) : isJobsMode ? (
           <JobsBoard 
             businesses={businesses} 
             theme={theme} 
@@ -880,7 +889,7 @@ export default function App() {
                           e.preventDefault();
                           const basePath = activeCategory !== 'Alle' 
                             ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
-                            : '/alle';
+                            : '/alle-unternehmen';
                           const url = getPath(basePath);
                           window.history.pushState(null, '', d !== 'Alle' ? `${url}?ort=${encodeURIComponent(d)}` : url);
                           setActiveLocation(d);
@@ -898,7 +907,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => {
-                     window.history.pushState(null, '', getPath('/alle'));
+                     window.history.pushState(null, '', getPath('/alle-unternehmen'));
                      setActiveCategory('Alle');
                      setActiveLocation('Alle');
                      setSearchQuery('');
@@ -915,15 +924,6 @@ export default function App() {
 
             {/* Main Area */}
             <div className="flex-1 min-w-0">
-              {selectedBusiness ? (
-                <BusinessDetail business={selectedBusiness} onBack={() => setSelectedBusiness(null)} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
-              ) : (
-                <>
-                <div className="w-full flex flex-col">
-                  {/* Green Header Block Removed (Already displayed globally) */}
-
-
-                </div>
 
               {/* Directory Grid or Map */}
               {isLoading ? (
@@ -1058,8 +1058,6 @@ export default function App() {
                 )}
                 </>
               )}
-              </>
-            )}
             </div>
             </div>
 

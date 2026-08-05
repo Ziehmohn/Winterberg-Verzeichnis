@@ -12,9 +12,10 @@ interface BusinessDetailProps {
   theme: ThemeConfig;
   activeThemeKey: string;
   onReviewSubmit?: (businessId: string, review: Review) => void;
+  similarBusinesses?: Business[];
 }
 
-export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit }: BusinessDetailProps) {
+export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [] }: BusinessDetailProps) {
 
   const { t } = useTranslation();
   const [showClaimScreen, setShowClaimScreen] = useState(false);
@@ -261,6 +262,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </a>
           )}
 
+          <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
+            <MapPin className="w-4 h-4" />
+            Route planen
+          </a>
+
           {!business.isPremium && (
             <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
               <div className="font-semibold text-[15px] mb-1">Ist das Ihr Unternehmen?</div>
@@ -275,6 +281,31 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           )}
         </aside>
       </div>
+
+      {similarBusinesses.length > 0 && (
+        <div className="max-w-[1000px] mx-auto px-6 pb-[80px]">
+          <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">Ähnliche Unternehmen</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[18px]">
+            {similarBusinesses.map(b => (
+              <div key={b.id} onClick={() => {
+                const basePath = `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
+                const url = typeof window !== 'undefined' ? `${window.location.origin}${basePath}` : basePath;
+                window.location.href = url;
+              }} className="bg-white border border-[#EDE8E0] rounded-[20px] p-[20px] cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
+                <div className="flex items-center gap-[12px]">
+                  <div className="w-[42px] h-[42px] rounded-[13px] bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[14px] shrink-0">
+                    {b.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-display text-[16.5px] font-semibold">{b.name}</div>
+                    <div className="text-[13px] text-[#5F6B63]">{b.district || 'Winterberg'}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
