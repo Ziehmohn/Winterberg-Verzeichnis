@@ -145,7 +145,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
       </div>
 
-      <div className="max-w-[1000px] mx-auto px-6 pb-[40px] -mt-[26px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[26px] items-start">
+      <div className="max-w-[1000px] mx-auto px-6 py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[26px] items-start">
         <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[32px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
           <h2 className="font-display text-[22px] font-semibold mb-3">Über das Unternehmen</h2>
           <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{business.description}</p>
