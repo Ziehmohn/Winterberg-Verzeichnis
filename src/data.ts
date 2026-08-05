@@ -1213,7 +1213,7 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
-  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker'] },
+  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Kneipen und Bars'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken'] },

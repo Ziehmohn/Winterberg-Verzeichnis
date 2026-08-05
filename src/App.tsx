@@ -1432,8 +1432,6 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
   // Determine allowed businesses based on role
   const isAdmin = userProfile?.role === 'admin' || 
-                  userProfile?.role !== 'business_owner' ||
-                  !userProfile?.businessId ||
                   currentUser?.email?.includes('sichtbar') ||
                   currentUser?.email?.includes('simon.kraeling');
 
@@ -1484,9 +1482,11 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           { id: 'entries', label: 'Einträge' },
           { id: 'reviews', label: 'Bewertungen' },
           { id: 'abrechnung', label: 'Abrechnung' },
-          { id: 'seo', label: 'SEO' },
-          { id: 'redirects', label: 'Redirects' },
-          { id: 'scripts', label: 'Skripte' }
+          ...(isAdmin ? [
+            { id: 'seo', label: 'SEO' },
+            { id: 'redirects', label: 'Redirects' },
+            { id: 'scripts', label: 'Skripte' }
+          ] : [])
         ].map(tab => (
           <button 
             key={tab.id}
@@ -1501,12 +1501,18 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       {activeTab === 'entries' ? (
         <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
           <div className="flex gap-[12px] flex-wrap items-center mb-[18px]">
-            <input 
-              value={activeAdminCategory !== 'Alle' ? activeAdminCategory : ''}
-              onChange={e => setActiveAdminCategory(e.target.value || 'Alle')}
-              placeholder="Kategorie Filter..."
-              className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-[12px] px-[14px] py-[12px] text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
-            />
+            {isAdmin && (
+              <select 
+                value={activeAdminCategory}
+                onChange={e => setActiveAdminCategory(e.target.value)}
+                className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-[12px] px-[14px] py-[12px] text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+              >
+                <option value="Alle">Alle Kategorien</option>
+                {categories.map(c => (
+                  <option key={c.name} value={c.name}>{c.name}</option>
+                ))}
+              </select>
+            )}
             <button 
               onClick={() => { setEditingBusiness(null); setView('add'); }}
               className="bg-[#0F4C2E] text-white border-none rounded-full px-[22px] py-[12px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"

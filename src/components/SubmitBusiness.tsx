@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig, Business } from '../types';
 import { db } from '../firebase';
+import { categories } from '../data';
 import { doc, setDoc } from 'firebase/firestore';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
 
@@ -55,9 +56,13 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
       }
       
       setIsSuccess(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      alert(t("errorOccurred"));
+      if (err?.code === 'permission-denied') {
+        alert("Zugriff verweigert. Bitte überprüfen Sie Ihre Eingaben oder laden Sie die Seite neu.");
+      } else {
+        alert(t("errorOccurred") + ": " + (err?.message || ""));
+      }
       setIsSubmitting(false);
     }
   };
@@ -92,11 +97,21 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
           <label className="grid gap-[7px] text-[14px] font-semibold">Kategorie
-            <select required value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+            <select required value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value, subcategory: ''})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
               <option value="">Bitte wählen...</option>
               {CATEGORY_NAMES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </label>
+          
+          {formData.category && categories.find(c => c.name === formData.category)?.subcategories?.length ? (
+            <label className="grid gap-[7px] text-[14px] font-semibold">Unterkategorie (Optional)
+              <select value={formData.subcategory || ''} onChange={e => setFormData({...formData, subcategory: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+                <option value="">Bitte wählen...</option>
+                {categories.find(c => c.name === formData.category)?.subcategories.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </label>
+          ) : null}
+
           <label className="grid gap-[7px] text-[14px] font-semibold">Ortsteil
             <select required value={formData.district || ''} onChange={e => setFormData({...formData, district: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
               <option value="">Bitte wählen...</option>

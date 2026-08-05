@@ -9,8 +9,8 @@ service cloud.firestore {
 
     match /businesses/{businessId} {
       allow read: if true;
-      // Authenticated users can create new businesses
-      allow create: if request.auth != null;
+      // Anyone can create new businesses (will be pending by default)
+      allow create: if true;
       // Authenticated users can update (admin, owner, or review-only changes)
       allow update: if request.auth != null 
         || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reviews']);
