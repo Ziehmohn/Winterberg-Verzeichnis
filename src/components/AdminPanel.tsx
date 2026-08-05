@@ -3,7 +3,7 @@ import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
-import { db, storage } from '../firebase';
+import { db, storage, auth } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import ReactDOM from 'react-dom';
