@@ -34,3 +34,7 @@ createRoot(document.getElementById('root')!).render(
     </AuthProvider>
   </StrictMode>,
 );
+
+// Clean up skeleton styles after React has mounted
+const skeletonStyles = document.getElementById('skeleton-styles');
+if (skeletonStyles) skeletonStyles.remove();
