@@ -1025,6 +1025,18 @@ export default function App() {
                       {/* FAQ Section */}
                       {seoData.faqs.length > 0 && (
                         <div className="mt-8 border-t border-[#F3F0EA] pt-8">
+                          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": seoData.faqs.map(faq => ({
+                              "@type": "Question",
+                              "name": faq.question,
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": faq.answer
+                              }
+                            }))
+                          })}} />
                           <h3 className="font-display text-[20px] font-bold mb-[18px]">Häufig gestellte Fragen (FAQ)</h3>
                           <div className="grid gap-[12px]">
                             {seoData.faqs.map((faq, idx) => (

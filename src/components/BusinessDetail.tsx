@@ -306,6 +306,27 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           </div>
         </div>
       )}
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": business.name,
+        "image": business.images ? business.images : undefined,
+        "url": webHref || undefined,
+        "telephone": business.phone || undefined,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": business.address,
+          "addressLocality": business.district || "Winterberg",
+          "addressRegion": "NRW",
+          "addressCountry": "DE"
+        },
+        "aggregateRating": avgRating ? {
+          "@type": "AggregateRating",
+          "ratingValue": avgRating,
+          "reviewCount": business.reviews?.length || 0
+        } : undefined
+      })}} />
     </main>
   );
 }
