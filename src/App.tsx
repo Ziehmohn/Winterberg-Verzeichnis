@@ -946,88 +946,31 @@ export default function App() {
                     filteredBusinesses.map((bus) => (
                       <div 
                         key={bus.id} 
-                        className={`relative group flex flex-col overflow-hidden transition-all hover:-translate-y-1 bg-white rounded-[20px] ${bus.isPremium ? 'border-2 border-[#D65F0C] shadow-lg shadow-[#D65F0C]/10' : 'border border-[#EDE8E0] shadow-sm hover:shadow-md'}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
+                          setSearchQuery(bus.name);
+                          setSelectedBusiness(bus);
+                        }}
+                        className={`bg-white border rounded-[20px] p-[24px] cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[4px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
                       >
-                        {/* Image Header */}
-                        <div className="h-48 w-full bg-black/5 relative overflow-hidden">
-                          {(bus.uploadedImage || bus.imageLink) ? (
-                            <img src={bus.uploadedImage || bus.imageLink} alt={bus.name} className="w-full h-full object-cover" />
-                          ) : (
-                            <div className="w-full h-full flex flex-col items-center justify-center text-black/40 bg-[#FAF8F5]">
-                              <ImageIcon className="w-8 h-8 mb-3 opacity-40 text-[#0F4C2E]" />
-                              <span className="text-[11px] md:text-xs font-bold tracking-widest opacity-60 text-[#0F4C2E]">BILDER FOLGEN IN KÜRZE</span>
-                            </div>
-                          )}
-                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-medium text-[#1B211D] rounded-full shadow-sm">
-                            {bus.subcategory ? `${t(bus.category)} — ${t(bus.subcategory)}` : t(bus.category)}
+                        <div className="flex items-start gap-[16px] mb-[16px]">
+                          <div className={`w-[48px] h-[48px] rounded-[14px] flex items-center justify-center font-display font-bold text-[16px] shrink-0 ${bus.isPremium ? 'bg-[#F2761B] text-white' : 'bg-[#FAF8F5] text-[#F2761B]'}`}>
+                            {bus.name.split(' ').filter(Boolean).map(n => n[0]).slice(0, 2).join('').toUpperCase() || bus.name.substring(0, 2).toUpperCase()}
                           </div>
-                          {bus.isPremium && (
-                            <div className="absolute top-4 right-4 bg-[#F2761B] text-white shadow-lg shadow-[#F2761B]/30 px-3 py-1 text-xs font-bold flex items-center gap-1 rounded-full uppercase tracking-wider">
-                              <Star className="w-3 h-3 fill-current" /> Premium
-                            </div>
-                          )}
+                          <div>
+                            <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
+                            <div className="text-[13.5px] text-[#8A928B]">{bus.category} · {bus.district || 'Winterberg'}</div>
+                          </div>
                         </div>
-
-                        {bus.isPremium && bus.logoUrl && (
-                          <div className="absolute top-[164px] left-6 w-14 h-14 bg-white rounded-xl shadow-md border border-gray-100 z-10 flex items-center justify-center p-1.5">
-                            <img src={bus.logoUrl} alt="Logo" className="max-w-full max-h-full object-contain" />
-                          </div>
-                        )}
-
-                        <div className="p-6 flex-1 flex flex-col bg-white">
-                          <div className={`flex items-start justify-between gap-2 mb-2 ${bus.isPremium && bus.logoUrl ? 'mt-4' : ''}`}>
-                            <a 
-                              href={`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
-                                setSearchQuery(bus.name);
-                                setSelectedBusiness(bus);
-                              }}
-                              className="hover:underline flex-1 text-[#1B211D]"
-                            >
-                              <h3 className="text-[20px] leading-[1.25] font-display font-semibold">{bus.name}</h3>
-                            </a>
-                          </div>
-                          <p className="text-[14.5px] leading-[1.55] mb-6 flex-1 text-[#4A544D]">
-                            {bus.description && bus.description.length > 90 
-                              ? bus.description.substring(0, 90) + '…' 
-                              : bus.description}
-                          </p>
-                          
-                          <div className="space-y-3 pt-4 border-t border-[#F3F0EA]">
-                            {bus.isPremium && bus.openingHours && (() => {
-                              const openState = isOpenNow(bus.openingHours, t);
-                              return (
-                                <div className="flex items-start gap-3">
-                                  <Clock className={`w-4 h-4 mt-0.5 shrink-0 ${openState.isOpen ? 'text-emerald-500' : 'text-red-500'}`} />
-                                  <span className={`text-[13px] font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>{openState.text}</span>
-                                </div>
-                              );
-                            })()}
-                            <div className="flex items-start gap-3 text-[#5F6B63]">
-                              <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                              <span className="text-[13px]">{bus.address}</span>
-                            </div>
-                            {bus.phone && (
-                              <div className="flex items-center gap-3 text-[#5F6B63]">
-                                <Phone className="w-4 h-4 shrink-0" />
-                                <span className="text-[13px]">{bus.phone}</span>
-                              </div>
-                            )}
-                            {bus.website && (
-                              <div className="flex items-center gap-3 text-[#5F6B63]">
-                                <Globe className="w-4 h-4 shrink-0" />
-                                <span className="text-[13px]">
-                                  <a href={bus.website.startsWith('http') ? bus.website : `https://${bus.website}`} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-[#0F4C2E]">
-                                    {bus.website}
-                                  </a>
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                          
-                          <ReviewForm business={bus} onReviewSubmit={handleReviewSubmit} />
+                        <div className="text-[15px] text-[#5F6B63] leading-[1.5] mb-[24px] min-h-[44px]">
+                          {bus.description && bus.description.length > 90 
+                            ? bus.description.substring(0, 90) + '…' 
+                            : (bus.description || '')}
+                        </div>
+                        <div className="flex items-center gap-[8px] text-[13.5px] text-[#8A928B]">
+                          <MapPin className="w-[14px] h-[14px]" />
+                          {bus.address}
                         </div>
                       </div>
                     ))
