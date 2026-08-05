@@ -78,6 +78,7 @@ export default function App() {
   let initialSelectedBusiness: Business | null = null;
   let initialJobsMode = false;
   let initialJobsCategory: string | null = null;
+  let initialAllMode = false;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -86,7 +87,9 @@ export default function App() {
     
     if (pathParts[0]) {
       const decodedPart1 = decodeURIComponent(pathParts[0]);
-      if (decodedPart1.toLowerCase() === 'stellenangebote' || decodedPart1.toLowerCase() === 'jobs') {
+      if (decodedPart1.toLowerCase() === 'alle') {
+        initialAllMode = true;
+      } else if (decodedPart1.toLowerCase() === 'stellenangebote' || decodedPart1.toLowerCase() === 'jobs') {
         initialJobsMode = true;
         if (pathParts[1]) {
           initialJobsCategory = decodeURIComponent(pathParts[1]);
@@ -135,6 +138,7 @@ export default function App() {
   const [isNotFound, setIsNotFound] = useState(initialNotFound);
   const [activeLocation, setActiveLocation] = useState<string>('Alle');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+  const [isAllMode, setIsAllMode] = useState(initialAllMode);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(initialSelectedBusiness);
@@ -156,6 +160,7 @@ export default function App() {
     setIsPricingMode(false);
     setIsJobsMode(false);
     setIsNotFound(false);
+    setIsAllMode(false);
   };
   
   useEffect(() => {
@@ -205,6 +210,28 @@ export default function App() {
         window.history.replaceState(null, '', newUrl);
       }
     }
+
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      const pathParts = path.split('/').filter(Boolean);
+      
+      resetToDirectory();
+      
+      if (pathParts[0]) {
+        const p1 = decodeURIComponent(pathParts[0]).toLowerCase();
+        if (p1 === 'alle') {
+          setIsAllMode(true);
+        } else if (p1 === 'stellenangebote' || p1 === 'jobs') {
+          setIsJobsMode(true);
+        } else if (p1 === 'preise') {
+          setIsPricingMode(true);
+        } else {
+           window.location.reload();
+        }
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
   const [businesses, setBusinesses] = useState<Business[]>(initialBusinesses);
 
@@ -494,10 +521,10 @@ export default function App() {
             </div>
             
             <nav className="hidden md:flex" style={{ gap: '22px', fontSize: '15px', fontWeight: 500, marginLeft: 'auto' }}>
-              <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
+              <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
+              <a href={getPath('/alle')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
+              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
+              <a href={getPath('/preise')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/preise')); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
               {!isAdminMode && (
                 <button 
                   onClick={() => setIsAdminMode(true)}
@@ -576,9 +603,9 @@ export default function App() {
         ) : (
           <>
             {/* Conditional Claude Home View */}
-            {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' ? (
-              <div className="w-full flex flex-col -mx-4 md:-mx-8 -mt-8 mb-8">
-                <section className="relative text-white" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
+            {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode ? (
+              <div className="w-full flex flex-col mb-8">
+                <section className="relative text-white w-[100vw] ml-[calc(-50vw+50%)] mr-[calc(-50vw+50%)] -mt-8" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
                   <div className="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-24">
                     <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm font-medium tracking-wide">
                       <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
@@ -752,7 +779,28 @@ export default function App() {
               </div>
             ) : null}
 
-            <div className={`w-full flex flex-col md:flex-row gap-8 ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list') ? 'hidden' : ''}`}>
+            {/* List View Header */}
+            {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (
+              <div className="w-[100vw] ml-[calc(-50vw+50%)] mr-[calc(-50vw+50%)] bg-[#0F4C2E] text-white -mt-8 md:-mt-12 mb-8">
+                <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-11">
+                  <div className="text-[14px] text-white/70 mb-2.5">
+                    <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
+                  </div>
+                  <h1 className="font-display text-[30px] md:text-[46px] font-bold m-0 mb-2.5">
+                    {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
+                  </h1>
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <p className="m-0 text-[16px] text-white/80">{filteredBusinesses.length} Unternehmen gefunden</p>
+                    <div className="flex bg-white/12 rounded-full p-1">
+                      <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded-full px-4 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Liste</button>
+                      <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded-full px-4 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Karte</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className={`w-full flex flex-col md:flex-row gap-8 ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}
             <aside className="w-full md:w-64 shrink-0 mb-6 md:mb-0">
               <div className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
