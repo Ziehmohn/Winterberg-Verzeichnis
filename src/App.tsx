@@ -471,105 +471,59 @@ export default function App() {
 
       {/* Main Container */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Header */}
-        <header 
-          className={`w-full relative z-20 pt-6 pb-24 md:pb-32 transition-colors duration-300 ${theme.headerBg}`}
-          style={{ backgroundColor: 'transparent', backgroundImage: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none', border: 'none', boxShadow: 'none' }}
-        >
-          {/* Orange gradient backdrop (slopes right down) */}
-          <div 
-            className="absolute inset-x-0 top-0 h-full -z-20 bg-gradient-to-br from-[#ff7e5f] via-orange-400 to-[#fffcdc]" 
-            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 3rem))' }}
-          ></div>
-          
-          {/* Main theme background (slopes right up) */}
-          <div 
-            className={`absolute inset-x-0 top-0 h-full -z-10 transition-colors duration-300 ${theme.headerBg} shadow-2xl`} 
-            style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 4rem), 0 100%)' }}
-          ></div>
-
-          <div className="relative z-30 px-4 md:px-8 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="w-full md:w-1/2 flex justify-center md:justify-start mt-2 md:mt-4 relative z-50">
-              <div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
-                <a 
-                  href={getPath("/")} 
-                  className="block w-full"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.history.pushState(null, '', getPath('/'));
-                    setSearchQuery('');
-                    setActiveCategory('Alle');
-                    setActiveLocation('Alle');
-                    resetToDirectory();
-                  }}
+        {/* Header (Claude Design) */}
+        <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(255,255,255,0.94)', backdropFilter: 'blur(10px)', borderBottom: '1px solid #E7E2DA' }}>
+          <div style={{ maxWidth: 1180, margin: '0 auto', padding: '12px 24px', display: 'flex', alignItems: 'center', gap: '28px' }}>
+            <div 
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState(null, '', getPath('/'));
+                setSearchQuery('');
+                setActiveCategory('Alle');
+                setActiveLocation('Alle');
+                resetToDirectory();
+              }} 
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'baseline', gap: '8px' }}
+            >
+              <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '15px', fontWeight: 500, color: '#5F6B63' }}>Das</span>
+              <span style={{ display: 'inline-block' }}>
+                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '24px', fontWeight: 800, letterSpacing: '0.05em', color: '#0F4C2E', display: 'block', lineHeight: 1 }}>WINTERBERG</span>
+                <svg viewBox="0 0 200 10" preserveAspectRatio="none" style={{ width: '100%', height: '7px', display: 'block', marginTop: '2px' }}><path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/></svg>
+                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>VERZEICHNIS</span>
+              </span>
+            </div>
+            
+            <nav className="hidden md:flex" style={{ gap: '22px', fontSize: '15px', fontWeight: 500, marginLeft: 'auto' }}>
+              <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
+              {!isAdminMode && (
+                <button 
+                  onClick={() => setIsAdminMode(true)}
+                  className="flex items-center justify-center text-[#0F4C2E] hover:text-orange-500 transition-colors ml-2"
+                  title={currentUser ? 'Dashboard' : t("adminLogin")}
                 >
-                  <Logo 
-                    aria-label="Winterberg Wirtschaft - Das große Verzeichnis für alle Unternehmen vor Ort" 
-                    onClick={() => {
-                      window.history.pushState(null, '', getPath('/'));
-                      setSearchQuery('');
-                      setActiveCategory('Alle');
-                      setActiveLocation('Alle');
-                      resetToDirectory();
-                    }}
-                  />
-                </a>
-                <p className="mt-3 text-sm md:text-base max-w-sm text-white drop-shadow-md mx-auto md:mx-0 font-medium">
-                  {t("titleSubtitle")}
-                </p>
-                <div className="flex flex-wrap gap-6 mt-8 text-white/90 items-center justify-center md:justify-start">
-                  <div className="flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-default" title="Hotels & Unterkünfte"><Bed className="w-6 h-6" /><span className="text-[9px] uppercase font-bold tracking-wider">Hotels</span></div>
-                  <div className="flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-default" title="Gastronomie"><Utensils className="w-6 h-6" /><span className="text-[9px] uppercase font-bold tracking-wider">Gastro</span></div>
-                  <div className="flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-default" title="Handwerk"><Hammer className="w-6 h-6" /><span className="text-[9px] uppercase font-bold tracking-wider">Handwerk</span></div>
-                  <div className="flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-default" title="Einzelhandel"><ShoppingBag className="w-6 h-6" /><span className="text-[9px] uppercase font-bold tracking-wider">Handel</span></div>
-                  <div className="flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-default" title="Dienstleistungen"><Briefcase className="w-6 h-6" /><span className="text-[9px] uppercase font-bold tracking-wider">Services</span></div>
-                  <div className="flex flex-col items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-default" title="Freizeit"><MapIcon className="w-6 h-6" /><span className="text-[9px] uppercase font-bold tracking-wider">Freizeit</span></div>
-                </div>
-              </div>
-            </div>
-          
-            <div className="flex flex-col items-center md:items-end gap-6 w-full md:w-1/2 relative z-50 mt-8 md:mt-0">
-              <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 w-full">
-                {!isAdminMode && (
-                  <button 
-                    onClick={() => setIsAdminMode(true)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-black/20 hover:bg-black/30 text-white transition-colors backdrop-blur-sm"
-                    title={currentUser ? 'Dashboard' : t("adminLogin")}
-                  >
-                    <User className="w-5 h-5" />
-                  </button>
-                )}
-                {(isAdminMode || isImpressumMode || isAGBMode || isSubmitMode || isPricingMode || isJobsMode) && (
-                  <button 
-                    onClick={() => {
-                      setIsAdminMode(false);
-                      setIsImpressumMode(false);
-                      setIsAGBMode(false);
-                      setIsSubmitMode(false);
-                      setIsPricingMode(false);
-                      setIsJobsMode(false);
-                    }}
-                    className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'}`}
-                  >
-                    <ArrowLeft className="w-4 h-4" /> {t("backToDir")}
-                  </button>
-                )}
-              </div>
-              
-              <div className="hidden md:flex relative transform md:-rotate-3 mt-8 md:mt-4 md:mr-4 justify-center w-full">
-                <img 
-                  src="/winterberg-header.webp" 
-                  alt="Winterberg" 
-                  className="w-[75%] max-w-[530px] object-cover rounded-xl shadow-2xl z-50 relative"
-                  style={{ border: '4px solid #ffc084' }}
-                />
-                <div className="absolute -bottom-5 right-0 text-[10px] text-white/90 drop-shadow-md z-50 bg-black/30 px-2 py-0.5 rounded-full backdrop-blur-sm">
-                  Urheber: Ferienwelt Winterberg | Stephan Peters
-                </div>
-              </div>
-            </div>
+                  <User className="w-5 h-5" />
+                </button>
+              )}
+            </nav>
+
+            <button 
+              type="button" 
+              onClick={() => setIsSubmitMode(true)} 
+              className="hidden md:block hover:-translate-y-0.5"
+              style={{ background: '#F2761B', color: '#fff', border: 'none', borderRadius: '999px', padding: '11px 20px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 6px 18px rgba(242,118,27,0.28)', transition: 'background 0.15s, transform 0.15s' }}
+            >
+              Unternehmen eintragen
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button className="md:hidden ml-auto text-[#0F4C2E]" onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}>
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
-      </header>
+        </header>
 
       {/* Main Content */}
       <main className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 flex flex-col md:flex-row gap-8">
@@ -621,21 +575,162 @@ export default function App() {
           />
         ) : (
           <>
+            {/* Conditional Claude Home View */}
+            {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' ? (
+              <div className="w-full flex flex-col -mx-4 md:-mx-8 -mt-8 mb-8">
+                <section className="relative text-white" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
+                  <div className="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-24">
+                    <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm font-medium tracking-wide">
+                      <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
+                      Für die Kernstadt und alle 14 Ortsteile
+                    </div>
+                    <h1 className="font-display text-4xl md:text-6xl font-medium mt-6 mb-4 leading-tight">
+                      Das <br className="md:hidden"/>
+                      <span className="inline-block relative">
+                        <span className="font-extrabold tracking-wide">WINTERBERG</span>
+                        <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-3 block -mt-1"><path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/></svg>
+                      </span>
+                      <br className="md:hidden"/> Verzeichnis
+                    </h1>
+                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 leading-relaxed">Handwerk, Gastronomie, Einzelhandel, Dienstleistungen, Freizeit und Unterkünfte — aus der Kernstadt und jedem Ortsteil.</p>
+                    <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">Finde lokale Anbieter in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld und Altenfeld.</p>
+
+                    <div className="bg-white rounded-2xl p-3 flex flex-col md:flex-row gap-3 items-center max-w-3xl shadow-2xl">
+                      <div className="flex items-center gap-3 w-full md:flex-[2] px-3">
+                        <Search className="w-5 h-5 text-gray-400" />
+                        <input 
+                          placeholder="Unternehmen, Branche oder Leistung" 
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="border-none outline-none text-base w-full py-3 text-gray-900 bg-transparent" 
+                        />
+                      </div>
+                      <select 
+                        value={activeLocation} 
+                        onChange={(e) => setActiveLocation(e.target.value)}
+                        className="w-full md:w-auto md:flex-1 border border-gray-200 rounded-xl px-4 py-3 text-base text-gray-900 bg-gray-50 focus:outline-none focus:border-[#F2761B]"
+                      >
+                        <option value="Alle">Alle Ortsteile</option>
+                        {categories.flatMap(c => c.subcategories).map(s => s).filter((v,i,a)=>a.indexOf(v)===i).slice(0,0)} {/* Dummy to avoid unused */}
+                        {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
+                          <option key={d} value={d}>{d}</option>
+                        ))}
+                      </select>
+                      <button 
+                        type="button" 
+                        onClick={() => window.scrollTo({ top: 500, behavior: 'smooth' })} 
+                        className="w-full md:w-auto bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-xl px-6 py-3 font-semibold transition-colors"
+                      >
+                        Suchen
+                      </button>
+                    </div>
+
+                    <div className="flex gap-8 mt-12 flex-wrap">
+                      <div><div className="font-display text-4xl font-bold">{businesses.length}</div><div className="text-sm text-white/70 mt-1">Unternehmen</div></div>
+                      <div><div className="font-display text-4xl font-bold">{categories.length}</div><div className="text-sm text-white/70 mt-1">Kategorien</div></div>
+                      <div><div className="font-display text-4xl font-bold">14</div><div className="text-sm text-white/70 mt-1">Ortsteile</div></div>
+                    </div>
+                  </div>
+                </section>
+                
+                {/* Claude Home Sections */}
+                <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
+                  {/* Kategorien */}
+                  <div className="mb-16">
+                    <h2 className="font-display text-3xl font-bold mb-2">Kategorien</h2>
+                    <p className="text-gray-600 mb-8">Finde schnell, wonach du suchst in {categories.length} Hauptkategorien.</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {categories.map(cat => (
+                        <div 
+                          key={cat.name}
+                          onClick={() => { setActiveCategory(cat.name); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          className="bg-white border border-gray-200 rounded-2xl p-6 cursor-pointer hover:border-[#0F4C2E] hover:-translate-y-1 hover:shadow-lg transition-all"
+                        >
+                          <h3 className="font-display text-xl font-semibold mb-2 text-[#0F4C2E]">{cat.name}</h3>
+                          <p className="text-sm text-gray-500 mb-4">{cat.subcategories.join(', ')}</p>
+                          <div className="text-sm font-medium text-[#F2761B]">Entdecken →</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Ortsteile */}
+                  <div className="mb-16">
+                    <h2 className="font-display text-2xl font-bold mb-2">Alle Ortsteile</h2>
+                    <p className="text-gray-600 mb-6">Kernstadt und alle Dörfer der Stadt Winterberg.</p>
+                    <div className="flex flex-wrap gap-3">
+                      {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
+                        <button 
+                          key={d}
+                          onClick={() => { setActiveLocation(d); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          className="px-4 py-2 bg-[#FAF8F5] border border-gray-200 rounded-full text-sm font-medium hover:border-[#0F4C2E] transition-colors"
+                        >
+                          {d}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Empfohlene */}
+                  <div>
+                    <h2 className="font-display text-3xl font-bold mb-6">Empfohlene Unternehmen</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {businesses.filter(b => b.isPremium).slice(0, 6).map(b => (
+                        <div 
+                          key={b.id}
+                          onClick={() => { setSelectedBusiness(b); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                          className="bg-white border border-[#E7E2DA] rounded-2xl p-6 cursor-pointer flex flex-col gap-3 hover:-translate-y-1 hover:shadow-lg transition-all"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="w-12 h-12 rounded-xl bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-lg shrink-0">
+                              {b.name.charAt(0)}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-display text-lg font-semibold truncate leading-tight">{b.name}</div>
+                              <div className="text-sm text-gray-500 mt-1">{b.subcategory} · {b.district || 'Winterberg'}</div>
+                            </div>
+                            <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider">Premium</span>
+                          </div>
+                          <p className="text-sm text-gray-600 line-clamp-3 my-2">{b.description}</p>
+                          <div className="flex items-center gap-2 text-sm text-gray-500 mt-auto pt-2">
+                            <MapPin className="w-4 h-4" /> {b.address}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            ) : null}
+
+            <div className={`w-full flex flex-col md:flex-row gap-8 ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list') ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}
             <aside className="w-full md:w-64 shrink-0 mb-6 md:mb-0">
-              <div className={`md:sticky md:top-32 md:p-5 ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} border ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
+              <div className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
                 
+                <div className="flex items-center gap-[9px] bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3 py-2.5 mb-[22px]">
+                  <Search className="w-4 h-4 text-[#5F6B63]" />
+                  <input 
+                    placeholder="Suchen…" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="border-none outline-none bg-transparent text-sm w-full text-gray-900"
+                  />
+                </div>
+
                 {/* Mobile Toggle Button */}
                 <button 
-                  className="w-full md:hidden flex items-center gap-3 p-4 font-display font-bold text-lg transition-colors active:bg-black/5"
+                  className="w-full md:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
                   onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
                 >
-                  {isMobileCategoriesOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                  <span>{t("menu")}</span>
+                  <span>{t("menu")} Filter & Kategorien</span>
+                  {isMobileCategoriesOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
 
-                {/* Desktop Header */}
-                <h3 className="hidden md:block font-display font-bold text-lg mb-4">{t("Branchen")}</h3>
+                <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden md:block'}`}>
+                  <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Kategorie</div>
+
                 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex md:flex-col">
@@ -747,81 +842,47 @@ export default function App() {
                 <BusinessDetail business={selectedBusiness} onBack={() => setSelectedBusiness(null)} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
               ) : (
 
-                <>
-                  {/* Top Search Bar */}
-                  <div className="mb-8">
-                <div className="relative max-w-2xl mb-4">
-                  <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${theme.textMuted}`} />
-                  <input 
-                    type="text" 
-                    placeholder={t('searchPlaceholder')} 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className={`w-full pl-12 pr-4 py-4 md:py-3 text-lg md:text-base border focus:outline-none focus:ring-2 focus:border-orange-500 focus:ring-orange-500/20 transition-all bg-white shadow-sm ${theme.cardBorder} ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}
-                  />
-                </div>
-                <h1 className="text-3xl md:text-4xl font-display font-black tracking-tight mt-8 mb-6 text-black">
-                  {activeCategory === 'Alle' 
-                    ? (activeLocation === 'Alle' ? 'Unternehmen & Dienstleister in Winterberg' : `Unternehmen & Dienstleister in ${t(activeLocation)}`)
-                    : `${t(activeCategory)} in ${activeLocation === 'Alle' ? 'Winterberg' : t(activeLocation)}`
-                  }
-                </h1>
-
-                
-                {/* Location Filters */}
-                {availableLocations.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => setActiveLocation('Alle')}
-                      className={`px-4 py-1.5 text-sm font-medium transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-full'} ${activeLocation === 'Alle' ? theme.categoryTagActive : theme.categoryTagInactive}`}
-                    >
-                      {t("allLocations")}
-                    </button>
-                    {availableLocations.map(loc => (
-                      <button
-                        key={loc}
-                        onClick={() => setActiveLocation(loc)}
-                        className={`px-4 py-1.5 text-sm font-medium transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-full'} ${activeLocation === loc ? theme.categoryTagActive : theme.categoryTagInactive}`}
-                      >
-                        {loc}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-col xl:flex-row xl:items-center justify-between mb-4 gap-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h2 className="text-xl font-bold shrink-0">{t("results")} ({filteredBusinesses.length})</h2>
-                  
-                  {/* Badge List for Active Category Breakdown */}
-                  {categoryBadges.length > 0 && (
-                    <div className="flex flex-wrap items-center gap-2">
-                      {categoryBadges.map(badge => (
-                        <span key={badge.name} className={`px-2 py-0.5 text-xs font-medium ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-full'} ${theme.categoryTagInactive} flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity`}>
-                          {badge.name}
-                          <span className={`${theme.cardBg} px-1.5 py-0.5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-full'} text-[0.65rem] font-bold shadow-sm`}>{badge.count}</span>
-                        </span>
-                      ))}
+                <div className="w-full flex flex-col">
+                  {/* Full-bleed Green Header Block */}
+                  <div className="w-screen relative left-1/2 -translate-x-1/2 bg-[#0F4C2E] text-white -mt-8 mb-8 pb-10">
+                    <div className="max-w-7xl mx-auto px-4 md:px-8 pt-10">
+                      <div className="text-sm text-white/70 mb-2">
+                        <button onClick={() => { setSearchQuery(''); setActiveCategory('Alle'); setActiveLocation('Alle'); window.scrollTo({top: 0}); }} className="hover:text-white transition-colors">Start</button> 
+                        {' '}/ {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
+                      </div>
+                      <h1 className="font-display text-3xl md:text-5xl font-bold mb-4">
+                        {activeCategory === 'Alle' 
+                          ? (activeLocation === 'Alle' ? 'Alle Unternehmen' : `Unternehmen in ${t(activeLocation)}`)
+                          : `${t(activeCategory)} in ${activeLocation === 'Alle' ? 'Winterberg' : t(activeLocation)}`
+                        }
+                      </h1>
+                      <div className="flex items-center justify-between flex-wrap gap-3">
+                        <p className="text-white/80 m-0">{filteredBusinesses.length} Unternehmen gefunden</p>
+                        <div className="flex bg-white/10 rounded-full p-1">
+                          <button 
+                            onClick={() => setViewMode('list')} 
+                            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${viewMode === 'list' ? 'bg-white text-[#0F4C2E]' : 'text-white hover:bg-white/20'}`}
+                          >
+                            Liste
+                          </button>
+                          <button 
+                            onClick={() => setViewMode('map')} 
+                            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${viewMode === 'map' ? 'bg-white text-[#0F4C2E]' : 'text-white hover:bg-white/20'}`}
+                          >
+                            Karte
+                          </button>
+                        </div>
+                      </div>
+                      {seoSettings && (
+                        <p className="mt-4 text-[17px] leading-relaxed max-w-[66ch] text-white/90">
+                          {seoSettings.text}
+                        </p>
+                      )}
                     </div>
-                  )}
+                  </div>
+
+
                 </div>
-                
-                <div className="flex items-center border border-black/10 rounded-lg p-1 shadow-sm bg-white self-start xl:self-auto shrink-0">
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${viewMode === 'list' ? 'bg-black/5 text-black' : 'text-black/60 hover:text-black'}`}
-                  >
-                    <ListIcon className="w-4 h-4" /> Liste
-                  </button>
-                  <button
-                    onClick={() => setViewMode('map')}
-                    className={`flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${viewMode === 'map' ? 'bg-black/5 text-black' : 'text-black/60 hover:text-black'}`}
-                  >
-                    <MapIcon className="w-4 h-4" /> Karte
-                  </button>
-                </div>
-              </div>
 
               {/* Directory Grid or Map */}
               {isLoading ? (
@@ -843,35 +904,35 @@ export default function App() {
                     filteredBusinesses.map((bus) => (
                       <div 
                         key={bus.id} 
-                        className={`relative group flex flex-col overflow-hidden transition-all hover:-translate-y-1 bg-white ${bus.isPremium ? 'border-2 border-orange-400 shadow-lg shadow-orange-500/20' : 'border ' + theme.cardBorder + ' ' + theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}
+                        className={`relative group flex flex-col overflow-hidden transition-all hover:-translate-y-1 bg-white rounded-[20px] ${bus.isPremium ? 'border-2 border-[#D65F0C] shadow-lg shadow-[#D65F0C]/10' : 'border border-[#EDE8E0] shadow-sm hover:shadow-md'}`}
                       >
                         {/* Image Header */}
                         <div className="h-48 w-full bg-black/5 relative overflow-hidden">
                           {(bus.uploadedImage || bus.imageLink) ? (
                             <img src={bus.uploadedImage || bus.imageLink} alt={bus.name} className="w-full h-full object-cover" />
                           ) : (
-                            <div className="w-full h-full flex flex-col items-center justify-center text-black/40 bg-neutral-100/50">
-                              <ImageIcon className="w-8 h-8 mb-3 opacity-40" />
-                              <span className="text-[11px] md:text-xs font-bold tracking-widest opacity-60">BILDER FOLGEN IN KÜRZE</span>
+                            <div className="w-full h-full flex flex-col items-center justify-center text-black/40 bg-[#FAF8F5]">
+                              <ImageIcon className="w-8 h-8 mb-3 opacity-40 text-[#0F4C2E]" />
+                              <span className="text-[11px] md:text-xs font-bold tracking-widest opacity-60 text-[#0F4C2E]">BILDER FOLGEN IN KÜRZE</span>
                             </div>
                           )}
-                          <div className={`absolute top-4 left-4 ${theme.cardBg} bg-opacity-90 backdrop-blur-sm px-3 py-1 text-xs font-medium ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none border border-black' : 'rounded-full shadow-sm'}`}>
+                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-medium text-[#1B211D] rounded-full shadow-sm">
                             {bus.subcategory ? `${t(bus.category)} — ${t(bus.subcategory)}` : t(bus.category)}
                           </div>
                           {bus.isPremium && (
-                            <div className={`absolute top-4 right-4 bg-orange-500 text-white shadow-lg shadow-orange-500/30 px-3 py-1 text-xs font-bold flex items-center gap-1 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-full'}`}>
+                            <div className="absolute top-4 right-4 bg-[#F2761B] text-white shadow-lg shadow-[#F2761B]/30 px-3 py-1 text-xs font-bold flex items-center gap-1 rounded-full uppercase tracking-wider">
                               <Star className="w-3 h-3 fill-current" /> Premium
                             </div>
                           )}
                         </div>
 
                         {bus.isPremium && bus.logoUrl && (
-                          <div className="absolute top-[164px] left-6 w-14 h-14 bg-white rounded-md shadow-md border border-gray-100 z-10 flex items-center justify-center p-1.5">
+                          <div className="absolute top-[164px] left-6 w-14 h-14 bg-white rounded-xl shadow-md border border-gray-100 z-10 flex items-center justify-center p-1.5">
                             <img src={bus.logoUrl} alt="Logo" className="max-w-full max-h-full object-contain" />
                           </div>
                         )}
 
-                        <div className={`p-6 flex-1 flex flex-col ${theme.cardBg} transition-colors`}>
+                        <div className="p-6 flex-1 flex flex-col bg-white">
                           <div className={`flex items-start justify-between gap-2 mb-2 ${bus.isPremium && bus.logoUrl ? 'mt-4' : ''}`}>
                             <a 
                               href={`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`}
@@ -881,50 +942,42 @@ export default function App() {
                                 setSearchQuery(bus.name);
                                 setSelectedBusiness(bus);
                               }}
-                              className="hover:underline flex-1"
+                              className="hover:underline flex-1 text-[#1B211D]"
                             >
-                              <h3 className="text-xl font-display font-bold">{bus.name}</h3>
+                              <h3 className="text-[20px] leading-[1.25] font-display font-semibold">{bus.name}</h3>
                             </a>
-                            {bus.isPremium && (
-                              <div className="flex items-center gap-1 px-2 py-1 bg-orange-50 text-orange-700 rounded-full text-xs font-medium shrink-0" title="Premium Unternehmen">
-                                <BadgeCheck className="w-4 h-4" />
-                                <span className="hidden xs:inline">{t("premium")}</span>
-                              </div>
-                            )}
                           </div>
-                          <p className={`text-sm mb-6 flex-1 ${theme.textMuted}`}>
+                          <p className="text-[14.5px] leading-[1.55] mb-6 flex-1 text-[#4A544D]">
                             {bus.description && bus.description.length > 90 
                               ? bus.description.substring(0, 90) + '…' 
                               : bus.description}
                           </p>
-
                           
-                          <div className="space-y-3 pt-4 border-t border-black/5">
+                          <div className="space-y-3 pt-4 border-t border-[#F3F0EA]">
                             {bus.isPremium && bus.openingHours && (() => {
-
                               const openState = isOpenNow(bus.openingHours, t);
                               return (
                                 <div className="flex items-start gap-3">
                                   <Clock className={`w-4 h-4 mt-0.5 shrink-0 ${openState.isOpen ? 'text-emerald-500' : 'text-red-500'}`} />
-                                  <span className={`text-sm font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>{openState.text}</span>
+                                  <span className={`text-[13px] font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>{openState.text}</span>
                                 </div>
                               );
                             })()}
-                            <div className="flex items-start gap-3">
-                              <MapPin className={`w-4 h-4 mt-0.5 shrink-0 ${theme.iconAccent}`} />
-                              <span className="text-sm">{bus.address}</span>
+                            <div className="flex items-start gap-3 text-[#5F6B63]">
+                              <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
+                              <span className="text-[13px]">{bus.address}</span>
                             </div>
                             {bus.phone && (
-                              <div className="flex items-center gap-3">
-                                <Phone className={`w-4 h-4 shrink-0 ${theme.iconAccent}`} />
-                                <span className="text-sm">{bus.phone}</span>
+                              <div className="flex items-center gap-3 text-[#5F6B63]">
+                                <Phone className="w-4 h-4 shrink-0" />
+                                <span className="text-[13px]">{bus.phone}</span>
                               </div>
                             )}
                             {bus.website && (
-                              <div className="flex items-center gap-3">
-                                <Globe className={`w-4 h-4 shrink-0 ${theme.iconAccent}`} />
-                                <span className="text-sm">
-                                  <a href={bus.website.startsWith('http') ? bus.website : `https://${bus.website}`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                              <div className="flex items-center gap-3 text-[#5F6B63]">
+                                <Globe className="w-4 h-4 shrink-0" />
+                                <span className="text-[13px]">
+                                  <a href={bus.website.startsWith('http') ? bus.website : `https://${bus.website}`} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-[#0F4C2E]">
                                     {bus.website}
                                   </a>
                                 </span>

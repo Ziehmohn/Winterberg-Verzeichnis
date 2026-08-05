@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/modernist-30c5faf2-1b09-415b-8ba0-116a65a482cc/styles.css">
+  <script src="_ds/modernist-30c5faf2-1b09-415b-8ba0-116a65a482cc/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--color-bg); }
+    a { color: var(--color-accent-700); }
+    a:hover { color: var(--color-accent); }
+    ::selection { background: var(--color-accent-200); }
+    .wb-grid { display: grid; }
+    .wb-cell { border: 2px solid var(--color-divider); padding: var(--space-4); cursor: pointer; transition: background 0.15s; }
+    .wb-cell:hover { background: var(--color-neutral-100); }
+    .wb-tag-btn { border: 1px solid var(--color-divider); background: transparent; font-family: var(--font-body); font-size: 13px; padding: 6px 12px; cursor: pointer; color: var(--color-text); }
+    .wb-tag-btn[data-active="true"] { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+    .wb-tag-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-body); color: var(--color-text); min-height: 100vh; display: flex; flex-direction: column;">
+
+  <nav class="nav">
+    <span class="nav-brand" style="cursor: pointer;" onClick="{{ goHome }}">Winterberger Unternehmen</span>
+    <a href="#" aria-current="{{ isHome }}" onClick="{{ goHome }}">Start</a>
+    <a href="#" onClick="{{ goJobs }}">Jobs</a>
+    <button type="button" class="btn btn-primary" onClick="{{ goSubmit }}">Unternehmen eintragen</button>
+  </nav>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <main style="flex: 1;">
+      <div style="padding: var(--space-8) var(--space-4) var(--space-6); border-bottom: 2px solid var(--color-divider); max-width: 1100px; margin: 0 auto;">
+        <div style="font-family: var(--font-body); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: var(--space-3);">Das digitale Branchenbuch</div>
+        <h1 style="font-family: var(--font-heading); font-size: clamp(40px, 6vw, 76px); line-height: 1.02; margin: 0 0 var(--space-4); max-width: 16ch;">Unternehmen in Winterberg finden</h1>
+        <p style="font-size: 18px; max-width: 56ch; color: var(--color-neutral-700); margin: 0 0 var(--space-6);">Handwerker, Gastronomie, Einzelhandel, Dienstleistungen und Freizeit — alle Betriebe aus Winterberg und den umliegenden Ortsteilen an einem Ort.</p>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: stretch; max-width: 720px;">
+          <input class="input" style="flex: 2; min-width: 220px;" placeholder="Unternehmen oder Leistung suchen…" value="{{ searchQuery }}" onChange="{{ onSearchChange }}" />
+          <select class="input" style="flex: 1; min-width: 160px;" value="{{ homeDistrict }}" onChange="{{ onHomeDistrictChange }}">
+            <option value="">Alle Ortsteile</option>
+            <sc-for list="{{ districts }}" as="d" hint-placeholder-count="6">
+              <option value="{{ d }}">{{ d }}</option>
+            </sc-for>
+          </select>
+          <button type="button" class="btn btn-primary" onClick="{{ onHomeSearchSubmit }}">Suchen<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></button>
+        </div>
+        <div style="display: flex; gap: var(--space-8); margin-top: var(--space-8); flex-wrap: wrap;">
+          <div><div style="font-family: var(--font-heading); font-size: 40px; line-height: 1;">{{ totalBusinesses }}</div><div style="font-size: 13px; color: var(--color-neutral-600); margin-top: 4px;">Unternehmen gelistet</div></div>
+          <div><div style="font-family: var(--font-heading); font-size: 40px; line-height: 1;">{{ totalCategories }}</div><div style="font-size: 13px; color: var(--color-neutral-600); margin-top: 4px;">Kategorien</div></div>
+          <div><div style="font-family: var(--font-heading); font-size: 40px; line-height: 1;">{{ totalDistricts }}</div><div style="font-size: 13px; color: var(--color-neutral-600); margin-top: 4px;">Ortsteile</div></div>
+        </div>
+      </div>
+
+      <div style="max-width: 1100px; margin: 0 auto; padding: var(--space-6) var(--space-4);">
+        <h2 style="font-family: var(--font-heading); font-size: 28px; margin: 0 0 var(--space-4);">Kategorien</h2>
+        <div class="wb-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; border-top: 2px solid var(--color-divider); border-left: 2px solid var(--color-divider);">
+          <sc-for list="{{ categoriesWithCounts }}" as="cat" hint-placeholder-count="6">
+            <div class="wb-cell" style="border-top: none; border-left: none; border-right: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider);" onClick="{{ cat.open }}">
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <div style="font-family: var(--font-heading); font-size: 22px;">{{ cat.name }}</div>
+                <div style="font-size: 13px; color: var(--color-accent-700);">{{ cat.count }}</div>
+              </div>
+              <div style="margin-top: var(--space-3); font-size: 13px; color: var(--color-neutral-600); line-height: 1.6;">{{ cat.subcategoryLabel }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-4) var(--space-8);">
+        <h2 style="font-family: var(--font-heading); font-size: 28px; margin: var(--space-3) 0 var(--space-4);">Premium-Unternehmen</h2>
+        <div class="wb-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
+          <sc-for list="{{ premiumBusinesses }}" as="b" hint-placeholder-count="3">
+            <div class="card elev-sm" style="cursor: pointer; border: 2px solid var(--color-accent);" onClick="{{ b.open }}">
+              <div class="card-kicker">{{ b.subcategory }} · {{ b.district }}</div>
+              <div class="card-title">{{ b.name }}</div>
+              <p class="card-body">{{ b.description }}</p>
+              <span class="tag tag-accent">Premium</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}">
+    <main style="flex: 1; max-width: 1100px; margin: 0 auto; width: 100%; padding: var(--space-6) var(--space-4) var(--space-8);">
+      <div style="font-size: 13px; color: var(--color-neutral-600); margin-bottom: var(--space-3);">
+        <a href="#" onClick="{{ goHome }}">Start</a> / {{ activeCategory }}
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: var(--space-3); border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-4); margin-bottom: var(--space-4);">
+        <h1 style="font-family: var(--font-heading); font-size: clamp(32px, 5vw, 52px); margin: 0;">{{ activeCategory }}</h1>
+        <div style="font-size: 14px; color: var(--color-neutral-600);">{{ resultCount }} Unternehmen</div>
+      </div>
+
+      <div style="margin-bottom: var(--space-4);">
+        <input class="input" style="max-width: 420px;" placeholder="In {{ activeCategory }} suchen…" value="{{ searchQuery }}" onChange="{{ onSearchChange }}" />
+      </div>
+
+      <div style="margin-bottom: var(--space-3);">
+        <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: var(--space-2);">Leistung</div>
+        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+          <sc-for list="{{ subcategoryTags }}" as="s" hint-placeholder-count="4">
+            <button type="button" class="wb-tag-btn" data-active="{{ s.active }}" onClick="{{ s.select }}">{{ s.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-bottom: var(--space-6);">
+        <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: var(--space-2);">Ortsteil</div>
+        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+          <sc-for list="{{ districtTags }}" as="d" hint-placeholder-count="6">
+            <button type="button" class="wb-tag-btn" data-active="{{ d.active }}" onClick="{{ d.select }}">{{ d.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div class="wb-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
+        <sc-for list="{{ businessesInCategory }}" as="b" hint-placeholder-count="6">
+          <div class="card elev-sm" style="cursor: pointer;" onClick="{{ b.open }}">
+            <div class="card-kicker">{{ b.subcategory }} · {{ b.district }}</div>
+            <div class="card-title">{{ b.name }}</div>
+            <p class="card-body">{{ b.description }}</p>
+            <div class="card-meta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span>{{ b.address }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <p style="color: var(--color-neutral-600); padding: var(--space-6) 0;">Keine Unternehmen gefunden.</p>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <main style="flex: 1; max-width: 900px; margin: 0 auto; width: 100%; padding: var(--space-6) var(--space-4) var(--space-8);">
+      <div style="font-size: 13px; color: var(--color-neutral-600); margin-bottom: var(--space-3);">
+        <a href="#" onClick="{{ goHome }}">Start</a> / <a href="#" onClick="{{ backToCategory }}">{{ business.category }}</a> / {{ business.name }}
+      </div>
+
+      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3);">
+        <span class="tag tag-neutral">{{ business.category }}</span>
+        <span class="tag tag-outline">{{ business.subcategory }}</span>
+        <sc-if value="{{ business.isPremium }}" hint-placeholder-val="{{ false }}"><span class="tag tag-accent">Premium</span></sc-if>
+        <sc-if value="{{ business.isVerified }}" hint-placeholder-val="{{ false }}"><span class="tag tag-neutral">Verifiziert</span></sc-if>
+      </div>
+
+      <h1 style="font-family: var(--font-heading); font-size: clamp(32px, 5vw, 56px); margin: 0 0 var(--space-4); max-width: 20ch;">{{ business.name }}</h1>
+      <p style="font-size: 17px; max-width: 62ch; color: var(--color-neutral-700); margin: 0 0 var(--space-6);">{{ business.description }}</p>
+
+      <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-6);">
+        <sc-if value="{{ business.phone }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ business.telHref }}" class="btn btn-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.62 1.436l-.475.421a1 1 0 0 0-.31 1.223 12 12 0 0 0 6.237 6.238"/></svg>{{ business.phone }}</a>
+        </sc-if>
+        <sc-if value="{{ business.website }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ business.website }}" target="_blank" rel="noopener" class="btn btn-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>Website besuchen</a>
+        </sc-if>
+        <a href="{{ business.mapsHref }}" target="_blank" rel="noopener" class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>{{ business.address }}</a>
+      </div>
+
+      <sc-if value="{{ business.hasHours }}" hint-placeholder-val="{{ false }}">
+        <h2 style="font-family: var(--font-heading); font-size: 22px; border-top: 2px solid var(--color-divider); padding-top: var(--space-4); margin: 0 0 var(--space-4);">Öffnungszeiten</h2>
+        <table class="table" style="max-width: 420px; margin-bottom: var(--space-6);">
+          <tbody>
+            <sc-for list="{{ business.hoursList }}" as="h" hint-placeholder-count="7">
+              <tr><td>{{ h.day }}</td><td>{{ h.hours }}</td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </sc-if>
+
+      <sc-if value="{{ business.hasServices }}" hint-placeholder-val="{{ false }}">
+        <h2 style="font-family: var(--font-heading); font-size: 22px; border-top: 2px solid var(--color-divider); padding-top: var(--space-4); margin: 0 0 var(--space-4);">Leistungen</h2>
+        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-6);">
+          <sc-for list="{{ business.services }}" as="svc" hint-placeholder-count="3">
+            <span class="tag tag-neutral">{{ svc }}</span>
+          </sc-for>
+        </div>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isJobs }}" hint-placeholder-val="{{ false }}">
+    <main style="flex: 1; max-width: 900px; margin: 0 auto; width: 100%; padding: var(--space-6) var(--space-4) var(--space-8);">
+      <h1 style="font-family: var(--font-heading); font-size: clamp(32px, 5vw, 56px); margin: 0 0 var(--space-4);">Offene Stellen</h1>
+      <p style="font-size: 17px; color: var(--color-neutral-700); max-width: 60ch; margin: 0 0 var(--space-6);">Aktuell listet unser Jobboard offene Stellen der Winterberger Unternehmen. Wähle links ein Unternehmen aus einer Kategorie, um dessen Stellenangebote auf der Detailseite zu sehen.</p>
+      <button type="button" class="btn btn-primary" onClick="{{ goHome }}">Zur Übersicht</button>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isSubmit }}" hint-placeholder-val="{{ false }}">
+    <main style="flex: 1; max-width: 640px; margin: 0 auto; width: 100%; padding: var(--space-6) var(--space-4) var(--space-8);">
+      <h1 style="font-family: var(--font-heading); font-size: clamp(32px, 5vw, 52px); margin: 0 0 var(--space-4);">Unternehmen eintragen</h1>
+      <p style="font-size: 16px; color: var(--color-neutral-700); margin: 0 0 var(--space-6);">Trage dein Unternehmen kostenlos in das Winterberger Verzeichnis ein. Premium-Einträge erhalten Bildergalerie, erweiterte Beschreibung und ein höheres Ranking.</p>
+      <div style="display: grid; gap: var(--space-4);">
+        <div class="field"><label for="wb-name">Unternehmensname</label><input class="input" id="wb-name" placeholder="z. B. Café Sonnenberg" /></div>
+        <div class="field"><label for="wb-cat">Kategorie</label>
+          <select class="input" id="wb-cat">
+            <sc-for list="{{ categoryNames }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for>
+          </select>
+        </div>
+        <div class="field"><label for="wb-desc">Kurzbeschreibung</label><textarea class="input" id="wb-desc" rows="3" placeholder="Was macht dein Unternehmen besonders?"></textarea></div>
+        <button type="button" class="btn btn-primary btn-block">Eintrag einreichen<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      </div>
+    </main>
+  </sc-if>
+
+  <footer style="border-top: 2px solid var(--color-divider); margin-top: auto;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: var(--space-6) var(--space-4); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); align-items: center;">
+      <div style="font-family: var(--font-heading); font-size: 16px;">Winterberger Unternehmen</div>
+      <div style="display: flex; gap: var(--space-4); font-size: 13px;">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CATEGORIES = [
+  { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
+  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
+  { name: 'Gastronomie', subcategories: ['Restaurant', 'Kneipen und Bars'] },
+  { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Rechtsanwälte', 'Banken'] },
+  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Tennisplätze', 'Fußballvereine', 'Outdoor-Freizeitgebiet'] }
+];
+
+const BUSINESSES = [
+  { id: 'uplandparcs-sauerland', name: 'UplandParcs Sauerland', category: 'Hotels und Unterkünfte', subcategory: 'Ferienparks', district: 'Winterberg', description: 'Erleben Sie einen traumhaften Urlaub im UplandParcs Sauerland! Luxuriöse Unterkünfte inmitten der Natur.', address: 'Winterberg', website: 'https://www.uplandparcs.de' },
+  { id: 'hapimag-winterberg', name: 'Hapimag Resort Winterberg', category: 'Hotels und Unterkünfte', subcategory: 'Ferienparks', district: 'Winterberg', description: 'Hapimag Resort in Winterberg. Urlaub für die ganze Familie mit Wellness und tollen Aktivitäten.', address: 'Holzruhrstraße 1, 59955 Winterberg', phone: '02981 8080', website: 'https://www.hapimag.com' },
+  { id: 'der-brabander', name: 'Der Brabander', category: 'Hotels und Unterkünfte', subcategory: 'Hotels', district: 'Winterberg', description: 'Das bekannte und beliebte Hotel in Winterberg. Wellness, Gastronomie und direkte Nähe zum Skilift.', address: 'Am Waltenberg 65, 59955 Winterberg', phone: '02981 9320', website: 'https://www.brabander.nl' },
+  { id: 'uplandparcs-bergblick', name: 'UplandParcs Bergblick', category: 'Hotels und Unterkünfte', subcategory: 'Ferienwohnungen', district: 'Winterberg', description: 'Ferienwohnung mit fantastischem Bergblick.', address: 'Winterberg', website: 'https://www.uplandparcs.de' },
+  { id: 'car-point', name: 'Car-Point Winterberg', category: 'Handwerk', subcategory: 'KFZ-Werkstätten', district: 'Winterberg', description: 'Wir sind Profis! Wir bieten KFZ-Reparaturen aller Art an.', address: 'Remmeswiese 30a, 59955 Winterberg', website: 'https://car-point-winterberg.de/', isVerified: true, openingHours: { monday: '08:00 - 17:00', tuesday: '08:00 - 17:00', wednesday: '08:00 - 17:00', thursday: '08:00 - 17:00', friday: '08:00 - 15:00', saturday: 'Geschlossen', sunday: 'Geschlossen' } },
+  { id: 'autoservice-kruk', name: 'Autoservice Kruk', category: 'Handwerk', subcategory: 'KFZ-Werkstätten', district: 'Siedlinghausen', description: 'Ihre freundliche Autofachwerkstatt in Winterberg-Siedlinghausen. Schnell, preiswert & zuverlässig.', address: 'Hochsauerlandstraße 78a, 59955 Winterberg', website: 'https://www.autoservice-kruk.de/' },
+  { id: 'broeker', name: 'Bröker Objekteinrichtungen GmbH & Co. KG', category: 'Handwerk', subcategory: 'Schreinereien', district: 'Winterberg', description: 'Tischler NRW – Team Compact Handwerk mit Ideen!', address: 'Remmeswiese 26, 59955 Winterberg', phone: '02981 92965-0', website: 'https://broeker-winterberg.de/' },
+  { id: 'stockhausen-treppen', name: 'Stockhausen Treppen GmbH', category: 'Handwerk', subcategory: 'Schreinereien', district: 'Züschen', description: 'Ihr Spezialist für individuellen Treppenbau.', address: 'Nuhnetalstraße 132, 59955 Winterberg', phone: '02981 8969060', website: 'https://stockhausen-treppen.de/' },
+  { id: 'menke-dach', name: 'Meisterbetrieb Menke', category: 'Handwerk', subcategory: 'Dachdecker', district: 'Silbach', description: 'Dachdecker Meisterbetrieb.', address: 'Am Iberg 2, 59955 Winterberg', phone: '02983 1404' },
+  { id: 'koesler-elektro', name: 'Kösler Elektro', category: 'Handwerk', subcategory: 'Elektriker', district: 'Winterberg', description: 'Elektroinstallationen aller Art.', address: 'Schanzenstr. 16, 59955 Winterberg', phone: '0173 5 17 71 51' },
+  { id: 'rewe-winterberg', name: 'REWE', category: 'Einzelhandel', subcategory: 'Supermarkt', district: 'Winterberg', description: 'Dein REWE Supermarkt in Winterberg.', address: 'Poststraße 6, 59955 Winterberg', phone: '02981 7736' },
+  { id: 'lidl-winterberg', name: 'Lidl', category: 'Einzelhandel', subcategory: 'Supermarkt', district: 'Winterberg', description: 'Beste Qualität zum niedrigen Preis.', address: 'Im Mühlengrund 1, 59955 Winterberg', website: 'https://www.lidl.de/', openingHours: { monday: '07:00 - 21:00', tuesday: '07:00 - 21:00', wednesday: '07:00 - 21:00', thursday: '07:00 - 21:00', friday: '07:00 - 21:00', saturday: '07:00 - 21:00', sunday: 'Geschlossen' } },
+  { id: 'ecenter-loeffler', name: 'E center Löffler', category: 'Einzelhandel', subcategory: 'Supermarkt', district: 'Winterberg', description: 'EDEKA Löffler – Frische und Vielfalt im Herzen von Winterberg.', address: 'Neue Mitte 4, 59955 Winterberg', website: 'https://www.edeka.de/' },
+  { id: 'insider-fashion', name: 'Insider Fashion Store Winterberg', category: 'Einzelhandel', subcategory: 'Bekleidung', district: 'Winterberg', description: 'Bekleidungsgeschäft mit aktueller Mode.', address: 'Am Waltenberg 21, 59955 Winterberg', phone: '02981 9277788' },
+  { id: 'autohaus-hoffmann', name: 'Autohaus Friedrich Hoffmann', category: 'Einzelhandel', subcategory: 'Autohäuser', district: 'Winterberg', description: 'Ihr VW, Audi & VW Nutzfahrzeuge Autohaus in Winterberg. Erstklassiger Service rund um Ihr Auto.', address: 'Remmeswiese 24, 59955 Winterberg', phone: '02981 92070', website: 'https://www.friedrich-hoffmann.de' },
+  { id: 'hessenkeller', name: 'Hessenkeller Winterberg', category: 'Gastronomie', subcategory: 'Kneipen und Bars', district: 'Winterberg', description: 'Beliebter Treffpunkt mit Live-Veranstaltungen, Tanzen und Quizabenden.', address: 'Am Waltenberg 1, 59955 Winterberg', phone: '02981 930111', website: 'https://hotel-hessenhof.de' },
+  { id: 'blackwater', name: 'Blackwater Irish Pub Winterberg', category: 'Gastronomie', subcategory: 'Kneipen und Bars', district: 'Winterberg', description: 'Beliebte Kneipe mit traditioneller Einrichtung, irischen Bieren vom Fass und Sport auf Großbildleinwand.', address: 'Nuhnestraße 2, 59955 Winterberg', phone: '02981 899539', website: 'https://blackwater-irishpub.de' },
+  { id: 'dorf-alm', name: 'Dorf Alm Winterberg', category: 'Gastronomie', subcategory: 'Restaurant', district: 'Winterberg', description: 'Tiroler Küche in traditionellem Ambiente.', address: 'Am Waltenberg 35, 59955 Winterberg' },
+  { id: 'panorama-restaurant', name: 'Panorama Restaurant & Café', category: 'Gastronomie', subcategory: 'Restaurant', district: 'Winterberg', description: 'Bergpanorama und internationale Speisen.', address: 'Kappe 2d, 59955 Winterberg' },
+  { id: 'ceb-steuerberater', name: 'CEB-Steuerberater', category: 'Dienstleistungen', subcategory: 'Steuerberater', district: 'Winterberg', description: 'Ihre Steuerberatung in Winterberg.', address: 'Hauptstraße 26, 59955 Winterberg', phone: '02981 92560' },
+  { id: 'sichtbar-seo', name: 'SICHTBAR SEO – Simon Kräling', category: 'Dienstleistungen', subcategory: 'Marketingdienstleistungen', district: 'Winterberg', description: 'Berater für digitale Sichtbarkeit aus Winterberg im Sauerland. Unterstützt Unternehmen branchenübergreifend dabei, ihre Zielgruppen in klassischen Suchmaschinen sowie modernen KI-Suchsystemen zu erreichen.', address: 'Schanzenstraße 28, 59955 Winterberg', phone: '01520 6542996', isPremium: true, services: ['SEO', 'Generative Engine Optimization', 'Digitale Strategie'] },
+  { id: 'rappel-notar', name: 'Matthias Rappel Rechtsanwalt und Notar', category: 'Dienstleistungen', subcategory: 'Rechtsanwälte', district: 'Winterberg', description: 'Rechtsanwalt und Notar in Winterberg.', address: '59955 Winterberg', phone: '02981 92090' },
+  { id: 'sparkasse-mis', name: 'Sparkasse Mitten im Sauerland – BeratungsCenter', category: 'Dienstleistungen', subcategory: 'Banken', district: 'Winterberg', description: 'Bank und Serviceleistungen.', address: 'Am Waltenberg 23, 59955 Winterberg', phone: '0291 2080' },
+  { id: 'erlebnisberg-kappe', name: 'Erlebnisberg Kappe', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet', district: 'Winterberg', description: 'Bikepark, Sommerrodelbahn und Kletterwald – Spaß für die ganze Familie.', address: 'Kappestrasse 1, 59955 Winterberg', website: 'https://www.erlebnisbergkappe.de/', isPremium: true },
+  { id: 'bikepark-winterberg', name: 'Bikepark Winterberg', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet', district: 'Winterberg', description: 'Bikepark am Berghang mit Sesselliften zu den Bergstrecken im Wald sowie ein Bikeverleih.', address: 'Kapperundweg 3, 59955 Winterberg', website: 'https://www.erlebnisbergkappe.de/' },
+  { id: 'vfr-winterberg', name: 'VfR Winterberg 1921 e.V.', category: 'Freizeit', subcategory: 'Fußballvereine', district: 'Winterberg', description: 'Fußballverein in Winterberg.', address: 'Oberhofer Weg 9, 59955 Winterberg', phone: '02985 979916', website: 'http://vfr-winterberg.de/' },
+  { id: 'holocafe', name: 'Holocafé Winterberg', category: 'Freizeit', subcategory: 'Indoor-Spielplätze', district: 'Winterberg', description: 'Virtual Reality Gaming – ideal für Familien, JGAs und Events oder als Indoor-Schlechtwetteralternative.', address: 'Remmeswiese 3, 59955 Winterberg', phone: '02981 9277650', website: 'https://holocafe.de' },
+  { id: 'tennis-winterberg', name: 'Tennisplätze Winterberg', category: 'Freizeit', subcategory: 'Tennisplätze', district: 'Winterberg', description: 'Tennisverein in Winterberg mit Sandplätzen.', address: 'Fichtenweg 14, 59955 Winterberg', website: 'http://www.tc-winterberg.de' }
+];
+
+const DISTRICTS = ['Winterberg', 'Siedlinghausen', 'Niedersfeld', 'Silbach', 'Züschen', 'Grönebach'];
+const DAY_LABELS = { monday: 'Montag', tuesday: 'Dienstag', wednesday: 'Mittwoch', thursday: 'Donnerstag', friday: 'Freitag', saturday: 'Samstag', sunday: 'Sonntag' };
+
+class Component extends DCLogic {
+  state = {
+    view: 'home',
+    activeCategory: null,
+    activeBusinessId: null,
+    searchQuery: '',
+    homeDistrict: '',
+    subcategoryFilter: '',
+    districtFilter: ''
+  };
+
+  goHome = () => this.setState({ view: 'home', searchQuery: '', subcategoryFilter: '', districtFilter: '' });
+  goJobs = () => this.setState({ view: 'jobs' });
+  goSubmit = () => this.setState({ view: 'submit' });
+  goCategory = (name) => this.setState({ view: 'category', activeCategory: name, searchQuery: '', subcategoryFilter: '', districtFilter: '' });
+  goDetail = (id) => this.setState({ view: 'detail', activeBusinessId: id });
+  backToCategory = () => {
+    const b = BUSINESSES.find(x => x.id === this.state.activeBusinessId);
+    this.setState({ view: 'category', activeCategory: b ? b.category : null });
+  };
+  onSearchChange = (e) => this.setState({ searchQuery: e.target.value });
+  onHomeDistrictChange = (e) => this.setState({ homeDistrict: e.target.value });
+  onHomeSearchSubmit = () => {
+    const q = this.state.searchQuery.trim().toLowerCase();
+    const d = this.state.homeDistrict;
+    const match = BUSINESSES.find(b =>
+      (!q || b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || (b.subcategory || '').toLowerCase().includes(q)) &&
+      (!d || b.district === d)
+    );
+    if (match) { this.setState({ view: 'detail', activeBusinessId: match.id }); return; }
+    const cat = CATEGORIES.find(c => c.name.toLowerCase().includes(q));
+    if (cat) { this.setState({ view: 'category', activeCategory: cat.name, districtFilter: d, searchQuery: '' }); }
+  };
+  selectSubcategory = (name) => this.setState(s => ({ subcategoryFilter: s.subcategoryFilter === name ? '' : name }));
+  selectDistrict = (name) => this.setState(s => ({ districtFilter: s.districtFilter === name ? '' : name }));
+
+  renderVals() {
+    const { view, activeCategory, activeBusinessId, searchQuery, homeDistrict, subcategoryFilter, districtFilter } = this.state;
+
+    const categoriesWithCounts = CATEGORIES.map(c => ({
+      name: c.name,
+      count: BUSINESSES.filter(b => b.category === c.name).length,
+      subcategoryLabel: c.subcategories.join(' · '),
+      open: () => this.goCategory(c.name)
+    }));
+
+    const premiumBusinesses = BUSINESSES.filter(b => b.isPremium).map(b => ({ ...b, open: () => this.goDetail(b.id) }));
+
+    let businessesInCategory = [];
+    let subcategoryTags = [];
+    let districtTags = [];
+    let resultCount = 0;
+    let noResults = false;
+
+    if (view === 'category' && activeCategory) {
+      const catDef = CATEGORIES.find(c => c.name === activeCategory);
+      const q = searchQuery.trim().toLowerCase();
+      const inCat = BUSINESSES.filter(b => b.category === activeCategory);
+      const districtsPresent = Array.from(new Set(inCat.map(b => b.district))).sort();
+
+      subcategoryTags = (catDef ? catDef.subcategories : []).map(s => ({
+        name: s, active: subcategoryFilter === s, select: () => this.selectSubcategory(s)
+      }));
+      districtTags = districtsPresent.map(d => ({
+        name: d, active: districtFilter === d, select: () => this.selectDistrict(d)
+      }));
+
+      businessesInCategory = inCat
+        .filter(b => !subcategoryFilter || b.subcategory === subcategoryFilter)
+        .filter(b => !districtFilter || b.district === districtFilter)
+        .filter(b => !q || b.name.toLowerCase().includes(q) || b.description.toLowerCase().includes(q))
+        .map(b => ({ ...b, open: () => this.goDetail(b.id) }));
+
+      resultCount = businessesInCategory.length;
+      noResults = resultCount === 0;
+    }
+
+    let business = null;
+    if (view === 'detail' && activeBusinessId) {
+      const b = BUSINESSES.find(x => x.id === activeBusinessId);
+      if (b) {
+        const hoursList = b.openingHours
+          ? Object.keys(DAY_LABELS).map(k => ({ day: DAY_LABELS[k], hours: b.openingHours[k] || 'Geschlossen' }))
+          : [];
+        business = {
+          ...b,
+          telHref: b.phone ? 'tel:' + b.phone.replace(/\s+/g, '') : '',
+          mapsHref: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(b.address),
+          hasHours: hoursList.length > 0,
+          hoursList,
+          hasServices: !!(b.services && b.services.length)
+        };
+      }
+    }
+
+    return {
+      isHome: view === 'home',
+      isCategory: view === 'category',
+      isDetail: view === 'detail',
+      isJobs: view === 'jobs',
+      isSubmit: view === 'submit',
+      goHome: this.goHome,
+      goJobs: this.goJobs,
+      goSubmit: this.goSubmit,
+      backToCategory: this.backToCategory,
+      searchQuery,
+      homeDistrict,
+      onSearchChange: this.onSearchChange,
+      onHomeDistrictChange: this.onHomeDistrictChange,
+      onHomeSearchSubmit: this.onHomeSearchSubmit,
+      districts: DISTRICTS,
+      categoryNames: CATEGORIES.map(c => c.name),
+      totalBusinesses: BUSINESSES.length,
+      totalCategories: CATEGORIES.length,
+      totalDistricts: DISTRICTS.length,
+      categoriesWithCounts,
+      premiumBusinesses,
+      activeCategory,
+      resultCount,
+      noResults,
+      subcategoryTags,
+      districtTags,
+      businessesInCategory,
+      business
+    };
+  }
+}
+</script>
+</body>
+</html>
