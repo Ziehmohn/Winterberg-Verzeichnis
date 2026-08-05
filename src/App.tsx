@@ -1247,7 +1247,7 @@ export default function App() {
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
           <div className="max-w-[1180px] mx-auto px-6 py-4 text-[13px] flex items-center justify-between">
-            <span>© {new Date().getFullYear()} Das Winterberg Verzeichnis · Ein Projekt von SICHTBAR SEO</span>
+            <span>© {new Date().getFullYear()} Das Winterberg Verzeichnis · Ein Projekt von <a href="https://sichtbar-online.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">SICHTBAR SEO Simon Kräling</a></span>
           </div>
         </div>
       </footer>
