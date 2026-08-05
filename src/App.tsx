@@ -1670,29 +1670,79 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           </div>
         ) : activeTab === 'abrechnung' ? (
           <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-            <div className="flex gap-[18px] flex-wrap mb-[24px]">
-              <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
-                <div className="text-[13px] text-[#96551F]">Premium-Kunden</div>
-                <div className="font-display text-[32px] font-bold text-[#D65F0C] my-[4px]">
-                  {businesses.filter((b: Business) => b.isPremium).length}
+            {isAdmin ? (
+              <>
+                <div className="flex gap-[18px] flex-wrap mb-[24px]">
+                  <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+                    <div className="text-[13px] text-[#96551F]">Premium-Kunden</div>
+                    <div className="font-display text-[32px] font-bold text-[#D65F0C] my-[4px]">
+                      {businesses.filter((b: Business) => b.isPremium).length}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="bg-[#F4F7F5] border border-[#DCE6DF] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
-                <div className="text-[13px] text-[#5F6B63]">Umsatz (geschätzt)</div>
-                <div className="font-display text-[32px] font-bold text-[#0F4C2E] my-[4px]">
-                  {businesses.filter((b: Business) => b.isPremium).length * 29} € / Monat
+                <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Alle Rechnungen (Admin-Ansicht)</h2>
+                <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+                  Hier werden zukünftig alle systemweiten Rechnungen der Nutzer aufgelistet.
                 </div>
-              </div>
-            </div>
+              </>
+            ) : (
+              <>
+                <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Ihr Abonnement</h2>
+                {allowedBusinesses.filter((b: Business) => b.isPremium).length > 0 ? (
+                  <div>
+                    {allowedBusinesses.filter((b: Business) => b.isPremium).map((bus: Business) => (
+                      <div key={bus.id} className="border border-[#EDE8E0] rounded-[16px] p-6 mb-6 bg-[#FAF8F5]">
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <div className="font-bold text-[18px] text-[#0F4C2E]">{bus.name}</div>
+                            <div className="text-[14px] text-[#5F6B63]">Premium-Eintrag (Aktiv)</div>
+                          </div>
+                          <button 
+                            onClick={async () => {
+                              if (confirm("Möchten Sie Ihr Abonnement wirklich kündigen? Es läuft dann noch bis zum Ende der aktuellen Abrechnungsperiode weiter.")) {
+                                try {
+                                  const res = await fetch('/api/cancel-subscription', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ subscriptionId: (bus as any).stripeSubscriptionId || 'dummy_sub_id' })
+                                  });
+                                  const data = await res.json();
+                                  if (data.success) {
+                                    alert(data.message);
+                                  } else {
+                                    alert("Fehler bei der Kündigung: " + data.error);
+                                  }
+                                } catch (err) {
+                                  alert("Fehler bei der Verbindung zum Server.");
+                                }
+                              }
+                            }}
+                            className="bg-white border border-[#D8D2C8] text-[#C0392B] px-4 py-2 rounded-[10px] text-[13px] font-semibold hover:border-[#C0392B] transition-colors cursor-pointer"
+                          >
+                            Abo kündigen
+                          </button>
+                        </div>
+                        <div className="text-[13px] text-[#4A544D] bg-[#E8F1EB] p-3 rounded-[10px]">
+                          <strong>Hinweis:</strong> Die Kündigungsfrist beträgt 14 Tage zum Ende der jeweiligen Vertragslaufzeit. Jahresabonnements gehen bei nicht fristgerechter Kündigung automatisch in ein monatlich kündbares Abonnement zum regulären Monatspreis über.
+                        </div>
+                      </div>
+                    ))}
 
-            <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Rechnungsstellung</h2>
-            <p className="text-[15px] text-[#4A544D] leading-[1.6] m-0 mb-[20px]">
-              Ihre Rechnungen werden automatisch über unseren Zahlungsdienstleister (Stripe) generiert und nach jeder erfolgreichen Zahlung hier für Sie bereitgestellt.
-            </p>
-            
-            <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
-              Aktuell sind noch keine Zahlungen oder Rechnungen für Ihren Account hinterlegt.
-            </div>
+                    <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Ihre Rechnungen</h2>
+                    <p className="text-[14px] text-[#5F6B63] mb-4">
+                      Ihre Rechnungen werden automatisch von Stripe generiert und nach jeder erfolgreichen Zahlung hier bereitgestellt.
+                    </p>
+                    <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+                      Noch keine Rechnungen für diesen Account vorhanden.
+                    </div>
+                  </div>
+                ) : (
+                  <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+                    Sie haben aktuell kein aktives Premium-Abonnement.
+                  </div>
+                )}
+              </>
+            )}
           </div>
         
         ) : activeTab === 'redirects' ? (

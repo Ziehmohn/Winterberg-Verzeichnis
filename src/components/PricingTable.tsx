@@ -66,10 +66,38 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
         </div>
 
         {/* Premium */}
-        <div className="bg-white border-2 border-[#F2761B] rounded-[22px] p-[30px] shadow-[0_16px_40px_rgba(242,118,27,0.14)]">
-          <div className="font-display text-[22px] font-semibold">Premium</div>
-          <div className="font-display text-[38px] font-bold mt-2.5 mb-1 text-[#D65F0C]">12,95 €</div>
-          <div className="text-[14px] text-[#5F6B63] mb-[22px]">pro Monat, netto zzgl. MwSt. · jährlich 119,40 € (36 € sparen)</div>
+        <div className="bg-white border-2 border-[#F2761B] rounded-[22px] p-[30px] shadow-[0_16px_40px_rgba(242,118,27,0.14)] relative">
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#F2761B] text-white text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            Beliebt
+          </div>
+          <div className="flex justify-between items-center mb-4">
+            <div className="font-display text-[22px] font-semibold">Premium</div>
+            
+            <div className="flex bg-[#FAF8F5] rounded-full p-1 border border-[#EDE8E0]">
+              <button
+                type="button"
+                onClick={() => setBillingCycle('monthly')}
+                className={`px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors ${billingCycle === 'monthly' ? 'bg-white shadow text-[#0F4C2E]' : 'text-[#5F6B63] hover:text-[#0F4C2E]'}`}
+              >
+                Monatlich
+              </button>
+              <button
+                type="button"
+                onClick={() => setBillingCycle('yearly')}
+                className={`px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors ${billingCycle === 'yearly' ? 'bg-white shadow text-[#0F4C2E]' : 'text-[#5F6B63] hover:text-[#0F4C2E]'}`}
+              >
+                Jährlich (Spar-Tarif)
+              </button>
+            </div>
+          </div>
+          
+          <div className="font-display text-[38px] font-bold mt-2.5 mb-1 text-[#D65F0C]">
+            {billingCycle === 'yearly' ? '9,95 €' : '12,95 €'}
+          </div>
+          <div className="text-[14px] text-[#5F6B63] mb-[22px]">
+            pro Monat, netto zzgl. MwSt. 
+            {billingCycle === 'yearly' ? ' · jährlich 119,40 € abgerechnet' : ' · monatlich kündbar'}
+          </div>
           
           <div className="grid gap-2.5 text-[15px] text-[#4A544D]">
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Alles aus dem Basiseintrag</div>

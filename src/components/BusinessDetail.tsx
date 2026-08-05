@@ -24,20 +24,12 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const handleClaim = async () => {
     setIsLoadingCheckout(true);
     try {
-      const res = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ businessId: business.id })
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || 'Fehler beim Weiterleiten zu Stripe');
-      }
+      // Simulate Stripe checkout preparation
+      await new Promise(r => setTimeout(r, 1000));
+      alert("Zahlung in Kürze per Stripe (Integration in Vorbereitung)");
+      setShowClaimScreen(false);
     } catch (err) {
       console.error(err);
-
       alert(t("paymentError"));
     } finally {
       setIsLoadingCheckout(false);
@@ -78,8 +70,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   disabled={isLoadingCheckout}
                   className="w-full bg-[#F2761B] text-white border-none rounded-full py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50"
                 >
-                  {isLoadingCheckout ? t("loading") : t("claimNow")}
+                  {isLoadingCheckout ? "Lade Checkout..." : t("claimNow")}
                 </button>
+                <div className="text-center text-[12px] text-[#5F6B63] mb-1">
+                  Zahlung in Kürze bequem per Stripe.
+                </div>
                 <button 
                   onClick={() => setShowClaimScreen(false)}
                   disabled={isLoadingCheckout}
