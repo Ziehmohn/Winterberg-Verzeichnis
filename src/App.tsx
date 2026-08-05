@@ -1016,10 +1016,10 @@ export default function App() {
                   return (
                     <section className="mt-[34px] bg-white border border-[#EDE8E0] rounded-[22px] p-[32px]">
                       <h2 className="font-display text-[26px] font-bold m-0 mb-[14px]">
-                        {seoSettings?.title || seoData.introTitle}
+                        {seoData.introTitle}
                       </h2>
                       <div className="text-[16px] leading-[1.75] text-[#4A544D] max-w-[78ch] mb-8">
-                        {seoSettings?.text || seoData.introText}
+                        {seoData.introText}
                       </div>
                       
                       {/* FAQ Section */}
