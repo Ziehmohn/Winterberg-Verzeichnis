@@ -4,19 +4,10 @@ import { ThemeConfig } from '../types';
 
 export default function Datenschutz({ theme, onBack }: { theme: ThemeConfig, onBack: () => void }) {
   return (
-    <div className={`w-full max-w-4xl mx-auto p-6 md:p-8 bg-white border ${theme.cardBorder} rounded-xl my-8`}>
-      <button onClick={onBack} className="flex items-center gap-2 mb-6 text-sm font-medium hover:text-orange-500 transition-colors">
-        <ArrowLeft className="w-4 h-4" /> Zurück zur Startseite
-      </button>
-
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-3 bg-orange-100 text-orange-600 rounded-full">
-          <Shield className="w-8 h-8" />
-        </div>
-        <h1 className="text-3xl font-display font-bold">Datenschutzerklärung</h1>
-      </div>
-
-      <div className="space-y-8 text-gray-800 leading-relaxed">
+    <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
+      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <h1 className="font-display text-[34px] font-bold mb-6">Datenschutzerklärung</h1>
+        <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
         <section>
           <h2 className="text-xl font-bold mb-3 border-b pb-2">1. Datenschutz auf einen Blick</h2>
           <h3 className="font-bold mt-4 mb-2">Allgemeine Hinweise</h3>
@@ -57,5 +48,6 @@ export default function Datenschutz({ theme, onBack }: { theme: ThemeConfig, onB
         </div>
       </div>
     </div>
+    </main>
   );
 }

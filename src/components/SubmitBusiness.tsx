@@ -65,147 +65,116 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
   const inputClass = `w-full px-4 py-2 border focus:outline-none focus:ring-2 focus:border-orange-500 focus:ring-orange-500/20 transition-all bg-white ${theme.cardBorder} ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`;
   const labelClass = `block text-sm font-medium mb-1 ${theme.textBase}`;
 
+  const ALL_DISTRICTS = ['Winterberg', 'Altastenberg', 'Altenfeld', 'Elkeringhausen', 'Grönebach', 'Hildfeld', 'Hoheleye', 'Langewiese', 'Lenneplätze', 'Mollseifen', 'Neuastenberg', 'Niedersfeld', 'Siedlinghausen', 'Silbach', 'Züschen'];
+  const CATEGORY_NAMES = ['Handwerk', 'Gastronomie', 'Einzelhandel', 'Dienstleistungen', 'Freizeit', 'Hotels und Unterkünfte'];
+
   if (isSuccess) {
     return (
-      <div className={`p-8 border ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} text-center`}>
-        <h2 className="text-2xl font-display font-bold mb-4">{t("thankYou")}</h2>
-        <p className="mb-6">{t("submitSuccessDesc")}</p>
-        <button onClick={onCancel} className={`px-6 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
-          Zurück zur Startseite
-        </button>
-      </div>
+      <main className="flex-1 w-full max-w-[720px] mx-auto px-6 py-[54px] pb-[80px]">
+        <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">Unternehmen eintragen</h1>
+        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[30px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+          <div className="bg-[#E8F1EB] rounded-[14px] p-4 text-[#0F4C2E] text-[15px]">Danke! Der Eintrag liegt jetzt zur Prüfung im Adminbereich.</div>
+          <button type="button" onClick={onCancel} className="mt-4 bg-transparent border-none text-[#5F6B63] text-[13.5px] cursor-pointer hover:underline">Zurück zur Startseite</button>
+        </div>
+      </main>
     );
   }
 
   return (
-    <div className={`p-6 md:p-8 border ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-display font-bold">{t("submitBusinessTitle")}</h1>
-      </div>
+    <main className="flex-1 w-full max-w-[720px] mx-auto px-6 py-[54px] pb-[80px]">
+      <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">Unternehmen eintragen</h1>
+      <p className="text-[17px] leading-[1.65] text-[#4A544D] mb-[30px]">Kostenlos gelistet werden — oder mit Premium Bildergalerie, ausführliches Profil und Top-Platzierung freischalten.</p>
       
-      <p className="mb-8 text-sm opacity-80">{t("submitBusinessDesc")}</p>
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass}>{t("companyNamePlaceholder")}*</label>
-            <input required value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} className={inputClass} />
-          </div>
-          <div>
-            <label className={labelClass}>{t("category")}*</label>
-            <input required placeholder="z.B. Gastronomie" value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value})} className={inputClass} />
-          </div>
+      <form onSubmit={handleSubmit} className="bg-white border border-[#EDE8E0] rounded-[22px] p-[30px] grid gap-[18px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <label className="grid gap-[7px] text-[14px] font-semibold">Unternehmensname
+          <input required placeholder="z. B. Café Sonnenberg" value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+        </label>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
+          <label className="grid gap-[7px] text-[14px] font-semibold">Kategorie
+            <select required value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+              <option value="">Bitte wählen...</option>
+              {CATEGORY_NAMES.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </label>
+          <label className="grid gap-[7px] text-[14px] font-semibold">Ortsteil
+            <select required value={formData.district || ''} onChange={e => setFormData({...formData, district: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+              <option value="">Bitte wählen...</option>
+              {ALL_DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
+            </select>
+          </label>
         </div>
         
-        <div>
-          <label className={labelClass}>{t("shortDescription")}*</label>
-          <textarea required value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={3} />
-        </div>
+        <label className="grid gap-[7px] text-[14px] font-semibold">Adresse
+          <input required placeholder="Straße, PLZ Ort" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+        </label>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass}>{t("address")}*</label>
-            <input required value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className={inputClass} />
-          </div>
-          <div>
-            <label className={labelClass}>{t("email")}</label>
-            <input type="email" value={formData.email || ''} onChange={e => setFormData({...formData, email: e.target.value})} className={inputClass} />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass}>{t("phoneOptional")}</label>
-            <input value={formData.phone || ''} onChange={e => setFormData({...formData, phone: e.target.value})} className={inputClass} />
-          </div>
-          <div>
-            <label className={labelClass}>{t("websiteOptional")}</label>
-            <input type="url" placeholder="https://" value={formData.website || ''} onChange={e => setFormData({...formData, website: e.target.value})} className={inputClass} />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+          <label className="grid gap-[7px] text-[14px] font-semibold">E-Mail
+            <input type="email" placeholder="mail@example.com" value={formData.email || ''} onChange={e => setFormData({...formData, email: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+          </label>
+          <label className="grid gap-[7px] text-[14px] font-semibold">Telefon
+            <input placeholder="optional" value={formData.phone || ''} onChange={e => setFormData({...formData, phone: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+          </label>
+          <label className="grid gap-[7px] text-[14px] font-semibold">Website
+            <input type="url" placeholder="https://" value={formData.website || ''} onChange={e => setFormData({...formData, website: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+          </label>
         </div>
 
-        <div className="pt-6 pb-2">
-          <label className={labelClass}>{t("pricingDesc")}</label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+        <label className="grid gap-[7px] text-[14px] font-semibold">Kurzbeschreibung
+          <textarea required rows={4} placeholder="Was macht Ihr Unternehmen besonders?" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B] resize-y"></textarea>
+        </label>
+        
+        <div className="grid gap-[7px] text-[14px] font-semibold mt-2">
+          Eintragstyp wählen
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
             <div 
               onClick={() => setSelectedPlan('free')}
-              className={`cursor-pointer p-4 border-2 transition-all ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} ${selectedPlan === 'free' ? 'border-orange-500 bg-orange-50/50' : 'border-black/10 hover:border-black/20'}`}
+              className={`cursor-pointer border p-4 rounded-[12px] transition-colors ${selectedPlan === 'free' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
             >
-              <div className="flex items-start justify-between mb-2">
-                <div className="font-bold text-lg">{t("basicEntry")}</div>
-                {selectedPlan === 'free' && <CheckCircle2 className="w-5 h-5 text-orange-500" />}
+              <div className="flex justify-between items-start mb-1">
+                <div className="font-bold">Basiseintrag</div>
+                {selectedPlan === 'free' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
-              <div className="font-bold mb-3 text-black/60">0,00 € <span className="text-xs font-normal">/ {t("free")}</span></div>
-              <ul className="text-sm space-y-2 text-black/70">
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-black/40" /> {t("company")} & {t("address")}</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-black/40" /> {t("shortDescription")}</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-black/40" /> {t("contactDetails")}</li>
-              </ul>
+              <div className="font-bold text-[18px] mb-2">0,00 € <span className="text-[12px] font-normal text-[#5F6B63]">dauerhaft</span></div>
+              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, Kurzbeschreibung.</div>
             </div>
-            
             <div 
               onClick={() => setSelectedPlan('premium')}
-              className={`cursor-pointer p-4 border-2 transition-all ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} ${selectedPlan === 'premium' ? 'border-orange-500 bg-orange-50/50' : 'border-black/10 hover:border-black/20'}`}
+              className={`cursor-pointer border p-4 rounded-[12px] transition-colors ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
             >
-              <div className="flex items-start justify-between mb-2">
-                <div className="font-bold text-lg flex items-center gap-2">Premium <ShieldCheck className="w-4 h-4 text-emerald-500" /></div>
-                {selectedPlan === 'premium' && <CheckCircle2 className="w-5 h-5 text-orange-500" />}
+              <div className="flex justify-between items-start mb-1">
+                <div className="font-bold flex items-center gap-1.5">Premium <ShieldCheck className="w-4 h-4 text-emerald-600" /></div>
+                {selectedPlan === 'premium' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
-              
-              {selectedPlan === 'premium' ? (
-                <div className="flex bg-white border border-black/10 p-1 rounded-lg mb-3">
-                  <div 
-                    onClick={(e) => { e.stopPropagation(); setBillingCycle('monthly'); }}
-                    className={`flex-1 text-center py-1 text-xs font-medium rounded transition-colors ${billingCycle === 'monthly' ? 'bg-orange-100 text-orange-900' : 'text-black/60 hover:text-black'}`}
-                  >
-                    Monatlich (12,95€ zzgl. MwSt.)
-                  </div>
-                  <div 
-                    onClick={(e) => { e.stopPropagation(); setBillingCycle('yearly'); }}
-                    className={`flex-1 text-center py-1 text-xs font-medium rounded transition-colors ${billingCycle === 'yearly' ? 'bg-orange-100 text-orange-900' : 'text-black/60 hover:text-black'}`}
-                  >
-                    Jährlich (119,40€ zzgl. MwSt.)
-                  </div>
-                </div>
-              ) : (
-                 <div className="font-bold mb-1 text-black/80">ab 9,95 € <span className="text-xs font-normal">/ {t("month")} zzgl. MwSt.</span></div>
-              )}
-              
-              <div className="text-sm mb-3 text-black/60">Hervorgehobene Platzierung, Galerie, Jobs & mehr.</div>
-              <ul className="text-sm space-y-2 text-black/70">
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> {t("detailedDesc")} & {t("logoGallery")}</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> {t("highlightedPlacement")} & SEO</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> {t("publishJobs")}</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> {t("customerReviews")}</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> {t("login")}</li>
-              </ul>
-              
+              <div className="font-bold text-[18px] text-[#D65F0C] mb-2">12,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat (netto)</span></div>
+              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, Top-Platzierung.</div>
             </div>
           </div>
         </div>
 
-        <div className="pt-4 pb-2 border-t border-black/10 mt-4">
+        <div className="pt-2">
           <label className="flex items-start gap-3 cursor-pointer group">
             <input 
               type="checkbox" 
               required
-              className="mt-1 w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 flex-shrink-0 cursor-pointer"
+              className="mt-1 w-4 h-4 rounded border-[#E7E2DA] text-[#F2761B] focus:ring-[#F2761B] flex-shrink-0 cursor-pointer"
             />
-            <span className="text-sm text-black/70 group-hover:text-black transition-colors leading-relaxed">
+            <span className="text-[14px] text-[#4A544D] group-hover:text-[#0F4C2E] transition-colors leading-relaxed">
               Ich habe die <strong>AGB</strong> und die <strong>Datenschutzerklärung</strong> gelesen und akzeptiere diese. Ich bestätige hiermit außerdem ausdrücklich, dass ich <strong>gewerblich (B2B)</strong> handle.
             </span>
           </label>
         </div>
 
-        <div className="pt-4 flex flex-col md:flex-row gap-3">
-          <button type="submit" disabled={isSubmitting} className={`px-6 py-3 md:py-2 font-medium flex-1 text-center transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} disabled:opacity-50`}>
-            {isSubmitting ? 'Bitte warten...' : selectedPlan === 'premium' ? t("bookPaid") : t("createEntry")}
+        <div className="flex flex-col md:flex-row gap-[14px] mt-2">
+          <button type="submit" disabled={isSubmitting} className="flex-1 bg-[#F2761B] text-white border-none rounded-full py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50">
+            {isSubmitting ? 'Wird verarbeitet...' : 'Eintrag einreichen'}
           </button>
-          <button type="button" onClick={onCancel} className={`px-6 py-3 md:py-2 font-medium text-center transition-colors bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
+          <button type="button" onClick={onCancel} className="md:w-auto bg-transparent border-none text-[#5F6B63] py-[15px] px-6 text-[15px] cursor-pointer hover:underline">
             Abbrechen
           </button>
         </div>
       </form>
-    </div>
+    </main>
   );
 }

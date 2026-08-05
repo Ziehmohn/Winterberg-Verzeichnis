@@ -45,103 +45,65 @@ export default function JobsBoard({ businesses, theme, activeThemeKey, initialCa
   });
 
   return (
-    <div className={`w-full bg-white ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} overflow-hidden`}>
-      <div className="p-6 md:p-8 border-b border-black/5 bg-gradient-to-br from-black/5 to-transparent">
-        <h1 className="text-3xl font-display font-bold mb-4 flex items-center gap-3">
-          <Briefcase className="w-8 h-8 text-black/60" />
-          {t("jobsTitle")}
-        </h1>
-        <p className="text-black/70 max-w-3xl text-lg mb-6">
-          {t("jobsDesc")}
-        </p>
+    <main className="flex-1 w-full max-w-[1000px] mx-auto px-6 py-[54px] pb-[80px]">
+      <div className="mb-4">
+        <button 
+          onClick={onBack} 
+          className="bg-transparent border-none text-[#5F6B63] text-[13.5px] cursor-pointer hover:underline mb-2"
+        >
+          Zurück
+        </button>
+      </div>
+      <h1 className="font-display text-[clamp(32px,5vw,50px)] font-bold mb-[14px]">Offene Stellen in Winterberg</h1>
+      <p className="text-[17px] leading-[1.65] text-[#4A544D] max-w-[58ch] mb-[26px]">
+        Alle Vakanzen der eingetragenen Betriebe an einem Ort. Unternehmen pflegen ihre Stellenangebote direkt im eigenen Profil.
+      </p>
 
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black/40" />
-            <input 
-              type="text"
-              placeholder={t("jobsSearchPlaceholder")}
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className={`w-full pl-10 pr-4 py-3 bg-white border border-black/10 focus:border-black/30 focus:ring-0 outline-none transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'}`}
-            />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {jobCategories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setFilterCategory(cat)}
-                className={`px-4 py-2 text-sm font-medium transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-full'} ${
-                  filterCategory.toLowerCase() === cat.toLowerCase()
-                    ? theme.categoryTagActive
-                    : theme.categoryTagInactive
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
+      <div className="flex gap-2 flex-wrap mb-[26px]">
+        {jobCategories.map(cat => {
+          const isActive = filterCategory.toLowerCase() === cat.toLowerCase();
+          return (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setFilterCategory(cat)}
+              className={`border rounded-full py-[9px] px-[16px] text-[14px] font-medium cursor-pointer transition-colors ${
+                isActive 
+                  ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' 
+                  : 'border-[#D8D2C8] bg-transparent text-[#4A544D] hover:border-[#5F6B63]'
+              }`}
+            >
+              {cat}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="p-6 md:p-8">
+      <div className="grid gap-3">
         {filteredJobs.length === 0 ? (
-          <div className="text-center py-12">
-            <Briefcase className="w-12 h-12 text-black/20 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">{t("noJobsFound")}</h3>
-            <p className="text-black/60">{t("noJobsMatch")}</p>
-            <button 
-              onClick={() => { setFilterCategory('Alle'); setSearchQuery(''); }}
-              className="mt-4 text-sm font-medium hover:underline"
-            >
-              Alle Stellen anzeigen
-            </button>
+          <div className="bg-white border border-dashed border-[#D8D2C8] rounded-[22px] p-[48px] text-center text-[#5F6B63]">
+            Aktuell sind keine offenen Stellen hinterlegt.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobs.map(({ job, business }) => (
-              <motion.div 
-                key={job.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`group border border-black/10 hover:border-black/20 p-5 flex flex-col transition-all hover:-translate-y-1 bg-white cursor-pointer ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'}`}
-                onClick={() => onBusinessSelect(business)}
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <span className="text-xs font-bold px-2.5 py-1 bg-black/5 rounded-full text-black/70">
-                    {t(job.type)}
-                  </span>
-                  <span className="text-xs text-black/40 flex items-center gap-1">
-                    <Clock className="w-3 h-3" /> {new Date(job.createdAt).toLocaleDateString('de-DE')}
-                  </span>
-                </div>
-                
-                <h3 className="text-lg font-bold leading-tight mb-2 group-hover:text-black/80 transition-colors line-clamp-2">
-                  {job.title}
-                </h3>
-                
-                <div className="flex items-center gap-2 text-sm text-black/60 mb-4">
-                  <Building className="w-4 h-4 shrink-0" />
-                  <span className="truncate">{business.name}</span>
-                </div>
-                
-                <p className="text-sm text-black/60 line-clamp-3 mb-6 flex-1">
-                  {job.description}
-                </p>
-                
-                <div className="flex items-center justify-between text-sm mt-auto pt-4 border-t border-black/5">
-                  <div className="flex items-center gap-1 text-black/50">
-                    <MapPin className="w-4 h-4" />
-                    <span>{business.district || business.city || 'Winterberg'}</span>
-                  </div>
-                  <span className="font-medium flex items-center gap-1 group-hover:underline"> {t("viewJob")} <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          filteredJobs.map(({ job, business }) => (
+            <div 
+              key={job.id} 
+              onClick={() => onBusinessSelect(business)} 
+              className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] transition-all hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)]"
+            >
+              <div className="flex justify-between gap-[14px] items-baseline flex-wrap">
+                <div className="font-display text-[19px] font-semibold">{job.title}</div>
+                <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full py-[5px] px-[12px] text-[12.5px] font-semibold">
+                  {job.type}
+                </span>
+              </div>
+              <div className="text-[14px] text-[#5F6B63] mt-[5px]">
+                {business.name} · {business.district || business.city || 'Winterberg'}
+              </div>
+            </div>
+          ))
         )}
       </div>
-    </div>
+    </main>
   );
 }

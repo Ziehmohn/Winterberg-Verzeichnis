@@ -50,53 +50,66 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
   };
 
   return (
-    <div className={`w-full max-w-md mx-auto p-6 md:p-8 border ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} mt-10`}>
-      <h2 className="text-2xl font-display font-bold mb-6 text-center">
-        {mode === 'login' ? 'Login' : mode === 'register' ? 'Registrieren' : 'Passwort zurücksetzen'}
-      </h2>
-      
-      {msg && <div className="bg-emerald-100 text-emerald-800 p-4 rounded text-center mb-4 border border-emerald-200">{msg}</div>}
-      {error && <div className="bg-red-100 text-red-800 p-4 rounded text-center mb-4 border border-red-200">{error}</div>}
-      
-      <form onSubmit={handleAuth} className="space-y-4">
-        <div>
-          <label className={`block text-sm font-medium mb-1 ${theme.textBase}`}>{t("email")}</label>
-          <input 
-            type="email" 
-            required 
-            value={email} 
-            onChange={e => setEmail(e.target.value)} 
-            className={`w-full px-4 py-2 border focus:outline-none focus:ring-2 focus:border-orange-500 focus:ring-orange-500/20 transition-all bg-white ${theme.cardBorder} ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-          />
-        </div>
-        {mode !== 'forgot' && (
-          <div>
-            <label className={`block text-sm font-medium mb-1 ${theme.textBase}`}>{t("password")}</label>
-            <input 
-              type="password" 
-              required 
-              value={password} 
-              onChange={e => setPassword(e.target.value)} 
-              className={`w-full px-4 py-2 border focus:outline-none focus:ring-2 focus:border-orange-500 focus:ring-orange-500/20 transition-all bg-white ${theme.cardBorder} ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-            />
-          </div>
-        )}
-        <button type="submit" disabled={loading} className={`w-full px-6 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} disabled:opacity-50`}>
-          {loading ? t("pleaseWait") : mode === 'login' ? 'Anmelden' : mode === 'register' ? 'Registrieren' : t("requestLink")}
-        </button>
-      </form>
+    <main className="flex-1 max-w-[440px] mx-auto w-full px-6 py-[70px] pb-[90px]">
+      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-8 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <h1 className="font-display text-[26px] font-bold mb-2">
+          {mode === 'login' ? 'Anmeldung' : mode === 'register' ? 'Registrieren' : 'Passwort zurücksetzen'}
+        </h1>
+        <p className="text-[15px] text-[#5F6B63] mb-[22px]">
+          {mode === 'login' ? 'Adminbereich und Unternehmens-Dashboard.' : mode === 'register' ? 'Neues Konto anlegen.' : 'Geben Sie Ihre E-Mail ein, um einen Link zu erhalten.'}
+        </p>
 
-      <div className="mt-6 flex flex-col gap-2 text-center">
-        {mode === 'login' ? (
-          <>
-            <button type="button" onClick={() => setMode('forgot')} className={`text-sm hover:underline ${theme.textMuted}`}>{t("forgotPassword")}</button>
-            <button type="button" onClick={() => setMode('register')} className={`text-sm hover:underline ${theme.textMuted}`}>{t("noAccountRegister")}</button>
-          </>
-        ) : (
-          <button type="button" onClick={() => setMode('login')} className={`text-sm hover:underline ${theme.textMuted}`}>{t("backToLogin")}</button>
-        )}
-        <button type="button" onClick={onBack} className={`text-sm hover:underline ${theme.textMuted} mt-4`}>{t("cancel")}</button>
+        {msg && <div className="bg-[#E8F1EB] text-[#0F4C2E] p-4 rounded-[12px] text-center mb-4 text-[14px]">{msg}</div>}
+        {error && <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-[12px] text-center mb-4 text-[14px]">{error}</div>}
+        
+        <form onSubmit={handleAuth} className="grid gap-[14px]">
+          <label className="grid gap-[7px] text-[14px] font-semibold">
+            E-Mail
+            <input 
+              type="email" 
+              required 
+              value={email} 
+              onChange={e => setEmail(e.target.value)} 
+              placeholder="name@beispiel.de"
+              className="border border-[#E7E2DA] rounded-[12px] px-[14px] py-[13px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
+            />
+          </label>
+          
+          {mode !== 'forgot' && (
+            <label className="grid gap-[7px] text-[14px] font-semibold">
+              Passwort
+              <input 
+                type="password" 
+                required 
+                value={password} 
+                onChange={e => setPassword(e.target.value)} 
+                placeholder="••••••••"
+                className="border border-[#E7E2DA] rounded-[12px] px-[14px] py-[13px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
+              />
+            </label>
+          )}
+
+          <button 
+            type="submit" 
+            disabled={loading} 
+            className="bg-[#0F4C2E] text-white border-none rounded-full p-[14px] text-[15px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors disabled:opacity-50 mt-2"
+          >
+            {loading ? t("pleaseWait") : mode === 'login' ? 'Anmelden' : mode === 'register' ? 'Registrieren' : t("requestLink")}
+          </button>
+        </form>
+
+        <div className="mt-6 flex flex-col gap-3 text-center">
+          {mode === 'login' ? (
+            <>
+              <button type="button" onClick={() => setMode('forgot')} className="text-[14px] text-[#5F6B63] hover:underline bg-transparent border-none cursor-pointer">{t("forgotPassword")}</button>
+              <button type="button" onClick={() => setMode('register')} className="text-[14px] text-[#5F6B63] hover:underline bg-transparent border-none cursor-pointer">{t("noAccountRegister")}</button>
+            </>
+          ) : (
+            <button type="button" onClick={() => setMode('login')} className="text-[14px] text-[#5F6B63] hover:underline bg-transparent border-none cursor-pointer">{t("backToLogin")}</button>
+          )}
+          <button type="button" onClick={onBack} className="text-[14px] text-[#5F6B63] hover:underline bg-transparent border-none cursor-pointer mt-2">{t("cancel")}</button>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

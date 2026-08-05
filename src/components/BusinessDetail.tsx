@@ -36,14 +36,24 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       }
     } catch (err) {
       console.error(err);
+
       alert(t("paymentError"));
     } finally {
       setIsLoadingCheckout(false);
     }
   };
 
+  const telHref = business.phone ? `tel:${business.phone.replace(/[^0-9+]/g, '')}` : undefined;
+  const webHref = business.website ? (business.website.startsWith('http') ? business.website : `https://${business.website}`) : undefined;
+  
+  const openState = business.openingHours ? isOpenNow(business.openingHours, t) : null;
+  const avgRating = business.reviews && business.reviews.length > 0 
+    ? (business.reviews.reduce((acc, r) => acc + r.rating, 0) / business.reviews.length).toFixed(1)
+    : null;
+
   return (
-    <div className={`flex flex-col bg-white ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} overflow-hidden relative`}>
+    <main className="flex-1 relative">
+      
       {/* Checkout/Claim Overlay */}
       <AnimatePresence>
         {showClaimScreen && (
@@ -51,41 +61,30 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-sm flex items-center justify-center p-6"
           >
-            <div className={`max-w-md w-full bg-white p-8 border ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-2xl'} flex flex-col items-center text-center`}>
+            <div className="max-w-md w-full bg-white p-8 border border-[#EDE8E0] rounded-[22px] flex flex-col items-center text-center shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
               <ShieldCheck className="w-16 h-16 text-emerald-500 mb-6" />
               <h2 className="text-2xl font-display font-bold mb-4">{t("secureAccess")}</h2>
-              <p className="mb-6 opacity-80 leading-relaxed">
+              <p className="mb-6 opacity-80 leading-relaxed text-[#4A544D]">
                 {t("takeControl")} <strong>{business.name}</strong>. 
-                Präsentieren Sie Ihr Unternehmen optimal mit Bildern, aktuellen Angeboten und Premium-Platzierung.
+                {t("claimAccessDesc")}
               </p>
               
-              <div className="bg-orange-50 text-orange-900 border border-orange-200 rounded-xl p-5 mb-8 w-full text-left">
-                <div className="font-bold text-lg mb-2">{t("premiumAccess")}</div>
-                <div className="text-sm space-y-2 mb-4">
-                  <div className="flex justify-between"><span>Monatliche Zahlweise:</span> <strong>12,95 € / {t("month")}</strong></div>
-                  <div className="flex justify-between"><span>Jährliche Zahlweise:</span> <strong>119,40 € / Jahr</strong></div>
-                  <div className="text-xs opacity-70 mt-2">Alle Preise netto zzgl. gesetzlicher MwSt.</div>
-                </div>
-              </div>
-
               <div className="flex flex-col w-full gap-3">
                 <button 
-                  disabled
-                  className={`w-full py-3 px-4 font-bold text-white transition-colors bg-orange-500 opacity-50 cursor-not-allowed ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'}`}
+                  onClick={handleClaim}
+                  disabled={isLoadingCheckout}
+                  className="w-full bg-[#F2761B] text-white border-none rounded-full py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50"
                 >
-                  Zahlungspflichtig bestellen
+                  {isLoadingCheckout ? t("loading") : t("claimNow")}
                 </button>
-                <div className="text-sm font-bold text-orange-700 bg-orange-100 p-2 rounded text-center">
-                  Die Bezahlfunktion wird in Kürze eingerichtet.
-                </div>
                 <button 
                   onClick={() => setShowClaimScreen(false)}
                   disabled={isLoadingCheckout}
-                  className={`w-full py-3 px-4 font-medium transition-colors bg-black/5 hover:bg-black/10 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'}`}
+                  className="w-full bg-transparent border-none text-[#5F6B63] py-[15px] text-[15px] cursor-pointer hover:underline disabled:opacity-50"
                 >
-                  Abbrechen
+                  {t("cancel")}
                 </button>
               </div>
             </div>
@@ -93,231 +92,189 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         )}
       </AnimatePresence>
 
-      <button 
-        onClick={(e) => {
-          e.preventDefault();
-          window.history.pushState(null, '', '/');
-          onBack();
-        }} 
-        className="flex items-center gap-2 px-6 py-4 border-b border-black/5 hover:bg-black/5 transition-colors font-medium text-sm"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        Zurück zur Übersicht
-      </button>
-
-      <div className="relative h-64 md:h-80 w-full bg-black/5 overflow-hidden group">
-        {(business.uploadedImage || business.imageLink) ? (
-          <img src={business.uploadedImage || business.imageLink} alt={business.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center text-black/40 bg-neutral-100/50">
-            <ImageIcon className="w-12 h-12 mb-4 opacity-40" />
-            <span className="text-sm font-bold tracking-widest opacity-60">{t("imagesComingSoon")}</span>
+      <div className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white">
+        <div className="max-w-[1000px] mx-auto px-6 pt-[34px] pb-[46px]">
+          <button 
+            type="button" 
+            onClick={onBack} 
+            className="bg-white/10 border border-white/20 text-white rounded-full px-4 py-2 text-[14px] cursor-pointer inline-flex items-center gap-2 mb-[26px] hover:bg-white/20 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Zurück
+          </button>
+          
+          <div className="flex gap-2 flex-wrap mb-[14px]">
+            <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">{business.category}</span>
+            {business.subcategory && (
+              <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">{business.subcategory}</span>
+            )}
+            {business.isPremium && (
+              <span className="bg-[#F2761B] rounded-full px-[13px] py-[5px] text-[13px] font-semibold">Premium</span>
+            )}
+            {business.isVerified && (
+              <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">Verifiziert</span>
+            )}
+            {openState && (
+              <span className={`rounded-full px-[13px] py-[5px] text-[13px] font-semibold ${openState.isOpen ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-[#FFF1E4] text-[#D65F0C]'}`}>
+                {openState.text}
+              </span>
+            )}
           </div>
-        )}
-        <div className={`absolute top-4 left-4 ${theme.cardBg} bg-opacity-90 backdrop-blur-sm px-4 py-1.5 text-sm font-medium ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none border border-black' : 'rounded-full shadow-sm'}`}>
-          {business.subcategory ? `${business.category} — ${business.subcategory}` : business.category}
+          
+          <h1 className="font-display text-[clamp(30px,4.6vw,50px)] font-bold mb-[12px] leading-[1.08]">{business.name}</h1>
+          
+          <div className="flex items-center gap-4 flex-wrap text-[16px] text-white/80">
+            <span className="inline-flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              {business.address}
+            </span>
+            {avgRating && (
+              <span className="inline-flex items-center gap-1.5">
+                <span className="text-[#F2761B] tracking-[1px]">
+                  {Array.from({length: 5}).map((_, i) => (
+                    <span key={i}>{i < Math.round(Number(avgRating)) ? '★' : '☆'}</span>
+                  ))}
+                </span>
+                {avgRating} · {business.reviews!.length} Bewertungen
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className={`p-6 md:p-8 lg:p-10 ${theme.cardBg} transition-colors`}>
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8 text-center md:text-left">
-          <div className="w-full">
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-3">
-              {business.isPremium && business.logoUrl && (
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg shadow-sm border border-gray-100 p-1.5 shrink-0">
-                  <img src={business.logoUrl} alt="Logo" className="w-full h-full object-contain" />
-                </div>
-              )}
-              <div className="relative inline-block">
-                <h1 className="text-3xl md:text-4xl font-display font-bold relative z-10">{business.name}</h1>
-                <svg 
-                  className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-3 md:h-4 overflow-visible pointer-events-none z-0" 
-                  viewBox="0 0 300 20" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="none"
-                >
-                  <motion.path 
-                    d="M 5 15 Q 100 0 200 12 T 295 8" 
-                    stroke="#ffc084" 
-                    strokeWidth="6" 
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, ease: "easeInOut", delay: 0.1 }}
-                  />
-                </svg>
+      <div className="max-w-[1000px] mx-auto px-6 pb-[40px] -mt-[26px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[26px] items-start">
+        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[32px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+          <h2 className="font-display text-[22px] font-semibold mb-3">Über das Unternehmen</h2>
+          <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{business.description}</p>
+          
+          {business.extendedDescription && (
+            <div 
+              className="text-[16px] leading-[1.7] text-[#4A544D] mb-[26px] prose prose-sm md:prose-base max-w-none"
+              dangerouslySetInnerHTML={{ __html: business.extendedDescription }}
+            />
+          )}
+
+          {business.gallery && business.gallery.length > 0 && (
+            <>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">Bildergalerie</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 mb-[30px]">
+                {business.gallery.map((img, i) => (
+                  <img key={i} src={img} alt={`Bild ${i+1}`} className="w-full h-[120px] object-cover rounded-[14px] border border-[#EDE8E0]" />
+                ))}
               </div>
-              {business.isPremium && (
-                <div className="flex items-center gap-1 px-3 py-1.5 bg-orange-50 text-orange-700 rounded-full text-sm font-medium shrink-0" title="Premium Unternehmen">
-                  <BadgeCheck className="w-5 h-5" />
-                  <span className="hidden sm:inline">Premium</span>
+            </>
+          )}
+
+          {business.services && business.services.length > 0 && (
+            <>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">Leistungen</h2>
+              <div className="flex gap-2 flex-wrap mb-[30px]">
+                {business.services.map((svc, i) => (
+                  <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] rounded-full py-[8px] px-[14px] text-[14px] font-medium">{svc}</span>
+                ))}
+              </div>
+            </>
+          )}
+
+          {business.openingHours && (
+            <>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">Öffnungszeiten</h2>
+              <div className="border border-[#EDE8E0] rounded-[16px] overflow-hidden mb-[30px]">
+                {Object.entries(business.openingHours).map(([day, hours], i) => (
+                  <div key={day} className={`flex justify-between py-3 px-4 text-[15px] border-b border-[#F3F0EA] last:border-b-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#FAF8F5]'}`}>
+                    <span className="text-[#4A544D] capitalize w-24">
+                      {
+                        day === 'monday' ? t('monday') :
+                        day === 'tuesday' ? t('tuesday') :
+                        day === 'wednesday' ? t('wednesday') :
+                        day === 'thursday' ? t('thursday') :
+                        day === 'friday' ? t('friday') :
+                        day === 'saturday' ? t('saturday') : t('sunday')
+                      }
+                    </span>
+                    <span className="font-semibold text-black">{hours}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {business.jobs && business.jobs.length > 0 && (
+            <>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">Offene Stellen</h2>
+              <div className="grid gap-2.5 mb-[30px]">
+                {business.jobs.map(j => (
+                  <div key={j.id} className="border border-[#EDE8E0] rounded-[16px] p-4">
+                    <div className="flex justify-between gap-3 items-baseline">
+                      <div className="font-display text-[17px] font-semibold">{j.title}</div>
+                      <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full py-1 px-[11px] text-[12px] font-semibold">{j.type}</span>
+                    </div>
+                    <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.55]">{j.description}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <h2 className="font-display text-[22px] font-semibold mb-3.5">Bewertungen</h2>
+          <div className="grid gap-3 mb-5">
+            {business.reviews && business.reviews.filter(r => r.status === 'approved').length > 0 ? (
+              business.reviews.filter(r => r.status === 'approved').map(r => (
+                <div key={r.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] p-4">
+                  <div className="flex justify-between gap-2.5 items-center">
+                    <div className="font-semibold text-[15px]">{r.authorName}</div>
+                    <div className="text-[#F2761B] text-[15px] tracking-[2px]">
+                      {Array.from({length: 5}).map((_, i) => (
+                        <span key={i}>{i < r.rating ? '★' : '☆'}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.6]">{r.text}</p>
                 </div>
-              )}
+              ))
+            ) : (
+              <p className="text-[#8A928B] text-[15px] m-0">Noch keine Bewertungen — sei die erste Stimme.</p>
+            )}
+          </div>
+
+          {onReviewSubmit && (
+            <div className="mt-6 border-t border-[#EDE8E0] pt-6">
+              <ReviewForm business={business} onReviewSubmit={onReviewSubmit} />
             </div>
-            <p className={`text-lg md:text-xl leading-relaxed ${theme.textMuted} max-w-3xl mx-auto md:mx-0`}>
-              {business.description && business.description.length > 90 
-                ? business.description.substring(0, 90) + '…' 
-                : business.description}
-            </p>
-
-          </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            {business.isPremium && business.services && business.services.length > 0 && (
-              <div>
-                <h3 className="text-xl font-display font-bold mb-4 flex items-center gap-2">
-                  <ListIcon className={`w-5 h-5 ${theme.iconAccent}`} />
-                  Leistungen & Services
-                </h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {business.services.map((service, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 bg-orange-500`} />
-                      <span className="leading-relaxed">{service}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            
-            {business.isPremium && business.extendedDescription && (
-              <div className="pt-6 border-t border-black/5">
-                <h3 className="text-xl font-display font-bold mb-4">{t("aboutUs")}</h3>
-                <div className="prose prose-sm md:prose-base max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: business.extendedDescription }} />
-                </div>
-              </div>
-            )}
+        <aside className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
+          <div className="font-display text-[18px] font-semibold mb-1">Kontakt</div>
+          
+          {business.phone && telHref && (
+            <a href={telHref} className="flex items-center gap-[11px] bg-[#F2761B] text-white rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:bg-[#D65F0C] transition-colors">
+              <Phone className="w-4 h-4" />
+              {business.phone}
+            </a>
+          )}
+          
+          {business.website && webHref && (
+            <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
+              <Globe className="w-4 h-4" />
+              Website öffnen
+            </a>
+          )}
 
-            {business.isPremium && business.gallery && business.gallery.length > 0 && (
-              <div className="pt-6 border-t border-black/5">
-                <h3 className="text-xl font-display font-bold mb-4">{t("gallery")}</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {business.gallery.map((img, i) => (
-                    <div key={i} className="aspect-square bg-black/5 rounded-lg overflow-hidden relative">
-                      <img src={img} alt={`Galerie Bild ${i+1}`} className="w-full h-full object-cover" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {business.isPremium && business.jobs && business.jobs.length > 0 && (
-              <div className="pt-6 border-t border-black/5">
-                <h3 className="text-xl font-display font-bold mb-4 flex items-center gap-2">
-                  <Briefcase className="w-5 h-5 text-black/40" />
-                  Offene Stellen
-                </h3>
-                <div className="flex flex-col gap-4">
-                  {business.jobs.map((job) => (
-                    <div key={job.id} className="p-4 bg-black/5 rounded-lg">
-                      <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-bold text-lg">{job.title}</h4>
-                        <span className="text-xs font-bold px-2 py-1 bg-white text-black rounded-md shadow-sm border border-black/10">
-                          {job.type}
-                        </span>
-                      </div>
-                      <p className="text-sm text-black/70 mb-3 whitespace-pre-wrap">{job.description}</p>
-                      <div className="text-xs text-black/40">
-                        {t("addedOn")} {new Date(job.createdAt).toLocaleDateString('de-DE')}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {/* Reviews Section */}
-            {onReviewSubmit && (
-              <div className="pt-6 border-t border-black/5">
-                <ReviewForm business={business} onReviewSubmit={onReviewSubmit} />
-              </div>
-            )}
-          </div>
-
-
-          <div className={`space-y-6 p-6 border bg-black/[0.02] ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-            {!business.isPremium && (
-              <div className="bg-orange-50 border border-orange-200 rounded-xl p-5 mb-6">
-                <h4 className="font-bold text-orange-900 mb-2">{t("isThisYourBusiness")}</h4>
-                <p className="text-sm text-orange-800 mb-4">{t("claimProfileDesc")}</p>
-                <button 
-                  onClick={() => setShowClaimScreen(true)}
-                  className={`w-full py-2 px-4 font-bold text-sm text-white bg-orange-500 hover:bg-orange-600 transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'}`}
-                >
-                  {t("claimAccess")}
-                </button>
-              </div>
-            )}
-
-            <h3 className="text-lg font-display font-bold mb-2">{t("contactDetails")}</h3>
-            
-            {!!business.address && typeof business.address === 'string' && (
-              <div className="flex items-start gap-3">
-                <MapPin className={`w-5 h-5 mt-0.5 shrink-0 ${theme?.iconAccent || 'text-orange-500'}`} />
-                <span className="font-medium leading-tight">
-                  {business.address.split(',').map((part, i) => (
-                    <React.Fragment key={i}>
-                      {part.trim()}
-                      {i === 0 && <br />}
-                    </React.Fragment>
-                  ))}
-                </span>
-              </div>
-            )}
-
-            {!!business.phone && (
-              <div className="flex items-center gap-3">
-                <Phone className={`w-5 h-5 shrink-0 ${theme?.iconAccent || 'text-orange-500'}`} />
-                <span className="font-medium">{business.phone}</span>
-              </div>
-            )}
-
-            {!!business.website && typeof business.website === 'string' && (
-              <div className="flex items-center gap-3">
-                <Globe className={`w-5 h-5 shrink-0 ${theme?.iconAccent || 'text-orange-500'}`} />
-                <span className="font-medium">
-                  <a href={business.website.startsWith('http') ? business.website : `https://${business.website}`} target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-600 hover:text-blue-800">
-                    {business.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-                  </a>
-                </span>
-              </div>
-            )}
-
-            {business.isPremium && !!business.openingHours && (() => {
-
-              const openState = isOpenNow(business.openingHours, t);
-              return (
-                <div className="pt-4 border-t border-black/10">
-
-                  <div className="flex items-start gap-3 mb-3">
-                    <Clock className={`w-5 h-5 mt-0.5 shrink-0 ${openState.isOpen ? 'text-emerald-500' : 'text-red-500'}`} />
-                    <span className={`font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>{openState.text}</span>
-                  </div>
-                  <div className="space-y-1 text-sm">
-                    {Object.entries(business.openingHours).map(([day, hours]) => (
-                      <div key={day} className="flex justify-between">
-                        <span className="capitalize w-24">{
-                          day === 'monday' ? t('monday') :
-                          day === 'tuesday' ? t('tuesday') :
-                          day === 'wednesday' ? t('wednesday') :
-                          day === 'thursday' ? t('thursday') :
-                          day === 'friday' ? t('friday') :
-                          day === 'saturday' ? t('saturday') : t('sunday')
-                        }</span>
-                        <span className="font-medium text-right">{hours}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-        </div>
+          {!business.isPremium && (
+            <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
+              <div className="font-semibold text-[15px] mb-1">Ist das Ihr Unternehmen?</div>
+              <p className="text-[13px] text-[#5F6B63] mb-3">Übernehmen Sie dieses Profil und fügen Sie Bildergalerie, Öffnungszeiten und mehr hinzu.</p>
+              <button 
+                onClick={() => setShowClaimScreen(true)}
+                className="w-full bg-white text-[#0F4C2E] border border-[#0F4C2E] rounded-[14px] py-[11px] text-[14px] font-semibold cursor-pointer hover:bg-[#E8F1EB] transition-colors"
+              >
+                Profil übernehmen
+              </button>
+            </div>
+          )}
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }

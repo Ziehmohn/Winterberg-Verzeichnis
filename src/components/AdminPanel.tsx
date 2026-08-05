@@ -223,14 +223,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     }
   };
 
-  const inputClass = `w-full px-4 py-2 border focus:outline-none focus:ring-2 focus:border-orange-500 focus:ring-orange-500/20 transition-all bg-white ${theme.cardBorder} ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`;
-  const labelClass = `block text-sm font-medium mb-1 ${theme.textBase}`;
+  const inputClass = `w-full border border-[#E7E2DA] rounded-[10px] px-[12px] py-[11px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]`;
+  const labelClass = `block text-[13.5px] font-semibold mb-[6px]`;
 
   return (
-    <div className={`w-full max-w-4xl mx-auto p-6 md:p-8 border ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-display font-bold">{formData.id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen hinzufügen'}</h2>
-        <button type="button" onClick={onCancel} className="p-2 bg-black/5 hover:bg-black/10 rounded-md transition-colors"><ArrowLeft className="w-5 h-5"/></button>
+    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-[30px] shadow-[0_10px_30px_rgba(27,33,29,0.06)] w-full max-w-[1180px] mx-auto">
+      <div className="flex justify-between items-center mb-[22px]">
+        <h2 className="font-display text-[24px] font-bold m-0">{formData.id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen hinzufügen'}</h2>
+        <button type="button" onClick={onCancel} className="bg-[#F3F0EA] border-none rounded-[10px] px-[14px] py-[9px] text-[14px] cursor-pointer hover:bg-[#EAE5DB]">Abbrechen</button>
       </div>
         
       <form onSubmit={handleSubmit} className="space-y-6">

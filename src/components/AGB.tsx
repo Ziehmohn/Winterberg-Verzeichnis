@@ -9,23 +9,22 @@ interface AGBProps {
 
 export default function AGB({ theme, activeThemeKey }: AGBProps) {
   return (
-    <div className={`w-full max-w-4xl mx-auto p-6 md:p-10 border ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-      <div className="mb-8">
+    <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
+      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <button 
           onClick={() => {
             window.history.pushState(null, '', '/');
             window.dispatchEvent(new Event('popstate'));
           }}
-          className="flex items-center gap-2 text-sm font-medium hover:underline mb-6"
+          className="flex items-center gap-2 text-sm font-medium hover:underline mb-6 text-[#4A544D]"
         >
           <ArrowLeft className="w-4 h-4" />
           Zurück zur Startseite
         </button>
-        <h1 className="text-3xl font-display font-bold mb-2">Allgemeine Geschäftsbedingungen (AGB)</h1>
-        <p className="text-sm opacity-70">Stand: {new Date().toLocaleDateString('de-DE')}</p>
-      </div>
-
-      <div className={`space-y-6 text-sm leading-relaxed ${theme.textBase}`}>
+        <h1 className="font-display text-[34px] font-bold mb-6">Allgemeine Geschäftsbedingungen (AGB)</h1>
+        <p className="text-sm opacity-70 mb-8">Stand: {new Date().toLocaleDateString('de-DE')}</p>
+        
+        <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
         <section>
           <h2 className="text-xl font-bold mb-3">1. Geltungsbereich</h2>
           <p>
@@ -135,5 +134,6 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
         </section>
       </div>
     </div>
+    </main>
   );
 }

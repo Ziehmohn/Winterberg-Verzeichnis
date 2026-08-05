@@ -3,10 +3,10 @@ import { ThemeConfig } from '../types';
 
 export default function Impressum({ theme, activeThemeKey }: { theme: ThemeConfig, activeThemeKey: string }) {
   return (
-    <div className={`w-full max-w-4xl mx-auto p-6 md:p-10 border my-10 ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-      <h1 className="text-3xl font-display font-bold mb-8">Impressum</h1>
-      
-      <div className={`prose prose-sm md:prose-base max-w-none ${theme.textBase}`}>
+    <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
+      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <h1 className="font-display text-[34px] font-bold mb-6">Impressum</h1>
+        <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
         <p className="font-bold">Angaben gemäß § 5 TMG</p>
         <p>
           SICHTBAR SEO – Simon Kräling<br />
@@ -45,7 +45,8 @@ export default function Impressum({ theme, activeThemeKey }: { theme: ThemeConfi
         <p>
           Die Betreiber der Seiten sind bemüht, stets die Urheberrechte anderer zu beachten bzw. auf selbst erstellte sowie lizenzfreie Werke zurückzugreifen.
         </p>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

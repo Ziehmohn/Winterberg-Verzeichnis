@@ -637,7 +637,12 @@ export default function App() {
                 <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
                   {/* Kategorien */}
                   <div className="mb-16">
-                    <h2 className="font-display text-3xl font-bold mb-2">Kategorien</h2>
+                    <div className="mb-8 relative inline-block">
+                      <h2 className="font-display text-3xl font-bold mb-0 leading-tight">Kategorien</h2>
+                      <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-[2px]">
+                        <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                     <p className="text-gray-600 mb-8">Finde schnell, wonach du suchst in {categories.length} Hauptkategorien.</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {categories.map(cat => (
@@ -656,7 +661,12 @@ export default function App() {
 
                   {/* Ortsteile */}
                   <div className="mb-16">
-                    <h2 className="font-display text-2xl font-bold mb-2">Alle Ortsteile</h2>
+                    <div className="mb-6 relative inline-block">
+                      <h2 className="font-display text-2xl font-bold mb-0 leading-tight">Alle Ortsteile</h2>
+                      <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[6px] block mt-[2px]">
+                        <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                     <p className="text-gray-600 mb-6">Kernstadt und alle Dörfer der Stadt Winterberg.</p>
                     <div className="flex flex-wrap gap-3">
                       {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
@@ -673,7 +683,12 @@ export default function App() {
 
                   {/* Empfohlene */}
                   <div>
-                    <h2 className="font-display text-3xl font-bold mb-6">Empfohlene Unternehmen</h2>
+                    <div className="mb-8 relative inline-block">
+                      <h2 className="font-display text-3xl font-bold mb-0 leading-tight">Empfohlene Unternehmen</h2>
+                      <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-[2px]">
+                        <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {businesses.filter(b => b.isPremium).slice(0, 6).map(b => (
                         <div 
@@ -1542,80 +1557,56 @@ export default function App() {
         </div>
       )}
 
-      {/* Footer */}
-      <footer className="max-w-7xl mx-auto px-4 md:px-8 py-8 mt-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className={`text-center text-sm flex-1 flex flex-col items-center justify-center gap-2 ${theme.textMuted}`}>
-          <div>© {new Date().getFullYear()} Winterberg Wirtschaft. {t("footerInitiative")}</div>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2">
-            <button onClick={() => { 
-              setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
-              setIsDatenschutzMode(true); 
-              window.scrollTo(0,0); 
-            }} className="hover:text-orange-500 transition-colors underline">Datenschutzerklärung</button>
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-xs text-black/60 dark:text-white/60">{t("projectBy")}</span>
-              <a href="https://sichtbar-online.com/seo-freelancer" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-opacity">
-                <img src="/logo-sichtbar.png" alt="Sichtbar SEO" className="h-5 md:h-6 object-contain" />
-              </a>
+      <footer style={{ background: '#06301C', color: 'rgba(255,255,255,0.78)', marginTop: 'auto' }}>
+        <div className="max-w-[1180px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="md:col-span-1">
+            <div className="inline-block cursor-pointer" onClick={() => { resetToDirectory(); }}>
+              <span className="font-display text-[13px] font-medium text-white/70">Das</span>
+              <span className="font-display text-[22px] font-extrabold tracking-widest text-white block leading-tight">WINTERBERG</span>
+              <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-0.5">
+                <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
+              </svg>
+              <span className="font-display text-[12px] font-semibold tracking-[0.32em] text-white/90 block mt-1">VERZEICHNIS</span>
             </div>
-            <button 
-              onClick={() => {
-                setIsAdminMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
-                setIsImpressumMode(true);
-              }} 
-              className={`text-xs hover:underline`}
-            >{t("impressum")}</button>
-            <span className="text-xs text-black/20 dark:text-white/20">•</span>
-            <button 
-              onClick={() => {
-                setIsAdminMode(false); setIsImpressumMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
-                setIsAGBMode(true);
-              }} 
-              className={`text-xs hover:underline`}
-            >{t("agb")}</button>
-            <span className="text-xs text-black/20 dark:text-white/20">•</span>
-            <button 
-              onClick={() => {
-                setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
-                setIsPricingMode(true);
-              }} 
-              className={`text-xs hover:underline`}
-            >{t("pricing")}</button>
-            <span className="text-xs text-black/20 dark:text-white/20">•</span>
-            <button
-              onClick={() => setActiveThemeKey(activeThemeKey === 'dark' ? 'nature' : 'dark')}
-              className={`flex items-center gap-1.5 text-xs hover:underline`}
-              title={activeThemeKey === 'dark' ? t("activateLightTheme") : t("darkTheme") + ' aktivieren'}
-            >
-              {activeThemeKey === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-              {activeThemeKey === 'dark' ? t("lightTheme") : t("darkTheme")}
-            </button>
+            <p className="text-[14.5px] leading-relaxed mt-4 max-w-[52ch]">
+              Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und seinen Ortsteilen {availableLocations.filter(l => l !== 'Winterberg').join(', ')}.
+            </p>
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-4 text-sm font-medium">
-            <button
-              onClick={() => {
-                setLang('de');
-                const curr = window.location.pathname.replace(/^\/nl/, '');
-                window.history.pushState(null, '', curr || '/');
-              }}
-              className={`${lang === 'de' ? 'text-black font-bold' : 'text-black/60'} hover:text-black`}
-            >
-              DE
-            </button>
-            <span className="text-black/20">|</span>
-            <button
-              onClick={() => {
-                setLang('nl');
-                const curr = window.location.pathname.replace(/^\/nl/, '');
-                window.history.pushState(null, '', '/nl' + (curr === '/' ? '' : curr));
-              }}
-              className={`${lang === 'nl' ? 'text-black font-bold' : 'text-black/60'} hover:text-black`}
-            >
-              NL
-            </button>
+          <div className="flex flex-col gap-2.5 text-[14.5px]">
+            <div className="text-white font-semibold mb-0.5">Verzeichnis</div>
+            <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Alle Unternehmen</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Jobs</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsSubmitMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Eintragen</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsPricingMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Preise</a>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[14.5px]">
+            <div className="text-white font-semibold mb-0.5">Rechtliches</div>
+            <a href="#" onClick={(e) => { 
+              e.preventDefault(); 
+              setIsAdminMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
+              setIsImpressumMode(true); window.scrollTo(0, 0);
+            }} className="text-white/80 hover:text-white transition-colors">Impressum</a>
+            <a href="#" onClick={(e) => { 
+              e.preventDefault(); 
+              setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
+              setIsDatenschutzMode(true); window.scrollTo(0, 0);
+            }} className="text-white/80 hover:text-white transition-colors">Datenschutz</a>
+            <a href="#" onClick={(e) => { 
+              e.preventDefault(); 
+              setIsAdminMode(false); setIsImpressumMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
+              setIsAGBMode(true); window.scrollTo(0, 0);
+            }} className="text-white/80 hover:text-white transition-colors">AGB</a>
+          </div>
+          <div className="flex flex-col gap-2.5 text-[14.5px]">
+            <div className="text-white font-semibold mb-0.5">Intern</div>
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsAdminMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Adminbereich</a>
           </div>
         </div>
-
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+          <div className="max-w-[1180px] mx-auto px-6 py-4 text-[13px] flex items-center justify-between">
+            <span>© {new Date().getFullYear()} Das Winterberg Verzeichnis · Ein Projekt von SICHTBAR SEO</span>
+          </div>
+        </div>
       </footer>
       </div>
     </div>
@@ -1833,337 +1824,237 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   });
 
   return (
-    <>
-      {activeTab === 'entries' && (
-        <aside className="w-full md:w-64 shrink-0">
-          <div className={`sticky top-32 p-5 ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} border ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-            <h3 className="font-display font-bold text-lg mb-4">Admin Filter</h3>
-            <nav className="flex flex-col gap-1">
-              <button
-                onClick={() => setActiveAdminCategory('Alle')}
-                className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
-                  activeAdminCategory === 'Alle' ? theme.categoryTagActive : theme.categoryTagInactive
-                } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-              >
-                Alle anzeigen
-              </button>
-              <div className="border-b-2 border-dotted border-black/10 my-3"></div>
-              {categories.map((group) => {
-                const isExpanded = expandedGroups.includes(group.name);
-                return (
-                  <div key={t(group.name)} className="flex flex-col gap-1 mb-2 last:mb-0">
-                    <div className="flex items-center gap-1">
-                      <button
-                        onClick={() => {
-                          setActiveAdminCategory(group.name);
-                          if (!isExpanded) {
-                            setExpandedGroups(prev => [...prev, group.name]);
-                          }
-                        }}
-                        className={`flex-1 text-left px-4 py-3 md:py-2 text-sm font-medium transition-colors ${
-                          activeAdminCategory === group.name ? theme.categoryTagActive : theme.categoryTagInactive
-                        } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                      >
-                        {t(group.name)}
-                      </button>
-                      {group.subcategories.length > 0 && (
-                        <button
-                          onClick={() => {
-                            setExpandedGroups(prev =>
-                              isExpanded ? prev.filter(g => g !== group.name) : [...prev, group.name]
-                            );
-                          }}
-                          className={`p-2 flex items-center justify-center transition-colors ${theme.textMuted} hover:text-black dark:hover:text-white ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                          aria-label="Toggle subcategories"
-                        >
-                          {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-                        </button>
-                      )}
-                    </div>
-                    {isExpanded && group.subcategories.length > 0 && (
-                      <div className="flex flex-col gap-1 ml-3 border-l-2 border-black/10 dark:border-white/10 pl-2">
-                        {group.subcategories.map((sub) => (
-                          <button
-                            key={sub}
-                            onClick={() => setActiveAdminCategory(sub)}
-                            className={`w-full text-left px-3 py-2 text-xs font-medium transition-colors ${
-                              activeAdminCategory === sub ? theme.categoryTagActive : theme.categoryTagInactive
-                            } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                          >
-                            {sub}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </nav>
-          </div>
-        </aside>
-      )}
+    <main className="flex-1 max-w-[1180px] mx-auto w-full px-6 py-[32px] pb-[80px]">
+      <div className="flex justify-between items-center gap-4 flex-wrap mb-[22px]">
+        <div>
+          <h1 className="font-display text-[32px] font-bold m-0">Adminbereich</h1>
+          <div className="text-[14px] text-[#5F6B63] mt-1">Angemeldet als {currentUser.email}</div>
+        </div>
+        <button 
+          onClick={handleLogout}
+          className="bg-white border border-[#E7E2DA] rounded-full px-[18px] py-[10px] text-[14px] font-medium cursor-pointer hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
+        >
+          Abmelden
+        </button>
+      </div>
 
-      <div className={`w-full flex-1 p-6 md:p-8 border ${theme.cardBg} ${theme.cardBorder} ${theme.cardShadow} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'}`}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-display font-bold">Admin Dashboard</h2>
-          <div className="flex gap-2">
-            {activeTab === 'entries' && (
-              <button 
-                onClick={() => { setEditingBusiness(null); setView('add'); }}
-                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-              >
-                <Plus className="w-4 h-4" /> {t("createEntry")}
-              </button>
-            )}
+      <div className="flex gap-[6px] flex-wrap mb-[24px] bg-white border border-[#EDE8E0] rounded-[16px] p-[6px]">
+        {[
+          { id: 'entries', label: 'Einträge' },
+          { id: 'reviews', label: 'Bewertungen' },
+          { id: 'abrechnung', label: 'Abrechnung' },
+          { id: 'seo', label: 'SEO' },
+          { id: 'redirects', label: 'Redirects' },
+          { id: 'scripts', label: 'Skripte' }
+        ].map(tab => (
+          <button 
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id as any)}
+            className={`border-none rounded-[11px] px-[16px] py-[10px] text-[14.5px] cursor-pointer transition-colors ${activeTab === tab.id ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-normal hover:bg-black/5'}`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === 'entries' ? (
+        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+          <div className="flex gap-[12px] flex-wrap items-center mb-[18px]">
+            <input 
+              value={activeAdminCategory !== 'Alle' ? activeAdminCategory : ''}
+              onChange={e => setActiveAdminCategory(e.target.value || 'Alle')}
+              placeholder="Kategorie Filter..."
+              className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-[12px] px-[14px] py-[12px] text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+            />
             <button 
-              onClick={handleLogout}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors bg-black/10 hover:bg-black/20 ${theme.textBase} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+              onClick={() => { setEditingBusiness(null); setView('add'); }}
+              className="bg-[#0F4C2E] text-white border-none rounded-full px-[22px] py-[12px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
             >
-              <LogOut className="w-4 h-4" /> Logout
+              + Neues Unternehmen
             </button>
           </div>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-6 border-b border-black/10 pb-4">
-          <button onClick={() => setActiveTab('entries')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'entries' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
-            <ListIcon className="w-4 h-4" /> Unternehmens-Einträge
-          </button>
-          <button onClick={() => setActiveTab('reviews')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'reviews' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
-            <Star className="w-4 h-4" /> Bewertungen
-          </button>
-          <button onClick={() => setActiveTab('abrechnung')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'abrechnung' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
-            <FileText className="w-4 h-4" /> Abrechnung & Rechnungen
-          </button>
-          <button onClick={() => setActiveTab('seo')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'seo' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
-            <SearchCode className="w-4 h-4" /> SEO & Sitemap
-          </button>
-
-          <button onClick={() => setActiveTab('redirects')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'redirects' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
-            <Globe className="w-4 h-4" /> 301 Redirects
-          </button>
-          <button onClick={() => setActiveTab('scripts')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'scripts' ? 'bg-black text-white' : 'hover:bg-black/5'} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} flex items-center gap-2`}>
-            <Code2 className="w-4 h-4" /> Skripte & Tracking
-          </button>
-        </div>
-
-        {activeTab === 'entries' ? (
-          <>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className={`border-b ${theme.cardBorder} opacity-70`}>
-                    <th className="py-3 px-4 font-medium">Name</th>
-                    <th className="py-3 px-4 font-medium hidden sm:table-cell">Kategorie</th>
-                    <th className="py-3 px-4 font-medium">Status</th>
-                    <th className="py-3 px-4 font-medium hidden sm:table-cell">Premium</th>
-                    <th className="py-3 px-4 font-medium">Aktionen</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredAdminBusinesses.map((bus: Business) => (
-                    <tr key={bus.id} className={`border-b ${theme.cardBorder} hover:bg-black/5`}>
-                      <td className="py-3 px-4 font-medium">{bus.name}</td>
-                      <td className="py-3 px-4 hidden sm:table-cell">{bus.subcategory ? `${t(bus.category)} — ${t(bus.subcategory)}` : t(bus.category)}</td>
-                      <td className="py-3 px-4">
-                        {bus.status === 'pending' ? (
-                          <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full">Ausstehend</span>
-                        ) : (
-                          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">Aktiv</span>
-                        )}
-                      </td>
-                      <td className="py-3 px-4 hidden sm:table-cell">
-                        <button 
-                          onClick={async () => {
-                            try {
-                              const updated = { ...bus, isPremium: !bus.isPremium };
-                              await setDoc(doc(db, 'businesses', bus.id), updated);
-                              setBusinesses(businesses.map((b) => b.id === bus.id ? updated : b));
-                            } catch (e) {
-                              console.error(e);
-                            }
-                          }}
-                          className={`px-3 py-1 text-xs font-bold rounded-full transition-colors ${bus.isPremium ? 'bg-orange-100 text-orange-800 hover:bg-orange-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                        >
-                          {bus.isPremium ? 'Premium' : 'Standard'}
-                        </button>
-                      </td>
-                      <td className="py-3 px-4">
-                        <div className="flex gap-2">
-                          {bus.status === 'pending' && (
-                            <button 
-                              onClick={async () => {
-                                try {
-                                  const updated = { ...bus, status: 'approved' };
-                                  await setDoc(doc(db, 'businesses', bus.id), updated);
-                                  setBusinesses(businesses.map((b: Business) => b.id === bus.id ? updated : b));
-                                } catch (e) {
-                                  console.error(e);
-                                  alert("Fehler beim Freischalten");
-                                }
-                              }}
-                              className={`p-2 bg-green-500/10 hover:bg-green-500/20 text-green-700 rounded-md transition-colors`}
-                              title="Freischalten"
-                            >
-                              <BadgeCheck className="w-4 h-4" />
-                            </button>
-                          )}
-                          {(isAdmin || bus.isPremium) ? (
-                            <button 
-                              onClick={() => { setEditingBusiness(bus); setView('edit'); }}
-                              className={`p-2 bg-black/5 hover:bg-black/10 rounded-md transition-colors ${theme.textBase}`}
-                              title="Bearbeiten"
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </button>
-                          ) : (
-                            <button 
-                              onClick={() => alert('Bearbeiten ist ein Premium-Feature. Bitte upgraden Sie auf Premium, um Ihren Eintrag jederzeit bearbeiten zu können.')}
-                              className="p-2 bg-black/5 hover:bg-black/10 rounded-md transition-colors text-black/30"
-                              title="Premium erforderlich"
-                            >
-                              <Lock className="w-4 h-4" />
-                            </button>
-                          )}
-
-                          <button 
-                            onClick={() => handleDelete(bus.id)}
-                            className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-600 rounded-md transition-colors"
-                            title="Löschen"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                  {filteredAdminBusinesses.length === 0 && (
-                    <tr>
-                      <td colSpan={5} className="py-8 text-center opacity-70">Keine Einträge für diese Kategorie vorhanden.</td>
-                    </tr>
+          
+          <div className="grid gap-[8px]">
+            {filteredAdminBusinesses.map((bus: Business) => (
+              <div key={bus.id} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-[14px] items-center border border-[#EDE8E0] rounded-[14px] px-[16px] py-[13px]">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-[9px] flex-wrap">
+                    <span className="font-semibold text-[15.5px]">{bus.name}</span>
+                    {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-[9px] py-[2px] text-[11px] font-bold">PREMIUM</span>}
+                    {bus.status === 'pending' && <span className="bg-[#FDF3D3] text-[#96700B] rounded-full px-[9px] py-[2px] text-[11px] font-bold">IN PRÜFUNG</span>}
+                  </div>
+                  <div className="text-[13.5px] text-[#5F6B63] mt-[3px]">
+                    {bus.category} {bus.subcategory ? `· ${bus.subcategory}` : ''} {bus.district ? `· ${bus.district}` : ''}
+                  </div>
+                </div>
+                <div className="flex gap-[8px]">
+                  {bus.status === 'pending' && (
+                    <button 
+                      onClick={async () => {
+                        try {
+                          const updated = { ...bus, status: 'approved' };
+                          await setDoc(doc(db, 'businesses', bus.id), updated);
+                          setBusinesses(businesses.map((b: Business) => b.id === bus.id ? updated : b));
+                        } catch (e) {
+                          console.error(e);
+                          alert("Fehler beim Freischalten");
+                        }
+                      }}
+                      className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"
+                    >
+                      Freigeben
+                    </button>
                   )}
-                </tbody>
-              </table>
-            </div>
-          </>
+                  <button 
+                    onClick={() => { setEditingBusiness(bus); setView('edit'); }}
+                    className="bg-[#F3F0EA] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
+                  >
+                    Bearbeiten
+                  </button>
+                  <button 
+                    onClick={() => handleDelete(bus.id)}
+                    className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
+                  >
+                    Löschen
+                  </button>
+                </div>
+              </div>
+            ))}
+            {filteredAdminBusinesses.length === 0 && (
+              <div className="border border-dashed border-[#D8D2C8] rounded-[12px] p-[24px] text-center text-[#8A928B]">
+                Keine Einträge gefunden.
+              </div>
+            )}
+          </div>
+        </div>
         
         ) : activeTab === 'reviews' ? (
-          <div>
-            <h3 className="text-xl font-bold mb-4 font-display">Kundenbewertungen verwalten</h3>
+          <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+            <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Offene Bewertungen</h2>
             
-            <div className="mb-6">
-              <h4 className="font-bold mb-3">Ausstehende Freigaben</h4>
-              {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).length > 0 ? (
-                <div className="space-y-3">
-                  {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).map((review) => (
-                    <div key={review.id} className="bg-white/5 p-4 rounded border border-black/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                      <div>
-                        <div className="font-medium text-sm">{review.businessName} <span className="font-normal opacity-70">({review.rating} Sterne)</span></div>
-                        <div className="text-sm opacity-80 mt-1">{review.text}</div>
+            {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).length > 0 ? (
+              <div className="grid gap-[10px] mb-[30px]">
+                {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).map((review) => (
+                  <div key={review.id} className="border border-[#EDE8E0] rounded-[16px] p-[16px]">
+                    <div className="flex justify-between gap-[12px] items-center">
+                      <div className="font-semibold text-[15px]">{review.businessName}</div>
+                      <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
+                    </div>
+                    <div className="text-[13px] text-[#8A928B] mt-[2px]">{review.authorName} · {review.createdAt ? new Date(review.createdAt).toLocaleDateString('de-DE') : ''}</div>
+                    <p className="my-[10px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    <div className="flex gap-[8px]">
+                      <button 
+                        onClick={() => {
+                          updateBusinessInFirestore(review.businessId, b => {
+                            return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, status: 'approved' } : r) };
+                          });
+                        }}
+                        className="bg-[#0F4C2E] text-white border-none rounded-[10px] px-[16px] py-[9px] text-[13.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
+                      >
+                        Freigeben
+                      </button>
+                      <button 
+                        onClick={() => {
+                          updateBusinessInFirestore(review.businessId, b => {
+                            return { ...b, reviews: (b.reviews || []).filter(r => r.id !== review.id) };
+                          });
+                        }}
+                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[16px] py-[9px] text-[13.5px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                      >
+                        Ablehnen
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B] mb-[30px]">
+                Keine offenen Bewertungen.
+              </div>
+            )}
+
+            <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Freigegebene Bewertungen</h2>
+            {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'approved').map(r => ({ ...r, businessId: b.id, businessName: b.name, isPremium: b.isPremium }))).length > 0 ? (
+              <div className="grid gap-[10px]">
+                {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'approved').map(r => ({ ...r, businessId: b.id, businessName: b.name, isPremium: b.isPremium }))).map((review) => (
+                  <div key={review.id} className="border border-[#EDE8E0] rounded-[16px] p-[16px]">
+                    <div className="flex justify-between gap-[12px] items-center">
+                      <div className="font-semibold text-[15px]">{review.businessName}</div>
+                      <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
+                    </div>
+                    <p className="my-[8px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    
+                    {review.ownerReply && (
+                      <div className="mt-2 pl-4 border-l-2 border-[#E7E2DA] text-[14px] text-[#5F6B63] italic">
+                        <strong>Antwort:</strong> {review.ownerReply}
                       </div>
-                      <div className="flex gap-2 shrink-0">
-                        <button 
-                          onClick={() => {
+                    )}
+
+                    <div className="mt-[12px] flex flex-wrap gap-[8px] items-center">
+                      <button 
+                        onClick={() => {
+                          if (!review.isPremium) {
+                            alert('Diese Funktion ist nur im Premium-Paket verfügbar. Bitte rüsten Sie auf Premium auf, um auf Kundenbewertungen zu antworten.');
+                            return;
+                          }
+                          const reply = window.prompt("Ihre Antwort:", review.ownerReply || "");
+                          if (reply !== null) {
                             updateBusinessInFirestore(review.businessId, b => {
-                              return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, status: 'approved' } : r) };
+                              return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, ownerReply: reply } : r) };
                             });
-                          }}
-                          className="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700"
-                        >
-                          Freigeben
-                        </button>
-                        <button 
-                          onClick={() => {
+                          }
+                        }}
+                        className={`border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer transition-colors ${review.isPremium ? 'bg-[#F3F0EA] hover:bg-[#EAE5DB]' : 'bg-[#FAF8F5] text-[#A3ABA5]'}`}
+                        title={!review.isPremium ? 'Nur für Premium-Kunden' : ''}
+                      >
+                        Antworten {!review.isPremium && '🔒'}
+                      </button>
+                      <button 
+                        onClick={() => {
+                          if (window.confirm("Bewertung wirklich löschen?")) {
                             updateBusinessInFirestore(review.businessId, b => {
                               return { ...b, reviews: (b.reviews || []).filter(r => r.id !== review.id) };
                             });
-                          }}
-                          className="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
-                        >
-                          Löschen
-                        </button>
-                      </div>
+                          }
+                        }}
+                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                      >
+                        Entfernen
+                      </button>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                 <p className="text-sm opacity-70">Keine ausstehenden Bewertungen.</p>
-              )}
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-3">Veröffentlichte Bewertungen</h4>
-              {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'approved').map(r => ({ ...r, businessId: b.id, businessName: b.name, isPremium: b.isPremium }))).length > 0 ? (
-                <div className="space-y-3">
-                  {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'approved').map(r => ({ ...r, businessId: b.id, businessName: b.name, isPremium: b.isPremium }))).map((review) => (
-                    <div key={review.id} className="bg-white/5 p-4 rounded border border-black/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                      <div className="w-full">
-                        <div className="font-medium text-sm">{review.businessName} <span className="font-normal opacity-70">({review.rating} Sterne)</span></div>
-                        <div className="text-sm opacity-80 mt-1">{review.text}</div>
-                        {review.ownerReply && (
-                          <div className="mt-2 pl-4 border-l-2 border-black/20 text-sm opacity-90 italic">
-                            <strong>Antwort:</strong> {review.ownerReply}
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex flex-col gap-2 shrink-0">
-                        <div className="flex gap-2">
-                          <button 
-                            onClick={() => {
-                              if (!review.isPremium) {
-                                alert('Diese Funktion ist nur im Premium-Paket verfügbar. Bitte rüsten Sie auf Premium auf, um auf Kundenbewertungen zu antworten.');
-                                return;
-                              }
-                              const reply = window.prompt("Ihre Antwort:", review.ownerReply || "");
-                              if (reply !== null) {
-                                updateBusinessInFirestore(review.businessId, b => {
-                                  return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, ownerReply: reply } : r) };
-                                });
-                              }
-                            }}
-                            className={`px-3 py-1 text-white text-xs rounded transition-colors ${review.isPremium ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 opacity-70'}`}
-                            title={!review.isPremium ? 'Nur für Premium-Kunden' : ''}
-                          >
-                            Antworten {!review.isPremium && '🔒'}
-                          </button>
-                          <button 
-                            onClick={() => {
-                              if (window.confirm("Bewertung wirklich löschen?")) {
-                                updateBusinessInFirestore(review.businessId, b => {
-                                  return { ...b, reviews: (b.reviews || []).filter(r => r.id !== review.id) };
-                                });
-                              }
-                            }}
-                            className="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
-                          >
-                            Löschen
-                          </button>
-                        </div>
-                        {!review.isPremium && (
-                          <span className="text-[10px] text-gray-500 text-right">Premium-Funktion</span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-sm opacity-70">Keine veröffentlichten Bewertungen vorhanden.</p>
-              )}
-            </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+                Noch keine freigegebenen Bewertungen.
+              </div>
+            )}
           </div>
         ) : activeTab === 'abrechnung' ? (
-          <div>
-            <h3 className="text-xl font-bold mb-4 font-display">Abrechnung & Rechnungen</h3>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-              <h4 className="font-bold text-orange-900 mb-2">Rechnungsstellung</h4>
-              <p className="text-orange-800 text-sm mb-4">
-                Ihre Rechnungen werden automatisch über unseren Zahlungsdienstleister (Stripe) generiert und nach jeder erfolgreichen Zahlung hier für Sie bereitgestellt.
-              </p>
-              <p className="text-orange-800 text-sm">
-                Aktuell sind noch keine Zahlungen oder Rechnungen für Ihren Account hinterlegt.
-              </p>
-              <button disabled className="mt-4 px-4 py-2 bg-orange-200 text-orange-600 font-bold rounded text-sm cursor-not-allowed">
-                Rechnung herunterladen
-              </button>
+          <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+            <div className="flex gap-[18px] flex-wrap mb-[24px]">
+              <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+                <div className="text-[13px] text-[#96551F]">Premium-Kunden</div>
+                <div className="font-display text-[32px] font-bold text-[#D65F0C] my-[4px]">
+                  {businesses.filter((b: Business) => b.isPremium).length}
+                </div>
+              </div>
+              <div className="bg-[#F4F7F5] border border-[#DCE6DF] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+                <div className="text-[13px] text-[#5F6B63]">Umsatz (geschätzt)</div>
+                <div className="font-display text-[32px] font-bold text-[#0F4C2E] my-[4px]">
+                  {businesses.filter((b: Business) => b.isPremium).length * 29} € / Monat
+                </div>
+              </div>
+            </div>
+
+            <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Rechnungsstellung</h2>
+            <p className="text-[15px] text-[#4A544D] leading-[1.6] m-0 mb-[20px]">
+              Ihre Rechnungen werden automatisch über unseren Zahlungsdienstleister (Stripe) generiert und nach jeder erfolgreichen Zahlung hier für Sie bereitgestellt.
+            </p>
+            
+            <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+              Aktuell sind noch keine Zahlungen oder Rechnungen für Ihren Account hinterlegt.
             </div>
           </div>
         
@@ -2174,8 +2065,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         ) : (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
         )}
-      </div>
-    </>
+      </main>
   );
 }
 
