@@ -148,7 +148,30 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         console.warn("Storage upload failed, using Data URL fallback", storageErr);
         url = await new Promise<string>((resolve, reject) => {
           const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
+          reader.onload = (e) => {
+            const img = new window.Image();
+            img.onload = () => {
+              const canvas = document.createElement('canvas');
+              let { width, height } = img;
+              const max = 800;
+              if (width > height) {
+                if (width > max) { height *= max / width; width = max; }
+              } else {
+                if (height > max) { width *= max / height; height = max; }
+              }
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.drawImage(img, 0, 0, width, height);
+                resolve(canvas.toDataURL('image/jpeg', 0.7));
+              } else {
+                resolve(e.target?.result as string);
+              }
+            };
+            img.onerror = reject;
+            img.src = e.target?.result as string;
+          };
           reader.onerror = reject;
           reader.readAsDataURL(file);
         });
