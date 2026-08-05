@@ -986,9 +986,13 @@ export default function App() {
                         className={`bg-white border rounded-[20px] p-[24px] cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[4px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
                       >
                         <div className="flex items-start gap-[16px] mb-[16px]">
-                          <div className={`w-[48px] h-[48px] rounded-[14px] flex items-center justify-center font-display font-bold text-[16px] shrink-0 ${bus.isPremium ? 'bg-[#F2761B] text-white' : 'bg-[#FAF8F5] text-[#F2761B]'}`}>
-                            {bus.name.split(' ').filter(Boolean).map(n => n[0]).slice(0, 2).join('').toUpperCase() || bus.name.substring(0, 2).toUpperCase()}
-                          </div>
+                          {bus.logoUrl ? (
+                            <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-[14px] object-cover shrink-0 border border-[#EDE8E0]" />
+                          ) : (
+                            <div className={`w-[48px] h-[48px] rounded-[14px] flex items-center justify-center font-display font-bold text-[16px] shrink-0 ${bus.isPremium ? 'bg-[#F2761B] text-white' : 'bg-[#FAF8F5] text-[#F2761B]'}`}>
+                              {bus.name.split(' ').filter(Boolean).map(n => n[0]).slice(0, 2).join('').toUpperCase() || bus.name.substring(0, 2).toUpperCase()}
+                            </div>
+                          )}
                           <div>
                             <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
                             <div className="text-[13.5px] text-[#8A928B]">{bus.category} · {bus.district || 'Winterberg'}</div>

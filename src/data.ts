@@ -1213,9 +1213,9 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
-  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur'] },
+  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Heizungsbauer', 'Bauunternehmen', 'Maler & Lackierer'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
-  { name: 'Gastronomie', subcategories: ['Restaurant', 'Kneipen und Bars'] },
-  { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken'] },
+  { name: 'Gastronomie', subcategories: ['Restaurant', 'Kneipen und Bars', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
+  { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];

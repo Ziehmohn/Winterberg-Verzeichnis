@@ -88,7 +88,14 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         )}
       </AnimatePresence>
 
-      <div className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white">
+      <div 
+        className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white relative"
+        style={(business.uploadedImage || business.imageLink) ? {
+          backgroundImage: `linear-gradient(to bottom, rgba(15, 76, 46, 0.85), rgba(6, 48, 28, 0.98)), url(${business.uploadedImage || business.imageLink})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        } : undefined}
+      >
         <div className="max-w-[1000px] mx-auto px-6 pt-[34px] pb-[46px]">
           <button 
             type="button" 
