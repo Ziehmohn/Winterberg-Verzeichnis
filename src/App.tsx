@@ -137,6 +137,7 @@ export default function App() {
   }
 
   const [searchQuery, setSearchQuery] = useState(defaultSearchQuery);
+  const [homeSearchInput, setHomeSearchInput] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>(defaultCategory);
   const [isNotFound, setIsNotFound] = useState(initialNotFound);
 
@@ -667,8 +668,14 @@ export default function App() {
                         <Search className="w-5 h-5 text-gray-400" />
                         <input 
                           placeholder="Unternehmen, Branche oder Leistung" 
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
+                          value={homeSearchInput}
+                          onChange={(e) => setHomeSearchInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              setSearchQuery(homeSearchInput);
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }
+                          }}
                           className="border-none outline-none text-base w-full py-3 text-gray-900 bg-transparent" 
                         />
                       </div>
@@ -685,7 +692,10 @@ export default function App() {
                       </select>
                       <button 
                         type="button" 
-                        onClick={() => window.scrollTo({ top: 500, behavior: 'smooth' })} 
+                        onClick={() => {
+                          setSearchQuery(homeSearchInput);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }} 
                         className="w-full md:w-auto bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-xl px-6 py-3 font-semibold transition-colors"
                       >
                         Suchen
