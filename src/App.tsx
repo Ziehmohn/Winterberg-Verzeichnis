@@ -802,134 +802,133 @@ export default function App() {
 
             <div className={`w-full flex flex-col md:flex-row gap-8 ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}
-            <aside className="w-full md:w-64 shrink-0 mb-6 md:mb-0">
-              <div className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
-                
-                <div className="flex items-center gap-[9px] bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3 py-2.5 mb-[22px]">
-                  <Search className="w-4 h-4 text-[#5F6B63]" />
-                  <input 
-                    placeholder="Suchen…" 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="border-none outline-none bg-transparent text-sm w-full text-gray-900"
-                  />
+            <aside className="w-full md:w-[270px] shrink-0 mb-6 md:mb-0 bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
+              
+              <div className="flex items-center gap-[9px] bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3 py-2.5 mb-[22px]">
+                <Search className="w-4 h-4 text-[#5F6B63]" />
+                <input 
+                  placeholder="Suchen…" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="border-none outline-none bg-transparent text-[14px] w-full text-gray-900"
+                />
+              </div>
+
+              {/* Mobile Toggle Button */}
+              <button 
+                className="w-full md:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
+                onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
+              >
+                <span>Filter & Kategorien</span>
+                {isMobileCategoriesOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+
+              <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden md:block'}`}>
+                <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Kategorie</div>
+                <div className="flex flex-col gap-1 mb-[24px]">
+                  {categories.map((group) => {
+                    const count = initialBusinesses.filter(b => b.category === group.name).length;
+                    const isActive = activeCategory === group.name || categories.find(c => c.name === group.name)?.subcategories.includes(activeCategory);
+                    return (
+                      <button
+                        key={group.name}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const url = getPath(`/${encodeURIComponent(group.name)}`);
+                          window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
+                          setActiveCategory(group.name);
+                          setSearchQuery('');
+                          setIsAllMode(false);
+                          if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                          window.scrollTo({top: 0, behavior: 'smooth'});
+                        }}
+                        className={`text-left border-none rounded-[10px] px-3 py-[9px] text-[14.5px] cursor-pointer flex justify-between gap-2 transition-colors ${isActive ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-medium hover:bg-[#F3F0EA]'}`}
+                      >
+                        <span>{group.name}</span>
+                        <span className={isActive ? 'text-white/70 text-[13px]' : 'text-[#8A928B] text-[13px]'}>{count}</span>
+                      </button>
+                    )
+                  })}
                 </div>
 
-                {/* Mobile Toggle Button */}
-                <button 
-                  className="w-full md:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
-                  onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
-                >
-                  <span>{t("menu")} Filter & Kategorien</span>
-                  {isMobileCategoriesOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                </button>
-
-                <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden md:block'}`}>
-                  <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Kategorie</div>
-
-                
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex md:flex-col">
-                  <nav className="flex flex-col gap-1 p-0">
-                    <a
-                      href={getPath("/")}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.history.pushState(null, '', getPath('/'));
-                        setActiveCategory('Alle');
-                        resetToDirectory();
-                      }}
-                      className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
-                        activeCategory === 'Alle' ? theme.categoryTagActive : theme.categoryTagInactive
-                      } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                    >
-                      Alle anzeigen
-                    </a>
-                    <div className="border-b-2 border-dotted border-black/10 my-3"></div>
-                    {categories.map((group) => {
-                      const isExpanded = expandedGroups.includes(group.name);
-                      return (
-                        <div key={t(group.name)} className="flex flex-col gap-1 mb-2 last:mb-0">
-                          <div className="flex items-center gap-1">
-                            <a
-                              href={getPath(`/${encodeURIComponent(group.name)}`)}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}`));
-                                setActiveCategory(group.name);
-                                resetToDirectory();
-                                if (!isExpanded) {
-                                  setExpandedGroups(prev => [...prev, group.name]);
-                                }
-                              }}
-                              className={`flex-1 block text-left px-4 py-2 text-sm font-medium transition-colors ${
-                                activeCategory === group.name ? theme.categoryTagActive : theme.categoryTagInactive
-                              } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                            >
-                              {t(group.name)}
-                            </a>
-                            {group.subcategories.length > 0 && (
+                {(() => {
+                  const activeGroup = categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory));
+                  if (activeGroup && activeGroup.subcategories.length > 0) {
+                    return (
+                      <>
+                        <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Branche</div>
+                        <div className="flex gap-[7px] flex-wrap mb-[24px]">
+                          {activeGroup.subcategories.map(sub => {
+                            const isSubActive = activeCategory === sub;
+                            return (
                               <button
-                                onClick={() => {
-                                  setExpandedGroups(prev =>
-                                    isExpanded ? prev.filter(g => g !== group.name) : [...prev, group.name]
-                                  );
+                                key={sub}
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  const url = getPath(`/${encodeURIComponent(activeGroup.name)}/${encodeURIComponent(sub)}`);
+                                  window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
+                                  setActiveCategory(sub);
+                                  setSearchQuery('');
+                                  if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                                  window.scrollTo({top: 0, behavior: 'smooth'});
                                 }}
-                                className={`p-2 flex items-center justify-center transition-colors ${theme.textMuted} hover:text-black dark:hover:text-white ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                                aria-label="Toggle subcategories"
+                                className={`border rounded-full px-[13px] py-[7px] text-[13px] font-medium cursor-pointer transition-colors ${isSubActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
                               >
-                                {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                                {sub}
                               </button>
-                            )}
-                          </div>
-                          {isExpanded && group.subcategories.length > 0 && (
-                            <div className="flex flex-col gap-1 ml-3 border-l-2 border-black/10 dark:border-white/10 pl-2">
-                              {group.subcategories.map((sub) => (
-                                <a
-                                  href={getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`)}
-                                  key={sub}
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`));
-                                    setActiveCategory(sub);
-                                    resetToDirectory();
-                                  }}
-                                  className={`block w-full text-left px-3 py-2 text-xs font-medium transition-colors ${
-                                    activeCategory === sub ? theme.categoryTagActive : theme.categoryTagInactive
-                                  } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                                >
-                                  {sub}
-                                </a>
-                              ))}
-                            </div>
-                          )}
+                            );
+                          })}
                         </div>
-                      );
-                    })}
-                  </nav>
-                  <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col gap-3">
-                    <button 
-                      onClick={() => {
-                        setIsJobsMode(true);
-                        setJobsCategory(null);
-                        window.scrollTo(0, 0);
-                      }}
-                      className={`w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:shadow'}`}
-                    >
-                      <Briefcase className="w-4 h-4" /> Offene Stellen
-                    </button>
-                    <button 
-                      onClick={() => {
-                        setIsSubmitMode(true);
-                        window.scrollTo(0, 0);
-                      }}
-                      className={`w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:shadow'}`}
-                    >
-                      <Plus className="w-4 h-4" /> Unternehmen eintragen
-                    </button>
-                  </div>
+                      </>
+                    );
+                  }
+                  return null;
+                })()}
+
+                <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Ortsteil</div>
+                <div className="flex gap-[7px] flex-wrap mb-[24px]">
+                  {['Alle', ...Array.from(new Set(initialBusinesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort()].map(d => {
+                    const isDistActive = activeLocation === d;
+                    return (
+                      <button
+                        key={d}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const basePath = activeCategory !== 'Alle' 
+                            ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
+                            : '/alle';
+                          const url = getPath(basePath);
+                          window.history.pushState(null, '', d !== 'Alle' ? `${url}?ort=${encodeURIComponent(d)}` : url);
+                          setActiveLocation(d);
+                          if(activeCategory === 'Alle') setIsAllMode(true);
+                          if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                        }}
+                        className={`border rounded-full px-[13px] py-[7px] text-[13px] font-medium cursor-pointer transition-colors ${isDistActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
+                      >
+                        {d === 'Alle' ? 'Alle Ortsteile' : d}
+                      </button>
+                    );
+                  })}
                 </div>
-                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                     window.history.pushState(null, '', getPath('/alle'));
+                     setActiveCategory('Alle');
+                     setActiveLocation('Alle');
+                     setSearchQuery('');
+                     setIsAllMode(true);
+                     if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                     window.scrollTo({top: 0, behavior: 'smooth'});
+                  }}
+                  className="mt-6 w-full bg-transparent border border-[#E7E2DA] rounded-xl p-[11px] text-[14px] font-medium cursor-pointer text-[#5F6B63] hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
+                >
+                  Filter zurücksetzen
+                </button>
               </div>
             </aside>
 
@@ -940,43 +939,7 @@ export default function App() {
               ) : (
                 <>
                 <div className="w-full flex flex-col">
-                  {/* Full-bleed Green Header Block */}
-                  <div className="w-screen relative left-1/2 -translate-x-1/2 bg-[#0F4C2E] text-white -mt-8 mb-8 pb-10">
-                    <div className="max-w-7xl mx-auto px-4 md:px-8 pt-10">
-                      <div className="text-sm text-white/70 mb-2">
-                        <button onClick={() => { setSearchQuery(''); setActiveCategory('Alle'); setActiveLocation('Alle'); window.scrollTo({top: 0}); }} className="hover:text-white transition-colors">Start</button> 
-                        {' '}/ {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
-                      </div>
-                      <h1 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                        {activeCategory === 'Alle' 
-                          ? (activeLocation === 'Alle' ? 'Alle Unternehmen' : `Unternehmen in ${t(activeLocation)}`)
-                          : `${t(activeCategory)} in ${activeLocation === 'Alle' ? 'Winterberg' : t(activeLocation)}`
-                        }
-                      </h1>
-                      <div className="flex items-center justify-between flex-wrap gap-3">
-                        <p className="text-white/80 m-0">{filteredBusinesses.length} Unternehmen gefunden</p>
-                        <div className="flex bg-white/10 rounded-full p-1">
-                          <button 
-                            onClick={() => setViewMode('list')} 
-                            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${viewMode === 'list' ? 'bg-white text-[#0F4C2E]' : 'text-white hover:bg-white/20'}`}
-                          >
-                            Liste
-                          </button>
-                          <button 
-                            onClick={() => setViewMode('map')} 
-                            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${viewMode === 'map' ? 'bg-white text-[#0F4C2E]' : 'text-white hover:bg-white/20'}`}
-                          >
-                            Karte
-                          </button>
-                        </div>
-                      </div>
-                      {seoSettings && (
-                        <p className="mt-4 text-[17px] leading-relaxed max-w-[66ch] text-white/90">
-                          {seoSettings.text}
-                        </p>
-                      )}
-                    </div>
-                  </div>
+                  {/* Green Header Block Removed (Already displayed globally) */}
 
 
                 </div>
@@ -990,6 +953,7 @@ export default function App() {
                   setSelectedBusiness(bus);
                 }} />
               ) : (
+                <>
                 <motion.div 
                   key={`${activeCategory}-${activeLocation}-${searchQuery}`}
                   initial={{ opacity: 0, y: 10 }}
@@ -1093,422 +1057,28 @@ export default function App() {
                     </div>
                   )}
                 </motion.div>
-              )}
-              
-              {activeCategory === 'KFZ-Werkstätten' && (() => {
-                const kfz = businesses.filter(b => b.category === 'KFZ-Werkstätten' || b.subcategory === 'KFZ-Werkstätten');
-                const byDistrict = kfz.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
                 
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">KFZ Werkstätten in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {kfz.length} KFZ-Werkstätten. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Suchen Sie eine zuverlässige <strong>Autowerkstatt</strong> oder <strong>freie Werkstatt</strong> im Raum Winterberg? Unsere verzeichneten <strong>KFZ Werkstätten in Winterberg</strong> bieten einen umfassenden <strong>Service</strong> rund um Ihr Auto. Egal, ob Sie eine schnelle <strong>Autoreparatur</strong>, einen termingerechten <strong>Reifenwechsel</strong> oder eine professionelle <strong>Reparatur</strong> bei einem Schaden benötigen – hier finden Sie kompetente Ansprechpartner für nahezu alle <strong>Automarken</strong>.
-                    </p>
-                    <p>
-                      Zusätzlich zu typischen Reparaturen führen viele Betriebe auch die regelmäßige <strong>Inspektion</strong> durch und bereiten Ihr Fahrzeug für den <strong>TÜV</strong> (inklusive <strong>Hauptuntersuchung</strong> und <strong>Abgasuntersuchung</strong>) vor. Finden Sie jetzt den passenden Spezialisten für Ihr Fahrzeug und vertrauen Sie auf Qualität und Erfahrung direkt vor Ort.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Schreinereien' && (() => {
-                const schreinereien = businesses.filter(b => b.category === 'Schreinereien' || b.subcategory === 'Schreinereien');
-                const byDistrict = schreinereien.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Schreinereien & Tischlereien in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {schreinereien.length} Schreinereien und Tischlereien. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Suchen Sie eine qualifizierte <strong>Schreinerei</strong> oder <strong>Tischlerei</strong> im Raum Winterberg? Unsere verzeichneten Handwerksbetriebe sind die perfekten Ansprechpartner für alle Arbeiten rund um <strong>Holz</strong>. Vom individuellen <strong>Möbelbau</strong> und <strong>Maßmöbeln</strong> bis hin zu hochwertigem <strong>Treppenbau</strong>, <strong>Fenstern</strong>, <strong>Türen</strong> und professionellem <strong>Innenausbau</strong>.
-                    </p>
-                    <p>
-                      Egal ob private Wohnträume oder gewerbliche <strong>Objekteinrichtungen</strong> – vertrauen Sie auf die Erfahrung, Präzision und Kreativität der heimischen Tischler und Schreiner aus Winterberg. Entdecken Sie Fachbetriebe, die Handwerkskunst mit modernem Design verbinden.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Wäschereien' && (() => {
-                const waeschereien = businesses.filter(b => b.category === 'Wäschereien' || b.subcategory === 'Wäschereien');
-                const byDistrict = waeschereien.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Wäschereien & Textilreinigungen in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {waeschereien.length} {waeschereien.length === 1 ? 'Wäscherei/Textilreinigung' : 'Wäschereien/Textilreinigungen'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Suchen Sie eine zuverlässige <strong>Wäscherei</strong> oder <strong>Textilreinigung</strong> in Winterberg? Unsere verzeichneten Betriebe bieten professionelle Hilfe bei der Reinigung Ihrer Textilien. Ob Alltagsbekleidung, <strong>Hemden</strong>, <strong>Anzüge</strong> oder empfindliche <strong>Abendgarderobe</strong> – hier finden Sie kompetente Unterstützung.
-                    </p>
-                    <p>
-                      Zusätzlich bieten viele Reinigungen auch Spezialservices wie <strong>Bettdeckenreinigung</strong>, <strong>biochemische Reinigung</strong>, professionelles <strong>Bügeln</strong> oder praktische <strong>Änderungsschneidereien</strong> an. Auch Serviceleistungen für die <strong>Großwäscherei</strong> oder im Hotel- und Gastgewerbe sind in Winterberg verfügbar. Vertrauen Sie Ihre Textilien den Experten vor Ort an.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Elektriker' && (() => {
-                const elektriker = businesses.filter(b => b.category === 'Elektriker' || b.subcategory === 'Elektriker');
-                const byDistrict = elektriker.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Elektriker & Elektroinstallationen in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {elektriker.length} Fachbetriebe für Elektroinstallationen. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Suchen Sie einen zuverlässigen <strong>Elektriker</strong> oder Fachbetrieb für <strong>Elektroinstallationen</strong> im Raum Winterberg? Unsere verzeichneten Experten helfen Ihnen kompetent und sicher bei allen Belangen rund um <strong>Strom</strong> und <strong>Elektronik</strong>. Vom einfachen Anschließen eines Herdes über komplexe Hausinstallationen bis hin zu <strong>Smart Home</strong>-Lösungen und <strong>Photovoltaik</strong>.
-                    </p>
-                    <p>
-                      Auch bei Notfällen, Reparaturen oder regelmäßigen Wartungen sind die heimischen <strong>Elektrofachbetriebe</strong> schnell vor Ort. Vertrauen Sie auf geschultes Fachpersonal, um die Sicherheit und Modernität Ihrer elektrischen Anlagen zu gewährleisten.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Dachdecker' && (() => {
-                const dachdecker = businesses.filter(b => b.category === 'Dachdecker' || b.subcategory === 'Dachdecker');
-                const byDistrict = dachdecker.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Dachdecker & Dachdeckereien in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {dachdecker.length} {dachdecker.length === 1 ? 'Dachdeckerbetrieb' : 'Dachdeckerbetriebe'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Suchen Sie einen zuverlässigen <strong>Dachdecker</strong> im Raum Winterberg? Unsere verzeichneten <strong>Dachdecker-Meisterbetriebe</strong> und Fachunternehmen bieten umfassende Dienstleistungen rund um Ihr <strong>Dach</strong> an. Von der klassischen <strong>Dacheindeckung</strong> über <strong>Dachsanierungen</strong> bis hin zu Reparaturen bei <strong>Sturmschäden</strong> sind die Profis für Sie da.
-                    </p>
-                    <p>
-                      Auch Spezialgebiete wie <strong>Flachdachabdichtungen</strong>, fachmännische <strong>Wärmedämmung</strong>, der Einbau von <strong>Dachfenstern</strong> oder Fassadenverkleidungen gehören oft zum Portfolio. Vertrauen Sie auf die Erfahrung und das handwerkliche Geschick der regionalen <strong>Bedachungsunternehmen</strong> für Sicherheit und Werterhalt Ihres Hauses.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Supermarkt' && (() => {
-                const supermaerkte = businesses.filter(b => b.category === 'Supermarkt' || b.subcategory === 'Supermarkt');
-                const byDistrict = supermaerkte.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Supermärkte & Discounter in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {supermaerkte.length} {supermaerkte.length === 1 ? 'Supermarkt' : 'Supermärkte'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Egal ob für den großen Wocheneinkauf oder kleine Besorgungen zwischendurch – auf dieser Seite finden Sie alle wichtigen <strong>Supermärkte</strong> und <strong>Discounter</strong> in Winterberg auf einen Blick. Neben bekannten Filialen wie <strong>Netto</strong>, <strong>Aldi</strong>, <strong>Lidl</strong> oder <strong>Edeka</strong> gibt es auch lokale <strong>Dorfläden</strong> und Frischemärkte in den kleineren Ortsteilen.
-                    </p>
-                    <p>
-                      Möchten Sie frische <strong>Lebensmittel</strong> einkaufen, <strong>regionale Produkte</strong> entdecken, oder schnell Getränke und Snacks für Ihren Ausflug in die Natur besorgen? Unsere Übersicht hilft Ihnen, passend zu den <strong>Öffnungszeiten</strong> und Ihrem Standort in Winterberg, den jeweils nächsten Markt zu finden. Profitieren Sie von der idealen Versorgung in der Stadtlemitte und den Dörfern.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Tennisplätze' && (() => {
-                const tennisvereine = businesses.filter(b => b.category === 'Tennisplätze' || b.subcategory === 'Tennisplätze');
-                const byDistrict = tennisvereine.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Tennisvereine & Tennisplätze in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {tennisvereine.length} {tennisvereine.length === 1 ? 'Tennisverein' : 'Tennisvereine'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Die Tennisvereine im Stadtgebiet bieten Mitgliedern und teilweise auch Gästen hervorragende Spielmöglichkeiten im Grünen. Die meisten Vereine verfügen über gepflegte <strong>Sandplätze</strong>, ideal für die Freiluftsaison von Frühjahr bis Herbst. Lediglich in Siedlinghausen wird auf einem anderen Belag gespielt.
-                    </p>
-                    <p>
-                      Informieren Sie sich gerne direkt bei den Vereinen über Mitgliedschaften, Trainingsangebote oder Möglichkeiten der Platzbuchung für Gäste. Meist finden regelmäßig Turniere und Trainingseinheiten für alle Alters- und Leistungsklassen statt.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Fußballvereine' && (() => {
-                const fussballvereine = businesses.filter(b => b.category === 'Fußballvereine' || b.subcategory === 'Fußballvereine');
-                const byDistrict = fussballvereine.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict);
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Fußballvereine in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es in Winterberg {fussballvereine.length} {fussballvereine.length === 1 ? 'Fußballverein' : 'Fußballvereine'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Der Fußballsport hat in den Dörfern und der Winterberg von Winterberg eine lange Tradition. Neben Seniorenmannschaften bieten viele der Vereine auch eine hervorragende Jugendarbeit in verschiedenen Altersklassen an sowie ein breites Breitensportangebot von Gymnastik bis zu weiteren Ballsportarten.
-                    </p>
-                    <p>
-                      Möchten Sie sich sportlich betätigen oder einfach als Zuschauer am Wochenende dabei sein? Nehmen Sie gerne direkt Kontakt mit den Ansprechpartnern der Vereine auf oder besuchen Sie die Sportplätze in den Ortsteilen.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Steuerberater' && (() => {
-                const steuerberater = businesses.filter(b => b.category === 'Steuerberater' || b.subcategory === 'Steuerberater');
-                const byDistrict = steuerberater.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict).sort((a, b) => (b[1] as number) - (a[1] as number));
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Steuerberater in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es im Stadtgebiet {steuerberater.length} {steuerberater.length === 1 ? 'Steuerberater / Wirtschaftsprüfer' : 'Kanzleien & Steuerberater'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Die Steuerberatungskanzleien in Winterberg bieten umfassende Unterstützung in steuerlichen und betriebswirtschaftlichen Fragen, sowohl für Unternehmen, Vereine als auch für Privatpersonen. Typischerweise gehört dazu die Erstellung von Steuererklärungen, Jahresabschlüssen, Lohnbuchhaltung, Finanzbuchhaltung und umfassende Beratung in Finanzfragen.
-                    </p>
-                    <p>
-                      Informieren Sie sich direkt bei den jeweiligen Ansprechpartnern, um einen Termin für ein Erstgespräch zu vereinbaren.
-                    </p>
-                  </div>
-                );
-              })()}
-              
-              {activeCategory === 'Marketingdienstleistungen' && (() => {
-                const marketing = businesses.filter(b => b.category === 'Marketingdienstleistungen' || b.subcategory === 'Marketingdienstleistungen');
-                const byDistrict = marketing.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict).sort((a, b) => (b[1] as number) - (a[1] as number));
-                const parts = entries.map(([dist, count]) => {
-                  const distName = dist;
-                  return `${count} in ${distName}`;
-                });
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Werbe- und Marketingagenturen in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es im Stadtgebiet {marketing.length} {marketing.length === 1 ? 'Marketingagentur' : 'Marketingagenturen'}. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Die Werbeagenturen und Marketing-Dienstleister in Winterberg bieten umfassende Unterstützung in den Bereichen Online-Marketing, Webdesign, SEO, Printmedien und ganzheitliche Kommunikation. Ob für lokale Unternehmen oder überregionale Werbung – die Agenturen vor Ort helfen Ihnen, sichtbar zu werden.
-                    </p>
-                    <p>
-                      Informieren Sie sich direkt bei den jeweiligen Ansprechpartnern, um Ihr nächstes Projekt zu besprechen.
-                    </p>
-                  </div>
-                );
-              })()}
-              {activeCategory === 'Bekleidung' && (() => {
-                const kleidung = businesses.filter(b => b.category === 'Bekleidung' || b.subcategory === 'Bekleidung');
-                const byDistrict = kleidung.reduce((acc, bus) => {
-                  const dist = bus.district || 'Winterberg';
-                  acc[dist] = (acc[dist] || 0) + 1;
-                  return acc;
-                }, {} as Record<string, number>);
-                
-                const entries = Object.entries(byDistrict).sort((a, b) => (b[1] as number) - (a[1] as number));
-                const parts = entries.map(([dist, count]) => `${count} in ${dist}`);
-                
-                let distributionText = '';
-                if (parts.length > 1) {
-                  const last = parts.pop();
-                  distributionText = `Davon befinden sich ${parts.join(', ')} und ${last}.`;
-                } else if (parts.length === 1) {
-                  distributionText = `Davon befinden sich alle ${parts[0]}.`;
-                }
-                return (
-                  <div className="mt-12 p-6 bg-black/5 rounded-xl text-sm leading-relaxed text-black/80">
-                    <h3 className="font-bold text-lg mb-3">Bekleidung in Winterberg</h3>
-                    <p className="mb-4 font-medium">
-                      Aktuell gibt es im Stadtgebiet {kleidung.length} {kleidung.length === 1 ? 'Geschäft' : 'Geschäfte'} für Bekleidung. {distributionText}
-                    </p>
-                    <p className="mb-2">
-                      Der Einzelhandel in Winterberg bietet eine vielfältige Auswahl an Mode, Bekleidung und Accessoires für Damen, Herren und Kinder. Von Sport- und Outdoorbekleidung, die perfekt zur Region passt, bis hin zu moderner Alltagsmode und schicken Boutiquen finden Sie hier alles, was Sie brauchen.
-                    </p>
-                    <p>
-                      Besuchen Sie die lokalen Modegeschäfte und lassen Sie sich persönlich beraten.
-                    </p>
-                  </div>
-                );
-              })()}
+                {/* SEO Text Footer */}
+                {activeCategory !== 'Alle' && (
+                  <section className="mt-[34px] bg-white border border-[#EDE8E0] rounded-[22px] p-[32px]">
+                    <h2 className="font-display text-[26px] font-bold m-0 mb-[14px]">
+                      {seoSettings?.title || `Lokale Anbieter in der Kategorie ${activeCategory}`}
+                    </h2>
+                    <div className="text-[16px] leading-[1.75] text-[#4A544D] max-w-[78ch]">
+                      {seoSettings?.text || `Finden Sie hier die besten Dienstleister, Handwerker und Geschäfte für den Bereich ${activeCategory} in Winterberg und seinen 14 Ortsteilen. Wir haben alle wichtigen Informationen, Öffnungszeiten und Kontaktdaten für Sie zusammengefasst.`}
+                    </div>
+                    <div className="mt-[22px] pt-[20px] border-t border-[#F3F0EA] flex gap-[14px] items-center flex-wrap">
+                      <span className="text-[15px] text-[#4A544D]">Ihr Betrieb fehlt in dieser Kategorie?</span>
+                      <button type="button" onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }} className="bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">
+                        Kostenlos eintragen
+                      </button>
+                    </div>
+                  </section>
+                )}
                 </>
               )}
+              </>
+            )}
             </div>
             </div>
 
