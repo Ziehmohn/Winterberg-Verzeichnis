@@ -1402,6 +1402,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
+  const [adminSearchQuery, setAdminSearchQuery] = useState('');
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
 
   const handleLogout = () => {
@@ -1472,8 +1473,12 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     );
   }
 
-  console.log("Admin Check:", isAdmin, allowedBusinesses.length, activeAdminCategory); const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business) => {
-    return activeAdminCategory === 'Alle' || bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
+  const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business) => {
+    const matchesCategory = activeAdminCategory === 'Alle' || bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
+    const matchesSearch = bus.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
+                          (bus.description && bus.description.toLowerCase().includes(adminSearchQuery.toLowerCase())) ||
+                          (bus.email && bus.email.toLowerCase().includes(adminSearchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
   });
 
   return (
@@ -1514,25 +1519,43 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
       {activeTab === 'entries' ? (
         <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-          <div className="flex gap-[12px] flex-wrap items-center mb-[18px]">
-            {isAdmin && (
-              <select 
-                value={activeAdminCategory}
-                onChange={e => setActiveAdminCategory(e.target.value)}
-                className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-[12px] px-[14px] py-[12px] text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+          <div className="flex flex-col gap-[16px] mb-[24px]">
+            <div className="flex gap-[12px] flex-wrap items-center">
+              {isAdmin && (
+                <input 
+                  placeholder="Unternehmen, E-Mail oder Text suchen..." 
+                  value={adminSearchQuery}
+                  onChange={(e) => setAdminSearchQuery(e.target.value)}
+                  className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-[12px] px-[14px] py-[12px] text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+                />
+              )}
+              <button 
+                onClick={() => { setEditingBusiness(null); setView('add'); }}
+                className="bg-[#0F4C2E] text-white border-none rounded-[12px] px-[22px] py-[12px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors ml-auto"
               >
-                <option value="Alle">Alle Kategorien</option>
+                + Neues Unternehmen
+              </button>
+            </div>
+            
+            {isAdmin && (
+              <div className="flex gap-2 flex-wrap">
+                <button
+                  onClick={() => setActiveAdminCategory('Alle')}
+                  className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === 'Alle' ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
+                >
+                  Alle
+                </button>
                 {categories.map(c => (
-                  <option key={c.name} value={c.name}>{c.name}</option>
+                  <button
+                    key={c.name}
+                    onClick={() => setActiveAdminCategory(c.name)}
+                    className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c.name ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
+                  >
+                    {c.name}
+                  </button>
                 ))}
-              </select>
+              </div>
             )}
-            <button 
-              onClick={() => { setEditingBusiness(null); setView('add'); }}
-              className="bg-[#0F4C2E] text-white border-none rounded-full px-[22px] py-[12px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
-            >
-              + Neues Unternehmen
-            </button>
           </div>
           
           <div className="grid gap-[8px]">
