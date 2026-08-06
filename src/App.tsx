@@ -1760,7 +1760,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                                   return;
                                 }
 
-                                const res = await fetch('/api/cancel-subscription', {
+                                try {
+                                  const res = await fetch('/api/cancel-subscription', {
                                   method: 'POST',
                                   headers: { 'Content-Type': 'application/json' },
                                   body: JSON.stringify({ subscriptionId: (bus as any).stripeSubscriptionId })
