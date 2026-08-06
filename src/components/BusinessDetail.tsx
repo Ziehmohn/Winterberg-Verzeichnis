@@ -5,6 +5,8 @@ import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock,
 import { Business, ThemeConfig, Review } from '../types';
 import { isOpenNow } from '../utils';
 import ReviewForm from './ReviewForm';
+import { useAuth } from '../AuthContext';
+import Login from './Login';
 
 interface BusinessDetailProps {
   business: Business;
@@ -18,7 +20,9 @@ interface BusinessDetailProps {
 export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [] }: BusinessDetailProps) {
 
   const { t } = useTranslation();
+  const { currentUser: user } = useAuth();
   const [showClaimScreen, setShowClaimScreen] = useState(false);
+  const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
 
   const handleClaim = async () => {
@@ -56,6 +60,23 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       
       {/* Checkout/Claim Overlay */}
       <AnimatePresence>
+        {showLoginScreen && !user && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-[#FAF8F5] overflow-y-auto"
+          >
+            <div className="min-h-screen flex flex-col pt-10">
+              <div className="text-center px-6">
+                <h2 className="text-2xl font-bold mb-2">Bitte loggen Sie sich ein</h2>
+                <p className="text-[#5F6B63]">Um dieses Unternehmen zu bearbeiten oder zu beanspruchen, benötigen Sie ein Konto.</p>
+              </div>
+              <Login theme={theme} activeThemeKey={activeThemeKey} onBack={() => setShowLoginScreen(false)} />
+            </div>
+          </motion.div>
+        )}
+
         {showClaimScreen && (
           <motion.div 
             initial={{ opacity: 0 }}
@@ -113,6 +134,21 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             Zurück
           </button>
           
+          {!business.isPremium && (
+            <button 
+              onClick={() => {
+                if (!user) {
+                  setShowLoginScreen(true);
+                } else {
+                  setShowClaimScreen(true);
+                }
+              }} 
+              className="mt-3 bg-white/20 border border-white/20 text-white rounded-full px-4 py-2 text-[14px] cursor-pointer hover:bg-white/30 transition-colors inline-block"
+            >
+              Auf Premium upgraden
+            </button>
+          )}
+
           <div className="flex gap-2 flex-wrap mb-[14px]">
             <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">{business.category}</span>
             {business.subcategory && (

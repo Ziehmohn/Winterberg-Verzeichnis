@@ -9,7 +9,7 @@ import { useAuth } from '../AuthContext';
 import Login from './Login';
 
 export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { theme: ThemeConfig, activeThemeKey: string, onCancel: () => void }) {
-  const { user, loading } = useAuth();
+  const { currentUser: user, loading } = useAuth();
   const { t } = useTranslation();
   const [formData, setFormData] = useState<Partial<Business>>({
     name: '',
