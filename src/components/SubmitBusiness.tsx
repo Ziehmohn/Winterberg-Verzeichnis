@@ -55,20 +55,30 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     const dataToSubmit = {
       ...formData,
       id: newId,
-      ownerId: user?.uid,
-      ownerEmail: user?.email,
+      ownerId: user?.uid || null,
+      ownerEmail: user?.email || null,
       isPremium: selectedPlan === 'premium'
     };
     
     try {
-      await setDoc(doc(db, 'businesses', newId), dataToSubmit);
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Die Datenbankverbindung dauert zu lange. Bitte prüfen Sie Ihre Internetverbindung oder deaktivieren Sie ggf. Ihren Adblocker.')), 10000));
+      await Promise.race([
+        setDoc(doc(db, 'businesses', newId), dataToSubmit),
+        timeoutPromise
+      ]);
       
       if (selectedPlan === 'premium') {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ businessId: newId, email: formData.email, billingCycle })
+          body: JSON.stringify({ businessId: newId, email: formData.email, billingCycle }),
+          signal: controller.signal
         });
+        clearTimeout(timeoutId);
+        
         const data = await res.json();
         if (data.url) {
           window.location.href = data.url;
