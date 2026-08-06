@@ -37,10 +37,9 @@ export default async function handler(req, res) {
     const docRef = db.collection('businesses').doc(id);
     await docRef.set(data, { merge: true });
 
-    // Sende E-Mail an Admin
     try {
       await sendMail({
-        to: 'simon.kraeling@sichtbar-online.com',
+        to: 'simon.kraeling@sichtbar-online.com, info@sichtbar-online.com',
         subject: `Neues Unternehmen eingetragen: ${data.name}`,
         html: `
           <h3>Neues Unternehmen eingetragen</h3>

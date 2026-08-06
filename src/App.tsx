@@ -1446,9 +1446,9 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   }
 
   // Determine allowed businesses based on role
+  const adminEmails = ['simon.kraeling@sichtbar-online.com', 'info@sichtbar-online.com', 'info@winterberg.sichtbar-online.com'];
   const isAdmin = userProfile?.role === 'admin' || 
-                  currentUser?.email?.includes('sichtbar') ||
-                  currentUser?.email?.includes('simon.kraeling');
+                  (currentUser?.email && adminEmails.includes(currentUser.email));
 
   const ownerBusinessId = userProfile?.businessId;
   const currentUid = currentUser?.uid;

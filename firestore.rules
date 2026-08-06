@@ -2,28 +2,31 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'simon.kraeling@sichtbar-online.com' || 
+        request.auth.token.email == 'info@sichtbar-online.com' ||
+        request.auth.token.email == 'info@winterberg.sichtbar-online.com'
+      );
+    }
+
     match /users/{userId} {
       allow read: if request.auth != null;
-      allow write: if request.auth != null && (request.auth.uid == userId || request.auth.token.email.matches('.*sichtbar.*') || request.auth.token.email.matches('.*simon\\.kraeling.*'));
+      allow write: if request.auth != null && (request.auth.uid == userId || isAdmin());
     }
 
     match /businesses/{businessId} {
       allow read: if true;
-      // Anyone can create new businesses (will be pending by default)
       allow create: if true;
-      // Authenticated users can update if they are the owner, an admin, or if it's a review-only change
       allow update: if (request.auth != null && request.auth.uid == resource.data.ownerId) 
-        || (request.auth != null && (request.auth.token.email.matches('.*sichtbar.*') || request.auth.token.email.matches('.*simon\\.kraeling.*')))
+        || isAdmin()
         || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reviews']);
-      // Only admin emails can delete
-      allow delete: if request.auth != null 
-        && (request.auth.token.email.matches('.*sichtbar.*') || request.auth.token.email.matches('.*simon\\.kraeling.*'));
+      allow delete: if isAdmin();
     }
 
     match /redirects/{docId} {
       allow read: if true;
-      allow write: if request.auth != null 
-        && (request.auth.token.email.matches('.*sichtbar.*') || request.auth.token.email.matches('.*simon\\.kraeling.*'));
+      allow write: if isAdmin();
     }
   }
 }
