@@ -38,10 +38,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             timeoutPromise
           ]) as any;
 
-          const isAdminEmail = user.email && (
-            user.email.includes('sichtbar') || 
-            user.email.includes('simon.kraeling')
-          );
+          const adminEmails = ['simon.kraeling@sichtbar-online.com', 'info@sichtbar-online.com', 'info@winterberg.sichtbar-online.com'];
+          const isAdminEmail = user.email && adminEmails.includes(user.email);
           if (docSnap && docSnap.exists && docSnap.exists()) {
             const data = docSnap.data() as UserProfile;
             if (isAdminEmail) {
@@ -58,8 +56,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } catch (error: any) {
           if (error?.code === 'unavailable' || error?.message?.includes('offline')) {
             console.warn("Client offline. Using fallback profile.");
-            const isAdminEmail = user.email && (user.email.includes('sichtbar') || user.email.includes('simon.kraeling'));
-            setUserProfile({ uid: user.uid, email: user.email, role: isAdminEmail ? 'admin' : 'user' });
+            const adminEmails = ['simon.kraeling@sichtbar-online.com', 'info@sichtbar-online.com', 'info@winterberg.sichtbar-online.com'];
+            const isFallbackAdmin = user.email && adminEmails.includes(user.email);
+            setUserProfile({ uid: user.uid, email: user.email, role: isFallbackAdmin ? 'admin' : 'user' });
           } else {
             console.error("Error fetching user profile:", error);
             setUserProfile(null);
