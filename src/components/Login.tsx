@@ -22,19 +22,24 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
       if (mode === 'login') {
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         const isAdmin = userCred.user.email && (userCred.user.email.includes('sichtbar') || userCred.user.email.includes('simon.kraeling'));
-        if (!isAdmin && !userCred.user.emailVerified) {
-          await signOut(auth);
-          throw new Error("Bitte bestätigen Sie zuerst Ihre E-Mail-Adresse. Überprüfen Sie Ihren Posteingang auf den Bestätigungslink.");
-        }
+        // Email verification check removed to reduce friction during onboarding
+        // if (!isAdmin && !userCred.user.emailVerified) {
+        //   await signOut(auth);
+        //   throw new Error("Bitte bestätigen Sie zuerst Ihre E-Mail-Adresse. Überprüfen Sie Ihren Posteingang auf den Bestätigungslink.");
+        // }
         // Successful login will be handled by AuthContext listener and parent component
       } else if (mode === 'register') {
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
         const isAdmin = userCred.user.email && (userCred.user.email.includes('sichtbar') || userCred.user.email.includes('simon.kraeling'));
         
         if (!isAdmin) {
-          await sendEmailVerification(userCred.user);
-          await signOut(auth);
-          setMsg("Erfolgreich registriert! Bitte bestätigen Sie Ihre E-Mail-Adresse über den Link in Ihrem Posteingang, bevor Sie sich einloggen.");
+          try {
+            await sendEmailVerification(userCred.user);
+          } catch (e) {
+            console.error("Could not send verification email", e);
+          }
+          // Do not sign out! Allow instant login.
+          // setMsg("Erfolgreich registriert! Wir haben Ihnen einen Bestätigungslink gesendet.");
           return;
         }
       } else if (mode === 'forgot') {
