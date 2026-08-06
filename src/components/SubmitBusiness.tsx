@@ -69,7 +69,12 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
       });
       
       if (!createRes.ok) {
-        throw new Error('Fehler beim Speichern in der Datenbank.');
+        let errorMsg = 'Fehler beim Speichern in der Datenbank.';
+        try {
+          const errData = await createRes.json();
+          if (errData.error) errorMsg += ' Details: ' + errData.error;
+        } catch(e) {}
+        throw new Error(errorMsg);
       }
       
       if (selectedPlan === 'premium') {

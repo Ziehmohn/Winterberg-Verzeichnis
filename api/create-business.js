@@ -15,8 +15,6 @@ if (!admin.apps.length) {
   }
 }
 
-const db = admin.firestore();
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -28,7 +26,12 @@ export default async function handler(req, res) {
     if (!id || !data) {
       return res.status(400).json({ error: 'Missing id or data' });
     }
+    
+    if (!admin.apps.length) {
+      return res.status(500).json({ error: 'Firebase Admin not initialized. Please check FIREBASE_SERVICE_ACCOUNT in Vercel.' });
+    }
 
+    const db = admin.firestore();
     const docRef = db.collection('businesses').doc(id);
     await docRef.set(data, { merge: true });
 
