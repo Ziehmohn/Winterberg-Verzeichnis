@@ -61,11 +61,16 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     };
     
     try {
-      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Die Datenbankverbindung dauert zu lange. Bitte prüfen Sie Ihre Internetverbindung oder deaktivieren Sie ggf. Ihren Adblocker.')), 10000));
-      await Promise.race([
-        setDoc(doc(db, 'businesses', newId), dataToSubmit),
-        timeoutPromise
-      ]);
+      // Use API route instead of client-side setDoc to prevent connection hangs
+      const createRes = await fetch('/api/create-business', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: newId, data: dataToSubmit })
+      });
+      
+      if (!createRes.ok) {
+        throw new Error('Fehler beim Speichern in der Datenbank.');
+      }
       
       if (selectedPlan === 'premium') {
         const controller = new AbortController();
