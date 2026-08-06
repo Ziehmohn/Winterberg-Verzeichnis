@@ -38,16 +38,20 @@ export default async function handler(req, res) {
     await docRef.set(data, { merge: true });
 
     // Sende E-Mail an Admin
-    await sendMail({
-      to: 'simon.kraeling@sichtbar-online.com',
-      subject: `Neues Unternehmen eingetragen: ${data.name}`,
-      html: `
-        <h3>Neues Unternehmen eingetragen</h3>
-        <p>Ein neues Unternehmen (<strong>${data.name}</strong>) wurde soeben in die Datenbank eingetragen.</p>
-        <p>Tarif: ${data.isPremium ? 'Premium' : 'Basis'}</p>
-        <p>Bitte prüfen Sie den Eintrag im Backend und schalten Sie ihn frei.</p>
-      `
-    });
+    try {
+      await sendMail({
+        to: 'simon.kraeling@sichtbar-online.com',
+        subject: `Neues Unternehmen eingetragen: ${data.name}`,
+        html: `
+          <h3>Neues Unternehmen eingetragen</h3>
+          <p>Ein neues Unternehmen (<strong>${data.name}</strong>) wurde soeben in die Datenbank eingetragen.</p>
+          <p>Tarif: ${data.isPremium ? 'Premium' : 'Basis'}</p>
+          <p>Bitte prüfen Sie den Eintrag im Backend und schalten Sie ihn frei.</p>
+        `
+      });
+    } catch (mailError) {
+      console.error('Fehler beim Senden der Admin-E-Mail:', mailError);
+    }
 
     return res.status(200).json({ success: true });
   } catch (error) {

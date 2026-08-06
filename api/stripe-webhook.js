@@ -70,15 +70,19 @@ export default async function handler(req, res) {
         }
 
         // Sende E-Mail an Admin
-        await sendMail({
-          to: 'simon.kraeling@sichtbar-online.com',
-          subject: `Zahlung erhalten: ${busName}`,
-          html: `
-            <h3>Neue Zahlung eingegangen</h3>
-            <p>Ein Kunde hat soeben für das Unternehmen <strong>${busName}</strong> (ID: ${businessId}) bezahlt.</p>
-            <p>Der Eintrag wurde automatisch auf Premium hochgestuft.</p>
-          `
-        });
+        try {
+          await sendMail({
+            to: 'simon.kraeling@sichtbar-online.com',
+            subject: `Zahlung erhalten: ${busName}`,
+            html: `
+              <h3>Neue Zahlung eingegangen</h3>
+              <p>Ein Kunde hat soeben für das Unternehmen <strong>${busName}</strong> (ID: ${businessId}) bezahlt.</p>
+              <p>Der Eintrag wurde automatisch auf Premium hochgestuft.</p>
+            `
+          });
+        } catch (mailError) {
+          console.error('Fehler beim Senden der Admin-E-Mail (Stripe Webhook):', mailError);
+        }
         
         // 2. AGB Rule: If Yearly, convert to Subscription Schedule for monthly fallback
         if (billingCycle === 'yearly' && session.subscription) {

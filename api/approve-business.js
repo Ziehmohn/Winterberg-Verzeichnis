@@ -46,19 +46,23 @@ export default async function handler(req, res) {
     // E-Mail an Kunden senden, falls E-Mail vorhanden
     if (data?.email || data?.ownerEmail) {
       const customerEmail = data.email || data.ownerEmail;
-      await sendMail({
-        to: customerEmail,
-        subject: 'Ihr Eintrag im Winterberg Verzeichnis ist nun online!',
-        html: `
-          <h3>Gute Neuigkeiten!</h3>
-          <p>Hallo,</p>
-          <p>Ihr Unternehmenseintrag für <strong>${data.name || 'Ihr Unternehmen'}</strong> wurde soeben geprüft und freigeschaltet.</p>
-          <p>Er ist nun öffentlich im Winterberg Verzeichnis sichtbar.</p>
-          <br/>
-          <p>Viele Grüße,</p>
-          <p>Ihr Winterberg Verzeichnis Team</p>
-        `
-      });
+      try {
+        await sendMail({
+          to: customerEmail,
+          subject: 'Ihr Eintrag im Winterberg Verzeichnis ist nun online!',
+          html: `
+            <h3>Gute Neuigkeiten!</h3>
+            <p>Hallo,</p>
+            <p>Ihr Unternehmenseintrag für <strong>${data.name || 'Ihr Unternehmen'}</strong> wurde soeben geprüft und freigeschaltet.</p>
+            <p>Er ist nun öffentlich im Winterberg Verzeichnis sichtbar.</p>
+            <br/>
+            <p>Viele Grüße,</p>
+            <p>Ihr Winterberg Verzeichnis Team</p>
+          `
+        });
+      } catch (mailError) {
+        console.error('Fehler beim Senden der Bestätigungs-E-Mail an den Kunden:', mailError);
+      }
     }
 
     return res.status(200).json({ success: true });
