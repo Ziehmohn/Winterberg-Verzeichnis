@@ -1,11 +1,12 @@
-import * as admin from 'firebase-admin';
+import { initializeApp, getApps, cert } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 
-if (!admin.apps.length) {
+if (!getApps().length) {
   try {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+      initializeApp({
+        credential: cert(serviceAccount)
       });
     } else {
       console.warn("FIREBASE_SERVICE_ACCOUNT environment variable is missing.");
@@ -27,11 +28,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing id or data' });
     }
     
-    if (!admin.apps.length) {
+    if (!getApps().length) {
       return res.status(500).json({ error: 'Firebase Admin not initialized. Please check FIREBASE_SERVICE_ACCOUNT in Vercel.' });
     }
 
-    const db = admin.firestore();
+    const db = getFirestore();
     const docRef = db.collection('businesses').doc(id);
     await docRef.set(data, { merge: true });
 

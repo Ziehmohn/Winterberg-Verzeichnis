@@ -1,14 +1,15 @@
 import Stripe from 'stripe';
-import * as admin from 'firebase-admin';
+import { initializeApp, getApps, cert } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 import { buffer } from 'micro';
 
 // Initialize Firebase Admin
-if (!admin.apps.length) {
+if (!getApps().length) {
   try {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+      initializeApp({
+        credential: cert(serviceAccount)
       });
     } else {
       console.warn("FIREBASE_SERVICE_ACCOUNT environment variable is missing.");
@@ -44,7 +45,7 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  const db = admin.firestore();
+  const db = getFirestore();
 
   try {
     switch (event.type) {
