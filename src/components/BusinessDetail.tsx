@@ -24,14 +24,21 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const handleClaim = async () => {
     setIsLoadingCheckout(true);
     try {
-      // Simulate Stripe checkout preparation
-      await new Promise(r => setTimeout(r, 1000));
-      alert("Zahlung in Kürze per Stripe (Integration in Vorbereitung)");
-      setShowClaimScreen(false);
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ businessId: business.id, email: business.email, billingCycle: 'monthly' }) // Default to monthly on upgrade, user can change in Stripe if needed, or we just pass it
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      } else {
+        throw new Error(data.error || 'Fehler beim Weiterleiten zu Stripe');
+      }
     } catch (err) {
       console.error(err);
-      alert(t("paymentError"));
-    } finally {
+      alert("Fehler beim Checkout. Bitte später erneut versuchen.");
       setIsLoadingCheckout(false);
     }
   };

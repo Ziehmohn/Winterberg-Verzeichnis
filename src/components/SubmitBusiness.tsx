@@ -38,12 +38,10 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
       await setDoc(doc(db, 'businesses', newId), dataToSubmit);
       
       if (selectedPlan === 'premium') {
-        // Stripe integration disabled temporarily
-        /*
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ businessId: newId, email: formData.email })
+          body: JSON.stringify({ businessId: newId, email: formData.email, billingCycle })
         });
         const data = await res.json();
         if (data.url) {
@@ -52,7 +50,6 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
         } else {
           throw new Error(data.error || 'Fehler beim Weiterleiten zu Stripe');
         }
-        */
       }
       
       setIsSuccess(true);
@@ -156,14 +153,37 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
             </div>
             <div 
               onClick={() => setSelectedPlan('premium')}
-              className={`cursor-pointer border p-4 rounded-[12px] transition-colors ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
+              className={`cursor-pointer border p-4 rounded-[12px] transition-colors flex flex-col ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
             >
               <div className="flex justify-between items-start mb-1">
                 <div className="font-bold flex items-center gap-1.5">Premium <ShieldCheck className="w-4 h-4 text-emerald-600" /></div>
                 {selectedPlan === 'premium' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
-              <div className="font-bold text-[18px] text-[#D65F0C] mb-2">12,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat (netto)</span></div>
-              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, Top-Platzierung.</div>
+              
+              {selectedPlan === 'premium' && (
+                <div className="flex bg-white/60 border border-[#E7E2DA] rounded-lg p-1 my-3" onClick={e => e.stopPropagation()}>
+                  <button 
+                    type="button"
+                    onClick={() => setBillingCycle('monthly')}
+                    className={`flex-1 text-[13px] font-medium py-1.5 rounded-md transition-colors ${billingCycle === 'monthly' ? 'bg-white shadow-sm text-[#0F4C2E]' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
+                  >
+                    Monatlich
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => setBillingCycle('yearly')}
+                    className={`flex-1 text-[13px] font-medium py-1.5 rounded-md transition-colors ${billingCycle === 'yearly' ? 'bg-white shadow-sm text-[#0F4C2E]' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
+                  >
+                    Jährlich (-23%)
+                  </button>
+                </div>
+              )}
+              
+              <div className="font-bold text-[18px] text-[#D65F0C] mb-2 mt-auto">
+                {selectedPlan === 'premium' && billingCycle === 'monthly' ? '12,95 €' : '9,95 €'}
+                <span className="text-[12px] font-normal text-[#5F6B63]"> / Monat (netto)</span>
+              </div>
+              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, Top-Platzierung. {selectedPlan === 'premium' && billingCycle === 'yearly' && "Abrechnung jährlich (119,40 €)."}</div>
             </div>
           </div>
         </div>

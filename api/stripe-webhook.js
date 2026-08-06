@@ -1,6 +1,29 @@
 import Stripe from 'stripe';
-// Note: To go live, install 'firebase-admin' via npm and initialize it here with a service account.
-// import * as admin from 'firebase-admin';
+import * as admin from 'firebase-admin';
+import { buffer } from 'micro';
+
+// Initialize Firebase Admin
+if (!admin.apps.length) {
+  try {
+    if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+      });
+    } else {
+      console.warn("FIREBASE_SERVICE_ACCOUNT environment variable is missing.");
+    }
+  } catch (error) {
+    console.error('Firebase Admin initialization error:', error);
+  }
+}
+
+// Disable Next.js body parser so we can get the raw body for Stripe signature verification
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -14,31 +37,32 @@ export default async function handler(req, res) {
   let event;
 
   try {
-    // In Vercel, req.body is already parsed, but Stripe requires the raw body for signature verification.
-    // To fix this in Next.js/Vercel, we need to disable body parsing, or use micro.
-    // For this demonstration, we assume verification succeeds or we use a helper.
-    // event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-    event = req.body; 
+    const rawBody = await buffer(req);
+    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
   } catch (err) {
+    console.error(`Webhook signature verification failed: ${err.message}`);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
+
+  const db = admin.firestore();
 
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object;
-        const businessId = session.metadata.businessId;
-        const billingCycle = session.metadata.billingCycle;
+        const businessId = session.metadata?.businessId;
+        const billingCycle = session.metadata?.billingCycle;
         
         console.log(`Checkout completed for business ${businessId}. Mode: ${billingCycle}`);
         
-        // 1. Update Firestore (Requires firebase-admin)
-        // await admin.firestore().collection('businesses').doc(businessId).update({
-        //   isPremium: true,
-        //   stripeSubscriptionId: session.subscription,
-        //   stripeCustomerId: session.customer
-        // });
-
+        if (businessId) {
+          await db.collection('businesses').doc(businessId).update({
+            isPremium: true,
+            stripeSubscriptionId: session.subscription,
+            stripeCustomerId: session.customer
+          });
+        }
+        
         // 2. AGB Rule: If Yearly, convert to Subscription Schedule for monthly fallback
         if (billingCycle === 'yearly' && session.subscription) {
           const subscription = await stripe.subscriptions.retrieve(session.subscription);
@@ -48,8 +72,9 @@ export default async function handler(req, res) {
             from_subscription: subscription.id,
           });
           
-          // Update the schedule to switch to Monthly (12.95 EUR) after phase 1
-          // NOTE: You need the Monthly Price ID from your Stripe Dashboard here.
+          // Note: If you want this to automatically switch to the monthly price after 1 year, 
+          // you need to specify the monthly price ID below. We will leave it commented out
+          // until you create the monthly price in Stripe and provide the ID.
           /*
           await stripe.subscriptionSchedules.update(schedule.id, {
             end_behavior: 'release',
@@ -60,8 +85,8 @@ export default async function handler(req, res) {
                 items: [{ price: subscription.items.data[0].price.id, quantity: 1 }],
               },
               {
-                items: [{ price: 'price_MONTHLY_1295', quantity: 1 }], // The regular monthly price ID
-                iterations: 0, // 0 = continuous
+                items: [{ price: 'price_MONTHLY_1295', quantity: 1 }], 
+                iterations: 0, 
               }
             ]
           });
@@ -73,24 +98,28 @@ export default async function handler(req, res) {
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object;
         const subscriptionId = invoice.subscription;
-        const invoicePdf = invoice.hosted_invoice_url; // Link to the PDF for the user
+        const invoicePdf = invoice.hosted_invoice_url;
         
-        // Save the invoice URL to Firestore so it shows in the Admin Panel
-        // await admin.firestore().collection('invoices').add({
-        //   subscriptionId,
-        //   customerId: invoice.customer,
-        //   pdfUrl: invoicePdf,
-        //   date: new Date(invoice.created * 1000).toISOString(),
-        //   amount: invoice.amount_paid / 100
-        // });
+        if (subscriptionId) {
+          await db.collection('invoices').add({
+            subscriptionId,
+            customerId: invoice.customer,
+            pdfUrl: invoicePdf,
+            date: new Date(invoice.created * 1000).toISOString(),
+            amount: invoice.amount_paid / 100
+          });
+        }
         break;
       }
 
       case 'customer.subscription.deleted': {
         const subscription = event.data.object;
-        // Downgrade the user in Firestore
-        // const businesses = await admin.firestore().collection('businesses').where('stripeSubscriptionId', '==', subscription.id).get();
-        // businesses.forEach(doc => doc.ref.update({ isPremium: false, stripeSubscriptionId: null }));
+        const businesses = await db.collection('businesses').where('stripeSubscriptionId', '==', subscription.id).get();
+        const batch = db.batch();
+        businesses.forEach(doc => {
+          batch.update(doc.ref, { isPremium: false, stripeSubscriptionId: admin.firestore.FieldValue.delete() });
+        });
+        await batch.commit();
         break;
       }
 
