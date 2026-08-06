@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { buffer } from 'micro';
+import { sendMail } from './_mail.js';
 
 // Initialize Firebase Admin
 if (!getApps().length) {
@@ -54,6 +55,10 @@ export default async function handler(req, res) {
         const businessId = session.metadata?.businessId;
         const billingCycle = session.metadata?.billingCycle;
         
+        const docRef = db.collection('businesses').doc(businessId);
+        const docSnap = await docRef.get();
+        const busName = docSnap.exists ? docSnap.data().name : 'Unbekanntes Unternehmen';
+
         console.log(`Checkout completed for business ${businessId}. Mode: ${billingCycle}`);
         
         if (businessId) {
@@ -63,6 +68,17 @@ export default async function handler(req, res) {
             stripeCustomerId: session.customer
           });
         }
+
+        // Sende E-Mail an Admin
+        await sendMail({
+          to: 'simon.kraeling@sichtbar-online.com',
+          subject: `Zahlung erhalten: ${busName}`,
+          html: `
+            <h3>Neue Zahlung eingegangen</h3>
+            <p>Ein Kunde hat soeben für das Unternehmen <strong>${busName}</strong> (ID: ${businessId}) bezahlt.</p>
+            <p>Der Eintrag wurde automatisch auf Premium hochgestuft.</p>
+          `
+        });
         
         // 2. AGB Rule: If Yearly, convert to Subscription Schedule for monthly fallback
         if (billingCycle === 'yearly' && session.subscription) {

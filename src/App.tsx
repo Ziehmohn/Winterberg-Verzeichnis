@@ -1473,8 +1473,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     );
   }
 
-  const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business) => {
-    const matchesCategory = activeAdminCategory === 'Alle' || bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
+  const filteredAdminBusinesses = businesses.filter((bus: Business) => {
+    if (activeAdminCategory === 'Alle') return true;
+    if (activeAdminCategory === 'In Prüfung') return bus.status === 'pending';
+    const matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
     const matchesSearch = bus.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
                           (bus.description && bus.description.toLowerCase().includes(adminSearchQuery.toLowerCase())) ||
                           (bus.email && bus.email.toLowerCase().includes(adminSearchQuery.toLowerCase()));
@@ -1538,20 +1540,14 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             </div>
             
             {isAdmin && (
-              <div className="flex gap-2 flex-wrap">
-                <button
-                  onClick={() => setActiveAdminCategory('Alle')}
-                  className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === 'Alle' ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
-                >
-                  Alle
-                </button>
-                {categories.map(c => (
-                  <button
-                    key={c.name}
-                    onClick={() => setActiveAdminCategory(c.name)}
-                    className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c.name ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
+              <div className="flex gap-2 flex-wrap mb-4">
+                {['Alle', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
+                  <button 
+                    key={c}
+                    onClick={() => setActiveAdminCategory(c)}
+                    className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
                   >
-                    {c.name}
+                    {c}
                   </button>
                 ))}
               </div>
@@ -1576,8 +1572,17 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                     <button 
                       onClick={async () => {
                         try {
+                          const res = await fetch('/api/approve-business', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id: bus.id })
+                          });
+                          
+                          if (!res.ok) {
+                            throw new Error('Server error');
+                          }
+                          
                           const updated = { ...bus, status: 'approved' };
-                          await setDoc(doc(db, 'businesses', bus.id), updated);
                           setBusinesses(businesses.map((b: Business) => b.id === bus.id ? updated : b));
                         } catch (e) {
                           console.error(e);

@@ -23,10 +23,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { id, data } = req.body;
+    const { id } = req.body;
 
-    if (!id || !data) {
-      return res.status(400).json({ error: 'Missing id or data' });
+    if (!id) {
+      return res.status(400).json({ error: 'Missing id' });
     }
     
     if (!getApps().length) {
@@ -35,23 +35,35 @@ export default async function handler(req, res) {
 
     const db = getFirestore('ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
     const docRef = db.collection('businesses').doc(id);
-    await docRef.set(data, { merge: true });
+    
+    // Hole die E-Mail des Unternehmens für die Benachrichtigung
+    const docSnap = await docRef.get();
+    const data = docSnap.data();
 
-    // Sende E-Mail an Admin
-    await sendMail({
-      to: 'simon.kraeling@sichtbar-online.com',
-      subject: `Neues Unternehmen eingetragen: ${data.name}`,
-      html: `
-        <h3>Neues Unternehmen eingetragen</h3>
-        <p>Ein neues Unternehmen (<strong>${data.name}</strong>) wurde soeben in die Datenbank eingetragen.</p>
-        <p>Tarif: ${data.isPremium ? 'Premium' : 'Basis'}</p>
-        <p>Bitte prüfen Sie den Eintrag im Backend und schalten Sie ihn frei.</p>
-      `
-    });
+    // Status auf approved setzen
+    await docRef.update({ status: 'approved' });
+
+    // E-Mail an Kunden senden, falls E-Mail vorhanden
+    if (data?.email || data?.ownerEmail) {
+      const customerEmail = data.email || data.ownerEmail;
+      await sendMail({
+        to: customerEmail,
+        subject: 'Ihr Eintrag im Winterberg Verzeichnis ist nun online!',
+        html: `
+          <h3>Gute Neuigkeiten!</h3>
+          <p>Hallo,</p>
+          <p>Ihr Unternehmenseintrag für <strong>${data.name || 'Ihr Unternehmen'}</strong> wurde soeben geprüft und freigeschaltet.</p>
+          <p>Er ist nun öffentlich im Winterberg Verzeichnis sichtbar.</p>
+          <br/>
+          <p>Viele Grüße,</p>
+          <p>Ihr Winterberg Verzeichnis Team</p>
+        `
+      });
+    }
 
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Error creating business:', error);
+    console.error('Error approving business:', error);
     return res.status(500).json({ error: error.message });
   }
 }
