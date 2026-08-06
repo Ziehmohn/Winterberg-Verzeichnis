@@ -281,7 +281,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <div className="font-semibold text-[15px] mb-1">Ist das Ihr Unternehmen?</div>
               <p className="text-[13px] text-[#5F6B63] mb-3">Übernehmen Sie dieses Profil und fügen Sie Bildergalerie, Öffnungszeiten und mehr hinzu.</p>
               <button 
-                onClick={() => setShowClaimScreen(true)}
+                onClick={() => {
+                  if (!user) setShowLoginScreen(true);
+                  else setShowClaimScreen(true);
+                }}
                 className="w-full bg-white text-[#0F4C2E] border border-[#0F4C2E] rounded-[14px] py-[11px] text-[14px] font-semibold cursor-pointer hover:bg-[#E8F1EB] transition-colors"
               >
                 Profil übernehmen

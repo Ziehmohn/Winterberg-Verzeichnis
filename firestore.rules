@@ -11,8 +11,9 @@ service cloud.firestore {
       allow read: if true;
       // Anyone can create new businesses (will be pending by default)
       allow create: if true;
-      // Authenticated users can update (admin, owner, or review-only changes)
-      allow update: if request.auth != null 
+      // Authenticated users can update if they are the owner, an admin, or if it's a review-only change
+      allow update: if (request.auth != null && request.auth.uid == resource.data.ownerId) 
+        || (request.auth != null && (request.auth.token.email.matches('.*sichtbar.*') || request.auth.token.email.matches('.*simon\\.kraeling.*')))
         || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reviews']);
       // Only admin emails can delete
       allow delete: if request.auth != null 

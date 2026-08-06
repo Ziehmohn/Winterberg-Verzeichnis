@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig, Business } from '../types';
 import { db } from '../firebase';
 import { categories } from '../data';
 import { doc, setDoc } from 'firebase/firestore';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
+import { useAuth } from '../AuthContext';
+import Login from './Login';
 
 export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { theme: ThemeConfig, activeThemeKey: string, onCancel: () => void }) {
+  const { user, loading } = useAuth();
   const { t } = useTranslation();
   const [formData, setFormData] = useState<Partial<Business>>({
     name: '',
@@ -23,6 +26,27 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Pre-fill email if user is logged in
+  useEffect(() => {
+    if (user?.email && !formData.email) {
+      setFormData(prev => ({ ...prev, email: user.email || '' }));
+    }
+  }, [user]);
+
+  if (loading) return <div className="p-8 text-center">Wird geladen...</div>;
+
+  if (!user) {
+    return (
+      <div className="flex-1 w-full bg-[#FAF8F5]">
+        <div className="text-center pt-10 px-6">
+          <h2 className="text-2xl font-bold mb-2">Bitte loggen Sie sich ein</h2>
+          <p className="text-[#5F6B63]">Um ein Unternehmen einzutragen, benötigen Sie ein kostenloses Konto.</p>
+        </div>
+        <Login theme={theme} activeThemeKey={activeThemeKey} onBack={onCancel} />
+      </div>
+    );
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -31,7 +55,9 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     const dataToSubmit = {
       ...formData,
       id: newId,
-      isPremium: selectedPlan === 'premium' // Just a marker, needs admin approval in real system
+      ownerId: user?.uid,
+      ownerEmail: user?.email,
+      isPremium: selectedPlan === 'premium'
     };
     
     try {
