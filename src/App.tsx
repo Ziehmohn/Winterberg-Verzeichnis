@@ -1473,7 +1473,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     );
   }
 
-  const filteredAdminBusinesses = businesses.filter((bus: Business) => {
+  const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business) => {
     if (activeAdminCategory === 'Alle') return true;
     if (activeAdminCategory === 'In Prüfung') return bus.status === 'pending';
     const matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
@@ -1487,8 +1487,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     <main className="flex-1 max-w-[1180px] mx-auto w-full px-6 py-[32px] pb-[80px]">
       <div className="flex justify-between items-center gap-4 flex-wrap mb-[22px]">
         <div>
-          <h1 className="font-display text-[32px] font-bold m-0">Adminbereich</h1>
-          <div className="text-[14px] text-[#5F6B63] mt-1">Angemeldet als {currentUser.email}</div>
+            <h2 className="text-[26px] font-bold tracking-tight mb-[4px]">{isAdmin ? 'Adminbereich' : 'Account'}</h2>
+            <div className="text-[13px] text-[#5F6B63]">Angemeldet als {currentUser?.email}</div>
         </div>
         <button 
           onClick={handleLogout}
@@ -1752,12 +1752,19 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                           <button 
                             onClick={async () => {
                               if (confirm("Möchten Sie Ihr Abonnement wirklich kündigen? Es läuft dann noch bis zum Ende der aktuellen Abrechnungsperiode weiter.")) {
-                                try {
-                                  const res = await fetch('/api/cancel-subscription', {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ subscriptionId: (bus as any).stripeSubscriptionId || 'dummy_sub_id' })
-                                  });
+                                if (!(bus as any).stripeSubscriptionId) {
+                                  const docRef = doc(db, 'businesses', bus.id);
+                                  await updateDoc(docRef, { isPremium: false, subscriptionStatus: 'canceled' });
+                                  setBusinesses(businesses.map((b: Business) => b.id === bus.id ? { ...b, isPremium: false, subscriptionStatus: 'canceled' } : b));
+                                  alert("Erfolgreich gekündigt (Manuelles Downgrade).");
+                                  return;
+                                }
+
+                                const res = await fetch('/api/cancel-subscription', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ subscriptionId: (bus as any).stripeSubscriptionId })
+                                });
                                   const data = await res.json();
                                   if (data.success) {
                                     alert(data.message);
