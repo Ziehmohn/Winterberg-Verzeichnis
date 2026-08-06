@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Firebase Admin not initialized. Please check FIREBASE_SERVICE_ACCOUNT in Vercel.' });
     }
 
-    const db = getFirestore();
+    const db = getFirestore('ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
     const docRef = db.collection('businesses').doc(id);
     await docRef.set(data, { merge: true });
 
