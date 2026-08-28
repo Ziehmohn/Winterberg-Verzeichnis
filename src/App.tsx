@@ -1501,12 +1501,19 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   }
 
   const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business) => {
-    if (activeAdminCategory === 'Alle') return true;
-    if (activeAdminCategory === 'In Prüfung') return bus.status === 'pending';
-    const matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
-    const matchesSearch = bus.name.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
-                          (bus.description && bus.description.toLowerCase().includes(adminSearchQuery.toLowerCase())) ||
-                          (bus.email && bus.email.toLowerCase().includes(adminSearchQuery.toLowerCase()));
+    let matchesCategory = true;
+    if (activeAdminCategory === 'In Prüfung') {
+      matchesCategory = bus.status === 'pending';
+    } else if (activeAdminCategory !== 'Alle') {
+      matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
+    }
+    
+    const searchStr = adminSearchQuery.toLowerCase();
+    const matchesSearch = !searchStr || 
+                          bus.name.toLowerCase().includes(searchStr) || 
+                          (bus.description && bus.description.toLowerCase().includes(searchStr)) ||
+                          (bus.email && bus.email.toLowerCase().includes(searchStr));
+                          
     return matchesCategory && matchesSearch;
   });
 
