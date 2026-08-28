@@ -1242,8 +1242,8 @@ export default function App() {
       )}
 
       <footer style={{ background: '#06301C', color: 'rgba(255,255,255,0.78)', marginTop: 'auto' }}>
-        <div className="max-w-[1180px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-          <div className="md:col-span-1">
+        <div className="max-w-[1180px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
+          <div className="md:col-span-2">
             <div className="inline-block cursor-pointer" onClick={() => { resetToDirectory(); }}>
               <span className="font-display text-[13px] font-medium text-white/70">Das</span>
               <span className="font-display text-[22px] font-extrabold tracking-widest text-white block leading-tight">WINTERBERG</span>
@@ -1282,8 +1282,8 @@ export default function App() {
             }} className="text-white/80 hover:text-white transition-colors">AGB</a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">Intern</div>
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsAdminMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Adminbereich</a>
+            <div className="text-white font-semibold mb-0.5">Externe Links</div>
+            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung</a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
