@@ -234,6 +234,17 @@ export const businesses: Business[] = [
     status: 'approved'
   },
   {
+    id: 'hermann-josef-kiemen',
+    name: 'Hermann Josef Kiemen',
+    category: 'Handwerk',
+    subcategory: 'Elektriker',
+    address: 'Briloner Str. 15, 59955 Winterberg-Siedlinghausen',
+    phone: '02983 8260',
+    district: 'Siedlinghausen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
     id: 'santherm-heizung',
     name: 'SanTHERM Heizung Sanitär Klima Haustechnik GmbH',
     category: 'Handwerk',
