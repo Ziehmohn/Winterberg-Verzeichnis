@@ -97,6 +97,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Gartenbauer</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://winterberg.sichtbar-online.com/Einzelhandel</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -457,19 +463,49 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://winterberg.sichtbar-online.com/Handwerk/Maler/markus-klauke-gmbh</loc>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Maler%20%26%20Lackierer/markus-klauke-gmbh</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://winterberg.sichtbar-online.com/Handwerk/Maler/malerbetrieb-schnorbus</loc>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Maler%20%26%20Lackierer/malerbetrieb-schnorbus</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://winterberg.sichtbar-online.com/Handwerk/Maler/maler-leber-inh.-christopher-seston---maler-winterberg-%2F-brilon</loc>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Maler%20%26%20Lackierer/maler-leber-inh.-christopher-seston---maler-winterberg-%2F-brilon</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Gartenbauer/gartenbau-biene</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Gartenbauer/garna%3B-garten-und-natur</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Gartenbauer/tielke-garten-und-landschaftsbau</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Gartenbauer/ralph-l%C3%BCtteken-gmbh</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://winterberg.sichtbar-online.com/Handwerk/Gartenbauer/creative-garden</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
