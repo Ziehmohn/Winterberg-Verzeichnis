@@ -278,6 +278,60 @@ export const businesses: Business[] = [
     status: 'approved'
   },
   {
+    id: 'wanderlust-restaurant',
+    name: 'Restaurant Wanderlust',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Holtener Weg 21, 59955 Winterberg',
+    phone: '02981 808135',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'bennys-kartoffelkiste',
+    name: 'Benny\'s Kartoffelkiste',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Am Waltenberg 45, 59955 Winterberg',
+    phone: '02981 928359',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'andres-almstubn',
+    name: 'AndRes Alm-Stub\'n',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Hauptstraße 28, 59955 Winterberg',
+    website: 'https://andres-almstubn.de',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'ritmus-restaurant',
+    name: 'RitmuS - Restaurant & Tapas Bar',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Kolpingstraße 12, 59955 Winterberg-Siedlinghausen',
+    website: 'https://ritmus.de',
+    district: 'Siedlinghausen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'die-sperre',
+    name: 'Die Sperre | Landhotel & Restaurant',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Sorpestraße 80, 59955 Winterberg',
+    district: 'Siedlinghausen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
     id: 'santherm-heizung',
     name: 'SanTHERM Heizung Sanitär Klima Haustechnik GmbH',
     category: 'Handwerk',
