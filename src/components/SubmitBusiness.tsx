@@ -131,7 +131,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
   return (
     <main className="flex-1 w-full max-w-[720px] mx-auto px-6 py-[54px] pb-[80px]">
       <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">Unternehmen eintragen</h1>
-      <p className="text-[17px] leading-[1.65] text-[#4A544D] mb-[30px]">Kostenlos gelistet werden — oder mit Premium Bildergalerie, ausführliches Profil und Top-Platzierung freischalten.</p>
+      <p className="text-[17px] leading-[1.65] text-[#4A544D] mb-[30px]">Kostenlos gelistet werden — oder mit <a href="/preise" target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">Premium</a> Bildergalerie, ausführliches Profil und Top-Platzierung freischalten.</p>
       
       <form onSubmit={handleSubmit} className="bg-white border border-[#EDE8E0] rounded-[22px] p-[30px] grid gap-[18px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <label className="grid gap-[7px] text-[14px] font-semibold">Unternehmensname

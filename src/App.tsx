@@ -588,15 +588,16 @@ export default function App() {
                 <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>VERZEICHNIS</span>
               </span>
             </div>
-            <nav className="hidden md:flex" style={{ gap: '22px', fontSize: '15px', fontWeight: 500, marginLeft: 'auto' }}>
-              <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
-              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">News</a>
-              <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
-              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
-              <a href={getPath('/preise')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/preise')); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
+            <nav className="hidden md:flex items-center" style={{ gap: '22px', fontSize: '15px', marginLeft: 'auto' }}>
+              <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
+              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">Jobs</a>
+              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">News</a>
+              
+              <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-1"></div>
+
               <button 
                 onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
-                className="flex items-center justify-center transition-colors ml-2"
+                className="flex items-center justify-center transition-colors"
                 title={currentUser ? 'Dashboard' : t("adminLogin")}
               >
                 {currentUser ? (
