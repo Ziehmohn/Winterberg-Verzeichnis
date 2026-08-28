@@ -87,10 +87,53 @@ export function getSeoContent(category: string, location: string, businessCount:
           question: `Wie viele Betriebe für ${category} gibt es in ${locText}?`,
           answer: `Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} Betriebe aus dem Bereich ${category} in ${locText}.`
         });
-        faqs.push({
-          question: `Warum sollte ich lokale Betriebe in ${locText} unterstützen?`,
-          answer: `Lokale Betriebe stärken die Wirtschaft vor Ort, sichern Arbeitsplätze in der Region und bieten oft einen sehr persönlichen Kundenservice.`
-        });
+        
+        const handwerkSubcategories: Record<string, {tasks: string, priceInfo: string}> = {
+          'Gartenbauer': {
+            tasks: 'Pflasterarbeiten, Gartengestaltung, Bepflanzung, Rasenpflege, Terrassenbau und die regelmäßige Instandhaltung von Grünanlagen.',
+            priceInfo: 'Der Stundenlohn für Garten- und Landschaftsbauer in der Region (NRW) liegt durchschnittlich zwischen 40 € und 65 €.'
+          },
+          'Dachdecker': {
+            tasks: 'Dacheindeckungen, Flachdachabdichtungen, Dachreparaturen, Einbau von Dachfenstern, Dachrinnenmontage und energetische Dachsanierungen.',
+            priceInfo: 'Der Stundenlohn für Dachdecker in der Region (NRW) liegt durchschnittlich zwischen 65 € und 90 €.'
+          },
+          'Elektriker': {
+            tasks: 'Elektroinstallationen, Smart-Home-Einrichtungen, Prüfung von elektrischen Anlagen, Reparaturen, Installation von Wallboxen und Beleuchtungskonzepten.',
+            priceInfo: 'Der Stundenlohn für Elektriker in der Region (NRW) liegt durchschnittlich zwischen 55 € und 85 €.'
+          },
+          'Maler & Lackierer': {
+            tasks: 'Tapezierarbeiten, Innen- und Außenanstriche, Lackierarbeiten, Fassadengestaltung, Schimmelbeseitigung und kreative Wandtechniken.',
+            priceInfo: 'Der Stundenlohn für Maler und Lackierer in der Region (NRW) liegt durchschnittlich zwischen 45 € und 65 €.'
+          },
+          'Heizungstechnik': {
+            tasks: 'Installation von Heizungsanlagen (z. B. Wärmepumpen, Gas/Öl), Sanitärinstallationen, Wartung, Reparaturen und Badsanierungen.',
+            priceInfo: 'Der Stundenlohn für Anlagenmechaniker (SHK) in der Region (NRW) liegt durchschnittlich zwischen 60 € und 90 €.'
+          },
+          'Bauunternehmen': {
+            tasks: 'Rohbauarbeiten, Maurer- und Betonbauerarbeiten, Erdarbeiten, Umbau- und Sanierungsmaßnahmen sowie schlüsselfertiges Bauen.',
+            priceInfo: 'Der Stundenlohn im Bauhauptgewerbe in der Region (NRW) liegt durchschnittlich zwischen 55 € und 75 € (je nach Gewerk und Qualifikation).'
+          },
+          'KFZ-Werkstätten': {
+            tasks: 'Inspektionen, Reparaturen aller Art, Reifenwechsel, HU/AU-Vorbereitung, Unfallinstandsetzung und Fehlerspeicherdiagnose.',
+            priceInfo: 'Der Stundenverrechnungssatz in freien KFZ-Werkstätten in der Region (NRW) liegt durchschnittlich zwischen 70 € und 120 €.'
+          },
+          'Schreinereien': {
+            tasks: 'Möbel nach Maß, Innenausbau, Fenster- und Türenbau, Reparatur von Holzobjekten und Verlegung von Holzböden.',
+            priceInfo: 'Der Stundenlohn für Tischler und Schreiner in der Region (NRW) liegt durchschnittlich zwischen 55 € und 75 €.'
+          }
+        };
+
+        if (category in handwerkSubcategories) {
+          const info = handwerkSubcategories[category];
+          faqs.push({
+            question: `Was macht ein ${category}?`,
+            answer: `Ein ${category} kümmert sich typischerweise um: ${info.tasks} und vieles mehr.`
+          });
+          faqs.push({
+            question: `Was kostet ein ${category}?`,
+            answer: `Angebote werden in der Regel individuell erstellt, je nach Aufwand, benötigten Maschinen und dem eingesetzten Material. ${info.priceInfo} Beachten Sie, dass zu den Lohnkosten meist noch Material- und Anfahrtskosten hinzukommen.`
+          });
+        }
     }
   }
 
