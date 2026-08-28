@@ -198,38 +198,17 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
               <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, Kurzbeschreibung.</div>
             </div>
             <div 
-              onClick={() => setSelectedPlan('premium')}
-              className={`cursor-pointer border p-4 rounded-[12px] transition-colors flex flex-col ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
+              className="cursor-not-allowed border border-[#E7E2DA] p-4 rounded-[12px] bg-gray-50 flex flex-col opacity-60"
+              title="Aktuell noch nicht verfügbar"
             >
               <div className="flex justify-between items-start mb-1">
-                <div className="font-bold flex items-center gap-1.5">Premium <ShieldCheck className="w-4 h-4 text-emerald-600" /></div>
-                {selectedPlan === 'premium' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
+                <div className="font-bold flex items-center gap-1.5 text-gray-500">Premium <ShieldCheck className="w-4 h-4 text-gray-400" /></div>
               </div>
               
-              {selectedPlan === 'premium' && (
-                <div className="flex bg-white/60 border border-[#E7E2DA] rounded-lg p-1 my-3" onClick={e => e.stopPropagation()}>
-                  <button 
-                    type="button"
-                    onClick={() => setBillingCycle('monthly')}
-                    className={`flex-1 text-[13px] font-medium py-1.5 rounded-md transition-colors ${billingCycle === 'monthly' ? 'bg-white shadow-sm text-[#0F4C2E]' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
-                  >
-                    Monatlich
-                  </button>
-                  <button 
-                    type="button"
-                    onClick={() => setBillingCycle('yearly')}
-                    className={`flex-1 text-[13px] font-medium py-1.5 rounded-md transition-colors ${billingCycle === 'yearly' ? 'bg-white shadow-sm text-[#0F4C2E]' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
-                  >
-                    Jährlich (-23%)
-                  </button>
-                </div>
-              )}
-              
-              <div className="font-bold text-[18px] text-[#D65F0C] mb-2 mt-auto">
-                {selectedPlan === 'premium' && billingCycle === 'monthly' ? '12,95 €' : '9,95 €'}
-                <span className="text-[12px] font-normal text-[#5F6B63]"> / Monat (netto)</span>
+              <div className="font-bold text-[18px] text-gray-500 mb-2 mt-auto pt-8">
+                In Kürze verfügbar
               </div>
-              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, Top-Platzierung. {selectedPlan === 'premium' && billingCycle === 'yearly' && "Abrechnung jährlich (119,40 €)."}</div>
+              <div className="text-[13px] text-gray-400">Ausführliches Profil, Galerie, Jobs, Top-Platzierung.</div>
             </div>
           </div>
         </div>

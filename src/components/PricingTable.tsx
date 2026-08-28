@@ -96,7 +96,13 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
           </div>
           <div className="text-[14px] text-[#5F6B63] mb-[22px]">
             pro Monat, netto zzgl. MwSt. 
-            {billingCycle === 'yearly' ? ' · jährlich 119,40 € abgerechnet' : ' · monatlich kündbar'}
+            {billingCycle === 'yearly' ? (
+              <div className="mt-1.5 font-bold text-[#0F4C2E] bg-[#0F4C2E]/5 inline-block px-2 py-0.5 rounded text-[13px]">
+                Gesamtbetrag: 119,40 € / Jahr
+              </div>
+            ) : (
+              ' · monatlich kündbar'
+            )}
           </div>
           
           <div className="grid gap-2.5 text-[15px] text-[#4A544D]">
