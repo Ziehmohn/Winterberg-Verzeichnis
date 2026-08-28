@@ -22,6 +22,9 @@ const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
 const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
 const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
 const Datenschutz = React.lazy(() => import('./components/Datenschutz'));
+const NewsBoard = React.lazy(() => import('./components/NewsBoard'));
+const NewsDetail = React.lazy(() => import('./components/NewsDetail'));
+const SubmitNews = React.lazy(() => import('./components/SubmitNews'));
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
@@ -82,6 +85,9 @@ export default function App() {
   let initialJobsMode = false;
   let initialJobsCategory: string | null = null;
   let initialAllMode = false;
+  let initialNewsMode = false;
+  let initialNewsSubmitMode = false;
+  let initialNewsId: string | null = null;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -90,7 +96,14 @@ export default function App() {
     
     if (pathParts[0]) {
       const decodedPart1 = decodeURIComponent(pathParts[0]);
-      if (decodedPart1.toLowerCase() === 'alle-unternehmen') {
+      if (decodedPart1.toLowerCase() === 'news') {
+        initialNewsMode = true;
+        if (pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen') {
+          initialNewsSubmitMode = true;
+        } else if (pathParts[1]) {
+          initialNewsId = decodeURIComponent(pathParts[1]);
+        }
+      } else if (decodedPart1.toLowerCase() === 'alle-unternehmen') {
         initialAllMode = true;
       } else if (decodedPart1.toLowerCase() === 'stellenangebote' || decodedPart1.toLowerCase() === 'jobs') {
         initialJobsMode = true;
@@ -138,6 +151,7 @@ export default function App() {
 
   const [searchQuery, setSearchQuery] = useState(defaultSearchQuery);
   const [homeSearchInput, setHomeSearchInput] = useState('');
+  const [showHomeSuggestions, setShowHomeSuggestions] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>(defaultCategory);
   const [isNotFound, setIsNotFound] = useState(initialNotFound);
 
@@ -166,6 +180,9 @@ export default function App() {
   const [activeLocation, setActiveLocation] = useState<string>('Alle');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [isAllMode, setIsAllMode] = useState(initialAllMode);
+  const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
+  const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
+  const [newsId, setNewsId] = useState<string | null>(initialNewsId);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(initialSelectedBusiness);
@@ -188,6 +205,9 @@ export default function App() {
     setIsJobsMode(false);
     setIsNotFound(false);
     setIsAllMode(false);
+    setIsNewsMode(false);
+    setIsNewsSubmitMode(false);
+    setNewsId(null);
   };
   
   useEffect(() => {
@@ -246,7 +266,14 @@ export default function App() {
       
       if (pathParts[0]) {
         const p1 = decodeURIComponent(pathParts[0]).toLowerCase();
-        if (p1 === 'alle-unternehmen') {
+        if (p1 === 'news') {
+          setIsNewsMode(true);
+          if (pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen') {
+            setIsNewsSubmitMode(true);
+          } else if (pathParts[1]) {
+            setNewsId(decodeURIComponent(pathParts[1]));
+          }
+        } else if (p1 === 'alle-unternehmen') {
           setIsAllMode(true);
         } else if (p1 === 'stellenangebote' || p1 === 'jobs') {
           setIsJobsMode(true);
@@ -449,12 +476,21 @@ export default function App() {
 
   const availableLocations = Array.from(new Set(businesses.map(b => extractLocation(b)))).sort();
 
+  const homeSuggestions = homeSearchInput.length > 1 ? businesses.filter(b => {
+    if (b.status === 'pending') return false;
+    const lowerInput = homeSearchInput.toLowerCase();
+    return b.name.toLowerCase().includes(lowerInput) || 
+           (b.description && b.description.toLowerCase().includes(lowerInput)) ||
+           b.category.toLowerCase().includes(lowerInput) || 
+           (b.subcategory && b.subcategory.toLowerCase().includes(lowerInput));
+  }).slice(0, 5) : [];
+
   const filteredBusinesses = businesses.filter((bus) => {
     if (bus.status === 'pending') return false;
     const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
     const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     const matchesSearch = bus.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          bus.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          (bus.description && bus.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
                           bus.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           (bus.subcategory && bus.subcategory.toLowerCase().includes(searchQuery.toLowerCase()));
     const busLocation = extractLocation(bus);
@@ -554,6 +590,7 @@ export default function App() {
             </div>
             <nav className="hidden md:flex" style={{ gap: '22px', fontSize: '15px', fontWeight: 500, marginLeft: 'auto' }}>
               <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Start</a>
+              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">News</a>
               <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
               <a href={getPath('/preise')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/preise')); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
@@ -602,6 +639,30 @@ export default function App() {
             window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
             setSelectedBusiness(null); 
           }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
+        ) : isNewsSubmitMode ? (
+          <SubmitNews 
+            theme={theme} 
+            activeThemeKey={activeThemeKey} 
+          />
+        ) : newsId ? (
+          <NewsDetail 
+            newsId={newsId} 
+            theme={theme} 
+            activeThemeKey={activeThemeKey} 
+            onBack={() => {
+              window.history.pushState(null, '', '/news');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }} 
+          />
+        ) : isNewsMode ? (
+          <NewsBoard 
+            theme={theme} 
+            activeThemeKey={activeThemeKey} 
+            onNewsClick={(id) => {
+              window.history.pushState(null, '', `/news/${id}`);
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+          />
         ) : isJobsMode ? (
           <JobsBoard 
             businesses={businesses} 
@@ -669,20 +730,52 @@ export default function App() {
                     <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">Finde lokale Anbieter in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld und Altenfeld.</p>
 
                     <div className="bg-white rounded-2xl p-3 flex flex-col md:flex-row gap-3 items-center max-w-3xl shadow-2xl">
-                      <div className="flex items-center gap-3 w-full md:flex-[2] px-3">
+                      <div className="flex items-center gap-3 w-full md:flex-[2] px-3 relative">
                         <Search className="w-5 h-5 text-gray-400" />
                         <input 
                           placeholder="Unternehmen, Branche oder Leistung" 
                           value={homeSearchInput}
-                          onChange={(e) => setHomeSearchInput(e.target.value)}
+                          onChange={(e) => {
+                            setHomeSearchInput(e.target.value);
+                            setShowHomeSuggestions(true);
+                          }}
+                          onFocus={() => setShowHomeSuggestions(true)}
+                          onBlur={() => setTimeout(() => setShowHomeSuggestions(false), 200)}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               setSearchQuery(homeSearchInput);
+                              setShowHomeSuggestions(false);
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }
                           }}
                           className="border-none outline-none text-base w-full py-3 text-gray-900 bg-transparent" 
                         />
+                        {showHomeSuggestions && homeSuggestions.length > 0 && (
+                          <div className="absolute top-full left-0 right-0 mt-4 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-[100] text-left">
+                            {homeSuggestions.map(s => (
+                              <div 
+                                key={s.id} 
+                                className="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between transition-colors border-b border-gray-50 last:border-0"
+                                onMouseDown={() => {
+                                  setHomeSearchInput(s.name);
+                                  setSearchQuery(s.name);
+                                  setShowHomeSuggestions(false);
+                                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                              >
+                                <div className="flex items-center gap-3 overflow-hidden">
+                                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                                    <Search className="w-4 h-4 text-gray-400" />
+                                  </div>
+                                  <div className="flex flex-col overflow-hidden">
+                                    <span className="text-gray-900 font-medium truncate">{s.name}</span>
+                                    <span className="text-gray-500 text-xs truncate">{s.category}{s.subcategory ? ` > ${s.subcategory}` : ''}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                       <select 
                         value={activeLocation} 
@@ -1078,6 +1171,62 @@ export default function App() {
                         </div>
                       )}
 
+                      {/* Aktuelle Öffnungszeiten */}
+                      <div className="mt-10 border-t border-[#F3F0EA] pt-8">
+                        <h2 className="font-display text-[22px] font-bold mb-[18px]">
+                          Welche {activeCategory !== 'Alle' ? activeCategory : 'Unternehmen'} {activeLocation !== 'Alle' ? 'in ' + activeLocation : 'in Winterberg und Umgebung'} haben aktuell geöffnet?
+                        </h2>
+                        {(() => {
+                          const currentlyOpenBusinesses = filteredBusinesses.filter(bus => bus.openingHours && isOpenNow(bus.openingHours, t));
+                          return currentlyOpenBusinesses.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                              {currentlyOpenBusinesses.map(bus => (
+                                <div 
+                                  key={bus.id} 
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
+                                    setSearchQuery(bus.name);
+                                    setSelectedBusiness(bus);
+                                    window.scrollTo(0,0);
+                                  }}
+                                  className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] p-4 cursor-pointer hover:border-[#0F4C2E] transition-colors flex flex-col justify-between"
+                                >
+                                  <div>
+                                    <div className="font-semibold text-[#1B211D] text-[15.5px] mb-1 leading-tight">{bus.name}</div>
+                                    <div className="text-[13px] text-[#5F6B63]">{bus.district || 'Winterberg'}</div>
+                                  </div>
+                                  <div className="mt-3">
+                                    <span className="inline-flex items-center gap-1.5 bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded-md text-[12px] font-semibold">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]"></span>
+                                      Jetzt geöffnet
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="text-[15px] text-[#5F6B63] mb-6">
+                              Aktuell sind leider keine {activeCategory !== 'Alle' ? activeCategory : 'Unternehmen'} geöffnet oder es wurden noch keine Öffnungszeiten hinterlegt.
+                            </div>
+                          );
+                        })()}
+                        
+                        <div className="bg-[#FFF1E4] border border-[#FADBD5] rounded-[14px] p-5 flex flex-col sm:flex-row items-center gap-4 justify-between mt-4">
+                          <div className="text-[14px] text-[#4A544D]">
+                            <strong className="text-[#D65F0C] block mb-1">Für Unternehmer</strong>
+                            Für die Darstellung von Öffnungszeiten ist ein Premium-Eintrag notwendig.
+                          </div>
+                          <button 
+                            type="button" 
+                            onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }}
+                            className="whitespace-nowrap bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors"
+                          >
+                            Jetzt abschließen
+                          </button>
+                        </div>
+                      </div>
+
                       <div className="mt-[32px] pt-[20px] border-t border-[#F3F0EA] flex gap-[14px] items-center flex-wrap">
                         <span className="text-[15px] text-[#4A544D]">Ihr Betrieb fehlt in dieser Kategorie?</span>
                         <button type="button" onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }} className="bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">
@@ -1197,6 +1346,17 @@ export default function App() {
             <button 
               onClick={() => {
                 resetToDirectory();
+                setIsNewsMode(true);
+                setIsMobileCategoriesOpen(false);
+                window.scrollTo(0, 0);
+              }}
+              className={`w-full py-4 px-4 font-bold text-base text-center flex items-center justify-center gap-2 bg-[#FAF8F5] text-[#0F4C2E] transition-colors border border-[#0F4C2E] ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:bg-[#F3F0EA]'}`}
+            >
+              <FileText className="w-5 h-5" /> News & Aktuelles
+            </button>
+            <button 
+              onClick={() => {
+                resetToDirectory();
                 setIsAdminMode(true);
                 setIsMobileCategoriesOpen(false);
                 window.scrollTo(0, 0);
@@ -1260,6 +1420,7 @@ export default function App() {
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">Verzeichnis</div>
             <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Alle Unternehmen</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsNewsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">News</a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Jobs</a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsSubmitMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Eintragen</a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsPricingMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Preise</a>
@@ -1322,6 +1483,100 @@ function InteractiveLockOverlay({ children, groupHoverClass = "group-hover/revie
       <div className={`bg-black text-white text-sm px-4 py-3 rounded shadow-xl flex flex-col md:flex-row items-center gap-2 max-w-[90%] text-center font-medium transition-transform ${isShaking ? 'animate-lock-shake' : ''}`}>
         {children}
       </div>
+    </div>
+  );
+}
+
+function NewsAdminPanel() {
+  const [news, setNews] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadNews = async () => {
+    try {
+      const snap = await getDocs(collection(db, 'news'));
+      const items = snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
+      items.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setNews(items);
+    } catch(e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadNews();
+  }, []);
+
+  const handleUpdateStatus = async (id: string, status: 'approved' | 'rejected') => {
+    if (status === 'rejected' && !confirm('News wirklich ablehnen und löschen?')) return;
+    
+    try {
+      if (status === 'rejected') {
+        await deleteDoc(doc(db, 'news', id));
+      } else {
+        await updateDoc(doc(db, 'news', id), { status });
+      }
+      loadNews();
+    } catch(e) {
+      console.error(e);
+      alert('Fehler beim Aktualisieren');
+    }
+  };
+
+  if (loading) return <div className="p-4">Lade News...</div>;
+
+  return (
+    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px]">
+      <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">News & Aktuelles (Admin)</h2>
+      
+      {news.length > 0 ? (
+        <div className="grid gap-[10px]">
+          {news.map(item => (
+            <div key={item.id} className="border border-[#EDE8E0] rounded-[16px] p-[16px] flex flex-col md:flex-row gap-[16px] items-start">
+              {item.imageUrl && (
+                <img src={item.imageUrl} alt="Preview" className="w-[100px] h-[100px] object-cover rounded-[10px] shrink-0" />
+              )}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-[8px] mb-[4px]">
+                  <span className="font-semibold text-[16px]">{item.title}</span>
+                  {item.status === 'pending' ? (
+                    <span className="bg-[#FDF3D3] text-[#96700B] rounded-full px-[8px] py-[2px] text-[11px] font-bold">NEU (In Prüfung)</span>
+                  ) : (
+                    <span className="bg-[#E8F1EB] text-[#0F4C2E] rounded-full px-[8px] py-[2px] text-[11px] font-bold">FREIGEGEBEN</span>
+                  )}
+                </div>
+                <div className="text-[13px] text-[#5F6B63] mb-[8px]">
+                  Von: {item.author} {item.businessName && `(${item.businessName})`} am {new Date(item.date).toLocaleDateString()}
+                </div>
+                <div className="text-[14px] text-[#4A544D] line-clamp-2">
+                  {item.content}
+                </div>
+              </div>
+              <div className="flex gap-[8px] shrink-0">
+                {item.status === 'pending' && (
+                  <button 
+                    onClick={() => handleUpdateStatus(item.id, 'approved')}
+                    className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#D6E7DC]"
+                  >
+                    Freigeben
+                  </button>
+                )}
+                <button 
+                  onClick={() => handleUpdateStatus(item.id, 'rejected')}
+                  className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                >
+                  {item.status === 'pending' ? 'Ablehnen' : 'Löschen'}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+          Keine News vorhanden.
+        </div>
+      )}
     </div>
   );
 }
@@ -1430,6 +1685,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
+  const [activeAdminLocation, setActiveAdminLocation] = useState<string>('Alle');
   const [adminSearchQuery, setAdminSearchQuery] = useState('');
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
 
@@ -1509,6 +1765,9 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeAdminCategory || ac.subcategory === activeAdminCategory);
       matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory || !!inAdditional;
     }
+
+    const busLocation = bus.district || (bus.address && bus.address.split(',')[1]?.trim().split(' ')[1]) || 'Winterberg';
+    const matchesLocation = activeAdminLocation === 'Alle' || busLocation === activeAdminLocation;
     
     const searchStr = adminSearchQuery.toLowerCase();
     const matchesSearch = !searchStr || 
@@ -1516,8 +1775,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                           (bus.description && bus.description.toLowerCase().includes(searchStr)) ||
                           (bus.email && bus.email.toLowerCase().includes(searchStr));
                           
-    return matchesCategory && matchesSearch;
-  });
+    return matchesCategory && matchesLocation && matchesSearch;
+  }).sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <main className="flex-1 max-w-[1180px] mx-auto w-full px-6 py-[32px] pb-[80px]">
@@ -1540,6 +1799,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           { id: 'reviews', label: 'Bewertungen' },
           { id: 'abrechnung', label: 'Abrechnung' },
           ...(isAdmin ? [
+            { id: 'news', label: 'News' },
             { id: 'seo', label: 'SEO' },
             { id: 'redirects', label: 'Redirects' },
             { id: 'scripts', label: 'Skripte' }
@@ -1576,62 +1836,88 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             </div>
             
             {isAdmin && (
-              <div className="flex gap-2 flex-wrap mb-4">
-                {['Alle', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
-                  <button 
-                    key={c}
-                    onClick={() => setActiveAdminCategory(c)}
-                    className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
-                  >
-                    {c}
-                  </button>
-                ))}
+              <div className="flex gap-2 flex-wrap mb-4 items-center">
+                <div className="flex gap-2 flex-wrap flex-1">
+                  {['Alle', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
+                    <button 
+                      key={c}
+                      onClick={() => setActiveAdminCategory(c)}
+                      className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+                <select
+                  value={activeAdminLocation}
+                  onChange={(e) => setActiveAdminLocation(e.target.value)}
+                  className="border border-[#E7E2DA] rounded-[10px] px-[14px] py-[6px] text-[13.5px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+                >
+                  <option value="Alle">Alle Ortsteile</option>
+                  {Array.from(new Set(allowedBusinesses.map((b: Business) => b.district || (b.address && b.address.split(',')[1]?.trim().split(' ')[1]) || 'Winterberg'))).filter(Boolean).sort().map(d => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </select>
               </div>
             )}
           </div>
           
           <div className="grid gap-[8px]">
-            {filteredAdminBusinesses.map((bus: Business) => (
-              <div key={bus.id} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-[14px] items-center border border-[#EDE8E0] rounded-[14px] px-[16px] py-[13px]">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-[9px] flex-wrap">
-                    <span className="font-semibold text-[15.5px]">{bus.name}</span>
-                    {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-[9px] py-[2px] text-[11px] font-bold">PREMIUM</span>}
-                    {bus.status === 'pending' && <span className="bg-[#FDF3D3] text-[#96700B] rounded-full px-[9px] py-[2px] text-[11px] font-bold">IN PRÜFUNG</span>}
-                  </div>
-                  <div className="text-[13.5px] text-[#5F6B63] mt-[3px]">
-                    {bus.category} {bus.subcategory ? `· ${bus.subcategory}` : ''} {bus.district ? `· ${bus.district}` : ''}
-                  </div>
-                </div>
-                <div className="flex gap-[8px]">
-                  {bus.status === 'pending' && (
-                    <button 
-                      onClick={async () => {
-                        try {
-                          const res = await fetch('/api/approve-business', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ id: bus.id })
-                          });
-                          
-                          if (!res.ok) {
-                            throw new Error('Server error');
-                          }
-                          
-                          const updated = { ...bus, status: 'approved' };
-                          setBusinesses(businesses.map((b: Business) => b.id === bus.id ? updated : b));
-                        } catch (e) {
-                          console.error(e);
-                          alert("Fehler beim Freischalten");
-                        }
-                      }}
-                      className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"
-                    >
-                      Freigeben
-                    </button>
+            {filteredAdminBusinesses.map((bus: Business, i: number, arr: Business[]) => {
+              const firstLetter = bus.name.charAt(0).toUpperCase();
+              const prevLetter = i > 0 ? arr[i-1].name.charAt(0).toUpperCase() : '';
+              const showHeader = firstLetter !== prevLetter;
+              
+              return (
+                <React.Fragment key={bus.id}>
+                  {showHeader && (
+                    <div className="flex items-center gap-[12px] mt-[16px] mb-[8px]">
+                      <span className="text-[15px] font-bold text-[#0F4C2E] bg-[#E8F1EB] rounded-full min-w-[28px] h-[28px] flex items-center justify-center">
+                        {firstLetter}
+                      </span>
+                      <div className="flex-1 border-t-2 border-dotted border-[#E7E2DA]"></div>
+                    </div>
                   )}
-                  <button 
-                    onClick={() => { setEditingBusiness(bus); setView('edit'); }}
+                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-[14px] items-center border border-[#EDE8E0] rounded-[14px] px-[16px] py-[13px]">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-[9px] flex-wrap">
+                        <span className="font-semibold text-[15.5px]">{bus.name}</span>
+                        {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-[9px] py-[2px] text-[11px] font-bold">PREMIUM</span>}
+                        {bus.status === 'pending' && <span className="bg-[#FDF3D3] text-[#96700B] rounded-full px-[9px] py-[2px] text-[11px] font-bold">IN PRÜFUNG</span>}
+                      </div>
+                      <div className="text-[13.5px] text-[#5F6B63] mt-[3px]">
+                        {bus.category} {bus.subcategory ? `· ${bus.subcategory}` : ''} {bus.district ? `· ${bus.district}` : ''}
+                      </div>
+                    </div>
+                    <div className="flex gap-[8px]">
+                      {bus.status === 'pending' && (
+                        <button 
+                          onClick={async () => {
+                            try {
+                              const res = await fetch('/api/approve-business', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ id: bus.id })
+                              });
+                              
+                              if (!res.ok) {
+                                throw new Error('Server error');
+                              }
+                              
+                              const updated = { ...bus, status: 'approved' };
+                              setBusinesses(businesses.map((b: Business) => b.id === bus.id ? updated : b));
+                            } catch (e) {
+                              console.error(e);
+                              alert("Fehler beim Freischalten");
+                            }
+                          }}
+                          className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"
+                        >
+                          Freigeben
+                        </button>
+                      )}
+                      <button 
+                        onClick={() => { setEditingBusiness(bus); setView('edit'); }}
                     className="bg-[#F3F0EA] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
                   >
                     Bearbeiten
@@ -1644,7 +1930,9 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                   </button>
                 </div>
               </div>
-            ))}
+            </React.Fragment>
+            );
+          })}
             {filteredAdminBusinesses.length === 0 && (
               <div className="border border-dashed border-[#D8D2C8] rounded-[12px] p-[24px] text-center text-[#8A928B]">
                 Keine Einträge gefunden.
@@ -1653,6 +1941,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           </div>
         </div>
         
+        ) : activeTab === 'news' ? (
+          <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
         ) : activeTab === 'reviews' ? (
           <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
             <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Offene Bewertungen</h2>

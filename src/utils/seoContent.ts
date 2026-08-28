@@ -39,10 +39,6 @@ export function getSeoContent(category: string, location: string, businessCount:
           question: `Wie viele Gastronomie-Betriebe gibt es in ${locText}?`,
           answer: `Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} Restaurants, Cafés und Kneipen aus ${locText}.`
         });
-        faqs.push({
-          question: `Haben die Restaurants in ${locText} heute geöffnet?`,
-          answer: `Viele Betriebe in ${locText} haben täglich geöffnet. Nutzen Sie unsere praktische Filterfunktion, um direkt zu sehen, welche Gastronomie aktuell geöffnet hat.`
-        });
         break;
       case 'Handwerk':
         introTitle = `Handwerker in ${locText} finden`;
@@ -88,37 +84,61 @@ export function getSeoContent(category: string, location: string, businessCount:
           answer: `Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} Betriebe aus dem Bereich ${category} in ${locText}.`
         });
         
-        const handwerkSubcategories: Record<string, {tasks: string, priceInfo: string}> = {
+        const handwerkSubcategories: Record<string, {questionWhat: string, answerWhatPrefix: string, tasks: string, questionCost: string, priceInfo: string}> = {
           'Gartenbauer': {
+            questionWhat: 'Was macht ein Gartenbauer?',
+            answerWhatPrefix: 'Ein Gartenbauer kümmert sich typischerweise um',
             tasks: 'Pflasterarbeiten, Gartengestaltung, Bepflanzung, Rasenpflege, Terrassenbau und die regelmäßige Instandhaltung von Grünanlagen.',
+            questionCost: 'Was kostet ein Gartenbauer?',
             priceInfo: 'Der Stundenlohn für Garten- und Landschaftsbauer in der Region (NRW) liegt durchschnittlich zwischen 40 € und 65 €.'
           },
           'Dachdecker': {
+            questionWhat: 'Was macht ein Dachdecker?',
+            answerWhatPrefix: 'Ein Dachdecker kümmert sich typischerweise um',
             tasks: 'Dacheindeckungen, Flachdachabdichtungen, Dachreparaturen, Einbau von Dachfenstern, Dachrinnenmontage und energetische Dachsanierungen.',
+            questionCost: 'Was kostet ein Dachdecker?',
             priceInfo: 'Der Stundenlohn für Dachdecker in der Region (NRW) liegt durchschnittlich zwischen 65 € und 90 €.'
           },
           'Elektriker': {
+            questionWhat: 'Was macht ein Elektriker?',
+            answerWhatPrefix: 'Ein Elektriker kümmert sich typischerweise um',
             tasks: 'Elektroinstallationen, Smart-Home-Einrichtungen, Prüfung von elektrischen Anlagen, Reparaturen, Installation von Wallboxen und Beleuchtungskonzepten.',
+            questionCost: 'Was kostet ein Elektriker?',
             priceInfo: 'Der Stundenlohn für Elektriker in der Region (NRW) liegt durchschnittlich zwischen 55 € und 85 €.'
           },
           'Maler & Lackierer': {
+            questionWhat: 'Was macht ein Maler & Lackierer?',
+            answerWhatPrefix: 'Ein Maler & Lackierer kümmert sich typischerweise um',
             tasks: 'Tapezierarbeiten, Innen- und Außenanstriche, Lackierarbeiten, Fassadengestaltung, Schimmelbeseitigung und kreative Wandtechniken.',
+            questionCost: 'Was kostet ein Maler & Lackierer?',
             priceInfo: 'Der Stundenlohn für Maler und Lackierer in der Region (NRW) liegt durchschnittlich zwischen 45 € und 65 €.'
           },
           'Heizungstechnik': {
-            tasks: 'Installation von Heizungsanlagen (z. B. Wärmepumpen, Gas/Öl), Sanitärinstallationen, Wartung, Reparaturen und Badsanierungen.',
+            questionWhat: 'Was macht ein Heizungstechniker?',
+            answerWhatPrefix: 'Ein Experte für Heizungstechnik kümmert sich typischerweise um',
+            tasks: 'die Installation von Heizungsanlagen (z. B. Wärmepumpen, Gas/Öl), Sanitärinstallationen, Wartung, Reparaturen und Badsanierungen.',
+            questionCost: 'Was kostet ein Heizungstechniker?',
             priceInfo: 'Der Stundenlohn für Anlagenmechaniker (SHK) in der Region (NRW) liegt durchschnittlich zwischen 60 € und 90 €.'
           },
           'Bauunternehmen': {
+            questionWhat: 'Was macht ein Bauunternehmen?',
+            answerWhatPrefix: 'Ein Bauunternehmen übernimmt typischerweise',
             tasks: 'Rohbauarbeiten, Maurer- und Betonbauerarbeiten, Erdarbeiten, Umbau- und Sanierungsmaßnahmen sowie schlüsselfertiges Bauen.',
+            questionCost: 'Welche Kosten fallen bei einem Bauunternehmen an?',
             priceInfo: 'Der Stundenlohn im Bauhauptgewerbe in der Region (NRW) liegt durchschnittlich zwischen 55 € und 75 € (je nach Gewerk und Qualifikation).'
           },
           'KFZ-Werkstätten': {
+            questionWhat: 'Was macht eine KFZ-Werkstatt?',
+            answerWhatPrefix: 'Eine KFZ-Werkstatt kümmert sich typischerweise um',
             tasks: 'Inspektionen, Reparaturen aller Art, Reifenwechsel, HU/AU-Vorbereitung, Unfallinstandsetzung und Fehlerspeicherdiagnose.',
+            questionCost: 'Mit welchen Kosten muss man bei einer KFZ-Werkstatt rechnen?',
             priceInfo: 'Der Stundenverrechnungssatz in freien KFZ-Werkstätten in der Region (NRW) liegt durchschnittlich zwischen 70 € und 120 €.'
           },
           'Schreinereien': {
-            tasks: 'Möbel nach Maß, Innenausbau, Fenster- und Türenbau, Reparatur von Holzobjekten und Verlegung von Holzböden.',
+            questionWhat: 'Was macht ein Schreiner?',
+            answerWhatPrefix: 'Eine Schreinerei kümmert sich typischerweise um',
+            tasks: 'Möbel nach Maß, Innenausbau, Fenster- und Türenbau, Reparaturen von Holzobjekten und Verlegung von Holzböden.',
+            questionCost: 'Was kostet ein Schreiner?',
             priceInfo: 'Der Stundenlohn für Tischler und Schreiner in der Region (NRW) liegt durchschnittlich zwischen 55 € und 75 €.'
           }
         };
@@ -126,11 +146,11 @@ export function getSeoContent(category: string, location: string, businessCount:
         if (category in handwerkSubcategories) {
           const info = handwerkSubcategories[category];
           faqs.push({
-            question: `Was macht ein ${category}?`,
-            answer: `Ein ${category} kümmert sich typischerweise um: ${info.tasks} und vieles mehr.`
+            question: info.questionWhat,
+            answer: `${info.answerWhatPrefix}: ${info.tasks} und vieles mehr.`
           });
           faqs.push({
-            question: `Was kostet ein ${category}?`,
+            question: info.questionCost,
             answer: `Angebote werden in der Regel individuell erstellt, je nach Aufwand, benötigten Maschinen und dem eingesetzten Material. ${info.priceInfo} Beachten Sie, dass zu den Lohnkosten meist noch Material- und Anfahrtskosten hinzukommen.`
           });
         }

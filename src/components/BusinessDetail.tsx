@@ -82,12 +82,12 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
     }
   };
 
-  const telHref = business.phone ? `tel:${business.phone.replace(/[^0-9+]/g, '')}` : undefined;
-  const webHref = business.website ? (business.website.startsWith('http') ? business.website : `https://${business.website}`) : undefined;
+  const telHref = business.phone ? `tel:${String(business.phone).replace(/[^0-9+]/g, '')}` : undefined;
+  const webHref = business.website ? (String(business.website).startsWith('http') ? String(business.website) : `https://${business.website}`) : undefined;
   
-  const openState = business.openingHours ? isOpenNow(business.openingHours, t) : null;
-  const avgRating = business.reviews && business.reviews.length > 0 
-    ? (business.reviews.reduce((acc, r) => acc + r.rating, 0) / business.reviews.length).toFixed(1)
+  const openState = business.openingHours && typeof business.openingHours === 'object' ? isOpenNow(business.openingHours, t) : null;
+  const avgRating = Array.isArray(business.reviews) && business.reviews.length > 0 
+    ? (business.reviews.reduce((acc, r) => acc + (Number(r?.rating) || 0), 0) / business.reviews.length).toFixed(1)
     : null;
 
   return (
@@ -231,7 +231,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             />
           )}
 
-          {business.gallery && business.gallery.length > 0 && (
+          {Array.isArray(business.gallery) && business.gallery.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Bildergalerie</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 mb-[30px]">
@@ -242,7 +242,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {business.services && business.services.length > 0 && (
+          {Array.isArray(business.services) && business.services.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Leistungen</h2>
               <div className="flex gap-2 flex-wrap mb-[30px]">
@@ -253,7 +253,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {business.openingHours && (
+          {business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Öffnungszeiten</h2>
               <div className="border border-[#EDE8E0] rounded-[16px] overflow-hidden mb-[30px]">
@@ -276,7 +276,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {business.jobs && business.jobs.length > 0 && (
+          {Array.isArray(business.jobs) && business.jobs.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Offene Stellen</h2>
               <div className="grid gap-2.5 mb-[30px]">
@@ -295,7 +295,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           <h2 className="font-display text-[22px] font-semibold mb-3.5">Bewertungen</h2>
           <div className="grid gap-3 mb-5">
-            {business.reviews && business.reviews.filter(r => r.status === 'approved').length > 0 ? (
+            {Array.isArray(business.reviews) && business.reviews.filter(r => r.status === 'approved').length > 0 ? (
               business.reviews.filter(r => r.status === 'approved').map(r => (
                 <div key={r.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] p-4">
                   <div className="flex justify-between gap-2.5 items-center">
@@ -427,26 +427,33 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
       )}
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": business.name,
-        "image": business.images ? business.images : undefined,
-        "url": webHref || undefined,
-        "telephone": business.phone || undefined,
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": business.address,
-          "addressLocality": business.district || "Winterberg",
-          "addressRegion": "NRW",
-          "addressCountry": "DE"
-        },
-        "aggregateRating": avgRating ? {
-          "@type": "AggregateRating",
-          "ratingValue": avgRating,
-          "reviewCount": business.reviews?.length || 0
-        } : undefined
-      })}} />
+      {(() => {
+        let ld = "{}";
+        try {
+          ld = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": business.name,
+            "image": business.images ? business.images : undefined,
+            "url": webHref || undefined,
+            "telephone": business.phone || undefined,
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": business.address,
+              "addressLocality": business.district || "Winterberg",
+              "addressRegion": "NRW",
+              "postalCode": "59955",
+              "addressCountry": "DE"
+            },
+            "aggregateRating": avgRating ? {
+              "@type": "AggregateRating",
+              "ratingValue": avgRating,
+              "reviewCount": Array.isArray(business.reviews) ? business.reviews.length : 0
+            } : undefined
+          });
+        } catch(e) {}
+        return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />;
+      })()}
     </main>
   );
 }

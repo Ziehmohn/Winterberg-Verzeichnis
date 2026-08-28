@@ -40,6 +40,18 @@ export interface Job {
   createdAt: string;
 }
 
+export interface NewsArticle {
+  id: string;
+  title: string;
+  content: string;
+  author: string;
+  businessId?: string;
+  businessName?: string;
+  date: string;
+  imageUrl?: string;
+  status: 'pending' | 'approved';
+}
+
 export interface Business {
   id: string;
   name: string;

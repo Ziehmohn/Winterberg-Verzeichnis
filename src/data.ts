@@ -27,6 +27,7 @@ export const businesses: Business[] = [
   {
     id: '143',
     name: 'Lingenauber',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
     additionalCategories: [
@@ -239,6 +240,7 @@ export const businesses: Business[] = [
   {
     id: 'mollseifer-hof',
     name: 'Mollseifer Hof Inh. Volker Geier',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'In d. Trift 1, 59955 Winterberg-Mollseifen',
@@ -250,6 +252,7 @@ export const businesses: Business[] = [
   {
     id: 'eickmann-bau',
     name: 'Eickmann Bauunternehmung GmbH',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Bauunternehmen',
     address: 'Am Hagenblech 63, 59955 Winterberg',
@@ -261,6 +264,7 @@ export const businesses: Business[] = [
   {
     id: 'brinkmann-bau',
     name: 'Brinkmann GmbH & Co. KG',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Bauunternehmen',
     address: 'Remmeswiese 8, 59955 Winterberg',
@@ -272,6 +276,7 @@ export const businesses: Business[] = [
   {
     id: 'hermann-josef-kiemen',
     name: 'Hermann Josef Kiemen',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Elektriker',
     address: 'Briloner Str. 15, 59955 Winterberg-Siedlinghausen',
@@ -283,6 +288,7 @@ export const businesses: Business[] = [
   {
     id: 'wanderlust-restaurant',
     name: 'Restaurant Wanderlust',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Holtener Weg 21, 59955 Winterberg',
@@ -294,6 +300,7 @@ export const businesses: Business[] = [
   {
     id: 'bennys-kartoffelkiste',
     name: 'Benny\'s Kartoffelkiste',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Am Waltenberg 45, 59955 Winterberg',
@@ -305,6 +312,7 @@ export const businesses: Business[] = [
   {
     id: 'andres-almstubn',
     name: 'AndRes Alm-Stub\'n',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Hauptstraße 28, 59955 Winterberg',
@@ -316,6 +324,7 @@ export const businesses: Business[] = [
   {
     id: 'ritmus-restaurant',
     name: 'RitmuS - Restaurant & Tapas Bar',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Kolpingstraße 12, 59955 Winterberg-Siedlinghausen',
@@ -327,6 +336,7 @@ export const businesses: Business[] = [
   {
     id: 'die-sperre',
     name: 'Die Sperre | Landhotel & Restaurant',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Sorpestraße 80, 59955 Winterberg',
@@ -337,6 +347,7 @@ export const businesses: Business[] = [
   {
     id: 'gruener-apfel',
     name: 'Grüner Apfel Bistro-Pizzeria',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Inselstraße 1, 59955 Winterberg-Siedlinghausen',
@@ -348,6 +359,7 @@ export const businesses: Business[] = [
   {
     id: 'restaurant-athen',
     name: 'Restaurant Athen',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Hauptstraße 22, 59955 Winterberg',
@@ -359,6 +371,7 @@ export const businesses: Business[] = [
   {
     id: 'pizzahaus-winterberg',
     name: 'Pizzahaus Winterberg',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     address: 'Marktstraße 12, 59955 Winterberg',
@@ -371,6 +384,7 @@ export const businesses: Business[] = [
   {
     id: 'pizzeria-dani',
     name: 'Pizzeria Dani',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -385,6 +399,7 @@ export const businesses: Business[] = [
   {
     id: 'colosseum',
     name: 'Restaurant Pizzeria Colosseum Winterberg',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -400,6 +415,7 @@ export const businesses: Business[] = [
   {
     id: 'pizzeria-venezia',
     name: 'Ristorante Pizzeria Venezia',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     address: 'u. Pforte 9, 59955 Winterberg',
@@ -411,6 +427,7 @@ export const businesses: Business[] = [
   {
     id: 'da-salvatore',
     name: 'Ristorante Da Salvatore',
+    description: '',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -425,6 +442,7 @@ export const businesses: Business[] = [
   {
     id: 'markus-klauke-gmbh',
     name: 'Markus Klauke GmbH',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Maler & Lackierer',
     address: 'Senge-Platten-Straße 8, 59955 Winterberg',
@@ -436,6 +454,7 @@ export const businesses: Business[] = [
   {
     id: 'malerbetrieb-schnorbus',
     name: 'Malerbetrieb Schnorbus',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Maler & Lackierer',
     address: 'Oberstraße 12, 59955 Winterberg',
@@ -447,6 +466,7 @@ export const businesses: Business[] = [
   {
     id: 'maler-leber',
     name: 'Maler Leber Inh. Christopher Seston - Maler Winterberg / Brilon',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Maler & Lackierer',
     address: 'Eichendorffsiedlung 12, 59955 Winterberg',
@@ -458,6 +478,7 @@ export const businesses: Business[] = [
   {
     id: 'gartenbau-biene',
     name: 'Gartenbau Biene',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Am Iberg 7, 59955 Winterberg',
@@ -469,6 +490,7 @@ export const businesses: Business[] = [
   {
     id: 'garna-garten',
     name: 'GarNa; Garten und Natur',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Sorpestraße 34a, 59955 Winterberg',
@@ -479,6 +501,7 @@ export const businesses: Business[] = [
   {
     id: 'tielke-garten',
     name: 'Tielke Garten-und Landschaftsbau',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Ockelsbach 2, 59955 Winterberg',
@@ -490,6 +513,7 @@ export const businesses: Business[] = [
   {
     id: 'ralph-luetteken',
     name: 'Ralph Lütteken GmbH',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Burmeckestraße 10, 59955 Winterberg',
@@ -501,6 +525,7 @@ export const businesses: Business[] = [
   {
     id: 'creative-garden',
     name: 'CREATIVE GARDEN',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Jakobusstraße 23, 59955 Winterberg',
@@ -512,6 +537,7 @@ export const businesses: Business[] = [
   {
     id: 'santherm-heizung',
     name: 'SanTHERM Heizung Sanitär Klima Haustechnik GmbH',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Lamfert 11, 59955 Winterberg',
@@ -523,6 +549,7 @@ export const businesses: Business[] = [
   {
     id: 'lefarth-braun',
     name: 'Lefarth & Braun Haustechnik GmbH',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Am Hagenblech 3, 59955 Winterberg',
@@ -534,6 +561,7 @@ export const businesses: Business[] = [
   {
     id: 'schoermann',
     name: 'Sanitär Heizung Klima Solar Schörmann',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Nuhnestraße 3, 59955 Winterberg',
@@ -545,6 +573,7 @@ export const businesses: Business[] = [
   {
     id: '3werk-haustechnik',
     name: '3WERK Haustechnik GmbH & Co.KG',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Remmeswiese 28, 59955 Winterberg',
@@ -556,6 +585,7 @@ export const businesses: Business[] = [
   {
     id: 'jens-winzenick',
     name: 'Jens Winzenick',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Remmeswiese 1B, 59955 Winterberg',
@@ -567,6 +597,7 @@ export const businesses: Business[] = [
   {
     id: 'senge-gmbh',
     name: 'Senge GmbH | Heizung-Solar-Sanitär',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Kolpingstraße 19, 59955 Winterberg-Siedlinghausen',
@@ -578,6 +609,7 @@ export const businesses: Business[] = [
   {
     id: 'atmos-ecoheat',
     name: 'ATMOS EcoHeat - Effiziente Direktheizungen & Heizkörper',
+    description: '',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Allenbergstraße 26, 59955 Winterberg',
@@ -1582,7 +1614,153 @@ export const businesses: Business[] = [
     phone: '02983 1256',
     isPremium: false,
     imageFallback: 'CJ'
+  },
+  {
+    id: 'weinlaedchen-pfaelzer',
+    name: 'Weinlädchen, Pfälzer',
+    category: 'Gastronomie',
+    subcategory: 'Weinstuben',
+    description: '',
+    address: 'Hauptstraße 32, 59955 Winterberg',
+    phone: '0171 9059652',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'wineland',
+    name: 'Wineland',
+    category: 'Gastronomie',
+    subcategory: 'Weinstuben',
+    description: '',
+    address: 'Am Waltenberg 16, 59955 Winterberg',
+    phone: '02981 5089640',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'gasthof-zur-post-neuastenberg',
+    name: 'Hotel Gasthof zur Post Neuastenberg',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    additionalCategories: [{ category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }],
+    description: '',
+    address: 'Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg',
+    district: 'Neuastenberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'clemens-altastenberg',
+    name: 'Restaurant Clemens Altastenberg',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    description: '',
+    address: 'Renauweg 48, 59955 Winterberg',
+    phone: '02981 92410',
+    website: 'https://hotel-clemens.de',
+    district: 'Altastenberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'nordhang-jause',
+    name: 'Nordhang Jause Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    additionalCategories: [{ category: 'Gastronomie', subcategory: 'Skihütten' }],
+    description: 'Urige Hütte in Wintersportgebiet direkt am Skilift mit gutbürgerlicher deutscher Küche und Sonnenterrasse.',
+    address: 'In d. Renau 11, 59955 Winterberg',
+    phone: '02981 8996399',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'hotel-altastenberg',
+    name: 'Hotel Altastenberg',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Hotels',
+    description: '',
+    address: 'Astenstraße 5, 59955 Winterberg-Altastenberg', // Guessing address since not in image, can be edited later
+    district: 'Altastenberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'alm-salettl',
+    name: 'Skihütte und Schirmbar Alm Salettl',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: '',
+    address: 'Remmeswiese 10, 59955 Winterberg',
+    website: 'https://wiesenwirt.de',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'brabander-skihutte',
+    name: 'Skihütte Der Brabander',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: '',
+    address: 'Am Waltenberg 69, 59955 Winterberg',
+    phone: '02981 9320',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'quicks-skihutte',
+    name: 'Quick\'s Skihütte',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: 'Skihütte mit gutbürgerlicher Küche, Snacks, Suppen, selbstgebackenen Kuchen und großem Außenbereich.',
+    address: 'In d. Büre 42, 59955 Winterberg',
+    phone: '02981 4253833',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'rauher-busch',
+    name: 'Skihütte Rauher Busch',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: 'Gemütliche, rustikale Skihütte mit warmen und kalten deutschen Buffetspeisen sowie Bier vom Fass und Kaffee.',
+    address: 'Remmeswiese 10, 59955 Winterberg',
+    phone: '02981 3249',
+    website: 'https://wiesenwirt.de',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'bei-moppi',
+    name: 'Bei Möppi',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: '',
+    address: 'In d. Büre 32, 59955 Winterberg',
+    phone: '02981 1073',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'schirmbar-postwiese',
+    name: 'Schirmbar Postwiese',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: '',
+    address: 'Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg',
+    district: 'Neuastenberg',
+    isPremium: false,
+    status: 'approved'
   }
+
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {
