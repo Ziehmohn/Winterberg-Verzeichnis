@@ -293,6 +293,65 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               ))}
             </select>
           </div>
+          
+          <div className="md:col-span-2 mt-2">
+            <div className="flex items-center justify-between mb-2">
+              <span className={labelClass}>Weitere Kategorien (Optional)</span>
+              <button 
+                type="button" 
+                onClick={() => setFormData({ ...formData, additionalCategories: [...(formData.additionalCategories || []), { category: '', subcategory: '' }]})}
+                className="text-xs text-[#F2761B] hover:underline font-semibold"
+              >
+                + Weitere Kategorie hinzufügen
+              </button>
+            </div>
+            
+            {formData.additionalCategories?.map((ac, index) => (
+              <div key={index} className="flex flex-col md:flex-row gap-5 mb-3 p-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-[12px] relative">
+                <button type="button" onClick={() => {
+                  const newCats = [...(formData.additionalCategories || [])];
+                  newCats.splice(index, 1);
+                  setFormData({...formData, additionalCategories: newCats});
+                }} className="absolute top-2 right-2 text-gray-400 hover:text-red-500">
+                  &times;
+                </button>
+                <div className="flex-1">
+                  <select 
+                    value={ac.subcategory || ac.category} 
+                    onChange={e => {
+                      const selectedVal = e.target.value;
+                      const group = categories.find(g => g.name === selectedVal || g.subcategories.includes(selectedVal));
+                      if (group) {
+                        const newCats = [...(formData.additionalCategories || [])];
+                        newCats[index] = {
+                          category: group.name,
+                          subcategory: group.subcategories.includes(selectedVal) ? selectedVal : ''
+                        };
+                        setFormData({...formData, additionalCategories: newCats});
+                      }
+                    }} 
+                    className={inputClass}
+                  >
+                    <option value="">Kategorie wählen...</option>
+                    {categories.map(group => (
+                      <optgroup key={t(group.name)} label={t(group.name)}>
+                        {group.subcategories.length === 0 ? (
+                          <option value={t(group.name)}>{t(group.name)}</option>
+                        ) : (
+                          <>
+                            <option value={t(group.name)}>{t(group.name)} (Allgemein)</option>
+                            {group.subcategories.map(sub => (
+                              <option key={sub} value={sub}>{sub}</option>
+                            ))}
+                          </>
+                        )}
+                      </optgroup>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div>

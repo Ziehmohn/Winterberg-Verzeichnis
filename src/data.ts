@@ -29,6 +29,9 @@ export const businesses: Business[] = [
     name: 'Lingenauber',
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
     description: 'Gastrokneipe in Siedlinghausen. Bietet Sitzplätze im Freien und Hunde sind erlaubt.',
     address: 'Hochsauerlandstraße 15, 59955 Winterberg',
     district: 'Siedlinghausen',
@@ -328,6 +331,127 @@ export const businesses: Business[] = [
     subcategory: 'Restaurant',
     address: 'Sorpestraße 80, 59955 Winterberg',
     district: 'Siedlinghausen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'gruener-apfel',
+    name: 'Grüner Apfel Bistro-Pizzeria',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Inselstraße 1, 59955 Winterberg-Siedlinghausen',
+    phone: '02983 8535',
+    district: 'Siedlinghausen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'restaurant-athen',
+    name: 'Restaurant Athen',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'Hauptstraße 22, 59955 Winterberg',
+    phone: '02981 7754',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'pizzahaus-winterberg',
+    name: 'Pizzahaus Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Pizzerien',
+    address: 'Marktstraße 12, 59955 Winterberg',
+    phone: '02981 8207130',
+    website: 'https://pizzahaus-winterberg.de',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'pizzeria-dani',
+    name: 'Pizzeria Dani',
+    category: 'Gastronomie',
+    subcategory: 'Pizzerien',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    address: 'Am Waltenberg 27, 59955 Winterberg',
+    phone: '02981 908040',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'colosseum',
+    name: 'Restaurant Pizzeria Colosseum Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Pizzerien',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    address: 'Hauptstraße 7, 59955 Winterberg',
+    phone: '02981 899960',
+    website: 'https://colosseum-winterberg.de',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'pizzeria-venezia',
+    name: 'Ristorante Pizzeria Venezia',
+    category: 'Gastronomie',
+    subcategory: 'Pizzerien',
+    address: 'u. Pforte 9, 59955 Winterberg',
+    phone: '02981 8993699',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'da-salvatore',
+    name: 'Ristorante Da Salvatore',
+    category: 'Gastronomie',
+    subcategory: 'Pizzerien',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    address: 'Bahnhofstraße 12, 59955 Winterberg',
+    phone: '02981 8995225',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'markus-klauke-gmbh',
+    name: 'Markus Klauke GmbH',
+    category: 'Handwerk',
+    subcategory: 'Maler',
+    address: 'Senge-Platten-Straße 8, 59955 Winterberg',
+    phone: '02983 974390',
+    district: 'Siedlinghausen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'malerbetrieb-schnorbus',
+    name: 'Malerbetrieb Schnorbus',
+    category: 'Handwerk',
+    subcategory: 'Maler',
+    address: 'Oberstraße 12, 59955 Winterberg',
+    phone: '02981 928737',
+    district: 'Züschen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'maler-leber',
+    name: 'Maler Leber Inh. Christopher Seston - Maler Winterberg / Brilon',
+    category: 'Handwerk',
+    subcategory: 'Maler',
+    address: 'Eichendorffsiedlung 12, 59955 Winterberg',
+    phone: '02981 1273',
+    district: 'Winterberg',
     isPremium: false,
     status: 'approved'
   },

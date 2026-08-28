@@ -451,7 +451,8 @@ export default function App() {
 
   const filteredBusinesses = businesses.filter((bus) => {
     if (bus.status === 'pending') return false;
-    const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory;
+    const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
+    const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     const matchesSearch = bus.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           bus.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           bus.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -1505,7 +1506,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     if (activeAdminCategory === 'In Prüfung') {
       matchesCategory = bus.status === 'pending';
     } else if (activeAdminCategory !== 'Alle') {
-      matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory;
+      const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeAdminCategory || ac.subcategory === activeAdminCategory);
+      matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory || !!inAdditional;
     }
     
     const searchStr = adminSearchQuery.toLowerCase();

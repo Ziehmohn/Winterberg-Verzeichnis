@@ -67,6 +67,7 @@ export interface Business {
   status?: 'pending' | 'approved';
   isVerified?: boolean;
   city?: string;
+  additionalCategories?: { category: string, subcategory: string }[];
 }
 
 export interface UserProfile {

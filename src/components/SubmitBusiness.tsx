@@ -153,7 +153,55 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                 {categories.find(c => c.name === formData.category)?.subcategories.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </label>
-          ) : null}
+          ) : <div />}
+
+          {/* Weitere Kategorien */}
+          <div className="md:col-span-2 mt-2">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[14px] font-semibold">Weitere Kategorien (Optional)</span>
+              <button 
+                type="button" 
+                onClick={() => setFormData({ ...formData, additionalCategories: [...(formData.additionalCategories || []), { category: '', subcategory: '' }]})}
+                className="text-xs text-[#F2761B] hover:underline"
+              >
+                + Weitere Kategorie hinzufügen
+              </button>
+            </div>
+            
+            {formData.additionalCategories?.map((ac, index) => (
+              <div key={index} className="flex flex-col md:flex-row gap-[18px] mb-3 p-3 bg-gray-50 border border-gray-100 rounded-lg relative">
+                <button type="button" onClick={() => {
+                  const newCats = [...(formData.additionalCategories || [])];
+                  newCats.splice(index, 1);
+                  setFormData({...formData, additionalCategories: newCats});
+                }} className="absolute top-2 right-2 text-gray-400 hover:text-red-500">
+                  &times;
+                </button>
+                <div className="flex-1 grid gap-[7px]">
+                  <select value={ac.category} onChange={e => {
+                    const newCats = [...(formData.additionalCategories || [])];
+                    newCats[index] = { category: e.target.value, subcategory: '' };
+                    setFormData({...formData, additionalCategories: newCats});
+                  }} className="border border-[#E7E2DA] rounded-[8px] p-[8px_10px] text-[14px] bg-white w-full">
+                    <option value="">Hauptkategorie wählen...</option>
+                    {CATEGORY_NAMES.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+                <div className="flex-1 grid gap-[7px]">
+                  {ac.category && categories.find(c => c.name === ac.category)?.subcategories?.length ? (
+                    <select value={ac.subcategory} onChange={e => {
+                      const newCats = [...(formData.additionalCategories || [])];
+                      newCats[index] = { ...newCats[index], subcategory: e.target.value };
+                      setFormData({...formData, additionalCategories: newCats});
+                    }} className="border border-[#E7E2DA] rounded-[8px] p-[8px_10px] text-[14px] bg-white w-full">
+                      <option value="">Unterkategorie wählen...</option>
+                      {categories.find(c => c.name === ac.category)?.subcategories.map(s => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
 
           <label className="grid gap-[7px] text-[14px] font-semibold">Ortsteil
             <select required value={formData.district || ''} onChange={e => setFormData({...formData, district: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
