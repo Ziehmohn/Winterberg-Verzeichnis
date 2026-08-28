@@ -1095,7 +1095,126 @@ export const businesses: Business[] = [
     website: 'https://www.brabander.nl',
     imageFallback: 'DB',
   },
-
+  {
+    id: 'daswerk-friseure',
+    name: 'DasWERK - Die Friseure',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon in Winterberg.',
+    address: 'Hochsauerlandstraße 78b, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02983 9799788',
+    isPremium: false,
+    imageFallback: 'DW'
+  },
+  {
+    id: 'hair-anselm-winkler',
+    name: 'Hair by Anselm Winkler',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon mit Dienstleistungen wie Haarefärben, Haarstyling, Balayage, Blow-out und Dauerwellen.',
+    address: 'Wernsdorfer Str. 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1399',
+    isPremium: false,
+    imageFallback: 'HW'
+  },
+  {
+    id: 'winterberger-barber-simply-hair',
+    name: 'Winterberger Barber: Simply Hair',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Herrenfriseur in Winterberg.',
+    address: 'Am Waltenberg 50, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9255808',
+    website: 'https://winterbergerbarber.de',
+    isPremium: false,
+    imageFallback: 'SH'
+  },
+  {
+    id: 'brieden-friseur',
+    name: 'Brieden - Ihr Friseur in Winterberg',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Ihr Friseur in Winterberg. Spezialisiert auf Haarefärben und Haarstyling.',
+    address: 'Hagenstraße 8, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 413',
+    isPremium: false,
+    imageFallback: 'BF'
+  },
+  {
+    id: 'amers-style',
+    name: "Amer's Style",
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon. Dienstleistungen umfassen Haarstyling, Haarefärben und Augenbrauen zupfen.',
+    address: 'Hauptstraße 5, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9271848',
+    isPremium: false,
+    imageFallback: 'AS'
+  },
+  {
+    id: 'haarschneiderei',
+    name: 'Haarschneiderei',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon in Winterberg mit Fokus auf Haarefärben und Haarstyling.',
+    address: 'Marktstraße 24, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 899898',
+    isPremium: false,
+    imageFallback: 'HS'
+  },
+  {
+    id: 'hairfeeling-kai-padberg',
+    name: 'Hairfeeling Kai Padberg',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon im Ortsteil Hildfeld.',
+    address: 'Hildfelder Str. 37, 59955 Winterberg',
+    district: 'Hildfeld',
+    phone: '02985 1046',
+    isPremium: false,
+    imageFallback: 'KP'
+  },
+  {
+    id: 'hairlounge-by-hannah',
+    name: 'Hairlounge by Hannah',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon in Züschen.',
+    address: 'Mittelstraße 20, 59955 Winterberg',
+    district: 'Züschen',
+    isPremium: false,
+    imageFallback: 'HH'
+  },
+  {
+    id: 'friseursalon-koch',
+    name: 'Friseursalon Koch',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon im Ortsteil Züschen.',
+    address: 'Mollseifener Str. 2, 59955 Winterberg',
+    district: 'Züschen',
+    phone: '02981 6899',
+    isPremium: false,
+    imageFallback: 'FK'
+  },
+  {
+    id: 'cutja',
+    name: 'Cutja',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Friseursalon in Siedlinghausen. Spezialisiert auf Brautfrisuren, Flechtfrisuren und Hochsteckfrisuren.',
+    address: 'Negertstraße 1, 59955 Winterberg',
+    district: 'Siedlinghausen',
+    phone: '02983 1256',
+    isPremium: false,
+    imageFallback: 'CJ'
+  }
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {
