@@ -504,21 +504,67 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <div className="border-b border-orange-200/50 pb-5">
               <label className={labelClass}>Öffnungszeiten (Premium-Feature)</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
-                  <div key={day} className="flex items-center gap-2">
-                    <span className="w-24 text-sm font-medium capitalize">{day === 'monday' ? 'Montag' : day === 'tuesday' ? 'Dienstag' : day === 'wednesday' ? 'Mittwoch' : day === 'thursday' ? 'Donnerstag' : day === 'friday' ? 'Freitag' : day === 'saturday' ? 'Samstag' : 'Sonntag'}</span>
-                    <input 
-                      type="text" 
-                      value={formData.openingHours?.[day as keyof typeof formData.openingHours] || ''} 
-                      onChange={e => setFormData(prev => ({
-                        ...prev,
-                        openingHours: { ...(prev.openingHours || {}), [day]: e.target.value }
-                      }))}
-                      className={`${inputClass} py-1.5`} 
-                      placeholder="09:00 - 18:00 (oder Geschlossen)" 
-                    />
-                  </div>
-                ))}
+                {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => {
+                  const val = formData.openingHours?.[day as keyof typeof formData.openingHours] || '';
+                  const isClosed = !val || val.toLowerCase() === 'geschlossen';
+                  
+                  let start = '09:00';
+                  let end = '17:00';
+                  if (!isClosed && val.includes('-')) {
+                     const parts = val.split('-').map(p => p.trim());
+                     if (parts.length >= 2) {
+                        start = parts[0];
+                        // In case of multiple slots like '09:00 - 12:00, 13:00 - 17:00', we take just the first simple parse
+                        end = parts[1].split(',')[0].trim();
+                     }
+                  }
+
+                  return (
+                    <div key={day} className="flex flex-col gap-1.5 p-3 border border-orange-100 rounded-lg bg-orange-50/30">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">{day === 'monday' ? 'Montag' : day === 'tuesday' ? 'Dienstag' : day === 'wednesday' ? 'Mittwoch' : day === 'thursday' ? 'Donnerstag' : day === 'friday' ? 'Freitag' : day === 'saturday' ? 'Samstag' : 'Sonntag'}</span>
+                        <label className="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
+                          <input 
+                            type="checkbox" 
+                            checked={!isClosed} 
+                            onChange={e => {
+                              const checked = e.target.checked;
+                              setFormData(prev => ({
+                                ...prev,
+                                openingHours: { ...(prev.openingHours || {}), [day]: checked ? `${start} - ${end}` : 'Geschlossen' }
+                              }));
+                            }}
+                            className="rounded border-orange-300 text-orange-500 focus:ring-orange-500"
+                          />
+                          Geöffnet
+                        </label>
+                      </div>
+                      {!isClosed && (
+                        <div className="flex items-center gap-2 mt-1">
+                          <input 
+                            type="time" 
+                            value={start}
+                            onChange={e => setFormData(prev => ({
+                              ...prev,
+                              openingHours: { ...(prev.openingHours || {}), [day]: `${e.target.value} - ${end}` }
+                            }))}
+                            className={`${inputClass} py-1 px-2 text-sm text-center`}
+                          />
+                          <span className="text-gray-400 text-sm">bis</span>
+                          <input 
+                            type="time" 
+                            value={end}
+                            onChange={e => setFormData(prev => ({
+                              ...prev,
+                              openingHours: { ...(prev.openingHours || {}), [day]: `${start} - ${e.target.value}` }
+                            }))}
+                            className={`${inputClass} py-1 px-2 text-sm text-center`}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
