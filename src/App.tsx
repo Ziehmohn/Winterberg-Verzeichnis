@@ -556,15 +556,19 @@ export default function App() {
               <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Jobs</a>
               <a href={getPath('/preise')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/preise')); setIsPricingMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none' }} className="hover:text-orange-500 transition-colors">Preise</a>
-              {!isAdminMode && (
-                <button 
-                  onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
-                  className="flex items-center justify-center text-[#0F4C2E] hover:text-orange-500 transition-colors ml-2"
-                  title={currentUser ? 'Dashboard' : t("adminLogin")}
-                >
-                  <User className="w-5 h-5" />
-                </button>
-              )}
+              <button 
+                onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
+                className="flex items-center justify-center transition-colors ml-2"
+                title={currentUser ? 'Dashboard' : t("adminLogin")}
+              >
+                {currentUser ? (
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[13px] tracking-wider ${isAdminMode ? 'bg-[#0F4C2E] shadow-inner' : 'bg-[#F2761B] shadow-md hover:bg-[#D65F0C]'} transition-colors`}>
+                    {currentUser.email ? currentUser.email.substring(0, 2).toUpperCase() : 'A'}
+                  </div>
+                ) : (
+                  <User className={`w-5 h-5 ${isAdminMode ? 'text-[#F2761B]' : 'text-[#0F4C2E] hover:text-orange-500'}`} />
+                )}
+              </button>
             </nav>
 
             <button 
@@ -1189,6 +1193,29 @@ export default function App() {
             })}
           </nav>
           <div className="mt-auto p-4 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col gap-3">
+            <button 
+              onClick={() => {
+                resetToDirectory();
+                setIsAdminMode(true);
+                setIsMobileCategoriesOpen(false);
+                window.scrollTo(0, 0);
+              }}
+              className={`w-full py-4 px-4 font-bold text-base text-center flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#06301C] text-white transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:shadow'}`}
+            >
+              {currentUser ? (
+                <>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center bg-[#F2761B] text-white text-[11px]">
+                    {currentUser.email ? currentUser.email.substring(0, 2).toUpperCase() : 'A'}
+                  </div>
+                  Account
+                </>
+              ) : (
+                <>
+                  <User className="w-5 h-5" />
+                  Account Login
+                </>
+              )}
+            </button>
             <button 
               onClick={() => {
                 setIsJobsMode(true);
