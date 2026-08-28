@@ -121,10 +121,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           >
             <div className="max-w-md w-full bg-white p-8 border border-[#EDE8E0] rounded-[22px] flex flex-col items-center text-center shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
               <ShieldCheck className="w-16 h-16 text-emerald-500 mb-6" />
-              <h2 className="text-2xl font-display font-bold mb-4">{t("secureAccess")}</h2>
+              <h2 className="text-2xl font-display font-bold mb-4">Sicheren Zugriff anfordern</h2>
               <p className="mb-6 opacity-80 leading-relaxed text-[#4A544D]">
-                {t("takeControl")} <strong>{business.name}</strong>. 
-                {t("claimAccessDesc")}
+                Eintrag übernehmen für <strong>{business.name}</strong>
               </p>
               
               <div className="flex flex-col w-full gap-3">
@@ -133,10 +132,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   disabled={isLoadingCheckout}
                   className="w-full bg-[#F2761B] text-white border-none rounded-full py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50"
                 >
-                  {isLoadingCheckout ? "Lade Checkout..." : t("claimNow")}
+                  {isLoadingCheckout ? "Lade Checkout..." : "Eintrag übernehmen"}
                 </button>
-                <div className="text-center text-[12px] text-[#5F6B63] mb-1">
-                  Zahlung in Kürze bequem per Stripe.
+                <div className="text-center text-[13px] text-[#5F6B63] mb-1">
+                  <a href="/preise" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#0F4C2E]">Leistungen eines Premium-Accounts ansehen</a>
                 </div>
                 <button 
                   onClick={() => setShowClaimScreen(false)}
@@ -160,29 +159,26 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         } : undefined}
       >
         <div className="max-w-[1000px] mx-auto px-6 pt-[34px] pb-[46px]">
-          <button 
-            type="button" 
-            onClick={onBack} 
-            className="bg-white/10 border border-white/20 text-white rounded-full px-4 py-2 text-[14px] cursor-pointer inline-flex items-center gap-2 mb-[26px] hover:bg-white/20 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Zurück
-          </button>
-          
-          {!business.isPremium && (
+          <div className="flex items-center gap-3 mb-[26px]">
             <button 
-              onClick={() => {
-                if (!user) {
-                  setShowLoginScreen(true);
-                } else {
-                  setShowClaimScreen(true);
-                }
-              }} 
-              className="mt-3 bg-white/20 border border-white/20 text-white rounded-full px-4 py-2 text-[14px] cursor-pointer hover:bg-white/30 transition-colors inline-block"
+              type="button" 
+              onClick={onBack} 
+              className="bg-white/10 border border-white/20 text-white rounded-full px-4 py-2 text-[14px] cursor-pointer inline-flex items-center gap-2 hover:bg-white/20 transition-colors"
             >
-              Auf Premium upgraden
+              <ArrowLeft className="w-4 h-4" />
+              Zurück
             </button>
-          )}
+            
+            {!business.isPremium && (
+              <button 
+                disabled={true}
+                className="bg-white/10 border border-white/20 text-white/50 rounded-full px-4 py-2 text-[14px] cursor-not-allowed"
+                title="Aktuell noch nicht verfügbar"
+              >
+                Auf Premium upgraden (In Kürze)
+              </button>
+            )}
+          </div>
 
           <div className="flex gap-2 flex-wrap mb-[14px]">
             <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">{business.category}</span>
