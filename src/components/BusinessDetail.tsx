@@ -322,7 +322,16 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
 
         <aside className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
-          <div className="font-display text-[18px] font-semibold mb-1">Kontakt</div>
+          <div className="flex justify-between items-start mb-1">
+            <div className="font-display text-[18px] font-semibold mt-1">Kontakt</div>
+            {business.logoUrl && (
+              <img 
+                src={business.logoUrl} 
+                alt={`Logo von ${business.name}`} 
+                className="w-12 h-12 rounded-xl object-contain border border-[#EDE8E0] shadow-sm bg-white"
+              />
+            )}
+          </div>
           
           {business.phone && telHref && (
             <a href={telHref} className="flex items-center gap-[11px] bg-[#F2761B] text-white rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:bg-[#D65F0C] transition-colors">
