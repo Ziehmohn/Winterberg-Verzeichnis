@@ -1174,7 +1174,23 @@ export default function App() {
                       {/* Aktuelle Öffnungszeiten */}
                       <div className="mt-10 border-t border-[#F3F0EA] pt-8">
                         <h2 className="font-display text-[22px] font-bold mb-[18px]">
-                          Welche {activeCategory !== 'Alle' ? activeCategory : 'Unternehmen'} {activeLocation !== 'Alle' ? 'in ' + activeLocation : 'in Winterberg und Umgebung'} haben aktuell geöffnet?
+                          {(() => {
+                            const plurals: Record<string, string> = {
+                              'Heizungstechnik': 'Heizungstechniker',
+                              'Friseur': 'Friseure',
+                              'Restaurant': 'Restaurants',
+                              'Supermarkt': 'Supermärkte',
+                              'Bekleidung': 'Bekleidungsgeschäfte',
+                              'Bürobedarf': 'Bürobedarfsgeschäfte',
+                              'Dienstleistungen': 'Dienstleister',
+                              'Einzelhandel': 'Einzelhandelsgeschäfte',
+                              'Handwerk': 'Handwerksbetriebe',
+                              'Gastronomie': 'Gastronomiebetriebe',
+                            };
+                            const catName = activeCategory !== 'Alle' ? (plurals[activeCategory] || activeCategory) : 'Unternehmen';
+                            const locName = activeLocation !== 'Alle' ? 'in ' + activeLocation : 'in Winterberg und Umgebung';
+                            return `Welche ${catName} ${locName} haben aktuell geöffnet?`;
+                          })()}
                         </h2>
                         {(() => {
                           const currentlyOpenBusinesses = filteredBusinesses.filter(bus => bus.openingHours && isOpenNow(bus.openingHours, t));
@@ -1207,7 +1223,22 @@ export default function App() {
                             </div>
                           ) : (
                             <div className="text-[15px] text-[#5F6B63] mb-6">
-                              Aktuell sind leider keine {activeCategory !== 'Alle' ? activeCategory : 'Unternehmen'} geöffnet oder es wurden noch keine Öffnungszeiten hinterlegt.
+                              {(() => {
+                                const plurals: Record<string, string> = {
+                                  'Heizungstechnik': 'Heizungstechniker',
+                                  'Friseur': 'Friseure',
+                                  'Restaurant': 'Restaurants',
+                                  'Supermarkt': 'Supermärkte',
+                                  'Bekleidung': 'Bekleidungsgeschäfte',
+                                  'Bürobedarf': 'Bürobedarfsgeschäfte',
+                                  'Dienstleistungen': 'Dienstleister',
+                                  'Einzelhandel': 'Einzelhandelsgeschäfte',
+                                  'Handwerk': 'Handwerksbetriebe',
+                                  'Gastronomie': 'Gastronomiebetriebe',
+                                };
+                                const catName = activeCategory !== 'Alle' ? (plurals[activeCategory] || activeCategory) : 'Unternehmen';
+                                return `Aktuell sind leider keine ${catName} geöffnet oder es wurden noch keine Öffnungszeiten hinterlegt.`;
+                              })()}
                             </div>
                           );
                         })()}
