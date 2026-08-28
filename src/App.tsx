@@ -332,7 +332,7 @@ export default function App() {
   const [reviewsEnabled, setReviewsEnabled] = useState(localStorage.getItem('premium_reviews_enabled') === 'true');
   const [token, setToken] = useState<string | null>(localStorage.getItem('admin_token'));
   const [seoSettings, setSeoSettings] = useState<SeoSettings>({
-    title: 'Winterberger Unternehmen',
+    title: 'Das Winterberg Verzeichnis',
     description: 'Das umfassende Verzeichnis für alle Unternehmen, Dienstleister, Handwerker und Freizeiteinrichtungen in Winterberg und den umliegenden Ortsteilen.',
     baseUrl: 'https://winterberg.sichtbar-online.com',
     googleSiteVerification: 'egCnwQfOIztQ10Cv0RUn3psnTm0tyaOUmOrGdpv2Z4c'
@@ -344,7 +344,13 @@ export default function App() {
     const savedSeo = localStorage.getItem('seoSettings');
     if (savedSeo) {
       try {
-        setSeoSettings(JSON.parse(savedSeo));
+        const parsed = JSON.parse(savedSeo);
+        // Reset old incorrect titles that include personal/agency names
+        if (parsed.title && (parsed.title.toLowerCase().includes('simon') || parsed.title.toLowerCase().includes('sichtbar'))) {
+          parsed.title = 'Das Winterberg Verzeichnis';
+          localStorage.setItem('seoSettings', JSON.stringify(parsed));
+        }
+        setSeoSettings(parsed);
       } catch (e) {}
     }
   }, []);
