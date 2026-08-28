@@ -234,6 +234,39 @@ export const businesses: Business[] = [
     status: 'approved'
   },
   {
+    id: 'mollseifer-hof',
+    name: 'Mollseifer Hof Inh. Volker Geier',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    address: 'In d. Trift 1, 59955 Winterberg-Mollseifen',
+    phone: '02981 2414',
+    district: 'Mollseifen',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'eickmann-bau',
+    name: 'Eickmann Bauunternehmung GmbH',
+    category: 'Handwerk',
+    subcategory: 'Bauunternehmen',
+    address: 'Am Hagenblech 63, 59955 Winterberg',
+    phone: '02981 92700',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'brinkmann-bau',
+    name: 'Brinkmann GmbH & Co. KG',
+    category: 'Handwerk',
+    subcategory: 'Bauunternehmen',
+    address: 'Remmeswiese 8, 59955 Winterberg',
+    phone: '02981 1553',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
     id: 'hermann-josef-kiemen',
     name: 'Hermann Josef Kiemen',
     category: 'Handwerk',
