@@ -24,6 +24,41 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const [showClaimScreen, setShowClaimScreen] = useState(false);
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
+  
+  const [isReportingError, setIsReportingError] = useState(false);
+  const [errorReportText, setErrorReportText] = useState('');
+  const [reportSuccess, setReportSuccess] = useState(false);
+  const [isSubmittingReport, setIsSubmittingReport] = useState(false);
+
+  const handleReportError = async () => {
+    if (!errorReportText.trim()) return;
+    setIsSubmittingReport(true);
+    try {
+      const res = await fetch('/api/report-error', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessId: business.id,
+          businessName: business.name,
+          message: errorReportText
+        })
+      });
+      if (res.ok) {
+        setReportSuccess(true);
+        setTimeout(() => {
+          setIsReportingError(false);
+          setReportSuccess(false);
+          setErrorReportText('');
+        }, 3000);
+      } else {
+        alert("Fehler beim Senden. Bitte später versuchen.");
+      }
+    } catch (e) {
+      alert("Ein Fehler ist aufgetreten.");
+    } finally {
+      setIsSubmittingReport(false);
+    }
+  };
 
   const handleClaim = async () => {
     setIsLoadingCheckout(true);
@@ -327,6 +362,49 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </button>
             </div>
           )}
+
+          <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
+            {!isReportingError && !reportSuccess && (
+              <button 
+                onClick={() => setIsReportingError(true)}
+                className="w-full bg-transparent border-none text-[#5F6B63] hover:text-[#0F4C2E] underline text-[13px] cursor-pointer text-center"
+              >
+                Fehler gefunden?
+              </button>
+            )}
+            
+            {isReportingError && (
+              <div className="flex flex-col gap-2">
+                <textarea
+                  value={errorReportText}
+                  onChange={(e) => setErrorReportText(e.target.value)}
+                  placeholder="Was ist nicht korrekt?"
+                  className="w-full border border-[#E7E2DA] rounded-[12px] p-3 text-[13px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] min-h-[80px]"
+                />
+                <div className="flex gap-2">
+                  <button 
+                    onClick={() => { setIsReportingError(false); setErrorReportText(''); }}
+                    className="flex-1 bg-white border border-[#E7E2DA] rounded-[10px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#FAF8F5]"
+                  >
+                    Abbrechen
+                  </button>
+                  <button 
+                    onClick={handleReportError}
+                    disabled={isSubmittingReport || !errorReportText.trim()}
+                    className="flex-1 bg-[#0F4C2E] text-white border-none rounded-[10px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#06301C] disabled:opacity-50"
+                  >
+                    {isSubmittingReport ? 'Sendet...' : 'Senden'}
+                  </button>
+                </div>
+              </div>
+            )}
+            
+            {reportSuccess && (
+              <div className="text-center text-emerald-600 text-[13px] font-semibold py-2">
+                Vielen Dank! Wir prüfen das.
+              </div>
+            )}
+          </div>
         </aside>
       </div>
 
