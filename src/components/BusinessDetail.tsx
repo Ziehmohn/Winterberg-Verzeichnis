@@ -7,6 +7,7 @@ import { isOpenNow } from '../utils';
 import ReviewForm from './ReviewForm';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
+import BusinessCategoryIcon from './BusinessCategoryIcon';
 
 interface BusinessDetailProps {
   business: Business;
@@ -336,11 +337,20 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         <aside className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
           <div className="flex justify-between items-start mb-1">
             <div className="font-display text-[18px] font-semibold mt-1">Kontakt</div>
-            {business.logoUrl && (
+            {business.logoUrl ? (
               <img 
                 src={business.logoUrl} 
                 alt={`Logo von ${business.name}`} 
                 className="w-12 h-12 rounded-md object-contain border border-[#EDE8E0] shadow-sm bg-white"
+              />
+            ) : (
+              <BusinessCategoryIcon 
+                category={business.category} 
+                subcategory={business.subcategory} 
+                name={business.name} 
+                isPremium={business.isPremium} 
+                size="lg"
+                className="w-12 h-12"
               />
             )}
           </div>
@@ -440,9 +450,17 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 window.location.href = url;
               }} className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
                 <div className="flex items-center gap-[12px]">
-                  <div className="w-[42px] h-[42px] rounded-md bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[14px] shrink-0">
-                    {b.name.charAt(0)}
-                  </div>
+                  {b.logoUrl ? (
+                    <img src={b.logoUrl} alt={b.name} className="w-[42px] h-[42px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
+                  ) : (
+                    <BusinessCategoryIcon 
+                      category={b.category} 
+                      subcategory={b.subcategory} 
+                      name={b.name} 
+                      isPremium={b.isPremium} 
+                      className="w-[42px] h-[42px]"
+                    />
+                  )}
                   <div>
                     <div className="font-display text-[16.5px] font-semibold">{b.name}</div>
                     <div className="text-[13px] text-[#5F6B63]">{b.district || 'Winterberg'}</div>

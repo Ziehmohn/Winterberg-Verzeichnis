@@ -6,6 +6,7 @@ import { ThemeKey, CategoryGroup, Business, SeoSettings, AdBanner } from './type
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
+import BusinessCategoryIcon from './components/BusinessCategoryIcon';
 import { isOpenNow } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
@@ -1141,9 +1142,17 @@ export default function App() {
                           className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer flex flex-col gap-[12px] shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
                         >
                           <div className="flex items-start gap-[13px]">
-                            <div className="w-[44px] h-[44px] rounded-md bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[15px] shrink-0">
-                              {b.name.charAt(0)}
-                            </div>
+                            {b.logoUrl ? (
+                              <img src={b.logoUrl} alt={b.name} className="w-[44px] h-[44px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
+                            ) : (
+                              <BusinessCategoryIcon 
+                                category={b.category} 
+                                subcategory={b.subcategory} 
+                                name={b.name} 
+                                isPremium={b.isPremium} 
+                                className="w-[44px] h-[44px]"
+                              />
+                            )}
                             <div className="flex-1 min-w-0">
                               <div className="font-display text-[18px] font-semibold truncate leading-[1.25]">{b.name}</div>
                               <div className="text-[13px] text-[#5F6B63] mt-[3px]">{b.subcategory || 'Andere'} · {b.district || 'Winterberg'}</div>
@@ -1398,9 +1407,14 @@ export default function App() {
                           {bus.logoUrl ? (
                             <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
                           ) : (
-                            <div className={`w-[48px] h-[48px] rounded-md flex items-center justify-center font-display font-bold text-[16px] shrink-0 ${bus.isPremium ? 'bg-[#F2761B] text-white' : 'bg-[#FAF8F5] text-[#F2761B]'}`}>
-                              {bus.name.split(' ').filter(Boolean).map(n => n[0]).slice(0, 2).join('').toUpperCase() || bus.name.substring(0, 2).toUpperCase()}
-                            </div>
+                            <BusinessCategoryIcon 
+                              category={bus.category} 
+                              subcategory={bus.subcategory} 
+                              name={bus.name} 
+                              isPremium={bus.isPremium} 
+                              size="lg"
+                              className="w-[48px] h-[48px]"
+                            />
                           )}
                           <div>
                             <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
