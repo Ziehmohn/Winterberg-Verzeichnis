@@ -209,7 +209,22 @@ export const translations: Record<Lang, Record<string, string>> = {
     "reviewWidget": "Bewertungs-Widget",
     "trustBadge": "Trust-Siegel für eigene Website",
     "embedWidget": "Siegel einbinden",
-    "widgetGenerator": "Widget-Generator"
+    "widgetGenerator": "Widget-Generator",
+    "allCompanies": "Alle Unternehmen",
+    "allTowns": "Alle Ortsteile",
+    "popularSearches": "Beliebte Suchbegriffe",
+    "searchResultsFor": "Suchergebnisse für",
+    "foundInServices": "in Angeboten, Leistungen & Namen gefunden",
+    "resetSearch": "Suche zurücksetzen",
+    "language": "Sprache",
+    "searchPlaceholderHero": "Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)...",
+    "heroSubtitle": "Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und Umgebung.",
+    "heroAllDistricts": "Für die Kernstadt und alle 14 Ortsteile",
+    "heroText1": "Handwerk, Gastronomie, Einzelhandel, Dienstleistungen, Freizeit und Unterkünfte — aus der Kernstadt und jedem Ortsteil.",
+    "heroText2": "Finde lokale Anbieter in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld und Altenfeld.",
+    "switchLanguage": "Sprache wechseln",
+    "foundService": "Gefundene Leistung",
+    "listedIn": "Gelistet in"
   },
   nl: {
     "searchPlaceholder": "Zoek naar namen, aanbiedingen of trefwoorden...",
@@ -417,7 +432,22 @@ export const translations: Record<Lang, Record<string, string>> = {
     "reviewWidget": "Beoordelingswidget",
     "trustBadge": "Vertrouwenszegel voor eigen website",
     "embedWidget": "Widget insluiten",
-    "widgetGenerator": "Widget Generator"
+    "widgetGenerator": "Widget Generator",
+    "allCompanies": "Alle bedrijven",
+    "allTowns": "Alle dorpen & wijken",
+    "popularSearches": "Populaire zoektermen",
+    "searchResultsFor": "Zoekresultaten voor",
+    "foundInServices": "gevonden in diensten, producten & namen",
+    "resetSearch": "Zoekopdracht wissen",
+    "language": "Taal",
+    "searchPlaceholderHero": "Zoek bedrijven, producten of diensten (bijv. schoenen, bakker, ski)...",
+    "heroSubtitle": "De grote gids voor alle bedrijven, vakmensen en dienstverleners in Winterberg en omgeving.",
+    "heroAllDistricts": "Voor de stadskern en alle 14 dorpen",
+    "heroText1": "Ambacht, horeca, detailhandel, dienstverlening, recreatie en accommodaties — uit het centrum en alle dorpen.",
+    "heroText2": "Vind lokale aanbieders in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld en Altenfeld.",
+    "switchLanguage": "Taal wijzigen",
+    "foundService": "Gevonden dienst",
+    "listedIn": "Vermeld in"
   }
 };
 

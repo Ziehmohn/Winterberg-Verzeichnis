@@ -19,6 +19,16 @@ import AdInquiryModal from './components/AdInquiryModal';
 import AdminAdsManager from './components/AdminAdsManager';
 import ReviewWidget, { WidgetLayout, WidgetTheme } from './components/ReviewWidget';
 import WidgetGeneratorModal from './components/WidgetGeneratorModal';
+import {
+  RouteState,
+  findCategoryFromSlug,
+  findSubcategoryFromSlug,
+  buildLocalizedUrl,
+  getAlternateUrls,
+  getCategorySlug,
+  getSubcategorySlug,
+  STATIC_PAGE_SLUGS
+} from './utils/routes';
 
 const initialAds: AdBanner[] = [
   {
@@ -162,11 +172,13 @@ export default function App() {
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
     const pathParts = path.split('/').filter(Boolean);
-    if (pathParts[0] === 'nl') { pathParts.shift(); }
+    if (pathParts[0] === 'nl') {
+      pathParts.shift();
+    }
     
     if (pathParts[0]) {
-      const decodedPart1 = decodeURIComponent(pathParts[0]);
-      if (decodedPart1.toLowerCase() === 'embed' || decodedPart1.toLowerCase() === 'widget') {
+      const decodedPart1 = decodeURIComponent(pathParts[0]).toLowerCase();
+      if (decodedPart1 === 'embed' || decodedPart1 === 'widget') {
         initialEmbedMode = true;
         let busId = '';
         if (pathParts[1] && (pathParts[1].toLowerCase() === 'reviews' || pathParts[1].toLowerCase() === 'badge')) {
@@ -186,43 +198,45 @@ export default function App() {
           initialEmbedTheme = th;
         }
         initialEmbedWhitelabel = params.get('whitelabel') === '1' || params.get('whitelabel') === 'true';
-      } else if (decodedPart1.toLowerCase() === 'news') {
+      } else if (decodedPart1 === 'news' || decodedPart1 === 'nieuws') {
         initialNewsMode = true;
-        if (pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen') {
+        if (pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen' || decodeURIComponent(pathParts[1]).toLowerCase() === 'indienen')) {
           initialNewsSubmitMode = true;
         } else if (pathParts[1]) {
           initialNewsId = decodeURIComponent(pathParts[1]);
         }
-      } else if (decodedPart1.toLowerCase() === 'alle-unternehmen') {
+      } else if (decodedPart1 === 'alle-unternehmen' || decodedPart1 === 'alle-bedrijven') {
         initialAllMode = true;
-      } else if (decodedPart1.toLowerCase() === 'stellenangebote' || decodedPart1.toLowerCase() === 'jobs') {
+      } else if (decodedPart1 === 'stellenangebote' || decodedPart1 === 'jobs' || decodedPart1 === 'vacatures') {
         initialJobsMode = true;
         if (pathParts[1]) {
           initialJobsCategory = decodeURIComponent(pathParts[1]);
         }
-      } else if (decodedPart1.toLowerCase() === 'faq' || decodedPart1.toLowerCase() === 'faqs' || decodedPart1.toLowerCase() === 'winterberg-faq') {
+      } else if (decodedPart1 === 'faq' || decodedPart1 === 'faqs' || decodedPart1 === 'veelgestelde-vragen' || decodedPart1 === 'winterberg-faq') {
         initialFaqMode = true;
-      } else if (decodedPart1.toLowerCase() === 'impressum') {
+      } else if (decodedPart1 === 'impressum' || decodedPart1 === 'colofon') {
         initialImpressumMode = true;
-      } else if (decodedPart1.toLowerCase() === 'datenschutz') {
+      } else if (decodedPart1 === 'datenschutz' || decodedPart1 === 'privacy') {
         initialDatenschutzMode = true;
-      } else if (decodedPart1.toLowerCase() === 'agb') {
+      } else if (decodedPart1 === 'agb' || decodedPart1 === 'algemene-voorwaarden') {
         initialAGBMode = true;
-      } else if (decodedPart1.toLowerCase() === 'preise' || decodedPart1.toLowerCase() === 'pricing') {
+      } else if (decodedPart1 === 'preise' || decodedPart1 === 'pricing' || decodedPart1 === 'prijzen') {
         initialPricingMode = true;
-      } else if (decodedPart1.toLowerCase() === 'eintragen' || decodedPart1.toLowerCase() === 'unternehmen-eintragen') {
+      } else if (decodedPart1 === 'eintragen' || decodedPart1 === 'unternehmen-eintragen' || decodedPart1 === 'bedrijf-aanmelden') {
         initialSubmitMode = true;
       } else {
-        const catGroup = categories.find(c => c.name.toLowerCase() === decodedPart1.toLowerCase());
+        const catName = findCategoryFromSlug(decodedPart1) || categories.find(c => c.name.toLowerCase() === decodedPart1)?.name;
         
-        if (catGroup) {
-          defaultCategory = catGroup.name;
+        if (catName) {
+          defaultCategory = catName;
+          const catGroup = categories.find(c => c.name === catName);
+          
           if (pathParts[1]) {
             const decodedPart2 = decodeURIComponent(pathParts[1]);
-            const subCat = catGroup.subcategories.find(s => s.toLowerCase() === decodedPart2.toLowerCase());
+            const subName = findSubcategoryFromSlug(decodedPart2) || catGroup?.subcategories.find(s => s.toLowerCase() === decodedPart2.toLowerCase());
             
-            if (subCat) {
-              defaultCategory = subCat;
+            if (subName) {
+              defaultCategory = subName;
               if (pathParts[2]) {
                 const decodedPart3 = decodeURIComponent(pathParts[2]);
                 const business = initialBusinesses.find(b => b.name.replace(/\s+/g, '-').toLowerCase() === decodedPart3.toLowerCase());
@@ -235,7 +249,7 @@ export default function App() {
               }
             } else {
               // maybe business?
-              const business = initialBusinesses.find(b => b.name.replace(/\s+/g, '-').toLowerCase() === decodedPart2.toLowerCase() && b.category === catGroup.name);
+              const business = initialBusinesses.find(b => b.name.replace(/\s+/g, '-').toLowerCase() === decodedPart2.toLowerCase());
               if (business) {
                 defaultSearchQuery = business.name;
                 initialSelectedBusiness = business;
@@ -301,10 +315,76 @@ export default function App() {
       setIsMegaMenuOpen(false);
     }, 180);
   };
+
+  const getCurrentRouteState = (): RouteState => {
+    if (selectedBusiness) {
+      return {
+        view: 'business',
+        category: selectedBusiness.category,
+        subcategory: selectedBusiness.subcategory,
+        businessSlug: selectedBusiness.name.replace(/\s+/g, '-').toLowerCase()
+      };
+    }
+    if (isJobsMode) return { view: 'jobs', jobsCategory: jobsCategory || undefined };
+    if (isNewsSubmitMode) return { view: 'news-submit' };
+    if (newsId) return { view: 'news-detail', newsSlug: newsId };
+    if (isNewsMode) return { view: 'news' };
+    if (isFaqMode) return { view: 'faq' };
+    if (isSubmitMode) return { view: 'submit' };
+    if (isPricingMode) return { view: 'pricing' };
+    if (isImpressumMode) return { view: 'impressum' };
+    if (isDatenschutzMode) return { view: 'datenschutz' };
+    if (isAGBMode) return { view: 'agb' };
+    if (isAllMode) return { view: 'all', location: activeLocation };
+    if (activeCategory !== 'Alle') {
+      const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
+      if (parentCat) {
+        return { view: 'category', category: parentCat.name, subcategory: activeCategory };
+      }
+      return { view: 'category', category: activeCategory };
+    }
+    return { view: 'home' };
+  };
+
+  const switchLanguage = (newLang: 'de' | 'nl') => {
+    if (newLang === lang) return;
+    setLang(newLang);
+    const state = getCurrentRouteState();
+    const newUrl = buildLocalizedUrl(state, newLang);
+    window.history.pushState(null, '', newUrl);
+  };
   
   const getPath = (p: string) => {
+    if (!p || p === '/') return buildLocalizedUrl({ view: 'home' }, lang);
+    if (p === '/alle-unternehmen' || p === '/alle-bedrijven') return buildLocalizedUrl({ view: 'all' }, lang);
+    if (p === '/jobs' || p === '/vacatures') return buildLocalizedUrl({ view: 'jobs' }, lang);
+    if (p === '/news' || p === '/nieuws') return buildLocalizedUrl({ view: 'news' }, lang);
+    if (p === '/faq' || p === '/faqs' || p === '/veelgestelde-vragen') return buildLocalizedUrl({ view: 'faq' }, lang);
+    if (p === '/eintragen' || p === '/bedrijf-aanmelden') return buildLocalizedUrl({ view: 'submit' }, lang);
+    if (p === '/preise' || p === '/prijzen') return buildLocalizedUrl({ view: 'pricing' }, lang);
+    if (p === '/impressum' || p === '/colofon') return buildLocalizedUrl({ view: 'impressum' }, lang);
+    if (p === '/datenschutz' || p === '/privacy') return buildLocalizedUrl({ view: 'datenschutz' }, lang);
+    if (p === '/agb' || p === '/algemene-voorwaarden') return buildLocalizedUrl({ view: 'agb' }, lang);
+
+    const clean = p.startsWith('/') ? p.slice(1) : p;
+    const parts = clean.split('/').filter(Boolean);
+    if (parts.length === 1) {
+      const cat = findCategoryFromSlug(parts[0]) || parts[0];
+      return buildLocalizedUrl({ view: 'category', category: cat }, lang);
+    }
+    if (parts.length === 2) {
+      const cat = findCategoryFromSlug(parts[0]) || parts[0];
+      const sub = findSubcategoryFromSlug(parts[1]) || parts[1];
+      return buildLocalizedUrl({ view: 'category', category: cat, subcategory: sub }, lang);
+    }
+    if (parts.length === 3) {
+      const cat = findCategoryFromSlug(parts[0]) || parts[0];
+      const sub = findSubcategoryFromSlug(parts[1]) || parts[1];
+      const bSlug = parts[2];
+      return buildLocalizedUrl({ view: 'business', category: cat, subcategory: sub, businessSlug: bSlug }, lang);
+    }
+
     const base = lang === 'nl' ? '/nl' : '';
-    if (!p || p === '/') return base || '/';
     if (p.startsWith('/')) return base + p;
     return base + '/' + p;
   };
@@ -538,35 +618,55 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    let currentTitle = seoSettings.title;
-    let currentDesc = seoSettings.description;
+    const isNl = lang === 'nl';
+    const baseTitle = isNl ? 'De Winterberg Bedrijvengids' : (seoSettings.title || 'Das Winterberg Verzeichnis');
+    let currentTitle = baseTitle;
+    let currentDesc = isNl 
+      ? 'De grote gids voor alle bedrijven, vakmensen, horeca en dienstverleners in Winterberg en omgeving.'
+      : seoSettings.description;
 
-    const matchedBusiness = businesses.find(b => b.name.toLowerCase() === searchQuery.toLowerCase());
+    const matchedBusiness = businesses.find(b => b.name.toLowerCase() === searchQuery.toLowerCase()) || selectedBusiness;
     
     if (isNewsMode) {
       if (newsId) {
-        currentTitle = `Aktuelles aus Winterberg | ${seoSettings.title}`;
-        currentDesc = `Aktuelle Nachrichten, Wirtschafts-Updates und Neuigkeiten aus Winterberg.`;
+        currentTitle = isNl ? `Nieuws uit Winterberg | ${baseTitle}` : `Aktuelles aus Winterberg | ${baseTitle}`;
+        currentDesc = isNl ? `Actueel nieuws en economische updates uit Winterberg en de dorpen.` : `Aktuelle Nachrichten, Wirtschafts-Updates und Neuigkeiten aus Winterberg.`;
       } else {
-        currentTitle = `Aktuelles aus Winterberg - News & Meldungen | ${seoSettings.title}`;
-        currentDesc = `Die neuesten Nachrichten, Angebote und Ankündigungen aus Winterberg und den Ortsteilen.`;
+        currentTitle = isNl ? `Nieuws & Berichten uit Winterberg | ${baseTitle}` : `Aktuelles aus Winterberg - News & Meldungen | ${baseTitle}`;
+        currentDesc = isNl ? `Het laatste nieuws, aanbiedingen en mededelingen uit Winterberg en alle 14 dorpen.` : `Die neuesten Nachrichten, Angebote und Ankündigungen aus Winterberg und den Ortsteilen.`;
       }
     } else if (isJobsMode) {
       if (jobsCategory) {
-        currentTitle = `Offene Stellen ${jobsCategory} in Winterberg | ${seoSettings.title}`;
-        currentDesc = `Finden Sie aktuelle Jobangebote und offene Stellen für ${jobsCategory} in Winterberg und Umgebung. Jetzt bewerben!`;
+        currentTitle = isNl ? `Vacatures ${jobsCategory} in Winterberg | ${baseTitle}` : `Offene Stellen ${jobsCategory} in Winterberg | ${baseTitle}`;
+        currentDesc = isNl ? `Bekijk actuele vacatures voor ${jobsCategory} in Winterberg en omgeving. Solliciteer direct!` : `Finden Sie aktuelle Jobangebote und offene Stellen für ${jobsCategory} in Winterberg und Umgebung. Jetzt bewerben!`;
       } else {
-        currentTitle = `Offene Stellen in Winterberg - Alle Jobangebote | ${seoSettings.title}`;
-        currentDesc = `Übersicht aller offenen Stellen und Jobs bei Unternehmen in Winterberg und den Ortsteilen. Starten Sie Ihre Karriere im Sauerland.`;
+        currentTitle = isNl ? `Vacatures in Winterberg - Alle banen | ${baseTitle}` : `Offene Stellen in Winterberg - Alle Jobangebote | ${baseTitle}`;
+        currentDesc = isNl ? `Overzicht van alle openstaande vacatures en banen bij bedrijven in Winterberg en omliggende dorpen.` : `Übersicht aller offenen Stellen und Jobs bei Unternehmen in Winterberg und den Ortsteilen. Starten Sie Ihre Karriere im Sauerland.`;
       }
+    } else if (isFaqMode) {
+      currentTitle = isNl ? `Veelgestelde Vragen (FAQ) | ${baseTitle}` : `Häufige Fragen (FAQ) | ${baseTitle}`;
+      currentDesc = isNl ? `Antwoorden op veelgestelde vragen over bedrijven, openingstijden en inschrijvingen in Winterberg.` : `Antworten auf häufig gestellte Fragen zu Unternehmen, Öffnungszeiten und Einträgen in Winterberg.`;
+    } else if (isPricingMode) {
+      currentTitle = isNl ? `Pakketten & Prijzen voor bedrijven | ${baseTitle}` : `Pakete & Preise für Unternehmen | ${baseTitle}`;
+      currentDesc = isNl ? `Kies het passende pakket voor uw bedrijf in het Winterberg-overzicht.` : `Wählen Sie das passende Paket für Ihr Unternehmen im Winterberg-Verzeichnis.`;
+    } else if (isSubmitMode) {
+      currentTitle = isNl ? `Bedrijf aanmelden | ${baseTitle}` : `Unternehmen eintragen | ${baseTitle}`;
+      currentDesc = isNl ? `Meld uw bedrijf gratis aan in de officiële Winterberg gids.` : `Tragen Sie Ihr Unternehmen kostenlos im offiziellen Winterberg-Verzeichnis ein.`;
     } else if (matchedBusiness) {
       const city = matchedBusiness.district || 'Winterberg';
-      currentTitle = `${matchedBusiness.name} in ${city} | ${seoSettings.title}`;
+      currentTitle = `${matchedBusiness.name} in ${city} | ${baseTitle}`;
       const shortDesc = matchedBusiness.description ? matchedBusiness.description.substring(0, 100).trim() + '...' : '';
-      currentDesc = `Alle Infos zu ${matchedBusiness.name} in ${city}. ✓ Kontaktdaten ✓ Öffnungszeiten ✓ Adresse. ${shortDesc}`;
+      currentDesc = isNl 
+        ? `Alle informatie over ${matchedBusiness.name} in ${city}. ✓ Contactgegevens ✓ Openingstijden ✓ Adres. ${shortDesc}`
+        : `Alle Infos zu ${matchedBusiness.name} in ${city}. ✓ Kontaktdaten ✓ Öffnungszeiten ✓ Adresse. ${shortDesc}`;
     } else if (activeCategory !== 'Alle') {
-      currentTitle = `${activeCategory} in Winterberg - Alle Unternehmen im Überblick | ${seoSettings.title}`;
-      currentDesc = `Finden Sie schnell und einfach Unternehmen aus dem Bereich ${activeCategory} in Winterberg und den Ortsteilen. Übersicht aller Adressen, Kontaktinfos und Öffnungszeiten.`;
+      const catLabel = t(activeCategory) || activeCategory;
+      currentTitle = isNl 
+        ? `${catLabel} in Winterberg - Alle bedrijven in één oogopslag | ${baseTitle}`
+        : `${activeCategory} in Winterberg - Alle Unternehmen im Überblick | ${baseTitle}`;
+      currentDesc = isNl
+        ? `Vind snel en eenvoudig bedrijven in de categorie ${catLabel} in Winterberg en de dorpen. Overzicht van adressen, contactgegevens en openingstijden.`
+        : `Finden Sie schnell und einfach Unternehmen aus dem Bereich ${activeCategory} in Winterberg und den Ortsteilen. Übersicht aller Adressen, Kontaktinfos und Öffnungszeiten.`;
     }
 
     document.title = currentTitle;
@@ -592,48 +692,49 @@ export default function App() {
       }
     }
 
-    // Canonical link
-    let canonicalUrl = seoSettings.baseUrl || 'https://www.winterberg-verzeichnis.de';
-    if (isNewsMode) {
-      if (newsId) {
-        canonicalUrl = `${canonicalUrl}/news/${encodeURIComponent(newsId)}`;
-      } else {
-        canonicalUrl = `${canonicalUrl}/news`;
-      }
-    } else if (isJobsMode) {
-      if (jobsCategory) {
-        canonicalUrl = `${canonicalUrl}/jobs/${encodeURIComponent(jobsCategory)}`;
-      } else {
-        canonicalUrl = `${canonicalUrl}/jobs`;
-      }
-    } else if (matchedBusiness) {
-      canonicalUrl = `${canonicalUrl}/${encodeURIComponent(matchedBusiness.category)}${matchedBusiness.subcategory ? `/${encodeURIComponent(matchedBusiness.subcategory)}` : ''}/${encodeURIComponent(matchedBusiness.name.replace(/\s+/g, '-').toLowerCase())}`;
-    } else if (activeCategory !== 'Alle') {
-      let isSub = false;
-      let parentCat = '';
-      categories.forEach(c => {
-        if (c.subcategories.includes(activeCategory)) {
-          isSub = true;
-          parentCat = c.name;
-        }
-      });
-      if (isSub) {
-        canonicalUrl = `${canonicalUrl}/${encodeURIComponent(parentCat)}/${encodeURIComponent(activeCategory)}`;
-      } else {
-        canonicalUrl = `${canonicalUrl}/${encodeURIComponent(activeCategory)}`;
-      }
-    }
+    // Dynamic HREFLANG SEO Tags & Canonical URL
+    document.documentElement.lang = lang;
+    const state = getCurrentRouteState();
+    const domain = typeof window !== 'undefined' ? window.location.origin : 'https://www.winterberg-verzeichnis.de';
+    const altUrls = getAlternateUrls(state, domain);
 
+    const head = document.head;
+    const existingHreflangs = head.querySelectorAll('link[rel="alternate"][hreflang]');
+    existingHreflangs.forEach(el => el.remove());
+
+    const addAlt = (hLang: string, href: string) => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = hLang;
+      link.href = href;
+      head.appendChild(link);
+    };
+
+    addAlt('de', altUrls.de);
+    addAlt('nl', altUrls.nl);
+    addAlt('x-default', altUrls.xDefault);
+
+    // Canonical link
+    const currentCanonicalUrl = lang === 'nl' ? altUrls.nl : altUrls.de;
     let linkCanonical = document.querySelector('link[rel="canonical"]');
     if (linkCanonical) {
-      linkCanonical.setAttribute('href', canonicalUrl);
+      linkCanonical.setAttribute('href', currentCanonicalUrl);
     } else {
       linkCanonical = document.createElement('link');
       linkCanonical.setAttribute('rel', 'canonical');
-      linkCanonical.setAttribute('href', canonicalUrl);
-      document.head.appendChild(linkCanonical);
+      linkCanonical.setAttribute('href', currentCanonicalUrl);
+      head.appendChild(linkCanonical);
     }
-  }, [seoSettings, activeCategory, searchQuery, businesses, isJobsMode, jobsCategory]);
+
+    // OpenGraph locale
+    let ogLocale = head.querySelector('meta[property="og:locale"]');
+    if (!ogLocale) {
+      ogLocale = document.createElement('meta');
+      ogLocale.setAttribute('property', 'og:locale');
+      head.appendChild(ogLocale);
+    }
+    ogLocale.setAttribute('content', lang === 'nl' ? 'nl_NL' : 'de_DE');
+  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isAllMode]);
 
   useEffect(() => {
     loadBusinesses();
@@ -843,7 +944,7 @@ export default function App() {
                 <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>VERZEICHNIS</span>
               </span>
             </div>
-            <nav className="hidden md:flex items-center" style={{ gap: '22px', fontSize: '15px', marginLeft: 'auto' }}>
+            <nav className="hidden md:flex items-center" style={{ gap: '18px', fontSize: '15px', marginLeft: 'auto' }}>
               <div 
                 className="relative flex items-center h-full py-1"
                 onMouseEnter={handleMouseEnterMegaMenu}
@@ -861,20 +962,44 @@ export default function App() {
                   style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} 
                   className="hover:text-orange-500 transition-colors flex items-center gap-1.5 cursor-pointer py-1 select-none"
                 >
-                  <span>Alle Unternehmen</span>
+                  <span>{t("allCompanies")}</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
                 </a>
               </div>
               <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
-              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">Jobs</a>
-              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">News</a>
+              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
+              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
-              <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-1"></div>
+              <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
+
+              {/* Länderschieber (Sprachumschalter DE / NL) */}
+              <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA] shadow-inner select-none">
+                <button 
+                  type="button" 
+                  onClick={() => switchLanguage('de')} 
+                  className={`px-2.5 py-1 rounded-full text-[12px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${lang === 'de' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
+                  title="Deutsche Version"
+                >
+                  <span className="text-[13px]">🇩🇪</span>
+                  <span>DE</span>
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => switchLanguage('nl')} 
+                  className={`px-2.5 py-1 rounded-full text-[12px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${lang === 'nl' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
+                  title="Nederlandse versie"
+                >
+                  <span className="text-[13px]">🇳🇱</span>
+                  <span>NL</span>
+                </button>
+              </div>
+
+              <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
 
               <button 
                 onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
-                className="flex items-center justify-center transition-colors"
+                className="flex items-center justify-center transition-colors cursor-pointer"
                 title={currentUser ? 'Dashboard' : t("adminLogin")}
               >
                 {currentUser ? (
@@ -893,13 +1018,32 @@ export default function App() {
               className="hidden md:block hover:-translate-y-0.5"
               style={{ background: '#F2761B', color: '#fff', border: 'none', borderRadius: '6px', padding: '10px 18px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 12px rgba(242,118,27,0.25)', transition: 'background 0.15s, transform 0.15s' }}
             >
-              Unternehmen eintragen
+              {t("createEntry")}
             </button>
 
-            {/* Mobile Menu Button */}
-            <button className="md:hidden ml-auto text-[#0F4C2E]" onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}>
-              <Menu className="w-6 h-6" />
-            </button>
+            {/* Mobile Language Switch & Menu Button */}
+            <div className="md:hidden ml-auto flex items-center gap-2">
+              <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA]">
+                <button 
+                  type="button" 
+                  onClick={() => switchLanguage('de')} 
+                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${lang === 'de' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                >
+                  DE
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => switchLanguage('nl')} 
+                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${lang === 'nl' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                >
+                  NL
+                </button>
+              </div>
+
+              <button className="text-[#0F4C2E] p-1 cursor-pointer" onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}>
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </header>
 
@@ -1079,24 +1223,24 @@ export default function App() {
                   <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px]">
                     <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-md px-3.5 py-1.5 text-sm font-medium tracking-wide">
                       <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
-                      Für die Kernstadt und alle 14 Ortsteile
+                      {t("heroAllDistricts")}
                     </div>
                     <h1 className="font-display text-4xl md:text-6xl font-medium mt-6 mb-4 leading-tight">
-                      Das <br className="md:hidden"/>
+                      {lang === 'nl' ? 'De ' : 'Das '} <br className="md:hidden"/>
                       <span className="inline-block relative">
                         <span className="font-extrabold tracking-wide">WINTERBERG</span>
                         <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-3 block -mt-1"><path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/></svg>
                       </span>
-                      <br className="md:hidden"/> Verzeichnis
+                      <br className="md:hidden"/> {lang === 'nl' ? 'Gids' : 'Verzeichnis'}
                     </h1>
-                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 leading-relaxed">Handwerk, Gastronomie, Einzelhandel, Dienstleistungen, Freizeit und Unterkünfte — aus der Kernstadt und jedem Ortsteil.</p>
-                    <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">Finde lokale Anbieter in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld und Altenfeld.</p>
+                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 leading-relaxed">{t("heroText1")}</p>
+                    <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">{t("heroText2")}</p>
 
                     <div className="bg-white rounded-lg p-2.5 flex flex-col md:flex-row gap-2.5 items-center max-w-3xl shadow-2xl">
                       <div className="flex items-center gap-3 w-full md:flex-[2] px-3 relative">
                         <Search className="w-5 h-5 text-gray-400" />
                         <input 
-                          placeholder="Unternehmen, Branche oder Leistung" 
+                          placeholder={t("searchPlaceholderHero")} 
                           value={homeSearchInput}
                           onChange={(e) => {
                             setHomeSearchInput(e.target.value);
@@ -1137,10 +1281,10 @@ export default function App() {
                                     <div className="flex flex-col overflow-hidden">
                                       <span className="text-gray-900 font-medium truncate">{s.name}</span>
                                       <div className="flex items-center gap-1.5 flex-wrap">
-                                        <span className="text-gray-500 text-xs truncate">{s.category}{s.subcategory ? ` > ${s.subcategory}` : ''}</span>
+                                        <span className="text-gray-500 text-xs truncate">{t(s.category)}{s.subcategory ? ` > ${t(s.subcategory)}` : ''}</span>
                                         {matchingServices.length > 0 && (
                                           <span className="text-[#0F4C2E] bg-[#E8F1EB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
-                                            Leistung: {matchingServices.join(', ')}
+                                            {t("foundService")}: {matchingServices.join(', ')}
                                           </span>
                                         )}
                                       </div>
@@ -1157,7 +1301,7 @@ export default function App() {
                         onChange={(e) => setActiveLocation(e.target.value)}
                         className="w-full md:w-auto md:flex-1 border border-gray-200 rounded-md px-3.5 py-2.5 text-base text-gray-900 bg-gray-50 focus:outline-none focus:border-[#F2761B]"
                       >
-                        <option value="Alle">Alle Ortsteile</option>
+                        <option value="Alle">{t("allTowns")}</option>
                         {categories.flatMap(c => c.subcategories).map(s => s).filter((v,i,a)=>a.indexOf(v)===i).slice(0,0)} {/* Dummy to avoid unused */}
                         {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
                           <option key={d} value={d}>{d}</option>
@@ -1171,16 +1315,26 @@ export default function App() {
                         }} 
                         className="w-full md:w-auto bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-5 py-2.5 font-semibold transition-colors cursor-pointer"
                       >
-                        Suchen
+                        {lang === 'nl' ? 'Zoeken' : 'Suchen'}
                       </button>
                     </div>
 
                     {/* Popular Services & Products Search Pills */}
                     <div className="mt-4 flex items-center gap-2 flex-wrap text-xs text-white/90">
                       <span className="font-semibold text-white flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" /> Beliebte Suchbegriffe:
+                        <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" /> {t("popularSearches")}:
                       </span>
-                      {[
+                      {(lang === 'nl' ? [
+                        'Schoenen',
+                        'Ski-Verhuur',
+                        'Bakkerij & Ontbijt',
+                        'E-Bike',
+                        'Dakdekkers',
+                        'Bandenwissel',
+                        'Fysiotherapie',
+                        'Autogarage',
+                        'Bowlen'
+                      ] : [
                         'Schuhe',
                         'Ski-Verleih',
                         'Bäckerei & Frühstück',
@@ -1190,7 +1344,7 @@ export default function App() {
                         'Physiotherapie',
                         'Autowerkstatt',
                         'Bowling'
-                      ].map(term => (
+                      ]).map(term => (
                         <button
                           key={term}
                           type="button"
@@ -1207,17 +1361,21 @@ export default function App() {
                     </div>
 
                     <div className="flex gap-8 mt-12 flex-wrap">
-                      <div><div className="font-display text-4xl font-bold">{businesses.length}</div><div className="text-sm text-white/70 mt-1">Unternehmen</div></div>
-                      <div><div className="font-display text-4xl font-bold">{categories.length}</div><div className="text-sm text-white/70 mt-1">Kategorien</div></div>
-                      <div><div className="font-display text-4xl font-bold">14</div><div className="text-sm text-white/70 mt-1">Ortsteile</div></div>
+                      <div><div className="font-display text-4xl font-bold">{businesses.length}</div><div className="text-sm text-white/70 mt-1">{lang === 'nl' ? 'Bedrijven' : 'Unternehmen'}</div></div>
+                      <div><div className="font-display text-4xl font-bold">{categories.length}</div><div className="text-sm text-white/70 mt-1">{lang === 'nl' ? 'Categorieën' : 'Kategorien'}</div></div>
+                      <div><div className="font-display text-4xl font-bold">14</div><div className="text-sm text-white/70 mt-1">{lang === 'nl' ? 'Dorpen & Wijken' : 'Ortsteile'}</div></div>
                     </div>
                   </div>
                 </section>
                 
                 {/* Claude Home Sections */}
                 <div className="max-w-[1180px] mx-auto px-6 pt-[68px] pb-[20px]">
-                  <h2 className="font-display text-[34px] font-bold m-0 mb-[6px]">Kategorien</h2>
-                  <p className="text-[16px] text-[#5F6B63] m-0 mb-[30px]">Sechs Bereiche, {categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} Branchen — such dir aus, was du brauchst.</p>
+                  <h2 className="font-display text-[34px] font-bold m-0 mb-[6px]">{lang === 'nl' ? 'Categorieën' : 'Kategorien'}</h2>
+                  <p className="text-[16px] text-[#5F6B63] m-0 mb-[30px]">
+                    {lang === 'nl' 
+                      ? `Zes hoofdsectoren, ${categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} branches — vind precies wat u zoekt.`
+                      : `Sechs Bereiche, ${categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} Branchen — such dir aus, was du brauchst.`}
+                  </p>
                   
                   <div className="mb-16">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
@@ -1232,13 +1390,13 @@ export default function App() {
                                {cat.name === 'Dienstleistungen' ? <Briefcase className="w-6 h-6" /> : cat.name === 'Freizeit' ? <Sun className="w-6 h-6" /> : cat.name === 'Hotels & Unterkünfte' ? <Bed className="w-6 h-6" /> : cat.name === 'Einkaufen' ? <ShoppingBag className="w-6 h-6" /> : cat.name === 'Gastronomie' ? <Utensils className="w-6 h-6" /> : <BadgeCheck className="w-6 h-6" />}
                             </div>
                             <div className="flex-1">
-                              <div className="font-display text-[21px] font-semibold text-gray-900 leading-tight">{cat.name}</div>
-                              <div className="text-[14px] text-[#5F6B63]">{businesses.filter(b => b.category === cat.name || b.subcategory === cat.name).length} Betriebe</div>
+                              <div className="font-display text-[21px] font-semibold text-gray-900 leading-tight">{t(cat.name)}</div>
+                              <div className="text-[14px] text-[#5F6B63]">{businesses.filter(b => b.category === cat.name || b.subcategory === cat.name).length} {lang === 'nl' ? 'bedrijven' : 'Betriebe'}</div>
                             </div>
                             <ChevronRight className="w-5 h-5 text-[#B9B2A8]" />
                           </div>
                           <div className="mt-[16px] text-[14px] text-[#5F6B63] leading-[1.6]">
-                            {cat.subcategories.join(', ')}
+                            {cat.subcategories.map(s => t(s)).join(', ')}
                           </div>
                         </div>
                       ))}
@@ -1341,16 +1499,16 @@ export default function App() {
               <div className="w-full bg-[#0F4C2E] text-white">
                 <div className="max-w-[1180px] mx-auto px-6 py-[40px] pb-[44px]">
                   <div className="text-[14px] text-white/70 mb-2.5">
-                    <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
+                    <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
                   </div>
                   <h1 className="font-display text-[30px] md:text-[46px] font-bold m-0 mb-2.5">
-                    {activeCategory === 'Alle' ? 'Alle Unternehmen' : activeCategory}
+                    {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
                   </h1>
                   <div className="flex items-center justify-between flex-wrap gap-3">
-                    <p className="m-0 text-[16px] text-white/80">{filteredBusinesses.length} Unternehmen gefunden</p>
+                    <p className="m-0 text-[16px] text-white/80">{filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}</p>
                     <div className="flex bg-white/12 rounded-md p-1">
-                      <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Liste</button>
-                      <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Karte</button>
+                      <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
+                      <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
                     </div>
                   </div>
                 </div>
@@ -1366,12 +1524,12 @@ export default function App() {
                 className="w-full lg:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-md mb-4"
                 onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
               >
-                <span>Filter & Kategorien</span>
+                <span>{lang === 'nl' ? 'Filters & Categorieën' : 'Filter & Kategorien'}</span>
                 {isMobileCategoriesOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
 
               <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden lg:block'}`}>
-                <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Kategorie</div>
+                <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Categorie' : 'Kategorie'}</div>
                 <div className="flex flex-col gap-1 mb-[24px]">
                   {categories.map((group) => {
                     const count = initialBusinesses.filter(b => b.category === group.name).length;
@@ -1392,7 +1550,7 @@ export default function App() {
                         }}
                         className={`text-left border-none rounded-md px-3 py-2 text-[14.5px] cursor-pointer flex justify-between gap-2 transition-colors ${isActive ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-medium hover:bg-[#F3F0EA]'}`}
                       >
-                        <span>{group.name}</span>
+                        <span>{t(group.name)}</span>
                         <span className={isActive ? 'text-white/70 text-[13px]' : 'text-[#8A928B] text-[13px]'}>{count}</span>
                       </button>
                     )
@@ -1404,7 +1562,7 @@ export default function App() {
                   if (activeGroup && activeGroup.subcategories.length > 0) {
                     return (
                       <>
-                        <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Branche</div>
+                        <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Branche' : 'Branche'}</div>
                         <div className="flex gap-[7px] flex-wrap mb-[24px]">
                           {activeGroup.subcategories.map(sub => {
                             const isSubActive = activeCategory === sub;
@@ -1423,7 +1581,7 @@ export default function App() {
                                 }}
                                 className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isSubActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
                               >
-                                {sub}
+                                {t(sub)}
                               </button>
                             );
                           })}
@@ -1434,7 +1592,7 @@ export default function App() {
                   return null;
                 })()}
 
-                <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Ortsteil</div>
+                <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Dorp / Wijk' : 'Ortsteil'}</div>
                 <div className="flex gap-[7px] flex-wrap mb-[24px]">
                   {['Alle', ...Array.from(new Set(initialBusinesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort()].map(d => {
                     const isDistActive = activeLocation === d;
@@ -1455,7 +1613,7 @@ export default function App() {
                         }}
                         className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isDistActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
                       >
-                        {d === 'Alle' ? 'Alle Ortsteile' : d}
+                        {d === 'Alle' ? t("allTowns") : d}
                       </button>
                     );
                   })}
@@ -1474,7 +1632,7 @@ export default function App() {
                   }}
                   className="mt-6 w-full bg-transparent border border-[#E7E2DA] rounded-md p-2.5 text-[14px] font-medium cursor-pointer text-[#5F6B63] hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
                 >
-                  Filter zurücksetzen
+                  {lang === 'nl' ? 'Filters wissen' : 'Filter zurücksetzen'}
                 </button>
               </div>
             </aside>
@@ -1502,8 +1660,8 @@ export default function App() {
                   <input 
                     placeholder={
                       activeCategory === 'Alle'
-                        ? 'Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)…'
-                        : `In „${activeCategory}“ nach Namen, Produkten oder Leistungen suchen…`
+                        ? (lang === 'nl' ? 'Zoek bedrijven, producten of diensten (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)…')
+                        : (lang === 'nl' ? `In „${t(activeCategory)}“ zoeken naar namen, producten of diensten…` : `In „${activeCategory}“ nach Namen, Produkten oder Leistungen suchen…`)
                     } 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -1513,8 +1671,8 @@ export default function App() {
                     <button 
                       type="button" 
                       onClick={() => setSearchQuery('')}
-                      className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded hover:bg-[#F3F0EA] transition-colors"
-                      title="Suche zurücksetzen"
+                      className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                      title={lang === 'nl' ? 'Zoekopdracht wissen' : 'Suche zurücksetzen'}
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -1536,10 +1694,10 @@ export default function App() {
                   <div className="mb-4 bg-[#E8F1EB] border border-[#C5DCCE] rounded-lg p-3.5 flex items-center justify-between gap-3 text-[14px]">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-[#0F4C2E] font-semibold">
-                        Suchergebnisse für: <strong>„{searchQuery}“</strong>
+                        {t("searchResultsFor")}: <strong>„{searchQuery}“</strong>
                       </span>
                       <span className="text-[#5F6B63] text-xs">
-                        ({filteredBusinesses.length} {filteredBusinesses.length === 1 ? 'Unternehmen' : 'Unternehmen'} in Angeboten, Leistungen & Namen gefunden)
+                        ({filteredBusinesses.length} {filteredBusinesses.length === 1 ? (lang === 'nl' ? 'bedrijf' : 'Unternehmen') : (lang === 'nl' ? 'bedrijven' : 'Unternehmen')} {t("foundInServices")})
                       </span>
                     </div>
                     <button
@@ -1547,7 +1705,7 @@ export default function App() {
                       onClick={() => setSearchQuery('')}
                       className="text-[#0F4C2E] hover:underline font-bold text-xs shrink-0 cursor-pointer"
                     >
-                      Suche zurücksetzen ✕
+                      {t("resetSearch")} ✕
                     </button>
                   </div>
                 )}
@@ -1586,7 +1744,7 @@ export default function App() {
                           )}
                           <div>
                             <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
-                            <div className="text-[13.5px] text-[#8A928B]">{bus.category} · {bus.district || 'Winterberg'}</div>
+                            <div className="text-[13.5px] text-[#8A928B]">{t(bus.category)}{bus.subcategory ? ` · ${t(bus.subcategory)}` : ''} · {bus.district || 'Winterberg'}</div>
                           </div>
                         </div>
                         <div className="text-[15px] text-[#5F6B63] leading-[1.5] mb-[16px] min-h-[44px]">
@@ -1817,6 +1975,40 @@ export default function App() {
           </div>
 
           <div className="p-4 flex flex-col gap-4">
+            {/* Mobile Language Switcher */}
+            <div className="flex items-center justify-between p-3 bg-white border border-[#EDE8E0] rounded-xl shadow-xs">
+              <span className="text-sm font-semibold text-[#1B211D] flex items-center gap-2">
+                <span>🌐</span>
+                <span>{t("language")}:</span>
+              </span>
+              <div className="flex items-center bg-[#F3F0EA] p-1 rounded-full border border-[#E7E2DA]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    switchLanguage('de');
+                    setIsMobileCategoriesOpen(false);
+                  }}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    lang === 'de' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63]'
+                  }`}
+                >
+                  🇩🇪 Deutsch
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    switchLanguage('nl');
+                    setIsMobileCategoriesOpen(false);
+                  }}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    lang === 'nl' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63]'
+                  }`}
+                >
+                  🇳🇱 Nederlands
+                </button>
+              </div>
+            </div>
+
             {/* Quick Navigation Cards */}
             <div className="grid grid-cols-2 gap-2.5">
               <a
@@ -2027,19 +2219,21 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }}
             >
-              <span className="font-display text-[13px] font-medium text-white/70">Das</span>
+              <span className="font-display text-[13px] font-medium text-white/70">{lang === 'nl' ? 'De' : 'Das'}</span>
               <span className="font-display text-[22px] font-extrabold tracking-widest text-white block leading-tight">WINTERBERG</span>
               <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-0.5">
                 <path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/>
               </svg>
-              <span className="font-display text-[12px] font-semibold tracking-[0.32em] text-white/90 block mt-1">VERZEICHNIS</span>
+              <span className="font-display text-[12px] font-semibold tracking-[0.32em] text-white/90 block mt-1">{lang === 'nl' ? 'BEDRIJVENGIDS' : 'VERZEICHNIS'}</span>
             </div>
             <p className="text-[14.5px] leading-relaxed mt-4 max-w-[52ch]">
-              Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und seinen Ortsteilen {availableLocations.filter(l => l !== 'Winterberg').join(', ')}.
+              {lang === 'nl' 
+                ? `De grote gids voor alle bedrijven, vakmensen en dienstverleners in Winterberg en alle dorpen ${availableLocations.filter(l => l !== 'Winterberg').join(', ')}.`
+                : `Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und seinen Ortsteilen ${availableLocations.filter(l => l !== 'Winterberg').join(', ')}.`}
             </p>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">Verzeichnis</div>
+            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Gids' : 'Verzeichnis'}</div>
             <a 
               href={getPath('/alle-unternehmen')} 
               onClick={(e) => { 
@@ -2054,7 +2248,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Alle Unternehmen
+              {lang === 'nl' ? 'Alle bedrijven' : 'Alle Unternehmen'}
             </a>
             <a 
               href={getPath('/jobs')} 
@@ -2067,7 +2261,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Jobs & Stellenangebote
+              {lang === 'nl' ? 'Vacatures & Banen' : 'Jobs & Stellenangebote'}
             </a>
             <a 
               href={getPath('/news')} 
@@ -2080,7 +2274,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              News & Aktuelles
+              {lang === 'nl' ? 'Nieuws & Berichten' : 'News & Aktuelles'}
             </a>
             <a 
               href={getPath('/faq')} 
@@ -2093,7 +2287,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Winterberg FAQs
+              {lang === 'nl' ? 'Veelgestelde Vragen (FAQ)' : 'Winterberg FAQs'}
             </a>
             <a 
               href={getPath('/eintragen')} 
@@ -2106,7 +2300,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Unternehmen eintragen
+              {lang === 'nl' ? 'Bedrijf aanmelden' : 'Unternehmen eintragen'}
             </a>
             <a 
               href={getPath('/preise')} 
@@ -2119,7 +2313,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Preise & Pakete
+              {lang === 'nl' ? 'Pakketten & Prijzen' : 'Preise & Pakete'}
             </a>
             <button 
               type="button"
@@ -2129,11 +2323,11 @@ export default function App() {
               }} 
               className="text-left bg-transparent border-none p-0 text-white/80 hover:text-[#F2761B] transition-colors cursor-pointer text-[14.5px]"
             >
-              Werbung schalten
+              {lang === 'nl' ? 'Adverteren' : 'Werbung schalten'}
             </button>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">Rechtliches</div>
+            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Juridisch' : 'Rechtliches'}</div>
             <a 
               href={getPath('/impressum')} 
               onClick={(e) => { 
@@ -2145,7 +2339,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Impressum
+              {lang === 'nl' ? 'Colofon' : 'Impressum'}
             </a>
             <a 
               href={getPath('/datenschutz')} 
@@ -2158,7 +2352,7 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              Datenschutz
+              {lang === 'nl' ? 'Privacybeleid' : 'Datenschutz'}
             </a>
             <a 
               href={getPath('/agb')} 
@@ -2171,17 +2365,17 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              AGB
+              {lang === 'nl' ? 'Algemene Voorwaarden' : 'AGB'}
             </a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">Externe Links</div>
-            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung</a>
+            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Externe Links' : 'Externe Links'}</div>
+            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung Winterberg</a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
           <div className="max-w-[1180px] mx-auto px-6 py-4 text-[13px] flex items-center justify-between">
-            <span>© {new Date().getFullYear()} Das Winterberg Verzeichnis · Ein Projekt von <a href="https://sichtbar-online.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">SICHTBAR SEO Simon Kräling</a></span>
+            <span>© {new Date().getFullYear()} {lang === 'nl' ? 'De Winterberg Bedrijvengids' : 'Das Winterberg Verzeichnis'} · {t("projectBy")} <a href="https://sichtbar-online.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">SICHTBAR SEO Simon Kräling</a></span>
           </div>
         </div>
       </footer>

@@ -16,6 +16,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
+import { useTranslation } from '../i18n';
 
 interface MegaMenuProps {
   isOpen: boolean;
@@ -42,6 +43,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onOpenSubmit,
   getPath,
 }) => {
+  const { t, lang } = useTranslation();
   // Category Icons & Color Accents mapping
   const getCategoryMeta = (catName: string) => {
     switch (catName) {
@@ -140,10 +142,10 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                   <div className="flex items-center justify-between mb-5 pb-3 border-b border-[#F3F0EA]">
                     <div className="flex items-center gap-2">
                       <span className="font-display font-bold text-xs uppercase tracking-[0.12em] text-[#8A928B]">
-                        Kategorien & Branchen
+                        {lang === 'nl' ? 'Categorieën & Branches' : 'Kategorien & Branchen'}
                       </span>
                       <span className="bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] text-[11px] font-bold px-2 py-0.5 rounded">
-                        {categories.length} Hauptbereiche
+                        {categories.length} {lang === 'nl' ? 'Hoofdcategorieën' : 'Hauptbereiche'}
                       </span>
                     </div>
                     <a
@@ -155,7 +157,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       }}
                       className="text-[13px] font-semibold text-[#0F4C2E] hover:text-[#F2761B] flex items-center gap-1 transition-colors"
                     >
-                      Alle Betriebe ansehen <ChevronRight className="w-3.5 h-3.5" />
+                      {lang === 'nl' ? 'Alle bedrijven bekijken' : 'Alle Betriebe ansehen'} <ChevronRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
 
@@ -183,7 +185,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                                 <IconComponent className="w-4 h-4" />
                               </div>
                               <span className="font-display font-bold text-[14.5px] text-[#1B211D] group-hover:text-[#0F4C2E] truncate transition-colors">
-                                {group.name}
+                                {t(group.name)}
                               </span>
                             </div>
                             <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded shrink-0 transition-colors ${meta.badgeBg}`}>
@@ -204,7 +206,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                                 }}
                                 className="text-[12.5px] text-[#5F6B63] hover:text-[#0F4C2E] hover:font-medium py-0.5 transition-colors truncate block"
                               >
-                                {sub}
+                                {t(sub)}
                               </a>
                             ))}
                             {group.subcategories.length > 4 && (
@@ -217,7 +219,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                                 }}
                                 className="text-[11.5px] font-semibold text-[#8A928B] hover:text-[#0F4C2E] pt-0.5 transition-colors flex items-center gap-0.5"
                               >
-                                + {group.subcategories.length - 4} weitere
+                                + {group.subcategories.length - 4} {lang === 'nl' ? 'meer' : 'weitere'}
                               </a>
                             )}
                           </div>
@@ -243,14 +245,16 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                         <Building2 className="w-4 h-4" />
                       </div>
                       <span className="text-[12px] font-bold text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                        Übersicht <ArrowRight className="w-3.5 h-3.5" />
+                        {lang === 'nl' ? 'Overzicht' : 'Übersicht'} <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
                     <div className="font-display font-bold text-[15px] text-[#1B211D] mb-1">
-                      Alle {businesses.length} Unternehmen
+                      {lang === 'nl' ? `Alle ${businesses.length} bedrijven` : `Alle ${businesses.length} Unternehmen`}
                     </div>
                     <p className="text-[12.5px] text-[#5F6B63] leading-relaxed m-0">
-                      Vollständiges Verzeichnis mit allen Betrieben, Kontakten und Öffnungszeiten.
+                      {lang === 'nl' 
+                        ? 'Volledige gids met alle actieve ondernemingen, contactgegevens en openingstijden.' 
+                        : 'Vollständiges Verzeichnis mit allen Betrieben, Kontakten und Öffnungszeiten.'}
                     </p>
                   </div>
 
@@ -258,7 +262,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                   <div>
                     <div className="font-display font-bold text-xs uppercase tracking-[0.1em] text-[#8A928B] mb-2.5 flex items-center gap-1.5">
                       <MapPin className="w-3.5 h-3.5 text-[#0F4C2E]" />
-                      <span>Beliebte Ortsteile</span>
+                      <span>{lang === 'nl' ? 'Populaire dorpen & wijken' : 'Beliebte Ortsteile'}</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {featuredDistricts.map((district) => (
@@ -289,7 +293,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                         className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] hover:text-[#0F4C2E] text-[#1B211D] rounded-md py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer"
                       >
                         <MapIcon className="w-4 h-4 text-[#0F4C2E]" />
-                        <span>Kartenansicht</span>
+                        <span>{t("viewMap")}</span>
                       </button>
                       <button
                         type="button"
@@ -300,7 +304,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                         className="flex-1 flex items-center justify-center gap-1.5 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer shadow-sm"
                       >
                         <Plus className="w-4 h-4" />
-                        <span>Eintragen</span>
+                        <span>{t("createEntry")}</span>
                       </button>
                     </div>
                   </div>
@@ -314,7 +318,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                 <div className="flex items-center gap-4 flex-wrap">
                   <span className="flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
-                    {businesses.length} regionale Unternehmenseinträge
+                    {businesses.length} {lang === 'nl' ? 'regionale bedrijven' : 'regionale Unternehmenseinträge'}
                   </span>
                   <span className="hidden sm:inline text-white/40">•</span>
                   <span className="hidden sm:inline">14 Ortsteile in Winterberg</span>
