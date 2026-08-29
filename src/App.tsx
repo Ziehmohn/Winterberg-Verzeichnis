@@ -792,7 +792,15 @@ export default function App() {
           loadedBusinesses.forEach(fb => {
             const idx = merged.findIndex(b => b.id === fb.id);
             if (idx >= 0) {
-              merged[idx] = fb;
+              const existing = merged[idx];
+              merged[idx] = { 
+                ...existing, 
+                ...fb,
+                logoUrl: fb.logoUrl || existing.logoUrl,
+                gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
+                services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
+                products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
+              };
             } else {
               merged.push(fb);
             }
