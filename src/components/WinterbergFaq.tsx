@@ -59,12 +59,13 @@ const FAQ_DATA: FaqItem[] = [
     id: 'fruehstuecken',
     question: 'Wo kann man in Winterberg frühstücken?',
     categoryGroup: 'Essen & Trinken',
-    quickSummary: 'Für ein gutes Frühstück oder Brunch gibt es in Winterberg gemütliche Bäckereicafés mit Etageren und Rührei sowie reichhaltige Hotel-Frühstücksbuffets für externe Gäste.',
-    plainAnswer: 'Frühstücken kann man in der Bäckerei & Café Isken, im Café Krämer oder Café Engemann im Zentrum sowie bei großen Hotel-Frühstücksbuffets für Tagesgäste im Oversum Vital Resort und Hotel Hessenhof.',
+    quickSummary: 'Für ein gutes Frühstück oder Brunch gibt es in Winterberg beliebte Spots wie das Cafe Extrablatt oder die Markt Alm, traditionelle Bäckereicafés mit Etageren sowie reichhaltige Hotel-Frühstücksbuffets für externe Gäste.',
+    plainAnswer: 'Beliebt zum Frühstücken sind das Cafe Extrablatt (großes tägliches Frühstücksbuffet an der Unteren Pforte) und die Markt Alm (reichhaltiges Alm-Frühstücksbuffet im Lodge Hotel am Waltenberg). Zudem bieten Bäckerei & Café Isken, Café Krämer sowie Hotel-Frühstücksbuffets für Tagesgäste im Oversum Vital Resort und Hotel Hessenhof erstklassige Optionen.',
     answerHtml: (
       <div className="space-y-3">
-        <p>Egal ob schnelles Bäckerei-Frühstück, gemütlicher Brunch oder ausgiebiges Hotelbuffet:</p>
+        <p>Egal ob ausgiebiges Frühstücksbuffet, gemütlicher Brunch oder schnelles Bäckerei-Frühstück:</p>
         <ul className="list-disc pl-5 space-y-1.5">
+          <li><strong>Beliebte Frühstücksbuffets & Brunch-Spots:</strong> Das <em>Cafe Extrablatt</em> (an der Unteren Pforte) bietet täglich ein großes All-you-can-eat-Frühstücksbuffet mit Rührei, Bacon, Brötchen, Müsli und Waffeln. Die <em>Markt Alm</em> (im Lodge Hotel, Am Waltenberg 33) lockt mit einem herzhaften Alm-Frühstücksbuffet ab 07:30 Uhr.</li>
           <li><strong>Bäckereien & Frühstückscafés:</strong> <em>Café Bäckerei Isken</em> (mehrere Standorte mit umfangreicher Frühstücksauswahl, Pancakes und Kaffeespezialitäten), <em>Café Krämer</em> und <em>Café Engemann</em> im Zentrum.</li>
           <li><strong>Hotel-Frühstücksbuffets für externe Gäste:</strong> Das <em>Oversum Vital Resort</em> und das <em>Hotel Hessenhof</em> bieten auch Tagesbesuchern ein erstklassiges Frühstücksbuffet an (vorherige Reservierung empfohlen).</li>
           <li><strong>Cafés an der Flaniermeile:</strong> Zahlreiche Cafés entlang der Straße <em>Am Waltenberg</em> bieten süße und herzhafte Frühstücksvariationen mit frischen Waffeln.</li>

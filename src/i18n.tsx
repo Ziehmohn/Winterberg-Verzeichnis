@@ -134,6 +134,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "Bürobedarf": "Bürobedarf",
     "Autohäuser": "Autohäuser",
     "Restaurant": "Restaurant",
+    "Cafés": "Cafés",
+    "Skihütten": "Skihütten",
     "results": "Ergebnisse",
     "Kneipen und Bars": "Kneipen und Bars",
     "Steuerberater": "Steuerberater",

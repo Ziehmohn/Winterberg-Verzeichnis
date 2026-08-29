@@ -11,6 +11,7 @@ import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
 import { useAuth } from './AuthContext';
 import Login from './components/Login';
+import { MegaMenu } from './components/MegaMenu';
 
 // Lazy-load heavy components that most visitors never see (code-splitting)
 const DirectoryMap = React.lazy(() => import('./components/DirectoryMap'));
@@ -190,6 +191,19 @@ export default function App() {
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(initialSelectedBusiness);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const megaMenuTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterMegaMenu = () => {
+    if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
+    setIsMegaMenuOpen(true);
+  };
+
+  const handleMouseLeaveMegaMenu = () => {
+    megaMenuTimeoutRef.current = setTimeout(() => {
+      setIsMegaMenuOpen(false);
+    }, 180);
+  };
   
   const getPath = (p: string) => {
     const base = lang === 'nl' ? '/nl' : '';
@@ -620,7 +634,27 @@ export default function App() {
               </span>
             </div>
             <nav className="hidden md:flex items-center" style={{ gap: '22px', fontSize: '15px', marginLeft: 'auto' }}>
-              <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
+              <div 
+                className="relative flex items-center h-full py-1"
+                onMouseEnter={handleMouseEnterMegaMenu}
+                onMouseLeave={handleMouseLeaveMegaMenu}
+              >
+                <a 
+                  href={getPath('/alle-unternehmen')} 
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    window.history.pushState(null, '', getPath('/alle-unternehmen')); 
+                    resetToDirectory(); 
+                    setIsAllMode(true); 
+                    setIsMegaMenuOpen(false);
+                  }} 
+                  style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} 
+                  className="hover:text-orange-500 transition-colors flex items-center gap-1.5 cursor-pointer py-1 select-none"
+                >
+                  <span>Alle Unternehmen</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
+                </a>
+              </div>
               <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">Jobs</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">News</a>
@@ -658,6 +692,64 @@ export default function App() {
             </button>
           </div>
         </header>
+
+        {/* Mega Menu Overlay */}
+        <div onMouseEnter={handleMouseEnterMegaMenu} onMouseLeave={handleMouseLeaveMegaMenu}>
+          <MegaMenu
+            isOpen={isMegaMenuOpen}
+            onClose={() => setIsMegaMenuOpen(false)}
+            categories={categories}
+            businesses={businesses}
+            onSelectCategory={(catName, subcat) => {
+              const catGroup = categories.find(c => c.name === catName || c.subcategories.includes(catName));
+              const groupName = catGroup?.name || catName;
+              const url = subcat 
+                ? getPath(`/${encodeURIComponent(groupName)}/${encodeURIComponent(subcat)}`)
+                : getPath(`/${encodeURIComponent(groupName)}`);
+              window.history.pushState(null, '', url);
+              setActiveCategory(subcat || groupName);
+              setSearchQuery('');
+              setIsAllMode(false);
+              resetToDirectory();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectAll={() => {
+              window.history.pushState(null, '', getPath('/alle-unternehmen'));
+              setActiveCategory('Alle');
+              setActiveLocation('Alle');
+              setSearchQuery('');
+              resetToDirectory();
+              setIsAllMode(true);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectLocation={(loc) => {
+              const url = getPath(`/alle-unternehmen?ort=${encodeURIComponent(loc)}`);
+              window.history.pushState(null, '', url);
+              setActiveCategory('Alle');
+              setActiveLocation(loc);
+              setSearchQuery('');
+              resetToDirectory();
+              setIsAllMode(true);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenMap={() => {
+              window.history.pushState(null, '', getPath('/alle-unternehmen'));
+              setActiveCategory('Alle');
+              setActiveLocation('Alle');
+              setSearchQuery('');
+              resetToDirectory();
+              setIsAllMode(true);
+              setViewMode('map');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenSubmit={() => {
+              resetToDirectory();
+              setIsSubmitMode(true);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            getPath={getPath}
+          />
+        </div>
 
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col">
