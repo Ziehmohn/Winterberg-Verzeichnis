@@ -73,7 +73,7 @@ const FAQ_DATA: FaqItem[] = [
     ),
     relatedCategoryLinks: [
       { label: 'Cafés & Gastronomie', category: 'Gastronomie' },
-      { label: 'Hotels & Unterkünfte', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
+      { label: 'Hotels in Winterberg', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
     ]
   },
   {
@@ -94,8 +94,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Kneipen & Bars in Winterberg', category: 'Gastronomie', subcategory: 'Kneipen und Bars' },
-      { label: 'Alle Gastronomiebetriebe', category: 'Gastronomie' }
+      { label: 'Kneipen & Bars in Winterberg', category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
     ]
   },
   {
@@ -117,9 +116,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Freizeit & Erlebnisse', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' },
-      { label: 'Kneipen & Nachtleben', category: 'Gastronomie', subcategory: 'Kneipen und Bars' },
-      { label: 'Schwimmbäder & Wellness', category: 'Freizeit', subcategory: 'Schwimmbäder' }
+      { label: 'Kneipen & Nachtleben', category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
     ]
   },
   {
@@ -141,8 +138,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Freizeiteinrichtungen', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' },
-      { label: 'Einzelhandel & Flaniermeile', category: 'Einzelhandel' }
+      { label: 'Freizeitanbieter am Erlebnisberg Kappe', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
     ]
   },
   {
@@ -164,8 +160,8 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Outdoor & Freizeiteinrichtungen', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' },
-      { label: 'Unterkünfte in Pistennähe', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
+      { label: 'Freizeitangebote & Action', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' },
+      { label: 'Hotels & Skihotels', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
     ]
   },
   {
@@ -189,7 +185,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Freizeit- & Wintersportgebiete', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
+      { label: 'Freizeitanlagen in Winterberg', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
     ]
   },
   {
@@ -207,10 +203,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Mehrtagestickets:</strong> Ab einer Dauer von 3 Tagen lohnt sich die <em>Wintersport-Arena Card</em>, die in bis zu 8 Skigebieten der Region gültig ist.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Freizeitanlagen in Winterberg', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
-    ]
+    )
   },
   {
     id: 'schnee-spazieren',
@@ -231,10 +224,7 @@ const FAQ_DATA: FaqItem[] = [
           <strong>Ausrüstung:</strong> Wasserdichte Wanderschuhe mit griffiger Profilsohle sind ratsam. Bei vereisten Abschnitten erleichtern Grödel (Schuh-Spikes) das Gehen.
         </p>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Freizeit & Natur entdecken', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
-    ]
+    )
   },
   {
     id: 'skisprungschanze',
@@ -252,11 +242,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Nachwuchs-Schanzen:</strong> Ergänzt wird die Anlage durch mehrere kleine Mattenschanzen (K10 bis K44) für den Skisprung-Nachwuchs.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Outdoor-Freizeitziele', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' },
-      { label: 'Gastronomie an der Schanze', category: 'Gastronomie', subcategory: 'Restaurant' }
-    ]
+    )
   },
   {
     id: 'weihnachtsmarkt',
@@ -274,11 +260,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Adventsmärkte in den Ortsteilen:</strong> An einzelnen Wochenenden veranstalten auch Ortsteile wie Siedlinghausen und Züschen gemütliche Kunsthandwerkermärkte.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Einzelhandel in der Innenstadt', category: 'Einzelhandel' },
-      { label: 'Gastronomie & Imbisse', category: 'Gastronomie', subcategory: 'Imbisse' }
-    ]
+    )
   },
   {
     id: 'wandern',
@@ -299,8 +281,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Freizeit & Outdoor-Ziele', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' },
-      { label: 'Wanderhotels & Pensionen', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
+      { label: 'Hotels & Wanderunterkünfte', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
     ]
   },
   {
@@ -318,10 +299,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Große Talsperren der Region:</strong> In 25–35 Autominuten erreichen Sie zudem den <em>Hennesee</em>, <em>Diemelsee</em> und <em>Biggesee</em>.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Freizeit & Outdoor am Wasser', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
-    ]
+    )
   },
   {
     id: 'badesee',
@@ -339,11 +317,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Infrastruktur:</strong> Öffentliche WCs, Umkleiden und Gastronomie mit Seeterrasse direkt vor Ort.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Schwimmbäder & Badeseen', category: 'Freizeit', subcategory: 'Schwimmbäder' },
-      { label: 'Freizeitanlagen am Hillebachsee', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
-    ]
+    )
   },
   {
     id: 'freibad',
@@ -360,10 +334,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Wetterunabhängige Alternative:</strong> Das Hallen- und Erlebnisbad im <em>Oversum Vital Resort</em> im Zentrum.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Schwimmbäder in Winterberg', category: 'Freizeit', subcategory: 'Schwimmbäder' }
-    ]
+    )
   },
   {
     id: 'schwimmbad',
@@ -380,11 +351,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Hotel-Spas:</strong> Zahlreiche Wellnesshotels bieten zudem Day-Spa-Tageskarten für externe Gäste an.</li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Schwimmbäder & Bäder', category: 'Freizeit', subcategory: 'Schwimmbäder' },
-      { label: 'Wellnesshotels & Unterkünfte', category: 'Hotels und Unterkünfte', subcategory: 'Hotels' }
-    ]
+    )
   },
   {
     id: 'shoppen',
@@ -404,8 +371,8 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Bekleidung & Mode in Winterberg', category: 'Einzelhandel', subcategory: 'Bekleidung' },
-      { label: 'Alle Einzelhändler', category: 'Einzelhandel' }
+      { label: 'Bekleidung & Modegeschäfte', category: 'Einzelhandel', subcategory: 'Bekleidung' },
+      { label: 'Alle Einzelhändler in Winterberg', category: 'Einzelhandel' }
     ]
   },
   {
@@ -426,7 +393,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Supermärkte & Discounter', category: 'Einzelhandel', subcategory: 'Supermarkt' }
+      { label: 'Supermärkte im Verzeichnis', category: 'Einzelhandel', subcategory: 'Supermarkt' }
     ]
   },
   {
@@ -446,7 +413,7 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Supermärkte & Nahversorgung', category: 'Einzelhandel', subcategory: 'Supermarkt' }
+      { label: 'Supermärkte im Verzeichnis', category: 'Einzelhandel', subcategory: 'Supermarkt' }
     ]
   },
   {
@@ -463,7 +430,7 @@ const FAQ_DATA: FaqItem[] = [
             <ul className="list-disc pl-5 mt-1 space-y-1">
               <li><strong>P1 (Herrloh / Schanze):</strong> Zufahrt über die B480</li>
               <li><strong>P2 & P3 (Bremberg / Rodellifte):</strong> Zufahrt über die B236</li>
-              <li><strong>P4 & P5 (Erlebnisberg Kappe / Bobbahn):</strong> Zufahrt über die Kapperundweg</li>
+              <li><strong>P4 & P5 (Erlebnisberg Kappe / Bobbahn):</strong> Zufahrt über den Kapperundweg</li>
               <li><strong>P6 & P7 (Sürenberg / Nordhang):</strong> Weitläufige Parkflächen</li>
             </ul>
           </li>
@@ -480,11 +447,7 @@ const FAQ_DATA: FaqItem[] = [
           <strong>Anreise-Tipp im Winter:</strong> An sonnigen Winter-Wochenenden empfiehlt sich die Anreise vor 9:00 Uhr morgens, um Staus und voll besetzte Parkplätze zu umgehen.
         </p>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Dienstleister in Winterberg', category: 'Dienstleistungen' },
-      { label: 'Freizeit- und Ausflugsziele', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
-    ]
+    )
   },
   {
     id: 'bahnhof',
@@ -502,10 +465,7 @@ const FAQ_DATA: FaqItem[] = [
           <li><strong>Adresse:</strong> <em>Bahnhofstraße 12, 59955 Winterberg</em></li>
         </ul>
       </div>
-    ),
-    relatedCategoryLinks: [
-      { label: 'Dienstleister vor Ort', category: 'Dienstleistungen' }
-    ]
+    )
   }
 ];
 
@@ -638,8 +598,8 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
         </div>
       </div>
 
-      {/* Filter Category Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
+      {/* Filter Category Pills - Wrapped naturally without horizontal scrolling */}
+      <div className="flex flex-wrap items-center gap-2 md:gap-2.5 mb-6">
         {CATEGORY_GROUPS.map(group => {
           const Icon = group.icon;
           const isActive = selectedGroup === group.id;
@@ -652,7 +612,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
               key={group.id}
               type="button"
               onClick={() => setSelectedGroup(group.id)}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[14px] font-medium whitespace-nowrap transition-all cursor-pointer border ${
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[14px] font-medium transition-all cursor-pointer border ${
                 isActive
                   ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] shadow-sm'
                   : 'bg-white text-[#4A544D] border-[#EDE8E0] hover:border-[#0F4C2E]/40 hover:bg-[#FAF8F5]'
@@ -751,11 +711,11 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
                       {faq.answerHtml}
                     </div>
 
-                    {/* Category Cross-Links */}
+                    {/* Category Cross-Links (Only when actual businesses exist) */}
                     {faq.relatedCategoryLinks && faq.relatedCategoryLinks.length > 0 && (
                       <div className="mt-5 pt-4 border-t border-[#F3F0EA]">
                         <span className="text-xs font-bold uppercase tracking-wider text-[#5F6B63] block mb-2">
-                          Passende Unternehmen & Angebote im Verzeichnis:
+                          Passende Unternehmen im Verzeichnis:
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {faq.relatedCategoryLinks.map((link, idx) => (
