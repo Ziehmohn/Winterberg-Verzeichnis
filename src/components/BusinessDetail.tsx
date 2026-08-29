@@ -90,6 +90,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   };
 
   const telHref = business.phone ? `tel:${String(business.phone).replace(/[^0-9+]/g, '')}` : undefined;
+  const webHref = business.website ? (String(business.website).startsWith('http') ? String(business.website) : `https://${business.website}`) : undefined;
   const showHours = canDisplayOpeningHours(business);
   const openState = showHours && business.openingHours && typeof business.openingHours === 'object' ? isOpenNow(business.openingHours, t) : null;
   const avgRating = Array.isArray(business.reviews) && business.reviews.length > 0 
