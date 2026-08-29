@@ -20,6 +20,14 @@ export interface SeoSettings {
   googleSiteVerification?: string;
 }
 
+export interface DesignSettings {
+  headlineFont: string;
+  bodyFont: string;
+  headlineWeight: 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
+  headlineLetterSpacing: 'tight' | 'normal' | 'wide';
+  presetId?: string;
+}
+
 export interface Review {
   id: string;
   userId?: string;

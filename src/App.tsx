@@ -2,12 +2,12 @@ import React, { useState, useEffect, Suspense, Component, type ReactNode } from 
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles } from 'lucide-react';
 import { categories, themes, businesses as initialBusinesses } from './data';
-import { ThemeKey, CategoryGroup, Business, SeoSettings, AdBanner } from './types';
+import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner } from './types';
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
-import TestPage from './components/TestPage';
+import AdminDesignManager, { loadGoogleFont } from './components/AdminDesignManager';
 import { isOpenNow, canDisplayOpeningHours } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
@@ -88,7 +88,7 @@ const NewsDetail = React.lazy(() => import('./components/NewsDetail'));
 const SubmitNews = React.lazy(() => import('./components/SubmitNews'));
 const WinterbergFaq = React.lazy(() => import('./components/WinterbergFaq'));
 import { db, auth } from './firebase';
-import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
 import { getSeoContent } from './utils/seoContent';
 import { signOut } from 'firebase/auth';
@@ -151,7 +151,6 @@ export default function App() {
   let initialAGBMode = false;
   let initialPricingMode = false;
   let initialSubmitMode = false;
-  let initialTestMode = false;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -186,8 +185,6 @@ export default function App() {
         initialPricingMode = true;
       } else if (decodedPart1.toLowerCase() === 'eintragen' || decodedPart1.toLowerCase() === 'unternehmen-eintragen') {
         initialSubmitMode = true;
-      } else if (decodedPart1.toLowerCase() === 'test') {
-        initialTestMode = true;
       } else {
         const catGroup = categories.find(c => c.name.toLowerCase() === decodedPart1.toLowerCase());
         
@@ -300,7 +297,6 @@ export default function App() {
     setIsNewsSubmitMode(false);
     setNewsId(null);
     setIsFaqMode(false);
-    setIsTestMode(false);
   };
   
   useEffect(() => {
@@ -374,8 +370,6 @@ export default function App() {
           setIsAGBMode(true);
         } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen') {
           setIsSubmitMode(true);
-        } else if (p1 === 'test') {
-          setIsTestMode(true);
         } else {
            window.location.reload();
         }
@@ -426,13 +420,19 @@ export default function App() {
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
-  const [isTestMode, setIsTestMode] = useState(initialTestMode);
   const [isLoading, setIsLoading] = useState(false);
   const [ads, setAds] = useState<AdBanner[]>(initialAds);
   const [isAdInquiryOpen, setIsAdInquiryOpen] = useState(false);
   const [inquiryCategory, setInquiryCategory] = useState<string>('Alle');
   const [reviewsEnabled, setReviewsEnabled] = useState(localStorage.getItem('premium_reviews_enabled') === 'true');
   const [token, setToken] = useState<string | null>(localStorage.getItem('admin_token'));
+  const [designSettings, setDesignSettings] = useState<DesignSettings>({
+    headlineFont: 'Manrope',
+    bodyFont: 'Public Sans',
+    headlineWeight: 'bold',
+    headlineLetterSpacing: 'normal',
+    presetId: 'modern-clean'
+  });
   const [seoSettings, setSeoSettings] = useState<SeoSettings>({
     title: 'Das Winterberg Verzeichnis',
     description: 'Das umfassende Verzeichnis für alle Unternehmen, Dienstleister, Handwerker und Freizeiteinrichtungen in Winterberg und den umliegenden Ortsteilen.',
@@ -441,6 +441,51 @@ export default function App() {
   });
 
   const theme = themes[activeThemeKey];
+
+  // Load and apply global typography & design settings
+  useEffect(() => {
+    const applyDesign = (settings: DesignSettings) => {
+      if (!settings?.headlineFont) return;
+      loadGoogleFont(settings.headlineFont);
+      if (settings.bodyFont) {
+        loadGoogleFont(settings.bodyFont);
+        document.documentElement.style.setProperty('--font-sans', `"${settings.bodyFont}", ui-sans-serif, system-ui, sans-serif`);
+      }
+      document.documentElement.style.setProperty('--font-display', `"${settings.headlineFont}", ui-sans-serif, system-ui, sans-serif`);
+    };
+
+    const savedDesign = localStorage.getItem('siteDesignSettings');
+    if (savedDesign) {
+      try {
+        const parsed = JSON.parse(savedDesign);
+        setDesignSettings(parsed);
+        applyDesign(parsed);
+      } catch (e) {}
+    } else {
+      applyDesign({
+        headlineFont: 'Manrope',
+        bodyFont: 'Public Sans',
+        headlineWeight: 'bold',
+        headlineLetterSpacing: 'normal',
+        presetId: 'modern-clean'
+      });
+    }
+
+    const loadRemoteDesign = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'settings', 'design'));
+        if (snap.exists()) {
+          const data = snap.data() as DesignSettings;
+          setDesignSettings(data);
+          localStorage.setItem('siteDesignSettings', JSON.stringify(data));
+          applyDesign(data);
+        }
+      } catch(e) {
+        console.error("Failed to load design settings from Firestore", e);
+      }
+    };
+    loadRemoteDesign();
+  }, []);
 
   useEffect(() => {
     const savedSeo = localStorage.getItem('seoSettings');
@@ -942,8 +987,6 @@ export default function App() {
               setIsAdInquiryOpen(true);
             }}
           />
-        ) : isTestMode ? (
-          <TestPage theme={theme} activeThemeKey={activeThemeKey} />
         ) : isImpressumMode ? (
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
@@ -963,6 +1006,8 @@ export default function App() {
             setReviewsEnabled={(v: boolean) => { setReviewsEnabled(v); localStorage.setItem('premium_reviews_enabled', String(v)); }} 
             seoSettings={seoSettings} 
             setSeoSettings={setSeoSettings}
+            designSettings={designSettings}
+            setDesignSettings={setDesignSettings}
             ads={ads}
             setAds={setAds}
             onBack={() => setIsAdminMode(false)}
@@ -2223,12 +2268,12 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
   );
 }
 
-function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, ads, setAds, onBack }: any) {
+function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, onBack }: any) {
 
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'design' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
@@ -2346,6 +2391,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           { id: 'reviews', label: 'Bewertungen' },
           { id: 'abrechnung', label: 'Abrechnung' },
           ...(isAdmin ? [
+            { id: 'design', label: 'Design & Fonts' },
             { id: 'werbung', label: 'Werbung' },
             { id: 'news', label: 'News' },
             { id: 'seo', label: 'SEO' },
@@ -2603,6 +2649,13 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             setBusinesses={setBusinesses} 
           />
         
+        ) : activeTab === 'design' ? (
+          <AdminDesignManager 
+            designSettings={designSettings} 
+            setDesignSettings={setDesignSettings} 
+            theme={theme} 
+            activeThemeKey={activeThemeKey} 
+          />
         ) : activeTab === 'werbung' ? (
           <AdminAdsManager ads={ads} setAds={setAds} />
         ) : activeTab === 'redirects' ? (
