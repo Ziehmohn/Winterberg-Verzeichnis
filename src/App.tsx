@@ -335,7 +335,7 @@ export default function App() {
     title: 'Das Winterberg Verzeichnis',
     description: 'Das umfassende Verzeichnis für alle Unternehmen, Dienstleister, Handwerker und Freizeiteinrichtungen in Winterberg und den umliegenden Ortsteilen.',
     baseUrl: 'https://www.winterberg-verzeichnis.de',
-    googleSiteVerification: 'egCnwQfOIztQ10Cv0RUn3psnTm0tyaOUmOrGdpv2Z4c'
+    googleSiteVerification: 'eD2M5X0XpFemq843s7x3232ic58ogimCDB6zWKPN_u8'
   });
 
   const theme = themes[activeThemeKey];
