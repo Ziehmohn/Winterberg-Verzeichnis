@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2 } from 'lucide-react';
+import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles } from 'lucide-react';
 import { categories, themes, businesses as initialBusinesses } from './data';
-import { ThemeKey, CategoryGroup, Business, SeoSettings } from './types';
+import { ThemeKey, CategoryGroup, Business, SeoSettings, AdBanner } from './types';
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
@@ -12,6 +12,64 @@ import { Review } from './types';
 import { useAuth } from './AuthContext';
 import Login from './components/Login';
 import { MegaMenu } from './components/MegaMenu';
+import SkyscraperBanner from './components/SkyscraperBanner';
+import AdInquiryModal from './components/AdInquiryModal';
+import AdminAdsManager from './components/AdminAdsManager';
+
+const initialAds: AdBanner[] = [
+  {
+    id: 'demo_ad_gastronomie',
+    title: 'Brauhaus Winterberg – Frische Küche & Hausbrauerei',
+    companyName: 'Brauhaus Winterberg',
+    imageUrl: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/Gastronomie',
+    category: 'Gastronomie',
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 14,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'demo_ad_freizeit',
+    title: 'Erlebnisberg Kappe – Rodelbahn, Kletterwald & Panorama',
+    companyName: 'Erlebnisberg Kappe',
+    imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/Freizeit',
+    category: 'Freizeit',
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 28,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'demo_ad_handwerk',
+    title: 'Meisterbetrieb Winterberg – Qualität vom Fachmann',
+    companyName: 'Handwerk Winterberg',
+    imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/Handwerk',
+    category: 'Handwerk',
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 9,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'demo_ad_global',
+    title: 'Winterberg erleben – Entdecken Sie alle Highlights der Region',
+    companyName: 'Winterberg Verzeichnis',
+    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/alle-unternehmen',
+    category: 'Alle',
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 42,
+    createdAt: new Date().toISOString()
+  }
+];
 
 // Lazy-load heavy components that most visitors never see (code-splitting)
 const DirectoryMap = React.lazy(() => import('./components/DirectoryMap'));
@@ -374,6 +432,9 @@ export default function App() {
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
   const [isLoading, setIsLoading] = useState(false);
+  const [ads, setAds] = useState<AdBanner[]>(initialAds);
+  const [isAdInquiryOpen, setIsAdInquiryOpen] = useState(false);
+  const [inquiryCategory, setInquiryCategory] = useState<string>('Alle');
   const [reviewsEnabled, setReviewsEnabled] = useState(localStorage.getItem('premium_reviews_enabled') === 'true');
   const [token, setToken] = useState<string | null>(localStorage.getItem('admin_token'));
   const [seoSettings, setSeoSettings] = useState<SeoSettings>({
@@ -503,7 +564,34 @@ export default function App() {
 
   useEffect(() => {
     loadBusinesses();
+    loadAds();
   }, []);
+
+  const loadAds = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'ads'));
+      const loadedAds: AdBanner[] = [];
+      querySnapshot.forEach((doc: any) => {
+        loadedAds.push({ id: doc.id, ...doc.data() } as AdBanner);
+      });
+      if (loadedAds.length > 0) {
+        setAds(prev => {
+          const merged = [...initialAds];
+          loadedAds.forEach(fa => {
+            const idx = merged.findIndex(a => a.id === fa.id);
+            if (idx >= 0) {
+              merged[idx] = fa;
+            } else {
+              merged.push(fa);
+            }
+          });
+          return merged;
+        });
+      }
+    } catch (err) {
+      console.warn("Could not load ads from Firestore, using initial demo ads", err);
+    }
+  };
 
   const loadBusinesses = async () => {
     console.log("Loading businesses from Firestore...");

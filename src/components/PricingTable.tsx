@@ -9,10 +9,11 @@ interface PricingTableProps {
   activeThemeKey: string;
   onBack: () => void;
   onSelect: (plan: 'free' | 'premium') => void;
+  onInquireAd?: () => void;
   hideAction?: boolean;
 }
 
-export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, hideAction = false }: PricingTableProps) {
+export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, onInquireAd, hideAction = false }: PricingTableProps) {
   const { t } = useTranslation();
 
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
@@ -40,7 +41,7 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
         Der Basiseintrag ist dauerhaft kostenlos. Premium schaltet Öffnungszeiten, Galerie, ausführliches Profil, Stellenanzeigen und die Top-Platzierung frei.
       </p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
         {/* Basiseintrag */}
         <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[30px]">
           <div className="font-display text-[22px] font-semibold">Basiseintrag</div>
@@ -126,6 +127,31 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
             </button>
           )}
         </div>
+      </div>
+
+      {/* Skyscraper Banner Advertising Card */}
+      <div className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white rounded-[24px] p-8 md:p-10 shadow-xl flex flex-col md:flex-row gap-6 items-center justify-between">
+        <div className="max-w-[54ch]">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3.5 py-1 text-xs font-semibold uppercase tracking-wider mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#F2761B]" />
+            Maximale Sichtbarkeit
+          </div>
+          <h3 className="font-display text-2xl md:text-3xl font-bold mb-2">
+            Skyscraper-Bannerwerbung schalten
+          </h3>
+          <p className="text-white/85 text-[15px] leading-relaxed">
+            Möchten Sie prominent in bestimmten Branchenkategorien (z. B. Gastronomie, Handwerk, Freizeit) werben? Unsere Skyscraper-Banner werden am rechten Rand platziert und scrollen beim Lesen langer Seiten aufmerksamkeitsstark mit.
+          </p>
+        </div>
+        {onInquireAd && (
+          <button
+            type="button"
+            onClick={onInquireAd}
+            className="bg-[#F2761B] hover:bg-[#D65F0C] text-white font-semibold px-8 py-3.5 rounded-full text-base transition-colors shrink-0 shadow-lg"
+          >
+            Bannerplatz anfragen
+          </button>
+        )}
       </div>
     </main>
   );

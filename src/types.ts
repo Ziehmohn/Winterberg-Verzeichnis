@@ -119,3 +119,34 @@ export interface TrackingScript {
   code: string;
   isActive: boolean;
 }
+
+export interface AdBanner {
+  id: string;
+  title: string;
+  companyName?: string;
+  imageUrl: string;
+  targetUrl: string;
+  category: string; // 'Alle' or specific category name like 'Gastronomie', 'Handwerk', etc.
+  subcategory?: string;
+  position?: 'skyscraper_right' | 'sidebar' | 'custom';
+  isActive: boolean;
+  badgeText?: string; // default "Anzeige"
+  clicks?: number;
+  impressions?: number;
+  startDate?: string;
+  endDate?: string;
+  createdAt?: string;
+}
+
+export interface AdInquiry {
+  id: string;
+  name: string;
+  companyName: string;
+  email: string;
+  phone?: string;
+  category: string;
+  message?: string;
+  status: 'new' | 'contacted' | 'booked' | 'declined';
+  createdAt: string;
+}
+
