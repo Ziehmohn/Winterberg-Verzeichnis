@@ -667,91 +667,108 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
             <button
               type="button"
               onClick={() => { setSearchQuery(''); setSelectedGroup('Alle'); }}
-              className="mt-4 px-4 py-2 bg-[#0F4C2E] text-white text-sm font-semibold rounded-md"
+              className="mt-4 px-4 py-2 bg-[#0F4C2E] text-white text-sm font-semibold rounded-md cursor-pointer"
             >
               Filter zurücksetzen
             </button>
           </div>
         ) : (
-          filteredFaqs.map((faq) => {
+          filteredFaqs.map((faq, index) => {
             const isOpen = openFaqIds.has(faq.id);
+            const prevFaq = index > 0 ? filteredFaqs[index - 1] : null;
+            const isNewCategory = prevFaq && prevFaq.categoryGroup !== faq.categoryGroup;
+            const groupDef = CATEGORY_GROUPS.find(g => g.id === faq.categoryGroup);
+            const GroupIcon = groupDef?.icon || HelpCircle;
+
             return (
-              <div
-                key={faq.id}
-                id={faq.id}
-                className="bg-white border border-[#EDE8E0] rounded-lg overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/40"
-              >
-                {/* Header / Question Bar - Farblich deutlich abgegrenzt */}
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(faq.id)}
-                  className={`w-full text-left p-5 md:p-6 flex justify-between items-center gap-4 cursor-pointer focus:outline-none transition-colors ${
-                    isOpen 
-                      ? 'bg-[#F4F1EA] border-b border-[#E7E2DA]' 
-                      : 'bg-[#FAF8F5] hover:bg-[#F4F1EA]'
-                  }`}
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
-                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-white border border-[#0F4C2E]/25 px-2.5 py-0.5 rounded shadow-2xs w-fit">
-                      {faq.categoryGroup}
-                    </span>
-                    <h2 className="font-display text-[17.5px] md:text-[19.5px] font-bold text-[#1B211D] m-0">
-                      {faq.question}
-                    </h2>
-                  </div>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 shadow-2xs ${
-                    isOpen 
-                      ? 'rotate-180 bg-[#0F4C2E] text-white border border-[#0F4C2E]' 
-                      : 'bg-white border border-[#EDE8E0] text-[#0F4C2E]'
-                  }`}>
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
-
-                {/* Body / Answer */}
-                {isOpen && (
-                  <div>
-                    {/* Middle content on clean white */}
-                    <div className="bg-white px-5 md:px-7 py-6 text-[#4A544D]">
-                      {/* Quick Summary Box */}
-                      <div className="bg-[#FAF8F5] border-l-4 border-[#0F4C2E] p-4 rounded-r-md text-[15px] font-medium text-[#1B211D] leading-relaxed shadow-2xs">
-                        {faq.quickSummary}
-                      </div>
-
-                      {/* Detailed HTML Content */}
-                      <div className="mt-5 text-[15px] leading-relaxed text-[#3C443F]">
-                        {faq.answerHtml}
-                      </div>
+              <React.Fragment key={faq.id}>
+                {/* Dotted separator between different question categories */}
+                {isNewCategory && (
+                  <div className="pt-7 pb-3">
+                    <div className="w-full border-t-2 border-dotted border-[#D4CEBF] mb-4" />
+                    <div className="flex items-center gap-2.5 text-[#0F4C2E] font-bold text-[13.5px] tracking-wider uppercase">
+                      <GroupIcon className="w-4 h-4 text-[#0F4C2E]" />
+                      <span>{faq.categoryGroup}</span>
                     </div>
-
-                    {/* Category Cross-Links - Farblich deutlich abgegrenzter Footer */}
-                    {faq.relatedCategoryLinks && faq.relatedCategoryLinks.length > 0 && (
-                      <div className="bg-[#F8F6F1] border-t border-[#E7E2DA] px-5 md:px-7 py-4.5">
-                        <span className="text-[12px] font-bold uppercase tracking-wider text-[#5F6B63] block mb-2.5">
-                          Passende Unternehmen im Verzeichnis:
-                        </span>
-                        <div className="flex flex-wrap gap-2">
-                          {faq.relatedCategoryLinks.map((link, idx) => (
-                            <a
-                              key={idx}
-                              href={`/${encodeURIComponent(link.category)}${link.subcategory ? `/${encodeURIComponent(link.subcategory)}` : ''}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                onSelectCategory(link.category, link.subcategory);
-                              }}
-                              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-white hover:bg-[#0F4C2E] hover:text-white border border-[#DDD6C9] hover:border-[#0F4C2E] text-[#0F4C2E] text-[13.5px] font-semibold transition-all shadow-2xs group"
-                            >
-                              <span>{link.label}</span>
-                              <ChevronRight className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:text-white group-hover:translate-x-0.5 transition-all" />
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 )}
-              </div>
+
+                <div
+                  id={faq.id}
+                  className="bg-white border border-[#EDE8E0] rounded-lg overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/40"
+                >
+                  {/* Header / Question Bar - Warmer Sand/Stein-Farbton */}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(faq.id)}
+                    className={`w-full text-left p-5 md:p-6 flex justify-between items-center gap-4 cursor-pointer focus:outline-none transition-colors ${
+                      isOpen 
+                        ? 'bg-[#F2EFE8] border-b border-[#E3DDD1]' 
+                        : 'bg-[#FAF8F5] hover:bg-[#F2EFE8]'
+                    }`}
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
+                      <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-white border border-[#0F4C2E]/25 px-2.5 py-0.5 rounded shadow-2xs w-fit">
+                        {faq.categoryGroup}
+                      </span>
+                      <h2 className="font-display text-[17.5px] md:text-[19.5px] font-bold text-[#1B211D] m-0">
+                        {faq.question}
+                      </h2>
+                    </div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 shadow-2xs ${
+                      isOpen 
+                        ? 'rotate-180 bg-[#0F4C2E] text-white border border-[#0F4C2E]' 
+                        : 'bg-white border border-[#EDE8E0] text-[#0F4C2E]'
+                    }`}>
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </button>
+
+                  {/* Body / Answer */}
+                  {isOpen && (
+                    <div>
+                      {/* Middle content on clean white */}
+                      <div className="bg-white px-5 md:px-7 py-6 text-[#4A544D]">
+                        {/* Quick Summary Box */}
+                        <div className="bg-[#FAF8F5] border-l-4 border-[#0F4C2E] p-4 rounded-r-md text-[15px] font-medium text-[#1B211D] leading-relaxed shadow-2xs">
+                          {faq.quickSummary}
+                        </div>
+
+                        {/* Detailed HTML Content */}
+                        <div className="mt-5 text-[15px] leading-relaxed text-[#3C443F]">
+                          {faq.answerHtml}
+                        </div>
+                      </div>
+
+                      {/* Category Cross-Links - Ausdrücklich eigenständiger Farbton (Sanftes Salbeigrün) */}
+                      {faq.relatedCategoryLinks && faq.relatedCategoryLinks.length > 0 && (
+                        <div className="bg-[#EBF3EE] border-t border-[#CBE0D3] px-5 md:px-7 py-4.5">
+                          <span className="text-[12px] font-bold uppercase tracking-wider text-[#0F4C2E] block mb-2.5">
+                            Passende Unternehmen im Verzeichnis:
+                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            {faq.relatedCategoryLinks.map((link, idx) => (
+                              <a
+                                key={idx}
+                                href={`/${encodeURIComponent(link.category)}${link.subcategory ? `/${encodeURIComponent(link.subcategory)}` : ''}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  onSelectCategory(link.category, link.subcategory);
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-white hover:bg-[#0F4C2E] hover:text-white border border-[#BED7C7] hover:border-[#0F4C2E] text-[#0F4C2E] text-[13.5px] font-semibold transition-all shadow-2xs group"
+                              >
+                                <span>{link.label}</span>
+                                <ChevronRight className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </React.Fragment>
             );
           })
         )}
