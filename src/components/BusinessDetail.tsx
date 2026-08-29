@@ -432,7 +432,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>
           )}
-          {/* Interactive map for premium accounts */}
+          {/* Premium: Interactive map */}
           {business.isPremium && (
             <Suspense fallback={
               <div className="w-full h-[200px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse">
@@ -443,12 +443,25 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </Suspense>
           )}
 
-          {!business.isPremium && (
-            <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-md py-3 px-4 text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
+          {/* Address – prominent for all accounts */}
+          <div className="flex items-start gap-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md py-3 px-4">
+            <MapPin className="w-4 h-4 text-[#0F4C2E] mt-0.5 shrink-0" />
+            <span className="text-[15px] font-semibold text-[#1B211D] leading-snug">{business.address}</span>
+          </div>
+
+          {/* Premium: Route planen button */}
+          {business.isPremium && (
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors"
+            >
               <MapPin className="w-4 h-4" />
               {lang === 'nl' ? 'Route plannen' : 'Route planen'}
             </a>
           )}
+
           <button 
             type="button" 
             onClick={() => setShowWidgetModal(true)} 
