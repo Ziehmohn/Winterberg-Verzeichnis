@@ -719,7 +719,7 @@ export default function App() {
     const altUrls = getAlternateUrls(state, domain);
 
     const head = document.head;
-    const existingHreflangs = head.querySelectorAll('link[rel="alternate"][hreflang]');
+    const existingHreflangs = head.querySelectorAll('link[rel="alternate"]');
     existingHreflangs.forEach(el => el.remove());
 
     const addAlt = (hLang: string, href: string) => {

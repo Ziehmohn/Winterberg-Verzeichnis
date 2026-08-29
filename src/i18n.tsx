@@ -479,34 +479,6 @@ export function I18nProvider({ children, initialLang }: { children: React.ReactN
   };
 
   useEffect(() => {
-    // Inject hreflang on lang change
-    const head = document.head;
-    
-    // Remove existing
-    const existing = head.querySelectorAll('link[rel="alternate"]');
-    existing.forEach(e => e.remove());
-
-    const currPath = window.location.pathname.replace(/^\/nl/, '') || '/';
-    const domain = window.location.origin;
-
-    const linkDe = document.createElement('link');
-    linkDe.rel = 'alternate';
-    linkDe.hreflang = 'de';
-    linkDe.href = `${domain}${currPath}`;
-    head.appendChild(linkDe);
-
-    const linkNl = document.createElement('link');
-    linkNl.rel = 'alternate';
-    linkNl.hreflang = 'nl';
-    linkNl.href = `${domain}/nl${currPath === '/' ? '' : currPath}`;
-    head.appendChild(linkNl);
-    
-    const linkDef = document.createElement('link');
-    linkDef.rel = 'alternate';
-    linkDef.hreflang = 'x-default';
-    linkDef.href = `${domain}${currPath}`;
-    head.appendChild(linkDef);
-
     document.documentElement.lang = lang;
   }, [lang]);
 
