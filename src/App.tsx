@@ -7,6 +7,7 @@ import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
+import TestPage from './components/TestPage';
 import { isOpenNow, canDisplayOpeningHours } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
@@ -150,6 +151,7 @@ export default function App() {
   let initialAGBMode = false;
   let initialPricingMode = false;
   let initialSubmitMode = false;
+  let initialTestMode = false;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -184,6 +186,8 @@ export default function App() {
         initialPricingMode = true;
       } else if (decodedPart1.toLowerCase() === 'eintragen' || decodedPart1.toLowerCase() === 'unternehmen-eintragen') {
         initialSubmitMode = true;
+      } else if (decodedPart1.toLowerCase() === 'test') {
+        initialTestMode = true;
       } else {
         const catGroup = categories.find(c => c.name.toLowerCase() === decodedPart1.toLowerCase());
         
@@ -296,6 +300,7 @@ export default function App() {
     setIsNewsSubmitMode(false);
     setNewsId(null);
     setIsFaqMode(false);
+    setIsTestMode(false);
   };
   
   useEffect(() => {
@@ -329,17 +334,9 @@ export default function App() {
            newUrl = `/${encodeURIComponent(kat)}`;
            if (sub) {
              newUrl += `/${encodeURIComponent(sub)}`;
-             if (eintrag) newUrl += `/${encodeURIComponent(eintrag)}`;
-           } else if (eintrag) {
-             newUrl += `/${encodeURIComponent(eintrag)}`;
            }
-        } else if (eintrag) {
-           // We might not have category, but we have entry. 
-           // Can't reconstruct full hierarchy without searching businesses.
-           // Leaving it at / if no category is found is okay, or we can search for the business.
-           const foundBus = initialBusinesses.find(b => b.name.replace(/\s+/g, '-').toLowerCase() === eintrag);
-           if (foundBus) {
-             newUrl = `/${encodeURIComponent(foundBus.category)}${foundBus.subcategory ? `/${encodeURIComponent(foundBus.subcategory)}` : ''}/${encodeURIComponent(eintrag)}`;
+           if (eintrag) {
+             newUrl += `/${encodeURIComponent(eintrag.replace(/\s+/g, '-').toLowerCase())}`;
            }
         }
         window.history.replaceState(null, '', newUrl);
@@ -377,6 +374,8 @@ export default function App() {
           setIsAGBMode(true);
         } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen') {
           setIsSubmitMode(true);
+        } else if (p1 === 'test') {
+          setIsTestMode(true);
         } else {
            window.location.reload();
         }
@@ -427,6 +426,7 @@ export default function App() {
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
+  const [isTestMode, setIsTestMode] = useState(initialTestMode);
   const [isLoading, setIsLoading] = useState(false);
   const [ads, setAds] = useState<AdBanner[]>(initialAds);
   const [isAdInquiryOpen, setIsAdInquiryOpen] = useState(false);
@@ -942,6 +942,8 @@ export default function App() {
               setIsAdInquiryOpen(true);
             }}
           />
+        ) : isTestMode ? (
+          <TestPage theme={theme} activeThemeKey={activeThemeKey} />
         ) : isImpressumMode ? (
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
