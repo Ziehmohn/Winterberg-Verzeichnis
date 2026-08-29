@@ -1893,6 +1893,22 @@ export const businesses: Business[] = [
       saturday: '08:00 - 22:00',
       sunday: '08:00 - 22:00'
     }
+  },
+  {
+    id: 'hotel-herrloh',
+    name: 'Hotel Herrloh',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Hotels',
+    description: 'Gemütliches 3-Sterne-Hotel direkt am Fuße des Herrloh und der St. Georg Sprungschanze in Winterberg. Ideale Lage für Skifahrer, Wanderer und Aktivurlauber mit Restaurant und Sonnenterrasse.',
+    address: 'Herrlohweg 3, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92470',
+    email: 'info@hotelherrloh.nl',
+    website: 'https://www.hotelherrloh.nl',
+    services: ['Direkt am Skigebiet / Lift', 'Restaurant & Bar', 'Sonnenterrasse', 'WLAN inklusive', 'Skikeller & Fahrradraum', 'Kostenlose Parkplätze'],
+    imageFallback: 'HH',
+    isPremium: false,
+    status: 'approved'
   }
 
 ];
