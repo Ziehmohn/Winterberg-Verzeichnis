@@ -2813,6 +2813,72 @@ export const businesses: Business[] = [
     imageFallback: 'MB',
     isPremium: false,
     status: 'approved'
+  },
+  {
+    id: 'imkerei-ralf-becker-altenfeld',
+    name: 'Imkerei Ralf Becker',
+    category: 'Einzelhandel',
+    subcategory: 'Supermarkt',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'Bäckerei' }
+    ],
+    description: 'Traditionelle Imkerei im idyllischen Altenfeld (Winterberg). Echter deutscher Honig, Blütenhonig, Waldhonig und Bienenprodukte aus eigener regionaler Imkerei und schonender Bienenhaltung.',
+    address: 'Eichenweg 9, 59955 Winterberg-Altenfeld',
+    district: 'Altenfeld',
+    phone: '02983 969031',
+    email: 'versandbecker@aol.com',
+    website: 'http://www.imkerei-becker.de',
+    services: ['Echter Deutscher Honig', 'Blüten- & Waldhonig', 'Bienenprodukte & Wabenhonig', 'Direktverkauf vor Ort'],
+    imageFallback: 'IB',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'landgasthof-wuellner-altenfeld',
+    name: 'Landgasthof Wüllner',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Hotels',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' },
+      { category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
+    ],
+    description: 'Familiengeführter 3-Sterne-Landgasthof & Hotel in Winterberg-Altenfeld mit gemütlichen Zimmern, Sauerländer Frischeküche, herrlicher Sonnenterrasse und hauseigener Minigolfanlage im Grünen.',
+    address: 'Bödefelder Str. 32, 59955 Winterberg-Altenfeld',
+    district: 'Altenfeld',
+    phone: '02977 272',
+    email: 'info@landgasthof-wuellner.de',
+    website: 'http://www.landgasthof-wuellner.de',
+    services: ['3-Sterne-Hotel & Gasthof', 'Regionales Restaurant & Biergarten', 'Hauseigene Minigolfanlage', 'Wander- & Bikerfreundlich', 'WLAN & Parkplätze'],
+    imageFallback: 'LW',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'fleischerei-heinz-thomas-knieb-siedlinghausen',
+    name: 'Fleischerei Heinz-Thomas Knieb',
+    category: 'Handwerk',
+    subcategory: 'Fleischerei',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Supermarkt' },
+      { category: 'Gastronomie', subcategory: 'Imbisse' }
+    ],
+    description: 'Traditionelle Handwerksfleischerei in Winterberg-Siedlinghausen mit meisterhaften Fleisch- und Wurstwaren aus eigener Herstellung, hausgemachten Spezialitäten sowie 24/7 Grillfleisch- & Wurstautomat vor dem Geschäft.',
+    address: 'Hochsauerlandstraße 3, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 1636',
+    services: ['Meisterhafte Fleisch- & Wurstwaren', 'Eigene Schlachtung & Herstellung', '24/7 Grill- & Wurstautomat', 'Partyservice & Grillfleisch', 'Sauerländer Spezialitäten'],
+    imageFallback: 'FK',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: 'Geschlossen',
+      tuesday: '08:00 - 12:30, 14:30 - 18:00',
+      wednesday: '08:00 - 12:30',
+      thursday: '08:00 - 12:30, 14:30 - 18:00',
+      friday: '08:00 - 12:30, 14:30 - 18:00',
+      saturday: '07:30 - 12:30',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
@@ -2932,8 +2998,8 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
-  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
+  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }

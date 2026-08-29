@@ -2549,6 +2549,19 @@ export default function App() {
             >
               {lang === 'nl' ? 'Pakketten & Prijzen' : 'Preise & Pakete'}
             </a>
+            <a 
+              href={getPath('/grounding')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/grounding')); 
+                resetToDirectory(); 
+                setIsGroundingMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Grounding Page (AI)' : 'Grounding Page (KI-Fakten)'}
+            </a>
             <button 
               type="button"
               onClick={() => { 
@@ -2601,25 +2614,10 @@ export default function App() {
             >
               {lang === 'nl' ? 'Algemene Voorwaarden' : 'AGB'}
             </a>
-            <a 
-              href={getPath('/grounding')} 
-              onClick={(e) => { 
-                e.preventDefault(); 
-                window.history.pushState(null, '', getPath('/grounding')); 
-                resetToDirectory(); 
-                setIsGroundingMode(true); 
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-              }} 
-              className="text-white/80 hover:text-[#F2761B] transition-colors flex items-center gap-1.5"
-            >
-              <span>{lang === 'nl' ? 'Grounding Page (AI)' : 'Grounding Page (KI-Fakten)'}</span>
-            </a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'AI & Data' : 'KI & Daten'}</div>
-            <a href="/llms.txt" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#F2761B] transition-colors">llms.txt (KI-Index)</a>
-            <a href="/llms-full.txt" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#F2761B] transition-colors">llms-full.txt (Datensatz)</a>
-            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung</a>
+            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Externe Links' : 'Externe Links'}</div>
+            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung Winterberg</a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>

@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (191 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (199 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -141,6 +141,26 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Großes, modernes Gruppen-Ferienhaus in Winterberg-Langewiese für bis zu 25 Personen mit 11 Schlafzimmern, 8 Bädern, großem Gemeinschaftsbereich, Garten und Panoramablick – ideal für Familien, Freundesgruppen und Seminare.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/haus-berchstein
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/haus-berchstein
+
+#### [Landhotel Grimmeblick](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-grimmeblick)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Elkeringhausen
+- **Adresse:** Am Langen Acker 5, 59955 Winterberg-Elkeringhausen
+- **Telefon:** 02981 92660
+- **Webseite:** https://grimmeblick.de
+- **Beschreibung (DE):** Märchenhaftes 4-Sterne-Erlebnishotel und Wellnesshotel in Winterberg-Elkeringhausen mit einzigartigen Themenzimmern, weitläufiger Spa-Landschaft, Saunadorf, Außenpool, regionaler Gourmetküche und idyllischer Lage am Kurpark.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-grimmeblick
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landhotel-grimmeblick
+
+#### [Landgasthof Wüllner](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landgasthof-wuellner)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Altenfeld
+- **Adresse:** Bödefelder Str. 32, 59955 Winterberg-Altenfeld
+- **Telefon:** 02977 272
+- **Webseite:** http://www.landgasthof-wuellner.de
+- **Beschreibung (DE):** Familiengeführter 3-Sterne-Landgasthof & Hotel in Winterberg-Altenfeld mit gemütlichen Zimmern, Sauerländer Frischeküche, herrlicher Sonnenterrasse und hauseigener Minigolfanlage im Grünen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landgasthof-wuellner
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landgasthof-wuellner
 
 ### Kategorie: Handwerk
 
@@ -652,6 +672,43 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/baeckerei/tismes-baeckerei-caf-siedlinghausen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bakkerij/tismes-baeckerei-caf-siedlinghausen
 
+#### [Reifen Merter](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reifen-merter)
+- **Kategorie:** Handwerk > KFZ-Werkstätten
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Hachmicke 4, 59955 Winterberg-Grönebach
+- **Telefon:** 02985 9699849
+- **Webseite:** http://www.reifen-merter.de
+- **Beschreibung (DE):** Ihr Reifenspezialist in Winterberg-Grönebach. Professioneller Reifenservice, Reifenwechsel, Auswuchten, Neureifen aller führenden Marken, Felgen und Einlagerung für PKW, Transporter und Zweiräder.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reifen-merter
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/reifen-merter
+
+#### [Padberg & Wietell Bedachungen GmbH](https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh)
+- **Kategorie:** Handwerk > Dachdecker
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Zur Egge 2b, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 8498
+- **Beschreibung (DE):** Fachbetrieb für Dacheindeckungen und traditionelles Naturschieferhandwerk in Winterberg. Spezialisiert auf Schieferfassaden, Dämmung, Dachsanierungen und Schornsteinsanierung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/padberg-und-wietell-bedachungen-gmbh
+
+#### [Reparaturen aller Art Markus Becker](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reparaturen-aller-art-markus-becker)
+- **Kategorie:** Handwerk > KFZ-Werkstätten
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Auf dem Deich 1, 59955 Winterberg-Grönebach
+- **Telefon:** 02985 9792132
+- **Beschreibung (DE):** Freie Werkstatt für Reparaturen aller Art in Winterberg-Grönebach. KFZ-Reparaturen, Instandsetzung, Wartung und Service für PKW und Kleinfahrzeuge.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reparaturen-aller-art-markus-becker
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/reparaturen-aller-art-markus-becker
+
+#### [Fleischerei Heinz-Thomas Knieb](https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-heinz-thomas-knieb)
+- **Kategorie:** Handwerk > Fleischerei
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Hochsauerlandstraße 3, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 1636
+- **Beschreibung (DE):** Traditionelle Handwerksfleischerei in Winterberg-Siedlinghausen mit meisterhaften Fleisch- und Wurstwaren aus eigener Herstellung, hausgemachten Spezialitäten sowie 24/7 Grillfleisch- & Wurstautomat vor dem Geschäft.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-heinz-thomas-knieb
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/fleischerei/fleischerei-heinz-thomas-knieb
+
 ### Kategorie: Einzelhandel
 
 #### [REWE](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/rewe)
@@ -867,6 +924,26 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** 24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/calpam-tankautomat-zueschen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/tankstations/calpam-tankautomat-zueschen
+
+#### [Imkerei Niggemann (Hochsauerländer Blütenhonig)](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-niggemann-hochsauerlaender-bluetenhonig)
+- **Kategorie:** Einzelhandel > Supermarkt
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Am Steinacker 9, 59955 Winterberg-Grönebach
+- **Telefon:** 02985 8134
+- **Webseite:** http://www.sauerlandimker.de
+- **Beschreibung (DE):** Traditionelle Familienimkerei in Winterberg-Grönebach. Echter Hochsauerländer Blütenhonig und Bienenhonig aus naturgerechter Bienenhaltung und eigener Ernte im Sauerland.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-niggemann-hochsauerlaender-bluetenhonig
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/supermarkt/imkerei-niggemann-hochsauerlaender-bluetenhonig
+
+#### [Imkerei Ralf Becker](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-ralf-becker)
+- **Kategorie:** Einzelhandel > Supermarkt
+- **Ort / Ortsteil:** Altenfeld
+- **Adresse:** Eichenweg 9, 59955 Winterberg-Altenfeld
+- **Telefon:** 02983 969031
+- **Webseite:** http://www.imkerei-becker.de
+- **Beschreibung (DE):** Traditionelle Imkerei im idyllischen Altenfeld (Winterberg). Echter deutscher Honig, Blütenhonig, Waldhonig und Bienenprodukte aus eigener regionaler Imkerei und schonender Bienenhaltung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-ralf-becker
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/supermarkt/imkerei-ralf-becker
 
 ### Kategorie: Gastronomie
 
