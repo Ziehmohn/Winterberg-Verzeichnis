@@ -23,14 +23,14 @@ export function UnderlinedHeading({
 }) {
   const Tag = as;
   const textSize = as === 'h1' 
-    ? 'text-[30px] sm:text-[38px] md:text-[46px]' 
+    ? 'text-[28px] sm:text-[36px] md:text-[44px]' 
     : as === 'h2' 
-    ? 'text-[24px] sm:text-[28px] md:text-[32px]' 
-    : 'text-[20px] sm:text-[22px] md:text-[24px]';
+    ? 'text-[22px] sm:text-[26px] md:text-[30px]' 
+    : 'text-[19px] sm:text-[21px] md:text-[23px]';
 
   return (
     <div className={`relative inline-block ${className}`}>
-      <Tag className={`font-display ${textSize} font-bold leading-[1.2] text-[#1B211D] relative z-10 inline-block pb-2`}>
+      <Tag className={`font-display ${textSize} font-bold leading-[1.25] text-[#1B211D] relative z-10 inline-block pb-2`}>
         {text}
       </Tag>
       <svg 
@@ -53,21 +53,11 @@ export function UnderlinedHeading({
 
 // Inline Formatter for **bold**, *italic*, links [text](url) and URLs
 function renderInlineFormatted(text: string): React.ReactNode[] {
-  // Regex pattern to tokenize bold, links, mailto, urls
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  const boldRegex = /\*\*([^*]+)\*\*/g;
-  
-  // Split by links first
-  const parts: React.ReactNode[] = [];
-  let lastIdx = 0;
-  let match: RegExpExecArray | null;
-
-  // Simple parser combining tokens
-  const tokens = [];
   const combinedRegex = /(\[([^\]]+)\]\(([^)]+)\))|(\*\*([^*]+)\*\*)|(\*([^*]+)\*)|(https?:\/\/[^\s]+)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
   
-  let matchCombined;
+  const tokens = [];
   let cursor = 0;
+  let matchCombined;
 
   while ((matchCombined = combinedRegex.exec(text)) !== null) {
     if (matchCombined.index > cursor) {
@@ -133,11 +123,46 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
   });
 }
 
+interface ParsedCardItem {
+  title?: string;
+  description?: string;
+  fullText: string;
+}
+
+// Parses raw string into structured title + description
+function parseCardItem(rawText: string): ParsedCardItem {
+  const cleaned = rawText.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim();
+  
+  // Check if starts with **Title** or **Title:**
+  const boldMatch = cleaned.match(/^\*\*([^*]+)\*\*[:\s]*([\s\S]*)$/);
+  if (boldMatch) {
+    return {
+      title: boldMatch[1].trim(),
+      description: boldMatch[2].trim(),
+      fullText: cleaned
+    };
+  }
+
+  // Check if first line can be title
+  const lines = cleaned.split('\n').map(l => l.trim()).filter(Boolean);
+  if (lines.length > 1) {
+    return {
+      title: lines[0].replace(/^\*\*|\*\*$/g, ''),
+      description: lines.slice(1).join(' '),
+      fullText: cleaned
+    };
+  }
+
+  return {
+    fullText: cleaned
+  };
+}
+
 // Rich News Content Renderer
 function NewsContentRenderer({ content }: { content: string }) {
   if (!content) return null;
 
-  // Check for contact section block (either :::contact ... ::: or detected Contact heading)
+  // Extract contact block if present
   let mainBody = content;
   let contactBody: string | null = null;
 
@@ -147,20 +172,20 @@ function NewsContentRenderer({ content }: { content: string }) {
     contactBody = contactBlockMatch[1].trim();
   }
 
-  // Split into structural blocks by double newlines or headers
-  const rawSections = mainBody.split(/\n{2,}/);
+  // Split into raw sections by double newlines
+  const rawParagraphs = mainBody.split(/\n{2,}/);
 
   return (
     <div className="space-y-6">
-      {rawSections.map((section, sIdx) => {
-        const trimmed = section.trim();
+      {rawParagraphs.map((para, pIdx) => {
+        const trimmed = para.trim();
         if (!trimmed) return null;
 
         // Level 2 Heading: ## Heading
         if (trimmed.startsWith('## ')) {
           const headingText = trimmed.replace(/^##\s+/, '').trim();
           return (
-            <div key={sIdx} className="pt-6 pb-2">
+            <div key={pIdx} className="pt-6 pb-2">
               <UnderlinedHeading text={headingText} as="h2" />
             </div>
           );
@@ -170,100 +195,83 @@ function NewsContentRenderer({ content }: { content: string }) {
         if (trimmed.startsWith('### ')) {
           const headingText = trimmed.replace(/^###\s+/, '').trim();
           return (
-            <div key={sIdx} className="pt-4 pb-1">
+            <div key={pIdx} className="pt-4 pb-1">
               <UnderlinedHeading text={headingText} as="h3" />
             </div>
           );
         }
 
-        // Bullet List Block (starts with * or - or •)
-        const lines = trimmed.split('\n');
-        const isList = lines.every(l => /^(\s*[-*•]|\s*\d+\.)\s+/.test(l.trim()) || l.trim().length === 0);
+        // Check if this paragraph contains bullet list items
+        const rawLines = trimmed.split('\n');
+        const hasBullets = rawLines.some(l => /^(\s*[-*•]|\s*\d+\.)\s+/.test(l.trim()));
 
-        if (isList) {
-          const listItems = lines.filter(l => l.trim().length > 0);
-          return (
-            <div key={sIdx} className="my-6 grid grid-cols-1 gap-3.5">
-              {listItems.map((itemStr, lIdx) => {
-                const cleaned = itemStr.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim();
-                return (
-                  <div 
-                    key={lIdx} 
-                    className="bg-[#FAF8F5] border border-[#EBE6DE] rounded-[14px] p-4 md:p-5 transition-all duration-200 hover:border-[#D0C7B7] hover:bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
-                  >
-                    <div className="text-[16px] text-[#37413A] leading-[1.65]">
-                      {renderInlineFormatted(cleaned)}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        }
+        if (hasBullets) {
+          // Group lines into items: a new item begins when line starts with bullet
+          const items: string[] = [];
+          const introLines: string[] = [];
+          let currentItemLines: string[] = [];
 
-        // Mixed list block (e.g. intro text followed by bullet lines or multiple paragraphs with bullets)
-        if (lines.some(l => /^(\s*[-*•]|\s*\d+\.)\s+/.test(l.trim()))) {
-          const blocks: { type: 'p' | 'list'; content: string[] }[] = [];
-          let currentType: 'p' | 'list' = 'p';
-          let currentLines: string[] = [];
-
-          for (const line of lines) {
+          for (const line of rawLines) {
             const isBullet = /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim());
             if (isBullet) {
-              if (currentType === 'p' && currentLines.length > 0) {
-                blocks.push({ type: 'p', content: [...currentLines] });
-                currentLines = [];
+              if (currentItemLines.length > 0) {
+                items.push(currentItemLines.join('\n'));
+                currentItemLines = [];
               }
-              currentType = 'list';
-              currentLines.push(line);
+              currentItemLines.push(line);
+            } else if (currentItemLines.length > 0) {
+              // Continuation line of the current bullet item!
+              currentItemLines.push(line);
             } else {
-              if (currentType === 'list' && currentLines.length > 0) {
-                blocks.push({ type: 'list', content: [...currentLines] });
-                currentLines = [];
-              }
-              currentType = 'p';
-              currentLines.push(line);
+              // Pre-bullet intro line in the same paragraph
+              introLines.push(line);
             }
           }
-          if (currentLines.length > 0) {
-            blocks.push({ type: currentType, content: [...currentLines] });
+          if (currentItemLines.length > 0) {
+            items.push(currentItemLines.join('\n'));
           }
 
+          const parsedCards = items.map(parseCardItem);
+
           return (
-            <div key={sIdx} className="space-y-4">
-              {blocks.map((b, bIdx) => {
-                if (b.type === 'list') {
-                  return (
-                    <div key={bIdx} className="my-5 grid grid-cols-1 gap-3.5">
-                      {b.content.map((itemStr, lIdx) => {
-                        const cleaned = itemStr.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim();
-                        return (
-                          <div 
-                            key={lIdx} 
-                            className="bg-[#FAF8F5] border border-[#EBE6DE] rounded-[14px] p-4 md:p-5 transition-all duration-200 hover:border-[#D0C7B7] hover:bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
-                          >
-                            <div className="text-[16px] text-[#37413A] leading-[1.65]">
-                              {renderInlineFormatted(cleaned)}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                }
-                return (
-                  <p key={bIdx} className="text-[16.5px] md:text-[17.5px] leading-[1.75] text-[#4A544D]">
-                    {renderInlineFormatted(b.content.join(' '))}
-                  </p>
-                );
-              })}
+            <div key={pIdx} className="space-y-4">
+              {introLines.length > 0 && (
+                <p className="text-[16.5px] md:text-[17.5px] leading-[1.75] text-[#4A544D]">
+                  {renderInlineFormatted(introLines.join(' '))}
+                </p>
+              )}
+              <div className="my-5 grid grid-cols-1 gap-4">
+                {parsedCards.map((card, cIdx) => (
+                  <div 
+                    key={cIdx} 
+                    className="bg-[#FAF8F5] border border-[#E8E2D8] rounded-[18px] p-5 md:p-6 transition-all duration-200 hover:border-[#0F4C2E]/50 hover:bg-white hover:shadow-md space-y-2.5"
+                  >
+                    {card.title ? (
+                      <>
+                        <h4 className="font-display text-[18px] md:text-[20px] font-bold text-[#1B211D] leading-snug">
+                          {renderInlineFormatted(card.title)}
+                        </h4>
+                        {card.description && (
+                          <p className="text-[15px] md:text-[16px] text-[#4A544D] leading-relaxed">
+                            {renderInlineFormatted(card.description)}
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      <div className="text-[15.5px] md:text-[16px] text-[#37413A] leading-relaxed">
+                        {renderInlineFormatted(card.fullText)}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           );
         }
 
         // Standard Paragraph
         return (
-          <p key={sIdx} className="text-[16.5px] md:text-[17.5px] leading-[1.75] text-[#4A544D]">
+          <p key={pIdx} className="text-[16.5px] md:text-[17.5px] leading-[1.75] text-[#4A544D]">
             {renderInlineFormatted(trimmed)}
           </p>
         );
@@ -408,7 +416,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         </div>
       )}
 
-      {/* Clean Meta Info without unnecessary decorative emojis */}
+      {/* Clean Meta Info */}
       <div className="flex items-center gap-[18px] text-[13.5px] font-medium text-[#7C8780] mb-[24px] flex-wrap pb-4 border-b border-[#EDE8E0]">
         <div>
           {new Date(article.date).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
