@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star } from 'lucide-react';
 import { Business, ThemeConfig, Review } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
+import { getLocalizedBusiness } from '../utils/translator';
 import ReviewForm from './ReviewForm';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
@@ -21,7 +22,8 @@ interface BusinessDetailProps {
 
 export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [] }: BusinessDetailProps) {
 
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
+  const localized = getLocalizedBusiness(business, lang);
   const { currentUser: user } = useAuth();
   const [showClaimScreen, setShowClaimScreen] = useState(false);
   const [showLoginScreen, setShowLoginScreen] = useState(false);
@@ -175,7 +177,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               className="bg-white/10 border border-white/20 text-white rounded-md px-3.5 py-1.5 text-[14px] cursor-pointer inline-flex items-center gap-2 hover:bg-white/20 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Zurück
+              {t("back")}
             </button>
             
             {!business.isPremium && (
@@ -190,21 +192,21 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 }}
                 className="bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-3.5 py-1.5 text-[14px] font-semibold cursor-pointer transition-colors shadow"
               >
-                Auf Premium upgraden
+                {lang === 'nl' ? 'Upgraden naar Premium' : 'Auf Premium upgraden'}
               </button>
             )}
           </div>
 
           <div className="flex gap-2 flex-wrap mb-[14px]">
-            <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{business.category}</span>
+            <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{t(business.category)}</span>
             {business.subcategory && (
-              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{business.subcategory}</span>
+              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{t(business.subcategory)}</span>
             )}
             {business.isPremium && (
               <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
             )}
             {business.isVerified && (
-              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">Verifiziert</span>
+              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{lang === 'nl' ? 'Geverifieerd' : 'Verifiziert'}</span>
             )}
             {openState && (
               <span className={`rounded px-2.5 py-1 text-[13px] font-semibold ${openState.isOpen ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-[#FFF1E4] text-[#D65F0C]'}`}>
@@ -227,7 +229,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     <span key={i}>{i < Math.round(Number(avgRating)) ? '★' : '☆'}</span>
                   ))}
                 </span>
-                {avgRating} · {business.reviews!.length} Bewertungen
+                {avgRating} · {business.reviews!.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}
               </span>
             )}
           </div>
@@ -236,19 +238,19 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
       <div className="max-w-[1000px] mx-auto px-6 py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[26px] items-start">
         <div className="bg-white border border-[#EDE8E0] rounded-lg p-7 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-          <h2 className="font-display text-[22px] font-semibold mb-3">Über das Unternehmen</h2>
-          <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{business.description}</p>
+          <h2 className="font-display text-[22px] font-semibold mb-3">{lang === 'nl' ? 'Over het bedrijf' : 'Über das Unternehmen'}</h2>
+          <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{localized.description}</p>
           
-          {business.extendedDescription && (
+          {localized.extendedDescription && (
             <div 
               className="text-[16px] leading-[1.7] text-[#4A544D] mb-[26px] prose prose-sm md:prose-base max-w-none"
-              dangerouslySetInnerHTML={{ __html: business.extendedDescription }}
+              dangerouslySetInnerHTML={{ __html: localized.extendedDescription }}
             />
           )}
 
           {Array.isArray(business.gallery) && business.gallery.length > 0 && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">Bildergalerie</h2>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Fotogalerij' : 'Bildergalerie'}</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 mb-[30px]">
                 {business.gallery.map((img, i) => (
                   <img key={i} src={img} alt={`Bild ${i+1}`} className="w-full h-[120px] object-cover rounded-md border border-[#EDE8E0]" />
@@ -257,11 +259,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {Array.isArray(business.services) && business.services.length > 0 && (
+          {Array.isArray(localized.services) && localized.services.length > 0 && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">Leistungen</h2>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Diensten & Producten' : 'Leistungen'}</h2>
               <div className="flex gap-2 flex-wrap mb-[30px]">
-                {business.services.map((svc, i) => (
+                {localized.services.map((svc, i) => (
                   <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] rounded px-3 py-1.5 text-[14px] font-medium">{svc}</span>
                 ))}
               </div>
@@ -270,7 +272,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           {showHours && business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">Öffnungszeiten</h2>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Openingstijden' : 'Öffnungszeiten'}</h2>
               <div className="border border-[#EDE8E0] rounded-md overflow-hidden mb-[30px]">
                 {Object.entries(business.openingHours).map(([day, hours], i) => (
                   <div key={day} className={`flex justify-between py-3 px-4 text-[15px] border-b border-[#F3F0EA] last:border-b-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#FAF8F5]'}`}>
@@ -293,7 +295,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           {Array.isArray(business.jobs) && business.jobs.length > 0 && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">Offene Stellen</h2>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Vacatures' : 'Offene Stellen'}</h2>
               <div className="grid gap-2.5 mb-[30px]">
                 {business.jobs.map(j => (
                   <div key={j.id} className="border border-[#EDE8E0] rounded-md p-4">
@@ -308,7 +310,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          <h2 className="font-display text-[22px] font-semibold mb-3.5">Bewertungen</h2>
+          <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Beoordelingen' : 'Bewertungen'}</h2>
           <div className="grid gap-3 mb-5">
             {Array.isArray(business.reviews) && business.reviews.filter(r => r.status === 'approved').length > 0 ? (
               business.reviews.filter(r => r.status === 'approved').map(r => (
@@ -325,7 +327,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 </div>
               ))
             ) : (
-              <p className="text-[#8A928B] text-[15px] m-0">Noch keine Bewertungen — sei die erste Stimme.</p>
+              <p className="text-[#8A928B] text-[15px] m-0">{lang === 'nl' ? 'Nog geen beoordelingen — wees de eerste stem!' : 'Noch keine Bewertungen — sei die erste Stimme.'}</p>
             )}
           </div>
 
@@ -338,7 +340,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
         <aside className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
           <div className="flex justify-between items-start mb-1">
-            <div className="font-display text-[18px] font-semibold mt-1">Kontakt</div>
+            <div className="font-display text-[18px] font-semibold mt-1">{t("contact")}</div>
             {business.logoUrl ? (
               <img 
                 src={business.logoUrl} 
@@ -367,29 +369,29 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           {business.website && webHref && (
             <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
               <Globe className="w-4 h-4" />
-              Website öffnen
+              {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>
           )}
 
           <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-md py-3 px-4 text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
             <MapPin className="w-4 h-4" />
-            Route planen
+            {lang === 'nl' ? 'Route plannen' : 'Route planen'}
           </a>
 
           <button 
             type="button" 
             onClick={() => setShowWidgetModal(true)} 
             className="flex items-center justify-center gap-2 bg-[#FAF8F5] border border-[#EDE8E0] hover:border-[#0F4C2E] hover:bg-[#E8F1EB]/40 text-[#0F4C2E] rounded-md py-2.5 px-4 text-[14px] font-semibold transition-all shadow-xs cursor-pointer"
-            title="Trust-Siegel & Bewertungs-Widget für die eigene Website konfigurieren"
+            title={lang === 'nl' ? 'Vertrouwenszegel & widget voor eigen website configureren' : 'Trust-Siegel & Bewertungs-Widget für die eigene Website konfigurieren'}
           >
             <Star className="w-4 h-4 text-[#F2761B]" />
-            <span>Siegel für eigene Website</span>
+            <span>{lang === 'nl' ? 'Zegel voor eigen website' : 'Siegel für eigene Website'}</span>
           </button>
 
           {!business.isPremium && (
             <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
-              <div className="font-semibold text-[15px] mb-1">Ist das Ihr Unternehmen?</div>
-              <p className="text-[13px] text-[#5F6B63] mb-3">Übernehmen Sie dieses Profil und fügen Sie Bildergalerie, Öffnungszeiten und mehr hinzu.</p>
+              <div className="font-semibold text-[15px] mb-1">{t("isThisYourBusiness")}</div>
+              <p className="text-[13px] text-[#5F6B63] mb-3">{t("claimProfileDesc")}</p>
               <button 
                 type="button"
                 onClick={() => {
@@ -401,7 +403,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 }}
                 className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-md py-2.5 text-[14px] font-semibold cursor-pointer transition-colors"
               >
-                Profil übernehmen & upgraden
+                {lang === 'nl' ? 'Profiel claimen & upgraden' : 'Profil übernehmen & upgraden'}
               </button>
             </div>
           )}
@@ -412,7 +414,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 onClick={() => setIsReportingError(true)}
                 className="w-full bg-transparent border-none text-[#5F6B63] hover:text-[#0F4C2E] underline text-[13px] cursor-pointer text-center"
               >
-                Fehler gefunden?
+                {lang === 'nl' ? 'Fout ontdekt?' : 'Fehler gefunden?'}
               </button>
             )}
             
@@ -421,7 +423,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 <textarea
                   value={errorReportText}
                   onChange={(e) => setErrorReportText(e.target.value)}
-                  placeholder="Was ist nicht korrekt?"
+                  placeholder={lang === 'nl' ? 'Wat klopt er niet?' : 'Was ist nicht korrekt?'}
                   className="w-full border border-[#E7E2DA] rounded-md p-3 text-[13px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] min-h-[80px]"
                 />
                 <div className="flex gap-2">
@@ -429,14 +431,14 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     onClick={() => { setIsReportingError(false); setErrorReportText(''); }}
                     className="flex-1 bg-white border border-[#E7E2DA] rounded-md py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FAF8F5]"
                   >
-                    Abbrechen
+                    {lang === 'nl' ? 'Annuleren' : 'Abbrechen'}
                   </button>
                   <button 
                     onClick={handleReportError}
                     disabled={isSubmittingReport || !errorReportText.trim()}
                     className="flex-1 bg-[#0F4C2E] text-white border-none rounded-md py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#06301C] disabled:opacity-50"
                   >
-                    {isSubmittingReport ? 'Sendet...' : 'Senden'}
+                    {isSubmittingReport ? (lang === 'nl' ? 'Verzenden...' : 'Sendet...') : (lang === 'nl' ? 'Versturen' : 'Senden')}
                   </button>
                 </div>
               </div>
@@ -444,7 +446,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             
             {reportSuccess && (
               <div className="text-center text-emerald-600 text-[13px] font-semibold py-2">
-                Vielen Dank! Wir prüfen das.
+                {lang === 'nl' ? 'Hartelijk dank! Wij controleren het.' : 'Vielen Dank! Wir prüfen das.'}
               </div>
             )}
           </div>
@@ -453,7 +455,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
       {similarBusinesses.length > 0 && (
         <div className="max-w-[1000px] mx-auto px-6 pb-[80px]">
-          <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">Ähnliche Unternehmen</h2>
+          <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">{lang === 'nl' ? 'Vergelijkbare bedrijven' : 'Ähnliche Unternehmen'}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[18px]">
             {similarBusinesses.map(b => (
               <div key={b.id} onClick={() => {

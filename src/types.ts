@@ -61,6 +61,14 @@ export interface NewsArticle {
   status: 'pending' | 'approved';
 }
 
+export interface BusinessTranslations {
+  nl?: {
+    description?: string;
+    extendedDescription?: string;
+    services?: string[];
+  };
+}
+
 export interface Business {
   id: string;
   name: string;
@@ -89,6 +97,10 @@ export interface Business {
   isVerified?: boolean;
   city?: string;
   additionalCategories?: { category: string, subcategory: string }[];
+  translations?: BusinessTranslations;
+  description_nl?: string;
+  extendedDescription_nl?: string;
+  services_nl?: string[];
 }
 
 export interface UserProfile {

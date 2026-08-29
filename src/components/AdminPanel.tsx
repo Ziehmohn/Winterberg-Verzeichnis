@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X } from 'lucide-react';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
+import { translateTextToDutch, translateServiceToDutch } from '../utils/translator';
 import { db, storage, auth } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
@@ -82,28 +83,94 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       isPremium: !!base.isPremium,
       extendedDescription: base.extendedDescription || '',
       ownerId: base.ownerId || '',
-      status: base.status || 'approved'
+      status: base.status || 'approved',
+      translations: base.translations || {},
+      description_nl: base.translations?.nl?.description || base.description_nl || '',
+      extendedDescription_nl: base.translations?.nl?.extendedDescription || base.extendedDescription_nl || '',
+      services_nl: Array.isArray(base.translations?.nl?.services) ? [...base.translations.nl.services] : (Array.isArray(base.services_nl) ? [...base.services_nl] : [])
     };
   });
   
+  const [activeLangTab, setActiveLangTab] = useState<'de' | 'nl'>('de');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [newService, setNewService] = useState('');
+  const [newServiceNl, setNewServiceNl] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
 
+
+  const handleAutoTranslateToDutch = () => {
+    const autoDesc = translateTextToDutch(formData.description || '');
+    const autoExt = formData.extendedDescription ? translateTextToDutch(formData.extendedDescription) : '';
+    const autoServices = (formData.services || []).map(s => translateServiceToDutch(s));
+
+    setFormData(prev => ({
+      ...prev,
+      description_nl: autoDesc,
+      extendedDescription_nl: autoExt,
+      services_nl: autoServices,
+      translations: {
+        ...prev.translations,
+        nl: {
+          description: autoDesc,
+          extendedDescription: autoExt,
+          services: autoServices
+        }
+      }
+    }));
+    setActiveLangTab('nl');
+  };
+
+  const addServicesNlFromInput = (input: string) => {
+    if (!input.trim()) return;
+    const items = input.split(',').map(s => s.trim()).filter(Boolean);
+    if (items.length > 0) {
+      setFormData(prev => {
+        const existing = prev.services_nl || [];
+        const updated = [...existing];
+        items.forEach(item => {
+          if (!updated.includes(item)) {
+            updated.push(item);
+          }
+        });
+        return { 
+          ...prev, 
+          services_nl: updated,
+          translations: {
+            ...prev.translations,
+            nl: {
+              ...(prev.translations?.nl || {}),
+              services: updated
+            }
+          }
+        };
+      });
+      setNewServiceNl('');
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     const newId = formData.id || 'b_' + Date.now().toString(36);
-    const dataToSubmit = {
+    const dataToSubmit: Business = {
       ...formData,
+      translations: {
+        ...formData.translations,
+        nl: {
+          description: formData.description_nl || '',
+          extendedDescription: formData.extendedDescription_nl || '',
+          services: formData.services_nl || []
+        }
+      },
+      description_nl: formData.description_nl || '',
+      extendedDescription_nl: formData.extendedDescription_nl || '',
+      services_nl: formData.services_nl || [],
       status: formData.status || 'approved',
       id: newId
     };
     
     try {
-      // Removed auth.currentUser.getIdToken(true) as it can sometimes hang indefinitely
       // 10 second timeout for setDoc to catch hanging issues
       const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 10000));
       await Promise.race([
@@ -354,10 +421,75 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </div>
         </div>
 
-        <div>
-          <label className={labelClass}>Kurzbeschreibung * (max. 90 Zeichen für Suchergebnisse & Vorschau)</label>
-          <textarea required maxLength={90} value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={2} placeholder="Kurze Zusammenfassung für die Suchliste..." />
-          <div className="text-right text-xs opacity-70 mt-1">{(formData.description || '').length}/90 Zeichen</div>
+        {/* Mehrsprachigkeit & Übersetzung */}
+        <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-3.5">
+          <div className="flex items-center justify-between flex-wrap gap-3 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">Sprache für Texte:</span>
+              <div className="flex items-center bg-white p-1 rounded-md border border-[#E7E2DA] gap-1">
+                <button
+                  type="button"
+                  onClick={() => setActiveLangTab('de')}
+                  className={`px-3 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    activeLangTab === 'de'
+                      ? 'bg-[#0F4C2E] text-white shadow-2xs'
+                      : 'text-[#5F6B63] hover:text-[#1B211D]'
+                  }`}
+                >
+                  <span>🇩🇪</span>
+                  <span>Deutsch (Standard)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveLangTab('nl')}
+                  className={`px-3 py-1 rounded text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    activeLangTab === 'nl'
+                      ? 'bg-[#0F4C2E] text-white shadow-2xs'
+                      : 'text-[#5F6B63] hover:text-[#1B211D]'
+                  }`}
+                >
+                  <span>🇳🇱</span>
+                  <span>Niederländisch (NL)</span>
+                  {(formData.description_nl || (formData.services_nl && formData.services_nl.length > 0)) ? (
+                    <span className="w-2 h-2 rounded-full bg-[#F2761B]" title="Angepasste Übersetzung vorhanden"></span>
+                  ) : null}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleAutoTranslateToDutch}
+              className="bg-orange-50 hover:bg-orange-100 text-[#D65F0C] border border-orange-200 rounded-md px-3 py-1.5 text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 shadow-2xs"
+              title="Generiert automatisch eine niederländische Übersetzung aus den deutschen Texten"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
+              <span>⚡ Automatisch ins Niederländische übersetzen</span>
+            </button>
+          </div>
+
+          {activeLangTab === 'nl' && (
+            <div className="bg-emerald-50 border border-emerald-200 rounded p-2.5 text-xs text-emerald-800 mb-3 flex items-start gap-2">
+              <Globe className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
+              <div>
+                <strong>Automatische Übersetzung aktiv:</strong> Wenn Sie die niederländischen Felder leer lassen, übersetzt das System die Unternehmensseite für niederländische Besucher (/nl/...) automatisch in Echtzeit. Sie können hier aber beliebige Texte manuell anpassen oder überschreiben.
+              </div>
+            </div>
+          )}
+
+          {activeLangTab === 'de' ? (
+            <div>
+              <label className={labelClass}>Kurzbeschreibung (Deutsch) * (max. 90 Zeichen für Suchergebnisse & Vorschau)</label>
+              <textarea required maxLength={90} value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={2} placeholder="Kurze Zusammenfassung für die Suchliste..." />
+              <div className="text-right text-xs opacity-70 mt-1">{(formData.description || '').length}/90 Zeichen</div>
+            </div>
+          ) : (
+            <div>
+              <label className={labelClass}>Kurzbeschreibung (Niederländisch) (max. 90 Zeichen für /nl/...)</label>
+              <textarea maxLength={90} value={formData.description_nl || ''} onChange={e => setFormData({...formData, description_nl: e.target.value})} className={inputClass} rows={2} placeholder="Korte samenvatting voor Nederlandse bezoekers (optional)..." />
+              <div className="text-right text-xs opacity-70 mt-1">{(formData.description_nl || '').length}/90 Zeichen</div>
+            </div>
+          )}
         </div>
 
 
@@ -456,49 +588,106 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             </div>
 
             <div className="border-b border-orange-200/50 pb-5">
-              <label className={labelClass}>Leistungen & Services (Premium-Feature)</label>
-              <div className="flex gap-2 mb-1">
-                <input 
-                  type="text" 
-                  value={newService} 
-                  onChange={e => {
-                    const val = e.target.value;
-                    if (val.includes(',')) {
-                      addServicesFromInput(val);
-                    } else {
-                      setNewService(val);
-                    }
-                  }} 
-                  onKeyDown={e => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      addServicesFromInput(newService);
-                    }
-                  }}
-                  className={inputClass} 
-                  placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
-                />
-                <button 
-                  type="button" 
-                  onClick={() => addServicesFromInput(newService)}
-                  className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                >
-                  Hinzufügen
-                </button>
+              <div className="flex items-center justify-between mb-1">
+                <label className={labelClass}>
+                  {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (Niederländisch)'} (Premium-Feature)
+                </label>
+                <span className="text-xs text-[#5F6B63]">
+                  {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+                </span>
               </div>
-              <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
-              <div className="flex flex-wrap gap-2">
-                {(formData.services || []).map((service, idx) => (
-                  <div key={idx} className="flex items-center gap-2 bg-black/5 px-2.5 py-1 rounded-md text-sm">
-                    <span>{service}</span>
-                    <button type="button" onClick={() => {
-                      setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));
-                    }} className="text-red-500 hover:text-red-700">
-                      <X className="w-3 h-3" />
+
+              {activeLangTab === 'de' ? (
+                <>
+                  <div className="flex gap-2 mb-1">
+                    <input 
+                      type="text" 
+                      value={newService} 
+                      onChange={e => {
+                        const val = e.target.value;
+                        if (val.includes(',')) {
+                          addServicesFromInput(val);
+                        } else {
+                          setNewService(val);
+                        }
+                      }} 
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addServicesFromInput(newService);
+                        }
+                      }}
+                      className={inputClass} 
+                      placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => addServicesFromInput(newService)}
+                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                    >
+                      Hinzufügen
                     </button>
                   </div>
-                ))}
-              </div>
+                  <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
+                  <div className="flex flex-wrap gap-2">
+                    {(formData.services || []).map((service, idx) => (
+                      <div key={idx} className="flex items-center gap-2 bg-black/5 px-2.5 py-1 rounded-md text-sm">
+                        <span>{service}</span>
+                        <button type="button" onClick={() => {
+                          setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));
+                        }} className="text-red-500 hover:text-red-700">
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex gap-2 mb-1">
+                    <input 
+                      type="text" 
+                      value={newServiceNl} 
+                      onChange={e => {
+                        const val = e.target.value;
+                        if (val.includes(',')) {
+                          addServicesNlFromInput(val);
+                        } else {
+                          setNewServiceNl(val);
+                        }
+                      }} 
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addServicesNlFromInput(newServiceNl);
+                        }
+                      }}
+                      className={inputClass} 
+                      placeholder="Nederlandse dienst/product invoeren en op Enter drukken (optioneel)" 
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => addServicesNlFromInput(newServiceNl)}
+                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                    >
+                      Hinzufügen
+                    </button>
+                  </div>
+                  <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Leistungen automatisch in Echtzeit ins Niederländische übersetzt.</p>
+                  <div className="flex flex-wrap gap-2">
+                    {(formData.services_nl || []).map((service, idx) => (
+                      <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm">
+                        <span>{service}</span>
+                        <button type="button" onClick={() => {
+                          setFormData(prev => ({ ...prev, services_nl: prev.services_nl?.filter((_, i) => i !== idx) }));
+                        }} className="text-red-500 hover:text-red-700">
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
             
             <div className="border-b border-orange-200/50 pb-5">
@@ -669,13 +858,31 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             </div>
 
             <div className="border-t border-orange-200/50 pt-5">
-              <label className={labelClass}>Ausführliche Premium-Beschreibung ("Über uns")</label>
-              <p className="text-xs opacity-70 mb-2">Hier können Sie umfangreiche Texte, Formatierungen und Bilder über den WYSIWYG-Editor gestalten.</p>
+              <div className="flex items-center justify-between mb-1">
+                <label className={labelClass}>
+                  {activeLangTab === 'de' ? 'Ausführliche Premium-Beschreibung (Deutsch - "Über uns")' : 'Ausführliche Premium-Beschreibung (Niederländisch - "Over het bedrijf")'}
+                </label>
+                <span className="text-xs text-[#5F6B63]">
+                  {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+                </span>
+              </div>
+              <p className="text-xs opacity-70 mb-2">
+                {activeLangTab === 'de' 
+                  ? 'Hier können Sie umfangreiche Texte, Formatierungen und Bilder über den WYSIWYG-Editor gestalten.' 
+                  : 'Optional: Gestalten Sie hier die niederländische Übersetzung. Bleibt dieses Feld leer, wird der deutsche Text automatisch übersetzt.'}
+              </p>
               <div className="bg-white rounded-md border border-black/10">
-                <SafeRichTextEditor 
-                  value={formData.extendedDescription || ''}
-                  onChange={(val) => setFormData({...formData, extendedDescription: val})}
-                />
+                {activeLangTab === 'de' ? (
+                  <SafeRichTextEditor 
+                    value={formData.extendedDescription || ''}
+                    onChange={(val) => setFormData({...formData, extendedDescription: val})}
+                  />
+                ) : (
+                  <SafeRichTextEditor 
+                    value={formData.extendedDescription_nl || ''}
+                    onChange={(val) => setFormData({...formData, extendedDescription_nl: val})}
+                  />
+                )}
               </div>
 
               <div className="h-12"></div>

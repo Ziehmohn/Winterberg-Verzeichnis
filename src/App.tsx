@@ -29,6 +29,7 @@ import {
   getSubcategorySlug,
   STATIC_PAGE_SLUGS
 } from './utils/routes';
+import { getLocalizedBusiness } from './utils/translator';
 
 const initialAds: AdBanner[] = [
   {
@@ -973,25 +974,33 @@ export default function App() {
               
               <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
 
-              {/* Länderschieber (Sprachumschalter DE / NL) */}
-              <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA] shadow-inner select-none">
+              {/* Länderschieber (Sprachumschalter nur Flaggen) */}
+              <div className="flex items-center bg-[#F3F0EA] p-1 rounded-full border border-[#E7E2DA] shadow-inner select-none gap-1">
                 <button 
                   type="button" 
                   onClick={() => switchLanguage('de')} 
-                  className={`px-2.5 py-1 rounded-full text-[12px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${lang === 'de' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
-                  title="Deutsche Version"
+                  className={`w-7 h-7 rounded-full text-[15px] flex items-center justify-center transition-all cursor-pointer ${
+                    lang === 'de' 
+                      ? 'bg-white shadow-sm ring-1 ring-black/10 scale-105' 
+                      : 'opacity-50 hover:opacity-100 hover:scale-105'
+                  }`}
+                  title="Deutsch"
+                  aria-label="Deutsch"
                 >
-                  <span className="text-[13px]">🇩🇪</span>
-                  <span>DE</span>
+                  <span className="leading-none select-none">🇩🇪</span>
                 </button>
                 <button 
                   type="button" 
                   onClick={() => switchLanguage('nl')} 
-                  className={`px-2.5 py-1 rounded-full text-[12px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${lang === 'nl' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'}`}
-                  title="Nederlandse versie"
+                  className={`w-7 h-7 rounded-full text-[15px] flex items-center justify-center transition-all cursor-pointer ${
+                    lang === 'nl' 
+                      ? 'bg-white shadow-sm ring-1 ring-black/10 scale-105' 
+                      : 'opacity-50 hover:opacity-100 hover:scale-105'
+                  }`}
+                  title="Nederlands"
+                  aria-label="Nederlands"
                 >
-                  <span className="text-[13px]">🇳🇱</span>
-                  <span>NL</span>
+                  <span className="leading-none select-none">🇳🇱</span>
                 </button>
               </div>
 
@@ -1023,20 +1032,28 @@ export default function App() {
 
             {/* Mobile Language Switch & Menu Button */}
             <div className="md:hidden ml-auto flex items-center gap-2">
-              <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA]">
+              <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA] gap-0.5">
                 <button 
                   type="button" 
                   onClick={() => switchLanguage('de')} 
-                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${lang === 'de' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                  className={`w-7 h-7 rounded-full text-[14px] flex items-center justify-center transition-all cursor-pointer ${
+                    lang === 'de' ? 'bg-white shadow-xs scale-105' : 'opacity-50'
+                  }`}
+                  title="Deutsch"
+                  aria-label="Deutsch"
                 >
-                  DE
+                  <span className="leading-none">🇩🇪</span>
                 </button>
                 <button 
                   type="button" 
                   onClick={() => switchLanguage('nl')} 
-                  className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${lang === 'nl' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                  className={`w-7 h-7 rounded-full text-[14px] flex items-center justify-center transition-all cursor-pointer ${
+                    lang === 'nl' ? 'bg-white shadow-xs scale-105' : 'opacity-50'
+                  }`}
+                  title="Nederlands"
+                  aria-label="Nederlands"
                 >
-                  NL
+                  <span className="leading-none">🇳🇱</span>
                 </button>
               </div>
 
@@ -1718,71 +1735,76 @@ export default function App() {
                   className="grid grid-cols-1 xl:grid-cols-2 gap-6"
                 >
                   {filteredBusinesses.length > 0 ? (
-                    filteredBusinesses.map((bus) => (
-                      <div 
-                        key={bus.id} 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
-                          setSearchQuery(bus.name);
-                          setSelectedBusiness(bus);
-                        }}
-                        className={`bg-white border rounded-lg p-5 cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
-                      >
-                        <div className="flex items-start gap-[16px] mb-[16px]">
-                          {bus.logoUrl ? (
-                            <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
-                          ) : (
-                            <BusinessCategoryIcon 
-                              category={bus.category} 
-                              subcategory={bus.subcategory} 
-                              name={bus.name} 
-                              isPremium={bus.isPremium} 
-                              size="lg"
-                              className="w-[48px] h-[48px]"
-                            />
-                          )}
-                          <div>
-                            <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
-                            <div className="text-[13.5px] text-[#8A928B]">{t(bus.category)}{bus.subcategory ? ` · ${t(bus.subcategory)}` : ''} · {bus.district || 'Winterberg'}</div>
-                          </div>
-                        </div>
-                        <div className="text-[15px] text-[#5F6B63] leading-[1.5] mb-[16px] min-h-[44px]">
-                          {bus.description && bus.description.length > 90 
-                            ? bus.description.substring(0, 90) + '…' 
-                            : (bus.description || '')}
-                        </div>
-
-                        {/* Services & Products Tags */}
-                        {Array.isArray(bus.services) && bus.services.length > 0 && (
-                          <div className="flex items-center gap-1.5 flex-wrap mb-4">
-                            {bus.services.slice(0, 3).map((svc, sIdx) => {
-                              const isMatched = searchQuery && svc.toLowerCase().includes(searchQuery.toLowerCase().trim());
-                              return (
-                                <span
-                                  key={sIdx}
-                                  className={`text-[12px] px-2.5 py-0.5 rounded-md font-medium transition-colors ${
-                                    isMatched 
-                                      ? 'bg-[#FFF1E4] text-[#D65F0C] font-bold border border-[#F2761B]/40' 
-                                      : 'bg-[#FAF8F5] text-[#5F6B63] border border-[#EDE8E0]'
-                                  }`}
-                                >
-                                  {isMatched ? `★ ${svc}` : svc}
-                                </span>
-                              );
-                            })}
-                            {bus.services.length > 3 && (
-                              <span className="text-[11px] text-[#8A928B] font-medium">+{bus.services.length - 3} weitere</span>
+                    filteredBusinesses.map((bus) => {
+                      const localized = getLocalizedBusiness(bus, lang);
+                      return (
+                        <div 
+                          key={bus.id} 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
+                            setSearchQuery(bus.name);
+                            setSelectedBusiness(bus);
+                          }}
+                          className={`bg-white border rounded-lg p-5 cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
+                        >
+                          <div className="flex items-start gap-[16px] mb-[16px]">
+                            {bus.logoUrl ? (
+                              <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
+                            ) : (
+                              <BusinessCategoryIcon 
+                                category={bus.category} 
+                                subcategory={bus.subcategory} 
+                                name={bus.name} 
+                                isPremium={bus.isPremium} 
+                                size="lg"
+                                className="w-[48px] h-[48px]"
+                              />
                             )}
+                            <div>
+                              <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
+                              <div className="text-[13.5px] text-[#8A928B]">{t(bus.category)}{bus.subcategory ? ` · ${t(bus.subcategory)}` : ''} · {bus.district || 'Winterberg'}</div>
+                            </div>
                           </div>
-                        )}
+                          <div className="text-[15px] text-[#5F6B63] leading-[1.5] mb-[16px] min-h-[44px]">
+                            {localized.description && localized.description.length > 90 
+                              ? localized.description.substring(0, 90) + '…' 
+                              : (localized.description || '')}
+                          </div>
 
-                        <div className="flex items-center gap-[8px] text-[13.5px] text-[#8A928B]">
-                          <MapPin className="w-[14px] h-[14px]" />
-                          {bus.address}
+                          {/* Services & Products Tags */}
+                          {Array.isArray(localized.services) && localized.services.length > 0 && (
+                            <div className="flex items-center gap-1.5 flex-wrap mb-4">
+                              {localized.services.slice(0, 3).map((svc, sIdx) => {
+                                const isMatched = searchQuery && (svc.toLowerCase().includes(searchQuery.toLowerCase().trim()) || (bus.services && bus.services.some(orig => orig.toLowerCase().includes(searchQuery.toLowerCase().trim()))));
+                                return (
+                                  <span
+                                    key={sIdx}
+                                    className={`text-[12px] px-2.5 py-0.5 rounded-md font-medium transition-colors ${
+                                      isMatched 
+                                        ? 'bg-[#FFF1E4] text-[#D65F0C] font-bold border border-[#F2761B]/40' 
+                                        : 'bg-[#FAF8F5] text-[#5F6B63] border border-[#EDE8E0]'
+                                    }`}
+                                  >
+                                    {isMatched ? `★ ${svc}` : svc}
+                                  </span>
+                                );
+                              })}
+                              {localized.services.length > 3 && (
+                                <span className="text-[11px] text-[#8A928B] font-medium">
+                                  +{localized.services.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          <div className="flex items-center gap-[8px] text-[13.5px] text-[#8A928B]">
+                            <MapPin className="w-[14px] h-[14px]" />
+                            {bus.address}
+                          </div>
                         </div>
-                      </div>
-                    ))
+                      );
+                    })
                   ) : (
                     <div className={`col-span-full py-16 text-center border-dashed border-2 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'} ${theme.cardBorder} ${theme.textMuted}`}>
                       <p className="text-lg font-medium">{t("noBusinessesFound")}</p>
@@ -1981,18 +2003,20 @@ export default function App() {
                 <span>🌐</span>
                 <span>{t("language")}:</span>
               </span>
-              <div className="flex items-center bg-[#F3F0EA] p-1 rounded-full border border-[#E7E2DA]">
+              <div className="flex items-center bg-[#F3F0EA] p-1 rounded-full border border-[#E7E2DA] gap-1.5">
                 <button
                   type="button"
                   onClick={() => {
                     switchLanguage('de');
                     setIsMobileCategoriesOpen(false);
                   }}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                    lang === 'de' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63]'
+                  className={`w-9 h-9 rounded-full text-[20px] flex items-center justify-center transition-all cursor-pointer ${
+                    lang === 'de' ? 'bg-white shadow-sm ring-1 ring-black/10 scale-105' : 'opacity-40 hover:opacity-100'
                   }`}
+                  title="Deutsch"
+                  aria-label="Deutsch"
                 >
-                  🇩🇪 Deutsch
+                  <span className="leading-none">🇩🇪</span>
                 </button>
                 <button
                   type="button"
@@ -2000,11 +2024,13 @@ export default function App() {
                     switchLanguage('nl');
                     setIsMobileCategoriesOpen(false);
                   }}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                    lang === 'nl' ? 'bg-[#0F4C2E] text-white shadow-xs' : 'text-[#5F6B63]'
+                  className={`w-9 h-9 rounded-full text-[20px] flex items-center justify-center transition-all cursor-pointer ${
+                    lang === 'nl' ? 'bg-white shadow-sm ring-1 ring-black/10 scale-105' : 'opacity-40 hover:opacity-100'
                   }`}
+                  title="Nederlands"
+                  aria-label="Nederlands"
                 >
-                  🇳🇱 Nederlands
+                  <span className="leading-none">🇳🇱</span>
                 </button>
               </div>
             </div>
