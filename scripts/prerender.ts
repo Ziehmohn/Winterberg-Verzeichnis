@@ -33,13 +33,15 @@ interface PageSEO {
   alternateNl: string;
   alternateXDefault: string;
   lang: 'de' | 'nl';
+  h1: string;
+  h2?: string;
   ogType?: string;
   jsonLd?: any;
 }
 
 const pagesToPrerender: PageSEO[] = [];
 
-// Helper to escape HTML attributes
+// Helper to escape HTML attributes & contents
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -58,7 +60,9 @@ pagesToPrerender.push({
   alternateDe: `${baseUrl}/`,
   alternateNl: `${baseUrl}/nl`,
   alternateXDefault: `${baseUrl}/`,
-  lang: 'de'
+  lang: 'de',
+  h1: 'Winterberger Unternehmen',
+  h2: 'Das große Branchen- und Firmenverzeichnis für Winterberg und Umgebung'
 });
 
 pagesToPrerender.push({
@@ -69,7 +73,9 @@ pagesToPrerender.push({
   alternateDe: `${baseUrl}/`,
   alternateNl: `${baseUrl}/nl`,
   alternateXDefault: `${baseUrl}/`,
-  lang: 'nl'
+  lang: 'nl',
+  h1: 'Bedrijven in Winterberg',
+  h2: 'De grote bedrijvengids voor Winterberg en omgeving'
 });
 
 // 2. All businesses
@@ -81,7 +87,9 @@ pagesToPrerender.push({
   alternateDe: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
   alternateNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.all.nl}`,
   alternateXDefault: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
-  lang: 'de'
+  lang: 'de',
+  h1: 'Alle Unternehmen in Winterberg',
+  h2: 'Vollständige Übersicht aller Betriebe, Handwerker und Dienstleister'
 });
 
 pagesToPrerender.push({
@@ -92,7 +100,9 @@ pagesToPrerender.push({
   alternateDe: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
   alternateNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.all.nl}`,
   alternateXDefault: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
-  lang: 'nl'
+  lang: 'nl',
+  h1: 'Alle bedrijven in Winterberg',
+  h2: 'Compleet overzicht van alle bedrijven en dienstverleners'
 });
 
 // 3. Static Pages
@@ -102,62 +112,98 @@ const staticPageConfigs: {
   titleNl: string;
   descDe: string;
   descNl: string;
+  h1De: string;
+  h1Nl: string;
+  h2De: string;
+  h2Nl: string;
 }[] = [
   {
     key: 'jobs',
     titleDe: 'Offene Stellen & Jobs in Winterberg | Das Winterberg Verzeichnis',
     titleNl: 'Vacatures & Banen in Winterberg | Het Winterberg Overzicht',
     descDe: 'Aktuelle Jobangebote und offene Stellen bei Unternehmen in Winterberg und Umgebung. Finden Sie jetzt Ihren neuen Job im Sauerland.',
-    descNl: 'Actuele vacatures en banen bij bedrijven in Winterberg en omgeving. Vind uw nieuwe baan in het Sauerland.'
+    descNl: 'Actuele vacatures en banen bij bedrijven in Winterberg en omgeving. Vind uw nieuwe baan in het Sauerland.',
+    h1De: 'Jobs & Stellenangebote in Winterberg',
+    h1Nl: 'Vacatures & Banen in Winterberg',
+    h2De: 'Aktuelle Jobangebote und Karrieremöglichkeiten im Sauerland',
+    h2Nl: 'Actuele banen en carrièremogelijkheden in het Sauerland'
   },
   {
     key: 'news',
     titleDe: 'News & Aktuelles aus Winterberg | Das Winterberg Verzeichnis',
     titleNl: 'Nieuws & Actualiteiten uit Winterberg | Het Winterberg Overzicht',
     descDe: 'Aktuelle Nachrichten, Unternehmensmeldungen und Neuigkeiten aus Winterberg und den Ortsteilen.',
-    descNl: 'Actueel nieuws, bedrijfsberichten en updates uit Winterberg en de omliggende dorpen.'
+    descNl: 'Actueel nieuws, bedrijfsberichten en updates uit Winterberg en de omliggende dorpen.',
+    h1De: 'News & Aktuelles aus Winterberg',
+    h1Nl: 'Nieuws & Actualiteiten uit Winterberg',
+    h2De: 'Neuigkeiten, Unternehmensmeldungen und Wirtschafts-Updates',
+    h2Nl: 'Nieuws, bedrijfsberichten en updates'
   },
   {
     key: 'faq',
     titleDe: 'Häufige Fragen (FAQ) zu Winterberg | Das Winterberg Verzeichnis',
     titleNl: 'Veelgestelde Vragen (FAQ) over Winterberg | Het Winterberg Overzicht',
     descDe: 'Antworten auf häufig gestellte Fragen zu Unternehmen, Öffnungszeiten, Tourismus und Brancheneinträgen in Winterberg.',
-    descNl: 'Antwoorden op veelgestelde vragen over bedrijven, openingstijden, toerisme en bedrijfsvermeldingen in Winterberg.'
+    descNl: 'Antwoorden op veelgestelde vragen over bedrijven, openingstijden, toerisme en bedrijfsvermeldingen in Winterberg.',
+    h1De: 'Häufig gestellte Fragen (FAQ)',
+    h1Nl: 'Veelgestelde Vragen (FAQ)',
+    h2De: 'Alles Wissenswerte über das Winterberg Verzeichnis',
+    h2Nl: 'Alles wat u moet weten over het Winterberg Overzicht'
   },
   {
     key: 'submit',
     titleDe: 'Unternehmen kostenlos eintragen | Das Winterberg Verzeichnis',
     titleNl: 'Bedrijf gratis aanmelden | Het Winterberg Overzicht',
     descDe: 'Tragen Sie Ihr Unternehmen, Ihren Handwerksbetrieb oder Gastronomiebetrieb kostenlos im offiziellen Winterberg-Verzeichnis ein.',
-    descNl: 'Meld uw bedrijf, ambachtszaak of horecagelegenheid gratis aan in de officiële Winterberg gids.'
+    descNl: 'Meld uw bedrijf, ambachtszaak of horecagelegenheid gratis aan in de officiële Winterberg gids.',
+    h1De: 'Unternehmen kostenlos eintragen',
+    h1Nl: 'Bedrijf gratis aanmelden',
+    h2De: 'Erhöhen Sie Ihre Reichweite bei Einheimischen und Touristen',
+    h2Nl: 'Vergroot uw zichtbaarheid bij inwoners en toeristen'
   },
   {
     key: 'pricing',
     titleDe: 'Preise & Premium-Pakete | Das Winterberg Verzeichnis',
     titleNl: 'Pakketten & Prijzen voor bedrijven | Het Winterberg Overzicht',
     descDe: 'Übersicht über den dauerhaft kostenlosen Basiseintrag und das Premium-Paket für maximale Sichtbarkeit und Neukundengewinnung in Winterberg.',
-    descNl: 'Overzicht van de gratis basisvermelding en het premiumpakket voor maximale zichtbaarheid in Winterberg.'
+    descNl: 'Overzicht van de gratis basisvermelding en het premiumpakket voor maximale zichtbaarheid in Winterberg.',
+    h1De: 'Preise & Premium-Pakete',
+    h1Nl: 'Pakketten & Prijzen voor bedrijven',
+    h2De: 'Transparente Konditionen für dauerhaften Erfolg',
+    h2Nl: 'Transparante voorwaarden voor optimaal resultaat'
   },
   {
     key: 'impressum',
     titleDe: 'Impressum | Das Winterberg Verzeichnis',
     titleNl: 'Colofon / Impressum | Het Winterberg Overzicht',
     descDe: 'Rechtliche Angaben und Impressum für Das Winterberg Verzeichnis – Ein Projekt von SICHTBAR SEO Simon Kräling.',
-    descNl: 'Wettelijke informatie en colofon voor Het Winterberg Overzicht.'
+    descNl: 'Wettelijke informatie en colofon voor Het Winterberg Overzicht.',
+    h1De: 'Impressum',
+    h1Nl: 'Colofon / Impressum',
+    h2De: 'Rechtliche Angaben gemäß § 5 TMG',
+    h2Nl: 'Wettelijke informatie en contact'
   },
   {
     key: 'datenschutz',
     titleDe: 'Datenschutzerklärung | Das Winterberg Verzeichnis',
     titleNl: 'Privacyverklaring | Het Winterberg Overzicht',
     descDe: 'Informationen zur Verarbeitung personenbezogener Daten und zum Datenschutz gemäß DSGVO im Winterberg Verzeichnis.',
-    descNl: 'Informatie over de verwerking van persoonsgegevens en privacy conform AVG/GDPR.'
+    descNl: 'Informatie over de verwerking van persoonsgegevens en privacy conform AVG/GDPR.',
+    h1De: 'Datenschutzerklärung',
+    h1Nl: 'Privacyverklaring',
+    h2De: 'Datenschutz und Informationen zur DSGVO',
+    h2Nl: 'Privacy en gegevensbescherming volgens de AVG'
   },
   {
     key: 'agb',
     titleDe: 'Allgemeine Geschäftsbedingungen (AGB) | Das Winterberg Verzeichnis',
     titleNl: 'Algemene Voorwaarden (AGB) | Het Winterberg Overzicht',
     descDe: 'Allgemeine Geschäftsbedingungen für die Nutzung des Branchenportals Das Winterberg Verzeichnis.',
-    descNl: 'Algemene voorwaarden voor het gebruik van Het Winterberg Overzicht.'
+    descNl: 'Algemene voorwaarden voor het gebruik van Het Winterberg Overzicht.',
+    h1De: 'Allgemeine Geschäftsbedingungen (AGB)',
+    h1Nl: 'Algemene Voorwaarden (AGB)',
+    h2De: 'Nutzungsbedingungen für Das Winterberg Verzeichnis',
+    h2Nl: 'Gebruiksvoorwaarden voor Het Winterberg Overzicht'
   }
 ];
 
@@ -173,7 +219,9 @@ staticPageConfigs.forEach(cfg => {
     alternateDe: `${baseUrl}/${deSlug}`,
     alternateNl: `${baseUrl}/nl/${nlSlug}`,
     alternateXDefault: `${baseUrl}/${deSlug}`,
-    lang: 'de'
+    lang: 'de',
+    h1: cfg.h1De,
+    h2: cfg.h2De
   });
 
   pagesToPrerender.push({
@@ -184,7 +232,9 @@ staticPageConfigs.forEach(cfg => {
     alternateDe: `${baseUrl}/${deSlug}`,
     alternateNl: `${baseUrl}/nl/${nlSlug}`,
     alternateXDefault: `${baseUrl}/${deSlug}`,
-    lang: 'nl'
+    lang: 'nl',
+    h1: cfg.h1Nl,
+    h2: cfg.h2Nl
   });
 });
 
@@ -202,7 +252,9 @@ categories.forEach(c => {
     alternateDe: `${baseUrl}/${catDe}`,
     alternateNl: `${baseUrl}/nl/${catNl}`,
     alternateXDefault: `${baseUrl}/${catDe}`,
-    lang: 'de'
+    lang: 'de',
+    h1: `${c.name} in Winterberg`,
+    h2: `Alle Betriebe und Anbieter im Bereich ${c.name}`
   });
 
   pagesToPrerender.push({
@@ -213,7 +265,9 @@ categories.forEach(c => {
     alternateDe: `${baseUrl}/${catDe}`,
     alternateNl: `${baseUrl}/nl/${catNl}`,
     alternateXDefault: `${baseUrl}/${catDe}`,
-    lang: 'nl'
+    lang: 'nl',
+    h1: `${c.name} in Winterberg`,
+    h2: `Alle bedrijven en aanbieders in ${c.name}`
   });
 
   // Subcategories
@@ -229,7 +283,9 @@ categories.forEach(c => {
       alternateDe: `${baseUrl}/${catDe}/${subDe}`,
       alternateNl: `${baseUrl}/nl/${catNl}/${subNl}`,
       alternateXDefault: `${baseUrl}/${catDe}/${subDe}`,
-      lang: 'de'
+      lang: 'de',
+      h1: `${sub} in Winterberg`,
+      h2: `Geprüfte Adressen, Telefonnummern und Öffnungszeiten`
     });
 
     pagesToPrerender.push({
@@ -240,7 +296,9 @@ categories.forEach(c => {
       alternateDe: `${baseUrl}/${catDe}/${subDe}`,
       alternateNl: `${baseUrl}/nl/${catNl}/${subNl}`,
       alternateXDefault: `${baseUrl}/${catDe}/${subDe}`,
-      lang: 'nl'
+      lang: 'nl',
+      h1: `${sub} in Winterberg`,
+      h2: `Geverifieerde adressen, telefoonnummers en openingstijden`
     });
   });
 });
@@ -288,6 +346,8 @@ businesses.forEach((b: any) => {
     alternateNl: `${baseUrl}/${pathNl}`,
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'de',
+    h1: b.name,
+    h2: `Unternehmensprofil, Kontaktdaten & Öffnungszeiten in ${city}`,
     jsonLd: schemaJsonLd
   });
 
@@ -301,6 +361,8 @@ businesses.forEach((b: any) => {
     alternateNl: `${baseUrl}/${pathNl}`,
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'nl',
+    h1: b.name,
+    h2: `Bedrijfsprofiel, contactgegevens & openingstijden in ${city}`,
     jsonLd: schemaJsonLd
   });
 
@@ -318,6 +380,8 @@ businesses.forEach((b: any) => {
       alternateNl: `${baseUrl}/${pathNl}`,
       alternateXDefault: `${baseUrl}/${pathDe}`,
       lang: 'de',
+      h1: b.name,
+      h2: `Unternehmensprofil, Kontaktdaten & Öffnungszeiten in ${city}`,
       jsonLd: schemaJsonLd
     });
 
@@ -330,6 +394,8 @@ businesses.forEach((b: any) => {
       alternateNl: `${baseUrl}/${pathNl}`,
       alternateXDefault: `${baseUrl}/${pathDe}`,
       lang: 'nl',
+      h1: b.name,
+      h2: `Bedrijfsprofiel, contactgegevens & openingstijden in ${city}`,
       jsonLd: schemaJsonLd
     });
   }
@@ -366,7 +432,22 @@ pagesToPrerender.forEach(page => {
   html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i, ogTitleTag);
   html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i, ogDescTag);
 
-  // 5. Add Canonical & Hreflang Tags before </head>
+  // 5. Replace H1 & H2 & Description in Skeleton
+  const h1Tag = `<h1 id="sk-h1">${escapeHtml(page.h1)}</h1>`;
+  const h2Tag = page.h2 ? `<h2 id="sk-h2">${escapeHtml(page.h2)}</h2>` : '';
+  const descTag = `<p id="sk-desc">${escapeHtml(page.description)}</p>`;
+
+  html = html.replace(/<h1[^>]*>[\s\S]*?<\/h1>/i, h1Tag);
+  if (page.h2) {
+    if (/<h2[^>]*>[\s\S]*?<\/h2>/i.test(html)) {
+      html = html.replace(/<h2[^>]*>[\s\S]*?<\/h2>/i, h2Tag);
+    } else {
+      html = html.replace(/(<\/h1>)/i, `$1\n          ${h2Tag}`);
+    }
+  }
+  html = html.replace(/<p id="sk-desc"[^>]*>[\s\S]*?<\/p>/i, descTag);
+
+  // 6. Add Canonical & Hreflang Tags before </head>
   const seoHeadTags = `
     ${ogUrlTag}
     ${ogLocaleTag}
