@@ -254,7 +254,7 @@ categories.forEach(c => {
     alternateXDefault: `${baseUrl}/${catDe}`,
     lang: 'de',
     h1: `${c.name} in Winterberg`,
-    h2: `Alle Betriebe und Anbieter im Bereich ${c.name}`
+    h2: `Übersicht aller Fachbetriebe für ${c.name} in der Region`
   });
 
   pagesToPrerender.push({
@@ -267,7 +267,7 @@ categories.forEach(c => {
     alternateXDefault: `${baseUrl}/${catDe}`,
     lang: 'nl',
     h1: `${c.name} in Winterberg`,
-    h2: `Alle bedrijven en aanbieders in ${c.name}`
+    h2: `Overzicht van alle bedrijven voor ${c.name} in de regio`
   });
 
   // Subcategories
@@ -285,7 +285,7 @@ categories.forEach(c => {
       alternateXDefault: `${baseUrl}/${catDe}/${subDe}`,
       lang: 'de',
       h1: `${sub} in Winterberg`,
-      h2: `Geprüfte Adressen, Telefonnummern und Öffnungszeiten`
+      h2: `Geprüfte Adressen & Spezialisten für ${sub}`
     });
 
     pagesToPrerender.push({
@@ -298,7 +298,7 @@ categories.forEach(c => {
       alternateXDefault: `${baseUrl}/${catDe}/${subDe}`,
       lang: 'nl',
       h1: `${sub} in Winterberg`,
-      h2: `Geverifieerde adressen, telefoonnummers en openingstijden`
+      h2: `Geverifieerde adressen & specialisten voor ${sub}`
     });
   });
 });
@@ -347,7 +347,7 @@ businesses.forEach((b: any) => {
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'de',
     h1: b.name,
-    h2: `Unternehmensprofil, Kontaktdaten & Öffnungszeiten in ${city}`,
+    h2: `Über ${b.name} in ${city}`,
     jsonLd: schemaJsonLd
   });
 
@@ -362,7 +362,7 @@ businesses.forEach((b: any) => {
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'nl',
     h1: b.name,
-    h2: `Bedrijfsprofiel, contactgegevens & openingstijden in ${city}`,
+    h2: `Over ${b.name} in ${city}`,
     jsonLd: schemaJsonLd
   });
 
@@ -381,7 +381,7 @@ businesses.forEach((b: any) => {
       alternateXDefault: `${baseUrl}/${pathDe}`,
       lang: 'de',
       h1: b.name,
-      h2: `Unternehmensprofil, Kontaktdaten & Öffnungszeiten in ${city}`,
+      h2: `Über ${b.name} in ${city}`,
       jsonLd: schemaJsonLd
     });
 
@@ -395,7 +395,7 @@ businesses.forEach((b: any) => {
       alternateXDefault: `${baseUrl}/${pathDe}`,
       lang: 'nl',
       h1: b.name,
-      h2: `Bedrijfsprofiel, contactgegevens & openingstijden in ${city}`,
+      h2: `Over ${b.name} in ${city}`,
       jsonLd: schemaJsonLd
     });
   }
