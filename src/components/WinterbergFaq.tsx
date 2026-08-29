@@ -679,45 +679,56 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
               <div
                 key={faq.id}
                 id={faq.id}
-                className="bg-white border border-[#EDE8E0] rounded-md overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/30"
+                className="bg-white border border-[#EDE8E0] rounded-lg overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/40"
               >
-                {/* Header / Question Bar */}
+                {/* Header / Question Bar - Farblich deutlich abgegrenzt */}
                 <button
                   type="button"
                   onClick={() => toggleFaq(faq.id)}
-                  className="w-full text-left p-5 md:p-6 flex justify-between items-center gap-4 cursor-pointer focus:outline-none"
+                  className={`w-full text-left p-5 md:p-6 flex justify-between items-center gap-4 cursor-pointer focus:outline-none transition-colors ${
+                    isOpen 
+                      ? 'bg-[#F4F1EA] border-b border-[#E7E2DA]' 
+                      : 'bg-[#FAF8F5] hover:bg-[#F4F1EA]'
+                  }`}
                   aria-expanded={isOpen}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3">
-                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-[#0F4C2E]/10 px-2 py-0.5 rounded w-fit">
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
+                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-white border border-[#0F4C2E]/25 px-2.5 py-0.5 rounded shadow-2xs w-fit">
                       {faq.categoryGroup}
                     </span>
-                    <h2 className="font-display text-[17px] md:text-[19px] font-bold text-[#1B211D] m-0">
+                    <h2 className="font-display text-[17.5px] md:text-[19.5px] font-bold text-[#1B211D] m-0">
                       {faq.question}
                     </h2>
                   </div>
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#0F4C2E] text-white border-[#0F4C2E]' : ''}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 shadow-2xs ${
+                    isOpen 
+                      ? 'rotate-180 bg-[#0F4C2E] text-white border border-[#0F4C2E]' 
+                      : 'bg-white border border-[#EDE8E0] text-[#0F4C2E]'
+                  }`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
                 {/* Body / Answer */}
                 {isOpen && (
-                  <div className="px-5 md:px-6 pb-6 pt-0 border-t border-[#F3F0EA] text-[#4A544D]">
-                    {/* Quick Summary Box */}
-                    <div className="mt-4 bg-[#FAF8F5] border-l-4 border-[#0F4C2E] p-4 rounded-r-md text-[15px] font-medium text-[#1B211D] leading-relaxed">
-                      {faq.quickSummary}
+                  <div>
+                    {/* Middle content on clean white */}
+                    <div className="bg-white px-5 md:px-7 py-6 text-[#4A544D]">
+                      {/* Quick Summary Box */}
+                      <div className="bg-[#FAF8F5] border-l-4 border-[#0F4C2E] p-4 rounded-r-md text-[15px] font-medium text-[#1B211D] leading-relaxed shadow-2xs">
+                        {faq.quickSummary}
+                      </div>
+
+                      {/* Detailed HTML Content */}
+                      <div className="mt-5 text-[15px] leading-relaxed text-[#3C443F]">
+                        {faq.answerHtml}
+                      </div>
                     </div>
 
-                    {/* Detailed HTML Content */}
-                    <div className="mt-4 text-[15px] leading-relaxed">
-                      {faq.answerHtml}
-                    </div>
-
-                    {/* Category Cross-Links (Only when actual businesses exist) */}
+                    {/* Category Cross-Links - Farblich deutlich abgegrenzter Footer */}
                     {faq.relatedCategoryLinks && faq.relatedCategoryLinks.length > 0 && (
-                      <div className="mt-5 pt-4 border-t border-[#F3F0EA]">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#5F6B63] block mb-2">
+                      <div className="bg-[#F8F6F1] border-t border-[#E7E2DA] px-5 md:px-7 py-4.5">
+                        <span className="text-[12px] font-bold uppercase tracking-wider text-[#5F6B63] block mb-2.5">
                           Passende Unternehmen im Verzeichnis:
                         </span>
                         <div className="flex flex-wrap gap-2">
@@ -729,10 +740,10 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
                                 e.preventDefault();
                                 onSelectCategory(link.category, link.subcategory);
                               }}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FAF8F5] hover:bg-[#0F4C2E] hover:text-white border border-[#EDE8E0] text-[#0F4C2E] text-[13px] font-medium transition-all group"
+                              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-white hover:bg-[#0F4C2E] hover:text-white border border-[#DDD6C9] hover:border-[#0F4C2E] text-[#0F4C2E] text-[13.5px] font-semibold transition-all shadow-2xs group"
                             >
                               <span>{link.label}</span>
-                              <ChevronRight className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:text-white transition-colors" />
+                              <ChevronRight className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:text-white group-hover:translate-x-0.5 transition-all" />
                             </a>
                           ))}
                         </div>
