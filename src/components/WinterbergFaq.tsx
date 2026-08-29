@@ -110,6 +110,7 @@ const FAQ_DATA: FaqItem[] = [
         <ul className="list-disc pl-5 space-y-1.5">
           <li><strong>Flutlicht-Skifahren & Rodeln:</strong> Dienstags, mittwochs, freitags und samstags werden bis zu 14 Hänge im Skiliftkarussell hell erleuchtet (18:30 bis 21:30 Uhr).</li>
           <li><strong>Ausgehen & Nightlife:</strong> Party in der <em>Tenne</em>, Live-Musik und Bierkultur im <em>Blackwater Irish Pub</em> oder Schlager in der <em>Dorf Alm</em>.</li>
+          <li><strong>Bowling & Geselligkeit:</strong> Bowlingabende, Disco-Bowling, Billard und Darts im <em>Bowlhaus Winterberg</em>.</li>
           <li><strong>Wellness-Abend:</strong> Ausgedehnte Saunagänge und Entspannung im Hallen- und Wellnessbereich des <em>Oversum</em>.</li>
           <li><strong>Kino & Kultur:</strong> Das <em>Filmtheater Winterberg</em> zeigt aktuelle Kino-Highlights; das Bürgerhaus veranstaltet Konzerte und Theater.</li>
           <li><strong>Romantischer Abendspaziergang:</strong> Ein Spaziergang durch den illuminierten Kurpark oder eine organisierte Fackel-Winterwanderung.</li>
@@ -117,7 +118,8 @@ const FAQ_DATA: FaqItem[] = [
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Kneipen & Nachtleben', category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
+      { label: 'Kneipen & Nachtleben', category: 'Gastronomie', subcategory: 'Kneipen und Bars' },
+      { label: 'Bowling & Freizeitzentren', category: 'Freizeit', subcategory: 'Bowling' }
     ]
   },
   {

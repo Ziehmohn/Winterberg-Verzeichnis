@@ -1965,6 +1965,34 @@ export const businesses: Business[] = [
     imageFallback: 'MA',
     isPremium: false,
     status: 'approved'
+  },
+  {
+    id: 'bowlhaus-winterberg',
+    name: 'Bowlhaus Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Bowling',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' },
+      { category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
+    ],
+    description: 'Modernes Bowling- und Freizeitzentrum in Winterberg mit 8 wettkampftauglichen Bowlingbahnen, samstags Disco-Bowling, Billardtischen, Darts, Airhockey sowie Restaurantbereich mit Burgern, Snacks und Drinks.',
+    address: 'Orkestraße 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '0162 8464089',
+    website: 'http://www.bowling-winterberg.de',
+    services: ['8 Bowlingbahnen', 'Disco-Bowling jeden Samstag', 'Billard & Darts', 'Restaurant & Burger', 'Cocktails & Drinks', 'Events & Kindergeburtstage'],
+    imageFallback: 'BW',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '15:00 - 23:00',
+      tuesday: '15:00 - 23:00',
+      wednesday: '15:00 - 23:00',
+      thursday: '15:00 - 23:00',
+      friday: '15:00 - 01:00',
+      saturday: '14:00 - 01:00',
+      sunday: '14:00 - 22:00'
+    }
   }
 
 ];
@@ -2088,5 +2116,5 @@ export const categories: CategoryGroup[] = [
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
-  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
+  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
