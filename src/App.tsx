@@ -25,6 +25,7 @@ const Datenschutz = React.lazy(() => import('./components/Datenschutz'));
 const NewsBoard = React.lazy(() => import('./components/NewsBoard'));
 const NewsDetail = React.lazy(() => import('./components/NewsDetail'));
 const SubmitNews = React.lazy(() => import('./components/SubmitNews'));
+const WinterbergFaq = React.lazy(() => import('./components/WinterbergFaq'));
 import { db, auth } from './firebase';
 import { collection, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
@@ -88,6 +89,7 @@ export default function App() {
   let initialNewsMode = false;
   let initialNewsSubmitMode = false;
   let initialNewsId: string | null = null;
+  let initialFaqMode = false;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -110,6 +112,8 @@ export default function App() {
         if (pathParts[1]) {
           initialJobsCategory = decodeURIComponent(pathParts[1]);
         }
+      } else if (decodedPart1.toLowerCase() === 'faq' || decodedPart1.toLowerCase() === 'faqs' || decodedPart1.toLowerCase() === 'winterberg-faq') {
+        initialFaqMode = true;
       } else {
         const catGroup = categories.find(c => c.name.toLowerCase() === decodedPart1.toLowerCase());
         
@@ -208,6 +212,7 @@ export default function App() {
     setIsNewsMode(false);
     setIsNewsSubmitMode(false);
     setNewsId(null);
+    setIsFaqMode(false);
   };
   
   useEffect(() => {
@@ -279,6 +284,8 @@ export default function App() {
           setIsJobsMode(true);
         } else if (p1 === 'preise') {
           setIsPricingMode(true);
+        } else if (p1 === 'faq' || p1 === 'faqs' || p1 === 'winterberg-faq') {
+          setIsFaqMode(true);
         } else {
            window.location.reload();
         }
@@ -328,6 +335,7 @@ export default function App() {
   const [isPricingMode, setIsPricingMode] = useState(false);
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
+  const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
   const [isLoading, setIsLoading] = useState(false);
   const [reviewsEnabled, setReviewsEnabled] = useState(localStorage.getItem('premium_reviews_enabled') === 'true');
   const [token, setToken] = useState<string | null>(localStorage.getItem('admin_token'));
@@ -615,6 +623,7 @@ export default function App() {
               <a href={getPath('/alle-unternehmen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/alle-unternehmen')); resetToDirectory(); setIsAllMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} className="hover:text-orange-500 transition-colors">Alle Unternehmen</a>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">Jobs</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">News</a>
+              <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
               <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-1"></div>
 
@@ -685,6 +694,25 @@ export default function App() {
             onNewsClick={(id) => {
               window.history.pushState(null, '', `/news/${id}`);
               window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+          />
+        ) : isFaqMode ? (
+          <WinterbergFaq
+            theme={theme}
+            activeThemeKey={activeThemeKey}
+            onBack={() => {
+              resetToDirectory();
+              window.history.pushState(null, '', getPath('/'));
+            }}
+            onSelectCategory={(cat, sub) => {
+              resetToDirectory();
+              setActiveCategory(sub || cat);
+              if (cat !== 'Alle') {
+                window.history.pushState(null, '', getPath(`/${encodeURIComponent(cat)}${sub ? `/${encodeURIComponent(sub)}` : ''}`));
+              } else {
+                window.history.pushState(null, '', getPath('/'));
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         ) : isJobsMode ? (
@@ -1521,6 +1549,19 @@ export default function App() {
               className="text-white/80 hover:text-white transition-colors"
             >
               Alle Unternehmen
+            </a>
+            <a 
+              href={getPath('/faq')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/faq')); 
+                resetToDirectory(); 
+                setIsFaqMode(true); 
+                window.scrollTo(0, 0); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Winterberg FAQs
             </a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsNewsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">News</a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Jobs</a>

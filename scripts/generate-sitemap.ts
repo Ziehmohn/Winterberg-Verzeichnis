@@ -28,6 +28,10 @@ jobTypes.forEach(jt => {
 urls.push(`${baseUrl}/news`);
 urls.push(`${baseUrl}/news/freistehende-ladenlokale-winterberg`);
 
+// Add FAQ
+urls.push(`${baseUrl}/faq`);
+urls.push(`${baseUrl}/faqs`);
+
 urls = Array.from(new Set(urls));
 
 const escapeXml = (unsafe: string) => {
