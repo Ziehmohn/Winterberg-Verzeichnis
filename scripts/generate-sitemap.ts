@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { businesses, categories } from '../src/data';
 
-const baseUrl = 'https://winterberg.sichtbar-online.com';
+const baseUrl = 'https://www.winterberg-verzeichnis.de';
 
 let urls = [baseUrl];
 

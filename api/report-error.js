@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       <ul>
         <li><strong>Unternehmen:</strong> ${businessName || businessId}</li>
         <li><strong>ID:</strong> ${businessId}</li>
-        <li><strong>Link:</strong> <a href="https://winterberg.sichtbar-online.com">Verzeichnis aufrufen</a></li>
+        <li><strong>Link:</strong> <a href="https://www.winterberg-verzeichnis.de">Verzeichnis aufrufen</a></li>
       </ul>
       <p><strong>Gemeldeter Fehler:</strong></p>
       <blockquote style="background: #f9f9f9; padding: 15px; border-left: 4px solid #F2761B;">

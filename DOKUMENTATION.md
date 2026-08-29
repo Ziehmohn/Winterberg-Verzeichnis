@@ -13,7 +13,7 @@
 ---
 
 ## 1. Einleitung
-Das "Winterberger Unternehmens-Verzeichnis" (unter *winterberg.sichtbar-online.com*) ist eine Webanwendung, die als umfassendes Verzeichnis für lokale Unternehmen, Dienstleister, Handwerker und Freizeiteinrichtungen in Winterberg und den umliegenden Ortsteilen (Dörfern) dient. 
+Das "Winterberger Unternehmens-Verzeichnis" (unter *www.winterberg-verzeichnis.de*) ist eine Webanwendung, die als umfassendes Verzeichnis für lokale Unternehmen, Dienstleister, Handwerker und Freizeiteinrichtungen in Winterberg und den umliegenden Ortsteilen (Dörfern) dient. 
 Zweck der Anwendung ist die Stärkung der lokalen Wirtschaft und die bessere Auffindbarkeit von Betrieben durch eine optimierte, nutzerfreundliche und SEO-starke Plattform.
 
 ## 2. Architektur & Technologien

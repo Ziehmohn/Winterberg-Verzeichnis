@@ -334,7 +334,7 @@ export default function App() {
   const [seoSettings, setSeoSettings] = useState<SeoSettings>({
     title: 'Das Winterberg Verzeichnis',
     description: 'Das umfassende Verzeichnis für alle Unternehmen, Dienstleister, Handwerker und Freizeiteinrichtungen in Winterberg und den umliegenden Ortsteilen.',
-    baseUrl: 'https://winterberg.sichtbar-online.com',
+    baseUrl: 'https://www.winterberg-verzeichnis.de',
     googleSiteVerification: 'egCnwQfOIztQ10Cv0RUn3psnTm0tyaOUmOrGdpv2Z4c'
   });
 
@@ -348,8 +348,11 @@ export default function App() {
         // Reset old incorrect titles that include personal/agency names
         if (parsed.title && (parsed.title.toLowerCase().includes('simon') || parsed.title.toLowerCase().includes('sichtbar'))) {
           parsed.title = 'Das Winterberg Verzeichnis';
-          localStorage.setItem('seoSettings', JSON.stringify(parsed));
         }
+        if (parsed.baseUrl === 'https://winterberg.sichtbar-online.com') {
+          parsed.baseUrl = 'https://www.winterberg-verzeichnis.de';
+        }
+        localStorage.setItem('seoSettings', JSON.stringify(parsed));
         setSeoSettings(parsed);
       } catch (e) {}
     }
@@ -403,7 +406,7 @@ export default function App() {
     }
 
     // Canonical link
-    let canonicalUrl = seoSettings.baseUrl || 'https://winterberg.sichtbar-online.com';
+    let canonicalUrl = seoSettings.baseUrl || 'https://www.winterberg-verzeichnis.de';
     if (isJobsMode) {
       if (jobsCategory) {
         canonicalUrl = `${canonicalUrl}/jobs/${encodeURIComponent(jobsCategory)}`;

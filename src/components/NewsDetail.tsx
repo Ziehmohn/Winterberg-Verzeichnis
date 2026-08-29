@@ -162,18 +162,8 @@ function parseCardItem(rawText: string): ParsedCardItem {
 function NewsContentRenderer({ content }: { content: string }) {
   if (!content) return null;
 
-  // Extract contact block if present
-  let mainBody = content;
-  let contactBody: string | null = null;
-
-  const contactBlockMatch = content.match(/:::contact\s*([\s\S]*?)\s*:::/i);
-  if (contactBlockMatch) {
-    mainBody = content.replace(/:::contact\s*([\s\S]*?)\s*:::/i, '').trim();
-    contactBody = contactBlockMatch[1].trim();
-  }
-
   // Split into raw sections by double newlines
-  const rawParagraphs = mainBody.split(/\n{2,}/);
+  const rawParagraphs = content.split(/\n{2,}/);
 
   return (
     <div className="space-y-6">
@@ -276,41 +266,45 @@ function NewsContentRenderer({ content }: { content: string }) {
           </p>
         );
       })}
+    </div>
+  );
+}
 
-      {/* Dedicated Professional Contact Box */}
-      {contactBody && (
-        <div className="mt-12 bg-gradient-to-br from-[#F5F8F6] via-[#FAF8F5] to-[#F1F6F3] border-2 border-[#D2E2D6] rounded-[22px] p-6 md:p-8 shadow-sm">
-          <div className="mb-4">
-            <UnderlinedHeading text="Ansprechpartner & Beratung" as="h3" />
-          </div>
-          <div className="space-y-4 text-[15.5px] md:text-[16.5px] text-[#3F4B42] leading-relaxed">
-            {contactBody.split(/\n{2,}/).map((sec, cIdx) => {
-              const lines = sec.trim().split('\n');
-              return (
-                <div key={cIdx} className="space-y-2">
-                  {lines.map((line, lIdx) => {
-                    const isBullet = /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim());
-                    const cleaned = isBullet ? line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim() : line.trim();
-                    
-                    if (cleaned.startsWith('### ')) {
-                      return null; // Heading handled above
-                    }
+// Standalone Contact Box Renderer
+function StandaloneContactBox({ rawContact }: { rawContact: string }) {
+  const lines = rawContact.split('\n').map(l => l.trim()).filter(Boolean);
+  
+  return (
+    <div className="mt-8 bg-gradient-to-br from-[#F6F9F6] via-[#FAF8F5] to-[#F1F6F3] border-2 border-[#D2E2D6] rounded-[26px] p-[28px] sm:p-[36px] md:p-[44px] shadow-[0_8px_30px_rgba(27,33,29,0.03)]">
+      <div className="mb-5">
+        <UnderlinedHeading text="Ansprechpartner & Beratung" as="h3" />
+      </div>
+      <div className="space-y-4 text-[15.5px] md:text-[16.5px] text-[#3F4B42] leading-relaxed">
+        {rawContact.split(/\n{2,}/).map((sec, cIdx) => {
+          const secLines = sec.trim().split('\n');
+          return (
+            <div key={cIdx} className="space-y-2.5">
+              {secLines.map((line, lIdx) => {
+                const isBullet = /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim());
+                const cleaned = isBullet ? line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim() : line.trim();
+                
+                if (cleaned.startsWith('### ')) {
+                  return null; // Heading already displayed above
+                }
 
-                    return (
-                      <div key={lIdx} className={isBullet ? "flex items-start gap-2.5 pl-2" : ""}>
-                        {isBullet && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E] mt-2.5 shrink-0" />
-                        )}
-                        <span className="flex-1">{renderInlineFormatted(cleaned)}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+                return (
+                  <div key={lIdx} className={isBullet ? "flex items-start gap-3 pl-1" : ""}>
+                    {isBullet && (
+                      <span className="w-2 h-2 rounded-full bg-[#0F4C2E] mt-2 shrink-0" />
+                    )}
+                    <span className="flex-1">{renderInlineFormatted(cleaned)}</span>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -385,6 +379,16 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     );
   }
 
+  // Extract contact block if present
+  let mainContent = article.content || '';
+  let contactContent: string | null = null;
+
+  const contactBlockMatch = mainContent.match(/:::contact\s*([\s\S]*?)\s*:::/i);
+  if (contactBlockMatch) {
+    mainContent = mainContent.replace(/:::contact\s*([\s\S]*?)\s*:::/i, '').trim();
+    contactContent = contactBlockMatch[1].trim();
+  }
+
   const schemaOrg = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -440,10 +444,15 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         <UnderlinedHeading text={article.title} as="h1" />
       </div>
 
-      {/* Article Content Container */}
+      {/* Main Article News Container */}
       <div className="bg-white border border-[#EDE8E0] rounded-[26px] p-[28px] sm:p-[38px] md:p-[50px] shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
-        <NewsContentRenderer content={article.content} />
+        <NewsContentRenderer content={mainContent} />
       </div>
+
+      {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}
+      {contactContent && (
+        <StandaloneContactBox rawContact={contactContent} />
+      )}
     </article>
   );
 }
