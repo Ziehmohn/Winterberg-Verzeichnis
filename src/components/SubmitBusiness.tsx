@@ -84,7 +84,13 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ businessId: newId, email: formData.email, billingCycle }),
+          body: JSON.stringify({ 
+            businessId: newId, 
+            email: formData.email, 
+            billingCycle,
+            ownerId: user?.uid || null,
+            ownerEmail: user?.email || null
+          }),
           signal: controller.signal
         });
         clearTimeout(timeoutId);

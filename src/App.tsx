@@ -1574,7 +1574,7 @@ export default function App() {
             </div>
 
             {/* Desktop Sticky Right Skyscraper Banner */}
-            <div className="hidden lg:block shrink-0">
+            <div className="hidden lg:block shrink-0 sticky top-[100px] self-start z-20">
               <SkyscraperBanner 
                 banners={ads} 
                 activeCategory={activeCategory} 

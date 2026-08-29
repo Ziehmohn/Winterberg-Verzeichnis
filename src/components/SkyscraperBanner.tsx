@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Sparkles, Megaphone, Info } from 'lucide-react';
+import { ExternalLink, Sparkles, Megaphone, Check } from 'lucide-react';
 import { AdBanner } from '../types';
 import { db } from '../firebase';
 import { doc, updateDoc, increment } from 'firebase/firestore';
@@ -43,91 +43,92 @@ export default function SkyscraperBanner({
     }
   };
 
-  // Mobile version (compact horizontal card / slot)
+  // Mobile version (compact standalone card)
   if (isMobile) {
     if (matchedBanner) {
       return (
-        <div className="w-full my-6 bg-white border border-[#EDE8E0] rounded-[20px] p-4 shadow-[0_2px_10px_rgba(27,33,29,0.04)] overflow-hidden">
-          <div className="flex items-center justify-between text-[11px] font-semibold text-[#8A928B] uppercase tracking-wider mb-2">
-            <span className="flex items-center gap-1 bg-[#F3F0EA] px-2 py-0.5 rounded-full text-[10px]">
-              {matchedBanner.badgeText || 'Anzeige'}
-            </span>
-            <span className="text-[11px] text-[#5F6B63]">{matchedBanner.category || 'Winterberg'}</span>
-          </div>
-
+        <div className="w-full my-4 flex flex-col gap-2">
           <a
             href={matchedBanner.targetUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
             onClick={() => handleBannerClick(matchedBanner!)}
-            className="group block"
+            className="group block relative rounded-[18px] overflow-hidden border border-[#EDE8E0] shadow-sm hover:shadow-md transition-all bg-[#FAF8F5]"
           >
-            <div className="relative rounded-[14px] overflow-hidden mb-2 bg-[#FAF8F5] border border-[#E7E2DA]">
-              <img
-                src={matchedBanner.imageUrl}
-                alt={matchedBanner.title || 'Werbebanner'}
-                className="w-full h-auto max-h-[160px] object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                loading="lazy"
-              />
+            <div className="absolute top-2 left-2 z-10 bg-black/65 backdrop-blur-md text-white px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase">
+              {matchedBanner.badgeText || 'Anzeige'}
             </div>
-            <div className="flex items-center justify-between mt-2">
-              <div className="font-display font-semibold text-[15px] text-[#1B211D] group-hover:text-[#F2761B] transition-colors truncate">
+            <img
+              src={matchedBanner.imageUrl}
+              alt={matchedBanner.title || 'Werbebanner'}
+              className="w-full h-auto max-h-[180px] object-cover group-hover:scale-[1.02] transition-transform duration-300 block"
+              loading="lazy"
+            />
+            <div className="p-3 bg-white border-t border-[#EDE8E0] flex items-center justify-between">
+              <div className="font-display font-semibold text-[14px] text-[#1B211D] truncate">
                 {matchedBanner.title}
               </div>
-              <ExternalLink className="w-4 h-4 text-[#8A928B] group-hover:text-[#F2761B] transition-colors shrink-0 ml-2" />
+              <ExternalLink className="w-4 h-4 text-[#8A928B] shrink-0 ml-2" />
             </div>
           </a>
+
+          <button
+            type="button"
+            onClick={() => onInquire(activeCategory)}
+            className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] rounded-xl py-2 px-3 text-center transition-colors cursor-pointer"
+          >
+            <span className="text-xs font-semibold text-[#0F4C2E] hover:text-[#F2761B]">
+              Sie möchten hier werben? Mehr erfahren!
+            </span>
+            <span className="text-[11px] text-[#5F6B63] block">
+              Pro Kategorie 24,95 € / Mo. · Ab 3 Kat. 19,95 €
+            </span>
+          </button>
         </div>
       );
     }
 
     return (
-      <div className="w-full my-6 bg-gradient-to-r from-[#FAF8F5] to-[#F3F0EA] border border-[#E7E2DA] rounded-[20px] p-4 text-center">
-        <div className="flex items-center justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#D65F0C] mb-1">
-          <Sparkles className="w-3.5 h-3.5" /> Werbefläche
+      <div 
+        onClick={() => onInquire(activeCategory)}
+        className="w-full my-4 bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white rounded-[20px] p-4 text-center cursor-pointer shadow-md"
+      >
+        <div className="inline-flex items-center gap-1 bg-white/15 text-white/90 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-1.5">
+          <Sparkles className="w-3 h-3 text-[#F2761B]" /> Werbeplatz frei
         </div>
-        <div className="font-display font-bold text-[15px] text-gray-900 mb-1">
-          Hier werben in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
+        <div className="font-display font-bold text-[15px] text-white mb-1">
+          Skyscraper-Banner in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
         </div>
-        <p className="text-xs text-[#5F6B63] mb-3">
-          Erreichen Sie gezielt lokale Kundschaft mit auffälliger Bannerwerbung.
-        </p>
-        <button
-          type="button"
-          onClick={() => onInquire(activeCategory)}
-          className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors inline-flex items-center gap-1.5 shadow-sm"
-        >
-          <Megaphone className="w-3.5 h-3.5" /> Jetzt Bannerplatz anfragen
-        </button>
+        <div className="text-xs text-white/80 mb-2">
+          24,95 € / Mo. pro Kategorie (Ab 3 Kat. 19,95 € · Ab 5 Kat. 14,95 €)
+        </div>
+        <div className="bg-[#F2761B] text-white text-xs font-bold py-2 px-4 rounded-xl inline-flex items-center gap-1.5 shadow-sm">
+          Sie möchten hier werben? Mehr erfahren!
+        </div>
       </div>
     );
   }
 
-  // Desktop Skyscraper Sticky Sidebar (Right Side)
+  // Desktop Freestanding Skyscraper Sticky Sidebar (Right Side)
   return (
-    <aside className="w-[240px] xl:w-[260px] shrink-0 sticky top-[116px] max-h-[calc(100vh-140px)] flex flex-col gap-4 overflow-y-auto no-scrollbar">
+    <aside className="w-[240px] xl:w-[260px] flex flex-col gap-3">
       {matchedBanner ? (
-        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-3.5 shadow-[0_4px_18px_rgba(27,33,29,0.05)] hover:shadow-[0_8px_26px_rgba(27,33,29,0.08)] transition-all">
-          {/* Label */}
-          <div className="flex items-center justify-between px-1 mb-2.5">
-            <span className="bg-[#FAF8F5] border border-[#E7E2DA] text-[#8A928B] rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
-              {matchedBanner.badgeText || 'Anzeige'}
-            </span>
-            <span className="text-[11px] text-[#8A928B] truncate max-w-[120px]">
-              {matchedBanner.companyName || matchedBanner.category || 'Winterberg'}
-            </span>
-          </div>
-
-          {/* Banner Link & Media */}
+        <div className="flex flex-col gap-2.5">
+          {/* Freestanding Banner Media */}
           <a
             href={matchedBanner.targetUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
             onClick={() => handleBannerClick(matchedBanner!)}
-            className="group block relative overflow-hidden rounded-[16px] border border-[#EDE8E0] bg-[#FAF8F5]"
+            className="group block relative overflow-hidden rounded-[18px] border border-[#EDE8E0] shadow-[0_6px_24px_rgba(27,33,29,0.08)] hover:shadow-[0_12px_34px_rgba(27,33,29,0.16)] transition-all bg-[#FAF8F5]"
             title={matchedBanner.title}
           >
-            <div className="w-full overflow-hidden bg-slate-100 flex items-center justify-center min-h-[300px]">
+            {/* Overlay Badge */}
+            <div className="absolute top-2.5 left-2.5 z-10 bg-black/65 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">
+              {matchedBanner.badgeText || 'Anzeige'}
+            </div>
+
+            <div className="w-full overflow-hidden bg-slate-100 flex items-center justify-center min-h-[360px] max-h-[500px]">
               <img
                 src={matchedBanner.imageUrl}
                 alt={matchedBanner.title || 'Skyscraper Anzeige'}
@@ -138,7 +139,7 @@ export default function SkyscraperBanner({
 
             {/* Banner bottom info bar */}
             <div className="p-3 bg-white border-t border-[#EDE8E0]">
-              <div className="font-display font-bold text-[14px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-snug line-clamp-2">
+              <div className="font-display font-bold text-[13.5px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-snug line-clamp-2">
                 {matchedBanner.title}
               </div>
               <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#F3F0EA]">
@@ -150,62 +151,73 @@ export default function SkyscraperBanner({
             </div>
           </a>
 
-          {/* Small Inquire Teaser Below Active Banner */}
-          <div className="mt-3 pt-3 border-t border-[#F3F0EA] px-1 text-center">
-            <button
-              type="button"
-              onClick={() => onInquire(activeCategory)}
-              className="text-[11.5px] text-[#5F6B63] hover:text-[#0F4C2E] font-medium transition-colors cursor-pointer flex items-center justify-center gap-1 w-full"
-            >
-              <Megaphone className="w-3 h-3 text-[#F2761B]" />
-              Hier werben in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
-            </button>
-          </div>
-        </div>
-      ) : (
-        /* Empty Slot: High-Conversion Booking Card */
-        <div className="bg-gradient-to-b from-white to-[#FAF8F5] border-2 border-dashed border-[#E7E2DA] hover:border-[#0F4C2E]/40 rounded-[22px] p-5 shadow-[0_2px_12px_rgba(27,33,29,0.03)] text-center transition-all">
-          <div className="w-12 h-12 rounded-2xl bg-[#FFF1E4] text-[#D65F0C] flex items-center justify-center mx-auto mb-3.5 shadow-sm">
-            <Megaphone className="w-6 h-6" />
-          </div>
-
-          <span className="inline-block bg-[#0F4C2E]/10 text-[#0F4C2E] rounded-full px-2.5 py-0.5 text-[10.5px] font-bold uppercase tracking-wider mb-2">
-            Werbeplatz frei
-          </span>
-
-          <h3 className="font-display font-bold text-[16px] text-gray-900 leading-tight mb-2">
-            Ihre Anzeige in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
-          </h3>
-
-          <p className="text-[13px] text-[#5F6B63] leading-relaxed mb-5">
-            Präsentieren Sie Ihr Angebot als Skyscraper-Banner exklusiv neben den Brancheneinträgen.
-          </p>
-
-          <div className="space-y-2 mb-5 text-left text-[12px] text-[#4A544D] bg-white rounded-xl p-3 border border-[#EDE8E0]">
-            <div className="flex items-center gap-1.5 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F2761B]" />
-              Feste Platzierung rechts
-            </div>
-            <div className="flex items-center gap-1.5 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F2761B]" />
-              Scrollt beim Lesen mit
-            </div>
-            <div className="flex items-center gap-1.5 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F2761B]" />
-              Direkte Verlinkung
-            </div>
-          </div>
-
+          {/* Standalone Button directly beneath banner */}
           <button
             type="button"
             onClick={() => onInquire(activeCategory)}
-            className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white font-semibold py-2.5 px-4 rounded-xl text-[13.5px] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+            className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] hover:border-[#0F4C2E]/40 rounded-[16px] p-3 text-center transition-all group shadow-sm cursor-pointer"
           >
-            <Sparkles className="w-4 h-4 text-[#F2761B]" />
-            Banner buchen
+            <div className="text-[12.5px] font-bold text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-tight">
+              Sie möchten hier werben? Mehr erfahren!
+            </div>
+            <div className="text-[11px] text-[#D65F0C] font-semibold mt-1">
+              24,95 € / Mo. · Ab 3 Kat. 19,95 €
+            </div>
           </button>
+        </div>
+      ) : (
+        /* Standalone Empty Slot Skyscraper Banner */
+        <div 
+          onClick={() => onInquire(activeCategory)}
+          className="w-full rounded-[20px] bg-gradient-to-b from-[#0F4C2E] to-[#06301C] text-white p-5 text-center shadow-[0_8px_30px_rgba(15,76,46,0.15)] border border-[#0F4C2E] flex flex-col justify-between min-h-[460px] cursor-pointer hover:shadow-[0_12px_36px_rgba(15,76,46,0.25)] hover:scale-[1.01] transition-all relative overflow-hidden group"
+        >
+          {/* Decorative background shape */}
+          <div className="absolute top-0 right-0 w-36 h-36 bg-white/5 rounded-full blur-2xl -mr-12 -mt-12 pointer-events-none" />
+          
+          <div>
+            <div className="inline-flex items-center gap-1 bg-white/15 text-white/90 border border-white/20 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-3.5">
+              <Sparkles className="w-3 h-3 text-[#F2761B]" /> Werbeplatz frei
+            </div>
+
+            <h3 className="font-display font-bold text-[17px] leading-snug text-white mb-2">
+              Skyscraper-Banner in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
+            </h3>
+
+            <p className="text-[12px] text-white/80 leading-relaxed mb-4">
+              Präsentieren Sie Ihr Angebot exklusiv und aufmerksamkeitsstark am rechten Rand.
+            </p>
+
+            {/* Pricing info card */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-[14px] p-3 border border-white/15 text-left mb-4">
+              <div className="text-[11px] text-white/70">Pro Kategorie im Monat:</div>
+              <div className="text-[21px] font-bold text-[#F2761B]">
+                24,95 € <span className="text-[11px] text-white/70 font-normal">netto / Mo.</span>
+              </div>
+              <div className="text-[11px] text-emerald-300 font-medium mt-1.5 pt-1.5 border-t border-white/10">
+                Staffelpreise:
+                <div className="flex justify-between mt-0.5 text-[10.5px]">
+                  <span>Ab 3 Kategorien:</span>
+                  <span className="font-bold text-white">19,95 €</span>
+                </div>
+                <div className="flex justify-between text-[10.5px]">
+                  <span>Ab 5 Kategorien:</span>
+                  <span className="font-bold text-white">14,95 €</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="w-full bg-[#F2761B] group-hover:bg-[#D65F0C] text-white font-bold py-2.5 px-3 rounded-xl text-[12.5px] transition-all shadow-md flex items-center justify-center gap-1.5">
+              Sie möchten hier werben? Mehr erfahren!
+            </div>
+            <div className="text-[10.5px] text-white/65 mt-2">
+              14 Tage Kündigungsfrist · Sofort buchbar
+            </div>
+          </div>
         </div>
       )}
     </aside>
   );
 }
+

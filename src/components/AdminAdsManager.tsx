@@ -561,10 +561,15 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                         ({inq.name})
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-2.5 py-0.5 text-xs font-bold">
-                        Kategorie: {inq.category}
+                        {inq.categories ? `${inq.categories.length} Kat.: ${inq.categories.join(', ')}` : `Kategorie: ${inq.category}`}
                       </span>
+                      {inq.totalMonthlyPrice !== undefined && (
+                        <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-2.5 py-0.5 text-xs font-bold">
+                          {inq.totalMonthlyPrice.toFixed(2).replace('.', ',')} € / Mo.
+                        </span>
+                      )}
                       <span className="text-xs text-gray-400">
                         {new Date(inq.createdAt).toLocaleDateString('de-DE')}
                       </span>

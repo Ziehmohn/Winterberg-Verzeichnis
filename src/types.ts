@@ -143,10 +143,13 @@ export interface AdInquiry {
   name: string;
   companyName: string;
   email: string;
-  phone?: string;
-  category: string;
-  message?: string;
+  phone?: string | null;
+  category?: string;
+  categories?: string[];
+  categoryCount?: number;
+  pricePerCategory?: number;
+  totalMonthlyPrice?: number;
+  message?: string | null;
   status: 'new' | 'contacted' | 'booked' | 'declined';
   createdAt: string;
 }
-

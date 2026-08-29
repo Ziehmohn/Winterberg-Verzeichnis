@@ -70,7 +70,7 @@ async function startServer() {
   // API Routes
   app.post('/api/create-checkout-session', async (req, res) => {
     try {
-      const { businessId, email, billingCycle } = req.body || {};
+      const { businessId, email, billingCycle, ownerId, ownerEmail } = req.body || {};
       
       if (!businessId) {
         return res.status(400).json({ error: 'businessId ist erforderlich.' });
@@ -113,12 +113,16 @@ async function startServer() {
         subscription_data: {
           metadata: {
             businessId: businessId,
-            billingCycle: cycle
+            billingCycle: cycle,
+            ...(ownerId ? { ownerId } : {}),
+            ...(ownerEmail ? { ownerEmail } : {})
           }
         },
         metadata: {
           businessId: businessId,
-          billingCycle: cycle
+          billingCycle: cycle,
+          ...(ownerId ? { ownerId } : {}),
+          ...(ownerEmail ? { ownerEmail } : {})
         }
       });
 

@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { businessId, email, billingCycle } = req.body || {};
+  const { businessId, email, billingCycle, ownerId, ownerEmail } = req.body || {};
   
   if (!businessId) {
     return res.status(400).json({ error: 'businessId ist erforderlich.' });
@@ -53,12 +53,16 @@ export default async function handler(req, res) {
       subscription_data: {
         metadata: {
           businessId: businessId,
-          billingCycle: cycle
+          billingCycle: cycle,
+          ...(ownerId ? { ownerId } : {}),
+          ...(ownerEmail ? { ownerEmail } : {})
         }
       },
       metadata: {
         businessId: businessId,
-        billingCycle: cycle
+        billingCycle: cycle,
+        ...(ownerId ? { ownerId } : {}),
+        ...(ownerEmail ? { ownerEmail } : {})
       }
     });
 

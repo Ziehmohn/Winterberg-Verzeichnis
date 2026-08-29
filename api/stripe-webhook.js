@@ -64,6 +64,8 @@ export default async function handler(req, res) {
         const session = event.data.object;
         const businessId = session.metadata?.businessId || session.client_reference_id;
         const billingCycle = session.metadata?.billingCycle || 'monthly';
+        const ownerId = session.metadata?.ownerId;
+        const ownerEmail = session.metadata?.ownerEmail;
         
         if (businessId) {
           const docRef = db.collection('businesses').doc(businessId);
@@ -73,12 +75,15 @@ export default async function handler(req, res) {
           console.log(`Checkout completed for business ${businessId} (${busName}). Mode: ${billingCycle}`);
           
           await docRef.update({
+            status: 'approved',
             isPremium: true,
             stripeSubscriptionId: session.subscription || null,
             stripeCustomerId: session.customer || null,
             subscriptionStatus: 'active',
             billingCycle: billingCycle,
-            cancelAtPeriodEnd: false
+            cancelAtPeriodEnd: false,
+            ...(ownerId ? { ownerId } : {}),
+            ...(ownerEmail ? { ownerEmail } : {})
           });
 
           try {

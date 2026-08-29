@@ -130,7 +130,7 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
 
       {/* Skyscraper Banner Advertising Card */}
       <div className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white rounded-[24px] p-8 md:p-10 shadow-xl flex flex-col md:flex-row gap-6 items-center justify-between">
-        <div className="max-w-[54ch]">
+        <div className="max-w-[56ch]">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3.5 py-1 text-xs font-semibold uppercase tracking-wider mb-3">
             <span className="w-2 h-2 rounded-full bg-[#F2761B]" />
             Maximale Sichtbarkeit
@@ -138,17 +138,25 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
           <h3 className="font-display text-2xl md:text-3xl font-bold mb-2">
             Skyscraper-Bannerwerbung schalten
           </h3>
-          <p className="text-white/85 text-[15px] leading-relaxed">
-            Möchten Sie prominent in bestimmten Branchenkategorien (z. B. Gastronomie, Handwerk, Freizeit) werben? Unsere Skyscraper-Banner werden am rechten Rand platziert und scrollen beim Lesen langer Seiten aufmerksamkeitsstark mit.
+          <p className="text-white/85 text-[15px] leading-relaxed mb-4">
+            Präsentieren Sie Ihr Unternehmen exklusiv in passenden Branchenkategorien (z. B. Gastronomie, Handwerk, Freizeit). Das Banner läuft beim Lesen langer Seiten am rechten Rand sticky mit.
           </p>
+          <div className="inline-flex flex-wrap gap-2 text-xs text-white/90">
+            <span className="bg-white/15 px-3 py-1 rounded-lg">1-2 Kat.: <strong>24,95 € / Mo.</strong></span>
+            <span className="bg-white/15 px-3 py-1 rounded-lg text-emerald-300">Ab 3 Kat.: <strong>19,95 € / Mo.</strong> (20% Rabatt)</span>
+            <span className="bg-white/15 px-3 py-1 rounded-lg text-[#F2761B]">Ab 5 Kat.: <strong>14,95 € / Mo.</strong> (40% Rabatt)</span>
+          </div>
+          <div className="text-[12px] text-white/60 mt-2">
+            Monatlich kündbar · 14 Tage Kündigungsfrist zum Monatsende (wie beim Premium-Account)
+          </div>
         </div>
         {onInquireAd && (
           <button
             type="button"
             onClick={onInquireAd}
-            className="bg-[#F2761B] hover:bg-[#D65F0C] text-white font-semibold px-8 py-3.5 rounded-full text-base transition-colors shrink-0 shadow-lg"
+            className="bg-[#F2761B] hover:bg-[#D65F0C] text-white font-semibold px-8 py-3.5 rounded-full text-base transition-colors shrink-0 shadow-lg cursor-pointer text-center"
           >
-            Bannerplatz anfragen
+            Sie möchten hier werben? Mehr erfahren!
           </button>
         )}
       </div>

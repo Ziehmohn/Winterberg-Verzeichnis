@@ -78,7 +78,28 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold mb-3">5. Pflichten des Kunden</h2>
+          <h2 className="text-xl font-bold mb-3">5. Bannerwerbung und Skyscraper-Anzeigen</h2>
+          <p>
+            5.1. Der Anbieter bietet Kunden die Möglichkeit, Skyscraper-Werbebanner in ausgewählten Branchenkategorien oder verzeichnisweit auf dem Portal zu schalten.
+          </p>
+          <p className="mt-2">
+            5.2. <strong>Preise &amp; Mengenstaffel für Bannerwerbung:</strong>
+          </p>
+          <ul className="list-disc pl-5 mt-1 space-y-1 text-sm">
+            <li>1 bis 2 Kategorien: <strong>24,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>Ab 3 Kategorien: <strong>19,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>Ab 5 Kategorien: <strong>14,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+          </ul>
+          <p className="mt-2">
+            5.3. <strong>Laufzeit und Kündigung:</strong> Verträge über Bannerwerbung verlängern sich automatisch um jeweils einen weiteren Monat. Die Kündigungsfrist beträgt wie beim Premium-Account <strong>14 Tage zum Ende des jeweiligen monatlichen Abrechnungszeitraums</strong>.
+          </p>
+          <p className="mt-2">
+            5.4. Der Kunde ist für die Rechtmäßigkeit der von ihm bereitgestellten Werbegrafiken und Links allein verantwortlich. Der Anbieter behält sich vor, Banner abzulehnen oder zu sperren, die gegen gesetzliche Vorgaben oder die guten Sitten verstoßen.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3">6. Pflichten des Kunden</h2>
           <p>
             5.1. Der Kunde ist allein für die von ihm eingestellten Inhalte (Texte, Bilder, Links, Stellenanzeigen etc.) verantwortlich. Er garantiert, dass er über alle erforderlichen Rechte verfügt und diese keine Rechte Dritter verletzen.
           </p>

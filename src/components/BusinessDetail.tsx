@@ -66,7 +66,13 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ businessId: business.id, email: business.email, billingCycle: 'monthly' }) // Default to monthly on upgrade, user can change in Stripe if needed, or we just pass it
+        body: JSON.stringify({ 
+          businessId: business.id, 
+          email: business.email || user?.email, 
+          billingCycle: 'monthly',
+          ownerId: user?.uid || null,
+          ownerEmail: user?.email || null
+        })
       });
       const data = await res.json();
       if (data.url) {
