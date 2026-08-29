@@ -1,5 +1,29 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "winterberg.sichtbar-online.com"
+        }
+      ],
+      "destination": "https://www.winterberg-verzeichnis.de/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "winterberg-verzeichnis.de"
+        }
+      ],
+      "destination": "https://www.winterberg-verzeichnis.de/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
