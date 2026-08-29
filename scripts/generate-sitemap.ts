@@ -109,21 +109,15 @@ const lastmod = new Date().toISOString().split('T')[0];
 
 const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries.map(entry => `  <url>
     <loc>${escapeXml(entry.locDe)}</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="${escapeXml(entry.locDe)}" />
-    <xhtml:link rel="alternate" hreflang="nl" href="${escapeXml(entry.locNl)}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(entry.locDe)}" />
     <lastmod>${lastmod}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
   </url>
   <url>
     <loc>${escapeXml(entry.locNl)}</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="${escapeXml(entry.locDe)}" />
-    <xhtml:link rel="alternate" hreflang="nl" href="${escapeXml(entry.locNl)}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(entry.locDe)}" />
     <lastmod>${lastmod}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
