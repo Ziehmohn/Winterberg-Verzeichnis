@@ -289,7 +289,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
                           <div className={`w-3.5 h-3.5 rounded-xs flex items-center justify-center shrink-0 border ${isMainSelected ? 'bg-white text-[#0F4C2E] border-white' : 'border-gray-300'}`}>
                             {isMainSelected && <Check className="w-3 h-3 stroke-[3]" />}
                           </div>
-                          <span>{group.name} <span className="font-normal opacity-75">(Gesamte Rubrik)</span></span>
+                          <span>{group.name} <span className="font-normal opacity-75">(Oberkategorie)</span></span>
                         </button>
 
                         <button
