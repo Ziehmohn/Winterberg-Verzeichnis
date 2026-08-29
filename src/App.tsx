@@ -91,6 +91,11 @@ export default function App() {
   let initialNewsSubmitMode = false;
   let initialNewsId: string | null = null;
   let initialFaqMode = false;
+  let initialImpressumMode = false;
+  let initialDatenschutzMode = false;
+  let initialAGBMode = false;
+  let initialPricingMode = false;
+  let initialSubmitMode = false;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -115,6 +120,16 @@ export default function App() {
         }
       } else if (decodedPart1.toLowerCase() === 'faq' || decodedPart1.toLowerCase() === 'faqs' || decodedPart1.toLowerCase() === 'winterberg-faq') {
         initialFaqMode = true;
+      } else if (decodedPart1.toLowerCase() === 'impressum') {
+        initialImpressumMode = true;
+      } else if (decodedPart1.toLowerCase() === 'datenschutz') {
+        initialDatenschutzMode = true;
+      } else if (decodedPart1.toLowerCase() === 'agb') {
+        initialAGBMode = true;
+      } else if (decodedPart1.toLowerCase() === 'preise' || decodedPart1.toLowerCase() === 'pricing') {
+        initialPricingMode = true;
+      } else if (decodedPart1.toLowerCase() === 'eintragen' || decodedPart1.toLowerCase() === 'unternehmen-eintragen') {
+        initialSubmitMode = true;
       } else {
         const catGroup = categories.find(c => c.name.toLowerCase() === decodedPart1.toLowerCase());
         
@@ -296,10 +311,18 @@ export default function App() {
           setIsAllMode(true);
         } else if (p1 === 'stellenangebote' || p1 === 'jobs') {
           setIsJobsMode(true);
-        } else if (p1 === 'preise') {
+        } else if (p1 === 'preise' || p1 === 'pricing') {
           setIsPricingMode(true);
         } else if (p1 === 'faq' || p1 === 'faqs' || p1 === 'winterberg-faq') {
           setIsFaqMode(true);
+        } else if (p1 === 'impressum') {
+          setIsImpressumMode(true);
+        } else if (p1 === 'datenschutz') {
+          setIsDatenschutzMode(true);
+        } else if (p1 === 'agb') {
+          setIsAGBMode(true);
+        } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen') {
+          setIsSubmitMode(true);
         } else {
            window.location.reload();
         }
@@ -342,11 +365,11 @@ export default function App() {
 
 
   const [isAdminMode, setIsAdminMode] = useState(false);
-  const [isImpressumMode, setIsImpressumMode] = useState(false);
-  const [isAGBMode, setIsAGBMode] = useState(false);
-  const [isDatenschutzMode, setIsDatenschutzMode] = useState(false);
-  const [isSubmitMode, setIsSubmitMode] = useState(false);
-  const [isPricingMode, setIsPricingMode] = useState(false);
+  const [isImpressumMode, setIsImpressumMode] = useState(initialImpressumMode);
+  const [isAGBMode, setIsAGBMode] = useState(initialAGBMode);
+  const [isDatenschutzMode, setIsDatenschutzMode] = useState(initialDatenschutzMode);
+  const [isSubmitMode, setIsSubmitMode] = useState(initialSubmitMode);
+  const [isPricingMode, setIsPricingMode] = useState(initialPricingMode);
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
@@ -1455,112 +1478,192 @@ export default function App() {
         </ErrorBoundary>
       </main>
 
-      
       {/* Mobile Full Screen Menu */}
       {isMobileCategoriesOpen && (
         <div className={`md:hidden fixed inset-0 z-[100] overflow-y-auto ${theme.bgPage} flex flex-col`}>
           {/* Mobile Header (inside full screen menu) */}
           <div className={`flex items-center justify-between p-4 border-b border-black/10 dark:border-white/10 sticky top-0 ${theme.bgPage} z-10 shadow-sm`}>
-            <span className="font-display font-bold text-lg">Branchen</span>
+            <div className="flex items-center gap-2">
+              <span className="font-display text-[16px] font-extrabold tracking-wider text-[#0F4C2E]">WINTERBERG</span>
+              <span className="text-xs text-[#5F6B63] font-medium">Navigation</span>
+            </div>
             <button 
               onClick={() => setIsMobileCategoriesOpen(false)} 
-              className="p-2 -mr-2 transition-colors hover:bg-black/5 dark:hover:bg-white/5 rounded-full"
+              className="p-2 -mr-2 transition-colors hover:bg-black/5 dark:hover:bg-white/5 rounded-full text-[#1B211D]"
+              aria-label="Menü schließen"
             >
               <X className="w-6 h-6" />
             </button>
           </div>
 
-          <nav className="flex flex-col gap-1 p-4">
-            <a
-              href={getPath("/")}
-              onClick={(e) => {
-                e.preventDefault();
-                window.history.pushState(null, '', getPath('/'));
-                setActiveCategory('Alle');
-                resetToDirectory();
-                setIsMobileCategoriesOpen(false);
-              }}
-              className={`block w-full text-left px-4 py-3 text-base font-medium transition-colors ${
-                activeCategory === 'Alle' ? theme.categoryTagActive : theme.categoryTagInactive
-              } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-            >
-              Alle anzeigen
-            </a>
-            <div className="border-b-2 border-dotted border-black/10 my-3"></div>
-            {categories.map((group) => {
-              const isExpanded = expandedGroups.includes(group.name);
-              return (
-                <div key={t(group.name)} className="flex flex-col gap-1 mb-2 last:mb-0">
-                  <div className="flex items-center gap-1">
-                    <a
-                      href={getPath(`/${encodeURIComponent(group.name)}`)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}`));
-                        setActiveCategory(group.name);
-                        resetToDirectory();
-                        if (!isExpanded) {
-                          setExpandedGroups(prev => [...prev, group.name]);
-                        }
-                        setIsMobileCategoriesOpen(false);
-                      }}
-                      className={`flex-1 block text-left px-4 py-3 text-base font-medium transition-colors ${
-                        activeCategory === group.name ? theme.categoryTagActive : theme.categoryTagInactive
-                      } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                    >
-                      {t(group.name)}
-                    </a>
-                    {group.subcategories.length > 0 && (
-                      <button
-                        onClick={() => {
-                          setExpandedGroups(prev =>
-                            isExpanded ? prev.filter(g => g !== group.name) : [...prev, group.name]
-                          );
+          <div className="p-4 flex flex-col gap-4">
+            {/* Quick Navigation Cards */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <a
+                href={getPath("/alle-unternehmen")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/alle-unternehmen'));
+                  setActiveCategory('Alle');
+                  setActiveLocation('Alle');
+                  setSearchQuery('');
+                  resetToDirectory();
+                  setIsAllMode(true);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center shrink-0">
+                  <Building2 className="w-4 h-4" />
+                </div>
+                <span>Alle Betriebe</span>
+              </a>
+
+              <a
+                href={getPath("/jobs")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/jobs'));
+                  resetToDirectory();
+                  setIsJobsMode(true);
+                  setJobsCategory(null);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center shrink-0">
+                  <Briefcase className="w-4 h-4" />
+                </div>
+                <span>Jobs & Karriere</span>
+              </a>
+
+              <a
+                href={getPath("/news")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/news'));
+                  resetToDirectory();
+                  setIsNewsMode(true);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center shrink-0">
+                  <FileText className="w-4 h-4" />
+                </div>
+                <span>News</span>
+              </a>
+
+              <a
+                href={getPath("/faq")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/faq'));
+                  resetToDirectory();
+                  setIsFaqMode(true);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-lg bg-orange-50 text-[#F2761B] flex items-center justify-center shrink-0">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <span>FAQs</span>
+              </a>
+            </div>
+
+            <div className="font-display text-xs font-bold uppercase tracking-[0.1em] text-[#8A928B] px-1 mt-2">
+              Branchen & Kategorien
+            </div>
+
+            <nav className="flex flex-col gap-1.5">
+              {categories.map((group) => {
+                const isExpanded = expandedGroups.includes(group.name);
+                const count = businesses.filter(b => b.category === group.name).length;
+                return (
+                  <div key={t(group.name)} className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5">
+                      <a
+                        href={getPath(`/${encodeURIComponent(group.name)}`)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}`));
+                          setActiveCategory(group.name);
+                          resetToDirectory();
+                          if (!isExpanded) {
+                            setExpandedGroups(prev => [...prev, group.name]);
+                          }
+                          setIsMobileCategoriesOpen(false);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`p-3 flex items-center justify-center transition-colors ${theme.textMuted} hover:text-black dark:hover:text-white ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                        aria-label="Toggle subcategories"
+                        className={`flex-1 flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-colors ${
+                          activeCategory === group.name ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-white text-[#1B211D] border border-[#EDE8E0]'
+                        }`}
                       >
-                        {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-                      </button>
+                        <span>{t(group.name)}</span>
+                        <span className={`text-[11.5px] font-bold px-2 py-0.5 rounded-md ${activeCategory === group.name ? 'bg-white/20 text-white' : 'bg-[#FAF8F5] text-[#5F6B63]'}`}>
+                          {count}
+                        </span>
+                      </a>
+                      {group.subcategories.length > 0 && (
+                        <button
+                          onClick={() => {
+                            setExpandedGroups(prev =>
+                              isExpanded ? prev.filter(g => g !== group.name) : [...prev, group.name]
+                            );
+                          }}
+                          className="p-3 flex items-center justify-center transition-colors text-[#8A928B] hover:text-black rounded-xl bg-white border border-[#EDE8E0]"
+                          aria-label="Unterkategorien anzeigen"
+                        >
+                          {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                        </button>
+                      )}
+                    </div>
+                    {isExpanded && group.subcategories.length > 0 && (
+                      <div className="flex flex-col gap-1 ml-3 border-l-2 border-[#0F4C2E]/20 pl-2.5 my-1">
+                        {group.subcategories.map((sub) => (
+                          <a
+                            key={sub}
+                            href={getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`));
+                              setActiveCategory(sub);
+                              resetToDirectory();
+                              setIsMobileCategoriesOpen(false);
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`block w-full text-left px-3 py-2 text-[13.5px] font-medium rounded-lg transition-colors ${
+                              activeCategory === sub ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:bg-black/5'
+                            }`}
+                          >
+                            {sub}
+                          </a>
+                        ))}
+                      </div>
                     )}
                   </div>
-                  {isExpanded && group.subcategories.length > 0 && (
-                    <div className="flex flex-col gap-1 ml-3 border-l-2 border-black/10 dark:border-white/10 pl-2">
-                      {group.subcategories.map((sub) => (
-                        <a
-                          href={getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`)}
-                          key={sub}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`));
-                            setActiveCategory(sub);
-                            resetToDirectory();
-                            setIsMobileCategoriesOpen(false);
-                          }}
-                          className={`block w-full text-left px-3 py-3 text-sm font-medium transition-colors ${
-                            activeCategory === sub ? theme.categoryTagActive : theme.categoryTagInactive
-                          } ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                        >
-                          {sub}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </nav>
-          <div className="mt-auto p-4 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col gap-3">
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="mt-auto p-4 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col gap-2.5">
             <button 
               onClick={() => {
                 resetToDirectory();
-                setIsNewsMode(true);
+                window.history.pushState(null, '', getPath('/eintragen'));
+                setIsSubmitMode(true);
                 setIsMobileCategoriesOpen(false);
                 window.scrollTo(0, 0);
               }}
-              className={`w-full py-4 px-4 font-bold text-base text-center flex items-center justify-center gap-2 bg-[#FAF8F5] text-[#0F4C2E] transition-colors border border-[#0F4C2E] ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:bg-[#F3F0EA]'}`}
+              className="w-full py-3.5 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-xl shadow-sm transition-colors cursor-pointer"
             >
-              <FileText className="w-5 h-5" /> News & Aktuelles
+              <Plus className="w-4 h-4" /> Unternehmen eintragen
             </button>
             <button 
               onClick={() => {
@@ -1569,42 +1672,21 @@ export default function App() {
                 setIsMobileCategoriesOpen(false);
                 window.scrollTo(0, 0);
               }}
-              className={`w-full py-4 px-4 font-bold text-base text-center flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#06301C] text-white transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:shadow'}`}
+              className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-white text-[#1B211D] border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-xl transition-colors cursor-pointer"
             >
               {currentUser ? (
                 <>
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center bg-[#F2761B] text-white text-[11px]">
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center bg-[#F2761B] text-white text-[10px]">
                     {currentUser.email ? currentUser.email.substring(0, 2).toUpperCase() : 'A'}
                   </div>
-                  Account
+                  Account Dashboard
                 </>
               ) : (
                 <>
-                  <User className="w-5 h-5" />
+                  <User className="w-4 h-4" />
                   Account Login
                 </>
               )}
-            </button>
-            <button 
-              onClick={() => {
-                setIsJobsMode(true);
-                setJobsCategory(null);
-                setIsMobileCategoriesOpen(false);
-                window.scrollTo(0, 0);
-              }}
-              className={`w-full py-4 px-4 font-bold text-base text-center flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:shadow'}`}
-            >
-              <Briefcase className="w-5 h-5" /> Offene Stellen
-            </button>
-            <button 
-              onClick={() => {
-                setIsSubmitMode(true);
-                setIsMobileCategoriesOpen(false);
-                window.scrollTo(0, 0);
-              }}
-              className={`w-full py-4 px-4 font-bold text-base text-center flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white transition-colors ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg shadow-sm hover:shadow'}`}
-            >
-              <Plus className="w-5 h-5" /> Unternehmen eintragen
             </button>
           </div>
         </div>
@@ -1613,7 +1695,18 @@ export default function App() {
       <footer style={{ background: '#06301C', color: 'rgba(255,255,255,0.78)', marginTop: 'auto' }}>
         <div className="max-w-[1180px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
           <div className="md:col-span-2">
-            <div className="inline-block cursor-pointer" onClick={() => { resetToDirectory(); }}>
+            <div 
+              className="inline-block cursor-pointer" 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/')); 
+                resetToDirectory(); 
+                setActiveCategory('Alle'); 
+                setActiveLocation('Alle'); 
+                setSearchQuery(''); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }}
+            >
               <span className="font-display text-[13px] font-medium text-white/70">Das</span>
               <span className="font-display text-[22px] font-extrabold tracking-widest text-white block leading-tight">WINTERBERG</span>
               <svg viewBox="0 0 200 10" preserveAspectRatio="none" className="w-full h-[7px] block mt-0.5">
@@ -1644,40 +1737,112 @@ export default function App() {
               Alle Unternehmen
             </a>
             <a 
+              href={getPath('/jobs')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/jobs')); 
+                resetToDirectory(); 
+                setIsJobsMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Jobs & Stellenangebote
+            </a>
+            <a 
+              href={getPath('/news')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/news')); 
+                resetToDirectory(); 
+                setIsNewsMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              News & Aktuelles
+            </a>
+            <a 
               href={getPath('/faq')} 
               onClick={(e) => { 
                 e.preventDefault(); 
                 window.history.pushState(null, '', getPath('/faq')); 
                 resetToDirectory(); 
                 setIsFaqMode(true); 
-                window.scrollTo(0, 0); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
               Winterberg FAQs
             </a>
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsNewsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">News</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Jobs</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsSubmitMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Eintragen</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsPricingMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Preise</a>
+            <a 
+              href={getPath('/eintragen')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/eintragen')); 
+                resetToDirectory(); 
+                setIsSubmitMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Unternehmen eintragen
+            </a>
+            <a 
+              href={getPath('/preise')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/preise')); 
+                resetToDirectory(); 
+                setIsPricingMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Preise & Pakete
+            </a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">Rechtliches</div>
-            <a href="#" onClick={(e) => { 
-              e.preventDefault(); 
-              setIsAdminMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
-              setIsImpressumMode(true); window.scrollTo(0, 0);
-            }} className="text-white/80 hover:text-white transition-colors">Impressum</a>
-            <a href="#" onClick={(e) => { 
-              e.preventDefault(); 
-              setIsAdminMode(false); setIsImpressumMode(false); setIsAGBMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false);
-              setIsDatenschutzMode(true); window.scrollTo(0, 0);
-            }} className="text-white/80 hover:text-white transition-colors">Datenschutz</a>
-            <a href="#" onClick={(e) => { 
-              e.preventDefault(); 
-              setIsAdminMode(false); setIsImpressumMode(false); setIsSubmitMode(false); setIsPricingMode(false); setIsJobsMode(false); setIsDatenschutzMode(false);
-              setIsAGBMode(true); window.scrollTo(0, 0);
-            }} className="text-white/80 hover:text-white transition-colors">AGB</a>
+            <a 
+              href={getPath('/impressum')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/impressum')); 
+                resetToDirectory(); 
+                setIsImpressumMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Impressum
+            </a>
+            <a 
+              href={getPath('/datenschutz')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/datenschutz')); 
+                resetToDirectory(); 
+                setIsDatenschutzMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Datenschutz
+            </a>
+            <a 
+              href={getPath('/agb')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/agb')); 
+                resetToDirectory(); 
+                setIsAGBMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              AGB
+            </a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">Externe Links</div>
