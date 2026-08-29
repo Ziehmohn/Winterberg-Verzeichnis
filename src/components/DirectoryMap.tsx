@@ -30,7 +30,7 @@ const customIcon = new L.Icon({
 const geocodeCache: Record<string, [number, number]> = {};
 
 const GeocodedMarker: React.FC<{ bus: Business; onClick: () => void; onPopupClick?: () => void }> = ({ bus, onClick, onPopupClick }) => {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const [position, setPosition] = useState<[number, number] | null>(
     bus.coordinates ? [bus.coordinates.lat, bus.coordinates.lng] : null
   );
