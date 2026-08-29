@@ -11,6 +11,7 @@ import { useAuth } from '../AuthContext';
 import Login from './Login';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 import WidgetGeneratorModal from './WidgetGeneratorModal';
+import { getBusinessPath } from '../utils/routes';
 
 interface BusinessDetailProps {
   business: Business;
@@ -524,7 +525,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
               return (
                 <div key={b.id} onClick={() => {
-                  const basePath = `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
+                  const basePath = getBusinessPath(b, lang);
                   const url = typeof window !== 'undefined' ? `${window.location.origin}${basePath}` : basePath;
                   window.location.href = url;
                 }} className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">

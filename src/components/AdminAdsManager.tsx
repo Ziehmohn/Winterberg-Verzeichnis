@@ -5,6 +5,7 @@ import { categories } from '../data';
 import { db, storage } from '../firebase';
 import { doc, setDoc, deleteDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getBusinessPath } from '../utils/routes';
 
 interface AdminAdsManagerProps {
   ads: AdBanner[];
@@ -26,7 +27,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
   );
 
   const getProfileUrl = (b: Business) => {
-    return `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
+    return getBusinessPath(b, 'de');
   };
 
   // Form State

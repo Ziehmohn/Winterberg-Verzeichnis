@@ -27,6 +27,9 @@ import {
   getAlternateUrls,
   getCategorySlug,
   getSubcategorySlug,
+  getBusinessSlug,
+  getBusinessPath,
+  slugify,
   STATIC_PAGE_SLUGS
 } from './utils/routes';
 import { getLocalizedBusiness } from './utils/translator';
@@ -241,7 +244,14 @@ export default function App() {
               defaultCategory = subName;
               if (pathParts[2]) {
                 const decodedPart3 = decodeURIComponent(pathParts[2]);
-                const business = initialBusinesses.find(b => b.name.replace(/\s+/g, '-').toLowerCase() === decodedPart3.toLowerCase());
+                const matchBusiness = (b: Business, rawPart: string) => {
+                  const cleanPart = slugify(decodeURIComponent(rawPart));
+                  const bCleanSlug = slugify(b.name);
+                  const rawPartDecoded = decodeURIComponent(rawPart).toLowerCase();
+                  const oldRawSlug = b.name.replace(/\s+/g, '-').toLowerCase();
+                  return bCleanSlug === cleanPart || oldRawSlug === rawPartDecoded || b.id.toLowerCase() === rawPartDecoded;
+                };
+                const business = initialBusinesses.find(b => matchBusiness(b, decodedPart3));
                 if (business) {
                   defaultSearchQuery = business.name;
                   initialSelectedBusiness = business;
@@ -251,7 +261,14 @@ export default function App() {
               }
             } else {
               // maybe business?
-              const business = initialBusinesses.find(b => b.name.replace(/\s+/g, '-').toLowerCase() === decodedPart2.toLowerCase());
+              const matchBusiness = (b: Business, rawPart: string) => {
+                const cleanPart = slugify(decodeURIComponent(rawPart));
+                const bCleanSlug = slugify(b.name);
+                const rawPartDecoded = decodeURIComponent(rawPart).toLowerCase();
+                const oldRawSlug = b.name.replace(/\s+/g, '-').toLowerCase();
+                return bCleanSlug === cleanPart || oldRawSlug === rawPartDecoded || b.id.toLowerCase() === rawPartDecoded;
+              };
+              const business = initialBusinesses.find(b => matchBusiness(b, decodedPart2));
               if (business) {
                 defaultSearchQuery = business.name;
                 initialSelectedBusiness = business;
@@ -325,7 +342,7 @@ export default function App() {
         view: 'business',
         category: selectedBusiness.category,
         subcategory: selectedBusiness.subcategory,
-        businessSlug: selectedBusiness.name.replace(/\s+/g, '-').toLowerCase()
+        businessSlug: getBusinessSlug(selectedBusiness.name)
       };
     }
     if (isJobsMode) return { view: 'jobs', jobsCategory: jobsCategory || undefined };
@@ -1811,7 +1828,7 @@ export default function App() {
                 <div className={`py-20 text-center ${theme.textMuted}`}>{t("loading")}</div>
               ) : viewMode === 'map' ? (
                 <DirectoryMap businesses={filteredBusinesses} onSelectBusiness={(bus) => {
-                  window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
+                  window.history.pushState(null, '', getPath(getBusinessPath(bus, lang)));
                   setSelectedBusiness(bus);
                 }} />
               ) : (
@@ -1859,7 +1876,7 @@ export default function App() {
                           key={bus.id} 
                           onClick={(e) => {
                             e.preventDefault();
-                            window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
+                            window.history.pushState(null, '', getPath(getBusinessPath(bus, lang)));
                             setSearchQuery(bus.name);
                             setSelectedBusiness(bus);
                           }}
@@ -2068,7 +2085,7 @@ export default function App() {
                                   key={bus.id} 
                                   onClick={(e) => {
                                     e.preventDefault();
-                                    window.history.pushState(null, '', getPath(`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`));
+                                    window.history.pushState(null, '', getPath(getBusinessPath(bus, lang)));
                                     setSearchQuery(bus.name);
                                     setSelectedBusiness(bus);
                                     window.scrollTo(0,0);

@@ -247,14 +247,15 @@ categories.forEach(c => {
 
 // 5. Business Detail Pages
 businesses.forEach((b: any) => {
-  const bSlug = slugify(b.name);
+  const bSlugClean = slugify(b.name);
+  const bSlugLegacy = b.name.replace(/\s+/g, '-').toLowerCase();
   const catDe = getCategorySlug(b.category, 'de');
   const catNl = getCategorySlug(b.category, 'nl');
   const subDe = b.subcategory ? getSubcategorySlug(b.subcategory, 'de') : '';
   const subNl = b.subcategory ? getSubcategorySlug(b.subcategory, 'nl') : '';
 
-  const pathDe = subDe ? `${catDe}/${subDe}/${bSlug}` : `${catDe}/${bSlug}`;
-  const pathNl = subNl ? `nl/${catNl}/${subNl}/${bSlug}` : `nl/${catNl}/${bSlug}`;
+  const pathDe = subDe ? `${catDe}/${subDe}/${bSlugClean}` : `${catDe}/${bSlugClean}`;
+  const pathNl = subNl ? `nl/${catNl}/${subNl}/${bSlugClean}` : `nl/${catNl}/${bSlugClean}`;
 
   const city = b.district || 'Winterberg';
   const shortDesc = b.description ? b.description.substring(0, 140).trim() + '...' : 'Ihr Fachbetrieb in Winterberg.';
@@ -277,7 +278,7 @@ businesses.forEach((b: any) => {
     image: b.logoUrl ? `${baseUrl}${b.logoUrl}` : undefined
   };
 
-  // DE Business Page
+  // DE Business Page (Canonical clean URL)
   pagesToPrerender.push({
     path: pathDe,
     title: `${b.name} in ${city} | Das Winterberg Verzeichnis`,
@@ -290,7 +291,7 @@ businesses.forEach((b: any) => {
     jsonLd: schemaJsonLd
   });
 
-  // NL Business Page
+  // NL Business Page (Canonical clean URL)
   pagesToPrerender.push({
     path: pathNl,
     title: `${b.name} in ${city} | Het Winterberg Overzicht`,
@@ -302,6 +303,36 @@ businesses.forEach((b: any) => {
     lang: 'nl',
     jsonLd: schemaJsonLd
   });
+
+  // Also pre-render legacy alias URL (e.g. abenteuergolf-winterberg---erlebnisberg-kappe) so ANY legacy crawl/link gets exact static HTML with self-referencing or canonical URL!
+  if (bSlugLegacy !== bSlugClean && !bSlugLegacy.includes('/') && !bSlugLegacy.includes('\\') && !bSlugLegacy.includes('|') && !bSlugLegacy.includes(':')) {
+    const legacyPathDe = subDe ? `${catDe}/${subDe}/${bSlugLegacy}` : `${catDe}/${bSlugLegacy}`;
+    const legacyPathNl = subNl ? `nl/${catNl}/${subNl}/${bSlugLegacy}` : `nl/${catNl}/${bSlugLegacy}`;
+
+    pagesToPrerender.push({
+      path: legacyPathDe,
+      title: `${b.name} in ${city} | Das Winterberg Verzeichnis`,
+      description: `Alle Infos zu ${b.name} in ${city}. ✓ Kontaktdaten ✓ Öffnungszeiten ✓ Adresse. ${shortDesc}`,
+      canonicalUrl: `${baseUrl}/${pathDe}`,
+      alternateDe: `${baseUrl}/${pathDe}`,
+      alternateNl: `${baseUrl}/${pathNl}`,
+      alternateXDefault: `${baseUrl}/${pathDe}`,
+      lang: 'de',
+      jsonLd: schemaJsonLd
+    });
+
+    pagesToPrerender.push({
+      path: legacyPathNl,
+      title: `${b.name} in ${city} | Het Winterberg Overzicht`,
+      description: `Alle informatie over ${b.name} in ${city}. ✓ Contactgegevens ✓ Openingstijden ✓ Adres. ${shortDescNl}`,
+      canonicalUrl: `${baseUrl}/${pathNl}`,
+      alternateDe: `${baseUrl}/${pathDe}`,
+      alternateNl: `${baseUrl}/${pathNl}`,
+      alternateXDefault: `${baseUrl}/${pathDe}`,
+      lang: 'nl',
+      jsonLd: schemaJsonLd
+    });
+  }
 });
 
 console.log(`Starting SSG Pre-rendering for ${pagesToPrerender.length} routes...`);

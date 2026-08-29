@@ -87,6 +87,22 @@ export function slugify(str: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+export function getBusinessSlug(businessName: string): string {
+  return slugify(businessName);
+}
+
+export function getLegacyBusinessSlug(businessName: string): string {
+  return businessName.replace(/\s+/g, '-').toLowerCase();
+}
+
+export function getBusinessPath(bus: { category: string; subcategory?: string; name: string }, lang: Lang = 'de'): string {
+  const catSlug = getCategorySlug(bus.category, lang);
+  const subSlug = bus.subcategory ? getSubcategorySlug(bus.subcategory, lang) : '';
+  const bSlug = getBusinessSlug(bus.name);
+  const prefix = lang === 'nl' ? '/nl' : '';
+  return subSlug ? `${prefix}/${catSlug}/${subSlug}/${bSlug}` : `${prefix}/${catSlug}/${bSlug}`;
+}
+
 export function getCategorySlug(categoryName: string, lang: Lang): string {
   const mapping = CATEGORY_SLUGS[categoryName];
   if (mapping) return mapping[lang];

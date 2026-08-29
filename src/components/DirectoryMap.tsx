@@ -6,6 +6,7 @@ import { Business } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { useTranslation } from '../i18n';
 import { BadgeCheck, MapPin } from 'lucide-react';
+import { getBusinessPath } from '../utils/routes';
 
 // Fix Leaflet's default icon path issues in React
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -78,10 +79,10 @@ const GeocodedMarker: React.FC<{ bus: Business; onClick: () => void; onPopupClic
         <div className="font-sans min-w-[200px]">
           <div className="flex items-center gap-1.5 focus:outline-none mb-1">
             <a 
-              href={`/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`}
+              href={getBusinessPath(bus, lang)}
               onClick={(e) => {
                 e.preventDefault();
-                window.history.pushState(null, '', `/${encodeURIComponent(bus.category)}${bus.subcategory ? `/${encodeURIComponent(bus.subcategory)}` : ''}/${encodeURIComponent(bus.name.replace(/\s+/g, '-').toLowerCase())}`);
+                window.history.pushState(null, '', getBusinessPath(bus, lang));
                 if (onPopupClick) onPopupClick();
               }}
               className="font-bold text-sm m-0 hover:underline hover:text-orange-600 cursor-pointer"
