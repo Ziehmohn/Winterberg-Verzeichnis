@@ -364,7 +364,15 @@ export default function App() {
 
     const matchedBusiness = businesses.find(b => b.name.toLowerCase() === searchQuery.toLowerCase());
     
-    if (isJobsMode) {
+    if (isNewsMode) {
+      if (newsId) {
+        currentTitle = `Aktuelles aus Winterberg | ${seoSettings.title}`;
+        currentDesc = `Aktuelle Nachrichten, Wirtschafts-Updates und Neuigkeiten aus Winterberg.`;
+      } else {
+        currentTitle = `Aktuelles aus Winterberg - News & Meldungen | ${seoSettings.title}`;
+        currentDesc = `Die neuesten Nachrichten, Angebote und Ankündigungen aus Winterberg und den Ortsteilen.`;
+      }
+    } else if (isJobsMode) {
       if (jobsCategory) {
         currentTitle = `Offene Stellen ${jobsCategory} in Winterberg | ${seoSettings.title}`;
         currentDesc = `Finden Sie aktuelle Jobangebote und offene Stellen für ${jobsCategory} in Winterberg und Umgebung. Jetzt bewerben!`;
@@ -407,7 +415,13 @@ export default function App() {
 
     // Canonical link
     let canonicalUrl = seoSettings.baseUrl || 'https://www.winterberg-verzeichnis.de';
-    if (isJobsMode) {
+    if (isNewsMode) {
+      if (newsId) {
+        canonicalUrl = `${canonicalUrl}/news/${encodeURIComponent(newsId)}`;
+      } else {
+        canonicalUrl = `${canonicalUrl}/news`;
+      }
+    } else if (isJobsMode) {
       if (jobsCategory) {
         canonicalUrl = `${canonicalUrl}/jobs/${encodeURIComponent(jobsCategory)}`;
       } else {

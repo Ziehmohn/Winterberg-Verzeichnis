@@ -62,7 +62,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
         <div>
           <div className="relative inline-block mb-2">
             <h1 className="font-display text-[34px] md:text-[44px] font-bold tracking-tight text-[#1B211D] relative z-10 inline-block pb-2">
-              News & Aktuelles
+              Aktuelles aus Winterberg
             </h1>
             <svg 
               className="absolute -bottom-1 left-0 w-full h-3 md:h-4 overflow-visible pointer-events-none z-0" 
