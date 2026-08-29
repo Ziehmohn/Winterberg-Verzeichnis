@@ -27,7 +27,6 @@ export const businesses: Business[] = [
   {
     id: '143',
     name: 'Lingenauber',
-    description: '',
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
     additionalCategories: [
@@ -1370,15 +1369,17 @@ export const businesses: Business[] = [
   },
   {
     id: '130',
-    name: 'Full-One Lasertag Winterberg',
+    name: 'Indoor Arena Full-One Lasertag Winterberg',
     category: 'Freizeit',
     subcategory: 'Indoor-Spielplätze',
-    description: 'Indoor Arena Full-One Lasertag Winterberg Kindergeburtstage JGA & Events Gut und Schlechtwetter Alternative',
+    description: 'Indoor Arena Full-One Lasertag Winterberg für Kindergeburtstage, JGAs & Events – die ideale Schlechtwetter-Alternative und Action für Gruppen.',
     address: 'Remmeswiese 3, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 9283918',
     website: 'https://full-one-lasertag-winterberg.de',
     imageFallback: 'FL',
+    isPremium: false,
+    status: 'approved'
   },
   {
     id: '131',
@@ -1757,6 +1758,50 @@ export const businesses: Business[] = [
     description: '',
     address: 'Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg',
     district: 'Neuastenberg',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'escape-room-winterberg',
+    name: 'Escape Room Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Indoor-Spielplätze',
+    description: 'Escape-Room-Zentrum in Winterberg-Altastenberg. Spannende Rätselräume wie „Max Verschwinden“ und „Lost in Paradise“ für Teams, Familien und Gruppen.',
+    address: 'Renauweg 34, 59955 Winterberg',
+    district: 'Altastenberg',
+    phone: '01516 4974348',
+    website: 'https://escaperoomwinterberg.de',
+    imageFallback: 'ER',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'foxx-club-winterberg',
+    name: 'Foxx Club Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Indoor-Spielplätze',
+    description: 'Moderner Indoorspielplatz im Resort Schöner Asten in Altastenberg mit Kletteranlagen, Trampolinen, Röhrenrutschen und Spielspaß für Kinder.',
+    address: 'Renauweg 54, 59955 Winterberg',
+    district: 'Altastenberg',
+    phone: '02981 8050',
+    email: 'info@foxx-club.de',
+    website: 'https://www.foxx-club.de',
+    imageFallback: 'FC',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'monkey-island-winterberg',
+    name: 'Monkey Island Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Indoor-Spielplätze',
+    description: 'Großer Indoorspielplatz und Familien-Erlebniswelt in Winterberg mit Klettervulkan, Trampolinen, Karussell, Funpark und Kleinkinderbereich.',
+    address: 'Im Mühlengrund 25, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 5519717',
+    email: 'info@monkey-island-winterberg.de',
+    website: 'https://monkey-island-winterberg.de',
+    imageFallback: 'MI',
     isPremium: false,
     status: 'approved'
   }

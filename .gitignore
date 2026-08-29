@@ -6,4 +6,7 @@ coverage/
 *.log
 .env*
 !.env.example
+*.dump.html
+*_dump.html
+test_*.cjs
 

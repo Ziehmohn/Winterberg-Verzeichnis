@@ -866,7 +866,22 @@ export default function App() {
                   <div>
                     <div className="flex items-baseline justify-between gap-4 flex-wrap mb-[22px]">
                       <h2 className="font-display text-[34px] font-bold m-0 leading-tight">Empfohlene Unternehmen</h2>
-                      <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); window.scrollTo({ top: 500, behavior: 'smooth' }); }} className="font-semibold text-[15px] text-[#0F4C2E] hover:text-[#F2761B]">Alle {businesses.length} ansehen →</a>
+                      <a 
+                        href={getPath('/alle-unternehmen')} 
+                        onClick={(e) => { 
+                          e.preventDefault(); 
+                          window.history.pushState(null, '', getPath('/alle-unternehmen')); 
+                          resetToDirectory(); 
+                          setActiveCategory('Alle');
+                          setActiveLocation('Alle');
+                          setSearchQuery('');
+                          setIsAllMode(true); 
+                          window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                        }} 
+                        className="font-semibold text-[15px] text-[#0F4C2E] hover:text-[#F2761B] transition-colors"
+                      >
+                        Alle {businesses.length} ansehen →
+                      </a>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
                       {businesses.filter(b => b.isPremium).slice(0, 6).map(b => (
@@ -940,16 +955,6 @@ export default function App() {
             {/* Sidebar (Categories) */}
             <aside className="w-full md:w-[270px] shrink-0 mb-6 md:mb-0 bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
               
-              <div className="flex items-center gap-[9px] bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3 py-2.5 mb-[22px]">
-                <Search className="w-4 h-4 text-[#5F6B63]" />
-                <input 
-                  placeholder="Suchen…" 
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="border-none outline-none bg-transparent text-[14px] w-full text-gray-900"
-                />
-              </div>
-
               {/* Mobile Toggle Button */}
               <button 
                 className="w-full md:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
@@ -1069,7 +1074,34 @@ export default function App() {
             </aside>
 
             {/* Main Area */}
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 w-full">
+
+              {/* Search Bar above company cards */}
+              <div className="mb-6">
+                <div className="flex items-center gap-3 bg-white border border-[#EDE8E0] rounded-[16px] px-4 py-3 shadow-[0_2px_8px_rgba(27,33,29,0.03)] focus-within:border-[#0F4C2E] focus-within:shadow-[0_4px_12px_rgba(15,76,46,0.08)] transition-all">
+                  <Search className="w-5 h-5 text-[#5F6B63] shrink-0" />
+                  <input 
+                    placeholder={
+                      activeCategory === 'Alle'
+                        ? 'Unternehmen, Angebote oder Stichworte suchen…'
+                        : `In „${activeCategory}“ suchen…`
+                    } 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="border-none outline-none bg-transparent text-[15px] w-full text-[#1B211D] placeholder:text-[#8A928B]"
+                  />
+                  {searchQuery && (
+                    <button 
+                      type="button" 
+                      onClick={() => setSearchQuery('')}
+                      className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded-full hover:bg-[#F3F0EA] transition-colors"
+                      title="Suche zurücksetzen"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
 
               {/* Directory Grid or Map */}
               {isLoading ? (
@@ -1457,7 +1489,22 @@ export default function App() {
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">Verzeichnis</div>
-            <a href="#" onClick={(e) => { e.preventDefault(); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Alle Unternehmen</a>
+            <a 
+              href={getPath('/alle-unternehmen')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/alle-unternehmen')); 
+                resetToDirectory(); 
+                setActiveCategory('Alle');
+                setActiveLocation('Alle');
+                setSearchQuery('');
+                setIsAllMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Alle Unternehmen
+            </a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsNewsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">News</a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsJobsMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Jobs</a>
             <a href="#" onClick={(e) => { e.preventDefault(); setIsSubmitMode(true); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors">Eintragen</a>
