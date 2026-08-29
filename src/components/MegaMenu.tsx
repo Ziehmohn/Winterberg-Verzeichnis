@@ -314,7 +314,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                 <div className="flex items-center gap-4 flex-wrap">
                   <span className="flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
-                    {businesses.length} geprüfte Unternehmenseinträge
+                    {businesses.length} regionale Unternehmenseinträge
                   </span>
                   <span className="hidden sm:inline text-white/40">•</span>
                   <span className="hidden sm:inline">14 Ortsteile in Winterberg</span>

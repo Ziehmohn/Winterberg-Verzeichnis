@@ -669,7 +669,7 @@ export default function AdminDesignManager({
         </h1>
 
         <p className="text-base md:text-lg text-[#4A544D] leading-relaxed max-w-3xl mb-8">
-          Entdecken Sie geprüfte Fachbetriebe, Öffnungszeiten, Kontaktdaten und regionale Neuigkeiten aus allen 14 Ortsteilen.
+          Entdecken Sie regionale Fachbetriebe, Öffnungszeiten, Kontaktdaten und Neuigkeiten aus allen 14 Ortsteilen.
         </p>
 
         <div className="flex flex-wrap gap-3 items-center">

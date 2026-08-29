@@ -42,10 +42,10 @@ export function getSeoContent(category: string, location: string, businessCount:
         break;
       case 'Handwerk':
         introTitle = `Handwerker in ${locText} finden`;
-        introText = `Auf der Suche nach einem zuverlässigen Handwerker in ${locText}? Egal ob Dachdecker, Schreiner, Elektriker oder KFZ-Werkstatt – hier finden Sie alle geprüften Handwerksbetriebe im Überblick. Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} Betriebe.`;
+        introText = `Auf der Suche nach einem zuverlässigen Handwerker in ${locText}? Egal ob Dachdecker, Schreiner, Elektriker oder KFZ-Werkstatt – hier finden Sie alle Handwerksbetriebe im Überblick. Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} Betriebe.`;
         faqs.push({
           question: `Wie finde ich einen guten Handwerker in ${locText}?`,
-          answer: `Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} qualifizierte Handwerksbetriebe aus ${locText}. Sie können sich die Profile ansehen und direkt Kontakt aufnehmen.`
+          answer: `Im Winterberg-Verzeichnis befinden sich aktuell ${businessCount} Handwerksbetriebe aus ${locText}. Sie können sich die Profile ansehen und direkt Kontakt aufnehmen.`
         });
         faqs.push({
           question: `Welche Handwerksberufe sind in ${locText} vertreten?`,
