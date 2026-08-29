@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
+const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star } from 'lucide-react';
@@ -431,12 +432,23 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>
           )}
+          {/* Interactive map for premium accounts */}
+          {business.isPremium && (
+            <Suspense fallback={
+              <div className="w-full h-[200px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse">
+                <MapPin className="w-6 h-6 text-[#C5BFAF]" />
+              </div>
+            }>
+              <BusinessMap business={business} lang={lang} />
+            </Suspense>
+          )}
 
-          <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-md py-3 px-4 text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
-            <MapPin className="w-4 h-4" />
-            {lang === 'nl' ? 'Route plannen' : 'Route planen'}
-          </a>
-
+          {!business.isPremium && (
+            <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-md py-3 px-4 text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
+              <MapPin className="w-4 h-4" />
+              {lang === 'nl' ? 'Route plannen' : 'Route planen'}
+            </a>
+          )}
           <button 
             type="button" 
             onClick={() => setShowWidgetModal(true)} 
