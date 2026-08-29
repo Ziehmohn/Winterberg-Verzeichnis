@@ -2,6 +2,8 @@
 
 Ein modernes, voll funktionsfähiges digitales Branchenbuch für die Region Winterberg, entwickelt mit React, TypeScript, Vite, Tailwind CSS und Firebase.
 
+**Live-Website:** [https://www.winterberg-verzeichnis.de](https://www.winterberg-verzeichnis.de)
+
 ## Inhaltsverzeichnis
 
 1. [Projektübersicht](#projektübersicht)
