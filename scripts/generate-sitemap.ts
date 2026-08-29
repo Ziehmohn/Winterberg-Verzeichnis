@@ -38,13 +38,13 @@ entries.push({
 });
 
 // 3. Static Pages
-const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'impressum', 'datenschutz', 'agb'] as const;
+const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'impressum', 'datenschutz', 'agb', 'grounding'] as const;
 staticPages.forEach(p => {
   entries.push({
     locDe: `${baseUrl}/${STATIC_PAGE_SLUGS[p].de}`,
     locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS[p].nl}`,
     changefreq: p === 'news' || p === 'jobs' ? 'daily' : 'monthly',
-    priority: p === 'jobs' || p === 'news' || p === 'submit' ? '0.8' : '0.5',
+    priority: p === 'jobs' || p === 'news' || p === 'submit' || p === 'grounding' ? '0.8' : '0.5',
   });
 });
 

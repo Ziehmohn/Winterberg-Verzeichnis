@@ -104,6 +104,7 @@ const NewsBoard = React.lazy(() => import('./components/NewsBoard'));
 const NewsDetail = React.lazy(() => import('./components/NewsDetail'));
 const SubmitNews = React.lazy(() => import('./components/SubmitNews'));
 const WinterbergFaq = React.lazy(() => import('./components/WinterbergFaq'));
+const GroundingPage = React.lazy(() => import('./components/GroundingPage'));
 import { db, auth } from './firebase';
 import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { useTranslation } from './i18n';
@@ -166,6 +167,7 @@ export default function App() {
   let initialImpressumMode = false;
   let initialDatenschutzMode = false;
   let initialAGBMode = false;
+  let initialGroundingMode = false;
   let initialPricingMode = false;
   let initialSubmitMode = false;
   let initialEmbedMode = false;
@@ -225,6 +227,8 @@ export default function App() {
         initialDatenschutzMode = true;
       } else if (decodedPart1 === 'agb' || decodedPart1 === 'algemene-voorwaarden') {
         initialAGBMode = true;
+      } else if (decodedPart1 === 'grounding' || decodedPart1 === 'groundingpage' || decodedPart1 === 'grounding-page') {
+        initialGroundingMode = true;
       } else if (decodedPart1 === 'preise' || decodedPart1 === 'pricing' || decodedPart1 === 'prijzen') {
         initialPricingMode = true;
       } else if (decodedPart1 === 'eintragen' || decodedPart1 === 'unternehmen-eintragen' || decodedPart1 === 'bedrijf-aanmelden') {
@@ -319,6 +323,7 @@ export default function App() {
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
   const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
   const [newsId, setNewsId] = useState<string | null>(initialNewsId);
+  const [isGroundingMode, setIsGroundingMode] = useState(initialGroundingMode);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(initialSelectedBusiness);
@@ -355,6 +360,7 @@ export default function App() {
     if (isImpressumMode) return { view: 'impressum' };
     if (isDatenschutzMode) return { view: 'datenschutz' };
     if (isAGBMode) return { view: 'agb' };
+    if (isGroundingMode) return { view: 'grounding' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
       const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
@@ -385,6 +391,7 @@ export default function App() {
     if (p === '/impressum' || p === '/colofon') return buildLocalizedUrl({ view: 'impressum' }, lang);
     if (p === '/datenschutz' || p === '/privacy') return buildLocalizedUrl({ view: 'datenschutz' }, lang);
     if (p === '/agb' || p === '/algemene-voorwaarden') return buildLocalizedUrl({ view: 'agb' }, lang);
+    if (p === '/grounding' || p === '/groundingpage' || p === '/grounding-page') return buildLocalizedUrl({ view: 'grounding' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
     const parts = clean.split('/').filter(Boolean);
@@ -424,6 +431,7 @@ export default function App() {
     setIsNewsSubmitMode(false);
     setNewsId(null);
     setIsFaqMode(false);
+    setIsGroundingMode(false);
   };
   
   useEffect(() => {
@@ -495,6 +503,8 @@ export default function App() {
           setIsDatenschutzMode(true);
         } else if (p1 === 'agb') {
           setIsAGBMode(true);
+        } else if (p1 === 'grounding' || p1 === 'groundingpage' || p1 === 'grounding-page') {
+          setIsGroundingMode(true);
         } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen') {
           setIsSubmitMode(true);
         } else {
@@ -754,7 +764,7 @@ export default function App() {
       head.appendChild(ogLocale);
     }
     ogLocale.setAttribute('content', lang === 'nl' ? 'nl_NL' : 'de_DE');
-  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isAllMode]);
+  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
 
   useEffect(() => {
     loadBusinesses();
@@ -1277,6 +1287,8 @@ export default function App() {
               setIsAdInquiryOpen(true);
             }}
           />
+        ) : isGroundingMode ? (
+          <GroundingPage theme={theme} activeThemeKey={activeThemeKey} onBack={() => setIsGroundingMode(false)} />
         ) : isImpressumMode ? (
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
@@ -2589,10 +2601,25 @@ export default function App() {
             >
               {lang === 'nl' ? 'Algemene Voorwaarden' : 'AGB'}
             </a>
+            <a 
+              href={getPath('/grounding')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/grounding')); 
+                resetToDirectory(); 
+                setIsGroundingMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-[#F2761B] transition-colors flex items-center gap-1.5"
+            >
+              <span>{lang === 'nl' ? 'Grounding Page (AI)' : 'Grounding Page (KI-Fakten)'}</span>
+            </a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Externe Links' : 'Externe Links'}</div>
-            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung Winterberg</a>
+            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'AI & Data' : 'KI & Daten'}</div>
+            <a href="/llms.txt" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#F2761B] transition-colors">llms.txt (KI-Index)</a>
+            <a href="/llms-full.txt" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#F2761B] transition-colors">llms-full.txt (Datensatz)</a>
+            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung</a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>

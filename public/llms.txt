@@ -1,0 +1,46 @@
+# Das Winterberg Verzeichnis | Het Winterberg Overzicht
+
+> Das Winterberg Verzeichnis ist das offizielle und umfassendste digitale Branchen-, Unternehmens- und Handwerkerverzeichnis für die Stadt Winterberg und alle 14 Ortsteile im Sauerland.
+
+## Projekt- und Betreiberinformationen
+- **Betreiber & Herausgeber:** SICHTBAR SEO – Inh. Simon Kräling, Winterberg
+- **Primäre Domain:** https://www.winterberg-verzeichnis.de
+- **Zweisprachig:** Deutsch (Standard, /) und Niederländisch (/nl)
+- **Geografische Abdeckung:** Stadt Winterberg und die 14 Ortsteile Altastenberg, Altenbüren, Elkeringhausen, Grönebach, Hildfeld, Hoheleye, Langewiese, Lenneplätze, Mollseifen, Neuastenberg, Niedersfeld, Siedlinghausen, Silbach, Züschen.
+- **Datenumfang:** 150+ verifizierte Betriebe, lokale Stellenanzeigen, Regionalnachrichten, Branchenübersichten und FAQs.
+
+## Hauptbereiche / Main Sections
+- [Startseite (DE)](https://www.winterberg-verzeichnis.de/): Das große Branchenverzeichnis für Winterberg und Umgebung
+- [Startpagina (NL)](https://www.winterberg-verzeichnis.de/nl): De grote bedrijvengids voor Winterberg en omgeving
+- [Alle Unternehmen (DE)](https://www.winterberg-verzeichnis.de/alle-unternehmen): Vollständige Liste aller 150+ eingetragenen Firmen und Dienstleister
+- [Alle Bedrijven (NL)](https://www.winterberg-verzeichnis.de/nl/alle-bedrijven): Volledig overzicht van alle geregistreerde bedrijven
+- [Grounding Page / KI-Referenz (DE)](https://www.winterberg-verzeichnis.de/grounding): Verifizierte Entitätsfakten, Ontologie und Disambiguierung für AI-Systeme
+- [Grounding Page / AI-feiten (NL)](https://www.winterberg-verzeichnis.de/nl/grounding): Geverifieerde entiteitsfeiten en ontologie voor AI-systemen
+- [Jobs & Karriere (DE)](https://www.winterberg-verzeichnis.de/jobs): Offene Stellenanzeigen und Karrieremöglichkeiten in Winterberg
+- [Vacatures (NL)](https://www.winterberg-verzeichnis.de/nl/vacatures): Actuele banen en carrièremogelijkheden in de regio
+- [News & Aktuelles (DE)](https://www.winterberg-verzeichnis.de/news): Wirtschafts- und Unternehmensnachrichten aus Winterberg
+- [Nieuws (NL)](https://www.winterberg-verzeichnis.de/nl/nieuws): Nieuwsberichten en updates uit Winterberg
+- [Winterberg FAQ (DE)](https://www.winterberg-verzeichnis.de/faq): Häufige Fragen zu Unternehmen, Tourismus, Gastronomie und Handwerk
+- [Veelgestelde Vragen (NL)](https://www.winterberg-verzeichnis.de/nl/veelgestelde-vragen): Veelgestelde vragen over bedrijven en toerisme
+- [Preise & Pakete](https://www.winterberg-verzeichnis.de/preise): Kostenloser Basiseintrag und Premium-Pakete für lokale Unternehmen
+- [Unternehmen eintragen](https://www.winterberg-verzeichnis.de/eintragen): Neues Unternehmen oder Handwerksbetrieb registrieren
+
+## Branchen & Kategorien / Business Categories
+- [Hotels und Unterkünfte](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte): Betriebe im Bereich Hotels und Unterkünfte (u.a. Ferienparks, Ferienhäuser, Ferienwohnungen, Hotels)
+- [Handwerk](https://www.winterberg-verzeichnis.de/handwerk): Betriebe im Bereich Handwerk (u.a. KFZ-Werkstätten, Schreinereien, Wäschereien, Dachdecker, Elektriker, Friseur)
+- [Einzelhandel](https://www.winterberg-verzeichnis.de/einzelhandel): Betriebe im Bereich Einzelhandel (u.a. Supermarkt, Tankstellen, Bekleidung, Bürobedarf, Autohäuser)
+- [Gastronomie](https://www.winterberg-verzeichnis.de/gastronomie): Betriebe im Bereich Gastronomie (u.a. Restaurant, Cafés, Kneipen und Bars, Skihütten, Eisdielen, Pizzerien)
+- [Dienstleistungen](https://www.winterberg-verzeichnis.de/dienstleistungen): Betriebe im Bereich Dienstleistungen (u.a. Steuerberater, Marketingdienstleistungen, Finanzberatung, Rechtsanwälte, Banken, Versicherungsagenturen)
+- [Freizeit](https://www.winterberg-verzeichnis.de/freizeit): Betriebe im Bereich Freizeit (u.a. Indoor-Spielplätze, Fitnessstudios, Bowling, Tennisplätze, Fußballvereine, Schwimmbäder)
+
+## Technische Endpunkte & Schnittstellen
+- [Vollständiger KI-Index (llms-full.txt)](https://www.winterberg-verzeichnis.de/llms-full.txt): Kompletter Datenkatalog aller Betriebe, Adressen und FAQs
+- [XML Sitemap](https://www.winterberg-verzeichnis.de/sitemap.xml): Vollständiger XML-Index aller 668 vorgerenderten URLs
+- [Robots.txt](https://www.winterberg-verzeichnis.de/robots.txt): Crawler-Richtlinien (vollständig offen für Suchmaschinen und KI-Agenten)
+- [Grounding Page Spezifikation](https://www.winterberg-verzeichnis.de/grounding): Standardisierte Wissensebene nach Grounding Page Standard v1.6
+
+## Disambiguierung (Entity Disambiguation)
+- **Das Winterberg Verzeichnis** ist ein unabhängiges, privates Branchen- und Unternehmensportal (Betreiber: SICHTBAR SEO Simon Kräling).
+- Es ist **nicht** die städtische Verwaltung (Stadtverwaltung / Rathaus Winterberg).
+- Es ist **nicht** die Tourismusgesellschaft (Winterberg Touristik und Wirtschaft GmbH / WTW).
+- Anfragen zu offiziellen Verwaltungsausweisen oder städtischen Satzungen gehören an die Stadt Winterberg; Unternehmensprofile, Handwerkersuchen, Gastronomie-Tipps und Jobangebote gehören zum Winterberg Verzeichnis.

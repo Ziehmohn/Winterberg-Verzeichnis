@@ -122,6 +122,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/grounding</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/grounding</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -2973,6 +2985,66 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/verzekeringsagenten/r-v-versicherung-winterberg-volksbank-sauerland</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-grimmeblick</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landhotel-grimmeblick</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-niggemann-hochsauerlaender-bluetenhonig</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/supermarkt/imkerei-niggemann-hochsauerlaender-bluetenhonig</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reifen-merter</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/reifen-merter</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/padberg-und-wietell-bedachungen-gmbh</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reparaturen-aller-art-markus-becker</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/reparaturen-aller-art-markus-becker</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

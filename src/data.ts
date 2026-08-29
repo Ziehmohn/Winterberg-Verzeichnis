@@ -2732,6 +2732,87 @@ export const businesses: Business[] = [
       saturday: 'Geschlossen',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'landhotel-grimmeblick',
+    name: 'Landhotel Grimmeblick',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Hotels',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    description: 'Märchenhaftes 4-Sterne-Erlebnishotel und Wellnesshotel in Winterberg-Elkeringhausen mit einzigartigen Themenzimmern, weitläufiger Spa-Landschaft, Saunadorf, Außenpool, regionaler Gourmetküche und idyllischer Lage am Kurpark.',
+    address: 'Am Langen Acker 5, 59955 Winterberg-Elkeringhausen',
+    district: 'Elkeringhausen',
+    phone: '02981 92660',
+    website: 'https://grimmeblick.de',
+    services: ['4-Sterne-Erlebnishotel', 'Wellness & Spa-Landschaft', 'Themenzimmer & Suiten', 'Gourmet-Restaurant', 'Saunadorf & Außenpool', 'Direkt am Kurpark'],
+    imageFallback: 'LG',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'imkerei-niggemann-groenebach',
+    name: 'Imkerei Niggemann (Hochsauerländer Blütenhonig)',
+    category: 'Einzelhandel',
+    subcategory: 'Supermarkt',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'Bäckerei' }
+    ],
+    description: 'Traditionelle Familienimkerei in Winterberg-Grönebach. Echter Hochsauerländer Blütenhonig und Bienenhonig aus naturgerechter Bienenhaltung und eigener Ernte im Sauerland.',
+    address: 'Am Steinacker 9, 59955 Winterberg-Grönebach',
+    district: 'Grönebach',
+    phone: '02985 8134',
+    website: 'http://www.sauerlandimker.de',
+    services: ['Echter Deutscher Bienenhonig', 'Hochsauerländer Blütenhonig', 'Naturgerechte Bienenhaltung', 'Direktverkauf & Regionalprodukt'],
+    imageFallback: 'IN',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'reifen-merter-groenebach',
+    name: 'Reifen Merter',
+    category: 'Handwerk',
+    subcategory: 'KFZ-Werkstätten',
+    description: 'Ihr Reifenspezialist in Winterberg-Grönebach. Professioneller Reifenservice, Reifenwechsel, Auswuchten, Neureifen aller führenden Marken, Felgen und Einlagerung für PKW, Transporter und Zweiräder.',
+    address: 'Hachmicke 4, 59955 Winterberg-Grönebach',
+    district: 'Grönebach',
+    phone: '02985 9699849',
+    email: 'reifen@merter.de',
+    website: 'http://www.reifen-merter.de',
+    services: ['Reifenservice & Montage', 'Auswuchten & Radwechsel', 'Markenreifen PKW & LKW', 'Felgen & Zubehör', 'Reifeneinlagerung'],
+    imageFallback: 'RM',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'padberg-wietell-bedachungen',
+    name: 'Padberg & Wietell Bedachungen GmbH',
+    category: 'Handwerk',
+    subcategory: 'Dachdecker',
+    description: 'Fachbetrieb für Dacheindeckungen und traditionelles Naturschieferhandwerk in Winterberg. Spezialisiert auf Schieferfassaden, Dämmung, Dachsanierungen und Schornsteinsanierung.',
+    address: 'Zur Egge 2b, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 8498',
+    services: ['Naturschieferarbeiten', 'Dacheindeckungen & Isolierung', 'Schornsteinsanierung', 'Dachreparaturen & Wartung'],
+    imageFallback: 'PW',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'reparaturen-markus-becker-groenebach',
+    name: 'Reparaturen aller Art Markus Becker',
+    category: 'Handwerk',
+    subcategory: 'KFZ-Werkstätten',
+    description: 'Freie Werkstatt für Reparaturen aller Art in Winterberg-Grönebach. KFZ-Reparaturen, Instandsetzung, Wartung und Service für PKW und Kleinfahrzeuge.',
+    address: 'Auf dem Deich 1, 59955 Winterberg-Grönebach',
+    district: 'Grönebach',
+    phone: '02985 9792132',
+    email: 'husky742@web.de',
+    services: ['KFZ-Reparaturen aller Marken', 'Inspektion & Wartung', 'Fehlerdiagnose & Instandsetzung', 'Mechanik & Verschleißteile'],
+    imageFallback: 'MB',
+    isPremium: false,
+    status: 'approved'
   }
 
 ];

@@ -72,6 +72,7 @@ export const STATIC_PAGE_SLUGS = {
   impressum: { de: 'impressum', nl: 'colofon' },
   datenschutz: { de: 'datenschutz', nl: 'privacy' },
   agb: { de: 'agb', nl: 'algemene-voorwaarden' },
+  grounding: { de: 'grounding', nl: 'grounding' },
 };
 
 export function slugify(str: string): string {
@@ -150,7 +151,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'impressum' | 'datenschutz' | 'agb' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -238,6 +239,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'agb':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.agb[targetLang]}`;
+
+    case 'grounding':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.grounding[targetLang]}`;
 
     default:
       return `${baseUrl}${prefix || '/'}`;

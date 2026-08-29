@@ -204,6 +204,17 @@ const staticPageConfigs: {
     h1Nl: 'Algemene Voorwaarden (AGB)',
     h2De: 'Nutzungsbedingungen für Das Winterberg Verzeichnis',
     h2Nl: 'Gebruiksvoorwaarden voor Het Winterberg Overzicht'
+  },
+  {
+    key: 'grounding',
+    titleDe: 'Grounding Page – KI-Fakten & Entitäts-Referenz | Das Winterberg Verzeichnis',
+    titleNl: 'Grounding Page – Geverifieerde Feiten & AI-Referentie | Het Winterberg Overzicht',
+    descDe: 'Offizielle Grounding Page des Winterberg Verzeichnisses: Strukturierte, maschinenlesbare Fakten, Ontologie und Disambiguierung für KI-Systeme und LLMs.',
+    descNl: 'Officiële Grounding Page van Het Winterberg Overzicht: Gestructureerde feiten, ontologie en entiteitsdefinitie voor AI-systemen en LLMs.',
+    h1De: 'Grounding Page – Maschinenlesbare Fakten & KI-Referenz',
+    h1Nl: 'Grounding Page – Geverifieerde Feiten & AI-Referentie',
+    h2De: 'Standardisierte Entitätsdaten, Ontologie und Anti-Halluzinations-Richtlinien',
+    h2Nl: 'Gestandaardiseerde entiteitsgegevens, ontologie en anti-hallucinatie richtlijnen'
   }
 ];
 

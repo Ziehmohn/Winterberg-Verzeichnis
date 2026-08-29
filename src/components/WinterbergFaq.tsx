@@ -28,7 +28,7 @@ interface FaqItem {
   }[];
 }
 
-const FAQ_DATA: FaqItem[] = [
+export const FAQ_DATA: FaqItem[] = [
   {
     id: 'gut-essen',
     question: 'Wo kann man in Winterberg gut essen?',
