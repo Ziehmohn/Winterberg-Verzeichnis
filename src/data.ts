@@ -2115,6 +2115,386 @@ export const businesses: Business[] = [
       saturday: 'Geschlossen',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'baeckerei-gerke-langewiese',
+    name: 'Bäckerei Gerke (Franzes)',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' },
+      { category: 'Einzelhandel', subcategory: 'Supermarkt' }
+    ],
+    description: 'Traditionelle Handwerksbäckerei und gemütlicher Dorfladen in Winterberg-Langewiese. Frische Brötchen, handwerklich gebackene Brote, Kuchen, Kaffeespezialitäten sowie Lebensmittel des täglichen Bedarfs.',
+    address: 'Bundesstraße 19, 59955 Winterberg-Langewiese',
+    district: 'Langewiese',
+    phone: '02758 280',
+    email: 'baeckereigerke@freenet.de',
+    services: ['Handwerksbrote & Brötchen', 'Kuchen & Gebäck', 'Kaffee to go & belegte Brötchen', 'Lebensmittel / Dorfladen', 'Frühstücksversorgung'],
+    imageFallback: 'BG',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:30 - 12:30',
+      tuesday: '06:30 - 12:30',
+      wednesday: '06:30 - 12:30',
+      thursday: '06:30 - 12:30',
+      friday: '06:30 - 12:30',
+      saturday: '06:30 - 12:00',
+      sunday: '08:00 - 11:00'
+    }
+  },
+  {
+    id: 'tinq-tankautomat-langewiese',
+    name: 'TinQ 24h-Tankautomat Langewiese',
+    category: 'Einzelhandel',
+    subcategory: 'Tankstellen',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+    ],
+    description: 'Moderne 24-Stunden-Automatentankstelle an der Bundesstraße in Winterberg-Langewiese für PKW und LKW mit EC-, Kreditkarten- und Flottenkarten-Zahlung.',
+    address: 'Bundesstraße 38, 59955 Winterberg-Langewiese',
+    district: 'Langewiese',
+    phone: '02758 287',
+    website: 'https://gulf.de',
+    services: ['24/7 Tankautomat', 'Super E10, Super E5 & Diesel', 'Kartenzahlung (EC / Kreditkarte / Flottenkarte)', 'Direkt an der B236'],
+    imageFallback: 'TQ',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '00:00 - 24:00',
+      tuesday: '00:00 - 24:00',
+      wednesday: '00:00 - 24:00',
+      thursday: '00:00 - 24:00',
+      friday: '00:00 - 24:00',
+      saturday: '00:00 - 24:00',
+      sunday: '00:00 - 24:00'
+    }
+  },
+  {
+    id: 'jet-tankstelle-winterberg',
+    name: 'JET Tankstelle Winterberg',
+    category: 'Einzelhandel',
+    subcategory: 'Tankstellen',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Imbisse' },
+      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+    ],
+    description: 'JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.',
+    address: 'Lamfert 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9298634',
+    website: 'https://www.jet.de/tankstellen/winterberg/lamfert-1',
+    services: ['Markenkraftstoffe günstig', 'Bistro & Coffee to Go', 'Snacks & Belegte Baguettes', 'Tankstellen-Shop', 'Crushed Ice & Autozubehör'],
+    imageFallback: 'JT',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:00 - 23:00',
+      tuesday: '06:00 - 23:00',
+      wednesday: '06:00 - 23:00',
+      thursday: '06:00 - 23:00',
+      friday: '06:00 - 23:00',
+      saturday: '07:00 - 23:00',
+      sunday: '08:00 - 23:00'
+    }
+  },
+  {
+    id: 'aral-tankstelle-winterberg',
+    name: 'Aral Tankstelle Winterberg',
+    category: 'Einzelhandel',
+    subcategory: 'Tankstellen',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Imbisse' },
+      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+    ],
+    description: 'Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.',
+    address: 'Am Hagenblech 60, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92600',
+    website: 'https://tankstelle.aral.de/winterberg/am-hagenblech-60/14164700',
+    services: ['24/7 geöffnet', 'Aral Ultimate Kraftstoffe', 'REWE To Go Shop', 'PetitBistro & Kaffee', 'Waschanlage', 'LKW-Diesel'],
+    imageFallback: 'AR',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '00:00 - 24:00',
+      tuesday: '00:00 - 24:00',
+      wednesday: '00:00 - 24:00',
+      thursday: '00:00 - 24:00',
+      friday: '00:00 - 24:00',
+      saturday: '00:00 - 24:00',
+      sunday: '00:00 - 24:00'
+    }
+  },
+  {
+    id: 'calpam-tankautomat-zueschen',
+    name: 'Calpam Tankautomat Züschen',
+    category: 'Einzelhandel',
+    subcategory: 'Tankstellen',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+    ],
+    description: '24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.',
+    address: 'Nuhnetalstraße 88, 59955 Winterberg-Züschen',
+    district: 'Züschen',
+    phone: '02981 908301',
+    website: 'https://calpam.com',
+    services: ['24/7 Tankautomat', 'Super E10, Super E5 & Diesel', 'Kartenzahlung (EC / Flottenkarten)', 'Direkt an der B236 in Züschen'],
+    imageFallback: 'CP',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '00:00 - 24:00',
+      tuesday: '00:00 - 24:00',
+      wednesday: '00:00 - 24:00',
+      thursday: '00:00 - 24:00',
+      friday: '00:00 - 24:00',
+      saturday: '00:00 - 24:00',
+      sunday: '00:00 - 24:00'
+    }
+  },
+  {
+    id: 'baeckerei-isken-am-waltenberg',
+    name: 'Bäckerei Cafe Isken (Am Waltenberg)',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' }
+    ],
+    description: 'Beliebtes Bäckerei-Café der Bäckerei Isken im Herzen von Winterberg an der Flaniermeile Am Waltenberg. Großes Frühstücksangebot, Kaffeespezialitäten, frische Handwerksbrötchen, Brote und feine Torten.',
+    address: 'Am Waltenberg 11, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9292933',
+    website: 'https://www.baeckerei-isken.de',
+    services: ['Frühstück & Brunch', 'Kaffeespezialitäten', 'Handwerksbrot & Brötchen', 'Kuchen & Torten', 'Sitzplätze innen & außen'],
+    imageFallback: 'BI',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:30 - 18:00',
+      tuesday: '06:30 - 18:00',
+      wednesday: '06:30 - 18:00',
+      thursday: '06:30 - 18:00',
+      friday: '06:30 - 18:00',
+      saturday: '06:30 - 18:00',
+      sunday: '06:30 - 18:00'
+    }
+  },
+  {
+    id: 'baeckerei-gerke-hauptstrasse',
+    name: 'Bäckerei Gerke (Hauptstraße)',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' }
+    ],
+    description: 'Traditionelle Handwerksbäckerei in der Winterberger Innenstadt. Knusprige Brötchen, traditionelle Sauerländer Natursauerteigbrote, Gebäck und Snacks.',
+    address: 'Hauptstraße 21, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 802867',
+    services: ['Traditionelle Handwerksbrote', 'Frische Brötchen', 'Snacks & Kaffee to go', 'Kuchen & Gebäck'],
+    imageFallback: 'BG',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:30 - 18:00',
+      tuesday: '06:30 - 18:00',
+      wednesday: '06:30 - 18:00',
+      thursday: '06:30 - 18:00',
+      friday: '06:30 - 18:00',
+      saturday: '06:30 - 13:00',
+      sunday: '07:30 - 11:30'
+    }
+  },
+  {
+    id: 'cafe-engemann-winterberg',
+    name: 'Cafe Engemann',
+    category: 'Gastronomie',
+    subcategory: 'Cafés',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'Bäckerei' }
+    ],
+    description: 'Traditionsreiches Konditorei-Café am Waltenberg in Winterberg. Bekannt für hausgemachte Torten, handgefertigte Pralinen, feines Gebäck und gemütliche Frühstücksangebote.',
+    address: 'Am Waltenberg 14, 59955 Winterberg',
+    district: 'Winterberg',
+    website: 'https://www.cafe-engemann-winterberg.de',
+    services: ['Konditorei & Torten', 'Hausgemachte Pralinen', 'Frühstück & Kaffeespezialitäten', 'Große Kuchentheke', 'Gemütliches Café'],
+    imageFallback: 'CE',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 18:00',
+      tuesday: '08:00 - 18:00',
+      wednesday: '08:00 - 18:00',
+      thursday: '08:00 - 18:00',
+      friday: '08:00 - 18:00',
+      saturday: '08:00 - 18:00',
+      sunday: '08:00 - 18:00'
+    }
+  },
+  {
+    id: 'landbaeckerei-sommer-winterberg',
+    name: 'Landbäckerei Sommer GmbH',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' }
+    ],
+    description: 'Filiale der Landbäckerei Sommer in der Neuen Mitte Winterberg. Frische Brote, Brötchenvielfalt, Snacks, belegte Brötchen und Kaffeespezialitäten für unterwegs oder zum Verweilen.',
+    address: 'Neue Mitte 4, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 802805',
+    website: 'https://www.landbaeckerei-sommer.de',
+    services: ['Frische Backwaren', 'Snacks & Belegte Brötchen', 'Kaffeespezialitäten', 'Café-Sitzbereich'],
+    imageFallback: 'LS',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '07:00 - 18:00',
+      tuesday: '07:00 - 18:00',
+      wednesday: '07:00 - 18:00',
+      thursday: '07:00 - 18:00',
+      friday: '07:00 - 18:00',
+      saturday: '07:00 - 16:00',
+      sunday: '07:30 - 12:00'
+    }
+  },
+  {
+    id: 'baeckerei-isken-rewe-winterberg',
+    name: 'Bäckerei Isken im REWE',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' },
+      { category: 'Einzelhandel', subcategory: 'Supermarkt' }
+    ],
+    description: 'Bäckerei- und Caféfiliale von Isken im REWE Center an der Poststraße in Winterberg. Frische Backwaren, Frühstückssnacks, belegte Brötchen und Kaffeespezialitäten mit gemütlichem Sitzbereich.',
+    address: 'Poststraße 6, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8998245',
+    website: 'https://baeckerei-isken.de',
+    services: ['Frische Backwaren täglich', 'Snacks & belegte Brötchen', 'Kaffee & Heißgetränke', 'Gemütlicher Sitzbereich'],
+    imageFallback: 'IR',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '07:00 - 20:00',
+      tuesday: '07:00 - 20:00',
+      wednesday: '07:00 - 20:00',
+      thursday: '07:00 - 20:00',
+      friday: '07:00 - 20:00',
+      saturday: '07:00 - 20:00',
+      sunday: '07:00 - 11:30'
+    }
+  },
+  {
+    id: 'baeckerei-isken-niedersfeld',
+    name: 'Bäckerei Peter Isken GmbH (Niedersfeld)',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' }
+    ],
+    description: 'Hauptsitz und traditionsreiches Bäckerei-Café der Bäckerei Isken in Winterberg-Niedersfeld. Hochwertiges Handwerksbrot, feine Torten, Chocolaterie, großes Frühstücks- und Caféangebot.',
+    address: 'Ruhrstraße 21, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 908650',
+    website: 'https://baeckerei-isken.de',
+    services: ['Handwerksbäckerei & Konditorei', 'Chocolaterie', 'Großes Café & Frühstück', 'Torten & Feinbackwaren', 'Sonnenterrasse'],
+    imageFallback: 'PI',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:00 - 18:00',
+      tuesday: '06:00 - 18:00',
+      wednesday: '06:00 - 18:00',
+      thursday: '06:00 - 18:00',
+      friday: '06:00 - 18:00',
+      saturday: '06:00 - 17:00',
+      sunday: '07:00 - 17:00'
+    }
+  },
+  {
+    id: 'cafe-kraemer-winterberg',
+    name: 'Café Krämer',
+    category: 'Gastronomie',
+    subcategory: 'Cafés',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'Bäckerei' }
+    ],
+    description: 'Gemütliches Bäckerei-Café und Konditorei an der Hagenstraße im Zentrum von Winterberg. Frische Brot- und Brötchenspezialitäten, handgemachte Torten, Kuchen und leckeres Frühstück.',
+    address: 'Hagenstraße 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 523',
+    website: 'https://cafe-kraemer.de',
+    services: ['Frühstücksangebote', 'Hausgemachte Torten & Kuchen', 'Handwerksbackwaren', 'Kaffeespezialitäten', 'Café-Sitzbereich'],
+    imageFallback: 'CK',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:30 - 18:00',
+      tuesday: '06:30 - 18:00',
+      wednesday: '06:30 - 18:00',
+      thursday: '06:30 - 18:00',
+      friday: '06:30 - 18:00',
+      saturday: '06:30 - 18:00',
+      sunday: '09:30 - 18:00'
+    }
+  },
+  {
+    id: 'tismes-baeckerei-neuastenberg',
+    name: 'Tismes Bäckerei | Café (Neuastenberg)',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' }
+    ],
+    description: 'Gemütliche Bäckerei & Café in Winterberg-Neuastenberg an der Winterberger Straße. Frische Brötchen, handwerkliche Brote, Gebäck, Frühstück und Kaffee für Urlauber, Skifahrer und Einheimische.',
+    address: 'Winterberger Str. 11, 59955 Winterberg-Neuastenberg',
+    district: 'Neuastenberg',
+    phone: '0160 91263683',
+    website: 'https://www.tismes.de',
+    services: ['Handwerksbrötchen & Brote', 'Kuchen & Teilchen', 'Frühstück & Kaffee', 'Café-Sitzplätze'],
+    imageFallback: 'TB',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '07:30 - 12:30',
+      tuesday: '07:30 - 12:30',
+      wednesday: '07:30 - 12:30',
+      thursday: '07:30 - 12:30',
+      friday: '07:30 - 12:30',
+      saturday: '07:30 - 12:30',
+      sunday: '07:30 - 11:30'
+    }
+  },
+  {
+    id: 'tismes-baeckerei-siedlinghausen',
+    name: 'Tismes Bäckerei Café (Siedlinghausen)',
+    category: 'Handwerk',
+    subcategory: 'Bäckerei',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' }
+    ],
+    description: 'Traditionelle Familienbäckerei und gemütliches Café in Winterberg-Siedlinghausen an der Kahlenbergstraße. Meisterhafte Handwerksbackwaren, Kuchen, Torten, Frühstück und Kaffeespezialitäten.',
+    address: 'Kahlenbergstraße 1, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 9705665',
+    website: 'https://www.tismes.de',
+    services: ['Handwerksbäckerei & Konditorei', 'Großes Café & Frühstück', 'Torten & Kuchen', 'Kaffeespezialitäten', 'Frische Brötchen täglich'],
+    imageFallback: 'TS',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:00 - 18:00',
+      tuesday: '06:00 - 18:00',
+      wednesday: '06:00 - 18:00',
+      thursday: '06:00 - 18:00',
+      friday: '06:00 - 18:00',
+      saturday: '06:00 - 12:30',
+      sunday: '07:30 - 11:30'
+    }
   }
 
 ];
@@ -2234,8 +2614,8 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
-  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
+  { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
