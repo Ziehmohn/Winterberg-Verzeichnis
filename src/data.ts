@@ -1804,6 +1804,95 @@ export const businesses: Business[] = [
     imageFallback: 'MI',
     isPremium: false,
     status: 'approved'
+  },
+  {
+    id: 'fun-fitness-24-winterberg',
+    name: 'Fun Fitness 24 Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Fitnessstudios',
+    description: 'Modernes 24/7 Fitnessstudio in Winterberg. Rund um die Uhr geöffnet für Gerätetraining, Ausdauer, Freihantelbereich, Ernährungsberatung und Personal Training.',
+    address: 'Am Waltenberg 49, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '0178 8538257',
+    website: 'https://funfitness24.de',
+    services: ['24/7 geöffnet', 'Gerätetraining', 'Freihantelbereich', 'Ernährungsberatung', 'Personal Training'],
+    imageFallback: 'FF',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '00:00 - 24:00',
+      tuesday: '00:00 - 24:00',
+      wednesday: '00:00 - 24:00',
+      thursday: '00:00 - 24:00',
+      friday: '00:00 - 24:00',
+      saturday: '00:00 - 24:00',
+      sunday: '00:00 - 24:00'
+    }
+  },
+  {
+    id: 'corpus-pro-winterberg',
+    name: 'corpus pro Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Fitnessstudios',
+    description: 'Fitness- und Gesundheitsstudio in Winterberg mit hochmodernen Matrix-Geräten, Freihantel- und Cardiobereich, Ernährungsberatung und individuellem Personal Training.',
+    address: 'Am Hagenblech 73, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9199837',
+    website: 'https://corpus-pro.com',
+    services: ['Kraft- & Cardiotraining', 'Matrix Geräte', 'Ernährungsberatung', 'Personal Training', 'Lange Öffnungszeiten'],
+    imageFallback: 'CP',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '06:00 - 24:00',
+      tuesday: '06:00 - 24:00',
+      wednesday: '06:00 - 24:00',
+      thursday: '06:00 - 24:00',
+      friday: '06:00 - 24:00',
+      saturday: '06:00 - 24:00',
+      sunday: '06:00 - 24:00'
+    }
+  },
+  {
+    id: 'koerperformen-winterberg',
+    name: 'Körperformen EMS Training Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Fitnessstudios',
+    description: 'Effektives EMS-Ganzkörpertraining in nur 20 Minuten pro Woche mit persönlichem Trainer im Zentrum von Winterberg.',
+    address: 'Hauptstraße 8, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9022444',
+    email: 'winterberg@kformen.com',
+    website: 'https://www.koerperformen-hsk.de',
+    services: ['EMS-Training', 'Personal Training', 'Rückentraining', 'Gewichtsreduktion', 'Körperstraffung'],
+    imageFallback: 'KF',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'fitnessclub-niedersfeld',
+    name: 'Fitnessclub Niedersfeld e.V.',
+    category: 'Freizeit',
+    subcategory: 'Fitnessstudios',
+    description: 'Gemeinnütziger Fitnessverein in Winterberg-Niedersfeld mit modernem Kraft- und Ausdauerbereich, Kursangeboten und familiärer Atmosphäre.',
+    address: 'Alter Schulweg 10, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '01511 6303669',
+    email: 'info@fitnessclub-niedersfeld.de',
+    website: 'https://www.fitnessclub-niedersfeld.de',
+    services: ['Krafttraining', 'Ausdauertraining', 'Fitnesskurse', 'Vereinssport'],
+    imageFallback: 'FN',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 22:00',
+      tuesday: '08:00 - 22:00',
+      wednesday: '08:00 - 22:00',
+      thursday: '08:00 - 22:00',
+      friday: '08:00 - 22:00',
+      saturday: '08:00 - 22:00',
+      sunday: '08:00 - 22:00'
+    }
   }
 
 ];
@@ -1927,5 +2016,5 @@ export const categories: CategoryGroup[] = [
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Kneipen und Bars', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
-  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
+  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
