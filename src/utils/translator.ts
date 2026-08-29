@@ -397,9 +397,10 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
   description: string;
   extendedDescription?: string;
   services: string[];
+  products: string[];
 } {
   if (!business) {
-    return { description: '', services: [] };
+    return { description: '', services: [], products: [] };
   }
 
   if (lang === 'de') {
@@ -407,6 +408,7 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
       description: business.description || '',
       extendedDescription: business.extendedDescription || '',
       services: business.services || [],
+      products: business.products || [],
     };
   }
 
@@ -415,6 +417,7 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
   const customDesc = customNl?.description || business.description_nl;
   const customExtended = customNl?.extendedDescription || business.extendedDescription_nl;
   const customServices = customNl?.services || business.services_nl;
+  const customProducts = customNl?.products || business.products_nl;
 
   const description = (customDesc && customDesc.trim().length > 0)
     ? customDesc
@@ -431,9 +434,17 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
     services = business.services.map(s => translateServiceToDutch(s));
   }
 
+  let products: string[] = [];
+  if (customProducts && customProducts.length > 0) {
+    products = customProducts;
+  } else if (business.products && business.products.length > 0) {
+    products = business.products.map(p => translateServiceToDutch(p));
+  }
+
   return {
     description,
     extendedDescription,
     services,
+    products,
   };
 }

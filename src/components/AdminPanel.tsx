@@ -78,6 +78,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       uploadedImage: base.uploadedImage || '',
       imageLink: base.imageLink || '',
       services: Array.isArray(base.services) ? [...base.services] : [],
+      products: Array.isArray(base.products) ? [...base.products] : [],
       openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
       gallery: Array.isArray(base.gallery) ? [...base.gallery] : [],
       isPremium: !!base.isPremium,
@@ -87,7 +88,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       translations: base.translations || {},
       description_nl: base.translations?.nl?.description || base.description_nl || '',
       extendedDescription_nl: base.translations?.nl?.extendedDescription || base.extendedDescription_nl || '',
-      services_nl: Array.isArray(base.translations?.nl?.services) ? [...base.translations.nl.services] : (Array.isArray(base.services_nl) ? [...base.services_nl] : [])
+      services_nl: Array.isArray(base.translations?.nl?.services) ? [...base.translations.nl.services] : (Array.isArray(base.services_nl) ? [...base.services_nl] : []),
+      products_nl: Array.isArray(base.translations?.nl?.products) ? [...base.translations.nl.products] : (Array.isArray(base.products_nl) ? [...base.products_nl] : [])
     };
   });
   
@@ -95,6 +97,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [newService, setNewService] = useState('');
   const [newServiceNl, setNewServiceNl] = useState('');
+  const [newProduct, setNewProduct] = useState('');
+  const [newProductNl, setNewProductNl] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
 
 
@@ -102,18 +106,21 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     const autoDesc = translateTextToDutch(formData.description || '');
     const autoExt = formData.extendedDescription ? translateTextToDutch(formData.extendedDescription) : '';
     const autoServices = (formData.services || []).map(s => translateServiceToDutch(s));
+    const autoProducts = (formData.products || []).map(p => translateServiceToDutch(p));
 
     setFormData(prev => ({
       ...prev,
       description_nl: autoDesc,
       extendedDescription_nl: autoExt,
       services_nl: autoServices,
+      products_nl: autoProducts,
       translations: {
         ...prev.translations,
         nl: {
           description: autoDesc,
           extendedDescription: autoExt,
-          services: autoServices
+          services: autoServices,
+          products: autoProducts
         }
       }
     }));
@@ -148,6 +155,34 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     }
   };
 
+  const addProductsNlFromInput = (input: string) => {
+    if (!input.trim()) return;
+    const items = input.split(',').map(s => s.trim()).filter(Boolean);
+    if (items.length > 0) {
+      setFormData(prev => {
+        const existing = prev.products_nl || [];
+        const updated = [...existing];
+        items.forEach(item => {
+          if (!updated.includes(item)) {
+            updated.push(item);
+          }
+        });
+        return { 
+          ...prev, 
+          products_nl: updated,
+          translations: {
+            ...prev.translations,
+            nl: {
+              ...(prev.translations?.nl || {}),
+              products: updated
+            }
+          }
+        };
+      });
+      setNewProductNl('');
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -160,12 +195,15 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         nl: {
           description: formData.description_nl || '',
           extendedDescription: formData.extendedDescription_nl || '',
-          services: formData.services_nl || []
+          services: formData.services_nl || [],
+          products: formData.products_nl || []
         }
       },
       description_nl: formData.description_nl || '',
       extendedDescription_nl: formData.extendedDescription_nl || '',
       services_nl: formData.services_nl || [],
+      products: formData.products || [],
+      products_nl: formData.products_nl || [],
       status: formData.status || 'approved',
       id: newId
     };
@@ -306,6 +344,24 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         return { ...prev, services: updated };
       });
       setNewService('');
+    }
+  };
+
+  const addProductsFromInput = (input: string) => {
+    if (!input.trim()) return;
+    const items = input.split(',').map(s => s.trim()).filter(Boolean);
+    if (items.length > 0) {
+      setFormData(prev => {
+        const existing = prev.products || [];
+        const updated = [...existing];
+        items.forEach(item => {
+          if (!updated.includes(item)) {
+            updated.push(item);
+          }
+        });
+        return { ...prev, products: updated };
+      });
+      setNewProduct('');
     }
   };
 
@@ -680,6 +736,109 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                         <span>{service}</span>
                         <button type="button" onClick={() => {
                           setFormData(prev => ({ ...prev, services_nl: prev.services_nl?.filter((_, i) => i !== idx) }));
+                        }} className="text-red-500 hover:text-red-700">
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="border-b border-orange-200/50 pb-5">
+              <div className="flex items-center justify-between mb-1">
+                <label className={labelClass}>
+                  {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (Niederländisch)'} (Premium-Feature)
+                </label>
+                <span className="text-xs text-[#5F6B63]">
+                  {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+                </span>
+              </div>
+
+              {activeLangTab === 'de' ? (
+                <>
+                  <div className="flex gap-2 mb-1">
+                    <input 
+                      type="text" 
+                      value={newProduct} 
+                      onChange={e => {
+                        const val = e.target.value;
+                        if (val.includes(',')) {
+                          addProductsFromInput(val);
+                        } else {
+                          setNewProduct(val);
+                        }
+                      }} 
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addProductsFromInput(newProduct);
+                        }
+                      }}
+                      className={inputClass} 
+                      placeholder="Produkt eingeben (z. B. Haftpflichtversicherung, Wanderschuhe) und Enter drücken" 
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => addProductsFromInput(newProduct)}
+                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                    >
+                      Hinzufügen
+                    </button>
+                  </div>
+                  <p className="text-xs opacity-70 mb-3">Tipp: Hier können Sie konkrete Waren, Tarife oder Produkte auflisten (z. B. "Wohngebäudeversicherung, Kfz-Versicherung, Skier, E-Bikes"). Kommagetrennt möglich.</p>
+                  <div className="flex flex-wrap gap-2">
+                    {(formData.products || []).map((product, idx) => (
+                      <div key={idx} className="flex items-center gap-2 bg-[#FFF1E4] border border-[#F2761B]/30 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
+                        <span>{product}</span>
+                        <button type="button" onClick={() => {
+                          setFormData(prev => ({ ...prev, products: prev.products?.filter((_, i) => i !== idx) }));
+                        }} className="text-red-500 hover:text-red-700">
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex gap-2 mb-1">
+                    <input 
+                      type="text" 
+                      value={newProductNl} 
+                      onChange={e => {
+                        const val = e.target.value;
+                        if (val.includes(',')) {
+                          addProductsNlFromInput(val);
+                        } else {
+                          setNewProductNl(val);
+                        }
+                      }} 
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addProductsNlFromInput(newProductNl);
+                        }
+                      }}
+                      className={inputClass} 
+                      placeholder="Nederlands product invoeren en op Enter drukken (optioneel)" 
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => addProductsNlFromInput(newProductNl)}
+                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                    >
+                      Hinzufügen
+                    </button>
+                  </div>
+                  <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Produkte automatisch in Echtzeit ins Niederländische übersetzt.</p>
+                  <div className="flex flex-wrap gap-2">
+                    {(formData.products_nl || []).map((product, idx) => (
+                      <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
+                        <span>{product}</span>
+                        <button type="button" onClick={() => {
+                          setFormData(prev => ({ ...prev, products_nl: prev.products_nl?.filter((_, i) => i !== idx) }));
                         }} className="text-red-500 hover:text-red-700">
                           <X className="w-3 h-3" />
                         </button>

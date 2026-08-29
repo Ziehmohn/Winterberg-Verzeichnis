@@ -839,6 +839,8 @@ export default function App() {
     const lowerSearch = searchQuery.toLowerCase().trim();
     const matchesServices = bus.isPremium && ((Array.isArray(bus.services) && bus.services.some(s => s.toLowerCase().includes(lowerSearch))) ||
                             (Array.isArray(bus.services_nl) && bus.services_nl.some(s => s.toLowerCase().includes(lowerSearch))));
+    const matchesProducts = bus.isPremium && ((Array.isArray(bus.products) && bus.products.some(p => p.toLowerCase().includes(lowerSearch))) ||
+                            (Array.isArray(bus.products_nl) && bus.products_nl.some(p => p.toLowerCase().includes(lowerSearch))));
     const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
                             !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
     
@@ -849,6 +851,7 @@ export default function App() {
                           bus.category.toLowerCase().includes(lowerSearch) ||
                           (bus.subcategory && bus.subcategory.toLowerCase().includes(lowerSearch)) ||
                           matchesServices ||
+                          matchesProducts ||
                           matchesExtended;
 
     const busLocation = extractLocation(bus);
@@ -1914,9 +1917,9 @@ export default function App() {
                             </div>
                           )}
 
-                          {/* Services & Products Tags (Premium feature) */}
+                          {/* Services Tags (Premium feature) */}
                           {bus.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
-                            <div className="flex items-center gap-1.5 flex-wrap mb-4">
+                            <div className="flex items-center gap-1.5 flex-wrap mb-2.5">
                               {localized.services.slice(0, 3).map((svc, sIdx) => {
                                 const isMatched = searchQuery && (svc.toLowerCase().includes(searchQuery.toLowerCase().trim()) || (bus.services && bus.services.some(orig => orig.toLowerCase().includes(searchQuery.toLowerCase().trim()))));
                                 return (
@@ -1935,6 +1938,32 @@ export default function App() {
                               {localized.services.length > 3 && (
                                 <span className="text-[11px] text-[#8A928B] font-medium">
                                   +{localized.services.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Products Tags (Premium feature) */}
+                          {bus.isPremium && Array.isArray(localized.products) && localized.products.length > 0 && (
+                            <div className="flex items-center gap-1.5 flex-wrap mb-3.5">
+                              {localized.products.slice(0, 3).map((prod, pIdx) => {
+                                const isMatched = searchQuery && (prod.toLowerCase().includes(searchQuery.toLowerCase().trim()) || (bus.products && bus.products.some(orig => orig.toLowerCase().includes(searchQuery.toLowerCase().trim()))));
+                                return (
+                                  <span
+                                    key={pIdx}
+                                    className={`text-[12px] px-2.5 py-0.5 rounded-md font-medium transition-colors ${
+                                      isMatched 
+                                        ? 'bg-[#FFF1E4] text-[#D65F0C] font-bold border border-[#F2761B]/40' 
+                                        : 'bg-[#FFF8F1] text-[#D65F0C] border border-[#F2761B]/25'
+                                    }`}
+                                  >
+                                    {isMatched ? `★ ${prod}` : prod}
+                                  </span>
+                                );
+                              })}
+                              {localized.products.length > 3 && (
+                                <span className="text-[11px] text-[#8A928B] font-medium">
+                                  +{localized.products.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
                                 </span>
                               )}
                             </div>

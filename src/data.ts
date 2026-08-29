@@ -1024,6 +1024,7 @@ export const businesses: Business[] = [
     description: 'Simon Kräling ist Berater für digitale Sichtbarkeit aus Winterberg im Sauerland. Er unterstützt Unternehmen branchenübergreifend dabei, ihre Zielgruppen genau dort zu erreichen, wo sie suchen: in klassischen Suchmaschinen sowie in modernen KI-Suchsystemen (Generative Engine Optimization - GEO). Durch diese Kombination verbindet er technisches Know-how mit praxisnahen Strategien. So schafft er für seine Kunden mehr digitale Unabhängigkeit und messbaren Erfolg.',
     isPremium: true,
     services: ['Suchmaschinenoptimierung (SEO)', 'Generative Engine Optimization (GEO)', 'Digitale Sichtbarkeit', 'Google Business Optimierung', 'Webdesign & Strategie'],
+    products: ['SEO-Audits', 'GEO-Strategiepläne', 'Content-Pakete', 'Lokale Google-Maps-Optimierung'],
     address: 'Schanzenstraße 28, 59955 Winterberg',
     district: 'Winterberg',
     phone: '01520 6542996',

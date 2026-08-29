@@ -66,6 +66,7 @@ export interface BusinessTranslations {
     description?: string;
     extendedDescription?: string;
     services?: string[];
+    products?: string[];
   };
 }
 
@@ -87,6 +88,7 @@ export interface Business {
   openingHours?: OpeningHours;
   reviews?: Review[];
   services?: string[];
+  products?: string[];
   jobs?: Job[];
   isPremium?: boolean;
   gallery?: string[];
@@ -101,6 +103,7 @@ export interface Business {
   description_nl?: string;
   extendedDescription_nl?: string;
   services_nl?: string[];
+  products_nl?: string[];
 }
 
 export interface UserProfile {

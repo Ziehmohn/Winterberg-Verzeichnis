@@ -285,10 +285,21 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           {business.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Diensten & Producten' : 'Leistungen'}</h2>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Diensten & Services' : 'Leistungen & Services'}</h2>
               <div className="flex gap-2 flex-wrap mb-[30px]">
                 {localized.services.map((svc, i) => (
-                  <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] rounded px-3 py-1.5 text-[14px] font-medium">{svc}</span>
+                  <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] border border-[#0F4C2E]/15 rounded-md px-3 py-1.5 text-[14px] font-medium">{svc}</span>
+                ))}
+              </div>
+            </>
+          )}
+
+          {business.isPremium && Array.isArray(localized.products) && localized.products.length > 0 && (
+            <>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Producten & Aanbod' : 'Produkte & Angebote'}</h2>
+              <div className="flex gap-2 flex-wrap mb-[30px]">
+                {localized.products.map((prod, i) => (
+                  <span key={i} className="bg-[#FFF1E4] text-[#D65F0C] border border-[#F2761B]/25 rounded-md px-3 py-1.5 text-[14px] font-medium">{prod}</span>
                 ))}
               </div>
             </>
