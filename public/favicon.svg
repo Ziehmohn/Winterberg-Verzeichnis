@@ -1,4 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#000000" />
-  <path d="M 20 65 L 35 35 L 50 55 L 65 25 L 80 65" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wvBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#062817" />
+      <stop offset="100%" stop-color="#0F4C2E" />
+    </linearGradient>
+    <linearGradient id="wvStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F2761B" />
+      <stop offset="50%" stop-color="#FFA459" />
+      <stop offset="100%" stop-color="#F2761B" />
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Forest Green Squircle Background -->
+  <rect width="512" height="512" rx="116" fill="url(#wvBg)" />
+
+  <!-- Inner Soft Border for Polish -->
+  <rect x="12" y="12" width="488" height="488" rx="104" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.12" />
+
+  <!-- WV Monogram -->
+  <g filter="url(#subtleShadow)">
+    <text 
+      x="256" 
+      y="300" 
+      text-anchor="middle" 
+      font-family="-apple-system, BlinkMacSystemFont, 'Outfit', 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif" 
+      font-size="224" 
+      font-weight="900" 
+      letter-spacing="-8" 
+      fill="#FFFFFF"
+    >
+      WV
+    </text>
+  </g>
+
+  <!-- Signature Dynamic Curved Stroke in Brand Orange -->
+  <path 
+    d="M 96 388 C 175 332 335 334 416 376" 
+    stroke="url(#wvStroke)" 
+    stroke-width="36" 
+    stroke-linecap="round" 
+    fill="none" 
+  />
 </svg>
