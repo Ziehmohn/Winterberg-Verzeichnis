@@ -1909,6 +1909,62 @@ export const businesses: Business[] = [
     imageFallback: 'HH',
     isPremium: false,
     status: 'approved'
+  },
+  {
+    id: 'cafe-extrablatt-winterberg',
+    name: 'Cafe Extrablatt Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Cafés',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' },
+      { category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
+    ],
+    description: 'Beliebtes Café & Restaurant im Herzen von Winterberg an der Unteren Pforte mit großer Sonnenterrasse, täglichem großem Frühstücksbuffet, Burgern, Pizza, Cocktails und Kaffeespezialitäten.',
+    address: 'Untere Pforte 4, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8995180',
+    website: 'https://cafe-extrablatt.de/standorte/details/winterberg',
+    services: ['Tägliches Frühstücksbuffet', 'Sonnenterrasse', 'Cocktails & Bar', 'Speisen vor Ort & zum Mitnehmen', 'Zentrale Lage'],
+    imageFallback: 'CE',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 00:00',
+      tuesday: '09:00 - 00:00',
+      wednesday: '09:00 - 00:00',
+      thursday: '09:00 - 00:00',
+      friday: '09:00 - 01:00',
+      saturday: '09:00 - 01:00',
+      sunday: '09:00 - 00:00'
+    }
+  },
+  {
+    id: 'markt-alm-winterberg',
+    name: 'Markt Alm Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Cafés' },
+      { category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
+    ],
+    description: 'Gemütliche Alm-Gastronomie im Lodge Hotel am Waltenberg. Bietet morgens ein reichhaltiges Alm-Frühstücksbuffet und tagsüber herzhafte alpenländische Spezialitäten und Sauerländer Klassiker.',
+    address: 'Am Waltenberg 33, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9296970',
+    website: 'https://marktalm.de',
+    services: ['Alm-Frühstücksbuffet (ab 07:30)', 'Alpenländische Küche', 'Speisen vor Ort', 'Zentral am Waltenberg'],
+    imageFallback: 'MA',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '07:30 - 22:00',
+      tuesday: '07:30 - 22:00',
+      wednesday: '07:30 - 22:00',
+      thursday: '07:30 - 22:00',
+      friday: '07:30 - 23:00',
+      saturday: '07:30 - 23:00',
+      sunday: '07:30 - 22:00'
+    }
   }
 
 ];
@@ -2030,7 +2086,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
   { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
-  { name: 'Gastronomie', subcategories: ['Restaurant', 'Kneipen und Bars', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
+  { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
