@@ -125,7 +125,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
             className="fixed left-0 right-0 top-[65px] z-50 px-4 pointer-events-none"
           >
             <div 
-              className="max-w-[1180px] mx-auto bg-white/98 backdrop-blur-xl border border-[#EDE8E0] rounded-[24px] shadow-[0_25px_60px_-15px_rgba(15,76,46,0.18),0_10px_25px_-5px_rgba(0,0,0,0.06)] overflow-hidden pointer-events-auto"
+              className="max-w-[1180px] mx-auto bg-white/98 backdrop-blur-xl border border-[#EDE8E0] rounded-xl shadow-[0_25px_60px_-15px_rgba(15,76,46,0.18),0_10px_25px_-5px_rgba(0,0,0,0.06)] overflow-hidden pointer-events-auto"
               onMouseLeave={(e) => {
                 const currentTarget = e.currentTarget;
                 if (!currentTarget.contains(e.relatedTarget as Node)) {
@@ -142,7 +142,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       <span className="font-display font-bold text-xs uppercase tracking-[0.12em] text-[#8A928B]">
                         Kategorien & Branchen
                       </span>
-                      <span className="bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] text-[11px] font-bold px-2 py-0.5 rounded-full">
+                      <span className="bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] text-[11px] font-bold px-2 py-0.5 rounded">
                         {categories.length} Hauptbereiche
                       </span>
                     </div>
@@ -176,17 +176,17 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                               onSelectCategory(group.name);
                               onClose();
                             }}
-                            className="group flex items-center justify-between p-2 -mx-2 rounded-xl hover:bg-[#FAF8F5] transition-all duration-150 mb-1"
+                            className="group flex items-center justify-between p-2 -mx-2 rounded-md hover:bg-[#FAF8F5] transition-all duration-150 mb-1"
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
-                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200 shrink-0 ${meta.accentBg}`}>
+                              <div className={`w-8 h-8 rounded-md flex items-center justify-center border transition-all duration-200 shrink-0 ${meta.accentBg}`}>
                                 <IconComponent className="w-4 h-4" />
                               </div>
                               <span className="font-display font-bold text-[14.5px] text-[#1B211D] group-hover:text-[#0F4C2E] truncate transition-colors">
                                 {group.name}
                               </span>
                             </div>
-                            <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded-md shrink-0 transition-colors ${meta.badgeBg}`}>
+                            <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded shrink-0 transition-colors ${meta.badgeBg}`}>
                               {count}
                             </span>
                           </a>
@@ -236,11 +236,11 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       onSelectAll();
                       onClose();
                     }}
-                    className="bg-white border border-[#EDE8E0] rounded-2xl p-4 cursor-pointer hover:border-[#0F4C2E] hover:shadow-[0_8px_20px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group"
+                    className="bg-white border border-[#EDE8E0] rounded-lg p-4 cursor-pointer hover:border-[#0F4C2E] hover:shadow-[0_8px_20px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group"
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <div className="w-9 h-9 rounded-xl bg-[#0F4C2E] text-white flex items-center justify-center shadow-sm">
-                        <Building2 className="w-5 h-5" />
+                      <div className="w-8 h-8 rounded-md bg-[#0F4C2E] text-white flex items-center justify-center shadow-sm">
+                        <Building2 className="w-4 h-4" />
                       </div>
                       <span className="text-[12px] font-bold text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                         Übersicht <ArrowRight className="w-3.5 h-3.5" />
@@ -269,7 +269,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                             onSelectLocation(district);
                             onClose();
                           }}
-                          className="text-[12px] font-medium bg-white hover:bg-[#0F4C2E] text-[#1B211D] hover:text-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-full px-2.5 py-1 transition-all cursor-pointer shadow-xs"
+                          className="text-[12px] font-medium bg-white hover:bg-[#0F4C2E] text-[#1B211D] hover:text-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded px-2 py-1 transition-all cursor-pointer shadow-xs"
                         >
                           {district}
                         </button>
@@ -286,7 +286,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                           onOpenMap();
                           onClose();
                         }}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] hover:text-[#0F4C2E] text-[#1B211D] rounded-xl py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] hover:text-[#0F4C2E] text-[#1B211D] rounded-md py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer"
                       >
                         <MapIcon className="w-4 h-4 text-[#0F4C2E]" />
                         <span>Kartenansicht</span>
@@ -297,7 +297,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                           onOpenSubmit();
                           onClose();
                         }}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-xl py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer shadow-sm"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer shadow-sm"
                       >
                         <Plus className="w-4 h-4" />
                         <span>Eintragen</span>

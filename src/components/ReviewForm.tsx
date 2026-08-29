@@ -33,9 +33,9 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
   };
 
   return (
-    <div className="border border-[#EDE8E0] rounded-[18px] p-[20px] bg-[#FAF8F5]">
+    <div className="border border-[#EDE8E0] rounded-md p-4 bg-[#FAF8F5]">
       {submitted ? (
-        <div className="bg-[#E8F1EB] rounded-[16px] p-[18px] text-[#0F4C2E] text-[15px]">
+        <div className="bg-[#E8F1EB] rounded-md p-4 text-[#0F4C2E] text-[15px]">
           Danke für die Bewertung! Sie wird nach Prüfung durch die Redaktion veröffentlicht.
         </div>
       ) : (
@@ -58,19 +58,19 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
           </div>
           <input 
             placeholder="Dein Name"
-            className="w-full border border-[#E7E2DA] rounded-[12px] px-[13px] py-[11px] text-[15px] mb-[10px] bg-white outline-none focus:border-[#0F4C2E] transition-colors"
+            className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-[15px] mb-[10px] bg-white outline-none focus:border-[#0F4C2E] transition-colors"
           />
           <textarea 
             rows={3} 
             placeholder="Wie waren deine Erfahrungen?"
             value={text} 
             onChange={(e) => setText(e.target.value)} 
-            className="w-full border border-[#E7E2DA] rounded-[12px] px-[13px] py-[11px] text-[15px] bg-white resize-y outline-none focus:border-[#0F4C2E] transition-colors"
+            className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-[15px] bg-white resize-y outline-none focus:border-[#0F4C2E] transition-colors"
           ></textarea>
           <button 
             type="button"
             onClick={handleSubmit} 
-            className="mt-[10px] bg-[#0F4C2E] text-white border-none rounded-full px-[24px] py-[12px] text-[15px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
+            className="mt-[10px] bg-[#0F4C2E] text-white border-none rounded-md px-5 py-2.5 text-[15px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
           >
             Bewertung absenden
           </button>

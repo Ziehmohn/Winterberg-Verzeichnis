@@ -787,7 +787,7 @@ export default function App() {
               type="button" 
               onClick={() => setIsSubmitMode(true)} 
               className="hidden md:block hover:-translate-y-0.5"
-              style={{ background: '#F2761B', color: '#fff', border: 'none', borderRadius: '999px', padding: '11px 20px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 6px 18px rgba(242,118,27,0.28)', transition: 'background 0.15s, transform 0.15s' }}
+              style={{ background: '#F2761B', color: '#fff', border: 'none', borderRadius: '6px', padding: '10px 18px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 12px rgba(242,118,27,0.25)', transition: 'background 0.15s, transform 0.15s' }}
             >
               Unternehmen eintragen
             </button>
@@ -971,7 +971,7 @@ export default function App() {
               <div className="w-full flex flex-col mb-8">
                 <section className="relative text-white w-full" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
                   <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px]">
-                    <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm font-medium tracking-wide">
+                    <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-md px-3.5 py-1.5 text-sm font-medium tracking-wide">
                       <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
                       Für die Kernstadt und alle 14 Ortsteile
                     </div>
@@ -986,7 +986,7 @@ export default function App() {
                     <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 leading-relaxed">Handwerk, Gastronomie, Einzelhandel, Dienstleistungen, Freizeit und Unterkünfte — aus der Kernstadt und jedem Ortsteil.</p>
                     <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">Finde lokale Anbieter in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld und Altenfeld.</p>
 
-                    <div className="bg-white rounded-2xl p-3 flex flex-col md:flex-row gap-3 items-center max-w-3xl shadow-2xl">
+                    <div className="bg-white rounded-lg p-2.5 flex flex-col md:flex-row gap-2.5 items-center max-w-3xl shadow-2xl">
                       <div className="flex items-center gap-3 w-full md:flex-[2] px-3 relative">
                         <Search className="w-5 h-5 text-gray-400" />
                         <input 
@@ -1005,10 +1005,10 @@ export default function App() {
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }
                           }}
-                          className="border-none outline-none text-base w-full py-3 text-gray-900 bg-transparent" 
+                          className="border-none outline-none text-base w-full py-2.5 text-gray-900 bg-transparent" 
                         />
                         {showHomeSuggestions && homeSuggestions.length > 0 && (
-                          <div className="absolute top-full left-0 right-0 mt-4 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-[100] text-left">
+                          <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-md shadow-2xl border border-gray-100 overflow-hidden z-[100] text-left">
                             {homeSuggestions.map(s => (
                               <div 
                                 key={s.id} 
@@ -1021,7 +1021,7 @@ export default function App() {
                                 }}
                               >
                                 <div className="flex items-center gap-3 overflow-hidden">
-                                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                                  <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center flex-shrink-0">
                                     <Search className="w-4 h-4 text-gray-400" />
                                   </div>
                                   <div className="flex flex-col overflow-hidden">
@@ -1037,7 +1037,7 @@ export default function App() {
                       <select 
                         value={activeLocation} 
                         onChange={(e) => setActiveLocation(e.target.value)}
-                        className="w-full md:w-auto md:flex-1 border border-gray-200 rounded-xl px-4 py-3 text-base text-gray-900 bg-gray-50 focus:outline-none focus:border-[#F2761B]"
+                        className="w-full md:w-auto md:flex-1 border border-gray-200 rounded-md px-3.5 py-2.5 text-base text-gray-900 bg-gray-50 focus:outline-none focus:border-[#F2761B]"
                       >
                         <option value="Alle">Alle Ortsteile</option>
                         {categories.flatMap(c => c.subcategories).map(s => s).filter((v,i,a)=>a.indexOf(v)===i).slice(0,0)} {/* Dummy to avoid unused */}
@@ -1051,7 +1051,7 @@ export default function App() {
                           setSearchQuery(homeSearchInput);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }} 
-                        className="w-full md:w-auto bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-xl px-6 py-3 font-semibold transition-colors"
+                        className="w-full md:w-auto bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-5 py-2.5 font-semibold transition-colors"
                       >
                         Suchen
                       </button>
@@ -1076,10 +1076,10 @@ export default function App() {
                         <div 
                           key={cat.name}
                           onClick={() => { setActiveCategory(cat.name); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-white border border-[#EDE8E0] rounded-[20px] p-[26px] cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
+                          className="bg-white border border-[#EDE8E0] rounded-lg p-6 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
                         >
                           <div className="flex items-center gap-[14px]">
-                            <div className="w-[52px] h-[52px] rounded-[15px] bg-[#E4F0F4] text-[#146C82] flex items-center justify-center shrink-0">
+                            <div className="w-[48px] h-[48px] rounded-md bg-[#E4F0F4] text-[#146C82] flex items-center justify-center shrink-0">
                                {cat.name === 'Dienstleistungen' ? <Briefcase className="w-6 h-6" /> : cat.name === 'Freizeit' ? <Sun className="w-6 h-6" /> : cat.name === 'Hotels & Unterkünfte' ? <Bed className="w-6 h-6" /> : cat.name === 'Einkaufen' ? <ShoppingBag className="w-6 h-6" /> : cat.name === 'Gastronomie' ? <Utensils className="w-6 h-6" /> : <BadgeCheck className="w-6 h-6" />}
                             </div>
                             <div className="flex-1">
@@ -1102,10 +1102,10 @@ export default function App() {
                         <button 
                           key={d}
                           onClick={() => { setActiveLocation(d); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-full px-[18px] py-[11px] text-[15px] font-medium text-[#1B211D] cursor-pointer inline-flex items-center gap-[9px] hover:border-[#0F4C2E] transition-colors"
+                          className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-4 py-2 text-[14.5px] font-medium text-[#1B211D] cursor-pointer inline-flex items-center gap-2 hover:border-[#0F4C2E] transition-colors"
                         >
                           {d}
-                          <span className="bg-[#F3F0EA] rounded-full px-[9px] py-[2px] text-[12px] font-semibold text-[#5F6B63]">
+                          <span className="bg-[#F3F0EA] rounded px-2 py-0.5 text-[12px] font-semibold text-[#5F6B63]">
                             {businesses.filter(b => (b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg') === d).length}
                           </span>
                         </button>
@@ -1136,12 +1136,12 @@ export default function App() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
                       {businesses.filter(b => b.isPremium).slice(0, 6).map(b => (
                         <div 
-                          key={b.id}
+                          key={b.id} 
                           onClick={() => { setSelectedBusiness(b); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] cursor-pointer flex flex-col gap-[12px] shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
+                          className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer flex flex-col gap-[12px] shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
                         >
                           <div className="flex items-start gap-[13px]">
-                            <div className="w-[46px] h-[46px] rounded-[14px] bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[15px] shrink-0">
+                            <div className="w-[44px] h-[44px] rounded-md bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[15px] shrink-0">
                               {b.name.charAt(0)}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -1149,7 +1149,7 @@ export default function App() {
                               <div className="text-[13px] text-[#5F6B63] mt-[3px]">{b.subcategory || 'Andere'} · {b.district || 'Winterberg'}</div>
                             </div>
                             {b.isPremium && (
-                              <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-[10px] py-[4px] text-[11px] font-bold uppercase tracking-[0.04em]">Premium</span>
+                              <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.04em]">Premium</span>
                             )}
                           </div>
                           <p className="text-[14.5px] text-[#4A544D] leading-[1.55] m-0 line-clamp-3">{b.description}</p>
@@ -1162,7 +1162,7 @@ export default function App() {
                   </div>
 
                   {/* Footer CTA */}
-                  <div className="mt-[62px] mb-[14px] bg-gradient-to-br from-[#0F4C2E] to-[#06301C] rounded-[26px] p-8 md:p-[52px] text-white flex flex-col md:flex-row gap-8 items-center justify-between">
+                  <div className="mt-[62px] mb-[14px] bg-gradient-to-br from-[#0F4C2E] to-[#06301C] rounded-xl p-8 md:p-10 text-white flex flex-col md:flex-row gap-8 items-center justify-between">
                     <div className="max-w-[46ch]">
                       <h2 className="font-display text-[34px] font-bold m-0 mb-[12px]">Ihr Unternehmen fehlt noch?</h2>
                       <p className="text-[17px] leading-[1.6] text-white/85 m-0">
@@ -1170,13 +1170,12 @@ export default function App() {
                       </p>
                     </div>
                     <div className="flex gap-[12px] flex-wrap">
-                      <button type="button" onClick={() => setIsSubmitMode(true)} className="bg-[#F2761B] text-white border-none rounded-full px-[28px] py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">Jetzt eintragen</button>
-                      <button type="button" onClick={() => setIsPricingMode(true)} className="bg-transparent text-white border border-white/40 rounded-full px-[28px] py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-white/10 transition-colors">Preise ansehen</button>
+                      <button type="button" onClick={() => setIsSubmitMode(true)} className="bg-[#F2761B] text-white border-none rounded-md px-6 py-3 text-[15px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">Jetzt eintragen</button>
+                      <button type="button" onClick={() => setIsPricingMode(true)} className="bg-transparent text-white border border-white/40 rounded-md px-6 py-3 text-[15px] font-semibold cursor-pointer hover:bg-white/10 transition-colors">Preise ansehen</button>
                     </div>
                   </div>
 
                 </div>
-
               </div>
             ) : null}
 
@@ -1192,9 +1191,9 @@ export default function App() {
                   </h1>
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <p className="m-0 text-[16px] text-white/80">{filteredBusinesses.length} Unternehmen gefunden</p>
-                    <div className="flex bg-white/12 rounded-full p-1">
-                      <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded-full px-4 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Liste</button>
-                      <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded-full px-4 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Karte</button>
+                    <div className="flex bg-white/12 rounded-md p-1">
+                      <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Liste</button>
+                      <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>Karte</button>
                     </div>
                   </div>
                 </div>
@@ -1203,11 +1202,11 @@ export default function App() {
 
             <div className={`w-full max-w-[1400px] mx-auto px-4 md:px-6 pt-[28px] pb-[80px] flex flex-col lg:flex-row gap-[24px] xl:gap-[30px] items-start ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}
-            <aside className="w-full lg:w-[250px] xl:w-[270px] shrink-0 mb-6 lg:mb-0 bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] lg:sticky lg:top-[116px]">
+            <aside className="w-full lg:w-[250px] xl:w-[270px] shrink-0 mb-6 lg:mb-0 bg-white border border-[#EDE8E0] rounded-lg p-5 lg:sticky lg:top-[116px]">
               
               {/* Mobile Toggle Button */}
               <button 
-                className="w-full lg:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
+                className="w-full lg:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-md mb-4"
                 onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
               >
                 <span>Filter & Kategorien</span>
@@ -1234,7 +1233,7 @@ export default function App() {
                           if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
                           window.scrollTo({top: 0, behavior: 'smooth'});
                         }}
-                        className={`text-left border-none rounded-[10px] px-3 py-[9px] text-[14.5px] cursor-pointer flex justify-between gap-2 transition-colors ${isActive ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-medium hover:bg-[#F3F0EA]'}`}
+                        className={`text-left border-none rounded-md px-3 py-2 text-[14.5px] cursor-pointer flex justify-between gap-2 transition-colors ${isActive ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-medium hover:bg-[#F3F0EA]'}`}
                       >
                         <span>{group.name}</span>
                         <span className={isActive ? 'text-white/70 text-[13px]' : 'text-[#8A928B] text-[13px]'}>{count}</span>
@@ -1265,7 +1264,7 @@ export default function App() {
                                   if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
                                   window.scrollTo({top: 0, behavior: 'smooth'});
                                 }}
-                                className={`border rounded-full px-[13px] py-[7px] text-[13px] font-medium cursor-pointer transition-colors ${isSubActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
+                                className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isSubActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
                               >
                                 {sub}
                               </button>
@@ -1297,7 +1296,7 @@ export default function App() {
                           if(activeCategory === 'Alle') setIsAllMode(true);
                           if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
                         }}
-                        className={`border rounded-full px-[13px] py-[7px] text-[13px] font-medium cursor-pointer transition-colors ${isDistActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
+                        className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isDistActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
                       >
                         {d === 'Alle' ? 'Alle Ortsteile' : d}
                       </button>
@@ -1316,7 +1315,7 @@ export default function App() {
                      if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
                      window.scrollTo({top: 0, behavior: 'smooth'});
                   }}
-                  className="mt-6 w-full bg-transparent border border-[#E7E2DA] rounded-xl p-[11px] text-[14px] font-medium cursor-pointer text-[#5F6B63] hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
+                  className="mt-6 w-full bg-transparent border border-[#E7E2DA] rounded-md p-2.5 text-[14px] font-medium cursor-pointer text-[#5F6B63] hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
                 >
                   Filter zurücksetzen
                 </button>
@@ -1341,7 +1340,7 @@ export default function App() {
 
               {/* Search Bar above company cards */}
               <div className="mb-6">
-                <div className="flex items-center gap-3 bg-white border border-[#EDE8E0] rounded-[16px] px-4 py-3 shadow-[0_2px_8px_rgba(27,33,29,0.03)] focus-within:border-[#0F4C2E] focus-within:shadow-[0_4px_12px_rgba(15,76,46,0.08)] transition-all">
+                <div className="flex items-center gap-3 bg-white border border-[#EDE8E0] rounded-lg px-4 py-3 shadow-[0_2px_8px_rgba(27,33,29,0.03)] focus-within:border-[#0F4C2E] focus-within:shadow-[0_4px_12px_rgba(15,76,46,0.08)] transition-all">
                   <Search className="w-5 h-5 text-[#5F6B63] shrink-0" />
                   <input 
                     placeholder={
@@ -1357,7 +1356,7 @@ export default function App() {
                     <button 
                       type="button" 
                       onClick={() => setSearchQuery('')}
-                      className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded-full hover:bg-[#F3F0EA] transition-colors"
+                      className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded hover:bg-[#F3F0EA] transition-colors"
                       title="Suche zurücksetzen"
                     >
                       <X className="w-4 h-4" />
@@ -1393,13 +1392,13 @@ export default function App() {
                           setSearchQuery(bus.name);
                           setSelectedBusiness(bus);
                         }}
-                        className={`bg-white border rounded-[20px] p-[24px] cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[4px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
+                        className={`bg-white border rounded-lg p-5 cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
                       >
                         <div className="flex items-start gap-[16px] mb-[16px]">
                           {bus.logoUrl ? (
-                            <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-[14px] object-cover shrink-0 border border-[#EDE8E0]" />
+                            <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
                           ) : (
-                            <div className={`w-[48px] h-[48px] rounded-[14px] flex items-center justify-center font-display font-bold text-[16px] shrink-0 ${bus.isPremium ? 'bg-[#F2761B] text-white' : 'bg-[#FAF8F5] text-[#F2761B]'}`}>
+                            <div className={`w-[48px] h-[48px] rounded-md flex items-center justify-center font-display font-bold text-[16px] shrink-0 ${bus.isPremium ? 'bg-[#F2761B] text-white' : 'bg-[#FAF8F5] text-[#F2761B]'}`}>
                               {bus.name.split(' ').filter(Boolean).map(n => n[0]).slice(0, 2).join('').toUpperCase() || bus.name.substring(0, 2).toUpperCase()}
                             </div>
                           )}
@@ -1420,7 +1419,7 @@ export default function App() {
                       </div>
                     ))
                   ) : (
-                    <div className={`col-span-full py-16 text-center border-dashed border-2 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} ${theme.cardBorder} ${theme.textMuted}`}>
+                    <div className={`col-span-full py-16 text-center border-dashed border-2 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'} ${theme.cardBorder} ${theme.textMuted}`}>
                       <p className="text-lg font-medium">{t("noBusinessesFound")}</p>
                       <p className="text-sm mt-1">{t("adjustSearchCriteria")}</p>
                     </div>
@@ -1431,7 +1430,7 @@ export default function App() {
                 {(() => {
                   const seoData = getSeoContent(activeCategory, activeLocation, filteredBusinesses.length);
                   return (
-                    <section className="mt-[34px] bg-white border border-[#EDE8E0] rounded-[22px] p-[32px]">
+                    <section className="mt-[34px] bg-white border border-[#EDE8E0] rounded-lg p-8">
                       <h2 className="font-display text-[26px] font-bold m-0 mb-[14px]">
                         {seoData.introTitle}
                       </h2>
@@ -1457,7 +1456,7 @@ export default function App() {
                           <h3 className="font-display text-[20px] font-bold mb-[18px]">Häufig gestellte Fragen (FAQ)</h3>
                           <div className="grid gap-[12px]">
                             {seoData.faqs.map((faq, idx) => (
-                              <details key={idx} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] overflow-hidden group">
+                              <details key={idx} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md overflow-hidden group">
                                 <summary className="font-semibold text-[15.5px] p-[18px] cursor-pointer flex justify-between items-center outline-none">
                                   {faq.question}
                                   <span className="text-[#0F4C2E] group-open:rotate-180 transition-transform duration-200">
@@ -1508,7 +1507,7 @@ export default function App() {
                                     setSelectedBusiness(bus);
                                     window.scrollTo(0,0);
                                   }}
-                                  className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] p-4 cursor-pointer hover:border-[#0F4C2E] transition-colors flex flex-col justify-between"
+                                  className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-4 cursor-pointer hover:border-[#0F4C2E] transition-colors flex flex-col justify-between"
                                 >
                                   <div>
                                     <div className="font-semibold text-[#1B211D] text-[15.5px] mb-1 leading-tight">{bus.name}</div>
@@ -1545,7 +1544,7 @@ export default function App() {
                           );
                         })()}
                         
-                        <div className="bg-[#FFF1E4] border border-[#FADBD5] rounded-[14px] p-5 flex flex-col sm:flex-row items-center gap-4 justify-between mt-4">
+                        <div className="bg-[#FFF1E4] border border-[#FADBD5] rounded-md p-5 flex flex-col sm:flex-row items-center gap-4 justify-between mt-4">
                           <div className="text-[14px] text-[#4A544D]">
                             <strong className="text-[#D65F0C] block mb-1">Für Unternehmer</strong>
                             Für die Darstellung von Öffnungszeiten ist ein Premium-Eintrag notwendig.
@@ -1553,7 +1552,7 @@ export default function App() {
                           <button 
                             type="button" 
                             onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }}
-                            className="whitespace-nowrap bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors"
+                            className="whitespace-nowrap bg-[#F2761B] text-white border-none rounded-md px-5 py-2.5 text-[14px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors"
                           >
                             Jetzt abschließen
                           </button>
@@ -1562,7 +1561,7 @@ export default function App() {
 
                       <div className="mt-[32px] pt-[20px] border-t border-[#F3F0EA] flex gap-[14px] items-center flex-wrap">
                         <span className="text-[15px] text-[#4A544D]">Ihr Betrieb fehlt in dieser Kategorie?</span>
-                        <button type="button" onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }} className="bg-[#F2761B] text-white border-none rounded-full px-[20px] py-[11px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">
+                        <button type="button" onClick={() => { setIsSubmitMode(true); window.scrollTo(0,0); }} className="bg-[#F2761B] text-white border-none rounded-md px-5 py-2.5 text-[14.5px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">
                           Kostenlos eintragen
                         </button>
                       </div>
@@ -1626,9 +1625,9 @@ export default function App() {
                   setIsMobileCategoriesOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-md bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center shrink-0">
                   <Building2 className="w-4 h-4" />
                 </div>
                 <span>Alle Betriebe</span>
@@ -1645,9 +1644,9 @@ export default function App() {
                   setIsMobileCategoriesOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
               >
-                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-800 flex items-center justify-center shrink-0">
                   <Briefcase className="w-4 h-4" />
                 </div>
                 <span>Jobs & Karriere</span>
@@ -1663,9 +1662,9 @@ export default function App() {
                   setIsMobileCategoriesOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
               >
-                <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-md bg-amber-50 text-amber-800 flex items-center justify-center shrink-0">
                   <FileText className="w-4 h-4" />
                 </div>
                 <span>News</span>
@@ -1681,9 +1680,9 @@ export default function App() {
                   setIsMobileCategoriesOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
               >
-                <div className="w-8 h-8 rounded-lg bg-orange-50 text-[#F2761B] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-md bg-orange-50 text-[#F2761B] flex items-center justify-center shrink-0">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <span>FAQs</span>
@@ -1714,12 +1713,12 @@ export default function App() {
                           setIsMobileCategoriesOpen(false);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`flex-1 flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-colors ${
+                        className={`flex-1 flex items-center justify-between px-4 py-3 text-sm font-medium rounded-md transition-colors ${
                           activeCategory === group.name ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-white text-[#1B211D] border border-[#EDE8E0]'
                         }`}
                       >
                         <span>{t(group.name)}</span>
-                        <span className={`text-[11.5px] font-bold px-2 py-0.5 rounded-md ${activeCategory === group.name ? 'bg-white/20 text-white' : 'bg-[#FAF8F5] text-[#5F6B63]'}`}>
+                        <span className={`text-[11.5px] font-bold px-2 py-0.5 rounded ${activeCategory === group.name ? 'bg-white/20 text-white' : 'bg-[#FAF8F5] text-[#5F6B63]'}`}>
                           {count}
                         </span>
                       </a>
@@ -1730,7 +1729,7 @@ export default function App() {
                               isExpanded ? prev.filter(g => g !== group.name) : [...prev, group.name]
                             );
                           }}
-                          className="p-3 flex items-center justify-center transition-colors text-[#8A928B] hover:text-black rounded-xl bg-white border border-[#EDE8E0]"
+                          className="p-3 flex items-center justify-center transition-colors text-[#8A928B] hover:text-black rounded-md bg-white border border-[#EDE8E0]"
                           aria-label="Unterkategorien anzeigen"
                         >
                           {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
@@ -1751,7 +1750,7 @@ export default function App() {
                               setIsMobileCategoriesOpen(false);
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
-                            className={`block w-full text-left px-3 py-2 text-[13.5px] font-medium rounded-lg transition-colors ${
+                            className={`block w-full text-left px-3 py-2 text-[13.5px] font-medium rounded-md transition-colors ${
                               activeCategory === sub ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:bg-black/5'
                             }`}
                           >
@@ -1775,7 +1774,7 @@ export default function App() {
                 setIsMobileCategoriesOpen(false);
                 window.scrollTo(0, 0);
               }}
-              className="w-full py-3.5 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-xl shadow-sm transition-colors cursor-pointer"
+              className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md shadow-sm transition-colors cursor-pointer"
             >
               <Plus className="w-4 h-4" /> Unternehmen eintragen
             </button>
@@ -1786,7 +1785,7 @@ export default function App() {
                 setIsMobileCategoriesOpen(false);
                 window.scrollTo(0, 0);
               }}
-              className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-white text-[#1B211D] border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-xl transition-colors cursor-pointer"
+              className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-white text-[#1B211D] border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-md transition-colors cursor-pointer"
             >
               {currentUser ? (
                 <>
@@ -2059,23 +2058,23 @@ function NewsAdminPanel() {
   if (loading) return <div className="p-4">Lade News...</div>;
 
   return (
-    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px]">
+    <div className="bg-white border border-[#EDE8E0] rounded-lg p-6">
       <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">News & Aktuelles (Admin)</h2>
       
       {news.length > 0 ? (
         <div className="grid gap-[10px]">
           {news.map(item => (
-            <div key={item.id} className="border border-[#EDE8E0] rounded-[16px] p-[16px] flex flex-col md:flex-row gap-[16px] items-start">
+            <div key={item.id} className="border border-[#EDE8E0] rounded-md p-4 flex flex-col md:flex-row gap-[16px] items-start">
               {item.imageUrl && (
-                <img src={item.imageUrl} alt="Preview" className="w-[100px] h-[100px] object-cover rounded-[10px] shrink-0" />
+                <img src={item.imageUrl} alt="Preview" className="w-[100px] h-[100px] object-cover rounded shrink-0" />
               )}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-[8px] mb-[4px]">
                   <span className="font-semibold text-[16px]">{item.title}</span>
                   {item.status === 'pending' ? (
-                    <span className="bg-[#FDF3D3] text-[#96700B] rounded-full px-[8px] py-[2px] text-[11px] font-bold">NEU (In Prüfung)</span>
+                    <span className="bg-[#FDF3D3] text-[#96700B] rounded px-2 py-0.5 text-[11px] font-bold">NEU (In Prüfung)</span>
                   ) : (
-                    <span className="bg-[#E8F1EB] text-[#0F4C2E] rounded-full px-[8px] py-[2px] text-[11px] font-bold">FREIGEGEBEN</span>
+                    <span className="bg-[#E8F1EB] text-[#0F4C2E] rounded px-2 py-0.5 text-[11px] font-bold">FREIGEGEBEN</span>
                   )}
                 </div>
                 <div className="text-[13px] text-[#5F6B63] mb-[8px]">
@@ -2089,14 +2088,14 @@ function NewsAdminPanel() {
                 {item.status === 'pending' && (
                   <button 
                     onClick={() => handleUpdateStatus(item.id, 'approved')}
-                    className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#D6E7DC]"
+                    className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#D6E7DC]"
                   >
                     Freigeben
                   </button>
                 )}
                 <button 
                   onClick={() => handleUpdateStatus(item.id, 'rejected')}
-                  className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                  className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
                 >
                   {item.status === 'pending' ? 'Ablehnen' : 'Löschen'}
                 </button>
@@ -2105,7 +2104,7 @@ function NewsAdminPanel() {
           ))}
         </div>
       ) : (
-        <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+        <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
           Keine News vorhanden.
         </div>
       )}
@@ -2164,7 +2163,7 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
       <h3 className="text-xl font-bold mb-4 font-display">301 Redirects (Weiterleitungen)</h3>
       <p className="text-sm opacity-70 mb-6 max-w-2xl">Hier können Sie permanente (301) Weiterleitungen einrichten. Dies ist nützlich, wenn sich eine URL ändert und Sie sicherstellen möchten, dass bestehende Links weiterhin funktionieren.</p>
       
-      <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-3 items-end mb-8 bg-black/5 p-5 rounded-lg border border-black/10">
+      <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-3 items-end mb-8 bg-black/5 p-5 rounded-md border border-black/10">
         <div className="flex-1 w-full">
           <label className="block text-xs font-bold uppercase mb-1.5 opacity-70">Ausgangs-URL (z.B. /alte-seite)</label>
           <input value={source} onChange={e=>setSource(e.target.value)} required placeholder="/alte-seite" className="w-full px-3 py-2 border border-black/10 rounded focus:outline-none" />
@@ -2319,13 +2318,13 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         </div>
         <button 
           onClick={handleLogout}
-          className="bg-white border border-[#E7E2DA] rounded-full px-[18px] py-[10px] text-[14px] font-medium cursor-pointer hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
+          className="bg-white border border-[#E7E2DA] rounded-md px-[18px] py-[10px] text-[14px] font-medium cursor-pointer hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
         >
           Abmelden
         </button>
       </div>
 
-      <div className="flex gap-[6px] flex-wrap mb-[24px] bg-white border border-[#EDE8E0] rounded-[16px] p-[6px]">
+      <div className="flex gap-[6px] flex-wrap mb-[24px] bg-white border border-[#EDE8E0] rounded-md p-1.5">
         {[
           { id: 'entries', label: 'Einträge' },
           { id: 'reviews', label: 'Bewertungen' },
@@ -2341,7 +2340,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <button 
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`border-none rounded-[11px] px-[16px] py-[10px] text-[14.5px] cursor-pointer transition-colors ${activeTab === tab.id ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-normal hover:bg-black/5'}`}
+            className={`border-none rounded px-4 py-2 text-[14.5px] cursor-pointer transition-colors ${activeTab === tab.id ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-normal hover:bg-black/5'}`}
           >
             {tab.label}
           </button>
@@ -2349,7 +2348,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       </div>
 
       {activeTab === 'entries' ? (
-        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
           <div className="flex flex-col gap-[16px] mb-[24px]">
             <div className="flex gap-[12px] flex-wrap items-center">
               {isAdmin && (
@@ -2357,12 +2356,12 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                   placeholder="Unternehmen, E-Mail oder Text suchen..." 
                   value={adminSearchQuery}
                   onChange={(e) => setAdminSearchQuery(e.target.value)}
-                  className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-[12px] px-[14px] py-[12px] text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+                  className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
                 />
               )}
               <button 
                 onClick={() => { setEditingBusiness(null); setView('add'); }}
-                className="bg-[#0F4C2E] text-white border-none rounded-[12px] px-[22px] py-[12px] text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors ml-auto"
+                className="bg-[#0F4C2E] text-white border-none rounded-md px-5 py-2.5 text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors ml-auto"
               >
                 + Neues Unternehmen
               </button>
@@ -2375,7 +2374,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                     <button 
                       key={c}
                       onClick={() => setActiveAdminCategory(c)}
-                      className={`border rounded-full px-[14px] py-[6px] text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
+                      className={`border rounded-md px-3 py-1.5 text-[13.5px] cursor-pointer transition-colors ${activeAdminCategory === c ? 'bg-[#0F4C2E] text-white border-[#0F4C2E]' : 'bg-[#FAF8F5] text-[#4A544D] border-[#E7E2DA] hover:border-[#0F4C2E]'}`}
                     >
                       {c}
                     </button>
@@ -2384,7 +2383,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                 <select
                   value={activeAdminLocation}
                   onChange={(e) => setActiveAdminLocation(e.target.value)}
-                  className="border border-[#E7E2DA] rounded-[10px] px-[14px] py-[6px] text-[13.5px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+                  className="border border-[#E7E2DA] rounded-md px-3 py-1.5 text-[13.5px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
                 >
                   <option value="Alle">Alle Ortsteile</option>
                   {Array.from(new Set(allowedBusinesses.map((b: Business) => b.district || (b.address && b.address.split(',')[1]?.trim().split(' ')[1]) || 'Winterberg'))).filter(Boolean).sort().map(d => (
@@ -2411,12 +2410,12 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="flex-1 border-t-2 border-dotted border-[#E7E2DA]"></div>
                     </div>
                   )}
-                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-[14px] items-center border border-[#EDE8E0] rounded-[14px] px-[16px] py-[13px]">
+                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-[14px] items-center border border-[#EDE8E0] rounded-md px-4 py-3">
                     <div className="min-w-0">
                       <div className="flex items-center gap-[9px] flex-wrap">
                         <span className="font-semibold text-[15.5px]">{bus.name}</span>
-                        {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-[9px] py-[2px] text-[11px] font-bold">PREMIUM</span>}
-                        {bus.status === 'pending' && <span className="bg-[#FDF3D3] text-[#96700B] rounded-full px-[9px] py-[2px] text-[11px] font-bold">IN PRÜFUNG</span>}
+                        {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2 py-0.5 text-[11px] font-bold">PREMIUM</span>}
+                        {bus.status === 'pending' && <span className="bg-[#FDF3D3] text-[#96700B] rounded px-2 py-0.5 text-[11px] font-bold">IN PRÜFUNG</span>}
                       </div>
                       <div className="text-[13.5px] text-[#5F6B63] mt-[3px]">
                         {bus.category} {bus.subcategory ? `· ${bus.subcategory}` : ''} {bus.district ? `· ${bus.district}` : ''}
@@ -2444,20 +2443,20 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                               alert("Fehler beim Freischalten");
                             }
                           }}
-                          className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"
+                          className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"
                         >
                           Freigeben
                         </button>
                       )}
                       <button 
                         onClick={() => { setEditingBusiness(bus); setView('edit'); }}
-                    className="bg-[#F3F0EA] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
+                    className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
                   >
                     Bearbeiten
                   </button>
                   <button 
                     onClick={() => handleDelete(bus.id)}
-                    className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[14px] py-[9px] text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
+                    className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
                   >
                     Löschen
                   </button>
@@ -2467,7 +2466,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             );
           })}
             {filteredAdminBusinesses.length === 0 && (
-              <div className="border border-dashed border-[#D8D2C8] rounded-[12px] p-[24px] text-center text-[#8A928B]">
+              <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
                 Keine Einträge gefunden.
               </div>
             )}
@@ -2477,13 +2476,13 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         ) : activeTab === 'news' ? (
           <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
         ) : activeTab === 'reviews' ? (
-          <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+          <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
             <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Offene Bewertungen</h2>
             
             {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).length > 0 ? (
               <div className="grid gap-[10px] mb-[30px]">
                 {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).map((review) => (
-                  <div key={review.id} className="border border-[#EDE8E0] rounded-[16px] p-[16px]">
+                  <div key={review.id} className="border border-[#EDE8E0] rounded-md p-4">
                     <div className="flex justify-between gap-[12px] items-center">
                       <div className="font-semibold text-[15px]">{review.businessName}</div>
                       <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
@@ -2497,7 +2496,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                             return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, status: 'approved' } : r) };
                           });
                         }}
-                        className="bg-[#0F4C2E] text-white border-none rounded-[10px] px-[16px] py-[9px] text-[13.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
+                        className="bg-[#0F4C2E] text-white border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
                       >
                         Freigeben
                       </button>
@@ -2507,7 +2506,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                             return { ...b, reviews: (b.reviews || []).filter(r => r.id !== review.id) };
                           });
                         }}
-                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[16px] py-[9px] text-[13.5px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
                       >
                         Ablehnen
                       </button>
@@ -2516,7 +2515,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                 ))}
               </div>
             ) : (
-              <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B] mb-[30px]">
+              <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B] mb-[30px]">
                 Keine offenen Bewertungen.
               </div>
             )}
@@ -2525,7 +2524,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'approved').map(r => ({ ...r, businessId: b.id, businessName: b.name, isPremium: b.isPremium }))).length > 0 ? (
               <div className="grid gap-[10px]">
                 {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'approved').map(r => ({ ...r, businessId: b.id, businessName: b.name, isPremium: b.isPremium }))).map((review) => (
-                  <div key={review.id} className="border border-[#EDE8E0] rounded-[16px] p-[16px]">
+                  <div key={review.id} className="border border-[#EDE8E0] rounded-md p-4">
                     <div className="flex justify-between gap-[12px] items-center">
                       <div className="font-semibold text-[15px]">{review.businessName}</div>
                       <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
@@ -2552,7 +2551,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                             });
                           }
                         }}
-                        className={`border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer transition-colors ${review.isPremium ? 'bg-[#F3F0EA] hover:bg-[#EAE5DB]' : 'bg-[#FAF8F5] text-[#A3ABA5]'}`}
+                        className={`border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer transition-colors ${review.isPremium ? 'bg-[#F3F0EA] hover:bg-[#EAE5DB]' : 'bg-[#FAF8F5] text-[#A3ABA5]'}`}
                         title={!review.isPremium ? 'Nur für Premium-Kunden' : ''}
                       >
                         Antworten {!review.isPremium && '🔒'}
@@ -2565,7 +2564,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                             });
                           }
                         }}
-                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-[10px] px-[14px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
                       >
                         Entfernen
                       </button>
@@ -2574,7 +2573,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                 ))}
               </div>
             ) : (
-              <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+              <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
                 Noch keine freigegebenen Bewertungen.
               </div>
             )}
@@ -2734,17 +2733,17 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
   };
 
   return (
-    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+    <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
       {isAdmin ? (
         <>
           <div className="flex gap-[18px] flex-wrap mb-[24px]">
-            <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+            <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-md px-5 py-4 flex-1 min-w-[200px]">
               <div className="text-[13px] text-[#96551F]">Premium-Kunden</div>
               <div className="font-display text-[32px] font-bold text-[#D65F0C] my-[4px]">
                 {businesses.filter((b: Business) => b.isPremium).length}
               </div>
             </div>
-            <div className="bg-[#E8F1EB] border border-[#C5DFCE] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+            <div className="bg-[#E8F1EB] border border-[#C5DFCE] rounded-md px-5 py-4 flex-1 min-w-[200px]">
               <div className="text-[13px] text-[#0F4C2E]">Generierte Rechnungen</div>
               <div className="font-display text-[32px] font-bold text-[#0F4C2E] my-[4px]">
                 {invoices.length}
@@ -2774,7 +2773,7 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                       <td className="py-3 px-4 font-medium">{inv.date ? new Date(inv.date).toLocaleDateString('de-DE') : '-'}</td>
                       <td className="py-3 px-4">{inv.customerEmail || inv.customerId || '-'}</td>
                       <td className="py-3 px-4 font-bold text-[#0F4C2E]">{Number(inv.amount || 0).toFixed(2).replace('.', ',')} €</td>
-                      <td className="py-3 px-4"><span className="bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded-full text-xs font-semibold">Bezahlt</span></td>
+                      <td className="py-3 px-4"><span className="bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded text-xs font-semibold">Bezahlt</span></td>
                       <td className="py-3 px-4 text-right">
                         {inv.pdfUrl ? (
                           <a href={inv.pdfUrl} target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">
@@ -2788,7 +2787,7 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
               </table>
             </div>
           ) : (
-            <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+            <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
               Noch keine Rechnungen in der Datenbank vorhanden.
             </div>
           )}
@@ -2799,7 +2798,7 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
           {allowedBusinesses.filter((b: Business) => b.isPremium).length > 0 ? (
             <div>
               {allowedBusinesses.filter((b: Business) => b.isPremium).map((bus: Business) => (
-                <div key={bus.id} className="border border-[#EDE8E0] rounded-[16px] p-6 mb-6 bg-[#FAF8F5]">
+                <div key={bus.id} className="border border-[#EDE8E0] rounded-md p-5 mb-5 bg-[#FAF8F5]">
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <div className="font-bold text-[18px] text-[#0F4C2E]">{bus.name}</div>
@@ -2810,13 +2809,13 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                     {!(bus as any).cancelAtPeriodEnd && (
                       <button 
                         onClick={() => handleCancelSubscription(bus)}
-                        className="bg-white border border-[#D8D2C8] text-[#C0392B] px-4 py-2 rounded-[10px] text-[13px] font-semibold hover:border-[#C0392B] transition-colors cursor-pointer"
+                        className="bg-white border border-[#D8D2C8] text-[#C0392B] px-3.5 py-1.5 rounded-md text-[13px] font-semibold hover:border-[#C0392B] transition-colors cursor-pointer"
                       >
                         Abo kündigen
                       </button>
                     )}
                   </div>
-                  <div className="text-[13px] text-[#4A544D] bg-[#E8F1EB] p-3 rounded-[10px]">
+                  <div className="text-[13px] text-[#4A544D] bg-[#E8F1EB] p-3 rounded-md">
                     <strong>Hinweis:</strong> Die Kündigungsfrist beträgt 14 Tage zum Ende der jeweiligen Vertragslaufzeit. Jahresabonnements gehen bei nicht fristgerechter Kündigung automatisch in ein monatlich kündbares Abonnement zum regulären Monatspreis über.
                   </div>
                 </div>
@@ -2845,7 +2844,7 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                         <tr key={inv.id} className="border-b border-[#EDE8E0] hover:bg-[#FAF8F5]">
                           <td className="py-3 px-4 font-medium">{inv.date ? new Date(inv.date).toLocaleDateString('de-DE') : '-'}</td>
                           <td className="py-3 px-4 font-bold text-[#0F4C2E]">{Number(inv.amount || 0).toFixed(2).replace('.', ',')} €</td>
-                          <td className="py-3 px-4"><span className="bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded-full text-xs font-semibold">Bezahlt</span></td>
+                          <td className="py-3 px-4"><span className="bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded text-xs font-semibold">Bezahlt</span></td>
                           <td className="py-3 px-4 text-right">
                             {inv.pdfUrl ? (
                               <a href={inv.pdfUrl} target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">
@@ -2859,13 +2858,13 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                   </table>
                 </div>
               ) : (
-                <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+                <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
                   Noch keine Rechnungen für diesen Account vorhanden.
                 </div>
               )}
             </div>
           ) : (
-            <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+            <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
               Sie haben aktuell kein aktives Premium-Abonnement.
             </div>
           )}

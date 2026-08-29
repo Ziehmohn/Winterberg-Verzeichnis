@@ -67,7 +67,7 @@ export default function JobsBoard({ businesses, theme, activeThemeKey, initialCa
               key={cat}
               type="button"
               onClick={() => setFilterCategory(cat)}
-              className={`border rounded-full py-[9px] px-[16px] text-[14px] font-medium cursor-pointer transition-colors ${
+              className={`border rounded-md py-2 px-3.5 text-[14px] font-medium cursor-pointer transition-colors ${
                 isActive 
                   ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' 
                   : 'border-[#D8D2C8] bg-transparent text-[#4A544D] hover:border-[#5F6B63]'
@@ -81,7 +81,7 @@ export default function JobsBoard({ businesses, theme, activeThemeKey, initialCa
 
       <div className="grid gap-3">
         {filteredJobs.length === 0 ? (
-          <div className="bg-white border border-dashed border-[#D8D2C8] rounded-[22px] p-[48px] text-center text-[#5F6B63]">
+          <div className="bg-white border border-dashed border-[#D8D2C8] rounded-lg p-10 text-center text-[#5F6B63]">
             Aktuell sind keine offenen Stellen hinterlegt.
           </div>
         ) : (
@@ -89,11 +89,11 @@ export default function JobsBoard({ businesses, theme, activeThemeKey, initialCa
             <div 
               key={job.id} 
               onClick={() => onBusinessSelect(business)} 
-              className="bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] transition-all hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)]"
+              className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] transition-all hover:-translate-y-[2px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)]"
             >
               <div className="flex justify-between gap-[14px] items-baseline flex-wrap">
                 <div className="font-display text-[19px] font-semibold">{job.title}</div>
-                <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full py-[5px] px-[12px] text-[12.5px] font-semibold">
+                <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2.5 py-0.5 text-[12.5px] font-semibold">
                   {job.type}
                 </span>
               </div>

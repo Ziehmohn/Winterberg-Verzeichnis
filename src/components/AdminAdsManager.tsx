@@ -196,7 +196,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
   };
 
   return (
-    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+    <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
       {/* Top Header & Subtabs */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-5 border-b border-[#F3F0EA]">
         <div>
@@ -212,11 +212,11 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
         </div>
 
         <div className="flex items-center gap-2 self-stretch sm:self-auto">
-          <div className="flex bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-1">
+          <div className="flex bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-1">
             <button
               type="button"
               onClick={() => { setSubTab('banners'); setIsEditing(false); }}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded transition-colors ${
                 subTab === 'banners' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-gray-900'
               }`}
             >
@@ -225,7 +225,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
             <button
               type="button"
               onClick={() => { setSubTab('inquiries'); setIsEditing(false); }}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded transition-colors flex items-center gap-1.5 ${
                 subTab === 'inquiries' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-gray-900'
               }`}
             >
@@ -240,7 +240,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
             <button
               type="button"
               onClick={handleOpenNew}
-              className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors shrink-0"
+              className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-xs font-semibold px-4 py-2 rounded-md flex items-center gap-1.5 transition-colors shrink-0"
             >
               <Plus className="w-4 h-4" /> Neues Banner
             </button>
@@ -265,7 +265,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
           </div>
 
           {formError && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm flex items-center gap-2">
+            <div className="p-3 bg-red-50 border border-red-200 rounded-md text-red-700 text-sm flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0" />
               {formError}
             </div>
@@ -282,7 +282,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                 placeholder="z. B. Brauhaus Winterberg - Jetzt Tisch reservieren"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
               />
             </div>
 
@@ -295,7 +295,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                 placeholder="z. B. Brauhaus Winterberg"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
               />
             </div>
           </div>
@@ -308,7 +308,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
               >
                 <option value="Alle">Alle Kategorien (Globales Banner)</option>
                 {categories.map((c) => (
@@ -332,7 +332,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                 placeholder="https://www.beispiel-betrieb.de oder /Gastronomie"
                 value={targetUrl}
                 onChange={(e) => setTargetUrl(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
               />
             </div>
           </div>
@@ -350,10 +350,10 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                   placeholder="https://... oder Datei hochladen"
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-3"
+                  className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-3"
                 />
 
-                <label className="inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] px-4 py-2.5 rounded-xl cursor-pointer text-xs font-semibold text-gray-700 transition-colors">
+                <label className="inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] px-4 py-2 rounded-md cursor-pointer text-xs font-semibold text-gray-700 transition-colors">
                   <Upload className="w-4 h-4 text-[#0F4C2E]" />
                   {uploadingImage ? 'Lade hoch...' : 'Grafik-Datei hochladen'}
                   <input
@@ -367,12 +367,12 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
               </div>
 
               {imageUrl && (
-                <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-3 flex flex-col items-center">
+                <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-3 flex flex-col items-center">
                   <span className="text-[11px] font-semibold text-gray-500 mb-2">Vorschau:</span>
                   <img
                     src={imageUrl}
                     alt="Vorschau"
-                    className="max-w-[140px] max-h-[220px] object-cover rounded-lg border border-[#E7E2DA] shadow-sm"
+                    className="max-w-[140px] max-h-[220px] object-cover rounded-md border border-[#E7E2DA] shadow-sm"
                   />
                 </div>
               )}
@@ -389,7 +389,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                 value={badgeText}
                 onChange={(e) => setBadgeText(e.target.value)}
                 placeholder="Anzeige"
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] transition-colors"
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] transition-colors"
               />
             </div>
 
@@ -413,14 +413,14 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
             <button
               type="button"
               onClick={() => setIsEditing(false)}
-              className="px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+              className="px-4 py-2 rounded-md border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
             >
               Abbrechen
             </button>
             <button
               type="submit"
               disabled={isSubmitting || uploadingImage}
-              className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+              className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors disabled:opacity-50 inline-flex items-center gap-2"
             >
               {isSubmitting ? 'Speichert...' : 'Banner speichern'}
             </button>
@@ -442,12 +442,12 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
               {ads.map((ad) => (
                 <div
                   key={ad.id}
-                  className={`border rounded-2xl p-4 flex gap-4 transition-all ${
+                  className={`border rounded-lg p-4 flex gap-4 transition-all ${
                     ad.isActive ? 'bg-white border-[#EDE8E0] shadow-sm' : 'bg-gray-50 border-gray-200 opacity-65'
                   }`}
                 >
                   {/* Thumbnail */}
-                  <div className="w-20 h-28 rounded-xl bg-[#FAF8F5] border border-[#E7E2DA] overflow-hidden shrink-0 flex items-center justify-center">
+                  <div className="w-20 h-28 rounded-md bg-[#FAF8F5] border border-[#E7E2DA] overflow-hidden shrink-0 flex items-center justify-center">
                     {ad.imageUrl ? (
                       <img src={ad.imageUrl} alt={ad.title} className="w-full h-full object-cover" />
                     ) : (
@@ -459,11 +459,11 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                   <div className="flex-1 min-w-0 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className="bg-[#FAF8F5] border border-[#E7E2DA] text-[#0F4C2E] rounded-md px-2 py-0.5 text-[10.5px] font-bold">
+                        <span className="bg-[#FAF8F5] border border-[#E7E2DA] text-[#0F4C2E] rounded px-2 py-0.5 text-[10.5px] font-bold">
                           {ad.category || 'Alle'}
                         </span>
                         <span
-                          className={`rounded-full px-2 py-0.5 text-[10.5px] font-bold ${
+                          className={`rounded px-2 py-0.5 text-[10.5px] font-bold ${
                             ad.isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-600'
                           }`}
                         >
@@ -502,7 +502,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                           type="button"
                           onClick={() => handleToggleActive(ad)}
                           title={ad.isActive ? 'Deaktivieren' : 'Aktivieren'}
-                          className={`p-1.5 rounded-lg text-xs font-medium transition-colors ${
+                          className={`p-1.5 rounded text-xs font-medium transition-colors ${
                             ad.isActive ? 'text-amber-600 hover:bg-amber-50' : 'text-emerald-600 hover:bg-emerald-50'
                           }`}
                         >
@@ -511,7 +511,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                         <button
                           type="button"
                           onClick={() => handleOpenEdit(ad)}
-                          className="p-1.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                          className="p-1.5 rounded text-gray-600 hover:bg-gray-100 transition-colors"
                           title="Bearbeiten"
                         >
                           <Edit2 className="w-4 h-4" />
@@ -519,7 +519,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                         <button
                           type="button"
                           onClick={() => handleDelete(ad.id)}
-                          className="p-1.5 rounded-lg text-red-600 hover:bg-red-50 transition-colors"
+                          className="p-1.5 rounded text-red-600 hover:bg-red-50 transition-colors"
                           title="Löschen"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -550,7 +550,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
               {inquiries.map((inq) => (
                 <div
                   key={inq.id}
-                  className="border border-[#EDE8E0] rounded-2xl p-4 bg-white hover:border-[#0F4C2E]/40 transition-colors"
+                  className="border border-[#EDE8E0] rounded-lg p-4 bg-white hover:border-[#0F4C2E]/40 transition-colors"
                 >
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
                     <div>
@@ -562,11 +562,11 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                       </span>
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-2.5 py-0.5 text-xs font-bold">
+                      <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2.5 py-0.5 text-xs font-bold">
                         {inq.categories ? `${inq.categories.length} Kat.: ${inq.categories.join(', ')}` : `Kategorie: ${inq.category}`}
                       </span>
                       {inq.totalMonthlyPrice !== undefined && (
-                        <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-2.5 py-0.5 text-xs font-bold">
+                        <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 rounded px-2.5 py-0.5 text-xs font-bold">
                           {inq.totalMonthlyPrice.toFixed(2).replace('.', ',')} € / Mo.
                         </span>
                       )}
@@ -594,7 +594,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
                   </div>
 
                   {inq.message && (
-                    <div className="bg-[#FAF8F5] rounded-xl p-3 text-xs text-gray-700 leading-relaxed border border-[#E7E2DA]">
+                    <div className="bg-[#FAF8F5] rounded-md p-3 text-xs text-gray-700 leading-relaxed border border-[#E7E2DA]">
                       <span className="font-semibold block mb-1">Nachricht / Anmerkungen:</span>
                       {inq.message}
                     </div>

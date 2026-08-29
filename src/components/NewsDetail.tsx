@@ -234,7 +234,7 @@ function NewsContentRenderer({ content }: { content: string }) {
                 {parsedCards.map((card, cIdx) => (
                   <div 
                     key={cIdx} 
-                    className="bg-[#FAF8F5] border border-[#E8E2D8] rounded-[18px] p-5 md:p-6 transition-all duration-200 hover:border-[#0F4C2E]/50 hover:bg-white hover:shadow-md space-y-2.5"
+                    className="bg-[#FAF8F5] border border-[#E8E2D8] rounded-md p-5 md:p-6 transition-all duration-200 hover:border-[#0F4C2E]/50 hover:bg-white hover:shadow-md space-y-2.5"
                   >
                     {card.title ? (
                       <>
@@ -275,7 +275,7 @@ function StandaloneContactBox({ rawContact }: { rawContact: string }) {
   const lines = rawContact.split('\n').map(l => l.trim()).filter(Boolean);
   
   return (
-    <div className="mt-8 bg-gradient-to-br from-[#F6F9F6] via-[#FAF8F5] to-[#F1F6F3] border-2 border-[#D2E2D6] rounded-[26px] p-[28px] sm:p-[36px] md:p-[44px] shadow-[0_8px_30px_rgba(27,33,29,0.03)]">
+    <div className="mt-8 bg-gradient-to-br from-[#F6F9F6] via-[#FAF8F5] to-[#F1F6F3] border-2 border-[#D2E2D6] rounded-lg p-6 sm:p-8 md:p-10 shadow-[0_8px_30px_rgba(27,33,29,0.03)]">
       <div className="mb-5">
         <UnderlinedHeading text="Ansprechpartner & Beratung" as="h3" />
       </div>
@@ -372,7 +372,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     return (
       <div className="max-w-[850px] mx-auto py-[60px] px-[20px] text-center">
         <h1 className="text-[24px] font-bold mb-[16px]">News nicht gefunden</h1>
-        <button onClick={onBack} className={`${theme.primaryBtn} px-[24px] py-[10px] rounded-full`}>
+        <button onClick={onBack} className={`${theme.primaryBtn} px-5 py-2.5 rounded-md`}>
           Zurück zur Übersicht
         </button>
       </div>
@@ -415,9 +415,9 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       </button>
 
       {article.imageUrl && (
-        <div className="relative w-full h-[320px] md:h-[440px] rounded-[24px] overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
+        <div className="relative w-full h-[320px] md:h-[440px] rounded-lg overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
           <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
-          <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none">
+          <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded tracking-wide pointer-events-none">
             Symbolbild · KI-generiert
           </div>
         </div>
@@ -448,7 +448,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       </div>
 
       {/* Main Article News Container */}
-      <div className="bg-white border border-[#EDE8E0] rounded-[26px] p-[28px] sm:p-[38px] md:p-[50px] shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
+      <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 sm:p-8 md:p-10 shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
         <NewsContentRenderer content={mainContent} />
       </div>
 

@@ -71,7 +71,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
     }
   };
 
-  const inputClass = `w-full border border-[#E7E2DA] rounded-[10px] px-[14px] py-[13px] text-[15.5px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors ${theme.textBase}`;
+  const inputClass = `w-full border border-[#E7E2DA] rounded-md px-3.5 py-3 text-[15.5px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors ${theme.textBase}`;
   const labelClass = `block text-[14px] font-semibold mb-[8px] ${theme.textBase}`;
 
   if (isSuccess) {
@@ -90,7 +90,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
             setIsSuccess(false);
             setFormData({ title: '', content: '', author: '', businessName: '', imageUrl: '' });
           }}
-          className={`px-[24px] py-[12px] rounded-full font-semibold ${theme.primaryBtn}`}
+          className={`px-5 py-2.5 rounded-md font-semibold ${theme.primaryBtn}`}
         >
           Weitere News einreichen
         </button>
@@ -108,9 +108,9 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         Jeder Beitrag wird vor der Veröffentlichung kurz von uns geprüft.
       </p>
 
-      <div className={`bg-white border border-[#EDE8E0] rounded-[22px] p-[24px] md:p-[40px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]`}>
+      <div className={`bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]`}>
         {error && (
-          <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-xl mb-6 text-[14.5px] font-medium">
+          <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-md mb-6 text-[14.5px] font-medium">
             {error}
           </div>
         )}
@@ -168,7 +168,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
             <div className="mt-[8px]">
               {formData.imageUrl ? (
                 <div className="relative inline-block">
-                  <img src={formData.imageUrl} alt="Preview" className="w-full max-w-[400px] h-auto rounded-[12px] border border-[#E7E2DA]" />
+                  <img src={formData.imageUrl} alt="Preview" className="w-full max-w-[400px] h-auto rounded-md border border-[#E7E2DA]" />
                   <button 
                     type="button" 
                     onClick={() => setFormData({...formData, imageUrl: ''})}
@@ -178,7 +178,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
                   </button>
                 </div>
               ) : (
-                <label className="flex flex-col items-center justify-center w-full max-w-[400px] h-[160px] border-2 border-dashed border-[#D8D2C8] rounded-[16px] cursor-pointer hover:border-[#0F4C2E] hover:bg-[#FAF8F5] transition-colors">
+                <label className="flex flex-col items-center justify-center w-full max-w-[400px] h-[160px] border-2 border-dashed border-[#D8D2C8] rounded-md cursor-pointer hover:border-[#0F4C2E] hover:bg-[#FAF8F5] transition-colors">
                   <ImagePlus className="w-8 h-8 text-[#8A928B] mb-2" />
                   <span className="text-[14px] text-[#5F6B63] font-medium">Bild auswählen (max. 2MB)</span>
                   <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
@@ -191,7 +191,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
             <button 
               type="submit" 
               disabled={isSubmitting}
-              className={`w-full py-[16px] rounded-[12px] text-[16px] font-bold text-center transition-all ${isSubmitting ? 'bg-[#E7E2DA] text-[#8A928B] cursor-not-allowed' : theme.primaryBtn}`}
+              className={`w-full py-3.5 rounded-md text-[16px] font-bold text-center transition-all ${isSubmitting ? 'bg-[#E7E2DA] text-[#8A928B] cursor-not-allowed' : theme.primaryBtn}`}
             >
               {isSubmitting ? 'Wird eingereicht...' : 'News jetzt einreichen'}
             </button>

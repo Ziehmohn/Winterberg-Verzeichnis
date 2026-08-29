@@ -242,14 +242,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     }
   };
 
-  const inputClass = `w-full border border-[#E7E2DA] rounded-[10px] px-[12px] py-[11px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]`;
+  const inputClass = `w-full border border-[#E7E2DA] rounded-md px-3 py-2.5 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]`;
   const labelClass = `block text-[13.5px] font-semibold mb-[6px]`;
 
   return (
-    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-[30px] shadow-[0_10px_30px_rgba(27,33,29,0.06)] w-full max-w-[1180px] mx-auto">
+    <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-8 shadow-[0_10px_30px_rgba(27,33,29,0.06)] w-full max-w-[1180px] mx-auto">
       <div className="flex justify-between items-center mb-[22px]">
         <h2 className="font-display text-[24px] font-bold m-0">{formData.id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen hinzufügen'}</h2>
-        <button type="button" onClick={onCancel} className="bg-[#F3F0EA] border-none rounded-[10px] px-[14px] py-[9px] text-[14px] cursor-pointer hover:bg-[#EAE5DB]">Abbrechen</button>
+        <button type="button" onClick={onCancel} className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[14px] cursor-pointer hover:bg-[#EAE5DB]">Abbrechen</button>
       </div>
         
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -307,7 +307,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             </div>
             
             {formData.additionalCategories?.map((ac, index) => (
-              <div key={index} className="flex flex-col md:flex-row gap-5 mb-3 p-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-[12px] relative">
+              <div key={index} className="flex flex-col md:flex-row gap-5 mb-3 p-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md relative">
                 <button type="button" onClick={() => {
                   const newCats = [...(formData.additionalCategories || [])];
                   newCats.splice(index, 1);
@@ -489,7 +489,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
               <div className="flex flex-wrap gap-2">
                 {(formData.services || []).map((service, idx) => (
-                  <div key={idx} className="flex items-center gap-2 bg-black/5 px-3 py-1.5 rounded-full text-sm">
+                  <div key={idx} className="flex items-center gap-2 bg-black/5 px-2.5 py-1 rounded-md text-sm">
                     <span>{service}</span>
                     <button type="button" onClick={() => {
                       setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));

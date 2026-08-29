@@ -88,7 +88,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
             window.history.pushState(null, '', '/news/einreichen');
             window.dispatchEvent(new PopStateEvent('popstate'));
           }}
-          className={`px-[24px] py-[12px] rounded-full font-semibold whitespace-nowrap transition-all ${theme.primaryBtn}`}
+          className={`px-5 py-2.5 rounded-md font-semibold whitespace-nowrap transition-all ${theme.primaryBtn}`}
         >
           News einreichen
         </button>
@@ -104,7 +104,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
             <div 
               key={item.id}
               onClick={() => onNewsClick(item.slug || generateSlug(item.title) || item.id)}
-              className={`bg-white border border-[#EDE8E0] rounded-[22px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[#0F4C2E]/50 flex flex-col group`}
+              className={`bg-white border border-[#EDE8E0] rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#0F4C2E]/50 flex flex-col group`}
             >
               {item.imageUrl ? (
                 <div className="h-[210px] overflow-hidden bg-[#FAF8F5] relative">
@@ -113,7 +113,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
                     alt={item.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
-                  <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white/95 text-[10px] font-medium px-2 py-0.5 rounded-md pointer-events-none tracking-wide">
+                  <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white/95 text-[10px] font-medium px-2 py-0.5 rounded pointer-events-none tracking-wide">
                     KI-generiert
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
                   <span className="text-[#8A928B] font-display font-bold text-[24px] opacity-30">NEWS</span>
                 </div>
               )}
-              <div className="p-[24px] flex-1 flex flex-col">
+              <div className="p-5 flex-1 flex flex-col">
                 <div className="flex items-center gap-[10px] text-[12.5px] text-[#7C8780] mb-[12px] flex-wrap">
                   <span className="font-medium">
                     {new Date(item.date).toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -142,7 +142,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
                 </p>
                 
                 {item.businessName && (
-                  <div className="inline-block text-[12px] font-bold text-[#0F4C2E] bg-[#E8F1EB] px-[12px] py-[5px] rounded-lg self-start mt-auto">
+                  <div className="inline-block text-[12px] font-bold text-[#0F4C2E] bg-[#E8F1EB] px-2.5 py-1 rounded self-start mt-auto">
                     {item.businessName}
                   </div>
                 )}
@@ -151,7 +151,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
           ))}
         </div>
       ) : (
-        <div className="bg-white border border-dashed border-[#D8D2C8] rounded-[20px] py-[60px] text-center">
+        <div className="bg-white border border-dashed border-[#D8D2C8] rounded-lg py-[60px] text-center">
           <p className="text-[17px] text-[#5F6B63] font-medium mb-[8px]">Aktuell gibt es keine neuen Einträge.</p>
           <p className="text-[14.5px] text-[#8A928B]">Seien Sie der Erste, der eine News einreicht!</p>
         </div>

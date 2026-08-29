@@ -56,7 +56,7 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
 
   return (
     <main className="flex-1 max-w-[440px] mx-auto w-full px-6 py-[70px] pb-[90px]">
-      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-8 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+      <div className="bg-white border border-[#EDE8E0] rounded-lg p-8 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <h1 className="font-display text-[26px] font-bold mb-2">
           {mode === 'login' ? 'Anmeldung' : mode === 'register' ? 'Registrieren' : 'Passwort zurücksetzen'}
         </h1>
@@ -64,8 +64,8 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
           {mode === 'login' ? 'Adminbereich und Unternehmens-Dashboard.' : mode === 'register' ? 'Neues Konto anlegen.' : 'Geben Sie Ihre E-Mail ein, um einen Link zu erhalten.'}
         </p>
 
-        {msg && <div className="bg-[#E8F1EB] text-[#0F4C2E] p-4 rounded-[12px] text-center mb-4 text-[14px]">{msg}</div>}
-        {error && <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-[12px] text-center mb-4 text-[14px]">{error}</div>}
+        {msg && <div className="bg-[#E8F1EB] text-[#0F4C2E] p-4 rounded-md text-center mb-4 text-[14px]">{msg}</div>}
+        {error && <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-md text-center mb-4 text-[14px]">{error}</div>}
         
         <form onSubmit={handleAuth} className="grid gap-[14px]">
           <label className="grid gap-[7px] text-[14px] font-semibold">
@@ -76,7 +76,7 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
               value={email} 
               onChange={e => setEmail(e.target.value)} 
               placeholder="name@beispiel.de"
-              className="border border-[#E7E2DA] rounded-[12px] px-[14px] py-[13px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
+              className="border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
             />
           </label>
           
@@ -89,7 +89,7 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
                 value={password} 
                 onChange={e => setPassword(e.target.value)} 
                 placeholder="••••••••"
-                className="border border-[#E7E2DA] rounded-[12px] px-[14px] py-[13px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
+                className="border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
               />
             </label>
           )}
@@ -97,7 +97,7 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
           <button 
             type="submit" 
             disabled={loading} 
-            className="bg-[#0F4C2E] text-white border-none rounded-full p-[14px] text-[15px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors disabled:opacity-50 mt-2"
+            className="bg-[#0F4C2E] text-white border-none rounded-md p-3 text-[15px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors disabled:opacity-50 mt-2"
           >
             {loading ? t("pleaseWait") : mode === 'login' ? 'Anmelden' : mode === 'register' ? 'Registrieren' : t("requestLink")}
           </button>

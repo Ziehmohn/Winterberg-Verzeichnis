@@ -79,7 +79,7 @@ export default function ScriptManager({ theme, activeThemeKey }: { theme: ThemeC
   if (loading) return <div className="p-4">Lade Skripte...</div>;
 
   return (
-    <div className={`mt-8 border ${theme.cardBg} ${theme.cardBorder} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-xl'} p-6`}>
+    <div className={`mt-8 border ${theme.cardBg} ${theme.cardBorder} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'} p-6`}>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-bold font-display flex items-center gap-2">

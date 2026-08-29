@@ -566,8 +566,8 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
       </div>
 
       {/* Page Header */}
-      <div className="bg-white border border-[#EDE8E0] rounded-[24px] p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.04)] mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0F4C2E]/10 text-[#0F4C2E] text-xs font-bold tracking-wide uppercase mb-3">
+      <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.04)] mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0F4C2E]/10 text-[#0F4C2E] text-xs font-bold tracking-wide uppercase mb-3">
           <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
           Winterberg Ratgeber & FAQ
         </div>
@@ -586,12 +586,12 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Frage oder Stichwort suchen (z.B. Schlitten, Parken, ALDI, See, Skipass)..."
-            className="w-full pl-12 pr-10 py-3.5 bg-[#FAF8F5] border border-[#D8D2C8] rounded-xl text-[15px] text-[#1B211D] placeholder:text-gray-400 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-all shadow-inner"
+            className="w-full pl-12 pr-10 py-3 bg-[#FAF8F5] border border-[#D8D2C8] rounded-md text-[15px] text-[#1B211D] placeholder:text-gray-400 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-all shadow-inner"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 hover:text-gray-800 bg-gray-200 hover:bg-gray-300 rounded-full px-2 py-1"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 hover:text-gray-800 bg-gray-200 hover:bg-gray-300 rounded px-2 py-0.5"
             >
               Löschen
             </button>
@@ -613,7 +613,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
               key={group.id}
               type="button"
               onClick={() => setSelectedGroup(group.id)}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[14px] font-medium transition-all cursor-pointer border ${
+              className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-md text-[14px] font-medium transition-all cursor-pointer border ${
                 isActive
                   ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] shadow-sm'
                   : 'bg-white text-[#4A544D] border-[#EDE8E0] hover:border-[#0F4C2E]/40 hover:bg-[#FAF8F5]'
@@ -621,7 +621,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
             >
               <Icon className={`w-4 h-4 ${isActive ? 'text-[#F2761B]' : 'text-[#5F6B63]'}`} />
               <span>{group.label}</span>
-              <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+              <span className={`text-xs px-2 py-0.5 rounded font-semibold ${
                 isActive ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600'
               }`}>
                 {count}
@@ -658,14 +658,14 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
       {/* FAQ Accordion List */}
       <div className="space-y-3">
         {filteredFaqs.length === 0 ? (
-          <div className="bg-white border border-dashed border-[#D8D2C8] rounded-[20px] p-10 text-center text-[#5F6B63]">
+          <div className="bg-white border border-dashed border-[#D8D2C8] rounded-lg p-10 text-center text-[#5F6B63]">
             <HelpCircle className="w-10 h-10 mx-auto text-gray-300 mb-3" />
             <p className="font-semibold text-lg text-gray-700 mb-1">Keine passende Frage gefunden</p>
             <p className="text-sm">Versuchen Sie einen anderen Suchbegriff oder wählen Sie „Alle Fragen“ aus.</p>
             <button
               type="button"
               onClick={() => { setSearchQuery(''); setSelectedGroup('Alle'); }}
-              className="mt-4 px-4 py-2 bg-[#0F4C2E] text-white text-sm font-semibold rounded-full"
+              className="mt-4 px-4 py-2 bg-[#0F4C2E] text-white text-sm font-semibold rounded-md"
             >
               Filter zurücksetzen
             </button>
@@ -677,7 +677,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
               <div
                 key={faq.id}
                 id={faq.id}
-                className="bg-white border border-[#EDE8E0] rounded-[18px] overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/30"
+                className="bg-white border border-[#EDE8E0] rounded-md overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/30"
               >
                 {/* Header / Question Bar */}
                 <button
@@ -687,14 +687,14 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
                   aria-expanded={isOpen}
                 >
                   <div className="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3">
-                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-[#0F4C2E]/10 px-2.5 py-0.5 rounded-full w-fit">
+                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-[#0F4C2E]/10 px-2 py-0.5 rounded w-fit">
                       {faq.categoryGroup}
                     </span>
                     <h2 className="font-display text-[17px] md:text-[19px] font-bold text-[#1B211D] m-0">
                       {faq.question}
                     </h2>
                   </div>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#0F4C2E] text-white border-[#0F4C2E]' : ''}`}>
+                  <div className={`w-7 h-7 rounded-full flex items-center justify-center bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#0F4C2E] text-white border-[#0F4C2E]' : ''}`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
@@ -703,7 +703,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
                 {isOpen && (
                   <div className="px-5 md:px-6 pb-6 pt-0 border-t border-[#F3F0EA] text-[#4A544D]">
                     {/* Quick Summary Box */}
-                    <div className="mt-4 bg-[#FAF8F5] border-l-4 border-[#0F4C2E] p-4 rounded-r-xl text-[15px] font-medium text-[#1B211D] leading-relaxed">
+                    <div className="mt-4 bg-[#FAF8F5] border-l-4 border-[#0F4C2E] p-4 rounded-r-md text-[15px] font-medium text-[#1B211D] leading-relaxed">
                       {faq.quickSummary}
                     </div>
 
@@ -727,7 +727,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
                                 e.preventDefault();
                                 onSelectCategory(link.category, link.subcategory);
                               }}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FAF8F5] hover:bg-[#0F4C2E] hover:text-white border border-[#EDE8E0] text-[#0F4C2E] text-[13px] font-medium transition-all group"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FAF8F5] hover:bg-[#0F4C2E] hover:text-white border border-[#EDE8E0] text-[#0F4C2E] text-[13px] font-medium transition-all group"
                             >
                               <span>{link.label}</span>
                               <ChevronRight className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:text-white transition-colors" />
@@ -745,7 +745,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
       </div>
 
       {/* Footer Call to Action / Help Box */}
-      <div className="mt-12 bg-gradient-to-br from-[#06301C] to-[#0F4C2E] text-white rounded-[24px] p-8 text-center md:text-left md:flex justify-between items-center gap-6 shadow-xl">
+      <div className="mt-12 bg-gradient-to-br from-[#06301C] to-[#0F4C2E] text-white rounded-lg p-8 text-center md:text-left md:flex justify-between items-center gap-6 shadow-xl">
         <div>
           <h3 className="font-display text-2xl font-bold mb-2">Haben Sie ein Unternehmen in Winterberg?</h3>
           <p className="text-white/80 text-sm max-w-xl">
@@ -759,7 +759,7 @@ export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectC
             window.history.pushState(null, '', '/');
             window.location.hash = 'eintragen';
           }}
-          className="mt-4 md:mt-0 px-6 py-3 bg-[#F2761B] hover:bg-[#d96512] text-white font-bold text-sm rounded-full whitespace-nowrap transition-colors shadow-md cursor-pointer"
+          className="mt-4 md:mt-0 px-5 py-2.5 bg-[#F2761B] hover:bg-[#d96512] text-white font-bold text-sm rounded-md whitespace-nowrap transition-colors shadow-md cursor-pointer"
         >
           Unternehmen eintragen
         </button>

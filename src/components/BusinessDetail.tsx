@@ -125,7 +125,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-sm flex items-center justify-center p-6"
           >
-            <div className="max-w-md w-full bg-white p-8 border border-[#EDE8E0] rounded-[22px] flex flex-col items-center text-center shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+            <div className="max-w-md w-full bg-white p-8 border border-[#EDE8E0] rounded-lg flex flex-col items-center text-center shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
               <ShieldCheck className="w-16 h-16 text-emerald-500 mb-6" />
               <h2 className="text-2xl font-display font-bold mb-4">Sicheren Zugriff anfordern</h2>
               <p className="mb-6 opacity-80 leading-relaxed text-[#4A544D]">
@@ -136,7 +136,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 <button 
                   onClick={handleClaim}
                   disabled={isLoadingCheckout}
-                  className="w-full bg-[#F2761B] text-white border-none rounded-full py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50"
+                  className="w-full bg-[#F2761B] text-white border-none rounded-md py-3 text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50"
                 >
                   {isLoadingCheckout ? "Lade Checkout..." : "Eintrag übernehmen"}
                 </button>
@@ -146,7 +146,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 <button 
                   onClick={() => setShowClaimScreen(false)}
                   disabled={isLoadingCheckout}
-                  className="w-full bg-transparent border-none text-[#5F6B63] py-[15px] text-[15px] cursor-pointer hover:underline disabled:opacity-50"
+                  className="w-full bg-transparent border-none text-[#5F6B63] py-2.5 text-[15px] cursor-pointer hover:underline disabled:opacity-50"
                 >
                   {t("cancel")}
                 </button>
@@ -169,7 +169,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             <button 
               type="button" 
               onClick={onBack} 
-              className="bg-white/10 border border-white/20 text-white rounded-full px-4 py-2 text-[14px] cursor-pointer inline-flex items-center gap-2 hover:bg-white/20 transition-colors"
+              className="bg-white/10 border border-white/20 text-white rounded-md px-3.5 py-1.5 text-[14px] cursor-pointer inline-flex items-center gap-2 hover:bg-white/20 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Zurück
@@ -185,7 +185,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     setShowClaimScreen(true);
                   }
                 }}
-                className="bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-full px-4 py-2 text-[14px] font-semibold cursor-pointer transition-colors shadow"
+                className="bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-3.5 py-1.5 text-[14px] font-semibold cursor-pointer transition-colors shadow"
               >
                 Auf Premium upgraden
               </button>
@@ -193,18 +193,18 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           </div>
 
           <div className="flex gap-2 flex-wrap mb-[14px]">
-            <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">{business.category}</span>
+            <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{business.category}</span>
             {business.subcategory && (
-              <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">{business.subcategory}</span>
+              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{business.subcategory}</span>
             )}
             {business.isPremium && (
-              <span className="bg-[#F2761B] rounded-full px-[13px] py-[5px] text-[13px] font-semibold">Premium</span>
+              <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
             )}
             {business.isVerified && (
-              <span className="bg-white/10 rounded-full px-[13px] py-[5px] text-[13px]">Verifiziert</span>
+              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">Verifiziert</span>
             )}
             {openState && (
-              <span className={`rounded-full px-[13px] py-[5px] text-[13px] font-semibold ${openState.isOpen ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-[#FFF1E4] text-[#D65F0C]'}`}>
+              <span className={`rounded px-2.5 py-1 text-[13px] font-semibold ${openState.isOpen ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-[#FFF1E4] text-[#D65F0C]'}`}>
                 {openState.text}
               </span>
             )}
@@ -232,7 +232,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       </div>
 
       <div className="max-w-[1000px] mx-auto px-6 py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[26px] items-start">
-        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[32px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <div className="bg-white border border-[#EDE8E0] rounded-lg p-7 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
           <h2 className="font-display text-[22px] font-semibold mb-3">Über das Unternehmen</h2>
           <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{business.description}</p>
           
@@ -248,7 +248,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Bildergalerie</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 mb-[30px]">
                 {business.gallery.map((img, i) => (
-                  <img key={i} src={img} alt={`Bild ${i+1}`} className="w-full h-[120px] object-cover rounded-[14px] border border-[#EDE8E0]" />
+                  <img key={i} src={img} alt={`Bild ${i+1}`} className="w-full h-[120px] object-cover rounded-md border border-[#EDE8E0]" />
                 ))}
               </div>
             </>
@@ -259,7 +259,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Leistungen</h2>
               <div className="flex gap-2 flex-wrap mb-[30px]">
                 {business.services.map((svc, i) => (
-                  <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] rounded-full py-[8px] px-[14px] text-[14px] font-medium">{svc}</span>
+                  <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] rounded px-3 py-1.5 text-[14px] font-medium">{svc}</span>
                 ))}
               </div>
             </>
@@ -268,7 +268,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           {business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Öffnungszeiten</h2>
-              <div className="border border-[#EDE8E0] rounded-[16px] overflow-hidden mb-[30px]">
+              <div className="border border-[#EDE8E0] rounded-md overflow-hidden mb-[30px]">
                 {Object.entries(business.openingHours).map(([day, hours], i) => (
                   <div key={day} className={`flex justify-between py-3 px-4 text-[15px] border-b border-[#F3F0EA] last:border-b-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#FAF8F5]'}`}>
                     <span className="text-[#4A544D] capitalize w-24">
@@ -293,10 +293,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Offene Stellen</h2>
               <div className="grid gap-2.5 mb-[30px]">
                 {business.jobs.map(j => (
-                  <div key={j.id} className="border border-[#EDE8E0] rounded-[16px] p-4">
+                  <div key={j.id} className="border border-[#EDE8E0] rounded-md p-4">
                     <div className="flex justify-between gap-3 items-baseline">
                       <div className="font-display text-[17px] font-semibold">{j.title}</div>
-                      <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full py-1 px-[11px] text-[12px] font-semibold">{j.type}</span>
+                      <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2.5 py-0.5 text-[12px] font-semibold">{j.type}</span>
                     </div>
                     <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.55]">{j.description}</p>
                   </div>
@@ -309,7 +309,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           <div className="grid gap-3 mb-5">
             {Array.isArray(business.reviews) && business.reviews.filter(r => r.status === 'approved').length > 0 ? (
               business.reviews.filter(r => r.status === 'approved').map(r => (
-                <div key={r.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-[16px] p-4">
+                <div key={r.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-4">
                   <div className="flex justify-between gap-2.5 items-center">
                     <div className="font-semibold text-[15px]">{r.authorName}</div>
                     <div className="text-[#F2761B] text-[15px] tracking-[2px]">
@@ -333,33 +333,33 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           )}
         </div>
 
-        <aside className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
+        <aside className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
           <div className="flex justify-between items-start mb-1">
             <div className="font-display text-[18px] font-semibold mt-1">Kontakt</div>
             {business.logoUrl && (
               <img 
                 src={business.logoUrl} 
                 alt={`Logo von ${business.name}`} 
-                className="w-12 h-12 rounded-xl object-contain border border-[#EDE8E0] shadow-sm bg-white"
+                className="w-12 h-12 rounded-md object-contain border border-[#EDE8E0] shadow-sm bg-white"
               />
             )}
           </div>
           
           {business.phone && telHref && (
-            <a href={telHref} className="flex items-center gap-[11px] bg-[#F2761B] text-white rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:bg-[#D65F0C] transition-colors">
+            <a href={telHref} className="flex items-center gap-[11px] bg-[#F2761B] text-white rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D65F0C] transition-colors">
               <Phone className="w-4 h-4" />
               {business.phone}
             </a>
           )}
           
           {business.website && webHref && (
-            <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
+            <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
               <Globe className="w-4 h-4" />
               Website öffnen
             </a>
           )}
 
-          <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-[14px] py-[14px] px-[16px] text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
+          <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#FAF8F5] border border-[#E7E2DA] text-[#1B211D] rounded-md py-3 px-4 text-[15px] font-semibold hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors">
             <MapPin className="w-4 h-4" />
             Route planen
           </a>
@@ -377,7 +377,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     setShowClaimScreen(true);
                   }
                 }}
-                className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-[14px] py-[11px] text-[14px] font-semibold cursor-pointer transition-colors"
+                className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-md py-2.5 text-[14px] font-semibold cursor-pointer transition-colors"
               >
                 Profil übernehmen & upgraden
               </button>
@@ -400,19 +400,19 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   value={errorReportText}
                   onChange={(e) => setErrorReportText(e.target.value)}
                   placeholder="Was ist nicht korrekt?"
-                  className="w-full border border-[#E7E2DA] rounded-[12px] p-3 text-[13px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] min-h-[80px]"
+                  className="w-full border border-[#E7E2DA] rounded-md p-3 text-[13px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] min-h-[80px]"
                 />
                 <div className="flex gap-2">
                   <button 
                     onClick={() => { setIsReportingError(false); setErrorReportText(''); }}
-                    className="flex-1 bg-white border border-[#E7E2DA] rounded-[10px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#FAF8F5]"
+                    className="flex-1 bg-white border border-[#E7E2DA] rounded-md py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FAF8F5]"
                   >
                     Abbrechen
                   </button>
                   <button 
                     onClick={handleReportError}
                     disabled={isSubmittingReport || !errorReportText.trim()}
-                    className="flex-1 bg-[#0F4C2E] text-white border-none rounded-[10px] py-[8px] text-[13px] font-semibold cursor-pointer hover:bg-[#06301C] disabled:opacity-50"
+                    className="flex-1 bg-[#0F4C2E] text-white border-none rounded-md py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#06301C] disabled:opacity-50"
                   >
                     {isSubmittingReport ? 'Sendet...' : 'Senden'}
                   </button>
@@ -438,9 +438,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 const basePath = `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
                 const url = typeof window !== 'undefined' ? `${window.location.origin}${basePath}` : basePath;
                 window.location.href = url;
-              }} className="bg-white border border-[#EDE8E0] rounded-[20px] p-[20px] cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
+              }} className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
                 <div className="flex items-center gap-[12px]">
-                  <div className="w-[42px] h-[42px] rounded-[13px] bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[14px] shrink-0">
+                  <div className="w-[42px] h-[42px] rounded-md bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center font-display font-bold text-[14px] shrink-0">
                     {b.name.charAt(0)}
                   </div>
                   <div>

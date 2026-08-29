@@ -4,7 +4,7 @@ import { ThemeConfig } from '../types';
 export default function Impressum({ theme, activeThemeKey }: { theme: ThemeConfig, activeThemeKey: string }) {
   return (
     <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
-      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+      <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <h1 className="font-display text-[34px] font-bold mb-6">Impressum</h1>
         <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
         <p className="font-bold">Angaben gemäß § 5 TMG</p>

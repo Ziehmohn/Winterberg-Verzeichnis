@@ -117,7 +117,7 @@ export default function DirectoryMap({ businesses, onSelectBusiness }: { busines
   const [selectedBus, setSelectedBus] = useState<Business | null>(null);
 
   return (
-    <div className="w-full h-[600px] rounded-xl overflow-hidden shadow-sm border border-black/10 mt-6 relative z-0 relative">
+    <div className="w-full h-[600px] rounded-lg overflow-hidden shadow-sm border border-black/10 mt-6 relative z-0 relative">
       <MapContainer 
         center={[51.195, 8.528]} 
         zoom={12} 

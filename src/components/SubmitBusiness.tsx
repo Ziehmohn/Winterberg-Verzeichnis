@@ -126,8 +126,8 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     return (
       <main className="flex-1 w-full max-w-[720px] mx-auto px-6 py-[54px] pb-[80px]">
         <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">Unternehmen eintragen</h1>
-        <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[30px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-          <div className="bg-[#E8F1EB] rounded-[14px] p-4 text-[#0F4C2E] text-[15px]">Danke! Der Eintrag liegt jetzt zur Prüfung im Adminbereich.</div>
+        <div className="bg-white border border-[#EDE8E0] rounded-lg p-7 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+          <div className="bg-[#E8F1EB] rounded-md p-4 text-[#0F4C2E] text-[15px]">Danke! Der Eintrag liegt jetzt zur Prüfung im Adminbereich.</div>
           <button type="button" onClick={onCancel} className="mt-4 bg-transparent border-none text-[#5F6B63] text-[13.5px] cursor-pointer hover:underline">Zurück zur Startseite</button>
         </div>
       </main>
@@ -139,14 +139,14 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
       <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">Unternehmen eintragen</h1>
       <p className="text-[17px] leading-[1.65] text-[#4A544D] mb-[30px]">Kostenlos gelistet werden — oder mit <a href="/preise" target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">Premium</a> Bildergalerie, ausführliches Profil und Top-Platzierung freischalten.</p>
       
-      <form onSubmit={handleSubmit} className="bg-white border border-[#EDE8E0] rounded-[22px] p-[30px] grid gap-[18px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+      <form onSubmit={handleSubmit} className="bg-white border border-[#EDE8E0] rounded-lg p-7 grid gap-[18px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <label className="grid gap-[7px] text-[14px] font-semibold">Unternehmensname
-          <input required placeholder="z. B. Café Sonnenberg" value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+          <input required placeholder="z. B. Café Sonnenberg" value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
         </label>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
           <label className="grid gap-[7px] text-[14px] font-semibold">Kategorie
-            <select required value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value, subcategory: ''})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+            <select required value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value, subcategory: ''})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
               <option value="">Bitte wählen...</option>
               {CATEGORY_NAMES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -154,7 +154,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
           
           {formData.category && categories.find(c => c.name === formData.category)?.subcategories?.length ? (
             <label className="grid gap-[7px] text-[14px] font-semibold">Unterkategorie (Optional)
-              <select value={formData.subcategory || ''} onChange={e => setFormData({...formData, subcategory: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+              <select value={formData.subcategory || ''} onChange={e => setFormData({...formData, subcategory: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
                 <option value="">Bitte wählen...</option>
                 {categories.find(c => c.name === formData.category)?.subcategories.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
@@ -175,7 +175,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
             </div>
             
             {formData.additionalCategories?.map((ac, index) => (
-              <div key={index} className="flex flex-col md:flex-row gap-[18px] mb-3 p-3 bg-gray-50 border border-gray-100 rounded-lg relative">
+              <div key={index} className="flex flex-col md:flex-row gap-[18px] mb-3 p-3 bg-gray-50 border border-gray-100 rounded-md relative">
                 <button type="button" onClick={() => {
                   const newCats = [...(formData.additionalCategories || [])];
                   newCats.splice(index, 1);
@@ -188,7 +188,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                     const newCats = [...(formData.additionalCategories || [])];
                     newCats[index] = { category: e.target.value, subcategory: '' };
                     setFormData({...formData, additionalCategories: newCats});
-                  }} className="border border-[#E7E2DA] rounded-[8px] p-[8px_10px] text-[14px] bg-white w-full">
+                  }} className="border border-[#E7E2DA] rounded-md p-2 text-[14px] bg-white w-full">
                     <option value="">Hauptkategorie wählen...</option>
                     {CATEGORY_NAMES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -199,7 +199,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                       const newCats = [...(formData.additionalCategories || [])];
                       newCats[index] = { ...newCats[index], subcategory: e.target.value };
                       setFormData({...formData, additionalCategories: newCats});
-                    }} className="border border-[#E7E2DA] rounded-[8px] p-[8px_10px] text-[14px] bg-white w-full">
+                    }} className="border border-[#E7E2DA] rounded-md p-2 text-[14px] bg-white w-full">
                       <option value="">Unterkategorie wählen...</option>
                       {categories.find(c => c.name === ac.category)?.subcategories.map(s => <option key={s} value={s}>{s}</option>)}
                     </select>
@@ -210,7 +210,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
           </div>
 
           <label className="grid gap-[7px] text-[14px] font-semibold">Ortsteil
-            <select required value={formData.district || ''} onChange={e => setFormData({...formData, district: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
+            <select required value={formData.district || ''} onChange={e => setFormData({...formData, district: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]">
               <option value="">Bitte wählen...</option>
               {ALL_DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
             </select>
@@ -218,23 +218,23 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
         </div>
         
         <label className="grid gap-[7px] text-[14px] font-semibold">Adresse
-          <input required placeholder="Straße, PLZ Ort" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+          <input required placeholder="Straße, PLZ Ort" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
         </label>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
           <label className="grid gap-[7px] text-[14px] font-semibold">E-Mail
-            <input type="email" placeholder="mail@example.com" value={formData.email || ''} onChange={e => setFormData({...formData, email: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+            <input type="email" placeholder="mail@example.com" value={formData.email || ''} onChange={e => setFormData({...formData, email: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
           </label>
           <label className="grid gap-[7px] text-[14px] font-semibold">Telefon
-            <input placeholder="optional" value={formData.phone || ''} onChange={e => setFormData({...formData, phone: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+            <input placeholder="optional" value={formData.phone || ''} onChange={e => setFormData({...formData, phone: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
           </label>
           <label className="grid gap-[7px] text-[14px] font-semibold">Website
-            <input type="url" placeholder="https://" value={formData.website || ''} onChange={e => setFormData({...formData, website: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+            <input type="url" placeholder="https://" value={formData.website || ''} onChange={e => setFormData({...formData, website: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
           </label>
         </div>
 
         <label className="grid gap-[7px] text-[14px] font-semibold">Kurzbeschreibung
-          <textarea required rows={4} placeholder="Was macht Ihr Unternehmen besonders?" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className="border border-[#E7E2DA] rounded-[12px] p-[13px_14px] text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B] resize-y"></textarea>
+          <textarea required rows={4} placeholder="Was macht Ihr Unternehmen besonders?" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B] resize-y"></textarea>
         </label>
         
         <div className="grid gap-[7px] text-[14px] font-semibold mt-2">
@@ -242,7 +242,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
             <div 
               onClick={() => setSelectedPlan('free')}
-              className={`cursor-pointer border p-4 rounded-[12px] transition-colors ${selectedPlan === 'free' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
+              className={`cursor-pointer border p-4 rounded-md transition-colors ${selectedPlan === 'free' ? 'border-[#F2761B] bg-[#FFF1E4]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
             >
               <div className="flex justify-between items-start mb-1">
                 <div className="font-bold">Basiseintrag</div>
@@ -254,7 +254,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
             
             <div 
               onClick={() => setSelectedPlan('premium')}
-              className={`cursor-pointer border p-4 rounded-[12px] transition-colors relative ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF8F1] ring-2 ring-[#F2761B]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
+              className={`cursor-pointer border p-4 rounded-md transition-colors relative ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF8F1] ring-2 ring-[#F2761B]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
             >
               <div className="flex justify-between items-start mb-1">
                 <div className="font-bold flex items-center gap-1.5 text-[#0F4C2E]">Premium <ShieldCheck className="w-4 h-4 text-[#F2761B]" /></div>
@@ -263,18 +263,18 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
 
               {selectedPlan === 'premium' ? (
                 <div className="my-2">
-                  <div className="flex bg-white rounded-full p-0.5 border border-[#EDE8E0] mb-2 w-fit">
+                  <div className="flex bg-white rounded-md p-0.5 border border-[#EDE8E0] mb-2 w-fit">
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); setBillingCycle('monthly'); }}
-                      className={`px-2.5 py-1 text-[11px] font-medium rounded-full transition-colors ${billingCycle === 'monthly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                      className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${billingCycle === 'monthly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
                     >
                       Monatlich (12,95 €)
                     </button>
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); setBillingCycle('yearly'); }}
-                      className={`px-2.5 py-1 text-[11px] font-medium rounded-full transition-colors ${billingCycle === 'yearly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                      className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${billingCycle === 'yearly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
                     >
                       Jährlich (9,95 €/Mtl.)
                     </button>
@@ -307,10 +307,10 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
         </div>
 
         <div className="flex flex-col md:flex-row gap-[14px] mt-2">
-          <button type="submit" disabled={isSubmitting} className="flex-1 bg-[#F2761B] text-white border-none rounded-full py-[15px] text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50">
+          <button type="submit" disabled={isSubmitting} className="flex-1 bg-[#F2761B] text-white border-none rounded-md py-3 text-[16px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors disabled:opacity-50">
             {isSubmitting ? 'Wird verarbeitet...' : 'Eintrag einreichen'}
           </button>
-          <button type="button" onClick={onCancel} className="md:w-auto bg-transparent border-none text-[#5F6B63] py-[15px] px-6 text-[15px] cursor-pointer hover:underline">
+          <button type="button" onClick={onCancel} className="md:w-auto bg-transparent border-none text-[#5F6B63] py-3 px-6 text-[15px] cursor-pointer hover:underline">
             Abbrechen
           </button>
         </div>

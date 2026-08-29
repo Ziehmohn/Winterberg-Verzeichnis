@@ -53,9 +53,9 @@ export default function SkyscraperBanner({
             target="_blank"
             rel="noopener noreferrer sponsored"
             onClick={() => handleBannerClick(matchedBanner!)}
-            className="group block relative rounded-[18px] overflow-hidden border border-[#EDE8E0] shadow-sm hover:shadow-md transition-all bg-[#FAF8F5]"
+            className="group block relative rounded-md overflow-hidden border border-[#EDE8E0] shadow-sm hover:shadow-md transition-all bg-[#FAF8F5]"
           >
-            <div className="absolute top-2 left-2 z-10 bg-black/65 backdrop-blur-md text-white px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase">
+            <div className="absolute top-2 left-2 z-10 bg-black/65 backdrop-blur-md text-white px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">
               {matchedBanner.badgeText || 'Anzeige'}
             </div>
             <img
@@ -75,13 +75,10 @@ export default function SkyscraperBanner({
           <button
             type="button"
             onClick={() => onInquire(activeCategory)}
-            className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] rounded-xl py-2 px-3 text-center transition-colors cursor-pointer"
+            className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] rounded-md py-2.5 px-3 text-center transition-colors cursor-pointer"
           >
             <span className="text-xs font-semibold text-[#0F4C2E] hover:text-[#F2761B]">
               Sie möchten hier werben? Mehr erfahren!
-            </span>
-            <span className="text-[11px] text-[#5F6B63] block">
-              Pro Kategorie 24,95 € / Mo. · Ab 3 Kat. 19,95 €
             </span>
           </button>
         </div>
@@ -91,18 +88,18 @@ export default function SkyscraperBanner({
     return (
       <div 
         onClick={() => onInquire(activeCategory)}
-        className="w-full my-4 bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white rounded-[20px] p-4 text-center cursor-pointer shadow-md"
+        className="w-full my-4 bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white rounded-md p-4 text-center cursor-pointer shadow-md"
       >
-        <div className="inline-flex items-center gap-1 bg-white/15 text-white/90 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-1.5">
+        <div className="inline-flex items-center gap-1 bg-white/15 text-white/90 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-1.5">
           <Sparkles className="w-3 h-3 text-[#F2761B]" /> Werbeplatz frei
         </div>
         <div className="font-display font-bold text-[15px] text-white mb-1">
           Skyscraper-Banner in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
         </div>
-        <div className="text-xs text-white/80 mb-2">
-          24,95 € / Mo. pro Kategorie (Ab 3 Kat. 19,95 € · Ab 5 Kat. 14,95 €)
-        </div>
-        <div className="bg-[#F2761B] text-white text-xs font-bold py-2 px-4 rounded-xl inline-flex items-center gap-1.5 shadow-sm">
+        <p className="text-xs text-white/80 mb-3">
+          Erreichen Sie gezielt lokale Kundschaft mit aufmerksamkeitsstarker Bannerwerbung.
+        </p>
+        <div className="bg-[#F2761B] text-white text-xs font-bold py-2 px-4 rounded-md inline-flex items-center gap-1.5 shadow-sm">
           Sie möchten hier werben? Mehr erfahren!
         </div>
       </div>
@@ -120,11 +117,11 @@ export default function SkyscraperBanner({
             target="_blank"
             rel="noopener noreferrer sponsored"
             onClick={() => handleBannerClick(matchedBanner!)}
-            className="group block relative overflow-hidden rounded-[18px] border border-[#EDE8E0] shadow-[0_6px_24px_rgba(27,33,29,0.08)] hover:shadow-[0_12px_34px_rgba(27,33,29,0.16)] transition-all bg-[#FAF8F5]"
+            className="group block relative overflow-hidden rounded-md border border-[#EDE8E0] shadow-[0_6px_24px_rgba(27,33,29,0.08)] hover:shadow-[0_12px_34px_rgba(27,33,29,0.16)] transition-all bg-[#FAF8F5]"
             title={matchedBanner.title}
           >
             {/* Overlay Badge */}
-            <div className="absolute top-2.5 left-2.5 z-10 bg-black/65 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">
+            <div className="absolute top-2.5 left-2.5 z-10 bg-black/65 backdrop-blur-md text-white px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase shadow-sm">
               {matchedBanner.badgeText || 'Anzeige'}
             </div>
 
@@ -155,13 +152,10 @@ export default function SkyscraperBanner({
           <button
             type="button"
             onClick={() => onInquire(activeCategory)}
-            className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] hover:border-[#0F4C2E]/40 rounded-[16px] p-3 text-center transition-all group shadow-sm cursor-pointer"
+            className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] hover:border-[#0F4C2E]/40 rounded-md p-3 text-center transition-all group shadow-sm cursor-pointer"
           >
-            <div className="text-[12.5px] font-bold text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-tight">
+            <div className="text-[13px] font-bold text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-tight">
               Sie möchten hier werben? Mehr erfahren!
-            </div>
-            <div className="text-[11px] text-[#D65F0C] font-semibold mt-1">
-              24,95 € / Mo. · Ab 3 Kat. 19,95 €
             </div>
           </button>
         </div>
@@ -169,13 +163,13 @@ export default function SkyscraperBanner({
         /* Standalone Empty Slot Skyscraper Banner */
         <div 
           onClick={() => onInquire(activeCategory)}
-          className="w-full rounded-[20px] bg-gradient-to-b from-[#0F4C2E] to-[#06301C] text-white p-5 text-center shadow-[0_8px_30px_rgba(15,76,46,0.15)] border border-[#0F4C2E] flex flex-col justify-between min-h-[460px] cursor-pointer hover:shadow-[0_12px_36px_rgba(15,76,46,0.25)] hover:scale-[1.01] transition-all relative overflow-hidden group"
+          className="w-full rounded-md bg-gradient-to-b from-[#0F4C2E] to-[#06301C] text-white p-5 text-center shadow-[0_8px_30px_rgba(15,76,46,0.15)] border border-[#0F4C2E] flex flex-col justify-between min-h-[440px] cursor-pointer hover:shadow-[0_12px_36px_rgba(15,76,46,0.25)] hover:scale-[1.01] transition-all relative overflow-hidden group"
         >
           {/* Decorative background shape */}
           <div className="absolute top-0 right-0 w-36 h-36 bg-white/5 rounded-full blur-2xl -mr-12 -mt-12 pointer-events-none" />
           
           <div>
-            <div className="inline-flex items-center gap-1 bg-white/15 text-white/90 border border-white/20 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-3.5">
+            <div className="inline-flex items-center gap-1 bg-white/15 text-white/90 border border-white/20 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider mb-3.5">
               <Sparkles className="w-3 h-3 text-[#F2761B]" /> Werbeplatz frei
             </div>
 
@@ -183,36 +177,30 @@ export default function SkyscraperBanner({
               Skyscraper-Banner in „{activeCategory === 'Alle' ? 'Winterberg' : activeCategory}“
             </h3>
 
-            <p className="text-[12px] text-white/80 leading-relaxed mb-4">
+            <p className="text-[12.5px] text-white/80 leading-relaxed mb-4">
               Präsentieren Sie Ihr Angebot exklusiv und aufmerksamkeitsstark am rechten Rand.
             </p>
 
-            {/* Pricing info card */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-[14px] p-3 border border-white/15 text-left mb-4">
-              <div className="text-[11px] text-white/70">Pro Kategorie im Monat:</div>
-              <div className="text-[21px] font-bold text-[#F2761B]">
-                24,95 € <span className="text-[11px] text-white/70 font-normal">netto / Mo.</span>
+            {/* Feature list */}
+            <div className="space-y-2.5 text-left text-[12px] text-white/90 bg-white/10 backdrop-blur-sm rounded-md p-3.5 border border-white/15">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F2761B]" />
+                Feste Platzierung am rechten Rand
               </div>
-              <div className="text-[11px] text-emerald-300 font-medium mt-1.5 pt-1.5 border-t border-white/10">
-                Staffelpreise:
-                <div className="flex justify-between mt-0.5 text-[10.5px]">
-                  <span>Ab 3 Kategorien:</span>
-                  <span className="font-bold text-white">19,95 €</span>
-                </div>
-                <div className="flex justify-between text-[10.5px]">
-                  <span>Ab 5 Kategorien:</span>
-                  <span className="font-bold text-white">14,95 €</span>
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F2761B]" />
+                Scrollt beim Lesen kontinuierlich mit
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F2761B]" />
+                Inkl. Logo, Text &amp; Direktverlinkung
               </div>
             </div>
           </div>
 
           <div>
-            <div className="w-full bg-[#F2761B] group-hover:bg-[#D65F0C] text-white font-bold py-2.5 px-3 rounded-xl text-[12.5px] transition-all shadow-md flex items-center justify-center gap-1.5">
+            <div className="w-full bg-[#F2761B] group-hover:bg-[#D65F0C] text-white font-bold py-2.5 px-3 rounded-md text-[12.5px] transition-all shadow-md flex items-center justify-center gap-1.5">
               Sie möchten hier werben? Mehr erfahren!
-            </div>
-            <div className="text-[10.5px] text-white/65 mt-2">
-              14 Tage Kündigungsfrist · Sofort buchbar
             </div>
           </div>
         </div>

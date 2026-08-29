@@ -10,7 +10,7 @@ interface AGBProps {
 export default function AGB({ theme, activeThemeKey }: AGBProps) {
   return (
     <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
-      <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+      <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <button 
           onClick={() => {
             window.history.pushState(null, '', '/');
@@ -80,15 +80,15 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
         <section>
           <h2 className="text-xl font-bold mb-3">5. Bannerwerbung und Skyscraper-Anzeigen</h2>
           <p>
-            5.1. Der Anbieter bietet Kunden die Möglichkeit, Skyscraper-Werbebanner in ausgewählten Branchenkategorien oder verzeichnisweit auf dem Portal zu schalten.
+            5.1. Der Anbieter bietet Kunden die Möglichkeit, Skyscraper-Werbebanner in ausgewählten Branchenkategorien (sowohl Oberkategorien als auch spezifische Unterkategorien) oder verzeichnisweit auf dem Portal zu schalten.
           </p>
           <p className="mt-2">
-            5.2. <strong>Preise &amp; Mengenstaffel für Bannerwerbung:</strong>
+            5.2. <strong>Preise &amp; Mengenstaffel für Bannerwerbung (gilt für Ober- und Unterkategorien):</strong>
           </p>
           <ul className="list-disc pl-5 mt-1 space-y-1 text-sm">
-            <li>1 bis 2 Kategorien: <strong>24,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
-            <li>Ab 3 Kategorien: <strong>19,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
-            <li>Ab 5 Kategorien: <strong>14,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>1 bis 2 Kategorien / Unterkategorien: <strong>24,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>Ab 3 Kategorien / Unterkategorien: <strong>19,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>Ab 5 Kategorien / Unterkategorien: <strong>14,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
           </ul>
           <p className="mt-2">
             5.3. <strong>Laufzeit und Kündigung:</strong> Verträge über Bannerwerbung verlängern sich automatisch um jeweils einen weiteren Monat. Die Kündigungsfrist beträgt wie beim Premium-Account <strong>14 Tage zum Ende des jeweiligen monatlichen Abrechnungszeitraums</strong>.

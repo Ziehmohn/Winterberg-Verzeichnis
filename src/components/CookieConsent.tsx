@@ -135,11 +135,11 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
       {/* Backdrop & Banner */}
       {showBanner && (
         <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-          <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-10 sm:zoom-in-95 duration-300 relative">
+          <div className="bg-white w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden animate-in slide-in-from-bottom-10 sm:zoom-in-95 duration-300 relative">
             {!showSettings ? (
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 bg-orange-100 rounded-md flex items-center justify-center shrink-0">
                     <Shield className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
                   </div>
                   <h2 className="text-2xl font-bold font-display">Datenschutz & Cookies</h2>
@@ -149,10 +149,10 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <button onClick={handleAcceptAll} className="flex-1 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors shadow-md">
+                  <button onClick={handleAcceptAll} className="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-md transition-colors shadow-md">
                     Alle akzeptieren
                   </button>
-                  <button onClick={handleAcceptEssential} className="flex-1 px-6 py-3.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-xl transition-colors border border-gray-200">
+                  <button onClick={handleAcceptEssential} className="flex-1 px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-md transition-colors border border-gray-200">
                     Nur essenzielle
                   </button>
                 </div>
@@ -166,16 +166,16 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
               <div className="flex flex-col max-h-[85vh]">
                 <div className="p-5 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white z-10">
                   <h2 className="text-xl font-bold">Cookie-Einstellungen</h2>
-                  <button onClick={() => setShowSettings(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
+                  <button onClick={() => setShowSettings(false)} className="p-2 hover:bg-gray-100 rounded transition-colors text-gray-500">
                     <X className="w-5 h-5" />
                   </button>
                 </div>
                 
                 <div className="p-6 overflow-y-auto flex-1 space-y-4">
                   {/* Essential */}
-                  <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                  <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-md border border-gray-200">
                     <div className="mt-1">
-                      <input type="checkbox" checked disabled className="w-5 h-5 accent-orange-500 cursor-not-allowed" />
+                      <input type="checkbox" checked disabled className="w-5 h-5 accent-orange-500 cursor-not-allowed rounded" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900">Essenziell (Immer aktiv)</h3>
@@ -184,9 +184,9 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                   </div>
 
                   {/* Analytics */}
-                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, analytics: !settings.analytics})}>
+                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, analytics: !settings.analytics})}>
                     <div className="mt-1">
-                      <input type="checkbox" checked={settings.analytics} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none" />
+                      <input type="checkbox" checked={settings.analytics} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none rounded" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900">Statistiken (Google Analytics)</h3>
@@ -195,9 +195,9 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                   </div>
 
                   {/* Marketing */}
-                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, marketing: !settings.marketing})}>
+                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, marketing: !settings.marketing})}>
                     <div className="mt-1">
-                      <input type="checkbox" checked={settings.marketing} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none" />
+                      <input type="checkbox" checked={settings.marketing} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none rounded" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900">Marketing</h3>
@@ -206,9 +206,9 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                   </div>
 
                   {/* External Media */}
-                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, externalMedia: !settings.externalMedia})}>
+                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, externalMedia: !settings.externalMedia})}>
                     <div className="mt-1">
-                      <input type="checkbox" checked={settings.externalMedia} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none" />
+                      <input type="checkbox" checked={settings.externalMedia} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none rounded" />
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900">Externe Medien</h3>
@@ -218,7 +218,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
                 </div>
 
                 <div className="p-6 border-t border-gray-100 bg-white sticky bottom-0 z-10">
-                  <button onClick={handleSaveSettings} className="w-full py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors shadow-md">
+                  <button onClick={handleSaveSettings} className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-md transition-colors shadow-md">
                     Auswahl speichern
                   </button>
                 </div>
