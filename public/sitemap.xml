@@ -79,6 +79,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/Handwerk/B%C3%A4ckerei</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/Handwerk/Heizungstechnik</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -110,6 +116,12 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/Einzelhandel/Supermarkt</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/Einzelhandel/Tankstellen</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
