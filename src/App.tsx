@@ -17,6 +17,8 @@ import { MegaMenu } from './components/MegaMenu';
 import SkyscraperBanner from './components/SkyscraperBanner';
 import AdInquiryModal from './components/AdInquiryModal';
 import AdminAdsManager from './components/AdminAdsManager';
+import ReviewWidget, { WidgetLayout, WidgetTheme } from './components/ReviewWidget';
+import WidgetGeneratorModal from './components/WidgetGeneratorModal';
 
 const initialAds: AdBanner[] = [
   {
@@ -151,6 +153,11 @@ export default function App() {
   let initialAGBMode = false;
   let initialPricingMode = false;
   let initialSubmitMode = false;
+  let initialEmbedMode = false;
+  let initialEmbedBusinessId = '';
+  let initialEmbedLayout: WidgetLayout = 'badge';
+  let initialEmbedTheme: WidgetTheme = 'light';
+  let initialEmbedWhitelabel = false;
 
   if (typeof window !== 'undefined') {
     const path = window.location.pathname;
@@ -159,7 +166,27 @@ export default function App() {
     
     if (pathParts[0]) {
       const decodedPart1 = decodeURIComponent(pathParts[0]);
-      if (decodedPart1.toLowerCase() === 'news') {
+      if (decodedPart1.toLowerCase() === 'embed' || decodedPart1.toLowerCase() === 'widget') {
+        initialEmbedMode = true;
+        let busId = '';
+        if (pathParts[1] && (pathParts[1].toLowerCase() === 'reviews' || pathParts[1].toLowerCase() === 'badge')) {
+          busId = decodeURIComponent(pathParts[2] || '');
+        } else if (pathParts[1]) {
+          busId = decodeURIComponent(pathParts[1]);
+        }
+        initialEmbedBusinessId = busId;
+
+        const params = new URLSearchParams(window.location.search);
+        const l = params.get('layout');
+        if (l === 'card' || l === 'carousel' || l === 'simple_badge' || l === 'badge') {
+          initialEmbedLayout = l;
+        }
+        const th = params.get('theme');
+        if (th === 'dark' || th === 'brand' || th === 'transparent' || th === 'light') {
+          initialEmbedTheme = th;
+        }
+        initialEmbedWhitelabel = params.get('whitelabel') === '1' || params.get('whitelabel') === 'true';
+      } else if (decodedPart1.toLowerCase() === 'news') {
         initialNewsMode = true;
         if (pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen') {
           initialNewsSubmitMode = true;
@@ -420,6 +447,11 @@ export default function App() {
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
+  const [isEmbedMode] = useState(initialEmbedMode);
+  const [embedBusinessId] = useState(initialEmbedBusinessId);
+  const [embedLayout] = useState<WidgetLayout>(initialEmbedLayout);
+  const [embedTheme] = useState<WidgetTheme>(initialEmbedTheme);
+  const [embedWhitelabel] = useState<boolean>(initialEmbedWhitelabel);
   const [isLoading, setIsLoading] = useState(false);
   const [ads, setAds] = useState<AdBanner[]>(initialAds);
   const [isAdInquiryOpen, setIsAdInquiryOpen] = useState(false);
@@ -722,6 +754,19 @@ export default function App() {
   };
 
   const categoryBadges = getCategoryBadges();
+
+  if (isEmbedMode) {
+    return (
+      <div className="w-full min-h-screen bg-transparent flex items-center justify-center p-2">
+        <ReviewWidget
+          businessId={embedBusinessId}
+          layout={embedLayout}
+          theme={embedTheme}
+          whitelabel={embedWhitelabel}
+        />
+      </div>
+    );
+  }
 
   if (isNotFound) {
     return (
@@ -2273,8 +2318,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'design' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
+  const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
+  const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
   const [activeAdminLocation, setActiveAdminLocation] = useState<string>('Alle');
@@ -2388,6 +2435,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       <div className="flex gap-[6px] flex-wrap mb-[24px] bg-white border border-[#EDE8E0] rounded-md p-1.5">
         {[
           { id: 'entries', label: 'Einträge' },
+          { id: 'widgets', label: '⚡ Widget & Siegel' },
           { id: 'reviews', label: 'Bewertungen' },
           { id: 'abrechnung', label: 'Abrechnung' },
           ...(isAdmin ? [
@@ -2511,17 +2559,24 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                         </button>
                       )}
                       <button 
+                        onClick={() => { setGeneratorBusiness(bus); setIsGeneratorOpen(true); }}
+                        className="bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] border-none rounded-md px-3.5 py-2 text-[13.5px] font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5"
+                        title="Trust-Siegel & Bewertungs-Widget konfigurieren"
+                      >
+                        <span>⚡ Widget</span>
+                      </button>
+                      <button 
                         onClick={() => { setEditingBusiness(bus); setView('edit'); }}
-                    className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
-                  >
-                    Bearbeiten
-                  </button>
-                  <button 
-                    onClick={() => handleDelete(bus.id)}
-                    className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
-                  >
-                    Löschen
-                  </button>
+                        className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
+                      >
+                        Bearbeiten
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(bus.id)}
+                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
+                      >
+                        Löschen
+                      </button>
                 </div>
               </div>
             </React.Fragment>
@@ -2535,6 +2590,67 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           </div>
         </div>
         
+        ) : activeTab === 'widgets' ? (
+          <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+            <div className="flex justify-between items-start flex-wrap gap-4 mb-6">
+              <div>
+                <h2 className="font-display text-[21px] font-bold m-0 mb-1">Bewertungs- & Trust-Siegel für Ihre Website</h2>
+                <p className="text-[14.5px] text-[#4A544D] max-w-[65ch]">
+                  Binden Sie Ihr offizielles Winterberg-Verzeichnis Siegel oder interaktives Bewertungs-Widget direkt auf Ihrer Firmenwebsite ein. 
+                  Das Siegel stärkt das Vertrauen lokaler Kunden und signalisiert geprüfte Qualität.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              {allowedBusinesses.map((bus: Business) => {
+                const revCount = (bus.reviews || []).filter(r => r.status === 'approved').length;
+                const avg = revCount > 0 
+                  ? ((bus.reviews || []).filter(r => r.status === 'approved').reduce((a, b) => a + (Number(b.rating) || 5), 0) / revCount).toFixed(1)
+                  : '5.0';
+
+                return (
+                  <div key={bus.id} className="border border-[#EDE8E0] rounded-xl p-5 bg-[#FAF8F5] flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-[#0F4C2E]/40 transition-all">
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                        <span className="font-bold text-[17px] text-[#1B211D]">{bus.name}</span>
+                        {bus.isPremium ? (
+                          <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-2.5 py-0.5 text-[11px] font-bold">
+                            PREMIUM WHITE-LABEL
+                          </span>
+                        ) : (
+                          <span className="bg-emerald-100 text-[#0F4C2E] rounded-full px-2.5 py-0.5 text-[11px] font-bold">
+                            BASIS-SIEGEL (KOSTENLOS)
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[13.5px] text-[#5F6B63] flex items-center gap-3">
+                        <span>{bus.category} {bus.district ? `· ${bus.district}` : ''}</span>
+                        <span>·</span>
+                        <span className="text-[#F2761B] font-bold">{avg} ★ ({revCount} Bewertungen)</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => { setGeneratorBusiness(bus); setIsGeneratorOpen(true); }}
+                        className="bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-md px-4 py-2.5 text-[14px] font-semibold cursor-pointer transition-colors shadow-sm inline-flex items-center gap-2"
+                      >
+                        <span>⚡ Widget & Code konfigurieren</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {allowedBusinesses.length === 0 && (
+                <div className="border border-dashed border-[#D8D2C8] rounded-md p-8 text-center text-[#8A928B]">
+                  Keine Unternehmen zugeordnet.
+                </div>
+              )}
+            </div>
+          </div>
+
         ) : activeTab === 'news' ? (
           <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
         ) : activeTab === 'reviews' ? (
@@ -2664,6 +2780,18 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <ScriptManager theme={theme} activeThemeKey={activeThemeKey} />
         ) : (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
+        )}
+
+        {generatorBusiness && (
+          <WidgetGeneratorModal
+            business={generatorBusiness}
+            isOpen={isGeneratorOpen}
+            onClose={() => setIsGeneratorOpen(false)}
+            onUpgrade={() => {
+              setIsGeneratorOpen(false);
+              window.open('/preise', '_blank');
+            }}
+          />
         )}
       </main>
   );

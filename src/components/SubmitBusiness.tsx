@@ -249,7 +249,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                 {selectedPlan === 'free' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
               <div className="font-bold text-[18px] mb-2">0,00 € <span className="text-[12px] font-normal text-[#5F6B63]">dauerhaft</span></div>
-              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, Kurzbeschreibung.</div>
+              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, kostenloses Trust-Siegel für Ihre Website.</div>
             </div>
             
             <div 
@@ -288,7 +288,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                 <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab 9,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat</span></div>
               )}
               
-              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, Top-Platzierung.</div>
+              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, White-Label Bewertungs-Widget, Top-Platzierung.</div>
             </div>
           </div>
         </div>

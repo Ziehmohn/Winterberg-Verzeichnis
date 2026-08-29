@@ -203,7 +203,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "backToStart": "Zurück zur Startseite",
     "showAllJobs": "Alle Stellen anzeigen",
     "projectBy": "Ein Projekt von",
-    "titleSubtitle": "Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und Umgebung."
+    "titleSubtitle": "Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und Umgebung.",
+    "reviewWidget": "Bewertungs-Widget",
+    "trustBadge": "Trust-Siegel für eigene Website",
+    "embedWidget": "Siegel einbinden",
+    "widgetGenerator": "Widget-Generator"
   },
   nl: {
     "searchPlaceholder": "Zoek naar namen, aanbiedingen of trefwoorden...",
@@ -406,6 +410,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     "showAllJobs": "Alle vacatures bekijken",
     "projectBy": "Een project van",
     "titleSubtitle": "De grote gids voor alle bedrijven, vakmensen en dienstverleners in Winterberg en omgeving.",
+    "reviewWidget": "Beoordelingswidget",
+    "trustBadge": "Vertrouwenszegel voor eigen website",
+    "embedWidget": "Widget insluiten",
+    "widgetGenerator": "Widget Generator"
   }
 };
 

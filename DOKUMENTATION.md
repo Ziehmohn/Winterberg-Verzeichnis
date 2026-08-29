@@ -97,4 +97,21 @@ Die App kann problemlos als Static-Site oder via Node.js Server deployt werden (
 - **Datenstruktur anpassen:** Wenn Felder für Unternehmen hinzukommen (z.B. Social-Media-Links), muss das Interface `Business` in `src/types.ts` erweitert und die Firestore-Regeln ggf. beachtet werden.
 
 ---
-*Erstellt durch AI Studio / Gemini im Rahmen der Projektentwicklung.*
+
+## 9. Bewertungs- & Trust-Siegel (Freemium + Backlink-Strategie)
+Unternehmen können ihr offizielles Trust-Siegel oder interaktives Bewertungs-Widget direkt auf der eigenen Webseite einbinden:
+
+### Strategie & Differenzierung:
+- **Basis-Einträge (Kostenlos):** Erhalten ein kostenloses Trust-Siegel mit festem Verweis und Backlink zu *winterberg-verzeichnis.de*. Dies sorgt für eine virale Generierung wertvoller lokaler Backlinks.
+- **Premium-Einträge:** Erhalten vollen Zugriff auf alle Layouts (inkl. Kundenstimmen-Slider und Detailkarte) sowie die **White-Label-Option** (Verweis auf das Portal optional entfernbar).
+
+### Endpunkte & Integration:
+- **Standalone Widget Route:** `/embed/reviews/:businessId` (oder `/widget/reviews/:businessId`)
+- **URL-Parameter:**
+  - `layout`: `badge` (Standard-Siegel), `card` (Bewertungskarte mit Zitat), `carousel` (Kundenstimmen-Slider), `simple_badge` (Mini-Siegel)
+  - `theme`: `light` (Hell), `dark` (Dunkel), `brand` (Winterberg Waldgrün), `transparent` (Minimal)
+  - `whitelabel`: `1` (nur aktivierbar, wenn `isPremium = true`)
+- **Universelles Helper-Skript (`public/widget.js`):** Unterstützt Auto-Resizing des iFrames via `postMessage` und funktioniert in WordPress, Jimdo, Wix, Squarespace, Webflow & statischem HTML.
+
+---
+*Erstellt im Rahmen der Projektentwicklung für das Winterberger Unternehmens-Verzeichnis.*

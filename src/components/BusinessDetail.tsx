@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star } from 'lucide-react';
 import { Business, ThemeConfig, Review } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import ReviewForm from './ReviewForm';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
+import WidgetGeneratorModal from './WidgetGeneratorModal';
 
 interface BusinessDetailProps {
   business: Business;
@@ -24,6 +25,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const { currentUser: user } = useAuth();
   const [showClaimScreen, setShowClaimScreen] = useState(false);
   const [showLoginScreen, setShowLoginScreen] = useState(false);
+  const [showWidgetModal, setShowWidgetModal] = useState(false);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
   
   const [isReportingError, setIsReportingError] = useState(false);
@@ -374,6 +376,16 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             Route planen
           </a>
 
+          <button 
+            type="button" 
+            onClick={() => setShowWidgetModal(true)} 
+            className="flex items-center justify-center gap-2 bg-[#FAF8F5] border border-[#EDE8E0] hover:border-[#0F4C2E] hover:bg-[#E8F1EB]/40 text-[#0F4C2E] rounded-md py-2.5 px-4 text-[14px] font-semibold transition-all shadow-xs cursor-pointer"
+            title="Trust-Siegel & Bewertungs-Widget für die eigene Website konfigurieren"
+          >
+            <Star className="w-4 h-4 text-[#F2761B]" />
+            <span>Siegel für eigene Website</span>
+          </button>
+
           {!business.isPremium && (
             <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
               <div className="font-semibold text-[15px] mb-1">Ist das Ihr Unternehmen?</div>
@@ -499,6 +511,20 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         } catch(e) {}
         return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />;
       })()}
+
+      <WidgetGeneratorModal
+        business={business}
+        isOpen={showWidgetModal}
+        onClose={() => setShowWidgetModal(false)}
+        onUpgrade={() => {
+          setShowWidgetModal(false);
+          if (!user) {
+            setShowLoginScreen(true);
+          } else {
+            setShowClaimScreen(true);
+          }
+        }}
+      />
     </main>
   );
 }

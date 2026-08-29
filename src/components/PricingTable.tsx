@@ -23,6 +23,7 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
     { name: t("shortDescription"), free: true, premium: true },
     { name: t("contactDetails"), free: true, premium: true },
     { name: t("websiteLink"), free: true, premium: true },
+    { name: 'Kostenloses Trust-Siegel für eigene Website (mit Verlinkung)', free: true, premium: true },
     { name: t("openingHours"), free: false, premium: true },
     { name: t("detailedDesc"), free: false, premium: true },
     { name: t("logoGallery"), free: false, premium: true },
@@ -33,12 +34,14 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
     { name: t("editAnytime"), free: false, premium: true },
     { name: 'Stellenanzeigen veröffentlichen', free: false, premium: true },
     { name: 'Kundenbewertungen kommentieren', free: false, premium: true },
+    { name: 'White-Label Widget (Verweis/Logo optional entfernbar)', free: false, premium: true },
+    { name: 'Erweiterte Widget-Layouts (Kundenstimmen-Slider & Karte)', free: false, premium: true },
   ];
   return (
     <main className="flex-1 w-full max-w-[1000px] mx-auto px-6 py-[54px] pb-[80px]">
       <h1 className="font-display text-[clamp(32px,5vw,50px)] font-bold mb-3">Preise</h1>
       <p className="text-[17px] leading-[1.65] text-[#4A544D] max-w-[60ch] mb-8">
-        Der Basiseintrag ist dauerhaft kostenlos. Premium schaltet Öffnungszeiten, Galerie, ausführliches Profil, Stellenanzeigen und die Top-Platzierung frei.
+        Der Basiseintrag ist dauerhaft kostenlos. Premium schaltet Öffnungszeiten, Galerie, ausführliches Profil, Stellenanzeigen, White-Label Bewertungs-Widgets und die Top-Platzierung frei.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
@@ -53,6 +56,7 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Kurzbeschreibung</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Kontaktdaten</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Website-Link</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Kostenloses Trust-Siegel (mit Verlinkung)</div>
           </div>
           
           {!hideAction && (
@@ -114,6 +118,8 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Premium-Badge & Priorität in der Suche</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Stellenanzeigen veröffentlichen</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Bewertungen kommentieren</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> White-Label Bewertungs-Widget (Portal-Link entfernbar)</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Kundenstimmen-Slider & Detailkarten</div>
           </div>
           
           {!hideAction && (

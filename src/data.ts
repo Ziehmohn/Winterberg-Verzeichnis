@@ -1993,6 +1993,128 @@ export const businesses: Business[] = [
       saturday: '14:00 - 01:00',
       sunday: '14:00 - 22:00'
     }
+  },
+  {
+    id: 'landhotel-gasthof-zur-post',
+    name: 'Landhotel Gasthof zur Post',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Hotels',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    description: 'Traditionsreiches, gemütliches Landhotel und Gasthof in Winterberg-Langewiese. Sauerländische Gastlichkeit, komfortable Zimmer und idealer Ausgangspunkt für Wanderer (Rothaarsteig) und Wintersportler.',
+    address: 'Bundesstraße 20, 59955 Winterberg-Langewiese',
+    district: 'Langewiese',
+    phone: '02758 98430',
+    services: ['Hotelzimmer', 'Gasthof & Restaurant', 'Wanderfreundlich (Rothaarsteig)', 'Parkplätze', 'Sonnenterrasse'],
+    imageFallback: 'LP',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'landgasthof-gilsbach',
+    name: 'Landgasthof Gilsbach',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Hotels',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    description: 'Familiengeführter 3-Sterne-Landgasthof in Winterberg-Langewiese mit gemütlichen Zimmern, regionaler Sauerländer Frischeküche, herrlicher Aussicht und direktem Einstieg in Wanderwege und Loipen.',
+    address: 'Bundesstraße 25, 59955 Winterberg-Langewiese',
+    district: 'Langewiese',
+    phone: '02758 98420',
+    website: 'https://www.landgasthof-gilsbach.de',
+    services: ['3-Sterne-Hotel', 'Sauerländer Restaurant', 'Garten & Liegewiese', 'Wander- & Skigebiet-Nähe', 'WLAN & Parkplätze'],
+    imageFallback: 'LG',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'haus-berchstein',
+    name: 'Haus BerchStein',
+    category: 'Hotels und Unterkünfte',
+    subcategory: 'Ferienhäuser',
+    description: 'Großes, modernes Gruppen-Ferienhaus in Winterberg-Langewiese für bis zu 25 Personen mit 11 Schlafzimmern, 8 Bädern, großem Gemeinschaftsbereich, Garten und Panoramablick – ideal für Familien, Freundesgruppen und Seminare.',
+    address: 'Grenzweg 8, 59955 Winterberg-Langewiese',
+    district: 'Langewiese',
+    phone: '0151 64688589',
+    email: 'info@hausberchstein.de',
+    website: 'https://hausberchstein.de',
+    services: ['Gruppenhaus bis 25 Personen', '11 Schlafzimmer & 8 Bäder', 'Voll ausgestattete Küche', 'Garten & Grillbereich', 'WLAN inklusive'],
+    imageFallback: 'HB',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'friseursalon-farbspiel-langewiese',
+    name: 'Friseursalon Farbspiel Inh. Sabrina Gerke',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Moderner Friseursalon in Langewiese. Professionelle Schnitttechniken, Farbveredelungen, Balayage, Dauerwellen, Flecht- und Hochsteckfrisuren sowie Augenbrauen- und Wimpernpflege.',
+    address: 'Bundesstraße 28, 59955 Winterberg-Langewiese',
+    district: 'Langewiese',
+    phone: '02758 2013023',
+    website: 'https://ix.shore.com/bookings/salon-farbspiel-langewiese/locations',
+    services: ['Damen-, Herren- & Kinderschnitte', 'Balayage & Strähnen', 'Haarfärbung & Tönung', 'Dauerwellen', 'Augenbrauen zupfen / färben'],
+    imageFallback: 'FS',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      tuesday: '08:00 - 18:00',
+      wednesday: '08:00 - 18:00',
+      thursday: '08:00 - 18:00',
+      friday: '08:00 - 18:00',
+      saturday: '08:00 - 13:00',
+      sunday: 'Geschlossen',
+      monday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'salon-farbspiel-siedlinghausen',
+    name: 'Salon Farbspiel Inh. Sabrina Gerke',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Ihr Wohlfühl-Friseursalon in Winterberg-Siedlinghausen für typgerechte Haarschnitte, brillante Colorationen, Styling und Haarpflege in entspannter Atmosphäre.',
+    address: 'Im Schling 20, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 970610',
+    services: ['Haarschnitte & Styling', 'Farb- & Strähnentechniken', 'Individuelle Typberatung', 'Haarpflege & Kuren'],
+    imageFallback: 'SF',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      tuesday: '09:00 - 18:00',
+      wednesday: '09:00 - 18:00',
+      thursday: '09:00 - 18:00',
+      friday: '09:00 - 18:00',
+      saturday: '08:00 - 13:00',
+      sunday: 'Geschlossen',
+      monday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'standpunkt-verlag',
+    name: 'Standpunkt-Verlag GmbH',
+    category: 'Dienstleistungen',
+    subcategory: 'Marketingdienstleistungen',
+    description: 'Regionaler Verlag und Medienagentur in Winterberg-Siedlinghausen. Herausgeber von hochwertigen Regional- und Lifestylemagazinen (u. a. Woll-Magazin, Heimatliebe), Printmedien, Redaktion und Marketingdienstleistungen.',
+    address: 'Hochsauerlandstraße 13, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 979960',
+    website: 'https://www.standpunktverlag.de',
+    services: ['Verlagswesen & Print', 'Regionalmagazine', 'Redaktion & Content', 'Werbeanzeigen & Marketing', 'Grafikdesign & Layout'],
+    imageFallback: 'SV',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 17:00',
+      tuesday: '08:00 - 17:00',
+      wednesday: '08:00 - 17:00',
+      thursday: '08:00 - 17:00',
+      friday: '08:00 - 14:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
