@@ -21,6 +21,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     email: '',
     status: 'pending'
   });
+  const [servicesInput, setServicesInput] = useState('');
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'premium'>('free');
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,10 +52,16 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     e.preventDefault();
     setIsSubmitting(true);
     
+    const parsedServices = servicesInput
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+
     const newId = 'b_' + Date.now().toString(36);
     const dataToSubmit = {
       ...formData,
       id: newId,
+      services: parsedServices.length > 0 ? parsedServices : (formData.services || []),
       ownerId: user?.uid || null,
       ownerEmail: user?.email || null,
       isPremium: selectedPlan === 'premium'
@@ -235,6 +242,20 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
 
         <label className="grid gap-[7px] text-[14px] font-semibold">Kurzbeschreibung
           <textarea required rows={4} placeholder="Was macht Ihr Unternehmen besonders?" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B] resize-y"></textarea>
+        </label>
+
+        <label className="grid gap-[7px] text-[14px] font-semibold">
+          Dienstleistungen & Produkte (für die Volltextsuche)
+          <span className="text-[12.5px] font-normal text-[#5F6B63]">
+            Geben Sie hier konkrete Angebote ein (z. B. <em>Schuhe, Ski-Verleih, Frühstück, Reparatur, Dacharbeiten</em>), damit Kunden Sie bei der Suche nach Produkten und Dienstleistungen sofort finden. Kommagetrennt.
+          </span>
+          <input 
+            type="text" 
+            placeholder="z. B. Schuhe, Wanderausrüstung, Sportmode, Skiverleih" 
+            value={servicesInput} 
+            onChange={e => setServicesInput(e.target.value)} 
+            className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" 
+          />
         </label>
         
         <div className="grid gap-[7px] text-[14px] font-semibold mt-2">
