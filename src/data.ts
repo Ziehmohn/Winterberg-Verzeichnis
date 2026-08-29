@@ -2483,6 +2483,251 @@ export const businesses: Business[] = [
       saturday: '06:00 - 12:30',
       sunday: '07:30 - 11:30'
     }
+  },
+  {
+    id: 'provinzial-simon-cramer-winterberg',
+    name: 'Provinzial Versicherung Winterberg - Simon Cramer',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'Ihre Provinzial Geschäftsstelle in Winterberg. Simon Cramer und Team beraten persönlich und kompetent zu Privat- und Gewerbeversicherungen, Altersvorsorge, Baufinanzierung und Schadensregulierung vor Ort.',
+    address: 'Am Alten Garten 4a, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92930',
+    website: 'https://provinzial.de/west/cramer',
+    services: ['Haftpflicht- & Sachversicherungen', 'Kfz-Versicherung', 'Altersvorsorge & Berufsunfähigkeit', 'Gewerbeversicherungen', 'Vor-Ort-Schadensregulierung'],
+    imageFallback: 'PC',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:30 - 12:30, 14:00 - 17:00',
+      tuesday: '08:30 - 12:30, 14:00 - 17:00',
+      wednesday: '08:30 - 12:30',
+      thursday: '08:30 - 12:30, 14:00 - 18:00',
+      friday: '08:30 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'lvm-marius-berkenkopf-winterberg',
+    name: 'LVM Versicherung Marius Berkenkopf',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'Moderne LVM-Versicherungsagentur an der Bahnhofstraße in Winterberg. Ganzheitliche Absicherung für Privatkunden, Landwirtschaft und Gewerbe, Vorsorgeberatung und schnelle Schadensabwicklung.',
+    address: 'Bahnhofstraße 17, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92080',
+    email: 'info@berkenkopf.lvm.de',
+    website: 'https://berkenkopf.lvm.de',
+    services: ['Privat- & Gewerbeversicherungen', 'Kfz- & Flottenversicherung', 'Landwirtschaftliche Absicherung', 'Altersvorsorge & Geldanlage', 'Zahn- & Krankenzusatzversicherung'],
+    imageFallback: 'MB',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:30 - 12:30, 14:30 - 18:00',
+      tuesday: '08:30 - 12:30, 14:30 - 18:00',
+      wednesday: '08:30 - 12:30, 14:30 - 18:00',
+      thursday: '08:30 - 12:30, 14:30 - 18:00',
+      friday: '08:30 - 12:30, 14:30 - 16:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'jop-versicherungsmakler-winterberg',
+    name: 'JOP Versicherungsmakler & Finanzanlagenvermittler UG',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'Unabhängiger Versicherungsmakler und Finanzanlagenvermittler in Winterberg (Am Hagenblech). Gesellschaftsunabhängige Beratung, individueller Tarifvergleich und optimierte Finanzkonzepte.',
+    address: 'Am Hagenblech 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 7773',
+    email: 'info@jop-winterberg.de',
+    website: 'https://www.versicherungsmakler-jop.de',
+    services: ['Unabhängiger Versicherungsvergleich', 'Finanzanlagen & Vorsorge', 'Gewerbeversicherung', 'Baufinanzierung', 'Private Krankenversicherung'],
+    imageFallback: 'JP',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 12:30, 14:00 - 17:00',
+      tuesday: '09:00 - 12:30, 14:00 - 17:00',
+      wednesday: '09:00 - 12:30',
+      thursday: '09:00 - 12:30, 14:00 - 17:00',
+      friday: '09:00 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'lvm-torsten-decker-zueschen',
+    name: 'LVM Versicherung Torsten Decker',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'Ihre vertrauensvolle LVM-Versicherungsagentur in Winterberg-Züschen. Umfassende Beratung für Privat- und Firmenkunden, Autoversicherung, Rechtsschutz und Existenzsicherung.',
+    address: 'Nuhnetalstraße 84, 59955 Winterberg-Züschen',
+    district: 'Züschen',
+    phone: '02981 81510',
+    email: 'info@decker.lvm.de',
+    website: 'https://decker.lvm.de',
+    services: ['Kfz-Versicherung', 'Haftpflicht- & Wohngebäudeversicherung', 'Rechtsschutzversicherung', 'Altersvorsorge', 'Unfall- & Berufsunfähigkeitsschutz'],
+    imageFallback: 'TD',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 12:30, 14:30 - 17:30',
+      tuesday: '09:00 - 12:30, 14:30 - 17:30',
+      wednesday: '09:00 - 12:30',
+      thursday: '09:00 - 12:30, 14:30 - 17:30',
+      friday: '09:00 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'axa-lothar-haas-winterberg',
+    name: 'AXA Versicherungen Lothar Haas',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'AXA Hauptvertretung Lothar Haas an der Poststraße im Zentrum von Winterberg. Individuelle Vorsorge- und Versicherungslösungen für Privatkunden, Freiberufler und mittelständische Unternehmen.',
+    address: 'Poststraße 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9296767',
+    website: 'https://www.axa-betreuer.de/lothar_haas',
+    services: ['AXA Vorsorgekonzepte', 'Private Krankenversicherung', 'Kfz- & Flottenversicherung', 'Gewerbeschutz', 'Gebäude- & Hausratversicherung'],
+    imageFallback: 'LH',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 12:30, 14:00 - 17:00',
+      tuesday: '09:00 - 12:30, 14:00 - 17:00',
+      wednesday: '09:00 - 12:30',
+      thursday: '09:00 - 12:30, 14:00 - 17:00',
+      friday: '09:00 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'lvm-tobias-klauke-siedlinghausen',
+    name: 'LVM Versicherung Tobias Klauke',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'Ihre LVM-Versicherungsagentur in Winterberg-Siedlinghausen. Tobias Klauke und Team bieten persönliche Beratung bei Versicherungen, Vorsorge, Finanzierungen und Gewerbeabsicherung.',
+    address: 'Senge-Platten-Straße 6, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 8244',
+    website: 'https://www.t-klauke.lvm.de',
+    services: ['Privatkunden-Absicherung', 'Kfz-Versicherung & Schadenservice', 'Gewerbeversicherungen', 'Private Krankenversicherung', 'Vermögensaufbau & Vorsorge'],
+    imageFallback: 'TK',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:30, 14:00 - 17:30',
+      tuesday: '08:00 - 12:30, 14:00 - 17:30',
+      wednesday: '08:00 - 12:30',
+      thursday: '08:00 - 12:30, 14:00 - 17:30',
+      friday: '08:00 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'signal-iduna-bernhard-poellmann-zueschen',
+    name: 'Bernhard Pöllmann Versicherungen (SIGNAL IDUNA)',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'SIGNAL IDUNA Generalagentur Bernhard Pöllmann in Winterberg-Züschen. Spezialisiert auf maßgeschneiderten Rundum-Schutz für Handwerk, Handel, Gewerbe und Privatpersonen.',
+    address: 'Mollseifener Str. 2, 59955 Winterberg-Züschen',
+    district: 'Züschen',
+    phone: '02981 820950',
+    website: 'https://www.signal-iduna-agentur.de/bernhard.poellmann',
+    services: ['Handwerker- & Gewerbeversicherungen', 'Private Krankenversicherung', 'Berufsunfähigkeit & Altersvorsorge', 'Unfall- & Haftpflichtversicherung'],
+    imageFallback: 'BP',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 12:00',
+      tuesday: '09:00 - 12:00',
+      wednesday: '09:00 - 12:00',
+      thursday: '09:00 - 12:00',
+      friday: '09:00 - 12:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'joachim-wiese-versicherungsmakler-zueschen',
+    name: 'Joachim Wiese Finanz.- u. Versicherungsmakler',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Finanzberatung' }
+    ],
+    description: 'Freier Finanz- und Versicherungsmakler in Winterberg-Züschen an der Nuhnetalstraße. Ungebundene Beratung zu Sachwerten, Personenabsicherung und Kapitalanlagen.',
+    address: 'Nuhnetalstraße 52, 59955 Winterberg-Züschen',
+    district: 'Züschen',
+    phone: '02981 7875',
+    services: ['Unabhängige Maklerberatung', 'Sach- & Vermögensabsicherung', 'Finanz- und Kapitalanlagen', 'Kranken- und Lebensversicherungen'],
+    imageFallback: 'JW',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 12:30, 14:00 - 17:00',
+      tuesday: '09:00 - 12:30, 14:00 - 17:00',
+      wednesday: '09:00 - 12:30',
+      thursday: '09:00 - 12:30, 14:00 - 17:00',
+      friday: '09:00 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'ruv-versicherung-winterberg',
+    name: 'R+V Versicherung Winterberg (Volksbank Sauerland)',
+    category: 'Dienstleistungen',
+    subcategory: 'Versicherungsagenturen',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Banken' }
+    ],
+    description: 'R+V Versicherung im Beratungszentrum der Volksbank Sauerland eG an der Poststraße in Winterberg. Kompetenter Service und genossenschaftliche Vorsorge- und Versicherungslösungen für Privat- und Unternehmenskunden.',
+    address: 'Poststraße 3, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92900',
+    website: 'https://www.vb-sauerland.de',
+    services: ['R+V Versicherungen & Vorsorge', 'Genossenschaftliche Beratung', 'Gewerbeversicherungen', 'Kfz- & Sachversicherungen', 'Geldanlage & Bausparen'],
+    imageFallback: 'RV',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 12:30, 14:00 - 16:30',
+      tuesday: '09:00 - 12:30, 14:00 - 16:30',
+      wednesday: '09:00 - 12:30',
+      thursday: '09:00 - 12:30, 14:00 - 18:00',
+      friday: '09:00 - 12:30, 14:00 - 16:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
