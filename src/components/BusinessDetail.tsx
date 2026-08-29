@@ -5,6 +5,7 @@ import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock,
 import { Business, ThemeConfig, Review } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
+import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import ReviewForm from './ReviewForm';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
@@ -97,9 +98,13 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const webHref = business.website ? (String(business.website).startsWith('http') ? String(business.website) : `https://${business.website}`) : undefined;
   const showHours = canDisplayOpeningHours(business);
   const openState = showHours && business.openingHours && typeof business.openingHours === 'object' ? isOpenNow(business.openingHours, t) : null;
-  const avgRating = Array.isArray(business.reviews) && business.reviews.length > 0 
-    ? (business.reviews.reduce((acc, r) => acc + (Number(r?.rating) || 0), 0) / business.reviews.length).toFixed(1)
+  const approvedReviews = Array.isArray(business.reviews) 
+    ? business.reviews.filter(r => !r.status || r.status === 'approved') 
+    : [];
+  const avgRating = approvedReviews.length > 0 
+    ? (approvedReviews.reduce((acc, r) => acc + (Number(r?.rating) || 0), 0) / approvedReviews.length).toFixed(1)
     : null;
+  const reviewUsps = getBusinessReviewUsps(business, lang);
 
   return (
     <main className="flex-1 relative">
@@ -229,10 +234,29 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     <span key={i}>{i < Math.round(Number(avgRating)) ? '★' : '☆'}</span>
                   ))}
                 </span>
-                {avgRating} · {business.reviews!.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}
+                {avgRating} · {approvedReviews.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}
               </span>
             )}
           </div>
+
+          {reviewUsps.length > 0 && (
+            <div className="mt-4 pt-3.5 border-t border-white/20 flex items-center gap-2.5 flex-wrap text-[14.5px] text-white/95">
+              <span className="font-semibold text-white/90">
+                {lang === 'nl' ? 'Gebruikers beoordelen het bedrijf als:' : 'Nutzer bewerten das Unternehmen als:'}
+              </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                {reviewUsps.map((usp, idx) => (
+                  <span 
+                    key={idx} 
+                    className="bg-white/20 backdrop-blur-xs text-white rounded-full px-3 py-0.5 text-[13px] font-semibold border border-white/25 flex items-center gap-1.5 shadow-xs"
+                  >
+                    <span className="text-[#F2761B] text-[12px] font-bold">✓</span>
+                    {usp}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -481,10 +505,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">{lang === 'nl' ? 'Vergelijkbare bedrijven' : 'Ähnliche Unternehmen'}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[18px]">
             {similarBusinesses.map(b => {
-              const bApproved = Array.isArray(b.reviews) ? b.reviews.filter(r => r.status === 'approved') : [];
+              const bApproved = Array.isArray(b.reviews) ? b.reviews.filter(r => !r.status || r.status === 'approved') : [];
               const bAvg = bApproved.length > 0 
                 ? (bApproved.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / bApproved.length).toFixed(1) 
                 : null;
+              const bUsps = getBusinessReviewUsps(b, lang);
 
               return (
                 <div key={b.id} onClick={() => {
@@ -517,6 +542,15 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                       </div>
                     )}
                   </div>
+                  {bUsps.length > 0 && (
+                    <div className="flex items-center gap-1.5 flex-wrap mt-3 pt-2.5 border-t border-[#F3F0EA]">
+                      {bUsps.slice(0, 2).map((u, i) => (
+                        <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+                          <span className="text-[#F2761B] text-[9.5px]">✓</span> {u}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })}

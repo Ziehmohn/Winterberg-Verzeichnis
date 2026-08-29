@@ -30,6 +30,7 @@ import {
   STATIC_PAGE_SLUGS
 } from './utils/routes';
 import { getLocalizedBusiness } from './utils/translator';
+import { getBusinessReviewUsps } from './utils/reviewUsps';
 
 const initialAds: AdBanner[] = [
   {
@@ -1804,6 +1805,8 @@ export default function App() {
                         ? (approvedReviews.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / reviewCount).toFixed(1)
                         : null;
 
+                      const cardUsps = getBusinessReviewUsps(bus, lang);
+
                       return (
                         <div 
                           key={bus.id} 
@@ -1859,6 +1862,21 @@ export default function App() {
                               ? localized.description.substring(0, 90) + '…' 
                               : (localized.description || '')}
                           </div>
+
+                          {/* AI Extracted Review USPs (Rating >= 4.0) */}
+                          {cardUsps.length > 0 && (
+                            <div className="flex items-center gap-1.5 flex-wrap mb-3.5">
+                              {cardUsps.map((usp, uIdx) => (
+                                <span
+                                  key={uIdx}
+                                  className="bg-[#E8F1EB] text-[#0F4C2E] text-[11.5px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1 border border-[#0F4C2E]/20 shadow-2xs"
+                                >
+                                  <span className="text-[#F2761B] text-[10px] leading-none">✓</span>
+                                  {usp}
+                                </span>
+                              ))}
+                            </div>
+                          )}
 
                           {/* Services & Products Tags (Premium feature) */}
                           {bus.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
