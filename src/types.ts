@@ -42,6 +42,7 @@ export interface Job {
 
 export interface NewsArticle {
   id: string;
+  slug?: string;
   title: string;
   content: string;
   author: string;
