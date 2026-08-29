@@ -750,19 +750,21 @@ export default function App() {
       querySnapshot.forEach((doc: any) => {
         loadedAds.push({ id: doc.id, ...doc.data() } as AdBanner);
       });
-      if (loadedAds.length > 0) {
-        setAds(prev => {
-          const merged = [...initialAds];
-          loadedAds.forEach(fa => {
-            const idx = merged.findIndex(a => a.id === fa.id);
-            if (idx >= 0) {
-              merged[idx] = fa;
-            } else {
-              merged.push(fa);
-            }
-          });
-          return merged;
-        });
+      if (!querySnapshot.empty) {
+        setAds(loadedAds);
+        localStorage.setItem('ads_initialized', 'true');
+      } else if (!localStorage.getItem('ads_initialized')) {
+        setAds(initialAds);
+        try {
+          for (const ad of initialAds) {
+            await setDoc(doc(db, 'ads', ad.id), ad);
+          }
+          localStorage.setItem('ads_initialized', 'true');
+        } catch (seedErr) {
+          console.warn("Could not seed initial ads to Firestore", seedErr);
+        }
+      } else {
+        setAds([]);
       }
     } catch (err) {
       console.warn("Could not load ads from Firestore, using initial demo ads", err);
@@ -822,7 +824,7 @@ export default function App() {
   }).slice(0, 8) : [];
 
   const getBusinessRatingStats = (b: Business) => {
-    const approved = Array.isArray(b.reviews) ? b.reviews.filter(r => r.status === 'approved') : [];
+    const approved = Array.isArray(b.reviews) ? b.reviews.filter(r => !r.status || r.status === 'approved') : [];
     const count = approved.length;
     const avg = count > 0 ? approved.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / count : 0;
     return { avg, count };
@@ -834,8 +836,8 @@ export default function App() {
     const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     
     const lowerSearch = searchQuery.toLowerCase().trim();
-    const matchesServices = (Array.isArray(bus.services) && bus.services.some(s => s.toLowerCase().includes(lowerSearch))) ||
-                            (Array.isArray(bus.services_nl) && bus.services_nl.some(s => s.toLowerCase().includes(lowerSearch)));
+    const matchesServices = bus.isPremium && ((Array.isArray(bus.services) && bus.services.some(s => s.toLowerCase().includes(lowerSearch))) ||
+                            (Array.isArray(bus.services_nl) && bus.services_nl.some(s => s.toLowerCase().includes(lowerSearch))));
     const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
                             !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
     
@@ -1796,7 +1798,7 @@ export default function App() {
                   {filteredBusinesses.length > 0 ? (
                     filteredBusinesses.map((bus) => {
                       const localized = getLocalizedBusiness(bus, lang);
-                      const approvedReviews = Array.isArray(bus.reviews) ? bus.reviews.filter(r => r.status === 'approved') : [];
+                      const approvedReviews = Array.isArray(bus.reviews) ? bus.reviews.filter(r => !r.status || r.status === 'approved') : [];
                       const reviewCount = approvedReviews.length;
                       const avgRating = reviewCount > 0 
                         ? (approvedReviews.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / reviewCount).toFixed(1)
@@ -1858,8 +1860,8 @@ export default function App() {
                               : (localized.description || '')}
                           </div>
 
-                          {/* Services & Products Tags */}
-                          {Array.isArray(localized.services) && localized.services.length > 0 && (
+                          {/* Services & Products Tags (Premium feature) */}
+                          {bus.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
                             <div className="flex items-center gap-1.5 flex-wrap mb-4">
                               {localized.services.slice(0, 3).map((svc, sIdx) => {
                                 const isMatched = searchQuery && (svc.toLowerCase().includes(searchQuery.toLowerCase().trim()) || (bus.services && bus.services.some(orig => orig.toLowerCase().includes(searchQuery.toLowerCase().trim()))));
@@ -3180,7 +3182,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             activeThemeKey={activeThemeKey} 
           />
         ) : activeTab === 'werbung' ? (
-          <AdminAdsManager ads={ads} setAds={setAds} />
+          <AdminAdsManager ads={ads} setAds={setAds} businesses={businesses} currentUser={currentUser} />
         ) : activeTab === 'redirects' ? (
           <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
         ) : activeTab === 'scripts' ? (

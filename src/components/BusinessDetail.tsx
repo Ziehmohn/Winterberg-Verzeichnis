@@ -259,7 +259,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {Array.isArray(localized.services) && localized.services.length > 0 && (
+          {business.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Diensten & Producten' : 'Leistungen'}</h2>
               <div className="flex gap-2 flex-wrap mb-[30px]">
@@ -312,20 +312,43 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Beoordelingen' : 'Bewertungen'}</h2>
           <div className="grid gap-3 mb-5">
-            {Array.isArray(business.reviews) && business.reviews.filter(r => r.status === 'approved').length > 0 ? (
-              business.reviews.filter(r => r.status === 'approved').map(r => (
-                <div key={r.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-4">
-                  <div className="flex justify-between gap-2.5 items-center">
-                    <div className="font-semibold text-[15px]">{r.authorName}</div>
-                    <div className="text-[#F2761B] text-[15px] tracking-[2px]">
-                      {Array.from({length: 5}).map((_, i) => (
-                        <span key={i}>{i < r.rating ? '★' : '☆'}</span>
-                      ))}
+            {Array.isArray(business.reviews) && business.reviews.filter(r => !r.status || r.status === 'approved').length > 0 ? (
+              business.reviews.filter(r => !r.status || r.status === 'approved').map(r => {
+                const author = r.authorName || (r as any).author || (r as any).name || (lang === 'nl' ? 'Bezoeker' : 'Besucher');
+                return (
+                  <div key={r.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-4">
+                    <div className="flex justify-between gap-2.5 items-center mb-1">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center font-bold text-xs uppercase shrink-0">
+                          {author.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-[15px] text-[#1B211D]">{author}</div>
+                          {r.date && (
+                            <div className="text-[11.5px] text-[#8A928B]">
+                              {new Date(r.date).toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { year: 'numeric', month: 'short', day: 'numeric' })}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="text-[#F2761B] text-[15px] tracking-[2px] shrink-0">
+                        {Array.from({length: 5}).map((_, i) => (
+                          <span key={i}>{i < r.rating ? '★' : '☆'}</span>
+                        ))}
+                      </div>
                     </div>
+                    <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.6]">{r.text}</p>
+                    {r.ownerReply && (
+                      <div className="mt-3 ml-3 pl-3 border-l-2 border-[#0F4C2E] bg-white rounded p-2.5 text-xs text-[#5F6B63]">
+                        <div className="font-bold text-[#0F4C2E] mb-1">
+                          {lang === 'nl' ? 'Reactie van eigenaar:' : 'Antwort des Inhabers:'}
+                        </div>
+                        <p className="m-0 leading-relaxed">{r.ownerReply}</p>
+                      </div>
+                    )}
                   </div>
-                  <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.6]">{r.text}</p>
-                </div>
-              ))
+                );
+              })
             ) : (
               <p className="text-[#8A928B] text-[15px] m-0">{lang === 'nl' ? 'Nog geen beoordelingen — wees de eerste stem!' : 'Noch keine Bewertungen — sei die erste Stimme.'}</p>
             )}

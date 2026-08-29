@@ -144,6 +144,7 @@ export interface AdBanner {
   id: string;
   title: string;
   companyName?: string;
+  businessId?: string;
   imageUrl: string;
   targetUrl: string;
   category: string; // 'Alle' or specific category name like 'Gastronomie', 'Handwerk', etc.

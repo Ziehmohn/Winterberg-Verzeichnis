@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, Check, X, Eye, ExternalLink, Image as ImageIcon, Upload, MousePointerClick, Megaphone, Sparkles, AlertCircle } from 'lucide-react';
-import { AdBanner, AdInquiry } from '../types';
+import { Plus, Edit2, Trash2, Check, X, Eye, ExternalLink, Image as ImageIcon, Upload, MousePointerClick, Megaphone, Sparkles, AlertCircle, Building2 } from 'lucide-react';
+import { AdBanner, AdInquiry, Business } from '../types';
 import { categories } from '../data';
 import { db, storage } from '../firebase';
 import { doc, setDoc, deleteDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
@@ -9,17 +9,31 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 interface AdminAdsManagerProps {
   ads: AdBanner[];
   setAds: React.Dispatch<React.SetStateAction<AdBanner[]>>;
+  businesses?: Business[];
+  currentUser?: any;
 }
 
-export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
+export default function AdminAdsManager({ ads, setAds, businesses = [], currentUser }: AdminAdsManagerProps) {
   const [subTab, setSubTab] = useState<'banners' | 'inquiries'>('banners');
   const [inquiries, setInquiries] = useState<AdInquiry[]>([]);
   const [loadingInquiries, setLoadingInquiries] = useState(false);
+
+  // Identify business owned by logged-in user if applicable
+  const userOwnedBusiness = businesses.find(b => 
+    (currentUser?.businessId && b.id === currentUser.businessId) ||
+    (currentUser?.uid && b.ownerId === currentUser.uid) ||
+    (currentUser?.email && b.email && b.email.toLowerCase() === currentUser.email.toLowerCase())
+  );
+
+  const getProfileUrl = (b: Business) => {
+    return `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
+  };
 
   // Form State
   const [isEditing, setIsEditing] = useState(false);
   const [editingAd, setEditingAd] = useState<AdBanner | null>(null);
 
+  const [selectedBusinessId, setSelectedBusinessId] = useState<string>('');
   const [title, setTitle] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -64,11 +78,20 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
 
   const handleOpenNew = () => {
     setEditingAd(null);
-    setTitle('');
-    setCompanyName('');
+    if (userOwnedBusiness) {
+      setSelectedBusinessId(userOwnedBusiness.id);
+      setTitle(userOwnedBusiness.name + ' – Jetzt entdecken');
+      setCompanyName(userOwnedBusiness.name);
+      setCategory(userOwnedBusiness.category);
+      setTargetUrl(getProfileUrl(userOwnedBusiness));
+    } else {
+      setSelectedBusinessId('');
+      setTitle('');
+      setCompanyName('');
+      setCategory('Alle');
+      setTargetUrl('');
+    }
     setImageUrl('');
-    setTargetUrl('');
-    setCategory('Alle');
     setBadgeText('Anzeige');
     setIsActive(true);
     setFormError(null);
@@ -77,6 +100,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
 
   const handleOpenEdit = (ad: AdBanner) => {
     setEditingAd(ad);
+    setSelectedBusinessId(ad.businessId || '');
     setTitle(ad.title || '');
     setCompanyName(ad.companyName || '');
     setImageUrl(ad.imageUrl || '');
@@ -88,14 +112,26 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
     setIsEditing(true);
   };
 
+  const handleSelectBusiness = (bId: string) => {
+    setSelectedBusinessId(bId);
+    const bus = businesses.find(b => b.id === bId);
+    if (bus) {
+      setCompanyName(bus.name);
+      setCategory(bus.category);
+      setTargetUrl(getProfileUrl(bus));
+      if (!title || title.includes('– Jetzt entdecken') || title.includes('– Anzeige') || title.includes('- Anzeige')) {
+        setTitle(`${bus.name} – Jetzt entdecken`);
+      }
+    }
+  };
+
   const handleToggleActive = async (ad: AdBanner) => {
     const newStatus = !ad.isActive;
     setAds((prev) => prev.map((a) => (a.id === ad.id ? { ...a, isActive: newStatus } : a)));
 
     try {
-      if (!ad.id.startsWith('demo_')) {
-        await updateDoc(doc(db, 'ads', ad.id), { isActive: newStatus });
-      }
+      await updateDoc(doc(db, 'ads', ad.id), { isActive: newStatus });
+      localStorage.setItem('ads_initialized', 'true');
     } catch (err) {
       console.error('Error toggling ad status:', err);
     }
@@ -104,14 +140,13 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
   const handleDelete = async (adId: string) => {
     if (!window.confirm('Möchten Sie dieses Werbebanner wirklich löschen?')) return;
 
-    setAds((prev) => prev.map((a) => a.id).includes(adId) ? prev.filter((a) => a.id !== adId) : prev);
+    setAds((prev) => prev.filter((a) => a.id !== adId));
+    localStorage.setItem('ads_initialized', 'true');
 
     try {
-      if (!adId.startsWith('demo_')) {
-        await deleteDoc(doc(db, 'ads', adId));
-      }
+      await deleteDoc(doc(db, 'ads', adId));
     } catch (err) {
-      console.error('Error deleting ad:', err);
+      console.error('Error deleting ad from Firestore:', err);
     }
   };
 
@@ -159,6 +194,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
       id: adId,
       title: title.trim(),
       companyName: companyName.trim() || undefined,
+      businessId: selectedBusinessId || undefined,
       imageUrl: imageUrl.trim(),
       targetUrl: targetUrl.trim(),
       category: category || 'Alle',
@@ -171,6 +207,7 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
 
     try {
       await setDoc(doc(db, 'ads', adId), adData, { merge: true });
+      localStorage.setItem('ads_initialized', 'true');
 
       setAds((prev) => {
         const exists = prev.some((a) => a.id === adId);
@@ -271,6 +308,63 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
             </div>
           )}
 
+          {/* Business Link Selection Box */}
+          <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Building2 className="w-4 h-4 text-[#0F4C2E]" />
+              <span className="text-xs font-bold text-[#1B211D] uppercase tracking-wider">
+                Verknüpftes Unternehmensprofil <span className="text-red-500">*</span>
+              </span>
+            </div>
+
+            {userOwnedBusiness ? (
+              <div className="bg-white border border-[#EDE8E0] rounded-md p-3 flex items-center justify-between">
+                <div>
+                  <div className="font-semibold text-sm text-[#1B211D]">{userOwnedBusiness.name}</div>
+                  <div className="text-xs text-[#8A928B]">{userOwnedBusiness.category} · {userOwnedBusiness.district || 'Winterberg'}</div>
+                </div>
+                <span className="text-xs bg-[#E8F1EB] text-[#0F4C2E] font-bold px-2.5 py-1 rounded">
+                  Ihr Unternehmen (fest verknüpft)
+                </span>
+              </div>
+            ) : (
+              <div>
+                <select
+                  required
+                  value={selectedBusinessId}
+                  onChange={(e) => handleSelectBusiness(e.target.value)}
+                  className="w-full bg-white border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] transition-colors"
+                >
+                  <option value="">-- Bitte das zu bewerbende Unternehmen auswählen --</option>
+                  {businesses.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name} ({b.category}{b.subcategory ? ` / ${b.subcategory}` : ''} · {b.district || 'Winterberg'})
+                    </option>
+                  ))}
+                </select>
+                <span className="text-xs text-[#5F6B63] mt-1.5 block">
+                  💡 Klicks auf das Banner führen automatisch direkt auf das Profil des ausgewählten Unternehmens.
+                </span>
+              </div>
+            )}
+
+            {targetUrl && (
+              <div className="mt-3 pt-3 border-t border-[#E7E2DA]/60 flex items-center justify-between text-xs text-[#5F6B63]">
+                <span className="truncate">
+                  🔗 <strong>Ziellink zum Profil:</strong> <code className="bg-white px-2 py-0.5 rounded border border-[#EDE8E0] text-[#0F4C2E] font-semibold">{targetUrl}</code>
+                </span>
+                <a 
+                  href={targetUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#0F4C2E] hover:underline font-bold shrink-0 ml-2 inline-flex items-center gap-1"
+                >
+                  Profil ansehen <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            )}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
@@ -286,21 +380,6 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                Unternehmen / Kunde (optional)
-              </label>
-              <input
-                type="text"
-                placeholder="z. B. Brauhaus Winterberg"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
                 Ziel-Kategorie <span className="text-red-500">*</span>
@@ -320,20 +399,6 @@ export default function AdminAdsManager({ ads, setAds }: AdminAdsManagerProps) {
               <span className="text-xs text-[#8A928B] mt-1 block">
                 Das Banner wird rechts neben den Betrieben in dieser Kategorie angezeigt.
               </span>
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                Ziellink (URL beim Klick) <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="url"
-                required
-                placeholder="https://www.beispiel-betrieb.de oder /Gastronomie"
-                value={targetUrl}
-                onChange={(e) => setTargetUrl(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
-              />
             </div>
           </div>
 
