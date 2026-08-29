@@ -107,12 +107,15 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
               className={`bg-white border border-[#EDE8E0] rounded-[22px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[#0F4C2E]/50 flex flex-col group`}
             >
               {item.imageUrl ? (
-                <div className="h-[210px] overflow-hidden bg-[#FAF8F5]">
+                <div className="h-[210px] overflow-hidden bg-[#FAF8F5] relative">
                   <img 
                     src={item.imageUrl} 
                     alt={item.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
+                  <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white/95 text-[10px] font-medium px-2 py-0.5 rounded-md pointer-events-none tracking-wide">
+                    KI-generiert
+                  </div>
                 </div>
               ) : (
                 <div className="h-[210px] bg-[#FAF8F5] flex items-center justify-center">

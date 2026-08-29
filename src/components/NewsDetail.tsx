@@ -415,8 +415,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       </button>
 
       {article.imageUrl && (
-        <div className="w-full h-[320px] md:h-[440px] rounded-[24px] overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
+        <div className="relative w-full h-[320px] md:h-[440px] rounded-[24px] overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
           <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+          <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none">
+            Symbolbild · KI-generiert
+          </div>
         </div>
       )}
 
