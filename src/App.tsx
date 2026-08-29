@@ -1482,7 +1482,9 @@ export default function App() {
 
                   <div>
                     <div className="flex items-baseline justify-between gap-4 flex-wrap mb-[22px]">
-                      <h2 className="font-display text-[34px] font-bold m-0 leading-tight">Empfohlene Unternehmen</h2>
+                      <h2 className="font-display text-[34px] font-bold m-0 leading-tight">
+                        {lang === 'nl' ? 'Aanbevolen bedrijven' : 'Empfohlene Unternehmen'}
+                      </h2>
                       <a 
                         href={getPath('/alle-unternehmen')} 
                         onClick={(e) => { 
@@ -1497,42 +1499,76 @@ export default function App() {
                         }} 
                         className="font-semibold text-[15px] text-[#0F4C2E] hover:text-[#F2761B] transition-colors"
                       >
-                        Alle {businesses.length} ansehen →
+                        {lang === 'nl' ? `Bekijk alle ${businesses.length} →` : `Alle ${businesses.length} ansehen →`}
                       </a>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
-                      {businesses.filter(b => b.isPremium).slice(0, 6).map(b => (
-                        <div 
-                          key={b.id} 
-                          onClick={() => { setSelectedBusiness(b); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer flex flex-col gap-[12px] shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
-                        >
-                          <div className="flex items-start gap-[13px]">
-                            {b.logoUrl ? (
-                              <img src={b.logoUrl} alt={b.name} className="w-[44px] h-[44px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
-                            ) : (
-                              <BusinessCategoryIcon 
-                                category={b.category} 
-                                subcategory={b.subcategory} 
-                                name={b.name} 
-                                isPremium={b.isPremium} 
-                                className="w-[44px] h-[44px]"
-                              />
-                            )}
-                            <div className="flex-1 min-w-0">
-                              <div className="font-display text-[18px] font-semibold truncate leading-[1.25]">{b.name}</div>
-                              <div className="text-[13px] text-[#5F6B63] mt-[3px]">{b.subcategory || 'Andere'} · {b.district || 'Winterberg'}</div>
+                      {businesses.filter(b => b.isPremium).slice(0, 6).map(b => {
+                        const bApproved = Array.isArray(b.reviews) ? b.reviews.filter(r => !r.status || r.status === 'approved') : [];
+                        const bAvg = bApproved.length > 0 
+                          ? (bApproved.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / bApproved.length).toFixed(1) 
+                          : null;
+                        const bUsps = getBusinessReviewUsps(b, lang);
+                        const localized = getLocalizedBusiness(b, lang);
+
+                        return (
+                          <div 
+                            key={b.id} 
+                            onClick={() => { setSelectedBusiness(b); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                            className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer flex flex-col gap-[12px] shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
+                          >
+                            <div className="flex items-start gap-[13px]">
+                              {b.logoUrl ? (
+                                <img src={b.logoUrl} alt={b.name} className="w-[44px] h-[44px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
+                              ) : (
+                                <BusinessCategoryIcon 
+                                  category={b.category} 
+                                  subcategory={b.subcategory} 
+                                  name={b.name} 
+                                  isPremium={b.isPremium} 
+                                  className="w-[44px] h-[44px]"
+                                />
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <div className="font-display text-[18px] font-semibold truncate leading-[1.25]">{b.name}</div>
+                                <div className="text-[13px] text-[#5F6B63] mt-[3px]">{b.subcategory ? t(b.subcategory) : 'Andere'} · {b.district || 'Winterberg'}</div>
+                              </div>
+                              <div className="flex items-center gap-1.5 shrink-0">
+                                {bAvg && (
+                                  <div className="flex items-center gap-1 text-[12px] font-bold text-[#1B211D] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EDE8E0]">
+                                    <span className="text-[#F2761B]">★</span>
+                                    <span>{bAvg}</span>
+                                  </div>
+                                )}
+                                {b.isPremium && (
+                                  <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.04em]">Premium</span>
+                                )}
+                              </div>
                             </div>
-                            {b.isPremium && (
-                              <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.04em]">Premium</span>
+                            
+                            <p className="text-[14.5px] text-[#4A544D] leading-[1.55] m-0 line-clamp-3">{localized.description || b.description}</p>
+                            
+                            {/* AI Extracted Review USPs (Rating >= 4.0) */}
+                            {bUsps.length > 0 && (
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                {bUsps.map((usp, uIdx) => (
+                                  <span
+                                    key={uIdx}
+                                    className="bg-[#E8F1EB] text-[#0F4C2E] text-[11.5px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1 border border-[#0F4C2E]/20 shadow-2xs"
+                                  >
+                                    <span className="text-[#F2761B] text-[10px] leading-none">✓</span>
+                                    {usp}
+                                  </span>
+                                ))}
+                              </div>
                             )}
+
+                            <div className="flex items-center gap-[7px] text-[13px] text-[#5F6B63] mt-auto pt-[4px]">
+                              <MapPin className="w-[14px] h-[14px]" /> {b.address}
+                            </div>
                           </div>
-                          <p className="text-[14.5px] text-[#4A544D] leading-[1.55] m-0 line-clamp-3">{b.description}</p>
-                          <div className="flex items-center gap-[7px] text-[13px] text-[#5F6B63] mt-auto pt-[4px]">
-                            <MapPin className="w-[14px] h-[14px]" /> {b.address}
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
 
