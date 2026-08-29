@@ -457,31 +457,46 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         <div className="max-w-[1000px] mx-auto px-6 pb-[80px]">
           <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">{lang === 'nl' ? 'Vergelijkbare bedrijven' : 'Ähnliche Unternehmen'}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[18px]">
-            {similarBusinesses.map(b => (
-              <div key={b.id} onClick={() => {
-                const basePath = `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
-                const url = typeof window !== 'undefined' ? `${window.location.origin}${basePath}` : basePath;
-                window.location.href = url;
-              }} className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
-                <div className="flex items-center gap-[12px]">
-                  {b.logoUrl ? (
-                    <img src={b.logoUrl} alt={b.name} className="w-[42px] h-[42px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
-                  ) : (
-                    <BusinessCategoryIcon 
-                      category={b.category} 
-                      subcategory={b.subcategory} 
-                      name={b.name} 
-                      isPremium={b.isPremium} 
-                      className="w-[42px] h-[42px]"
-                    />
-                  )}
-                  <div>
-                    <div className="font-display text-[16.5px] font-semibold">{b.name}</div>
-                    <div className="text-[13px] text-[#5F6B63]">{b.district || 'Winterberg'}</div>
+            {similarBusinesses.map(b => {
+              const bApproved = Array.isArray(b.reviews) ? b.reviews.filter(r => r.status === 'approved') : [];
+              const bAvg = bApproved.length > 0 
+                ? (bApproved.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / bApproved.length).toFixed(1) 
+                : null;
+
+              return (
+                <div key={b.id} onClick={() => {
+                  const basePath = `/${encodeURIComponent(b.category)}${b.subcategory ? `/${encodeURIComponent(b.subcategory)}` : ''}/${encodeURIComponent(b.name.replace(/\s+/g, '-').toLowerCase())}`;
+                  const url = typeof window !== 'undefined' ? `${window.location.origin}${basePath}` : basePath;
+                  window.location.href = url;
+                }} className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-[12px] min-w-0">
+                      {b.logoUrl ? (
+                        <img src={b.logoUrl} alt={b.name} className="w-[42px] h-[42px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
+                      ) : (
+                        <BusinessCategoryIcon 
+                          category={b.category} 
+                          subcategory={b.subcategory} 
+                          name={b.name} 
+                          isPremium={b.isPremium} 
+                          className="w-[42px] h-[42px]"
+                        />
+                      )}
+                      <div className="min-w-0">
+                        <div className="font-display text-[16.5px] font-semibold truncate">{b.name}</div>
+                        <div className="text-[13px] text-[#5F6B63] truncate">{b.district || 'Winterberg'}</div>
+                      </div>
+                    </div>
+                    {bAvg && (
+                      <div className="flex items-center gap-1 text-[12.5px] font-bold text-[#1B211D] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EDE8E0] shrink-0">
+                        <span className="text-[#F2761B]">★</span>
+                        <span>{bAvg}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

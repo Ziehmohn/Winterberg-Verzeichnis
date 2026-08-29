@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles } from 'lucide-react';
+import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown } from 'lucide-react';
 import { categories, themes, businesses as initialBusinesses } from './data';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner } from './types';
 import Logo from './components/Logo';
@@ -296,6 +296,7 @@ export default function App() {
 
   const [activeLocation, setActiveLocation] = useState<string>('Alle');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+  const [sortBy, setSortBy] = useState<'featured' | 'rating' | 'reviews_count' | 'name_asc' | 'name_desc'>('featured');
   const [isAllMode, setIsAllMode] = useState(initialAllMode);
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
   const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
@@ -820,18 +821,28 @@ export default function App() {
            matchesExtended;
   }).slice(0, 8) : [];
 
+  const getBusinessRatingStats = (b: Business) => {
+    const approved = Array.isArray(b.reviews) ? b.reviews.filter(r => r.status === 'approved') : [];
+    const count = approved.length;
+    const avg = count > 0 ? approved.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / count : 0;
+    return { avg, count };
+  };
+
   const filteredBusinesses = businesses.filter((bus) => {
     if (bus.status === 'pending') return false;
     const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
     const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     
     const lowerSearch = searchQuery.toLowerCase().trim();
-    const matchesServices = Array.isArray(bus.services) && bus.services.some(s => s.toLowerCase().includes(lowerSearch));
-    const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch));
+    const matchesServices = (Array.isArray(bus.services) && bus.services.some(s => s.toLowerCase().includes(lowerSearch))) ||
+                            (Array.isArray(bus.services_nl) && bus.services_nl.some(s => s.toLowerCase().includes(lowerSearch)));
+    const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
+                            !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
     
     const matchesSearch = !lowerSearch ||
                           bus.name.toLowerCase().includes(lowerSearch) || 
                           (bus.description && bus.description.toLowerCase().includes(lowerSearch)) ||
+                          (bus.description_nl && bus.description_nl.toLowerCase().includes(lowerSearch)) ||
                           bus.category.toLowerCase().includes(lowerSearch) ||
                           (bus.subcategory && bus.subcategory.toLowerCase().includes(lowerSearch)) ||
                           matchesServices ||
@@ -841,6 +852,35 @@ export default function App() {
     const matchesLocation = activeLocation === 'Alle' || busLocation === activeLocation;
     return matchesCategory && matchesSearch && matchesLocation;
   }).sort((a, b) => {
+    if (sortBy === 'rating') {
+      const aStats = getBusinessRatingStats(a);
+      const bStats = getBusinessRatingStats(b);
+      if (bStats.avg !== aStats.avg) {
+        return bStats.avg - aStats.avg;
+      }
+      if (bStats.count !== aStats.count) {
+        return bStats.count - aStats.count;
+      }
+      return a.name.localeCompare(b.name);
+    }
+    if (sortBy === 'reviews_count') {
+      const aStats = getBusinessRatingStats(a);
+      const bStats = getBusinessRatingStats(b);
+      if (bStats.count !== aStats.count) {
+        return bStats.count - aStats.count;
+      }
+      if (bStats.avg !== aStats.avg) {
+        return bStats.avg - aStats.avg;
+      }
+      return a.name.localeCompare(b.name);
+    }
+    if (sortBy === 'name_asc') {
+      return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+    }
+    if (sortBy === 'name_desc') {
+      return b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: 'base' });
+    }
+    // Default / 'featured': Premium entries first, then alphabetical
     if (a.isPremium && !b.isPremium) return -1;
     if (!a.isPremium && b.isPremium) return 1;
     return a.name.localeCompare(b.name);
@@ -1670,30 +1710,49 @@ export default function App() {
                 />
               </div>
 
-              {/* Search Bar above company cards */}
-              <div className="mb-6">
-                <div className="flex items-center gap-3 bg-white border border-[#EDE8E0] rounded-lg px-4 py-3 shadow-[0_2px_8px_rgba(27,33,29,0.03)] focus-within:border-[#0F4C2E] focus-within:shadow-[0_4px_12px_rgba(15,76,46,0.08)] transition-all">
-                  <Search className="w-5 h-5 text-[#5F6B63] shrink-0" />
-                  <input 
-                    placeholder={
-                      activeCategory === 'Alle'
-                        ? (lang === 'nl' ? 'Zoek bedrijven, producten of diensten (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)…')
-                        : (lang === 'nl' ? `In „${t(activeCategory)}“ zoeken naar namen, producten of diensten…` : `In „${activeCategory}“ nach Namen, Produkten oder Leistungen suchen…`)
-                    } 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="border-none outline-none bg-transparent text-[15px] w-full text-[#1B211D] placeholder:text-[#8A928B]"
-                  />
-                  {searchQuery && (
-                    <button 
-                      type="button" 
-                      onClick={() => setSearchQuery('')}
-                      className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded hover:bg-[#F3F0EA] transition-colors cursor-pointer"
-                      title={lang === 'nl' ? 'Zoekopdracht wissen' : 'Suche zurücksetzen'}
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  )}
+              {/* Search Bar & Sorting Controls above company cards */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-6">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 bg-white border border-[#EDE8E0] rounded-lg px-4 py-2.5 shadow-[0_2px_8px_rgba(27,33,29,0.03)] focus-within:border-[#0F4C2E] focus-within:shadow-[0_4px_12px_rgba(15,76,46,0.08)] transition-all">
+                    <Search className="w-5 h-5 text-[#5F6B63] shrink-0" />
+                    <input 
+                      placeholder={
+                        activeCategory === 'Alle'
+                          ? (lang === 'nl' ? 'Zoek bedrijven, producten of diensten (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)…')
+                          : (lang === 'nl' ? `In „${t(activeCategory)}“ zoeken naar namen, producten of diensten…` : `In „${activeCategory}“ nach Namen, Produkten oder Leistungen suchen…`)
+                      } 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="border-none outline-none bg-transparent text-[15px] w-full text-[#1B211D] placeholder:text-[#8A928B]"
+                    />
+                    {searchQuery && (
+                      <button 
+                        type="button" 
+                        onClick={() => setSearchQuery('')}
+                        className="text-[#8A928B] hover:text-[#1B211D] p-1 rounded hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                        title={lang === 'nl' ? 'Zoekopdracht wissen' : 'Suche zurücksetzen'}
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Sorting Select Dropdown */}
+                <div className="flex items-center gap-2 bg-white border border-[#EDE8E0] rounded-lg px-3.5 py-2.5 shrink-0 shadow-2xs">
+                  <ArrowUpDown className="w-4 h-4 text-[#0F4C2E] shrink-0" />
+                  <span className="text-xs font-bold text-[#5F6B63] hidden md:inline">{t("sortBy")}:</span>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as any)}
+                    className="bg-transparent border-none text-[13.5px] font-semibold text-[#1B211D] focus:outline-none cursor-pointer pr-1"
+                  >
+                    <option value="featured">{t("sortFeatured")}</option>
+                    <option value="rating">{t("sortRating")}</option>
+                    <option value="reviews_count">{t("sortReviewsCount")}</option>
+                    <option value="name_asc">{t("sortNameAsc")}</option>
+                    <option value="name_desc">{t("sortNameDesc")}</option>
+                  </select>
                 </div>
               </div>
 
@@ -1728,7 +1787,7 @@ export default function App() {
                 )}
 
                 <motion.div 
-                  key={`${activeCategory}-${activeLocation}-${searchQuery}`}
+                  key={`${activeCategory}-${activeLocation}-${searchQuery}-${sortBy}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
@@ -1737,6 +1796,12 @@ export default function App() {
                   {filteredBusinesses.length > 0 ? (
                     filteredBusinesses.map((bus) => {
                       const localized = getLocalizedBusiness(bus, lang);
+                      const approvedReviews = Array.isArray(bus.reviews) ? bus.reviews.filter(r => r.status === 'approved') : [];
+                      const reviewCount = approvedReviews.length;
+                      const avgRating = reviewCount > 0 
+                        ? (approvedReviews.reduce((sum, r) => sum + (Number(r?.rating) || 0), 0) / reviewCount).toFixed(1)
+                        : null;
+
                       return (
                         <div 
                           key={bus.id} 
@@ -1748,24 +1813,45 @@ export default function App() {
                           }}
                           className={`bg-white border rounded-lg p-5 cursor-pointer transition-all duration-200 shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] ${bus.isPremium ? 'border-[#D65F0C]' : 'border-[#EDE8E0]'}`}
                         >
-                          <div className="flex items-start gap-[16px] mb-[16px]">
-                            {bus.logoUrl ? (
-                              <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
-                            ) : (
-                              <BusinessCategoryIcon 
-                                category={bus.category} 
-                                subcategory={bus.subcategory} 
-                                name={bus.name} 
-                                isPremium={bus.isPremium} 
-                                size="lg"
-                                className="w-[48px] h-[48px]"
-                              />
-                            )}
-                            <div>
-                              <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D]">{bus.name}</div>
-                              <div className="text-[13.5px] text-[#8A928B]">{t(bus.category)}{bus.subcategory ? ` · ${t(bus.subcategory)}` : ''} · {bus.district || 'Winterberg'}</div>
+                          <div className="flex items-start justify-between gap-3 mb-[14px]">
+                            <div className="flex items-start gap-[14px] min-w-0">
+                              {bus.logoUrl ? (
+                                <img src={bus.logoUrl} alt={bus.name} className="w-[48px] h-[48px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
+                              ) : (
+                                <BusinessCategoryIcon 
+                                  category={bus.category} 
+                                  subcategory={bus.subcategory} 
+                                  name={bus.name} 
+                                  isPremium={bus.isPremium} 
+                                  size="lg"
+                                  className="w-[48px] h-[48px]"
+                                />
+                              )}
+                              <div className="min-w-0">
+                                <div className="font-display text-[17.5px] font-semibold leading-[1.25] mb-[4px] text-[#1B211D] flex items-center gap-2 flex-wrap">
+                                  <span>{bus.name}</span>
+                                  {bus.isPremium && (
+                                    <span className="bg-[#FFF1E4] text-[#D65F0C] text-[11px] font-bold px-2 py-0.5 rounded border border-[#F2761B]/30 shrink-0">
+                                      Premium
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-[13.5px] text-[#8A928B] truncate">
+                                  {t(bus.category)}{bus.subcategory ? ` · ${t(bus.subcategory)}` : ''} · {bus.district || 'Winterberg'}
+                                </div>
+                              </div>
                             </div>
+
+                            {/* Star Rating Badge on Card */}
+                            {avgRating && (
+                              <div className="flex items-center gap-1 bg-[#FAF8F5] border border-[#E7E2DA] px-2.5 py-1 rounded-md shrink-0 shadow-2xs">
+                                <span className="text-[#F2761B] text-[13px] leading-none">★</span>
+                                <span className="font-bold text-[13px] text-[#1B211D]">{avgRating}</span>
+                                <span className="text-[11px] text-[#8A928B]">({reviewCount})</span>
+                              </div>
+                            )}
                           </div>
+
                           <div className="text-[15px] text-[#5F6B63] leading-[1.5] mb-[16px] min-h-[44px]">
                             {localized.description && localized.description.length > 90 
                               ? localized.description.substring(0, 90) + '…' 

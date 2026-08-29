@@ -59,6 +59,12 @@ export const businesses: Business[] = [
     phone: '02981 899539',
     website: 'https://blackwater-irishpub.de',
     imageFallback: 'BW',
+    isPremium: true,
+    reviews: [
+      { id: 'r1', authorName: 'Lukas M.', text: 'Super Stimmung, tolles Bier und mega Service!', rating: 5, status: 'approved', date: '2026-08-15' },
+      { id: 'r2', authorName: 'Sophie K.', text: 'Kommen jeden Urlaub hierher. Sehr gemütlich.', rating: 5, status: 'approved', date: '2026-08-20' },
+      { id: 'r3', authorName: 'Dirk W.', text: 'Klasse Pub mit ehrlicher Atmosphäre.', rating: 4, status: 'approved', date: '2026-08-22' }
+    ]
   },
   {
     id: '145',
@@ -70,6 +76,9 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '02981 8968670',
     imageFallback: 'BK',
+    reviews: [
+      { id: 'r4', authorName: 'Jan B.', text: 'Kreative Cocktails und sehr aufmerksames Team.', rating: 5, status: 'approved', date: '2026-08-10' }
+    ]
   },
 
   {
@@ -82,7 +91,12 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     website: 'https://car-point-winterberg.de/',
     imageFallback: 'CP',
-    isVerified: true
+    isVerified: true,
+    isPremium: true,
+    reviews: [
+      { id: 'r5', authorName: 'Markus T.', text: 'Schnelle Reparatur und fairer Preis. Absolut empfehlenswert!', rating: 5, status: 'approved', date: '2026-07-28' },
+      { id: 'r6', authorName: 'Claudia S.', text: 'Sehr freundlicher Meister und top Arbeit.', rating: 5, status: 'approved', date: '2026-08-05' }
+    ]
   },
   {
     id: '2',
@@ -94,6 +108,9 @@ export const businesses: Business[] = [
     district: 'Siedlinghausen',
     website: 'https://www.autoservice-kruk.de/',
     imageFallback: 'AK',
+    reviews: [
+      { id: 'r7', authorName: 'Bernd R.', text: 'Zuverlässig und pünktlich. Stammkunde seit Jahren.', rating: 5, status: 'approved', date: '2026-06-14' }
+    ]
   },
   {
     id: 'nagel',

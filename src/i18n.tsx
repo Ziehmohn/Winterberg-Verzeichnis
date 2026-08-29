@@ -224,7 +224,13 @@ export const translations: Record<Lang, Record<string, string>> = {
     "heroText2": "Finde lokale Anbieter in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld und Altenfeld.",
     "switchLanguage": "Sprache wechseln",
     "foundService": "Gefundene Leistung",
-    "listedIn": "Gelistet in"
+    "listedIn": "Gelistet in",
+    "sortBy": "Sortieren nach",
+    "sortFeatured": "Empfohlen",
+    "sortRating": "Beste Bewertung ★",
+    "sortReviewsCount": "Meiste Bewertungen",
+    "sortNameAsc": "Name (A bis Z)",
+    "sortNameDesc": "Name (Z bis A)"
   },
   nl: {
     "searchPlaceholder": "Zoek naar namen, aanbiedingen of trefwoorden...",
@@ -447,7 +453,13 @@ export const translations: Record<Lang, Record<string, string>> = {
     "heroText2": "Vind lokale aanbieders in Winterberg, Züschen, Niedersfeld, Siedlinghausen, Silbach, Neuastenberg, Langewiese, Hoheleye, Mollseifen, Lenneplätze, Elkeringhausen, Grönebach, Hildfeld en Altenfeld.",
     "switchLanguage": "Taal wijzigen",
     "foundService": "Gevonden dienst",
-    "listedIn": "Vermeld in"
+    "listedIn": "Vermeld in",
+    "sortBy": "Sorteren op",
+    "sortFeatured": "Aanbevolen",
+    "sortRating": "Hoogste beoordeling ★",
+    "sortReviewsCount": "Meeste beoordelingen",
+    "sortNameAsc": "Naam (A tot Z)",
+    "sortNameDesc": "Naam (Z tot A)"
   }
 };
 
