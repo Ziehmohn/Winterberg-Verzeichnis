@@ -70,51 +70,97 @@ async function startServer() {
   // API Routes
   app.post('/api/create-checkout-session', async (req, res) => {
     try {
-      const { businessId, email } = req.body;
+      const { businessId, email, billingCycle } = req.body || {};
+      
+      if (!businessId) {
+        return res.status(400).json({ error: 'businessId ist erforderlich.' });
+      }
+
       const stripe = getStripe();
       const origin = req.headers.origin || process.env.APP_URL || `http://localhost:${PORT}`;
 
-      // This creates a Checkout Session with a subscription
-      // 9,95 € / month for 3 months, then 49,95 € / month.
-      // Easiest way in Stripe: Create a subscription with a 3-month trial? No, a subscription with phases (Subscription Schedules)
-      // or simply a custom product with two prices, but for simplicity here we can just create a Checkout Session with a subscription.
-      // Wait, Stripe Checkout doesn't easily support dynamic step pricing without passing Price IDs.
-      // Let's create the products and prices dynamically if they don't exist, or just use `price_data`.
-      // Stripe allows creating subscriptions using `price_data` directly in checkout!
-      // But wait, to have a different price for the first 3 months, you can use "discounts" (a 3-month coupon).
-      // Let's use `price_data` for 49.95 / month and apply a coupon that reduces it to 9.95 for 3 months.
-      // Or we can just create a basic checkout session for 49.95 and add a note, or we can use the `subscription_data` with a trial.
-      // For demonstration, let's keep it simple: 49.95 EUR / month.
+      const isYearly = billingCycle === 'yearly';
+      const cycle = isYearly ? 'yearly' : 'monthly';
       
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card', 'paypal', 'sepa_debit'],
+        payment_method_types: ['card', 'sepa_debit', 'paypal'],
         line_items: [
           {
             price_data: {
               currency: 'eur',
               product_data: {
-                name: 'Premium Eintrag - Winterberg Wirtschaft',
-                description: '9,95 € / Monat in den ersten 3 Monaten, danach 49,95 € / Monat.',
+                name: 'Premium Eintrag - Winterberg Verzeichnis',
+                description: isYearly ? 'Premium Eintrag - 1 Jahr (danach mtl. 12,95 € netto)' : 'Premium Eintrag - monatlich kündbar (12,95 € netto)',
               },
-              unit_amount: 4995, // 49.95 EUR
+              unit_amount: isYearly ? 11940 : 1295, // 119.40 EUR or 12.95 EUR
               recurring: {
-                interval: 'month',
+                interval: isYearly ? 'year' : 'month',
               },
             },
             quantity: 1,
           },
         ],
         mode: 'subscription',
+        billing_address_collection: 'required',
+        tax_id_collection: {
+          enabled: true,
+        },
+        allow_promotion_codes: true,
         success_url: `${origin}?session_id={CHECKOUT_SESSION_ID}&success=true`,
         cancel_url: `${origin}?canceled=true`,
         client_reference_id: businessId,
         customer_email: email || undefined,
+        subscription_data: {
+          metadata: {
+            businessId: businessId,
+            billingCycle: cycle
+          }
+        },
+        metadata: {
+          businessId: businessId,
+          billingCycle: cycle
+        }
       });
 
-      res.json({ url: session.url });
+      return res.json({ url: session.url });
     } catch (error: any) {
       console.error('Error creating checkout session:', error);
-      res.status(500).json({ error: error.message });
+      return res.status(500).json({ error: error.message || 'Internal Server Error' });
+    }
+  });
+
+  app.post('/api/cancel-subscription', async (req, res) => {
+    try {
+      const { subscriptionId } = req.body || {};
+      if (!subscriptionId) {
+        return res.status(400).json({ error: 'subscriptionId ist erforderlich.' });
+      }
+
+      const stripe = getStripe();
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      
+      if (subscription.status === 'canceled') {
+        return res.json({
+          success: true,
+          message: 'Dieses Abonnement ist bereits gekündigt.',
+          cancelAt: subscription.canceled_at ? new Date(subscription.canceled_at * 1000).toISOString() : new Date().toISOString()
+        });
+      }
+
+      const updatedSub = await stripe.subscriptions.update(subscriptionId, {
+        cancel_at_period_end: true,
+      });
+
+      const currentPeriodEnd = updatedSub.current_period_end ? new Date(updatedSub.current_period_end * 1000).toLocaleDateString('de-DE') : 'Ablauf der Periode';
+
+      return res.json({ 
+        success: true, 
+        message: `Abonnement wurde erfolgreich gekündigt und läuft zum ${currentPeriodEnd} aus.`,
+        cancelAt: new Date((updatedSub.current_period_end || Math.floor(Date.now() / 1000)) * 1000).toISOString()
+      });
+    } catch (error: any) {
+      console.error('Error canceling subscription:', error);
+      return res.status(500).json({ error: error.message || 'Internal Server Error' });
     }
   });
 

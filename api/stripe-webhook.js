@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
+import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { buffer } from 'micro';
 import { sendMail } from './_mail.js';
 
@@ -20,7 +20,7 @@ if (!getApps().length) {
   }
 }
 
-// Disable Next.js body parser so we can get the raw body for Stripe signature verification
+// Disable Next.js / Vercel body parser so we get raw body for Stripe signature verification
 export const config = {
   api: {
     bodyParser: false,
@@ -30,6 +30,16 @@ export const config = {
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  if (!process.env.STRIPE_SECRET_KEY) {
+    console.error('Missing STRIPE_SECRET_KEY');
+    return res.status(500).json({ error: 'STRIPE_SECRET_KEY is not configured.' });
+  }
+
+  if (!process.env.STRIPE_WEBHOOK_SECRET) {
+    console.error('Missing STRIPE_WEBHOOK_SECRET');
+    return res.status(500).json({ error: 'STRIPE_WEBHOOK_SECRET is not configured.' });
   }
 
   const sig = req.headers['stripe-signature'];
@@ -52,65 +62,63 @@ export default async function handler(req, res) {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object;
-        const businessId = session.metadata?.businessId;
-        const billingCycle = session.metadata?.billingCycle;
-        
-        const docRef = db.collection('businesses').doc(businessId);
-        const docSnap = await docRef.get();
-        const busName = docSnap.exists ? docSnap.data().name : 'Unbekanntes Unternehmen';
-
-        console.log(`Checkout completed for business ${businessId}. Mode: ${billingCycle}`);
+        const businessId = session.metadata?.businessId || session.client_reference_id;
+        const billingCycle = session.metadata?.billingCycle || 'monthly';
         
         if (businessId) {
-          await db.collection('businesses').doc(businessId).update({
-            isPremium: true,
-            stripeSubscriptionId: session.subscription,
-            stripeCustomerId: session.customer
-          });
-        }
+          const docRef = db.collection('businesses').doc(businessId);
+          const docSnap = await docRef.get();
+          const busName = docSnap.exists ? docSnap.data().name : 'Unbekanntes Unternehmen';
 
-        try {
-          await sendMail({
-            to: 'simon.kraeling@sichtbar-online.com, info@sichtbar-online.com',
-            subject: `Zahlung erhalten: ${busName}`,
-            html: `
-              <h3>Neue Zahlung eingegangen</h3>
-              <p>Ein Kunde hat soeben für das Unternehmen <strong>${busName}</strong> (ID: ${businessId}) bezahlt.</p>
-              <p>Der Eintrag wurde automatisch auf Premium hochgestuft.</p>
-            `
+          console.log(`Checkout completed for business ${businessId} (${busName}). Mode: ${billingCycle}`);
+          
+          await docRef.update({
+            isPremium: true,
+            stripeSubscriptionId: session.subscription || null,
+            stripeCustomerId: session.customer || null,
+            subscriptionStatus: 'active',
+            billingCycle: billingCycle,
+            cancelAtPeriodEnd: false
           });
-        } catch (mailError) {
-          console.error('Fehler beim Senden der Admin-E-Mail (Stripe Webhook):', mailError);
+
+          try {
+            await sendMail({
+              to: 'simon.kraeling@sichtbar-online.com, info@sichtbar-online.com',
+              subject: `Zahlung erhalten: ${busName}`,
+              html: `
+                <h3>Neue Zahlung eingegangen</h3>
+                <p>Ein Kunde hat soeben für das Unternehmen <strong>${busName}</strong> (ID: ${businessId}) bezahlt.</p>
+                <p><strong>Tarif:</strong> Premium (${billingCycle === 'yearly' ? 'Jährlich (119,40 €/Jahr)' : 'Monatlich (12,95 €/Monat)'})</p>
+                <p>Der Eintrag wurde automatisch auf <strong>Premium</strong> hochgestuft.</p>
+              `
+            });
+          } catch (mailError) {
+            console.error('Fehler beim Senden der Admin-E-Mail (Stripe Webhook):', mailError);
+          }
         }
+        break;
+      }
+
+      case 'customer.subscription.updated': {
+        const subscription = event.data.object;
+        const businesses = await db.collection('businesses').where('stripeSubscriptionId', '==', subscription.id).get();
         
-        // 2. AGB Rule: If Yearly, convert to Subscription Schedule for monthly fallback
-        if (billingCycle === 'yearly' && session.subscription) {
-          const subscription = await stripe.subscriptions.retrieve(session.subscription);
-          
-          // Create a schedule from the existing subscription
-          const schedule = await stripe.subscriptionSchedules.create({
-            from_subscription: subscription.id,
+        if (!businesses.empty) {
+          const batch = db.batch();
+          const isActive = subscription.status === 'active' || subscription.status === 'trialing';
+          const cancelAtPeriodEnd = subscription.cancel_at_period_end || false;
+          const cancelAt = subscription.cancel_at ? new Date(subscription.cancel_at * 1000).toISOString() : null;
+
+          businesses.forEach(doc => {
+            batch.update(doc.ref, {
+              isPremium: isActive,
+              subscriptionStatus: subscription.status,
+              cancelAtPeriodEnd: cancelAtPeriodEnd,
+              ...(cancelAt ? { cancelAt } : {})
+            });
           });
-          
-          // Note: If you want this to automatically switch to the monthly price after 1 year, 
-          // you need to specify the monthly price ID below. We will leave it commented out
-          // until you create the monthly price in Stripe and provide the ID.
-          /*
-          await stripe.subscriptionSchedules.update(schedule.id, {
-            end_behavior: 'release',
-            phases: [
-              {
-                start_date: schedule.current_phase.start_date,
-                end_date: schedule.current_phase.end_date,
-                items: [{ price: subscription.items.data[0].price.id, quantity: 1 }],
-              },
-              {
-                items: [{ price: 'price_MONTHLY_1295', quantity: 1 }], 
-                iterations: 0, 
-              }
-            ]
-          });
-          */
+          await batch.commit();
+          console.log(`Subscription ${subscription.id} updated: status=${subscription.status}, cancelAtPeriodEnd=${cancelAtPeriodEnd}`);
         }
         break;
       }
@@ -118,16 +126,20 @@ export default async function handler(req, res) {
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object;
         const subscriptionId = invoice.subscription;
-        const invoicePdf = invoice.hosted_invoice_url;
+        const invoicePdf = invoice.hosted_invoice_url || invoice.invoice_pdf;
         
         if (subscriptionId) {
           await db.collection('invoices').add({
             subscriptionId,
             customerId: invoice.customer,
-            pdfUrl: invoicePdf,
-            date: new Date(invoice.created * 1000).toISOString(),
-            amount: invoice.amount_paid / 100
+            customerEmail: invoice.customer_email || null,
+            pdfUrl: invoicePdf || null,
+            date: new Date((invoice.created || Math.floor(Date.now() / 1000)) * 1000).toISOString(),
+            amount: (invoice.amount_paid || 0) / 100,
+            currency: invoice.currency || 'eur',
+            status: 'paid'
           });
+          console.log(`Invoice saved for subscription ${subscriptionId}`);
         }
         break;
       }
@@ -135,11 +147,19 @@ export default async function handler(req, res) {
       case 'customer.subscription.deleted': {
         const subscription = event.data.object;
         const businesses = await db.collection('businesses').where('stripeSubscriptionId', '==', subscription.id).get();
-        const batch = db.batch();
-        businesses.forEach(doc => {
-          batch.update(doc.ref, { isPremium: false, stripeSubscriptionId: admin.firestore.FieldValue.delete() });
-        });
-        await batch.commit();
+        
+        if (!businesses.empty) {
+          const batch = db.batch();
+          businesses.forEach(doc => {
+            batch.update(doc.ref, {
+              isPremium: false,
+              subscriptionStatus: 'canceled',
+              stripeSubscriptionId: FieldValue.delete()
+            });
+          });
+          await batch.commit();
+          console.log(`Subscription ${subscription.id} deleted. Businesses set to isPremium: false.`);
+        }
         break;
       }
 
@@ -147,9 +167,9 @@ export default async function handler(req, res) {
         console.log(`Unhandled event type ${event.type}`);
     }
 
-    res.json({ received: true });
+    return res.status(200).json({ received: true });
   } catch (err) {
     console.error('Webhook processing error:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 }

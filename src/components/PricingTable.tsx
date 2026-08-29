@@ -119,11 +119,10 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
           {!hideAction && (
             <button 
               type="button" 
-              disabled={true}
-              className="mt-[26px] w-full bg-gray-100 text-gray-400 border border-gray-200 rounded-full py-[13px] text-[15px] font-semibold cursor-not-allowed"
-              title="Aktuell noch nicht verfügbar"
+              onClick={() => onSelect('premium')}
+              className="mt-[26px] w-full bg-[#F2761B] hover:bg-[#D65F0C] text-white border-none rounded-full py-[13px] text-[15px] font-semibold cursor-pointer transition-colors shadow-[0_4px_14px_rgba(242,118,27,0.3)]"
             >
-              In Kürze verfügbar
+              Premium wählen
             </button>
           )}
         </div>

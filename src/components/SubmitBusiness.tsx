@@ -245,18 +245,44 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
               <div className="font-bold text-[18px] mb-2">0,00 € <span className="text-[12px] font-normal text-[#5F6B63]">dauerhaft</span></div>
               <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, Kurzbeschreibung.</div>
             </div>
+            
             <div 
-              className="cursor-not-allowed border border-[#E7E2DA] p-4 rounded-[12px] bg-gray-50 flex flex-col opacity-60"
-              title="Aktuell noch nicht verfügbar"
+              onClick={() => setSelectedPlan('premium')}
+              className={`cursor-pointer border p-4 rounded-[12px] transition-colors relative ${selectedPlan === 'premium' ? 'border-[#F2761B] bg-[#FFF8F1] ring-2 ring-[#F2761B]' : 'border-[#E7E2DA] bg-[#FAF8F5] hover:border-[#F2761B]/50'}`}
             >
               <div className="flex justify-between items-start mb-1">
-                <div className="font-bold flex items-center gap-1.5 text-gray-500">Premium <ShieldCheck className="w-4 h-4 text-gray-400" /></div>
+                <div className="font-bold flex items-center gap-1.5 text-[#0F4C2E]">Premium <ShieldCheck className="w-4 h-4 text-[#F2761B]" /></div>
+                {selectedPlan === 'premium' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
+
+              {selectedPlan === 'premium' ? (
+                <div className="my-2">
+                  <div className="flex bg-white rounded-full p-0.5 border border-[#EDE8E0] mb-2 w-fit">
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setBillingCycle('monthly'); }}
+                      className={`px-2.5 py-1 text-[11px] font-medium rounded-full transition-colors ${billingCycle === 'monthly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                    >
+                      Monatlich (12,95 €)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setBillingCycle('yearly'); }}
+                      className={`px-2.5 py-1 text-[11px] font-medium rounded-full transition-colors ${billingCycle === 'yearly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
+                    >
+                      Jährlich (9,95 €/Mtl.)
+                    </button>
+                  </div>
+                  <div className="font-bold text-[18px] text-[#D65F0C]">
+                    {billingCycle === 'yearly' ? '119,40 € / Jahr' : '12,95 € / Monat'}
+                    <span className="text-[12px] font-normal text-[#5F6B63]"> netto</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab 9,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat</span></div>
+              )}
               
-              <div className="font-bold text-[18px] text-gray-500 mb-2 mt-auto pt-8">
-                In Kürze verfügbar
-              </div>
-              <div className="text-[13px] text-gray-400">Ausführliches Profil, Galerie, Jobs, Top-Platzierung.</div>
+              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, Top-Platzierung.</div>
             </div>
           </div>
         </div>

@@ -171,11 +171,17 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             
             {!business.isPremium && (
               <button 
-                disabled={true}
-                className="bg-white/10 border border-white/20 text-white/50 rounded-full px-4 py-2 text-[14px] cursor-not-allowed"
-                title="Aktuell noch nicht verfügbar"
+                type="button"
+                onClick={() => {
+                  if (!user) {
+                    setShowLoginScreen(true);
+                  } else {
+                    setShowClaimScreen(true);
+                  }
+                }}
+                className="bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-full px-4 py-2 text-[14px] font-semibold cursor-pointer transition-colors shadow"
               >
-                Auf Premium upgraden (In Kürze)
+                Auf Premium upgraden
               </button>
             )}
           </div>
@@ -357,11 +363,17 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <div className="font-semibold text-[15px] mb-1">Ist das Ihr Unternehmen?</div>
               <p className="text-[13px] text-[#5F6B63] mb-3">Übernehmen Sie dieses Profil und fügen Sie Bildergalerie, Öffnungszeiten und mehr hinzu.</p>
               <button 
-                disabled={true}
-                className="w-full bg-gray-50 text-gray-400 border border-gray-200 rounded-[14px] py-[11px] text-[14px] font-semibold cursor-not-allowed"
-                title="Aktuell noch nicht verfügbar"
+                type="button"
+                onClick={() => {
+                  if (!user) {
+                    setShowLoginScreen(true);
+                  } else {
+                    setShowClaimScreen(true);
+                  }
+                }}
+                className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-[14px] py-[11px] text-[14px] font-semibold cursor-pointer transition-colors"
               >
-                Profil übernehmen (In Kürze)
+                Profil übernehmen & upgraden
               </button>
             </div>
           )}
@@ -443,7 +455,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": business.name,
-            "image": business.images ? business.images : undefined,
+            "image": business.gallery && business.gallery.length > 0 ? business.gallery : (business.uploadedImage || business.imageLink || undefined),
             "url": webHref || undefined,
             "telephone": business.phone || undefined,
             "address": {

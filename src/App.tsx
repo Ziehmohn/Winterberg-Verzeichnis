@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, Component, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles } from 'lucide-react';
 import { categories, themes, businesses as initialBusinesses } from './data';
@@ -93,14 +93,8 @@ import { signOut } from 'firebase/auth';
 
 
 
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  { hasError: boolean; error: Error | null }
-> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
+  state = { hasError: false, error: null as Error | null };
 
   static getDerivedStateFromError(error: Error) {
     return { hasError: true, error };
@@ -111,15 +105,16 @@ class ErrorBoundary extends React.Component<
   }
 
   render() {
-    if (this.state.hasError) {
+    const s = (this as any).state;
+    if (s && s.hasError) {
       return (
         <div className="w-full max-w-xl mx-auto p-8 my-10 bg-white border border-red-200 rounded-xl text-center shadow-lg">
           <h2 className="text-xl font-bold text-red-700 mb-2">Ein Anzeigefehler ist aufgetreten</h2>
           <p className="text-sm text-gray-600 mb-4 font-mono bg-red-50 p-3 rounded text-left overflow-auto max-h-32">
-            {this.state.error?.message || 'Laufzeitfehler'}
+            {s.error?.message || 'Laufzeitfehler'}
           </p>
           <button 
-            onClick={() => { this.setState({ hasError: false, error: null }); window.location.reload(); }}
+            onClick={() => { (this as any).setState({ hasError: false, error: null }); window.location.reload(); }}
             className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition-colors"
           >
             Seite neu laden
@@ -127,7 +122,7 @@ class ErrorBoundary extends React.Component<
         </div>
       );
     }
-    return this.props.children;
+    return (this as any).props?.children;
   }
 }
 
@@ -941,6 +936,10 @@ export default function App() {
               setIsSubmitMode(true);
               // Future: pass selected plan to SubmitBusiness if we want it pre-selected
             }}
+            onInquireAd={() => {
+              setInquiryCategory('Alle');
+              setIsAdInquiryOpen(true);
+            }}
           />
         ) : isImpressumMode ? (
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
@@ -961,6 +960,8 @@ export default function App() {
             setReviewsEnabled={(v: boolean) => { setReviewsEnabled(v); localStorage.setItem('premium_reviews_enabled', String(v)); }} 
             seoSettings={seoSettings} 
             setSeoSettings={setSeoSettings}
+            ads={ads}
+            setAds={setAds}
             onBack={() => setIsAdminMode(false)}
           />
         ) : (
@@ -1200,20 +1201,20 @@ export default function App() {
               </div>
             )}
 
-            <div className={`w-full max-w-[1180px] mx-auto px-6 pt-[28px] pb-[80px] flex flex-col md:flex-row gap-[30px] items-start ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
+            <div className={`w-full max-w-[1400px] mx-auto px-4 md:px-6 pt-[28px] pb-[80px] flex flex-col lg:flex-row gap-[24px] xl:gap-[30px] items-start ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}
-            <aside className="w-full md:w-[270px] shrink-0 mb-6 md:mb-0 bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] md:sticky md:top-[116px]">
+            <aside className="w-full lg:w-[250px] xl:w-[270px] shrink-0 mb-6 lg:mb-0 bg-white border border-[#EDE8E0] rounded-[20px] p-[22px] lg:sticky lg:top-[116px]">
               
               {/* Mobile Toggle Button */}
               <button 
-                className="w-full md:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
+                className="w-full lg:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-xl mb-4"
                 onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
               >
                 <span>Filter & Kategorien</span>
                 {isMobileCategoriesOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
 
-              <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden md:block'}`}>
+              <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden lg:block'}`}>
                 <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">Kategorie</div>
                 <div className="flex flex-col gap-1 mb-[24px]">
                   {categories.map((group) => {
@@ -1324,6 +1325,19 @@ export default function App() {
 
             {/* Main Area */}
             <div className="flex-1 min-w-0 w-full">
+
+              {/* Mobile Sponsor Banner */}
+              <div className="block lg:hidden mb-5">
+                <SkyscraperBanner 
+                  banners={ads} 
+                  activeCategory={activeCategory} 
+                  onInquire={(cat) => {
+                    setInquiryCategory(cat || activeCategory);
+                    setIsAdInquiryOpen(true);
+                  }} 
+                  isMobile={true} 
+                />
+              </div>
 
               {/* Search Bar above company cards */}
               <div className="mb-6">
@@ -1557,6 +1571,18 @@ export default function App() {
                 })()}
                 </>
               )}
+            </div>
+
+            {/* Desktop Sticky Right Skyscraper Banner */}
+            <div className="hidden lg:block shrink-0">
+              <SkyscraperBanner 
+                banners={ads} 
+                activeCategory={activeCategory} 
+                onInquire={(cat) => {
+                  setInquiryCategory(cat || activeCategory);
+                  setIsAdInquiryOpen(true);
+                }} 
+              />
             </div>
             </div>
 
@@ -1889,6 +1915,16 @@ export default function App() {
             >
               Preise & Pakete
             </a>
+            <button 
+              type="button"
+              onClick={() => { 
+                setInquiryCategory('Alle');
+                setIsAdInquiryOpen(true);
+              }} 
+              className="text-left bg-transparent border-none p-0 text-white/80 hover:text-[#F2761B] transition-colors cursor-pointer text-[14.5px]"
+            >
+              Werbung schalten
+            </button>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">Rechtliches</div>
@@ -1943,6 +1979,13 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Ad Inquiry Modal */}
+      <AdInquiryModal 
+        isOpen={isAdInquiryOpen} 
+        onClose={() => setIsAdInquiryOpen(false)} 
+        initialCategory={inquiryCategory} 
+      />
       </div>
     </div>
   );
@@ -2165,12 +2208,12 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
   );
 }
 
-function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, onBack }: any) {
+function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, ads, setAds, onBack }: any) {
 
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'reviews' | 'abrechnung' | 'redirects' | 'scripts'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'seo' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
@@ -2288,6 +2331,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           { id: 'reviews', label: 'Bewertungen' },
           { id: 'abrechnung', label: 'Abrechnung' },
           ...(isAdmin ? [
+            { id: 'werbung', label: 'Werbung' },
             { id: 'news', label: 'News' },
             { id: 'seo', label: 'SEO' },
             { id: 'redirects', label: 'Redirects' },
@@ -2536,90 +2580,16 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             )}
           </div>
         ) : activeTab === 'abrechnung' ? (
-          <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-            {isAdmin ? (
-              <>
-                <div className="flex gap-[18px] flex-wrap mb-[24px]">
-                  <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
-                    <div className="text-[13px] text-[#96551F]">Premium-Kunden</div>
-                    <div className="font-display text-[32px] font-bold text-[#D65F0C] my-[4px]">
-                      {businesses.filter((b: Business) => b.isPremium).length}
-                    </div>
-                  </div>
-                </div>
-                <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Alle Rechnungen (Admin-Ansicht)</h2>
-                <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
-                  Hier werden zukünftig alle systemweiten Rechnungen der Nutzer aufgelistet.
-                </div>
-              </>
-            ) : (
-              <>
-                <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Ihr Abonnement</h2>
-                {allowedBusinesses.filter((b: Business) => b.isPremium).length > 0 ? (
-                  <div>
-                    {allowedBusinesses.filter((b: Business) => b.isPremium).map((bus: Business) => (
-                      <div key={bus.id} className="border border-[#EDE8E0] rounded-[16px] p-6 mb-6 bg-[#FAF8F5]">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <div className="font-bold text-[18px] text-[#0F4C2E]">{bus.name}</div>
-                            <div className="text-[14px] text-[#5F6B63]">Premium-Eintrag (Aktiv)</div>
-                          </div>
-                          <button 
-                            onClick={async () => {
-                              if (confirm("Möchten Sie Ihr Abonnement wirklich kündigen? Es läuft dann noch bis zum Ende der aktuellen Abrechnungsperiode weiter.")) {
-                                if (!(bus as any).stripeSubscriptionId) {
-                                  const docRef = doc(db, 'businesses', bus.id);
-                                  await updateDoc(docRef, { isPremium: false, subscriptionStatus: 'canceled' });
-                                  setBusinesses(businesses.map((b: Business) => b.id === bus.id ? { ...b, isPremium: false, subscriptionStatus: 'canceled' } : b));
-                                  alert("Erfolgreich gekündigt (Manuelles Downgrade).");
-                                  return;
-                                }
-
-                                try {
-                                  const res = await fetch('/api/cancel-subscription', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ subscriptionId: (bus as any).stripeSubscriptionId })
-                                });
-                                  const data = await res.json();
-                                  if (data.success) {
-                                    alert(data.message);
-                                  } else {
-                                    alert("Fehler bei der Kündigung: " + data.error);
-                                  }
-                                } catch (err) {
-                                  alert("Fehler bei der Verbindung zum Server.");
-                                }
-                              }
-                            }}
-                            className="bg-white border border-[#D8D2C8] text-[#C0392B] px-4 py-2 rounded-[10px] text-[13px] font-semibold hover:border-[#C0392B] transition-colors cursor-pointer"
-                          >
-                            Abo kündigen
-                          </button>
-                        </div>
-                        <div className="text-[13px] text-[#4A544D] bg-[#E8F1EB] p-3 rounded-[10px]">
-                          <strong>Hinweis:</strong> Die Kündigungsfrist beträgt 14 Tage zum Ende der jeweiligen Vertragslaufzeit. Jahresabonnements gehen bei nicht fristgerechter Kündigung automatisch in ein monatlich kündbares Abonnement zum regulären Monatspreis über.
-                        </div>
-                      </div>
-                    ))}
-
-                    <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Ihre Rechnungen</h2>
-                    <p className="text-[14px] text-[#5F6B63] mb-4">
-                      Ihre Rechnungen werden automatisch von Stripe generiert und nach jeder erfolgreichen Zahlung hier bereitgestellt.
-                    </p>
-                    <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
-                      Noch keine Rechnungen für diesen Account vorhanden.
-                    </div>
-                  </div>
-                ) : (
-                  <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
-                    Sie haben aktuell kein aktives Premium-Abonnement.
-                  </div>
-                )}
-              </>
-            )}
-          </div>
+          <AbrechnungAdminPanel 
+            isAdmin={isAdmin} 
+            currentUser={currentUser} 
+            allowedBusinesses={allowedBusinesses} 
+            businesses={businesses} 
+            setBusinesses={setBusinesses} 
+          />
         
+        ) : activeTab === 'werbung' ? (
+          <AdminAdsManager ads={ads} setAds={setAds} />
         ) : activeTab === 'redirects' ? (
           <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
         ) : activeTab === 'scripts' ? (
@@ -2694,6 +2664,213 @@ function SeoAdminPanel({ theme, activeThemeKey, seoSettings, setSeoSettings, bus
           Geben Sie oben Ihren Verifizierungs-Code ein (wird automatisch als Meta-Tag gesetzt). Ihre <strong>sitemap.xml</strong> wird automatisch im Hintergrund generiert und ist <a href="/sitemap.xml" target="_blank" className="underline hover:text-orange-500">hier (/sitemap.xml) erreichbar</a>.
         </p>
       </div>
+    </div>
+  );
+}
+
+function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, businesses, setBusinesses }: any) {
+  const [invoices, setInvoices] = useState<any[]>([]);
+  const [loadingInvoices, setLoadingInvoices] = useState(true);
+
+  useEffect(() => {
+    async function loadInvoices() {
+      try {
+        setLoadingInvoices(true);
+        const snap = await getDocs(collection(db, 'invoices'));
+        const list: any[] = [];
+        snap.forEach(docSnap => {
+          list.push({ id: docSnap.id, ...docSnap.data() });
+        });
+        list.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+        
+        if (isAdmin) {
+          setInvoices(list);
+        } else {
+          const userSubIds = allowedBusinesses.map((b: Business) => (b as any).stripeSubscriptionId).filter(Boolean);
+          const filtered = list.filter(inv => 
+            (inv.customerEmail && currentUser?.email && inv.customerEmail.toLowerCase() === currentUser.email.toLowerCase()) ||
+            userSubIds.includes(inv.subscriptionId)
+          );
+          setInvoices(filtered);
+        }
+      } catch (e) {
+        console.error("Error loading invoices", e);
+      } finally {
+        setLoadingInvoices(false);
+      }
+    }
+    loadInvoices();
+  }, [isAdmin, currentUser, allowedBusinesses]);
+
+  const handleCancelSubscription = async (bus: Business) => {
+    if (confirm(`Möchten Sie das Abonnement für "${bus.name}" wirklich kündigen? Es läuft dann noch bis zum Ende der aktuellen Abrechnungsperiode weiter.`)) {
+      if (!(bus as any).stripeSubscriptionId) {
+        const docRef = doc(db, 'businesses', bus.id);
+        await updateDoc(docRef, { isPremium: false, subscriptionStatus: 'canceled' });
+        setBusinesses(businesses.map((b: Business) => b.id === bus.id ? { ...b, isPremium: false, subscriptionStatus: 'canceled' } : b));
+        alert("Erfolgreich gekündigt (Manuelles Downgrade).");
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/cancel-subscription', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subscriptionId: (bus as any).stripeSubscriptionId })
+        });
+        const data = await res.json();
+        if (data.success) {
+          const docRef = doc(db, 'businesses', bus.id);
+          await updateDoc(docRef, { cancelAtPeriodEnd: true, cancelAt: data.cancelAt, subscriptionStatus: 'canceling' });
+          setBusinesses(businesses.map((b: Business) => b.id === bus.id ? { ...b, cancelAtPeriodEnd: true, cancelAt: data.cancelAt, subscriptionStatus: 'canceling' } : b));
+          alert(data.message);
+        } else {
+          alert("Fehler bei der Kündigung: " + (data.error || "Unbekannter Fehler"));
+        }
+      } catch (err) {
+        alert("Fehler bei der Verbindung zum Server.");
+      }
+    }
+  };
+
+  return (
+    <div className="bg-white border border-[#EDE8E0] rounded-[22px] p-[26px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+      {isAdmin ? (
+        <>
+          <div className="flex gap-[18px] flex-wrap mb-[24px]">
+            <div className="bg-[#FFF8F1] border border-[#FBD9BC] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+              <div className="text-[13px] text-[#96551F]">Premium-Kunden</div>
+              <div className="font-display text-[32px] font-bold text-[#D65F0C] my-[4px]">
+                {businesses.filter((b: Business) => b.isPremium).length}
+              </div>
+            </div>
+            <div className="bg-[#E8F1EB] border border-[#C5DFCE] rounded-[16px] px-[24px] py-[20px] flex-1 min-w-[200px]">
+              <div className="text-[13px] text-[#0F4C2E]">Generierte Rechnungen</div>
+              <div className="font-display text-[32px] font-bold text-[#0F4C2E] my-[4px]">
+                {invoices.length}
+              </div>
+            </div>
+          </div>
+          
+          <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Alle Rechnungen (Admin-Ansicht)</h2>
+          
+          {loadingInvoices ? (
+            <div className="py-6 text-center text-[#5F6B63]">Rechnungen werden geladen...</div>
+          ) : invoices.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-[14px] border-collapse">
+                <thead>
+                  <tr className="border-b border-[#EDE8E0] text-[#5F6B63]">
+                    <th className="py-3 px-4 font-semibold">Datum</th>
+                    <th className="py-3 px-4 font-semibold">Kunde / E-Mail</th>
+                    <th className="py-3 px-4 font-semibold">Betrag</th>
+                    <th className="py-3 px-4 font-semibold">Status</th>
+                    <th className="py-3 px-4 font-semibold text-right">PDF</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {invoices.map((inv) => (
+                    <tr key={inv.id} className="border-b border-[#EDE8E0] hover:bg-[#FAF8F5]">
+                      <td className="py-3 px-4 font-medium">{inv.date ? new Date(inv.date).toLocaleDateString('de-DE') : '-'}</td>
+                      <td className="py-3 px-4">{inv.customerEmail || inv.customerId || '-'}</td>
+                      <td className="py-3 px-4 font-bold text-[#0F4C2E]">{Number(inv.amount || 0).toFixed(2).replace('.', ',')} €</td>
+                      <td className="py-3 px-4"><span className="bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded-full text-xs font-semibold">Bezahlt</span></td>
+                      <td className="py-3 px-4 text-right">
+                        {inv.pdfUrl ? (
+                          <a href={inv.pdfUrl} target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">
+                            Download
+                          </a>
+                        ) : '-'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+              Noch keine Rechnungen in der Datenbank vorhanden.
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Ihr Abonnement</h2>
+          {allowedBusinesses.filter((b: Business) => b.isPremium).length > 0 ? (
+            <div>
+              {allowedBusinesses.filter((b: Business) => b.isPremium).map((bus: Business) => (
+                <div key={bus.id} className="border border-[#EDE8E0] rounded-[16px] p-6 mb-6 bg-[#FAF8F5]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <div className="font-bold text-[18px] text-[#0F4C2E]">{bus.name}</div>
+                      <div className="text-[14px] text-[#5F6B63]">
+                        Premium-Eintrag {(bus as any).cancelAtPeriodEnd ? '(Läuft zum Periodenende aus)' : '(Aktiv)'}
+                      </div>
+                    </div>
+                    {!(bus as any).cancelAtPeriodEnd && (
+                      <button 
+                        onClick={() => handleCancelSubscription(bus)}
+                        className="bg-white border border-[#D8D2C8] text-[#C0392B] px-4 py-2 rounded-[10px] text-[13px] font-semibold hover:border-[#C0392B] transition-colors cursor-pointer"
+                      >
+                        Abo kündigen
+                      </button>
+                    )}
+                  </div>
+                  <div className="text-[13px] text-[#4A544D] bg-[#E8F1EB] p-3 rounded-[10px]">
+                    <strong>Hinweis:</strong> Die Kündigungsfrist beträgt 14 Tage zum Ende der jeweiligen Vertragslaufzeit. Jahresabonnements gehen bei nicht fristgerechter Kündigung automatisch in ein monatlich kündbares Abonnement zum regulären Monatspreis über.
+                  </div>
+                </div>
+              ))}
+
+              <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Ihre Rechnungen</h2>
+              <p className="text-[14px] text-[#5F6B63] mb-4">
+                Ihre Rechnungen werden automatisch von Stripe generiert und nach jeder erfolgreichen Zahlung hier bereitgestellt.
+              </p>
+              
+              {loadingInvoices ? (
+                <div className="py-6 text-center text-[#5F6B63]">Rechnungen werden geladen...</div>
+              ) : invoices.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-[14px] border-collapse">
+                    <thead>
+                      <tr className="border-b border-[#EDE8E0] text-[#5F6B63]">
+                        <th className="py-3 px-4 font-semibold">Datum</th>
+                        <th className="py-3 px-4 font-semibold">Betrag</th>
+                        <th className="py-3 px-4 font-semibold">Status</th>
+                        <th className="py-3 px-4 font-semibold text-right">Rechnung</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {invoices.map((inv) => (
+                        <tr key={inv.id} className="border-b border-[#EDE8E0] hover:bg-[#FAF8F5]">
+                          <td className="py-3 px-4 font-medium">{inv.date ? new Date(inv.date).toLocaleDateString('de-DE') : '-'}</td>
+                          <td className="py-3 px-4 font-bold text-[#0F4C2E]">{Number(inv.amount || 0).toFixed(2).replace('.', ',')} €</td>
+                          <td className="py-3 px-4"><span className="bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded-full text-xs font-semibold">Bezahlt</span></td>
+                          <td className="py-3 px-4 text-right">
+                            {inv.pdfUrl ? (
+                              <a href={inv.pdfUrl} target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">
+                                PDF herunterladen
+                              </a>
+                            ) : '-'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+                  Noch keine Rechnungen für diesen Account vorhanden.
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="border border-dashed border-[#D8D2C8] rounded-[16px] p-[30px] text-center text-[#8A928B]">
+              Sie haben aktuell kein aktives Premium-Abonnement.
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
