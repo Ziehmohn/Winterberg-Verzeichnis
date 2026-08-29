@@ -66,7 +66,7 @@ const FAQ_DATA: FaqItem[] = [
         <p>Egal ob ausgiebiges Frühstücksbuffet, gemütlicher Brunch oder schnelles Bäckerei-Frühstück:</p>
         <ul className="list-disc pl-5 space-y-1.5">
           <li><strong>Beliebte Frühstücksbuffets & Brunch-Spots:</strong> Das <em>Cafe Extrablatt</em> (an der Unteren Pforte) bietet täglich ein großes All-you-can-eat-Frühstücksbuffet mit Rührei, Bacon, Brötchen, Müsli und Waffeln. Die <em>Markt Alm</em> (im Lodge Hotel, Am Waltenberg 33) lockt mit einem herzhaften Alm-Frühstücksbuffet ab 07:30 Uhr.</li>
-          <li><strong>Bäckereien & Frühstückscafés:</strong> <em>Café Bäckerei Isken</em> (mehrere Standorte mit umfangreicher Frühstücksauswahl, Pancakes und Kaffeespezialitäten), <em>Café Krämer</em> und <em>Café Engemann</em> im Zentrum.</li>
+          <li><strong>Bäckereien & Frühstückscafés:</strong> <em>Café Bäckerei Isken</em> (mehrere Standorte mit großer Frühstücksauswahl, frischen Handwerksbrötchen, belegten Snacks und Kaffeespezialitäten), <em>Café Krämer</em> und <em>Café Engemann</em> im Zentrum.</li>
           <li><strong>Hotel-Frühstücksbuffets für externe Gäste:</strong> Das <em>Oversum Vital Resort</em> und das <em>Hotel Hessenhof</em> bieten auch Tagesbesuchern ein erstklassiges Frühstücksbuffet an (vorherige Reservierung empfohlen).</li>
           <li><strong>Cafés an der Flaniermeile:</strong> Zahlreiche Cafés entlang der Straße <em>Am Waltenberg</em> bieten süße und herzhafte Frühstücksvariationen mit frischen Waffeln.</li>
         </ul>
