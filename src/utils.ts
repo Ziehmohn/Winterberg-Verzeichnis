@@ -1,5 +1,31 @@
 
-import { OpeningHours } from './types';
+import { OpeningHours, Business } from './types';
+
+export function isMajorSupermarket(business?: { name?: string; category?: string; subcategory?: string } | null): boolean {
+  if (!business || !business.name) return false;
+  const name = business.name.toLowerCase();
+  const cat = (business.category || '').toLowerCase();
+  const sub = (business.subcategory || '').toLowerCase();
+  
+  const isSupermarketCat = cat.includes('einzelhandel') || sub.includes('supermarkt') || sub.includes('lebensmittel');
+  if (!isSupermarketCat) return false;
+
+  return (
+    name.includes('edeka') ||
+    name.includes('e center') ||
+    name.includes('e-center') ||
+    name.includes('lidl') ||
+    name.includes('aldi') ||
+    name.includes('rewe') ||
+    name.includes('netto')
+  );
+}
+
+export function canDisplayOpeningHours(business?: { isPremium?: boolean; name?: string; category?: string; subcategory?: string; openingHours?: OpeningHours } | null): boolean {
+  if (!business || !business.openingHours) return false;
+  // Rule: Opening hours are exclusively visible for major supermarkets (Edeka, Lidl, Aldi, Rewe, Netto) OR businesses with a Premium Account
+  return Boolean(business.isPremium || isMajorSupermarket(business));
+}
 
 export function isOpenNow(openingHours: OpeningHours | undefined, t: (key: string) => string): { isOpen: boolean; text: string } {
   if (!openingHours) return { isOpen: false, text: 'Keine Angaben' };

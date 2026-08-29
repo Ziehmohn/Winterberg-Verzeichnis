@@ -11,6 +11,15 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '02981 7736',
     isPremium: false,
+    openingHours: {
+      monday: '07:00 - 22:00',
+      tuesday: '07:00 - 22:00',
+      wednesday: '07:00 - 22:00',
+      thursday: '07:00 - 22:00',
+      friday: '07:00 - 22:00',
+      saturday: '07:00 - 22:00',
+      sunday: 'Geschlossen'
+    }
   },
   {
     id: '142',
@@ -73,16 +82,7 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     website: 'https://car-point-winterberg.de/',
     imageFallback: 'CP',
-    isVerified: true,
-    openingHours: {
-      monday: '08:00 - 17:00',
-      tuesday: '08:00 - 17:00',
-      wednesday: '08:00 - 17:00',
-      thursday: '08:00 - 17:00',
-      friday: '08:00 - 15:00',
-      saturday: 'Geschlossen',
-      sunday: 'Geschlossen'
-    }
+    isVerified: true
   },
   {
     id: '2',
@@ -695,6 +695,15 @@ export const businesses: Business[] = [
     district: 'Siedlinghausen',
     website: 'https://www.netto-online.de/',
     imageFallback: 'NM',
+    openingHours: {
+      monday: '07:00 - 20:00',
+      tuesday: '07:00 - 20:00',
+      wednesday: '07:00 - 20:00',
+      thursday: '07:00 - 20:00',
+      friday: '07:00 - 20:00',
+      saturday: '07:00 - 20:00',
+      sunday: 'Geschlossen'
+    }
   },
   {
     id: '20',
@@ -706,6 +715,15 @@ export const businesses: Business[] = [
     district: 'Niedersfeld',
     website: 'https://www.netto-online.de/',
     imageFallback: 'NM',
+    openingHours: {
+      monday: '07:00 - 20:00',
+      tuesday: '07:00 - 20:00',
+      wednesday: '07:00 - 20:00',
+      thursday: '07:00 - 20:00',
+      friday: '07:00 - 20:00',
+      saturday: '07:00 - 20:00',
+      sunday: 'Geschlossen'
+    }
   },
   {
     id: '21',
@@ -737,6 +755,15 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     website: 'https://www.edeka.de/',
     imageFallback: 'EL',
+    openingHours: {
+      monday: '07:00 - 21:00',
+      tuesday: '07:00 - 21:00',
+      wednesday: '07:00 - 21:00',
+      thursday: '07:00 - 21:00',
+      friday: '07:00 - 21:00',
+      saturday: '07:00 - 21:00',
+      sunday: 'Geschlossen'
+    }
   },
   {
     id: '23',
@@ -748,6 +775,15 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     website: 'https://www.aldi-nord.de/',
     imageFallback: 'AN',
+    openingHours: {
+      monday: '07:00 - 20:00',
+      tuesday: '07:00 - 20:00',
+      wednesday: '07:00 - 20:00',
+      thursday: '07:00 - 20:00',
+      friday: '07:00 - 20:00',
+      saturday: '07:00 - 20:00',
+      sunday: 'Geschlossen'
+    }
   },
   {
     id: '24',
@@ -770,6 +806,15 @@ export const businesses: Business[] = [
     district: 'Züschen',
     website: 'https://www.edeka.de/',
     imageFallback: 'EL',
+    openingHours: {
+      monday: '07:00 - 20:00',
+      tuesday: '07:00 - 20:00',
+      wednesday: '07:00 - 20:00',
+      thursday: '07:00 - 20:00',
+      friday: '07:00 - 20:00',
+      saturday: '07:00 - 20:00',
+      sunday: 'Geschlossen'
+    }
   },
   {
     id: '26',
@@ -1818,16 +1863,7 @@ export const businesses: Business[] = [
     services: ['24/7 geöffnet', 'Gerätetraining', 'Freihantelbereich', 'Ernährungsberatung', 'Personal Training'],
     imageFallback: 'FF',
     isPremium: false,
-    status: 'approved',
-    openingHours: {
-      monday: '00:00 - 24:00',
-      tuesday: '00:00 - 24:00',
-      wednesday: '00:00 - 24:00',
-      thursday: '00:00 - 24:00',
-      friday: '00:00 - 24:00',
-      saturday: '00:00 - 24:00',
-      sunday: '00:00 - 24:00'
-    }
+    status: 'approved'
   },
   {
     id: 'corpus-pro-winterberg',
@@ -1842,16 +1878,7 @@ export const businesses: Business[] = [
     services: ['Kraft- & Cardiotraining', 'Matrix Geräte', 'Ernährungsberatung', 'Personal Training', 'Lange Öffnungszeiten'],
     imageFallback: 'CP',
     isPremium: false,
-    status: 'approved',
-    openingHours: {
-      monday: '06:00 - 24:00',
-      tuesday: '06:00 - 24:00',
-      wednesday: '06:00 - 24:00',
-      thursday: '06:00 - 24:00',
-      friday: '06:00 - 24:00',
-      saturday: '06:00 - 24:00',
-      sunday: '06:00 - 24:00'
-    }
+    status: 'approved'
   },
   {
     id: 'koerperformen-winterberg',
@@ -1883,16 +1910,7 @@ export const businesses: Business[] = [
     services: ['Krafttraining', 'Ausdauertraining', 'Fitnesskurse', 'Vereinssport'],
     imageFallback: 'FN',
     isPremium: false,
-    status: 'approved',
-    openingHours: {
-      monday: '08:00 - 22:00',
-      tuesday: '08:00 - 22:00',
-      wednesday: '08:00 - 22:00',
-      thursday: '08:00 - 22:00',
-      friday: '08:00 - 22:00',
-      saturday: '08:00 - 22:00',
-      sunday: '08:00 - 22:00'
-    }
+    status: 'approved'
   },
   {
     id: 'hotel-herrloh',
@@ -1927,16 +1945,7 @@ export const businesses: Business[] = [
     services: ['Tägliches Frühstücksbuffet', 'Sonnenterrasse', 'Cocktails & Bar', 'Speisen vor Ort & zum Mitnehmen', 'Zentrale Lage'],
     imageFallback: 'CE',
     isPremium: false,
-    status: 'approved',
-    openingHours: {
-      monday: '09:00 - 00:00',
-      tuesday: '09:00 - 00:00',
-      wednesday: '09:00 - 00:00',
-      thursday: '09:00 - 00:00',
-      friday: '09:00 - 01:00',
-      saturday: '09:00 - 01:00',
-      sunday: '09:00 - 00:00'
-    }
+    status: 'approved'
   },
   {
     id: 'markt-alm-winterberg',
@@ -1955,16 +1964,7 @@ export const businesses: Business[] = [
     services: ['Alm-Frühstücksbuffet (ab 07:30)', 'Alpenländische Küche', 'Speisen vor Ort', 'Zentral am Waltenberg'],
     imageFallback: 'MA',
     isPremium: false,
-    status: 'approved',
-    openingHours: {
-      monday: '07:30 - 22:00',
-      tuesday: '07:30 - 22:00',
-      wednesday: '07:30 - 22:00',
-      thursday: '07:30 - 22:00',
-      friday: '07:30 - 23:00',
-      saturday: '07:30 - 23:00',
-      sunday: '07:30 - 22:00'
-    }
+    status: 'approved'
   }
 
 ];

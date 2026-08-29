@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Business } from '../types';
-import { isOpenNow } from '../utils';
+import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { useTranslation } from '../i18n';
 import { BadgeCheck, MapPin } from 'lucide-react';
 
@@ -69,7 +69,8 @@ const GeocodedMarker: React.FC<{ bus: Business; onClick: () => void; onPopupClic
 
   if (!position) return null;
 
-  const openState = isOpenNow(bus.openingHours, t);
+  const showHours = canDisplayOpeningHours(bus);
+  const openState = showHours && bus.openingHours ? isOpenNow(bus.openingHours, t) : null;
 
   return (
     <Marker position={position} icon={customIcon} eventHandlers={{ click: onClick }}>
@@ -90,7 +91,7 @@ const GeocodedMarker: React.FC<{ bus: Business; onClick: () => void; onPopupClic
             {bus.isVerified && <BadgeCheck className="w-4 h-4 text-orange-500 shrink-0" title={t("verifiedBusiness") || "Verifiziertes Unternehmen"} />}
           </div>
           <p className="text-xs text-black/60 m-0">{bus.address}</p>
-          {bus.openingHours && (
+          {showHours && openState && (
             <p className={`text-xs mt-1 mb-0 font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>
               {openState.text}
             </p>

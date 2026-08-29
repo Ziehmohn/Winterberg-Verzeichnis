@@ -3,7 +3,7 @@ import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase } from 'lucide-react';
 import { Business, ThemeConfig, Review } from '../types';
-import { isOpenNow } from '../utils';
+import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import ReviewForm from './ReviewForm';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
@@ -90,9 +90,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   };
 
   const telHref = business.phone ? `tel:${String(business.phone).replace(/[^0-9+]/g, '')}` : undefined;
-  const webHref = business.website ? (String(business.website).startsWith('http') ? String(business.website) : `https://${business.website}`) : undefined;
-  
-  const openState = business.openingHours && typeof business.openingHours === 'object' ? isOpenNow(business.openingHours, t) : null;
+  const showHours = canDisplayOpeningHours(business);
+  const openState = showHours && business.openingHours && typeof business.openingHours === 'object' ? isOpenNow(business.openingHours, t) : null;
   const avgRating = Array.isArray(business.reviews) && business.reviews.length > 0 
     ? (business.reviews.reduce((acc, r) => acc + (Number(r?.rating) || 0), 0) / business.reviews.length).toFixed(1)
     : null;
@@ -266,7 +265,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
+          {showHours && business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">Öffnungszeiten</h2>
               <div className="border border-[#EDE8E0] rounded-md overflow-hidden mb-[30px]">

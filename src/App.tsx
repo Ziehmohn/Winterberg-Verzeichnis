@@ -7,7 +7,7 @@ import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
-import { isOpenNow } from './utils';
+import { isOpenNow, canDisplayOpeningHours } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
 import { useAuth } from './AuthContext';
@@ -1508,7 +1508,7 @@ export default function App() {
                           })()}
                         </h2>
                         {(() => {
-                          const currentlyOpenBusinesses = filteredBusinesses.filter(bus => bus.openingHours && isOpenNow(bus.openingHours, t).isOpen);
+                          const currentlyOpenBusinesses = filteredBusinesses.filter(bus => canDisplayOpeningHours(bus) && bus.openingHours && isOpenNow(bus.openingHours, t).isOpen);
                           return currentlyOpenBusinesses.length > 0 ? (
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                               {currentlyOpenBusinesses.map(bus => (
