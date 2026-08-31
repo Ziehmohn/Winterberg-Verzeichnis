@@ -36,7 +36,8 @@ service cloud.firestore {
 
     match /ads/{adId} {
       allow read: if true;
-      allow create, update, delete: if isAdmin() || (request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clicks']));
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clicks']));
     }
 
     match /ad_inquiries/{inquiryId} {

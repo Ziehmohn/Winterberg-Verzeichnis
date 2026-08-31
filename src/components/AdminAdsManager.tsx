@@ -221,7 +221,11 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
   const handleDelete = async (adId: string) => {
     if (!window.confirm('Möchten Sie dieses Werbebanner wirklich löschen?')) return;
 
-    setAds((prev) => prev.filter((a) => a.id !== adId));
+    setAds((prev) => {
+      const next = prev.filter((a) => a.id !== adId);
+      localStorage.setItem('local_ads', JSON.stringify(next));
+      return next;
+    });
     localStorage.setItem('ads_initialized', 'true');
 
     try {
@@ -299,22 +303,38 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
 
       setAds((prev) => {
         const exists = prev.some((a) => a.id === adId);
+        let next;
         if (exists) {
-          return prev.map((a) => (a.id === adId ? adData : a));
+          next = prev.map((a) => (a.id === adId ? adData : a));
+        } else {
+          next = [adData, ...prev];
         }
-        return [adData, ...prev];
+        localStorage.setItem('local_ads', JSON.stringify(next));
+        return next;
       });
 
       setIsEditing(false);
+      setEditingAd(null);
     } catch (err: any) {
       console.error('Error saving ad to Firestore:', err);
+      setFormError('Hinweis: Konnte nicht in der Cloud gespeichert werden. Lokal gespeichert. (' + err.message + ')');
       // Fallback: update local state
       setAds((prev) => {
         const exists = prev.some((a) => a.id === adId);
-        if (exists) return prev.map((a) => (a.id === adId ? adData : a));
-        return [adData, ...prev];
+        let next;
+        if (exists) {
+           next = prev.map((a) => (a.id === adId ? adData : a));
+        } else {
+           next = [adData, ...prev];
+        }
+        localStorage.setItem('local_ads', JSON.stringify(next));
+        return next;
       });
-      setIsEditing(false);
+      // Do not close form so they see the warning, or close after a delay
+      setTimeout(() => {
+        setIsEditing(false);
+        setEditingAd(null);
+      }, 3000);
     } finally {
       setIsSubmitting(false);
     }

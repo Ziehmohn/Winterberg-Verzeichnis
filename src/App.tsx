@@ -724,7 +724,15 @@ export default function App() {
         loadedAds.push({ id: doc.id, ...doc.data() } as AdBanner);
       });
       
-      // Merge with initialAds (ensure hardcoded ads always remain)
+      const localAds = JSON.parse(localStorage.getItem('local_ads') || '[]');
+      
+      // If Firestore is empty, but we have local ads, use local ads (so they don't disappear)
+      if (loadedAds.length === 0 && localAds.length > 0) {
+        setAds(localAds);
+        return;
+      }
+
+      // Merge Firestore ads with initialAds
       const merged = [...initialAds];
       loadedAds.forEach(fb => {
         const idx = merged.findIndex(a => a.id === fb.id);
@@ -736,9 +744,17 @@ export default function App() {
       });
       
       setAds(merged);
+      if (merged.length > 0) {
+        localStorage.setItem('local_ads', JSON.stringify(merged));
+      }
     } catch (err) {
       console.warn('Could not load ads from Firestore, using fallback', err);
-      setAds(initialAds);
+      const localAds = JSON.parse(localStorage.getItem('local_ads') || '[]');
+      if (localAds.length > 0) {
+        setAds(localAds);
+      } else {
+        setAds(initialAds);
+      }
     }
   };
 
