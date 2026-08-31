@@ -1,7 +1,7 @@
-import { Business } from '../types';
+import { Business, NewsArticle } from '../types';
 
 /**
- * High-quality Dutch dictionary and phrase mapping for business directories in Winterberg.
+ * High-quality Dutch dictionary and phrase mapping for business directories and news in Winterberg.
  */
 
 const SERVICES_DICTIONARY: Record<string, string> = {
@@ -42,6 +42,7 @@ const SERVICES_DICTIONARY: Record<string, string> = {
   'kaffee & kuchen': 'koffie & gebak',
   'konditorei': 'banketbakkerij',
   'metzgerei': 'slagerij',
+  'fleischerei': 'slagerij',
   'fleischwaren': 'vleeswaren',
   'apotheke': 'apotheek',
   'arzneimittel': 'geneesmiddelen',
@@ -204,6 +205,7 @@ const PHRASE_REPLACEMENTS: [RegExp, string][] = [
   [/Seit vielen Jahren/gi, 'Al vele jaren'],
   [/Familienbetrieb in der (\d+)\. Generation/gi, 'Familiebedrijf in de $1e generatie'],
   [/Familienunternehmen/gi, 'familiebedrijf'],
+  [/Familienbetrieb/gi, 'familiebedrijf'],
   
   // Offerings & Services
   [/Wir bieten Ihnen/gi, 'Wij bieden u'],
@@ -225,6 +227,7 @@ const PHRASE_REPLACEMENTS: [RegExp, string][] = [
   [/zentral gelegen/gi, 'centraal gelegen'],
   [/für die ganze Familie/gi, 'voor het hele gezin'],
   [/Große Auswahl an/gi, 'Grote keuze aan'],
+  [/große Auswahl an/gi, 'grote keuze aan'],
   [/große Auswahl/gi, 'ruime keuze'],
   [/Beste Qualität/gi, 'Beste kwaliteit'],
   [/höchste Qualität/gi, 'hoogste kwaliteit'],
@@ -245,7 +248,22 @@ const PHRASE_REPLACEMENTS: [RegExp, string][] = [
   [/Kostenlose Beratung/gi, 'Gratis advies'],
   [/Unverbindliches Angebot/gi, 'Vrijblijvende offerte'],
   
-  // Specific domains
+  // Specific domains & Gas Stations / Shops
+  [/24\/7 geöffnet/gi, '24/7 geopend'],
+  [/Rund um die Uhr geöffnet/gi, '24 uur per dag geopend'],
+  [/Sitzplätze im Freien/gi, 'Zitplaatsen buiten'],
+  [/Hunde sind erlaubt/gi, 'Honden zijn toegestaan'],
+  [/Hunde erlaubt/gi, 'Honden toegestaan'],
+  [/Live-Veranstaltungen/gi, 'Live-evenementen'],
+  [/Tanzen und Quizabenden/gi, 'dansen en quizavonden'],
+  [/Beliebter Treffpunkt/gi, 'Populaire ontmoetingsplek'],
+  [/Beliebte Kneipe/gi, 'Populair café'],
+  [/traditioneller Einrichtung/gi, 'traditionele inrichting'],
+  [/irischen Bieren vom Fass/gi, 'Ierse bieren van de tap'],
+  [/auf Großbildleinwand/gi, 'op groot scherm'],
+  [/KFZ-Reparaturen aller Art/gi, 'alle soorten autoreparaties'],
+  [/Ihre freundliche Autofachwerkstatt/gi, 'Uw vriendelijke gespecialiseerde autogarage'],
+  [/Schnell, Preiswert & Zuverlässig/gi, 'Snel, voordelig & betrouwbaar'],
   [/Frische Backwaren/gi, 'Verse bakkerijproducten'],
   [/Täglich frische Brötchen/gi, 'Dagelijks verse broodjes'],
   [/Großes Frühstücksangebot/gi, 'Uitgebreid ontbijtaanbod'],
@@ -268,11 +286,35 @@ const PHRASE_REPLACEMENTS: [RegExp, string][] = [
   [/Kostenfreies WLAN/gi, 'Gratis wifi'],
   [/Barrierefreier Zugang/gi, 'Rolstoeltoegankelijk'],
   [/Hundefreundlich/gi, 'Hondvriendelijk'],
+
+  // News specific phrases
+  [/Winterberg legt bei Übernachtungen deutlich zu/gi, 'Winterberg stijgt aanzienlijk in aantal overnachtingen'],
+  [/Plus von ([\d,]+) Prozent bis Juni/gi, 'Plus van $1 procent tot juni'],
+  [/SauerlandRundfahrt macht Winterberg zum Ziel der Königsetappe/gi, 'SauerlandRundfahrt maakt van Winterberg finish van de koninginnenrit'],
+  [/Das Rennen zählt seit dieser Saison zum internationalen UCI-Kalender/gi, 'De wielerwedstrijd maakt vanaf dit seizoen deel uit van de internationale UCI-kalender'],
+  [/und endet am 6\. September 2026 auf 841 Metern Höhe \/ Helfer gesucht/gi, 'en finisht op 6 september 2026 op 841 meter hoogte / Vrijwilligers gezocht'],
+  [/Raum für neue Ideen: Freistehende Ladenlokale & Gewerbeflächen/gi, 'Ruimte voor nieuwe ideeën: Beschikbare winkelpanden & bedrijfsruimtes'],
+  [/Zielort mit Gewicht/gi, 'Een finishplaats van formaat'],
+  [/Aufnahme in den UCI-Kalender/gi, 'Opname in de UCI-kalender'],
+  [/Was das Rennen der Region bringt/gi, 'Wat de wedstrijd de regio brengt'],
+  [/Etappenübersicht 2026/gi, 'Etappeoverzicht 2026'],
+  [/Jedermannrennen am Finaltag/gi, 'Toertocht voor recreanten op de finaledag'],
+  [/Helfer gesucht/gi, 'Vrijwilligers gezocht'],
+  [/Hinweise für Anwohnerinnen und Anwohner/gi, 'Informatie voor omwonenden'],
+  [/Januar und Mai treiben das Wachstum/gi, 'Januari en mei stuwen de groei'],
+  [/Positive Entwicklung über Winter und Sommer hinweg/gi, 'Positieve ontwikkeling over winter en zomer heen'],
+  [/Ansprechpartner & Beratung/gi, 'Contactpersoon & Advies'],
+  [/Pressemitteilung/gi, 'Persbericht'],
+  [/Symbolbild · KI-generiert/gi, 'Symboolafbeelding · AI-gegenereerd'],
+  [/Symbolbild · KI/gi, 'Symboolafbeelding · AI'],
+  [/Quelle:/gi, 'Bron:'],
 ];
 
 const VOCABULARY_REPLACEMENTS: [RegExp, string][] = [
+  // Words & Common Terms
   [/\bUnternehmen\b/gi, 'bedrijf'],
   [/\bBetrieb\b/gi, 'bedrijf'],
+  [/\bBetriebe\b/gi, 'bedrijven'],
   [/\bKunden\b/gi, 'klanten'],
   [/\bKundinnen und Kunden\b/gi, 'klanten'],
   [/\bGäste\b/gi, 'gasten'],
@@ -301,6 +343,8 @@ const VOCABULARY_REPLACEMENTS: [RegExp, string][] = [
   [/\bZimmer\b/gi, 'kamers'],
   [/\bFerienwohnung\b/gi, 'vakantiewoning'],
   [/\bFerienwohnungen\b/gi, 'vakantiewoningen'],
+  [/\bFerienhaus\b/gi, 'vakantiehuis'],
+  [/\bFerienhäuser\b/gi, 'vakantiehuizen'],
   [/\bWerkstatt\b/gi, 'werkplaats'],
   [/\bReparatur\b/gi, 'reparatie'],
   [/\bReparaturen\b/gi, 'reparaties'],
@@ -314,18 +358,58 @@ const VOCABULARY_REPLACEMENTS: [RegExp, string][] = [
   [/\bSpezialisten\b/gi, 'specialisten'],
   [/\bMeisterbetrieb\b/gi, 'erkend vakbedrijf'],
   [/\bPartner\b/gi, 'partner'],
+  [/\bTankstelle\b/gi, 'tankstation'],
+  [/\bTankstellen\b/gi, 'tankstations'],
+  [/\bKraftstoffen\b/gi, 'brandstoffen'],
+  [/\bKraftstoffe\b/gi, 'brandstoffen'],
+  [/\binklusive\b/gi, 'inclusief'],
+  [/\bWaschanlage\b/gi, 'wasstraat'],
+  [/\bKaffeespezialitäten\b/gi, 'koffiespecialiteiten'],
+  [/\bSnacks\b/gi, 'snacks'],
+  [/\bKneipe\b/gi, 'café'],
+  [/\bGastrokneipe\b/gi, 'eetcafé'],
+  [/\bCocktailbar\b/gi, 'cocktailbar'],
+  [/\bÜbernachtungen\b/gi, 'overnachtingen'],
+  [/\bÜbernachtung\b/gi, 'overnachting'],
+  [/\bTourismus\b/gi, 'toerisme'],
+  [/\bEntwicklung\b/gi, 'ontwikkeling'],
+  [/\bSommersaison\b/gi, 'zomerseizoen'],
+  [/\bWintersaison\b/gi, 'winterseizoen'],
+  [/\bEtappe\b/gi, 'etappe'],
+  [/\bEtappen\b/gi, 'etappes'],
+  [/\bRundfahrt\b/gi, 'ronde'],
+  [/\bRadrennen\b/gi, 'wielerwedstrijd'],
+  [/\bEinzelzeitfahren\b/gi, 'individuele tijdrit'],
+  [/\bBergzeitfahren\b/gi, 'klimtijdrit'],
+  [/\bKönigsetappe\b/gi, 'koninginnenrit'],
+  [/\bStrecke\b/gi, 'parcours'],
+  [/\bStrecken\b/gi, 'trajecten'],
+  [/\bStreckenposten\b/gi, 'baancommissarissen'],
+  [/\bHelfer\b/gi, 'vrijwilligers'],
+  [/\bAnwohner\b/gi, 'omwonenden'],
+  [/\bAnwohnerinnen\b/gi, 'omwonenden'],
+  [/\bSperrung\b/gi, 'afsluiting'],
+  [/\bAbsperrung\b/gi, 'afzetting'],
+  [/\bZielankunft\b/gi, 'finish'],
+  [/\bStartzeiten\b/gi, 'starttijden'],
+  [/\bRahmenprogramm\b/gi, 'omlijstend programma'],
+  
+  // Adjectives
   [/\bgroß\b/gi, 'groot'],
   [/\bgroße\b/gi, 'grote'],
   [/\bgroßes\b/gi, 'groot'],
+  [/\bgroßen\b/gi, 'grote'],
   [/\bmodern\b/gi, 'modern'],
   [/\bmoderne\b/gi, 'moderne'],
   [/\bmodernes\b/gi, 'modern'],
+  [/\bmodernen\b/gi, 'moderne'],
   [/\bgemütlich\b/gi, 'gezellig'],
   [/\bgemütliche\b/gi, 'gezellige'],
   [/\bgemütliches\b/gi, 'gezellig'],
   [/\btraditionell\b/gi, 'traditioneel'],
   [/\btraditionelle\b/gi, 'traditionele'],
   [/\bfreundlich\b/gi, 'vriendelijk'],
+  [/\bfreundliche\b/gi, 'vriendelijke'],
   [/\bfreundliches\b/gi, 'vriendelijk'],
   [/\bprofessionell\b/gi, 'professioneel'],
   [/\bprofessionelle\b/gi, 'professionele'],
@@ -339,10 +423,90 @@ const VOCABULARY_REPLACEMENTS: [RegExp, string][] = [
   [/\bherzlich\b/gi, 'hartelijk'],
   [/\bfrisch\b/gi, 'vers'],
   [/\bfrische\b/gi, 'verse'],
+  [/\bfrischen\b/gi, 'verse'],
   [/\bregional\b/gi, 'regionaal'],
   [/\bregionale\b/gi, 'regionale'],
   [/\bperfekt\b/gi, 'perfect'],
   [/\bperfekte\b/gi, 'perfecte'],
+  [/\bgeöffnet\b/gi, 'geopend'],
+  [/\bgeschlossen\b/gi, 'gesloten'],
+  [/\bbeliebt\b/gi, 'populair'],
+  [/\bbeliebte\b/gi, 'populaire'],
+  [/\bbeliebter\b/gi, 'populair'],
+  [/\bpreiswert\b/gi, 'voordelig'],
+
+  // Connectors & Common German Grammar Words
+  [/\bDein\b/g, 'Jouw'],
+  [/\bdein\b/g, 'jouw'],
+  [/\bDeine\b/g, 'Jouw'],
+  [/\bdeine\b/g, 'jouw'],
+  [/\bIhr\b/g, 'Uw'],
+  [/\bihr\b/g, 'uw'],
+  [/\bIhre\b/g, 'Uw'],
+  [/\bihre\b/g, 'haar'],
+  [/\bIhrem\b/g, 'uw'],
+  [/\bihrem\b/g, 'hun'],
+  [/\bIhren\b/g, 'uw'],
+  [/\bihren\b/g, 'hun'],
+  [/\bUnser\b/g, 'Ons'],
+  [/\bunser\b/g, 'ons'],
+  [/\bUnsere\b/g, 'Onze'],
+  [/\bunsere\b/g, 'onze'],
+  [/\bWir\b/g, 'Wij'],
+  [/\bwir\b/g, 'wij'],
+  [/\bSie\b/g, 'U'],
+  [/\bsie\b/g, 'ze'],
+  [/\bIch\b/g, 'Ik'],
+  [/\bich\b/g, 'ik'],
+  [/\bund\b/g, 'en'],
+  [/\boder\b/g, 'of'],
+  [/\bmit\b/g, 'met'],
+  [/\bfür\b/g, 'voor'],
+  [/\bvon\b/g, 'van'],
+  [/\bbei\b/g, 'bij'],
+  [/\bim\b/g, 'in het'],
+  [/\bin der\b/g, 'in de'],
+  [/\bin den\b/g, 'in de'],
+  [/\bam\b/g, 'aan de'],
+  [/\bauf\b/g, 'op'],
+  [/\baus\b/g, 'uit'],
+  [/\bdurch\b/g, 'door'],
+  [/\bnach\b/g, 'naar'],
+  [/\büber\b/g, 'over'],
+  [/\bunter\b/g, 'onder'],
+  [/\bohne\b/g, 'zonder'],
+  [/\bzwischen\b/g, 'tussen'],
+  [/\bseit\b/g, 'sinds'],
+  [/\bbis\b/g, 'tot'],
+  [/\bauch\b/g, 'ook'],
+  [/\bnicht\b/g, 'niet'],
+  [/\bnur\b/g, 'slechts'],
+  [/\bsehr\b/g, 'zeer'],
+  [/\bmehr\b/g, 'meer'],
+  [/\balle\b/g, 'alle'],
+  [/\bviele\b/g, 'vele'],
+  [/\bsind\b/g, 'zijn'],
+  [/\bist\b/g, 'is'],
+  [/\bhaben\b/g, 'hebben'],
+  [/\bhat\b/g, 'heeft'],
+  [/\bwerden\b/g, 'worden'],
+  [/\bwird\b/g, 'wordt'],
+  [/\bkönnen\b/g, 'kunnen'],
+  [/\bkann\b/g, 'kan'],
+  [/\bbieten\b/g, 'bieden'],
+  [/\bbietet\b/g, 'biedt'],
+  [/\bfindet\b/g, 'vindt plaats'],
+  [/\bfinden\b/g, 'vinden'],
+  [/\bzeigen\b/g, 'tonen'],
+  [/\bzeigt\b/g, 'toont'],
+  [/\bjetzt\b/g, 'nu'],
+  [/\bheute\b/g, 'vandaag'],
+  [/\bmorgen\b/g, 'morgen'],
+  [/\bimmer\b/g, 'altijd'],
+  [/\bdirekt\b/g, 'direct'],
+  [/\bweiterhin\b/g, 'nog steeds'],
+  [/\büberall\b/g, 'overal'],
+  [/\bgemeinsam\b/g, 'samen'],
 ];
 
 /**
@@ -369,7 +533,7 @@ export function translateServiceToDutch(service: string): string {
 }
 
 /**
- * Translates a German business text (description, HTML content) into fluent Dutch.
+ * Translates a German business or news text (description, Markdown content) into fluent Dutch.
  */
 export function translateTextToDutch(text: string): string {
   if (!text || typeof text !== 'string') return '';
@@ -387,6 +551,21 @@ export function translateTextToDutch(text: string): string {
   }
 
   return translated;
+}
+
+/**
+ * Localizes a NewsArticle for the given language.
+ */
+export function getLocalizedNewsArticle(article: NewsArticle, lang: 'de' | 'nl'): NewsArticle {
+  if (!article) return article;
+  if (lang === 'de') return article;
+
+  return {
+    ...article,
+    title: translateTextToDutch(article.title),
+    content: translateTextToDutch(article.content),
+    imageSource: article.imageSource ? translateTextToDutch(article.imageSource) : undefined,
+  };
 }
 
 /**

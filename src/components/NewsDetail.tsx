@@ -3,6 +3,8 @@ import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firesto
 import { db } from '../firebase';
 import { NewsArticle, ThemeConfig } from '../types';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslation } from '../i18n';
+import { getLocalizedNewsArticle } from '../utils/translator';
 
 interface NewsDetailProps {
   newsId: string;
@@ -102,7 +104,7 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
           href={token.url} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="text-[#0F4C2E] hover:text-[#D97706] font-semibold underline decoration-[#ffc084] underline-offset-4 transition-colors"
+          className="text-[#0F4C2E] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] hover:text-[#186841] transition-all"
         >
           {token.text}
         </a>
@@ -113,7 +115,7 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
         <a 
           key={idx} 
           href={`mailto:${token.email}`} 
-          className="text-[#0F4C2E] hover:text-[#D97706] font-semibold underline decoration-[#ffc084] underline-offset-4 transition-colors"
+          className="text-[#0F4C2E] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all"
         >
           {token.email}
         </a>
@@ -123,145 +125,79 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
   });
 }
 
-interface ParsedCardItem {
-  title?: string;
-  description?: string;
-  fullText: string;
-}
-
-// Parses raw string into structured title + description
-function parseCardItem(rawText: string): ParsedCardItem {
-  const cleaned = rawText.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim();
-  
-  // Check if starts with **Title** or **Title:**
-  const boldMatch = cleaned.match(/^\*\*([^*]+)\*\*[:\s]*([\s\S]*)$/);
-  if (boldMatch) {
-    return {
-      title: boldMatch[1].trim(),
-      description: boldMatch[2].trim(),
-      fullText: cleaned
-    };
-  }
-
-  // Check if first line can be title
-  const lines = cleaned.split('\n').map(l => l.trim()).filter(Boolean);
-  if (lines.length > 1) {
-    return {
-      title: lines[0].replace(/^\*\*|\*\*$/g, ''),
-      description: lines.slice(1).join(' '),
-      fullText: cleaned
-    };
-  }
-
-  return {
-    fullText: cleaned
-  };
-}
-
-// Rich News Content Renderer
-function NewsContentRenderer({ content }: { content: string }) {
+// Markdown and News Rich Text Renderer
+export function NewsContentRenderer({ content }: { content: string }) {
   if (!content) return null;
 
-  // Split into raw sections by double newlines
-  const rawParagraphs = content.split(/\n{2,}/);
+  // Split content by paragraphs/blocks
+  const blocks = content.split(/\n{2,}/);
 
   return (
     <div className="space-y-6">
-      {rawParagraphs.map((para, pIdx) => {
-        const trimmed = para.trim();
+      {blocks.map((block, index) => {
+        const trimmed = block.trim();
         if (!trimmed) return null;
 
-        // Level 2 Heading: ## Heading
+        // 1. Heading 2 (## Title)
         if (trimmed.startsWith('## ')) {
-          const headingText = trimmed.replace(/^##\s+/, '').trim();
+          const headingText = trimmed.replace(/^##\s+/, '');
           return (
-            <div key={pIdx} className="pt-6 pb-2">
+            <div key={index} className="pt-6 pb-2">
               <UnderlinedHeading text={headingText} as="h2" />
             </div>
           );
         }
 
-        // Level 3 Heading: ### Heading
+        // 2. Heading 3 (### Title)
         if (trimmed.startsWith('### ')) {
-          const headingText = trimmed.replace(/^###\s+/, '').trim();
+          const headingText = trimmed.replace(/^###\s+/, '');
           return (
-            <div key={pIdx} className="pt-4 pb-1">
+            <div key={index} className="pt-4 pb-1">
               <UnderlinedHeading text={headingText} as="h3" />
             </div>
           );
         }
 
-        // Check if this paragraph contains bullet list items
-        const rawLines = trimmed.split('\n');
-        const hasBullets = rawLines.some(l => /^(\s*[-*•]|\s*\d+\.)\s+/.test(l.trim()));
-
-        if (hasBullets) {
-          // Group lines into items: a new item begins when line starts with bullet
-          const items: string[] = [];
-          const introLines: string[] = [];
-          let currentItemLines: string[] = [];
-
-          for (const line of rawLines) {
-            const isBullet = /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim());
-            if (isBullet) {
-              if (currentItemLines.length > 0) {
-                items.push(currentItemLines.join('\n'));
-                currentItemLines = [];
-              }
-              currentItemLines.push(line);
-            } else if (currentItemLines.length > 0) {
-              // Continuation line of the current bullet item!
-              currentItemLines.push(line);
-            } else {
-              // Pre-bullet intro line in the same paragraph
-              introLines.push(line);
-            }
-          }
-          if (currentItemLines.length > 0) {
-            items.push(currentItemLines.join('\n'));
-          }
-
-          const parsedCards = items.map(parseCardItem);
-
+        // 3. Blockquotes (> Quote)
+        if (trimmed.startsWith('>')) {
+          const quoteLines = trimmed
+            .split('\n')
+            .map(l => l.replace(/^>\s?/, ''))
+            .filter(Boolean);
+          
           return (
-            <div key={pIdx} className="space-y-4">
-              {introLines.length > 0 && (
-                <p className="text-[16.5px] md:text-[17.5px] leading-[1.75] text-[#4A544D]">
-                  {renderInlineFormatted(introLines.join(' '))}
-                </p>
-              )}
-              <div className="my-5 grid grid-cols-1 gap-4">
-                {parsedCards.map((card, cIdx) => (
-                  <div 
-                    key={cIdx} 
-                    className="bg-[#FAF8F5] border border-[#E8E2D8] rounded-md p-5 md:p-6 transition-all duration-200 hover:border-[#0F4C2E]/50 hover:bg-white hover:shadow-md space-y-2.5"
-                  >
-                    {card.title ? (
-                      <>
-                        <h4 className="font-display text-[18px] md:text-[20px] font-bold text-[#1B211D] leading-snug">
-                          {renderInlineFormatted(card.title)}
-                        </h4>
-                        {card.description && (
-                          <p className="text-[15px] md:text-[16px] text-[#4A544D] leading-relaxed">
-                            {renderInlineFormatted(card.description)}
-                          </p>
-                        )}
-                      </>
-                    ) : (
-                      <div className="text-[15.5px] md:text-[16px] text-[#37413A] leading-relaxed">
-                        {renderInlineFormatted(card.fullText)}
-                      </div>
-                    )}
-                  </div>
+            <blockquote 
+              key={index} 
+              className="my-6 border-l-4 border-[#0F4C2E] bg-[#F4F8F5] pl-6 pr-5 py-4 rounded-r-lg italic text-[#2D3A31] text-[16px] md:text-[17.5px] leading-relaxed shadow-sm font-serif"
+            >
+              <div className="space-y-2">
+                {quoteLines.map((line, qIdx) => (
+                  <p key={qIdx}>{renderInlineFormatted(line)}</p>
                 ))}
               </div>
-            </div>
+            </blockquote>
           );
         }
 
-        // Standard Paragraph
+        // 4. Bullet lists (- Item or * Item or 1. Item)
+        const isList = trimmed.split('\n').every(line => /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim()));
+        if (isList) {
+          const items = trimmed.split('\n').map(line => line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim());
+          return (
+            <ul key={index} className="my-5 space-y-3 pl-2">
+              {items.map((item, itemIdx) => (
+                <li key={itemIdx} className="flex items-start gap-3 text-[16px] md:text-[17px] text-[#3F4B42] leading-relaxed">
+                  <span className="w-2 h-2 rounded-full bg-[#0F4C2E] mt-2.5 shrink-0" />
+                  <span className="flex-1">{renderInlineFormatted(item)}</span>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+
+        // 5. Standard Paragraphs
         return (
-          <p key={pIdx} className="text-[16.5px] md:text-[17.5px] leading-[1.75] text-[#4A544D]">
+          <p key={index} className="text-[16.5px] md:text-[18px] text-[#2F3A33] leading-[1.8] font-normal">
             {renderInlineFormatted(trimmed)}
           </p>
         );
@@ -270,14 +206,14 @@ function NewsContentRenderer({ content }: { content: string }) {
   );
 }
 
-// Standalone Contact Box Renderer
-function StandaloneContactBox({ rawContact }: { rawContact: string }) {
-  const lines = rawContact.split('\n').map(l => l.trim()).filter(Boolean);
-  
+// Standalone Contact Box
+function StandaloneContactBox({ rawContact, heading }: { rawContact: string; heading?: string }) {
+  if (!rawContact) return null;
+
   return (
-    <div className="mt-8 bg-gradient-to-br from-[#F6F9F6] via-[#FAF8F5] to-[#F1F6F3] border-2 border-[#D2E2D6] rounded-lg p-6 sm:p-8 md:p-10 shadow-[0_8px_30px_rgba(27,33,29,0.03)]">
-      <div className="mb-5">
-        <UnderlinedHeading text="Ansprechpartner & Beratung" as="h3" />
+    <div className="mt-12 bg-white border border-[#EDE8E0] rounded-lg p-6 sm:p-8 shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
+      <div className="mb-6">
+        <UnderlinedHeading text={heading || "Ansprechpartner & Beratung"} as="h3" />
       </div>
       <div className="space-y-4 text-[15.5px] md:text-[16.5px] text-[#3F4B42] leading-relaxed">
         {rawContact.split(/\n{2,}/).map((sec, cIdx) => {
@@ -310,7 +246,8 @@ function StandaloneContactBox({ rawContact }: { rawContact: string }) {
 }
 
 export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: NewsDetailProps) {
-  const [article, setArticle] = useState<NewsArticle | null>(null);
+  const { t, lang } = useTranslation();
+  const [rawArticle, setRawArticle] = useState<NewsArticle | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -320,7 +257,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         const docRef = doc(db, 'news', newsId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setArticle({ id: docSnap.id, ...docSnap.data() } as NewsArticle);
+          setRawArticle({ id: docSnap.id, ...docSnap.data() } as NewsArticle);
           return;
         }
 
@@ -329,7 +266,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         const slugSnap = await getDocs(slugQuery);
         if (!slugSnap.empty) {
           const matchedDoc = slugSnap.docs[0];
-          setArticle({ id: matchedDoc.id, ...matchedDoc.data() } as NewsArticle);
+          setRawArticle({ id: matchedDoc.id, ...matchedDoc.data() } as NewsArticle);
           return;
         }
 
@@ -349,7 +286,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         });
 
         if (found) {
-          setArticle({ id: found.id, ...found.data() } as NewsArticle);
+          setRawArticle({ id: found.id, ...found.data() } as NewsArticle);
         }
       } catch (e) {
         console.error("Error fetching news article:", e);
@@ -368,16 +305,18 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     );
   }
 
-  if (!article) {
+  if (!rawArticle) {
     return (
       <div className="max-w-[850px] mx-auto py-[60px] px-[20px] text-center">
-        <h1 className="text-[24px] font-bold mb-[16px]">News nicht gefunden</h1>
+        <h1 className="text-[24px] font-bold mb-[16px]">{lang === 'nl' ? 'Nieuwsbericht niet gevonden' : 'News nicht gefunden'}</h1>
         <button onClick={onBack} className={`${theme.primaryBtn} px-5 py-2.5 rounded-md`}>
-          Zurück zur Übersicht
+          {t('newsBack')}
         </button>
       </div>
     );
   }
+
+  const article = getLocalizedNewsArticle(rawArticle, lang);
 
   // Extract contact block if present
   let mainContent = article.content || '';
@@ -411,22 +350,29 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         className="flex items-center gap-[8px] text-[14px] font-semibold text-[#5F6B63] hover:text-[#1B211D] mb-[32px] transition-colors group"
       >
         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-        Zurück zur Übersicht
+        {t('newsBack')}
       </button>
 
       {article.imageUrl && (
         <div className="relative w-full h-[320px] md:h-[440px] rounded-lg overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
-          <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+          <img 
+            src={article.imageUrl} 
+            alt={article.title} 
+            onError={(e) => {
+              (e.target as HTMLElement).style.display = 'none';
+            }}
+            className="w-full h-full object-cover" 
+          />
           {(article.isAiGenerated || article.imageSource) && (
             <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
               {article.isAiGenerated && (
-                <span>Symbolbild · KI-generiert</span>
+                <span>{t('newsAiBadge')}</span>
               )}
               {article.isAiGenerated && article.imageSource && (
                 <span className="opacity-60">|</span>
               )}
               {article.imageSource && (
-                <span>Quelle: {article.imageSource}</span>
+                <span>{t('newsSource')}: {article.imageSource}</span>
               )}
             </div>
           )}
@@ -436,11 +382,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {/* Clean Meta Info */}
       <div className="flex items-center gap-[18px] text-[13.5px] font-medium text-[#7C8780] mb-[24px] flex-wrap pb-4 border-b border-[#EDE8E0]">
         <div>
-          {new Date(article.date).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
+          {new Date(article.date).toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
         </div>
         <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
         <div>
-          Von <span className="text-[#1B211D] font-bold">{article.author}</span>
+          {t('newsBy')} <span className="text-[#1B211D] font-bold">{article.author}</span>
         </div>
         {article.businessName && (
           <>
@@ -464,7 +410,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
 
       {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}
       {contactContent && (
-        <StandaloneContactBox rawContact={contactContent} />
+        <StandaloneContactBox rawContact={contactContent} heading={t('newsContactHeading')} />
       )}
     </article>
   );

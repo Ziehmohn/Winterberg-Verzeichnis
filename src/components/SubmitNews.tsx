@@ -4,6 +4,7 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../firebase';
 import { ThemeConfig } from '../types';
 import { ImagePlus, X, Check } from 'lucide-react';
+import { useTranslation } from '../i18n';
 
 interface SubmitNewsProps {
   theme: ThemeConfig;
@@ -11,6 +12,9 @@ interface SubmitNewsProps {
 }
 
 export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
+  const { lang } = useTranslation();
+  const isNl = lang === 'nl';
+
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -30,7 +34,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
     if (!file) return;
 
     if (file.size > 2 * 1024 * 1024) {
-      alert("Das Bild ist zu groß (max 2MB)");
+      alert(isNl ? "De afbeelding is te groot (max 2MB)" : "Das Bild ist zu groß (max 2MB)");
       return;
     }
 
@@ -69,7 +73,9 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
       setIsSuccess(true);
     } catch (err) {
       console.error(err);
-      setError('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.');
+      setError(isNl 
+        ? 'Er is een fout opgetreden. Probeer het later opnieuw.' 
+        : 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.');
     } finally {
       setIsSubmitting(false);
     }
@@ -84,10 +90,13 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         <div className="w-[64px] h-[64px] bg-[#E8F1EB] rounded-full flex items-center justify-center text-[#0F4C2E] mb-[24px]">
           <Check size={32} />
         </div>
-        <h1 className="font-display text-[32px] font-bold mb-[12px]">News eingereicht!</h1>
+        <h1 className="font-display text-[32px] font-bold mb-[12px]">
+          {isNl ? 'Nieuwsbericht ingediend!' : 'News eingereicht!'}
+        </h1>
         <p className={`text-[17px] ${theme.textMuted} mb-[32px] max-w-[500px]`}>
-          Vielen Dank! Ihre News wurde erfolgreich übermittelt und befindet sich nun in der Prüfung. 
-          Sobald sie freigegeben wurde, erscheint sie auf der Seite.
+          {isNl 
+            ? 'Hartelijk dank! Uw nieuwsbericht is succesvol verzonden en wordt nu door ons gecontroleerd. Zodra het is goedgekeurd, verschijnt het op de website.' 
+            : 'Vielen Dank! Ihre News wurde erfolgreich übermittelt und befindet sich nun in der Prüfung. Sobald sie freigegeben wurde, erscheint sie auf der Seite.'}
         </p>
         <button 
           onClick={() => {
@@ -96,7 +105,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
           }}
           className={`px-5 py-2.5 rounded-md font-semibold ${theme.primaryBtn}`}
         >
-          Weitere News einreichen
+          {isNl ? 'Nog een nieuwsbericht indienen' : 'Weitere News einreichen'}
         </button>
       </div>
     );
@@ -105,11 +114,12 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
   return (
     <div className="max-w-[800px] mx-auto py-[40px] px-[20px]">
       <h1 className="font-display text-[36px] md:text-[42px] font-bold tracking-tight mb-[16px]">
-        News einreichen
+        {isNl ? 'Nieuwsbericht indienen' : 'News einreichen'}
       </h1>
       <p className={`text-[17px] ${theme.textMuted} mb-[40px] max-w-[600px]`}>
-        Teilen Sie Neuigkeiten, Angebote oder Ankündigungen mit der Community. 
-        Jeder Beitrag wird vor der Veröffentlichung kurz von uns geprüft.
+        {isNl 
+          ? 'Deel nieuwtjes, aanbiedingen of aankondigingen met de gemeenschap. Elk bericht wordt voor publicatie kort door ons gecontroleerd.' 
+          : 'Teilen Sie Neuigkeiten, Angebote oder Ankündigungen mit der Community. Jeder Beitrag wird vor der Veröffentlichung kurz von uns geprüft.'}
       </p>
 
       <div className={`bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]`}>
@@ -121,55 +131,65 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         
         <form onSubmit={handleSubmit} className="space-y-[24px]">
           <div>
-            <label className={labelClass}>Überschrift *</label>
+            <label className={labelClass}>
+              {isNl ? 'Kop / Titel *' : 'Überschrift *'}
+            </label>
             <input 
               required 
               type="text" 
               value={formData.title} 
               onChange={e => setFormData({...formData, title: e.target.value})} 
               className={inputClass} 
-              placeholder="z.B. Große Neueröffnung am Wochenende"
+              placeholder={isNl ? 'bijv. Grote heropening in het weekend' : 'z.B. Große Neueröffnung am Wochenende'}
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
             <div>
-              <label className={labelClass}>Autor *</label>
+              <label className={labelClass}>
+                {isNl ? 'Auteur *' : 'Autor *'}
+              </label>
               <input 
                 required 
                 type="text" 
                 value={formData.author} 
                 onChange={e => setFormData({...formData, author: e.target.value})} 
                 className={inputClass} 
-                placeholder="Ihr Name"
+                placeholder={isNl ? 'Uw naam' : 'Ihr Name'}
               />
             </div>
             <div>
-              <label className={labelClass}>Bezug zum Unternehmen (Optional)</label>
+              <label className={labelClass}>
+                {isNl ? 'Betreft bedrijf (optioneel)' : 'Bezug zum Unternehmen (Optional)'}
+              </label>
               <input 
                 type="text" 
                 value={formData.businessName} 
                 onChange={e => setFormData({...formData, businessName: e.target.value})} 
                 className={inputClass} 
-                placeholder="Welches Unternehmen betrifft das?"
+                placeholder={isNl ? 'Om welk bedrijf gaat het?' : 'Welches Unternehmen betrifft das?'}
               />
             </div>
           </div>
 
           <div>
-            <label className={labelClass}>Text der Meldung *</label>
+            <label className={labelClass}>
+              {isNl ? 'Tekst van het bericht *' : 'Text der Meldung *'}
+            </label>
             <textarea 
               required 
               value={formData.content} 
               onChange={e => setFormData({...formData, content: e.target.value})} 
               className={`${inputClass} min-h-[200px] resize-y`} 
-              placeholder="Beschreiben Sie ausführlich, worum es geht..."
+              placeholder={isNl ? 'Beschrijf uitgebreid waar het over gaat...' : 'Beschreiben Sie ausführlich, worum es geht...'}
             />
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className={labelClass}>Titelbild (Optional)</label>
+              <label className={labelClass}>
+                {isNl ? 'Uitgelichte afbeelding (optioneel)' : 'Titelbild (Optional)'}
+              </label>
               <div className="mt-[8px]">
                 {formData.imageUrl ? (
                   <div className="relative inline-block">
@@ -185,7 +205,9 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
                 ) : (
                   <label className="flex flex-col items-center justify-center w-full max-w-[400px] h-[160px] border-2 border-dashed border-[#D8D2C8] rounded-md cursor-pointer hover:border-[#0F4C2E] hover:bg-[#FAF8F5] transition-colors">
                     <ImagePlus className="w-8 h-8 text-[#8A928B] mb-2" />
-                    <span className="text-[14px] text-[#5F6B63] font-medium">Bild auswählen (max. 2MB)</span>
+                    <span className="text-[14px] text-[#5F6B63] font-medium">
+                      {isNl ? 'Afbeelding selecteren (max. 2MB)' : 'Bild auswählen (max. 2MB)'}
+                    </span>
                     <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
                   </label>
                 )}
@@ -196,14 +218,14 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
               <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-md p-4 space-y-3 max-w-[500px]">
                 <div>
                   <label className="block text-[13px] font-semibold text-[#1B211D] mb-1">
-                    Bildquelle / Bildnachweis (Optional)
+                    {isNl ? 'Bronvermelding / Fotocredits (optioneel)' : 'Bildquelle / Bildnachweis (Optional)'}
                   </label>
                   <input 
                     type="text" 
                     value={formData.imageSource} 
                     onChange={e => setFormData({...formData, imageSource: e.target.value})} 
                     className="w-full border border-[#E7E2DA] rounded px-3 py-2 text-[14px] bg-white focus:outline-none focus:border-[#0F4C2E]" 
-                    placeholder="z. B. Foto: Max Mustermann / Brauhaus"
+                    placeholder={isNl ? 'bijv. Foto: Jan Jansen / Winterberg Toerisme' : 'z. B. Foto: Max Mustermann / Brauhaus'}
                   />
                 </div>
 
@@ -215,7 +237,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
                     className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E] accent-[#0F4C2E]"
                   />
                   <span className="text-[13.5px] font-medium text-[#1B211D]">
-                    Dieses Bild ist KI-generiert (Symbolbild)
+                    {isNl ? 'Deze afbeelding is AI-gegenereerd (symboolafbeelding)' : 'Dieses Bild ist KI-generiert (Symbolbild)'}
                   </span>
                 </label>
               </div>
@@ -228,7 +250,9 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
               disabled={isSubmitting}
               className={`w-full py-3.5 rounded-md text-[16px] font-bold text-center transition-all ${isSubmitting ? 'bg-[#E7E2DA] text-[#8A928B] cursor-not-allowed' : theme.primaryBtn}`}
             >
-              {isSubmitting ? 'Wird eingereicht...' : 'News jetzt einreichen'}
+              {isSubmitting 
+                ? (isNl ? 'Wordt verzonden...' : 'Wird eingereicht...') 
+                : (isNl ? 'Nieuwsbericht nu indienen' : 'News jetzt einreichen')}
             </button>
           </div>
         </form>
