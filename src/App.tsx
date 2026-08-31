@@ -4,6 +4,7 @@ import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus
 import { 
   businesses as initialBusinesses, 
   categories,
+  themes,
   initialAds
 } from './data';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner } from './types';
