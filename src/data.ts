@@ -3004,3 +3004,64 @@ export const categories: CategoryGroup[] = [
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
+
+import { AdBanner } from './types';
+
+export const initialAds: AdBanner[] = [
+  {
+    id: 'demo_ad_gastronomie',
+    title: 'Brauhaus Winterberg – Frische Küche & Hausbrauerei',
+    companyName: 'Brauhaus Winterberg',
+    imageUrl: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/Gastronomie',
+    category: 'Gastronomie',
+    categories: ['Gastronomie'],
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 14,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'demo_ad_freizeit',
+    title: 'Erlebnisberg Kappe – Rodelbahn, Kletterwald & Panorama',
+    companyName: 'Erlebnisberg Kappe',
+    imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/Freizeit',
+    category: 'Freizeit',
+    categories: ['Freizeit'],
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 28,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'demo_ad_handwerk',
+    title: 'Meisterbetrieb Winterberg – Qualität vom Fachmann',
+    companyName: 'Handwerk Winterberg',
+    imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/Handwerk',
+    category: 'Handwerk',
+    categories: ['Handwerk'],
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 9,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'demo_ad_global',
+    title: 'Winterberg erleben – Entdecken Sie alle Highlights der Region',
+    companyName: 'Winterberg Verzeichnis',
+    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
+    targetUrl: 'https://www.winterberg-verzeichnis.de/alle-unternehmen',
+    category: 'Alle',
+    categories: ['Alle'],
+    position: 'skyscraper_right',
+    isActive: true,
+    badgeText: 'Anzeige',
+    clicks: 42,
+    createdAt: new Date().toISOString()
+  }
+];

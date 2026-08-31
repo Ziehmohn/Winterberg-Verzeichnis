@@ -1,7 +1,11 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown } from 'lucide-react';
-import { categories, themes, businesses as initialBusinesses } from './data';
+import { 
+  businesses as initialBusinesses, 
+  categories,
+  initialAds
+} from './data';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner } from './types';
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
@@ -718,9 +722,22 @@ export default function App() {
       querySnapshot.forEach((doc: any) => {
         loadedAds.push({ id: doc.id, ...doc.data() } as AdBanner);
       });
-      setAds(loadedAds);
+      
+      // Merge with initialAds (ensure hardcoded ads always remain)
+      const merged = [...initialAds];
+      loadedAds.forEach(fb => {
+        const idx = merged.findIndex(a => a.id === fb.id);
+        if (idx >= 0) {
+          merged[idx] = { ...merged[idx], ...fb };
+        } else {
+          merged.push(fb);
+        }
+      });
+      
+      setAds(merged);
     } catch (err) {
-      console.warn('Could not load ads from Firestore', err);
+      console.warn('Could not load ads from Firestore, using fallback', err);
+      setAds(initialAds);
     }
   };
 
