@@ -432,16 +432,14 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>
           )}
-          {/* Premium: Interactive map */}
-          {business.isPremium && (
-            <Suspense fallback={
-              <div className="w-full h-[200px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse">
-                <MapPin className="w-6 h-6 text-[#C5BFAF]" />
-              </div>
-            }>
-              <BusinessMap business={business} lang={lang} />
-            </Suspense>
-          )}
+          {/* Map for all businesses */}
+          <Suspense fallback={
+            <div className="w-full h-[200px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse">
+              <MapPin className="w-6 h-6 text-[#C5BFAF]" />
+            </div>
+          }>
+            <BusinessMap business={business} lang={lang} />
+          </Suspense>
 
           {/* Address – prominent for all accounts, street and city on separate lines */}
           {(() => {
@@ -459,18 +457,16 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             );
           })()}
 
-          {/* Premium: Route planen button */}
-          {business.isPremium && (
-            <a
-              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors"
-            >
-              <MapPin className="w-4 h-4" />
-              {lang === 'nl' ? 'Route plannen' : 'Route planen'}
-            </a>
-          )}
+          {/* Route planen – for all businesses */}
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors"
+          >
+            <MapPin className="w-4 h-4" />
+            {lang === 'nl' ? 'Route plannen' : 'Route planen'}
+          </a>
 
           <button 
             type="button" 
