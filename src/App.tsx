@@ -711,11 +711,6 @@ export default function App() {
     ogLocale.setAttribute('content', lang === 'nl' ? 'nl_NL' : 'de_DE');
   }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
 
-  useEffect(() => {
-    loadBusinesses();
-    loadAds();
-  }, []);
-
   const loadAds = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, 'ads'));
@@ -770,9 +765,20 @@ export default function App() {
     }
   };
 
+  // Ads and businesses load independently so a slow businesses fetch
+  // does not block the ads from appearing
+  useEffect(() => {
+    loadAds();
+  }, []);
+
+  useEffect(() => {
+    loadBusinesses();
+  }, []);
+
   const extractLocation = (bus: Business) => {
     return bus.district || 'Winterberg';
   };
+
 
   const availableLocations = Array.from(new Set(businesses.map(b => extractLocation(b)))).sort();
 
