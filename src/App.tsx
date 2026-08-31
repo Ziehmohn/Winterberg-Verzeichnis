@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X,  MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories,
@@ -2639,12 +2639,25 @@ function InteractiveLockOverlay({ children, groupHoverClass = "group-hover/revie
 function NewsAdminPanel() {
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState<any | null>(null);
+  const [modalForm, setModalForm] = useState({
+    title: '',
+    author: '',
+    businessName: '',
+    date: new Date().toISOString().split('T')[0],
+    content: '',
+    imageUrl: '',
+    imageSource: '',
+    isAiGenerated: false,
+    status: 'approved' as 'pending' | 'approved'
+  });
 
   const loadNews = async () => {
     try {
       const snap = await getDocs(collection(db, 'news'));
       const items = snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
-      items.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      items.sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
       setNews(items);
     } catch(e) {
       console.error(e);
@@ -2656,6 +2669,27 @@ function NewsAdminPanel() {
   useEffect(() => {
     loadNews();
   }, []);
+
+  const handleToggleAi = async (id: string, currentVal: boolean) => {
+    const newVal = !currentVal;
+    try {
+      await updateDoc(doc(db, 'news', id), { isAiGenerated: newVal });
+      setNews(prev => prev.map(item => item.id === id ? { ...item, isAiGenerated: newVal } : item));
+    } catch (e) {
+      console.error(e);
+      alert('Fehler beim Aktualisieren des KI-Status');
+    }
+  };
+
+  const handleUpdateImageSource = async (id: string, source: string) => {
+    try {
+      await updateDoc(doc(db, 'news', id), { imageSource: source.trim() });
+      setNews(prev => prev.map(item => item.id === id ? { ...item, imageSource: source.trim() } : item));
+    } catch (e) {
+      console.error(e);
+      alert('Fehler beim Aktualisieren der Bildquelle');
+    }
+  };
 
   const handleUpdateStatus = async (id: string, status: 'approved' | 'rejected') => {
     if (status === 'rejected' && !confirm('News wirklich ablehnen und löschen?')) return;
@@ -2673,57 +2707,335 @@ function NewsAdminPanel() {
     }
   };
 
+  const handleOpenCreate = () => {
+    setModalForm({
+      title: '',
+      author: 'Redaktion',
+      businessName: '',
+      date: new Date().toISOString().split('T')[0],
+      content: '',
+      imageUrl: '',
+      imageSource: '',
+      isAiGenerated: false,
+      status: 'approved'
+    });
+    setEditingItem(null);
+    setIsModalOpen(true);
+  };
+
+  const handleOpenEdit = (item: any) => {
+    setModalForm({
+      title: item.title || '',
+      author: item.author || '',
+      businessName: item.businessName || '',
+      date: item.date ? new Date(item.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+      content: item.content || '',
+      imageUrl: item.imageUrl || '',
+      imageSource: item.imageSource || '',
+      isAiGenerated: !!item.isAiGenerated,
+      status: item.status || 'approved'
+    });
+    setEditingItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleSaveModal = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (editingItem) {
+        await updateDoc(doc(db, 'news', editingItem.id), {
+          ...modalForm,
+          imageSource: modalForm.imageSource.trim(),
+          isAiGenerated: !!modalForm.isAiGenerated
+        });
+      } else {
+        await addDoc(collection(db, 'news'), {
+          ...modalForm,
+          imageSource: modalForm.imageSource.trim(),
+          isAiGenerated: !!modalForm.isAiGenerated,
+          createdAt: new Date().toISOString()
+        });
+      }
+      setIsModalOpen(false);
+      setEditingItem(null);
+      loadNews();
+    } catch (e) {
+      console.error(e);
+      alert('Fehler beim Speichern der News');
+    }
+  };
+
   if (loading) return <div className="p-4">Lade News...</div>;
 
   return (
     <div className="bg-white border border-[#EDE8E0] rounded-lg p-6">
-      <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">News & Aktuelles (Admin)</h2>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#EDE8E0]">
+        <div>
+          <h2 className="font-display text-[22px] font-bold m-0 text-[#1B211D]">News &amp; Aktuelles (Admin)</h2>
+          <p className="text-xs text-[#5F6B63] mt-0.5">
+            Verwalten Sie eingereichte und veröffentlichte Neuigkeiten, Bildquellen und KI-Hinweise.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={handleOpenCreate}
+          className="inline-flex items-center gap-1.5 bg-[#0F4C2E] hover:bg-[#0b3822] text-white px-4 py-2 rounded-md font-semibold text-sm transition-colors shadow-sm self-start sm:self-auto"
+        >
+          <Plus className="w-4 h-4" /> Neue News erstellen
+        </button>
+      </div>
       
       {news.length > 0 ? (
-        <div className="grid gap-[10px]">
+        <div className="grid gap-4">
           {news.map(item => (
-            <div key={item.id} className="border border-[#EDE8E0] rounded-md p-4 flex flex-col md:flex-row gap-[16px] items-start">
-              {item.imageUrl && (
-                <img src={item.imageUrl} alt="Preview" className="w-[100px] h-[100px] object-cover rounded shrink-0" />
-              )}
+            <div key={item.id} className="border border-[#EDE8E0] rounded-lg p-4 bg-white hover:border-[#0F4C2E]/30 transition-all flex flex-col md:flex-row gap-5 items-start">
+              <div className="w-full md:w-[150px] shrink-0">
+                {item.imageUrl ? (
+                  <div className="relative rounded-md overflow-hidden border border-[#E7E2DA] bg-[#FAF8F5]">
+                    <img src={item.imageUrl} alt="Preview" className="w-full h-[100px] object-cover" />
+                    {item.isAiGenerated && (
+                      <span className="absolute top-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9.5px] font-semibold px-1.5 py-0.5 rounded">
+                        KI
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="w-full h-[100px] bg-[#FAF8F5] border border-dashed border-[#D8D2C8] rounded-md flex items-center justify-center text-xs text-[#8A928B]">
+                    Kein Bild
+                  </div>
+                )}
+
+                {item.imageUrl && (
+                  <div className="mt-2 space-y-1.5">
+                    <label className="flex items-center gap-1.5 cursor-pointer select-none bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] px-2 py-1 rounded text-[11px] font-semibold text-[#1B211D] transition-colors">
+                      <input 
+                        type="checkbox"
+                        checked={!!item.isAiGenerated}
+                        onChange={() => handleToggleAi(item.id, !!item.isAiGenerated)}
+                        className="w-3.5 h-3.5 accent-[#0F4C2E] rounded"
+                      />
+                      <span>KI-generiert</span>
+                    </label>
+
+                    <input
+                      type="text"
+                      defaultValue={item.imageSource || ''}
+                      onBlur={(e) => {
+                        if (e.target.value !== (item.imageSource || '')) {
+                          handleUpdateImageSource(item.id, e.target.value);
+                        }
+                      }}
+                      placeholder="Bildquelle..."
+                      title="Bildquelle / Bildnachweis (z.B. Foto: Max Mustermann)"
+                      className="w-full text-[11px] border border-[#E7E2DA] rounded px-2 py-1 bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    />
+                  </div>
+                )}
+              </div>
+
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-[8px] mb-[4px]">
-                  <span className="font-semibold text-[16px]">{item.title}</span>
+                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                  <span className="font-bold text-[16.5px] text-[#1B211D]">{item.title}</span>
                   {item.status === 'pending' ? (
                     <span className="bg-[#FDF3D3] text-[#96700B] rounded px-2 py-0.5 text-[11px] font-bold">NEU (In Prüfung)</span>
                   ) : (
                     <span className="bg-[#E8F1EB] text-[#0F4C2E] rounded px-2 py-0.5 text-[11px] font-bold">FREIGEGEBEN</span>
                   )}
+                  {item.isAiGenerated && (
+                    <span className="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-[11px] font-semibold flex items-center gap-1">
+                      <Sparkles className="w-3 h-3" /> KI-Bild
+                    </span>
+                  )}
+                  {item.imageSource && (
+                    <span className="bg-gray-100 text-gray-700 rounded px-2 py-0.5 text-[11px] font-medium">
+                      Quelle: {item.imageSource}
+                    </span>
+                  )}
                 </div>
-                <div className="text-[13px] text-[#5F6B63] mb-[8px]">
-                  Von: {item.author} {item.businessName && `(${item.businessName})`} am {new Date(item.date).toLocaleDateString()}
+
+                <div className="text-[12.5px] text-[#5F6B63] mb-2 flex items-center gap-2 flex-wrap">
+                  <span>Von: <strong className="text-[#1B211D]">{item.author}</strong></span>
+                  {item.businessName && <span>· Bezug: <strong>{item.businessName}</strong></span>}
+                  <span>· Datum: {new Date(item.date).toLocaleDateString('de-DE')}</span>
                 </div>
-                <div className="text-[14px] text-[#4A544D] line-clamp-2">
+
+                <div className="text-[13.5px] text-[#4A544D] line-clamp-2 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]/60">
                   {item.content}
                 </div>
               </div>
-              <div className="flex gap-[8px] shrink-0">
+
+              <div className="flex sm:flex-col gap-2 shrink-0 self-end sm:self-start w-full sm:w-auto justify-end">
                 {item.status === 'pending' && (
                   <button 
                     onClick={() => handleUpdateStatus(item.id, 'approved')}
-                    className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#D6E7DC]"
+                    className="bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] rounded px-3 py-1.5 text-xs font-bold transition-colors text-center"
                   >
                     Freigeben
                   </button>
                 )}
                 <button 
-                  onClick={() => handleUpdateStatus(item.id, 'rejected')}
-                  className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                  onClick={() => handleOpenEdit(item)}
+                  className="bg-[#FAF8F5] hover:bg-[#EAE5DC] text-[#1B211D] border border-[#E7E2DA] rounded px-3 py-1.5 text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
                 >
-                  {item.status === 'pending' ? 'Ablehnen' : 'Löschen'}
+                  <Edit2 className="w-3 h-3" /> Bearbeiten
+                </button>
+                <button 
+                  onClick={() => handleUpdateStatus(item.id, 'rejected')}
+                  className="bg-[#FBEAE7] text-[#C0392B] hover:bg-[#FADBD5] rounded px-3 py-1.5 text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
+                >
+                  <Trash2 className="w-3 h-3" /> {item.status === 'pending' ? 'Ablehnen' : 'Löschen'}
                 </button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
+        <div className="border border-dashed border-[#D8D2C8] rounded-md p-8 text-center text-[#8A928B]">
           Keine News vorhanden.
+        </div>
+      )}
+
+      {/* Edit / Create News Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-xl max-w-2xl w-full p-6 shadow-2xl border border-[#EDE8E0] my-8">
+            <div className="flex items-center justify-between pb-3 border-b border-[#EDE8E0] mb-4">
+              <h3 className="text-lg font-bold font-display text-[#1B211D]">
+                {editingItem ? 'News bearbeiten' : 'Neue News anlegen'}
+              </h3>
+              <button 
+                type="button" 
+                onClick={() => { setIsModalOpen(false); setEditingItem(null); }}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveModal} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                  Überschrift *
+                </label>
+                <input 
+                  type="text" 
+                  required 
+                  value={modalForm.title} 
+                  onChange={e => setModalForm({...modalForm, title: e.target.value})}
+                  className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] focus:bg-white"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                    Autor *
+                  </label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={modalForm.author} 
+                    onChange={e => setModalForm({...modalForm, author: e.target.value})}
+                    className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] focus:bg-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                    Unternehmen
+                  </label>
+                  <input 
+                    type="text" 
+                    value={modalForm.businessName} 
+                    onChange={e => setModalForm({...modalForm, businessName: e.target.value})}
+                    placeholder="Optional"
+                    className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] focus:bg-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                    Datum *
+                  </label>
+                  <input 
+                    type="date" 
+                    required 
+                    value={modalForm.date} 
+                    onChange={e => setModalForm({...modalForm, date: e.target.value})}
+                    className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] focus:bg-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                  Text / Inhalt *
+                </label>
+                <textarea 
+                  required 
+                  rows={6}
+                  value={modalForm.content} 
+                  onChange={e => setModalForm({...modalForm, content: e.target.value})}
+                  className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] focus:bg-white"
+                />
+              </div>
+
+              <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4 space-y-3">
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider">
+                  Foto &amp; Bildnachweis
+                </label>
+                <div>
+                  <label className="block text-xs text-gray-600 mb-1">Bild-URL</label>
+                  <input 
+                    type="url" 
+                    value={modalForm.imageUrl} 
+                    onChange={e => setModalForm({...modalForm, imageUrl: e.target.value})}
+                    placeholder="https://images.unsplash.com/..."
+                    className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <div>
+                    <label className="block text-xs text-gray-600 mb-1">Bildquelle / Fotograf</label>
+                    <input 
+                      type="text" 
+                      value={modalForm.imageSource} 
+                      onChange={e => setModalForm({...modalForm, imageSource: e.target.value})}
+                      placeholder="z. B. Foto: Max Mustermann"
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    />
+                  </div>
+
+                  <div className="flex items-end">
+                    <label className="flex items-center gap-2 cursor-pointer select-none bg-white border border-[#E7E2DA] rounded-md px-3 py-2 w-full text-xs font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+                      <input 
+                        type="checkbox"
+                        checked={modalForm.isAiGenerated}
+                        onChange={e => setModalForm({...modalForm, isAiGenerated: e.target.checked})}
+                        className="w-4 h-4 accent-[#0F4C2E] rounded"
+                      />
+                      <span>Bild ist KI-generiert (Symbolbild)</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EDE8E0]">
+                <button
+                  type="button"
+                  onClick={() => { setIsModalOpen(false); setEditingItem(null); }}
+                  className="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
+                >
+                  Abbrechen
+                </button>
+                <button
+                  type="submit"
+                  className="bg-[#0F4C2E] hover:bg-[#0b3822] text-white px-5 py-2 rounded-md font-semibold text-sm transition-colors shadow-sm"
+                >
+                  {editingItem ? 'Änderungen speichern' : 'News veröffentlichen'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>

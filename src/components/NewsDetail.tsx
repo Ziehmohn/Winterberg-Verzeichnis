@@ -417,9 +417,19 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {article.imageUrl && (
         <div className="relative w-full h-[320px] md:h-[440px] rounded-lg overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
           <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
-          <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded tracking-wide pointer-events-none">
-            Symbolbild · KI-generiert
-          </div>
+          {(article.isAiGenerated || article.imageSource) && (
+            <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
+              {article.isAiGenerated && (
+                <span>Symbolbild · KI-generiert</span>
+              )}
+              {article.isAiGenerated && article.imageSource && (
+                <span className="opacity-60">|</span>
+              )}
+              {article.imageSource && (
+                <span>Quelle: {article.imageSource}</span>
+              )}
+            </div>
+          )}
         </div>
       )}
 

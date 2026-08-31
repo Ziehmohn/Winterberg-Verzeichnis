@@ -58,6 +58,8 @@ export interface NewsArticle {
   businessName?: string;
   date: string;
   imageUrl?: string;
+  imageSource?: string;
+  isAiGenerated?: boolean;
   status: 'pending' | 'approved';
 }
 

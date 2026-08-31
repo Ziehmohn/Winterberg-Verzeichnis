@@ -16,7 +16,9 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
     content: '',
     author: '',
     businessName: '',
-    imageUrl: ''
+    imageUrl: '',
+    imageSource: '',
+    isAiGenerated: false
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,6 +60,8 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         author: formData.author,
         businessName: formData.businessName || '',
         imageUrl: finalImageUrl,
+        imageSource: formData.imageSource.trim() || '',
+        isAiGenerated: !!formData.isAiGenerated,
         status: 'pending',
         date: new Date().toISOString()
       });
@@ -88,7 +92,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         <button 
           onClick={() => {
             setIsSuccess(false);
-            setFormData({ title: '', content: '', author: '', businessName: '', imageUrl: '' });
+            setFormData({ title: '', content: '', author: '', businessName: '', imageUrl: '', imageSource: '', isAiGenerated: false });
           }}
           className={`px-5 py-2.5 rounded-md font-semibold ${theme.primaryBtn}`}
         >
@@ -163,28 +167,59 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Titelbild (Optional)</label>
-            <div className="mt-[8px]">
-              {formData.imageUrl ? (
-                <div className="relative inline-block">
-                  <img src={formData.imageUrl} alt="Preview" className="w-full max-w-[400px] h-auto rounded-md border border-[#E7E2DA]" />
-                  <button 
-                    type="button" 
-                    onClick={() => setFormData({...formData, imageUrl: ''})}
-                    className="absolute -top-3 -right-3 w-8 h-8 bg-white border border-[#E7E2DA] rounded-full flex items-center justify-center text-[#C0392B] hover:bg-[#FBEAE7] shadow-sm transition-colors"
-                  >
-                    <X size={16} />
-                  </button>
-                </div>
-              ) : (
-                <label className="flex flex-col items-center justify-center w-full max-w-[400px] h-[160px] border-2 border-dashed border-[#D8D2C8] rounded-md cursor-pointer hover:border-[#0F4C2E] hover:bg-[#FAF8F5] transition-colors">
-                  <ImagePlus className="w-8 h-8 text-[#8A928B] mb-2" />
-                  <span className="text-[14px] text-[#5F6B63] font-medium">Bild auswählen (max. 2MB)</span>
-                  <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
-                </label>
-              )}
+          <div className="space-y-4">
+            <div>
+              <label className={labelClass}>Titelbild (Optional)</label>
+              <div className="mt-[8px]">
+                {formData.imageUrl ? (
+                  <div className="relative inline-block">
+                    <img src={formData.imageUrl} alt="Preview" className="w-full max-w-[400px] h-auto rounded-md border border-[#E7E2DA]" />
+                    <button 
+                      type="button" 
+                      onClick={() => setFormData({...formData, imageUrl: ''})}
+                      className="absolute -top-3 -right-3 w-8 h-8 bg-white border border-[#E7E2DA] rounded-full flex items-center justify-center text-[#C0392B] hover:bg-[#FBEAE7] shadow-sm transition-colors"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ) : (
+                  <label className="flex flex-col items-center justify-center w-full max-w-[400px] h-[160px] border-2 border-dashed border-[#D8D2C8] rounded-md cursor-pointer hover:border-[#0F4C2E] hover:bg-[#FAF8F5] transition-colors">
+                    <ImagePlus className="w-8 h-8 text-[#8A928B] mb-2" />
+                    <span className="text-[14px] text-[#5F6B63] font-medium">Bild auswählen (max. 2MB)</span>
+                    <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+                  </label>
+                )}
+              </div>
             </div>
+
+            {formData.imageUrl && (
+              <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-md p-4 space-y-3 max-w-[500px]">
+                <div>
+                  <label className="block text-[13px] font-semibold text-[#1B211D] mb-1">
+                    Bildquelle / Bildnachweis (Optional)
+                  </label>
+                  <input 
+                    type="text" 
+                    value={formData.imageSource} 
+                    onChange={e => setFormData({...formData, imageSource: e.target.value})} 
+                    className="w-full border border-[#E7E2DA] rounded px-3 py-2 text-[14px] bg-white focus:outline-none focus:border-[#0F4C2E]" 
+                    placeholder="z. B. Foto: Max Mustermann / Brauhaus"
+                  />
+                </div>
+
+                <label className="flex items-center gap-2.5 cursor-pointer select-none pt-1">
+                  <input 
+                    type="checkbox"
+                    checked={formData.isAiGenerated}
+                    onChange={e => setFormData({...formData, isAiGenerated: e.target.checked})}
+                    className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E] accent-[#0F4C2E]"
+                  />
+                  <span className="text-[13.5px] font-medium text-[#1B211D]">
+                    Dieses Bild ist KI-generiert (Symbolbild)
+                  </span>
+                </label>
+              </div>
+            )}
           </div>
 
           <div className="pt-[16px] border-t border-[#F3F0EA]">
