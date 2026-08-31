@@ -151,6 +151,7 @@ export interface AdBanner {
   imageUrl: string;
   targetUrl: string;
   category: string; // 'Alle' or specific category name like 'Gastronomie', 'Handwerk', etc.
+  categories?: string[]; // Multiple categories / subcategories or ['Alle']
   subcategory?: string;
   position?: 'skyscraper_right' | 'sidebar' | 'custom';
   isActive: boolean;

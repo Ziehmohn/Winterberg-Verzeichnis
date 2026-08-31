@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, Check, X, Eye, ExternalLink, Image as ImageIcon, Upload, MousePointerClick, Megaphone, Sparkles, AlertCircle, Building2 } from 'lucide-react';
+import { 
+  Plus, Edit2, Trash2, Check, X, Eye, ExternalLink, 
+  Image as ImageIcon, Upload, MousePointerClick, Megaphone, 
+  Sparkles, AlertCircle, Building2, Search, ChevronDown, 
+  ChevronUp, Tag, Layers, CheckSquare, Square, Globe
+} from 'lucide-react';
 import { AdBanner, AdInquiry, Business } from '../types';
 import { categories } from '../data';
 import { db, storage } from '../firebase';
@@ -39,7 +44,10 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
   const [companyName, setCompanyName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [targetUrl, setTargetUrl] = useState('');
-  const [category, setCategory] = useState('Alle');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(['Alle']);
+  const [isGlobalAd, setIsGlobalAd] = useState(true);
+  const [categorySearch, setCategorySearch] = useState('');
+  const [expandedCatGroups, setExpandedCatGroups] = useState<string[]>(categories.map(c => c.name));
   const [badgeText, setBadgeText] = useState('Anzeige');
   const [isActive, setIsActive] = useState(true);
 
@@ -83,19 +91,25 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
       setSelectedBusinessId(userOwnedBusiness.id);
       setTitle(userOwnedBusiness.name + ' – Jetzt entdecken');
       setCompanyName(userOwnedBusiness.name);
-      setCategory(userOwnedBusiness.category);
+      const initialCats = [userOwnedBusiness.category];
+      if (userOwnedBusiness.subcategory) initialCats.push(userOwnedBusiness.subcategory);
+      setSelectedCategories(initialCats);
+      setIsGlobalAd(false);
       setTargetUrl(getProfileUrl(userOwnedBusiness));
     } else {
       setSelectedBusinessId('');
       setTitle('');
       setCompanyName('');
-      setCategory('Alle');
+      setSelectedCategories(['Alle']);
+      setIsGlobalAd(true);
       setTargetUrl('');
     }
     setImageUrl('');
     setBadgeText('Anzeige');
     setIsActive(true);
     setFormError(null);
+    setCategorySearch('');
+    setExpandedCatGroups(categories.map(c => c.name));
     setIsEditing(true);
   };
 
@@ -106,10 +120,24 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     setCompanyName(ad.companyName || '');
     setImageUrl(ad.imageUrl || '');
     setTargetUrl(ad.targetUrl || '');
-    setCategory(ad.category || 'Alle');
+    
+    let cats: string[] = [];
+    if (Array.isArray(ad.categories) && ad.categories.length > 0) {
+      cats = ad.categories;
+    } else if (ad.category) {
+      cats = [ad.category];
+    } else {
+      cats = ['Alle'];
+    }
+    
+    const isGlobal = cats.includes('Alle') || cats.length === 0;
+    setSelectedCategories(isGlobal ? ['Alle'] : cats);
+    setIsGlobalAd(isGlobal);
     setBadgeText(ad.badgeText || 'Anzeige');
     setIsActive(ad.isActive);
     setFormError(null);
+    setCategorySearch('');
+    setExpandedCatGroups(categories.map(c => c.name));
     setIsEditing(true);
   };
 
@@ -118,11 +146,63 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     const bus = businesses.find(b => b.id === bId);
     if (bus) {
       setCompanyName(bus.name);
-      setCategory(bus.category);
+      if (isGlobalAd) {
+        const autoCats = [bus.category];
+        if (bus.subcategory) autoCats.push(bus.subcategory);
+        setSelectedCategories(autoCats);
+        setIsGlobalAd(false);
+      }
       setTargetUrl(getProfileUrl(bus));
       if (!title || title.includes('– Jetzt entdecken') || title.includes('– Anzeige') || title.includes('- Anzeige')) {
         setTitle(`${bus.name} – Jetzt entdecken`);
       }
+    }
+  };
+
+  const toggleCategory = (catName: string) => {
+    if (isGlobalAd) {
+      setIsGlobalAd(false);
+      setSelectedCategories([catName]);
+      return;
+    }
+
+    if (selectedCategories.includes(catName)) {
+      const next = selectedCategories.filter((c) => c !== catName);
+      setSelectedCategories(next.length === 0 ? ['Alle'] : next);
+      if (next.length === 0) setIsGlobalAd(true);
+    } else {
+      const withoutAlle = selectedCategories.filter((c) => c !== 'Alle');
+      setSelectedCategories([...withoutAlle, catName]);
+    }
+  };
+
+  const toggleGroupAll = (groupName: string, subcats: string[]) => {
+    if (isGlobalAd) {
+      setIsGlobalAd(false);
+      setSelectedCategories([groupName, ...subcats]);
+      return;
+    }
+
+    const allGroupItems = [groupName, ...subcats];
+    const hasAll = allGroupItems.every((item) => selectedCategories.includes(item));
+
+    if (hasAll) {
+      const next = selectedCategories.filter((c) => !allGroupItems.includes(c));
+      setSelectedCategories(next.length === 0 ? ['Alle'] : next);
+      if (next.length === 0) setIsGlobalAd(true);
+    } else {
+      const withoutAlle = selectedCategories.filter((c) => c !== 'Alle');
+      const merged = Array.from(new Set([...withoutAlle, ...allGroupItems]));
+      setSelectedCategories(merged);
+    }
+  };
+
+  const toggleGlobal = (toGlobal: boolean) => {
+    setIsGlobalAd(toGlobal);
+    if (toGlobal) {
+      setSelectedCategories(['Alle']);
+    } else {
+      setSelectedCategories(['Gastronomie']);
     }
   };
 
@@ -187,6 +267,12 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
       return;
     }
 
+    const finalCategories = isGlobalAd ? ['Alle'] : selectedCategories.filter((c) => c !== 'Alle');
+    if (finalCategories.length === 0) {
+      setFormError('Bitte wählen Sie mindestens eine Kategorie oder das globale Banner aus.');
+      return;
+    }
+
     setIsSubmitting(true);
     setFormError(null);
 
@@ -198,7 +284,8 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
       businessId: selectedBusinessId || undefined,
       imageUrl: imageUrl.trim(),
       targetUrl: targetUrl.trim(),
-      category: category || 'Alle',
+      category: finalCategories[0] || 'Alle',
+      categories: finalCategories,
       position: 'skyscraper_right',
       isActive,
       badgeText: badgeText.trim() || 'Anzeige',
@@ -366,7 +453,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5">
             <div>
               <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
                 Titel / Kampagne <span className="text-red-500">*</span>
@@ -380,27 +467,235 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
                 className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
               />
             </div>
+          </div>
 
+          {/* Target Categories Section */}
+          <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4 space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                Ziel-Kategorie <span className="text-red-500">*</span>
-              </label>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
-              >
-                <option value="Alle">Alle Kategorien (Globales Banner)</option>
-                {categories.map((c) => (
-                  <option key={c.name} value={c.name}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-              <span className="text-xs text-[#8A928B] mt-1 block">
-                Das Banner wird rechts neben den Betrieben in dieser Kategorie angezeigt.
-              </span>
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <label className="text-xs font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
+                  <Tag className="w-3.5 h-3.5 text-[#0F4C2E]" /> Ziel-Kategorien &amp; Unterkategorien <span className="text-red-500">*</span>
+                </label>
+                <span className="text-xs text-[#5F6B63]">
+                  {isGlobalAd ? 'Global aktiv (Alle Kategorien)' : `${selectedCategories.filter(c => c !== 'Alle').length} ausgewählt`}
+                </span>
+              </div>
+              <p className="text-xs text-[#5F6B63]">
+                Legen Sie fest, in welchen Kategorien und Unterkategorien das Skyscraper-Banner ausgespielt werden soll.
+              </p>
             </div>
+
+            {/* Mode Toggle: Global vs Specific */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button
+                type="button"
+                onClick={() => toggleGlobal(true)}
+                className={`p-3 rounded-lg border text-left flex items-start gap-3 transition-all ${
+                  isGlobalAd
+                    ? 'bg-white border-[#0F4C2E] ring-1 ring-[#0F4C2E] shadow-sm'
+                    : 'bg-white/60 border-[#E7E2DA] hover:bg-white hover:border-gray-300'
+                }`}
+              >
+                <Globe className={`w-5 h-5 shrink-0 mt-0.5 ${isGlobalAd ? 'text-[#0F4C2E]' : 'text-gray-400'}`} />
+                <div>
+                  <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
+                    Globales Banner (Alle Kategorien)
+                    {isGlobalAd && <Check className="w-3.5 h-3.5 text-[#0F4C2E]" />}
+                  </div>
+                  <div className="text-[11px] text-[#5F6B63] mt-0.5">
+                    Wird auf allen Kategorieseiten und der Startseite angezeigt.
+                  </div>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => toggleGlobal(false)}
+                className={`p-3 rounded-lg border text-left flex items-start gap-3 transition-all ${
+                  !isGlobalAd
+                    ? 'bg-white border-[#0F4C2E] ring-1 ring-[#0F4C2E] shadow-sm'
+                    : 'bg-white/60 border-[#E7E2DA] hover:bg-white hover:border-gray-300'
+                }`}
+              >
+                <Layers className={`w-5 h-5 shrink-0 mt-0.5 ${!isGlobalAd ? 'text-[#0F4C2E]' : 'text-gray-400'}`} />
+                <div>
+                  <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
+                    Gezielte Kategorien wählen
+                    {!isGlobalAd && <Check className="w-3.5 h-3.5 text-[#0F4C2E]" />}
+                  </div>
+                  <div className="text-[11px] text-[#5F6B63] mt-0.5">
+                    Wählen Sie eine oder mehrere Haupt- und Unterkategorien aus.
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            {/* If specific categories mode is active: Tree selector */}
+            {!isGlobalAd && (
+              <div className="pt-2 border-t border-[#E7E2DA] space-y-3">
+                {/* Search & Quick actions */}
+                <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center justify-between">
+                  <div className="relative flex-1">
+                    <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="text"
+                      placeholder="Kategorie oder Branche suchen (z. B. Restaurant, Dachdecker, KFZ)..."
+                      value={categorySearch}
+                      onChange={(e) => setCategorySearch(e.target.value)}
+                      className="w-full bg-white border border-[#E7E2DA] rounded-md pl-8 pr-7 py-1.5 text-xs text-gray-800 focus:outline-none focus:border-[#0F4C2E] transition-colors"
+                    />
+                    {categorySearch && (
+                      <button
+                        type="button"
+                        onClick={() => setCategorySearch('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const all: string[] = [];
+                        categories.forEach(cg => {
+                          all.push(cg.name);
+                          all.push(...cg.subcategories);
+                        });
+                        setSelectedCategories(all);
+                      }}
+                      className="text-[11px] text-[#0F4C2E] hover:underline font-semibold"
+                    >
+                      Alle auswählen
+                    </button>
+                    <span className="text-gray-300">|</span>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCategories([])}
+                      className="text-[11px] text-red-600 hover:underline font-semibold"
+                    >
+                      Auswahl leeren
+                    </button>
+                  </div>
+                </div>
+
+                {/* Selected categories tags list */}
+                {selectedCategories.filter(c => c !== 'Alle').length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 p-2 bg-white rounded-md border border-[#EDE8E0] max-h-24 overflow-y-auto">
+                    {selectedCategories.filter(c => c !== 'Alle').map((cat) => (
+                      <span
+                        key={cat}
+                        className="inline-flex items-center gap-1 bg-[#E8F1EB] text-[#0F4C2E] border border-[#0F4C2E]/20 text-[11px] font-semibold px-2 py-0.5 rounded"
+                      >
+                        {cat}
+                        <button
+                          type="button"
+                          onClick={() => toggleCategory(cat)}
+                          className="text-[#0F4C2E] hover:text-red-600 focus:outline-none ml-0.5"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Categories & Subcategories accordion tree */}
+                <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+                  {categories.map((group) => {
+                    const matchingSubs = group.subcategories.filter((sub) =>
+                      !categorySearch ||
+                      sub.toLowerCase().includes(categorySearch.toLowerCase()) ||
+                      group.name.toLowerCase().includes(categorySearch.toLowerCase())
+                    );
+
+                    if (categorySearch && matchingSubs.length === 0 && !group.name.toLowerCase().includes(categorySearch.toLowerCase())) {
+                      return null;
+                    }
+
+                    const isMainSelected = selectedCategories.includes(group.name);
+                    const selectedSubCount = group.subcategories.filter(s => selectedCategories.includes(s)).length;
+                    const isExpanded = expandedCatGroups.includes(group.name) || Boolean(categorySearch);
+                    const isFullySelected = isMainSelected && selectedSubCount === group.subcategories.length;
+
+                    return (
+                      <div key={group.name} className="bg-white border border-[#E7E2DA] rounded-md overflow-hidden">
+                        {/* Group Header */}
+                        <div className="flex items-center justify-between p-2.5 bg-[#FAF8F5] border-b border-[#EDE8E0]">
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <label className="flex items-center gap-2 cursor-pointer select-none">
+                              <input
+                                type="checkbox"
+                                checked={isMainSelected}
+                                onChange={() => toggleCategory(group.name)}
+                                className="w-4 h-4 rounded text-[#0F4C2E] border-gray-300 focus:ring-[#0F4C2E] accent-[#0F4C2E]"
+                              />
+                              <span className="font-bold text-xs text-gray-900">{group.name}</span>
+                            </label>
+                            <span className="text-[10px] bg-white border border-[#EDE8E0] text-[#5F6B63] px-1.5 py-0.5 rounded font-medium">
+                              Hauptkategorie
+                            </span>
+                            {selectedSubCount > 0 && (
+                              <span className="text-[10px] bg-[#E8F1EB] text-[#0F4C2E] px-1.5 py-0.5 rounded font-bold">
+                                {selectedSubCount} Unterkat. aktiv
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => toggleGroupAll(group.name, group.subcategories)}
+                              className="text-[11px] text-[#0F4C2E] hover:underline font-medium hidden sm:inline-block"
+                            >
+                              {isFullySelected ? 'Gruppe abwählen' : 'Ganze Gruppe wählen'}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setExpandedCatGroups(prev =>
+                                  prev.includes(group.name) ? prev.filter(g => g !== group.name) : [...prev, group.name]
+                                );
+                              }}
+                              className="p-1 text-gray-500 hover:text-gray-800 rounded"
+                            >
+                              {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Subcategories list */}
+                        {isExpanded && (
+                          <div className="p-2.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            {matchingSubs.map((sub) => {
+                              const isSubSelected = selectedCategories.includes(sub);
+                              return (
+                                <label
+                                  key={sub}
+                                  className={`flex items-center gap-2 p-1.5 rounded cursor-pointer text-xs transition-colors ${
+                                    isSubSelected ? 'bg-[#E8F1EB] text-[#0F4C2E] font-medium' : 'hover:bg-[#FAF8F5] text-gray-700'
+                                  }`}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    checked={isSubSelected}
+                                    onChange={() => toggleCategory(sub)}
+                                    className="w-3.5 h-3.5 rounded text-[#0F4C2E] border-gray-300 focus:ring-[#0F4C2E] accent-[#0F4C2E]"
+                                  />
+                                  <span className="truncate">{sub}</span>
+                                </label>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Banner Graphic Upload / URL */}
@@ -524,12 +819,38 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
                   {/* Info */}
                   <div className="flex-1 min-w-0 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className="bg-[#FAF8F5] border border-[#E7E2DA] text-[#0F4C2E] rounded px-2 py-0.5 text-[10.5px] font-bold">
-                          {ad.category || 'Alle'}
-                        </span>
+                      <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                        {(() => {
+                          const cats = Array.isArray(ad.categories) && ad.categories.length > 0
+                            ? ad.categories
+                            : (ad.category ? [ad.category] : ['Alle']);
+                          
+                          if (cats.includes('Alle')) {
+                            return (
+                              <span className="bg-[#E8F1EB] border border-[#0F4C2E]/20 text-[#0F4C2E] rounded px-2 py-0.5 text-[10.5px] font-bold inline-flex items-center gap-1">
+                                <Globe className="w-3 h-3" /> Global (Alle Kat.)
+                              </span>
+                            );
+                          }
+
+                          return (
+                            <>
+                              <span className="bg-[#FAF8F5] border border-[#E7E2DA] text-[#0F4C2E] rounded px-2 py-0.5 text-[10.5px] font-bold truncate max-w-[130px]">
+                                {cats[0]}
+                              </span>
+                              {cats.length > 1 && (
+                                <span 
+                                  title={cats.join(', ')}
+                                  className="bg-[#FFF1E4] border border-[#F2761B]/30 text-[#D65F0C] rounded px-1.5 py-0.5 text-[10px] font-bold cursor-help"
+                                >
+                                  +{cats.length - 1} weitere
+                                </span>
+                              )}
+                            </>
+                          );
+                        })()}
                         <span
-                          className={`rounded px-2 py-0.5 text-[10.5px] font-bold ${
+                          className={`rounded px-2 py-0.5 text-[10.5px] font-bold ml-auto sm:ml-0 ${
                             ad.isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-600'
                           }`}
                         >

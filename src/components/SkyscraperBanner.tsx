@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, Sparkles, Megaphone, Check } from 'lucide-react';
 import { AdBanner } from '../types';
+import { categories } from '../data';
 import { db } from '../firebase';
 import { doc, updateDoc, increment } from 'firebase/firestore';
 
@@ -20,14 +21,46 @@ export default function SkyscraperBanner({
   // Find active banner for current category or fallback to 'Alle'
   const activeBanners = banners.filter((b) => b.isActive);
   
-  // 1. Exact category match
-  let matchedBanner = activeBanners.find(
-    (b) => b.category && b.category.toLowerCase() === activeCategory.toLowerCase() && activeCategory !== 'Alle'
-  );
+  const isCategoryMatch = (banner: AdBanner, cat: string) => {
+    if (!cat || cat === 'Alle') return false;
+    const lowerCat = cat.toLowerCase();
 
-  // 2. Global fallback
+    // Check banner.categories array
+    if (Array.isArray(banner.categories) && banner.categories.length > 0) {
+      if (banner.categories.some((c) => c.toLowerCase() === lowerCat)) {
+        return true;
+      }
+      // Also match if banner has a main category that contains this subcategory
+      const parentGroup = categories.find((cg) => cg.subcategories.some((sc) => sc.toLowerCase() === lowerCat));
+      if (parentGroup && banner.categories.some((c) => c.toLowerCase() === parentGroup.name.toLowerCase())) {
+        return true;
+      }
+      return false;
+    }
+
+    // Legacy fallback banner.category
+    if (banner.category && banner.category !== 'Alle') {
+      if (banner.category.toLowerCase() === lowerCat) return true;
+      const parentGroup = categories.find((cg) => cg.subcategories.some((sc) => sc.toLowerCase() === lowerCat));
+      if (parentGroup && banner.category.toLowerCase() === parentGroup.name.toLowerCase()) return true;
+    }
+
+    return false;
+  };
+
+  // 1. Exact or parent category match
+  let matchedBanner = activeCategory !== 'Alle'
+    ? activeBanners.find((b) => isCategoryMatch(b, activeCategory))
+    : undefined;
+
+  // 2. Global fallback ('Alle' or empty)
   if (!matchedBanner) {
-    matchedBanner = activeBanners.find((b) => !b.category || b.category === 'Alle');
+    matchedBanner = activeBanners.find((b) => {
+      if (Array.isArray(b.categories) && b.categories.length > 0) {
+        return b.categories.some((c) => c === 'Alle' || c.toLowerCase() === 'alle');
+      }
+      return !b.category || b.category === 'Alle';
+    });
   }
 
   const handleBannerClick = async (banner: AdBanner) => {
