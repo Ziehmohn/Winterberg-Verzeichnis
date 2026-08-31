@@ -28,10 +28,10 @@
 ## Branchen & Kategorien / Business Categories
 - [Hotels und Unterkünfte](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte): Betriebe im Bereich Hotels und Unterkünfte (u.a. Ferienparks, Ferienhäuser, Ferienwohnungen, Hotels)
 - [Handwerk](https://www.winterberg-verzeichnis.de/handwerk): Betriebe im Bereich Handwerk (u.a. KFZ-Werkstätten, Schreinereien, Wäschereien, Dachdecker, Elektriker, Friseur)
-- [Einzelhandel](https://www.winterberg-verzeichnis.de/einzelhandel): Betriebe im Bereich Einzelhandel (u.a. Supermarkt, Tankstellen, Fleischerei, Bekleidung, Bürobedarf, Autohäuser)
+- [Einzelhandel](https://www.winterberg-verzeichnis.de/einzelhandel): Betriebe im Bereich Einzelhandel (u.a. Supermarkt, Tankstellen, Fleischerei, Fahrradgeschäfte, Sport & Outdoor, Bekleidung)
 - [Gastronomie](https://www.winterberg-verzeichnis.de/gastronomie): Betriebe im Bereich Gastronomie (u.a. Restaurant, Cafés, Kneipen und Bars, Skihütten, Eisdielen, Pizzerien)
 - [Dienstleistungen](https://www.winterberg-verzeichnis.de/dienstleistungen): Betriebe im Bereich Dienstleistungen (u.a. Steuerberater, Marketingdienstleistungen, Finanzberatung, Rechtsanwälte, Banken, Versicherungsagenturen)
-- [Freizeit](https://www.winterberg-verzeichnis.de/freizeit): Betriebe im Bereich Freizeit (u.a. Indoor-Spielplätze, Fitnessstudios, Bowling, Tennisplätze, Fußballvereine, Schwimmbäder)
+- [Freizeit](https://www.winterberg-verzeichnis.de/freizeit): Betriebe im Bereich Freizeit (u.a. Indoor-Spielplätze, Fitnessstudios, Bowling, Fahrradverleih, Skiverleih, Tennisplätze)
 
 ## Technische Endpunkte & Schnittstellen
 - [Vollständiger KI-Index (llms-full.txt)](https://www.winterberg-verzeichnis.de/llms-full.txt): Kompletter Datenkatalog aller Betriebe, Adressen und FAQs

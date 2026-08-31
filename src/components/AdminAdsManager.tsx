@@ -3,7 +3,7 @@ import {
   Plus, Edit2, Trash2, Check, X, Eye, ExternalLink, 
   Image as ImageIcon, Upload, MousePointerClick, Megaphone, 
   Sparkles, AlertCircle, Building2, Search, ChevronDown, 
-  ChevronUp, Tag, Layers, CheckSquare, Square, Globe
+  ChevronUp, Tag, Layers, CheckSquare, Square, Globe, ArrowRight
 } from 'lucide-react';
 import { AdBanner, AdInquiry, Business } from '../types';
 import { categories } from '../data';
@@ -41,6 +41,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
 
   const [selectedBusinessId, setSelectedBusinessId] = useState<string>('');
   const [title, setTitle] = useState('');
+  const [ctaText, setCtaText] = useState('Mehr erfahren');
   const [companyName, setCompanyName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [targetUrl, setTargetUrl] = useState('');
@@ -90,6 +91,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     if (userOwnedBusiness) {
       setSelectedBusinessId(userOwnedBusiness.id);
       setTitle(userOwnedBusiness.name + ' – Jetzt entdecken');
+      setCtaText('Mehr erfahren');
       setCompanyName(userOwnedBusiness.name);
       const initialCats = [userOwnedBusiness.category];
       if (userOwnedBusiness.subcategory) initialCats.push(userOwnedBusiness.subcategory);
@@ -99,6 +101,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     } else {
       setSelectedBusinessId('');
       setTitle('');
+      setCtaText('Mehr erfahren');
       setCompanyName('');
       setSelectedCategories(['Alle']);
       setIsGlobalAd(true);
@@ -117,6 +120,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     setEditingAd(ad);
     setSelectedBusinessId(ad.businessId || '');
     setTitle(ad.title || '');
+    setCtaText(ad.ctaText || 'Mehr erfahren');
     setCompanyName(ad.companyName || '');
     setImageUrl(ad.imageUrl || '');
     setTargetUrl(ad.targetUrl || '');
@@ -267,7 +271,12 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim() || !imageUrl.trim() || !targetUrl.trim()) {
-      setFormError('Bitte füllen Sie Titel, Bild und Ziellink aus.');
+      setFormError('Bitte füllen Sie Banner-Text, Bild und Ziellink aus.');
+      return;
+    }
+
+    if (title.trim().length > 120) {
+      setFormError('Der Banner-Text darf maximal 120 Zeichen lang sein.');
       return;
     }
 
@@ -284,6 +293,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     const adData: AdBanner = {
       id: adId,
       title: title.trim(),
+      ctaText: ctaText.trim() || 'Mehr erfahren',
       companyName: companyName.trim() || undefined,
       businessId: selectedBusinessId || undefined,
       imageUrl: imageUrl.trim(),
@@ -330,7 +340,6 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
         localStorage.setItem('local_ads', JSON.stringify(next));
         return next;
       });
-      // Do not close form so they see the warning, or close after a delay
       setTimeout(() => {
         setIsEditing(false);
         setEditingAd(null);
@@ -473,19 +482,67 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
             )}
           </div>
 
-          <div className="grid grid-cols-1 gap-5">
+          {/* Banner Text (Max 120 chars) & Call-to-Action */}
+          <div className="grid grid-cols-1 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                Titel / Kampagne <span className="text-red-500">*</span>
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  Banner-Text / Kampagnentext <span className="text-red-500">*</span>
+                </label>
+                <span className={`text-xs font-semibold ${title.length > 120 ? 'text-red-600 font-bold' : title.length >= 100 ? 'text-amber-600' : 'text-gray-500'}`}>
+                  {title.length} / 120 Zeichen
+                </span>
+              </div>
+              <textarea
+                required
+                maxLength={120}
+                rows={2}
+                placeholder="z. B. Frisch gezapftes Bier, deftige Spezialitäten & sonnige Terrasse direkt am Kurpark Winterberg."
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors resize-none leading-relaxed"
+              />
+              <span className="text-[11.5px] text-[#5F6B63] mt-1 block">
+                Dieser Text wird vollständig auf dem Werbebanner dargestellt (kein Abschneiden, max. 120 Zeichen).
+              </span>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  Call-to-Action (CTA-Button Text) <span className="text-red-500">*</span>
+                </label>
+                <span className="text-xs text-gray-400">
+                  {ctaText.length} / 35 Zeichen
+                </span>
+              </div>
               <input
                 type="text"
                 required
-                placeholder="z. B. Brauhaus Winterberg - Jetzt Tisch reservieren"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
+                maxLength={35}
+                placeholder="z. B. Jetzt Tisch reservieren, Mehr erfahren, Angebot ansehen"
+                value={ctaText}
+                onChange={(e) => setCtaText(e.target.value)}
+                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-2 font-medium"
               />
+              {/* Quick suggestions */}
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[11px] text-gray-500 font-medium mr-1">Vorschläge:</span>
+                {['Mehr erfahren', 'Jetzt entdecken', 'Tisch reservieren', 'Angebot ansehen', 'Termin vereinbaren', 'Gutschein sichern'].map((sug) => (
+                  <button
+                    key={sug}
+                    type="button"
+                    onClick={() => setCtaText(sug)}
+                    className={`text-[11px] px-2 py-0.5 rounded border transition-colors ${
+                      ctaText === sug 
+                        ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] font-semibold' 
+                        : 'bg-white text-gray-700 border-gray-200 hover:border-[#0F4C2E] hover:text-[#0F4C2E]'
+                    }`}
+                  >
+                    {sug}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -518,12 +575,11 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
               >
                 <Globe className={`w-5 h-5 shrink-0 mt-0.5 ${isGlobalAd ? 'text-[#0F4C2E]' : 'text-gray-400'}`} />
                 <div>
-                  <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
-                    Globales Banner (Alle Kategorien)
-                    {isGlobalAd && <Check className="w-3.5 h-3.5 text-[#0F4C2E]" />}
+                  <div className="font-semibold text-xs text-gray-900">
+                    🌍 Globales Banner (Alle Kategorien)
                   </div>
                   <div className="text-[11px] text-[#5F6B63] mt-0.5">
-                    Wird auf allen Kategorieseiten und der Startseite angezeigt.
+                    Wird auf der Startseite, Übersichtsseite und in allen Bereichen ausgespielt.
                   </div>
                 </div>
               </button>
@@ -539,96 +595,73 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
               >
                 <Layers className={`w-5 h-5 shrink-0 mt-0.5 ${!isGlobalAd ? 'text-[#0F4C2E]' : 'text-gray-400'}`} />
                 <div>
-                  <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
-                    Gezielte Kategorien wählen
-                    {!isGlobalAd && <Check className="w-3.5 h-3.5 text-[#0F4C2E]" />}
+                  <div className="font-semibold text-xs text-gray-900">
+                    🎯 Gezielte Kategorien &amp; Branchen
                   </div>
                   <div className="text-[11px] text-[#5F6B63] mt-0.5">
-                    Wählen Sie eine oder mehrere Haupt- und Unterkategorien aus.
+                    Wählen Sie eine oder mehrere Haupt- und Unterkategorien flexibel aus.
                   </div>
                 </div>
               </button>
             </div>
 
-            {/* If specific categories mode is active: Tree selector */}
+            {/* Detailed Category Selector with Multi-select */}
             {!isGlobalAd && (
               <div className="pt-2 border-t border-[#E7E2DA] space-y-3">
-                {/* Search & Quick actions */}
-                <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center justify-between">
-                  <div className="relative flex-1">
-                    <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                    <input
-                      type="text"
-                      placeholder="Kategorie oder Branche suchen (z. B. Restaurant, Dachdecker, KFZ)..."
-                      value={categorySearch}
-                      onChange={(e) => setCategorySearch(e.target.value)}
-                      className="w-full bg-white border border-[#E7E2DA] rounded-md pl-8 pr-7 py-1.5 text-xs text-gray-800 focus:outline-none focus:border-[#0F4C2E] transition-colors"
-                    />
-                    {categorySearch && (
-                      <button
-                        type="button"
-                        onClick={() => setCategorySearch('')}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-2">
+                {/* Search / Filter in Categories */}
+                <div className="flex items-center gap-2 bg-white border border-[#E7E2DA] rounded-md px-3 py-1.5">
+                  <Search className="w-4 h-4 text-gray-400 shrink-0" />
+                  <input
+                    type="text"
+                    value={categorySearch}
+                    onChange={(e) => setCategorySearch(e.target.value)}
+                    placeholder="Kategorie oder Branche durchsuchen (z. B. Restaurant, Skihütten, Handwerk)..."
+                    className="w-full text-xs text-gray-900 focus:outline-none bg-transparent"
+                  />
+                  {categorySearch && (
                     <button
                       type="button"
-                      onClick={() => {
-                        const all: string[] = [];
-                        categories.forEach(cg => {
-                          all.push(cg.name);
-                          all.push(...cg.subcategories);
-                        });
-                        setSelectedCategories(all);
-                      }}
-                      className="text-[11px] text-[#0F4C2E] hover:underline font-semibold"
+                      onClick={() => setCategorySearch('')}
+                      className="text-xs text-gray-400 hover:text-gray-600"
                     >
-                      Alle auswählen
+                      <X className="w-3.5 h-3.5" />
                     </button>
-                    <span className="text-gray-300">|</span>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCategories([])}
-                      className="text-[11px] text-red-600 hover:underline font-semibold"
-                    >
-                      Auswahl leeren
-                    </button>
-                  </div>
+                  )}
                 </div>
 
-                {/* Selected categories tags list */}
-                {selectedCategories.filter(c => c !== 'Alle').length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 p-2 bg-white rounded-md border border-[#EDE8E0] max-h-24 overflow-y-auto">
-                    {selectedCategories.filter(c => c !== 'Alle').map((cat) => (
-                      <span
-                        key={cat}
-                        className="inline-flex items-center gap-1 bg-[#E8F1EB] text-[#0F4C2E] border border-[#0F4C2E]/20 text-[11px] font-semibold px-2 py-0.5 rounded"
+                {/* Selected Pills */}
+                <div className="flex flex-wrap gap-1.5 items-center">
+                  <span className="text-[11px] font-semibold text-[#5F6B63] mr-1">Ausgewählt:</span>
+                  {selectedCategories.filter(c => c !== 'Alle').map((cat) => (
+                    <span
+                      key={cat}
+                      className="bg-[#E8F1EB] text-[#0F4C2E] border border-[#0F4C2E]/30 rounded-full px-2.5 py-0.5 text-xs font-semibold flex items-center gap-1 shadow-sm"
+                    >
+                      {cat}
+                      <button
+                        type="button"
+                        onClick={() => toggleCategory(cat)}
+                        className="hover:text-red-600 ml-0.5"
                       >
-                        {cat}
-                        <button
-                          type="button"
-                          onClick={() => toggleCategory(cat)}
-                          className="text-[#0F4C2E] hover:text-red-600 focus:outline-none ml-0.5"
-                        >
-                          <X className="w-3 h-3" />
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                )}
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  ))}
+                  {selectedCategories.filter(c => c !== 'Alle').length === 0 && (
+                    <span className="text-xs text-red-600 italic">
+                      Bitte mindestens eine Kategorie auswählen!
+                    </span>
+                  )}
+                </div>
 
-                {/* Categories & Subcategories accordion tree */}
-                <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+                {/* Category Groups Accordion */}
+                <div className="space-y-2.5 max-h-[320px] overflow-y-auto pr-1">
                   {categories.map((group) => {
-                    const matchingSubs = group.subcategories.filter((sub) =>
-                      !categorySearch ||
-                      sub.toLowerCase().includes(categorySearch.toLowerCase()) ||
-                      group.name.toLowerCase().includes(categorySearch.toLowerCase())
+                    const matchingSubs = group.subcategories.filter(
+                      (sub) =>
+                        !categorySearch ||
+                        sub.toLowerCase().includes(categorySearch.toLowerCase()) ||
+                        group.name.toLowerCase().includes(categorySearch.toLowerCase())
                     );
 
                     if (categorySearch && matchingSubs.length === 0 && !group.name.toLowerCase().includes(categorySearch.toLowerCase())) {
@@ -636,33 +669,31 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
                     }
 
                     const isMainSelected = selectedCategories.includes(group.name);
-                    const selectedSubCount = group.subcategories.filter(s => selectedCategories.includes(s)).length;
+                    const allGroupItems = [group.name, ...group.subcategories];
+                    const isFullySelected = allGroupItems.every((item) => selectedCategories.includes(item));
                     const isExpanded = expandedCatGroups.includes(group.name) || Boolean(categorySearch);
-                    const isFullySelected = isMainSelected && selectedSubCount === group.subcategories.length;
 
                     return (
-                      <div key={group.name} className="bg-white border border-[#E7E2DA] rounded-md overflow-hidden">
+                      <div
+                        key={group.name}
+                        className="border border-[#EDE8E0] rounded-lg bg-white overflow-hidden shadow-sm"
+                      >
                         {/* Group Header */}
-                        <div className="flex items-center justify-between p-2.5 bg-[#FAF8F5] border-b border-[#EDE8E0]">
-                          <div className="flex items-center gap-2 flex-1 min-w-0">
-                            <label className="flex items-center gap-2 cursor-pointer select-none">
-                              <input
-                                type="checkbox"
-                                checked={isMainSelected}
-                                onChange={() => toggleCategory(group.name)}
-                                className="w-4 h-4 rounded text-[#0F4C2E] border-gray-300 focus:ring-[#0F4C2E] accent-[#0F4C2E]"
-                              />
-                              <span className="font-bold text-xs text-gray-900">{group.name}</span>
-                            </label>
-                            <span className="text-[10px] bg-white border border-[#EDE8E0] text-[#5F6B63] px-1.5 py-0.5 rounded font-medium">
-                              Hauptkategorie
+                        <div className="bg-[#FAF8F5] px-3.5 py-2.5 flex items-center justify-between border-b border-[#EDE8E0]">
+                          <label className="flex items-center gap-2 cursor-pointer select-none">
+                            <input
+                              type="checkbox"
+                              checked={isMainSelected}
+                              onChange={() => toggleCategory(group.name)}
+                              className="w-4 h-4 rounded text-[#0F4C2E] border-gray-300 focus:ring-[#0F4C2E] accent-[#0F4C2E]"
+                            />
+                            <span className="font-bold text-xs text-[#1B211D]">
+                              {group.name}
                             </span>
-                            {selectedSubCount > 0 && (
-                              <span className="text-[10px] bg-[#E8F1EB] text-[#0F4C2E] px-1.5 py-0.5 rounded font-bold">
-                                {selectedSubCount} Unterkat. aktiv
-                              </span>
-                            )}
-                          </div>
+                            <span className="text-[11px] text-gray-500 font-normal">
+                              (Hauptkategorie)
+                            </span>
+                          </label>
 
                           <div className="flex items-center gap-2">
                             <button
@@ -749,12 +780,30 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
 
               {imageUrl && (
                 <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-3 flex flex-col items-center">
-                  <span className="text-[11px] font-semibold text-gray-500 mb-2">Vorschau:</span>
-                  <img
-                    src={imageUrl}
-                    alt="Vorschau"
-                    className="max-w-[140px] max-h-[220px] object-cover rounded-md border border-[#E7E2DA] shadow-sm"
-                  />
+                  <span className="text-[11px] font-semibold text-gray-500 mb-2">Live-Vorschau des Banners:</span>
+                  <div className="w-[190px] rounded-md border border-[#EDE8E0] bg-white overflow-hidden shadow-md flex flex-col">
+                    <div className="relative h-[180px] bg-slate-100 overflow-hidden">
+                      <div className="absolute top-1.5 left-1.5 z-10 bg-black/65 text-white px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase">
+                        {badgeText || 'Anzeige'}
+                      </div>
+                      <img
+                        src={imageUrl}
+                        alt="Vorschau"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-2.5 flex flex-col gap-2">
+                      <div className="text-[11.5px] font-medium text-[#1B211D] leading-snug break-words">
+                        {title || 'Ihr Banner-Text (bis zu 120 Zeichen)...'}
+                      </div>
+                      <div className="pt-1.5 border-t border-[#F3F0EA] flex items-center justify-between">
+                        <span className="text-[10.5px] font-bold text-white bg-[#0F4C2E] px-2.5 py-1 rounded shadow-sm inline-flex items-center gap-1">
+                          {ctaText || 'Mehr erfahren'}
+                        </span>
+                        <ExternalLink className="w-3 h-3 text-gray-400" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -878,13 +927,18 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
                         </span>
                       </div>
 
-                      <h5 className="font-display font-semibold text-[15px] text-gray-900 truncate leading-snug">
+                      <h5 className="font-display font-semibold text-[14.5px] text-gray-900 leading-snug break-words mb-1.5">
                         {ad.title}
                       </h5>
 
-                      {ad.companyName && (
-                        <div className="text-xs text-[#5F6B63] truncate">{ad.companyName}</div>
-                      )}
+                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span className="text-[11px] font-bold text-[#0F4C2E] bg-[#E8F1EB] px-2 py-0.5 rounded border border-[#0F4C2E]/20 inline-flex items-center gap-1">
+                          CTA: {ad.ctaText || 'Mehr erfahren'}
+                        </span>
+                        {ad.companyName && (
+                          <span className="text-xs text-[#5F6B63]">{ad.companyName}</span>
+                        )}
+                      </div>
 
                       <a
                         href={ad.targetUrl}

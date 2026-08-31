@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (199 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (207 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -945,6 +945,26 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-ralf-becker
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/supermarkt/imkerei-ralf-becker
 
+#### [Pro Biker](https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/pro-biker)
+- **Kategorie:** Einzelhandel > Fahrradgeschäfte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 49, 59955 Winterberg
+- **Telefon:** 02981 1715
+- **Webseite:** https://www.pro-biker.de
+- **Beschreibung (DE):** Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/pro-biker
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/fahrradgeschaefte/pro-biker
+
+#### [Green Bikes GmbH - Fahrradfachmarkt & -werkstatt](https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt)
+- **Kategorie:** Einzelhandel > Fahrradgeschäfte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 93, 59955 Winterberg
+- **Telefon:** 02981 896850
+- **Webseite:** https://greenbikes.de
+- **Beschreibung (DE):** Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
+
 ### Kategorie: Gastronomie
 
 #### [Hessenkeller Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/hessenkeller-winterberg)
@@ -1842,6 +1862,66 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Modernes Bowling- und Freizeitzentrum in Winterberg mit 8 wettkampftauglichen Bowlingbahnen, samstags Disco-Bowling, Billardtischen, Darts, Airhockey sowie Restaurantbereich mit Burgern, Snacks und Drinks.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/bowling/bowlhaus-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/bowlen/bowlhaus-winterberg
+
+#### [Bikeverleih Klante am Herrloh](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-herrloh)
+- **Kategorie:** Freizeit > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 67a, 59955 Winterberg
+- **Telefon:** 02981 4259016
+- **Webseite:** https://www.bike-klante.de
+- **Beschreibung (DE):** Ihr erstklassiger Bike- und E-Bike-Verleih direkt am Herrloh in Winterberg. Neueste E-Mountainbikes, Fullys, Hardtails, Kinder-Bikes, Helme und Schutzausrüstung für Touren und Trailparks.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-herrloh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/bikeverleih-klante-am-herrloh
+
+#### [e-Bike-Verleih Winterberg / Ski & Bike Schneider](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider)
+- **Kategorie:** Freizeit > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Fichtenweg 20a, 59955 Winterberg
+- **Telefon:** 02981 9296692
+- **Webseite:** https://www.ski-schneider.de
+- **Beschreibung (DE):** Großer E-Bike- & Mountainbike-Verleih an der Talstation Brabander / Herrloh in Winterberg. Neueste E-Bikes aller Kategorien, Kids E-MTBs ab 24 Zoll, Kinderanhänger, Kindersitze und Protektoren.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
+
+#### [Bikeverleih Poppenberg Winterberg](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-poppenberg-winterberg)
+- **Kategorie:** Freizeit > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** In d. Büre 32, 59955 Winterberg
+- **Telefon:** 02981 4259008
+- **Webseite:** https://www.poppenberg-winterberg.de
+- **Beschreibung (DE):** Bike- und E-Bike-Verleih direkt an der Talstation Poppenberg in der Büre. Hochwertige Mountainbikes, Trekking- und City-E-Bikes für alle Altersklassen sowie Skiverleih im Winter.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-poppenberg-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/bikeverleih-poppenberg-winterberg
+
+#### [Bikeverleih Klante am Schneewittchenhaus](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus)
+- **Kategorie:** Freizeit > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 119, 59955 Winterberg
+- **Telefon:** 02981 4259011
+- **Webseite:** https://www.bike-klante.de
+- **Beschreibung (DE):** Moderner Verleihstützpunkt und Ausrüstungsdepot von Klante am Schneewittchenhaus / Kappe. Premium E-Mountainbikes, Schutzkleidung, Bike-Depot und direkte Nähe zu den Trails rund um den Kahlen Asten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
+
+#### [Uppu-Biketours](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/uppu-biketours)
+- **Kategorie:** Freizeit > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 19A, 59955 Winterberg
+- **Telefon:** 02981 2245
+- **Webseite:** http://www.uppu-biketours.de
+- **Beschreibung (DE):** Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/uppu-biketours
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/uppu-biketours
+
+#### [Skiverleih Schneider](https://www.winterberg-verzeichnis.de/freizeit/skiverleih/skiverleih-schneider)
+- **Kategorie:** Freizeit > Skiverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Fichtenweg 20a, 59955 Winterberg
+- **Telefon:** 02981 9296692
+- **Webseite:** https://www.ski-schneider.de
+- **Beschreibung (DE):** Traditionsreicher Skiverleih und Skiservice am Fichtenweg in Winterberg. Neueste Carving-Ski, Snowboards, Langlaufski, Schlitten, Helme sowie modernes Skidepot direkt an der Piste Herrloh / Brabander.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/skiverleih/skiverleih-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/skiverleih/skiverleih-schneider
 
 ---
 

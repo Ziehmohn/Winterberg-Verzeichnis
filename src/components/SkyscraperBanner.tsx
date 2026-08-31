@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Sparkles, Megaphone, Check } from 'lucide-react';
+import { ExternalLink, Sparkles, ArrowRight } from 'lucide-react';
 import { AdBanner } from '../types';
 import { categories } from '../data';
 import { db } from '../firebase';
@@ -94,14 +94,19 @@ export default function SkyscraperBanner({
             <img
               src={matchedBanner.imageUrl}
               alt={matchedBanner.title || 'Werbebanner'}
-              className="w-full h-auto max-h-[180px] object-cover group-hover:scale-[1.02] transition-transform duration-300 block"
+              className="w-full h-auto max-h-[220px] object-cover group-hover:scale-[1.02] transition-transform duration-300 block"
               loading="lazy"
             />
-            <div className="p-3 bg-white border-t border-[#EDE8E0] flex items-center justify-between">
-              <div className="font-display font-semibold text-[14px] text-[#1B211D] truncate">
+            <div className="p-3.5 bg-white border-t border-[#EDE8E0] flex flex-col gap-2.5">
+              <div className="font-display font-semibold text-[14px] text-[#1B211D] leading-snug break-words">
                 {matchedBanner.title}
               </div>
-              <ExternalLink className="w-4 h-4 text-[#8A928B] shrink-0 ml-2" />
+              <div className="flex items-center justify-between pt-2 border-t border-[#F3F0EA]">
+                <span className="text-[12.5px] font-bold text-white bg-[#0F4C2E] px-3.5 py-1.5 rounded shadow-sm inline-flex items-center gap-1.5 group-hover:bg-[#186841] transition-colors">
+                  {matchedBanner.ctaText || 'Mehr erfahren'} <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+                <ExternalLink className="w-4 h-4 text-[#8A928B] group-hover:text-[#0F4C2E] transition-colors" />
+              </div>
             </div>
           </a>
 
@@ -158,7 +163,7 @@ export default function SkyscraperBanner({
               {matchedBanner.badgeText || 'Anzeige'}
             </div>
 
-            <div className="w-full overflow-hidden bg-slate-100 flex items-center justify-center min-h-[360px] max-h-[500px]">
+            <div className="w-full overflow-hidden bg-slate-100 flex items-center justify-center min-h-[360px] max-h-[520px]">
               <img
                 src={matchedBanner.imageUrl}
                 alt={matchedBanner.title || 'Skyscraper Anzeige'}
@@ -167,16 +172,16 @@ export default function SkyscraperBanner({
               />
             </div>
 
-            {/* Banner bottom info bar */}
-            <div className="p-3 bg-white border-t border-[#EDE8E0]">
-              <div className="font-display font-bold text-[13.5px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-snug line-clamp-2">
+            {/* Banner bottom info bar with complete text (up to 120 chars) and distinct CTA button */}
+            <div className="p-3.5 bg-white border-t border-[#EDE8E0] flex flex-col gap-2.5">
+              <div className="font-display font-medium text-[13px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-relaxed break-words">
                 {matchedBanner.title}
               </div>
-              <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#F3F0EA]">
-                <span className="text-[12px] font-semibold text-[#D65F0C] group-hover:underline inline-flex items-center gap-1">
-                  Mehr erfahren
+              <div className="flex items-center justify-between pt-2 border-t border-[#F3F0EA]">
+                <span className="text-[12px] font-bold text-white bg-[#0F4C2E] px-3.5 py-1.5 rounded shadow-sm inline-flex items-center gap-1.5 group-hover:bg-[#186841] transition-all">
+                  {matchedBanner.ctaText || 'Mehr erfahren'} <ArrowRight className="w-3 h-3" />
                 </span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#8A928B] group-hover:text-[#D65F0C] transition-colors" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#8A928B] group-hover:text-[#0F4C2E] transition-colors" />
               </div>
             </div>
           </a>
@@ -241,4 +246,3 @@ export default function SkyscraperBanner({
     </aside>
   );
 }
-

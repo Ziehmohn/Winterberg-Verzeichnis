@@ -2879,6 +2879,230 @@ export const businesses: Business[] = [
       saturday: '07:30 - 12:30',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'bikeverleih-klante-herrloh',
+    name: 'Bikeverleih Klante am Herrloh',
+    category: 'Freizeit',
+    subcategory: 'Fahrradverleih',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Freizeit', subcategory: 'Skiverleih' }
+    ],
+    description: 'Ihr erstklassiger Bike- und E-Bike-Verleih direkt am Herrloh in Winterberg. Neueste E-Mountainbikes, Fullys, Hardtails, Kinder-Bikes, Helme und Schutzausrüstung für Touren und Trailparks.',
+    address: 'Am Waltenberg 67a, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 4259016',
+    website: 'https://www.bike-klante.de',
+    services: ['E-MTB & Fully Verleih', 'Hardtails & Trekkingräder', 'Kinder-Bikes & Zubehör', 'Helme & Protektoren', 'Direkt am Einstieg Skiliftkarussell / Herrloh'],
+    imageFallback: 'BK',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 17:00',
+      tuesday: '09:00 - 17:00',
+      wednesday: '09:00 - 17:00',
+      thursday: '09:00 - 17:00',
+      friday: '09:00 - 17:00',
+      saturday: '09:00 - 17:00',
+      sunday: '09:00 - 17:00'
+    }
+  },
+  {
+    id: 'ebike-verleih-ski-bike-schneider',
+    name: 'e-Bike-Verleih Winterberg / Ski & Bike Schneider',
+    category: 'Freizeit',
+    subcategory: 'Fahrradverleih',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Freizeit', subcategory: 'Skiverleih' }
+    ],
+    description: 'Großer E-Bike- & Mountainbike-Verleih an der Talstation Brabander / Herrloh in Winterberg. Neueste E-Bikes aller Kategorien, Kids E-MTBs ab 24 Zoll, Kinderanhänger, Kindersitze und Protektoren.',
+    address: 'Fichtenweg 20a, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9296692',
+    website: 'https://www.ski-schneider.de',
+    services: ['Mountainbike & E-Bike Verleih', 'Kids E-MTB ab 24 Zoll', 'Kinder-Anhänger & Kindersitze', 'Protektoren & Helme', 'Bike-Depot & Service'],
+    imageFallback: 'SB',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 17:00',
+      tuesday: '09:00 - 17:00',
+      wednesday: '09:00 - 17:00',
+      thursday: '09:00 - 17:00',
+      friday: '09:00 - 17:00',
+      saturday: '08:30 - 17:30',
+      sunday: '08:30 - 17:30'
+    }
+  },
+  {
+    id: 'bikeverleih-poppenberg-winterberg',
+    name: 'Bikeverleih Poppenberg Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Fahrradverleih',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Freizeit', subcategory: 'Skiverleih' }
+    ],
+    description: 'Bike- und E-Bike-Verleih direkt an der Talstation Poppenberg in der Büre. Hochwertige Mountainbikes, Trekking- und City-E-Bikes für alle Altersklassen sowie Skiverleih im Winter.',
+    address: 'In d. Büre 32, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 4259008',
+    website: 'https://www.poppenberg-winterberg.de',
+    services: ['E-Bikes & MTBs im Verleih', 'Geführte Touren & Beratung', 'Zubehör & Helme', 'Skiverleih im Winter', 'Großer Parkplatz vor Ort'],
+    imageFallback: 'BP',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 17:00',
+      tuesday: '09:00 - 17:00',
+      wednesday: '09:00 - 17:00',
+      thursday: '09:00 - 17:00',
+      friday: '09:00 - 17:00',
+      saturday: '09:00 - 17:00',
+      sunday: '09:00 - 17:00'
+    }
+  },
+  {
+    id: 'bikeverleih-klante-schneewittchenhaus',
+    name: 'Bikeverleih Klante am Schneewittchenhaus',
+    category: 'Freizeit',
+    subcategory: 'Fahrradverleih',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Freizeit', subcategory: 'Skiverleih' }
+    ],
+    description: 'Moderner Verleihstützpunkt und Ausrüstungsdepot von Klante am Schneewittchenhaus / Kappe. Premium E-Mountainbikes, Schutzkleidung, Bike-Depot und direkte Nähe zu den Trails rund um den Kahlen Asten.',
+    address: 'Am Waltenberg 119, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 4259011',
+    website: 'https://www.bike-klante.de',
+    services: ['E-MTB & Trailbike Verleih', 'Depot & Schutzausrüstung', 'Familien-Bikes & Kinderanhänger', 'Direkte Lage am Kahlen Asten / Schneewittchenhang'],
+    imageFallback: 'BS',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 17:00',
+      tuesday: '09:00 - 17:00',
+      wednesday: '09:00 - 17:00',
+      thursday: '09:00 - 17:00',
+      friday: '09:00 - 17:00',
+      saturday: '09:00 - 17:00',
+      sunday: '09:00 - 17:00'
+    }
+  },
+  {
+    id: 'pro-biker-winterberg',
+    name: 'Pro Biker',
+    category: 'Einzelhandel',
+    subcategory: 'Fahrradgeschäfte',
+    additionalCategories: [
+      { category: 'Freizeit', subcategory: 'Fahrradverleih' },
+      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+    ],
+    description: 'Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.',
+    address: 'Am Waltenberg 49, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1715',
+    website: 'https://www.pro-biker.de',
+    services: ['Fahrradverkauf & E-Bikes', 'Meisterwerkstatt & Inspektion', 'Bekleidung & Helm-Sortiment', 'E-Bike & MTB Verleih', 'Skiverleih im Winter'],
+    imageFallback: 'PB',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:30 - 18:00',
+      tuesday: '09:30 - 18:00',
+      wednesday: '09:30 - 18:00',
+      thursday: '09:30 - 18:00',
+      friday: '09:30 - 18:00',
+      saturday: '09:30 - 16:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'uppu-biketours-winterberg',
+    name: 'Uppu-Biketours',
+    category: 'Freizeit',
+    subcategory: 'Fahrradverleih',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    description: 'Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.',
+    address: 'Am Waltenberg 19A, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2245',
+    website: 'http://www.uppu-biketours.de',
+    services: ['Geführte E-Bike Touren', 'E-MTB & Trekking Verleih', 'Gruppen- & Firmenevents', 'Fahrtechnik & Guiding', 'Kombination mit Gastronomie UPPU'],
+    imageFallback: 'UB',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '09:00 - 18:00',
+      tuesday: '09:00 - 18:00',
+      wednesday: '09:00 - 18:00',
+      thursday: '09:00 - 18:00',
+      friday: '09:00 - 18:00',
+      saturday: '09:00 - 18:00',
+      sunday: '09:00 - 18:00'
+    }
+  },
+  {
+    id: 'skiverleih-schneider-winterberg',
+    name: 'Skiverleih Schneider',
+    category: 'Freizeit',
+    subcategory: 'Skiverleih',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Sport & Outdoor' },
+      { category: 'Freizeit', subcategory: 'Fahrradverleih' }
+    ],
+    description: 'Traditionsreicher Skiverleih und Skiservice am Fichtenweg in Winterberg. Neueste Carving-Ski, Snowboards, Langlaufski, Schlitten, Helme sowie modernes Skidepot direkt an der Piste Herrloh / Brabander.',
+    address: 'Fichtenweg 20a, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9296692',
+    website: 'https://www.ski-schneider.de',
+    services: ['Alpin- & Carving-Ski Verleih', 'Snowboard & Boots', 'Langlauf-Ausrüstung & Schlitten', 'Skidepot & Kantenschliff / Wachsservice', 'Direkt am Skigebiet'],
+    imageFallback: 'SS',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:15 - 17:30',
+      tuesday: '08:15 - 17:30',
+      wednesday: '08:15 - 17:30',
+      thursday: '08:15 - 17:30',
+      friday: '08:15 - 17:30',
+      saturday: '08:00 - 18:00',
+      sunday: '08:00 - 18:00'
+    }
+  },
+  {
+    id: 'green-bikes-winterberg',
+    name: 'Green Bikes GmbH - Fahrradfachmarkt & -werkstatt',
+    category: 'Einzelhandel',
+    subcategory: 'Fahrradgeschäfte',
+    additionalCategories: [
+      { category: 'Freizeit', subcategory: 'Fahrradverleih' },
+      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+    ],
+    description: 'Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.',
+    address: 'Am Hagenblech 93, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 896850',
+    website: 'https://greenbikes.de',
+    services: ['Fahrradfachmarkt & E-Bikes', 'Zertifizierte Meisterwerkstatt', 'Gravel-, Trekking- & Mountainbikes', 'Große Bekleidungs- & Zubehörabteilung', 'Bikeleasing (JobRad u.a.)'],
+    imageFallback: 'GB',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: 'Geschlossen',
+      tuesday: 'Geschlossen',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 14:00',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
@@ -2999,10 +3223,10 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
   { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
-  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
+  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
 
 import { AdBanner } from './types';

@@ -148,6 +148,7 @@ export interface TrackingScript {
 export interface AdBanner {
   id: string;
   title: string;
+  ctaText?: string;
   companyName?: string;
   businessId?: string;
   imageUrl: string;
