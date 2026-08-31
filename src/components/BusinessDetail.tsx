@@ -443,11 +443,21 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </Suspense>
           )}
 
-          {/* Address – prominent for all accounts */}
-          <div className="flex items-start gap-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md py-3 px-4">
-            <MapPin className="w-4 h-4 text-[#0F4C2E] mt-0.5 shrink-0" />
-            <span className="text-[15px] font-semibold text-[#1B211D] leading-snug">{business.address}</span>
-          </div>
+          {/* Address – prominent for all accounts, street and city on separate lines */}
+          {(() => {
+            const parts = business.address.split(',');
+            const street = parts[0]?.trim() || business.address;
+            const city = parts.slice(1).join(',').trim();
+            return (
+              <div className="flex items-start gap-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md py-3 px-4">
+                <MapPin className="w-4 h-4 text-[#0F4C2E] mt-0.5 shrink-0" />
+                <div className="flex flex-col">
+                  <span className="text-[15px] font-semibold text-[#1B211D] leading-snug">{street}</span>
+                  {city && <span className="text-[14px] text-[#5F6B63] leading-snug mt-0.5">{city}</span>}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Premium: Route planen button */}
           {business.isPremium && (

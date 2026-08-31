@@ -132,11 +132,6 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
           </span>
         </a>
       </div>
-
-      <div className="bg-[#F8F6F1] border-t border-[#EDE8E0] px-3.5 py-2.5 flex items-start gap-2">
-        <MapPin className="w-3.5 h-3.5 text-[#0F4C2E] mt-0.5 shrink-0" />
-        <span className="text-[12.5px] text-[#4A544D] leading-tight">{business.address}</span>
-      </div>
     </div>
   );
 }
