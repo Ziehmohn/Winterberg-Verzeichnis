@@ -2,8 +2,8 @@ import React, { useState, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star } from 'lucide-react';
-import { Business, ThemeConfig, Review } from '../types';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText } from 'lucide-react';
+import { Business, ThemeConfig, Review, BusinessNewsArticle } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
@@ -394,6 +394,54 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           {onReviewSubmit && (
             <div className="mt-6 border-t border-[#EDE8E0] pt-6">
               <ReviewForm business={business} onReviewSubmit={onReviewSubmit} />
+            </div>
+          )}
+
+          {/* Business News – visible immediately after publishing (Premium only) */}
+          {business.isPremium && Array.isArray(business.businessNews) && business.businessNews.filter(n => n.status === 'published').length > 0 && (
+            <div className="mt-8 border-t border-[#EDE8E0] pt-6">
+              <h2 className="font-display text-[22px] font-semibold mb-4 flex items-center gap-2.5">
+                <Newspaper className="w-5 h-5 text-[#F2761B]" />
+                {lang === 'nl' ? 'Actueel van dit bedrijf' : 'Aktuelles vom Unternehmen'}
+              </h2>
+              <div className="grid gap-4">
+                {business.businessNews
+                  .filter(n => n.status === 'published')
+                  .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+                  .map((article) => (
+                    <div key={article.id} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg overflow-hidden hover:border-[#0F4C2E]/40 transition-colors group">
+                      {article.imageUrl && (
+                        <img
+                          src={article.imageUrl}
+                          alt={article.title}
+                          className="w-full h-[180px] object-cover"
+                        />
+                      )}
+                      <div className="p-4">
+                        <div className="text-[11.5px] text-[#8A928B] mb-2">
+                          {new Date(article.publishedAt).toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </div>
+                        <h3 className="font-display text-[17px] font-semibold text-[#1B211D] mb-2 group-hover:text-[#0F4C2E] transition-colors leading-snug">
+                          {article.title}
+                        </h3>
+                        <p className="text-[14px] text-[#4A544D] leading-relaxed mb-3">
+                          {article.excerpt}
+                        </p>
+                        {article.externalLink && (
+                          <a
+                            href={article.externalLink.startsWith('http') ? article.externalLink : `https://${article.externalLink}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0F4C2E] hover:text-[#F2761B] transition-colors"
+                          >
+                            {lang === 'nl' ? 'Meer lezen' : 'Mehr lesen'}
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+              </div>
             </div>
           )}
         </div>

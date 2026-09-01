@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe } from 'lucide-react';
-import { Business, CategoryGroup } from '../types';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check } from 'lucide-react';
+import { Business, CategoryGroup, BusinessNewsArticle } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { translateTextToDutch, translateServiceToDutch } from '../utils/translator';
 import { db, storage, auth } from '../firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
@@ -59,6 +59,190 @@ function SafeRichTextEditor({ value, onChange }: { value: string, onChange: (val
   }
 }
 
+function NewBusinessArticleForm({ onAdd }: { onAdd: (article: BusinessNewsArticle) => void }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [excerpt, setExcerpt] = useState('');
+  const [content, setContent] = useState('');
+  const [externalLink, setExternalLink] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    setUploadingImage(true);
+    try {
+      let url = '';
+      try {
+        const storageRef = ref(storage, `businessNews/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        url = await getDownloadURL(storageRef);
+      } catch {
+        url = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.readAsDataURL(file);
+        });
+      }
+      setImageUrl(url);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title.trim()) return;
+
+    const newArticle: BusinessNewsArticle = {
+      id: `bnews_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      title: title.trim(),
+      excerpt: excerpt.trim() || (content.trim().substring(0, 160) + (content.length > 160 ? '...' : '')),
+      content: content.trim(),
+      publishedAt: new Date().toISOString(),
+      externalLink: externalLink.trim() || undefined,
+      imageUrl: imageUrl.trim() || undefined,
+      status: 'published'
+    };
+
+    onAdd(newArticle);
+    setTitle('');
+    setExcerpt('');
+    setContent('');
+    setExternalLink('');
+    setImageUrl('');
+    setIsOpen(false);
+  };
+
+  if (!isOpen) {
+    return (
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="w-full py-3 px-4 bg-white border-2 border-dashed border-orange-300 hover:border-orange-500 rounded-lg text-orange-600 font-semibold text-sm flex items-center justify-center gap-2 hover:bg-orange-50/50 transition-all cursor-pointer"
+      >
+        <Plus className="w-4 h-4" />
+        Neuen News-Beitrag verfassen (+1 Beitrag)
+      </button>
+    );
+  }
+
+  return (
+    <div className="bg-white border border-orange-200 rounded-lg p-5 shadow-sm space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-orange-100">
+        <h4 className="font-bold text-sm text-[#1B211D] flex items-center gap-2">
+          <Newspaper className="w-4 h-4 text-[#F2761B]" />
+          Neuen News-Beitrag verfassen
+        </h4>
+        <button
+          type="button"
+          onClick={() => setIsOpen(false)}
+          className="text-xs text-gray-400 hover:text-gray-700 cursor-pointer"
+        >
+          ✕ Schließen
+        </button>
+      </div>
+
+      <div>
+        <label className="block text-xs font-bold text-[#1B211D] mb-1">Titel des Beitrags *</label>
+        <input
+          type="text"
+          required
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder="z. B. Neueröffnung unserer Sonnenterrasse im Frühjahr"
+          className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs font-bold text-[#1B211D] mb-1">
+          Kurzfassung / Teaser (wird auf Kacheln & Übersichten angezeigt)
+        </label>
+        <textarea
+          rows={2}
+          maxLength={300}
+          value={excerpt}
+          onChange={e => setExcerpt(e.target.value)}
+          placeholder="Kurze Zusammenfassung in 1-2 Sätzen (max. 300 Zeichen)..."
+          className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+        />
+        <div className="text-[11px] text-right text-[#8A928B]">{excerpt.length}/300</div>
+      </div>
+
+      <div>
+        <label className="block text-xs font-bold text-[#1B211D] mb-1">Volltext / Ausführlicher Bericht</label>
+        <textarea
+          rows={4}
+          value={content}
+          onChange={e => setContent(e.target.value)}
+          placeholder="Beschreiben Sie Ihr Angebot, Ihre Neuigkeit oder Ihr Event ausführlich..."
+          className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label className="block text-xs font-bold text-[#1B211D] mb-1">Titelbild (Optional)</label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={imageUrl}
+              onChange={e => setImageUrl(e.target.value)}
+              placeholder="https://... oder hochladen"
+              className="flex-1 border border-[#E7E2DA] rounded-md px-3 py-2 text-xs bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+            />
+            <label className="px-3 py-2 text-xs font-semibold bg-[#FAF8F5] border border-[#E7E2DA] hover:bg-gray-100 rounded-md cursor-pointer shrink-0 flex items-center gap-1">
+              <Upload className="w-3.5 h-3.5" />
+              {uploadingImage ? '...' : 'Upload'}
+              <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploadingImage} />
+            </label>
+          </div>
+          {imageUrl && (
+            <div className="mt-2 relative w-20 h-14 rounded border overflow-hidden">
+              <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
+              <button type="button" onClick={() => setImageUrl('')} className="absolute top-0.5 right-0.5 bg-red-500 text-white rounded-full p-0.5"><X className="w-2.5 h-2.5" /></button>
+            </div>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-xs font-bold text-[#1B211D] mb-1">Externer Link / Backlink (Optional)</label>
+          <input
+            type="url"
+            value={externalLink}
+            onChange={e => setExternalLink(e.target.value)}
+            placeholder="https://ihre-website.de/angebot"
+            className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-xs bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+          />
+          <span className="text-[11px] text-[#8A928B] mt-0.5 block">Wird als Backlink auf Ihrer Unternehmensseite & im News-Board gesetzt.</span>
+        </div>
+      </div>
+
+      <div className="flex justify-end gap-2 pt-2 border-t border-orange-100">
+        <button
+          type="button"
+          onClick={() => setIsOpen(false)}
+          className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 rounded-md cursor-pointer"
+        >
+          Abbrechen
+        </button>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={!title.trim()}
+          className="px-4 py-1.5 text-xs font-bold text-white bg-[#F2761B] hover:bg-[#D65F0C] rounded-md shadow-sm disabled:opacity-50 transition-colors cursor-pointer"
+        >
+          Beitrag speichern & veröffentlichen
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function AdminPanel({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onCancel, businessToEdit }: any) {
 
   const { t } = useTranslation();
@@ -82,6 +266,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
       gallery: Array.isArray(base.gallery) ? [...base.gallery] : [],
       isPremium: !!base.isPremium,
+      businessNews: Array.isArray(base.businessNews) ? [...base.businessNews] : [],
       extendedDescription: base.extendedDescription || '',
       ownerId: base.ownerId || '',
       status: base.status || 'approved',
@@ -204,6 +389,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       services_nl: formData.services_nl || [],
       products: formData.products || [],
       products_nl: formData.products_nl || [],
+      businessNews: formData.businessNews || [],
       status: formData.status || 'approved',
       id: newId
     };
@@ -215,6 +401,34 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         setDoc(doc(db, 'businesses', newId), dataToSubmit, { merge: true }),
         timeoutPromise
       ]);
+
+      // Sync published businessNews to 'news' collection for review if not yet submitted
+      if (Array.isArray(formData.businessNews) && formData.businessNews.length > 0) {
+        for (const art of formData.businessNews) {
+          if (art.status === 'published') {
+            try {
+              const newsDocRef = doc(db, 'news', art.id);
+              const newsSnap = await getDoc(newsDocRef);
+              if (!newsSnap.exists()) {
+                await setDoc(newsDocRef, {
+                  title: art.title,
+                  content: art.content || art.excerpt,
+                  author: formData.name,
+                  businessId: newId,
+                  businessName: formData.name,
+                  imageUrl: art.imageUrl || '',
+                  externalLink: art.externalLink || '',
+                  date: art.publishedAt || new Date().toISOString(),
+                  isBusinessNews: true,
+                  status: 'pending' // Admin must approve before showing on NewsBoard
+                });
+              }
+            } catch (syncErr) {
+              console.warn("Could not sync business news to news collection:", syncErr);
+            }
+          }
+        }
+      }
       
       if (formData.id) {
         setBusinesses((prev: Business[]) => prev.map((b: Business) => b.id === formData.id ? dataToSubmit : b));
@@ -1046,9 +1260,103 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
               <div className="h-12"></div>
             </div>
-            
+
+            {/* ─── Business News ─────────────────────────────────── */}
+            <div className="mt-6 border-t-2 border-orange-200 pt-6">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-bold text-[#0F4C2E]">📰 News & Aktuelle Beiträge</h3>
+                  <p className="text-sm text-[#5F6B63] mt-0.5">
+                    Bis zu 5 Beiträge pro Monat · erscheinen sofort auf der Unternehmensseite · im News-Board erst nach Admin-Freigabe
+                  </p>
+                </div>
+                {(() => {
+                  const now = new Date();
+                  const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+                  const count = (formData.businessNews || []).filter(n => n.publishedAt?.startsWith(thisMonth)).length;
+                  return (
+                    <span className={`text-sm font-bold px-3 py-1 rounded-full ${count >= 5 ? 'bg-red-100 text-red-700' : 'bg-[#E8F1EB] text-[#0F4C2E]'}`}>
+                      {count} / 5 diesen Monat
+                    </span>
+                  );
+                })()}
+              </div>
+
+              {/* Existing articles */}
+              <div className="space-y-3 mb-4">
+                {(formData.businessNews || []).map((article, idx) => (
+                  <div key={article.id} className="bg-white border border-orange-200/60 rounded-lg p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${article.status === 'published' ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-gray-100 text-gray-500'}`}>
+                            {article.status === 'published' ? 'Veröffentlicht' : 'Entwurf'}
+                          </span>
+                          <span className="text-xs text-[#8A928B]">
+                            {new Date(article.publishedAt).toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </span>
+                        </div>
+                        <p className="font-semibold text-sm text-[#1B211D] truncate">{article.title}</p>
+                        <p className="text-xs text-[#5F6B63] line-clamp-2 mt-0.5">{article.excerpt}</p>
+                      </div>
+                      <div className="flex gap-1 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = (formData.businessNews || []).map((n, i) =>
+                              i === idx ? { ...n, status: n.status === 'published' ? 'draft' as const : 'published' as const } : n
+                            );
+                            setFormData(prev => ({ ...prev, businessNews: updated }));
+                          }}
+                          className="text-xs px-2 py-1 rounded bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#C5DFCE] transition-colors font-medium"
+                          title={article.status === 'published' ? 'Als Entwurf speichern' : 'Veröffentlichen'}
+                        >
+                          {article.status === 'published' ? 'Verbergen' : 'Publizieren'}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = (formData.businessNews || []).filter((_, i) => i !== idx);
+                            setFormData(prev => ({ ...prev, businessNews: updated }));
+                          }}
+                          className="text-xs px-2 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
+                          title="Löschen"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {(formData.businessNews || []).length === 0 && (
+                  <p className="text-sm text-[#8A928B] italic">Noch keine Beiträge vorhanden.</p>
+                )}
+              </div>
+
+              {/* New article form */}
+              {(() => {
+                const now = new Date();
+                const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+                const count = (formData.businessNews || []).filter(n => n.publishedAt?.startsWith(thisMonth)).length;
+                if (count >= 5) {
+                  return <p className="text-sm text-red-600 font-medium">Monatliches Limit von 5 Beiträgen erreicht.</p>;
+                }
+                return (
+                  <NewBusinessArticleForm
+                    onAdd={(article) => {
+                      setFormData(prev => ({
+                        ...prev,
+                        businessNews: [...(prev.businessNews || []), article],
+                      }));
+                    }}
+                  />
+                );
+              })()}
+            </div>
+
           </div>
         )}
+
 
         <div className="pt-4 border-t border-black/10 flex flex-col sm:flex-row gap-3">
           <button 

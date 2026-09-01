@@ -5,6 +5,8 @@ import { categories } from '../data';
 import { db } from '../firebase';
 import { doc, updateDoc, increment } from 'firebase/firestore';
 
+import { AD_CTA } from '../config';
+
 interface SkyscraperBannerProps {
   banners: AdBanner[];
   activeCategory: string;
@@ -91,12 +93,14 @@ export default function SkyscraperBanner({
             <div className="absolute top-2 left-2 z-10 bg-black/65 backdrop-blur-md text-white px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">
               {matchedBanner.badgeText || 'Anzeige'}
             </div>
-            <img
-              src={matchedBanner.imageUrl}
-              alt={matchedBanner.title || 'Werbebanner'}
-              className="w-full h-auto max-h-[220px] object-cover group-hover:scale-[1.02] transition-transform duration-300 block"
-              loading="lazy"
-            />
+            <div className="w-full bg-[#FAF8F5] flex items-center justify-center overflow-hidden">
+              <img
+                src={matchedBanner.imageUrl}
+                alt={matchedBanner.title || 'Werbebanner'}
+                className="w-full h-auto max-h-[340px] object-contain sm:object-cover sm:object-top group-hover:scale-[1.02] transition-transform duration-300 block"
+                loading="lazy"
+              />
+            </div>
             <div className="p-3.5 bg-white border-t border-[#EDE8E0] flex flex-col gap-2.5">
               <div className="font-display font-semibold text-[14px] text-[#1B211D] leading-snug break-words">
                 {matchedBanner.title}
@@ -116,7 +120,7 @@ export default function SkyscraperBanner({
             className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] rounded-md py-2.5 px-3 text-center transition-colors cursor-pointer"
           >
             <span className="text-xs font-semibold text-[#0F4C2E] hover:text-[#F2761B]">
-              Sie möchten hier werben? Mehr erfahren!
+              {AD_CTA}
             </span>
           </button>
         </div>
@@ -138,7 +142,7 @@ export default function SkyscraperBanner({
           Erreichen Sie gezielt lokale Kundschaft mit aufmerksamkeitsstarker Bannerwerbung.
         </p>
         <div className="bg-[#F2761B] text-white text-xs font-bold py-2 px-4 rounded-md inline-flex items-center gap-1.5 shadow-sm">
-          Sie möchten hier werben? Mehr erfahren!
+          {AD_CTA}
         </div>
       </div>
     );
@@ -193,7 +197,7 @@ export default function SkyscraperBanner({
             className="w-full bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] hover:border-[#0F4C2E]/40 rounded-md p-3 text-center transition-all group shadow-sm cursor-pointer"
           >
             <div className="text-[13px] font-bold text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-tight">
-              Sie möchten hier werben? Mehr erfahren!
+              {AD_CTA}
             </div>
           </button>
         </div>
@@ -238,7 +242,7 @@ export default function SkyscraperBanner({
 
           <div>
             <div className="w-full bg-[#F2761B] group-hover:bg-[#D65F0C] text-white font-bold py-2.5 px-3 rounded-md text-[12.5px] transition-all shadow-md flex items-center justify-center gap-1.5">
-              Sie möchten hier werben? Mehr erfahren!
+              {AD_CTA}
             </div>
           </div>
         </div>

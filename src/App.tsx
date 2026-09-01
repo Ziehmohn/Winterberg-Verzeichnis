@@ -1744,24 +1744,12 @@ export default function App() {
               </div>
             </aside>
 
+
             {/* Main Area */}
             <div className="flex-1 min-w-0 w-full">
 
-              {/* Mobile Sponsor Banner */}
-              <div className="block lg:hidden mb-5">
-                <SkyscraperBanner 
-                  banners={ads} 
-                  activeCategory={activeCategory} 
-                  onInquire={(cat) => {
-                    setInquiryCategory(cat || activeCategory);
-                    setIsAdInquiryOpen(true);
-                  }} 
-                  isMobile={true} 
-                />
-              </div>
-
-              {/* Search Bar & Sorting Controls above company cards */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-6">
+              {/* Search Bar & Sorting Controls – mobile: above banner */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 bg-white border border-[#EDE8E0] rounded-lg px-4 py-2.5 shadow-[0_2px_8px_rgba(27,33,29,0.03)] focus-within:border-[#0F4C2E] focus-within:shadow-[0_4px_12px_rgba(15,76,46,0.08)] transition-all">
                     <Search className="w-5 h-5 text-[#5F6B63] shrink-0" />
@@ -1769,7 +1757,7 @@ export default function App() {
                       placeholder={
                         activeCategory === 'Alle'
                           ? (lang === 'nl' ? 'Zoek bedrijven, producten of diensten (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)…')
-                          : (lang === 'nl' ? `In „${t(activeCategory)}“ zoeken naar namen, producten of diensten…` : `In „${activeCategory}“ nach Namen, Produkten oder Leistungen suchen…`)
+                          : (lang === 'nl' ? `In „${t(activeCategory)}" zoeken naar namen, producten of diensten…` : `In „${activeCategory}" nach Namen, Produkten oder Leistungen suchen…`)
                       } 
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
@@ -1804,6 +1792,19 @@ export default function App() {
                     <option value="name_desc">{t("sortNameDesc")}</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Mobile Sponsor Banner – below search/sort, always visible */}
+              <div className="block lg:hidden mb-5">
+                <SkyscraperBanner 
+                  banners={ads} 
+                  activeCategory={activeCategory} 
+                  onInquire={(cat) => {
+                    setInquiryCategory(cat || activeCategory);
+                    setIsAdInquiryOpen(true);
+                  }} 
+                  isMobile={true} 
+                />
               </div>
 
               {/* Directory Grid or Map */}

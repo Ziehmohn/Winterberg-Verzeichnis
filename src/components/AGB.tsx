@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeConfig } from '../types';
 import { ArrowLeft } from 'lucide-react';
+import { OPERATOR, SITE, PRICING } from '../config';
 
 interface AGBProps {
   theme: ThemeConfig;
@@ -28,7 +29,7 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
         <section>
           <h2 className="text-xl font-bold mb-3">1. Geltungsbereich</h2>
           <p>
-            1.1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die Nutzung des Portals "Winterberg Wirtschaft" (nachfolgend "Portal"), die zwischen SICHTBAR SEO Simon Kräling (nachfolgend "Anbieter") und dem jeweiligen Kunden (nachfolgend "Kunde") geschlossen werden.
+            1.1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die Nutzung des Portals „{SITE.shortName}" (nachfolgend „Portal"), die zwischen {OPERATOR.shortName} (nachfolgend „Anbieter") und dem jeweiligen Kunden (nachfolgend „Kunde") geschlossen werden.
           </p>
           <p className="mt-2">
             1.2. Das Angebot des Portals richtet sich ausschließlich an Unternehmer im Sinne des § 14 BGB, juristische Personen des öffentlichen Rechts oder öffentlich-rechtliche Sondervermögen (B2B). Ein Vertragsschluss mit Verbrauchern (§ 13 BGB) ist ausgeschlossen.
@@ -44,7 +45,7 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
             2.2. Der Kunde kann zwischen einer monatlichen und einer jährlichen Zahlungsweise wählen.
           </p>
           <p className="mt-2">
-            2.3. Abonnements verlängern sich automatisch. Die Kündigungsfrist beträgt 14 Tage zum Ende der jeweiligen Vertragslaufzeit.
+            2.3. Abonnements verlängern sich automatisch. Die Kündigungsfrist beträgt {PRICING.cancellationPeriod} zum Ende der jeweiligen Vertragslaufzeit.
           </p>
           <p className="mt-2">
             2.4. <strong>Besonderheit bei Jahresabonnements:</strong> Wird ein Jahresabonnement nicht fristgerecht gekündigt, verlängert es sich nicht um ein weiteres Jahr, sondern geht automatisch in ein monatlich kündbares Abonnement zum regulären Monatspreis über. Die Zahlungsweise stellt sich entsprechend auf monatliche Abrechnung um.
@@ -54,7 +55,7 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
         <section>
           <h2 className="text-xl font-bold mb-3">3. Leistungserbringung</h2>
           <p>
-            3.1. Der Anbieter stellt ein Online-Verzeichnis zur Verfügung, in dem sich lokale Unternehmen, Handwerker und Dienstleister aus Winterberg und Umgebung präsentieren können.
+            3.1. Der Anbieter stellt ein Online-Verzeichnis zur Verfügung, in dem sich lokale Unternehmen, Handwerker und Dienstleister aus {SITE.city} und Umgebung präsentieren können.
           </p>
           <p className="mt-2">
             3.2. Die Leistung gilt als erbracht, sobald der Firmeneintrag des Kunden mit den gebuchten Funktionen (Basis oder Premium) auf dem Portal online abrufbar ist.
@@ -67,7 +68,7 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
             4.1. Alle auf dem Portal angegebenen Preise verstehen sich in Euro zuzüglich der jeweils gültigen gesetzlichen Mehrwertsteuer.
           </p>
           <p className="mt-2">
-            4.2. Die Zahlung erfolgt ausschließlich über den Zahlungsdienstleister Stripe. Dem Kunden stehen die von Stripe zur Verfügung gestellten Zahlungsmittel (z. B. Kreditkarte, SEPA-Lastschrift, PayPal, Giropay) zur Auswahl.
+            4.2. Die Zahlung erfolgt ausschließlich über den Zahlungsdienstleister {PRICING.paymentProvider}. Dem Kunden stehen die von {PRICING.paymentProvider} zur Verfügung gestellten Zahlungsmittel (z. B. Kreditkarte, SEPA-Lastschrift, PayPal, Giropay) zur Auswahl.
           </p>
           <p className="mt-2">
             4.3. Die Abrechnung erfolgt im Voraus für den jeweiligen Abrechnungszeitraum (monatlich oder jährlich).
@@ -86,12 +87,12 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
             5.2. <strong>Preise &amp; Mengenstaffel für Bannerwerbung (gilt für Ober- und Unterkategorien):</strong>
           </p>
           <ul className="list-disc pl-5 mt-1 space-y-1 text-sm">
-            <li>1 bis 2 Kategorien / Unterkategorien: <strong>24,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
-            <li>Ab 3 Kategorien / Unterkategorien: <strong>19,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
-            <li>Ab 5 Kategorien / Unterkategorien: <strong>14,95 €</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>1 bis 2 Kategorien / Unterkategorien: <strong>{PRICING.bannerTier1}</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>Ab 3 Kategorien / Unterkategorien: <strong>{PRICING.bannerTier2}</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
+            <li>Ab 5 Kategorien / Unterkategorien: <strong>{PRICING.bannerTier3}</strong> pro Kategorie / Monat (netto zzgl. MwSt.)</li>
           </ul>
           <p className="mt-2">
-            5.3. <strong>Laufzeit und Kündigung:</strong> Verträge über Bannerwerbung verlängern sich automatisch um jeweils einen weiteren Monat. Die Kündigungsfrist beträgt wie beim Premium-Account <strong>14 Tage zum Ende des jeweiligen monatlichen Abrechnungszeitraums</strong>.
+            5.3. <strong>Laufzeit und Kündigung:</strong> Verträge über Bannerwerbung verlängern sich automatisch um jeweils einen weiteren Monat. Die Kündigungsfrist beträgt wie beim Premium-Account <strong>{PRICING.cancellationPeriod} zum Ende des jeweiligen monatlichen Abrechnungszeitraums</strong>.
           </p>
           <p className="mt-2">
             5.4. Der Kunde ist für die Rechtmäßigkeit der von ihm bereitgestellten Werbegrafiken und Links allein verantwortlich. Der Anbieter behält sich vor, Banner abzulehnen oder zu sperren, die gegen gesetzliche Vorgaben oder die guten Sitten verstoßen.
@@ -127,7 +128,7 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
             7.1. Der Anbieter verarbeitet personenbezogene Daten des Kunden (z.B. Name, E-Mail, Zahlungsdaten) zur Vertragserfüllung und Abrechnung gemäß Art. 6 Abs. 1 lit. b DSGVO.
           </p>
           <p className="mt-2">
-            7.2. Für die Zahlungsabwicklung werden notwendige Daten an den Zahlungsdienstleister Stripe übermittelt.
+            7.2. Für die Zahlungsabwicklung werden notwendige Daten an den Zahlungsdienstleister {PRICING.paymentProvider} übermittelt.
           </p>
           <p className="mt-2">
             7.3. Weitere Informationen zur Verarbeitung und Speicherung von Daten entnehmen Sie bitte unserer Datenschutzerklärung.
@@ -147,7 +148,7 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
             9.1. Es gilt das Recht der Bundesrepublik Deutschland.
           </p>
           <p className="mt-2">
-            9.2. Ausschließlicher Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesem Vertrag ist der Sitz des Anbieters (Winterberg), da der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.
+            9.2. Ausschließlicher Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesem Vertrag ist der Sitz des Anbieters ({OPERATOR.city}), da der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.
           </p>
           <p className="mt-2">
             9.3. Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen hiervon unberührt.

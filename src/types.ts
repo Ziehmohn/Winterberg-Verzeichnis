@@ -56,11 +56,24 @@ export interface NewsArticle {
   author: string;
   businessId?: string;
   businessName?: string;
+  businessSlug?: string;
   date: string;
   imageUrl?: string;
   imageSource?: string;
   isAiGenerated?: boolean;
+  isBusinessNews?: boolean; // true = von Premium-Unternehmen eingereicht
   status: 'pending' | 'approved';
+}
+
+export interface BusinessNewsArticle {
+  id: string;
+  title: string;
+  excerpt: string;       // Kurztext (max. 300 Zeichen)
+  content: string;       // Volltext
+  publishedAt: string;   // ISO-Datum
+  externalLink?: string; // Optionaler Backlink
+  imageUrl?: string;     // Optionales Vorschaubild
+  status: 'published' | 'draft';
 }
 
 export interface BusinessTranslations {
@@ -92,6 +105,7 @@ export interface Business {
   services?: string[];
   products?: string[];
   jobs?: Job[];
+  businessNews?: BusinessNewsArticle[];
   isPremium?: boolean;
   gallery?: string[];
   logoUrl?: string;

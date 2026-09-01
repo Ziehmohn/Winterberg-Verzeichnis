@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeConfig } from '../types';
+import { OPERATOR, SITE } from '../config';
 
 export default function Impressum({ theme, activeThemeKey }: { theme: ThemeConfig, activeThemeKey: string }) {
   return (
@@ -9,21 +10,21 @@ export default function Impressum({ theme, activeThemeKey }: { theme: ThemeConfi
         <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
         <p className="font-bold">Angaben gemäß § 5 TMG</p>
         <p>
-          SICHTBAR SEO – Simon Kräling<br />
-          Schanzenstraße 28<br />
-          59955 Winterberg
+          {OPERATOR.name}<br />
+          {OPERATOR.street}<br />
+          {OPERATOR.zip} {OPERATOR.city}
         </p>
 
         <p>
-          <strong>Telefon:</strong> +49 1520 654 29 96<br />
-          <strong>E-Mail:</strong> info@sichtbar-online.com
+          <strong>Telefon:</strong> {OPERATOR.phone}<br />
+          <strong>E-Mail:</strong> {OPERATOR.email}
         </p>
 
         <p className="font-bold mt-6">Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG</p>
-        <p>DE336471774</p>
+        <p>{OPERATOR.vatId}</p>
 
         <p className="font-bold mt-6">Inhaltlich verantwortlich i.S.v. § 18 Abs. 2 MStV</p>
-        <p>Simon Kräling, Schanzenstraße 28, 59955 Winterberg</p>
+        <p>Simon Kräling, {OPERATOR.street}, {OPERATOR.zip} {OPERATOR.city}</p>
 
         <h3 className="text-xl font-bold mt-8 mb-4">Haftung für Inhalte</h3>
         <p>

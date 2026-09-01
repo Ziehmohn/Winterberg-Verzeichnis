@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { NewsArticle, ThemeConfig } from '../types';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
 
@@ -411,6 +411,40 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}
       {contactContent && (
         <StandaloneContactBox rawContact={contactContent} heading={t('newsContactHeading')} />
+      )}
+
+      {/* Dedicated Business Publisher / Backlink Box */}
+      {(article.businessName || (article as any).externalLink) && (
+        <div className="mt-8 bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-[#0F4C2E] mb-1">
+              {lang === 'nl' ? 'Gepubliceerd door' : 'Veröffentlicht durch'}
+            </div>
+            <div className="font-display font-bold text-lg text-[#1B211D]">
+              {article.businessName || article.author}
+            </div>
+          </div>
+          <div className="flex items-center gap-3 flex-wrap">
+            {article.businessName && (
+              <a
+                href={`/unternehmen/${article.businessSlug || (article.businessName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                className="px-4 py-2 bg-[#0F4C2E] hover:bg-[#186841] text-white text-xs font-bold rounded-md transition-colors inline-flex items-center gap-1.5 shadow-sm cursor-pointer"
+              >
+                {lang === 'nl' ? 'Bedrijfsprofiel bekijken' : 'Zum Unternehmensprofil'}
+              </a>
+            )}
+            {(article as any).externalLink && (
+              <a
+                href={(article as any).externalLink.startsWith('http') ? (article as any).externalLink : `https://${(article as any).externalLink}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-white hover:bg-gray-50 border border-[#E7E2DA] text-[#0F4C2E] text-xs font-bold rounded-md transition-colors inline-flex items-center gap-1.5"
+              >
+                {lang === 'nl' ? 'Website bezoeken' : 'Website besuchen'} <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+        </div>
       )}
     </article>
   );
