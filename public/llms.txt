@@ -31,7 +31,7 @@
 - [Einzelhandel](https://www.winterberg-verzeichnis.de/einzelhandel): Betriebe im Bereich Einzelhandel (u.a. Supermarkt, Tankstellen, Fleischerei, Fahrradgeschäfte, Sport & Outdoor, Bekleidung)
 - [Gastronomie](https://www.winterberg-verzeichnis.de/gastronomie): Betriebe im Bereich Gastronomie (u.a. Restaurant, Cafés, Kneipen und Bars, Skihütten, Eisdielen, Pizzerien)
 - [Dienstleistungen](https://www.winterberg-verzeichnis.de/dienstleistungen): Betriebe im Bereich Dienstleistungen (u.a. Immobilienmakler, Ärzte & Praxen, Zahnärzte, Steuerberater, Marketingdienstleistungen, Finanzberatung)
-- [Freizeit](https://www.winterberg-verzeichnis.de/freizeit): Betriebe im Bereich Freizeit (u.a. Indoor-Spielplätze, Fitnessstudios, Bowling, Fahrradverleih, Skiverleih, Tennisplätze)
+- [Freizeit](https://www.winterberg-verzeichnis.de/freizeit): Betriebe im Bereich Freizeit (u.a. Kino, Indoor-Spielplätze, Fitnessstudios, Bowling, Fahrradverleih, Skiverleih)
 
 ## Technische Endpunkte & Schnittstellen
 - [Vollständiger KI-Index (llms-full.txt)](https://www.winterberg-verzeichnis.de/llms-full.txt): Kompletter Datenkatalog aller Betriebe, Adressen und FAQs

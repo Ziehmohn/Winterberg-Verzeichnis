@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
-  categories,
-  themes,
-  initialAds
+  categories, 
+  themes, 
+  initialAds 
 } from './data';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner, PricingSettings } from './types';
 import { DEFAULT_PRICING_SETTINGS } from './config';
@@ -21,6 +21,7 @@ import { Review } from './types';
 import { useAuth } from './AuthContext';
 import Login from './components/Login';
 import { MegaMenu } from './components/MegaMenu';
+import MegaMenuBestOf from './components/MegaMenuBestOf';
 import SkyscraperBanner from './components/SkyscraperBanner';
 import AdInquiryModal from './components/AdInquiryModal';
 import AdminAdsManager from './components/AdminAdsManager';
@@ -61,6 +62,7 @@ const NewsDetail = React.lazy(() => import('./components/NewsDetail'));
 const SubmitNews = React.lazy(() => import('./components/SubmitNews'));
 const WinterbergFaq = React.lazy(() => import('./components/WinterbergFaq'));
 const GroundingPage = React.lazy(() => import('./components/GroundingPage'));
+const BestOfPage = React.lazy(() => import('./components/BestOfPage'));
 import { db, auth, storage } from './firebase';
 import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -117,6 +119,9 @@ export default function App() {
   let initialJobsMode = false;
   let initialJobsCategory: string | null = null;
   let initialAllMode = false;
+  let initialBestOfMode = false;
+  let initialBestOfCategory = 'Alle';
+  let initialBestOfSubcategory: string | undefined = undefined;
   let initialNewsMode = false;
   let initialNewsSubmitMode = false;
   let initialNewsId: string | null = null;
@@ -162,6 +167,22 @@ export default function App() {
           initialEmbedTheme = th;
         }
         initialEmbedWhitelabel = params.get('whitelabel') === '1' || params.get('whitelabel') === 'true';
+      } else if (decodedPart1 === 'die-besten' || decodedPart1 === 'de-beste' || decodedPart1 === 'best-of') {
+        initialBestOfMode = true;
+        if (pathParts[1]) {
+          const decodedPart2 = decodeURIComponent(pathParts[1]);
+          const catName = findCategoryFromSlug(decodedPart2) || categories.find(c => c.name.toLowerCase() === decodedPart2.toLowerCase())?.name;
+          if (catName) {
+            initialBestOfCategory = catName;
+            if (pathParts[2]) {
+              const decodedPart3 = decodeURIComponent(pathParts[2]);
+              const subName = findSubcategoryFromSlug(decodedPart3) || categories.find(c => c.name === catName)?.subcategories.find(s => s.toLowerCase() === decodedPart3.toLowerCase());
+              if (subName) {
+                initialBestOfSubcategory = subName;
+              }
+            }
+          }
+        }
       } else if (decodedPart1 === 'news' || decodedPart1 === 'nieuws') {
         initialNewsMode = true;
         if (pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen' || decodeURIComponent(pathParts[1]).toLowerCase() === 'indienen')) {
@@ -294,6 +315,23 @@ export default function App() {
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [sortBy, setSortBy] = useState<'featured' | 'rating' | 'reviews_count' | 'name_asc' | 'name_desc'>('featured');
   const [isAllMode, setIsAllMode] = useState(initialAllMode);
+  const [isBestOfMode, setIsBestOfMode] = useState(initialBestOfMode);
+  const [bestOfCategory, setBestOfCategory] = useState<string>(initialBestOfCategory);
+  const [bestOfSubcategory, setBestOfSubcategory] = useState<string | undefined>(initialBestOfSubcategory);
+  const [isBestOfMenuOpen, setIsBestOfMenuOpen] = useState(false);
+  const bestOfMenuTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterBestOfMenu = () => {
+    if (bestOfMenuTimeoutRef.current) clearTimeout(bestOfMenuTimeoutRef.current);
+    setIsBestOfMenuOpen(true);
+  };
+
+  const handleMouseLeaveBestOfMenu = () => {
+    bestOfMenuTimeoutRef.current = setTimeout(() => {
+      setIsBestOfMenuOpen(false);
+    }, 180);
+  };
+
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
   const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
   const [newsId, setNewsId] = useState<string | null>(initialNewsId);
@@ -322,6 +360,13 @@ export default function App() {
         category: selectedBusiness.category,
         subcategory: selectedBusiness.subcategory,
         businessSlug: getBusinessSlug(selectedBusiness.name)
+      };
+    }
+    if (isBestOfMode) {
+      return {
+        view: 'best-of',
+        category: bestOfCategory !== 'Alle' ? bestOfCategory : undefined,
+        subcategory: bestOfSubcategory
       };
     }
     if (isJobsMode) return { view: 'jobs', jobsCategory: jobsCategory || undefined };
@@ -357,6 +402,17 @@ export default function App() {
   const getPath = (p: string) => {
     if (!p || p === '/') return buildLocalizedUrl({ view: 'home' }, lang);
     if (p === '/alle-unternehmen' || p === '/alle-bedrijven') return buildLocalizedUrl({ view: 'all' }, lang);
+    if (p.startsWith('/die-besten') || p.startsWith('/de-beste')) {
+      const clean = p.startsWith('/') ? p.slice(1) : p;
+      const parts = clean.split('/').filter(Boolean);
+      const isNlPrefix = parts[0] === 'nl';
+      const bestIdx = isNlPrefix ? 1 : 0;
+      const catSlug = parts[bestIdx + 1];
+      const subSlug = parts[bestIdx + 2];
+      const cat = catSlug ? (findCategoryFromSlug(catSlug) || catSlug) : undefined;
+      const sub = subSlug ? (findSubcategoryFromSlug(subSlug) || subSlug) : undefined;
+      return buildLocalizedUrl({ view: 'best-of', category: cat, subcategory: sub }, lang);
+    }
     if (p === '/jobs' || p === '/vacatures') return buildLocalizedUrl({ view: 'jobs' }, lang);
     if (p === '/news' || p === '/nieuws') return buildLocalizedUrl({ view: 'news' }, lang);
     if (p === '/faq' || p === '/faqs' || p === '/veelgestelde-vragen') return buildLocalizedUrl({ view: 'faq' }, lang);
@@ -401,6 +457,8 @@ export default function App() {
     setIsJobsMode(false);
     setIsNotFound(false);
     setIsAllMode(false);
+    setIsBestOfMode(false);
+    setIsBestOfMenuOpen(false);
     setIsNewsMode(false);
     setIsNewsSubmitMode(false);
     setNewsId(null);
@@ -462,6 +520,16 @@ export default function App() {
             setIsNewsSubmitMode(true);
           } else if (pathParts[1]) {
             setNewsId(decodeURIComponent(pathParts[1]));
+          }
+        } else if (p1 === 'die-besten' || p1 === 'de-beste' || p1 === 'best-of') {
+          setIsBestOfMode(true);
+          if (pathParts[1]) {
+            const cat = findCategoryFromSlug(decodeURIComponent(pathParts[1])) || decodeURIComponent(pathParts[1]);
+            setBestOfCategory(cat);
+            if (pathParts[2]) {
+              const sub = findSubcategoryFromSlug(decodeURIComponent(pathParts[2])) || decodeURIComponent(pathParts[2]);
+              setBestOfSubcategory(sub);
+            }
           }
         } else if (p1 === 'alle-unternehmen') {
           setIsAllMode(true);
@@ -1095,6 +1163,33 @@ export default function App() {
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
                 </a>
               </div>
+
+              {/* "Die Besten" Megamenu Trigger */}
+              <div 
+                className="relative flex items-center h-full py-1"
+                onMouseEnter={handleMouseEnterBestOfMenu}
+                onMouseLeave={handleMouseLeaveBestOfMenu}
+              >
+                <a 
+                  href={getPath('/die-besten')} 
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    window.history.pushState(null, '', getPath('/die-besten')); 
+                    resetToDirectory(); 
+                    setBestOfCategory('Alle');
+                    setBestOfSubcategory(undefined);
+                    setIsBestOfMode(true); 
+                    setIsBestOfMenuOpen(false);
+                  }} 
+                  style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} 
+                  className="hover:text-orange-500 transition-colors flex items-center gap-1.5 cursor-pointer py-1 select-none"
+                >
+                  <Trophy className="w-4 h-4 text-[#F2761B]" />
+                  <span>{lang === 'nl' ? 'De Beste' : 'Die Besten'}</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isBestOfMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
+                </a>
+              </div>
+
               <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
@@ -1248,6 +1343,26 @@ export default function App() {
             }}
             getPath={getPath}
           />
+
+          {/* MegaMenu for "Die Besten" */}
+          <MegaMenuBestOf
+            isOpen={isBestOfMenuOpen}
+            onClose={() => setIsBestOfMenuOpen(false)}
+            categories={categories}
+            businesses={businesses}
+            onSelectBestOf={(cat, sub) => {
+              resetToDirectory();
+              setBestOfCategory(cat || 'Alle');
+              setBestOfSubcategory(sub);
+              setIsBestOfMode(true);
+              const path = cat && cat !== 'Alle' && cat !== 'all'
+                ? `/die-besten/${getCategorySlug(cat, 'de')}${sub ? `/${getSubcategorySlug(sub, 'de')}` : ''}`
+                : '/die-besten';
+              window.history.pushState(null, '', getPath(path));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            getPath={getPath}
+          />
         </div>
 
       {/* Offer Ribbon (Top Right) */}
@@ -1280,6 +1395,34 @@ export default function App() {
             window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
             setSelectedBusiness(null); 
           }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
+        ) : isBestOfMode ? (
+          <BestOfPage
+            theme={theme}
+            activeThemeKey={activeThemeKey}
+            categories={categories}
+            businesses={businesses}
+            selectedCategory={bestOfCategory}
+            selectedSubcategory={bestOfSubcategory}
+            onSelectCategory={(cat, sub) => {
+              setBestOfCategory(cat);
+              setBestOfSubcategory(sub);
+              const path = cat && cat !== 'Alle' && cat !== 'all'
+                ? `/die-besten/${getCategorySlug(cat, 'de')}${sub ? `/${getSubcategorySlug(sub, 'de')}` : ''}`
+                : '/die-besten';
+              window.history.pushState(null, '', getPath(path));
+            }}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              const url = getBusinessPath(bus, lang);
+              window.history.pushState(null, '', url);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              resetToDirectory();
+              window.history.pushState(null, '', getPath('/'));
+            }}
+            getPath={getPath}
+          />
         ) : isNewsSubmitMode ? (
           <SubmitNews 
             theme={theme} 
@@ -2292,6 +2435,29 @@ export default function App() {
 
             {/* Quick Navigation Cards */}
             <div className="grid grid-cols-2 gap-2.5">
+              <a
+                href={getPath("/die-besten")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/die-besten'));
+                  resetToDirectory();
+                  setBestOfCategory('Alle');
+                  setBestOfSubcategory(undefined);
+                  setIsBestOfMode(true);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-amber-50/70 border border-amber-200/90 font-display font-bold text-sm text-[#1B211D] hover:border-[#F2761B] transition-all shadow-xs col-span-2"
+              >
+                <div className="w-8 h-8 rounded-md bg-amber-100 text-[#F2761B] flex items-center justify-center shrink-0">
+                  <Trophy className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block">{lang === 'nl' ? 'De Beste Bedrijven' : '🏆 Die Besten in Winterberg'}</span>
+                  <span className="text-[11px] text-[#5F6B63] font-normal">{lang === 'nl' ? 'Top 10 ranglijsten' : 'Offizielle Bestenlisten 2026'}</span>
+                </div>
+              </a>
+
               <a
                 href={getPath("/alle-unternehmen")}
                 onClick={(e) => {

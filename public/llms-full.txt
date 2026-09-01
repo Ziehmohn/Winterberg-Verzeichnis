@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (224 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (225 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2084,6 +2084,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/skiverleih/skiverleih-schneider
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/skiverleih/skiverleih-schneider
 
+#### [Filmtheater Winterberg](https://www.winterberg-verzeichnis.de/freizeit/kino/filmtheater-winterberg)
+- **Kategorie:** Freizeit > Kino
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Nuhnestraße 13, 59955 Winterberg
+- **Telefon:** 02981 7385
+- **Webseite:** https://filmtheater-winterberg.de
+- **Beschreibung (DE):** Das moderne Lichtspieltheater mit 2 Sälen zeigt neben aktuellen Blockbustern in 3D-Qualität auch Independent-Filme, Kinderfilme und Sonderreihen in gemütlicher Atmosphäre.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/kino/filmtheater-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/kino/filmtheater-winterberg
+
 ---
 
 ## 3. Häufige Fragen & Antworten zu Winterberg (FAQ-Katalog)
@@ -2098,10 +2108,10 @@ In Winterberg gibt es eine große gastronomische Auswahl. Beliebte Adressen sind
 
 Beliebt zum Frühstücken sind das Cafe Extrablatt (großes tägliches Frühstücksbuffet an der Unteren Pforte) und die Markt Alm (reichhaltiges Alm-Frühstücksbuffet im Lodge Hotel am Waltenberg). Zudem bieten Bäckerei & Café Isken, Café Krämer sowie Hotel-Frühstücksbuffets für Tagesgäste im Oversum Vital Resort und Hotel Hessenhof erstklassige Optionen.
 
-### Frage: Wo kann man in Winterberg feiern?
+### Frage: Wo kann man in Winterberg gut feiern?
 **Kategorie:** Essen & Trinken
 
-Gefeiert wird beim Après-Ski in Möppi's Hütte oder im Alm Salettl. Am Abend geht es weiter in den Disco-Klassiker Tenne Winterberg, ins Alpenrausch, in die Dorf Alm sowie in Kneipen wie den Hessenkeller und das Blackwater Irish Pub.
+Gut feiern kann man beim Après-Ski in Möppi's Hütte oder im Alm Salettl. Abends geht die Party in der Kult-Disko Tenne Winterberg, im Alpenrausch und in der Dorf Alm weiter, sowie in urgemütlichen Kneipen wie dem Hessenkeller und dem Blackwater Irish Pub.
 
 ### Frage: Was kann man abends in Winterberg machen?
 **Kategorie:** Freizeit & Natur
@@ -2111,7 +2121,7 @@ Abends locken Flutlicht-Skifahren (Di, Mi, Fr, Sa bis 21:30 Uhr), gesellige Rest
 ### Frage: Wo ist in Winterberg was los?
 **Kategorie:** Freizeit & Natur
 
-Die beliebtesten Anlaufstellen sind die Fußgängerzone Am Waltenberg, der Erlebnisberg Kappe (Bikepark, Kletterwald, Sommerrodelbahn, Bobbahn VELTINS-EisArena), das Skiliftkarussell Winterberg und der Kahler Asten.
+Die beliebtesten Anlaufstellen sind die Fußgängerzone Am Waltenberg, das lebhafte Nachtleben (Tenne, Dorf Alm, Alpenrausch, Hessenkeller, Irish Pub), der Erlebnisberg Kappe (Bikepark, Kletterwald, Sommerrodelbahn, Bobbahn VELTINS-EisArena), das Skiliftkarussell Winterberg und der Kahler Asten.
 
 ### Frage: Wo kann man in Winterberg skifahren?
 **Kategorie:** Wintersport & Schnee

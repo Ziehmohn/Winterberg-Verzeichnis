@@ -48,6 +48,38 @@ staticPages.forEach(p => {
   });
 });
 
+// 3b. Best-Of Rankings (Top 10)
+entries.push({
+  locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.bestOf.de}`,
+  locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.bestOf.nl}`,
+  changefreq: 'weekly',
+  priority: '0.9',
+});
+
+categories.forEach(c => {
+  const catDe = getCategorySlug(c.name, 'de');
+  const catNl = getCategorySlug(c.name, 'nl');
+
+  entries.push({
+    locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.bestOf.de}/${catDe}`,
+    locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.bestOf.nl}/${catNl}`,
+    changefreq: 'weekly',
+    priority: '0.9',
+  });
+
+  c.subcategories.forEach(sub => {
+    const subDe = getSubcategorySlug(sub, 'de');
+    const subNl = getSubcategorySlug(sub, 'nl');
+
+    entries.push({
+      locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.bestOf.de}/${catDe}/${subDe}`,
+      locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.bestOf.nl}/${catNl}/${subNl}`,
+      changefreq: 'weekly',
+      priority: '0.85',
+    });
+  });
+});
+
 // 4. Categories & Subcategories
 categories.forEach(c => {
   const catDe = getCategorySlug(c.name, 'de');

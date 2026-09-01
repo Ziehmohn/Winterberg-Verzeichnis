@@ -249,6 +249,99 @@ staticPageConfigs.forEach(cfg => {
   });
 });
 
+// 3b. Best-Of Pages (Top 10)
+const bestOfDeSlug = STATIC_PAGE_SLUGS.bestOf.de;
+const bestOfNlSlug = STATIC_PAGE_SLUGS.bestOf.nl;
+
+pagesToPrerender.push({
+  path: bestOfDeSlug,
+  title: 'Die 10 besten Unternehmen in Winterberg (2026) | Das Winterberg Verzeichnis',
+  description: 'Offizielle Bestenliste der am besten bewerteten Unternehmen in Winterberg und den 14 Ortsteilen. Ermittelt nach verifizierten Kundenbewertungen.',
+  canonicalUrl: `${baseUrl}/${bestOfDeSlug}`,
+  alternateDe: `${baseUrl}/${bestOfDeSlug}`,
+  alternateNl: `${baseUrl}/nl/${bestOfNlSlug}`,
+  alternateXDefault: `${baseUrl}/${bestOfDeSlug}`,
+  lang: 'de',
+  h1: 'Die 10 besten Unternehmen in Winterberg',
+  h2: 'Offizielle Bestenliste 2026 nach Kundenbewertungen'
+});
+
+pagesToPrerender.push({
+  path: `nl/${bestOfNlSlug}`,
+  title: 'De 10 Beste Bedrijven in Winterberg (2026) | Het Winterberg Overzicht',
+  description: 'Officiële ranglijst van de best beoordeelde bedrijven in Winterberg en omgeving. Gebaseerd op echte klantrecensies.',
+  canonicalUrl: `${baseUrl}/nl/${bestOfNlSlug}`,
+  alternateDe: `${baseUrl}/${bestOfDeSlug}`,
+  alternateNl: `${baseUrl}/nl/${bestOfNlSlug}`,
+  alternateXDefault: `${baseUrl}/${bestOfDeSlug}`,
+  lang: 'nl',
+  h1: 'De 10 Beste Bedrijven in Winterberg',
+  h2: 'Officiële ranglijst 2026 op basis van klantbeoordelingen'
+});
+
+categories.forEach(c => {
+  const catDe = getCategorySlug(c.name, 'de');
+  const catNl = getCategorySlug(c.name, 'nl');
+
+  // Category Best-Of
+  pagesToPrerender.push({
+    path: `${bestOfDeSlug}/${catDe}`,
+    title: `Die besten ${c.name} in Winterberg (2026) | Das Winterberg Verzeichnis`,
+    description: `Die am besten bewerteten ${c.name} in Winterberg und Umgebung im direkten Vergleich.`,
+    canonicalUrl: `${baseUrl}/${bestOfDeSlug}/${catDe}`,
+    alternateDe: `${baseUrl}/${bestOfDeSlug}/${catDe}`,
+    alternateNl: `${baseUrl}/nl/${bestOfNlSlug}/${catNl}`,
+    alternateXDefault: `${baseUrl}/${bestOfDeSlug}/${catDe}`,
+    lang: 'de',
+    h1: `Die besten ${c.name} in Winterberg`,
+    h2: `Top-Rangliste für ${c.name} nach Kundenbewertungen`
+  });
+
+  pagesToPrerender.push({
+    path: `nl/${bestOfNlSlug}/${catNl}`,
+    title: `De Beste ${c.name} in Winterberg (2026) | Het Winterberg Overzicht`,
+    description: `De best beoordeelde bedrijven in de categorie ${c.name} in Winterberg.`,
+    canonicalUrl: `${baseUrl}/nl/${bestOfNlSlug}/${catNl}`,
+    alternateDe: `${baseUrl}/${bestOfDeSlug}/${catDe}`,
+    alternateNl: `${baseUrl}/nl/${bestOfNlSlug}/${catNl}`,
+    alternateXDefault: `${baseUrl}/${bestOfDeSlug}/${catDe}`,
+    lang: 'nl',
+    h1: `De Beste ${c.name} in Winterberg`,
+    h2: `Top ranglijst voor ${c.name} op basis van beoordelingen`
+  });
+
+  c.subcategories.forEach(sub => {
+    const subDe = getSubcategorySlug(sub, 'de');
+    const subNl = getSubcategorySlug(sub, 'nl');
+
+    pagesToPrerender.push({
+      path: `${bestOfDeSlug}/${catDe}/${subDe}`,
+      title: `Die 10 besten ${sub} in Winterberg (2026) | Das Winterberg Verzeichnis`,
+      description: `Entdecken Sie die beliebtesten und am besten bewerteten ${sub} in Winterberg.`,
+      canonicalUrl: `${baseUrl}/${bestOfDeSlug}/${catDe}/${subDe}`,
+      alternateDe: `${baseUrl}/${bestOfDeSlug}/${catDe}/${subDe}`,
+      alternateNl: `${baseUrl}/nl/${bestOfNlSlug}/${catNl}/${subNl}`,
+      alternateXDefault: `${baseUrl}/${bestOfDeSlug}/${catDe}/${subDe}`,
+      lang: 'de',
+      h1: `Die 10 besten ${sub} in Winterberg`,
+      h2: `Aktuelle Bestenliste für ${sub} nach Kundenbewertungen`
+    });
+
+    pagesToPrerender.push({
+      path: `nl/${bestOfNlSlug}/${catNl}/${subNl}`,
+      title: `De 10 Beste ${sub} in Winterberg (2026) | Het Winterberg Overzicht`,
+      description: `Ontdek de populairste en best beoordeelde ${sub} in Winterberg en omgeving.`,
+      canonicalUrl: `${baseUrl}/nl/${bestOfNlSlug}/${catNl}/${subNl}`,
+      alternateDe: `${baseUrl}/${bestOfDeSlug}/${catDe}/${subDe}`,
+      alternateNl: `${baseUrl}/nl/${bestOfNlSlug}/${catNl}/${subNl}`,
+      alternateXDefault: `${baseUrl}/${bestOfDeSlug}/${catDe}/${subDe}`,
+      lang: 'nl',
+      h1: `De 10 Beste ${sub} in Winterberg`,
+      h2: `Actuele ranglijst voor ${sub} op basis van recensies`
+    });
+  });
+});
+
 // 4. Categories & Subcategories
 categories.forEach(c => {
   const catDe = getCategorySlug(c.name, 'de');

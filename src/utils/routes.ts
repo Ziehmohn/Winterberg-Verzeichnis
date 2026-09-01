@@ -63,6 +63,7 @@ export const SUBCATEGORY_SLUGS: Record<string, RouteMapping> = {
 // Static Pages Slugs
 export const STATIC_PAGE_SLUGS = {
   all: { de: 'alle-unternehmen', nl: 'alle-bedrijven' },
+  bestOf: { de: 'die-besten', nl: 'de-beste' },
   jobs: { de: 'jobs', nl: 'vacatures' },
   news: { de: 'news', nl: 'nieuws' },
   newsSubmit: { de: 'news/einreichen', nl: 'nieuws/indienen' },
@@ -151,7 +152,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -174,6 +175,19 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
       const slug = STATIC_PAGE_SLUGS.all[targetLang];
       const query = state.location && state.location !== 'Alle' ? `?ort=${encodeURIComponent(state.location)}` : '';
       return `${baseUrl}${prefix}/${slug}${query}`;
+    }
+
+    case 'best-of': {
+      const baseSlug = STATIC_PAGE_SLUGS.bestOf[targetLang];
+      if (state.category && state.category !== 'Alle' && state.category !== 'all') {
+        const catSlug = getCategorySlug(state.category, targetLang);
+        if (state.subcategory && state.subcategory !== 'Alle') {
+          const subSlug = getSubcategorySlug(state.subcategory, targetLang);
+          return `${baseUrl}${prefix}/${baseSlug}/${catSlug}/${subSlug}`;
+        }
+        return `${baseUrl}${prefix}/${baseSlug}/${catSlug}`;
+      }
+      return `${baseUrl}${prefix}/${baseSlug}`;
     }
 
     case 'category': {
