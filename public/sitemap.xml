@@ -698,6 +698,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/freizeit/kino</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/kino</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -3489,6 +3501,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/grulke-immobilien-und-hausverwaltung</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/freizeit/kino/filmtheater-winterberg</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/kino/filmtheater-winterberg</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

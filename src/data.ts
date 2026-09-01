@@ -3516,6 +3516,22 @@ export const businesses: Business[] = [
       saturday: 'Geschlossen',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'filmtheater-winterberg',
+    name: 'Filmtheater Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Kino',
+    description: 'Das moderne Lichtspieltheater mit 2 Sälen zeigt neben aktuellen Blockbustern in 3D-Qualität auch Independent-Filme, Kinderfilme und Sonderreihen in gemütlicher Atmosphäre.',
+    address: 'Nuhnestraße 13, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 7385',
+    website: 'https://filmtheater-winterberg.de',
+    imageFallback: 'FW',
+    isPremium: false,
+    status: 'approved',
+    services: ['Aktuelles Kinoprogramm', '3D-Vorführungen', '2 Kinosäle', 'Snacks & Getränke', 'Sondervorstellungen & Events'],
+    products: ['Kinogutscheine', 'Popcorn & Nachos', 'Kino-Tickets']
   }
 
 ];
@@ -3639,7 +3655,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Ärzte & Praxen', 'Zahnärzte', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
-  { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
+  { name: 'Freizeit', subcategories: ['Kino', 'Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
 
 import { AdBanner } from './types';
