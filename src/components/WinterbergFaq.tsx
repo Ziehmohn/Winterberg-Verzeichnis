@@ -79,23 +79,28 @@ export const FAQ_DATA: FaqItem[] = [
   },
   {
     id: 'feiern-nachtleben',
-    question: 'Wo kann man in Winterberg feiern?',
+    question: 'Wo kann man in Winterberg gut feiern?',
     categoryGroup: 'Essen & Trinken',
-    quickSummary: 'Winterberg ist die Après-Ski- und Party-Hochburg im Sauerland. Gefeiert wird direkt an den Pistenhütten, in Tanzlokalen im Zentrum sowie in urgemütlichen Kneipen und Pubs.',
-    plainAnswer: 'Gefeiert wird beim Après-Ski in Möppi\'s Hütte oder im Alm Salettl. Am Abend geht es weiter in die Großraum-Disko Tenne Winterberg, ins Alpenrausch, in die Dorf Alm sowie in Kneipen wie den Hessenkeller und das Blackwater Irish Pub.',
+    quickSummary: 'In Winterberg kann man hervorragend feiern – vom ausgelassenen Après-Ski direkt an den Pisten über Partynächte in Großraum-Diskotheken wie der Tenne und der Dorf Alm bis hin zu urigen Kneipen und Irish Pubs.',
+    plainAnswer: 'Gut feiern kann man beim Après-Ski in Möppi\'s Hütte oder im Alm Salettl. Abends geht die Party in der Kult-Disko Tenne Winterberg, im Alpenrausch und in der Dorf Alm weiter, sowie in urgemütlichen Kneipen wie dem Hessenkeller und dem Blackwater Irish Pub.',
     answerHtml: (
       <div className="space-y-3">
-        <p>Vom Hüttengaudi bis zum Nachtclub:</p>
+        <p>Winterberg ist die Party- und Après-Ski-Hochburg im Sauerland. Hier feiert man bis in die frühen Morgenstunden:</p>
         <ul className="list-disc pl-5 space-y-1.5">
-          <li><strong>Après-Ski direkt an den Hängen:</strong> <em>Möppi’s Hütte</em> (Bremberg), <em>Alm Salettl</em> und die Schirmbars am Herrloh – hier steigt die Stimmung bereits ab 15:00 Uhr.</li>
-          <li><strong>Clubs & Discos:</strong> Die <em>Tenne Winterberg</em> (Kult-Tanzpalast mit mehreren Tanzbereichen) und der <em>Alpenrausch</em>.</li>
-          <li><strong>Uriges Kneipenleben & Pubs:</strong> Der <em>Hessenkeller</em> (uriger Gewölbekeller mit Live-Events und DJ), das <em>Blackwater Irish Pub</em> (Guinness, Whiskys und Live-Sport) und die <em>Dorf Alm Winterberg</em>.</li>
-          <li><strong>Cocktails & Lounge:</strong> <em>Bu'ket Bar</em> im Stadtzentrum.</li>
+          <li><strong>Après-Ski & Pistenpartys:</strong> <em>Möppi’s Hütte</em> (Bremberg), <em>Alm Salettl</em> (Kappe) und die Schirmbars am Herrloh – in der Wintersaison startet die Musik und Stimmung bereits ab 15:00 Uhr direkt an den Pisten.</li>
+          <li><strong>Clubs & Diskotheken:</strong> Die <em>Tenne Winterberg</em> ist der legendäre Tanztempel im Hochsauerland mit mehreren Dancefloors (Charts, House, Schlager & Party-Classics) und wechselnden DJs. Ebenfalls beliebt ist der <em>Alpenrausch</em>.</li>
+          <li><strong>Stimmungslokale & Almhütten:</strong> Die <em>Dorf Alm Winterberg</em> bietet urige Gemütlichkeit, zünftige Hüttenmusik und ausgelassene Partystimmung mitten im Zentrum.</li>
+          <li><strong>Uriges Kneipenleben & Pubs:</strong> Der <em>Hessenkeller</em> (uriger Gewölbekeller mit Live-Musik, Tanz und Quizabenden) und das <em>Blackwater Irish Pub</em> (frisch gezapftes Guinness, Cider, Live-Sport & Musik).</li>
+          <li><strong>Cocktails & Lounge:</strong> <em>Bu'ket Bar</em> für entspannte Drinks und Cocktails im Stadtkern.</li>
         </ul>
+        <p className="text-sm bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-amber-900 mt-2">
+          <strong>Party-Tipp:</strong> Nicht nur im Winter beim Après-Ski ist viel los – im Sommer und an langen Wochenenden locken Junggesellenabschiede, Bikepark-Events und Vereinsfahrten Feierfreudige aus ganz Deutschland und den Niederlanden an.
+        </p>
       </div>
     ),
     relatedCategoryLinks: [
-      { label: 'Kneipen & Bars in Winterberg', category: 'Gastronomie', subcategory: 'Kneipen und Bars' }
+      { label: 'Kneipen & Bars in Winterberg', category: 'Gastronomie', subcategory: 'Kneipen und Bars' },
+      { label: 'Alle Gastronomiebetriebe', category: 'Gastronomie' }
     ]
   },
   {
@@ -126,21 +131,23 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wo-ist-was-los',
     question: 'Wo ist in Winterberg was los?',
     categoryGroup: 'Freizeit & Natur',
-    quickSummary: 'Die lebendigsten Hotspots sind die Flaniermeile Am Waltenberg im Zentrum, der Erlebnisberg Kappe mit Bikepark und Sommerrodelbahn sowie das Skiliftkarussell im Winter.',
-    plainAnswer: 'Die beliebtesten Anlaufstellen sind die Fußgängerzone Am Waltenberg, der Erlebnisberg Kappe (Bikepark, Kletterwald, Sommerrodelbahn, Bobbahn VELTINS-EisArena), das Skiliftkarussell Winterberg und der Kahler Asten.',
+    quickSummary: 'Die lebendigsten Hotspots sind die Flaniermeile Am Waltenberg im Zentrum, das pulsierende Nachtleben mit Après-Ski, Bars und Clubs, der Erlebnisberg Kappe sowie das Skiliftkarussell im Winter.',
+    plainAnswer: 'Die beliebtesten Anlaufstellen sind die Fußgängerzone Am Waltenberg, das lebhafte Nachtleben (Tenne, Dorf Alm, Alpenrausch, Hessenkeller, Irish Pub), der Erlebnisberg Kappe (Bikepark, Kletterwald, Sommerrodelbahn, Bobbahn VELTINS-EisArena), das Skiliftkarussell Winterberg und der Kahler Asten.',
     answerHtml: (
       <div className="space-y-3">
-        <p>Je nach Jahreszeit und Interesse gibt es mehrere zentrale Drehkreuze:</p>
+        <p>Je nach Tages- und Jahreszeit gibt es in Winterberg mehrere zentrale Hotspots:</p>
         <ul className="list-disc pl-5 space-y-1.5">
-          <li><strong>Erlebnisberg Kappe (Ganzjährig):</strong> Das Action-Zentrum mit <em>Bikepark Winterberg</em>, der <em>Panorama Erlebnis Brücke</em>, <em>Sommerrodelbahn</em>, <em>Fly-Line</em>, <em>Kletterwald</em> und der <em>VELTINS-EisArena</em> (Bobbahn).</li>
-          <li><strong>Stadtzentrum & Marktplatz (Untere Pforte):</strong> Die Straße <em>Am Waltenberg</em> ist gesäumt von Straßencafés, Boutiquen, Eisdielen und Restaurants.</li>
-          <li><strong>Skiliftkarussell (Herrloh, Bremberg, Kappe):</strong> Im Winter der Treffpunkt für Zehntausende Wintersportler und Après-Ski-Fans.</li>
-          <li><strong>Bikepark Winterberg (Frühjahr bis Herbst):</strong> Einer der größten und traditionsreichsten Mountainbike- und Downhill-Parks Europas.</li>
-          <li><strong>Kahler Asten (841 m):</strong> Das Wahrzeichen des Hochsauerlands mit Astenturm, Wetterstation und Rundumblick.</li>
+          <li><strong>Stadtzentrum & Marktplatz (Untere Pforte):</strong> Die Flaniermeile <em>Am Waltenberg</em> ist tagsüber gesäumt von Straßencafés, Boutiquen, Eisdielen und Restaurants.</li>
+          <li><strong>Nachtleben & Partyszene:</strong> Am Abend verlagert sich das Geschehen in die Clubs und Lokale. Vor allem die Großraum-Disko <em>Tenne</em>, die <em>Dorf Alm</em>, der <em>Alpenrausch</em> sowie die Pubs und Kneipen wie der <em>Hessenkeller</em> und das <em>Blackwater Irish Pub</em> sind absolute Publikumsmagneten.</li>
+          <li><strong>Erlebnisberg Kappe (Ganzjährig):</strong> Das Freizeit- und Action-Zentrum mit <em>Bikepark Winterberg</em>, <em>Panorama Erlebnis Brücke</em>, <em>Sommerrodelbahn</em>, <em>Fly-Line</em>, <em>Kletterwald</em> und der <em>VELTINS-EisArena</em> (Bobbahn).</li>
+          <li><strong>Skiliftkarussell (Herrloh, Bremberg, Kappe):</strong> Im Winter der Treffpunkt für Zehntausende Wintersportler mit anschließenden Après-Ski-Partys an den Hängen (z. B. in <em>Möppi's Hütte</em>).</li>
+          <li><strong>Bikepark Winterberg (Frühjahr bis Herbst):</strong> Einer der größten Mountainbike- und Downhill-Parks Europas mit internationaler Gravity-Community.</li>
+          <li><strong>Kahler Asten (841 m):</strong> Das bekannteste Ausflugsziel der Region mit Astenturm, Wetterstation und Rundumblick über das Land der 1000 Berge.</li>
         </ul>
       </div>
     ),
     relatedCategoryLinks: [
+      { label: 'Bars & Nachtleben', category: 'Gastronomie', subcategory: 'Kneipen und Bars' },
       { label: 'Freizeitanbieter am Erlebnisberg Kappe', category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
     ]
   },
