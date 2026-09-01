@@ -245,6 +245,33 @@ function StandaloneContactBox({ rawContact, heading }: { rawContact: string; hea
   );
 }
 
+function stripMarkdownAndHtml(text: string): string {
+  if (!text) return '';
+  return text
+    .replace(/:::contact[\s\S]*?:::/gi, '')
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')
+    .replace(/(\*|_)(.*?)\1/g, '$2')
+    .replace(/>\s+/g, '')
+    .replace(/`{1,3}[^`]*`{1,3}/g, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function formatIsoDate(dateStr?: string): string {
+  if (!dateStr) return new Date().toISOString();
+  try {
+    const d = new Date(dateStr);
+    if (!isNaN(d.getTime())) {
+      return d.toISOString();
+    }
+  } catch (e) {}
+  return new Date().toISOString();
+}
+
 export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: NewsDetailProps) {
   const { t, lang } = useTranslation();
   const [rawArticle, setRawArticle] = useState<NewsArticle | null>(null);
@@ -297,6 +324,80 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     fetchArticle();
   }, [newsId]);
 
+  const article = rawArticle ? getLocalizedNewsArticle(rawArticle, lang) : null;
+  const plainText = article ? stripMarkdownAndHtml(article.content || '') : '';
+  const summary = plainText.length > 200 ? plainText.substring(0, 197).trim() + '...' : plainText;
+  const newsUrl = article && rawArticle ? `https://www.winterberg-verzeichnis.de/news/${article.slug || rawArticle.id}` : 'https://www.winterberg-verzeichnis.de/news';
+  const isoDate = article ? formatIsoDate(article.date) : new Date().toISOString();
+
+  const schemaOrg = article && rawArticle ? {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": newsUrl
+    },
+    "headline": article.title,
+    "description": summary,
+    "image": article.imageUrl ? [article.imageUrl] : ["https://www.winterberg-verzeichnis.de/winterberg-header.webp"],
+    "datePublished": isoDate,
+    "dateModified": isoDate,
+    "author": [{
+      "@type": article.businessName ? "Organization" : "Person",
+      "name": article.businessName || article.author || "Redaktion Winterberg Verzeichnis",
+      "url": article.businessSlug ? `https://www.winterberg-verzeichnis.de/${article.businessSlug}` : "https://www.winterberg-verzeichnis.de"
+    }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Das Winterberg Verzeichnis",
+      "url": "https://www.winterberg-verzeichnis.de",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.winterberg-verzeichnis.de/favicon.svg"
+      }
+    },
+    "articleBody": plainText,
+    "inLanguage": lang === 'nl' ? 'nl-NL' : 'de-DE',
+    "isAccessibleForFree": true
+  } : null;
+
+  // Sync schema and head metadata to document.head
+  useEffect(() => {
+    if (!article || !schemaOrg) return;
+
+    const siteTitle = lang === 'nl' ? 'De Winterberg Bedrijvengids' : 'Das Winterberg Verzeichnis';
+    document.title = `${article.title} | ${siteTitle}`;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    const previousDesc = metaDesc.getAttribute('content') || '';
+    if (summary) {
+      metaDesc.setAttribute('content', summary);
+    }
+
+    const scriptId = 'schema-news-article-jsonld';
+    let scriptTag = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.id = scriptId;
+      scriptTag.type = 'application/ld+json';
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify(schemaOrg);
+
+    return () => {
+      const el = document.getElementById(scriptId);
+      if (el) el.remove();
+      if (previousDesc) {
+        metaDesc?.setAttribute('content', previousDesc);
+      }
+    };
+  }, [article?.title, article?.date, article?.content, lang]);
+
   if (loading) {
     return (
       <div className="flex justify-center py-[100px]">
@@ -305,7 +406,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     );
   }
 
-  if (!rawArticle) {
+  if (!rawArticle || !article) {
     return (
       <div className="max-w-[850px] mx-auto py-[60px] px-[20px] text-center">
         <h1 className="text-[24px] font-bold mb-[16px]">{lang === 'nl' ? 'Nieuwsbericht niet gevonden' : 'News nicht gefunden'}</h1>
@@ -315,8 +416,6 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       </div>
     );
   }
-
-  const article = getLocalizedNewsArticle(rawArticle, lang);
 
   // Extract contact block if present
   let mainContent = article.content || '';
@@ -328,22 +427,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     contactContent = contactBlockMatch[1].trim();
   }
 
-  const schemaOrg = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "headline": article.title,
-    "image": article.imageUrl ? [article.imageUrl] : [],
-    "datePublished": article.date,
-    "dateModified": article.date,
-    "author": [{
-        "@type": "Person",
-        "name": article.author
-    }]
-  };
-
   return (
     <article className="max-w-[850px] mx-auto py-[40px] px-[20px]">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
+      {schemaOrg && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
+      )}
       
       <button 
         onClick={onBack}
