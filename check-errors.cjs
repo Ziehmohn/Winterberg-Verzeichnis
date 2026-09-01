@@ -15,8 +15,19 @@ const puppeteer = require('puppeteer');
   });
 
   try {
-    await page.goto('http://localhost:3000', { waitUntil: 'networkidle0' });
+    await page.goto('http://localhost:3000', { waitUntil: 'networkidle2' });
     console.log('Page loaded successfully');
+
+    console.log('Clicking on Alle Unternehmen link...');
+    const links = await page.$$('a');
+    for (const link of links) {
+      const text = await page.evaluate(el => el.textContent, link);
+      if (text && text.includes('Unternehmen')) {
+        await link.click();
+        break;
+      }
+    }
+    await new Promise(r => setTimeout(r, 2000));
   } catch (err) {
     console.error('Navigation error:', err.message);
   }

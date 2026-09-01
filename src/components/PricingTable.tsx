@@ -24,9 +24,9 @@ export default function PricingTable({
   hideAction = false,
   pricingSettings
 }: PricingTableProps) {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
 
   const isOffer = isPricingOfferActive(pricingSettings);
   const activePricing = pricingSettings || PRICING;
@@ -38,6 +38,32 @@ export default function PricingTable({
   const strikethroughYearly = isOffer ? (activePricing.strikethroughYearly || activePricing.premiumYearly) : null;
 
   const currentYearlyTotal = isOffer && activePricing.offerYearlyTotal ? activePricing.offerYearlyTotal : (activePricing.premiumYearlyTotal || '119,40 € / Jahr');
+
+  // Dynamic price calculations & savings
+  const parsePrice = (str: string | number | undefined | null) => {
+    if (!str) return 0;
+    const cleaned = String(str).replace(/[^0-9,.]/g, '').replace(',', '.');
+    return parseFloat(cleaned) || 0;
+  };
+
+  const monthlyNum = parsePrice(currentMonthly);
+  let yearlyPerMonthNum = parsePrice(currentYearly);
+  let yearlyTotalNum = parsePrice(currentYearlyTotal);
+
+  if (yearlyTotalNum === 0 && yearlyPerMonthNum > 0) {
+    yearlyTotalNum = yearlyPerMonthNum * 12;
+  }
+  if (yearlyPerMonthNum === 0 && yearlyTotalNum > 0) {
+    yearlyPerMonthNum = yearlyTotalNum / 12;
+  }
+
+  const annualCostIfMonthly = monthlyNum * 12;
+  const annualSavings = Math.max(0, annualCostIfMonthly - yearlyTotalNum);
+  const annualSavingsPercent = annualCostIfMonthly > 0 ? Math.round((annualSavings / annualCostIfMonthly) * 100) : 0;
+
+  const formattedYearlyTotal = `${yearlyTotalNum.toFixed(2).replace('.', ',')} €`;
+  const formattedMonthlyEquivalent = `${yearlyPerMonthNum.toFixed(2).replace('.', ',')} €`;
+  const formattedSavings = `${annualSavings.toFixed(2).replace('.', ',')} €`;
 
   const features = [
     { name: `${t("company")} & ${t("address")}`, free: true, premium: true },
@@ -130,42 +156,62 @@ export default function PricingTable({
             </div>
           </div>
           
-          <div className="flex items-baseline gap-2.5 mt-2.5 mb-1 flex-wrap">
-            {billingCycle === 'yearly' ? (
-              <>
+          {billingCycle === 'yearly' ? (
+            <div className="mt-2.5 mb-5">
+              {/* Prominent Annual Price */}
+              <div className="flex items-baseline gap-2 flex-wrap">
                 {strikethroughYearly && (
                   <span className="text-gray-400 line-through text-[24px] font-semibold">
                     {strikethroughYearly}
                   </span>
                 )}
-                <span className="font-display text-[38px] font-bold text-[#D65F0C]">
-                  {currentYearly}
+                <span className="font-display text-[38px] font-extrabold text-[#D65F0C] leading-none">
+                  {formattedYearlyTotal}
                 </span>
-              </>
-            ) : (
-              <>
+                <span className="text-[16px] font-semibold text-[#5F6B63]">/ {lang === 'nl' ? 'jaar' : 'Jahr'}</span>
+                <span className="text-[12px] text-[#8A928B] font-medium">{t("pricingPerMonthTax")}</span>
+              </div>
+
+              {/* Monthly Equivalent Breakdown */}
+              <div className="mt-2 text-[14.5px] text-[#1B211D] font-medium flex items-center gap-1.5 flex-wrap">
+                <span>{lang === 'nl' ? 'Komt overeen met' : 'Entspricht nur'}</span>
+                <span className="font-bold text-[#0F4C2E] bg-[#E8F1EB] px-2 py-0.5 rounded text-[13.5px]">
+                  {formattedMonthlyEquivalent} / {lang === 'nl' ? 'maand' : 'Monat'}
+                </span>
+              </div>
+
+              {/* Dynamic Savings Badge */}
+              {annualSavings > 0 && (
+                <div className="mt-2.5 inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-50 to-emerald-100/90 text-emerald-900 border border-emerald-300/80 px-3 py-1 rounded-md text-[12.5px] font-bold shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>
+                    {lang === 'nl'
+                      ? `Bespaar ${formattedSavings} (${annualSavingsPercent} %) per jaar t.o.v. maandelijkse betaling`
+                      : `Du sparst ${formattedSavings} (${annualSavingsPercent} %) im Jahr gegenüber monatlicher Zahlung`}
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="mt-2.5 mb-5">
+              {/* Prominent Monthly Price */}
+              <div className="flex items-baseline gap-2 flex-wrap">
                 {strikethroughMonthly && (
                   <span className="text-gray-400 line-through text-[24px] font-semibold">
                     {strikethroughMonthly}
                   </span>
                 )}
-                <span className="font-display text-[38px] font-bold text-[#D65F0C]">
+                <span className="font-display text-[38px] font-extrabold text-[#D65F0C] leading-none">
                   {currentMonthly}
                 </span>
-              </>
-            )}
-          </div>
-
-          <div className="text-[14px] text-[#5F6B63] mb-[22px]">
-            {t("pricingPerMonthTax")} 
-            {billingCycle === 'yearly' ? (
-              <div className="mt-1.5 font-bold text-[#0F4C2E] bg-[#0F4C2E]/5 inline-block px-2 py-0.5 rounded text-[13px]">
-                {t("pricingYearlyTotal")} {currentYearlyTotal}
+                <span className="text-[16px] font-semibold text-[#5F6B63]">/ {lang === 'nl' ? 'maand' : 'Monat'}</span>
+                <span className="text-[12px] text-[#8A928B] font-medium">{t("pricingPerMonthTax")}</span>
               </div>
-            ) : (
-              ` · ${t("pricingMonthlyCancel")}`
-            )}
-          </div>
+              <div className="mt-1 text-[13.5px] text-[#5F6B63]">
+                {t("pricingMonthlyCancel")}
+              </div>
+            </div>
+          )}
           
           <div className="grid gap-2.5 text-[15px] text-[#4A544D]">
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingAllFromBasic")}</div>
