@@ -84,20 +84,23 @@ export default function BestOfPage({
       const approvedReviews = (b.reviews || []).filter(r => r.status === 'approved');
       const count = approvedReviews.length;
       let avg = 0;
+      let score = 0;
+      
       if (count > 0) {
-        avg = approvedReviews.reduce((sum, r) => sum + r.rating, 0) / count;
+        avg = approvedReviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0) / count;
+        // Bayesian weighted score to balance rating and review count
+        const priorRating = 4.6;
+        const priorWeight = 2;
+        score = (avg * count + priorRating * priorWeight) / (count + priorWeight);
       } else {
-        avg = b.isVerified ? 4.7 : 4.5;
+        // Unrated businesses have a baseline ranking below rated ones
+        avg = 0;
+        score = b.isVerified ? 1.5 : 1.0;
       }
-
-      // Bayesian weighted score to balance rating and review count
-      const priorRating = 4.6;
-      const priorWeight = 2;
-      const score = (avg * count + priorRating * priorWeight) / (count + priorWeight);
 
       return {
         ...b,
-        computedAvg: avg.toFixed(1),
+        computedAvg: avg > 0 ? avg.toFixed(1) : null,
         reviewCount: count,
         rankingScore: score,
       };
@@ -501,21 +504,33 @@ export default function BestOfPage({
                       {business.name}
                     </h2>
 
-                    {/* Rating & Address (with clickable score help icon) */}
+                    {/* Rating & Address (with clickable score help icon or first review CTA) */}
                     <div className="flex items-center gap-4 flex-wrap text-sm text-[#5F6B63] mb-3">
-                      <div 
-                        onClick={() => openInfoModal('score')}
-                        className="flex items-center gap-1.5 bg-[#FFF8F1] hover:bg-[#FFF1E4] border border-orange-200/80 px-2.5 py-1 rounded-md transition-colors cursor-pointer group/score"
-                        title="Informationen zur Berechnung des Scores"
-                      >
-                        <span className="text-amber-500 tracking-wider">
-                          {'★'.repeat(Math.round(Number(business.computedAvg)))}
-                          {'☆'.repeat(5 - Math.round(Number(business.computedAvg)))}
-                        </span>
-                        <span className="font-bold text-[#1B211D] text-xs">{business.computedAvg}</span>
-                        <span className="text-[11px] text-[#8A928B]">({business.reviewCount} {isNl ? 'beoordelingen' : 'Bewertungen'})</span>
-                        <HelpCircle className="w-3 h-3 text-orange-400 group-hover/score:text-[#F2761B] ml-0.5 transition-colors" />
-                      </div>
+                      {business.reviewCount > 0 && business.computedAvg ? (
+                        <div 
+                          onClick={() => openInfoModal('score')}
+                          className="flex items-center gap-1.5 bg-[#FFF8F1] hover:bg-[#FFF1E4] border border-orange-200/80 px-2.5 py-1 rounded-md transition-colors cursor-pointer group/score"
+                          title="Informationen zur Berechnung des Scores"
+                        >
+                          <span className="text-amber-500 tracking-wider">
+                            {'★'.repeat(Math.round(Number(business.computedAvg)))}
+                            {'☆'.repeat(5 - Math.round(Number(business.computedAvg)))}
+                          </span>
+                          <span className="font-bold text-[#1B211D] text-xs">{business.computedAvg}</span>
+                          <span className="text-[11px] text-[#8A928B]">({business.reviewCount} {isNl ? 'beoordelingen' : 'Bewertungen'})</span>
+                          <HelpCircle className="w-3 h-3 text-orange-400 group-hover/score:text-[#F2761B] ml-0.5 transition-colors" />
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => onSelectBusiness(business)}
+                          className="inline-flex items-center gap-1.5 bg-[#FAF8F5] hover:bg-[#E8F1EB] text-[#0F4C2E] border border-[#EDE8E0] hover:border-[#0F4C2E]/30 px-2.5 py-1 rounded-md text-xs font-semibold transition-colors cursor-pointer shadow-2xs"
+                          title={isNl ? 'Schrijf de eerste beoordeling' : 'Jetzt erste Bewertung abgeben'}
+                        >
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                          <span>{isNl ? 'Geef de eerste beoordeling' : 'Gebe die erste Bewertung ab'}</span>
+                        </button>
+                      )}
 
                       <span className="flex items-center gap-1 text-xs">
                         <MapPin className="w-3.5 h-3.5 text-[#0F4C2E]" />
