@@ -310,7 +310,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <MapPin className="w-4 h-4" />
               {business.address}
             </span>
-            {avgRating && (
+            {avgRating ? (
               <button
                 type="button"
                 onClick={() => {
@@ -328,6 +328,18 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 <span>{avgRating} · {approvedReviews.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}</span>
                 <HelpCircle className="w-3.5 h-3.5 text-white/70 ml-0.5" />
               </button>
+            ) : (
+              <a
+                href="#bewertungen"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('bewertungen')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 px-3 py-1 rounded-md text-[13.5px] font-semibold transition-colors cursor-pointer text-white"
+              >
+                <Star className="w-4 h-4 text-amber-300 fill-amber-300" />
+                <span>{lang === 'nl' ? 'Geef de eerste beoordeling' : 'Gebe die erste Bewertung ab'}</span>
+              </a>
             )}
           </div>
 
