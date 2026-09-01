@@ -259,10 +259,13 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       phone: base.phone || '',
       email: base.email || '',
       website: base.website || '',
+      logoUrl: base.logoUrl || '',
+      logoBgColor: base.logoBgColor || '#ffffff',
       uploadedImage: base.uploadedImage || '',
       imageLink: base.imageLink || '',
       services: Array.isArray(base.services) ? [...base.services] : [],
       products: Array.isArray(base.products) ? [...base.products] : [],
+      jobs: Array.isArray(base.jobs) ? [...base.jobs] : [],
       openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
       headerImage: base.headerImage || '',
       headerPosition: base.headerPosition || {
@@ -399,6 +402,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     const newId = formData.id || 'b_' + Date.now().toString(36);
     const dataToSubmit: Business = {
       ...formData,
+      logoUrl: formData.logoUrl || '',
+      logoBgColor: formData.logoBgColor || '#ffffff',
+      jobs: formData.jobs || [],
       headerImage: formData.headerImage || '',
       headerPosition: formData.headerPosition || {
         desktop: '50% 50%',
@@ -1300,19 +1306,76 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 </label>
               </div>
               <p className="text-xs opacity-70 mt-1.5 leading-relaxed">
-                Das Logo wird in den Suchergebnissen auf der Karte sowie im Unternehmensprofil direkt über der Kontaktbox dargestellt. <strong>Empfehlung:</strong> Quadratisch oder freigestellt (PNG mit transparentem Hintergrund) für die beste visuelle Darstellung.
+                Das Logo wird in den Suchergebnissen auf der Karte sowie im Unternehmensprofil direkt über der Kontaktbox dargestellt.
               </p>
+
+              {/* Logo-Box Hintergrundfarbe */}
+              <div className="mt-3 pt-3 border-t border-gray-100">
+                <label className="text-xs font-semibold text-[#5F6B63] block mb-1.5">
+                  Hintergrundfarbe der Logo-Box (auf Detailseite):
+                </label>
+                <div className="flex flex-wrap items-center gap-2">
+                  {[
+                    { label: 'Weiß', value: '#ffffff', bgClass: 'bg-white text-gray-800' },
+                    { label: 'Creme / Warmweiß', value: '#FAF8F5', bgClass: 'bg-[#FAF8F5] text-gray-800' },
+                    { label: 'Hellgrau', value: '#F3F4F6', bgClass: 'bg-gray-100 text-gray-800' },
+                    { label: 'Dunkelgrün', value: '#0F4C2E', bgClass: 'bg-[#0F4C2E] text-white' },
+                    { label: 'Dunkel', value: '#1B211D', bgClass: 'bg-[#1B211D] text-white' },
+                    { label: 'Transparent', value: 'transparent', bgClass: 'bg-transparent text-gray-800 border-dashed' },
+                  ].map(preset => {
+                    const isSelected = (formData.logoBgColor || '#ffffff').toLowerCase() === preset.value.toLowerCase();
+                    return (
+                      <button
+                        key={preset.value}
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, logoBgColor: preset.value }))}
+                        className={`text-xs px-2.5 py-1 rounded-md border transition-all flex items-center gap-1.5 cursor-pointer ${preset.bgClass} ${
+                          isSelected ? 'border-[#F2761B] ring-2 ring-[#F2761B]/40 font-bold scale-105 shadow-xs' : 'border-gray-300 hover:border-gray-400'
+                        }`}
+                      >
+                        <span className="w-2.5 h-2.5 rounded-full border border-black/20" style={{ backgroundColor: preset.value === 'transparent' ? '#ffffff' : preset.value }}></span>
+                        {preset.label}
+                      </button>
+                    );
+                  })}
+
+                  <div className="flex items-center gap-1.5 ml-1">
+                    <span className="text-xs text-gray-400">oder</span>
+                    <input 
+                      type="color" 
+                      value={formData.logoBgColor?.startsWith('#') ? formData.logoBgColor : '#ffffff'} 
+                      onChange={e => setFormData(prev => ({ ...prev, logoBgColor: e.target.value }))}
+                      className="w-7 h-7 rounded border border-gray-300 cursor-pointer p-0.5"
+                      title="Eigene Hintergrundfarbe wählen"
+                    />
+                    <input
+                      type="text"
+                      value={formData.logoBgColor || '#ffffff'}
+                      onChange={e => setFormData(prev => ({ ...prev, logoBgColor: e.target.value }))}
+                      className="w-20 text-xs border border-gray-200 rounded px-1.5 py-1 font-mono uppercase bg-white"
+                      placeholder="#FFFFFF"
+                    />
+                  </div>
+                </div>
+              </div>
+
               {formData.logoUrl && (
-                <div className="mt-3 relative w-24 h-20 border border-black/10 rounded-lg bg-white p-2 shadow-xs flex items-center justify-center">
-                  <img src={formData.logoUrl} alt="Logo Vorschau" className="max-w-full max-h-full object-contain" />
-                  <button 
-                    type="button" 
-                    onClick={() => setFormData({...formData, logoUrl: ''})} 
-                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow hover:bg-red-600 transition-colors"
-                    title="Logo entfernen"
+                <div className="mt-3.5">
+                  <span className="text-[11px] text-[#5F6B63] block mb-1">Logo-Vorschau mit gewählter Hintergrundfarbe:</span>
+                  <div 
+                    className="relative w-36 h-24 border border-black/15 rounded-lg p-2.5 shadow-xs flex items-center justify-center transition-colors"
+                    style={{ backgroundColor: formData.logoBgColor || '#ffffff' }}
                   >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
+                    <img src={formData.logoUrl} alt="Logo Vorschau" className="max-w-full max-h-full object-contain" />
+                    <button 
+                      type="button" 
+                      onClick={() => setFormData({...formData, logoUrl: ''})} 
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow hover:bg-red-600 transition-colors cursor-pointer"
+                      title="Logo entfernen"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

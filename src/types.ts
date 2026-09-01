@@ -112,6 +112,7 @@ export interface Business {
   gallery?: string[];
   galleryCategories?: GalleryCategory[];
   logoUrl?: string;
+  logoBgColor?: string;
   extendedDescription?: string;
   ownerId?: string;
   status?: 'pending' | 'approved';

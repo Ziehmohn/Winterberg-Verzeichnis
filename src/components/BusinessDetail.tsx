@@ -592,7 +592,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         <aside className="sticky top-[116px] flex flex-col gap-4">
           {/* Dedicated Premium Logo Card */}
           {business.isPremium && business.logoUrl && (
-            <div className="border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-36 sm:h-44 w-full flex items-center justify-center p-3 sm:p-4 bg-[#FAF8F5]/60">
+            <div 
+              className="border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-36 sm:h-44 w-full flex items-center justify-center p-3 sm:p-4 transition-colors"
+              style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+            >
               <img 
                 src={business.logoUrl} 
                 alt={`Logo von ${business.name}`} 
