@@ -1,16 +1,20 @@
+import { translateTextToDutch } from './translator';
+
 /**
  * Review Translation & Language Detection Utility for German and Dutch.
  */
 
 const GERMAN_KEYWORDS = [
   'der', 'die', 'das', 'ein', 'eine', 'einen', 'einem', 'einer', 'eines', 'sehr', 
-  'lecker', 'freundlich', 'freundlicher', 'freundliche', 'zimmer', 'essen', 'wieder', 
-  'immer', 'unser', 'unsere', 'unserem', 'schön', 'schönes', 'schöne', 'toll', 
-  'tolles', 'tolle', 'super', 'hilfsbereit', 'gern', 'gerne', 'danke', 'vielen dank', 
-  'weiterempfehlen', 'empfehlung', 'wir', 'war', 'waren', 'nicht', 'auch', 'mit', 
-  'für', 'bei', 'und', 'aber', 'alles', 'sauber', 'gemütlich', 'lage', 'ausblick', 
-  'frühstück', 'service', 'kellner', 'bedienung', 'hotel', 'restaurant', 'perfekt',
-  'kommen', 'aufenthalt', 'urlaub', 'preis', 'leistung', 'gastfreundschaft'
+  'lecker', 'freundlich', 'freundlicher', 'freundliche', 'freundliches', 'zimmer', 
+  'essen', 'wieder', 'immer', 'unser', 'unsere', 'unserem', 'schön', 'schönes', 
+  'schöne', 'schöner', 'toll', 'tolles', 'tolle', 'toller', 'super', 'hilfsbereit', 
+  'gern', 'gerne', 'danke', 'vielen dank', 'weiterempfehlen', 'empfehlung', 'wir', 
+  'war', 'waren', 'nicht', 'auch', 'mit', 'für', 'bei', 'und', 'aber', 'alles', 
+  'sauber', 'saubere', 'gemütlich', 'gemütliche', 'lage', 'ausblick', 'frühstück', 
+  'service', 'kellner', 'bedienung', 'hotel', 'restaurant', 'perfekt', 'perfekte', 
+  'kommen', 'aufenthalt', 'urlaub', 'preis', 'leistung', 'gastfreundschaft', 'haben',
+  'hatten', 'hatte', 'kann', 'können', 'schmeckt', 'geschmeckt', 'personal', 'besuch'
 ];
 
 const DUTCH_KEYWORDS = [
@@ -21,11 +25,12 @@ const DUTCH_KEYWORDS = [
   'voor', 'bij', 'en', 'maar', 'alles', 'schoon', 'schone', 'gezellig', 'gezellige', 
   'ligging', 'uitzicht', 'ontbijt', 'service', 'ober', 'bediening', 'hotel', 
   'restaurant', 'perfect', 'perfecte', 'komen', 'verblijf', 'vakantie', 'prijs', 
-  'kwaliteit', 'gastvrijheid', 'terug'
+  'kwaliteit', 'gastvrijheid', 'terug', 'hebben', 'hadden', 'had', 'kan', 'kunnen', 
+  'smaakt', 'gesmaakt', 'bezoek', 'zeker'
 ];
 
 /**
- * Detects whether a review is primarily written in German ('de') or Dutch ('nl').
+ * Detects whether text is primarily written in German ('de') or Dutch ('nl').
  */
 export function detectReviewLanguage(text: string): 'de' | 'nl' {
   if (!text || typeof text !== 'string') return 'de';
@@ -41,107 +46,214 @@ export function detectReviewLanguage(text: string): 'de' | 'nl' {
     if (DUTCH_KEYWORDS.includes(token)) nlScore++;
   }
 
-  // Strong indicator checks
-  if (/\b(het|een|lekker|geweldig|personeel|ontbijt|uitzicht|aanrader|gezellig|graag|terug|schoon)\b/i.test(text)) {
-    nlScore += 3;
+  // Strong Dutch specific bigrams / words
+  if (/\b(het|een|lekker|lekkere|geweldig|geweldige|personeel|ontbijt|uitzicht|aanrader|gezellig|gezellige|graag|terug|schoon|schone|heerlijk|heerlijke|vriendelijke|komen zeker|echt een)\b/i.test(text)) {
+    nlScore += 4;
   }
-  if (/\b(der|die|das|ein|eine|sehr|lecker|frühstück|ausblick|empfehlung|gemütlich|gerne|wieder|sauber)\b/i.test(text)) {
-    deScore += 3;
+  // Strong German specific bigrams / words
+  if (/\b(der|die|das|ein|eine|einen|sehr|lecker|leckeres|frühstück|ausblick|empfehlung|gemütlich|gemütliche|gerne|wieder|sauber|saubere|freundlich|freundliches|kommen gerne|tolles|schöner)\b/i.test(text)) {
+    deScore += 4;
   }
 
   return nlScore > deScore ? 'nl' : 'de';
 }
 
-const DE_TO_NL_PHRASES: [RegExp, string][] = [
-  // Full Idioms & Sentences
+const DE_TO_NL_REVIEW_PHRASES: [RegExp, string][] = [
+  // Full Sentences & Common Review Expressions
   [/\bWir kommen gerne wieder\b/gi, 'We komen graag weer terug'],
   [/\bWir kommen auf jeden Fall wieder\b/gi, 'We komen zeker weer terug'],
+  [/\bWir kommen definitiv wieder\b/gi, 'We komen zeker weer terug'],
   [/\bWir kommen sicher wieder\b/gi, 'We komen zeker terug'],
+  [/\bKommen gerne wieder\b/gi, 'Komen graag weer terug'],
+  [/\bKommen auf jeden Fall wieder\b/gi, 'Komen zeker weer terug'],
   [/\bImmer wieder gerne\b/gi, 'Altijd graag weer'],
   [/\bSehr zu empfehlen\b/gi, 'Zeer aan te bevelen'],
   [/\bAbsolut zu empfehlen\b/gi, 'Absoluut een aanrader'],
-  [/\bKann ich nur weiterempfehlen\b/gi, 'Kan ik alleen maar aanraden'],
+  [/\bKann ich nur weiterempfehlen\b/gi, 'Kan ik iedereen aanraden'],
+  [/\bKann man nur empfehlen\b/gi, 'Zeker een aanrader'],
   [/\bEine absolute Empfehlung\b/gi, 'Een absolute aanrader'],
   [/\bTop Preis-Leistungs-Verhältnis\b/gi, 'Top prijs-kwaliteitverhouding'],
   [/\bGutes Preis-Leistungs-Verhältnis\b/gi, 'Goede prijs-kwaliteitverhouding'],
   [/\bVielen Dank für alles\b/gi, 'Hartelijk dank voor alles'],
   [/\bVielen Dank für den tollen Aufenthalt\b/gi, 'Hartelijk dank voor het geweldige verblijf'],
+  [/\bVielen Dank für die nette Gastfreundschaft\b/gi, 'Hartelijk dank voor de fijne gastvrijheid'],
   [/\bHerzlichen Dank\b/gi, 'Hartelijk dank'],
   [/\bSehr freundliches Personal\b/gi, 'Zeer vriendelijk personeel'],
+  [/\bSehr nettes und aufmerksames Personal\b/gi, 'Zeer vriendelijk en attent personeel'],
   [/\bSehr nettes Personal\b/gi, 'Zeer aardig personeel'],
   [/\bSuper freundlich und hilfsbereit\b/gi, 'Super vriendelijk en behulpzaam'],
+  [/\bSehr freundlich und zuvorkommend\b/gi, 'Zeer vriendelijk en behulpzaam'],
   [/\bTolles Essen und super Service\b/gi, 'Geweldig eten en super service'],
+  [/\bSuper Service und leckeres Essen\b/gi, 'Super service en heerlijk eten'],
   [/\bLeckeres Essen\b/gi, 'Heerlijk eten'],
   [/\bDas Essen war hervorragend\b/gi, 'Het eten was voortreffelijk'],
   [/\bDas Essen war sehr lecker\b/gi, 'Het eten was erg lekker'],
+  [/\bDas Essen war super\b/gi, 'Het eten was super'],
   [/\bDie Zimmer waren sauber und gemütlich\b/gi, 'De kamers waren schoon en gezellig'],
   [/\bSchöne und saubere Zimmer\b/gi, 'Mooie en schone kamers'],
+  [/\bSehr saubere Zimmer\b/gi, 'Zeer schone kamers'],
   [/\bWunderschöner Ausblick\b/gi, 'Prachtig uitzicht'],
+  [/\bSchöner Ausblick\b/gi, 'Mooi uitzicht'],
   [/\bTolle Lage\b/gi, 'Geweldige ligging'],
   [/\bPerfekte Lage\b/gi, 'Perfecte ligging'],
   [/\bSuper Lage\b/gi, 'Geweldige locatie'],
+  [/\bZentrale Lage\b/gi, 'Centrale ligging'],
+  [/\bRuhige Lage\b/gi, 'Rustige ligging'],
   [/\bReichhaltiges Frühstück\b/gi, 'Uitgebreid ontbijt'],
   [/\bTolles Frühstück\b/gi, 'Geweldig ontbijt'],
+  [/\bSehr leckeres Frühstück\b/gi, 'Erg lekker ontbijt'],
   [/\bSchnelle und unkomplizierte Abwicklung\b/gi, 'Snelle en ongecompliceerde afhandeling'],
   [/\bAlles bestens\b/gi, 'Alles was perfect in orde'],
-  [/\bAlles top\b/gi, 'Alles was top'],
+  [/\bAlles war top\b/gi, 'Alles was top'],
+  [/\bAlles top\b/gi, 'Alles top'],
   [/\bGerne wieder\b/gi, 'Graag tot een volgende keer'],
+  [/\bAuf jeden Fall\b/gi, 'In ieder geval'],
+  [/\bVielen Dank für Ihre Bewertung\b/gi, 'Hartelijk dank voor uw beoordeling'],
+  [/\bVielen Dank für das tolle Feedback\b/gi, 'Hartelijk dank voor de geweldige feedback'],
+  [/\bWir freuen uns auf Ihren nächsten Besuch\b/gi, 'We kijken uit naar uw volgende bezoek'],
+  [/\bWir freuen uns auf ein Wiedersehen\b/gi, 'We verheugen ons op een volgend bezoek'],
+  [/\bBis zum nächsten Mal\b/gi, 'Tot de volgende keer'],
 
-  // Connectors & Common Review Vocabulary
-  [/\bSehr freundlich\b/gi, 'Zeer vriendelijk'],
-  [/\bsehr freundlich\b/gi, 'zeer vriendelijk'],
-  [/\bSehr hilfsbereit\b/gi, 'Zeer behulpzaam'],
-  [/\bsehr hilfsbereit\b/gi, 'zeer behulpzaam'],
-  [/\bSehr sauber\b/gi, 'Zeer schoon'],
-  [/\bsehr sauber\b/gi, 'zeer schoon'],
-  [/\bSehr lecker\b/gi, 'Erg lekker'],
-  [/\bsehr lecker\b/gi, 'erg lekker'],
-  [/\bSehr gut\b/gi, 'Zeer goed'],
-  [/\bsehr gut\b/gi, 'zeer goed'],
-  [/\bSehr schön\b/gi, 'Erg mooi'],
-  [/\bsehr schön\b/gi, 'erg mooi'],
-  [/\bHervorragend\b/gi, 'Uitstekend'],
-  [/\bhervorragend\b/gi, 'uitstekend'],
-  [/\bGemütlich\b/gi, 'Gezellig'],
-  [/\bgemütlich\b/gi, 'gezellig'],
-  [/\bAusgezeichnet\b/gi, 'Uitstekend'],
-  [/\bausgezeichnet\b/gi, 'uitstekend'],
-  [/\bWunderbar\b/gi, 'Prachtig'],
-  [/\bwunderbar\b/gi, 'prachtig'],
-  [/\bFantastisch\b/gi, 'Fantastisch'],
-  [/\bfantastisch\b/gi, 'fantastisch'],
-  [/\bGastfreundschaft\b/gi, 'gastvrijheid'],
-  [/\bAufenthalt\b/gi, 'verblijf'],
-  [/\bFrühstück\b/gi, 'ontbijt'],
+  // Words & Modifiers
+  [/\bMitarbeiter\b/gi, 'medewerkers'],
+  [/\bMitarbeiterinnen\b/gi, 'medewerksters'],
+  [/\bPersonal\b/gi, 'personeel'],
   [/\bBedienung\b/gi, 'bediening'],
   [/\bKellner\b/gi, 'ober'],
-  [/\bAusblick\b/gi, 'uitzicht'],
+  [/\bChef\b/gi, 'eigenaar'],
+  [/\bChefin\b/gi, 'eigenares'],
+  [/\bInhaber\b/gi, 'eigenaar'],
+  [/\bGastgeber\b/gi, 'gastheren'],
+  [/\bGastfreundschaft\b/gi, 'gastvrijheid'],
+  [/\bAufenthalt\b/gi, 'verblijf'],
+  [/\bUrlaub\b/gi, 'vakantie'],
+  [/\bKurzurlaub\b/gi, 'korte vakantie'],
+  [/\bWochenende\b/gi, 'weekend'],
+  [/\bAusflug\b/gi, 'uitstapje'],
   [/\bZimmer\b/gi, 'kamers'],
-  [/\bZimmern\b/gi, 'kamers'],
   [/\bBadezimmer\b/gi, 'badkamer'],
-  [/\bSauberkeit\b/gi, 'schoonmaak'],
+  [/\bBetten\b/gi, 'bedden'],
+  [/\bBett\b/gi, 'bed'],
+  [/\bMatratze\b/gi, 'matras'],
+  [/\bMatratzen\b/gi, 'matrassen'],
+  [/\bBalkon\b/gi, 'balkon'],
+  [/\bAusblick\b/gi, 'uitzicht'],
+  [/\bAussicht\b/gi, 'uitzicht'],
+  [/\bTerrasse\b/gi, 'terras'],
+  [/\bBiergarten\b/gi, 'biertuin'],
+  [/\bParkplatz\b/gi, 'parkeerplaats'],
+  [/\bParkplätze\b/gi, 'parkeerplaatsen'],
+  [/\bSauberkeit\b/gi, 'schoonheid'],
   [/\bEssen\b/gi, 'eten'],
   [/\bSpeisen\b/gi, 'gerechten'],
   [/\bGetränke\b/gi, 'drankjes'],
   [/\bKaffee\b/gi, 'koffie'],
   [/\bKuchen\b/gi, 'gebak'],
-  [/\bTerrasse\b/gi, 'terras'],
-  [/\bBiergarten\b/gi, 'biertuin'],
+  [/\bSchnitzel\b/gi, 'schnitzel'],
+  [/\bBier\b/gi, 'bier'],
+  [/\bWein\b/gi, 'wijn'],
+  [/\bFrühstücksbuffet\b/gi, 'ontbijtbuffet'],
+  [/\bFrühstück\b/gi, 'ontbijt'],
+  [/\bAbendessen\b/gi, 'diner'],
+  [/\bPortionen\b/gi, 'porties'],
+  [/\bPortion\b/gi, 'portie'],
+  [/\bPreise\b/gi, 'prijzen'],
+  [/\bPreis\b/gi, 'prijs'],
+  [/\bQualität\b/gi, 'kwaliteit'],
+  [/\bAuswahl\b/gi, 'keuze'],
+  [/\bAtmosphäre\b/gi, 'sfeer'],
+  [/\bStimmung\b/gi, 'sfeer'],
+  [/\bEmpfehlung\b/gi, 'aanrader'],
+  [/\bErlebnis\b/gi, 'ervaring'],
   [/\bFamilie\b/gi, 'familie'],
   [/\bKinder\b/gi, 'kinderen'],
   [/\bHund\b/gi, 'hond'],
   [/\bHunde\b/gi, 'honden'],
-  [/\bUrlaub\b/gi, 'vakantie'],
-  [/\bWochenende\b/gi, 'weekend'],
 
-  // Grammar and Small Words
+  // Adjectives
+  [/\bsehr lecker\b/gi, 'erg lekker'],
+  [/\bleckeres\b/gi, 'heerlijk'],
+  [/\bleckere\b/gi, 'heerlijke'],
+  [/\bleckerer\b/gi, 'lekkere'],
+  [/\blecker\b/gi, 'lekker'],
+  [/\bköstlich\b/gi, 'heerlijk'],
+  [/\bköstliche\b/gi, 'heerlijke'],
+  [/\bfantastisch\b/gi, 'fantastisch'],
+  [/\bfantastische\b/gi, 'fantastische'],
+  [/\bfantastisches\b/gi, 'fantastisch'],
+  [/\bhervorragend\b/gi, 'uitstekend'],
+  [/\bhervorragende\b/gi, 'uitstekende'],
+  [/\bhervorragendes\b/gi, 'uitstekend'],
+  [/\bwunderbar\b/gi, 'prachtig'],
+  [/\bwunderbare\b/gi, 'prachtige'],
+  [/\bwunderbares\b/gi, 'prachtig'],
+  [/\bwunderschön\b/gi, 'prachtig'],
+  [/\bwunderschöne\b/gi, 'prachtige'],
+  [/\bwunderschönes\b/gi, 'prachtig'],
+  [/\bgemütlich\b/gi, 'gezellig'],
+  [/\bgemütliche\b/gi, 'gezellige'],
+  [/\bgemütliches\b/gi, 'gezellig'],
+  [/\bherzlich\b/gi, 'hartelijk'],
+  [/\bherzliche\b/gi, 'hartelijke'],
+  [/\bherzlicher\b/gi, 'hartelijke'],
+  [/\baufmerksam\b/gi, 'attent'],
+  [/\baufmerksame\b/gi, 'attente'],
+  [/\bhilfsbereit\b/gi, 'behulpzaam'],
+  [/\bhilfsbereite\b/gi, 'behulpzame'],
+  [/\bfreundlich\b/gi, 'vriendelijk'],
+  [/\bfreundliche\b/gi, 'vriendelijke'],
+  [/\bfreundliches\b/gi, 'vriendelijk'],
+  [/\bfreundlicher\b/gi, 'vriendelijke'],
+  [/\bsauber\b/gi, 'schoon'],
+  [/\bsaubere\b/gi, 'schone'],
+  [/\bsauberes\b/gi, 'schoon'],
+  [/\bmodern\b/gi, 'modern'],
+  [/\bmoderne\b/gi, 'moderne'],
+  [/\bmodernes\b/gi, 'modern'],
+  [/\bperfekt\b/gi, 'perfect'],
+  [/\bperfekte\b/gi, 'perfecte'],
+  [/\bperfektes\b/gi, 'perfect'],
+  [/\btoll\b/gi, 'geweldig'],
+  [/\btolle\b/gi, 'geweldige'],
+  [/\btolles\b/gi, 'geweldig'],
+  [/\btoller\b/gi, 'geweldige'],
+  [/\btollen\b/gi, 'geweldige'],
+  [/\bsuper\b/gi, 'super'],
+  [/\bgroßartig\b/gi, 'groots'],
+  [/\bklasse\b/gi, 'geweldig'],
+  [/\bspitze\b/gi, 'top'],
+  [/\brubig\b/gi, 'rustig'],
+  [/\bruhig\b/gi, 'rustig'],
+  [/\bruhige\b/gi, 'rustige'],
+  [/\bruhiges\b/gi, 'rustig'],
+  [/\bzentral\b/gi, 'centraal'],
+  [/\bzentrale\b/gi, 'centrale'],
+  [/\bfrisch\b/gi, 'vers'],
+  [/\bfrische\b/gi, 'verse'],
+  [/\bfrisches\b/gi, 'vers'],
+  [/\bregional\b/gi, 'regionaal'],
+  [/\bregionale\b/gi, 'regionale'],
+  [/\bangenehm\b/gi, 'aangenaam'],
+  [/\bangenehme\b/gi, 'aangename'],
+  [/\bgünstig\b/gi, 'voordelig'],
+  [/\bpreiswert\b/gi, 'betaalbaar'],
+  [/\bteuer\b/gi, 'duur'],
+  [/\beinfach\b/gi, 'eenvoudig'],
+
+  // Grammar & Connectors
   [/\bund\b/g, 'en'],
   [/\boder\b/g, 'of'],
   [/\baber\b/g, 'maar'],
+  [/\bdenn\b/g, 'want'],
+  [/\bweil\b/g, 'omdat'],
   [/\bmit\b/g, 'met'],
   [/\bfür\b/g, 'voor'],
   [/\bvon\b/g, 'van'],
   [/\bbei\b/g, 'bij'],
+  [/\bim\b/g, 'in het'],
+  [/\bin\b/g, 'in'],
+  [/\bauf\b/g, 'op'],
+  [/\baus\b/g, 'uit'],
   [/\bwar\b/g, 'was'],
   [/\bwaren\b/g, 'waren'],
   [/\bist\b/g, 'is'],
@@ -154,8 +266,7 @@ const DE_TO_NL_PHRASES: [RegExp, string][] = [
   [/\bich\b/g, 'ik'],
   [/\bsie\b/g, 'ze'],
   [/\balle\b/g, 'alle'],
-  [/\bales\b/g, 'alles'],
-  [/\bales\b/g, 'alles'],
+  [/\balles\b/g, 'alles'],
   [/\bnicht\b/g, 'niet'],
   [/\bauch\b/g, 'ook'],
   [/\bnur\b/g, 'alleen'],
@@ -164,108 +275,179 @@ const DE_TO_NL_PHRASES: [RegExp, string][] = [
   [/\bwieder\b/g, 'weer'],
   [/\bgerne\b/g, 'graag'],
   [/\bgern\b/g, 'graag'],
-  [/\beinfach\b/g, 'gewoon'],
-  [/\bperfekt\b/g, 'perfect'],
-  [/\btoll\b/g, 'geweldig'],
-  [/\btolle\b/g, 'geweldige'],
-  [/\btolles\b/g, 'geweldig'],
-  [/\btollen\b/g, 'geweldige'],
-  [/\bsuper\b/g, 'super'],
   [/\bhier\b/g, 'hier'],
+  [/\bda\b/g, 'daar'],
   [/\bdort\b/g, 'daar'],
   [/\bDanke\b/g, 'Bedankt'],
   [/\bdanke\b/g, 'bedankt'],
+  [/\bVielen Dank\b/g, 'Hartelijk dank'],
+  [/\bvielen Dank\b/g, 'hartelijk dank'],
+  [/\bschön\b/g, 'mooi'],
+  [/\bschöne\b/g, 'mooie'],
+  [/\bschönes\b/g, 'mooi'],
+  [/\bschöner\b/gi, 'mooie'],
 ];
 
-const NL_TO_DE_PHRASES: [RegExp, string][] = [
-  // Full Idioms & Sentences
+const NL_TO_DE_REVIEW_PHRASES: [RegExp, string][] = [
+  // Full Sentences & Common Review Expressions
   [/\bWe komen zeker nog eens terug\b/gi, 'Wir kommen sicher wieder'],
+  [/\bWe komen zeker terug\b/gi, 'Wir kommen sicher wieder'],
   [/\bWe komen graag weer terug\b/gi, 'Wir kommen gerne wieder'],
+  [/\bKomen zeker terug\b/gi, 'Kommen sicher wieder'],
+  [/\bKomen graag weer terug\b/gi, 'Kommen gerne wieder'],
   [/\bZeker een aanrader\b/gi, 'Absolut zu empfehlen'],
   [/\bEcht een aanrader\b/gi, 'Wirklich sehr zu empfehlen'],
   [/\bEen echte aanrader\b/gi, 'Ein echter Geheimtipp und sehr zu empfehlen'],
+  [/\bEen aanrader\b/gi, 'Sehr zu empfehlen'],
   [/\bTop prijs-kwaliteitverhouding\b/gi, 'Top Preis-Leistungs-Verhältnis'],
   [/\bGoede prijs-kwaliteitverhouding\b/gi, 'Gutes Preis-Leistungs-Verhältnis'],
   [/\bHartelijk dank voor alles\b/gi, 'Herzlichen Dank für alles'],
   [/\bHartelijk dank voor het geweldige verblijf\b/gi, 'Vielen Dank für den tollen Aufenthalt'],
+  [/\bHartelijk dank voor de gastvrijheid\b/gi, 'Herzlichen Dank für die Gastfreundschaft'],
+  [/\bBedankt voor alles\b/gi, 'Danke für alles'],
   [/\bZeer vriendelijk personeel\b/gi, 'Sehr freundliches Personal'],
   [/\bErg vriendelijk personeel\b/gi, 'Sehr freundliches Personal'],
+  [/\bVriendelijk en behulpzaam personeel\b/gi, 'Freundliches und hilfsbereites Personal'],
   [/\bSuper vriendelijk en behulpzaam\b/gi, 'Super freundlich und hilfsbereit'],
   [/\bGeweldig eten en goede service\b/gi, 'Tolles Essen und guter Service'],
+  [/\bGeweldig eten en fijne sfeer\b/gi, 'Tolles Essen und schöne Atmosphäre'],
   [/\bHeerlijk eten\b/gi, 'Köstliches Essen'],
   [/\bHet eten was erg lekker\b/gi, 'Das Essen war sehr lecker'],
   [/\bHet eten was voortreffelijk\b/gi, 'Das Essen war hervorragend'],
+  [/\bHet eten was heerlijk\b/gi, 'Das Essen war köstlich'],
+  [/\bHet eten was geweldig\b/gi, 'Das Essen war fantastisch'],
   [/\bDe kamers waren schoon en gezellig\b/gi, 'Die Zimmer waren sauber und gemütlich'],
   [/\bMooie en schone kamers\b/gi, 'Schöne und saubere Zimmer'],
+  [/\bZeer schone kamers\b/gi, 'Sehr saubere Zimmer'],
   [/\bPrachtig uitzicht\b/gi, 'Wunderschöner Ausblick'],
+  [/\bMooi uitzicht\b/gi, 'Schöne Aussicht'],
   [/\bGeweldige ligging\b/gi, 'Tolle Lage'],
   [/\bPerfecte ligging\b/gi, 'Perfekte Lage'],
+  [/\bPrachtige locatie\b/gi, 'Wunderschöne Lage'],
+  [/\bCentrale ligging\b/gi, 'Zentrale Lage'],
+  [/\bRustige ligging\b/gi, 'Ruhige Lage'],
   [/\bUitgebreid ontbijt\b/gi, 'Reichhaltiges Frühstück'],
   [/\bHeerlijk ontbijt\b/gi, 'Köstliches Frühstück'],
+  [/\bErg lekker ontbijt\b/gi, 'Sehr leckeres Frühstück'],
   [/\bAlles was perfect in orde\b/gi, 'Alles war bestens in Ordnung'],
   [/\bAlles was top\b/gi, 'Alles war top'],
+  [/\bAlles was naar wens\b/gi, 'Alles war wie gewünscht'],
+  [/\bTot de volgende keer\b/gi, 'Bis zum nächsten Mal'],
+  [/\bHartelijk dank voor uw review\b/gi, 'Vielen Dank für Ihre Bewertung'],
+  [/\bHartelijk dank voor uw beoordeling\b/gi, 'Vielen Dank für Ihre Bewertung'],
+  [/\bWe kijken uit naar uw volgende bezoek\b/gi, 'Wir freuen uns auf Ihren nächsten Besuch'],
 
-  // Vocabulary & Connectors
-  [/\bZeer vriendelijk\b/gi, 'Sehr freundlich'],
-  [/\bzeer vriendelijk\b/gi, 'sehr freundlich'],
-  [/\bErg vriendelijk\b/gi, 'Sehr freundlich'],
-  [/\berg vriendelijk\b/gi, 'sehr freundlich'],
-  [/\bZeer behulpzaam\b/gi, 'Sehr hilfsbereit'],
-  [/\bzeer behulpzaam\b/gi, 'sehr hilfsbereit'],
-  [/\bZeer schoon\b/gi, 'Sehr sauber'],
-  [/\bzeer schoon\b/gi, 'sehr sauber'],
-  [/\bErg lekker\b/gi, 'Sehr lecker'],
-  [/\berg lekker\b/gi, 'sehr lecker'],
-  [/\bHeerlijk\b/gi, 'Köstlich'],
-  [/\bheerlijk\b/gi, 'köstlich'],
-  [/\bZeer goed\b/gi, 'Sehr gut'],
-  [/\bzeer goed\b/gi, 'sehr gut'],
-  [/\bErg mooi\b/gi, 'Sehr schön'],
-  [/\berg mooi\b/gi, 'sehr schön'],
-  [/\bPrachtig\b/gi, 'Wunderbar'],
-  [/\bprachtig\b/gi, 'wunderbar'],
-  [/\bGeweldig\b/gi, 'Großartig'],
-  [/\bgeweldig\b/gi, 'großartig'],
-  [/\bgezellig\b/gi, 'gemütlich'],
-  [/\bUitstekend\b/gi, 'Ausgezeichnet'],
-  [/\buitstekend\b/gi, 'ausgezeichnet'],
-  [/\bAanrader\b/gi, 'Empfehlung'],
-  [/\baanrader\b/gi, 'Empfehlung'],
-  [/\bgastvrijheid\b/gi, 'Gastfreundschaft'],
-  [/\bverblijf\b/gi, 'Aufenthalt'],
-  [/\bontbijt\b/gi, 'Frühstück'],
+  // Words & Modifiers
+  [/\bmedewerkers\b/gi, 'Mitarbeiter'],
+  [/\bpersoneel\b/gi, 'Personal'],
   [/\bbediening\b/gi, 'Bedienung'],
   [/\bober\b/gi, 'Kellner'],
-  [/\buitzicht\b/gi, 'Ausblick'],
+  [/\beigenaar\b/gi, 'Inhaber'],
+  [/\beigenares\b/gi, 'Inhaberin'],
+  [/\bgastvrijheid\b/gi, 'Gastfreundschaft'],
+  [/\bverblijf\b/gi, 'Aufenthalt'],
+  [/\bvakantie\b/gi, 'Urlaub'],
+  [/\bweekend\b/gi, 'Wochenende'],
   [/\bkamers\b/gi, 'Zimmer'],
   [/\bkamer\b/gi, 'Zimmer'],
   [/\bbadkamer\b/gi, 'Badezimmer'],
+  [/\bbedden\b/gi, 'Betten'],
+  [/\bbed\b/gi, 'Bett'],
+  [/\bmatras\b/gi, 'Matratze'],
+  [/\buitzicht\b/gi, 'Aussicht'],
+  [/\bterras\b/gi, 'Terrasse'],
+  [/\bbiertuin\b/gi, 'Biergarten'],
+  [/\bparkeerplaats\b/gi, 'Parkplatz'],
+  [/\bparkeerplaatsen\b/gi, 'Parkplätze'],
   [/\bschoonmaak\b/gi, 'Sauberkeit'],
   [/\beten\b/gi, 'Essen'],
   [/\bgerechten\b/gi, 'Gerichte'],
   [/\bdrankjes\b/gi, 'Getränke'],
   [/\bkoffie\b/gi, 'Kaffee'],
   [/\bgebak\b/gi, 'Kuchen'],
-  [/\bterras\b/gi, 'Terrasse'],
-  [/\bbiertuin\b/gi, 'Biergarten'],
-  [/\bvriendelijke\b/gi, 'freundliche'],
-  [/\bschone\b/gi, 'saubere'],
-  [/\bgezellige\b/gi, 'gemütliche'],
-  [/\bmooie\b/gi, 'schöne'],
-  [/\bgeweldige\b/gi, 'großartige'],
-  [/\bperfecte\b/gi, 'perfekte'],
-  [/\bterug\b/gi, 'zurück'],
-  [/\bbedankt\b/gi, 'danke'],
-  [/\bHartelijk dank\b/gi, 'Vielen Dank'],
+  [/\bbier\b/gi, 'Bier'],
+  [/\bwijn\b/gi, 'Wein'],
+  [/\bontbijtbuffet\b/gi, 'Frühstücksbuffet'],
+  [/\bontbijt\b/gi, 'Frühstück'],
+  [/\bdiner\b/gi, 'Abendessen'],
+  [/\bporties\b/gi, 'Portionen'],
+  [/\bportie\b/gi, 'Portion'],
+  [/\bprijzen\b/gi, 'Preise'],
+  [/\bprijs\b/gi, 'Preis'],
+  [/\bkwaliteit\b/gi, 'Qualität'],
+  [/\bkeuze\b/gi, 'Auswahl'],
+  [/\bsfeer\b/gi, 'Atmosphäre'],
+  [/\bervaring\b/gi, 'Erfahrung'],
+  [/\bfamilie\b/gi, 'Familie'],
+  [/\bkinderen\b/gi, 'Kinder'],
+  [/\bhond\b/gi, 'Hund'],
+  [/\bhonden\b/gi, 'Hunde'],
 
-  // Grammar & Small Words
+  // Adjectives
+  [/\berg lekker\b/gi, 'sehr lecker'],
+  [/\bheel lekker\b/gi, 'sehr lecker'],
+  [/\blekkere\b/gi, 'leckere'],
+  [/\blekker\b/gi, 'lecker'],
+  [/\bheerlijke\b/gi, 'köstliche'],
+  [/\bheerlijk\b/gi, 'köstlich'],
+  [/\bvoortreffelijk\b/gi, 'hervorragend'],
+  [/\bfantastische\b/gi, 'fantastische'],
+  [/\bfantastisch\b/gi, 'fantastisch'],
+  [/\buitstekende\b/gi, 'ausgezeichnete'],
+  [/\buitstekend\b/gi, 'ausgezeichnet'],
+  [/\bprachtige\b/gi, 'wunderschöne'],
+  [/\bprachtig\b/gi, 'wunderschön'],
+  [/\bgezellige\b/gi, 'gemütliche'],
+  [/\bgezellig\b/gi, 'gemütlich'],
+  [/\bhartelijke\b/gi, 'herzliche'],
+  [/\bhartelijk\b/gi, 'herzlich'],
+  [/\battente\b/gi, 'aufmerksame'],
+  [/\battent\b/gi, 'aufmerksam'],
+  [/\bbehulpzame\b/gi, 'hilfsbereite'],
+  [/\bbehulpzaam\b/gi, 'hilfsbereit'],
+  [/\bvriendelijke\b/gi, 'freundliche'],
+  [/\bvriendelijk\b/gi, 'freundlich'],
+  [/\bschone\b/gi, 'saubere'],
+  [/\bschoon\b/gi, 'sauber'],
+  [/\bmoderne\b/gi, 'moderne'],
+  [/\bmodern\b/gi, 'modern'],
+  [/\bperfecte\b/gi, 'perfekte'],
+  [/\bperfect\b/gi, 'perfekt'],
+  [/\bgeweldige\b/gi, 'großartige'],
+  [/\bgeweldig\b/gi, 'großartig'],
+  [/\bfijne\b/gi, 'schöne'],
+  [/\bfijn\b/gi, 'schön'],
+  [/\brustige\b/gi, 'ruhige'],
+  [/\brustig\b/gi, 'ruhig'],
+  [/\bcentrale\b/gi, 'zentrale'],
+  [/\bcentraal\b/gi, 'zentral'],
+  [/\bverse\b/gi, 'frische'],
+  [/\bvers\b/gi, 'frisch'],
+  [/\bregionale\b/gi, 'regionale'],
+  [/\bregionaal\b/gi, 'regional'],
+  [/\baangename\b/gi, 'angenehme'],
+  [/\baangenaam\b/gi, 'angenehm'],
+  [/\bvoordelig\b/gi, 'günstig'],
+  [/\bbetaalbaar\b/gi, 'preiswert'],
+  [/\bduur\b/gi, 'teuer'],
+  [/\beenvoudig\b/gi, 'einfach'],
+  [/\bmooie\b/gi, 'schöne'],
+  [/\bmooi\b/gi, 'schön'],
+
+  // Grammar & Connectors
   [/\ben\b/g, 'und'],
   [/\bof\b/g, 'oder'],
   [/\bmaar\b/g, 'aber'],
+  [/\bwant\b/g, 'denn'],
+  [/\bomdat\b/g, 'weil'],
   [/\bmet\b/g, 'mit'],
   [/\bvoor\b/g, 'für'],
   [/\bvan\b/g, 'von'],
   [/\bbij\b/g, 'bei'],
+  [/\bin het\b/g, 'im'],
+  [/\bin\b/g, 'in'],
+  [/\bop\b/g, 'auf'],
+  [/\buit\b/g, 'aus'],
   [/\bwas\b/g, 'war'],
   [/\bwaren\b/g, 'waren'],
   [/\bis\b/g, 'ist'],
@@ -287,10 +469,14 @@ const NL_TO_DE_PHRASES: [RegExp, string][] = [
   [/\baltijd\b/g, 'immer'],
   [/\bweer\b/g, 'wieder'],
   [/\bgraag\b/g, 'gerne'],
-  [/\bperfect\b/g, 'perfekt'],
-  [/\bsuper\b/g, 'super'],
   [/\bhier\b/g, 'hier'],
   [/\bdaar\b/g, 'dort'],
+  [/\bterug\b/g, 'zurück'],
+  [/\bzeker\b/g, 'sicher'],
+  [/\bBedankt\b/g, 'Danke'],
+  [/\bbedankt\b/g, 'danke'],
+  [/\bHartelijk dank\b/g, 'Vielen Dank'],
+  [/\bhartelijk dank\b/g, 'vielen Dank'],
 ];
 
 /**
@@ -299,9 +485,15 @@ const NL_TO_DE_PHRASES: [RegExp, string][] = [
 export function translateReviewToDutch(text: string): string {
   if (!text) return '';
   let result = text;
-  for (const [pattern, replacement] of DE_TO_NL_PHRASES) {
+  
+  // 1. High priority review idioms & sentences
+  for (const [pattern, replacement] of DE_TO_NL_REVIEW_PHRASES) {
     result = result.replace(pattern, replacement);
   }
+
+  // 2. Global comprehensive dictionary & phrase engine fallback
+  result = translateTextToDutch(result);
+
   return result;
 }
 
@@ -311,62 +503,10 @@ export function translateReviewToDutch(text: string): string {
 export function translateReviewToGerman(text: string): string {
   if (!text) return '';
   let result = text;
-  for (const [pattern, replacement] of NL_TO_DE_PHRASES) {
+  
+  for (const [pattern, replacement] of NL_TO_DE_REVIEW_PHRASES) {
     result = result.replace(pattern, replacement);
   }
+
   return result;
-}
-
-/**
- * Gets the localized review text and translation toggle metadata.
- */
-export function getReviewTranslationData(
-  text: string,
-  currentLang: 'de' | 'nl'
-): {
-  originalText: string;
-  translatedText: string;
-  detectedLang: 'de' | 'nl';
-  needsTranslation: boolean;
-  badgeLabel: string;
-  viewOriginalLabel: string;
-  viewTranslationLabel: string;
-} {
-  const detectedLang = detectReviewLanguage(text);
-  const needsTranslation = detectedLang !== currentLang;
-
-  let translatedText = text;
-  if (detectedLang === 'de' && currentLang === 'nl') {
-    translatedText = translateReviewToDutch(text);
-  } else if (detectedLang === 'nl' && currentLang === 'de') {
-    translatedText = translateReviewToGerman(text);
-  } else if (currentLang === 'nl') {
-    // Current is NL and text is already NL, provide DE translation for toggle
-    translatedText = translateReviewToGerman(text);
-  } else {
-    // Current is DE and text is already DE, provide NL translation for toggle
-    translatedText = translateReviewToDutch(text);
-  }
-
-  const badgeLabel = detectedLang === 'de'
-    ? (currentLang === 'nl' ? 'Vertaald uit het Duits' : 'Origineel in het Duits')
-    : (currentLang === 'de' ? 'Aus dem Niederländischen übersetzt' : 'Origineel in het Nederlands');
-
-  const viewOriginalLabel = currentLang === 'nl'
-    ? `Origineel bekijken (${detectedLang === 'de' ? 'Duits' : 'Nederlands'})`
-    : `Original ansehen (${detectedLang === 'nl' ? 'Niederländisch' : 'Deutsch'})`;
-
-  const viewTranslationLabel = currentLang === 'nl'
-    ? 'Vertaling weergeven (Nederlands)'
-    : 'Übersetzung anzeigen (Deutsch)';
-
-  return {
-    originalText: text,
-    translatedText,
-    detectedLang,
-    needsTranslation,
-    badgeLabel,
-    viewOriginalLabel,
-    viewTranslationLabel,
-  };
 }
