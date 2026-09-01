@@ -26,6 +26,9 @@ import AdInquiryModal from './components/AdInquiryModal';
 import AdminAdsManager from './components/AdminAdsManager';
 import ReviewWidget, { WidgetLayout, WidgetTheme } from './components/ReviewWidget';
 import WidgetGeneratorModal from './components/WidgetGeneratorModal';
+import CookieConsent from './components/CookieConsent';
+import DynamicScriptLoader from './components/DynamicScriptLoader';
+import { trackPageView } from './utils/analytics';
 import {
   RouteState,
   findCategoryFromSlug,
@@ -269,6 +272,22 @@ export default function App() {
       checkRedirect();
     }
   }, [isNotFound]);
+
+  // Google Analytics Pageview Tracking (Property ID 302481363)
+  useEffect(() => {
+    trackPageView(window.location.pathname, document.title);
+
+    const handleLocationChange = () => {
+      setTimeout(() => {
+        trackPageView(window.location.pathname, document.title);
+      }, 60);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
 
   const [activeLocation, setActiveLocation] = useState<string>('Alle');
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
@@ -2653,6 +2672,10 @@ export default function App() {
         onClose={() => setIsAdInquiryOpen(false)} 
         initialCategory={inquiryCategory} 
       />
+
+      {/* GDPR Cookie Consent & Dynamic Scripts (Google Analytics 302481363) */}
+      <CookieConsent theme={theme} />
+      <DynamicScriptLoader />
       </div>
     </div>
   );

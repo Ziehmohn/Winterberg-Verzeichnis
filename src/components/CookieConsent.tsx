@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Shield, Check, Settings, X } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig } from '../types';
+import { GA_PROPERTY_ID, trackPageView } from '../utils/analytics';
 
 interface CookieSettings {
   essential: boolean;
@@ -16,7 +17,8 @@ const EXPIRY_DAYS = 180; // 6 months
 export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const { t } = useTranslation();
+  const { lang } = useTranslation();
+  const isNl = lang === 'nl';
   
   const [settings, setSettings] = useState<CookieSettings>({
     essential: true, // Always true
@@ -43,7 +45,6 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
         setShowBanner(true);
       }
       
-      // Execute outside try-catch so an error here doesn't reset the banner
       if (parsedSettings) {
         try {
           applyScripts(parsedSettings);
@@ -81,14 +82,13 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
   };
 
   const applyScripts = (currentSettings: CookieSettings) => {
-    // Google Analytics Injection
+    // Google Analytics Injection (Property ID: 302481363)
     if (currentSettings.analytics) {
       if (!document.getElementById('ga-script')) {
         const script1 = document.createElement('script');
         script1.id = 'ga-script';
         script1.async = true;
-        // The measurement ID from your firebase config
-        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-MXFC2V1GXZ';
+        script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_PROPERTY_ID}`;
         document.head.appendChild(script1);
 
         const script2 = document.createElement('script');
@@ -97,9 +97,16 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-MXFC2V1GXZ', { 'anonymize_ip': true });
+          gtag('config', '${GA_PROPERTY_ID}', { 'anonymize_ip': true, 'send_page_view': true });
+          gtag('config', 'G-302481363', { 'anonymize_ip': true, 'send_page_view': true });
+          gtag('config', 'G-MXFC2V1GXZ', { 'anonymize_ip': true, 'send_page_view': true });
         `;
         document.head.appendChild(script2);
+
+        // Send initial pageview
+        setTimeout(() => {
+          trackPageView(window.location.pathname, document.title);
+        }, 100);
       }
     } else {
       // Remove scripts if revoked
@@ -115,8 +122,6 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
         }
       });
     }
-    
-    // Future scripts (Marketing, External Media) can be handled here similarly.
   };
 
   return (
@@ -125,101 +130,172 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
       {!showBanner && (
         <button
           onClick={() => setShowBanner(true)}
-          className="fixed bottom-6 left-6 z-50 p-3 bg-white border border-gray-200 rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 group"
-          title="Cookie-Einstellungen öffnen"
+          className="fixed bottom-6 left-6 z-50 p-3 bg-white border border-[#E7E2DA] rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:bg-[#FAF8F5] transition-all hover:scale-110 group cursor-pointer"
+          title={isNl ? "Cookie-instellingen openen" : "Cookie-Einstellungen öffnen"}
         >
-          <Shield className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
+          <Shield className="w-5 h-5 text-[#0F4C2E] group-hover:text-[#F2761B] transition-colors" />
         </button>
       )}
 
       {/* Backdrop & Banner */}
       {showBanner && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-          <div className="bg-white w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden animate-in slide-in-from-bottom-10 sm:zoom-in-95 duration-300 relative">
+        <div className="fixed inset-0 z-[1000] flex items-end justify-center sm:items-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+          <div className="bg-white w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-10 sm:zoom-in-95 duration-300 relative border border-[#EDE8E0]">
             {!showSettings ? (
               <div className="p-6 md:p-8">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-md flex items-center justify-center shrink-0">
-                    <Shield className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform" />
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="w-11 h-11 bg-[#E8F1EB] rounded-lg flex items-center justify-center shrink-0">
+                    <Shield className="w-6 h-6 text-[#0F4C2E]" />
                   </div>
-                  <h2 className="text-2xl font-bold font-display">Datenschutz & Cookies</h2>
+                  <div>
+                    <h2 className="text-xl font-bold font-display text-[#1B211D]">
+                      {isNl ? 'Privacy & Cookies' : 'Datenschutz & Cookies'}
+                    </h2>
+                    <span className="text-xs text-[#8A928B]">
+                      {isNl ? 'Winterberg Bedrijvengids' : 'Das Winterberg Verzeichnis'}
+                    </span>
+                  </div>
                 </div>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und deine Erfahrung zu verbessern. Du kannst selbst entscheiden, ob du die nicht essenziellen Cookies zulassen möchtest.
+                <p className="text-[14.5px] text-[#5F6B63] mb-6 leading-relaxed">
+                  {isNl 
+                    ? 'Wij gebruiken cookies en webanalyse (Google Analytics) om het gebruik van onze website te meten en uw gebruikerservaring te verbeteren. U kunt zelf kiezen welke categorieën u wilt toestaan.' 
+                    : 'Wir nutzen Cookies und Webanalyse (Google Analytics), um die Nutzung unserer Plattform zu messen und Ihr Nutzungserlebnis stetig zu verbessern. Sie können selbst entscheiden, welche Cookies Sie zulassen möchten.'}
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <button onClick={handleAcceptAll} className="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-md transition-colors shadow-md">
-                    Alle akzeptieren
+                  <button 
+                    onClick={handleAcceptAll} 
+                    className="flex-1 px-5 py-3 bg-[#0F4C2E] hover:bg-[#06301C] text-white font-bold rounded-lg transition-colors shadow-md text-sm"
+                  >
+                    {isNl ? 'Alles accepteren' : 'Alle akzeptieren'}
                   </button>
-                  <button onClick={handleAcceptEssential} className="flex-1 px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-md transition-colors border border-gray-200">
-                    Nur essenzielle
+                  <button 
+                    onClick={handleAcceptEssential} 
+                    className="flex-1 px-5 py-3 bg-[#FAF8F5] hover:bg-[#F3F0EA] text-[#1B211D] font-bold rounded-lg transition-colors border border-[#E7E2DA] text-sm"
+                  >
+                    {isNl ? 'Alleen noodzakelijk' : 'Nur essenzielle'}
                   </button>
                 </div>
-                <div className="mt-5 text-center">
-                  <button onClick={() => setShowSettings(true)} className="text-sm text-gray-500 hover:text-orange-600 underline underline-offset-4 font-medium">
-                    Individuelle Einstellungen
+                <div className="mt-4 text-center">
+                  <button 
+                    onClick={() => setShowSettings(true)} 
+                    className="text-xs text-[#5F6B63] hover:text-[#0F4C2E] underline underline-offset-4 font-semibold cursor-pointer"
+                  >
+                    {isNl ? 'Individuele instellingen aanpassen' : 'Individuelle Einstellungen anpassen'}
                   </button>
                 </div>
               </div>
             ) : (
               <div className="flex flex-col max-h-[85vh]">
-                <div className="p-5 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white z-10">
-                  <h2 className="text-xl font-bold">Cookie-Einstellungen</h2>
-                  <button onClick={() => setShowSettings(false)} className="p-2 hover:bg-gray-100 rounded transition-colors text-gray-500">
+                <div className="p-5 border-b border-[#EDE8E0] flex items-center justify-between sticky top-0 bg-white z-10">
+                  <h2 className="text-lg font-bold text-[#1B211D] font-display">
+                    {isNl ? 'Cookie-instellingen' : 'Cookie-Einstellungen'}
+                  </h2>
+                  <button onClick={() => setShowSettings(false)} className="p-1.5 hover:bg-gray-100 rounded-md transition-colors text-gray-500">
                     <X className="w-5 h-5" />
                   </button>
                 </div>
                 
-                <div className="p-6 overflow-y-auto flex-1 space-y-4">
+                <div className="p-6 overflow-y-auto flex-1 space-y-3.5 text-[13.5px]">
                   {/* Essential */}
-                  <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-md border border-gray-200">
-                    <div className="mt-1">
-                      <input type="checkbox" checked disabled className="w-5 h-5 accent-orange-500 cursor-not-allowed rounded" />
+                  <div className="flex items-start gap-3.5 p-3.5 bg-[#FAF8F5] rounded-lg border border-[#EDE8E0]">
+                    <div className="mt-0.5">
+                      <input type="checkbox" checked disabled className="w-4 h-4 accent-[#0F4C2E] cursor-not-allowed rounded" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900">Essenziell (Immer aktiv)</h3>
-                      <p className="text-sm text-gray-600 mt-1">Diese Cookies werden für die grundlegenden Funktionen der Webseite benötigt, z.B. für den Login und das Speichern dieser Cookie-Einstellungen.</p>
+                      <h3 className="font-bold text-[#1B211D]">
+                        {isNl ? 'Noodzakelijk (Altijd actief)' : 'Essenziell (Immer aktiv)'}
+                      </h3>
+                      <p className="text-xs text-[#5F6B63] mt-1">
+                        {isNl 
+                          ? 'Vereist voor basisfuncties van de website, bijv. inloggen en het opslaan van deze cookie-instellingen.' 
+                          : 'Diese Cookies werden für die grundlegenden Funktionen der Webseite benötigt, z.B. für den Login und das Speichern dieser Cookie-Einstellungen.'}
+                      </p>
                     </div>
                   </div>
 
                   {/* Analytics */}
-                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, analytics: !settings.analytics})}>
-                    <div className="mt-1">
-                      <input type="checkbox" checked={settings.analytics} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none rounded" />
+                  <div 
+                    className="flex items-start gap-3.5 p-3.5 border border-[#EDE8E0] rounded-lg hover:bg-[#FAF8F5] transition-colors cursor-pointer" 
+                    onClick={() => setSettings({...settings, analytics: !settings.analytics})}
+                  >
+                    <div className="mt-0.5">
+                      <input 
+                        type="checkbox" 
+                        checked={settings.analytics} 
+                        onChange={() => {}} 
+                        className="w-4 h-4 accent-[#0F4C2E] cursor-pointer pointer-events-none rounded" 
+                      />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900">Statistiken (Google Analytics)</h3>
-                      <p className="text-sm text-gray-600 mt-1">Erfasst anonymisierte Daten (z.B. besuchte Seiten, Verweildauer) zur Verbesserung unseres Angebots. <br/><b>Anbieter:</b> Google Ireland Limited.<br/><b>Speicherdauer:</b> bis zu 2 Jahre.</p>
+                      <h3 className="font-bold text-[#1B211D]">
+                        {isNl ? 'Statistieken & Analyse (Google Analytics)' : 'Statistiken & Webanalyse (Google Analytics)'}
+                      </h3>
+                      <p className="text-xs text-[#5F6B63] mt-1">
+                        {isNl 
+                          ? 'Verzamelt geanonimiseerde gegevens (Property ID 302481363) om bezoekersaantallen en paginabezoeken te meten met geactiveerde IP-anonimisering.' 
+                          : 'Erfasst anonymisierte Daten (Property ID 302481363, z. B. besuchte Seiten, Verweildauer) mit aktivierter IP-Anonymisierung zur Verbesserung des Angebots.'}
+                      </p>
                     </div>
                   </div>
 
                   {/* Marketing */}
-                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, marketing: !settings.marketing})}>
-                    <div className="mt-1">
-                      <input type="checkbox" checked={settings.marketing} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none rounded" />
+                  <div 
+                    className="flex items-start gap-3.5 p-3.5 border border-[#EDE8E0] rounded-lg hover:bg-[#FAF8F5] transition-colors cursor-pointer" 
+                    onClick={() => setSettings({...settings, marketing: !settings.marketing})}
+                  >
+                    <div className="mt-0.5">
+                      <input 
+                        type="checkbox" 
+                        checked={settings.marketing} 
+                        onChange={() => {}} 
+                        className="w-4 h-4 accent-[#0F4C2E] cursor-pointer pointer-events-none rounded" 
+                      />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900">Marketing</h3>
-                      <p className="text-sm text-gray-600 mt-1">Wird verwendet, um personalisierte Werbeanzeigen auszuspielen und deren Erfolg über Websites hinweg zu messen (z.B. Facebook Pixel).</p>
+                      <h3 className="font-bold text-[#1B211D]">
+                        {isNl ? 'Marketing & Externe advertenties' : 'Marketing & Kampagnen'}
+                      </h3>
+                      <p className="text-xs text-[#5F6B63] mt-1">
+                        {isNl 
+                          ? 'Optionele scripts van derden om het bereik van advertentiecampagnes te analyseren.' 
+                          : 'Wird verwendet, um Werbeanzeigen und deren Erfolg über Websites hinweg zu messen.'}
+                      </p>
                     </div>
                   </div>
 
                   {/* External Media */}
-                  <div className="flex items-start gap-4 p-4 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => setSettings({...settings, externalMedia: !settings.externalMedia})}>
-                    <div className="mt-1">
-                      <input type="checkbox" checked={settings.externalMedia} onChange={() => {}} className="w-5 h-5 accent-orange-500 cursor-pointer pointer-events-none rounded" />
+                  <div 
+                    className="flex items-start gap-3.5 p-3.5 border border-[#EDE8E0] rounded-lg hover:bg-[#FAF8F5] transition-colors cursor-pointer" 
+                    onClick={() => setSettings({...settings, externalMedia: !settings.externalMedia})}
+                  >
+                    <div className="mt-0.5">
+                      <input 
+                        type="checkbox" 
+                        checked={settings.externalMedia} 
+                        onChange={() => {}} 
+                        className="w-4 h-4 accent-[#0F4C2E] cursor-pointer pointer-events-none rounded" 
+                      />
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900">Externe Medien</h3>
-                      <p className="text-sm text-gray-600 mt-1">Erlaubt das Laden von Inhalten von Drittanbietern wie eingebetteten YouTube-Videos oder Google Maps-Karten.</p>
+                      <h3 className="font-bold text-[#1B211D]">
+                        {isNl ? 'Externe media & Kaarten' : 'Externe Medien & Karten'}
+                      </h3>
+                      <p className="text-xs text-[#5F6B63] mt-1">
+                        {isNl 
+                          ? 'Staat het inladen van externe content zoals Google Maps of video\'s toe.' 
+                          : 'Erlaubt das Laden von Inhalten von Drittanbietern wie Google Maps-Karten oder externen Medien.'}
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-6 border-t border-gray-100 bg-white sticky bottom-0 z-10">
-                  <button onClick={handleSaveSettings} className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-md transition-colors shadow-md">
-                    Auswahl speichern
+                <div className="p-4 border-t border-[#EDE8E0] bg-white sticky bottom-0 z-10">
+                  <button 
+                    onClick={handleSaveSettings} 
+                    className="w-full py-2.5 bg-[#0F4C2E] hover:bg-[#06301C] text-white font-bold rounded-lg transition-colors text-sm shadow-md"
+                  >
+                    {isNl ? 'Selectie opslaan' : 'Auswahl speichern'}
                   </button>
                 </div>
               </div>
