@@ -293,10 +293,6 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 badge={rankingBadge} 
                 lang={lang} 
                 variant="seal" 
-                onClick={() => {
-                  setInfoModalTopic('score');
-                  setIsInfoModalOpen(true);
-                }}
               />
             )}
 

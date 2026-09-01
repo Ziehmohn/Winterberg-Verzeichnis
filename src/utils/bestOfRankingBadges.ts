@@ -1,4 +1,5 @@
 import { Business } from '../types';
+import { getCategorySlug, getSubcategorySlug } from './routes';
 
 export type RankingBadgeTier = 'top1_star' | 'top3_gold' | 'top5_silver' | 'top10_bronze';
 
@@ -6,11 +7,15 @@ export interface BusinessRankingBadgeInfo {
   tier: RankingBadgeTier;
   rank: number;
   categoryName: string;
+  category: string;
+  subcategory?: string;
   isOverall: boolean;
   labelDe: string;
   labelNl: string;
   subLabelDe: string;
   subLabelNl: string;
+  targetPathDe: string;
+  targetPathNl: string;
 }
 
 /**
@@ -53,6 +58,7 @@ export function getBusinessRankingBadge(
   // 1. Check Subcategory rank
   let bestRank: number | null = null;
   let categoryName = business.category;
+  let targetSubcategory: string | undefined = undefined;
   let isOverall = false;
 
   if (business.subcategory) {
@@ -61,6 +67,7 @@ export function getBusinessRankingBadge(
     if (subIdx !== -1 && subIdx < 10) {
       bestRank = subIdx + 1;
       categoryName = business.subcategory;
+      targetSubcategory = business.subcategory;
     }
   }
 
@@ -72,6 +79,7 @@ export function getBusinessRankingBadge(
     if (bestRank === null || catRank <= bestRank) {
       bestRank = catRank;
       categoryName = business.category;
+      targetSubcategory = undefined;
     }
   }
 
@@ -82,11 +90,31 @@ export function getBusinessRankingBadge(
     if (bestRank === null || overallRank <= bestRank) {
       bestRank = overallRank;
       categoryName = 'Winterberg';
+      targetSubcategory = undefined;
       isOverall = true;
     }
   }
 
   if (bestRank === null || bestRank > 10) return null;
+
+  // Generate target paths
+  let targetPathDe = '/die-besten';
+  let targetPathNl = '/nl/de-beste';
+
+  if (!isOverall) {
+    const catSlugDe = getCategorySlug(business.category, 'de');
+    const catSlugNl = getCategorySlug(business.category, 'nl');
+
+    if (targetSubcategory) {
+      const subSlugDe = getSubcategorySlug(targetSubcategory, 'de');
+      const subSlugNl = getSubcategorySlug(targetSubcategory, 'nl');
+      targetPathDe = `/die-besten/${catSlugDe}/${subSlugDe}`;
+      targetPathNl = `/nl/de-beste/${catSlugNl}/${subSlugNl}`;
+    } else {
+      targetPathDe = `/die-besten/${catSlugDe}`;
+      targetPathNl = `/nl/de-beste/${catSlugNl}`;
+    }
+  }
 
   // Determine Badge Tier:
   // Top 1 = Gold Star Badge
@@ -98,44 +126,60 @@ export function getBusinessRankingBadge(
       tier: 'top1_star',
       rank: 1,
       categoryName,
+      category: business.category,
+      subcategory: targetSubcategory,
       isOverall,
       labelDe: `🌟 Platz 1: ${categoryName}`,
       labelNl: `🌟 Nummer 1: ${categoryName}`,
       subLabelDe: 'Offizielle Bestenliste 2026',
-      subLabelNl: 'Officiële ranglijst 2026'
+      subLabelNl: 'Officiële ranglijst 2026',
+      targetPathDe,
+      targetPathNl
     };
   } else if (bestRank <= 3) {
     return {
       tier: 'top3_gold',
       rank: bestRank,
       categoryName,
+      category: business.category,
+      subcategory: targetSubcategory,
       isOverall,
       labelDe: `🥇 Top 3: ${categoryName}`,
       labelNl: `🥇 Top 3: ${categoryName}`,
       subLabelDe: 'Offizielle Bestenliste 2026',
-      subLabelNl: 'Officiële ranglijst 2026'
+      subLabelNl: 'Officiële ranglijst 2026',
+      targetPathDe,
+      targetPathNl
     };
   } else if (bestRank <= 5) {
     return {
       tier: 'top5_silver',
       rank: bestRank,
       categoryName,
+      category: business.category,
+      subcategory: targetSubcategory,
       isOverall,
       labelDe: `🥈 Top 5: ${categoryName}`,
       labelNl: `🥈 Top 5: ${categoryName}`,
       subLabelDe: 'Offizielle Bestenliste 2026',
-      subLabelNl: 'Officiële ranglijst 2026'
+      subLabelNl: 'Officiële ranglijst 2026',
+      targetPathDe,
+      targetPathNl
     };
   } else {
     return {
       tier: 'top10_bronze',
       rank: bestRank,
       categoryName,
+      category: business.category,
+      subcategory: targetSubcategory,
       isOverall,
       labelDe: `🥉 Top 10: ${categoryName}`,
       labelNl: `🥉 Top 10: ${categoryName}`,
       subLabelDe: 'Offizielle Bestenliste 2026',
-      subLabelNl: 'Officiële ranglijst 2026'
+      subLabelNl: 'Officiële ranglijst 2026',
+      targetPathDe,
+      targetPathNl
     };
   }
 }
