@@ -568,26 +568,32 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           )}
         </div>
 
-        <aside className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)] sticky top-[116px] flex flex-col gap-3">
-          <div className="flex justify-between items-start mb-1">
-            <div className="font-display text-[18px] font-semibold mt-1">{t("contact")}</div>
-            {business.logoUrl ? (
+        <aside className="sticky top-[116px] flex flex-col gap-4">
+          {/* Dedicated Premium Logo Card */}
+          {business.isPremium && business.logoUrl && (
+            <div className="border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-44 sm:h-52 w-full flex items-center justify-center bg-transparent">
               <img 
                 src={business.logoUrl} 
                 alt={`Logo von ${business.name}`} 
-                className="w-12 h-12 rounded-md object-contain border border-[#EDE8E0] shadow-sm bg-white"
+                className="w-full h-full object-cover" 
               />
-            ) : (
-              <BusinessCategoryIcon 
-                category={business.category} 
-                subcategory={business.subcategory} 
-                name={business.name} 
-                isPremium={business.isPremium} 
-                size="lg"
-                className="w-12 h-12"
-              />
-            )}
-          </div>
+            </div>
+          )}
+
+          <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)] flex flex-col gap-3">
+            <div className="flex justify-between items-start mb-1">
+              <div className="font-display text-[18px] font-semibold mt-1">{t("contact")}</div>
+              {(!business.isPremium || !business.logoUrl) && (
+                <BusinessCategoryIcon 
+                  category={business.category} 
+                  subcategory={business.subcategory} 
+                  name={business.name} 
+                  isPremium={business.isPremium} 
+                  size="lg"
+                  className="w-12 h-12"
+                />
+              )}
+            </div>
           
           {business.phone && telHref && (
             <a href={telHref} className="flex items-center gap-[11px] bg-[#F2761B] text-white rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D65F0C] transition-colors">
@@ -710,8 +716,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             )}
           </div>
-        </aside>
-      </div>
+        </div>
+      </aside>
+    </div>
 
       {similarBusinesses.length > 0 && (
         <div className="max-w-[1000px] mx-auto px-6 pb-[80px]">
