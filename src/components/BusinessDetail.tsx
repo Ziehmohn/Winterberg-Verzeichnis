@@ -2,8 +2,8 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage } from '../types';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag } from 'lucide-react';
+import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
@@ -325,6 +325,19 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             </div>
           )}
+
+          {business.isPremium && Array.isArray(business.featureBadges) && business.featureBadges.length > 0 && (
+            <div className="mt-3.5 pt-3 border-t border-white/15 flex items-center gap-2 flex-wrap">
+              {business.featureBadges.map((badge, bIdx) => (
+                <span 
+                  key={bIdx}
+                  className="bg-white/15 backdrop-blur-xs text-white rounded-full px-3 py-1 text-[13px] font-medium border border-white/20 flex items-center gap-1.5 shadow-2xs"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -448,6 +461,64 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 ))}
               </div>
             </>
+          )}
+
+          {/* PDF Documents, Speisekarten & Preislisten (Premium) */}
+          {business.isPremium && Array.isArray(business.documents) && business.documents.length > 0 && (
+            <div className="mb-[34px]">
+              <div className="flex items-center justify-between mb-3.5">
+                <h2 className="font-display text-[22px] font-semibold flex items-center gap-2">
+                  <FileDown className="w-5 h-5 text-[#F2761B]" />
+                  {lang === 'nl' ? 'Menukaarten, Prijslijsten & Downloads' : 'Speisekarten, Preislisten & Downloads'}
+                </h2>
+                <span className="text-xs text-[#5F6B63] bg-[#FAF8F5] border border-[#EDE8E0] px-2.5 py-0.5 rounded">
+                  {business.documents.length} {business.documents.length === 1 ? (lang === 'nl' ? 'document' : 'Dokument') : (lang === 'nl' ? 'documenten' : 'Dokumente')}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {business.documents.map((docItem) => {
+                  const typeLabel = docItem.type === 'menu' ? (lang === 'nl' ? '🍽️ Menukaart' : '🍽️ Speisekarte')
+                    : docItem.type === 'pricelist' ? (lang === 'nl' ? '🏷️ Prijslijst' : '🏷️ Preisliste')
+                    : docItem.type === 'flyer' ? (lang === 'nl' ? '📰 Flyer' : '📰 Flyer')
+                    : docItem.type === 'brochure' ? (lang === 'nl' ? '📖 Brochure' : '📖 Broschüre')
+                    : (lang === 'nl' ? '📁 Document' : '📁 Dokument');
+
+                  return (
+                    <a
+                      key={docItem.id}
+                      href={docItem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group bg-[#FAF8F5] hover:bg-[#F2F7F4] border border-[#EDE8E0] hover:border-[#0F4C2E]/40 rounded-xl p-4 transition-all duration-200 shadow-2xs hover:shadow-md flex items-start justify-between gap-3 text-left"
+                    >
+                      <div className="flex items-start gap-3 min-w-0">
+                        <div className="w-11 h-11 rounded-lg bg-red-50 text-red-600 border border-red-100 flex items-center justify-center shrink-0 font-bold text-xs shadow-2xs group-hover:scale-105 transition-transform">
+                          <FileText className="w-5 h-5" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="inline-block text-[11px] font-bold text-[#0F4C2E] uppercase tracking-wider mb-0.5">
+                            {typeLabel}
+                          </span>
+                          <h3 className="font-semibold text-[15px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors line-clamp-1">
+                            {docItem.title}
+                          </h3>
+                          {docItem.fileSize && (
+                            <span className="text-xs text-[#8A928B] block mt-0.5">
+                              PDF · {docItem.fileSize}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="w-8 h-8 rounded-full bg-white border border-[#EDE8E0] group-hover:bg-[#0F4C2E] group-hover:text-white text-[#5F6B63] flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-1">
+                        <Download className="w-4 h-4" />
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
           )}
 
           {showHours && business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
@@ -618,6 +689,30 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 />
               )}
             </div>
+
+            {/* Custom Action CTA Button (Premium) */}
+            {business.isPremium && business.customCta && business.customCta.text && business.customCta.url && (
+              <a
+                href={business.customCta.url}
+                target={business.customCta.url.startsWith('http') ? '_blank' : undefined}
+                rel={business.customCta.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`w-full flex items-center justify-center gap-2 rounded-md py-3 px-4 text-[15px] font-bold shadow-sm transition-all duration-200 hover:scale-[1.02] text-center cursor-pointer ${
+                  business.customCta.type === 'emergency'
+                    ? 'bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-red-500/20 animate-pulse'
+                    : business.customCta.type === 'table'
+                    ? 'bg-[#D65F0C] hover:bg-[#B94F08] text-white shadow-orange-500/20'
+                    : 'bg-[#0F4C2E] hover:bg-[#06301C] text-white shadow-emerald-900/20'
+                }`}
+              >
+                {business.customCta.type === 'table' && <UtensilsCrossed className="w-4 h-4" />}
+                {business.customCta.type === 'emergency' && <Siren className="w-4 h-4" />}
+                {business.customCta.type === 'booking' && <CalendarDays className="w-4 h-4" />}
+                {business.customCta.type === 'rental' && <Sparkles className="w-4 h-4" />}
+                {business.customCta.type === 'inquiry' && <FileCheck className="w-4 h-4" />}
+                {!['table', 'emergency', 'booking', 'rental', 'inquiry'].includes(business.customCta.type || '') && <ExternalLink className="w-4 h-4" />}
+                <span>{business.customCta.text}</span>
+              </a>
+            )}
           
           {business.phone && telHref && (
             <a href={telHref} className="flex items-center gap-[11px] bg-[#F2761B] text-white rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D65F0C] transition-colors">

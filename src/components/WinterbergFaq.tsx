@@ -81,14 +81,14 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'feiern-nachtleben',
     question: 'Wo kann man in Winterberg gut feiern?',
     categoryGroup: 'Essen & Trinken',
-    quickSummary: 'In Winterberg kann man hervorragend feiern – vom ausgelassenen Après-Ski direkt an den Pisten über Partynächte in Großraum-Diskotheken wie der Tenne und der Dorf Alm bis hin zu urigen Kneipen und Irish Pubs.',
+    quickSummary: 'In Winterberg kann man hervorragend feiern – vom ausgelassenen Après-Ski direkt an den Pisten über Partynächte im Discotheken-Klassiker Tenne und in der Dorf Alm bis hin zu urigen Kneipen und Irish Pubs.',
     plainAnswer: 'Gut feiern kann man beim Après-Ski in Möppi\'s Hütte oder im Alm Salettl. Abends geht die Party in der Kult-Disko Tenne Winterberg, im Alpenrausch und in der Dorf Alm weiter, sowie in urgemütlichen Kneipen wie dem Hessenkeller und dem Blackwater Irish Pub.',
     answerHtml: (
       <div className="space-y-3">
         <p>Winterberg ist die Party- und Après-Ski-Hochburg im Sauerland. Hier feiert man bis in die frühen Morgenstunden:</p>
         <ul className="list-disc pl-5 space-y-1.5">
           <li><strong>Après-Ski & Pistenpartys:</strong> <em>Möppi’s Hütte</em> (Bremberg), <em>Alm Salettl</em> (Kappe) und die Schirmbars am Herrloh – in der Wintersaison startet die Musik und Stimmung bereits ab 15:00 Uhr direkt an den Pisten.</li>
-          <li><strong>Clubs & Diskotheken:</strong> Die <em>Tenne Winterberg</em> ist der legendäre Tanztempel im Hochsauerland mit mehreren Dancefloors (Charts, House, Schlager & Party-Classics) und wechselnden DJs. Ebenfalls beliebt ist der <em>Alpenrausch</em>.</li>
+          <li><strong>Discotheken-Klassiker & Clubs:</strong> Die <em>Tenne Winterberg</em> ist die legendäre Kult-Disco der Stadt – ein echter Klassiker, der bereits seit vielen Jahrzehnten Gäste begeistert und auf mehreren Ebenen zum Tanzen einlädt. Ebenfalls beliebt für Partynächte ist der <em>Alpenrausch</em>.</li>
           <li><strong>Stimmungslokale & Almhütten:</strong> Die <em>Dorf Alm Winterberg</em> bietet urige Gemütlichkeit, zünftige Hüttenmusik und ausgelassene Partystimmung mitten im Zentrum.</li>
           <li><strong>Uriges Kneipenleben & Pubs:</strong> Der <em>Hessenkeller</em> (uriger Gewölbekeller mit Live-Musik, Tanz und Quizabenden) und das <em>Blackwater Irish Pub</em> (frisch gezapftes Guinness, Cider, Live-Sport & Musik).</li>
           <li><strong>Cocktails & Lounge:</strong> <em>Bu'ket Bar</em> für entspannte Drinks und Cocktails im Stadtkern.</li>
@@ -138,7 +138,7 @@ export const FAQ_DATA: FaqItem[] = [
         <p>Je nach Tages- und Jahreszeit gibt es in Winterberg mehrere zentrale Hotspots:</p>
         <ul className="list-disc pl-5 space-y-1.5">
           <li><strong>Stadtzentrum & Marktplatz (Untere Pforte):</strong> Die Flaniermeile <em>Am Waltenberg</em> ist tagsüber gesäumt von Straßencafés, Boutiquen, Eisdielen und Restaurants.</li>
-          <li><strong>Nachtleben & Partyszene:</strong> Am Abend verlagert sich das Geschehen in die Clubs und Lokale. Vor allem die Großraum-Disko <em>Tenne</em>, die <em>Dorf Alm</em>, der <em>Alpenrausch</em> sowie die Pubs und Kneipen wie der <em>Hessenkeller</em> und das <em>Blackwater Irish Pub</em> sind absolute Publikumsmagneten.</li>
+          <li><strong>Nachtleben & Partyszene:</strong> Am Abend verlagert sich das Geschehen in die Clubs und Lokale. Vor allem der Disco-Klassiker <em>Tenne</em> (eine Winterberger Institution seit vielen Jahrzehnten), die <em>Dorf Alm</em>, der <em>Alpenrausch</em> sowie die Pubs und Kneipen wie der <em>Hessenkeller</em> und das <em>Blackwater Irish Pub</em> sind absolute Publikumsmagneten.</li>
           <li><strong>Erlebnisberg Kappe (Ganzjährig):</strong> Das Freizeit- und Action-Zentrum mit <em>Bikepark Winterberg</em>, <em>Panorama Erlebnis Brücke</em>, <em>Sommerrodelbahn</em>, <em>Fly-Line</em>, <em>Kletterwald</em> und der <em>VELTINS-EisArena</em> (Bobbahn).</li>
           <li><strong>Skiliftkarussell (Herrloh, Bremberg, Kappe):</strong> Im Winter der Treffpunkt für Zehntausende Wintersportler mit anschließenden Après-Ski-Partys an den Hängen (z. B. in <em>Möppi's Hütte</em>).</li>
           <li><strong>Bikepark Winterberg (Frühjahr bis Herbst):</strong> Einer der größten Mountainbike- und Downhill-Parks Europas mit internationaler Gravity-Community.</li>

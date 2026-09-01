@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move } from 'lucide-react';
-import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig } from '../types';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake } from 'lucide-react';
+import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { translateTextToDutch, translateServiceToDutch } from '../utils/translator';
@@ -291,6 +291,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             : []),
       isPremium: !!base.isPremium,
       businessNews: Array.isArray(base.businessNews) ? [...base.businessNews] : [],
+      documents: Array.isArray(base.documents) ? [...base.documents] : [],
+      featureBadges: Array.isArray(base.featureBadges) ? [...base.featureBadges] : [],
+      customCta: base.customCta || { text: '', url: '', type: 'custom' },
       extendedDescription: base.extendedDescription || '',
       ownerId: base.ownerId || '',
       status: base.status || 'approved',
@@ -310,6 +313,90 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   const [newProduct, setNewProduct] = useState('');
   const [newProductNl, setNewProductNl] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+
+  // New Document Upload State
+  const [uploadingDoc, setUploadingDoc] = useState(false);
+  const [docTitle, setDocTitle] = useState('');
+  const [docType, setDocType] = useState<BusinessDocument['type']>('menu');
+  const [newCustomBadge, setNewCustomBadge] = useState('');
+
+  const handleDocumentUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      alert('Bitte nur PDF-Dateien hochladen.');
+      return;
+    }
+
+    if (file.size > 15 * 1024 * 1024) {
+      alert('Die PDF-Datei ist zu groß (maximal 15 MB).');
+      return;
+    }
+
+    setUploadingDoc(true);
+    try {
+      const storageRef = ref(storage, `documents/${formData.id || 'new'}_${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`);
+      await uploadBytes(storageRef, file);
+      const downloadUrl = await getDownloadURL(storageRef);
+
+      const sizeStr = file.size > 1024 * 1024 
+        ? `${(file.size / (1024 * 1024)).toFixed(1)} MB` 
+        : `${Math.round(file.size / 1024)} KB`;
+
+      const newDoc: BusinessDocument = {
+        id: `doc_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+        title: docTitle.trim() || file.name.replace(/\.pdf$/i, ''),
+        type: docType,
+        url: downloadUrl,
+        fileSize: sizeStr,
+        updatedAt: new Date().toISOString()
+      };
+
+      setFormData(prev => ({
+        ...prev,
+        documents: [...(prev.documents || []), newDoc]
+      }));
+
+      setDocTitle('');
+      e.target.value = '';
+    } catch (err: any) {
+      console.error('Error uploading document:', err);
+      alert('Fehler beim Hochladen des Dokuments: ' + (err.message || err));
+    } finally {
+      setUploadingDoc(false);
+    }
+  };
+
+  const handleDeleteDocument = (docId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      documents: (prev.documents || []).filter(d => d.id !== docId)
+    }));
+  };
+
+  const handleToggleBadge = (badgeLabel: string) => {
+    setFormData(prev => {
+      const existing = prev.featureBadges || [];
+      if (existing.includes(badgeLabel)) {
+        return { ...prev, featureBadges: existing.filter(b => b !== badgeLabel) };
+      } else {
+        return { ...prev, featureBadges: [...existing, badgeLabel] };
+      }
+    });
+  };
+
+  const handleAddCustomBadge = () => {
+    const trimmed = newCustomBadge.trim();
+    if (!trimmed) return;
+    if (!(formData.featureBadges || []).includes(trimmed)) {
+      setFormData(prev => ({
+        ...prev,
+        featureBadges: [...(prev.featureBadges || []), trimmed]
+      }));
+    }
+    setNewCustomBadge('');
+  };
 
 
   const handleAutoTranslateToDutch = () => {
@@ -428,6 +515,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       products: formData.products || [],
       products_nl: formData.products_nl || [],
       businessNews: formData.businessNews || [],
+      documents: formData.documents || [],
+      featureBadges: formData.featureBadges || [],
+      customCta: formData.customCta?.text ? formData.customCta : null,
       status: formData.status || 'approved',
       id: newId
     };
@@ -2027,6 +2117,290 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   />
                 );
               })()}
+            </div>
+
+            {/* ─── PDF-Speisekarten, Preislisten & Dokumente ──────── */}
+            <div className="mt-8 border-t-2 border-orange-200 pt-6">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
+                    <FileDown className="w-5 h-5 text-[#F2761B]" />
+                    📄 Speisekarten, Preislisten & PDF-Dokumente
+                  </h3>
+                  <p className="text-sm text-[#5F6B63] mt-0.5">
+                    Laden Sie Speisekarten, Getränkekarten, Preislisten, Verleihgebühren oder Imagebroschüren als PDF hoch (max. 15 MB).
+                  </p>
+                </div>
+              </div>
+
+              {/* Upload Box */}
+              <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+                  <div>
+                    <label className="block text-xs font-bold text-[#1B211D] mb-1">Dokument-Typ *</label>
+                    <select
+                      value={docType}
+                      onChange={e => setDocType(e.target.value as any)}
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    >
+                      <option value="menu">🍽️ Speise- / Getränkekarte</option>
+                      <option value="pricelist">🏷️ Preis- / Verleihliste</option>
+                      <option value="flyer">📰 Flyer &amp; Angebote</option>
+                      <option value="brochure">📖 Broschüre &amp; Katalog</option>
+                      <option value="other">📁 Sonstiges Dokument</option>
+                    </select>
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <label className="block text-xs font-bold text-[#1B211D] mb-1">Titel des Dokuments (Optional)</label>
+                    <input
+                      type="text"
+                      value={docTitle}
+                      onChange={e => setDocTitle(e.target.value)}
+                      placeholder="z. B. Speisekarte Saison 2026, Preisliste Handwerk..."
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <label className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md text-white bg-[#0F4C2E] hover:bg-[#06301C] transition-colors shadow-xs ${uploadingDoc ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                    <Upload className="w-4 h-4" />
+                    {uploadingDoc ? 'Wird hochgeladen...' : '+ PDF-Datei auswählen & hochladen'}
+                    <input
+                      type="file"
+                      accept="application/pdf,.pdf"
+                      className="hidden"
+                      onChange={handleDocumentUpload}
+                      disabled={uploadingDoc}
+                    />
+                  </label>
+                  <span className="text-xs text-[#8A928B]">Nur PDF-Dateien bis 15 MB</span>
+                </div>
+              </div>
+
+              {/* Uploaded Documents List */}
+              <div className="space-y-2.5">
+                {(formData.documents || []).map((docItem) => {
+                  const typeLabel = docItem.type === 'menu' ? '🍽️ Speisekarte'
+                    : docItem.type === 'pricelist' ? '🏷️ Preisliste'
+                    : docItem.type === 'flyer' ? '📰 Flyer'
+                    : docItem.type === 'brochure' ? '📖 Broschüre'
+                    : '📁 Dokument';
+
+                  return (
+                    <div key={docItem.id} className="bg-white border border-[#EDE8E0] rounded-lg p-3.5 flex items-center justify-between gap-3 shadow-2xs">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 font-bold text-xs">
+                          PDF
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-sm text-[#1B211D] truncate">{docItem.title}</p>
+                          <div className="flex items-center gap-2 text-xs text-[#5F6B63] mt-0.5">
+                            <span className="bg-[#FAF8F5] border border-[#EDE8E0] px-2 py-0.5 rounded text-[11px] font-medium">{typeLabel}</span>
+                            {docItem.fileSize && <span>{docItem.fileSize}</span>}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href={docItem.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold px-3 py-1.5 rounded-md bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] hover:bg-[#E8F1EB] transition-colors inline-flex items-center gap-1"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Öffnen
+                        </a>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteDocument(docItem.id)}
+                          className="text-xs px-2.5 py-1.5 rounded-md bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
+                          title="Dokument löschen"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+                {(formData.documents || []).length === 0 && (
+                  <p className="text-xs text-[#8A928B] italic">Noch keine PDF-Dokumente oder Speisekarten hinterlegt.</p>
+                )}
+              </div>
+            </div>
+
+            {/* ─── Ausstattungs- & Besonderheiten-Badges (USPs) ── */}
+            <div className="mt-8 border-t-2 border-orange-200 pt-6">
+              <div>
+                <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
+                  <Tag className="w-5 h-5 text-[#F2761B]" />
+                  🏷️ Ausstattungs- &amp; Besonderheiten-Badges (USPs)
+                </h3>
+                <p className="text-sm text-[#5F6B63] mt-0.5 mb-3">
+                  Wählen Sie passende Ausstattungsmerkmale und Besonderheiten für Ihr Unternehmen (z. B. Hunde erlaubt, Notdienst, Terrasse).
+                </p>
+              </div>
+
+              {/* Active Badges */}
+              {(formData.featureBadges || []).length > 0 && (
+                <div className="mb-4 p-3 bg-white rounded-lg border border-[#EDE8E0]">
+                  <span className="text-xs font-bold text-[#1B211D] block mb-2">Ausgewählte Badges:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {(formData.featureBadges || []).map((b, idx) => (
+                      <span key={idx} className="bg-[#E8F1EB] text-[#0F4C2E] font-medium text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#0F4C2E]/20">
+                        {b}
+                        <button
+                          type="button"
+                          onClick={() => handleToggleBadge(b)}
+                          className="hover:text-red-600 ml-0.5 cursor-pointer"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Quick Presets */}
+              <div className="space-y-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4">
+                <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider block">Schnellauswahl nach Branche:</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    '🐶 Hunde erlaubt',
+                    '☀️ Biergarten / Terrasse',
+                    '🌱 Vegan & Vegetarisch',
+                    '💳 Kartenzahlung',
+                    '♿ Barrierefrei',
+                    '👶 Kinderfreundlich',
+                    '🚨 24h Notdienst',
+                    '🏆 Meisterbetrieb',
+                    '📝 Kostenloses Angebot',
+                    '🎿 Skikeller mit Schuhtrockner',
+                    '🚴 E-Bike Ladestation',
+                    '🎫 Sauerland SommerCard inklusive',
+                    '🧖 Sauna & Wellness',
+                    '🅿️ Kostenloser Parkplatz',
+                    '🎿 Ausrüstungsverleih',
+                    '🏂 Skischule vor Ort',
+                    '📅 Online-Terminbuchung',
+                    '💬 Kostenlose Erstberatung'
+                  ].map((preset) => {
+                    const isSelected = (formData.featureBadges || []).includes(preset);
+                    return (
+                      <button
+                        key={preset}
+                        type="button"
+                        onClick={() => handleToggleBadge(preset)}
+                        className={`text-xs px-3 py-1.5 rounded-full font-medium transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#0F4C2E] text-white shadow-xs'
+                            : 'bg-white text-[#4A544D] border border-[#EDE8E0] hover:border-[#0F4C2E]'
+                        }`}
+                      >
+                        {isSelected ? '✓ ' : '+ '} {preset}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Custom Badge Input */}
+                <div className="pt-3 border-t border-[#EDE8E0] flex gap-2">
+                  <input
+                    type="text"
+                    value={newCustomBadge}
+                    onChange={e => setNewCustomBadge(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); handleAddCustomBadge(); } }}
+                    placeholder="Eigenes Merkmal hinzufügen (z. B. Panorama-Aussicht)..."
+                    className="flex-1 border border-[#E7E2DA] rounded-md px-3 py-1.5 text-xs bg-white focus:outline-none focus:border-[#0F4C2E]"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddCustomBadge}
+                    className="px-3 py-1.5 bg-[#0F4C2E] text-white text-xs font-semibold rounded-md hover:bg-[#06301C] transition-colors"
+                  >
+                    Hinzufügen
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* ─── Individueller Call-to-Action (Action-Button) ── */}
+            <div className="mt-8 border-t-2 border-orange-200 pt-6">
+              <div>
+                <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-[#F2761B]" />
+                  🔘 Individueller Action-Button (Call-to-Action)
+                </h3>
+                <p className="text-sm text-[#5F6B63] mt-0.5 mb-3">
+                  Heben Sie eine primäre Kundenaktion im Profil hervor (z. B. Tisch reservieren, Notdienst rufen, Termin vereinbaren).
+                </p>
+              </div>
+
+              <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4 space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <label className="block text-xs font-bold text-[#1B211D] mb-1">Aktionstyp</label>
+                    <select
+                      value={formData.customCta?.type || 'custom'}
+                      onChange={e => setFormData({
+                        ...formData,
+                        customCta: {
+                          text: formData.customCta?.text || '',
+                          url: formData.customCta?.url || '',
+                          type: e.target.value as any
+                        }
+                      })}
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    >
+                      <option value="table">🍽️ Tisch online reservieren</option>
+                      <option value="emergency">🚨 24h Notdienst anrufen</option>
+                      <option value="booking">📅 Termin online buchen</option>
+                      <option value="rental">🎿 Ausrüstung vorbestellen</option>
+                      <option value="inquiry">📝 Angebot / Anfrage</option>
+                      <option value="custom">🔗 Individuelle Verlinkung</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[#1B211D] mb-1">Button-Beschriftung</label>
+                    <input
+                      type="text"
+                      value={formData.customCta?.text || ''}
+                      onChange={e => setFormData({
+                        ...formData,
+                        customCta: {
+                          url: formData.customCta?.url || '',
+                          type: formData.customCta?.type || 'custom',
+                          text: e.target.value
+                        }
+                      })}
+                      placeholder="z. B. Tisch reservieren"
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[#1B211D] mb-1">Ziel-URL oder Telefonnummer</label>
+                    <input
+                      type="text"
+                      value={formData.customCta?.url || ''}
+                      onChange={e => setFormData({
+                        ...formData,
+                        customCta: {
+                          text: formData.customCta?.text || '',
+                          type: formData.customCta?.type || 'custom',
+                          url: e.target.value
+                        }
+                      })}
+                      placeholder="https://... oder tel:+49..."
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

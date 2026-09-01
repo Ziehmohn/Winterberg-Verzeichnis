@@ -107,6 +107,9 @@ export interface Business {
   products?: string[];
   jobs?: Job[];
   businessNews?: BusinessNewsArticle[];
+  documents?: BusinessDocument[];
+  featureBadges?: string[];
+  customCta?: CustomActionCta;
   isPremium?: boolean;
   headerImage?: string;
   headerPosition?: HeaderPositionConfig;
@@ -125,6 +128,21 @@ export interface Business {
   extendedDescription_nl?: string;
   services_nl?: string[];
   products_nl?: string[];
+}
+
+export interface BusinessDocument {
+  id: string;
+  title: string;
+  type: 'menu' | 'pricelist' | 'flyer' | 'brochure' | 'other';
+  url: string;
+  fileSize?: string;
+  updatedAt?: string;
+}
+
+export interface CustomActionCta {
+  text: string;
+  url: string;
+  type?: 'booking' | 'table' | 'emergency' | 'inquiry' | 'rental' | 'custom';
 }
 
 export interface HeaderPositionConfig {
