@@ -18,6 +18,7 @@ export interface SeoSettings {
   description: string;
   baseUrl: string;
   googleSiteVerification?: string;
+  googleAnalyticsId?: string;
 }
 
 export interface DesignSettings {

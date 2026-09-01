@@ -3977,9 +3977,15 @@ function SeoAdminPanel({ theme, activeThemeKey, seoSettings, setSeoSettings, bus
            <p className="text-xs mt-1.5 opacity-70">Fügt den HTML-Meta-Tag für die Search Console-Inhaberschaft hinzu. (Code aus dem content-Attribut eingeben).</p>
         </div>
 
+        <div>
+           <label className={labelClass}>Google Analytics 4 Mess-ID <span className="opacity-60 font-normal">(z. B. G-XXXXXXXXXX)</span></label>
+           <input type="text" value={formData.googleAnalyticsId || ''} onChange={e => setFormData({...formData, googleAnalyticsId: e.target.value.trim()})} className={inputClass} placeholder="z.B. G-302481363 oder G-MXFC2V1GXZ" />
+           <p className="text-xs mt-1.5 opacity-70">Geben Sie hier Ihre GA4 Mess-ID ein (zu finden in Google Analytics unter <em>Verwaltung &rarr; Datenstreams &rarr; Web-Stream</em>).</p>
+        </div>
+
         <div className="pt-4 pb-8 border-b border-black/10">
           <button type="submit" className={`px-6 py-2 font-medium w-full md:w-auto transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
-            SEO Einstellungen speichern
+            SEO & Analytics Einstellungen speichern
           </button>
         </div>
       </form>

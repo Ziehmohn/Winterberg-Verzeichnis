@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Shield, Check, Settings, X } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig } from '../types';
-import { GA_PROPERTY_ID, trackPageView } from '../utils/analytics';
+import { getGoogleAnalyticsId, trackPageView } from '../utils/analytics';
 
 interface CookieSettings {
   essential: boolean;
@@ -82,13 +82,16 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
   };
 
   const applyScripts = (currentSettings: CookieSettings) => {
-    // Google Analytics Injection (Property ID: 302481363)
+    // Google Analytics Injection (Property ID: 302481363 / Configurable G-ID)
     if (currentSettings.analytics) {
       if (!document.getElementById('ga-script')) {
+        const gaId = getGoogleAnalyticsId();
+        const tagId = gaId.startsWith('G-') || gaId.startsWith('GT-') ? gaId : `G-${gaId}`;
+
         const script1 = document.createElement('script');
         script1.id = 'ga-script';
         script1.async = true;
-        script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_PROPERTY_ID}`;
+        script1.src = `https://www.googletagmanager.com/gtag/js?id=${tagId}`;
         document.head.appendChild(script1);
 
         const script2 = document.createElement('script');
@@ -97,8 +100,10 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_PROPERTY_ID}', { 'anonymize_ip': true, 'send_page_view': true });
-          gtag('config', 'G-302481363', { 'anonymize_ip': true, 'send_page_view': true });
+          gtag('config', '${gaId}', { 'anonymize_ip': true, 'send_page_view': true });
+          if ('${gaId}' !== '${tagId}') {
+            gtag('config', '${tagId}', { 'anonymize_ip': true, 'send_page_view': true });
+          }
           gtag('config', 'G-MXFC2V1GXZ', { 'anonymize_ip': true, 'send_page_view': true });
         `;
         document.head.appendChild(script2);
@@ -106,7 +111,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
         // Send initial pageview
         setTimeout(() => {
           trackPageView(window.location.pathname, document.title);
-        }, 100);
+        }, 150);
       }
     } else {
       // Remove scripts if revoked
