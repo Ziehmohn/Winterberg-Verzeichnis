@@ -972,6 +972,32 @@ export default function App() {
 
   const categoryBadges = getCategoryBadges();
 
+  // Dynamically calculate the most popular search terms that actually yield results
+  const popularSearches = useMemo(() => {
+    const counts = new Map<string, number>();
+    businesses.forEach(b => {
+      if (b.status === 'pending') return;
+      if (b.subcategory) counts.set(b.subcategory, (counts.get(b.subcategory) || 0) + 1);
+      
+      const allowedServices = b.isPremium ? (b.services || []) : (b.services || []).slice(0, 3);
+      allowedServices.forEach(s => counts.set(s, (counts.get(s) || 0) + 1));
+      
+      const allowedProducts = b.isPremium ? (b.products || []) : (b.products || []).slice(0, 3);
+      allowedProducts.forEach(p => counts.set(p, (counts.get(p) || 0) + 1));
+    });
+
+    // Remove very generic main categories or overly vague terms to keep pills specific and useful
+    const skipList = [
+      'Übernachten', 'Gastronomie', 'Dienstleistungen', 'Einkaufen', 'Freizeit & Erlebnis', 'Handwerk & Bauen', 'Gesundheit & Wellness', 'Tourismus & Mobilität', 'Andere'
+    ];
+    
+    return Array.from(counts.entries())
+      .filter(([term]) => !skipList.includes(term) && term.length > 2)
+      .sort((a, b) => b[1] - a[1])
+      .map(entry => entry[0])
+      .slice(0, 9); // Limit to top 9
+  }, [businesses]);
+
   if (isEmbedMode) {
     return (
       <div className="w-full min-h-screen bg-transparent flex items-center justify-center p-2">
@@ -1464,27 +1490,7 @@ export default function App() {
                       <span className="font-semibold text-white flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" /> {t("popularSearches")}:
                       </span>
-                      {(lang === 'nl' ? [
-                        'Schoenen',
-                        'Ski-Verhuur',
-                        'Bakkerij & Ontbijt',
-                        'E-Bike',
-                        'Dakdekkers',
-                        'Bandenwissel',
-                        'Fysiotherapie',
-                        'Autogarage',
-                        'Bowlen'
-                      ] : [
-                        'Schuhe',
-                        'Ski-Verleih',
-                        'Bäckerei & Frühstück',
-                        'E-Bike',
-                        'Dachdecker',
-                        'Reifenwechsel',
-                        'Physiotherapie',
-                        'Autowerkstatt',
-                        'Bowling'
-                      ]).map(term => (
+                      {popularSearches.map(term => (
                         <button
                           key={term}
                           type="button"
@@ -1495,7 +1501,7 @@ export default function App() {
                           }}
                           className="bg-white/15 hover:bg-white/30 text-white px-3 py-1 rounded-full border border-white/20 transition-all cursor-pointer font-medium"
                         >
-                          {term}
+                          {t(term)}
                         </button>
                       ))}
                     </div>
