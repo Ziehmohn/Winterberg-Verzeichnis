@@ -82,49 +82,37 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
   };
 
   const applyScripts = (currentSettings: CookieSettings) => {
-    // Google Analytics Injection (Property ID: 302481363 / Configurable G-ID)
-    if (currentSettings.analytics) {
-      if (!document.getElementById('ga-script')) {
-        const gaId = getGoogleAnalyticsId();
-        const tagId = gaId.startsWith('G-') || gaId.startsWith('GT-') ? gaId : `G-${gaId}`;
+    const gaId = getGoogleAnalyticsId();
 
-        const script1 = document.createElement('script');
-        script1.id = 'ga-script';
-        script1.async = true;
-        script1.src = `https://www.googletagmanager.com/gtag/js?id=${tagId}`;
-        document.head.appendChild(script1);
-
-        const script2 = document.createElement('script');
-        script2.id = 'ga-inline';
-        script2.innerHTML = `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${gaId}', { 'anonymize_ip': true, 'send_page_view': true });
-          if ('${gaId}' !== 'G-86EMTRTX80') {
-            gtag('config', 'G-86EMTRTX80', { 'anonymize_ip': true, 'send_page_view': true });
-          }
-        `;
-        document.head.appendChild(script2);
-
-        // Send initial pageview
-        setTimeout(() => {
-          trackPageView(window.location.pathname, document.title);
-        }, 150);
-      }
-    } else {
-      // Remove scripts if revoked
-      const script1 = document.getElementById('ga-script');
-      const script2 = document.getElementById('ga-inline');
-      if (script1) script1.remove();
-      if (script2) script2.remove();
-      
-      // Attempt to clear GA cookies
-      document.cookie.split(";").forEach((c) => {
-        if (c.trim().startsWith("_ga")) {
-          document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-        }
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        'analytics_storage': currentSettings.analytics ? 'granted' : 'denied',
+        'ad_storage': currentSettings.marketing ? 'granted' : 'denied',
+        'ad_user_data': currentSettings.marketing ? 'granted' : 'denied',
+        'ad_personalization': currentSettings.marketing ? 'granted' : 'denied'
       });
+
+      if (currentSettings.analytics) {
+        window.gtag('config', gaId, {
+          'anonymize_ip': true,
+          'send_page_view': true,
+          'page_path': window.location.pathname,
+          'page_title': document.title,
+          'page_location': window.location.href
+        });
+        window.gtag('event', 'page_view', {
+          page_path: window.location.pathname,
+          page_title: document.title,
+          page_location: window.location.href
+        });
+      } else {
+        // Remove GA cookies if revoked
+        document.cookie.split(";").forEach((c) => {
+          if (c.trim().startsWith("_ga")) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+          }
+        });
+      }
     }
   };
 

@@ -5,6 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google-site-verification" content="eD2M5X0XpFemq843s7x3232ic58ogimCDB6zWKPN_u8" />
+    
+    <!-- Google Consent Mode v2 & Google Tag (gtag.js) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Default: Denied until user consents via Cookie Banner
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      
+      // Check existing consent from localStorage
+      try {
+        var savedConsent = localStorage.getItem('winterberg_cookie_consent');
+        if (savedConsent) {
+          var parsed = JSON.parse(savedConsent);
+          if (parsed && parsed.settings && parsed.settings.analytics && (!parsed.expires || new Date().getTime() < parsed.expires)) {
+            gtag('consent', 'default', {
+              'analytics_storage': 'granted',
+              'ad_storage': parsed.settings.marketing ? 'granted' : 'denied',
+              'ad_user_data': parsed.settings.marketing ? 'granted' : 'denied',
+              'ad_personalization': parsed.settings.marketing ? 'granted' : 'denied'
+            });
+          }
+        }
+      } catch (e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-86EMTRTX80"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-86EMTRTX80', {
+        'anonymize_ip': true,
+        'send_page_view': true
+      });
+    </script>
+
     <meta name="description" content="Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und Umgebung." />
     <meta property="og:site_name" content="Das Winterberg Verzeichnis" />
     <meta property="og:title" content="Das Winterberg Verzeichnis" />
