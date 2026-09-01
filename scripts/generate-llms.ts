@@ -127,15 +127,23 @@ categories.forEach(cat => {
 
 fullTxt += `---
 
-## 3. Häufige Fragen & Antworten zu Winterberg (FAQ-Katalog)
+## 3. Häufige Fragen & Antworten zu Winterberg (FAQ-Katalog DE & NL)
 
 `;
 
 if (FAQ_DATA && FAQ_DATA.length > 0) {
+  fullTxt += `### Deutsche FAQs (Häufig gestellte Fragen):\n\n`;
   FAQ_DATA.forEach(faq => {
-    fullTxt += `### Frage: ${faq.question}\n`;
-    fullTxt += `**Kategorie:** ${faq.categoryGroup}\n\n`;
-    fullTxt += `${(faq.plainAnswer || faq.quickSummary).replace(/\n+/g, ' ')}\n\n`;
+    fullTxt += `#### Frage: ${faq.de.question}\n`;
+    fullTxt += `- **Kategorie:** ${faq.categoryGroup}\n`;
+    fullTxt += `- **Antwort:** ${(faq.de.plainAnswer || faq.de.quickSummary).replace(/\n+/g, ' ')}\n\n`;
+  });
+
+  fullTxt += `### Nederlandse Veelgestelde Vragen (FAQ):\n\n`;
+  FAQ_DATA.forEach(faq => {
+    fullTxt += `#### Vraag: ${faq.nl.question}\n`;
+    fullTxt += `- **Categorie:** ${faq.categoryGroup}\n`;
+    fullTxt += `- **Antwoord:** ${(faq.nl.plainAnswer || faq.nl.quickSummary).replace(/\n+/g, ' ')}\n\n`;
   });
 }
 

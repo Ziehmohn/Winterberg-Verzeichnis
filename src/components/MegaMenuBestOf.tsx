@@ -10,14 +10,14 @@ import {
   ShoppingBag, 
   Star, 
   ArrowRight, 
-  Medal, 
   Award, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Info
 } from 'lucide-react';
 import { CategoryGroup, Business } from '../types';
 import { useTranslation } from '../i18n';
-import { getCategorySlug, getSubcategorySlug } from '../utils/routes';
+import { getBestOfTitle, BEST_OF_DISCLAIMER } from '../utils/bestOfTitles';
 
 interface MegaMenuBestOfProps {
   isOpen: boolean;
@@ -56,7 +56,7 @@ export const MegaMenuBestOf: React.FC<MegaMenuBestOfProps> = ({
       icon: Compass,
       color: 'text-teal-700',
       bg: 'bg-teal-50 hover:bg-teal-100/80 border-teal-100',
-      title: isNl ? 'Beste Verhuur & Vrije Tijd' : 'Die besten Skiverleihe & Freizeitangebote'
+      title: isNl ? 'Beste Recreatie & Vrije Tijd' : 'Die besten Freizeitangebote & Verleihe'
     },
     'Handwerk': {
       icon: Hammer,
@@ -74,7 +74,7 @@ export const MegaMenuBestOf: React.FC<MegaMenuBestOfProps> = ({
       icon: ShoppingBag,
       color: 'text-blue-800',
       bg: 'bg-blue-50 hover:bg-blue-100/80 border-blue-100',
-      title: isNl ? 'Beste Winkels & Sportzaken' : 'Die besten Geschäfte & Fachhändler'
+      title: isNl ? 'Beste Winkels & Supermarkten' : 'Die besten Geschäfte & Supermärkte'
     }
   };
 
@@ -89,16 +89,16 @@ export const MegaMenuBestOf: React.FC<MegaMenuBestOfProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 top-[73px] bg-black/40 backdrop-blur-xs z-40"
+            className="fixed inset-0 top-[60px] md:top-[68px] bg-black/40 backdrop-blur-xs z-40"
           />
 
           {/* MegaMenu Dropdown Content */}
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-[73px] left-0 right-0 bg-white border-b border-[#EDE8E0] shadow-[0_20px_50px_rgba(15,76,46,0.12)] z-50 max-h-[calc(100vh-80px)] overflow-y-auto"
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed top-[60px] md:top-[68px] left-0 right-0 bg-white border-b border-[#EDE8E0] shadow-[0_20px_50px_rgba(15,76,46,0.14)] z-50 max-h-[calc(100vh-70px)] overflow-y-auto"
           >
             <div className="max-w-[1240px] mx-auto px-6 py-8">
               {/* Header Bar within MegaMenu */}
@@ -111,7 +111,7 @@ export const MegaMenuBestOf: React.FC<MegaMenuBestOfProps> = ({
                     <h2 className="font-display text-xl font-bold text-[#1B211D] flex items-center gap-2">
                       {isNl ? 'De Beste Bedrijven in Winterberg' : 'Die Besten in Winterberg – Offizielle Bestenlisten'}
                       <span className="text-[11px] font-bold bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                        {isNl ? 'Geverifieerd' : 'Bewertungsbasiert'}
+                        {isNl ? 'Klantrecensies' : 'Bewertungsbasiert'}
                       </span>
                     </h2>
                     <p className="text-xs text-[#5F6B63] mt-0.5">
@@ -175,22 +175,25 @@ export const MegaMenuBestOf: React.FC<MegaMenuBestOfProps> = ({
                           </div>
                         </div>
 
-                        {/* Top Subcategories List */}
+                        {/* Top Subcategories List with accurate plural forms */}
                         <div className="space-y-1 mt-3 pt-3 border-t border-[#F3F0EA]">
-                          {catGroup.subcategories.slice(0, 5).map((sub) => (
-                            <button
-                              key={sub}
-                              type="button"
-                              onClick={() => {
-                                onSelectBestOf(catGroup.name, sub);
-                                onClose();
-                              }}
-                              className="w-full text-left text-xs text-[#4A544D] hover:text-[#0F4C2E] hover:bg-[#FAF8F5] px-2.5 py-1.5 rounded-md transition-colors flex items-center justify-between group/sub cursor-pointer"
-                            >
-                              <span className="font-medium truncate">{isNl ? sub : `Die besten ${sub}`}</span>
-                              <ChevronRight className="w-3 h-3 text-[#C5BFAF] group-hover/sub:text-[#0F4C2E] group-hover/sub:translate-x-0.5 transition-all" />
-                            </button>
-                          ))}
+                          {catGroup.subcategories.slice(0, 5).map((sub) => {
+                            const subTitle = getBestOfTitle(catGroup.name, sub, lang);
+                            return (
+                              <button
+                                key={sub}
+                                type="button"
+                                onClick={() => {
+                                  onSelectBestOf(catGroup.name, sub);
+                                  onClose();
+                                }}
+                                className="w-full text-left text-xs text-[#4A544D] hover:text-[#0F4C2E] hover:bg-[#FAF8F5] px-2.5 py-1.5 rounded-md transition-colors flex items-center justify-between group/sub cursor-pointer"
+                              >
+                                <span className="font-medium truncate">{subTitle}</span>
+                                <ChevronRight className="w-3 h-3 text-[#C5BFAF] group-hover/sub:text-[#0F4C2E] group-hover/sub:translate-x-0.5 transition-all shrink-0 ml-1" />
+                              </button>
+                            );
+                          })}
                         </div>
                       </div>
 
@@ -211,17 +214,16 @@ export const MegaMenuBestOf: React.FC<MegaMenuBestOfProps> = ({
                 })}
               </div>
 
-              {/* Bottom Quick Bar */}
-              <div className="mt-8 pt-5 border-t border-[#EDE8E0] bg-[#FAF8F5] rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#5F6B63]">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#F2761B]" />
-                  <span>
-                    {isNl
-                      ? 'Transparante beoordelingen: Alle geregistreerde bedrijven worden gerangschikt op basis van echte recensies en sterren.'
-                      : 'Transparente Rankings: Alle eingetragenen Betriebe werden neutral anhand verifizierter Kundenbewertungen sortiert.'}
-                  </span>
+              {/* Bottom Transparency & Disclaimer Bar */}
+              <div className="mt-8 pt-5 border-t border-[#EDE8E0] bg-[#FAF8F5] rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-[#5F6B63]">
+                <div className="flex items-start gap-2.5">
+                  <Info className="w-4 h-4 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <p className="leading-relaxed">
+                    <strong className="text-[#1B211D]">{isNl ? 'Transparantie-opmerking: ' : 'Transparenzhinweis: '}</strong>
+                    {isNl ? BEST_OF_DISCLAIMER.nl.short : BEST_OF_DISCLAIMER.de.short}
+                  </p>
                 </div>
-                <div className="flex items-center gap-4 shrink-0 font-medium">
+                <div className="flex items-center gap-4 shrink-0 font-semibold self-end md:self-auto text-[11px]">
                   <span className="flex items-center gap-1"><span className="text-amber-500 font-bold">🥇</span> Platz 1</span>
                   <span className="flex items-center gap-1"><span className="text-gray-400 font-bold">🥈</span> Platz 2</span>
                   <span className="flex items-center gap-1"><span className="text-amber-700 font-bold">🥉</span> Platz 3</span>

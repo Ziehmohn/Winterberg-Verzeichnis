@@ -19,13 +19,15 @@ import {
   FileCheck, 
   ShieldCheck, 
   ChevronRight,
-  ArrowLeft
+  ArrowLeft,
+  Info
 } from 'lucide-react';
 import { Business, CategoryGroup, ThemeConfig } from '../types';
 import { useTranslation } from '../i18n';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getCategorySlug, getSubcategorySlug } from '../utils/routes';
+import { getBestOfTitle, BEST_OF_DISCLAIMER, SUBCATEGORY_PLURALS } from '../utils/bestOfTitles';
 
 interface BestOfPageProps {
   theme: ThemeConfig;
@@ -73,7 +75,6 @@ export default function BestOfPage({
       if (count > 0) {
         avg = approvedReviews.reduce((sum, r) => sum + r.rating, 0) / count;
       } else {
-        // Fallback default rating for established businesses without reviews yet
         avg = b.isVerified ? 4.7 : 4.5;
       }
 
@@ -117,11 +118,9 @@ export default function BestOfPage({
 
       return matchesCat && matchesSub && matchesDistrict;
     }).sort((a, b) => {
-      // Sort by score descending
       if (b.rankingScore !== a.rankingScore) {
         return b.rankingScore - a.rankingScore;
       }
-      // If same score, premium businesses get priority
       if (b.isPremium !== a.isPremium) {
         return (b.isPremium ? 1 : 0) - (a.isPremium ? 1 : 0);
       }
@@ -132,23 +131,17 @@ export default function BestOfPage({
   const activeCategoryObj = categories.find(c => c.name === activeCategory);
   const subcategoriesList = activeCategoryObj ? activeCategoryObj.subcategories : [];
 
-  // SEO Title & Headline
+  // Grammatically correct & descriptive SEO Headline
   const pageHeading = useMemo(() => {
-    if (activeSubcategory && activeSubcategory !== 'Alle') {
-      return isNl ? `De 10 Beste ${activeSubcategory} in Winterberg` : `Die 10 besten ${activeSubcategory} in Winterberg`;
-    }
-    if (activeCategory && activeCategory !== 'Alle' && activeCategory !== 'all') {
-      return isNl ? `De Beste ${activeCategory} in Winterberg` : `Die besten ${activeCategory} in Winterberg`;
-    }
-    return isNl ? 'De 10 Beste Bedrijven in Winterberg' : 'Die 10 besten Unternehmen in Winterberg';
-  }, [activeCategory, activeSubcategory, isNl]);
+    return getBestOfTitle(activeCategory, activeSubcategory, lang);
+  }, [activeCategory, activeSubcategory, lang]);
 
   // Schema.org ItemList Structured Data for Google Rich Results
   const schemaOrgItemList = useMemo(() => {
     return {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": pageHeading,
+      "name": `${pageHeading} in Winterberg`,
       "description": `Offizielle Bestenliste der am besten bewerteten Unternehmen in Winterberg – ${pageHeading}`,
       "itemListOrder": "https://schema.org/ItemListOrderDescending",
       "numberOfItems": Math.min(rankedList.length, 10),
@@ -164,7 +157,7 @@ export default function BestOfPage({
 
   // Update document title and structured data in head
   useEffect(() => {
-    document.title = `${pageHeading} (2026) | ${isNl ? 'De Winterberg Bedrijvengids' : 'Das Winterberg Verzeichnis'}`;
+    document.title = `${pageHeading} in Winterberg (2026) | ${isNl ? 'De Winterberg Bedrijvengids' : 'Das Winterberg Verzeichnis'}`;
     
     const scriptId = 'schema-bestof-itemlist';
     let scriptTag = document.getElementById(scriptId) as HTMLScriptElement | null;
@@ -203,7 +196,7 @@ export default function BestOfPage({
           </div>
 
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-3 tracking-tight leading-tight">
-            {pageHeading}
+            {pageHeading} in Winterberg
           </h1>
 
           <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-6 max-w-2xl">
@@ -212,7 +205,7 @@ export default function BestOfPage({
               : 'Ermittelt auf Basis echter Kundenbewertungen, verifizierter Qualität und regionaler Beliebtheit. Entdecken Sie die Spitzenreiter in Winterberg und den Ortsteilen.'}
           </p>
 
-          {/* Quick Metrics */}
+          {/* Quick Metrics & Transparency badge */}
           <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-white/90">
             <span className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/15 flex items-center gap-1.5">
               <Award className="w-4 h-4 text-amber-300" />
@@ -224,6 +217,15 @@ export default function BestOfPage({
             </span>
           </div>
         </div>
+      </div>
+
+      {/* Transparency Note Box */}
+      <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl p-4 mb-8 flex items-start gap-3 text-xs text-[#5F6B63] shadow-xs">
+        <Info className="w-4 h-4 text-[#0F4C2E] shrink-0 mt-0.5" />
+        <p className="leading-relaxed">
+          <strong className="text-[#1B211D]">{isNl ? 'Transparantie-opmerking: ' : 'Transparenzhinweis: '}</strong>
+          {isNl ? BEST_OF_DISCLAIMER.nl.short : BEST_OF_DISCLAIMER.de.short}
+        </p>
       </div>
 
       {/* Filter Tabs */}
@@ -272,14 +274,14 @@ export default function BestOfPage({
         {/* Subcategories (if main category selected) */}
         {subcategoriesList.length > 0 && (
           <div className="pt-3 border-t border-[#F3F0EA] flex items-center gap-1.5 flex-wrap">
-            <span className="text-xs font-bold text-[#8A928B] mr-1">{isNl ? 'Subcategorie:' : 'Spezialisierung:'}</span>
+            <span className="text-xs font-bold text-[#8A928B] mr-1">{isNl ? 'Spezialisierung:' : 'Spezialisierung:'}</span>
             <button
               type="button"
               onClick={() => {
                 setActiveSubcategory(undefined);
                 onSelectCategory(activeCategory);
               }}
-              className={`text-xs px-3 py-1 rounded-full font-medium transition-colors cursor-pointer ${
+              className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors cursor-pointer ${
                 !activeSubcategory
                   ? 'bg-[#F2761B] text-white'
                   : 'bg-[#FAF8F5] text-[#4A544D] hover:bg-[#FFF1E4] hover:text-[#D65F0C] border border-[#EDE8E0]'
@@ -289,6 +291,10 @@ export default function BestOfPage({
             </button>
             {subcategoriesList.map(sub => {
               const isSubSelected = activeSubcategory === sub;
+              const subPluralTitle = SUBCATEGORY_PLURALS[sub]
+                ? (isNl ? SUBCATEGORY_PLURALS[sub].titleNl : SUBCATEGORY_PLURALS[sub].titleDe)
+                : t(sub);
+
               return (
                 <button
                   key={sub}
@@ -297,13 +303,13 @@ export default function BestOfPage({
                     setActiveSubcategory(sub);
                     onSelectCategory(activeCategory, sub);
                   }}
-                  className={`text-xs px-3 py-1 rounded-full font-medium transition-colors cursor-pointer ${
+                  className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors cursor-pointer ${
                     isSubSelected
-                      ? 'bg-[#F2761B] text-white shadow-xs'
+                      ? 'bg-[#F2761B] text-white shadow-xs font-semibold'
                       : 'bg-[#FAF8F5] text-[#4A544D] hover:bg-[#FFF1E4] hover:text-[#D65F0C] border border-[#EDE8E0]'
                   }`}
                 >
-                  {t(sub)}
+                  {subPluralTitle}
                 </button>
               );
             })}
@@ -316,7 +322,6 @@ export default function BestOfPage({
         {rankedList.slice(0, 10).map((business, index) => {
           const rank = index + 1;
           const localized = getLocalizedBusiness(business, lang);
-          const isTop3 = rank <= 3;
           const medalIcon = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : null;
 
           return (
@@ -487,7 +492,7 @@ export default function BestOfPage({
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
 
-                  {/* Premium Action CTA (e.g. Table Booking, Emergency Hotline) */}
+                  {/* Premium Action CTA (e.g. Table Booking, Emergency Hotline, Tickets) */}
                   {business.isPremium && business.customCta?.text && business.customCta?.url && (
                     <a
                       href={business.customCta.url}
@@ -557,6 +562,23 @@ export default function BestOfPage({
             </p>
           </div>
         )}
+      </div>
+
+      {/* Detailed Legal & Transparency Box at the bottom */}
+      <div className="mt-12 bg-white border border-[#EDE8E0] rounded-2xl p-6 sm:p-8 shadow-xs">
+        <div className="flex items-start gap-3.5">
+          <div className="w-9 h-9 rounded-lg bg-emerald-50 text-[#0F4C2E] border border-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+            <ShieldCheck className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-display text-base font-bold text-[#1B211D] mb-1.5">
+              {isNl ? BEST_OF_DISCLAIMER.nl.fullTitle : BEST_OF_DISCLAIMER.de.fullTitle}
+            </h3>
+            <p className="text-xs text-[#5F6B63] leading-relaxed">
+              {isNl ? BEST_OF_DISCLAIMER.nl.fullText : BEST_OF_DISCLAIMER.de.fullText}
+            </p>
+          </div>
+        </div>
       </div>
     </main>
   );

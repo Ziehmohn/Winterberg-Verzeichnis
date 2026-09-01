@@ -323,13 +323,15 @@ export default function App() {
 
   const handleMouseEnterBestOfMenu = () => {
     if (bestOfMenuTimeoutRef.current) clearTimeout(bestOfMenuTimeoutRef.current);
+    if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
+    setIsMegaMenuOpen(false);
     setIsBestOfMenuOpen(true);
   };
 
   const handleMouseLeaveBestOfMenu = () => {
     bestOfMenuTimeoutRef.current = setTimeout(() => {
       setIsBestOfMenuOpen(false);
-    }, 180);
+    }, 300);
   };
 
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
@@ -344,13 +346,15 @@ export default function App() {
 
   const handleMouseEnterMegaMenu = () => {
     if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
+    if (bestOfMenuTimeoutRef.current) clearTimeout(bestOfMenuTimeoutRef.current);
+    setIsBestOfMenuOpen(false);
     setIsMegaMenuOpen(true);
   };
 
   const handleMouseLeaveMegaMenu = () => {
     megaMenuTimeoutRef.current = setTimeout(() => {
       setIsMegaMenuOpen(false);
-    }, 180);
+    }, 300);
   };
 
   const getCurrentRouteState = (): RouteState => {
@@ -1343,8 +1347,10 @@ export default function App() {
             }}
             getPath={getPath}
           />
+        </div>
 
-          {/* MegaMenu for "Die Besten" */}
+        {/* Mega Menu Overlay for "Die Besten" */}
+        <div onMouseEnter={handleMouseEnterBestOfMenu} onMouseLeave={handleMouseLeaveBestOfMenu}>
           <MegaMenuBestOf
             isOpen={isBestOfMenuOpen}
             onClose={() => setIsBestOfMenuOpen(false)}
@@ -1451,6 +1457,7 @@ export default function App() {
           <WinterbergFaq
             theme={theme}
             activeThemeKey={activeThemeKey}
+            lang={lang}
             onBack={() => {
               resetToDirectory();
               window.history.pushState(null, '', getPath('/'));
