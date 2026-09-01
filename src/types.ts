@@ -218,3 +218,37 @@ export interface AdInquiry {
   status: 'new' | 'contacted' | 'booked' | 'declined';
   createdAt: string;
 }
+
+export interface PricingSettings {
+  // Standardpreise
+  premiumMonthly: string;
+  premiumYearly: string;
+  premiumYearlyTotal: string;
+
+  // Bannerwerbung Preise
+  bannerTier1: string;
+  bannerTier2: string;
+  bannerTier3: string;
+  bannerTier2Discount: string;
+  bannerTier3Discount: string;
+  cancellationPeriod: string;
+
+  // Aktionen & Streichpreise
+  isOfferActive: boolean;
+  offerStartDate?: string;
+  offerEndDate?: string;
+  offerBadgeText?: string;
+  offerMonthlyPrice?: string;
+  offerYearlyPrice?: string;
+  offerYearlyTotal?: string;
+  strikethroughMonthly?: string;
+  strikethroughYearly?: string;
+
+  // Banderole oben rechts
+  showRibbon: boolean;
+  ribbonText?: string;
+  ribbonLink?: string;
+  ribbonBgColor?: string;
+  ribbonTextColor?: string;
+}
+

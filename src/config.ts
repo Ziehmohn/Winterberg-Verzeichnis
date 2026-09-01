@@ -72,35 +72,70 @@ export const SITE = {
   get districtCount() { return this.districts.length; },
 } as const;
 
+import { PricingSettings } from './types';
+
 // ---------------------------------------------------------------------------
-// Preise & Konditionen
+// Preise & Konditionen (Standard-Fallback)
 // ---------------------------------------------------------------------------
-export const PRICING = {
-  /** Monatspreis Premium (monatliche Zahlung) */
+export const DEFAULT_PRICING_SETTINGS: PricingSettings = {
   premiumMonthly: '12,95 €',
-  /** Monatspreis Premium (jährliche Zahlung) */
   premiumYearly: '9,95 €',
-  /** Jahresgesamtbetrag bei Jahreszahlung */
   premiumYearlyTotal: '119,40 € / Jahr',
 
-  /** Banner-Preis Stufe 1 (1–2 Kategorien) */
   bannerTier1: '24,95 €',
-  /** Banner-Preis Stufe 2 (ab 3 Kategorien) */
   bannerTier2: '19,95 €',
-  /** Banner-Preis Stufe 3 (ab 5 Kategorien) */
   bannerTier3: '14,95 €',
-  /** Rabatt Stufe 2 */
   bannerTier2Discount: '20% Rabatt',
-  /** Rabatt Stufe 3 */
   bannerTier3Discount: '40% Rabatt',
 
-  /** Kündigungsfrist (Text) */
   cancellationPeriod: '14 Tage',
-  /** Zahlungsanbieter */
+
+  // Aktion standardmäßig deaktiviert
+  isOfferActive: false,
+  offerStartDate: '',
+  offerEndDate: '',
+  offerBadgeText: 'Limitiertes Angebot',
+  offerMonthlyPrice: '6,95 €',
+  offerYearlyPrice: '4,95 €',
+  offerYearlyTotal: '59,40 € / Jahr',
+  strikethroughMonthly: '12,95 €',
+  strikethroughYearly: '9,95 €',
+
+  // Banderole
+  showRibbon: false,
+  ribbonText: '🔥 Limitiertes Angebot: Premium ab 4,95 € / Monat!',
+  ribbonLink: '/preise',
+  ribbonBgColor: '#F2761B',
+  ribbonTextColor: '#FFFFFF'
+};
+
+export const PRICING = {
+  ...DEFAULT_PRICING_SETTINGS,
   paymentProvider: 'Stripe',
 } as const;
+
+/**
+ * Prüft, ob ein Angebot aktuell aktiv und innerhalb des konfigurierten Datumsbereichs ist.
+ */
+export function isPricingOfferActive(pricing?: PricingSettings | null): boolean {
+  if (!pricing || !pricing.isOfferActive) return false;
+
+  const now = new Date();
+  const todayStr = now.toISOString().split('T')[0]; // "YYYY-MM-DD"
+
+  if (pricing.offerStartDate && pricing.offerStartDate > todayStr) {
+    return false; // Noch nicht begonnen
+  }
+
+  if (pricing.offerEndDate && pricing.offerEndDate < todayStr) {
+    return false; // Bereits abgelaufen
+  }
+
+  return true;
+}
 
 // ---------------------------------------------------------------------------
 // Werbetexte (CTA)
 // ---------------------------------------------------------------------------
 export const AD_CTA = 'Sie möchten hier werben? Mehr erfahren!';
+

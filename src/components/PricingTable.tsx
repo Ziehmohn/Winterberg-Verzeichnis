@@ -1,9 +1,9 @@
 import { useTranslation } from '../i18n';
 import React, { useState } from 'react';
-import { ThemeConfig } from '../types';
-import { Check, X, ArrowLeft, ShieldCheck } from 'lucide-react';
+import { ThemeConfig, PricingSettings } from '../types';
+import { Check, X, ArrowLeft, ShieldCheck, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PRICING, AD_CTA } from '../config';
+import { PRICING, AD_CTA, isPricingOfferActive } from '../config';
 
 interface PricingTableProps {
   theme: ThemeConfig;
@@ -12,12 +12,32 @@ interface PricingTableProps {
   onSelect: (plan: 'free' | 'premium') => void;
   onInquireAd?: () => void;
   hideAction?: boolean;
+  pricingSettings?: PricingSettings | null;
 }
 
-export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, onInquireAd, hideAction = false }: PricingTableProps) {
+export default function PricingTable({
+  theme,
+  activeThemeKey,
+  onBack,
+  onSelect,
+  onInquireAd,
+  hideAction = false,
+  pricingSettings
+}: PricingTableProps) {
   const { t } = useTranslation();
 
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+
+  const isOffer = isPricingOfferActive(pricingSettings);
+  const activePricing = pricingSettings || PRICING;
+
+  const currentMonthly = isOffer && activePricing.offerMonthlyPrice ? activePricing.offerMonthlyPrice : (activePricing.premiumMonthly || '12,95 €');
+  const strikethroughMonthly = isOffer ? (activePricing.strikethroughMonthly || activePricing.premiumMonthly) : null;
+
+  const currentYearly = isOffer && activePricing.offerYearlyPrice ? activePricing.offerYearlyPrice : (activePricing.premiumYearly || '9,95 €');
+  const strikethroughYearly = isOffer ? (activePricing.strikethroughYearly || activePricing.premiumYearly) : null;
+
+  const currentYearlyTotal = isOffer && activePricing.offerYearlyTotal ? activePricing.offerYearlyTotal : (activePricing.premiumYearlyTotal || '119,40 € / Jahr');
 
   const features = [
     { name: `${t("company")} & ${t("address")}`, free: true, premium: true },
@@ -76,9 +96,18 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
         </div>
 
         {/* Premium */}
-        <div className="bg-white border-2 border-[#F2761B] rounded-lg p-7 shadow-[0_16px_40px_rgba(242,118,27,0.14)] relative">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F2761B] text-white text-[11px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
-            {t("pricingPopular")}
+        <div className={`bg-white border-2 rounded-lg p-7 relative transition-all ${
+          isOffer ? 'border-[#D65F0C] shadow-[0_18px_45px_rgba(214,95,12,0.18)]' : 'border-[#F2761B] shadow-[0_16px_40px_rgba(242,118,27,0.14)]'
+        }`}>
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F2761B] text-white text-[11px] font-bold px-3 py-0.5 rounded uppercase tracking-wider shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+            {isOffer && activePricing.offerBadgeText ? (
+              <>
+                <Sparkles className="w-3 h-3 text-amber-200" />
+                {activePricing.offerBadgeText}
+              </>
+            ) : (
+              t("pricingPopular")
+            )}
           </div>
           <div className="flex justify-between items-center mb-4">
             <div className="font-display text-[22px] font-semibold">Premium</div>
@@ -101,14 +130,37 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
             </div>
           </div>
           
-          <div className="font-display text-[38px] font-bold mt-2.5 mb-1 text-[#D65F0C]">
-            {billingCycle === 'yearly' ? PRICING.premiumYearly : PRICING.premiumMonthly}
+          <div className="flex items-baseline gap-2.5 mt-2.5 mb-1 flex-wrap">
+            {billingCycle === 'yearly' ? (
+              <>
+                {strikethroughYearly && (
+                  <span className="text-gray-400 line-through text-[24px] font-semibold">
+                    {strikethroughYearly}
+                  </span>
+                )}
+                <span className="font-display text-[38px] font-bold text-[#D65F0C]">
+                  {currentYearly}
+                </span>
+              </>
+            ) : (
+              <>
+                {strikethroughMonthly && (
+                  <span className="text-gray-400 line-through text-[24px] font-semibold">
+                    {strikethroughMonthly}
+                  </span>
+                )}
+                <span className="font-display text-[38px] font-bold text-[#D65F0C]">
+                  {currentMonthly}
+                </span>
+              </>
+            )}
           </div>
+
           <div className="text-[14px] text-[#5F6B63] mb-[22px]">
             {t("pricingPerMonthTax")} 
             {billingCycle === 'yearly' ? (
               <div className="mt-1.5 font-bold text-[#0F4C2E] bg-[#0F4C2E]/5 inline-block px-2 py-0.5 rounded text-[13px]">
-                {t("pricingYearlyTotal")} {PRICING.premiumYearlyTotal}
+                {t("pricingYearlyTotal")} {currentYearlyTotal}
               </div>
             ) : (
               ` · ${t("pricingMonthlyCancel")}`
@@ -157,12 +209,12 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
             {t("pricingSkyscraperDesc")}
           </p>
           <div className="inline-flex flex-wrap gap-2 text-xs text-white/90">
-            <span className="bg-white/15 px-3 py-1 rounded">{t("pricingBannerTier1")}: <strong>{PRICING.bannerTier1} / Mo.</strong></span>
-            <span className="bg-white/15 px-3 py-1 rounded text-emerald-300">{t("pricingBannerTier2")}: <strong>{PRICING.bannerTier2} / Mo.</strong> ({PRICING.bannerTier2Discount})</span>
-            <span className="bg-white/15 px-3 py-1 rounded text-[#F2761B]">{t("pricingBannerTier3")}: <strong>{PRICING.bannerTier3} / Mo.</strong> ({PRICING.bannerTier3Discount})</span>
+            <span className="bg-white/15 px-3 py-1 rounded">{t("pricingBannerTier1")}: <strong>{activePricing.bannerTier1 || PRICING.bannerTier1} / Mo.</strong></span>
+            <span className="bg-white/15 px-3 py-1 rounded text-emerald-300">{t("pricingBannerTier2")}: <strong>{activePricing.bannerTier2 || PRICING.bannerTier2} / Mo.</strong> ({activePricing.bannerTier2Discount || PRICING.bannerTier2Discount})</span>
+            <span className="bg-white/15 px-3 py-1 rounded text-[#F2761B]">{t("pricingBannerTier3")}: <strong>{activePricing.bannerTier3 || PRICING.bannerTier3} / Mo.</strong> ({activePricing.bannerTier3Discount || PRICING.bannerTier3Discount})</span>
           </div>
           <div className="text-[12px] text-white/60 mt-2">
-            {t("pricingBannerCancel")}
+            Monatlich kündbar · {activePricing.cancellationPeriod || PRICING.cancellationPeriod} Kündigungsfrist zum Monatsende (wie beim Premium-Account)
           </div>
         </div>
         {onInquireAd && (
@@ -178,3 +230,4 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
     </main>
   );
 }
+

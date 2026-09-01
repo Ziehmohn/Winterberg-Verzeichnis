@@ -7,7 +7,9 @@ import {
   themes,
   initialAds
 } from './data';
-import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner } from './types';
+import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner, PricingSettings } from './types';
+import { DEFAULT_PRICING_SETTINGS } from './config';
+import OfferRibbon from './components/OfferRibbon';
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
@@ -46,6 +48,7 @@ const Impressum = React.lazy(() => import('./components/Impressum'));
 const AGB = React.lazy(() => import('./components/AGB'));
 const SubmitBusiness = React.lazy(() => import('./components/SubmitBusiness'));
 const PricingTable = React.lazy(() => import('./components/PricingTable'));
+const AdminPricingManager = React.lazy(() => import('./components/AdminPricingManager'));
 const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
 const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
 const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
@@ -532,8 +535,25 @@ export default function App() {
     baseUrl: 'https://www.winterberg-verzeichnis.de',
     googleSiteVerification: 'eD2M5X0XpFemq843s7x3232ic58ogimCDB6zWKPN_u8'
   });
+  const [pricingSettings, setPricingSettings] = useState<PricingSettings>(DEFAULT_PRICING_SETTINGS);
 
   const theme = themes[activeThemeKey];
+
+  // Load remote pricing settings from Firestore
+  useEffect(() => {
+    const loadRemotePricing = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'settings', 'pricing'));
+        if (snap.exists()) {
+          const data = snap.data() as PricingSettings;
+          setPricingSettings({ ...DEFAULT_PRICING_SETTINGS, ...data });
+        }
+      } catch (e) {
+        console.error("Failed to load pricing settings from Firestore", e);
+      }
+    };
+    loadRemotePricing();
+  }, []);
 
   // Load and apply global typography & design settings
   useEffect(() => {
@@ -1183,6 +1203,22 @@ export default function App() {
           />
         </div>
 
+      {/* Offer Ribbon (Top Right) */}
+      <OfferRibbon 
+        pricingSettings={pricingSettings} 
+        onNavigate={(path) => {
+          resetToDirectory();
+          if (path === '/preise') {
+            setIsPricingMode(true);
+            window.history.pushState(null, '', getPath('/preise'));
+          } else {
+            window.history.pushState(null, '', getPath(path));
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }} 
+      />
+
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col">
         <ErrorBoundary>
@@ -1256,6 +1292,7 @@ export default function App() {
           <PricingTable 
             theme={theme} 
             activeThemeKey={activeThemeKey} 
+            pricingSettings={pricingSettings}
             onBack={() => setIsPricingMode(false)}
             onSelect={(plan) => {
               setIsPricingMode(false);
@@ -3500,6 +3537,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           { id: 'reviews', label: 'Bewertungen' },
           { id: 'abrechnung', label: 'Abrechnung' },
           ...(isAdmin ? [
+            { id: 'pricing', label: '🏷️ Preise & Aktionen' },
             { id: 'design', label: 'Design & Fonts' },
             { id: 'werbung', label: 'Werbung' },
             { id: 'news', label: 'News' },
@@ -3826,6 +3864,12 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             setBusinesses={setBusinesses} 
           />
         
+        ) : activeTab === 'pricing' ? (
+          <AdminPricingManager 
+            theme={theme}
+            pricingSettings={pricingSettings}
+            onUpdatePricing={(newPricing) => setPricingSettings(newPricing)}
+          />
         ) : activeTab === 'design' ? (
           <AdminDesignManager 
             designSettings={designSettings} 
