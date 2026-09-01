@@ -90,14 +90,15 @@ export const FAQ_DATA: FaqItem[] = [
     categoryGroup: 'Freizeit & Natur',
     de: {
       question: 'Was kann man im Sommer in Winterberg machen?',
-      quickSummary: 'Im Sommer verwandelt sich Winterberg in ein Outdoor-Mekka: Bikepark Winterberg, Sommerrodelbahn, Panorama Erlebnis Brücke, Kletterwald, Wasserski am Hillebachsee, Wandern auf dem Kahlen Asten sowie sommerliche Biergärten und Sonnenterrassen.',
-      plainAnswer: 'Im Sommer locken der Erlebnisberg Kappe (Bikepark, Sommerrodelbahn, Kletterwald, Fly-Line, Erlebnisbrücke), Wassersport und Schwimmen am Hillebachsee Niedersfeld, Bergabenteuer an der Ruhrquelle (Mountaincart), Panoramawanderungen auf dem Rothaarsteig sowie lebendige Straßencafés.',
+      quickSummary: 'Im Sommer verwandelt sich Winterberg in ein Outdoor-Mekka: Bikepark Winterberg, Sommerrodelbahn, Panorama Erlebnis Brücke, Kletterwald, das beheizte Freibad Siedlinghausen, Wasserski am Hillebachsee, Wandern auf dem Kahlen Asten sowie sommerliche Biergärten und Sonnenterrassen.',
+      plainAnswer: 'Im Sommer locken der Erlebnisberg Kappe (Bikepark, Sommerrodelbahn, Kletterwald, Fly-Line, Erlebnisbrücke), das beheizte Freibad Siedlinghausen mit Sprungturm und großer Liegewiese, Wassersport und Schwimmen am Hillebachsee Niedersfeld, Bergabenteuer an der Ruhrquelle (Mountaincart), Panoramawanderungen auf dem Rothaarsteig sowie lebendige Straßencafés.',
       answerHtml: (
         <div className="space-y-3">
-          <p>Der Sommer in Winterberg bietet eine perfekte Mischung aus Nervenkitzel, Familienausflügen und Naturgenuss:</p>
+          <p>Der Sommer in Winterberg bietet eine perfekte Mischung aus Nervenkitzel, Familienausflügen, Badespaß und Naturgenuss:</p>
           <ul className="list-disc pl-5 space-y-1.5">
             <li><strong>Erlebnisberg Kappe:</strong> Sommerrodelbahn, <em>Fly-Line</em> (schwebend durch die Baumkronen), <em>Panorama Erlebnis Brücke</em> mit Riesenrutsche und der <em>Kletterwald</em> für Groß und Klein.</li>
             <li><strong>Bikepark Winterberg:</strong> Einer der größten und modernsten Mountainbike- und Downhill-Parks Europas mit Strecken für Anfänger bis Worldcup-Profis.</li>
+            <li><strong>Baden im Freibad Siedlinghausen:</strong> Das beliebte beheizte Freibad im Ortsteil Siedlinghausen bietet ein 25-Meter-Sportbecken, Sprunganlage, Nichtschwimmerbereich und eine sonnige Liegewiese – ideal für warme Sommertage.</li>
             <li><strong>Hillebachsee Niedersfeld:</strong> Wasserski- und Wakeboardanlage, Badestrand, Beachvolleyballfeld, Tretbootverleih und kinderfreundlicher Wasserspielplatz.</li>
             <li><strong>Mountaincarten & Sommerrodeln an der Ruhrquelle:</strong> Mit dreirädrigen Funsport-Carts rasant den Grashang hinabsausen.</li>
             <li><strong>Wandern & Bike-Touren:</strong> Über 400 km markierte Wander- und E-Bike-Routen rund um den Kahlen Asten, Neuer Hagen und das Ruhrtal.</li>
@@ -112,14 +113,15 @@ export const FAQ_DATA: FaqItem[] = [
     },
     nl: {
       question: 'Wat te doen in Winterberg in de zomer?',
-      quickSummary: 'In de zomer is Winterberg een waar outdoor-paradijs: het Bikepark Winterberg, de zomerrodelbaan, de Panoramabrug, het klimbos, waterskiën op de Hillebachsee, wandelen over de Kahler Asten en gezellige terrassen in het centrum.',
-      plainAnswer: 'Zomeractiviteiten in Winterberg: Erlebnisberg Kappe (Bikepark, zomerrodelbaan, klimbos, Fly-Line, panoramabrug), zwemmen en waterskiën bij de Hillebachsee in Niedersfeld, mountaincarten bij de Ruhrquelle, panoramawandelingen over de Rothaarsteig en gezellige terrassen.',
+      quickSummary: 'In de zomer is Winterberg een waar outdoor-paradijs: het Bikepark Winterberg, de zomerrodelbaan, de Panoramabrug, het klimbos, het verwarmde openluchtzwembad in Siedlinghausen, waterskiën op de Hillebachsee, wandelen over de Kahler Asten en gezellige terrassen in het centrum.',
+      plainAnswer: 'Zomeractiviteiten in Winterberg: Erlebnisberg Kappe (Bikepark, zomerrodelbaan, klimbos, Fly-Line, panoramabrug), zwemmen in het verwarmde openluchtbad Freibad Siedlinghausen, waterskiën bij de Hillebachsee in Niedersfeld, mountaincarten bij de Ruhrquelle, panoramawandelingen over de Rothaarsteig en gezellige terrassen.',
       answerHtml: (
         <div className="space-y-3">
           <p>In de zomermaanden (mei t/m oktober) barst Winterberg van de gezelligheid en outdoor-activiteiten:</p>
           <ul className="list-disc pl-5 space-y-1.5">
             <li><strong>Erlebnisberg Kappe:</strong> De 700 meter lange <em>zomerrodelbaan</em>, de zwevende <em>Fly-Line</em>, de <em>Panorama Belevenisbrug</em> met uitzicht over het dal en het uitdagende <em>Klimbos</em>.</li>
             <li><strong>Bikepark Winterberg:</strong> Het toonaangevende downhill- en mountainbikepark van Duitsland met spectaculaire tracks voor elk niveau en materiaalverhuur ter plaatse.</li>
+            <li><strong>Openluchtzwembad Siedlinghausen:</strong> Het heerlijke verwarmde openluchtbad in Siedlinghausen met een 25m sportbad, duiktoren, peuterbad en een grote groene ligweide.</li>
             <li><strong>Hillebachsee Niedersfeld:</strong> Heerlijk zwemmeer met kabelwaterskibaan, wakeboarden, ligweide, beachvolleybal en gezellige horeca aan het water.</li>
             <li><strong>Mountaincarten bij de Ruhrquelle:</strong> Met stoere driewielers over het gras naar beneden sjezen.</li>
             <li><strong>Wandelen en E-biken:</strong> Schitterende tochten over de heide van de <em>Kahler Asten</em>, de <em>Rothaarsteig</em> en langs de bron van de rivier de Ruhr.</li>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle } from 'lucide-react';
 import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
@@ -13,6 +13,7 @@ import Login from './Login';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 import WidgetGeneratorModal from './WidgetGeneratorModal';
 import { getBusinessPath } from '../utils/routes';
+import { RankingInfoModal } from './RankingInfoModal';
 
 interface BusinessDetailProps {
   business: Business;
@@ -37,6 +38,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const [errorReportText, setErrorReportText] = useState('');
   const [reportSuccess, setReportSuccess] = useState(false);
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
+  
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [infoModalTopic, setInfoModalTopic] = useState<'score' | 'verified'>('verified');
 
   // Categorized Gallery State
   const [activeGalleryTab, setActiveGalleryTab] = useState<string>('all');
@@ -279,7 +283,18 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
             )}
             {business.isVerified && (
-              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{lang === 'nl' ? 'Geverifieerd' : 'Verifiziert'}</span>
+              <button 
+                type="button"
+                onClick={() => {
+                  setInfoModalTopic('verified');
+                  setIsInfoModalOpen(true);
+                }}
+                className="bg-white/10 hover:bg-white/20 transition-colors rounded px-2.5 py-1 text-[13px] inline-flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                title="Was bedeutet 'Verifiziert'? Hier klicken für Details"
+              >
+                <span>{lang === 'nl' ? '✓ Geverifieerd' : '✓ Verifiziert'}</span>
+                <HelpCircle className="w-3.5 h-3.5 text-white/80" />
+              </button>
             )}
             {openState && (
               <span className={`rounded px-2.5 py-1 text-[13px] font-semibold ${openState.isOpen ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-[#FFF1E4] text-[#D65F0C]'}`}>
@@ -296,14 +311,23 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               {business.address}
             </span>
             {avgRating && (
-              <span className="inline-flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setInfoModalTopic('score');
+                  setIsInfoModalOpen(true);
+                }}
+                className="inline-flex items-center gap-1.5 hover:bg-white/15 px-2.5 py-1 rounded-md transition-colors cursor-pointer text-left"
+                title="Informationen zur Berechnung des Scores"
+              >
                 <span className="text-[#F2761B] tracking-[1px]">
                   {Array.from({length: 5}).map((_, i) => (
                     <span key={i}>{i < Math.round(Number(avgRating)) ? '★' : '☆'}</span>
                   ))}
                 </span>
-                {avgRating} · {approvedReviews.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}
-              </span>
+                <span>{avgRating} · {approvedReviews.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}</span>
+                <HelpCircle className="w-3.5 h-3.5 text-white/70 ml-0.5" />
+              </button>
             )}
           </div>
 
@@ -1015,6 +1039,13 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Global Transparency / Score Info Modal */}
+      <RankingInfoModal
+        isOpen={isInfoModalOpen}
+        onClose={() => setIsInfoModalOpen(false)}
+        initialTopic={infoModalTopic}
+      />
     </main>
   );
 }
