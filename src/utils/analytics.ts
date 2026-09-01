@@ -2,10 +2,10 @@ import ReactGA from "react-ga4";
 
 /**
  * Google Analytics Helper for Winterberg Verzeichnis
- * Property ID: 302481363 / Measurement ID: G-86EMTRTX80
+ * Property ID: 302481363 / Measurement ID: G-77PLYCGN1S
  */
 
-export const DEFAULT_GA_ID = 'G-86EMTRTX80';
+export const DEFAULT_GA_ID = 'G-77PLYCGN1S';
 
 export function getGoogleAnalyticsId(): string {
   if (typeof window !== 'undefined') {

@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "gen-lang-client-0671429103.firebasestorage.app",
   messagingSenderId: "363603639368",
   appId: "1:363603639368:web:665f56c570afba7869ac7d",
-  measurementId: "G-86EMTRTX80" // Google Analytics 4
+  measurementId: "G-77PLYCGN1S" // Google Analytics 4
 };
 
 export const app = initializeApp(firebaseConfig);
