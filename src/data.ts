@@ -3401,6 +3401,121 @@ export const businesses: Business[] = [
       saturday: 'Geschlossen',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'house-of-immo-sauerlandmakler',
+    name: 'House Of Immo - Sauerlandmakler',
+    category: 'Dienstleistungen',
+    subcategory: 'Immobilienmakler',
+    description: 'Ihr erfahrener Immobilienmakler für Winterberg und das Sauerland. Professionelle Immobilienbewertung, Kauf, Verkauf und Vermittlung von Wohn- und Ferienimmobilien.',
+    address: 'Waldecker Str. 17, 34508 Willingen (Upland)',
+    district: 'Winterberg',
+    phone: '05632 969316',
+    website: 'https://houseofimmo.de/sauerlandmakler/ort/winterberg/',
+    isPremium: true,
+    status: 'approved',
+    imageFallback: 'HO',
+    services: ['Immobilienverkauf', 'Kostenfreie Immobilienbewertung', 'Kaufberatung', 'Ferienimmobilien', 'Vermarktung & Exposé-Erstellung'],
+    products: ['Kostenlose Immobilienbewertung', 'Exklusiv-Exposés', 'Suchaufträge für Kaufinteressenten'],
+    openingHours: {
+      monday: '09:00 - 18:00',
+      tuesday: '09:00 - 18:00',
+      wednesday: '09:00 - 18:00',
+      thursday: '09:00 - 18:00',
+      friday: '09:00 - 18:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'von-poll-immobilien-winterberg',
+    name: 'VON POLL IMMOBILIEN Winterberg',
+    category: 'Dienstleistungen',
+    subcategory: 'Immobilienmakler',
+    description: 'VON POLL IMMOBILIEN in Winterberg – Ihr zuverlässiger Partner für Immobilienvermittlung und kostenfreie Immobilienbewertung in der Region.',
+    address: 'Hauptstraße 10, 59955 Winterberg',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved',
+    imageFallback: 'VP',
+    services: ['Kostenfreie Immobilienbewertung', 'Aktuelle Immobilienangebote', 'Immobilie verkaufen'],
+    openingHours: {
+      monday: '09:00 - 18:00',
+      tuesday: '09:00 - 18:00',
+      wednesday: '09:00 - 18:00',
+      thursday: '09:00 - 18:00',
+      friday: '09:00 - 18:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'evernest-winterberg',
+    name: 'Evernest Winterberg',
+    category: 'Dienstleistungen',
+    subcategory: 'Immobilienmakler',
+    description: 'Evernest Winterberg – Moderne Immobilienberatung, Dienste für Ersterwerber, Immobilieninvestition sowie Kauf und Verkauf.',
+    address: 'Wernsdorfer Str. 1b, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '0170 2050167',
+    isPremium: false,
+    status: 'approved',
+    imageFallback: 'EW',
+    services: ['Dienste für Ersterwerber eines Hauses', 'Immobilieninvestition', 'Kauf und Verkauf von Immobilien'],
+    openingHours: {
+      monday: '09:00 - 18:00',
+      tuesday: '09:00 - 18:00',
+      wednesday: '09:00 - 18:00',
+      thursday: '09:00 - 18:00',
+      friday: '09:00 - 18:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'winterberg-immobilien',
+    name: 'WINTERBERG IMMOBILIEN',
+    category: 'Dienstleistungen',
+    subcategory: 'Immobilienmakler',
+    description: 'Winterberg Immobilien & Appartements – Ihr Maklerbüro direkt am Waltenberg in Winterberg.',
+    address: 'Am Waltenberg 12, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 899433',
+    isPremium: false,
+    status: 'approved',
+    imageFallback: 'WI',
+    services: ['Dienste für Ersterwerber eines Hauses', 'Einkaufsmaklerdienste', 'Immobilieninvestition'],
+    openingHours: {
+      monday: '14:00 - 18:00',
+      tuesday: '14:00 - 18:00',
+      wednesday: '14:00 - 18:00',
+      thursday: '14:00 - 18:00',
+      friday: '14:00 - 18:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'grulke-immobilien-hausverwaltung',
+    name: 'Grulke-Immobilien & Hausverwaltung',
+    category: 'Dienstleistungen',
+    subcategory: 'Immobilienmakler',
+    description: 'Grulke-Immobilien & Hausverwaltung in Winterberg – Professioneller Immobilienverkauf, Immobilienvermietung und verlässliche Hausverwaltung.',
+    address: 'Feldstraße 46, 59955 Winterberg',
+    district: 'Winterberg',
+    isPremium: false,
+    status: 'approved',
+    imageFallback: 'GI',
+    services: ['Immobilienverkauf', 'Immobilienvermietung', 'Hausverwaltung'],
+    openingHours: {
+      monday: '09:00 - 14:00',
+      tuesday: '09:00 - 14:00',
+      wednesday: '09:00 - 14:00',
+      thursday: '09:00 - 14:00',
+      friday: '09:00 - 14:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
@@ -3523,7 +3638,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
-  { name: 'Dienstleistungen', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Ärzte & Praxen', 'Zahnärzte', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
 

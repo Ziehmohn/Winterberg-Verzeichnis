@@ -578,6 +578,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -3417,6 +3429,66 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/house-of-immo-sauerlandmakler</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/house-of-immo-sauerlandmakler</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/von-poll-immobilien-winterberg</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/von-poll-immobilien-winterberg</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/evernest-winterberg</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/evernest-winterberg</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/winterberg-immobilien</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/winterberg-immobilien</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/grulke-immobilien-und-hausverwaltung</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/grulke-immobilien-und-hausverwaltung</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
