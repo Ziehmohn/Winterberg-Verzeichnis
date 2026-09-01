@@ -78,6 +78,13 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Helper to parse price string to number
+  const parsePriceNum = (str: any): number => {
+    if (!str) return 0;
+    const cleaned = String(str).replace(/[^0-9,.]/g, '').replace(',', '.');
+    return parseFloat(cleaned) || 0;
+  };
+
   // API Routes
   app.post('/api/create-checkout-session', async (req, res) => {
     try {
@@ -92,6 +99,70 @@ async function startServer() {
 
       const isYearly = billingCycle === 'yearly';
       const cycle = isYearly ? 'yearly' : 'monthly';
+
+      // Fetch dynamic pricing settings from Firestore
+      let pricing: any = null;
+      try {
+        const pricingRes = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/settings/pricing`);
+        if (pricingRes.ok) {
+          const doc = await pricingRes.json();
+          if (doc.fields) {
+            pricing = {
+              premiumMonthly: doc.fields.premiumMonthly?.stringValue || '12,95 €',
+              premiumYearly: doc.fields.premiumYearly?.stringValue || '9,95 €',
+              isOfferActive: doc.fields.isOfferActive?.booleanValue ?? false,
+              offerMonthlyPrice: doc.fields.offerMonthlyPrice?.stringValue,
+              offerYearlyPrice: doc.fields.offerYearlyPrice?.stringValue,
+              offerStartDate: doc.fields.offerStartDate?.stringValue,
+              offerEndDate: doc.fields.offerEndDate?.stringValue,
+            };
+          }
+        }
+      } catch (e) {
+        console.warn('Could not fetch pricing from Firestore, using default PRICING', e);
+      }
+
+      // Check if offer is currently active
+      let isOffer = false;
+      if (pricing?.isOfferActive) {
+        isOffer = true;
+        const now = new Date();
+        if (pricing.offerStartDate) {
+          const start = new Date(pricing.offerStartDate);
+          start.setHours(0, 0, 0, 0);
+          if (now < start) isOffer = false;
+        }
+        if (pricing.offerEndDate) {
+          const end = new Date(pricing.offerEndDate);
+          end.setHours(23, 59, 59, 999);
+          if (now > end) isOffer = false;
+        }
+      }
+
+      const regularMonthlyNum = parsePriceNum(pricing?.premiumMonthly || '12,95 €');
+      const regularYearlyPerMonthNum = parsePriceNum(pricing?.premiumYearly || '9,95 €');
+      const regularYearlyTotalNum = regularYearlyPerMonthNum * 12;
+
+      const offerMonthlyNum = pricing?.offerMonthlyPrice ? parsePriceNum(pricing.offerMonthlyPrice) : regularMonthlyNum;
+      const offerYearlyPerMonthNum = pricing?.offerYearlyPrice ? parsePriceNum(pricing.offerYearlyPrice) : regularYearlyPerMonthNum;
+      const offerYearlyTotalNum = offerYearlyPerMonthNum * 12;
+
+      // Regular recurring price (in cents)
+      const regularUnitAmount = Math.round((isYearly ? regularYearlyTotalNum : regularMonthlyNum) * 100);
+      const activeFirstPeriodAmount = Math.round((isYearly ? (isOffer ? offerYearlyTotalNum : regularYearlyTotalNum) : (isOffer ? offerMonthlyNum : regularMonthlyNum)) * 100);
+
+      // If an introductory discount applies to the 1st period, create a one-time coupon
+      const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
+      if (isOffer && regularUnitAmount > activeFirstPeriodAmount) {
+        const discountAmountCents = regularUnitAmount - activeFirstPeriodAmount;
+        const coupon = await stripe.coupons.create({
+          amount_off: discountAmountCents,
+          currency: 'eur',
+          duration: 'once',
+          name: isYearly ? 'Aktionsrabatt 1. Jahr' : 'Aktionsrabatt 1. Monat',
+        });
+        discounts.push({ coupon: coupon.id });
+      }
       
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card', 'sepa_debit', 'paypal'],
@@ -101,9 +172,11 @@ async function startServer() {
               currency: 'eur',
               product_data: {
                 name: 'Premium Eintrag - Winterberg Verzeichnis',
-                description: isYearly ? 'Premium Eintrag - 1 Jahr (danach mtl. 12,95 € netto)' : 'Premium Eintrag - monatlich kündbar (12,95 € netto)',
+                description: isYearly
+                  ? `Premium Eintrag - 1 Jahr (danach regulär ${(regularYearlyTotalNum).toFixed(2).replace('.', ',')} € / Jahr netto)`
+                  : `Premium Eintrag - monatlich kündbar (danach regulär ${regularMonthlyNum.toFixed(2).replace('.', ',')} € / Monat netto)`,
               },
-              unit_amount: isYearly ? 11940 : 1295, // 119.40 EUR or 12.95 EUR
+              unit_amount: isOffer && activeFirstPeriodAmount > regularUnitAmount ? activeFirstPeriodAmount : regularUnitAmount,
               recurring: {
                 interval: isYearly ? 'year' : 'month',
               },
@@ -112,11 +185,12 @@ async function startServer() {
           },
         ],
         mode: 'subscription',
+        ...(discounts.length > 0 ? { discounts } : {}),
         billing_address_collection: 'required',
         tax_id_collection: {
           enabled: true,
         },
-        allow_promotion_codes: true,
+        allow_promotion_codes: discounts.length === 0,
         success_url: `${origin}?session_id={CHECKOUT_SESSION_ID}&success=true`,
         cancel_url: `${origin}?canceled=true`,
         client_reference_id: businessId,
