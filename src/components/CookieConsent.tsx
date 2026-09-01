@@ -101,10 +101,9 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${gaId}', { 'anonymize_ip': true, 'send_page_view': true });
-          if ('${gaId}' !== '${tagId}') {
-            gtag('config', '${tagId}', { 'anonymize_ip': true, 'send_page_view': true });
+          if ('${gaId}' !== 'G-86EMTRTX80') {
+            gtag('config', 'G-86EMTRTX80', { 'anonymize_ip': true, 'send_page_view': true });
           }
-          gtag('config', 'G-MXFC2V1GXZ', { 'anonymize_ip': true, 'send_page_view': true });
         `;
         document.head.appendChild(script2);
 

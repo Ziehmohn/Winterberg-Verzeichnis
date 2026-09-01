@@ -1,9 +1,9 @@
 /**
  * Google Analytics Helper for Winterberg Verzeichnis
- * Property ID: 302481363 / Configurable Measurement ID (G-XXXXXXXXXX)
+ * Property ID: 302481363 / Measurement ID: G-86EMTRTX80
  */
 
-export const DEFAULT_GA_ID = '302481363';
+export const DEFAULT_GA_ID = 'G-86EMTRTX80';
 
 declare global {
   interface Window {
