@@ -204,10 +204,13 @@ export interface TrackingScript {
 export interface AdBanner {
   id: string;
   title: string;
+  title_nl?: string;
   ctaText?: string;
+  ctaText_nl?: string;
   companyName?: string;
   businessId?: string;
   imageUrl: string;
+  imageUrl_nl?: string;
   targetUrl: string;
   category: string; // 'Alle' or specific category name like 'Gastronomie', 'Handwerk', etc.
   categories?: string[]; // Multiple categories / subcategories or ['Alle']
@@ -215,6 +218,7 @@ export interface AdBanner {
   position?: 'skyscraper_right' | 'sidebar' | 'custom';
   isActive: boolean;
   badgeText?: string; // default "Anzeige"
+  badgeText_nl?: string; // default "Advertentie"
   clicks?: number;
   impressions?: number;
   startDate?: string;

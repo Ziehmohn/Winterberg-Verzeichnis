@@ -3,7 +3,8 @@ import {
   Plus, Edit2, Trash2, Check, X, Eye, ExternalLink, 
   Image as ImageIcon, Upload, MousePointerClick, Megaphone, 
   Sparkles, AlertCircle, Building2, Search, ChevronDown, 
-  ChevronUp, Tag, Layers, CheckSquare, Square, Globe, ArrowRight
+  ChevronUp, Tag, Layers, CheckSquare, Square, Globe, ArrowRight,
+  Languages
 } from 'lucide-react';
 import { AdBanner, AdInquiry, Business } from '../types';
 import { categories } from '../data';
@@ -11,6 +12,7 @@ import { db, storage } from '../firebase';
 import { doc, setDoc, deleteDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getBusinessPath } from '../utils/routes';
+import { translateTextToDutch } from '../utils/translator';
 
 interface AdminAdsManagerProps {
   ads: AdBanner[];
@@ -41,18 +43,27 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
 
   const [selectedBusinessId, setSelectedBusinessId] = useState<string>('');
   const [title, setTitle] = useState('');
+  const [titleNl, setTitleNl] = useState('');
   const [ctaText, setCtaText] = useState('Mehr erfahren');
+  const [ctaTextNl, setCtaTextNl] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [imageUrlNl, setImageUrlNl] = useState('');
   const [targetUrl, setTargetUrl] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['Alle']);
   const [isGlobalAd, setIsGlobalAd] = useState(true);
   const [categorySearch, setCategorySearch] = useState('');
   const [expandedCatGroups, setExpandedCatGroups] = useState<string[]>(categories.map(c => c.name));
   const [badgeText, setBadgeText] = useState('Anzeige');
+  const [badgeTextNl, setBadgeTextNl] = useState('');
   const [isActive, setIsActive] = useState(true);
 
+  // Language management in form & preview
+  const [activeLangTab, setActiveLangTab] = useState<'de' | 'nl'>('de');
+  const [previewLang, setPreviewLang] = useState<'de' | 'nl'>('de');
+
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadingImageNl, setUploadingImageNl] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -86,12 +97,26 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     }
   };
 
+  const handleAutoTranslateToDutch = () => {
+    if (title.trim()) {
+      setTitleNl(translateTextToDutch(title.trim()));
+    }
+    if (ctaText.trim()) {
+      setCtaTextNl(translateTextToDutch(ctaText.trim()));
+    } else {
+      setCtaTextNl('Meer informatie');
+    }
+    setBadgeTextNl(badgeText === 'Werbung' ? 'Reclame' : 'Advertentie');
+  };
+
   const handleOpenNew = () => {
     setEditingAd(null);
     if (userOwnedBusiness) {
       setSelectedBusinessId(userOwnedBusiness.id);
       setTitle(userOwnedBusiness.name + ' – Jetzt entdecken');
+      setTitleNl('');
       setCtaText('Mehr erfahren');
+      setCtaTextNl('');
       setCompanyName(userOwnedBusiness.name);
       const initialCats = [userOwnedBusiness.category];
       if (userOwnedBusiness.subcategory) initialCats.push(userOwnedBusiness.subcategory);
@@ -101,18 +126,24 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     } else {
       setSelectedBusinessId('');
       setTitle('');
+      setTitleNl('');
       setCtaText('Mehr erfahren');
+      setCtaTextNl('');
       setCompanyName('');
       setSelectedCategories(['Alle']);
       setIsGlobalAd(true);
       setTargetUrl('');
     }
     setImageUrl('');
+    setImageUrlNl('');
     setBadgeText('Anzeige');
+    setBadgeTextNl('');
     setIsActive(true);
     setFormError(null);
     setCategorySearch('');
     setExpandedCatGroups(categories.map(c => c.name));
+    setActiveLangTab('de');
+    setPreviewLang('de');
     setIsEditing(true);
   };
 
@@ -120,9 +151,12 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     setEditingAd(ad);
     setSelectedBusinessId(ad.businessId || '');
     setTitle(ad.title || '');
+    setTitleNl(ad.title_nl || '');
     setCtaText(ad.ctaText || 'Mehr erfahren');
+    setCtaTextNl(ad.ctaText_nl || '');
     setCompanyName(ad.companyName || '');
     setImageUrl(ad.imageUrl || '');
+    setImageUrlNl(ad.imageUrl_nl || '');
     setTargetUrl(ad.targetUrl || '');
     
     let cats: string[] = [];
@@ -138,10 +172,13 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     setSelectedCategories(isGlobal ? ['Alle'] : cats);
     setIsGlobalAd(isGlobal);
     setBadgeText(ad.badgeText || 'Anzeige');
+    setBadgeTextNl(ad.badgeText_nl || '');
     setIsActive(ad.isActive);
     setFormError(null);
     setCategorySearch('');
     setExpandedCatGroups(categories.map(c => c.name));
+    setActiveLangTab('de');
+    setPreviewLang('de');
     setIsEditing(true);
   };
 
@@ -268,6 +305,35 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     }
   };
 
+  const handleImageUploadNl = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    setUploadingImageNl(true);
+    setFormError(null);
+
+    try {
+      let url = '';
+      try {
+        const storageRef = ref(storage, `ads/${Date.now()}_nl_${file.name}`);
+        await uploadBytes(storageRef, file);
+        url = await getDownloadURL(storageRef);
+      } catch (storageErr) {
+        console.warn('Storage upload failed, using FileReader fallback', storageErr);
+        url = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+      setImageUrlNl(url);
+    } catch (err: any) {
+      setFormError('Fehler beim Hochladen des NL-Bildes: ' + (err.message || err));
+    } finally {
+      setUploadingImageNl(false);
+    }
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim() || !imageUrl.trim() || !targetUrl.trim()) {
@@ -277,6 +343,11 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
 
     if (title.trim().length > 120) {
       setFormError('Der Banner-Text darf maximal 120 Zeichen lang sein.');
+      return;
+    }
+
+    if (titleNl.trim().length > 120) {
+      setFormError('Der niederländische Banner-Text darf maximal 120 Zeichen lang sein.');
       return;
     }
 
@@ -293,16 +364,20 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     const adData: AdBanner = {
       id: adId,
       title: title.trim(),
+      title_nl: titleNl.trim() || undefined,
       ctaText: ctaText.trim() || 'Mehr erfahren',
+      ctaText_nl: ctaTextNl.trim() || undefined,
       companyName: companyName.trim() || undefined,
       businessId: selectedBusinessId || undefined,
       imageUrl: imageUrl.trim(),
+      imageUrl_nl: imageUrlNl.trim() || undefined,
       targetUrl: targetUrl.trim(),
       category: finalCategories[0] || 'Alle',
       categories: finalCategories,
       position: 'skyscraper_right',
       isActive,
       badgeText: badgeText.trim() || 'Anzeige',
+      badgeText_nl: badgeTextNl.trim() || undefined,
       clicks: editingAd?.clicks || 0,
       createdAt: editingAd?.createdAt || new Date().toISOString()
     };
@@ -482,68 +557,209 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
             )}
           </div>
 
-          {/* Banner Text (Max 120 chars) & Call-to-Action */}
-          <div className="grid grid-cols-1 gap-4">
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Banner-Text / Kampagnentext <span className="text-red-500">*</span>
-                </label>
-                <span className={`text-xs font-semibold ${title.length > 120 ? 'text-red-600 font-bold' : title.length >= 100 ? 'text-amber-600' : 'text-gray-500'}`}>
-                  {title.length} / 120 Zeichen
-                </span>
+          {/* Language Selection Tabs for Content */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between border-b border-[#E7E2DA] pb-2 flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveLangTab('de')}
+                  className={`px-3.5 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    activeLangTab === 'de'
+                      ? 'bg-[#0F4C2E] text-white shadow-xs'
+                      : 'bg-[#FAF8F5] text-gray-700 hover:bg-gray-100 border border-[#E7E2DA]'
+                  }`}
+                >
+                  <span>🇩🇪 Deutsch (Standard)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveLangTab('nl')}
+                  className={`px-3.5 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    activeLangTab === 'nl'
+                      ? 'bg-[#0F4C2E] text-white shadow-xs'
+                      : 'bg-[#FAF8F5] text-gray-700 hover:bg-gray-100 border border-[#E7E2DA]'
+                  }`}
+                >
+                  <span>🇳🇱 Niederländisch (NL)</span>
+                  {titleNl.trim() ? (
+                    <span className="bg-emerald-200 text-emerald-800 text-[10px] px-1.5 py-0.5 rounded font-semibold">
+                      Manuell angepasst
+                    </span>
+                  ) : (
+                    <span className="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.5 rounded font-semibold">
+                      Auto-Übersetzung
+                    </span>
+                  )}
+                </button>
               </div>
-              <textarea
-                required
-                maxLength={120}
-                rows={2}
-                placeholder="z. B. Frisch gezapftes Bier, deftige Spezialitäten & sonnige Terrasse direkt am Kurpark Winterberg."
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors resize-none leading-relaxed"
-              />
-              <span className="text-[11.5px] text-[#5F6B63] mt-1 block">
-                Dieser Text wird vollständig auf dem Werbebanner dargestellt (kein Abschneiden, max. 120 Zeichen).
-              </span>
+
+              {activeLangTab === 'nl' && (
+                <button
+                  type="button"
+                  onClick={handleAutoTranslateToDutch}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#0F4C2E] hover:bg-[#06301C] text-white rounded-md text-xs font-semibold transition-colors shadow-xs cursor-pointer"
+                >
+                  <Sparkles className="w-3 h-3 text-[#F2761B]" />
+                  <span>Auf Niederländisch vorübersetzen</span>
+                </button>
+              )}
             </div>
 
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Call-to-Action (CTA-Button Text) <span className="text-red-500">*</span>
-                </label>
-                <span className="text-xs text-gray-400">
-                  {ctaText.length} / 35 Zeichen
-                </span>
+            {/* German Content Tab */}
+            {activeLangTab === 'de' && (
+              <div className="grid grid-cols-1 gap-4">
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Banner-Text / Kampagnentext (Deutsch) <span className="text-red-500">*</span>
+                    </label>
+                    <span className={`text-xs font-semibold ${title.length > 120 ? 'text-red-600 font-bold' : title.length >= 100 ? 'text-amber-600' : 'text-gray-500'}`}>
+                      {title.length} / 120 Zeichen
+                    </span>
+                  </div>
+                  <textarea
+                    required
+                    maxLength={120}
+                    rows={2}
+                    placeholder="z. B. Frisch gezapftes Bier, deftige Spezialitäten & sonnige Terrasse direkt am Kurpark Winterberg."
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors resize-none leading-relaxed"
+                  />
+                  <span className="text-[11.5px] text-[#5F6B63] mt-1 block">
+                    Dieser Text wird vollständig auf dem Werbebanner dargestellt (kein Abschneiden, max. 120 Zeichen).
+                  </span>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Call-to-Action (CTA-Button Text - Deutsch) <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-xs text-gray-400">
+                      {ctaText.length} / 35 Zeichen
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    maxLength={35}
+                    placeholder="z. B. Jetzt Tisch reservieren, Mehr erfahren, Angebot ansehen"
+                    value={ctaText}
+                    onChange={(e) => setCtaText(e.target.value)}
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-2 font-medium"
+                  />
+                  {/* Quick suggestions */}
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-[11px] text-gray-500 font-medium mr-1">Vorschläge:</span>
+                    {['Mehr erfahren', 'Jetzt entdecken', 'Tisch reservieren', 'Angebot ansehen', 'Termin vereinbaren', 'Gutschein sichern'].map((sug) => (
+                      <button
+                        key={sug}
+                        type="button"
+                        onClick={() => setCtaText(sug)}
+                        className={`text-[11px] px-2 py-0.5 rounded border transition-colors ${
+                          ctaText === sug 
+                            ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] font-semibold' 
+                            : 'bg-white text-gray-700 border-gray-200 hover:border-[#0F4C2E] hover:text-[#0F4C2E]'
+                        }`}
+                      >
+                        {sug}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <input
-                type="text"
-                required
-                maxLength={35}
-                placeholder="z. B. Jetzt Tisch reservieren, Mehr erfahren, Angebot ansehen"
-                value={ctaText}
-                onChange={(e) => setCtaText(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-2 font-medium"
-              />
-              {/* Quick suggestions */}
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-[11px] text-gray-500 font-medium mr-1">Vorschläge:</span>
-                {['Mehr erfahren', 'Jetzt entdecken', 'Tisch reservieren', 'Angebot ansehen', 'Termin vereinbaren', 'Gutschein sichern'].map((sug) => (
-                  <button
-                    key={sug}
-                    type="button"
-                    onClick={() => setCtaText(sug)}
-                    className={`text-[11px] px-2 py-0.5 rounded border transition-colors ${
-                      ctaText === sug 
-                        ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] font-semibold' 
-                        : 'bg-white text-gray-700 border-gray-200 hover:border-[#0F4C2E] hover:text-[#0F4C2E]'
-                    }`}
-                  >
-                    {sug}
-                  </button>
-                ))}
+            )}
+
+            {/* Dutch Content Tab */}
+            {activeLangTab === 'nl' && (
+              <div className="grid grid-cols-1 gap-4">
+                <div className="bg-[#FFF9F2] border border-[#FFE5C7] rounded-lg p-3 text-xs text-[#8A4B10]">
+                  <div className="flex items-start gap-2">
+                    <Sparkles className="w-4 h-4 text-[#F2761B] shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Standardmäßig: Automatische Echtzeit-Übersetzung</strong>
+                      <p className="mt-0.5 text-[11.5px] leading-relaxed text-[#733F0F]">
+                        Wenn Sie die Felder leer lassen, wird für niederländische Besucher (<code>/nl</code>) automatisch eine Live-Übersetzung des deutschen Textes angezeigt. Möchten Sie den niederländischen Text exakt selbst anpassen, tragen Sie ihn hier ein.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Banner-Text / Kampagnentext (Niederländisch / NL)
+                    </label>
+                    <span className={`text-xs font-semibold ${titleNl.length > 120 ? 'text-red-600 font-bold' : titleNl.length >= 100 ? 'text-amber-600' : 'text-gray-500'}`}>
+                      {titleNl.length} / 120 Zeichen
+                    </span>
+                  </div>
+                  <textarea
+                    maxLength={120}
+                    rows={2}
+                    placeholder={title ? `Automatisch: „${translateTextToDutch(title)}“` : 'Wird automatisch übersetzt, falls leer...'}
+                    value={titleNl}
+                    onChange={(e) => setTitleNl(e.target.value)}
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors resize-none leading-relaxed"
+                  />
+                  <span className="text-[11.5px] text-[#5F6B63] mt-1 block">
+                    {titleNl.trim() ? '✓ Individueller niederländischer Text aktiv.' : 'ℹ️ Feld ist leer — Banner wird für niederländische Besucher automatisch in Echtzeit übersetzt.'}
+                  </span>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      Call-to-Action (CTA-Button Text - Niederländisch)
+                    </label>
+                    <span className="text-xs text-gray-400">
+                      {ctaTextNl.length} / 35 Zeichen
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    maxLength={35}
+                    placeholder={ctaText ? `Automatisch: „${translateTextToDutch(ctaText)}“` : 'Meer informatie'}
+                    value={ctaTextNl}
+                    onChange={(e) => setCtaTextNl(e.target.value)}
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-2 font-medium"
+                  />
+                  {/* Quick suggestions for Dutch */}
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-[11px] text-gray-500 font-medium mr-1">Vorschläge (NL):</span>
+                    {['Meer informatie', 'Nu ontdekken', 'Tafel reserveren', 'Aanbieding bekijken', 'Afspraak maken', 'Waardebon bemachtigen'].map((sug) => (
+                      <button
+                        key={sug}
+                        type="button"
+                        onClick={() => setCtaTextNl(sug)}
+                        className={`text-[11px] px-2 py-0.5 rounded border transition-colors ${
+                          ctaTextNl === sug 
+                            ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] font-semibold' 
+                            : 'bg-white text-gray-700 border-gray-200 hover:border-[#0F4C2E] hover:text-[#0F4C2E]'
+                        }`}
+                      >
+                        {sug}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
+                    Kennzeichnung (Niederländisch / NL)
+                  </label>
+                  <input
+                    type="text"
+                    value={badgeTextNl}
+                    onChange={(e) => setBadgeTextNl(e.target.value)}
+                    placeholder="Advertentie (oder Reclame)"
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] transition-colors"
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Target Categories Section */}
@@ -756,54 +972,143 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
             </label>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-              <div>
-                <input
-                  type="text"
-                  placeholder="https://... oder Datei hochladen"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-3"
-                />
-
-                <label className="inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] px-4 py-2 rounded-md cursor-pointer text-xs font-semibold text-gray-700 transition-colors">
-                  <Upload className="w-4 h-4 text-[#0F4C2E]" />
-                  {uploadingImage ? 'Lade hoch...' : 'Grafik-Datei hochladen'}
+              <div className="space-y-4">
+                {/* Standard Graphic (DE) */}
+                <div>
+                  <span className="text-xs font-bold text-gray-700 block mb-1">
+                    Standard-Grafik (Deutsch &amp; Basis) <span className="text-red-500">*</span>
+                  </span>
                   <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    disabled={uploadingImage}
-                    className="hidden"
+                    type="text"
+                    placeholder="https://... oder Datei hochladen"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-2"
                   />
-                </label>
+
+                  <label className="inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] px-3.5 py-1.5 rounded-md cursor-pointer text-xs font-semibold text-gray-700 transition-colors">
+                    <Upload className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                    {uploadingImage ? 'Lade hoch...' : 'Standard-Grafik hochladen'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={uploadingImage}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+
+                {/* Optional Dutch Graphic (NL) */}
+                <div className="pt-3 border-t border-[#EDE8E0]">
+                  <span className="text-xs font-bold text-gray-700 block mb-1">
+                    🇳🇱 Optionale separate NL-Grafik (falls Text im Bild enthalten ist)
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="https://... (Optional für NL)"
+                    value={imageUrlNl}
+                    onChange={(e) => setImageUrlNl(e.target.value)}
+                    className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors mb-2"
+                  />
+
+                  <label className="inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F3F0EA] border border-[#E7E2DA] px-3.5 py-1.5 rounded-md cursor-pointer text-xs font-semibold text-gray-700 transition-colors">
+                    <Upload className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                    {uploadingImageNl ? 'Lade hoch...' : 'NL-Grafik hochladen'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUploadNl}
+                      disabled={uploadingImageNl}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
               </div>
 
-              {imageUrl && (
-                <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-3 flex flex-col items-center">
-                  <span className="text-[11px] font-semibold text-gray-500 mb-2">Live-Vorschau des Banners:</span>
-                  <div className="w-[190px] rounded-md border border-[#EDE8E0] bg-white overflow-hidden shadow-md flex flex-col">
-                    <div className="relative h-[180px] bg-slate-100 overflow-hidden">
-                      <div className="absolute top-1.5 left-1.5 z-10 bg-black/65 text-white px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase">
-                        {badgeText || 'Anzeige'}
-                      </div>
-                      <img
-                        src={imageUrl}
-                        alt="Vorschau"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-2.5 flex flex-col gap-2">
-                      <div className="text-[11.5px] font-medium text-[#1B211D] leading-snug break-words">
-                        {title || 'Ihr Banner-Text (bis zu 120 Zeichen)...'}
-                      </div>
-                      <div className="pt-1.5 border-t border-[#F3F0EA] flex items-center justify-between">
-                        <span className="text-[10.5px] font-bold text-white bg-[#0F4C2E] px-2.5 py-1 rounded shadow-sm inline-flex items-center gap-1">
-                          {ctaText || 'Mehr erfahren'}
-                        </span>
-                        <ExternalLink className="w-3 h-3 text-gray-400" />
-                      </div>
+              {/* Live Preview Card with Language Switcher */}
+              {(imageUrl || imageUrlNl) && (
+                <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-md p-3.5 flex flex-col items-center">
+                  <div className="w-full flex items-center justify-between mb-2.5 pb-2 border-b border-[#E7E2DA]">
+                    <span className="text-[11px] font-bold text-gray-700 uppercase tracking-wider">Live-Vorschau:</span>
+                    <div className="flex items-center gap-1 bg-white border border-[#E7E2DA] rounded p-0.5">
+                      <button
+                        type="button"
+                        onClick={() => setPreviewLang('de')}
+                        className={`px-2 py-0.5 text-[11px] font-bold rounded transition-colors ${
+                          previewLang === 'de' ? 'bg-[#0F4C2E] text-white' : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                      >
+                        🇩🇪 DE
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPreviewLang('nl')}
+                        className={`px-2 py-0.5 text-[11px] font-bold rounded transition-colors ${
+                          previewLang === 'nl' ? 'bg-[#0F4C2E] text-white' : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                      >
+                        🇳🇱 NL
+                      </button>
                     </div>
                   </div>
+
+                  {(() => {
+                    const isNl = previewLang === 'nl';
+                    const activePreviewTitle = isNl
+                      ? (titleNl.trim() || (title.trim() ? translateTextToDutch(title.trim()) : 'Uw banner-tekst (in het Nederlands)...'))
+                      : (title.trim() || 'Ihr Banner-Text (bis zu 120 Zeichen)...');
+
+                    const activePreviewCta = isNl
+                      ? (ctaTextNl.trim() || (ctaText.trim() ? translateTextToDutch(ctaText.trim()) : 'Meer informatie'))
+                      : (ctaText.trim() || 'Mehr erfahren');
+
+                    const activePreviewBadge = isNl
+                      ? (badgeTextNl.trim() || (badgeText === 'Werbung' ? 'Reclame' : 'Advertentie'))
+                      : (badgeText.trim() || 'Anzeige');
+
+                    const activePreviewImg = (isNl && imageUrlNl.trim()) ? imageUrlNl.trim() : (imageUrl.trim() || '');
+
+                    return (
+                      <div className="w-[200px] rounded-md border border-[#EDE8E0] bg-white overflow-hidden shadow-md flex flex-col">
+                        <div className="relative h-[200px] bg-slate-100 overflow-hidden">
+                          <div className="absolute top-1.5 left-1.5 z-10 bg-black/65 text-white px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase">
+                            {activePreviewBadge}
+                          </div>
+                          {activePreviewImg ? (
+                            <img
+                              src={activePreviewImg}
+                              alt="Vorschau"
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                              Kein Bild
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-2.5 flex flex-col gap-2">
+                          <div className="text-[11.5px] font-medium text-[#1B211D] leading-snug break-words">
+                            {activePreviewTitle}
+                          </div>
+                          <div className="pt-1.5 border-t border-[#F3F0EA] flex items-center justify-between">
+                            <span className="text-[10.5px] font-bold text-white bg-[#0F4C2E] px-2.5 py-1 rounded shadow-sm inline-flex items-center gap-1">
+                              {activePreviewCta}
+                            </span>
+                            <ExternalLink className="w-3 h-3 text-gray-400" />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  <span className="text-[10.5px] text-[#5F6B63] mt-2 text-center">
+                    {previewLang === 'nl' ? (
+                      titleNl.trim() ? '✓ Zeigt manuell gepflegten NL-Text' : '🤖 Zeigt automatische NL-Übersetzung'
+                    ) : (
+                      '🇩🇪 Zeigt deutschen Original-Banner'
+                    )}
+                  </span>
                 </div>
               )}
             </div>
@@ -812,7 +1117,7 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-2">
             <div>
               <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                Kennzeichnung
+                Standard-Kennzeichnung (Deutsch)
               </label>
               <input
                 type="text"
@@ -849,8 +1154,8 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
             </button>
             <button
               type="submit"
-              disabled={isSubmitting || uploadingImage}
-              className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+              disabled={isSubmitting || uploadingImage || uploadingImageNl}
+              className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors disabled:opacity-50 inline-flex items-center gap-2 shadow-sm cursor-pointer"
             >
               {isSubmitting ? 'Speichert...' : 'Banner speichern'}
             </button>

@@ -41,7 +41,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-in-winterberg',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Was kann man in Winterberg machen? (Die besten Highlights & Aktivitäten)',
+      question: 'Was kann man in Winterberg machen?',
       quickSummary: 'Winterberg bietet zu jeder Jahreszeit erstklassige Erlebnisse: Im Winter das Skiliftkarussell und Rodelhänge, im Frühling und Sommer den Erlebnisberg Kappe (Bikepark, Sommerrodelbahn, Panorama Brücke), traumhafte Wanderwege wie den Rothaarsteig, Wassersport am Hillebachsee sowie eine lebendige Gastronomie.',
       plainAnswer: 'Winterberg ist ganzjährig ein Erlebnis: Im Winter locken 27,5 Pistenkilometer im Skiliftkarussell und beleuchtete Rodelhänge. Im Sommer begeistern der Erlebnisberg Kappe mit Bikepark, Sommerrodelbahn und Kletterwald, der Aussichtspunkt Kahler Asten, Wasserski am Hillebachsee sowie das vielseitige Shopping- und Gastronomieangebot.',
       answerHtml: (
@@ -62,7 +62,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg? (De leukste activiteiten & bezienswaardigheden)',
+      question: 'Wat te doen in Winterberg?',
       quickSummary: 'Winterberg is het hele jaar door de populairste bestemming in het Sauerland: In de winter skiën en rodelen in het Skiliftkarussell, en in het voorjaar en de zomer volop actie op de Erlebnisberg Kappe (Bikepark, zomerrodelbaan, panoramabrug), wandelen op de Kahler Asten en watersporten op de Hillebachsee.',
       plainAnswer: 'In Winterberg is altijd wat te doen: In de winter 27,5 km skipistes en verlichte rodelhellingen. In de zomer de Erlebnisberg Kappe met bikepark, zomerrodelbaan en klimbos, het uitzichtpunt Kahler Asten (841 m), waterskiën op de Hillebachsee en gezellige winkels en restaurants.',
       answerHtml: (
@@ -134,24 +134,24 @@ export const FAQ_DATA: FaqItem[] = [
     }
   },
 
-  // ── 3. Wat te doen met regen (Google Autosuggest) ──
+  // ── 3. Wat te doen met regen (Google Autosuggest - 100% REINE INDOOR-AKTIVITÄTEN) ──
   {
     id: 'wat-te-doen-met-regen',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Was kann man in Winterberg bei Regen machen? (Schlechtwetter- & Indoor-Tipps)',
-      quickSummary: 'Auch bei Regen gibt es viele Indoor-Möglichkeiten: Das Hallen- und Wellnessbad im Oversum Vital Resort, Bowling und Darts im Bowlhaus Winterberg, Kinobesuche im Filmtheater, historische Museen, überdachte Bobbahn-Führungen und gemütliche Kaffeepausen.',
-      plainAnswer: 'Bei Regenwetter empfehlen sich: 1. Schwimmen & Sauna im Oversum Vital Resort, 2. Bowling & Billard im Bowlhaus Winterberg, 3. Aktuelle Blockbuster im Filmtheater Winterberg, 4. Westdeutsches Wintersportmuseum in Neuastenberg, 5. Überdachte Führungen durch die VELTINS-EisArena (Bobbahn), 6. Gemütliche Café- und Restaurantbesuche im Stadtzentrum.',
+      question: 'Was kann man in Winterberg bei Regen machen?',
+      quickSummary: 'Bei Regenwetter bietet Winterberg erstklassige 100% überdachte Indoor-Erlebnisse: Das Hallen- und Wellnessbad im Oversum Vital Resort, Bowling, Billard & Darts im Bowlhaus Winterberg, Kinobesuche im Filmtheater, rasante Indoor-Kartbahn in Neuastenberg, das Westdeutsche Wintersportmuseum sowie gemütliche Cafés.',
+      plainAnswer: 'Bei Regenwetter empfehlen sich wetterunabhängige Indoor-Aktivitäten: 1. Schwimmen & Wellness im Hallenbad des Oversum Vital Resorts, 2. Bowling, Billard & Darts im Bowlhaus Winterberg, 3. Aktuelle Blockbuster im Filmtheater Winterberg, 4. Indoor-Kartbahn bei Kartfun Neuastenberg, 5. Westdeutsches Wintersportmuseum in Neuastenberg, 6. Gemütliche Café- und Restaurantbesuche mit warmen Waffeln.',
       answerHtml: (
         <div className="space-y-3">
-          <p>Selbst bei Schmuddelwetter wird es in Winterberg dank abwechslungsreicher Indoor-Angebote garantiert nicht langweilig:</p>
+          <p>Selbst bei Schmuddelwetter wird es in Winterberg dank abwechslungsreicher und komplett überdachter Indoor-Angebote garantiert nicht langweilig:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Schwimmen & Wellness im Oversum:</strong> Großzügiges Hallenbad mit 25-Meter-Sportbecken, Erlebnisbecken, Whirlpool sowie exklusiver Saunalandschaft mit Panoramablick.</li>
+            <li><strong>Schwimmen & Sauna im Oversum:</strong> Großzügiges Hallenbad mit 25-Meter-Sportbecken, Erlebnisbecken, Whirlpool sowie exklusiver Saunalandschaft mit Panoramablick.</li>
             <li><strong>Bowling, Darts & Billard:</strong> Das <em>Bowlhaus Winterberg</em> bietet moderne Bowlingbahnen, Disco-Bowling mit Lightshow, Billardtische, Airhockey und ein gemütliches Restaurant.</li>
             <li><strong>Kinoabend im Filmtheater Winterberg:</strong> Modern ausgestattetes Kino im Stadtzentrum mit aktuellen Blockbustern, Popcorn und Snacks.</li>
-            <li><strong>VELTINS-EisArena (Bobbahn):</strong> Buchen Sie eine spannende Führung durch eine der schnellsten Kunsteis-Bobbahnen der Welt (großteils überdacht).</li>
+            <li><strong>Indoor-Karting bei Kartfun Neuastenberg:</strong> Wetterunabhängiger Fahrspaß auf der überdachten Kartbahn für Kinder, Jugendliche und Erwachsene.</li>
             <li><strong>Kultur & Museen:</strong> Das <em>Westdeutsche Wintersportmuseum</em> in Neuastenberg (Geschichte des Skilaufs seit über 120 Jahren) oder die <em>Borgs Scheune</em> in Züschen.</li>
-            <li><strong>Ausgiebig schlemmen & Kaffeetrinken:</strong> Warme Waffeln mit Kirschen, frischer Kuchen und Kaffeespezialitäten in den gemütlichen Cafés entlang der Einkaufsstraße.</li>
+            <li><strong>Ausgiebig schlemmen & Kaffeetrinken:</strong> Warme Sauerländer Waffeln mit Kirschen, frischer Kuchen und Kaffeespezialitäten in den gemütlichen Cafés im Stadtkern.</li>
           </ul>
         </div>
       ),
@@ -161,18 +161,18 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg met regen? (Slecht weer tips & overdekte activiteiten)',
-      quickSummary: 'Ook op regenachtige dagen is er genoeg te doen in Winterberg: Ontspannen in het subtropische zwem- en wellnessparadijs van het Oversum, bowlen bij Bowlhaus Winterberg, naar de nieuwste films in de bioscoop, een rondleiding over de overdekte bobsleebaan of gezellig koffiedrinken met verse Sauerländer wafels.',
-      plainAnswer: 'Bij slecht weer in Winterberg: 1. Zwemmen en saunabezoek in het Oversum Vital Resort, 2. Bowlen en poolen in Bowlhaus Winterberg, 3. Film kijken in het Filmtheater Winterberg, 4. Bezoek aan het Wintersportmuseum in Neuastenberg, 5. Rondleiding over de VELTINS-EisArena bobsleebaan, 6. Overdekt winkelen en koffiedrinken met warme wafels.',
+      question: 'Wat te doen in Winterberg met regen?',
+      quickSummary: 'Ook op regenachtige dagen is er volop overdekt plezier in Winterberg: Ontspannen in het overdekte zwem- en wellnessparadijs van het Oversum, bowlen bij Bowlhaus Winterberg, naar de nieuwste bioscoopfilms, indoor karten bij Kartfun Neuastenberg of gezellig koffiedrinken met warme Sauerländer wafels.',
+      plainAnswer: 'Bij slecht weer in Winterberg (100% overdekte indoor-activiteiten): 1. Zwemmen en saunabezoek in het overdekte Oversum Vital Resort, 2. Bowlen en poolen in Bowlhaus Winterberg, 3. Film kijken in het Filmtheater Winterberg, 4. Indoor karten bij Kartfun Neuastenberg, 5. Bezoek aan het Wintersportmuseum in Neuastenberg, 6. Gezellig koffiedrinken met warme wafels en streekgerechten.',
       answerHtml: (
         <div className="space-y-3">
-          <p>Regent het een dagje in Winterberg? Geen probleem! Dit zijn de leukste overdekte uitstapjes:</p>
+          <p>Regent het een dagje in Winterberg? Dit zijn de leukste 100% overdekte indoor-uitstapjes:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Zwemmen & Sauna in het Oversum:</strong> Heerlijk overdekt zwemmen in het 25m bad, relaxen in het bubbelbad en opwarmen in de luxe Finse sauna\'s en stoombaden.</li>
-            <li><strong>Bowlen bij Bowlhaus Winterberg:</strong> Gezellig met familie of vrienden bowlen (ook met discolampen), darten, poolbiljart spelen en hamburgers eten in de sportbar.</li>
+            <li><strong>Zwemmen & Sauna in het Oversum:</strong> Heerlijk overdekt zwemmen in het 25m sportbad, ontspannen in het belevingsbad en opwarmen in de luxe Finse sauna\'s en stoombaden.</li>
+            <li><strong>Bowlen bij Bowlhaus Winterberg:</strong> Gezellig met familie of vrienden bowlen (ook met discolampen), darten, poolbiljart spelen en hapjes eten in de sportbar.</li>
             <li><strong>Bioscoop (Filmtheater Winterberg):</strong> Knus filmtheater in het centrum waar de nieuwste films worden gedraaid met popcorn en drankjes.</li>
-            <li><strong>Bobsleebaan VELTINS-EisArena:</strong> Een fascinerende rondleiding achter de schermen van een van de snelste overdekte bobsleebanen ter wereld.</li>
-            <li><strong>West-Duits Wintersportmuseum (Neuastenberg):</strong> Ontdek hoe het skiën in het Sauerland meer dan 120 jaar geleden begon met houten latten.</li>
+            <li><strong>Indoor Karten (Kartfun Neuastenberg):</strong> Snelle indoor kartbaan voor adrenaline en raceplezier, volledig overdekt.</li>
+            <li><strong>West-Duits Wintersportmuseum (Neuastenberg):</strong> Ontdek hoe het skiën in het Sauerland meer dan 120 jaar geleden begon.</li>
             <li><strong>Koffie & Verse Wafels:</strong> Schuif aan in een van de traditionele Konditoreien voor warme Belgische/Duitse wafels met warme kersen en slagroom.</li>
           </ul>
         </div>
@@ -189,7 +189,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-vandaag',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Was kann man heute in Winterberg machen? (Tagesplanung & spontane Ausflüge)',
+      question: 'Was kann man heute in Winterberg machen?',
       quickSummary: 'Für einen perfekten Tag in Winterberg: Morgens gemütlich frühstücken, vormittags Action im Skigebiet oder am Erlebnisberg Kappe, nachmittags Ausblick vom Kahlen Asten oder Bummel durchs Zentrum, abends lecker Essen gehen und Après-Ski.',
       plainAnswer: 'Perfekter Tagesplan für heute: 1. Start mit Frühstück im Cafe Extrablatt oder Bäckerei Isken, 2. Live-Webcams checken und ab auf die Piste (Winter) bzw. in den Bikepark/Sommerrodelbahn (Sommer), 3. Einkehr zum Mittagessen in einer Hütte, 4. Panoramablick auf dem Kahlen Asten, 5. Dinner in einem Sauerländer Restaurant und Kneipenabend.',
       answerHtml: (
@@ -211,7 +211,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg vandaag? (Dagplanning & actuele tips)',
+      question: 'Wat te doen in Winterberg vandaag?',
       quickSummary: 'De ideale dagplanning voor vandaag in Winterberg: Begin met een uitgebreid ontbijt, ga daarna skiën of naar de Erlebnisberg Kappe, geniet \'s middags van het uitzicht op de Kahler Asten en sluit de dag af met een heerlijk diner en een drankje in het centrum.',
       plainAnswer: 'Dagprogramma voor vandaag: 1. Ontbijtbuffet bij Cafe Extrablatt of Bäckerei Isken, 2. Pistes van het Skiliftkarussell (winter) of Bikepark & Rodelbaan op de Kappe (zomer), 3. Lunchen in een gezellige almhut, 4. Wandeling en uitzicht vanaf de Kahler Asten, 5. Dineren in een restaurant en borrelen in de Dorf Alm of Irish Pub.',
       answerHtml: (
@@ -239,7 +239,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-met-kinderen',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Was kann man in Winterberg mit Kindern machen? (Familien-Highlights im Sommer & Winter)',
+      question: 'Was kann man in Winterberg mit Kindern machen?',
       quickSummary: 'Winterberg ist ein Paradies für Familien: Sommerrodelbahnen, Panorama Erlebnis Brücke mit Riesenrutsche, Kletterwald, Wasserspielplatz am Hillebachsee, kindgerechte Skischulen mit Förderbändern, Rodellifte und der gigantische Aventura-Spielplatz im nahen Medebach.',
       plainAnswer: 'Top-Ausflugsziele für Familien mit Kindern: 1. Sommerrodelbahn & Fly-Line am Erlebnisberg Kappe, 2. Panorama Erlebnis Brücke mit Kletterelementen, 3. Hillebachsee mit Spielplatz & Badestrand, 4. Im Winter die Rodelparadiese Herrloh & Bremberg, 5. Kinderskischulen im Skiliftkarussell, 6. Europas längstes Spielgerät AVENTURA Spielberg (Medebach, 15 Min), 7. Freizeitpark FORT FUN (20 Min).',
       answerHtml: (
@@ -261,7 +261,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg in de zomer met kinderen (en in de winter)?',
+      question: 'Wat te doen in Winterberg met kinderen?',
       quickSummary: 'Winterberg is de ideale familiebestemming: Zomerrodelbanen, de Panoramabrug met reuzenglijbaan, het klimbos, het zandstrand bij de Hillebachsee, kinderskischolen met lopende banden (tovertapijten) en het langste gratis speeltoestel van Europa (AVENTURA Spielberg).',
       plainAnswer: 'Beste kinderactiviteiten in Winterberg: 1. Zomerrodelbaan & Fly-Line op de Kappe, 2. Panorama Belevenisbrug met klimnetten en glijbanen, 3. Hillebachsee met zandstrand en waterspeeltuin, 4. AVENTURA Spielberg in Medebach (gratis speelparadijs op 15 min), 5. Pretpark FORT FUN Abenteuerland (20 min), 6. Rodelen met rodelliften bij Herrloh & Bremberg, 7. Kinderskiles met Nederlandstalige skileraren.',
       answerHtml: (
@@ -289,7 +289,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-met-hond',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Was kann man in Winterberg mit Hund machen? (Urlaub mit Hund)',
+      question: 'Was kann man in Winterberg mit Hund machen?',
       quickSummary: 'Winterberg ist sehr hundefreundlich: Herrliche Wanderwege ohne Straßenverkehr (Rothaarsteig, Kahler Asten, Rundweg Hillebachsee), zahlreiche hundefreundliche Restaurants & Hütten mit Wassernäpfen sowie Unterkünfte, die Vierbeiner herzlich willkommen heißen.',
       plainAnswer: 'Mit Hund in Winterberg: 1. Traumhafte Wanderungen auf dem Rothaarsteig, Kahlen Asten und der Hochheide Niedersfeld, 2. Spaziergänge um den Hillebachsee (Leinenpflicht), 3. Hundefreundliche Gastronomie (Dorf Alm, Möppi\'s Hütte, Cafe Extrablatt erlauben Hunde), 4. Winterspaziergänge auf geräumten Wegen abseits der Skipisten. Hinweis: Auf den präparierten Skipisten sind Hunde aus Sicherheitsgründen nicht gestattet.',
       answerHtml: (
@@ -310,7 +310,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg met de hond? (Hondvriendelijke tips & wandelingen)',
+      question: 'Wat te doen in Winterberg met de hond?',
       quickSummary: 'Winterberg is ontzettend hondvriendelijk: Uitgestrekte wandelroutes in de natuur (zoals de Rothaarsteig en Kahler Asten), rondwandelingen om het meer van Niedersfeld, volop hondvriendelijke horeca met waterbakken en talloze accommodaties waar honden van harte welkom zijn.',
       plainAnswer: 'Met de hond in Winterberg: 1. Eindeloos wandelen over de heide van de Kahler Asten, Rothaarsteig en door de Helletal-kloof, 2. Rondje om de Hillebachsee (aangelijnd), 3. Hondvriendelijke restaurants en berghutten (honden zijn welkom in o.a. Dorf Alm, Möppi\'s Hütte en Cafe Extrablatt), 4. Sneeuwwandelingen over geprepareerde winterwandelpaden. Let op: op de skipistes zijn honden om veiligheidsredenen niet toegestaan.',
       answerHtml: (
@@ -337,7 +337,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-in-de-omgeving',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Was kann man in der Umgebung von Winterberg machen? (Ausflugsziele im Sauerland)',
+      question: 'Was kann man in der Umgebung von Winterberg machen?',
       quickSummary: 'In unmittelbarer Umgebung locken spannende Attraktionen: Die spektakuläre Hängebrücke Skywalk in Willingen, der Freizeitpark FORT FUN Abenteuerland, die monumentalen Bruchhauser Steine, der Kletterberg AVENTURA Medebach, Stauseen wie der Diemelsee und die berühmte Warsteiner Welt.',
       plainAnswer: 'Die besten Ausflugsziele rund um Winterberg: 1. Skywalk Willingen (665 m lange Hängebrücke, 20 Min), 2. Freizeitpark FORT FUN Abenteuerland (Bestwig, 20 Min), 3. Bruchhauser Steine Naturmonument (Olsberg, 15 Min), 4. AVENTURA Spielberg Medebach (15 Min), 5. Tropfsteinhöhle Atta-Höhle in Attendorn (45 Min), 6. Bootsfahrten auf dem Hennesee oder Diemelsee.',
       answerHtml: (
@@ -358,7 +358,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg en omgeving? (De mooiste uitstapjes in het Sauerland)',
+      question: 'Wat te doen in Winterberg en omgeving?',
       quickSummary: 'In de directe omgeving van Winterberg liggen fantastische bezienswaardigheden: De spectaculaire hangbrug Skywalk in Willingen, pretpark FORT FUN Abenteuerland, de gigantische rotsformaties Bruchhauser Steine, de Atta-Höhle druipsteengrotten en de meren Hennesee en Diemelsee.',
       plainAnswer: 'Top uitstapjes rondom Winterberg: 1. Skywalk Willingen (665 m lange hangbrug op 100 m hoogte, 20 min), 2. Pretpark FORT FUN Abenteuerland in Bestwig (20 min), 3. De monumentale Bruchhauser Steine (15 min), 4. AVENTURA Spielberg Medebach (langste gratis speelbos van Europa, 15 min), 5. Atta-Höhle druipsteengrot in Attendorn (45 min), 6. Boottochten op de Hennesee of Diemelsee.',
       answerHtml: (
@@ -385,7 +385,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-op-zondag',
     categoryGroup: 'Einkaufen & Shopping',
     de: {
-      question: 'Was kann man sonntags in Winterberg machen? (Sonntagsöffnung & Wochenendausflüge)',
+      question: 'Was kann man sonntags in Winterberg machen?',
       quickSummary: 'Sonntags ist in Winterberg Hochbetrieb: Dank der Tourismus-Sonderregelung haben viele Modegeschäfte und Boutiquen am Waltenberg sonntags geöffnet (meist 11–17 Uhr). Alle Freizeitanlagen, Skilifte, Lifte am Erlebnisberg Kappe, Cafés und Restaurants sind uneingeschränkt geöffnet.',
       plainAnswer: 'Sonntags in Winterberg: 1. Sonntags-Shopping: Viele Boutiquen und Sportgeschäfte an der Flaniermeile Am Waltenberg haben sonntags von 11:00 bis 17:00 Uhr geöffnet, 2. Frische Brötchen & Frühstück in Bäckereien wie Isken und Krämer, 3. Alle Freizeitanbieter (Bikepark, Rodelbahnen, Skilifte, Oversum Hallenbad) sind geöffnet, 4. Gastronomie und Hütten haben den ganzen Tag warmen Küchenbetrieb.',
       answerHtml: (
@@ -405,7 +405,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg op zondag? (Zondagsopening winkels & activiteiten)',
+      question: 'Wat te doen in Winterberg op zondag?',
       quickSummary: 'Op zondag is er volop leven in de brouwerij in Winterberg: Dankzij de toeristische status zijn veel kledingwinkels en boetieks aan de Waltenberg \'s zondags geopend (meestal 11:00–17:00 uur). Alle attracties, skiliften, rodelbanen, bakkerijen en restaurants draaien op volle toeren.',
       plainAnswer: 'Zondag in Winterberg: 1. Zondagsopening: Veel mode- en sportwinkels aan de Waltenberg zijn zondags geopend van 11:00 tot 17:00 uur, 2. Verse broodjes bij bakkerijen zoals Isken en Krämer vanaf de vroege ochtend, 3. Alle attracties (Skiliftkarussell, Bikepark, zomerrodelbanen, zwembad Oversum) zijn geopend, 4. Restaurants en terrassen serveren de hele dag warme gerechten.',
       answerHtml: (
@@ -431,7 +431,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'wat-te-doen-winterberg-duitsland',
     categoryGroup: 'Freizeit & Natur',
     de: {
-      question: 'Warum lohnt sich ein Urlaub in Winterberg? (Highlights & Anreise)',
+      question: 'Warum lohnt sich ein Urlaub in Winterberg?',
       quickSummary: 'Winterberg ist das schneesicherste und vielfältigste Mittelgebirgs-Urlaubsziel in Westdeutschland: Perfekt erreichbar aus ganz NRW, Hessen und den Niederlanden, mit über 27 km Skipisten, erstklassigen Mountainbike-Strecken, intakter Sauerländer Natur und herzlicher Gastfreundschaft.',
       plainAnswer: 'Winterberg lohnt sich, weil: 1. Schnelle Anreise (nur ca. 1,5 bis 2 Std. aus dem Ruhrgebiet / Köln / Frankfurt), 2. Modernstes Skigebiet nördlich der Alpen mit Flutlicht und Beschneiung, 3. Erstklassige Sommer-Action (Bikepark, Kappe, Hillebachsee), 4. Rund 500 km Wanderwege im Naturpark Sauerland-Rothaarsteig, 5. Sauerland SommerCard mit über 40 kostenlosen Eintritten bei vielen Unterkünften.',
       answerHtml: (
@@ -452,7 +452,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Wat te doen in Winterberg Duitsland? (Reisinformatie & highlights)',
+      question: 'Wat te doen in Winterberg Duitsland?',
       quickSummary: 'Winterberg is voor Nederlanders en Belgen dé favoriete bestemming dicht bij huis: Op slechts 3 tot 3,5 uur rijden ervaart u een compleet wintersport- of bergvakantiegevoel met 27,5 km skipistes, het beste bikepark van Duitsland, prachtige natuur en uitstekende gastvrijheid.',
       plainAnswer: 'Waarom naar Winterberg Duitsland? 1. Slechts 3 tot 3,5 uur rijden vanaf Midden-Nederland (tolvrij), 2. Het dichtstbijzijnde complete skigebied met honderden sneeuwkanonnen en avondskiën, 3. Zomerattracties op de Erlebnisberg Kappe en waterskiën, 4. Wandelen op de Rothaarsteig en Kahler Asten, 5. Sauerland SommerCard met meer dan 40 gratis attracties bij aangesloten accommodaties.',
       answerHtml: (
@@ -595,7 +595,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Waar kun je goed feesten en après-skiën in Winterberg?',
+      question: 'Waar kun je goed feesten in Winterberg?',
       quickSummary: 'Winterberg is dé après-ski- en feestlocatie van het Sauerland: Van après-ski aan de piste tot feesten in discoclassic Tenne, de gezellige Dorf Alm en knusse pubs.',
       plainAnswer: 'Feesten en après-ski: Direct aan de piste bij Möppi\'s Hütte of Alm Salettl. \'s Avonds gaat het feest door in de bekende discotheek Tenne Winterberg, in de Dorf Alm en in gezellige kroegen zoals de Hessenkeller en het Blackwater Irish Pub.',
       answerHtml: (
@@ -732,7 +732,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Waar kun je sleeën en rodelen in Winterberg?',
+      question: 'Waar kun je sleeën in Winterberg?',
       quickSummary: 'Winterberg beschikt over speciale, besneeuwde rodelhellingen met rodelliften (zoals bij Herrloh en de Bremberg), evenals de rodelbaan in Neuastenberg en bij de Ruhrquelle.',
       plainAnswer: 'Beste rodelhellingen met liften: Rodelparadies Herrloh (lift 1), Bremberg rodelhang (lift 20 met overdekte transportband), Ruhrquelle en Postwiese Neuastenberg. Sleeën huurt u direct bij de kassa of de skiverhuur.',
       answerHtml: (
@@ -757,7 +757,7 @@ export const FAQ_DATA: FaqItem[] = [
     id: 'skipass-kaufen',
     categoryGroup: 'Wintersport & Schnee',
     de: {
-      question: 'Wo kann man in Winterberg Skipass kaufen?',
+      question: 'Wo kann man in Winterberg einen Skipass kaufen?',
       quickSummary: 'Skipässe können online im Webshop des Skiliftkarussells gekauft oder direkt vor Ort an den zahlreichen Kassenhäuschen an allen Talstationen erworben werden.',
       plainAnswer: 'Skipässe sind online über den offiziellen Webshop der Wintersport-Arena Sauerland / Skiliftkarussell Winterberg erhältlich (oft mit Rabatt und ohne Anstehen) sowie an allen Kassen der Liftstationen (z. B. Herrloh, Bremberg, Kappe, Poppenberg, Remmeswiese).',
       answerHtml: (
@@ -1030,7 +1030,7 @@ export const FAQ_DATA: FaqItem[] = [
       ]
     },
     nl: {
-      question: 'Kun je leuk winkelen in Winterberg?',
+      question: 'Kun je winkelen in Winterberg?',
       quickSummary: 'Jazeker! Aan de winkelstraat Am Waltenberg en het centrale marktplein vindt u volop sportzaken, boetieks, kledingwinkels, schoenenzaken en streekwinkels.',
       plainAnswer: 'Winkelen in Winterberg: Aan de levendige flaneerstraat Am Waltenberg vindt u outdoor- en sportzaken, modeboetieks, schoenenwinkels, chocolatiers en winkels met typische Sauerlandse streekproducten.',
       answerHtml: (
@@ -1533,22 +1533,25 @@ export default function WinterbergFaq({
                   id={faq.id}
                   className="bg-white border border-[#EDE8E0] rounded-lg overflow-hidden transition-all duration-200 shadow-[0_2px_8px_rgba(27,33,29,0.03)] hover:border-[#0F4C2E]/40"
                 >
-                  {/* Header / Question Bar */}
+                  {/* Header / Question Bar - Einzeilig */}
                   <button
                     type="button"
                     onClick={() => toggleFaq(faq.id)}
-                    className={`w-full text-left p-5 md:p-6 flex justify-between items-center gap-4 cursor-pointer focus:outline-none transition-colors ${
+                    className={`w-full text-left p-4 md:p-5 flex justify-between items-center gap-3 md:gap-4 cursor-pointer focus:outline-none transition-colors ${
                       isOpen 
                         ? 'bg-[#F2EFE8] border-b border-[#E3DDD1]' 
                         : 'bg-[#FAF8F5] hover:bg-[#F2EFE8]'
                     }`}
                     aria-expanded={isOpen}
                   >
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
-                      <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-white border border-[#0F4C2E]/25 px-2.5 py-0.5 rounded shadow-2xs w-fit">
+                    <div className="flex items-center gap-2.5 md:gap-3 min-w-0 flex-1 overflow-hidden">
+                      <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-white border border-[#0F4C2E]/25 px-2.5 py-0.5 rounded shadow-2xs">
                         {categoryLabel}
                       </span>
-                      <h2 className="font-display text-[17.5px] md:text-[19.5px] font-bold text-[#1B211D] m-0">
+                      <h2 
+                        className="font-display text-[15.5px] sm:text-[17px] md:text-[18.5px] font-bold text-[#1B211D] m-0 truncate whitespace-nowrap"
+                        title={content.question}
+                      >
                         {content.question}
                       </h2>
                     </div>

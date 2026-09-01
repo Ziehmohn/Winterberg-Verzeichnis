@@ -1,5 +1,11 @@
 import ReactGA from "react-ga4";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 /**
  * Google Analytics Helper for Winterberg Verzeichnis
  * Property ID: 302481363 / Measurement ID: G-77PLYCGN1S

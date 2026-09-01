@@ -1,4 +1,4 @@
-import { Business, NewsArticle } from '../types';
+import { Business, NewsArticle, AdBanner } from '../types';
 
 /**
  * High-quality Dutch dictionary and phrase mapping for business directories and news in Winterberg.
@@ -625,5 +625,63 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
     extendedDescription,
     services,
     products,
+  };
+}
+
+/**
+ * Returns the localized ad banner details based on the current language.
+ * Prefers manual translations saved in the ad object, falling back to real-time auto-translation.
+ */
+export function getLocalizedAdBanner(ad?: AdBanner | null, lang: 'de' | 'nl' = 'de'): {
+  title: string;
+  badgeText: string;
+  ctaText: string;
+  imageUrl: string;
+} {
+  if (!ad) {
+    return { title: '', badgeText: 'Anzeige', ctaText: 'Mehr erfahren', imageUrl: '' };
+  }
+
+  if (lang === 'de') {
+    return {
+      title: ad.title || '',
+      badgeText: ad.badgeText || 'Anzeige',
+      ctaText: ad.ctaText || 'Mehr erfahren',
+      imageUrl: ad.imageUrl || '',
+    };
+  }
+
+  // Language is NL: Check if manual Dutch translation is present, else auto-translate
+  const customTitle = ad.title_nl;
+  const customBadge = ad.badgeText_nl;
+  const customCta = ad.ctaText_nl;
+  const customImage = ad.imageUrl_nl;
+
+  const title = (customTitle && customTitle.trim().length > 0)
+    ? customTitle.trim()
+    : translateTextToDutch(ad.title || '');
+
+  let defaultBadge = 'Advertentie';
+  if (ad.badgeText === 'Werbung') defaultBadge = 'Reclame';
+  else if (ad.badgeText === 'Sponsor' || ad.badgeText === 'Gesponsert') defaultBadge = 'Gesponsord';
+  else if (ad.badgeText && ad.badgeText !== 'Anzeige') defaultBadge = translateTextToDutch(ad.badgeText);
+
+  const badgeText = (customBadge && customBadge.trim().length > 0)
+    ? customBadge.trim()
+    : defaultBadge;
+
+  const ctaText = (customCta && customCta.trim().length > 0)
+    ? customCta.trim()
+    : (ad.ctaText ? translateTextToDutch(ad.ctaText) : 'Meer informatie');
+
+  const imageUrl = (customImage && customImage.trim().length > 0)
+    ? customImage.trim()
+    : (ad.imageUrl || '');
+
+  return {
+    title,
+    badgeText,
+    ctaText,
+    imageUrl,
   };
 }

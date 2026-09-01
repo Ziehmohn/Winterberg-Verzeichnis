@@ -138,4 +138,9 @@ export function isPricingOfferActive(pricing?: PricingSettings | null): boolean 
 // Werbetexte (CTA)
 // ---------------------------------------------------------------------------
 export const AD_CTA = 'Sie möchten hier werben? Mehr erfahren!';
+export const AD_CTA_NL = 'Wilt u hier adverteren? Meer informatie!';
+
+export function getAdCta(lang: 'de' | 'nl' = 'de'): string {
+  return lang === 'nl' ? AD_CTA_NL : AD_CTA;
+}
 

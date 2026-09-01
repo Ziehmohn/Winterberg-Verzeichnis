@@ -214,7 +214,7 @@ export default function PricingTable({
             <span className="bg-white/15 px-3 py-1 rounded text-[#F2761B]">{t("pricingBannerTier3")}: <strong>{activePricing.bannerTier3 || PRICING.bannerTier3} / Mo.</strong> ({activePricing.bannerTier3Discount || PRICING.bannerTier3Discount})</span>
           </div>
           <div className="text-[12px] text-white/60 mt-2">
-            Monatlich kündbar · {activePricing.cancellationPeriod || PRICING.cancellationPeriod} Kündigungsfrist zum Monatsende (wie beim Premium-Account)
+            {t("pricingBannerCancel")}
           </div>
         </div>
         {onInquireAd && (

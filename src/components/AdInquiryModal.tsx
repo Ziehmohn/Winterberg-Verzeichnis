@@ -3,6 +3,8 @@ import { X, Send, CheckCircle2, Megaphone, Sparkles, Check, Info, ShieldCheck, T
 import { categories } from '../data';
 import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import { useTranslation } from '../i18n';
+import { translateServiceToDutch, translateTextToDutch } from '../utils/translator';
 
 interface AdInquiryModalProps {
   isOpen: boolean;
@@ -11,6 +13,8 @@ interface AdInquiryModalProps {
 }
 
 export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'Alle' }: AdInquiryModalProps) {
+  const { t, lang } = useTranslation();
+
   const [name, setName] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,6 +34,13 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const getLocalizedName = (text: string) => {
+    if (lang === 'nl') {
+      return translateServiceToDutch(text) || translateTextToDutch(text);
+    }
+    return text;
+  };
 
   // Sync initialCategory when modal opens
   useEffect(() => {
@@ -72,10 +83,10 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
 
   if (categoryCount >= 5) {
     pricePerCategory = 14.95;
-    discountLabel = '40 % Staffelrabatt';
+    discountLabel = lang === 'nl' ? '40% staffelkorting' : '40 % Staffelrabatt';
   } else if (categoryCount >= 3) {
     pricePerCategory = 19.95;
-    discountLabel = '20 % Staffelrabatt';
+    discountLabel = lang === 'nl' ? '20% staffelkorting' : '20 % Staffelrabatt';
   }
 
   const totalMonthlyPrice = (categoryCount * pricePerCategory).toFixed(2).replace('.', ',');
@@ -85,12 +96,12 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !companyName.trim() || !email.trim()) {
-      setError('Bitte füllen Sie alle Pflichtfelder aus.');
+      setError(lang === 'nl' ? 'Vul alstublieft alle verplichte velden in.' : 'Bitte füllen Sie alle Pflichtfelder aus.');
       return;
     }
 
     if (selectedCategories.length === 0) {
-      setError('Bitte wählen Sie mindestens eine Kategorie oder Unterkategorie aus.');
+      setError(lang === 'nl' ? 'Selecteer minimaal één categorie of subcategorie.' : 'Bitte wählen Sie mindestens eine Kategorie oder Unterkategorie aus.');
       return;
     }
 
@@ -125,7 +136,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
         localStorage.setItem('local_ad_inquiries', JSON.stringify(stored));
         setIsSuccess(true);
       } catch (localErr) {
-        setError('Fehler beim Absenden der Anfrage. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.');
+        setError(lang === 'nl' ? 'Fout bij het verzenden van de aanvraag. Probeer het later opnieuw.' : 'Fehler beim Absenden der Anfrage. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.');
       }
     } finally {
       setIsSubmitting(false);
@@ -154,7 +165,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
           type="button"
           onClick={resetForm}
           className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors z-10 cursor-pointer"
-          title="Schließen"
+          title={lang === 'nl' ? 'Sluiten' : 'Schließen'}
         >
           <X className="w-5 h-5" />
         </button>
@@ -164,20 +175,24 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
             <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
               <CheckCircle2 className="w-9 h-9" />
             </div>
-            <h3 className="font-display text-2xl font-bold text-gray-900 mb-2">Vielen Dank für Ihre Anfrage!</h3>
+            <h3 className="font-display text-2xl font-bold text-gray-900 mb-2">
+              {t('adInquirySuccessTitle')}
+            </h3>
             <p className="text-[#5F6B63] max-w-[46ch] mb-4 text-[14.5px] leading-relaxed">
-              Wir haben Ihre Anfrage für {categoryCount} Kategorie{categoryCount > 1 ? 'n' : ''} ({selectedCategories.join(', ')}) erhalten und melden uns zeitnah bei Ihnen.
+              {lang === 'nl'
+                ? `Wij hebben uw aanvraag voor ${categoryCount} categorieën/subcategorieën (${selectedCategories.map(getLocalizedName).join(', ')}) ontvangen en nemen spoedig contact met u op.`
+                : `Wir haben Ihre Anfrage für ${categoryCount} Kategorie${categoryCount > 1 ? 'n' : ''} (${selectedCategories.join(', ')}) erhalten und melden uns zeitnah bei Ihnen.`}
             </p>
             <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-md p-4 text-xs text-[#5F6B63] max-w-[46ch] mb-6 text-left space-y-1">
-              <div><strong>Geschätzter Monatspreis:</strong> {totalMonthlyPrice} € netto / Monat</div>
-              <div><strong>Kündigungsfrist:</strong> 14 Tage zum Monatsende (wie Premium-Account)</div>
+              <div><strong>{lang === 'nl' ? 'Geschatte maandprijs:' : 'Geschätzter Monatspreis:'}</strong> {totalMonthlyPrice} € {lang === 'nl' ? 'excl. btw / maand' : 'netto / Monat'}</div>
+              <div><strong>{lang === 'nl' ? 'Opzegtermijn:' : 'Kündigungsfrist:'}</strong> {t('adInquiryCancelTerm')}</div>
             </div>
             <button
               type="button"
               onClick={resetForm}
               className="bg-[#0F4C2E] hover:bg-[#06301C] text-white font-semibold px-6 py-2.5 rounded-md transition-colors cursor-pointer"
             >
-              Fertig
+              {lang === 'nl' ? 'Klaar' : 'Fertig'}
             </button>
           </div>
         ) : (
@@ -189,40 +204,40 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
               </div>
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#D65F0C] flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" /> Exklusive Werbeplatzierung
+                  <Sparkles className="w-3 h-3" /> {t('adInquiryBadge')}
                 </span>
                 <h2 className="font-display text-2xl font-bold text-gray-900 leading-tight">
-                  Skyscraper-Banner buchen
+                  {t('adInquiryTitle')}
                 </h2>
               </div>
             </div>
 
             <p className="text-[13px] text-[#5F6B63] mb-4 leading-relaxed">
-              Präsentieren Sie Ihr Unternehmen auffällig am rechten Rand neben den Einträgen — sticky mitlaufend bei allen Besuchern.
+              {t('adInquiryDesc')}
             </p>
 
             {/* Pricing Staffelung Table / Banner */}
             <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-md p-3.5 mb-5">
               <div className="text-xs font-bold text-gray-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5 text-[#F2761B]" /> Staffelpreise pro Kategorie / Unterkategorie (monatlich):
+                <Tag className="w-3.5 h-3.5 text-[#F2761B]" /> {t('adInquiryTierTitle')}
               </div>
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
                 <div className={`p-2.5 rounded-md border transition-colors ${categoryCount < 3 ? 'bg-white border-[#0F4C2E] shadow-sm font-semibold' : 'bg-white/60 border-[#EDE8E0] text-gray-600'}`}>
-                  <div className="text-[10.5px] text-[#8A928B]">1 - 2 Kategorien</div>
+                  <div className="text-[10.5px] text-[#8A928B]">{t('adInquiryTier1')}</div>
                   <div className="text-[15px] font-bold text-[#0F4C2E] mt-0.5">24,95 €</div>
-                  <div className="text-[10px] text-gray-500">/ Kat. / Monat</div>
+                  <div className="text-[10px] text-gray-500">/ {lang === 'nl' ? 'cat. / maand' : 'Kat. / Monat'}</div>
                 </div>
 
                 <div className={`p-2.5 rounded-md border transition-colors relative ${categoryCount >= 3 && categoryCount < 5 ? 'bg-white border-[#F2761B] shadow-sm font-semibold' : 'bg-white/60 border-[#EDE8E0] text-gray-600'}`}>
-                  <div className="text-[10.5px] text-[#8A928B]">Ab 3 Kategorien</div>
+                  <div className="text-[10.5px] text-[#8A928B]">{t('adInquiryTier2')}</div>
                   <div className="text-[15px] font-bold text-[#D65F0C] mt-0.5">19,95 €</div>
-                  <div className="text-[10px] text-emerald-700 font-bold">20 % sparen</div>
+                  <div className="text-[10px] text-emerald-700 font-bold">{t('adInquirySave20')}</div>
                 </div>
 
                 <div className={`p-2.5 rounded-md border transition-colors relative ${categoryCount >= 5 ? 'bg-white border-[#0F4C2E] shadow-sm font-semibold' : 'bg-white/60 border-[#EDE8E0] text-gray-600'}`}>
-                  <div className="text-[10.5px] text-[#8A928B]">Ab 5 Kategorien</div>
+                  <div className="text-[10.5px] text-[#8A928B]">{t('adInquiryTier3')}</div>
                   <div className="text-[15px] font-bold text-[#0F4C2E] mt-0.5">14,95 €</div>
-                  <div className="text-[10px] text-emerald-700 font-bold">40 % sparen</div>
+                  <div className="text-[10px] text-emerald-700 font-bold">{t('adInquirySave40')}</div>
                 </div>
               </div>
             </div>
@@ -231,10 +246,10 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
             <div className="mb-5">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 mb-2.5">
                 <label className="text-xs font-bold text-gray-800 uppercase tracking-wider">
-                  Kategorien &amp; Unterkategorien wählen ({selectedCategories.length} gewählt) <span className="text-red-500">*</span>
+                  {t('adInquirySelectCats')} ({selectedCategories.length} {lang === 'nl' ? 'gekozen' : 'gewählt'}) <span className="text-red-500">*</span>
                 </label>
                 <div className="text-xs text-[#5F6B63]">
-                  Gilt für Ober- und Unterkategorien
+                  {lang === 'nl' ? 'Geldt voor hoofd- en subcategorieën' : 'Gilt für Ober- und Unterkategorien'}
                 </div>
               </div>
 
@@ -243,7 +258,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
                 <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
-                  placeholder="Kategorie oder Branche suchen (z. B. Restaurant, Dachdecker, Hotel)..."
+                  placeholder={t('adInquirySearchPlaceholder')}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md pl-8 pr-3 py-1.5 text-xs text-gray-800 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
@@ -262,11 +277,17 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
               {/* Categorized Accordion / Group list */}
               <div className="space-y-2.5 max-h-[220px] overflow-y-auto pr-1 border border-[#EDE8E0] rounded-md p-2.5 bg-[#FAF8F5]">
                 {categories.map((group) => {
-                  const filteredSubcats = group.subcategories.filter((sub) =>
-                    !searchTerm || sub.toLowerCase().includes(searchTerm.toLowerCase()) || group.name.toLowerCase().includes(searchTerm.toLowerCase())
-                  );
+                  const filteredSubcats = group.subcategories.filter((sub) => {
+                    const locSub = getLocalizedName(sub);
+                    const locGroup = getLocalizedName(group.name);
+                    return !searchTerm ||
+                      sub.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                      group.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                      locSub.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                      locGroup.toLowerCase().includes(searchTerm.toLowerCase());
+                  });
 
-                  if (searchTerm && filteredSubcats.length === 0 && !group.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  if (searchTerm && filteredSubcats.length === 0 && !group.name.toLowerCase().includes(searchTerm.toLowerCase()) && !getLocalizedName(group.name).toLowerCase().includes(searchTerm.toLowerCase())) {
                     return null;
                   }
 
@@ -289,16 +310,16 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
                           <div className={`w-3.5 h-3.5 rounded-xs flex items-center justify-center shrink-0 border ${isMainSelected ? 'bg-white text-[#0F4C2E] border-white' : 'border-gray-300'}`}>
                             {isMainSelected && <Check className="w-3 h-3 stroke-[3]" />}
                           </div>
-                          <span>{group.name} <span className="font-normal opacity-75">(Oberkategorie)</span></span>
+                          <span>{getLocalizedName(group.name)} <span className="font-normal opacity-75">({t('adInquiryAllSubcats')})</span></span>
                         </button>
 
                         <button
                           type="button"
                           onClick={() => toggleMainCategoryGroup(group.name)}
                           className="text-gray-400 hover:text-gray-700 p-1 rounded hover:bg-gray-100 transition-colors flex items-center gap-1 text-[11px] font-medium"
-                          title="Unterkategorien aufklappen"
+                          title={lang === 'nl' ? 'Subcategorieën uitklappen' : 'Unterkategorien aufklappen'}
                         >
-                          <span className="text-[10.5px] text-gray-500">{group.subcategories.length} Unterkat.</span>
+                          <span className="text-[10.5px] text-gray-500">{group.subcategories.length} {lang === 'nl' ? 'subcat.' : 'Unterkat.'}</span>
                           {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                         </button>
                       </div>
@@ -313,14 +334,14 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
                                 key={sub}
                                 type="button"
                                 onClick={() => toggleCategory(sub)}
-                                className={`text-[11px] font-medium px-2.5 py-1 rounded border transition-all flex items-center gap-1.5 cursor-pointer ${
+                                className={`text-[11px] font-medium px-2.5 py-1 rounded-md border transition-all flex items-center gap-1.5 cursor-pointer ${
                                   isSubSelected
                                     ? 'bg-[#0F4C2E] text-white border-[#0F4C2E] shadow-xs'
                                     : 'bg-[#FAF8F5] text-gray-700 border-[#E7E2DA] hover:border-[#0F4C2E]/40 hover:bg-white'
                                 }`}
                               >
                                 {isSubSelected && <Check className="w-3 h-3 text-emerald-300 shrink-0" />}
-                                <span>{sub}</span>
+                                <span>{getLocalizedName(sub)}</span>
                               </button>
                             );
                           })}
@@ -336,19 +357,19 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
             <div className="bg-gradient-to-r from-[#0F4C2E]/10 to-[#F2761B]/10 border border-[#0F4C2E]/20 rounded-md p-3.5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
               <div>
                 <div className="text-xs font-bold text-gray-800">
-                  {categoryCount} {categoryCount === 1 ? 'Kategorie / Unterkategorie' : 'Kategorien & Unterkategorien'} gewählt ({pricePerCategory.toFixed(2).replace('.', ',')} € / Kat.)
+                  {categoryCount} {lang === 'nl' ? (categoryCount === 1 ? 'categorie gekozen' : 'categorieën gekozen') : (categoryCount === 1 ? 'Kategorie / Unterkategorie' : 'Kategorien & Unterkategorien')} ({pricePerCategory.toFixed(2).replace('.', ',')} € / {lang === 'nl' ? 'cat.' : 'Kat.'})
                 </div>
                 <div className="text-[11px] text-[#5F6B63] mt-0.5">
-                  Kündigungsfrist: 14 Tage zum Monatsende (wie Premium-Account)
+                  {t('adInquiryCancelTerm')}
                 </div>
               </div>
               <div className="text-right sm:shrink-0">
                 <div className="text-[19px] font-bold text-[#0F4C2E]">
-                  {totalMonthlyPrice} € <span className="text-xs text-gray-600 font-normal">/ Monat netto</span>
+                  {totalMonthlyPrice} € <span className="text-xs text-gray-600 font-normal">/ {lang === 'nl' ? 'maand excl. btw' : 'Monat netto'}</span>
                 </div>
                 {discountLabel && (
                   <div className="text-[11px] font-bold text-[#D65F0C]">
-                    ✓ {discountLabel} (Sie sparen {monthlySavings} €/Mo.)
+                    ✓ {discountLabel} ({lang === 'nl' ? `U bespaart ${monthlySavings} €/mnd.` : `Sie sparen ${monthlySavings} €/Mo.`})
                   </div>
                 )}
               </div>
@@ -364,7 +385,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-                    Ihr Name <span className="text-red-500">*</span>
+                    {lang === 'nl' ? 'Uw naam' : 'Ihr Name'} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -378,7 +399,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
 
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-                    Unternehmen / Betrieb <span className="text-red-500">*</span>
+                    {lang === 'nl' ? 'Bedrijf / Onderneming' : 'Unternehmen / Betrieb'} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -394,7 +415,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-                    E-Mail-Adresse <span className="text-red-500">*</span>
+                    {lang === 'nl' ? 'E-mailadres' : 'E-Mail-Adresse'} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -408,7 +429,7 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
 
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-                    Telefonnummer
+                    {lang === 'nl' ? 'Telefoonnummer' : 'Telefonnummer'}
                   </label>
                   <input
                     type="tel"
@@ -422,11 +443,11 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
 
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-                  Ihre Nachricht / Sonderwünsche (optional)
+                  {lang === 'nl' ? 'Uw bericht / speciale wensen (optioneel)' : 'Ihre Nachricht / Sonderwünsche (optional)'}
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="z. B. Start ab kommenden Monat, Verlinkung auf unser neues Menü..."
+                  placeholder={lang === 'nl' ? 'bijv. Start vanaf volgende maand, link naar onze website...' : 'z. B. Start ab kommenden Monat, Verlinkung auf unser neues Menü...'}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full bg-[#FAF8F5] border border-[#E7E2DA] rounded-md p-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#0F4C2E] focus:bg-white transition-colors"
@@ -439,18 +460,18 @@ export default function AdInquiryModal({ isOpen, onClose, initialCategory = 'All
                   onClick={resetForm}
                   className="px-4 py-2 rounded-md border border-gray-200 text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors cursor-pointer"
                 >
-                  Abbrechen
+                  {lang === 'nl' ? 'Annuleren' : 'Abbrechen'}
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-xs font-semibold px-5 py-2.5 rounded-md inline-flex items-center gap-2 transition-colors disabled:opacity-50 shadow-md cursor-pointer"
+                  className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-xs font-semibold px-6 py-2.5 rounded-md inline-flex items-center gap-2 transition-colors disabled:opacity-50 shadow-md cursor-pointer"
                 >
                   {isSubmitting ? (
-                    'Wird gesendet...'
+                    (lang === 'nl' ? 'Verzenden...' : 'Wird gesendet...')
                   ) : (
                     <>
-                      <Send className="w-3.5 h-3.5" /> Unverbindlich anfragen ({totalMonthlyPrice} €/Mo.)
+                      <Send className="w-3.5 h-3.5" /> {t('adInquirySubmit')} ({totalMonthlyPrice} €/{lang === 'nl' ? 'mnd.' : 'Mo.'})
                     </>
                   )}
                 </button>
