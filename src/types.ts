@@ -108,6 +108,7 @@ export interface Business {
   businessNews?: BusinessNewsArticle[];
   isPremium?: boolean;
   headerImage?: string;
+  headerPosition?: HeaderPositionConfig;
   gallery?: string[];
   galleryCategories?: GalleryCategory[];
   logoUrl?: string;
@@ -122,6 +123,12 @@ export interface Business {
   extendedDescription_nl?: string;
   services_nl?: string[];
   products_nl?: string[];
+}
+
+export interface HeaderPositionConfig {
+  desktop?: string; // z.B. '50% 50%', 'center center'
+  tablet?: string;
+  mobile?: string;
 }
 
 export interface GalleryImage {

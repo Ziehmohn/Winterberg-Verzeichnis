@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag } from 'lucide-react';
-import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage } from '../types';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move } from 'lucide-react';
+import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { translateTextToDutch, translateServiceToDutch } from '../utils/translator';
@@ -265,6 +265,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       products: Array.isArray(base.products) ? [...base.products] : [],
       openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
       headerImage: base.headerImage || '',
+      headerPosition: base.headerPosition || {
+        desktop: '50% 50%',
+        tablet: '50% 50%',
+        mobile: '50% 50%'
+      },
       gallery: Array.isArray(base.gallery) ? [...base.gallery] : [],
       galleryCategories: Array.isArray(base.galleryCategories) && base.galleryCategories.length > 0
         ? base.galleryCategories.map((c: any) => ({
@@ -295,6 +300,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   });
   
   const [activeLangTab, setActiveLangTab] = useState<'de' | 'nl'>('de');
+  const [headerDeviceTab, setHeaderDeviceTab] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [newService, setNewService] = useState('');
   const [newServiceNl, setNewServiceNl] = useState('');
@@ -394,6 +400,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     const dataToSubmit: Business = {
       ...formData,
       headerImage: formData.headerImage || '',
+      headerPosition: formData.headerPosition || {
+        desktop: '50% 50%',
+        tablet: '50% 50%',
+        mobile: '50% 50%'
+      },
       galleryCategories: formData.galleryCategories || [],
       gallery: syncedGallery.length > 0 ? syncedGallery : (formData.gallery || []),
       translations: {
@@ -700,6 +711,42 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         console.warn("Could not delete from storage", e);
       }
     }
+  };
+
+  const parsePositionCoords = (posStr?: string): { x: number, y: number } => {
+    if (!posStr) return { x: 50, y: 50 };
+    if (posStr === 'center' || posStr === 'center center') return { x: 50, y: 50 };
+    if (posStr === 'top' || posStr === 'top center') return { x: 50, y: 0 };
+    if (posStr === 'bottom' || posStr === 'bottom center') return { x: 50, y: 100 };
+    if (posStr === 'left' || posStr === 'left center') return { x: 0, y: 50 };
+    if (posStr === 'right' || posStr === 'right center') return { x: 100, y: 50 };
+    const parts = posStr.trim().split(/\s+/).map(p => parseFloat(p.replace('%', '')));
+    if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      return { x: Math.max(0, Math.min(100, parts[0])), y: Math.max(0, Math.min(100, parts[1])) };
+    }
+    return { x: 50, y: 50 };
+  };
+
+  const handleSetHeaderPosition = (device: 'desktop' | 'tablet' | 'mobile', x: number, y: number) => {
+    const clampedX = Math.max(0, Math.min(100, Math.round(x)));
+    const clampedY = Math.max(0, Math.min(100, Math.round(y)));
+    const posStr = `${clampedX}% ${clampedY}%`;
+    setFormData(prev => ({
+      ...prev,
+      headerPosition: {
+        ...(prev.headerPosition || { desktop: '50% 50%', tablet: '50% 50%', mobile: '50% 50%' }),
+        [device]: posStr
+      }
+    }));
+  };
+
+  const handleHeaderPreviewClick = (e: React.MouseEvent<HTMLDivElement>, device: 'desktop' | 'tablet' | 'mobile') => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+    const pctX = (clickX / rect.width) * 100;
+    const pctY = (clickY / rect.height) * 100;
+    handleSetHeaderPosition(device, pctX, pctY);
   };
 
   const addServicesFromInput = (input: string) => {
@@ -1329,33 +1376,13 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
             
             {/* Hero / Header Hintergrundbild (Premium) */}
-            <div className="border-b border-orange-200/50 pb-5">
+            <div className="border-b border-orange-200/50 pb-6">
               <label className={labelClass}>Hero- / Header-Hintergrundbild (Premium-Feature)</label>
-              <p className="text-xs opacity-70 mb-2">
-                Dieses Bild wird im Kopfbereich Ihres Profils als stimmungsvoller Hintergrund dargestellt (mit dem eleganten Farbverlauf wie auf der Startseite).
+              <p className="text-xs opacity-70 mb-3">
+                Dieses Bild wird im Kopfbereich Ihres Profils als stimmungsvoller Hintergrund mit dem eleganten Farbverlauf wie auf der Startseite dargestellt.
               </p>
-              <div className="flex flex-col gap-3">
-                {formData.headerImage ? (
-                  <div 
-                    className="relative w-full h-36 rounded-lg overflow-hidden border border-black/15 shadow-sm p-4 flex items-end"
-                    style={{
-                      background: `linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.45) 100%), url(${formData.headerImage}) center/cover no-repeat`
-                    }}
-                  >
-                    <div className="text-white text-xs font-semibold drop-shadow">
-                      Vorschau: {formData.name || 'Unternehmensname'}
-                    </div>
-                    <button 
-                      type="button" 
-                      onClick={() => setFormData(prev => ({...prev, headerImage: ''}))} 
-                      className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded-full shadow hover:bg-red-600 transition-colors"
-                      title="Header-Bild entfernen"
-                    >
-                      <Trash2 className="w-3.5 h-3.5"/>
-                    </button>
-                  </div>
-                ) : null}
-                
+              
+              <div className="flex flex-col gap-4">
                 <div className="flex gap-2">
                   <input 
                     type="text" 
@@ -1371,6 +1398,209 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'header')} disabled={uploadingImage || !formData.isPremium} />
                   </label>
                 </div>
+
+                {formData.headerImage && (
+                  <div className="bg-white border border-orange-200/80 rounded-lg p-4 shadow-2xs space-y-4">
+                    {/* Device Switcher Tabs */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
+                      <div className="text-xs font-bold text-[#0F4C2E] flex items-center gap-1.5">
+                        <Crosshair className="w-3.5 h-3.5 text-[#F2761B]" />
+                        Bild-Ausschnitt & Fokuspunkt je Endgerät anpassen:
+                      </div>
+                      <div className="flex bg-[#FAF8F5] p-1 rounded-md border border-[#EDE8E0] gap-1 self-start sm:self-auto">
+                        <button
+                          type="button"
+                          onClick={() => setHeaderDeviceTab('desktop')}
+                          className={`flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                            headerDeviceTab === 'desktop'
+                              ? 'bg-[#0F4C2E] text-white shadow-xs'
+                              : 'text-[#5F6B63] hover:text-[#0F4C2E]'
+                          }`}
+                        >
+                          <Laptop className="w-3.5 h-3.5" />
+                          Desktop
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setHeaderDeviceTab('tablet')}
+                          className={`flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                            headerDeviceTab === 'tablet'
+                              ? 'bg-[#0F4C2E] text-white shadow-xs'
+                              : 'text-[#5F6B63] hover:text-[#0F4C2E]'
+                          }`}
+                        >
+                          <Tablet className="w-3.5 h-3.5" />
+                          Tablet
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setHeaderDeviceTab('mobile')}
+                          className={`flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                            headerDeviceTab === 'mobile'
+                              ? 'bg-[#0F4C2E] text-white shadow-xs'
+                              : 'text-[#5F6B63] hover:text-[#0F4C2E]'
+                          }`}
+                        >
+                          <Smartphone className="w-3.5 h-3.5" />
+                          Mobil
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Responsive Live Preview Box */}
+                    {(() => {
+                      const currentPosStr = formData.headerPosition?.[headerDeviceTab] || '50% 50%';
+                      const { x, y } = parsePositionCoords(currentPosStr);
+
+                      // Frame sizing based on selected device tab
+                      const frameClass = headerDeviceTab === 'desktop'
+                        ? 'w-full h-36'
+                        : headerDeviceTab === 'tablet'
+                          ? 'max-w-md mx-auto h-44'
+                          : 'max-w-xs mx-auto h-52';
+
+                      return (
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between text-xs text-gray-500">
+                            <span>
+                              Live-Vorschau ({headerDeviceTab === 'desktop' ? 'Breitbild Desktop' : headerDeviceTab === 'tablet' ? 'Tablet Quer-/Hochformat' : 'Kompakt Smartphone'}):
+                            </span>
+                            <span className="font-mono text-[#0F4C2E] font-bold bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EDE8E0]">
+                              Fokus: X {x}% / Y {y}%
+                            </span>
+                          </div>
+
+                          <div 
+                            onClick={(e) => handleHeaderPreviewClick(e, headerDeviceTab)}
+                            className={`relative rounded-lg overflow-hidden border-2 border-orange-300 shadow-md p-4 flex flex-col justify-end cursor-crosshair transition-all select-none ${frameClass}`}
+                            style={{
+                              backgroundImage: `linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.45) 100%), url(${formData.headerImage})`,
+                              backgroundPosition: currentPosStr,
+                              backgroundSize: 'cover',
+                              backgroundRepeat: 'no-repeat'
+                            }}
+                            title="Klicken Sie ins Bild, um den Fokuspunkt direkt zu setzen"
+                          >
+                            {/* Focal Target Indicator */}
+                            <div 
+                              className="absolute w-6 h-6 -ml-3 -mt-3 rounded-full border-2 border-white bg-[#F2761B] shadow-lg pointer-events-none flex items-center justify-center animate-pulse"
+                              style={{ left: `${x}%`, top: `${y}%` }}
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                            </div>
+
+                            {/* Mock Header Content */}
+                            <div className="text-white text-xs font-bold drop-shadow truncate pointer-events-none">
+                              {formData.name || 'Unternehmensname'}
+                            </div>
+                            <div className="text-white/80 text-[10px] drop-shadow truncate pointer-events-none">
+                              {formData.category || 'Kategorie'}
+                            </div>
+
+                            <button 
+                              type="button" 
+                              onClick={(e) => { e.stopPropagation(); setFormData(prev => ({...prev, headerImage: ''})); }} 
+                              className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded-full shadow hover:bg-red-600 transition-colors cursor-pointer"
+                              title="Header-Bild entfernen"
+                            >
+                              <Trash2 className="w-3.5 h-3.5"/>
+                            </button>
+                          </div>
+
+                          {/* Control Panel: 9-Grid & Fine Adjustment Sliders */}
+                          <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-4 pt-2 border-t border-gray-100">
+                            {/* 9-Grid Quick Presets */}
+                            <div>
+                              <span className="text-[11px] font-semibold text-[#5F6B63] block mb-1.5">
+                                Schnellwahl Fokus:
+                              </span>
+                              <div className="grid grid-cols-3 gap-1 w-fit">
+                                {[
+                                  { label: '↖', title: 'Oben Links', x: 0, y: 0 },
+                                  { label: '↑', title: 'Oben Mitte', x: 50, y: 0 },
+                                  { label: '↗', title: 'Oben Rechts', x: 100, y: 0 },
+                                  { label: '←', title: 'Mitte Links', x: 0, y: 50 },
+                                  { label: '⦿', title: 'Zentriert', x: 50, y: 50 },
+                                  { label: '→', title: 'Mitte Rechts', x: 100, y: 50 },
+                                  { label: '↙', title: 'Unten Links', x: 0, y: 100 },
+                                  { label: '↓', title: 'Unten Mitte', x: 50, y: 100 },
+                                  { label: '↘', title: 'Unten Rechts', x: 100, y: 100 }
+                                ].map((preset, idx) => {
+                                  const isSelected = Math.abs(x - preset.x) < 5 && Math.abs(y - preset.y) < 5;
+                                  return (
+                                    <button
+                                      key={idx}
+                                      type="button"
+                                      onClick={() => handleSetHeaderPosition(headerDeviceTab, preset.x, preset.y)}
+                                      className={`w-9 h-7 rounded text-xs font-bold transition-all cursor-pointer flex items-center justify-center ${
+                                        isSelected
+                                          ? 'bg-[#0F4C2E] text-white shadow-xs scale-105'
+                                          : 'bg-[#FAF8F5] text-[#5F6B63] hover:bg-[#E8F1EB] hover:text-[#0F4C2E] border border-[#EDE8E0]'
+                                      }`}
+                                      title={preset.title}
+                                    >
+                                      {preset.label}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Precise Sliders */}
+                            <div className="flex flex-col justify-center gap-2">
+                              <div>
+                                <div className="flex justify-between text-[11px] font-semibold text-[#5F6B63] mb-1">
+                                  <span>Horizontaler Fokus (X):</span>
+                                  <span className="font-mono text-[#0F4C2E]">{x}%</span>
+                                </div>
+                                <input 
+                                  type="range" 
+                                  min="0" 
+                                  max="100" 
+                                  value={x} 
+                                  onChange={(e) => handleSetHeaderPosition(headerDeviceTab, Number(e.target.value), y)}
+                                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#0F4C2E]"
+                                />
+                                <div className="flex justify-between text-[9.5px] text-gray-400 mt-0.5">
+                                  <span>Links (0%)</span>
+                                  <span>Mitte (50%)</span>
+                                  <span>Rechts (100%)</span>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex justify-between text-[11px] font-semibold text-[#5F6B63] mb-1">
+                                  <span>Vertikaler Fokus (Y):</span>
+                                  <span className="font-mono text-[#0F4C2E]">{y}%</span>
+                                </div>
+                                <input 
+                                  type="range" 
+                                  min="0" 
+                                  max="100" 
+                                  value={y} 
+                                  onChange={(e) => handleSetHeaderPosition(headerDeviceTab, x, Number(e.target.value))}
+                                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#0F4C2E]"
+                                />
+                                <div className="flex justify-between text-[9.5px] text-gray-400 mt-0.5">
+                                  <span>Oben (0%)</span>
+                                  <span>Mitte (50%)</span>
+                                  <span>Unten (100%)</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="text-[11px] text-[#5F6B63] bg-[#FFF8F1] border border-orange-200/50 p-2.5 rounded-md flex items-start gap-2">
+                            <span className="text-[#F2761B] font-bold">💡</span>
+                            <span>
+                              <strong>Tipp:</strong> Sie können direkt in das Vorschaubild klicken, um den Bildausschnitt für <em>{headerDeviceTab === 'desktop' ? 'Desktop' : headerDeviceTab === 'tablet' ? 'Tablet' : 'Mobil'}</em> millimetergenau zu platzieren.
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                )}
               </div>
             </div>
 

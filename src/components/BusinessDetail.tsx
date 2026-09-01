@@ -215,10 +215,31 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         )}
       </AnimatePresence>
 
+      {/* Dynamic responsive background position style */}
+      {headerBg && (
+        <style>{`
+          .hero-header-bg-${business.id} {
+            background-position: ${business.headerPosition?.mobile || '50% 50%'};
+          }
+          @media (min-width: 640px) {
+            .hero-header-bg-${business.id} {
+              background-position: ${business.headerPosition?.tablet || business.headerPosition?.desktop || '50% 50%'};
+            }
+          }
+          @media (min-width: 1024px) {
+            .hero-header-bg-${business.id} {
+              background-position: ${business.headerPosition?.desktop || '50% 50%'};
+            }
+          }
+        `}</style>
+      )}
+
       <div 
-        className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white relative overflow-hidden"
+        className={`bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white relative overflow-hidden ${headerBg ? `hero-header-bg-${business.id}` : ''}`}
         style={headerBg ? {
-          background: `linear-gradient(105deg, rgba(6,48,28,0.95) 0%, rgba(15,76,46,0.88) 55%, rgba(15,76,46,0.42) 100%), url(${headerBg}) center/cover no-repeat`
+          backgroundImage: `linear-gradient(105deg, rgba(6,48,28,0.95) 0%, rgba(15,76,46,0.88) 55%, rgba(15,76,46,0.42) 100%), url(${headerBg})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
         } : undefined}
       >
         <div className="max-w-[1000px] mx-auto px-6 pt-[34px] pb-[46px]">
@@ -571,11 +592,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         <aside className="sticky top-[116px] flex flex-col gap-4">
           {/* Dedicated Premium Logo Card */}
           {business.isPremium && business.logoUrl && (
-            <div className="border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-44 sm:h-52 w-full flex items-center justify-center bg-transparent">
+            <div className="border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-36 sm:h-44 w-full flex items-center justify-center p-3 sm:p-4 bg-[#FAF8F5]/60">
               <img 
                 src={business.logoUrl} 
                 alt={`Logo von ${business.name}`} 
-                className="w-full h-full object-cover" 
+                className="max-w-full max-h-full object-contain" 
               />
             </div>
           )}
