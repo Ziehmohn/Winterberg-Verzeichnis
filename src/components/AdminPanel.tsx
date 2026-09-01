@@ -819,19 +819,262 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </p>
         </div>
 
-        <div className="flex items-center gap-2 mt-4 pt-4 border-t border-black/10 mb-2">
-          <input 
-            type="checkbox" 
-            id="isPremium" 
-            checked={!!formData.isPremium} 
-            onChange={e => setFormData({...formData, isPremium: e.target.checked})} 
-            className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" 
-          />
-          <label htmlFor="isPremium" className={`text-lg font-bold ${theme.textBase}`}>Premium-Funktionen (Öffnungszeiten, Leistungen, Beschreibung, Galerie, Stellenanzeigen)</label>
+        {/* Leistungen & Produkte (Für alle Einträge: Bis zu 3 im Basiseintrag / bis zu 15 mit Premium) */}
+        <div className="p-5 bg-white border border-gray-200 rounded-lg space-y-6 mt-4">
+          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+            <div>
+              <h3 className={`text-base font-bold ${theme.textBase}`}>Leistungen & Produkte</h3>
+              <p className="text-xs text-[#5F6B63] mt-0.5">Für die Volltextsuche und das Profil (Basiseintrag: bis zu 3 aktiv | Premium: bis zu 15 aktiv)</p>
+            </div>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E]">
+              {formData.isPremium ? '🌟 Premium (bis zu 15)' : '🟢 Basiseintrag (bis zu 3)'}
+            </span>
+          </div>
+
+          <div className="border-b border-gray-100 pb-5">
+            <div className="flex items-center justify-between mb-1">
+              <label className={labelClass}>
+                {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (Niederländisch)'}
+              </label>
+              <span className="text-xs text-[#5F6B63]">
+                {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+              </span>
+            </div>
+
+            {activeLangTab === 'de' ? (
+              <>
+                <div className="flex gap-2 mb-1">
+                  <input 
+                    type="text" 
+                    value={newService} 
+                    onChange={e => {
+                      const val = e.target.value;
+                      if (val.includes(',')) {
+                        addServicesFromInput(val);
+                      } else {
+                        setNewService(val);
+                      }
+                    }} 
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addServicesFromInput(newService);
+                      }
+                    }} 
+                    className={inputClass} 
+                    placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => addServicesFromInput(newService)}
+                    className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                  >
+                    Hinzufügen
+                  </button>
+                </div>
+                <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
+                <div className="flex flex-wrap gap-2">
+                  {(formData.services || []).map((service, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-black/5 px-2.5 py-1 rounded-md text-sm">
+                      <span>{service}</span>
+                      <button type="button" onClick={() => {
+                        setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));
+                      }} className="text-red-500 hover:text-red-700">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex gap-2 mb-1">
+                  <input 
+                    type="text" 
+                    value={newServiceNl} 
+                    onChange={e => {
+                      const val = e.target.value;
+                      if (val.includes(',')) {
+                        addServicesNlFromInput(val);
+                      } else {
+                        setNewServiceNl(val);
+                      }
+                    }} 
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addServicesNlFromInput(newServiceNl);
+                      }
+                    }} 
+                    className={inputClass} 
+                    placeholder="Nederlandse dienst/product invoeren en op Enter drukken (optioneel)" 
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => addServicesNlFromInput(newServiceNl)}
+                    className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                  >
+                    Hinzufügen
+                  </button>
+                </div>
+                <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Leistungen automatisch in Echtzeit ins Niederländische übersetzt.</p>
+                <div className="flex flex-wrap gap-2">
+                  {(formData.services_nl || []).map((service, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm">
+                      <span>{service}</span>
+                      <button type="button" onClick={() => {
+                        setFormData(prev => ({ ...prev, services_nl: prev.services_nl?.filter((_, i) => i !== idx) }));
+                      }} className="text-red-500 hover:text-red-700">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <label className={labelClass}>
+                {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (Niederländisch)'}
+              </label>
+              <span className="text-xs text-[#5F6B63]">
+                {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+              </span>
+            </div>
+
+            {activeLangTab === 'de' ? (
+              <>
+                <div className="flex gap-2 mb-1">
+                  <input 
+                    type="text" 
+                    value={newProduct} 
+                    onChange={e => {
+                      const val = e.target.value;
+                      if (val.includes(',')) {
+                        addProductsFromInput(val);
+                      } else {
+                        setNewProduct(val);
+                      }
+                    }} 
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addProductsFromInput(newProduct);
+                      }
+                    }} 
+                    className={inputClass} 
+                    placeholder="Produkt/Angebot eingeben und Enter drücken" 
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => addProductsFromInput(newProduct)}
+                    className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                  >
+                    Hinzufügen
+                  </button>
+                </div>
+                <p className="text-xs opacity-70 mb-3">Tipp: Hier können Sie konkrete Waren, Tarife oder Produkte auflisten (z. B. "Wohngebäudeversicherung, Kfz-Versicherung, Skier, E-Bikes"). Kommagetrennt möglich.</p>
+                <div className="flex flex-wrap gap-2">
+                  {(formData.products || []).map((product, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-[#FFF1E4] border border-[#F2761B]/30 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
+                      <span>{product}</span>
+                      <button type="button" onClick={() => {
+                        setFormData(prev => ({ ...prev, products: prev.products?.filter((_, i) => i !== idx) }));
+                      }} className="text-red-500 hover:text-red-700">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex gap-2 mb-1">
+                  <input 
+                    type="text" 
+                    value={newProductNl} 
+                    onChange={e => {
+                      const val = e.target.value;
+                      if (val.includes(',')) {
+                        addProductsNlFromInput(val);
+                      } else {
+                        setNewProductNl(val);
+                      }
+                    }} 
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addProductsNlFromInput(newProductNl);
+                      }
+                    }} 
+                    className={inputClass} 
+                    placeholder="Nederlands product invoeren en op Enter drukken (optioneel)" 
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => addProductsNlFromInput(newProductNl)}
+                    className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
+                  >
+                    Hinzufügen
+                  </button>
+                </div>
+                <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Produkte automatisch in Echtzeit ins Niederländische übersetzt.</p>
+                <div className="flex flex-wrap gap-2">
+                  {(formData.products_nl || []).map((product, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
+                      <span>{product}</span>
+                      <button type="button" onClick={() => {
+                        setFormData(prev => ({ ...prev, products_nl: prev.products_nl?.filter((_, i) => i !== idx) }));
+                      }} className="text-red-500 hover:text-red-700">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
-        {formData.isPremium && (
-          <div className="p-5 bg-orange-50/50 border border-orange-200 rounded-lg space-y-6">
+        {/* Premium Section Toggle & Container */}
+        <div className="mt-8 pt-4 border-t border-black/10">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-3">
+              <input 
+                type="checkbox" 
+                id="isPremium" 
+                checked={!!formData.isPremium} 
+                onChange={e => setFormData({...formData, isPremium: e.target.checked})} 
+                className="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer" 
+              />
+              <label htmlFor="isPremium" className={`text-lg font-bold cursor-pointer ${theme.textBase}`}>
+                Als Premium-Eintrag aktivieren (Logo, Öffnungszeiten, Galerie, Stellenanzeigen, News)
+              </label>
+            </div>
+            <span className={`text-xs font-bold px-3 py-1 rounded-full ${formData.isPremium ? 'bg-[#F2761B] text-white shadow-sm' : 'bg-gray-200 text-gray-700'}`}>
+              {formData.isPremium ? '🌟 Premium Aktiv' : '🔒 Deaktiviert (Basiseintrag)'}
+            </span>
+          </div>
+
+          {!formData.isPremium && (
+            <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 text-sm flex items-start gap-3">
+              <span className="text-xl leading-none">🔒</span>
+              <div>
+                <strong>Premium-Funktionen sind für diesen Eintrag deaktiviert (ausgegraut).</strong>
+                <p className="text-xs text-amber-800 mt-1">
+                  Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Öffnungszeiten, die Bildergalerie, ausführliche Beschreibung und Stellenanzeigen zu bearbeiten und für diesen Eintrag freizuschalten.
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className={`transition-all ${
+            formData.isPremium 
+              ? 'p-5 bg-orange-50/50 border border-orange-200 rounded-lg space-y-6 shadow-xs' 
+              : 'p-5 bg-gray-100/60 border border-gray-200 rounded-lg space-y-6 opacity-45 pointer-events-none select-none grayscale-[40%]'
+          }`}>
           
             <div className="border-b border-orange-200/50 pb-5">
               <label className={labelClass}>Unternehmens-Logo (URL) (Premium-Feature)</label>
@@ -842,10 +1085,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   onChange={e => setFormData({...formData, logoUrl: e.target.value})} 
                   className={inputClass} 
                   placeholder="https://beispiel.de/logo.png" 
+                  disabled={!formData.isPremium}
                 />
                 <label className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} cursor-pointer flex items-center justify-center shrink-0 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${uploadingImage ? 'opacity-50' : ''}`}>
                   {uploadingImage ? 'Lädt...' : 'Hochladen'}
-                  <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'logo')} disabled={uploadingImage} />
+                  <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'logo')} disabled={uploadingImage || !formData.isPremium} />
                 </label>
               </div>
               <p className="text-xs opacity-70 mt-1">Das Logo wird in den Suchergebnissen auf der Karte angezeigt. **Voraussetzung:** Das Logo muss quadratisch sein (idealerweise 400x400 Pixel), damit es optimal und scharf dargestellt wird.</p>
@@ -857,212 +1101,6 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               )}
             </div>
 
-            <div className="border-b border-orange-200/50 pb-5">
-              <div className="flex items-center justify-between mb-1">
-                <label className={labelClass}>
-                  {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (Niederländisch)'} (Bis zu 3 im Basiseintrag / bis zu 15 im Premium-Paket)
-                </label>
-                <span className="text-xs text-[#5F6B63]">
-                  {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
-                </span>
-              </div>
-
-              {activeLangTab === 'de' ? (
-                <>
-                  <div className="flex gap-2 mb-1">
-                    <input 
-                      type="text" 
-                      value={newService} 
-                      onChange={e => {
-                        const val = e.target.value;
-                        if (val.includes(',')) {
-                          addServicesFromInput(val);
-                        } else {
-                          setNewService(val);
-                        }
-                      }} 
-                      onKeyDown={e => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          addServicesFromInput(newService);
-                        }
-                      }}
-                      className={inputClass} 
-                      placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
-                    />
-                    <button 
-                      type="button" 
-                      onClick={() => addServicesFromInput(newService)}
-                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                    >
-                      Hinzufügen
-                    </button>
-                  </div>
-                  <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
-                  <div className="flex flex-wrap gap-2">
-                    {(formData.services || []).map((service, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-black/5 px-2.5 py-1 rounded-md text-sm">
-                        <span>{service}</span>
-                        <button type="button" onClick={() => {
-                          setFormData(prev => ({ ...prev, services: prev.services?.filter((_, i) => i !== idx) }));
-                        }} className="text-red-500 hover:text-red-700">
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex gap-2 mb-1">
-                    <input 
-                      type="text" 
-                      value={newServiceNl} 
-                      onChange={e => {
-                        const val = e.target.value;
-                        if (val.includes(',')) {
-                          addServicesNlFromInput(val);
-                        } else {
-                          setNewServiceNl(val);
-                        }
-                      }} 
-                      onKeyDown={e => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          addServicesNlFromInput(newServiceNl);
-                        }
-                      }}
-                      className={inputClass} 
-                      placeholder="Nederlandse dienst/product invoeren en op Enter drukken (optioneel)" 
-                    />
-                    <button 
-                      type="button" 
-                      onClick={() => addServicesNlFromInput(newServiceNl)}
-                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                    >
-                      Hinzufügen
-                    </button>
-                  </div>
-                  <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Leistungen automatisch in Echtzeit ins Niederländische übersetzt.</p>
-                  <div className="flex flex-wrap gap-2">
-                    {(formData.services_nl || []).map((service, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm">
-                        <span>{service}</span>
-                        <button type="button" onClick={() => {
-                          setFormData(prev => ({ ...prev, services_nl: prev.services_nl?.filter((_, i) => i !== idx) }));
-                        }} className="text-red-500 hover:text-red-700">
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className="border-b border-orange-200/50 pb-5">
-              <div className="flex items-center justify-between mb-1">
-                <label className={labelClass}>
-                  {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (Niederländisch)'} (Bis zu 3 im Basiseintrag / bis zu 15 im Premium-Paket)
-                </label>
-                <span className="text-xs text-[#5F6B63]">
-                  {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
-                </span>
-              </div>
-
-              {activeLangTab === 'de' ? (
-                <>
-                  <div className="flex gap-2 mb-1">
-                    <input 
-                      type="text" 
-                      value={newProduct} 
-                      onChange={e => {
-                        const val = e.target.value;
-                        if (val.includes(',')) {
-                          addProductsFromInput(val);
-                        } else {
-                          setNewProduct(val);
-                        }
-                      }} 
-                      onKeyDown={e => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          addProductsFromInput(newProduct);
-                        }
-                      }}
-                      className={inputClass} 
-                      placeholder="Produkt eingeben (z. B. Haftpflichtversicherung, Wanderschuhe) und Enter drücken" 
-                    />
-                    <button 
-                      type="button" 
-                      onClick={() => addProductsFromInput(newProduct)}
-                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                    >
-                      Hinzufügen
-                    </button>
-                  </div>
-                  <p className="text-xs opacity-70 mb-3">Tipp: Hier können Sie konkrete Waren, Tarife oder Produkte auflisten (z. B. "Wohngebäudeversicherung, Kfz-Versicherung, Skier, E-Bikes"). Kommagetrennt möglich.</p>
-                  <div className="flex flex-wrap gap-2">
-                    {(formData.products || []).map((product, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-[#FFF1E4] border border-[#F2761B]/30 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
-                        <span>{product}</span>
-                        <button type="button" onClick={() => {
-                          setFormData(prev => ({ ...prev, products: prev.products?.filter((_, i) => i !== idx) }));
-                        }} className="text-red-500 hover:text-red-700">
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex gap-2 mb-1">
-                    <input 
-                      type="text" 
-                      value={newProductNl} 
-                      onChange={e => {
-                        const val = e.target.value;
-                        if (val.includes(',')) {
-                          addProductsNlFromInput(val);
-                        } else {
-                          setNewProductNl(val);
-                        }
-                      }} 
-                      onKeyDown={e => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          addProductsNlFromInput(newProductNl);
-                        }
-                      }}
-                      className={inputClass} 
-                      placeholder="Nederlands product invoeren en op Enter drukken (optioneel)" 
-                    />
-                    <button 
-                      type="button" 
-                      onClick={() => addProductsNlFromInput(newProductNl)}
-                      className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
-                    >
-                      Hinzufügen
-                    </button>
-                  </div>
-                  <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Produkte automatisch in Echtzeit ins Niederländische übersetzt.</p>
-                  <div className="flex flex-wrap gap-2">
-                    {(formData.products_nl || []).map((product, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
-                        <span>{product}</span>
-                        <button type="button" onClick={() => {
-                          setFormData(prev => ({ ...prev, products_nl: prev.products_nl?.filter((_, i) => i !== idx) }));
-                        }} className="text-red-500 hover:text-red-700">
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-            
             <div className="border-b border-orange-200/50 pb-5">
               <label className={labelClass}>Öffnungszeiten (Premium-Feature)</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1355,7 +1393,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             </div>
 
           </div>
-        )}
+        </div>
 
 
         <div className="pt-4 border-t border-black/10 flex flex-col sm:flex-row gap-3">
