@@ -1595,14 +1595,14 @@ export default function App() {
                   {/* Footer CTA */}
                   <div className="mt-[62px] mb-[14px] bg-gradient-to-br from-[#0F4C2E] to-[#06301C] rounded-xl p-8 md:p-10 text-white flex flex-col md:flex-row gap-8 items-center justify-between">
                     <div className="max-w-[46ch]">
-                      <h2 className="font-display text-[34px] font-bold m-0 mb-[12px]">Ihr Unternehmen fehlt noch?</h2>
+                      <h2 className="font-display text-[34px] font-bold m-0 mb-[12px]">{t("bannerMissingBusinessTitle")}</h2>
                       <p className="text-[17px] leading-[1.6] text-white/85 m-0">
-                        Kostenlos eintragen und von Kundinnen und Kunden aus der Region gefunden werden. Mit Premium gibt es Bildergalerie, ausführliches Profil und Top-Platzierung.
+                        {t("bannerMissingBusinessText")}
                       </p>
                     </div>
                     <div className="flex gap-[12px] flex-wrap">
-                      <button type="button" onClick={() => setIsSubmitMode(true)} className="bg-[#F2761B] text-white border-none rounded-md px-6 py-3 text-[15px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">Jetzt eintragen</button>
-                      <button type="button" onClick={() => setIsPricingMode(true)} className="bg-transparent text-white border border-white/40 rounded-md px-6 py-3 text-[15px] font-semibold cursor-pointer hover:bg-white/10 transition-colors">Preise ansehen</button>
+                      <button type="button" onClick={() => setIsSubmitMode(true)} className="bg-[#F2761B] text-white border-none rounded-md px-6 py-3 text-[15px] font-semibold cursor-pointer hover:bg-[#D65F0C] transition-colors">{t("bannerRegisterNow")}</button>
+                      <button type="button" onClick={() => setIsPricingMode(true)} className="bg-transparent text-white border border-white/40 rounded-md px-6 py-3 text-[15px] font-semibold cursor-pointer hover:bg-white/10 transition-colors">{t("bannerViewPricing")}</button>
                     </div>
                   </div>
 
