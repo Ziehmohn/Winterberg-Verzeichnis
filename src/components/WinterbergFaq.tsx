@@ -43,7 +43,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Was kann man in Winterberg machen?',
       quickSummary: 'Winterberg bietet zu jeder Jahreszeit erstklassige Erlebnisse: Im Winter das Skiliftkarussell und Rodelhänge, im Frühling und Sommer den Erlebnisberg Kappe (Bikepark, Sommerrodelbahn, Panorama Brücke), traumhafte Wanderwege wie den Rothaarsteig, Badespaß im Freibad Siedlinghausen & Hillebachsee sowie eine lebendige Gastronomie.',
-      plainAnswer: 'Winterberg ist ganzjährig ein Erlebnis: Im Winter locken 27,5 Pistenkilometer im Skiliftkarussell und beleuchtete Rodelhänge. Im Sommer begeistern der Erlebnisberg Kappe mit Bikepark, Sommerrodelbahn und Kletterwald, das beheizte Freibad Siedlinghausen, der Aussichtspunkt Kahler Asten, Wasserski am Hillebachsee sowie das vielseitige Shopping- und Gastronomieangebot.',
+      plainAnswer: 'Winterberg ist ganzjährig ein Erlebnis: Im Winter locken 27,5 Pistenkilometer im Skiliftkarussell und beleuchtete Rodelhänge. Im Sommer begeistern der Erlebnisberg Kappe mit Bikepark, Sommerrodelbahn und Kletterwald, das beheizte Freibad Siedlinghausen, der Aussichtspunkt Kahler Asten, Wasserski am Hillebachsee sowie das vielseitige Shopping- und Gastronomieangebot. (Hinweis: Dies ist eine Auswahl – in Winterberg und den 14 Ortsteilen gibt es noch viele weitere tolle Angebote).',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg ist das führende Ganzjahres-Reiseziel im Sauerland mit abwechslungsreichen Aktivitäten für jede Jahreszeit:</p>
@@ -54,6 +54,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Baden, Wassersport & Entspannung:</strong> Das beheizte <em>Freibad Siedlinghausen</em> mit Sportbecken & Liegewiese, Wasserski & Baden am <em>Hillebachsee Niedersfeld</em> oder Entspannung im Hallenbad & Saunabereich des <em>Oversum Vital Resorts</em>.</li>
             <li><strong>Essen, Trinken & Ausgehen:</strong> Gemütliche Hütten, urige Sauerländer Gasthäuser, trendige Cafés an der Flaniermeile Am Waltenberg und legendäres Après-Ski.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Winterberg und seine 14 Ortsteile bieten noch unzählige weitere Freizeitmöglichkeiten und Ausflugsziele – dies ist lediglich eine Auswahl der beliebtesten Highlights zur Orientierung.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -64,7 +67,7 @@ export const FAQ_DATA: FaqItem[] = [
     nl: {
       question: 'Wat te doen in Winterberg?',
       quickSummary: 'Winterberg is het hele jaar door de populairste bestemming in het Sauerland: In de winter skiën en rodelen in het Skiliftkarussell, en in het voorjaar en de zomer volop actie op de Erlebnisberg Kappe (Bikepark, zomerrodelbaan, panoramabrug), zwemmen in het Freibad Siedlinghausen en wandelen op de Kahler Asten.',
-      plainAnswer: 'In Winterberg is altijd wat te doen: In de winter 27,5 km skipistes en verlichte rodelhellingen. In de zomer de Erlebnisberg Kappe met bikepark, zomerrodelbaan en klimbos, het verwarmde openluchtzwembad Freibad Siedlinghausen, het uitzichtpunt Kahler Asten (841 m), waterskiën op de Hillebachsee en gezellige winkels en restaurants.',
+      plainAnswer: 'In Winterberg is altijd wat te doen: In de winter 27,5 km skipistes en verlichte rodelhellingen. In de zomer de Erlebnisberg Kappe met bikepark, zomerrodelbaan en klimbos, het verwarmde openluchtzwembad Freibad Siedlinghausen, het uitzichtpunt Kahler Asten (841 m), waterskiën op de Hillebachsee en gezellige winkels en restaurants. (Let op: dit is slechts een selectie van de populairste activiteiten).',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg is zowel in de zomer als winter een ideale bestemming op slechts enkele uren rijden van Nederland en België:</p>
@@ -75,6 +78,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Zwemmen & Watersport:</strong> Het verwarmde openluchtbad <em>Freibad Siedlinghausen</em>, waterskiën en zwemmen bij de <em>Hillebachsee</em> in Niedersfeld of ontspannen in het overdekte zwemparadijs van <em>Oversum Vital Resort</em>.</li>
             <li><strong>Gezelligheid & Terrassen:</strong> Gezellig lunchen, dineren en borrelen aan de wandelpromenade <em>Am Waltenberg</em> of genieten van een drankje in de almhutten.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> In Winterberg en de 14 omliggende dorpen zijn er nog veel meer activiteiten en bezienswaardigheden – dit is slechts een selectie van de bekendste tips.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -90,13 +96,13 @@ export const FAQ_DATA: FaqItem[] = [
     categoryGroup: 'Freizeit & Natur',
     de: {
       question: 'Was kann man im Sommer in Winterberg machen?',
-      quickSummary: 'Im Sommer verwandelt sich Winterberg in ein Outdoor-Mekka: Bikepark Winterberg, Sommerrodelbahn, Panorama Erlebnis Brücke, Kletterwald, das beheizte Freibad Siedlinghausen mit Sprungturm und Liegewiese, Wasserski am Hillebachsee, Wandern auf dem Kahlen Asten sowie sommerliche Biergärten und Sonnenterrassen.',
-      plainAnswer: 'Im Sommer locken der Erlebnisberg Kappe (Bikepark, Sommerrodelbahn, Kletterwald, Fly-Line, Erlebnisbrücke), das beheizte Freibad Siedlinghausen mit 25m-Sportbecken und Liegewiese, Wassersport und Schwimmen am Hillebachsee Niedersfeld, Bergabenteuer an der Ruhrquelle (Mountaincart), Panoramawanderungen auf dem Rothaarsteig sowie lebendige Straßencafés.',
+      quickSummary: 'Im Sommer verwandelt sich Winterberg in ein Outdoor-Mekka: Bikepark Winterberg, Sommerrodelbahn, Panorama Erlebnis Brücke, Kletterwald, das beheizte Freibad Siedlinghausen mit Liegewiese, Wasserski am Hillebachsee, Wandern auf dem Kahlen Asten sowie sommerliche Biergärten und Sonnenterrassen.',
+      plainAnswer: 'Im Sommer locken der Erlebnisberg Kappe (Bikepark, Sommerrodelbahn, Kletterwald, Fly-Line, Erlebnisbrücke), das beheizte Freibad Siedlinghausen mit 25m-Sportbecken und Liegewiese, Wassersport und Schwimmen am Hillebachsee Niedersfeld, Bergabenteuer an der Ruhrquelle (Mountaincart), Panoramawanderungen auf dem Rothaarsteig sowie lebendige Straßencafés. (Auswahl der beliebtesten Sommeraktivitäten).',
       answerHtml: (
         <div className="space-y-3">
           <p>Der Sommer in Winterberg bietet eine perfekte Mischung aus Nervenkitzel, Familienausflügen, Badespaß und Naturgenuss:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Baden im Freibad Siedlinghausen:</strong> Das beliebte beheizte Freibad im Ortsteil Siedlinghausen bietet ein 25-Meter-Schwimmbecken, Sprungturm, Nichtschwimmerbereich und eine große, gepflegte Liegewiese – ideal für heiße Sommertage.</li>
+            <li><strong>Baden im Freibad Siedlinghausen:</strong> Das beliebte beheizte Freibad im Ortsteil Siedlinghausen bietet ein 25-Meter-Schwimmbecken, Nichtschwimmerbereich, Kinderbecken und eine große, gepflegte Liegewiese mit altem Baumbestand – ideal für heiße Sommertage.</li>
             <li><strong>Erlebnisberg Kappe:</strong> Sommerrodelbahn, <em>Fly-Line</em> (schwebend durch die Baumkronen), <em>Panorama Erlebnis Brücke</em> mit Riesenrutsche und der <em>Kletterwald</em> für Groß und Klein.</li>
             <li><strong>Bikepark & Trailpark:</strong> Einer der größten Mountainbike- und Downhill-Parks Europas mit Strecken für Einsteiger bis Worldcup-Profis sowie 40 km flowige Strecken im Trailpark.</li>
             <li><strong>Hillebachsee Niedersfeld:</strong> Wasserski- und Wakeboardanlage, Badestrand, Beachvolleyballfeld, Tretbootverleih und kinderfreundlicher Wasserspielplatz.</li>
@@ -104,6 +110,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Wandern & Bike-Touren:</strong> Über 400 km markierte Wander- und E-Bike-Routen rund um den Kahlen Asten, Neuer Hagen und das Ruhrtal.</li>
             <li><strong>Sommerterrassen & Biergärten:</strong> Eisdielen, Pizzerien und Cafés mit Außenplätzen entlang der Flaniermeile <em>Am Waltenberg</em> und am Marktplatz.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Dies ist lediglich eine handverlesene Auswahl – in der Ferienwelt Winterberg gibt es im Sommer noch unzählige weitere Wanderwege, Funsport-Angebote und Erholungsorte.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -114,12 +123,12 @@ export const FAQ_DATA: FaqItem[] = [
     nl: {
       question: 'Wat te doen in Winterberg in de zomer?',
       quickSummary: 'In de zomer is Winterberg een waar outdoor-paradijs: het Bikepark Winterberg, de zomerrodelbaan, de Panoramabrug, het klimbos, het verwarmde openluchtzwembad Freibad Siedlinghausen, waterskiën op de Hillebachsee, wandelen over de Kahler Asten en gezellige terrassen in het centrum.',
-      plainAnswer: 'Zomeractiviteiten in Winterberg: Erlebnisberg Kappe (Bikepark, zomerrodelbaan, klimbos, Fly-Line, panoramabrug), heerlijk zwemmen in het verwarmde openluchtbad Freibad Siedlinghausen, waterskiën bij de Hillebachsee in Niedersfeld, mountaincarten bij de Ruhrquelle, panoramawandelingen over de Rothaarsteig en gezellige terrassen.',
+      plainAnswer: 'Zomeractiviteiten in Winterberg: Erlebnisberg Kappe (Bikepark, zomerrodelbaan, klimbos, Fly-Line, panoramabrug), heerlijk zwemmen in het verwarmde openluchtbad Freibad Siedlinghausen, waterskiën bij de Hillebachsee in Niedersfeld, mountaincarten bij de Ruhrquelle, panoramawandelingen over de Rothaarsteig en gezellige terrassen. (Selectie van de leukste zomeractiviteiten).',
       answerHtml: (
         <div className="space-y-3">
           <p>In de zomermaanden (mei t/m oktober) barst Winterberg van de gezelligheid en outdoor-activiteiten:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Openluchtzwembad Freibad Siedlinghausen:</strong> Het heerlijke verwarmde openluchtbad in Siedlinghausen met een 25m wedstrijdbad, duiktoren, peuterbad en een grote groene ligweide.</li>
+            <li><strong>Openluchtzwembad Freibad Siedlinghausen:</strong> Het heerlijke verwarmde openluchtbad in Siedlinghausen met een 25m wedstrijdbad, peuterbad en een grote groene ligweide.</li>
             <li><strong>Erlebnisberg Kappe:</strong> De 700 meter lange <em>zomerrodelbaan</em>, de zwevende <em>Fly-Line</em>, de <em>Panorama Belevenisbrug</em> met uitzicht over het dal en het uitdagende <em>Klimbos</em>.</li>
             <li><strong>Bikepark Winterberg:</strong> Het toonaangevende downhill- en mountainbikepark van Duitsland met spectaculaire tracks voor elk niveau en materiaalverhuur ter plaatse.</li>
             <li><strong>Hillebachsee Niedersfeld:</strong> Heerlijk zwemmeer met kabelwaterskibaan, wakeboarden, ligweide, beachvolleybal en gezellige horeca aan het water.</li>
@@ -127,6 +136,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Wandelen en E-biken:</strong> Schitterende tochten over de heide van de <em>Kahler Asten</em>, de <em>Rothaarsteig</em> en langs de bron van de rivier de Ruhr.</li>
             <li><strong>Gezellige terrassen & biergartens:</strong> Genieten van een Duits biertje, ijsje of diner in de zon aan de promenade <em>Am Waltenberg</em>.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Dit is slechts een selectie – in en rondom Winterberg zijn er zomers nog veel meer outdoor-activiteiten en wandelroutes te ontdekken.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -143,7 +155,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Kann man in Winterberg gut Fahrrad fahren?',
       quickSummary: 'Winterberg ist eine der führenden Radsport-Destinationen in Europa: Mit dem weltberühmten Bikepark Winterberg für Downhill, dem Trailpark für Tourenbiker, dem beliebten RuhrtalRadweg (Start an der Ruhrquelle), hunderten Kilometern E-Bike-Routen sowie anspruchsvollen Rennrad-Strecken.',
-      plainAnswer: 'Ja, Winterberg ist ein wahres Paradies für Radfahrer aller Disziplinen: 1. Bikepark Winterberg (Europas bekanntester Downhill-Park), 2. Trailpark Winterberg (40 km flowige Trails für Einsteiger und Fortgeschrittene), 3. RuhrtalRadweg (Startpunkt an der Ruhrquelle für Genussradler), 4. Über 1.140 km beschilderte Mountainbike- und E-Bike-Touren in der Bike Arena Sauerland, 5. Rennradtouren mit knackigen Höhenmetern auf verkehrsarmen Bergstraßen.',
+      plainAnswer: 'Ja, Winterberg ist ein wahres Paradies für Radfahrer aller Disziplinen: 1. Bikepark Winterberg (Europas bekanntester Downhill-Park), 2. Trailpark Winterberg (40 km flowige Trails für Einsteiger und Fortgeschrittene), 3. RuhrtalRadweg (Startpunkt an der Ruhrquelle für Genussradler), 4. Über 1.140 km beschilderte Mountainbike- und E-Bike-Touren in der Bike Arena Sauerland, 5. Rennradtouren mit knackigen Höhenmetern auf verkehrsarmen Bergstraßen. (Auswahl der besten Strecken).',
       answerHtml: (
         <div className="space-y-3">
           <p>Egal ob Downhill-Action, gemütliche Familientour am Fluss oder fordernde Rennrad-Höhenmeter:</p>
@@ -154,6 +166,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>E-Bike-Touren & Bike Arena Sauerland:</strong> Großes Netzwerk an Akku-Ladestationen, geführten Touren und modernen E-Mountainbike-Verleihstationen in der gesamten Stadt.</li>
             <li><strong>Rennrad & Höhenmeter:</strong> Anspruchsvolle Trainingsrouten über die höchsten Sauerländer Berge (Kahler Asten, Poppenberg) mit herrlicher Fernsicht.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Das Streckennetz der Bike Arena Sauerland umfasst über 1.140 km ausgeschilderte Radwege – die genannten Routen und Parks stellen eine Auswahl der bekanntesten Highlights dar.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -173,6 +188,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>RuhrtalRadweg:</strong> Een van de mooiste rivierfietspaden van Duitsland, startend bij de bron van de Ruhr in Winterberg.</li>
             <li><strong>E-Mountainbiken:</strong> Eenvoudig de steile bergtoppen bedwingen dankzij talloze E-bike verhuurders en oplaadpunten.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> De Bike Arena Sauerland telt ruim 1.140 km aan fietspaden – dit is een selectie van de populairste routes en fietsparken.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -188,7 +206,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Was kann man in Winterberg bei Regen machen?',
       quickSummary: 'Bei Regenwetter bietet Winterberg erstklassige 100% überdachte Indoor-Erlebnisse: Das Hallen- und Wellnessbad im Oversum Vital Resort, Bowling, Billard & Darts im Bowlhaus Winterberg, Kinobesuche im Filmtheater, rasante Indoor-Kartbahn in Neuastenberg, das Westdeutsche Wintersportmuseum sowie gemütliche Cafés.',
-      plainAnswer: 'Bei Regenwetter empfehlen sich wetterunabhängige Indoor-Aktivitäten: 1. Schwimmen & Wellness im Hallenbad des Oversum Vital Resorts, 2. Bowling, Billard & Darts im Bowlhaus Winterberg, 3. Aktuelle Blockbuster im Filmtheater Winterberg, 4. Indoor-Kartbahn bei Kartfun Neuastenberg, 5. Westdeutsches Wintersportmuseum in Neuastenberg, 6. Gemütliche Café- und Restaurantbesuche mit warmen Waffeln.',
+      plainAnswer: 'Bei Regenwetter empfehlen sich wetterunabhängige Indoor-Aktivitäten: 1. Schwimmen & Wellness im Hallenbad des Oversum Vital Resorts, 2. Bowling, Billard & Darts im Bowlhaus Winterberg, 3. Aktuelle Blockbuster im Filmtheater Winterberg, 4. Indoor-Kartbahn bei Kartfun Neuastenberg, 5. Westdeutsches Wintersportmuseum in Neuastenberg, 6. Gemütliche Café- und Restaurantbesuche mit warmen Waffeln. (Auswahl der besten Schlechtwetter-Tipps).',
       answerHtml: (
         <div className="space-y-3">
           <p>Selbst bei Schmuddelwetter wird es in Winterberg dank abwechslungsreicher und komplett überdachter Indoor-Angebote garantiert nicht langweilig:</p>
@@ -200,6 +218,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Kultur & Museen:</strong> Das <em>Westdeutsche Wintersportmuseum</em> in Neuastenberg (Geschichte des Skilaufs seit über 120 Jahren) oder die <em>Borgs Scheune</em> in Züschen.</li>
             <li><strong>Ausgiebig schlemmen & Kaffeetrinken:</strong> Warme Sauerländer Waffeln mit Kirschen, frischer Kuchen und Kaffeespezialitäten in den gemütlichen Cafés im Stadtkern.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Dies ist eine Auswahl überdachter Indoor-Ausflugsziele in Winterberg und unmittelbarer Umgebung.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -222,6 +243,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>West-Duits Wintersportmuseum (Neuastenberg):</strong> Ontdek hoe het skiën in het Sauerland meer dan 120 jaar geleden begon.</li>
             <li><strong>Koffie & Verse Wafels:</strong> Schuif aan in een van de traditionele Konditoreien voor warme Belgische/Duitse wafels met warme kersen en slagroom.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Dit is een selectie van populaire overdekte activiteiten bij regenweer in Winterberg en omstreken.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -288,18 +312,21 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Was kann man in Winterberg mit Kindern machen?',
       quickSummary: 'Winterberg ist ein Paradies für Familien: Sommerrodelbahnen, Panorama Erlebnis Brücke mit Riesenrutsche, Kletterwald, beheiztes Freibad Siedlinghausen, Wasserspielplatz am Hillebachsee, kindgerechte Skischulen mit Förderbändern, Rodellifte und der gigantische Aventura-Spielberg.',
-      plainAnswer: 'Top-Ausflugsziele für Familien mit Kindern: 1. Sommerrodelbahn & Fly-Line am Erlebnisberg Kappe, 2. Panorama Erlebnis Brücke mit Kletterelementen, 3. Freibad Siedlinghausen mit Sprungturm und Hillebachsee mit Sandstrand, 4. Im Winter die Rodelparadiese Herrloh & Bremberg, 5. Kinderskischulen im Skiliftkarussell, 6. Europas längstes Spielgerät AVENTURA Spielberg (Medebach, 15 Min), 7. Freizeitpark FORT FUN (20 Min).',
+      plainAnswer: 'Top-Ausflugsziele für Familien mit Kindern: 1. Sommerrodelbahn & Fly-Line am Erlebnisberg Kappe, 2. Panorama Erlebnis Brücke mit Kletterelementen, 3. Freibad Siedlinghausen und Hillebachsee mit Sandstrand, 4. Im Winter die Rodelparadiese Herrloh & Bremberg, 5. Kinderskischulen im Skiliftkarussell, 6. Europas längstes Spielgerät AVENTURA Spielberg (Medebach, 15 Min), 7. Freizeitpark FORT FUN (20 Min). (Auswahl der besten Familienangebote).',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg ist besonders kinder- und familienfreundlich ausgebaut:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Badespaß für Groß & Klein:</strong> Das beheizte <em>Freibad Siedlinghausen</em> (Kinderbecken, Nichtschwimmerbereich, Sprungturm) und der flache Sandstrand am <em>Hillebachsee</em> mit großem Piratenspielplatz.</li>
+            <li><strong>Badespaß für Groß & Klein:</strong> Das beheizte <em>Freibad Siedlinghausen</em> (Kinderbecken, Nichtschwimmerbereich) und der flache Sandstrand am <em>Hillebachsee</em> mit großem Piratenspielplatz.</li>
             <li><strong>Erlebnisberg Kappe:</strong> Sommerrodelbahn mit Geschwindigkeitsmessung, <em>Panorama Erlebnis Brücke</em> mit Hängebrücken und Riesenrutschen zurück ins Tal sowie Kinder-Kletterparcours im <em>Kletterwald</em>.</li>
             <li><strong>AVENTURA – Der Spielberg (Medebach, ca. 15 Min):</strong> Europas längstes Spiel- und Klettergerät (160 Meter lang) – komplett kostenlos zugänglich auf einem Berggipfel!</li>
             <li><strong>Freizeitpark FORT FUN Abenteuerland (Bestwig, ca. 20 Min):</strong> Der große Western-Freizeitpark für die ganze Familie mit Achterbahnen, Wildwasserbahn, Rodelbahn und Shows.</li>
             <li><strong>Winterurlaub mit Kids:</strong> Eigene Kinderländer mit Zauberteppichen (Förderbändern) an fast allen Skischulen sowie gesicherte Rodelhänge am Herrloh und Bremberg.</li>
             <li><strong>Minigolf & Bowling:</strong> Minigolfanlagen im Kurpark und kinderfreundliches Bowling im <em>Bowlhaus Winterberg</em>.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Dies ist eine Auswahl empfehlenswerter Familienangebote. In ganz Winterberg und den 14 Ortsteilen finden Familien zahlreiche weitere Spielplätze, Naturerlebnispfade und Angebote.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -315,12 +342,15 @@ export const FAQ_DATA: FaqItem[] = [
         <div className="space-y-3">
           <p>Voor gezinnen met kinderen van alle leeftijden heeft Winterberg enorm veel te bieden:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Zwemmen & Spelen:</strong> Het verwarmde <em>Freibad Siedlinghausen</em> met peuterbad en duiktoren, plus de ondiepe zwembaai van de <em>Hillebachsee</em> met fijn zandstrand en waterspeeltuin.</li>
+            <li><strong>Zwemmen & Spelen:</strong> Het verwarmde <em>Freibad Siedlinghausen</em> met peuterbad, plus de ondiepe zwembaai van de <em>Hillebachsee</em> met fijn zandstrand en waterspeeltuin.</li>
             <li><strong>Erlebnisberg Kappe:</strong> De <em>zomerrodelbaan</em>, de <em>Fly-Line</em> zweefbaan door het bos, de 435m lange <em>Panorama Belevenisbrug</em> met touwbruggen en een 40 meter lange overdekte glijbaan omlaag, plus een kindvriendelijk <em>Klimbos</em>.</li>
             <li><strong>AVENTURA – De Spielberg in Medebach (15 min rijden):</strong> Het langste gratis speeltoestel van Europa (160 meter lang) met talloze klimtorens, tunnels en glijbanen tegen een berghelling.</li>
             <li><strong>Pretpark FORT FUN Abenteuerland (20 min rijden):</strong> Geweldig pretpark in Wildwest-thema met achtbanen, wildwaterbaan, zweefmolen en familieshows.</li>
             <li><strong>Winter met kinderen:</strong> Veilige kinderlanden met lopende banden (\'tovertapijten\') en veel skischolen met Nederlandssprekende leraren, plus speciale rodelhellingen met rodelliften bij Herrloh en Bremberg.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Dit is slechts een selectie – in alle 14 dorpen van Winterberg zijn er nog veel meer speeltuinen, belevingspaden en gezinsactiviteiten.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -337,7 +367,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Was kann man in Winterberg mit Hund machen?',
       quickSummary: 'Winterberg ist sehr hundefreundlich: Herrliche Wanderwege ohne Straßenverkehr (Rothaarsteig, Kahler Asten, Rundweg Hillebachsee), zahlreiche hundefreundliche Restaurants & Hütten mit Wassernäpfen sowie Unterkünfte, die Vierbeiner herzlich willkommen heißen.',
-      plainAnswer: 'Mit Hund in Winterberg: 1. Traumhafte Wanderungen auf dem Rothaarsteig, Kahlen Asten und der Hochheide Niedersfeld, 2. Spaziergänge um den Hillebachsee (Leinenpflicht), 3. Hundefreundliche Gastronomie (Dorf Alm, Möppi\'s Hütte, Cafe Extrablatt erlauben Hunde), 4. Winterspaziergänge auf geräumten Wegen abseits der Skipisten. Hinweis: Auf den präparierten Skipisten sind Hunde aus Sicherheitsgründen nicht gestattet.',
+      plainAnswer: 'Mit Hund in Winterberg: 1. Traumhafte Wanderungen auf dem Rothaarsteig, Kahlen Asten und der Hochheide Niedersfeld, 2. Spaziergänge um den Hillebachsee (Leinenpflicht), 3. Hundefreundliche Gastronomie (Dorf Alm, Möppi\'s Hütte, Cafe Extrablatt erlauben Hunde), 4. Winterspaziergänge auf geräumten Wegen abseits der Skipisten. Hinweis: Auf den präparierten Skipisten sind Hunde aus Sicherheitsgründen nicht gestattet. (Auswahl hundefreundlicher Highlights).',
       answerHtml: (
         <div className="space-y-3">
           <p>Urlaub mit dem besten Freund des Menschen ist in Winterberg unkompliziert und abwechslungsreich:</p>
@@ -348,6 +378,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Hunde im Schnee:</strong> Winterwanderungen auf den gewalzten Winterwanderwegen machen Vierbeinern riesigen Spaß. Wichtig: Auf den alpinen Skipisten und Rodelhängen sind Hunde zur Sicherheit von Skifahrern und Tieren untersagt.</li>
             <li><strong>Unterkünfte für Hundebesitzer:</strong> Viele Hotels und Ferienwohnungen in Winterberg sind speziell als „Hundefreundlich“ gekennzeichnet.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> In der gesamten Ferienregion Winterberg gibt es Hunderte Kilometer hundefreundlicher Wander- und Waldwege – dies ist eine Auswahl der beliebtesten Routen.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -369,6 +402,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>In de sneeuw met de hond:</strong> Honden zijn dol op de dikke pakken sneeuw op de speciaal gewalste winterwandelpaden. Om ongelukken te voorkomen zijn honden op de geprepareerde skipistes en rodelbanen niet toegestaan.</li>
             <li><strong>Hondvriendelijk overnachten:</strong> Veel hotels, pensions en vakantieparken in Winterberg verwelkomen honden met open armen.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Dit is een selectie – in de uitgestrekte bossen rondom Winterberg vindt u nog honderden kilometers aan wandelpaden waar u heerlijk met uw viervoeter kunt lopen.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -385,7 +421,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Was kann man in der Umgebung von Winterberg machen?',
       quickSummary: 'In unmittelbarer Umgebung locken spannende Attraktionen: Die spektakuläre Hängebrücke Skywalk in Willingen, der Freizeitpark FORT FUN Abenteuerland, die monumentalen Bruchhauser Steine, der Kletterberg AVENTURA Medebach, Stauseen wie der Diemelsee und die berühmte Warsteiner Welt.',
-      plainAnswer: 'Die besten Ausflugsziele rund um Winterberg: 1. Skywalk Willingen (665 m lange Hängebrücke, 20 Min), 2. Freizeitpark FORT FUN Abenteuerland (Bestwig, 20 Min), 3. Bruchhauser Steine Naturmonument (Olsberg, 15 Min), 4. AVENTURA Spielberg Medebach (15 Min), 5. Tropfsteinhöhle Atta-Höhle in Attendorn (45 Min), 6. Bootsfahrten auf dem Hennesee oder Diemelsee.',
+      plainAnswer: 'Die besten Ausflugsziele rund um Winterberg: 1. Skywalk Willingen (665 m lange Hängebrücke, 20 Min), 2. Freizeitpark FORT FUN Abenteuerland (Bestwig, 20 Min), 3. Bruchhauser Steine Naturmonument (Olsberg, 15 Min), 4. AVENTURA Spielberg Medebach (15 Min), 5. Tropfsteinhöhle Atta-Höhle in Attendorn (45 Min), 6. Bootsfahrten auf dem Hennesee oder Diemelsee. (Auswahl der beliebtesten Ausflugsziele im Sauerland).',
       answerHtml: (
         <div className="space-y-3">
           <p>Das Hochsauerland rund um Winterberg bietet im Umkreis von nur 15 bis 40 Autominuten weltbekannte Ausflugsziele:</p>
@@ -397,6 +433,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Atta-Höhle Attendorn (ca. 45 Min):</strong> Deutschlands größte und schönste begehbare Tropfsteinhöhle mit Jahrtausende alten Stalaktiten und Stalagmiten.</li>
             <li><strong>Sauerländer Seen (Hennesee, Diemelsee, Biggesee):</strong> Schifffahrten, Tretbootfahren, Segeln und Baden an idyllischen Stauseen.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Das Sauerland hält noch viele weitere Burgen, Bergwerke, Talsperren und Museen bereit – dies ist eine Auswahl der populärsten Ausflugsziele in der Region.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -418,6 +457,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Atta-Höhle in Attendorn (45 min):</strong> Een van de grootste en mooiste druipsteengrotten van Duitsland met eeuwenoude stalactieten en stalagmieten.</li>
             <li><strong>Boottochten op de meren (Hennesee & Diemelsee):</strong> Rondvaarten met de passagiersboot, waterfietsen en zeilen in een schilderachtige heuvelachtige omgeving.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Het Sauerland biedt nog veel meer kastelen, mijnen, meren en natuurmonumenten – dit is een selectie van de populairste trekpleisters.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -433,7 +475,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Wo kann man in Winterberg gut spazieren gehen?',
       quickSummary: 'Die schönsten Spaziergänge bieten der heilklimatische Kurpark Winterberg, der Panoramaweg auf dem Kahlen Asten, die wildromantische Schlucht im Helletal sowie der befestigte 1,6 km lange Rundweg um den Hillebachsee in Niedersfeld (auch im Winter geräumt).',
-      plainAnswer: 'Für schöne Spaziergänge in Winterberg empfehlen sich: 1. Der Kurpark Winterberg mit gepflegten Wegen, Musikmuschel und Teichen, 2. Der Panoramaweg auf dem Kahlen Asten (841 m), 3. Der Schluchtenpfad im Helletal entlang plätschernder Gebirgsbäche, 4. Der ebene Rundweg um den Hillebachsee in Niedersfeld, 5. Geräumte Winterwanderwege in Altastenberg und Neuastenberg.',
+      plainAnswer: 'Für schöne Spaziergänge in Winterberg empfehlen sich: 1. Der Kurpark Winterberg mit gepflegten Wegen, Musikmuschel und Teichen, 2. Der Panoramaweg auf dem Kahlen Asten (841 m), 3. Der Schluchtenpfad im Helletal entlang plätschernder Gebirgsbäche, 4. Der ebene Rundweg um den Hillebachsee in Niedersfeld, 5. Geräumte Winterwanderwege in Altastenberg und Neuastenberg. (Hinweis: Dies ist nur eine Auswahl – in Winterberg und den 14 Ortsteilen gibt es unzählige weitere Spazierwege).',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg bietet herrliche Spazierwege für jede Kondition – eben, barrierearm und zu jeder Jahreszeit gepflegt:</p>
@@ -444,13 +486,16 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Seerundweg Hillebachsee (Niedersfeld):</strong> Befestigter, ca. 1,6 km langer ebener Rundweg um den See mit Seeterrassen und Ruhebänken.</li>
             <li><strong>Geräumte Winterspazierwege:</strong> Im Winter werden rund um die Skidörfer Altastenberg, Neuastenberg und Züschen breite Winterwanderwege regelmäßig gewalzt.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> In Winterberg und allen 14 Ortsteilen gibt es unzählige weitere idyllische Spazier-, Wald- und Rundwege. Dies ist lediglich eine handverlesene Auswahl der bekanntesten Strecken!
+          </p>
         </div>
       )
     },
     nl: {
       question: 'Waar kun je mooi wandelen en een ommetje maken in Winterberg?',
       quickSummary: 'De mooiste ontspannen wandelingen: Het kuurpark in het centrum van Winterberg, de panoramaroute op de top van de Kahler Asten, de Helletal-kloof en het vlakke rondje van 1,6 km om de Hillebachsee in Niedersfeld.',
-      plainAnswer: 'Mooie korte wandelingen en ommetjes in Winterberg: 1. Kuurpark Winterberg met verharde paden en vijvers, 2. Panoramaroute op de top van de Kahler Asten (841 m), 3. Helletal-kloof langs bergbeekjes en watervallen, 4. Rondje Hillebachsee in Niedersfeld (1,6 km vlak asfalt), 5. Gewalste winterwandelpaden in de dorpen.',
+      plainAnswer: 'Mooie korte wandelingen en ommetjes in Winterberg: 1. Kuurpark Winterberg met verharde paden en vijvers, 2. Panoramaroute op de top van de Kahler Asten (841 m), 3. Helletal-kloof langs bergbeekjes en watervallen, 4. Rondje Hillebachsee in Niedersfeld (1,6 km vlak asfalt), 5. Gewalste winterwandelpaden in de dorpen. (Dit is slechts een selectie van de populairste routes).',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg heeft prachtige korte wandelpaden die ook geschikt zijn voor kinderwagens:</p>
@@ -460,6 +505,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Helletal-kloof:</strong> Schaduwrijk en idyllisch bospad langs een beekje vlak bij het centrum.</li>
             <li><strong>Rondje Hillebachsee (Niedersfeld):</strong> 1,6 km vlakke wandelronde om het meer met horeca aan het water.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> In Winterberg en de 14 dorpen zijn er nog talloze andere prachtige wandelpaden en plekjes. Dit is slechts een selectie van de populairste routes!
+          </p>
         </div>
       )
     }
@@ -482,6 +530,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Regionale Spezialitäten & Geschenke:</strong> Sauerländer Schinken, Wildspezialitäten, lokale Edelbrände, Liköre, Senf, feine Pralinen und handwerkliche Dekoartikel.</li>
             <li><strong>Sonntags-Shopping (Verkaufsoffene Sonntage):</strong> Als staatlich anerkannter heilklimatischer Kurort profitieren viele Winterberger Einzelhändler von der Tourismus-Sonderregelung. In der Wintersport- und Sommersaison öffnen die meisten Boutiquen, Mode- und Sportgeschäfte auch <strong>sonntags von ca. 11:00 bis 17:00 Uhr</strong> ihre Türen!</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Die Stadt Winterberg und die Ortsteile bieten neben den Haupteinkaufsstraßen viele weitere spezialisierte Fachbetriebe, Handwerksläden und Hofläden.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -501,6 +552,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Streekproducten & Souvenirs:</strong> Echte Sauerlandse boerenham, ambachtelijke likeuren, lokale mosterd, chocolade en cadeaus.</li>
             <li><strong>Zondags winkelen (Zondagsopening):</strong> Dankzij de toeristische kuuroordstatus mogen veel winkels in Winterberg in de winter- en zomermaanden ook op <strong>zondagmiddag open zijn (doorgaans van 11:00 tot 17:00 uur)</strong>!</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Naast de bekende winkelstraten zijn er in de regio nog diverse streekwinkels, boerderijwinkels en ambachtelijke speciaalzaken te vinden.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -516,7 +570,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Wo kann man in Winterberg gut essen?',
       quickSummary: 'Winterberg bietet eine vielfältige Gastronomie: Von traditioneller Sauerländer Küche und Steakhäusern über italienische Pizzerien bis hin zu Panoramarestaurants und gemütlichen Skihütten.',
-      plainAnswer: 'In Winterberg gibt es eine große gastronomische Auswahl. Beliebte Adressen sind das Hotel Hessenhof und Schneider\'s Restaurant für traditionelle Küche, die Kupferpfanne für Steaks, Da Salvatore für italienische Spezialitäten sowie die Panorama-Restaurants am Erlebnisberg Kappe und Möppi\'s Hütte.',
+      plainAnswer: 'In Winterberg gibt es eine große gastronomische Auswahl. Beliebte Adressen sind das Hotel Hessenhof und Schneider\'s Restaurant für traditionelle Küche, die Kupferpfanne für Steaks, Da Salvatore für italienische Spezialitäten sowie die Panorama-Restaurants am Erlebnisberg Kappe und Möppi\'s Hütte. (Auswahl der beliebtesten Restaurants).',
       answerHtml: (
         <div className="space-y-3">
           <p>In Winterberg und den umliegenden Ortsteilen erwartet Sie eine lebendige Restaurantszene:</p>
@@ -526,6 +580,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Hütten mit Panoramablick:</strong> <em>Panorama Café & Restaurant</em> auf dem Erlebnisberg Kappe, <em>Möppi’s Hütte</em> am Bremberg und die <em>Herrloh Hütte</em>.</li>
             <li><strong>Gehoben & Feinschmecker:</strong> Ausgewählte Restaurants und Romantik-Hotels mit regionaler Gourmetküche.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Die Gastronomielandschaft in Winterberg und den 14 Dörfern umfasst über 100 Restaurants, Gasthäuser und Skihütten. Die genannten Betriebe stellen eine beliebte Auswahl dar.
+          </p>
           <p className="text-sm bg-amber-50 border border-amber-200 rounded-lg p-2.5 text-amber-900 mt-2">
             <strong>Tipp:</strong> Während der Skisaison (Dezember bis März) sowie an Ferien-Wochenenden empfiehlt sich eine Tischreservierung mindestens 2–3 Tage im Voraus.
           </p>
@@ -540,7 +597,7 @@ export const FAQ_DATA: FaqItem[] = [
     nl: {
       question: 'Waar kun je lekker eten in Winterberg?',
       quickSummary: 'Winterberg heeft een enorm veelzijdige gastronomie: Van traditionele Sauerlandse specialiteiten en malse steaks tot Italiaanse pizza\'s, panoramarestaurants en gezellige berghutten.',
-      plainAnswer: 'Populaire eetgelegenheden in Winterberg: Hotel Hessenhof en Schneider\'s Restaurant voor traditionele streekgerechten, Kupferpfanne voor steaks en grillgerechten, Da Salvatore voor Italiaans, en het Panorama Café op de Kappe of Möppi\'s Hütte voor lunchen op de berg.',
+      plainAnswer: 'Populaire eetgelegenheden in Winterberg: Hotel Hessenhof en Schneider\'s Restaurant voor traditionele streekgerechten, Kupferpfanne voor steaks en grillgerechten, Da Salvatore voor Italiaans, en het Panorama Café op de Kappe of Möppi\'s Hütte voor lunchen op de berg. (Selectie van populaire restaurants).',
       answerHtml: (
         <div className="space-y-3">
           <p>In het centrum en de omliggende dorpen van Winterberg vindt u volop goede restaurants:</p>
@@ -550,6 +607,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Italiaans & Pizza:</strong> <em>Pizzeria Da Salvatore</em> of <em>Benvenuto</em> in het centrum.</li>
             <li><strong>Berghutten met uitzicht:</strong> <em>Panorama Café & Restaurant</em> op de Erlebnisberg Kappe en <em>Möppi’s Hütte</em> aan de Bremberg-piste.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> De regio telt ruim 100 restaurants, herbergen en almhutten. De genoemde horecagelegenheden zijn een representatieve selectie.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -566,7 +626,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Wo kann man in Winterberg gut frühstücken?',
       quickSummary: 'Für ein gutes Frühstück oder Brunch gibt es in Winterberg beliebte Spots wie das Cafe Extrablatt oder die Markt Alm, traditionelle Bäckereicafés mit Etageren sowie reichhaltige Hotel-Frühstücksbuffets für externe Gäste.',
-      plainAnswer: 'Beliebt zum Frühstücken sind das Cafe Extrablatt (großes tägliches Frühstücksbuffet an der Unteren Pforte) und die Markt Alm (reichhaltiges Alm-Frühstücksbuffet im Lodge Hotel am Waltenberg). Zudem bieten Bäckerei & Café Isken, Café Krämer sowie Hotel-Frühstücksbuffets für Tagesgäste im Oversum Vital Resort und Hotel Hessenhof erstklassige Optionen.',
+      plainAnswer: 'Beliebt zum Frühstücken sind das Cafe Extrablatt (großes tägliches Frühstücksbuffet an der Unteren Pforte) und die Markt Alm (reichhaltiges Alm-Frühstücksbuffet im Lodge Hotel am Waltenberg). Zudem bieten Bäckerei & Café Isken, Café Krämer sowie Hotel-Frühstücksbuffets für Tagesgäste im Oversum Vital Resort und Hotel Hessenhof erstklassige Optionen. (Auswahl beliebter Frühstücks-Spots).',
       answerHtml: (
         <div className="space-y-3">
           <p>Egal ob ausgiebiges Frühstücksbuffet, gemütlicher Brunch oder schnelles Bäckerei-Frühstück:</p>
@@ -576,6 +636,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Hotel-Frühstücksbuffets für externe Gäste:</strong> Das <em>Oversum Vital Resort</em> und das <em>Hotel Hessenhof</em> bieten auch Tagesbesuchern ein erstklassiges Frühstücksbuffet an (vorherige Reservierung empfohlen).</li>
             <li><strong>Cafés an der Flaniermeile:</strong> Zahlreiche Cafés entlang der Straße <em>Am Waltenberg</em> bieten süße und herzhafte Frühstücksvariationen mit frischen Waffeln.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Dies ist eine Auswahl beliebter Frühstücksadressen. Viele weitere Bäckereien, Pensionen und Hotels bieten ebenfalls Frühstück an.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -595,6 +658,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Bakkersontbijt:</strong> <em>Bäckerei & Café Isken</em> (verschillende filialen met vers belegde broodjes, koffiespecialiteiten en ontbijtplateaus) en <em>Café Krämer</em>.</li>
             <li><strong>Hotelbuffets voor daggasten:</strong> <em>Oversum Vital Resort</em> en <em>Hotel Hessenhof</em> bieden ook niet-hotelgasten een luxe ontbijtbuffet (vooraf reserveren aanbevolen).</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Dit is een selectie van populaire ontbijtadressen. Vele andere bakkers en hotels serveren eveneens een uitstekend ontbijt.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -610,7 +676,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Wo kann man in Winterberg gut feiern?',
       quickSummary: 'In Winterberg kann man hervorragend feiern – vom ausgelassenen Après-Ski direkt an den Pisten über Partynächte im Discotheken-Klassiker Tenne und in der Dorf Alm bis hin zu urigen Kneipen und Irish Pubs.',
-      plainAnswer: 'Gut feiern kann man beim Après-Ski in Möppi\'s Hütte oder im Alm Salettl. Abends geht die Party in der Kult-Disko Tenne Winterberg, im Alpenrausch und in der Dorf Alm weiter, sowie in urgemütlichen Kneipen wie dem Hessenkeller und dem Blackwater Irish Pub.',
+      plainAnswer: 'Gut feiern kann man beim Après-Ski in Möppi\'s Hütte oder im Alm Salettl. Abends geht die Party in der Kult-Disko Tenne Winterberg, im Alpenrausch und in der Dorf Alm weiter, sowie in urgemütlichen Kneipen wie dem Hessenkeller und dem Blackwater Irish Pub. (Auswahl beliebter Party-Locations).',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg ist die Party- und Après-Ski-Hochburg im Sauerland. Hier feiert man bis in die frühen Morgenstunden:</p>
@@ -621,6 +687,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Uriges Kneipenleben & Pubs:</strong> Der <em>Hessenkeller</em> (uriger Gewölbekeller mit Live-Musik, Tanz und Quizabenden) und das <em>Blackwater Irish Pub</em> (frisch gezapftes Guinness, Cider, Live-Sport & Musik).</li>
             <li><strong>Cocktails & Lounge:</strong> <em>Bu'ket Bar</em> für entspannte Drinks und Cocktails im Stadtkern.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Neben diesen Hotspots finden Sie in Winterberg und den umliegenden Dörfern weitere urige Kneipen, Schirmbars und saisonale Events.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -641,6 +710,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Gezelligheid in de Dorf Alm:</strong> De <em>Dorf Alm Winterberg</em> met Duitstalige feestmuziek en een echte houten almsfeer.</li>
             <li><strong>Pubs & Kroegen:</strong> De gewelvenkelder <em>Hessenkeller</em> en het <em>Blackwater Irish Pub</em> voor een lekker getapt Guinness biertje.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Naast deze bekende uitgaansgelegenheden zijn er nog diverse andere kroegen, paraplubars en feesten in de dorpen.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -714,6 +786,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Sahnehang am Kahlen Asten:</strong> Breite, sanfte Hänge – ideal für Anfänger und Skischulkurse.</li>
             <li><strong>Skigebiet Ruhrquelle:</strong> Übersichtliches Familienskigebiet mit Sessellift direkt an der B480.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Neben dem Haupt-Skiliftkarussell bieten die Skidörfer Neuastenberg, Altastenberg und Züschen weitere reizvolle Hänge für jedes Fahrniveau.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -759,6 +834,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Rodelparadies Ruhrquelle:</strong> Eigener Rodellift mit Flutlicht und Beschneiungsanlage.</li>
             <li><strong>Naturrodelbahn Postwiese (Neuastenberg):</strong> Kurvenreiche Rodelabfahrt mit eigenem Rodellift.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Auch an sanfteren Hügeln abseits der Lifte und in den umliegenden Dörfern finden Familien viele schöne Rodelhänge.
+          </p>
         </div>
       ),
       relatedCategoryLinks: [
@@ -829,7 +907,7 @@ export const FAQ_DATA: FaqItem[] = [
     de: {
       question: 'Kann man in Winterberg gut wandern?',
       quickSummary: 'Winterberg ist eine der bekanntesten Wanderregionen Deutschlands: Mit dem Rothaarsteig, dem Winterberger Hochtour-Rundweg (82 km) und zahlreichen heilklimatischen Kurwegen auf 450 bis 841 Metern Höhe.',
-      plainAnswer: 'Winterberg ist ein erstklassiges Wanderparadies mit hunderten Kilometern zertifizierter Wanderwege. Höhepunkte sind der Rothaarsteig, der Kahler Asten, die Schlucht im Helletal, die Hochheide Niedersfeld sowie die 82 km lange Winterberger Hochtour.',
+      plainAnswer: 'Winterberg ist ein erstklassiges Wanderparadies mit hunderten Kilometern zertifizierter Wanderwege. Höhepunkte sind der Rothaarsteig, der Kahler Asten, die Schlucht im Helletal, die Hochheide Niedersfeld sowie die 82 km lange Winterberger Hochtour. (Auswahl beliebter Wanderrouten).',
       answerHtml: (
         <div className="space-y-3">
           <p>Über 450 Kilometer markierte Wanderwege durchziehen das Stadtgebiet von Winterberg:</p>
@@ -839,6 +917,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Schluchtenpfad Helletal:</strong> Wildromantischer Pfad durch eine urwüchsige Klamm mit Wasserfällen direkt am Ortsrand von Winterberg.</li>
             <li><strong>Hochheide Niedersfeld (Neuer Hagen):</strong> Die größte zusammenhängende Bergheide Nordwestdeutschlands.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Hinweis:</strong> Mit rund 450 Kilometern Wegenetz bietet die Ferienwelt Winterberg noch viele weitere zertifizierte Wanderrouten und Rundwege – dies ist nur eine Auswahl der bekanntesten Highlights.
+          </p>
         </div>
       )
     },
@@ -855,6 +936,9 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Helletal-kloof:</strong> Prachtig bospad langs klaterende beekjes en watervalletjes direct vanaf de rand van het centrum.</li>
             <li><strong>Hoogheide Niedersfeld:</strong> Het grootste aaneengesloten bergheidegebied van Noordwest-Duitsland.</li>
           </ul>
+          <p className="text-xs text-[#5F6B63] italic mt-3 bg-[#FAF8F5] p-2.5 rounded border border-[#EDE8E0]">
+            <strong>Let op:</strong> Met ruim 450 km aan wandelpaden heeft de regio nog veel meer prachtige routes – dit is slechts een greep uit de bekendste tochten.
+          </p>
         </div>
       )
     }
@@ -938,28 +1022,28 @@ export const FAQ_DATA: FaqItem[] = [
     categoryGroup: 'Freizeit & Natur',
     de: {
       question: 'Gibt es in Winterberg ein Freibad?',
-      quickSummary: 'In Winterberg-Siedlinghausen gibt es ein beheiztes Freibad mit 25m-Becken, Sprungturm und großer Liegewiese. Zudem bietet das Oversum ein Außenbecken.',
-      plainAnswer: 'Ein klassisches beheiztes Freibad befindet sich im Ortsteil Siedlinghausen mit 25-Meter-Schwimmbecken, Sprungturm, Nichtschwimmerbereich und großer Liegewiese. Zudem bietet das Oversum Vital Resort ein beheiztes Außen-Entspannungsbecken.',
+      quickSummary: 'In Winterberg-Siedlinghausen gibt es ein beheiztes Freibad mit 25m-Schwimmbecken, Nichtschwimmerbereich, Planschbecken und großer Liegewiese. Zudem bietet das Oversum ein Außenbecken.',
+      plainAnswer: 'Ein klassisches beheiztes Freibad befindet sich im Ortsteil Siedlinghausen mit 25-Meter-Schwimmbecken, Nichtschwimmerbereich, Kinderplanschbecken und großer Liegewiese mit altem Baumbestand. Zudem bietet das Oversum Vital Resort ein beheiztes Außen-Entspannungsbecken.',
       answerHtml: (
         <div className="space-y-3">
           <p>Freibäder im Stadtgebiet von Winterberg:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Freibad Siedlinghausen:</strong> Beheiztes Freibad mit 25-Meter-Becken, Nichtschwimmerbereich, Sprunganlage und Liegewiese.</li>
-            <li><strong>Außenbecken im Oversum:</strong> Beheiztes Außen-Relaxbecken im Wellnessbereich des Oversum Vital Resorts.</li>
+            <li><strong>Freibad Siedlinghausen:</strong> Beheiztes Freibad mit 25-Meter-Schwimmbecken, Nichtschwimmerbereich, Kinderplanschbecken und einer weitläufigen, sonnigen Liegewiese mit schattenspendenden Bäumen.</li>
+            <li><strong>Außenbecken im Oversum:</strong> Beheiztes Außen-Relaxbecken im Wellnessbereich des Oversum Vital Resorts im Stadtzentrum.</li>
           </ul>
         </div>
       )
     },
     nl: {
       question: 'Is er een buitenzwembad in Winterberg?',
-      quickSummary: 'In het dorp Siedlinghausen (gemeente Winterberg) ligt een verwarmd openluchtzwembad met een 25m bad, duikplank en grote ligweide.',
-      plainAnswer: 'In Winterberg-Siedlinghausen bevindt zich een verwarmd buitenzwembad met 25-meterbad, duiktoren en peuterbad. Daarnaast heeft het Oversum een verwarmd buitenbad.',
+      quickSummary: 'In het dorp Siedlinghausen (gemeente Winterberg) ligt een verwarmd openluchtzwembad met een 25m bad, peuterbad en grote zonneweide.',
+      plainAnswer: 'In Winterberg-Siedlinghausen bevindt zich een verwarmd buitenzwembad met 25-meterbad, niet-zwemmersgedeelte, peuterbad en een ruime ligweide. Daarnaast heeft het Oversum een verwarmd buitenbad.',
       answerHtml: (
         <div className="space-y-3">
           <p>Buitenzwembaden in Winterberg:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>Freibad Siedlinghausen:</strong> Verwarmd openluchtbad met 25m wedstrijdbad, duiktoren en peuterbad.</li>
-            <li><strong>Buitenbad Oversum:</strong> Verwarmd buitenrelaxbad als onderdeel van het Oversum Vital Resort.</li>
+            <li><strong>Freibad Siedlinghausen:</strong> Verwarmd openluchtbad met 25m wedstrijdbad, ondiep bad voor kinderen, peuterbad en een grote groene ligweide.</li>
+            <li><strong>Buitenbad Oversum:</strong> Verwarmd buitenrelaxbad als onderdeel van het Oversum Vital Resort in het centrum.</li>
           </ul>
         </div>
       )
