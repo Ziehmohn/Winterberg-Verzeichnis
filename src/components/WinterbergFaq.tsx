@@ -498,7 +498,7 @@ interface WinterbergFaqProps {
 export default function WinterbergFaq({ theme, activeThemeKey, onBack, onSelectCategory }: WinterbergFaqProps) {
   const [selectedGroup, setSelectedGroup] = useState<string>('Alle');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [openFaqIds, setOpenFaqIds] = useState<Set<string>>(new Set(['gut-essen', 'skifahren']));
+  const [openFaqIds, setOpenFaqIds] = useState<Set<string>>(new Set());
 
   const filteredFaqs = useMemo(() => {
     return FAQ_DATA.filter(item => {
