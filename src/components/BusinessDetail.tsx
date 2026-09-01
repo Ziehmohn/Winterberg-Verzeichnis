@@ -14,6 +14,8 @@ import BusinessCategoryIcon from './BusinessCategoryIcon';
 import WidgetGeneratorModal from './WidgetGeneratorModal';
 import { getBusinessPath } from '../utils/routes';
 import { RankingInfoModal } from './RankingInfoModal';
+import { RankingBadge } from './RankingBadge';
+import { getBusinessRankingBadge } from '../utils/bestOfRankingBadges';
 
 interface BusinessDetailProps {
   business: Business;
@@ -22,13 +24,15 @@ interface BusinessDetailProps {
   activeThemeKey: string;
   onReviewSubmit?: (businessId: string, review: Review) => void;
   similarBusinesses?: Business[];
+  allBusinesses?: Business[];
 }
 
-export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [] }: BusinessDetailProps) {
+export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [], allBusinesses = [] }: BusinessDetailProps) {
 
   const { t, lang } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
   const { currentUser: user } = useAuth();
+  const rankingBadge = getBusinessRankingBadge(business, allBusinesses.length > 0 ? allBusinesses : (similarBusinesses.length > 0 ? [business, ...similarBusinesses] : [business]));
   const [showClaimScreen, setShowClaimScreen] = useState(false);
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [showWidgetModal, setShowWidgetModal] = useState(false);
@@ -274,7 +278,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             )}
           </div>
 
-          <div className="flex gap-2 flex-wrap mb-[14px]">
+          <div className="flex gap-2 flex-wrap mb-[14px] items-center">
             <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{t(business.category)}</span>
             {business.subcategory && (
               <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{t(business.subcategory)}</span>
@@ -282,6 +286,20 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             {business.isPremium && (
               <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
             )}
+
+            {/* Official Top 10 / Top 5 / Top 3 / Top 1 Ranking Badge for Premium */}
+            {rankingBadge && (
+              <RankingBadge 
+                badge={rankingBadge} 
+                lang={lang} 
+                variant="seal" 
+                onClick={() => {
+                  setInfoModalTopic('score');
+                  setIsInfoModalOpen(true);
+                }}
+              />
+            )}
+
             {business.isVerified && (
               <button 
                 type="button"

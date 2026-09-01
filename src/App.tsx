@@ -69,6 +69,8 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useTranslation } from './i18n';
 import { getSeoContent } from './utils/seoContent';
 import { signOut } from 'firebase/auth';
+import { RankingBadge } from './components/RankingBadge';
+import { getBusinessRankingBadge } from './utils/bestOfRankingBadges';
 
 
 
@@ -1400,7 +1402,7 @@ export default function App() {
             const url = getPath(basePath);
             window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
             setSelectedBusiness(null); 
-          }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} />
+          }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} allBusinesses={businesses} />
         ) : isBestOfMode ? (
           <BestOfPage
             theme={theme}
@@ -2079,6 +2081,7 @@ export default function App() {
                         : null;
 
                       const cardUsps = getBusinessReviewUsps(bus, lang);
+                      const cardRankingBadge = getBusinessRankingBadge(bus, businesses);
 
                       return (
                         <div 
@@ -2112,6 +2115,9 @@ export default function App() {
                                     <span className="bg-[#FFF1E4] text-[#D65F0C] text-[11px] font-bold px-2 py-0.5 rounded border border-[#F2761B]/30 shrink-0">
                                       Premium
                                     </span>
+                                  )}
+                                  {cardRankingBadge && (
+                                    <RankingBadge badge={cardRankingBadge} lang={lang} variant="compact" />
                                   )}
                                 </div>
                                 <div className="text-[13.5px] text-[#8A928B] truncate">

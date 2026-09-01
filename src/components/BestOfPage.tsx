@@ -31,6 +31,8 @@ import { getLocalizedBusiness } from '../utils/translator';
 import { getCategorySlug, getSubcategorySlug } from '../utils/routes';
 import { getBestOfTitle, BEST_OF_DISCLAIMER, SUBCATEGORY_PLURALS } from '../utils/bestOfTitles';
 import { RankingInfoModal } from './RankingInfoModal';
+import { RankingBadge } from './RankingBadge';
+import { getBusinessRankingBadge } from '../utils/bestOfRankingBadges';
 
 interface BestOfPageProps {
   theme: ThemeConfig;
@@ -380,6 +382,7 @@ export default function BestOfPage({
             const rank = index + 1;
             const localized = getLocalizedBusiness(business, lang);
             const medalIcon = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : null;
+            const rankingBadge = getBusinessRankingBadge(business, businesses);
 
             return (
               <article
@@ -477,6 +480,11 @@ export default function BestOfPage({
                           <Sparkles className="w-3 h-3" />
                           Top-Partner
                         </span>
+                      )}
+
+                      {/* Official Best-Of Ranking Badge for Premium */}
+                      {rankingBadge && (
+                        <RankingBadge badge={rankingBadge} lang={lang} variant="compact" />
                       )}
                       
                       {/* Clickable Verified Badge with ? icon */}
