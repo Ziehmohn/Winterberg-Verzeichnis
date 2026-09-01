@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (207 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (219 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1611,6 +1611,122 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** R+V Versicherung im Beratungszentrum der Volksbank Sauerland eG an der Poststraße in Winterberg. Kompetenter Service und genossenschaftliche Vorsorge- und Versicherungslösungen für Privat- und Unternehmenskunden.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/versicherungsagenturen/r-v-versicherung-winterberg-volksbank-sauerland
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/verzekeringsagenten/r-v-versicherung-winterberg-volksbank-sauerland
+
+#### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 16, 59955 Winterberg
+- **Telefon:** 02981 6974
+- **Webseite:** https://sauerlandpraxis.de
+- **Beschreibung (DE):** Moderne überörtliche Gemeinschaftspraxis und Hausarztpraxis an der Hauptstraße in Winterberg. Ganzheitliche Allgemeinmedizin, Vorsorgeuntersuchungen, Ultraschall, Labor, EKG und psychosomatische Grundversorgung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
+
+#### [Praxis Dr. med. Martin Nieswand](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-martin-nieswand)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Nuhnestraße 6, 59955 Winterberg
+- **Telefon:** 02981 3733
+- **Webseite:** https://www.dr-nieswand.de
+- **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin, Sportmedizin, Chirotherapie und offizielle Gelbfieberimpfstelle der WHO in Winterberg an der Nuhnestraße. Betreuung von Freizeitsportlern, Leistungsathleten und Patienten aller Kassen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-martin-nieswand
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/praxis-dr-med-martin-nieswand
+
+#### [Sauerlandpraxis – Dr. Maja Jelicic](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Franziskusstraße 1, 59955 Winterberg
+- **Telefon:** 02981 2262
+- **Webseite:** https://sauerlandpraxis.de
+- **Beschreibung (DE):** Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
+
+#### [Hausarztpraxis Dr. Bojana Lukic-Jablonka](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Marktstraße 9, 59955 Winterberg
+- **Telefon:** 02981 1588
+- **Webseite:** https://www.hausarztpraxis-winterberg.de
+- **Beschreibung (DE):** Moderne Facharztpraxis für Allgemeinmedizin im Zentrum von Winterberg (Marktstraße). Herzliche und qualifizierte hausärztliche Rundumbetreuung für Erwachsene, Jugendliche und Senioren.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
+
+#### [Praxis Dr. med. Rikardo Mihalic](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Kolpingstraße 2, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 8229
+- **Webseite:** https://www.praxis-dr-mihalic.de
+- **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin in Winterberg-Siedlinghausen mit Schwerpunkten in Reisemedizin, Venenheilkunde (Phlebologie) und hausärztlicher Geriatrie. Umfassende moderne Diagnostik und persönliche Betreuung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
+
+#### [Praxis Rosa Lange – Fachärztin für Allgemeinmedizin](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Junkerstraße 38, 59955 Winterberg-Züschen
+- **Telefon:** 02981 7775
+- **Beschreibung (DE):** Hausarztpraxis und Fachärztin für Allgemeinmedizin und Chirotherapie in Winterberg-Züschen. Ganzheitliche Behandlung, manuelle Therapie, Gesundheitsvorsorge und individuelle Betreuung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
+
+#### [Kinderarztpraxis Winterberg (MVZ)](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 12, 59955 Winterberg
+- **Telefon:** 02981 9093480
+- **Webseite:** https://www.gesundheitszentrum-winterberg.de
+- **Beschreibung (DE):** Fachärztliche Kinder- und Jugendärztliche Praxis an der Poststraße in Winterberg unter dem Dach des Gesundheitszentrums St. Franziskus. U-Untersuchungen, Impfberatung, Allergiediagnostik und Akutsprechstunde für Kinder & Jugendliche.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
+
+#### [St. Franziskus-Hospital Winterberg](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/st-franziskus-hospital-winterberg)
+- **Kategorie:** Dienstleistungen > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Franziskusstraße 2, 59955 Winterberg
+- **Telefon:** 02981 8020
+- **Webseite:** https://www.gesundheitszentrum-winterberg.de
+- **Beschreibung (DE):** Modernes Akutkrankenhaus und regionales Gesundheitszentrum für Winterberg und das Sauerland mit 24/7 Notfallambulanz, Chirurgie, Unfallchirurgie & Orthopädie (AMIS-Methode), Innerer Medizin, Anästhesie und Radiologie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/st-franziskus-hospital-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/st-franziskus-hospital-winterberg
+
+#### [Zahnarztpraxis Dr. med. dent. Daniel Castillo-Chevallier](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier)
+- **Kategorie:** Dienstleistungen > Zahnärzte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 1, 59955 Winterberg
+- **Telefon:** 02981 2708
+- **Webseite:** https://www.winterberg-zahnarzt.de
+- **Beschreibung (DE):** Moderne Zahnarztpraxis an der Poststraße in Winterberg (über der Kur-Apotheke). Ästhetische Zahnheilkunde, Prophylaxe, Implantologie, Zahnersatz, Parodontologie und schonende Behandlung für die ganze Familie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
+
+#### [Zahnarztpraxis Dr. Nassrin Grickschat](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat)
+- **Kategorie:** Dienstleistungen > Zahnärzte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Marktstraße 9A, 59955 Winterberg
+- **Telefon:** 02981 1556
+- **Beschreibung (DE):** Etablierte Zahnarztpraxis an der Marktstraße im Zentrum von Winterberg. Umfassende zahnmedizinische Versorgung, Vorsorge, Zahnerhaltung, Bleaching und einfühlsame Behandlung von Angstpatienten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
+
+#### [Zahnarztpraxis Michaela Fieseler-Koch](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch)
+- **Kategorie:** Dienstleistungen > Zahnärzte
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Hochsauerlandstraße 10, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 1710
+- **Beschreibung (DE):** Ihre Zahnarztpraxis an der Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuelle Prophylaxe, Zahnerhaltung, moderne Füllungstherapie und Zahnersatzlösungen für Jung und Alt.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
+
+#### [Zahnarztpraxis Dr. med. dent. Sonja Kuhl](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl)
+- **Kategorie:** Dienstleistungen > Zahnärzte
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 24, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 1422
+- **Beschreibung (DE):** Zahnarztpraxis an der Ruhrstraße in Winterberg-Niedersfeld. Qualifizierte Zahnmedizin, ganzheitliche Vorsorge, ästhetische Zahnkorrekturen und Zahnersatz in freundlicher Atmosphäre.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
 
 ### Kategorie: Freizeit
 

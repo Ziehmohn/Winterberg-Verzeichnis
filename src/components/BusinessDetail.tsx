@@ -626,7 +626,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </a>
           )}
           
-          {business.website && webHref && (
+          {business.isPremium && business.website && webHref && (
             <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
               <Globe className="w-4 h-4" />
               {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
