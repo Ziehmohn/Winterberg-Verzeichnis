@@ -1256,7 +1256,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 className="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer" 
               />
               <label htmlFor="isPremium" className={`text-lg font-bold cursor-pointer ${theme.textBase}`}>
-                Als Premium-Eintrag aktivieren (Logo, Öffnungszeiten, Galerie, Stellenanzeigen, News)
+                Als Premium-Eintrag aktivieren (Logo, Hero-Header, Galerie, Öffnungszeiten, Stellenanzeigen, News)
               </label>
             </div>
             <span className={`text-xs font-bold px-3 py-1 rounded-full ${formData.isPremium ? 'bg-[#F2761B] text-white shadow-sm' : 'bg-gray-200 text-gray-700'}`}>
@@ -1270,7 +1270,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <div>
                 <strong>Premium-Funktionen sind für diesen Eintrag deaktiviert (ausgegraut).</strong>
                 <p className="text-xs text-amber-800 mt-1">
-                  Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Öffnungszeiten, die Bildergalerie, ausführliche Beschreibung und Stellenanzeigen zu bearbeiten und für diesen Eintrag freizuschalten.
+                  Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Hero-Headerbild, die kategorisierte Bildergalerie, Öffnungszeiten, ausführliche Beschreibung und Stellenanzeigen zu bearbeiten und für diesen Eintrag freizuschalten.
                 </p>
               </div>
             </div>
@@ -1294,15 +1294,25 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   disabled={!formData.isPremium}
                 />
                 <label className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} cursor-pointer flex items-center justify-center shrink-0 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${uploadingImage ? 'opacity-50' : ''}`}>
+                  <Upload className="w-4 h-4 mr-1.5" />
                   {uploadingImage ? 'Lädt...' : 'Hochladen'}
                   <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'logo')} disabled={uploadingImage || !formData.isPremium} />
                 </label>
               </div>
-              <p className="text-xs opacity-70 mt-1">Das Logo wird in den Suchergebnissen auf der Karte angezeigt. **Voraussetzung:** Das Logo muss quadratisch sein (idealerweise 400x400 Pixel), damit es optimal und scharf dargestellt wird.</p>
+              <p className="text-xs opacity-70 mt-1.5 leading-relaxed">
+                Das Logo wird in den Suchergebnissen auf der Karte sowie im Unternehmensprofil direkt über der Kontaktbox dargestellt. <strong>Empfehlung:</strong> Quadratisch oder freigestellt (PNG mit transparentem Hintergrund) für die beste visuelle Darstellung.
+              </p>
               {formData.logoUrl && (
-                <div className="mt-3 relative w-16 h-16 border rounded bg-white p-1">
-                  <img src={formData.logoUrl} alt="Logo Preview" className="w-full h-full object-contain" />
-                  <button type="button" onClick={() => setFormData({...formData, logoUrl: ''})} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-0.5 shadow hover:bg-red-600"><X className="w-3 h-3" /></button>
+                <div className="mt-3 relative w-24 h-20 border border-black/10 rounded-lg bg-white p-2 shadow-xs flex items-center justify-center">
+                  <img src={formData.logoUrl} alt="Logo Vorschau" className="max-w-full max-h-full object-contain" />
+                  <button 
+                    type="button" 
+                    onClick={() => setFormData({...formData, logoUrl: ''})} 
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow hover:bg-red-600 transition-colors"
+                    title="Logo entfernen"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               )}
             </div>
