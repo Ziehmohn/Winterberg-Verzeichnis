@@ -3103,6 +3103,304 @@ export const businesses: Business[] = [
       saturday: '10:00 - 14:00',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'sauerlandpraxis-kolbe-schramm-winterberg',
+    name: 'Sauerlandpraxis – Wolf Kolbe & Nicole Schramm',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Moderne überörtliche Gemeinschaftspraxis und Hausarztpraxis an der Hauptstraße in Winterberg. Ganzheitliche Allgemeinmedizin, Vorsorgeuntersuchungen, Ultraschall, Labor, EKG und psychosomatische Grundversorgung.',
+    address: 'Hauptstraße 16, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 6974',
+    website: 'https://sauerlandpraxis.de',
+    services: ['Hausärztliche Versorgung', 'Vorsorge & Check-Up 35+', 'Ultraschalldiagnostik (Sonographie)', 'EKG, Belastungs-EKG & Lungenfunktion', 'DMP-Programme & Impfberatung'],
+    imageFallback: 'SP',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '07:30 - 11:30, 15:00 - 18:00',
+      tuesday: '07:30 - 11:30, 15:00 - 18:00',
+      wednesday: '07:30 - 11:30',
+      thursday: '07:30 - 11:30, 15:00 - 18:00',
+      friday: '07:30 - 11:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'dr-martin-nieswand-winterberg',
+    name: 'Praxis Dr. med. Martin Nieswand',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Facharztpraxis für Allgemeinmedizin, Sportmedizin, Chirotherapie und offizielle Gelbfieberimpfstelle der WHO in Winterberg an der Nuhnestraße. Betreuung von Freizeitsportlern, Leistungsathleten und Patienten aller Kassen.',
+    address: 'Nuhnestraße 6, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 3733',
+    website: 'https://www.dr-nieswand.de',
+    services: ['Allgemeinmedizin & Hausarzt', 'Sportmedizin & Leistungsdiagnostik', 'Chirotherapie & Manuelle Medizin', 'WHO Gelbfieberimpfstelle & Reisemedizin', 'Ultraschall & Kardiologische Basisdiagnostik'],
+    imageFallback: 'MN',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:00, 15:00 - 18:00',
+      tuesday: '08:00 - 12:00, 15:00 - 18:00',
+      wednesday: '08:00 - 12:00',
+      thursday: '08:00 - 12:00, 15:00 - 18:00',
+      friday: '08:00 - 12:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'sauerlandpraxis-dr-jelicic-winterberg',
+    name: 'Sauerlandpraxis – Dr. Maja Jelicic',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.',
+    address: 'Franziskusstraße 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2262',
+    website: 'https://sauerlandpraxis.de',
+    services: ['Hausärztliche Grundversorgung', 'Gesundheits- & Krebsvorsorge', 'Chroniker-Programme (DMP)', 'Laboruntersuchungen & EKG', 'Hausbesuche nach Vereinbarung'],
+    imageFallback: 'MJ',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:30, 14:30 - 17:00',
+      tuesday: '08:00 - 12:30',
+      wednesday: '08:00 - 12:30',
+      thursday: '08:00 - 12:30, 14:30 - 17:00',
+      friday: '08:00 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'dr-bojana-lukic-jablonka-winterberg',
+    name: 'Hausarztpraxis Dr. Bojana Lukic-Jablonka',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Moderne Facharztpraxis für Allgemeinmedizin im Zentrum von Winterberg (Marktstraße). Herzliche und qualifizierte hausärztliche Rundumbetreuung für Erwachsene, Jugendliche und Senioren.',
+    address: 'Marktstraße 9, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1588',
+    website: 'https://www.hausarztpraxis-winterberg.de',
+    services: ['Hausärztliche Allgemeinmedizin', 'Vorsorgeuntersuchungen & Impfungen', 'Labor- & EKG-Diagnostik', 'Wundversorgung & kleine Chirurgie', 'DMP Diabetes & KHK'],
+    imageFallback: 'BL',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:00, 15:00 - 18:00',
+      tuesday: '08:00 - 12:00, 15:00 - 18:00',
+      wednesday: '08:00 - 12:00',
+      thursday: '08:00 - 12:00, 15:00 - 18:00',
+      friday: '08:00 - 12:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'dr-rikardo-mihalic-siedlinghausen',
+    name: 'Praxis Dr. med. Rikardo Mihalic',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Facharztpraxis für Allgemeinmedizin in Winterberg-Siedlinghausen mit Schwerpunkten in Reisemedizin, Venenheilkunde (Phlebologie) und hausärztlicher Geriatrie. Umfassende moderne Diagnostik und persönliche Betreuung.',
+    address: 'Kolpingstraße 2, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 8229',
+    email: 'kontakt@praxis-dr-mihalic.de',
+    website: 'https://www.praxis-dr-mihalic.de',
+    services: ['Allgemeinmedizin & Hausarzt', 'Reisemedizin & Reiseimpfberatung', 'Venenheilkunde / Phlebologie', 'Hausärztliche Geriatrie', 'Ultraschalldiagnostik'],
+    imageFallback: 'RM',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 11:30, 15:00 - 18:00',
+      tuesday: '08:00 - 11:30',
+      wednesday: '08:00 - 11:30',
+      thursday: '08:00 - 11:30, 15:00 - 18:00',
+      friday: '08:00 - 11:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'rosa-lange-allgemeinmedizin-zueschen',
+    name: 'Praxis Rosa Lange – Fachärztin für Allgemeinmedizin',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Hausarztpraxis und Fachärztin für Allgemeinmedizin und Chirotherapie in Winterberg-Züschen. Ganzheitliche Behandlung, manuelle Therapie, Gesundheitsvorsorge und individuelle Betreuung.',
+    address: 'Junkerstraße 38, 59955 Winterberg-Züschen',
+    district: 'Züschen',
+    phone: '02981 7775',
+    services: ['Allgemeinmedizin & Hausärztliche Versorgung', 'Chirotherapie & Manuelle Therapie', 'Check-Up Untersuchungen & Impfungen', 'Labor- & EKG-Diagnostik'],
+    imageFallback: 'RL',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 11:30, 16:00 - 18:00',
+      tuesday: '08:00 - 11:30, 16:00 - 18:00',
+      wednesday: '08:00 - 11:30',
+      thursday: '08:00 - 11:30, 16:00 - 18:00',
+      friday: '08:00 - 11:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'kinderarztpraxis-winterberg',
+    name: 'Kinderarztpraxis Winterberg (MVZ)',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Fachärztliche Kinder- und Jugendärztliche Praxis an der Poststraße in Winterberg unter dem Dach des Gesundheitszentrums St. Franziskus. U-Untersuchungen, Impfberatung, Allergiediagnostik und Akutsprechstunde für Kinder & Jugendliche.',
+    address: 'Poststraße 12, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9093480',
+    email: 'kinderarzt@kh-winterberg.de',
+    website: 'https://www.gesundheitszentrum-winterberg.de',
+    services: ['Kinder- & Jugendmedizin', 'U-Untersuchungen (U2 bis J2)', 'Schutzimpfungen & Reiseberatung', 'Allergiediagnostik & Asthmabetreuung', 'Hör- & Sehtests'],
+    imageFallback: 'KW',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:00, 13:00 - 16:00',
+      tuesday: '08:00 - 12:00, 13:00 - 16:00',
+      wednesday: '08:00 - 12:00',
+      thursday: '08:00 - 12:00, 13:00 - 16:00',
+      friday: '08:00 - 12:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'st-franziskus-hospital-winterberg',
+    name: 'St. Franziskus-Hospital Winterberg',
+    category: 'Dienstleistungen',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Modernes Akutkrankenhaus und regionales Gesundheitszentrum für Winterberg und das Sauerland mit 24/7 Notfallambulanz, Chirurgie, Unfallchirurgie & Orthopädie (AMIS-Methode), Innerer Medizin, Anästhesie und Radiologie.',
+    address: 'Franziskusstraße 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8020',
+    website: 'https://www.gesundheitszentrum-winterberg.de',
+    services: ['24h Zentrale Notaufnahme & Rettungswache', 'Chirurgie, Orthopädie & Unfallchirurgie', 'Innere Medizin & Kardiologie', 'Minimalinvasive OP-Verfahren (AMIS)', 'Radiologie & Physiotherapiezentrum'],
+    imageFallback: 'FH',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '00:00 - 24:00',
+      tuesday: '00:00 - 24:00',
+      wednesday: '00:00 - 24:00',
+      thursday: '00:00 - 24:00',
+      friday: '00:00 - 24:00',
+      saturday: '00:00 - 24:00',
+      sunday: '00:00 - 24:00'
+    }
+  },
+  {
+    id: 'dr-daniel-castillo-chevallier-winterberg',
+    name: 'Zahnarztpraxis Dr. med. dent. Daniel Castillo-Chevallier',
+    category: 'Dienstleistungen',
+    subcategory: 'Zahnärzte',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+    ],
+    description: 'Moderne Zahnarztpraxis an der Poststraße in Winterberg (über der Kur-Apotheke). Ästhetische Zahnheilkunde, Prophylaxe, Implantologie, Zahnersatz, Parodontologie und schonende Behandlung für die ganze Familie.',
+    address: 'Poststraße 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2708',
+    website: 'https://www.winterberg-zahnarzt.de',
+    services: ['Ästhetische Zahnheilkunde', 'Professionelle Zahnreinigung & Prophylaxe', 'Implantologie & Zahnersatz', 'Wurzelkanalbehandlung (Endodontie)', 'Parodontaltherapie'],
+    imageFallback: 'DC',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 13:00, 14:00 - 18:00',
+      tuesday: '08:00 - 13:00, 14:00 - 18:00',
+      wednesday: '08:00 - 13:00',
+      thursday: '08:00 - 13:00, 14:00 - 18:00',
+      friday: '08:00 - 13:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'dr-nassrin-grickschat-winterberg',
+    name: 'Zahnarztpraxis Dr. Nassrin Grickschat',
+    category: 'Dienstleistungen',
+    subcategory: 'Zahnärzte',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+    ],
+    description: 'Etablierte Zahnarztpraxis an der Marktstraße im Zentrum von Winterberg. Umfassende zahnmedizinische Versorgung, Vorsorge, Zahnerhaltung, Bleaching und einfühlsame Behandlung von Angstpatienten.',
+    address: 'Marktstraße 9A, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1556',
+    services: ['Allgemeine Zahnheilkunde', 'Vorsorge & Professionelle Zahnreinigung', 'Zahnersatz & Kronen', 'Zahnfleischbehandlung', 'Schmerzarme Behandlung'],
+    imageFallback: 'NG',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:30 - 12:30, 14:00 - 17:30',
+      tuesday: '08:30 - 12:30, 14:00 - 17:30',
+      wednesday: '08:30 - 12:30',
+      thursday: '08:30 - 12:30, 14:00 - 17:30',
+      friday: '08:30 - 12:30',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'michaela-fieseler-koch-siedlinghausen',
+    name: 'Zahnarztpraxis Michaela Fieseler-Koch',
+    category: 'Dienstleistungen',
+    subcategory: 'Zahnärzte',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+    ],
+    description: 'Ihre Zahnarztpraxis an der Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuelle Prophylaxe, Zahnerhaltung, moderne Füllungstherapie und Zahnersatzlösungen für Jung und Alt.',
+    address: 'Hochsauerlandstraße 10, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    phone: '02983 1710',
+    services: ['Zahnvorsorge & Prophylaxe', 'Konservierende Zahnheilkunde', 'Hochwertiger Zahnersatz', 'Kinderzahnheilkunde', 'Parodontosebehandlung'],
+    imageFallback: 'FK',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:00, 14:00 - 17:30',
+      tuesday: '08:00 - 12:00, 14:00 - 17:30',
+      wednesday: '08:00 - 12:00',
+      thursday: '08:00 - 12:00, 14:00 - 17:30',
+      friday: '08:00 - 12:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'dr-sonja-kuhl-niedersfeld',
+    name: 'Zahnarztpraxis Dr. med. dent. Sonja Kuhl',
+    category: 'Dienstleistungen',
+    subcategory: 'Zahnärzte',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+    ],
+    description: 'Zahnarztpraxis an der Ruhrstraße in Winterberg-Niedersfeld. Qualifizierte Zahnmedizin, ganzheitliche Vorsorge, ästhetische Zahnkorrekturen und Zahnersatz in freundlicher Atmosphäre.',
+    address: 'Ruhrstraße 24, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 1422',
+    services: ['Moderne Zahnheilkunde', 'Prophylaxe & PZR', 'Hochwertiger Zahnersatz', 'Zahnästhetik & Bleaching', 'Behandlung für Kinder & Senioren'],
+    imageFallback: 'SK',
+    isPremium: false,
+    status: 'approved',
+    openingHours: {
+      monday: '08:00 - 12:00, 14:00 - 18:00',
+      tuesday: '08:00 - 12:00, 14:00 - 18:00',
+      wednesday: '08:00 - 12:00',
+      thursday: '08:00 - 12:00, 14:00 - 18:00',
+      friday: '08:00 - 12:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
@@ -3225,7 +3523,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
-  { name: 'Dienstleistungen', subcategories: ['Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
+  { name: 'Dienstleistungen', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
 
