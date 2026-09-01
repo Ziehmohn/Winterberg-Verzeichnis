@@ -1329,6 +1329,8 @@ export default function App() {
             setDesignSettings={setDesignSettings}
             ads={ads}
             setAds={setAds}
+            pricingSettings={pricingSettings}
+            setPricingSettings={setPricingSettings}
             onBack={() => setIsAdminMode(false)}
           />
         ) : (
@@ -3411,12 +3413,12 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
   );
 }
 
-function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, onBack }: any) {
+function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, pricingSettings, setPricingSettings, onBack }: any) {
 
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
