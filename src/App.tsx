@@ -21,7 +21,6 @@ import { Review } from './types';
 import { useAuth } from './AuthContext';
 import Login from './components/Login';
 import { MegaMenu } from './components/MegaMenu';
-import MegaMenuBestOf from './components/MegaMenuBestOf';
 import SkyscraperBanner from './components/SkyscraperBanner';
 import AdInquiryModal from './components/AdInquiryModal';
 import AdminAdsManager from './components/AdminAdsManager';
@@ -320,21 +319,6 @@ export default function App() {
   const [isBestOfMode, setIsBestOfMode] = useState(initialBestOfMode);
   const [bestOfCategory, setBestOfCategory] = useState<string>(initialBestOfCategory);
   const [bestOfSubcategory, setBestOfSubcategory] = useState<string | undefined>(initialBestOfSubcategory);
-  const [isBestOfMenuOpen, setIsBestOfMenuOpen] = useState(false);
-  const bestOfMenuTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnterBestOfMenu = () => {
-    if (bestOfMenuTimeoutRef.current) clearTimeout(bestOfMenuTimeoutRef.current);
-    if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
-    setIsMegaMenuOpen(false);
-    setIsBestOfMenuOpen(true);
-  };
-
-  const handleMouseLeaveBestOfMenu = () => {
-    bestOfMenuTimeoutRef.current = setTimeout(() => {
-      setIsBestOfMenuOpen(false);
-    }, 300);
-  };
 
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
   const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
@@ -1170,32 +1154,6 @@ export default function App() {
                 </a>
               </div>
 
-              {/* "Die Besten" Megamenu Trigger */}
-              <div 
-                className="relative flex items-center h-full py-1"
-                onMouseEnter={handleMouseEnterBestOfMenu}
-                onMouseLeave={handleMouseLeaveBestOfMenu}
-              >
-                <a 
-                  href={getPath('/die-besten')} 
-                  onClick={(e) => { 
-                    e.preventDefault(); 
-                    window.history.pushState(null, '', getPath('/die-besten')); 
-                    resetToDirectory(); 
-                    setBestOfCategory('Alle');
-                    setBestOfSubcategory(undefined);
-                    setIsBestOfMode(true); 
-                    setIsBestOfMenuOpen(false);
-                  }} 
-                  style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} 
-                  className="hover:text-orange-500 transition-colors flex items-center gap-1.5 cursor-pointer py-1 select-none"
-                >
-                  <Trophy className="w-4 h-4 text-[#F2761B]" />
-                  <span>{lang === 'nl' ? 'De Beste' : 'Die Besten'}</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isBestOfMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
-                </a>
-              </div>
-
               <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
@@ -1347,26 +1305,13 @@ export default function App() {
               setIsSubmitMode(true);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            getPath={getPath}
-          />
-        </div>
-
-        {/* Mega Menu Overlay for "Die Besten" */}
-        <div onMouseEnter={handleMouseEnterBestOfMenu} onMouseLeave={handleMouseLeaveBestOfMenu}>
-          <MegaMenuBestOf
-            isOpen={isBestOfMenuOpen}
-            onClose={() => setIsBestOfMenuOpen(false)}
-            categories={categories}
-            businesses={businesses}
-            onSelectBestOf={(cat, sub) => {
+            onSelectBestOf={() => {
               resetToDirectory();
-              setBestOfCategory(cat || 'Alle');
-              setBestOfSubcategory(sub);
+              setBestOfCategory('Alle');
+              setBestOfSubcategory(undefined);
               setIsBestOfMode(true);
-              const path = cat && cat !== 'Alle' && cat !== 'all'
-                ? `/die-besten/${getCategorySlug(cat, 'de')}${sub ? `/${getSubcategorySlug(sub, 'de')}` : ''}`
-                : '/die-besten';
-              window.history.pushState(null, '', getPath(path));
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath('/die-besten'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             getPath={getPath}
@@ -2449,29 +2394,6 @@ export default function App() {
             {/* Quick Navigation Cards */}
             <div className="grid grid-cols-2 gap-2.5">
               <a
-                href={getPath("/die-besten")}
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.history.pushState(null, '', getPath('/die-besten'));
-                  resetToDirectory();
-                  setBestOfCategory('Alle');
-                  setBestOfSubcategory(undefined);
-                  setIsBestOfMode(true);
-                  setIsMobileCategoriesOpen(false);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-amber-50/70 border border-amber-200/90 font-display font-bold text-sm text-[#1B211D] hover:border-[#F2761B] transition-all shadow-xs col-span-2"
-              >
-                <div className="w-8 h-8 rounded-md bg-amber-100 text-[#F2761B] flex items-center justify-center shrink-0">
-                  <Trophy className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="block">{lang === 'nl' ? 'De Beste Bedrijven' : '🏆 Die Besten in Winterberg'}</span>
-                  <span className="text-[11px] text-[#5F6B63] font-normal">{lang === 'nl' ? 'Top 10 ranglijsten' : 'Offizielle Bestenlisten 2026'}</span>
-                </div>
-              </a>
-
-              <a
                 href={getPath("/alle-unternehmen")}
                 onClick={(e) => {
                   e.preventDefault();
@@ -2484,12 +2406,32 @@ export default function App() {
                   setIsMobileCategoriesOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+                className="flex items-center gap-2.5 p-3 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
               >
                 <div className="w-8 h-8 rounded-md bg-[#FAF8F5] text-[#0F4C2E] flex items-center justify-center shrink-0">
                   <Building2 className="w-4 h-4" />
                 </div>
-                <span>Alle Betriebe</span>
+                <span>{lang === 'nl' ? 'Alle bedrijven' : 'Alle Betriebe'}</span>
+              </a>
+
+              <a
+                href={getPath("/die-besten")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/die-besten'));
+                  resetToDirectory();
+                  setBestOfCategory('Alle');
+                  setBestOfSubcategory(undefined);
+                  setIsBestOfMode(true);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3 rounded-lg bg-white border border-[#EDE8E0] hover:border-[#F2761B] font-display font-bold text-sm text-[#1B211D] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-md bg-amber-50 text-[#F2761B] flex items-center justify-center shrink-0">
+                  <Trophy className="w-4 h-4" />
+                </div>
+                <span>{lang === 'nl' ? 'Bestenlijsten' : 'Bestenlisten'}</span>
               </a>
 
               <a

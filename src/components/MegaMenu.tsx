@@ -13,7 +13,8 @@ import {
   Plus, 
   Building2, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Trophy
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -25,6 +26,7 @@ interface MegaMenuProps {
   businesses: Business[];
   onSelectCategory: (category: string, subcategory?: string) => void;
   onSelectAll: () => void;
+  onSelectBestOf?: () => void;
   onSelectLocation: (location: string) => void;
   onOpenMap: () => void;
   onOpenSubmit: () => void;
@@ -38,6 +40,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   businesses,
   onSelectCategory,
   onSelectAll,
+  onSelectBestOf,
   onSelectLocation,
   onOpenMap,
   onOpenSubmit,
@@ -257,6 +260,41 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                         : 'Vollständiges Verzeichnis mit allen Betrieben, Kontakten und Öffnungszeiten.'}
                     </p>
                   </div>
+
+                  {/* Card: Bestenlisten */}
+                  <a
+                    href={getPath('/die-besten')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onSelectBestOf) {
+                        onSelectBestOf();
+                      } else {
+                        window.history.pushState(null, '', getPath('/die-besten'));
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      }
+                      onClose();
+                    }}
+                    className="bg-white border border-[#EDE8E0] hover:border-[#F2761B] rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(242,118,27,0.08)] hover:-translate-y-0.5 transition-all group no-underline block"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-md bg-amber-50 text-[#F2761B] border border-amber-200/80 flex items-center justify-center shadow-2xs">
+                          <Trophy className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-display font-bold text-[14px] text-[#1B211D] group-hover:text-[#F2761B] transition-colors">
+                          {lang === 'nl' ? 'Bestenlijsten' : 'Bestenlisten'}
+                        </span>
+                      </div>
+                      <span className="text-[11.5px] font-bold text-[#F2761B] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                        {lang === 'nl' ? 'Top 10' : 'Top 10'} <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-[#5F6B63] leading-relaxed m-0 pl-9">
+                      {lang === 'nl' 
+                        ? 'De best beoordeelde bedrijven in Winterberg per categorie.' 
+                        : 'Die am besten bewerteten Betriebe in Winterberg nach Branchen.'}
+                    </p>
+                  </a>
 
                   {/* Ortsteile Quick Chips */}
                   <div>
