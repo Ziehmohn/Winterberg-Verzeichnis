@@ -332,8 +332,6 @@ export default function App() {
 
   const handleMouseEnterMegaMenu = () => {
     if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
-    if (bestOfMenuTimeoutRef.current) clearTimeout(bestOfMenuTimeoutRef.current);
-    setIsBestOfMenuOpen(false);
     setIsMegaMenuOpen(true);
   };
 
@@ -448,7 +446,6 @@ export default function App() {
     setIsNotFound(false);
     setIsAllMode(false);
     setIsBestOfMode(false);
-    setIsBestOfMenuOpen(false);
     setIsNewsMode(false);
     setIsNewsSubmitMode(false);
     setNewsId(null);
