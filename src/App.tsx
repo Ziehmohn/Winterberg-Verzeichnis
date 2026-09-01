@@ -1134,11 +1134,11 @@ export default function App() {
               }} 
               style={{ cursor: 'pointer', display: 'flex', alignItems: 'baseline', gap: '8px' }}
             >
-              <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '15px', fontWeight: 500, color: '#5F6B63' }}>Das</span>
+              <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '15px', fontWeight: 500, color: '#5F6B63' }}>{lang === 'nl' ? 'De' : 'Das'}</span>
               <span style={{ display: 'inline-block' }}>
                 <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '24px', fontWeight: 800, letterSpacing: '0.05em', color: '#0F4C2E', display: 'block', lineHeight: 1 }}>WINTERBERG</span>
                 <svg viewBox="0 0 200 10" preserveAspectRatio="none" style={{ width: '100%', height: '7px', display: 'block', marginTop: '2px' }}><path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/></svg>
-                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>VERZEICHNIS</span>
+                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>{lang === 'nl' ? 'BEDRIJVENGIDS' : 'VERZEICHNIS'}</span>
               </span>
             </div>
             <nav className="hidden md:flex items-center" style={{ gap: '18px', fontSize: '15px', marginLeft: 'auto' }}>
