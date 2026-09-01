@@ -107,7 +107,9 @@ export interface Business {
   jobs?: Job[];
   businessNews?: BusinessNewsArticle[];
   isPremium?: boolean;
+  headerImage?: string;
   gallery?: string[];
+  galleryCategories?: GalleryCategory[];
   logoUrl?: string;
   extendedDescription?: string;
   ownerId?: string;
@@ -120,6 +122,19 @@ export interface Business {
   extendedDescription_nl?: string;
   services_nl?: string[];
   products_nl?: string[];
+}
+
+export interface GalleryImage {
+  url: string;
+  alt?: string;
+  title?: string;
+}
+
+export interface GalleryCategory {
+  id: string;
+  name: string;
+  name_nl?: string;
+  images: GalleryImage[];
 }
 
 export interface UserProfile {

@@ -1,9 +1,9 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText } from 'lucide-react';
-import { Business, ThemeConfig, Review, BusinessNewsArticle } from '../types';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
@@ -37,6 +37,52 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const [errorReportText, setErrorReportText] = useState('');
   const [reportSuccess, setReportSuccess] = useState(false);
   const [isSubmittingReport, setIsSubmittingReport] = useState(false);
+
+  // Categorized Gallery State
+  const [activeGalleryTab, setActiveGalleryTab] = useState<string>('all');
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Normalize gallery categories with fallback for legacy flat gallery
+  const rawCategories: GalleryCategory[] = Array.isArray(business.galleryCategories) && business.galleryCategories.length > 0
+    ? business.galleryCategories.map(c => ({
+        id: c.id,
+        name: lang === 'nl' && c.name_nl ? c.name_nl : c.name,
+        name_nl: c.name_nl,
+        images: (c.images || []).map((img: any) => typeof img === 'string' ? { url: img, alt: '', title: '' } : { url: img.url || '', alt: img.alt || '', title: img.title || '' })
+      }))
+    : (Array.isArray(business.gallery) && business.gallery.length > 0
+        ? [{
+            id: 'cat_default',
+            name: lang === 'nl' ? 'Impressies' : 'Impressionen',
+            name_nl: 'Impressies',
+            images: business.gallery.map((url: any) => ({ url: typeof url === 'string' ? url : (url?.url || ''), alt: '', title: '' }))
+          }]
+        : []);
+
+  const galleryCategories = rawCategories.filter(c => c.images.length > 0);
+  const allGalleryImages = galleryCategories.flatMap(c => c.images.map(img => ({ ...img, categoryName: c.name })));
+
+  const displayedImages = activeGalleryTab === 'all'
+    ? allGalleryImages
+    : (galleryCategories.find(c => c.id === activeGalleryTab)?.images.map(img => ({ ...img, categoryName: galleryCategories.find(c => c.id === activeGalleryTab)?.name || '' })) || []);
+
+  const currentLightboxImage = lightboxIndex !== null ? displayedImages[lightboxIndex] : null;
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setLightboxIndex(null);
+      } else if (e.key === 'ArrowLeft') {
+        setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : displayedImages.length - 1);
+      } else if (e.key === 'ArrowRight') {
+        setLightboxIndex(prev => prev !== null && prev < displayedImages.length - 1 ? prev + 1 : 0);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, displayedImages.length]);
 
   const handleReportError = async () => {
     if (!errorReportText.trim()) return;
@@ -107,6 +153,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
     ? (approvedReviews.reduce((acc, r) => acc + (Number(r?.rating) || 0), 0) / approvedReviews.length).toFixed(1)
     : null;
   const reviewUsps = getBusinessReviewUsps(business, lang);
+  const headerBg = business.isPremium ? (business.headerImage || business.uploadedImage || business.imageLink) : undefined;
 
   return (
     <main className="flex-1 relative">
@@ -169,11 +216,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       </AnimatePresence>
 
       <div 
-        className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white relative"
-        style={(business.uploadedImage || business.imageLink) ? {
-          backgroundImage: `linear-gradient(to bottom, rgba(15, 76, 46, 0.85), rgba(6, 48, 28, 0.98)), url(${business.uploadedImage || business.imageLink})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+        className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] text-white relative overflow-hidden"
+        style={headerBg ? {
+          background: `linear-gradient(105deg, rgba(6,48,28,0.95) 0%, rgba(15,76,46,0.88) 55%, rgba(15,76,46,0.42) 100%), url(${headerBg}) center/cover no-repeat`
         } : undefined}
       >
         <div className="max-w-[1000px] mx-auto px-6 pt-[34px] pb-[46px]">
@@ -274,15 +319,78 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             />
           )}
 
-          {Array.isArray(business.gallery) && business.gallery.length > 0 && (
-            <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Fotogalerij' : 'Bildergalerie'}</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 mb-[30px]">
-                {business.gallery.map((img, i) => (
-                  <img key={i} src={img} alt={`Bild ${i+1}`} className="w-full h-[120px] object-cover rounded-md border border-[#EDE8E0]" />
-                ))}
+          {/* Categorized Gallery Section (Premium) */}
+          {business.isPremium && allGalleryImages.length > 0 && (
+            <div className="mb-[34px]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3.5">
+                <h2 className="font-display text-[22px] font-semibold">{lang === 'nl' ? 'Fotogalerij' : 'Bildergalerie'}</h2>
+                
+                {/* Category Filter Pills (if multiple categories exist) */}
+                {galleryCategories.length > 1 && (
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => setActiveGalleryTab('all')}
+                      className={`text-xs px-3 py-1 rounded-full font-medium transition-colors cursor-pointer ${
+                        activeGalleryTab === 'all'
+                          ? 'bg-[#0F4C2E] text-white shadow-xs'
+                          : 'bg-[#FAF8F5] text-[#5F6B63] hover:bg-[#E8F1EB] hover:text-[#0F4C2E] border border-[#EDE8E0]'
+                      }`}
+                    >
+                      {lang === 'nl' ? 'Alle' : 'Alle'} ({allGalleryImages.length})
+                    </button>
+                    {galleryCategories.map(cat => (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => setActiveGalleryTab(cat.id)}
+                        className={`text-xs px-3 py-1 rounded-full font-medium transition-colors cursor-pointer ${
+                          activeGalleryTab === cat.id
+                            ? 'bg-[#0F4C2E] text-white shadow-xs'
+                            : 'bg-[#FAF8F5] text-[#5F6B63] hover:bg-[#E8F1EB] hover:text-[#0F4C2E] border border-[#EDE8E0]'
+                        }`}
+                      >
+                        {cat.name} ({cat.images.length})
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            </>
+
+              {/* Gallery Image Grid with SEO Alt/Title and Lightbox Trigger */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {displayedImages.map((img, i) => {
+                  const altText = img.alt || `${business.name} – ${img.categoryName}`;
+                  const titleText = img.title || img.categoryName;
+                  return (
+                    <div 
+                      key={i} 
+                      onClick={() => setLightboxIndex(i)}
+                      className="group relative h-[150px] sm:h-[180px] rounded-lg overflow-hidden border border-[#EDE8E0] bg-[#FAF8F5] cursor-pointer shadow-2xs hover:shadow-md transition-all"
+                    >
+                      <img 
+                        src={img.url} 
+                        alt={altText} 
+                        title={titleText}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-2.5">
+                        <span className="text-white text-xs font-semibold truncate drop-shadow">
+                          {titleText || altText}
+                        </span>
+                        <span className="text-white/80 text-[11px] truncate">
+                          {img.categoryName}
+                        </span>
+                      </div>
+                      <div className="absolute top-2 left-2 bg-black/40 backdrop-blur-xs text-white text-[10px] font-medium px-2 py-0.5 rounded shadow-xs opacity-90">
+                        {img.categoryName}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           )}
 
           {Array.isArray(localized.services) && localized.services.length > 0 && (
@@ -704,6 +812,83 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           }
         }}
       />
+
+      {/* Interactive Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxIndex !== null && currentLightboxImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[120] bg-black/92 backdrop-blur-md flex flex-col items-center justify-between p-4 sm:p-6 select-none"
+            onClick={() => setLightboxIndex(null)}
+          >
+            {/* Top Bar */}
+            <div className="w-full max-w-5xl flex items-center justify-between text-white py-2" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center gap-2">
+                <span className="bg-white/20 text-xs px-2.5 py-1 rounded font-semibold">
+                  {currentLightboxImage.categoryName}
+                </span>
+                <span className="text-xs text-white/70">
+                  {lightboxIndex + 1} / {displayedImages.length}
+                </span>
+              </div>
+              <button 
+                type="button" 
+                onClick={() => setLightboxIndex(null)}
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+                title="Schließen (Esc)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Main Image with Prev/Next Controls */}
+            <div className="relative flex-1 w-full max-w-5xl flex items-center justify-center my-auto" onClick={e => e.stopPropagation()}>
+              {displayedImages.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(prev => prev !== null && prev > 0 ? prev - 1 : displayedImages.length - 1)}
+                  className="absolute left-2 sm:-left-4 z-10 w-11 h-11 rounded-full bg-black/60 hover:bg-[#F2761B] text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer"
+                  title="Vorheriges Bild"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+              )}
+
+              <img 
+                src={currentLightboxImage.url} 
+                alt={currentLightboxImage.alt || `${business.name} – ${currentLightboxImage.categoryName}`}
+                title={currentLightboxImage.title || currentLightboxImage.categoryName}
+                className="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl" 
+              />
+
+              {displayedImages.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(prev => prev !== null && prev < displayedImages.length - 1 ? prev + 1 : 0)}
+                  className="absolute right-2 sm:-right-4 z-10 w-11 h-11 rounded-full bg-black/60 hover:bg-[#F2761B] text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer"
+                  title="Nächstes Bild"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              )}
+            </div>
+
+            {/* Bottom Caption Bar */}
+            <div className="w-full max-w-2xl text-center py-2" onClick={e => e.stopPropagation()}>
+              <p className="text-white text-sm font-medium drop-shadow">
+                {currentLightboxImage.title || currentLightboxImage.alt || `${business.name} – ${currentLightboxImage.categoryName}`}
+              </p>
+              {currentLightboxImage.alt && currentLightboxImage.title && (
+                <p className="text-white/70 text-xs mt-0.5">
+                  {currentLightboxImage.alt}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

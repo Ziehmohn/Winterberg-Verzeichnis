@@ -332,7 +332,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                 <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab 9,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat</span></div>
               )}
               
-              <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Öffnungszeiten, Galerie, Jobs, News, White-Label Bewertungs-Widget, Top-Platzierung.</div>
+              <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Hero-Header, Galerie (5 Kat. à 5 Bilder mit SEO-Tags), Öffnungszeiten, Jobs, News, White-Label Widget, Top-Platzierung.</div>
             </div>
           </div>
         </div>

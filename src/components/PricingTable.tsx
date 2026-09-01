@@ -27,9 +27,11 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
     { name: 'Kostenloses Trust-Siegel für eigene Website (mit Verlinkung)', free: true, premium: true },
     { name: 'Leistungen & Services im Profil', free: 'Bis zu 3', premium: 'Bis zu 15' },
     { name: 'Produkte & Angebote im Profil', free: 'Bis zu 3', premium: 'Bis zu 15' },
+    { name: 'Kategorisierte Bildergalerie (bis zu 5 Kat. à 5 Bilder mit SEO-Tags)', free: false, premium: true },
+    { name: 'Individuelles Hero-Hintergrundbild im Profil-Header', free: false, premium: true },
     { name: t("openingHours"), free: false, premium: true },
     { name: t("detailedDesc"), free: false, premium: true },
-    { name: t("logoGallery"), free: false, premium: true },
+    { name: 'Unternehmens-Logo auf Karte & Detailseite', free: false, premium: true },
     { name: 'Hervorgehobene Platzierung (Premium-Badge)', free: false, premium: true },
     { name: t("priorityInSearch"), free: false, premium: true },
     { name: t("login"), free: false, premium: true },
@@ -44,7 +46,7 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
     <main className="flex-1 w-full max-w-[1000px] mx-auto px-6 py-[54px] pb-[80px]">
       <h1 className="font-display text-[clamp(32px,5vw,50px)] font-bold mb-3">Preise</h1>
       <p className="text-[17px] leading-[1.65] text-[#4A544D] max-w-[60ch] mb-8">
-        Der Basiseintrag ist dauerhaft kostenlos und umfasst bis zu 3 Leistungen & 3 Produkte für Suche und Profil. Premium schaltet bis zu 15 Leistungen & 15 Produkte, Öffnungszeiten, Galerie, ausführliches Profil, Stellenanzeigen, News-Publikation, White-Label Bewertungs-Widgets und die Top-Platzierung frei.
+        Der Basiseintrag ist dauerhaft kostenlos und umfasst bis zu 3 Leistungen & 3 Produkte für Suche und Profil. Premium schaltet bis zu 15 Leistungen & 15 Produkte, Hero-Header, kategorisierte Bildergalerie, Öffnungszeiten, ausführliches Profil, Stellenanzeigen, News-Publikation, White-Label Bewertungs-Widgets und die Top-Platzierung frei.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
@@ -117,9 +119,10 @@ export default function PricingTable({ theme, activeThemeKey, onBack, onSelect, 
           <div className="grid gap-2.5 text-[15px] text-[#4A544D]">
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Alles aus dem Basiseintrag</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> <strong>Bis zu 15 Leistungen & 15 Produkte (statt 3)</strong></div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> <strong>Kategorisierte Galerie (5 Kat. à 5 Bilder mit SEO-Tags)</strong></div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> <strong>Hero-Hintergrundbild im Profil-Header</strong></div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Öffnungszeiten</div>
-            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Logo & Bildergalerie</div>
-            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Ausführliche Beschreibung</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Logo & Ausführliche Beschreibung</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Premium-Badge & Priorität in der Suche</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> Stellenanzeigen veröffentlichen</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> News & Beiträge publizieren (5 / Monat)</div>

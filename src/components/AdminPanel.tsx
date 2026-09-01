@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check } from 'lucide-react';
-import { Business, CategoryGroup, BusinessNewsArticle } from '../types';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag } from 'lucide-react';
+import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { translateTextToDutch, translateServiceToDutch } from '../utils/translator';
@@ -264,7 +264,23 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       services: Array.isArray(base.services) ? [...base.services] : [],
       products: Array.isArray(base.products) ? [...base.products] : [],
       openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
+      headerImage: base.headerImage || '',
       gallery: Array.isArray(base.gallery) ? [...base.gallery] : [],
+      galleryCategories: Array.isArray(base.galleryCategories) && base.galleryCategories.length > 0
+        ? base.galleryCategories.map((c: any) => ({
+            id: c.id || 'cat_' + Math.random().toString(36).substring(2, 7),
+            name: c.name || 'Galerie',
+            name_nl: c.name_nl || '',
+            images: (c.images || []).map((img: any) => typeof img === 'string' ? { url: img, alt: '', title: '' } : { url: img.url || '', alt: img.alt || '', title: img.title || '' })
+          }))
+        : (Array.isArray(base.gallery) && base.gallery.length > 0
+            ? [{
+                id: 'cat_default',
+                name: 'Impressionen',
+                name_nl: 'Impressies',
+                images: base.gallery.map((url: any) => ({ url: typeof url === 'string' ? url : (url?.url || ''), alt: '', title: '' }))
+              }]
+            : []),
       isPremium: !!base.isPremium,
       businessNews: Array.isArray(base.businessNews) ? [...base.businessNews] : [],
       extendedDescription: base.extendedDescription || '',
@@ -372,9 +388,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     e.preventDefault();
     setIsSubmitting(true);
     
+    const syncedGallery = (formData.galleryCategories || []).flatMap(c => (c.images || []).map(img => typeof img === 'string' ? img : img.url).filter(Boolean));
+
     const newId = formData.id || 'b_' + Date.now().toString(36);
     const dataToSubmit: Business = {
       ...formData,
+      headerImage: formData.headerImage || '',
+      galleryCategories: formData.galleryCategories || [],
+      gallery: syncedGallery.length > 0 ? syncedGallery : (formData.gallery || []),
       translations: {
         ...formData.translations,
         nl: {
@@ -448,7 +469,113 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'gallery' | 'title' | 'logo' = 'gallery') => {
+  const handleAddCategory = (name: string = '') => {
+    const currentCats = formData.galleryCategories || [];
+    if (currentCats.length >= 5) {
+      alert("Maximal 5 Galerie-Kategorien im Premium-Account möglich.");
+      return;
+    }
+    const defaultNames = ['Räumlichkeiten', 'Team', 'Speisen & Getränke', 'Werkstatt & Handwerk', 'Events & Feiern'];
+    const fallbackName = defaultNames.find(n => !currentCats.some(c => c.name.toLowerCase() === n.toLowerCase())) || `Kategorie ${currentCats.length + 1}`;
+    const newCatName = name.trim() || fallbackName;
+    const newCat: GalleryCategory = {
+      id: 'cat_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 5),
+      name: newCatName,
+      name_nl: translateTextToDutch(newCatName),
+      images: []
+    };
+    setFormData(prev => ({
+      ...prev,
+      galleryCategories: [...(prev.galleryCategories || []), newCat]
+    }));
+  };
+
+  const handleUpdateCategoryName = (catId: string, name: string) => {
+    setFormData(prev => ({
+      ...prev,
+      galleryCategories: (prev.galleryCategories || []).map(c => 
+        c.id === catId ? { ...c, name, name_nl: translateTextToDutch(name) } : c
+      )
+    }));
+  };
+
+  const handleDeleteCategory = (catId: string) => {
+    if (confirm("Möchten Sie diese Kategorie und alle darin enthaltenen Bilder wirklich löschen?")) {
+      setFormData(prev => {
+        const newCats = (prev.galleryCategories || []).filter(c => c.id !== catId);
+        const syncedGallery = newCats.flatMap(c => c.images.map(img => img.url));
+        return {
+          ...prev,
+          galleryCategories: newCats,
+          gallery: syncedGallery
+        };
+      });
+    }
+  };
+
+  const handleAddImageToCategory = (catId: string, imageUrl: string, altText: string = '', titleText: string = '') => {
+    if (!imageUrl) return;
+    setFormData(prev => {
+      const currentCats = prev.galleryCategories || [];
+      const updatedCats = currentCats.map(c => {
+        if (c.id === catId) {
+          if (c.images.length >= 5) {
+            alert("Maximal 5 Bilder pro Kategorie möglich.");
+            return c;
+          }
+          return {
+            ...c,
+            images: [...c.images, { url: imageUrl, alt: altText, title: titleText }]
+          };
+        }
+        return c;
+      });
+      const syncedGallery = updatedCats.flatMap(c => c.images.map(img => img.url));
+      return {
+        ...prev,
+        galleryCategories: updatedCats,
+        gallery: syncedGallery
+      };
+    });
+  };
+
+  const handleUpdateImageMeta = (catId: string, imgIdx: number, updates: Partial<GalleryImage>) => {
+    setFormData(prev => ({
+      ...prev,
+      galleryCategories: (prev.galleryCategories || []).map(c => {
+        if (c.id === catId) {
+          const newImgs = [...c.images];
+          if (newImgs[imgIdx]) {
+            newImgs[imgIdx] = { ...newImgs[imgIdx], ...updates };
+          }
+          return { ...c, images: newImgs };
+        }
+        return c;
+      })
+    }));
+  };
+
+  const handleDeleteImageFromCategory = (catId: string, imgIdx: number) => {
+    setFormData(prev => {
+      const updatedCats = (prev.galleryCategories || []).map(c => {
+        if (c.id === catId) {
+          return {
+            ...c,
+            images: c.images.filter((_, i) => i !== imgIdx)
+          };
+        }
+        return c;
+      });
+      const syncedGallery = updatedCats.flatMap(c => c.images.map(img => img.url));
+      return {
+        ...prev,
+        galleryCategories: updatedCats,
+        gallery: syncedGallery
+      };
+    });
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'gallery' | 'title' | 'logo' | 'header' = 'gallery', categoryId?: string) => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
     setUploadingImage(true);
@@ -468,7 +595,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             img.onload = () => {
               const canvas = document.createElement('canvas');
               let { width, height } = img;
-              const max = 800;
+              const max = 1200;
               if (width > height) {
                 if (width > max) { height *= max / width; width = max; }
               } else {
@@ -479,7 +606,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               const ctx = canvas.getContext('2d');
               if (ctx) {
                 ctx.drawImage(img, 0, 0, width, height);
-                resolve(canvas.toDataURL('image/jpeg', 0.7));
+                resolve(canvas.toDataURL('image/jpeg', 0.8));
               } else {
                 resolve(e.target?.result as string);
               }
@@ -493,22 +620,49 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       }
       
       setFormData(prev => {
+        if (target === 'header') {
+          return { ...prev, headerImage: url };
+        }
         if (target === 'logo') {
           return { ...prev, logoUrl: url };
         }
-        
-        const newGallery = prev.gallery ? [...prev.gallery] : [];
-        if (!newGallery.includes(url)) {
-          newGallery.push(url);
+        if (target === 'title') {
+          return { ...prev, uploadedImage: url, imageLink: url };
         }
         
-        const currentCover = prev.imageLink || prev.uploadedImage;
-        const isTitle = target === 'title';
+        // target === 'gallery'
+        const currentCats = [...(prev.galleryCategories || [])];
+        if (currentCats.length === 0) {
+          const newCat: GalleryCategory = {
+            id: 'cat_' + Date.now().toString(36),
+            name: 'Impressionen',
+            name_nl: 'Impressies',
+            images: [{ url, alt: '', title: '' }]
+          };
+          return {
+            ...prev,
+            galleryCategories: [newCat],
+            gallery: [url]
+          };
+        }
+        
+        const targetCatIndex = categoryId ? currentCats.findIndex(c => c.id === categoryId) : 0;
+        const indexToUse = targetCatIndex >= 0 ? targetCatIndex : 0;
+        if (currentCats[indexToUse].images.length >= 5) {
+          alert("Maximal 5 Bilder pro Kategorie möglich.");
+          return prev;
+        }
+        
+        currentCats[indexToUse] = {
+          ...currentCats[indexToUse],
+          images: [...currentCats[indexToUse].images, { url, alt: '', title: '' }]
+        };
+        
+        const synced = currentCats.flatMap(c => c.images.map(img => img.url));
         return {
           ...prev,
-          gallery: newGallery,
-          uploadedImage: isTitle ? url : (currentCover || url),
-          imageLink: isTitle ? url : (currentCover || url)
+          galleryCategories: currentCats,
+          gallery: synced
         };
       });
     } catch (err) {
@@ -522,10 +676,15 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   const handleDeleteImage = async (imgUrl: string) => {
     // Remove from UI first
     setFormData(prev => {
+      const updatedCats = (prev.galleryCategories || []).map(c => ({
+        ...c,
+        images: c.images.filter(img => img.url !== imgUrl)
+      }));
       const newGallery = (prev.gallery || []).filter(url => url !== imgUrl);
       const isCover = imgUrl === prev.imageLink || imgUrl === prev.uploadedImage;
       return {
         ...prev,
+        galleryCategories: updatedCats,
         gallery: newGallery,
         imageLink: isCover ? '' : prev.imageLink,
         uploadedImage: isCover ? '' : prev.uploadedImage
@@ -1169,8 +1328,55 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             </div>
 
             
-            <div>
-              <label className={labelClass}>Titelbild (Hauptbild)</label>
+            {/* Hero / Header Hintergrundbild (Premium) */}
+            <div className="border-b border-orange-200/50 pb-5">
+              <label className={labelClass}>Hero- / Header-Hintergrundbild (Premium-Feature)</label>
+              <p className="text-xs opacity-70 mb-2">
+                Dieses Bild wird im Kopfbereich Ihres Profils als stimmungsvoller Hintergrund dargestellt (mit dem eleganten Farbverlauf wie auf der Startseite).
+              </p>
+              <div className="flex flex-col gap-3">
+                {formData.headerImage ? (
+                  <div 
+                    className="relative w-full h-36 rounded-lg overflow-hidden border border-black/15 shadow-sm p-4 flex items-end"
+                    style={{
+                      background: `linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.45) 100%), url(${formData.headerImage}) center/cover no-repeat`
+                    }}
+                  >
+                    <div className="text-white text-xs font-semibold drop-shadow">
+                      Vorschau: {formData.name || 'Unternehmensname'}
+                    </div>
+                    <button 
+                      type="button" 
+                      onClick={() => setFormData(prev => ({...prev, headerImage: ''}))} 
+                      className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded-full shadow hover:bg-red-600 transition-colors"
+                      title="Header-Bild entfernen"
+                    >
+                      <Trash2 className="w-3.5 h-3.5"/>
+                    </button>
+                  </div>
+                ) : null}
+                
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    value={formData.headerImage || ''} 
+                    onChange={e => setFormData({...formData, headerImage: e.target.value})} 
+                    className={inputClass} 
+                    placeholder="https://beispiel.de/header-hintergrund.jpg" 
+                    disabled={!formData.isPremium}
+                  />
+                  <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium shrink-0 transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${uploadingImage || !formData.isPremium ? 'opacity-50' : ''}`}>
+                    <Upload className="w-4 h-4" />
+                    {uploadingImage ? 'Lädt...' : 'Header-Bild hochladen'}
+                    <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'header')} disabled={uploadingImage || !formData.isPremium} />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* Titelbild (Hauptbild) */}
+            <div className="border-b border-orange-200/50 pb-5">
+              <label className={labelClass}>Titelbild (Hauptbild auf Suchkarte)</label>
               <div className="flex flex-col gap-4">
                 {(formData.uploadedImage || formData.imageLink) ? (
                   <div className="relative w-48 h-32 rounded-lg overflow-hidden border border-black/10 shadow-sm">
@@ -1195,76 +1401,204 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     onChange={e => setFormData({...formData, imageLink: e.target.value, uploadedImage: e.target.value})} 
                     className={inputClass} 
                     placeholder="Titelbild-URL eingeben..." 
+                    disabled={!formData.isPremium}
                   />
-                  <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium shrink-0 transition-colors bg-white border border-black/20 hover:bg-black/5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
+                  <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium shrink-0 transition-colors bg-white border border-black/20 hover:bg-black/5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${!formData.isPremium ? 'opacity-50' : ''}`}>
                     <Upload className="w-4 h-4" />
                     {uploadingImage ? 'Lädt...' : 'Direkt hochladen'}
-                    <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'title')} disabled={uploadingImage} />
+                    <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'title')} disabled={uploadingImage || !formData.isPremium} />
                   </label>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-orange-200/50 pt-5">
-              <label className={labelClass}>Bildergalerie & Auswahl</label>
-              
-              <div className="flex flex-wrap gap-4 mb-4">
-                {(formData.gallery || []).map((imgUrl, idx) => {
-                  const isCover = imgUrl === formData.imageLink || imgUrl === formData.uploadedImage;
+            {/* Kategorisierte Bildergalerie (Bis zu 5 Kategorien à 5 Bilder) */}
+            <div className="border-b border-orange-200/50 pb-6">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <label className={`${labelClass} mb-0`}>
+                    Kategorisierte Bildergalerie (Bis zu 5 Kategorien à 5 Bilder)
+                  </label>
+                  <p className="text-xs opacity-70 mt-0.5">
+                    Strukturieren Sie Ihre Bilder nach Themenbereichen inkl. SEO Alt- & Titel-Tags.
+                  </p>
+                </div>
+                <span className="text-xs font-bold px-2.5 py-1 rounded bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E]">
+                  {(formData.galleryCategories || []).length} / 5 Kategorien
+                </span>
+              </div>
+
+              {/* Quick Add Suggestions */}
+              {(formData.galleryCategories || []).length < 5 && (
+                <div className="my-3 p-3 bg-white/80 border border-orange-200/60 rounded-lg">
+                  <div className="text-xs font-semibold text-[#5F6B63] mb-2 flex items-center gap-1.5">
+                    <FolderPlus className="w-3.5 h-3.5 text-[#F2761B]" />
+                    Neue Kategorie hinzufügen (Vorschlag wählen oder selbst benennen):
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Räumlichkeiten', 'Team', 'Speisen & Getränke', 'Werkstatt & Handwerk', 'Events & Feiern', 'Ausstattung'].map((catSuggestion) => {
+                      const isExisting = (formData.galleryCategories || []).some(c => c.name.toLowerCase() === catSuggestion.toLowerCase());
+                      if (isExisting) return null;
+                      return (
+                        <button
+                          key={catSuggestion}
+                          type="button"
+                          onClick={() => handleAddCategory(catSuggestion)}
+                          className="text-xs px-2.5 py-1 rounded-md bg-[#FFF1E4] text-[#D65F0C] border border-[#F2761B]/30 hover:bg-[#F2761B] hover:text-white transition-colors font-medium cursor-pointer"
+                        >
+                          + {catSuggestion}
+                        </button>
+                      );
+                    })}
+                    <button
+                      type="button"
+                      onClick={() => handleAddCategory('')}
+                      className="text-xs px-2.5 py-1 rounded-md bg-white border border-[#EDE8E0] text-[#0F4C2E] hover:bg-[#E8F1EB] transition-colors font-medium cursor-pointer"
+                    >
+                      + Eigene Kategorie...
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Category Cards List */}
+              <div className="space-y-4 mt-4">
+                {(formData.galleryCategories || []).map((category, catIdx) => {
+                  const imagesCount = (category.images || []).length;
                   return (
-                    <div key={idx} className={`relative w-36 h-28 rounded-md overflow-hidden border transition-all ${isCover ? 'border-2 border-orange-500 shadow-md scale-105' : 'border-black/10'}`}>
-                      <img src={imgUrl} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
-                      {isCover && (
-                        <div className="absolute top-1 left-1 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                          Titelbild
+                    <div key={category.id || catIdx} className="bg-white border border-orange-200/70 rounded-lg p-4 shadow-2xs">
+                      {/* Category Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-100">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <span className="w-6 h-6 rounded-full bg-[#FFF1E4] text-[#D65F0C] font-bold text-xs flex items-center justify-center shrink-0">
+                            {catIdx + 1}
+                          </span>
+                          <input 
+                            type="text" 
+                            value={category.name} 
+                            onChange={e => handleUpdateCategoryName(category.id, e.target.value)} 
+                            className="text-sm font-bold border border-gray-200 rounded px-2.5 py-1 bg-[#FAF8F5] focus:outline-none focus:ring-1 focus:ring-[#F2761B] w-full max-w-[280px]"
+                            placeholder="Kategoriename (z. B. Räumlichkeiten)"
+                          />
                         </div>
-                      )}
-                      <div className="absolute inset-0 bg-black/60 opacity-0 hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5 p-1">
-                        {!isCover && (
+                        
+                        <div className="flex items-center gap-2 shrink-0">
+                          <span className={`text-xs font-semibold px-2 py-0.5 rounded ${imagesCount >= 5 ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-700'}`}>
+                            {imagesCount} / 5 Bilder
+                          </span>
                           <button 
                             type="button" 
-                            onClick={() => setFormData(prev => ({...prev, imageLink: imgUrl, uploadedImage: imgUrl}))} 
-                            className="text-xs bg-white text-black font-bold px-2 py-1 rounded shadow hover:bg-orange-50"
+                            onClick={() => handleDeleteCategory(category.id)} 
+                            className="text-xs text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded transition-colors flex items-center gap-1"
+                            title="Kategorie löschen"
                           >
-                            Als Titelbild
+                            <Trash2 className="w-3.5 h-3.5" />
+                            <span className="hidden sm:inline">Kategorie entfernen</span>
                           </button>
+                        </div>
+                      </div>
+
+                      {/* Category Images Grid */}
+                      <div className="mt-3">
+                        {(category.images || []).length > 0 ? (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
+                            {category.images.map((img, imgIdx) => {
+                              const imgUrl = typeof img === 'string' ? img : img.url;
+                              const isCover = imgUrl === formData.imageLink || imgUrl === formData.uploadedImage;
+                              const altText = typeof img === 'string' ? '' : (img.alt || '');
+                              const titleText = typeof img === 'string' ? '' : (img.title || '');
+
+                              return (
+                                <div key={imgIdx} className={`border rounded-lg p-2.5 bg-[#FAF8F5] transition-all ${isCover ? 'border-[#F2761B] ring-1 ring-[#F2761B]' : 'border-gray-200'}`}>
+                                  <div className="relative h-28 w-full rounded overflow-hidden mb-2 bg-gray-100">
+                                    <img src={imgUrl} alt={altText || `Bild ${imgIdx + 1}`} className="w-full h-full object-cover" />
+                                    {isCover && (
+                                      <div className="absolute top-1 left-1 bg-[#F2761B] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">
+                                        Titelbild
+                                      </div>
+                                    )}
+                                    <div className="absolute top-1 right-1 flex gap-1">
+                                      <button 
+                                        type="button" 
+                                        onClick={() => handleDeleteImageFromCategory(category.id, imgIdx)} 
+                                        className="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow"
+                                        title="Bild löschen"
+                                      >
+                                        <X className="w-3.5 h-3.5" />
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                  <div className="space-y-1.5">
+                                    <div>
+                                      <label className="text-[11px] font-semibold text-[#5F6B63] block">Alt-Text (SEO / Bildbeschreibung):</label>
+                                      <input 
+                                        type="text" 
+                                        value={altText} 
+                                        onChange={e => handleUpdateImageMeta(category.id, imgIdx, { alt: e.target.value })} 
+                                        placeholder={`z. B. ${category.name} bei ${formData.name || 'uns'}`} 
+                                        className="w-full text-xs border border-gray-200 rounded px-2 py-1 bg-white focus:outline-none focus:ring-1 focus:ring-[#F2761B]"
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <label className="text-[11px] font-semibold text-[#5F6B63] block">Bild-Titel / Caption:</label>
+                                      <input 
+                                        type="text" 
+                                        value={titleText} 
+                                        onChange={e => handleUpdateImageMeta(category.id, imgIdx, { title: e.target.value })} 
+                                        placeholder={`z. B. ${category.name} Übersicht`} 
+                                        className="w-full text-xs border border-gray-200 rounded px-2 py-1 bg-white focus:outline-none focus:ring-1 focus:ring-[#F2761B]"
+                                      />
+                                    </div>
+
+                                    {!isCover && (
+                                      <button 
+                                        type="button" 
+                                        onClick={() => setFormData(prev => ({ ...prev, imageLink: imgUrl, uploadedImage: imgUrl }))} 
+                                        className="w-full text-xs font-semibold py-1 px-2 rounded bg-white hover:bg-orange-50 border border-[#EDE8E0] text-[#D65F0C] transition-colors"
+                                      >
+                                        ★ Als Titelbild festlegen
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <div className="text-xs text-[#8A928B] italic py-2">
+                            Noch keine Bilder in dieser Kategorie vorhanden.
+                          </div>
                         )}
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteImage(imgUrl)}
-                          className="absolute top-1 right-1 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow"
-                          title="Bild löschen"
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                        <button 
-                          type="button" 
-                          onClick={() => setFormData(prev => {
-                            const newGallery = prev.gallery?.filter((_, i) => i !== idx) || [];
-                            const isTitle = isCover;
-                            return {
-                              ...prev,
-                              gallery: newGallery,
-                              imageLink: isTitle ? (newGallery[0] || '') : prev.imageLink,
-                              uploadedImage: isTitle ? (newGallery[0] || '') : prev.uploadedImage
-                            };
-                          })} 
-                          className="text-xs text-white bg-red-500 px-2 py-1 rounded shadow hover:bg-red-600 flex items-center gap-1"
-                        >
-                          <Trash2 className="w-3 h-3" /> Löschen
-                        </button>
+
+                        {/* Add Image to this Category */}
+                        {imagesCount < 5 && (
+                          <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-gray-100">
+                            <label className={`cursor-pointer flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] rounded ${uploadingImage ? 'opacity-50' : ''}`}>
+                              <Upload className="w-3.5 h-3.5" />
+                              {uploadingImage ? 'Lädt...' : `Foto zu "${category.name}" hochladen`}
+                              <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'gallery', category.id)} disabled={uploadingImage} />
+                            </label>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
                 })}
-              </div>
 
-              <div className="flex items-center gap-3">
-                <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors bg-white border border-black/20 hover:bg-black/5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>
-                  <Upload className="w-4 h-4" />
-                  {uploadingImage ? 'Lädt...' : 'Galerie-Bild hochladen'}
-                  <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'gallery')} disabled={uploadingImage} />
-                </label>
+                {(formData.galleryCategories || []).length === 0 && (
+                  <div className="text-center py-6 border border-dashed border-gray-300 rounded-lg bg-gray-50/50">
+                    <p className="text-sm text-gray-500 mb-3">Noch keine Galerie-Kategorien angelegt.</p>
+                    <button
+                      type="button"
+                      onClick={() => handleAddCategory('Impressionen')}
+                      className="px-4 py-2 text-xs font-bold rounded bg-[#0F4C2E] text-white hover:bg-[#0B3B24] transition-colors"
+                    >
+                      + Erste Kategorie „Impressionen“ anlegen
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
