@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Check, Settings, X } from 'lucide-react';
+import { Fingerprint, Check, Settings, X } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig } from '../types';
 import { getGoogleAnalyticsId, trackPageView } from '../utils/analytics';
@@ -125,7 +125,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
           className="fixed bottom-6 left-6 z-50 p-3 bg-white border border-[#E7E2DA] rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:bg-[#FAF8F5] transition-all hover:scale-110 group cursor-pointer"
           title={isNl ? "Cookie-instellingen openen" : "Cookie-Einstellungen öffnen"}
         >
-          <Shield className="w-5 h-5 text-[#0F4C2E] group-hover:text-[#F2761B] transition-colors" />
+          <Fingerprint className="w-5 h-5 text-[#0F4C2E] group-hover:text-[#F2761B] transition-colors" />
         </button>
       )}
 
@@ -137,7 +137,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-3.5 mb-4">
                   <div className="w-11 h-11 bg-[#E8F1EB] rounded-lg flex items-center justify-center shrink-0">
-                    <Shield className="w-6 h-6 text-[#0F4C2E]" />
+                    <Fingerprint className="w-6 h-6 text-[#0F4C2E]" />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold font-display text-[#1B211D]">
