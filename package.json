@@ -29,6 +29,7 @@
     "puppeteer": "^25.9.0",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
+    "react-ga4": "^3.0.1",
     "react-leaflet": "^5.0.0",
     "react-quill": "^2.0.0",
     "stripe": "^22.3.2",

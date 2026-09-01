@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Fingerprint, Check, Settings, X } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { ThemeConfig } from '../types';
-import { getGoogleAnalyticsId, trackPageView } from '../utils/analytics';
+import { getGoogleAnalyticsId, trackPageView, updateConsent } from '../utils/analytics';
 
 interface CookieSettings {
   essential: boolean;
@@ -82,37 +82,17 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
   };
 
   const applyScripts = (currentSettings: CookieSettings) => {
-    const gaId = getGoogleAnalyticsId();
+    updateConsent(currentSettings.analytics, currentSettings.marketing);
 
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      window.gtag('consent', 'update', {
-        'analytics_storage': currentSettings.analytics ? 'granted' : 'denied',
-        'ad_storage': currentSettings.marketing ? 'granted' : 'denied',
-        'ad_user_data': currentSettings.marketing ? 'granted' : 'denied',
-        'ad_personalization': currentSettings.marketing ? 'granted' : 'denied'
+    if (currentSettings.analytics) {
+      trackPageView(window.location.pathname, document.title);
+    } else {
+      // Remove GA cookies if revoked
+      document.cookie.split(";").forEach((c) => {
+        if (c.trim().startsWith("_ga")) {
+          document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        }
       });
-
-      if (currentSettings.analytics) {
-        window.gtag('config', gaId, {
-          'anonymize_ip': true,
-          'send_page_view': true,
-          'page_path': window.location.pathname,
-          'page_title': document.title,
-          'page_location': window.location.href
-        });
-        window.gtag('event', 'page_view', {
-          page_path: window.location.pathname,
-          page_title: document.title,
-          page_location: window.location.href
-        });
-      } else {
-        // Remove GA cookies if revoked
-        document.cookie.split(";").forEach((c) => {
-          if (c.trim().startsWith("_ga")) {
-            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-          }
-        });
-      }
     }
   };
 

@@ -28,7 +28,7 @@ import ReviewWidget, { WidgetLayout, WidgetTheme } from './components/ReviewWidg
 import WidgetGeneratorModal from './components/WidgetGeneratorModal';
 import CookieConsent from './components/CookieConsent';
 import DynamicScriptLoader from './components/DynamicScriptLoader';
-import { trackPageView } from './utils/analytics';
+import { trackPageView, initGA, getGoogleAnalyticsId } from './utils/analytics';
 import {
   RouteState,
   findCategoryFromSlug,
@@ -275,6 +275,7 @@ export default function App() {
 
   // Google Analytics Pageview Tracking (Property ID 302481363)
   useEffect(() => {
+    initGA(getGoogleAnalyticsId());
     trackPageView(window.location.pathname, document.title);
 
     const handleLocationChange = () => {

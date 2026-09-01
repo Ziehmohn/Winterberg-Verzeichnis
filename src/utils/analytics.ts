@@ -1,16 +1,11 @@
+import ReactGA from "react-ga4";
+
 /**
  * Google Analytics Helper for Winterberg Verzeichnis
  * Property ID: 302481363 / Measurement ID: G-86EMTRTX80
  */
 
 export const DEFAULT_GA_ID = 'G-86EMTRTX80';
-
-declare global {
-  interface Window {
-    dataLayer?: any[];
-    gtag?: (...args: any[]) => void;
-  }
-}
 
 export function getGoogleAnalyticsId(): string {
   if (typeof window !== 'undefined') {
@@ -29,33 +24,27 @@ export function getGoogleAnalyticsId(): string {
   return DEFAULT_GA_ID;
 }
 
+export function initGA(gaId: string = DEFAULT_GA_ID) {
+  if (typeof window !== 'undefined') {
+    ReactGA.initialize(gaId);
+  }
+}
+
 export function trackPageView(path: string, title?: string) {
+  if (typeof window !== 'undefined') {
+    const pageTitle = title || document.title || 'Winterberg Verzeichnis';
+    ReactGA.send({ hitType: "pageview", page: path, title: pageTitle });
+  }
+}
+
+export function updateConsent(analytics: boolean, marketing: boolean) {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    try {
-      const gaId = getGoogleAnalyticsId();
-      const tagId = gaId.startsWith('G-') || gaId.startsWith('GT-') ? gaId : `G-${gaId}`;
-      const pageTitle = title || (typeof document !== 'undefined' ? document.title : '');
-
-      window.gtag('event', 'page_view', {
-        page_path: path,
-        page_title: pageTitle,
-        page_location: window.location.href
-      });
-
-      window.gtag('config', gaId, {
-        page_path: path,
-        page_title: pageTitle
-      });
-
-      if (tagId !== gaId) {
-        window.gtag('config', tagId, {
-          page_path: path,
-          page_title: pageTitle
-        });
-      }
-    } catch (e) {
-      // Ignore
-    }
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': marketing ? 'granted' : 'denied',
+      'ad_user_data': marketing ? 'granted' : 'denied',
+      'ad_personalization': marketing ? 'granted' : 'denied'
+    });
   }
 }
 
