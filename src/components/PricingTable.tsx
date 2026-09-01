@@ -37,9 +37,7 @@ export default function PricingTable({
   const currentYearly = isOffer && activePricing.offerYearlyPrice ? activePricing.offerYearlyPrice : (activePricing.premiumYearly || '9,95 €');
   const strikethroughYearly = isOffer ? (activePricing.strikethroughYearly || activePricing.premiumYearly) : null;
 
-  const currentYearlyTotal = isOffer && activePricing.offerYearlyTotal ? activePricing.offerYearlyTotal : (activePricing.premiumYearlyTotal || '119,40 € / Jahr');
-
-  // Dynamic price calculations & savings
+  // Dynamic price calculations & savings (all annual totals derived from monthly * 12)
   const parsePrice = (str: string | number | undefined | null) => {
     if (!str) return 0;
     const cleaned = String(str).replace(/[^0-9,.]/g, '').replace(',', '.');
@@ -47,22 +45,26 @@ export default function PricingTable({
   };
 
   const monthlyNum = parsePrice(currentMonthly);
-  let yearlyPerMonthNum = parsePrice(currentYearly);
-  let yearlyTotalNum = parsePrice(currentYearlyTotal);
+  const strikethroughMonthlyNum = parsePrice(strikethroughMonthly);
 
-  if (yearlyTotalNum === 0 && yearlyPerMonthNum > 0) {
-    yearlyTotalNum = yearlyPerMonthNum * 12;
-  }
-  if (yearlyPerMonthNum === 0 && yearlyTotalNum > 0) {
-    yearlyPerMonthNum = yearlyTotalNum / 12;
-  }
+  const yearlyPerMonthNum = parsePrice(currentYearly);
+  const strikethroughYearlyPerMonthNum = parsePrice(strikethroughYearly);
 
+  // Auto-calculated yearly totals (x 12)
+  const yearlyTotalNum = yearlyPerMonthNum * 12;
+  const strikethroughYearlyTotalNum = strikethroughYearlyPerMonthNum * 12;
+
+  // Annual savings: comparing monthly payment (monthlyNum * 12) vs yearly one-off (yearlyTotalNum)
   const annualCostIfMonthly = monthlyNum * 12;
   const annualSavings = Math.max(0, annualCostIfMonthly - yearlyTotalNum);
   const annualSavingsPercent = annualCostIfMonthly > 0 ? Math.round((annualSavings / annualCostIfMonthly) * 100) : 0;
 
   const formattedYearlyTotal = `${yearlyTotalNum.toFixed(2).replace('.', ',')} €`;
+  const formattedStrikethroughYearlyTotal = strikethroughYearlyTotalNum > yearlyTotalNum ? `${strikethroughYearlyTotalNum.toFixed(2).replace('.', ',')} €` : null;
+
   const formattedMonthlyEquivalent = `${yearlyPerMonthNum.toFixed(2).replace('.', ',')} €`;
+  const formattedStrikethroughMonthly = strikethroughMonthlyNum > monthlyNum ? `${strikethroughMonthlyNum.toFixed(2).replace('.', ',')} €` : null;
+
   const formattedSavings = `${annualSavings.toFixed(2).replace('.', ',')} €`;
 
   const features = [
@@ -160,24 +162,40 @@ export default function PricingTable({
             <div className="mt-2.5 mb-5">
               {/* Prominent Annual Price */}
               <div className="flex items-baseline gap-2 flex-wrap">
-                {strikethroughYearly && (
-                  <span className="text-gray-400 line-through text-[24px] font-semibold">
-                    {strikethroughYearly}
+                {formattedStrikethroughYearlyTotal && (
+                  <span className="text-gray-400 line-through text-[22px] font-semibold">
+                    {formattedStrikethroughYearlyTotal}
                   </span>
                 )}
                 <span className="font-display text-[38px] font-extrabold text-[#D65F0C] leading-none">
                   {formattedYearlyTotal}
                 </span>
                 <span className="text-[16px] font-semibold text-[#5F6B63]">/ {lang === 'nl' ? 'jaar' : 'Jahr'}</span>
-                <span className="text-[12px] text-[#8A928B] font-medium">{t("pricingPerMonthTax")}</span>
+              </div>
+              <div className="text-[12px] text-[#8A928B] font-medium mt-1">
+                {lang === 'nl' ? 'netto excl. btw' : 'netto zzgl. MwSt.'}
               </div>
 
+              {/* Offer period note */}
+              {isOffer && (
+                <div className="text-[11.5px] text-[#5F6B63] mt-1.5 font-medium bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EDE8E0] inline-block">
+                  {lang === 'nl'
+                    ? `Geldt voor het 1e jaar, daarna regulier ${(parsePrice(activePricing.premiumYearly || '9,95 €') * 12).toFixed(2).replace('.', ',')} € / jaar`
+                    : `Gilt für das 1. Jahr, danach regulär ${(parsePrice(activePricing.premiumYearly || '9,95 €') * 12).toFixed(2).replace('.', ',')} € / Jahr`}
+                </div>
+              )}
+
               {/* Monthly Equivalent Breakdown */}
-              <div className="mt-2 text-[14.5px] text-[#1B211D] font-medium flex items-center gap-1.5 flex-wrap">
+              <div className="mt-2 text-[14px] text-[#1B211D] font-medium flex items-center gap-1.5 flex-wrap">
                 <span>{lang === 'nl' ? 'Komt overeen met' : 'Entspricht nur'}</span>
                 <span className="font-bold text-[#0F4C2E] bg-[#E8F1EB] px-2 py-0.5 rounded text-[13.5px]">
                   {formattedMonthlyEquivalent} / {lang === 'nl' ? 'maand' : 'Monat'}
                 </span>
+                {strikethroughYearlyPerMonthNum > yearlyPerMonthNum && (
+                  <span className="text-[12px] text-[#8A928B]">
+                    ({lang === 'nl' ? 'i.p.v.' : 'statt'} {strikethroughYearly})
+                  </span>
+                )}
               </div>
 
               {/* Dynamic Savings Badge */}
@@ -196,20 +214,28 @@ export default function PricingTable({
             <div className="mt-2.5 mb-5">
               {/* Prominent Monthly Price */}
               <div className="flex items-baseline gap-2 flex-wrap">
-                {strikethroughMonthly && (
-                  <span className="text-gray-400 line-through text-[24px] font-semibold">
-                    {strikethroughMonthly}
+                {formattedStrikethroughMonthly && (
+                  <span className="text-gray-400 line-through text-[22px] font-semibold">
+                    {formattedStrikethroughMonthly}
                   </span>
                 )}
                 <span className="font-display text-[38px] font-extrabold text-[#D65F0C] leading-none">
                   {currentMonthly}
                 </span>
                 <span className="text-[16px] font-semibold text-[#5F6B63]">/ {lang === 'nl' ? 'maand' : 'Monat'}</span>
-                <span className="text-[12px] text-[#8A928B] font-medium">{t("pricingPerMonthTax")}</span>
               </div>
-              <div className="mt-1 text-[13.5px] text-[#5F6B63]">
-                {t("pricingMonthlyCancel")}
+              <div className="mt-1 text-[12px] text-[#8A928B] font-medium">
+                {lang === 'nl' ? 'netto excl. btw · maandelijks opzegbaar' : 'netto zzgl. MwSt. · monatlich kündbar'}
               </div>
+
+              {/* Offer period note */}
+              {isOffer && (
+                <div className="text-[11.5px] text-[#5F6B63] mt-1.5 font-medium bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EDE8E0] inline-block">
+                  {lang === 'nl'
+                    ? `Geldt voor de 1e maand, daarna regulier ${activePricing.premiumMonthly || '12,95 €'} / maand`
+                    : `Gilt für den 1. Monat, danach regulär ${activePricing.premiumMonthly || '12,95 €'} / Monat`}
+                </div>
+              )}
             </div>
           )}
           

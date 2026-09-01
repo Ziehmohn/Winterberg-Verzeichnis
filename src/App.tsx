@@ -1454,7 +1454,7 @@ export default function App() {
         ) : isDatenschutzMode ? (
           <Datenschutz theme={theme} onBack={() => setIsDatenschutzMode(false)} />
         ) : isSubmitMode ? (
-          <SubmitBusiness theme={theme} activeThemeKey={activeThemeKey} onCancel={() => setIsSubmitMode(false)} />
+          <SubmitBusiness theme={theme} activeThemeKey={activeThemeKey} onCancel={() => setIsSubmitMode(false)} pricingSettings={pricingSettings} />
         ) : isAdminMode ? (
           <AdminDashboard 
             theme={theme} 

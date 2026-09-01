@@ -1,16 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../i18n';
-import { ThemeConfig, Business } from '../types';
+import { ThemeConfig, Business, PricingSettings } from '../types';
 import { db } from '../firebase';
 import { categories } from '../data';
 import { doc, setDoc } from 'firebase/firestore';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
+import { PRICING, isPricingOfferActive } from '../config';
 
-export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { theme: ThemeConfig, activeThemeKey: string, onCancel: () => void }) {
+interface SubmitBusinessProps {
+  theme: ThemeConfig;
+  activeThemeKey: string;
+  onCancel: () => void;
+  pricingSettings?: PricingSettings | null;
+}
+
+export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricingSettings }: SubmitBusinessProps) {
   const { currentUser: user, loading } = useAuth();
   const { t } = useTranslation();
+
+  const isOffer = isPricingOfferActive(pricingSettings);
+  const activePricing = pricingSettings || PRICING;
+
+  const currentMonthly = isOffer && activePricing.offerMonthlyPrice ? activePricing.offerMonthlyPrice : (activePricing.premiumMonthly || '12,95 €');
+  const currentYearly = isOffer && activePricing.offerYearlyPrice ? activePricing.offerYearlyPrice : (activePricing.premiumYearly || '9,95 €');
+
+  const parsePrice = (str: string | number | undefined | null) => {
+    if (!str) return 0;
+    const cleaned = String(str).replace(/[^0-9,.]/g, '').replace(',', '.');
+    return parseFloat(cleaned) || 0;
+  };
+
+  const monthlyNum = parsePrice(currentMonthly);
+  const yearlyPerMonthNum = parsePrice(currentYearly);
+  const yearlyTotalNum = yearlyPerMonthNum * 12;
+
+  const formattedMonthly = `${monthlyNum.toFixed(2).replace('.', ',')} € / Monat`;
+  const formattedYearlyTotal = `${yearlyTotalNum.toFixed(2).replace('.', ',')} € / Jahr`;
+  const formattedYearlyPerMonth = `${yearlyPerMonthNum.toFixed(2).replace('.', ',')} €/Mtl.`;
+
   const [formData, setFormData] = useState<Partial<Business>>({
     name: '',
     category: '',
@@ -313,23 +342,23 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                       onClick={(e) => { e.stopPropagation(); setBillingCycle('monthly'); }}
                       className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${billingCycle === 'monthly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
                     >
-                      Monatlich (12,95 €)
+                      Monatlich ({currentMonthly})
                     </button>
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); setBillingCycle('yearly'); }}
                       className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${billingCycle === 'yearly' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63]'}`}
                     >
-                      Jährlich (9,95 €/Mtl.)
+                      Jährlich ({formattedYearlyPerMonth})
                     </button>
                   </div>
                   <div className="font-bold text-[18px] text-[#D65F0C]">
-                    {billingCycle === 'yearly' ? '119,40 € / Jahr' : '12,95 € / Monat'}
+                    {billingCycle === 'yearly' ? formattedYearlyTotal : formattedMonthly}
                     <span className="text-[12px] font-normal text-[#5F6B63]"> netto</span>
                   </div>
                 </div>
               ) : (
-                <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab 9,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat</span></div>
+                <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab {formattedYearlyPerMonth} <span className="text-[12px] font-normal text-[#5F6B63]">netto</span></div>
               )}
               
               <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Hero-Header, Galerie (5 Kat. à 5 Bilder mit SEO-Tags), Öffnungszeiten, Jobs, News, White-Label Widget, Top-Platzierung.</div>

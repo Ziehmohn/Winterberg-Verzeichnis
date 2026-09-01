@@ -27,15 +27,34 @@ export default function AdminPricingManager({
 
   const isLive = isPricingOfferActive(formData);
 
+  const parsePrice = (str: string | number | undefined | null) => {
+    if (!str) return 0;
+    const cleaned = String(str).replace(/[^0-9,.]/g, '').replace(',', '.');
+    return parseFloat(cleaned) || 0;
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
     setErrorMessage('');
     setSavedSuccess(false);
 
+    // Auto-calculate yearly totals (monthly price * 12)
+    const yearlyPerMonth = parsePrice(formData.premiumYearly);
+    const calculatedYearlyTotal = (yearlyPerMonth * 12).toFixed(2).replace('.', ',') + ' € / Jahr';
+
+    const offerYearlyPerMonth = parsePrice(formData.offerYearlyPrice);
+    const calculatedOfferYearlyTotal = (offerYearlyPerMonth * 12).toFixed(2).replace('.', ',') + ' € / Jahr';
+
+    const payload: PricingSettings = {
+      ...formData,
+      premiumYearlyTotal: calculatedYearlyTotal,
+      offerYearlyTotal: calculatedOfferYearlyTotal,
+    };
+
     try {
-      await setDoc(doc(db, 'settings', 'pricing'), formData, { merge: true });
-      onUpdatePricing(formData);
+      await setDoc(doc(db, 'settings', 'pricing'), payload, { merge: true });
+      onUpdatePricing(payload);
       setSavedSuccess(true);
       setTimeout(() => setSavedSuccess(false), 4000);
     } catch (err: any) {
@@ -107,7 +126,7 @@ export default function AdminPricingManager({
           Diese Preise gelten standardmäßig auf der Preiseseite und im gesamten Portal, wenn keine Sonderaktion aktiv ist.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           <div>
             <label className={labelClass}>Monatspreis (monatliche Zahlung) *</label>
             <input
@@ -121,7 +140,7 @@ export default function AdminPricingManager({
           </div>
 
           <div>
-            <label className={labelClass}>Jahrespreis (pro Monat bei Jahreszahlung) *</label>
+            <label className={labelClass}>Jahres-Tarif (pro Monat bei Jahreszahlung) *</label>
             <input
               type="text"
               required
@@ -131,18 +150,16 @@ export default function AdminPricingManager({
               placeholder="9,95 €"
             />
           </div>
+        </div>
 
-          <div>
-            <label className={labelClass}>Jahresgesamtbetrag (Text) *</label>
-            <input
-              type="text"
-              required
-              value={formData.premiumYearlyTotal}
-              onChange={e => setFormData({ ...formData, premiumYearlyTotal: e.target.value })}
-              className={inputClass}
-              placeholder="119,40 € / Jahr"
-            />
-          </div>
+        {/* Automatisch ermittelter Jahrespreis */}
+        <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg p-3 text-xs flex items-center justify-between">
+          <span className="text-[#5F6B63]">
+            💡 Jahresgesamtbetrag (automatisch <strong className="text-[#1B211D]">Monatswert × 12</strong>):
+          </span>
+          <span className="font-bold text-[#0F4C2E] text-sm">
+            {(parsePrice(formData.premiumYearly) * 12).toFixed(2).replace('.', ',')} € / Jahr
+          </span>
         </div>
       </div>
 
@@ -236,62 +253,81 @@ export default function AdminPricingManager({
             </div>
 
             {/* Preise & Streichpreise */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-white rounded-lg border border-orange-200">
-              <div>
-                <label className={labelClass}>Aktions-Monatspreis *</label>
-                <input
-                  type="text"
-                  value={formData.offerMonthlyPrice || ''}
-                  onChange={e => setFormData({ ...formData, offerMonthlyPrice: e.target.value })}
-                  className={inputClass}
-                  placeholder="6,95 €"
-                />
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-white rounded-lg border border-orange-200">
+                <div>
+                  <label className={labelClass}>Aktions-Monatspreis *</label>
+                  <input
+                    type="text"
+                    value={formData.offerMonthlyPrice || ''}
+                    onChange={e => setFormData({ ...formData, offerMonthlyPrice: e.target.value })}
+                    className={inputClass}
+                    placeholder="15,95 €"
+                  />
+                </div>
+
+                <div>
+                  <label className={labelClass}>Streichpreis Monat</label>
+                  <input
+                    type="text"
+                    value={formData.strikethroughMonthly || ''}
+                    onChange={e => setFormData({ ...formData, strikethroughMonthly: e.target.value })}
+                    className={inputClass}
+                    placeholder="19,95 €"
+                  />
+                  <span className="text-[11px] text-[#8A928B] mt-0.5 block">Wird durchgestrichen dargestellt</span>
+                </div>
+
+                <div>
+                  <label className={labelClass}>Aktions-Jahrespreis / Mo *</label>
+                  <input
+                    type="text"
+                    value={formData.offerYearlyPrice || ''}
+                    onChange={e => setFormData({ ...formData, offerYearlyPrice: e.target.value })}
+                    className={inputClass}
+                    placeholder="10,95 €"
+                  />
+                </div>
+
+                <div>
+                  <label className={labelClass}>Streichpreis Jahr / Mo</label>
+                  <input
+                    type="text"
+                    value={formData.strikethroughYearly || ''}
+                    onChange={e => setFormData({ ...formData, strikethroughYearly: e.target.value })}
+                    className={inputClass}
+                    placeholder="13,95 €"
+                  />
+                  <span className="text-[11px] text-[#8A928B] mt-0.5 block">Wird durchgestrichen dargestellt</span>
+                </div>
               </div>
 
-              <div>
-                <label className={labelClass}>Streichpreis Monat *</label>
-                <input
-                  type="text"
-                  value={formData.strikethroughMonthly || ''}
-                  onChange={e => setFormData({ ...formData, strikethroughMonthly: e.target.value })}
-                  className={inputClass}
-                  placeholder="12,95 €"
-                />
-                <span className="text-[11px] text-[#8A928B] mt-0.5 block">Wird durchgestrichen dargestellt</span>
-              </div>
-
-              <div>
-                <label className={labelClass}>Aktions-Jahrespreis / Mo *</label>
-                <input
-                  type="text"
-                  value={formData.offerYearlyPrice || ''}
-                  onChange={e => setFormData({ ...formData, offerYearlyPrice: e.target.value })}
-                  className={inputClass}
-                  placeholder="4,95 €"
-                />
-              </div>
-
-              <div>
-                <label className={labelClass}>Streichpreis Jahr / Mo *</label>
-                <input
-                  type="text"
-                  value={formData.strikethroughYearly || ''}
-                  onChange={e => setFormData({ ...formData, strikethroughYearly: e.target.value })}
-                  className={inputClass}
-                  placeholder="9,95 €"
-                />
-                <span className="text-[11px] text-[#8A928B] mt-0.5 block">Wird durchgestrichen dargestellt</span>
-              </div>
-
-              <div className="sm:col-span-2 lg:col-span-4">
-                <label className={labelClass}>Aktions-Jahresgesamtbetrag (Text)</label>
-                <input
-                  type="text"
-                  value={formData.offerYearlyTotal || ''}
-                  onChange={e => setFormData({ ...formData, offerYearlyTotal: e.target.value })}
-                  className={inputClass}
-                  placeholder="59,40 € / Jahr"
-                />
+              {/* Automatische Berechnungsvorschau für die Aktion */}
+              <div className="bg-orange-50/80 border border-orange-200 rounded-lg p-3 text-xs text-[#1B211D] grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <span className="text-[#5F6B63] block">Aktions-Jahrespreis (× 12):</span>
+                  <strong className="text-[#D65F0C] text-sm">
+                    {(parsePrice(formData.offerYearlyPrice) * 12).toFixed(2).replace('.', ',')} € / Jahr
+                  </strong>
+                </div>
+                {parsePrice(formData.strikethroughYearly) > 0 && (
+                  <div>
+                    <span className="text-[#5F6B63] block">Streich-Jahrespreis (× 12):</span>
+                    <strong className="text-gray-500 line-through text-sm">
+                      {(parsePrice(formData.strikethroughYearly) * 12).toFixed(2).replace('.', ',')} € / Jahr
+                    </strong>
+                  </div>
+                )}
+                <div>
+                  <span className="text-[#5F6B63] block">Ersparnis im Jahr:</span>
+                  <strong className="text-emerald-700 text-sm">
+                    {Math.max(
+                      0,
+                      ((parsePrice(formData.offerMonthlyPrice) || parsePrice(formData.premiumMonthly)) * 12) -
+                        (parsePrice(formData.offerYearlyPrice) * 12)
+                    ).toFixed(2).replace('.', ',')} €
+                  </strong>
+                </div>
               </div>
             </div>
           </div>
