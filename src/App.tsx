@@ -843,10 +843,19 @@ export default function App() {
     const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     
     const lowerSearch = searchQuery.toLowerCase().trim();
-    const matchesServices = bus.isPremium && ((Array.isArray(bus.services) && bus.services.some(s => s.toLowerCase().includes(lowerSearch))) ||
-                            (Array.isArray(bus.services_nl) && bus.services_nl.some(s => s.toLowerCase().includes(lowerSearch))));
-    const matchesProducts = bus.isPremium && ((Array.isArray(bus.products) && bus.products.some(p => p.toLowerCase().includes(lowerSearch))) ||
-                            (Array.isArray(bus.products_nl) && bus.products_nl.some(p => p.toLowerCase().includes(lowerSearch))));
+    const allowedServices = bus.isPremium ? (bus.services || []) : (bus.services || []).slice(0, 3);
+    const allowedServicesNl = bus.isPremium ? (bus.services_nl || []) : (bus.services_nl || []).slice(0, 3);
+    const matchesServices = !!lowerSearch && (
+      allowedServices.some(s => s.toLowerCase().includes(lowerSearch)) ||
+      allowedServicesNl.some(s => s.toLowerCase().includes(lowerSearch))
+    );
+
+    const allowedProducts = bus.isPremium ? (bus.products || []) : (bus.products || []).slice(0, 3);
+    const allowedProductsNl = bus.isPremium ? (bus.products_nl || []) : (bus.products_nl || []).slice(0, 3);
+    const matchesProducts = !!lowerSearch && (
+      allowedProducts.some(p => p.toLowerCase().includes(lowerSearch)) ||
+      allowedProductsNl.some(p => p.toLowerCase().includes(lowerSearch))
+    );
     const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
                             !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
     
@@ -1926,8 +1935,8 @@ export default function App() {
                             </div>
                           )}
 
-                          {/* Services Tags (Premium feature) */}
-                          {bus.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
+                          {/* Services Tags (Max 3 on card, +X for Premium if more) */}
+                          {Array.isArray(localized.services) && localized.services.length > 0 && (
                             <div className="flex items-center gap-1.5 flex-wrap mb-2.5">
                               {localized.services.slice(0, 3).map((svc, sIdx) => {
                                 const isMatched = searchQuery && (svc.toLowerCase().includes(searchQuery.toLowerCase().trim()) || (bus.services && bus.services.some(orig => orig.toLowerCase().includes(searchQuery.toLowerCase().trim()))));
@@ -1944,7 +1953,7 @@ export default function App() {
                                   </span>
                                 );
                               })}
-                              {localized.services.length > 3 && (
+                              {bus.isPremium && localized.services.length > 3 && (
                                 <span className="text-[11px] text-[#8A928B] font-medium">
                                   +{localized.services.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
                                 </span>
@@ -1952,8 +1961,8 @@ export default function App() {
                             </div>
                           )}
 
-                          {/* Products Tags (Premium feature) */}
-                          {bus.isPremium && Array.isArray(localized.products) && localized.products.length > 0 && (
+                          {/* Products Tags (Max 3 on card, +X for Premium if more) */}
+                          {Array.isArray(localized.products) && localized.products.length > 0 && (
                             <div className="flex items-center gap-1.5 flex-wrap mb-3.5">
                               {localized.products.slice(0, 3).map((prod, pIdx) => {
                                 const isMatched = searchQuery && (prod.toLowerCase().includes(searchQuery.toLowerCase().trim()) || (bus.products && bus.products.some(orig => orig.toLowerCase().includes(searchQuery.toLowerCase().trim()))));
@@ -1970,7 +1979,7 @@ export default function App() {
                                   </span>
                                 );
                               })}
-                              {localized.products.length > 3 && (
+                              {bus.isPremium && localized.products.length > 3 && (
                                 <span className="text-[11px] text-[#8A928B] font-medium">
                                   +{localized.products.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
                                 </span>

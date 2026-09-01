@@ -860,7 +860,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <div className="border-b border-orange-200/50 pb-5">
               <div className="flex items-center justify-between mb-1">
                 <label className={labelClass}>
-                  {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (Niederländisch)'} (Premium-Feature)
+                  {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (Niederländisch)'} (Bis zu 3 im Basiseintrag / bis zu 15 im Premium-Paket)
                 </label>
                 <span className="text-xs text-[#5F6B63]">
                   {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
@@ -963,7 +963,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <div className="border-b border-orange-200/50 pb-5">
               <div className="flex items-center justify-between mb-1">
                 <label className={labelClass}>
-                  {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (Niederländisch)'} (Premium-Feature)
+                  {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (Niederländisch)'} (Bis zu 3 im Basiseintrag / bis zu 15 im Premium-Paket)
                 </label>
                 <span className="text-xs text-[#5F6B63]">
                   {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}

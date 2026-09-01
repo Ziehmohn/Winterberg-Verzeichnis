@@ -22,6 +22,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
     status: 'pending'
   });
   const [servicesInput, setServicesInput] = useState('');
+  const [productsInput, setProductsInput] = useState('');
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'premium'>('free');
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,11 +58,17 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
       .map(s => s.trim())
       .filter(Boolean);
 
+    const parsedProducts = productsInput
+      .split(',')
+      .map(p => p.trim())
+      .filter(Boolean);
+
     const newId = 'b_' + Date.now().toString(36);
     const dataToSubmit = {
       ...formData,
       id: newId,
       services: parsedServices.length > 0 ? parsedServices : (formData.services || []),
+      products: parsedProducts.length > 0 ? parsedProducts : (formData.products || []),
       ownerId: user?.uid || null,
       ownerEmail: user?.email || null,
       isPremium: selectedPlan === 'premium'
@@ -244,19 +251,35 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
           <textarea required rows={4} placeholder="Was macht Ihr Unternehmen besonders?" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B] resize-y"></textarea>
         </label>
 
-        <label className="grid gap-[7px] text-[14px] font-semibold">
-          Dienstleistungen & Produkte (für die Volltextsuche)
-          <span className="text-[12.5px] font-normal text-[#5F6B63]">
-            Geben Sie hier konkrete Angebote ein (z. B. <em>Schuhe, Ski-Verleih, Frühstück, Reparatur, Dacharbeiten</em>), damit Kunden Sie bei der Suche nach Produkten und Dienstleistungen sofort finden. Kommagetrennt.
-          </span>
-          <input 
-            type="text" 
-            placeholder="z. B. Schuhe, Wanderausrüstung, Sportmode, Skiverleih" 
-            value={servicesInput} 
-            onChange={e => setServicesInput(e.target.value)} 
-            className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" 
-          />
-        </label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[18px]">
+          <label className="grid gap-[7px] text-[14px] font-semibold">
+            Leistungen & Services
+            <span className="text-[12px] font-normal text-[#5F6B63]">
+              z. B. <em>Reparatur, Beratung, Montage, Wartung, Lieferservice</em> (Kommagetrennt. <strong>Basiseintrag: bis zu 3</strong>, <strong>Premium: bis zu 15</strong>).
+            </span>
+            <input 
+              type="text" 
+              placeholder="z. B. Reparatur, Beratung, Montage" 
+              value={servicesInput} 
+              onChange={e => setServicesInput(e.target.value)} 
+              className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" 
+            />
+          </label>
+
+          <label className="grid gap-[7px] text-[14px] font-semibold">
+            Produkte & Angebote
+            <span className="text-[12px] font-normal text-[#5F6B63]">
+              z. B. <em>E-Bikes, Skier, Schuhe, Ersatzteile, Gutscheine</em> (Kommagetrennt. <strong>Basiseintrag: bis zu 3</strong>, <strong>Premium: bis zu 15</strong>).
+            </span>
+            <input 
+              type="text" 
+              placeholder="z. B. E-Bikes, Ski-Ausrüstung, Zubehör" 
+              value={productsInput} 
+              onChange={e => setProductsInput(e.target.value)} 
+              className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" 
+            />
+          </label>
+        </div>
         
         <div className="grid gap-[7px] text-[14px] font-semibold mt-2">
           Eintragstyp wählen
@@ -270,7 +293,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                 {selectedPlan === 'free' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
               <div className="font-bold text-[18px] mb-2">0,00 € <span className="text-[12px] font-normal text-[#5F6B63]">dauerhaft</span></div>
-              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, kostenloses Trust-Siegel für Ihre Website.</div>
+              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, <strong>bis zu 3 Leistungen & 3 Produkte</strong>, kostenloses Trust-Siegel für Ihre Website.</div>
             </div>
             
             <div 
@@ -309,7 +332,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel }: { th
                 <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab 9,95 € <span className="text-[12px] font-normal text-[#5F6B63]">/ Monat</span></div>
               )}
               
-              <div className="text-[13px] text-[#5F6B63]">Ausführliches Profil, Galerie, Jobs, White-Label Bewertungs-Widget, Top-Platzierung.</div>
+              <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Öffnungszeiten, Galerie, Jobs, News, White-Label Bewertungs-Widget, Top-Platzierung.</div>
             </div>
           </div>
         </div>

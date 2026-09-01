@@ -285,22 +285,36 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {business.isPremium && Array.isArray(localized.services) && localized.services.length > 0 && (
+          {Array.isArray(localized.services) && localized.services.length > 0 && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Diensten & Services' : 'Leistungen & Services'}</h2>
+              <div className="flex items-center justify-between mb-3.5">
+                <h2 className="font-display text-[22px] font-semibold">{lang === 'nl' ? 'Diensten & Services' : 'Leistungen & Services'}</h2>
+                {!business.isPremium && localized.services.length > 3 && (
+                  <span className="text-[12px] text-[#5F6B63] bg-[#FAF8F5] border border-[#EDE8E0] px-2.5 py-0.5 rounded">
+                    {lang === 'nl' ? '3 van ' + localized.services.length + ' getoond (Basis)' : '3 von ' + localized.services.length + ' angezeigt (Basis)'}
+                  </span>
+                )}
+              </div>
               <div className="flex gap-2 flex-wrap mb-[30px]">
-                {localized.services.map((svc, i) => (
+                {(business.isPremium ? localized.services.slice(0, 15) : localized.services.slice(0, 3)).map((svc, i) => (
                   <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] border border-[#0F4C2E]/15 rounded-md px-3 py-1.5 text-[14px] font-medium">{svc}</span>
                 ))}
               </div>
             </>
           )}
 
-          {business.isPremium && Array.isArray(localized.products) && localized.products.length > 0 && (
+          {Array.isArray(localized.products) && localized.products.length > 0 && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Producten & Aanbod' : 'Produkte & Angebote'}</h2>
+              <div className="flex items-center justify-between mb-3.5">
+                <h2 className="font-display text-[22px] font-semibold">{lang === 'nl' ? 'Producten & Aanbod' : 'Produkte & Angebote'}</h2>
+                {!business.isPremium && localized.products.length > 3 && (
+                  <span className="text-[12px] text-[#5F6B63] bg-[#FAF8F5] border border-[#EDE8E0] px-2.5 py-0.5 rounded">
+                    {lang === 'nl' ? '3 van ' + localized.products.length + ' getoond (Basis)' : '3 von ' + localized.products.length + ' angezeigt (Basis)'}
+                  </span>
+                )}
+              </div>
               <div className="flex gap-2 flex-wrap mb-[30px]">
-                {localized.products.map((prod, i) => (
+                {(business.isPremium ? localized.products.slice(0, 15) : localized.products.slice(0, 3)).map((prod, i) => (
                   <span key={i} className="bg-[#FFF1E4] text-[#D65F0C] border border-[#F2761B]/25 rounded-md px-3 py-1.5 text-[14px] font-medium">{prod}</span>
                 ))}
               </div>
