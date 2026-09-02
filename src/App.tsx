@@ -2119,6 +2119,42 @@ export default function App() {
                     </a>
                   </div>
                 )}
+
+                {(activeCategory === 'Apotheken' || activeCategory === 'Ärzte & Praxen' || activeCategory === 'Zahnärzte') && (
+                  <div className="w-full bg-gradient-to-r from-[#991B1B] to-[#5C0F0F] text-white rounded-xl p-4 flex items-center justify-between gap-3 shadow-md border border-red-700">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-white/15 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center font-bold shrink-0">
+                        <Siren className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-bold text-sm text-white block leading-tight">
+                            {lang === 'nl' ? 'Nooddiensten' : 'Notdienste & Notruf'}
+                          </span>
+                          <span className="text-[10px] bg-red-400/30 text-red-200 font-bold px-1.5 py-0.2 rounded border border-red-300/30">
+                            24/7 Live
+                          </span>
+                        </div>
+                        <span className="text-[11.5px] text-red-100/90 block mt-0.5">
+                          {lang === 'nl' ? 'Apotheek-spoeddienst & ziekenhuizen' : 'Apotheken-Notdienst, Notaufnahmen & 112'}
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        resetToDirectory();
+                        setIsEmergencyMode(true);
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="inline-flex items-center gap-1 bg-white text-red-700 hover:bg-red-50 px-3.5 py-2 rounded-lg font-bold text-xs shrink-0 no-underline shadow-sm"
+                    >
+                      <span>{lang === 'nl' ? 'Bekijken →' : 'Ansehen →'}</span>
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Directory Grid or Map */}
@@ -2507,6 +2543,50 @@ export default function App() {
                     >
                       <Fuel className="w-4 h-4" />
                       <span>{lang === 'nl' ? 'Spritpreise ansehen →' : 'Spritpreise ansehen →'}</span>
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {/* Special Notdienste CTA Card under advertisement */}
+              {(activeCategory === 'Apotheken' || activeCategory === 'Ärzte & Praxen' || activeCategory === 'Zahnärzte') && (
+                <div className="w-full rounded-2xl bg-gradient-to-b from-[#991B1B] via-[#7F1D1D] to-[#450A0A] text-white p-5 text-center shadow-lg border border-red-700 flex flex-col gap-3 transition-all relative overflow-hidden group">
+                  {/* Subtle decorative glow */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/20 rounded-full blur-2xl pointer-events-none -mr-8 -mt-8" />
+                  
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="inline-flex items-center gap-1.5 bg-red-500/25 backdrop-blur-sm text-red-200 border border-red-400/40 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase mb-3 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+                      {lang === 'nl' ? '24/7 Spoedhulp' : '24/7 Notfall-Auskunft'}
+                    </div>
+
+                    <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-md text-white border border-white/25 flex items-center justify-center mb-2.5 shadow-sm group-hover:scale-105 transition-transform">
+                      <Siren className="w-6 h-6 text-white" />
+                    </div>
+
+                    <h4 className="font-display font-bold text-[17px] text-white mb-1.5 leading-snug">
+                      {lang === 'nl' ? 'Nooddiensten & Notfall' : 'Notdienste & Notfallnummern'}
+                    </h4>
+
+                    <p className="text-[12.5px] text-red-100/90 mb-4 leading-relaxed max-w-[210px] mx-auto">
+                      {lang === 'nl'
+                        ? 'Actuele apotheek-spoeddienst, ziekenhuizen met spoedopname en 112 leidraad.'
+                        : 'Tagesaktueller Apotheken-Notdienst, Notaufnahmen im Sauerland & Notruf-Leitfaden.'}
+                    </p>
+
+                    <a
+                      href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        resetToDirectory();
+                        setIsEmergencyMode(true);
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-red-50 text-red-700 py-3 px-4 rounded-xl font-bold text-[13.5px] shadow-md hover:shadow-lg transition-all cursor-pointer no-underline group-hover:translate-y-[-1px]"
+                    >
+                      <Siren className="w-4 h-4" />
+                      <span>{lang === 'nl' ? 'Nooddiensten openen →' : 'Notdienste ansehen →'}</span>
                     </a>
                   </div>
                 </div>
