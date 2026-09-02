@@ -74,7 +74,8 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
           setPosition([51.1963, 8.5244]);
         }
       } catch {
-        setError(true);
+        // Fallback to Winterberg city center on network error or rate limit
+        setPosition([51.1963, 8.5244]);
       } finally {
         setIsLoading(false);
       }
@@ -93,7 +94,7 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
     );
   }
 
-  if (error || !position) {
+  if (!position) {
     return null;
   }
 
