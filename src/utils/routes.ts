@@ -364,3 +364,54 @@ export function getLegacyCategoryRedirect(pathname: string, categoriesList: Arra
 
   return `${prefix}/${newCatSlug}/${subSlug}${restPath}`;
 }
+
+export interface SystemRedirectEntry {
+  id: string;
+  source: string;
+  target: string;
+  isSystem: boolean;
+  type: 'Kategorie' | 'Unternehmen';
+  lang: 'de' | 'nl';
+}
+
+export function getSystemRedirects(
+  categoriesList: Array<{ name: string; subcategories: string[] }>,
+  businessesList: Array<{ name: string; subcategory?: string }>
+): SystemRedirectEntry[] {
+  const redirects: SystemRedirectEntry[] = [];
+
+  for (const lang of ['de', 'nl'] as const) {
+    const prefix = lang === 'nl' ? '/nl' : '';
+    for (const [subName, oldCatName] of Object.entries(LEGACY_SUBCATEGORY_PARENTS)) {
+      const newCatName = categoriesList.find(c => c.subcategories.includes(subName))?.name;
+      if (!newCatName) continue;
+      const oldCatSlug = getCategorySlug(oldCatName, lang);
+      const newCatSlug = getCategorySlug(newCatName, lang);
+      const subSlug = getSubcategorySlug(subName, lang);
+
+      redirects.push({
+        id: `sys-${lang}-${oldCatSlug}-${subSlug}`,
+        source: `${prefix}/${oldCatSlug}/${subSlug}`,
+        target: `${prefix}/${newCatSlug}/${subSlug}`,
+        isSystem: true,
+        type: 'Kategorie',
+        lang,
+      });
+
+      const subBusinesses = businessesList.filter(b => b.subcategory === subName);
+      for (const b of subBusinesses) {
+        const bSlug = slugify(b.name);
+        redirects.push({
+          id: `sys-${lang}-${oldCatSlug}-${subSlug}-${bSlug}`,
+          source: `${prefix}/${oldCatSlug}/${subSlug}/${bSlug}`,
+          target: `${prefix}/${newCatSlug}/${subSlug}/${bSlug}`,
+          isSystem: true,
+          type: 'Unternehmen',
+          lang,
+        });
+      }
+    }
+  }
+
+  return redirects;
+}

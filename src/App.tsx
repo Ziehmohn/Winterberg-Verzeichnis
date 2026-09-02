@@ -41,7 +41,8 @@ import {
   getBusinessPath,
   slugify,
   STATIC_PAGE_SLUGS,
-  getLegacyCategoryRedirect
+  getLegacyCategoryRedirect,
+  getSystemRedirects
 } from './utils/routes';
 import { getLocalizedBusiness } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
@@ -1719,8 +1720,8 @@ export default function App() {
                   <h2 className="font-display text-[34px] font-bold m-0 mb-[6px]">{lang === 'nl' ? 'Categorieën' : 'Kategorien'}</h2>
                   <p className="text-[16px] text-[#5F6B63] m-0 mb-[30px]">
                     {lang === 'nl' 
-                      ? `Zes hoofdsectoren, ${categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} branches — vind precies wat u zoekt.`
-                      : `Sechs Bereiche, ${categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} Branchen — such dir aus, was du brauchst.`}
+                      ? `${categories.length} hoofdsectoren, ${categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} branches — vind precies wat u zoekt.`
+                      : `${categories.length} Bereiche, ${categories.reduce((acc, cat) => acc + cat.subcategories.length, 0)} Branchen — such dir aus, was du brauchst.`}
                   </p>
                   
                   <div className="mb-16">
@@ -3784,16 +3785,25 @@ function NewsAdminPanel() {
 }
 
 
-function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
-  const [redirects, setRedirects] = useState<any[]>([]);
+function RedirectsAdminPanel({ theme, activeThemeKey, categories: catsProp, businesses: busProp }: any) {
+  const [firestoreRedirects, setFirestoreRedirects] = useState<any[]>([]);
   const [source, setSource] = useState('');
   const [target, setTarget] = useState('');
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'system' | 'custom'>('all');
+
+  const categoriesList = catsProp || categories;
+  const businessesList = busProp || initialBusinesses;
+
+  const systemRedirects = useMemo(() => {
+    return getSystemRedirects(categoriesList, businessesList);
+  }, [categoriesList, businessesList]);
 
   const loadRedirects = async () => {
     try {
       const snap = await getDocs(collection(db, 'redirects'));
-      setRedirects(snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() })));
+      setFirestoreRedirects(snap.docs.map((doc: any) => ({ id: doc.id, isSystem: false, type: 'Manuell', ...doc.data() })));
     } catch(e) {
       console.error(e);
     } finally {
@@ -3829,44 +3839,163 @@ function RedirectsAdminPanel({ theme, activeThemeKey }: any) {
     }
   };
 
+  const allRedirects = useMemo(() => {
+    const combined = [
+      ...firestoreRedirects,
+      ...systemRedirects.map(sr => ({ ...sr, id: sr.id }))
+    ];
+    return combined;
+  }, [firestoreRedirects, systemRedirects]);
+
+  const filteredRedirects = useMemo(() => {
+    return allRedirects.filter(r => {
+      if (activeFilter === 'system' && !r.isSystem) return false;
+      if (activeFilter === 'custom' && r.isSystem) return false;
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      return (r.source && r.source.toLowerCase().includes(q)) || (r.target && r.target.toLowerCase().includes(q));
+    });
+  }, [allRedirects, activeFilter, searchQuery]);
+
   return (
     <div>
-      <h3 className="text-xl font-bold mb-4 font-display">301 Redirects (Weiterleitungen)</h3>
-      <p className="text-sm opacity-70 mb-6 max-w-2xl">Hier können Sie permanente (301) Weiterleitungen einrichten. Dies ist nützlich, wenn sich eine URL ändert und Sie sicherstellen möchten, dass bestehende Links weiterhin funktionieren.</p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h3 className="text-xl font-bold mb-1 font-display">301 Redirects (Weiterleitungen)</h3>
+          <p className="text-sm opacity-70 max-w-2xl">
+            Hier werden alle permanenten (301) Weiterleitungen verwaltet – inklusive der automatisch generierten System-Redirects für umgezogene Kategorien & Betriebe.
+          </p>
+        </div>
+      </div>
+
+      {/* KPI Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        <div className="bg-black/5 border border-black/10 rounded-xl p-4">
+          <div className="text-xs uppercase font-bold opacity-60 mb-1">Gesamt Aktive 301-Redirects</div>
+          <div className="text-2xl font-black font-mono text-[#0F4C2E]">{allRedirects.length}</div>
+          <div className="text-xs opacity-70 mt-1">In Express, static _redirects & SSG</div>
+        </div>
+        <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-4">
+          <div className="text-xs uppercase font-bold text-emerald-800 mb-1">Kategorie-Umzug (System)</div>
+          <div className="text-2xl font-black font-mono text-emerald-700">{systemRedirects.length}</div>
+          <div className="text-xs text-emerald-800/80 mt-1">Automatisch 301 abgesichert (DE & NL)</div>
+        </div>
+        <div className="bg-blue-50/70 border border-blue-200/80 rounded-xl p-4">
+          <div className="text-xs uppercase font-bold text-blue-800 mb-1">Manuell (Firestore)</div>
+          <div className="text-2xl font-black font-mono text-blue-700">{firestoreRedirects.length}</div>
+          <div className="text-xs text-blue-800/80 mt-1">Individuell angelegte Weiterleitungen</div>
+        </div>
+      </div>
       
-      <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-3 items-end mb-8 bg-black/5 p-5 rounded-md border border-black/10">
+      {/* Form for manual redirects */}
+      <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-3 items-end mb-8 bg-black/5 p-5 rounded-xl border border-black/10">
         <div className="flex-1 w-full">
           <label className="block text-xs font-bold uppercase mb-1.5 opacity-70">Ausgangs-URL (z.B. /alte-seite)</label>
-          <input value={source} onChange={e=>setSource(e.target.value)} required placeholder="/alte-seite" className="w-full px-3 py-2 border border-black/10 rounded focus:outline-none" />
+          <input value={source} onChange={e=>setSource(e.target.value)} required placeholder="/alte-seite" className="w-full px-3 py-2 bg-white border border-black/10 rounded focus:outline-none text-sm font-mono" />
         </div>
         <div className="flex-1 w-full">
           <label className="block text-xs font-bold uppercase mb-1.5 opacity-70">Ziel-URL (z.B. /neue-seite)</label>
-          <input value={target} onChange={e=>setTarget(e.target.value)} required placeholder="/neue-seite" className="w-full px-3 py-2 border border-black/10 rounded focus:outline-none" />
+          <input value={target} onChange={e=>setTarget(e.target.value)} required placeholder="/neue-seite" className="w-full px-3 py-2 bg-white border border-black/10 rounded focus:outline-none text-sm font-mono" />
         </div>
         <button type="submit" className={`w-full md:w-auto px-6 py-2 text-sm font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}>Hinzufügen</button>
       </form>
+
+      {/* Filter Tabs & Search Bar */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+        <div className="flex items-center gap-1.5 bg-black/5 p-1 rounded-lg border border-black/10 text-xs font-bold">
+          <button
+            type="button"
+            onClick={() => setActiveFilter('all')}
+            className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${activeFilter === 'all' ? 'bg-white shadow-xs text-[#1B211D]' : 'opacity-60 hover:opacity-100'}`}
+          >
+            Alle ({allRedirects.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveFilter('system')}
+            className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${activeFilter === 'system' ? 'bg-white shadow-xs text-emerald-800' : 'opacity-60 hover:opacity-100'}`}
+          >
+            System-Kategorien ({systemRedirects.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveFilter('custom')}
+            className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${activeFilter === 'custom' ? 'bg-white shadow-xs text-blue-800' : 'opacity-60 hover:opacity-100'}`}
+          >
+            Manuell ({firestoreRedirects.length})
+          </button>
+        </div>
+
+        <div className="relative w-full sm:w-72">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="URLs filtern..."
+            className="w-full pl-3 pr-8 py-1.5 text-xs bg-white border border-black/15 rounded-lg focus:outline-none focus:border-[#0F4C2E]"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs opacity-50 hover:opacity-100"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
       
       {loading ? (
-        <p className="opacity-70">Lade Weiterleitungen...</p>
-      ) : redirects.length === 0 ? (
-        <p className="text-sm opacity-70 italic">Noch keine Weiterleitungen vorhanden.</p>
+        <p className="opacity-70 text-sm py-8 text-center">Lade Weiterleitungen...</p>
+      ) : filteredRedirects.length === 0 ? (
+        <p className="text-sm opacity-70 italic py-8 text-center">Keine Weiterleitungen gefunden.</p>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto border border-black/10 rounded-xl bg-white shadow-2xs">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-black/10 opacity-70">
-                <th className="py-3 px-4 font-medium text-sm">Ausgangs-URL</th>
-                <th className="py-3 px-4 font-medium text-sm">Ziel-URL</th>
-                <th className="py-3 px-4 font-medium text-sm text-right">Aktion</th>
+              <tr className="border-b border-black/10 bg-black/5 opacity-80 text-xs uppercase tracking-wider font-bold">
+                <th className="py-3 px-4 font-bold">Sprache</th>
+                <th className="py-3 px-4 font-bold">Ausgangs-URL (Alt)</th>
+                <th className="py-3 px-4 font-bold">Ziel-URL (Neu)</th>
+                <th className="py-3 px-4 font-bold">Typ / Status</th>
+                <th className="py-3 px-4 font-bold text-right">Aktion</th>
               </tr>
             </thead>
-            <tbody>
-              {redirects.map(r => (
-                <tr key={r.id} className="border-b border-black/10 hover:bg-black/5 transition-colors">
-                  <td className="py-3 px-4 text-sm font-medium">{r.source}</td>
-                  <td className="py-3 px-4 text-sm opacity-80">{r.target}</td>
-                  <td className="py-3 px-4 text-right">
-                    <button onClick={() => handleDelete(r.id)} className="text-red-500 hover:text-red-700 p-2 transition-colors rounded hover:bg-red-50" title="Löschen"><Trash2 className="w-4 h-4"/></button>
+            <tbody className="divide-y divide-black/5">
+              {filteredRedirects.map(r => (
+                <tr key={r.id} className="hover:bg-black/2 transition-colors text-xs">
+                  <td className="py-2.5 px-4 whitespace-nowrap">
+                    <span className="text-base select-none" title={r.source?.startsWith('/nl') ? 'Niederländisch' : 'Deutsch'}>
+                      {r.source?.startsWith('/nl') ? '🇳🇱' : '🇩🇪'}
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-4 font-mono font-medium text-[#B91C1C]">
+                    {r.source}
+                  </td>
+                  <td className="py-2.5 px-4 font-mono font-medium text-[#0F4C2E]">
+                    <span className="text-black/40 mr-1.5">➔</span>
+                    {r.target}
+                  </td>
+                  <td className="py-2.5 px-4 whitespace-nowrap">
+                    {r.isSystem ? (
+                      <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded text-[11px] font-bold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        301 System ({r.type || 'Kategorie'})
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded text-[11px] font-bold">
+                        301 Manuell
+                      </span>
+                    )}
+                  </td>
+                  <td className="py-2.5 px-4 text-right whitespace-nowrap">
+                    {r.isSystem ? (
+                      <span className="text-[11px] opacity-40 font-medium italic">Aktiv (Geschützt)</span>
+                    ) : (
+                      <button onClick={() => handleDelete(r.id)} className="text-red-500 hover:text-red-700 p-1.5 transition-colors rounded hover:bg-red-50" title="Löschen">
+                        <Trash2 className="w-3.5 h-3.5"/>
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -4347,7 +4476,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         ) : activeTab === 'werbung' ? (
           <AdminAdsManager ads={ads} setAds={setAds} businesses={businesses} currentUser={currentUser} />
         ) : activeTab === 'redirects' ? (
-          <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
+          <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} categories={categories} businesses={businesses} />
         ) : activeTab === 'scripts' ? (
           <ScriptManager theme={theme} activeThemeKey={activeThemeKey} />
         ) : (
