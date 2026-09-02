@@ -71,6 +71,7 @@ export const STATIC_PAGE_SLUGS = {
   submit: { de: 'eintragen', nl: 'bedrijf-aanmelden' },
   pricing: { de: 'preise', nl: 'prijzen' },
   fuelPrices: { de: 'aktuelle-spritpreise', nl: 'actuele-brandstofprijzen' },
+  emergency: { de: 'notdienste', nl: 'nooddiensten' },
   impressum: { de: 'impressum', nl: 'colofon' },
   datenschutz: { de: 'datenschutz', nl: 'privacy' },
   agb: { de: 'agb', nl: 'algemene-voorwaarden' },
@@ -153,7 +154,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -248,6 +249,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'fuel-prices':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.fuelPrices[targetLang]}`;
+
+    case 'emergency':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.emergency[targetLang]}`;
 
     case 'impressum':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.impressum[targetLang]}`;

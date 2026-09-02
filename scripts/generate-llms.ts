@@ -40,6 +40,8 @@ const llmsTxtContent = `# Das Winterberg Verzeichnis | Het Winterberg Overzicht
 - [Veelgestelde Vragen (NL)](https://www.winterberg-verzeichnis.de/nl/veelgestelde-vragen): Veelgestelde vragen over bedrijven en toerisme
 - [Aktuelle Spritpreise & Tankrechner (DE)](https://www.winterberg-verzeichnis.de/aktuelle-spritpreise): Live-Spritpreisvergleich (Diesel, E10, E5) und Tankkosten-Rechner für Winterberg
 - [Actuele Brandstofprijzen (NL)](https://www.winterberg-verzeichnis.de/nl/actuele-brandstofprijzen): Live brandstofprijzen en tankcalculator voor Winterberg
+- [Notdienste & Notfallnummern (DE)](https://www.winterberg-verzeichnis.de/notdienste): 24/7 Notruf (112, 110, 116 117), tagesaktueller Apotheken-Notdienst (aponet.de / ABDA) und Krankenhäuser
+- [Nooddiensten & Apotheken (NL)](https://www.winterberg-verzeichnis.de/nl/nooddiensten): Alarmnummers, apotheek-spoeddienst (aponet.de) en ziekenhuizen in Winterberg
 - [Preise & Pakete](https://www.winterberg-verzeichnis.de/preise): Kostenloser Basiseintrag und Premium-Pakete für lokale Unternehmen
 - [Unternehmen eintragen](https://www.winterberg-verzeichnis.de/eintragen): Neues Unternehmen oder Handwerksbetrieb registrieren
 

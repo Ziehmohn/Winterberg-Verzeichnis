@@ -38,7 +38,7 @@ entries.push({
 });
 
 // 3. Static Pages
-const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'fuelPrices', 'impressum', 'datenschutz', 'agb', 'grounding'] as const;
+const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'fuelPrices', 'emergency', 'impressum', 'datenschutz', 'agb', 'grounding'] as const;
 staticPages.forEach(p => {
   entries.push({
     locDe: `${baseUrl}/${STATIC_PAGE_SLUGS[p].de}`,

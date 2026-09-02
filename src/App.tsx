@@ -53,6 +53,7 @@ const SubmitBusiness = React.lazy(() => import('./components/SubmitBusiness'));
 const PricingTable = React.lazy(() => import('./components/PricingTable'));
 const AdminPricingManager = React.lazy(() => import('./components/AdminPricingManager'));
 const FuelPricesPage = React.lazy(() => import('./components/FuelPricesPage'));
+const EmergencyPage = React.lazy(() => import('./components/EmergencyPage'));
 const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
 const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
 const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
@@ -134,6 +135,7 @@ export default function App() {
   let initialGroundingMode = false;
   let initialPricingMode = false;
   let initialFuelPricesMode = false;
+  let initialEmergencyMode = false;
   let initialSubmitMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
@@ -214,6 +216,8 @@ export default function App() {
         initialPricingMode = true;
       } else if (decodedPart1 === 'aktuelle-spritpreise' || decodedPart1 === 'spritpreise' || decodedPart1 === 'actuele-brandstofprijzen' || decodedPart1 === 'brandstofprijzen') {
         initialFuelPricesMode = true;
+      } else if (decodedPart1 === 'notdienste' || decodedPart1 === 'notdienst' || decodedPart1 === 'nooddiensten' || decodedPart1 === 'nooddienst' || decodedPart1 === 'apotheken-notdienst') {
+        initialEmergencyMode = true;
       } else if (decodedPart1 === 'eintragen' || decodedPart1 === 'unternehmen-eintragen' || decodedPart1 === 'bedrijf-aanmelden') {
         initialSubmitMode = true;
       } else {
@@ -369,6 +373,7 @@ export default function App() {
     if (isSubmitMode) return { view: 'submit' };
     if (isPricingMode) return { view: 'pricing' };
     if (isFuelPricesMode) return { view: 'fuel-prices' };
+    if (isEmergencyMode) return { view: 'emergency' };
     if (isImpressumMode) return { view: 'impressum' };
     if (isDatenschutzMode) return { view: 'datenschutz' };
     if (isAGBMode) return { view: 'agb' };
@@ -411,6 +416,8 @@ export default function App() {
     if (p === '/faq' || p === '/faqs' || p === '/veelgestelde-vragen') return buildLocalizedUrl({ view: 'faq' }, lang);
     if (p === '/eintragen' || p === '/bedrijf-aanmelden') return buildLocalizedUrl({ view: 'submit' }, lang);
     if (p === '/preise' || p === '/prijzen') return buildLocalizedUrl({ view: 'pricing' }, lang);
+    if (p === '/aktuelle-spritpreise' || p === '/actuele-brandstofprijzen') return buildLocalizedUrl({ view: 'fuel-prices' }, lang);
+    if (p === '/notdienste' || p === '/nooddiensten') return buildLocalizedUrl({ view: 'emergency' }, lang);
     if (p === '/impressum' || p === '/colofon') return buildLocalizedUrl({ view: 'impressum' }, lang);
     if (p === '/datenschutz' || p === '/privacy') return buildLocalizedUrl({ view: 'datenschutz' }, lang);
     if (p === '/agb' || p === '/algemene-voorwaarden') return buildLocalizedUrl({ view: 'agb' }, lang);
@@ -448,6 +455,7 @@ export default function App() {
     setIsSubmitMode(false);
     setIsPricingMode(false);
     setIsFuelPricesMode(false);
+    setIsEmergencyMode(false);
     setIsJobsMode(false);
     setIsNotFound(false);
     setIsAllMode(false);
@@ -592,6 +600,7 @@ export default function App() {
   const [isSubmitMode, setIsSubmitMode] = useState(initialSubmitMode);
   const [isPricingMode, setIsPricingMode] = useState(initialPricingMode);
   const [isFuelPricesMode, setIsFuelPricesMode] = useState(initialFuelPricesMode);
+  const [isEmergencyMode, setIsEmergencyMode] = useState(initialEmergencyMode);
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
@@ -742,6 +751,13 @@ export default function App() {
       currentDesc = isNl
         ? `Actuele brandstofprijzen voor Diesel, Super E10 en Super E5 in Winterberg. Vergelijk tankstations en bereken direct je totale tankkosten.`
         : `Aktuelle Spritpreise für Diesel, Super E10 und Super E5 in Winterberg und Umgebung. Günstigste Tankstelle finden und Tankkosten berechnen.`;
+    } else if (isEmergencyMode) {
+      currentTitle = isNl
+        ? `Nooddiensten & Apotheken in Winterberg | Alarmnummers (112, 116 117) | ${baseTitle}`
+        : `Notdienste & Notfallnummern in Winterberg | Apotheken-Notdienst (112, 116 117) | ${baseTitle}`;
+      currentDesc = isNl
+        ? `Overzicht van alle spoednummers, actuele apotheek-spoeddienst (aponet.de / ABDA), huisartsenpost bij het St. Franziskus-Hospital en eerste hulp in Winterberg.`
+        : `Wichtige Notrufnummern (112, 110, 116 117), tagesaktueller Apotheken-Notdienst (aponet.de / ABDA), Notfallpraxis und Krankenhäuser in Winterberg.`;
     } else if (isSubmitMode) {
       currentTitle = isNl ? `Bedrijf aanmelden | ${baseTitle}` : `Unternehmen eintragen | ${baseTitle}`;
       currentDesc = isNl ? `Meld uw bedrijf gratis aan in de officiële Winterberg gids.` : `Tragen Sie Ihr Unternehmen kostenlos im offiziellen Winterberg-Verzeichnis ein.`;
@@ -827,7 +843,7 @@ export default function App() {
       head.appendChild(ogLocale);
     }
     ogLocale.setAttribute('content', lang === 'nl' ? 'nl_NL' : 'de_DE');
-  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
+  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
 
   const loadAds = async () => {
     try {
@@ -1172,6 +1188,22 @@ export default function App() {
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
+              <a 
+                href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')} 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')); 
+                  resetToDirectory(); 
+                  setIsEmergencyMode(true); 
+                }} 
+                style={{ textDecoration: 'none' }} 
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 hover:bg-red-100 text-red-700 font-bold text-[13.5px] border border-red-200/80 transition-all cursor-pointer shadow-2xs"
+                title={lang === 'nl' ? 'Nooddiensten & Apotheken' : 'Notdienste & Notfall'}
+              >
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                <span>{lang === 'nl' ? 'Nooddiensten' : 'Notdienste'}</span>
+              </a>
+              
               <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
 
               {/* Länderschieber (Sprachumschalter nur Flaggen) */}
@@ -1325,6 +1357,20 @@ export default function App() {
               setIsBestOfMode(true);
               setIsMegaMenuOpen(false);
               window.history.pushState(null, '', getPath('/die-besten'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectFuelPrices={() => {
+              resetToDirectory();
+              setIsFuelPricesMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectEmergency={() => {
+              resetToDirectory();
+              setIsEmergencyMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             getPath={getPath}
@@ -1483,6 +1529,27 @@ export default function App() {
             }}
             onBack={() => {
               setIsFuelPricesMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isEmergencyMode ? (
+          <EmergencyPage
+            theme={theme}
+            onSelectBusiness={(slugOrPath) => {
+              setIsEmergencyMode(false);
+              const clean = slugOrPath.replace(/^\//, '').split('/').pop();
+              const match = businesses.find(b => slugify(b.name) === clean || b.id === clean);
+              if (match) {
+                setSelectedBusiness(match);
+              } else {
+                window.history.pushState(null, '', getPath(slugOrPath));
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsEmergencyMode(false);
               window.history.pushState(null, '', getPath('/'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
@@ -2607,6 +2674,24 @@ export default function App() {
                 </div>
                 <span>FAQs</span>
               </a>
+
+              <a
+                href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
+                  resetToDirectory();
+                  setIsEmergencyMode(true);
+                  setIsMobileCategoriesOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-red-50 border border-red-200 font-display font-bold text-sm text-red-950 hover:border-red-500 transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-md bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                  <Siren className="w-4 h-4" />
+                </div>
+                <span>{lang === 'nl' ? 'Nooddiensten' : 'Notdienste'}</span>
+              </a>
             </div>
 
             <div className="font-display text-xs font-bold uppercase tracking-[0.1em] text-[#8A928B] px-1 mt-2">
@@ -2835,6 +2920,33 @@ export default function App() {
               className="text-white/80 hover:text-white transition-colors"
             >
               {lang === 'nl' ? 'Pakketten & Prijzen' : 'Preise & Pakete'}
+            </a>
+            <a 
+              href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')); 
+                resetToDirectory(); 
+                setIsFuelPricesMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Brandstofprijzen' : 'Aktuelle Spritpreise'}
+            </a>
+            <a 
+              href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')); 
+                resetToDirectory(); 
+                setIsEmergencyMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-rose-300 hover:text-white font-semibold transition-colors flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
+              <span>{lang === 'nl' ? 'Nooddiensten & Apotheken' : 'Notdienste & Notfallnummern'}</span>
             </a>
             <a 
               href={getPath('/grounding')} 

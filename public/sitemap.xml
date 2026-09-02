@@ -98,6 +98,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/notdienste</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nooddiensten</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/impressum</loc>
     <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>

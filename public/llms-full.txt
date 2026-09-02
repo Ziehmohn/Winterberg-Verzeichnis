@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (225 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (227 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1772,6 +1772,24 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Grulke-Immobilien & Hausverwaltung in Winterberg – Professioneller Immobilienverkauf, Immobilienvermietung und verlässliche Hausverwaltung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/grulke-immobilien-und-hausverwaltung
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/grulke-immobilien-und-hausverwaltung
+
+#### [Kur-Apotheke](https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/kur-apotheke)
+- **Kategorie:** Dienstleistungen > Apotheken
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 1, 59955 Winterberg
+- **Telefon:** 02981 929500
+- **Beschreibung (DE):** Ihre freundliche Apotheke im Herzen von Winterberg. Wir beraten Sie kompetent in allen Gesundheitsfragen, von verschreibungspflichtigen Medikamenten bis hin zu Naturheilmitteln.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/kur-apotheke
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/apotheken/kur-apotheke
+
+#### [Franziskus-Apotheke](https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/franziskus-apotheke)
+- **Kategorie:** Dienstleistungen > Apotheken
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 6, 59955 Winterberg
+- **Telefon:** 02981 2521
+- **Beschreibung (DE):** Die Franziskus-Apotheke an der Poststraße bietet umfassenden Service rund um Ihre Gesundheit.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/franziskus-apotheke
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/apotheken/franziskus-apotheke
 
 ### Kategorie: Freizeit
 

@@ -184,6 +184,17 @@ const staticPageConfigs: {
     h2Nl: 'Live brandstofprijzen & interactieve tankcalculator'
   },
   {
+    key: 'emergency',
+    titleDe: 'Notdienste & Notfallnummern in Winterberg | Apotheken-Notdienst (112, 116 117)',
+    titleNl: 'Nooddiensten & Apotheken in Winterberg | Alarmnummers (112, 116 117)',
+    descDe: 'Wichtige Notrufnummern (112, 110, 116 117), tagesaktueller Apotheken-Notdienst (via aponet.de / ABDA), Notfallpraxis am St. Franziskus-Hospital und Notdienste in Winterberg.',
+    descNl: 'Overzicht van alle spoednummers, actuele apotheek-spoeddienst (aponet.de / ABDA), huisartsenpost bij het St. Franziskus-Hospital en eerste hulp in Winterberg.',
+    h1De: 'Notdienste & Notfallnummern in Winterberg',
+    h1Nl: 'Nooddiensten & Alarmnummers in Winterberg',
+    h2De: 'Apotheken-Notdienst (aponet.de / ABDA), Krankenhäuser & 24/7 Bereitschaft',
+    h2Nl: 'Apotheek-spoeddienst, ziekenhuizen & 24/7 hulpdiensten'
+  },
+  {
     key: 'impressum',
     titleDe: 'Impressum | Das Winterberg Verzeichnis',
     titleNl: 'Colofon / Impressum | Het Winterberg Overzicht',

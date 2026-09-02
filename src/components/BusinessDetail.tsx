@@ -522,6 +522,36 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             onNavigateToFuelPrices={onNavigateToFuelPrices}
           />
 
+          {/* Notdienst-Hinweis bei Apotheken & Praxen */}
+          {(business.subcategory === 'Apotheken' || business.subcategory === 'Ärzte & Praxen' || business.subcategory === 'Zahnärzte') && (
+            <div className="my-6 bg-red-50/80 border border-red-200 rounded-xl p-4 flex items-center justify-between gap-3 shadow-2xs">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-red-100 text-red-600 flex items-center justify-center font-bold shrink-0">
+                  <Siren className="w-5 h-5 text-red-600" />
+                </div>
+                <div>
+                  <span className="font-bold text-sm text-red-950 block">
+                    {lang === 'nl' ? 'Medische Spoeddienst & Apotheek-Nooddienst' : 'Ärztlicher Notdienst & Apotheken-Notdienst'}
+                  </span>
+                  <span className="text-xs text-red-900/80 block">
+                    {lang === 'nl' ? '24/7 Noodnummers, dienstdoende apotheek & 116 117' : '24/7 Notfallnummern, Notdienst-Apotheke & Notfallpraxis 116 117'}
+                  </span>
+                </div>
+              </div>
+              <a
+                href={lang === 'nl' ? '/nl/nooddiensten' : '/notdienste'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', lang === 'nl' ? '/nl/nooddiensten' : '/notdienste');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3.5 py-2 rounded-lg transition-colors no-underline shrink-0 shadow-2xs"
+              >
+                <span>{lang === 'nl' ? 'Bekijken →' : 'Notdienste →'}</span>
+              </a>
+            </div>
+          )}
+
           {/* PDF Documents, Speisekarten & Preislisten (Premium) */}
           {business.isPremium && Array.isArray(business.documents) && business.documents.length > 0 && (
             <div className="mb-[34px]">

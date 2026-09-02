@@ -15,7 +15,8 @@ import {
   Sparkles,
   ChevronRight,
   Trophy,
-  Fuel
+  Fuel,
+  Siren
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -29,6 +30,7 @@ interface MegaMenuProps {
   onSelectAll: () => void;
   onSelectBestOf?: () => void;
   onSelectFuelPrices?: () => void;
+  onSelectEmergency?: () => void;
   onSelectLocation: (location: string) => void;
   onOpenMap: () => void;
   onOpenSubmit: () => void;
@@ -44,6 +46,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onSelectAll,
   onSelectBestOf,
   onSelectFuelPrices,
+  onSelectEmergency,
   onSelectLocation,
   onOpenMap,
   onOpenSubmit,
@@ -331,6 +334,41 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       {lang === 'nl' 
                         ? 'Live brandstofprijzen van alle tankstations & tankcalculator.' 
                         : 'Live-Spritpreise aller Tankstellen in Winterberg & Tankrechner.'}
+                    </p>
+                  </a>
+
+                  {/* Notdienste & Apotheken Card */}
+                  <a
+                    href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onSelectEmergency) {
+                        onSelectEmergency();
+                      } else {
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      }
+                      onClose();
+                    }}
+                    className="bg-red-50/60 border border-red-200/80 hover:border-red-500 rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(220,38,38,0.1)] hover:-translate-y-0.5 transition-all group no-underline block"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-md bg-red-100 text-red-600 border border-red-200 flex items-center justify-center shadow-2xs">
+                          <Siren className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-display font-bold text-[14px] text-red-950 group-hover:text-red-700 transition-colors">
+                          {lang === 'nl' ? 'Nooddiensten & Apotheken' : 'Notdienste & Notfall'}
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-bold text-red-700 bg-red-100/90 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                        24/7 <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-red-900/80 leading-relaxed m-0 pl-9">
+                      {lang === 'nl' 
+                        ? 'Apotheek-spoeddienst (aponet.de), 116 117 & ziekenhuizen.' 
+                        : 'Apotheken-Notdienst (aponet.de), Notfallpraxis & 112 / 116 117.'}
                     </p>
                   </a>
 
