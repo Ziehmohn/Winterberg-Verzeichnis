@@ -402,24 +402,24 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs">
           <div className="bg-white border border-[#EDE8E0] rounded-xl p-3.5 shadow-2xs">
-            <strong className="text-red-700 font-bold block text-sm mb-1">1. WO?</strong>
-            <span className="text-[#5F6B63]">Ort, Straße, Hausnummer, Piste oder markanter Punkt.</span>
+            <strong className="text-red-700 font-bold block text-sm mb-1">{lang === 'nl' ? '1. WAAR?' : '1. WO?'}</strong>
+            <span className="text-[#5F6B63]">{lang === 'nl' ? 'Plaats, straat, huisnummer, piste of herkenningspunt.' : 'Ort, Straße, Hausnummer, Piste oder markanter Punkt.'}</span>
           </div>
           <div className="bg-white border border-[#EDE8E0] rounded-xl p-3.5 shadow-2xs">
-            <strong className="text-red-700 font-bold block text-sm mb-1">2. WAS?</strong>
-            <span className="text-[#5F6B63]">Was ist genau passiert? Verkehrsunfall, Sturz, Bewusstlosigkeit?</span>
+            <strong className="text-red-700 font-bold block text-sm mb-1">{lang === 'nl' ? '2. WIE?' : '2. WER?'}</strong>
+            <span className="text-[#5F6B63]">{lang === 'nl' ? 'Wie meldt het noodgeval? (Uw naam en telefoonnummer voor vragen)' : 'Wer meldet den Notfall? Name und Rückrufnummer für Rückfragen.'}</span>
           </div>
           <div className="bg-white border border-[#EDE8E0] rounded-xl p-3.5 shadow-2xs">
-            <strong className="text-red-700 font-bold block text-sm mb-1">3. WIE VIELE?</strong>
-            <span className="text-[#5F6B63]">Wie viele Personen sind verletzt oder betroffen?</span>
+            <strong className="text-red-700 font-bold block text-sm mb-1">{lang === 'nl' ? '3. HOEVEEL?' : '3. WIE VIELE?'}</strong>
+            <span className="text-[#5F6B63]">{lang === 'nl' ? 'Hoeveel personen zijn gewond of hebben hulp nodig?' : 'Wie viele Personen sind verletzt oder betroffen?'}</span>
           </div>
           <div className="bg-white border border-[#EDE8E0] rounded-xl p-3.5 shadow-2xs">
-            <strong className="text-red-700 font-bold block text-sm mb-1">4. WELCHE?</strong>
-            <span className="text-[#5F6B63]">Welche Art von Verletzungen liegen vor? Atmet die Person?</span>
+            <strong className="text-red-700 font-bold block text-sm mb-1">{lang === 'nl' ? '4. WELKE?' : '4. WELCHE?'}</strong>
+            <span className="text-[#5F6B63]">{lang === 'nl' ? 'Welke verwondingen of symptomen zijn er? Ademhaling?' : 'Welche Art von Verletzungen liegen vor? Atmet die Person?'}</span>
           </div>
           <div className="bg-white border border-[#EDE8E0] rounded-xl p-3.5 shadow-2xs">
-            <strong className="text-red-700 font-bold block text-sm mb-1">5. WARTEN!</strong>
-            <span className="text-[#5F6B63]">Nicht sofort auflegen! Auf Rückfragen der Leitstelle warten.</span>
+            <strong className="text-red-700 font-bold block text-sm mb-1">{lang === 'nl' ? '5. WACHTEN!' : '5. WARTEN!'}</strong>
+            <span className="text-[#5F6B63]">{lang === 'nl' ? 'Niet direct ophangen! Wacht op vragen van de meldkamer.' : 'Nicht sofort auflegen! Auf Rückfragen der Leitstelle warten.'}</span>
           </div>
         </div>
       </section>
