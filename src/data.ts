@@ -3532,6 +3532,52 @@ export const businesses: Business[] = [
     status: 'approved',
     services: ['Aktuelles Kinoprogramm', '3D-Vorführungen', '2 Kinosäle', 'Snacks & Getränke', 'Sondervorstellungen & Events'],
     products: ['Kinogutscheine', 'Popcorn & Nachos', 'Kino-Tickets']
+  },
+  {
+    id: 'kur-apotheke',
+    name: 'Kur-Apotheke',
+    category: 'Dienstleistungen',
+    subcategory: 'Apotheken',
+    description: 'Ihre freundliche Apotheke im Herzen von Winterberg. Wir beraten Sie kompetent in allen Gesundheitsfragen, von verschreibungspflichtigen Medikamenten bis hin zu Naturheilmitteln.',
+    address: 'Poststraße 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 929500',
+    imageFallback: 'KA',
+    isPremium: false,
+    status: 'approved',
+    services: ['Persönliche Beratung', 'Medikamenten-Vorbestellung', 'Rezepturherstellung'],
+    openingHours: {
+      monday: '08:00 - 18:30',
+      tuesday: '08:00 - 18:30',
+      wednesday: '08:00 - 18:30',
+      thursday: '08:00 - 18:30',
+      friday: '08:00 - 18:30',
+      saturday: '08:30 - 13:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'franziskus-apotheke',
+    name: 'Franziskus-Apotheke',
+    category: 'Dienstleistungen',
+    subcategory: 'Apotheken',
+    description: 'Die Franziskus-Apotheke an der Poststraße bietet umfassenden Service rund um Ihre Gesundheit.',
+    address: 'Poststraße 6, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2521',
+    imageFallback: 'FA',
+    isPremium: false,
+    status: 'approved',
+    services: ['Blutdruckmessung', 'Ernährungsberatung', 'Anmessen von Venenstrümpfen', 'Phytothek'],
+    openingHours: {
+      monday: '08:00 - 18:30',
+      tuesday: '08:00 - 18:30',
+      wednesday: '08:00 - 18:30',
+      thursday: '08:00 - 18:30',
+      friday: '08:00 - 18:30',
+      saturday: '08:00 - 13:00',
+      sunday: 'Geschlossen'
+    }
   }
 
 ];
@@ -3654,7 +3700,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Handwerk', subcategories: ['KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Ärzte & Praxen', 'Zahnärzte', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Apotheken', 'Ärzte & Praxen', 'Zahnärzte', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Kino', 'Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
 
