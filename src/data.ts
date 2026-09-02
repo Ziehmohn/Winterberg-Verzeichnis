@@ -75,7 +75,7 @@ export const businesses: Business[] = [
   {
     id: '1',
     name: 'Car-Point Winterberg',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Wir sind Profis! Wir bieten KFZ-Reparaturen aller Art an.',
     address: 'Remmeswiese 30a, 59955 Winterberg',
@@ -87,7 +87,7 @@ export const businesses: Business[] = [
   {
     id: '2',
     name: 'Autoservice Kruk',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Ihre freundliche Autofachwerkstatt in Winterberg-Siedlinghausen. Schnell, Preiswert & Zuverlässig.',
     address: 'Hochsauerlandstraße 78a, 59955 Winterberg',
@@ -98,7 +98,7 @@ export const businesses: Business[] = [
   {
     id: 'nagel',
     name: 'Nagel Udo Autoreparatur',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'AUTOREPARATUREN',
     address: 'Hochsauerlandstr. 56, 59955 Winterberg',
@@ -110,7 +110,7 @@ export const businesses: Business[] = [
   {
     id: '3',
     name: 'HAS-Antriebstechnik Bosch Car Service',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Bosch Car Service und Werkstatt Dienstleistungen für alle Fabrikate in Winterberg.',
     address: 'Am Hagenblech 38, 59955 Winterberg',
@@ -121,7 +121,7 @@ export const businesses: Business[] = [
   {
     id: '4',
     name: 'Andreas Mantel Auto & Zweirad',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Ihr Meisterbetrieb für Auto & Zweirad in Winterberg.',
     address: 'Ruhrstraße 69, 59955 Winterberg',
@@ -132,7 +132,7 @@ export const businesses: Business[] = [
   {
     id: '5',
     name: 'Schürmann & Kruse OHG',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Zuverlässiger Service, markenübergreifende Expertise & höchste Präzision. High-End Upgrades, Engineering und Performance-Lösungen.',
     address: 'Am Hagenblech 85, 59955 Winterberg',
@@ -818,7 +818,7 @@ export const businesses: Business[] = [
   {
     id: '26',
     name: 'Tennisplätze Niedersfeld',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Tennisplätze',
     description: 'Tennisverein in Niedersfeld mit 3 Sandplätzen.',
     address: 'An der Hille 6b, 59955 Winterberg',
@@ -829,7 +829,7 @@ export const businesses: Business[] = [
   {
     id: '27',
     name: 'Tennisplätze Züschen',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Tennisplätze',
     description: 'Tennisverein in Züschen mit Sandplätzen.',
     address: 'Schützenstraße 5, 59955 Winterberg',
@@ -840,7 +840,7 @@ export const businesses: Business[] = [
   {
     id: '28',
     name: 'Tennisplätze Winterberg',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Tennisplätze',
     description: 'Tennisverein in Winterberg Winterberg mit Sandplätzen.',
     address: 'Fichtenweg 14, 59955 Winterberg',
@@ -851,7 +851,7 @@ export const businesses: Business[] = [
   {
     id: '29',
     name: 'Tennisplätze Siedlinghausen',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Tennisplätze',
     description: 'Tennisverein in Siedlinghausen (keine Sandplätze).',
     address: 'Grimmeweg 9, 59955 Winterberg',
@@ -862,7 +862,7 @@ export const businesses: Business[] = [
   {
     id: '30',
     name: 'VfR Winterberg 1921 e.V.',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fußballvereine',
     description: 'Fußballverein in Winterberg Winterberg.',
     address: 'Oberhofer Weg 9, 59955 Winterberg',
@@ -875,7 +875,7 @@ export const businesses: Business[] = [
   {
     id: '31',
     name: 'TuS Züschen e.V.',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fußballvereine',
     description: 'Fußball- und Sportverein in Züschen.',
     address: 'Junkerstraße 38, 59955 Winterberg',
@@ -887,7 +887,7 @@ export const businesses: Business[] = [
   {
     id: '32',
     name: 'Spiel- und Sportverein Silbach 1923 e.V.',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fußballvereine',
     description: 'Sportverein in Silbach.',
     address: 'Am Schieferberg 2, 59955 Winterberg',
@@ -897,7 +897,7 @@ export const businesses: Business[] = [
   {
     id: '33',
     name: 'FC Siedlinghausen 1920 e.V',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fußballvereine',
     description: 'Fußballabteilung (2 Seniorenmannschaften und mehrere Jugendmannschaften), Breitensport (Gymnastik und Faszientraining), Wirbelsäulengymnastik, Qi Gong, Meditation.',
     address: 'Sorpestraße 41, 59955 Winterberg',
@@ -908,7 +908,7 @@ export const businesses: Business[] = [
   {
     id: '34',
     name: 'FC Hilletal 2003',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fußballvereine',
     description: 'Fußballverein in Niedersfeld.',
     address: 'An der Hille 6 a, 59955 Winterberg',
@@ -1449,7 +1449,7 @@ export const businesses: Business[] = [
   {
     id: '131',
     name: 'Autohaus Friedrich Hoffmann',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Autohäuser',
     description: 'Ihr VW, Audi & VW Nutzfahrzeuge Autohaus in Winterberg. Erstklassiger Service rund um Ihr Auto.',
     address: 'Remmeswiese 24, 59955 Winterberg',
@@ -1461,7 +1461,7 @@ export const businesses: Business[] = [
   {
     id: '132',
     name: 'Autohaus Pöllmann',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Autohäuser',
     description: 'Ihr Toyota Servicepartner sowie Neuwagen, Gebrauchtwagen, Werkstatt weiterer Marken.',
     address: 'Remmeswiese 22, 59955 Winterberg',
@@ -1473,7 +1473,7 @@ export const businesses: Business[] = [
   {
     id: '133',
     name: 'Schütte-Automobile',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Autohäuser',
     description: 'Autohändler in Winterberg. Verkauf von Neu- und Gebrauchtwagen.',
     address: 'Remmeswiese 2a, 59955 Winterberg',
@@ -1873,7 +1873,7 @@ export const businesses: Business[] = [
   {
     id: 'fun-fitness-24-winterberg',
     name: 'Fun Fitness 24 Winterberg',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fitnessstudios',
     description: 'Modernes 24/7 Fitnessstudio in Winterberg. Rund um die Uhr geöffnet für Gerätetraining, Ausdauer, Freihantelbereich, Ernährungsberatung und Personal Training.',
     address: 'Am Waltenberg 49, 59955 Winterberg',
@@ -1887,7 +1887,7 @@ export const businesses: Business[] = [
   {
     id: 'corpus-pro-winterberg',
     name: 'corpus pro Winterberg',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fitnessstudios',
     description: 'Fitness- und Gesundheitsstudio in Winterberg mit hochmodernen Matrix-Geräten, Freihantel- und Cardiobereich, Ernährungsberatung und individuellem Personal Training.',
     address: 'Am Hagenblech 73, 59955 Winterberg',
@@ -1901,7 +1901,7 @@ export const businesses: Business[] = [
   {
     id: 'koerperformen-winterberg',
     name: 'Körperformen EMS Training Winterberg',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fitnessstudios',
     description: 'Effektives EMS-Ganzkörpertraining in nur 20 Minuten pro Woche mit persönlichem Trainer im Zentrum von Winterberg.',
     address: 'Hauptstraße 8, 59955 Winterberg',
@@ -1916,7 +1916,7 @@ export const businesses: Business[] = [
   {
     id: 'fitnessclub-niedersfeld',
     name: 'Fitnessclub Niedersfeld e.V.',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fitnessstudios',
     description: 'Gemeinnütziger Fitnessverein in Winterberg-Niedersfeld mit modernem Kraft- und Ausdauerbereich, Kursangeboten und familiärer Atmosphäre.',
     address: 'Alter Schulweg 10, 59955 Winterberg-Niedersfeld',
@@ -2152,10 +2152,10 @@ export const businesses: Business[] = [
   {
     id: 'tinq-tankautomat-langewiese',
     name: 'TinQ 24h-Tankautomat Langewiese',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
     additionalCategories: [
-      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
     ],
     description: 'Moderne 24-Stunden-Automatentankstelle an der Bundesstraße in Winterberg-Langewiese für PKW und LKW mit EC-, Kreditkarten- und Flottenkarten-Zahlung.',
     address: 'Bundesstraße 38, 59955 Winterberg-Langewiese',
@@ -2178,11 +2178,11 @@ export const businesses: Business[] = [
   {
     id: 'jet-tankstelle-winterberg',
     name: 'JET Tankstelle Winterberg',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
     additionalCategories: [
       { category: 'Gastronomie', subcategory: 'Imbisse' },
-      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
     ],
     description: 'JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.',
     address: 'Lamfert 1, 59955 Winterberg',
@@ -2205,11 +2205,11 @@ export const businesses: Business[] = [
   {
     id: 'aral-tankstelle-winterberg',
     name: 'Aral Tankstelle Winterberg',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
     additionalCategories: [
       { category: 'Gastronomie', subcategory: 'Imbisse' },
-      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
     ],
     description: 'Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.',
     address: 'Am Hagenblech 60, 59955 Winterberg',
@@ -2232,10 +2232,10 @@ export const businesses: Business[] = [
   {
     id: 'calpam-tankautomat-zueschen',
     name: 'Calpam Tankautomat Züschen',
-    category: 'Einzelhandel',
+    category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
     additionalCategories: [
-      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
     ],
     description: '24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.',
     address: 'Nuhnetalstraße 88, 59955 Winterberg-Züschen',
@@ -2772,7 +2772,7 @@ export const businesses: Business[] = [
   {
     id: 'reifen-merter-groenebach',
     name: 'Reifen Merter',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Ihr Reifenspezialist in Winterberg-Grönebach. Professioneller Reifenservice, Reifenwechsel, Auswuchten, Neureifen aller führenden Marken, Felgen und Einlagerung für PKW, Transporter und Zweiräder.',
     address: 'Hachmicke 4, 59955 Winterberg-Grönebach',
@@ -2802,7 +2802,7 @@ export const businesses: Business[] = [
   {
     id: 'reparaturen-markus-becker-groenebach',
     name: 'Reparaturen aller Art Markus Becker',
-    category: 'Handwerk',
+    category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Freie Werkstatt für Reparaturen aller Art in Winterberg-Grönebach. KFZ-Reparaturen, Instandsetzung, Wartung und Service für PKW und Kleinfahrzeuge.',
     address: 'Auf dem Deich 1, 59955 Winterberg-Grönebach',
@@ -2883,11 +2883,11 @@ export const businesses: Business[] = [
   {
     id: 'bikeverleih-klante-herrloh',
     name: 'Bikeverleih Klante am Herrloh',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradverleih',
     additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
-      { category: 'Freizeit', subcategory: 'Skiverleih' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Skiverleih' }
     ],
     description: 'Ihr erstklassiger Bike- und E-Bike-Verleih direkt am Herrloh in Winterberg. Neueste E-Mountainbikes, Fullys, Hardtails, Kinder-Bikes, Helme und Schutzausrüstung für Touren und Trailparks.',
     address: 'Am Waltenberg 67a, 59955 Winterberg',
@@ -2911,11 +2911,11 @@ export const businesses: Business[] = [
   {
     id: 'ebike-verleih-ski-bike-schneider',
     name: 'e-Bike-Verleih Winterberg / Ski & Bike Schneider',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradverleih',
     additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
-      { category: 'Freizeit', subcategory: 'Skiverleih' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Skiverleih' }
     ],
     description: 'Großer E-Bike- & Mountainbike-Verleih an der Talstation Brabander / Herrloh in Winterberg. Neueste E-Bikes aller Kategorien, Kids E-MTBs ab 24 Zoll, Kinderanhänger, Kindersitze und Protektoren.',
     address: 'Fichtenweg 20a, 59955 Winterberg',
@@ -2939,11 +2939,11 @@ export const businesses: Business[] = [
   {
     id: 'bikeverleih-poppenberg-winterberg',
     name: 'Bikeverleih Poppenberg Winterberg',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradverleih',
     additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
-      { category: 'Freizeit', subcategory: 'Skiverleih' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Skiverleih' }
     ],
     description: 'Bike- und E-Bike-Verleih direkt an der Talstation Poppenberg in der Büre. Hochwertige Mountainbikes, Trekking- und City-E-Bikes für alle Altersklassen sowie Skiverleih im Winter.',
     address: 'In d. Büre 32, 59955 Winterberg',
@@ -2967,11 +2967,11 @@ export const businesses: Business[] = [
   {
     id: 'bikeverleih-klante-schneewittchenhaus',
     name: 'Bikeverleih Klante am Schneewittchenhaus',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradverleih',
     additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
-      { category: 'Freizeit', subcategory: 'Skiverleih' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Skiverleih' }
     ],
     description: 'Moderner Verleihstützpunkt und Ausrüstungsdepot von Klante am Schneewittchenhaus / Kappe. Premium E-Mountainbikes, Schutzkleidung, Bike-Depot und direkte Nähe zu den Trails rund um den Kahlen Asten.',
     address: 'Am Waltenberg 119, 59955 Winterberg',
@@ -2995,11 +2995,11 @@ export const businesses: Business[] = [
   {
     id: 'pro-biker-winterberg',
     name: 'Pro Biker',
-    category: 'Einzelhandel',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradgeschäfte',
     additionalCategories: [
-      { category: 'Freizeit', subcategory: 'Fahrradverleih' },
-      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' },
+      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
     ],
     description: 'Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.',
     address: 'Am Waltenberg 49, 59955 Winterberg',
@@ -3023,10 +3023,10 @@ export const businesses: Business[] = [
   {
     id: 'uppu-biketours-winterberg',
     name: 'Uppu-Biketours',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradverleih',
     additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Fahrradgeschäfte' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' },
       { category: 'Gastronomie', subcategory: 'Restaurant' }
     ],
     description: 'Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.',
@@ -3051,11 +3051,11 @@ export const businesses: Business[] = [
   {
     id: 'skiverleih-schneider-winterberg',
     name: 'Skiverleih Schneider',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Skiverleih',
     additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Sport & Outdoor' },
-      { category: 'Freizeit', subcategory: 'Fahrradverleih' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Sport & Outdoor' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' }
     ],
     description: 'Traditionsreicher Skiverleih und Skiservice am Fichtenweg in Winterberg. Neueste Carving-Ski, Snowboards, Langlaufski, Schlitten, Helme sowie modernes Skidepot direkt an der Piste Herrloh / Brabander.',
     address: 'Fichtenweg 20a, 59955 Winterberg',
@@ -3079,11 +3079,11 @@ export const businesses: Business[] = [
   {
     id: 'green-bikes-winterberg',
     name: 'Green Bikes GmbH - Fahrradfachmarkt & -werkstatt',
-    category: 'Einzelhandel',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradgeschäfte',
     additionalCategories: [
-      { category: 'Freizeit', subcategory: 'Fahrradverleih' },
-      { category: 'Handwerk', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' },
+      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
     ],
     description: 'Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.',
     address: 'Am Hagenblech 93, 59955 Winterberg',
@@ -3107,7 +3107,7 @@ export const businesses: Business[] = [
   {
     id: 'sauerlandpraxis-kolbe-schramm-winterberg',
     name: 'Sauerlandpraxis – Wolf Kolbe & Nicole Schramm',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Moderne überörtliche Gemeinschaftspraxis und Hausarztpraxis an der Hauptstraße in Winterberg. Ganzheitliche Allgemeinmedizin, Vorsorgeuntersuchungen, Ultraschall, Labor, EKG und psychosomatische Grundversorgung.',
     address: 'Hauptstraße 16, 59955 Winterberg',
@@ -3131,7 +3131,7 @@ export const businesses: Business[] = [
   {
     id: 'dr-martin-nieswand-winterberg',
     name: 'Praxis Dr. med. Martin Nieswand',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Facharztpraxis für Allgemeinmedizin, Sportmedizin, Chirotherapie und offizielle Gelbfieberimpfstelle der WHO in Winterberg an der Nuhnestraße. Betreuung von Freizeitsportlern, Leistungsathleten und Patienten aller Kassen.',
     address: 'Nuhnestraße 6, 59955 Winterberg',
@@ -3155,7 +3155,7 @@ export const businesses: Business[] = [
   {
     id: 'sauerlandpraxis-dr-jelicic-winterberg',
     name: 'Sauerlandpraxis – Dr. Maja Jelicic',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.',
     address: 'Franziskusstraße 1, 59955 Winterberg',
@@ -3179,7 +3179,7 @@ export const businesses: Business[] = [
   {
     id: 'dr-bojana-lukic-jablonka-winterberg',
     name: 'Hausarztpraxis Dr. Bojana Lukic-Jablonka',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Moderne Facharztpraxis für Allgemeinmedizin im Zentrum von Winterberg (Marktstraße). Herzliche und qualifizierte hausärztliche Rundumbetreuung für Erwachsene, Jugendliche und Senioren.',
     address: 'Marktstraße 9, 59955 Winterberg',
@@ -3203,7 +3203,7 @@ export const businesses: Business[] = [
   {
     id: 'dr-rikardo-mihalic-siedlinghausen',
     name: 'Praxis Dr. med. Rikardo Mihalic',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Facharztpraxis für Allgemeinmedizin in Winterberg-Siedlinghausen mit Schwerpunkten in Reisemedizin, Venenheilkunde (Phlebologie) und hausärztlicher Geriatrie. Umfassende moderne Diagnostik und persönliche Betreuung.',
     address: 'Kolpingstraße 2, 59955 Winterberg-Siedlinghausen',
@@ -3228,7 +3228,7 @@ export const businesses: Business[] = [
   {
     id: 'rosa-lange-allgemeinmedizin-zueschen',
     name: 'Praxis Rosa Lange – Fachärztin für Allgemeinmedizin',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Hausarztpraxis und Fachärztin für Allgemeinmedizin und Chirotherapie in Winterberg-Züschen. Ganzheitliche Behandlung, manuelle Therapie, Gesundheitsvorsorge und individuelle Betreuung.',
     address: 'Junkerstraße 38, 59955 Winterberg-Züschen',
@@ -3251,7 +3251,7 @@ export const businesses: Business[] = [
   {
     id: 'kinderarztpraxis-winterberg',
     name: 'Kinderarztpraxis Winterberg (MVZ)',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Fachärztliche Kinder- und Jugendärztliche Praxis an der Poststraße in Winterberg unter dem Dach des Gesundheitszentrums St. Franziskus. U-Untersuchungen, Impfberatung, Allergiediagnostik und Akutsprechstunde für Kinder & Jugendliche.',
     address: 'Poststraße 12, 59955 Winterberg',
@@ -3276,7 +3276,7 @@ export const businesses: Business[] = [
   {
     id: 'st-franziskus-hospital-winterberg',
     name: 'St. Franziskus-Hospital Winterberg',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Ärzte & Praxen',
     description: 'Modernes Akutkrankenhaus und regionales Gesundheitszentrum für Winterberg und das Sauerland mit 24/7 Notfallambulanz, Chirurgie, Unfallchirurgie & Orthopädie (AMIS-Methode), Innerer Medizin, Anästhesie und Radiologie.',
     address: 'Franziskusstraße 2, 59955 Winterberg',
@@ -3300,10 +3300,10 @@ export const businesses: Business[] = [
   {
     id: 'dr-daniel-castillo-chevallier-winterberg',
     name: 'Zahnarztpraxis Dr. med. dent. Daniel Castillo-Chevallier',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Zahnärzte',
     additionalCategories: [
-      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+      { category: 'Gesundheit & Medizin', subcategory: 'Ärzte & Praxen' }
     ],
     description: 'Moderne Zahnarztpraxis an der Poststraße in Winterberg (über der Kur-Apotheke). Ästhetische Zahnheilkunde, Prophylaxe, Implantologie, Zahnersatz, Parodontologie und schonende Behandlung für die ganze Familie.',
     address: 'Poststraße 1, 59955 Winterberg',
@@ -3327,10 +3327,10 @@ export const businesses: Business[] = [
   {
     id: 'dr-nassrin-grickschat-winterberg',
     name: 'Zahnarztpraxis Dr. Nassrin Grickschat',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Zahnärzte',
     additionalCategories: [
-      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+      { category: 'Gesundheit & Medizin', subcategory: 'Ärzte & Praxen' }
     ],
     description: 'Etablierte Zahnarztpraxis an der Marktstraße im Zentrum von Winterberg. Umfassende zahnmedizinische Versorgung, Vorsorge, Zahnerhaltung, Bleaching und einfühlsame Behandlung von Angstpatienten.',
     address: 'Marktstraße 9A, 59955 Winterberg',
@@ -3353,10 +3353,10 @@ export const businesses: Business[] = [
   {
     id: 'michaela-fieseler-koch-siedlinghausen',
     name: 'Zahnarztpraxis Michaela Fieseler-Koch',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Zahnärzte',
     additionalCategories: [
-      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+      { category: 'Gesundheit & Medizin', subcategory: 'Ärzte & Praxen' }
     ],
     description: 'Ihre Zahnarztpraxis an der Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuelle Prophylaxe, Zahnerhaltung, moderne Füllungstherapie und Zahnersatzlösungen für Jung und Alt.',
     address: 'Hochsauerlandstraße 10, 59955 Winterberg-Siedlinghausen',
@@ -3379,10 +3379,10 @@ export const businesses: Business[] = [
   {
     id: 'dr-sonja-kuhl-niedersfeld',
     name: 'Zahnarztpraxis Dr. med. dent. Sonja Kuhl',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Zahnärzte',
     additionalCategories: [
-      { category: 'Dienstleistungen', subcategory: 'Ärzte & Praxen' }
+      { category: 'Gesundheit & Medizin', subcategory: 'Ärzte & Praxen' }
     ],
     description: 'Zahnarztpraxis an der Ruhrstraße in Winterberg-Niedersfeld. Qualifizierte Zahnmedizin, ganzheitliche Vorsorge, ästhetische Zahnkorrekturen und Zahnersatz in freundlicher Atmosphäre.',
     address: 'Ruhrstraße 24, 59955 Winterberg-Niedersfeld',
@@ -3536,7 +3536,7 @@ export const businesses: Business[] = [
   {
     id: 'kur-apotheke',
     name: 'Kur-Apotheke',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Apotheken',
     description: 'Ihre freundliche Apotheke im Herzen von Winterberg. Wir beraten Sie kompetent in allen Gesundheitsfragen, von verschreibungspflichtigen Medikamenten bis hin zu Naturheilmitteln.',
     address: 'Poststraße 1, 59955 Winterberg',
@@ -3559,7 +3559,7 @@ export const businesses: Business[] = [
   {
     id: 'franziskus-apotheke',
     name: 'Franziskus-Apotheke',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Apotheken',
     description: 'Die Franziskus-Apotheke an der Poststraße bietet umfassenden Service rund um Ihre Gesundheit.',
     address: 'Poststraße 6, 59955 Winterberg',
@@ -3768,7 +3768,7 @@ export const businesses: Business[] = [
   {
     id: 'outdoor-842',
     name: 'Outdoor 842',
-    category: 'Einzelhandel',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Sport & Outdoor',
     additionalCategories: [{ category: 'Einzelhandel', subcategory: 'Bekleidung' }],
     description: 'Sportgeschäft in Winterberg mit großer Auswahl an Outdoor-Bekleidung und Ausrüstung.',
@@ -3792,7 +3792,7 @@ export const businesses: Business[] = [
   {
     id: 'peter-o-sport-mode',
     name: 'Peter O. SPORT MODE',
-    category: 'Einzelhandel',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Sport & Outdoor',
     additionalCategories: [{ category: 'Einzelhandel', subcategory: 'Bekleidung' }],
     description: 'Ihr Fachgeschäft für Sport und Mode in Winterberg.',
@@ -3816,7 +3816,7 @@ export const businesses: Business[] = [
   {
     id: 'outdoorfashion-winterberg',
     name: 'Outdoorfashion Winterberg',
-    category: 'Einzelhandel',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Sport & Outdoor',
     additionalCategories: [{ category: 'Einzelhandel', subcategory: 'Bekleidung' }],
     description: 'Outdoor-Sportgeschäft in Winterberg. Entdecken Sie hochwertige Funktionsbekleidung für Ihr nächstes Abenteuer.',
@@ -3977,7 +3977,7 @@ export const businesses: Business[] = [
   {
     id: 'thai-massage-ooy-lumtong',
     name: 'Thai Massage Ooy Lumtong',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Massagen',
     description: 'Traditionelle Thai-Massage in Winterberg für Entspannung und Wohlbefinden.',
     address: 'Hauptstraße 29, 59955 Winterberg',
@@ -4000,7 +4000,7 @@ export const businesses: Business[] = [
   {
     id: 'physiotherapie-paula-hennecke',
     name: 'Physiotherapie Paula Hennecke&Team',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Physiotherapie',
     description: 'Ihre Praxis für Physiotherapie und Kinderphysiotherapie in Winterberg.',
     address: 'Wernsdorfer Str. 6, 59955 Winterberg',
@@ -4024,7 +4024,7 @@ export const businesses: Business[] = [
   {
     id: 'cb-house-of-beauty',
     name: 'CB House of Beauty & Ästhetik by Carolin Berghoff',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Kosmetikstudios',
     description: 'Kosmetikstudio in Winterberg für Gesichtsbehandlungen, Anti-Aging und Ästhetik.',
     address: 'Wernsdorfer Str. 39, 59955 Winterberg',
@@ -4047,7 +4047,7 @@ export const businesses: Business[] = [
   {
     id: 'tierisch-bewegt',
     name: 'Tierisch bewegt - Tierphysiotherapie & Bewegung',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Tiergesundheit',
     description: 'Professionelle Tierphysiotherapie und Bewegungstherapie für Hunde und Pferde in Winterberg.',
     address: 'Am Postteich 7, 59955 Winterberg',
@@ -4070,7 +4070,7 @@ export const businesses: Business[] = [
   {
     id: 'reitsportfreunde-winterberg',
     name: 'Reitsportfreunde Winterberg - Western & Klassisch e.V.',
-    category: 'Freizeit',
+    category: 'Ski, Bike & Sport',
     subcategory: 'Reitsport',
     description: 'Reiterverein für Western- und klassisches Reiten in Winterberg.',
     address: 'Am Postteich 7, 59955 Winterberg',
@@ -4093,7 +4093,7 @@ export const businesses: Business[] = [
   {
     id: 'mountain-yoga-winterberg',
     name: 'Mountain-Yoga Winterberg',
-    category: 'Freizeit',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Yoga',
     description: 'Yogastudio in Winterberg. Entspannung und Bewegung für Körper und Geist.',
     address: 'Am Rad 11, 59955 Winterberg',
@@ -4235,7 +4235,7 @@ export const businesses: Business[] = [
   {
     id: 'pflegedienst-doenekes',
     name: 'Ambulanter Pflegedienst und Tagespflege Dönekes',
-    category: 'Dienstleistungen',
+    category: 'Gesundheit & Medizin',
     subcategory: 'Pflegedienste',
     description: 'Ambulanter Pflegedienst und Tagespflege in Niedersfeld.',
     address: 'Ruhrstraße 38A, 59955 Winterberg-Niedersfeld',
@@ -4421,12 +4421,15 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 };
 
 export const categories: CategoryGroup[] = [
-  { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
-  { name: 'Handwerk', subcategories: ['Bäderstudios', 'Baumschulen', 'KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Drogerien', 'Baustoffe', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
-  { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Apotheken', 'Ärzte & Praxen', 'Zahnärzte', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
-  { name: 'Freizeit', subcategories: ['Kino', 'Reitsport', 'Yoga', 'Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
+  { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks'] },
+  { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf'] },
+  { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung'] },
+  { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
+  { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga'] },
+  { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser'] },
+  { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder'] }
 ];
 
 import { AdBanner } from './types';

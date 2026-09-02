@@ -12,6 +12,9 @@ export const CATEGORY_SLUGS: Record<string, RouteMapping> = {
   'Einzelhandel': { de: 'einzelhandel', nl: 'detailhandel' },
   'Gastronomie': { de: 'gastronomie', nl: 'horeca' },
   'Dienstleistungen': { de: 'dienstleistungen', nl: 'dienstverlening' },
+  'Ski, Bike & Sport': { de: 'ski-bike-sport', nl: 'ski-fiets-sport' },
+  'Gesundheit & Medizin': { de: 'gesundheit-und-medizin', nl: 'gezondheid-en-geneeskunde' },
+  'Mobilität & KFZ': { de: 'mobilitaet-und-kfz', nl: 'mobiliteit-en-autos' },
   'Freizeit': { de: 'freizeit', nl: 'vrije-tijd' },
 };
 

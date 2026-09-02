@@ -2075,7 +2075,7 @@ export default function App() {
                   isMobile={true} 
                 />
 
-                {(activeCategory === 'Tankstellen' || activeCategory === 'Einzelhandel') && (
+                {(activeCategory === 'Tankstellen' || activeCategory === 'Mobilität & KFZ' || activeCategory === 'Einzelhandel') && (
                   <div className="w-full bg-gradient-to-r from-[#0F4C2E] to-[#0A3620] text-white rounded-xl p-4 flex items-center justify-between gap-3 shadow-md border border-[#0F4C2E]">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-white/15 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center font-bold shrink-0">
@@ -2111,7 +2111,7 @@ export default function App() {
                   </div>
                 )}
 
-                {(activeCategory === 'Apotheken' || activeCategory === 'Ärzte & Praxen' || activeCategory === 'Zahnärzte') && (
+                {(activeCategory === 'Apotheken' || activeCategory === 'Ärzte & Praxen' || activeCategory === 'Zahnärzte' || activeCategory === 'Gesundheit & Medizin') && (
                   <div className="w-full bg-gradient-to-r from-[#991B1B] to-[#5C0F0F] text-white rounded-xl p-4 flex items-center justify-between gap-3 shadow-md border border-red-700">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-white/15 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center font-bold shrink-0">
@@ -2496,7 +2496,7 @@ export default function App() {
               />
 
               {/* Special Spritpreise CTA Card under advertisement */}
-              {(activeCategory === 'Tankstellen' || activeCategory === 'Einzelhandel') && (
+              {(activeCategory === 'Tankstellen' || activeCategory === 'Mobilität & KFZ' || activeCategory === 'Einzelhandel') && (
                 <div className="w-full rounded-2xl bg-gradient-to-b from-[#0F4C2E] via-[#0D4429] to-[#082C1A] text-white p-5 text-center shadow-lg border border-[#0F4C2E] flex flex-col gap-3 transition-all relative overflow-hidden group">
                   {/* Subtle decorative glow */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#F2761B]/20 rounded-full blur-2xl pointer-events-none -mr-8 -mt-8" />
@@ -2540,7 +2540,7 @@ export default function App() {
               )}
 
               {/* Special Notdienste CTA Card under advertisement */}
-              {(activeCategory === 'Apotheken' || activeCategory === 'Ärzte & Praxen' || activeCategory === 'Zahnärzte') && (
+              {(activeCategory === 'Apotheken' || activeCategory === 'Ärzte & Praxen' || activeCategory === 'Zahnärzte' || activeCategory === 'Gesundheit & Medizin') && (
                 <div className="w-full rounded-2xl bg-gradient-to-b from-[#991B1B] via-[#7F1D1D] to-[#450A0A] text-white p-5 text-center shadow-lg border border-red-700 flex flex-col gap-3 transition-all relative overflow-hidden group">
                   {/* Subtle decorative glow */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/20 rounded-full blur-2xl pointer-events-none -mr-8 -mt-8" />

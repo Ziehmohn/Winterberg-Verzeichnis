@@ -17,7 +17,10 @@ import {
   Trophy,
   Fuel,
   Siren,
-  CableCar
+  CableCar,
+  MountainSnow,
+  HeartPulse,
+  Car
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -85,6 +88,24 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
         return {
           icon: Briefcase,
           accentBg: 'bg-indigo-50 text-indigo-800 border-indigo-100/80 group-hover:bg-indigo-700 group-hover:text-white',
+          badgeBg: 'bg-[#FAF8F5] text-[#5F6B63]',
+        };
+      case 'Ski, Bike & Sport':
+        return {
+          icon: MountainSnow,
+          accentBg: 'bg-sky-50 text-sky-700 border-sky-100/80 group-hover:bg-sky-600 group-hover:text-white',
+          badgeBg: 'bg-[#FAF8F5] text-[#5F6B63]',
+        };
+      case 'Gesundheit & Medizin':
+        return {
+          icon: HeartPulse,
+          accentBg: 'bg-rose-50 text-rose-700 border-rose-100/80 group-hover:bg-rose-600 group-hover:text-white',
+          badgeBg: 'bg-[#FAF8F5] text-[#5F6B63]',
+        };
+      case 'Mobilität & KFZ':
+        return {
+          icon: Car,
+          accentBg: 'bg-slate-100 text-slate-700 border-slate-200 group-hover:bg-slate-700 group-hover:text-white',
           badgeBg: 'bg-[#FAF8F5] text-[#5F6B63]',
         };
       case 'Freizeit':

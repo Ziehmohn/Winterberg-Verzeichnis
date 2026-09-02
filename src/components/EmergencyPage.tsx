@@ -253,10 +253,10 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
             </span>
 
             <a
-              href={lang === 'nl' ? '/nl/dienstverlening/apotheken' : '/dienstleistungen/apotheken'}
+              href={lang === 'nl' ? '/nl/gezondheid-en-geneeskunde/apotheken' : '/gesundheit-und-medizin/apotheken'}
               onClick={(e) => {
                 e.preventDefault();
-                const targetPath = lang === 'nl' ? '/nl/dienstverlening/apotheken' : '/dienstleistungen/apotheken';
+                const targetPath = lang === 'nl' ? '/nl/gezondheid-en-geneeskunde/apotheken' : '/gesundheit-und-medizin/apotheken';
                 if (onSelectBusiness) {
                   onSelectBusiness(targetPath);
                 } else {

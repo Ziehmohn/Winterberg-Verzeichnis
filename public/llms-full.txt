@@ -174,61 +174,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ### Kategorie: Handwerk
 
-#### [Car-Point Winterberg](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/car-point-winterberg)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Remmeswiese 30a, 59955 Winterberg
-- **Webseite:** https://car-point-winterberg.de/
-- **Beschreibung (DE):** Wir sind Profis! Wir bieten KFZ-Reparaturen aller Art an.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/car-point-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/car-point-winterberg
-
-#### [Autoservice Kruk](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/autoservice-kruk)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstraße 78a, 59955 Winterberg
-- **Webseite:** https://www.autoservice-kruk.de/
-- **Beschreibung (DE):** Ihre freundliche Autofachwerkstatt in Winterberg-Siedlinghausen. Schnell, Preiswert & Zuverlässig.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/autoservice-kruk
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/autoservice-kruk
-
-#### [Nagel Udo Autoreparatur](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/nagel-udo-autoreparatur)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstr. 56, 59955 Winterberg
-- **Telefon:** 02983 7 61
-- **Beschreibung (DE):** AUTOREPARATUREN
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/nagel-udo-autoreparatur
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/nagel-udo-autoreparatur
-
-#### [HAS-Antriebstechnik Bosch Car Service](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/has-antriebstechnik-bosch-car-service)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Hagenblech 38, 59955 Winterberg
-- **Webseite:** https://has-antriebstechnik.de/
-- **Beschreibung (DE):** Bosch Car Service und Werkstatt Dienstleistungen für alle Fabrikate in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/has-antriebstechnik-bosch-car-service
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/has-antriebstechnik-bosch-car-service
-
-#### [Andreas Mantel Auto & Zweirad](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/andreas-mantel-auto-und-zweirad)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstraße 69, 59955 Winterberg
-- **Webseite:** https://www.mantel-kfz.de/
-- **Beschreibung (DE):** Ihr Meisterbetrieb für Auto & Zweirad in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/andreas-mantel-auto-und-zweirad
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/andreas-mantel-auto-und-zweirad
-
-#### [Schürmann & Kruse OHG](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/schuermann-und-kruse-ohg)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Hagenblech 85, 59955 Winterberg
-- **Telefon:** +49 151 50 70 51 44
-- **Webseite:** https://www.schuermann-kruse.de/
-- **Beschreibung (DE):** Zuverlässiger Service, markenübergreifende Expertise & höchste Präzision. High-End Upgrades, Engineering und Performance-Lösungen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/schuermann-und-kruse-ohg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/schuermann-und-kruse-ohg
-
 #### [Bröker Objekteinrichtungen GmbH & Co. KG](https://www.winterberg-verzeichnis.de/handwerk/schreinereien/broeker-objekteinrichtungen-gmbh-und-co-kg)
 - **Kategorie:** Handwerk > Schreinereien
 - **Ort / Ortsteil:** Winterberg
@@ -682,16 +627,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/baeckerei/tismes-baeckerei-caf-siedlinghausen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bakkerij/tismes-baeckerei-caf-siedlinghausen
 
-#### [Reifen Merter](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reifen-merter)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Grönebach
-- **Adresse:** Hachmicke 4, 59955 Winterberg-Grönebach
-- **Telefon:** 02985 9699849
-- **Webseite:** http://www.reifen-merter.de
-- **Beschreibung (DE):** Ihr Reifenspezialist in Winterberg-Grönebach. Professioneller Reifenservice, Reifenwechsel, Auswuchten, Neureifen aller führenden Marken, Felgen und Einlagerung für PKW, Transporter und Zweiräder.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reifen-merter
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/reifen-merter
-
 #### [Padberg & Wietell Bedachungen GmbH](https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh)
 - **Kategorie:** Handwerk > Dachdecker
 - **Ort / Ortsteil:** Niedersfeld
@@ -700,15 +635,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Fachbetrieb für Dacheindeckungen und traditionelles Naturschieferhandwerk in Winterberg. Spezialisiert auf Schieferfassaden, Dämmung, Dachsanierungen und Schornsteinsanierung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/padberg-und-wietell-bedachungen-gmbh
-
-#### [Reparaturen aller Art Markus Becker](https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reparaturen-aller-art-markus-becker)
-- **Kategorie:** Handwerk > KFZ-Werkstätten
-- **Ort / Ortsteil:** Grönebach
-- **Adresse:** Auf dem Deich 1, 59955 Winterberg-Grönebach
-- **Telefon:** 02985 9792132
-- **Beschreibung (DE):** Freie Werkstatt für Reparaturen aller Art in Winterberg-Grönebach. KFZ-Reparaturen, Instandsetzung, Wartung und Service für PKW und Kleinfahrzeuge.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/kfz-werkstaetten/reparaturen-aller-art-markus-becker
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/autogarages/reparaturen-aller-art-markus-becker
 
 #### [Fleischerei Heinz-Thomas Knieb](https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-heinz-thomas-knieb)
 - **Kategorie:** Handwerk > Fleischerei
@@ -883,76 +809,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/buerobedarf/k-office-buerodesign
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kantoorbenodigdheden/k-office-buerodesign
 
-#### [Autohaus Friedrich Hoffmann](https://www.winterberg-verzeichnis.de/einzelhandel/autohaeuser/autohaus-friedrich-hoffmann)
-- **Kategorie:** Einzelhandel > Autohäuser
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Remmeswiese 24, 59955 Winterberg
-- **Telefon:** 02981 92070
-- **Webseite:** https://www.friedrich-hoffmann.de
-- **Beschreibung (DE):** Ihr VW, Audi & VW Nutzfahrzeuge Autohaus in Winterberg. Erstklassiger Service rund um Ihr Auto.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/autohaeuser/autohaus-friedrich-hoffmann
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/autodealers/autohaus-friedrich-hoffmann
-
-#### [Autohaus Pöllmann](https://www.winterberg-verzeichnis.de/einzelhandel/autohaeuser/autohaus-poellmann)
-- **Kategorie:** Einzelhandel > Autohäuser
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Remmeswiese 22, 59955 Winterberg
-- **Telefon:** 02981 92940
-- **Webseite:** https://www.autohaus-poellmann.de
-- **Beschreibung (DE):** Ihr Toyota Servicepartner sowie Neuwagen, Gebrauchtwagen, Werkstatt weiterer Marken.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/autohaeuser/autohaus-poellmann
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/autodealers/autohaus-poellmann
-
-#### [Schütte-Automobile](https://www.winterberg-verzeichnis.de/einzelhandel/autohaeuser/schuette-automobile)
-- **Kategorie:** Einzelhandel > Autohäuser
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Remmeswiese 2a, 59955 Winterberg
-- **Telefon:** 02981 928190
-- **Webseite:** https://www.schuette-automobile.de
-- **Beschreibung (DE):** Autohändler in Winterberg. Verkauf von Neu- und Gebrauchtwagen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/autohaeuser/schuette-automobile
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/autodealers/schuette-automobile
-
-#### [TinQ 24h-Tankautomat Langewiese](https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/tinq-24h-tankautomat-langewiese)
-- **Kategorie:** Einzelhandel > Tankstellen
-- **Ort / Ortsteil:** Langewiese
-- **Adresse:** Bundesstraße 38, 59955 Winterberg-Langewiese
-- **Telefon:** 02758 287
-- **Webseite:** https://gulf.de
-- **Beschreibung (DE):** Moderne 24-Stunden-Automatentankstelle an der Bundesstraße in Winterberg-Langewiese für PKW und LKW mit EC-, Kreditkarten- und Flottenkarten-Zahlung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/tinq-24h-tankautomat-langewiese
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/tankstations/tinq-24h-tankautomat-langewiese
-
-#### [JET Tankstelle Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/jet-tankstelle-winterberg)
-- **Kategorie:** Einzelhandel > Tankstellen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Lamfert 1, 59955 Winterberg
-- **Telefon:** 02981 9298634
-- **Webseite:** https://www.jet.de/tankstellen/winterberg/lamfert-1
-- **Beschreibung (DE):** JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/jet-tankstelle-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/tankstations/jet-tankstelle-winterberg
-
-#### [Aral Tankstelle Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/aral-tankstelle-winterberg)
-- **Kategorie:** Einzelhandel > Tankstellen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Hagenblech 60, 59955 Winterberg
-- **Telefon:** 02981 92600
-- **Webseite:** https://tankstelle.aral.de/winterberg/am-hagenblech-60/14164700
-- **Beschreibung (DE):** Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/aral-tankstelle-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/tankstations/aral-tankstelle-winterberg
-
-#### [Calpam Tankautomat Züschen](https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/calpam-tankautomat-zueschen)
-- **Kategorie:** Einzelhandel > Tankstellen
-- **Ort / Ortsteil:** Züschen
-- **Adresse:** Nuhnetalstraße 88, 59955 Winterberg-Züschen
-- **Telefon:** 02981 908301
-- **Webseite:** https://calpam.com
-- **Beschreibung (DE):** 24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/tankstellen/calpam-tankautomat-zueschen
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/tankstations/calpam-tankautomat-zueschen
-
 #### [Imkerei Niggemann (Hochsauerländer Blütenhonig)](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-niggemann-hochsauerlaender-bluetenhonig)
 - **Kategorie:** Einzelhandel > Supermarkt
 - **Ort / Ortsteil:** Grönebach
@@ -972,26 +828,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Traditionelle Imkerei im idyllischen Altenfeld (Winterberg). Echter deutscher Honig, Blütenhonig, Waldhonig und Bienenprodukte aus eigener regionaler Imkerei und schonender Bienenhaltung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/imkerei-ralf-becker
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/supermarkt/imkerei-ralf-becker
-
-#### [Pro Biker](https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/pro-biker)
-- **Kategorie:** Einzelhandel > Fahrradgeschäfte
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 49, 59955 Winterberg
-- **Telefon:** 02981 1715
-- **Webseite:** https://www.pro-biker.de
-- **Beschreibung (DE):** Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/pro-biker
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/fahrradgeschaefte/pro-biker
-
-#### [Green Bikes GmbH - Fahrradfachmarkt & -werkstatt](https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt)
-- **Kategorie:** Einzelhandel > Fahrradgeschäfte
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Hagenblech 93, 59955 Winterberg
-- **Telefon:** 02981 896850
-- **Webseite:** https://greenbikes.de
-- **Beschreibung (DE):** Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
 
 #### [dm-drogerie markt](https://www.winterberg-verzeichnis.de/einzelhandel/drogerien/dm-drogerie-markt)
 - **Kategorie:** Einzelhandel > Drogerien
@@ -1048,33 +884,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Baustoffhandel in Winterberg-Siedlinghausen. Alles für Bau, Renovierung und Gartengestaltung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/baustoffe/happe-bauzentrum-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/baustoffe/happe-bauzentrum-winterberg
-
-#### [Outdoor 842](https://www.winterberg-verzeichnis.de/einzelhandel/sport-und-outdoor/outdoor-842)
-- **Kategorie:** Einzelhandel > Sport & Outdoor
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 16, 59955 Winterberg
-- **Telefon:** 02981 928443
-- **Beschreibung (DE):** Sportgeschäft in Winterberg mit großer Auswahl an Outdoor-Bekleidung und Ausrüstung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/sport-und-outdoor/outdoor-842
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/sport-und-outdoor/outdoor-842
-
-#### [Peter O. SPORT MODE](https://www.winterberg-verzeichnis.de/einzelhandel/sport-und-outdoor/peter-o-sport-mode)
-- **Kategorie:** Einzelhandel > Sport & Outdoor
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 20, 59955 Winterberg
-- **Telefon:** 02981 1756
-- **Beschreibung (DE):** Ihr Fachgeschäft für Sport und Mode in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/sport-und-outdoor/peter-o-sport-mode
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/sport-und-outdoor/peter-o-sport-mode
-
-#### [Outdoorfashion Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/sport-und-outdoor/outdoorfashion-winterberg)
-- **Kategorie:** Einzelhandel > Sport & Outdoor
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 2, 59955 Winterberg
-- **Telefon:** 02981 820668
-- **Beschreibung (DE):** Outdoor-Sportgeschäft in Winterberg. Entdecken Sie hochwertige Funktionsbekleidung für Ihr nächstes Abenteuer.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/sport-und-outdoor/outdoorfashion-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/sport-und-outdoor/outdoorfashion-winterberg
 
 #### [Herrenausstatter Christian Leisse](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/herrenausstatter-christian-leisse)
 - **Kategorie:** Einzelhandel > Bekleidung
@@ -1833,122 +1642,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/versicherungsagenturen/r-v-versicherung-winterberg-volksbank-sauerland
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/verzekeringsagenten/r-v-versicherung-winterberg-volksbank-sauerland
 
-#### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Hauptstraße 16, 59955 Winterberg
-- **Telefon:** 02981 6974
-- **Webseite:** https://sauerlandpraxis.de
-- **Beschreibung (DE):** Moderne überörtliche Gemeinschaftspraxis und Hausarztpraxis an der Hauptstraße in Winterberg. Ganzheitliche Allgemeinmedizin, Vorsorgeuntersuchungen, Ultraschall, Labor, EKG und psychosomatische Grundversorgung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
-
-#### [Praxis Dr. med. Martin Nieswand](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-martin-nieswand)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Nuhnestraße 6, 59955 Winterberg
-- **Telefon:** 02981 3733
-- **Webseite:** https://www.dr-nieswand.de
-- **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin, Sportmedizin, Chirotherapie und offizielle Gelbfieberimpfstelle der WHO in Winterberg an der Nuhnestraße. Betreuung von Freizeitsportlern, Leistungsathleten und Patienten aller Kassen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-martin-nieswand
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/praxis-dr-med-martin-nieswand
-
-#### [Sauerlandpraxis – Dr. Maja Jelicic](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Franziskusstraße 1, 59955 Winterberg
-- **Telefon:** 02981 2262
-- **Webseite:** https://sauerlandpraxis.de
-- **Beschreibung (DE):** Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
-
-#### [Hausarztpraxis Dr. Bojana Lukic-Jablonka](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Marktstraße 9, 59955 Winterberg
-- **Telefon:** 02981 1588
-- **Webseite:** https://www.hausarztpraxis-winterberg.de
-- **Beschreibung (DE):** Moderne Facharztpraxis für Allgemeinmedizin im Zentrum von Winterberg (Marktstraße). Herzliche und qualifizierte hausärztliche Rundumbetreuung für Erwachsene, Jugendliche und Senioren.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
-
-#### [Praxis Dr. med. Rikardo Mihalic](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Kolpingstraße 2, 59955 Winterberg-Siedlinghausen
-- **Telefon:** 02983 8229
-- **Webseite:** https://www.praxis-dr-mihalic.de
-- **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin in Winterberg-Siedlinghausen mit Schwerpunkten in Reisemedizin, Venenheilkunde (Phlebologie) und hausärztlicher Geriatrie. Umfassende moderne Diagnostik und persönliche Betreuung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
-
-#### [Praxis Rosa Lange – Fachärztin für Allgemeinmedizin](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Züschen
-- **Adresse:** Junkerstraße 38, 59955 Winterberg-Züschen
-- **Telefon:** 02981 7775
-- **Beschreibung (DE):** Hausarztpraxis und Fachärztin für Allgemeinmedizin und Chirotherapie in Winterberg-Züschen. Ganzheitliche Behandlung, manuelle Therapie, Gesundheitsvorsorge und individuelle Betreuung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
-
-#### [Kinderarztpraxis Winterberg (MVZ)](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Poststraße 12, 59955 Winterberg
-- **Telefon:** 02981 9093480
-- **Webseite:** https://www.gesundheitszentrum-winterberg.de
-- **Beschreibung (DE):** Fachärztliche Kinder- und Jugendärztliche Praxis an der Poststraße in Winterberg unter dem Dach des Gesundheitszentrums St. Franziskus. U-Untersuchungen, Impfberatung, Allergiediagnostik und Akutsprechstunde für Kinder & Jugendliche.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
-
-#### [St. Franziskus-Hospital Winterberg](https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/st-franziskus-hospital-winterberg)
-- **Kategorie:** Dienstleistungen > Ärzte & Praxen
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Franziskusstraße 2, 59955 Winterberg
-- **Telefon:** 02981 8020
-- **Webseite:** https://www.gesundheitszentrum-winterberg.de
-- **Beschreibung (DE):** Modernes Akutkrankenhaus und regionales Gesundheitszentrum für Winterberg und das Sauerland mit 24/7 Notfallambulanz, Chirurgie, Unfallchirurgie & Orthopädie (AMIS-Methode), Innerer Medizin, Anästhesie und Radiologie.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/aerzte-und-praxen/st-franziskus-hospital-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/aerzte-und-praxen/st-franziskus-hospital-winterberg
-
-#### [Zahnarztpraxis Dr. med. dent. Daniel Castillo-Chevallier](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier)
-- **Kategorie:** Dienstleistungen > Zahnärzte
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Poststraße 1, 59955 Winterberg
-- **Telefon:** 02981 2708
-- **Webseite:** https://www.winterberg-zahnarzt.de
-- **Beschreibung (DE):** Moderne Zahnarztpraxis an der Poststraße in Winterberg (über der Kur-Apotheke). Ästhetische Zahnheilkunde, Prophylaxe, Implantologie, Zahnersatz, Parodontologie und schonende Behandlung für die ganze Familie.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
-
-#### [Zahnarztpraxis Dr. Nassrin Grickschat](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat)
-- **Kategorie:** Dienstleistungen > Zahnärzte
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Marktstraße 9A, 59955 Winterberg
-- **Telefon:** 02981 1556
-- **Beschreibung (DE):** Etablierte Zahnarztpraxis an der Marktstraße im Zentrum von Winterberg. Umfassende zahnmedizinische Versorgung, Vorsorge, Zahnerhaltung, Bleaching und einfühlsame Behandlung von Angstpatienten.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
-
-#### [Zahnarztpraxis Michaela Fieseler-Koch](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch)
-- **Kategorie:** Dienstleistungen > Zahnärzte
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstraße 10, 59955 Winterberg-Siedlinghausen
-- **Telefon:** 02983 1710
-- **Beschreibung (DE):** Ihre Zahnarztpraxis an der Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuelle Prophylaxe, Zahnerhaltung, moderne Füllungstherapie und Zahnersatzlösungen für Jung und Alt.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
-
-#### [Zahnarztpraxis Dr. med. dent. Sonja Kuhl](https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl)
-- **Kategorie:** Dienstleistungen > Zahnärzte
-- **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstraße 24, 59955 Winterberg-Niedersfeld
-- **Telefon:** 02985 1422
-- **Beschreibung (DE):** Zahnarztpraxis an der Ruhrstraße in Winterberg-Niedersfeld. Qualifizierte Zahnmedizin, ganzheitliche Vorsorge, ästhetische Zahnkorrekturen und Zahnersatz in freundlicher Atmosphäre.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
-
 #### [House Of Immo - Sauerlandmakler](https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/house-of-immo-sauerlandmakler)
 - **Kategorie:** Dienstleistungen > Immobilienmakler
 - **Ort / Ortsteil:** Winterberg
@@ -1994,70 +1687,583 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/grulke-immobilien-und-hausverwaltung
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/grulke-immobilien-und-hausverwaltung
 
-#### [Kur-Apotheke](https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/kur-apotheke)
-- **Kategorie:** Dienstleistungen > Apotheken
+### Kategorie: Ski, Bike & Sport
+
+#### [Tennisplätze Niedersfeld](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-niedersfeld)
+- **Kategorie:** Ski, Bike & Sport > Tennisplätze
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** An der Hille 6b, 59955 Winterberg
+- **Webseite:** http://www.sv-niedersfeld.de
+- **Beschreibung (DE):** Tennisverein in Niedersfeld mit 3 Sandplätzen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-niedersfeld
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/tennisbanen/tennisplaetze-niedersfeld
+
+#### [Tennisplätze Züschen](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-zueschen)
+- **Kategorie:** Ski, Bike & Sport > Tennisplätze
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Schützenstraße 5, 59955 Winterberg
+- **Telefon:** 02981 2541
+- **Beschreibung (DE):** Tennisverein in Züschen mit Sandplätzen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-zueschen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/tennisbanen/tennisplaetze-zueschen
+
+#### [Tennisplätze Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-winterberg)
+- **Kategorie:** Ski, Bike & Sport > Tennisplätze
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Fichtenweg 14, 59955 Winterberg
+- **Webseite:** http://www.tc-winterberg.de
+- **Beschreibung (DE):** Tennisverein in Winterberg Winterberg mit Sandplätzen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/tennisbanen/tennisplaetze-winterberg
+
+#### [Tennisplätze Siedlinghausen](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-siedlinghausen)
+- **Kategorie:** Ski, Bike & Sport > Tennisplätze
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Grimmeweg 9, 59955 Winterberg
+- **Webseite:** mailto:bm.hoemberg@gmail.com
+- **Beschreibung (DE):** Tennisverein in Siedlinghausen (keine Sandplätze).
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-siedlinghausen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/tennisbanen/tennisplaetze-siedlinghausen
+
+#### [VfR Winterberg 1921 e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/vfr-winterberg-1921-e-v)
+- **Kategorie:** Ski, Bike & Sport > Fußballvereine
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Oberhofer Weg 9, 59955 Winterberg
+- **Telefon:** 02985 979916
+- **Webseite:** http://vfr-winterberg.de/
+- **Beschreibung (DE):** Fußballverein in Winterberg Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/vfr-winterberg-1921-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/vfr-winterberg-1921-e-v
+
+#### [TuS Züschen e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/tus-zueschen-e-v)
+- **Kategorie:** Ski, Bike & Sport > Fußballvereine
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Junkerstraße 38, 59955 Winterberg
+- **Webseite:** http://www.tus-zueschen.de/
+- **Beschreibung (DE):** Fußball- und Sportverein in Züschen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/tus-zueschen-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/tus-zueschen-e-v
+
+#### [Spiel- und Sportverein Silbach 1923 e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/spiel-und-sportverein-silbach-1923-e-v)
+- **Kategorie:** Ski, Bike & Sport > Fußballvereine
+- **Ort / Ortsteil:** Silbach
+- **Adresse:** Am Schieferberg 2, 59955 Winterberg
+- **Beschreibung (DE):** Sportverein in Silbach.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/spiel-und-sportverein-silbach-1923-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/spiel-und-sportverein-silbach-1923-e-v
+
+#### [FC Siedlinghausen 1920 e.V](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-siedlinghausen-1920-e-v)
+- **Kategorie:** Ski, Bike & Sport > Fußballvereine
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Sorpestraße 41, 59955 Winterberg
+- **Beschreibung (DE):** Fußballabteilung (2 Seniorenmannschaften und mehrere Jugendmannschaften), Breitensport (Gymnastik und Faszientraining), Wirbelsäulengymnastik, Qi Gong, Meditation.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-siedlinghausen-1920-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/fc-siedlinghausen-1920-e-v
+
+#### [FC Hilletal 2003](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-hilletal-2003)
+- **Kategorie:** Ski, Bike & Sport > Fußballvereine
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** An der Hille 6 a, 59955 Winterberg
+- **Telefon:** 02985 979916
+- **Webseite:** http://www.fc-hilletal.de/
+- **Beschreibung (DE):** Fußballverein in Niedersfeld.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-hilletal-2003
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/fc-hilletal-2003
+
+#### [Fun Fitness 24 Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/fun-fitness-24-winterberg)
+- **Kategorie:** Ski, Bike & Sport > Fitnessstudios
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 49, 59955 Winterberg
+- **Telefon:** 0178 8538257
+- **Webseite:** https://funfitness24.de
+- **Beschreibung (DE):** Modernes 24/7 Fitnessstudio in Winterberg. Rund um die Uhr geöffnet für Gerätetraining, Ausdauer, Freihantelbereich, Ernährungsberatung und Personal Training.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/fun-fitness-24-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fitnesscentra/fun-fitness-24-winterberg
+
+#### [corpus pro Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/corpus-pro-winterberg)
+- **Kategorie:** Ski, Bike & Sport > Fitnessstudios
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 73, 59955 Winterberg
+- **Telefon:** 02981 9199837
+- **Webseite:** https://corpus-pro.com
+- **Beschreibung (DE):** Fitness- und Gesundheitsstudio in Winterberg mit hochmodernen Matrix-Geräten, Freihantel- und Cardiobereich, Ernährungsberatung und individuellem Personal Training.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/corpus-pro-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fitnesscentra/corpus-pro-winterberg
+
+#### [Körperformen EMS Training Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/koerperformen-ems-training-winterberg)
+- **Kategorie:** Ski, Bike & Sport > Fitnessstudios
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 8, 59955 Winterberg
+- **Telefon:** 02981 9022444
+- **Webseite:** https://www.koerperformen-hsk.de
+- **Beschreibung (DE):** Effektives EMS-Ganzkörpertraining in nur 20 Minuten pro Woche mit persönlichem Trainer im Zentrum von Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/koerperformen-ems-training-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fitnesscentra/koerperformen-ems-training-winterberg
+
+#### [Fitnessclub Niedersfeld e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/fitnessclub-niedersfeld-e-v)
+- **Kategorie:** Ski, Bike & Sport > Fitnessstudios
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Alter Schulweg 10, 59955 Winterberg-Niedersfeld
+- **Telefon:** 01511 6303669
+- **Webseite:** https://www.fitnessclub-niedersfeld.de
+- **Beschreibung (DE):** Gemeinnütziger Fitnessverein in Winterberg-Niedersfeld mit modernem Kraft- und Ausdauerbereich, Kursangeboten und familiärer Atmosphäre.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fitnessstudios/fitnessclub-niedersfeld-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fitnesscentra/fitnessclub-niedersfeld-e-v
+
+#### [Bikeverleih Klante am Herrloh](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-herrloh)
+- **Kategorie:** Ski, Bike & Sport > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 67a, 59955 Winterberg
+- **Telefon:** 02981 4259016
+- **Webseite:** https://www.bike-klante.de
+- **Beschreibung (DE):** Ihr erstklassiger Bike- und E-Bike-Verleih direkt am Herrloh in Winterberg. Neueste E-Mountainbikes, Fullys, Hardtails, Kinder-Bikes, Helme und Schutzausrüstung für Touren und Trailparks.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-herrloh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/bikeverleih-klante-am-herrloh
+
+#### [e-Bike-Verleih Winterberg / Ski & Bike Schneider](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider)
+- **Kategorie:** Ski, Bike & Sport > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Fichtenweg 20a, 59955 Winterberg
+- **Telefon:** 02981 9296692
+- **Webseite:** https://www.ski-schneider.de
+- **Beschreibung (DE):** Großer E-Bike- & Mountainbike-Verleih an der Talstation Brabander / Herrloh in Winterberg. Neueste E-Bikes aller Kategorien, Kids E-MTBs ab 24 Zoll, Kinderanhänger, Kindersitze und Protektoren.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
+
+#### [Bikeverleih Poppenberg Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-poppenberg-winterberg)
+- **Kategorie:** Ski, Bike & Sport > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** In d. Büre 32, 59955 Winterberg
+- **Telefon:** 02981 4259008
+- **Webseite:** https://www.poppenberg-winterberg.de
+- **Beschreibung (DE):** Bike- und E-Bike-Verleih direkt an der Talstation Poppenberg in der Büre. Hochwertige Mountainbikes, Trekking- und City-E-Bikes für alle Altersklassen sowie Skiverleih im Winter.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-poppenberg-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/bikeverleih-poppenberg-winterberg
+
+#### [Bikeverleih Klante am Schneewittchenhaus](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus)
+- **Kategorie:** Ski, Bike & Sport > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 119, 59955 Winterberg
+- **Telefon:** 02981 4259011
+- **Webseite:** https://www.bike-klante.de
+- **Beschreibung (DE):** Moderner Verleihstützpunkt und Ausrüstungsdepot von Klante am Schneewittchenhaus / Kappe. Premium E-Mountainbikes, Schutzkleidung, Bike-Depot und direkte Nähe zu den Trails rund um den Kahlen Asten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
+
+#### [Pro Biker](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/pro-biker)
+- **Kategorie:** Ski, Bike & Sport > Fahrradgeschäfte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 49, 59955 Winterberg
+- **Telefon:** 02981 1715
+- **Webseite:** https://www.pro-biker.de
+- **Beschreibung (DE):** Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/pro-biker
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradgeschaefte/pro-biker
+
+#### [Uppu-Biketours](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/uppu-biketours)
+- **Kategorie:** Ski, Bike & Sport > Fahrradverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 19A, 59955 Winterberg
+- **Telefon:** 02981 2245
+- **Webseite:** http://www.uppu-biketours.de
+- **Beschreibung (DE):** Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/uppu-biketours
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/uppu-biketours
+
+#### [Skiverleih Schneider](https://www.winterberg-verzeichnis.de/ski-bike-sport/skiverleih/skiverleih-schneider)
+- **Kategorie:** Ski, Bike & Sport > Skiverleih
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Fichtenweg 20a, 59955 Winterberg
+- **Telefon:** 02981 9296692
+- **Webseite:** https://www.ski-schneider.de
+- **Beschreibung (DE):** Traditionsreicher Skiverleih und Skiservice am Fichtenweg in Winterberg. Neueste Carving-Ski, Snowboards, Langlaufski, Schlitten, Helme sowie modernes Skidepot direkt an der Piste Herrloh / Brabander.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/skiverleih/skiverleih-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/skiverleih/skiverleih-schneider
+
+#### [Green Bikes GmbH - Fahrradfachmarkt & -werkstatt](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt)
+- **Kategorie:** Ski, Bike & Sport > Fahrradgeschäfte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 93, 59955 Winterberg
+- **Telefon:** 02981 896850
+- **Webseite:** https://greenbikes.de
+- **Beschreibung (DE):** Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
+
+#### [Outdoor 842](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoor-842)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 16, 59955 Winterberg
+- **Telefon:** 02981 928443
+- **Beschreibung (DE):** Sportgeschäft in Winterberg mit großer Auswahl an Outdoor-Bekleidung und Ausrüstung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoor-842
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-und-outdoor/outdoor-842
+
+#### [Peter O. SPORT MODE](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/peter-o-sport-mode)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 20, 59955 Winterberg
+- **Telefon:** 02981 1756
+- **Beschreibung (DE):** Ihr Fachgeschäft für Sport und Mode in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/peter-o-sport-mode
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-und-outdoor/peter-o-sport-mode
+
+#### [Outdoorfashion Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoorfashion-winterberg)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 2, 59955 Winterberg
+- **Telefon:** 02981 820668
+- **Beschreibung (DE):** Outdoor-Sportgeschäft in Winterberg. Entdecken Sie hochwertige Funktionsbekleidung für Ihr nächstes Abenteuer.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoorfashion-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-und-outdoor/outdoorfashion-winterberg
+
+#### [Reitsportfreunde Winterberg - Western & Klassisch e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v)
+- **Kategorie:** Ski, Bike & Sport > Reitsport
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Postteich 7, 59955 Winterberg
+- **Webseite:** https://reitsportfreunde-winterberg.com
+- **Beschreibung (DE):** Reiterverein für Western- und klassisches Reiten in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
+
+### Kategorie: Gesundheit & Medizin
+
+#### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 16, 59955 Winterberg
+- **Telefon:** 02981 6974
+- **Webseite:** https://sauerlandpraxis.de
+- **Beschreibung (DE):** Moderne überörtliche Gemeinschaftspraxis und Hausarztpraxis an der Hauptstraße in Winterberg. Ganzheitliche Allgemeinmedizin, Vorsorgeuntersuchungen, Ultraschall, Labor, EKG und psychosomatische Grundversorgung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
+
+#### [Praxis Dr. med. Martin Nieswand](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-martin-nieswand)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Nuhnestraße 6, 59955 Winterberg
+- **Telefon:** 02981 3733
+- **Webseite:** https://www.dr-nieswand.de
+- **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin, Sportmedizin, Chirotherapie und offizielle Gelbfieberimpfstelle der WHO in Winterberg an der Nuhnestraße. Betreuung von Freizeitsportlern, Leistungsathleten und Patienten aller Kassen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-martin-nieswand
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/praxis-dr-med-martin-nieswand
+
+#### [Sauerlandpraxis – Dr. Maja Jelicic](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Franziskusstraße 1, 59955 Winterberg
+- **Telefon:** 02981 2262
+- **Webseite:** https://sauerlandpraxis.de
+- **Beschreibung (DE):** Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
+
+#### [Hausarztpraxis Dr. Bojana Lukic-Jablonka](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Marktstraße 9, 59955 Winterberg
+- **Telefon:** 02981 1588
+- **Webseite:** https://www.hausarztpraxis-winterberg.de
+- **Beschreibung (DE):** Moderne Facharztpraxis für Allgemeinmedizin im Zentrum von Winterberg (Marktstraße). Herzliche und qualifizierte hausärztliche Rundumbetreuung für Erwachsene, Jugendliche und Senioren.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
+
+#### [Praxis Dr. med. Rikardo Mihalic](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Kolpingstraße 2, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 8229
+- **Webseite:** https://www.praxis-dr-mihalic.de
+- **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin in Winterberg-Siedlinghausen mit Schwerpunkten in Reisemedizin, Venenheilkunde (Phlebologie) und hausärztlicher Geriatrie. Umfassende moderne Diagnostik und persönliche Betreuung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
+
+#### [Praxis Rosa Lange – Fachärztin für Allgemeinmedizin](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Junkerstraße 38, 59955 Winterberg-Züschen
+- **Telefon:** 02981 7775
+- **Beschreibung (DE):** Hausarztpraxis und Fachärztin für Allgemeinmedizin und Chirotherapie in Winterberg-Züschen. Ganzheitliche Behandlung, manuelle Therapie, Gesundheitsvorsorge und individuelle Betreuung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
+
+#### [Kinderarztpraxis Winterberg (MVZ)](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 12, 59955 Winterberg
+- **Telefon:** 02981 9093480
+- **Webseite:** https://www.gesundheitszentrum-winterberg.de
+- **Beschreibung (DE):** Fachärztliche Kinder- und Jugendärztliche Praxis an der Poststraße in Winterberg unter dem Dach des Gesundheitszentrums St. Franziskus. U-Untersuchungen, Impfberatung, Allergiediagnostik und Akutsprechstunde für Kinder & Jugendliche.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
+
+#### [St. Franziskus-Hospital Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/st-franziskus-hospital-winterberg)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Franziskusstraße 2, 59955 Winterberg
+- **Telefon:** 02981 8020
+- **Webseite:** https://www.gesundheitszentrum-winterberg.de
+- **Beschreibung (DE):** Modernes Akutkrankenhaus und regionales Gesundheitszentrum für Winterberg und das Sauerland mit 24/7 Notfallambulanz, Chirurgie, Unfallchirurgie & Orthopädie (AMIS-Methode), Innerer Medizin, Anästhesie und Radiologie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/st-franziskus-hospital-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/st-franziskus-hospital-winterberg
+
+#### [Zahnarztpraxis Dr. med. dent. Daniel Castillo-Chevallier](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier)
+- **Kategorie:** Gesundheit & Medizin > Zahnärzte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 1, 59955 Winterberg
+- **Telefon:** 02981 2708
+- **Webseite:** https://www.winterberg-zahnarzt.de
+- **Beschreibung (DE):** Moderne Zahnarztpraxis an der Poststraße in Winterberg (über der Kur-Apotheke). Ästhetische Zahnheilkunde, Prophylaxe, Implantologie, Zahnersatz, Parodontologie und schonende Behandlung für die ganze Familie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
+
+#### [Zahnarztpraxis Dr. Nassrin Grickschat](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat)
+- **Kategorie:** Gesundheit & Medizin > Zahnärzte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Marktstraße 9A, 59955 Winterberg
+- **Telefon:** 02981 1556
+- **Beschreibung (DE):** Etablierte Zahnarztpraxis an der Marktstraße im Zentrum von Winterberg. Umfassende zahnmedizinische Versorgung, Vorsorge, Zahnerhaltung, Bleaching und einfühlsame Behandlung von Angstpatienten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
+
+#### [Zahnarztpraxis Michaela Fieseler-Koch](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch)
+- **Kategorie:** Gesundheit & Medizin > Zahnärzte
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Hochsauerlandstraße 10, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 1710
+- **Beschreibung (DE):** Ihre Zahnarztpraxis an der Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuelle Prophylaxe, Zahnerhaltung, moderne Füllungstherapie und Zahnersatzlösungen für Jung und Alt.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
+
+#### [Zahnarztpraxis Dr. med. dent. Sonja Kuhl](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl)
+- **Kategorie:** Gesundheit & Medizin > Zahnärzte
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 24, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 1422
+- **Beschreibung (DE):** Zahnarztpraxis an der Ruhrstraße in Winterberg-Niedersfeld. Qualifizierte Zahnmedizin, ganzheitliche Vorsorge, ästhetische Zahnkorrekturen und Zahnersatz in freundlicher Atmosphäre.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
+
+#### [Kur-Apotheke](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/apotheken/kur-apotheke)
+- **Kategorie:** Gesundheit & Medizin > Apotheken
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Poststraße 1, 59955 Winterberg
 - **Telefon:** 02981 929500
 - **Beschreibung (DE):** Ihre freundliche Apotheke im Herzen von Winterberg. Wir beraten Sie kompetent in allen Gesundheitsfragen, von verschreibungspflichtigen Medikamenten bis hin zu Naturheilmitteln.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/kur-apotheke
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/apotheken/kur-apotheke
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/apotheken/kur-apotheke
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/apotheken/kur-apotheke
 
-#### [Franziskus-Apotheke](https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/franziskus-apotheke)
-- **Kategorie:** Dienstleistungen > Apotheken
+#### [Franziskus-Apotheke](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/apotheken/franziskus-apotheke)
+- **Kategorie:** Gesundheit & Medizin > Apotheken
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Poststraße 6, 59955 Winterberg
 - **Telefon:** 02981 2521
 - **Beschreibung (DE):** Die Franziskus-Apotheke an der Poststraße bietet umfassenden Service rund um Ihre Gesundheit.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/apotheken/franziskus-apotheke
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/apotheken/franziskus-apotheke
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/apotheken/franziskus-apotheke
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/apotheken/franziskus-apotheke
 
-#### [Thai Massage Ooy Lumtong](https://www.winterberg-verzeichnis.de/dienstleistungen/massagen/thai-massage-ooy-lumtong)
-- **Kategorie:** Dienstleistungen > Massagen
+#### [Thai Massage Ooy Lumtong](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/massagen/thai-massage-ooy-lumtong)
+- **Kategorie:** Gesundheit & Medizin > Massagen
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Hauptstraße 29, 59955 Winterberg
 - **Webseite:** https://thaimassagewinterberg.de
 - **Beschreibung (DE):** Traditionelle Thai-Massage in Winterberg für Entspannung und Wohlbefinden.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/massagen/thai-massage-ooy-lumtong
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/massagen/thai-massage-ooy-lumtong
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/massagen/thai-massage-ooy-lumtong
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/massagen/thai-massage-ooy-lumtong
 
-#### [Physiotherapie Paula Hennecke&Team](https://www.winterberg-verzeichnis.de/dienstleistungen/physiotherapie/physiotherapie-paula-henneckeundteam)
-- **Kategorie:** Dienstleistungen > Physiotherapie
+#### [Physiotherapie Paula Hennecke&Team](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/physiotherapie/physiotherapie-paula-henneckeundteam)
+- **Kategorie:** Gesundheit & Medizin > Physiotherapie
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Wernsdorfer Str. 6, 59955 Winterberg
 - **Telefon:** 02981 3679
 - **Webseite:** https://physiotherapie-winterberg.de
 - **Beschreibung (DE):** Ihre Praxis für Physiotherapie und Kinderphysiotherapie in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/physiotherapie/physiotherapie-paula-henneckeundteam
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/physiotherapie/physiotherapie-paula-henneckeundteam
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/physiotherapie/physiotherapie-paula-henneckeundteam
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/physiotherapie/physiotherapie-paula-henneckeundteam
 
-#### [CB House of Beauty & Ästhetik by Carolin Berghoff](https://www.winterberg-verzeichnis.de/dienstleistungen/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff)
-- **Kategorie:** Dienstleistungen > Kosmetikstudios
+#### [CB House of Beauty & Ästhetik by Carolin Berghoff](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff)
+- **Kategorie:** Gesundheit & Medizin > Kosmetikstudios
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Wernsdorfer Str. 39, 59955 Winterberg
 - **Webseite:** https://cbbeauty.de
 - **Beschreibung (DE):** Kosmetikstudio in Winterberg für Gesichtsbehandlungen, Anti-Aging und Ästhetik.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
 
-#### [Tierisch bewegt - Tierphysiotherapie & Bewegung](https://www.winterberg-verzeichnis.de/dienstleistungen/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung)
-- **Kategorie:** Dienstleistungen > Tiergesundheit
+#### [Tierisch bewegt - Tierphysiotherapie & Bewegung](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung)
+- **Kategorie:** Gesundheit & Medizin > Tiergesundheit
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Postteich 7, 59955 Winterberg
 - **Webseite:** https://tierphysio-tierischbewegt.de
 - **Beschreibung (DE):** Professionelle Tierphysiotherapie und Bewegungstherapie für Hunde und Pferde in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
 
-#### [Ambulanter Pflegedienst und Tagespflege Dönekes](https://www.winterberg-verzeichnis.de/dienstleistungen/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes)
-- **Kategorie:** Dienstleistungen > Pflegedienste
+#### [Mountain-Yoga Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/mountain-yoga-winterberg)
+- **Kategorie:** Gesundheit & Medizin > Yoga
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Rad 11, 59955 Winterberg
+- **Telefon:** 01516 8597514
+- **Webseite:** https://mountain-yoga-winterberg.de
+- **Beschreibung (DE):** Yogastudio in Winterberg. Entspannung und Bewegung für Körper und Geist.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/mountain-yoga-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/yoga/mountain-yoga-winterberg
+
+#### [Ambulanter Pflegedienst und Tagespflege Dönekes](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes)
+- **Kategorie:** Gesundheit & Medizin > Pflegedienste
 - **Ort / Ortsteil:** Niedersfeld
 - **Adresse:** Ruhrstraße 38A, 59955 Winterberg-Niedersfeld
 - **Telefon:** 02985 3689975
 - **Webseite:** https://tagespflege-niedersfeld.de
 - **Beschreibung (DE):** Ambulanter Pflegedienst und Tagespflege in Niedersfeld.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
+
+### Kategorie: Mobilität & KFZ
+
+#### [Car-Point Winterberg](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/car-point-winterberg)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 30a, 59955 Winterberg
+- **Webseite:** https://car-point-winterberg.de/
+- **Beschreibung (DE):** Wir sind Profis! Wir bieten KFZ-Reparaturen aller Art an.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/car-point-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/car-point-winterberg
+
+#### [Autoservice Kruk](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/autoservice-kruk)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Hochsauerlandstraße 78a, 59955 Winterberg
+- **Webseite:** https://www.autoservice-kruk.de/
+- **Beschreibung (DE):** Ihre freundliche Autofachwerkstatt in Winterberg-Siedlinghausen. Schnell, Preiswert & Zuverlässig.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/autoservice-kruk
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/autoservice-kruk
+
+#### [Nagel Udo Autoreparatur](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/nagel-udo-autoreparatur)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Hochsauerlandstr. 56, 59955 Winterberg
+- **Telefon:** 02983 7 61
+- **Beschreibung (DE):** AUTOREPARATUREN
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/nagel-udo-autoreparatur
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/nagel-udo-autoreparatur
+
+#### [HAS-Antriebstechnik Bosch Car Service](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/has-antriebstechnik-bosch-car-service)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 38, 59955 Winterberg
+- **Webseite:** https://has-antriebstechnik.de/
+- **Beschreibung (DE):** Bosch Car Service und Werkstatt Dienstleistungen für alle Fabrikate in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/has-antriebstechnik-bosch-car-service
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/has-antriebstechnik-bosch-car-service
+
+#### [Andreas Mantel Auto & Zweirad](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/andreas-mantel-auto-und-zweirad)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 69, 59955 Winterberg
+- **Webseite:** https://www.mantel-kfz.de/
+- **Beschreibung (DE):** Ihr Meisterbetrieb für Auto & Zweirad in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/andreas-mantel-auto-und-zweirad
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/andreas-mantel-auto-und-zweirad
+
+#### [Schürmann & Kruse OHG](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/schuermann-und-kruse-ohg)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 85, 59955 Winterberg
+- **Telefon:** +49 151 50 70 51 44
+- **Webseite:** https://www.schuermann-kruse.de/
+- **Beschreibung (DE):** Zuverlässiger Service, markenübergreifende Expertise & höchste Präzision. High-End Upgrades, Engineering und Performance-Lösungen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/schuermann-und-kruse-ohg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/schuermann-und-kruse-ohg
+
+#### [Autohaus Friedrich Hoffmann](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/autohaeuser/autohaus-friedrich-hoffmann)
+- **Kategorie:** Mobilität & KFZ > Autohäuser
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 24, 59955 Winterberg
+- **Telefon:** 02981 92070
+- **Webseite:** https://www.friedrich-hoffmann.de
+- **Beschreibung (DE):** Ihr VW, Audi & VW Nutzfahrzeuge Autohaus in Winterberg. Erstklassiger Service rund um Ihr Auto.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/autohaeuser/autohaus-friedrich-hoffmann
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autodealers/autohaus-friedrich-hoffmann
+
+#### [Autohaus Pöllmann](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/autohaeuser/autohaus-poellmann)
+- **Kategorie:** Mobilität & KFZ > Autohäuser
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 22, 59955 Winterberg
+- **Telefon:** 02981 92940
+- **Webseite:** https://www.autohaus-poellmann.de
+- **Beschreibung (DE):** Ihr Toyota Servicepartner sowie Neuwagen, Gebrauchtwagen, Werkstatt weiterer Marken.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/autohaeuser/autohaus-poellmann
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autodealers/autohaus-poellmann
+
+#### [Schütte-Automobile](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/autohaeuser/schuette-automobile)
+- **Kategorie:** Mobilität & KFZ > Autohäuser
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 2a, 59955 Winterberg
+- **Telefon:** 02981 928190
+- **Webseite:** https://www.schuette-automobile.de
+- **Beschreibung (DE):** Autohändler in Winterberg. Verkauf von Neu- und Gebrauchtwagen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/autohaeuser/schuette-automobile
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autodealers/schuette-automobile
+
+#### [TinQ 24h-Tankautomat Langewiese](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/tinq-24h-tankautomat-langewiese)
+- **Kategorie:** Mobilität & KFZ > Tankstellen
+- **Ort / Ortsteil:** Langewiese
+- **Adresse:** Bundesstraße 38, 59955 Winterberg-Langewiese
+- **Telefon:** 02758 287
+- **Webseite:** https://gulf.de
+- **Beschreibung (DE):** Moderne 24-Stunden-Automatentankstelle an der Bundesstraße in Winterberg-Langewiese für PKW und LKW mit EC-, Kreditkarten- und Flottenkarten-Zahlung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/tinq-24h-tankautomat-langewiese
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/tankstations/tinq-24h-tankautomat-langewiese
+
+#### [JET Tankstelle Winterberg](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg)
+- **Kategorie:** Mobilität & KFZ > Tankstellen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Lamfert 1, 59955 Winterberg
+- **Telefon:** 02981 9298634
+- **Webseite:** https://www.jet.de/tankstellen/winterberg/lamfert-1
+- **Beschreibung (DE):** JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/tankstations/jet-tankstelle-winterberg
+
+#### [Aral Tankstelle Winterberg](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg)
+- **Kategorie:** Mobilität & KFZ > Tankstellen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 60, 59955 Winterberg
+- **Telefon:** 02981 92600
+- **Webseite:** https://tankstelle.aral.de/winterberg/am-hagenblech-60/14164700
+- **Beschreibung (DE):** Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/tankstations/aral-tankstelle-winterberg
+
+#### [Calpam Tankautomat Züschen](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen)
+- **Kategorie:** Mobilität & KFZ > Tankstellen
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Nuhnetalstraße 88, 59955 Winterberg-Züschen
+- **Telefon:** 02981 908301
+- **Webseite:** https://calpam.com
+- **Beschreibung (DE):** 24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/tankstations/calpam-tankautomat-zueschen
+
+#### [Reifen Merter](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/reifen-merter)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Hachmicke 4, 59955 Winterberg-Grönebach
+- **Telefon:** 02985 9699849
+- **Webseite:** http://www.reifen-merter.de
+- **Beschreibung (DE):** Ihr Reifenspezialist in Winterberg-Grönebach. Professioneller Reifenservice, Reifenwechsel, Auswuchten, Neureifen aller führenden Marken, Felgen und Einlagerung für PKW, Transporter und Zweiräder.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/reifen-merter
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/reifen-merter
+
+#### [Reparaturen aller Art Markus Becker](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/reparaturen-aller-art-markus-becker)
+- **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Auf dem Deich 1, 59955 Winterberg-Grönebach
+- **Telefon:** 02985 9792132
+- **Beschreibung (DE):** Freie Werkstatt für Reparaturen aller Art in Winterberg-Grönebach. KFZ-Reparaturen, Instandsetzung, Wartung und Service für PKW und Kleinfahrzeuge.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/reparaturen-aller-art-markus-becker
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/reparaturen-aller-art-markus-becker
 
 ### Kategorie: Freizeit
 
@@ -2069,87 +2275,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Bikepark, Sommerrodelbahn und Kletterwald - Spaß für die ganze Familie.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/erlebnisberg-kappe
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/erlebnisberg-kappe
-
-#### [Tennisplätze Niedersfeld](https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-niedersfeld)
-- **Kategorie:** Freizeit > Tennisplätze
-- **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** An der Hille 6b, 59955 Winterberg
-- **Webseite:** http://www.sv-niedersfeld.de
-- **Beschreibung (DE):** Tennisverein in Niedersfeld mit 3 Sandplätzen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-niedersfeld
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/tennisbanen/tennisplaetze-niedersfeld
-
-#### [Tennisplätze Züschen](https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-zueschen)
-- **Kategorie:** Freizeit > Tennisplätze
-- **Ort / Ortsteil:** Züschen
-- **Adresse:** Schützenstraße 5, 59955 Winterberg
-- **Telefon:** 02981 2541
-- **Beschreibung (DE):** Tennisverein in Züschen mit Sandplätzen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-zueschen
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/tennisbanen/tennisplaetze-zueschen
-
-#### [Tennisplätze Winterberg](https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-winterberg)
-- **Kategorie:** Freizeit > Tennisplätze
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Fichtenweg 14, 59955 Winterberg
-- **Webseite:** http://www.tc-winterberg.de
-- **Beschreibung (DE):** Tennisverein in Winterberg Winterberg mit Sandplätzen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/tennisbanen/tennisplaetze-winterberg
-
-#### [Tennisplätze Siedlinghausen](https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-siedlinghausen)
-- **Kategorie:** Freizeit > Tennisplätze
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Grimmeweg 9, 59955 Winterberg
-- **Webseite:** mailto:bm.hoemberg@gmail.com
-- **Beschreibung (DE):** Tennisverein in Siedlinghausen (keine Sandplätze).
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/tennisplaetze/tennisplaetze-siedlinghausen
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/tennisbanen/tennisplaetze-siedlinghausen
-
-#### [VfR Winterberg 1921 e.V.](https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/vfr-winterberg-1921-e-v)
-- **Kategorie:** Freizeit > Fußballvereine
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Oberhofer Weg 9, 59955 Winterberg
-- **Telefon:** 02985 979916
-- **Webseite:** http://vfr-winterberg.de/
-- **Beschreibung (DE):** Fußballverein in Winterberg Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/vfr-winterberg-1921-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/voetbalclubs/vfr-winterberg-1921-e-v
-
-#### [TuS Züschen e.V.](https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/tus-zueschen-e-v)
-- **Kategorie:** Freizeit > Fußballvereine
-- **Ort / Ortsteil:** Züschen
-- **Adresse:** Junkerstraße 38, 59955 Winterberg
-- **Webseite:** http://www.tus-zueschen.de/
-- **Beschreibung (DE):** Fußball- und Sportverein in Züschen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/tus-zueschen-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/voetbalclubs/tus-zueschen-e-v
-
-#### [Spiel- und Sportverein Silbach 1923 e.V.](https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/spiel-und-sportverein-silbach-1923-e-v)
-- **Kategorie:** Freizeit > Fußballvereine
-- **Ort / Ortsteil:** Silbach
-- **Adresse:** Am Schieferberg 2, 59955 Winterberg
-- **Beschreibung (DE):** Sportverein in Silbach.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/spiel-und-sportverein-silbach-1923-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/voetbalclubs/spiel-und-sportverein-silbach-1923-e-v
-
-#### [FC Siedlinghausen 1920 e.V](https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/fc-siedlinghausen-1920-e-v)
-- **Kategorie:** Freizeit > Fußballvereine
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Sorpestraße 41, 59955 Winterberg
-- **Beschreibung (DE):** Fußballabteilung (2 Seniorenmannschaften und mehrere Jugendmannschaften), Breitensport (Gymnastik und Faszientraining), Wirbelsäulengymnastik, Qi Gong, Meditation.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/fc-siedlinghausen-1920-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/voetbalclubs/fc-siedlinghausen-1920-e-v
-
-#### [FC Hilletal 2003](https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/fc-hilletal-2003)
-- **Kategorie:** Freizeit > Fußballvereine
-- **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** An der Hille 6 a, 59955 Winterberg
-- **Telefon:** 02985 979916
-- **Webseite:** http://www.fc-hilletal.de/
-- **Beschreibung (DE):** Fußballverein in Niedersfeld.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fussballvereine/fc-hilletal-2003
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/voetbalclubs/fc-hilletal-2003
 
 #### [Kletterwald Winterberg - Erlebnisberg Kappe](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/kletterwald-winterberg-erlebnisberg-kappe)
 - **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
@@ -2260,46 +2385,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/monkey-island-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/monkey-island-winterberg
 
-#### [Fun Fitness 24 Winterberg](https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/fun-fitness-24-winterberg)
-- **Kategorie:** Freizeit > Fitnessstudios
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 49, 59955 Winterberg
-- **Telefon:** 0178 8538257
-- **Webseite:** https://funfitness24.de
-- **Beschreibung (DE):** Modernes 24/7 Fitnessstudio in Winterberg. Rund um die Uhr geöffnet für Gerätetraining, Ausdauer, Freihantelbereich, Ernährungsberatung und Personal Training.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/fun-fitness-24-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fitnesscentra/fun-fitness-24-winterberg
-
-#### [corpus pro Winterberg](https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/corpus-pro-winterberg)
-- **Kategorie:** Freizeit > Fitnessstudios
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Hagenblech 73, 59955 Winterberg
-- **Telefon:** 02981 9199837
-- **Webseite:** https://corpus-pro.com
-- **Beschreibung (DE):** Fitness- und Gesundheitsstudio in Winterberg mit hochmodernen Matrix-Geräten, Freihantel- und Cardiobereich, Ernährungsberatung und individuellem Personal Training.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/corpus-pro-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fitnesscentra/corpus-pro-winterberg
-
-#### [Körperformen EMS Training Winterberg](https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/koerperformen-ems-training-winterberg)
-- **Kategorie:** Freizeit > Fitnessstudios
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Hauptstraße 8, 59955 Winterberg
-- **Telefon:** 02981 9022444
-- **Webseite:** https://www.koerperformen-hsk.de
-- **Beschreibung (DE):** Effektives EMS-Ganzkörpertraining in nur 20 Minuten pro Woche mit persönlichem Trainer im Zentrum von Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/koerperformen-ems-training-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fitnesscentra/koerperformen-ems-training-winterberg
-
-#### [Fitnessclub Niedersfeld e.V.](https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/fitnessclub-niedersfeld-e-v)
-- **Kategorie:** Freizeit > Fitnessstudios
-- **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Alter Schulweg 10, 59955 Winterberg-Niedersfeld
-- **Telefon:** 01511 6303669
-- **Webseite:** https://www.fitnessclub-niedersfeld.de
-- **Beschreibung (DE):** Gemeinnütziger Fitnessverein in Winterberg-Niedersfeld mit modernem Kraft- und Ausdauerbereich, Kursangeboten und familiärer Atmosphäre.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fitnessstudios/fitnessclub-niedersfeld-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fitnesscentra/fitnessclub-niedersfeld-e-v
-
 #### [Bowlhaus Winterberg](https://www.winterberg-verzeichnis.de/freizeit/bowling/bowlhaus-winterberg)
 - **Kategorie:** Freizeit > Bowling
 - **Ort / Ortsteil:** Winterberg
@@ -2310,66 +2395,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/bowling/bowlhaus-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/bowlen/bowlhaus-winterberg
 
-#### [Bikeverleih Klante am Herrloh](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-herrloh)
-- **Kategorie:** Freizeit > Fahrradverleih
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 67a, 59955 Winterberg
-- **Telefon:** 02981 4259016
-- **Webseite:** https://www.bike-klante.de
-- **Beschreibung (DE):** Ihr erstklassiger Bike- und E-Bike-Verleih direkt am Herrloh in Winterberg. Neueste E-Mountainbikes, Fullys, Hardtails, Kinder-Bikes, Helme und Schutzausrüstung für Touren und Trailparks.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-herrloh
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/bikeverleih-klante-am-herrloh
-
-#### [e-Bike-Verleih Winterberg / Ski & Bike Schneider](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider)
-- **Kategorie:** Freizeit > Fahrradverleih
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Fichtenweg 20a, 59955 Winterberg
-- **Telefon:** 02981 9296692
-- **Webseite:** https://www.ski-schneider.de
-- **Beschreibung (DE):** Großer E-Bike- & Mountainbike-Verleih an der Talstation Brabander / Herrloh in Winterberg. Neueste E-Bikes aller Kategorien, Kids E-MTBs ab 24 Zoll, Kinderanhänger, Kindersitze und Protektoren.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
-
-#### [Bikeverleih Poppenberg Winterberg](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-poppenberg-winterberg)
-- **Kategorie:** Freizeit > Fahrradverleih
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** In d. Büre 32, 59955 Winterberg
-- **Telefon:** 02981 4259008
-- **Webseite:** https://www.poppenberg-winterberg.de
-- **Beschreibung (DE):** Bike- und E-Bike-Verleih direkt an der Talstation Poppenberg in der Büre. Hochwertige Mountainbikes, Trekking- und City-E-Bikes für alle Altersklassen sowie Skiverleih im Winter.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-poppenberg-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/bikeverleih-poppenberg-winterberg
-
-#### [Bikeverleih Klante am Schneewittchenhaus](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus)
-- **Kategorie:** Freizeit > Fahrradverleih
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 119, 59955 Winterberg
-- **Telefon:** 02981 4259011
-- **Webseite:** https://www.bike-klante.de
-- **Beschreibung (DE):** Moderner Verleihstützpunkt und Ausrüstungsdepot von Klante am Schneewittchenhaus / Kappe. Premium E-Mountainbikes, Schutzkleidung, Bike-Depot und direkte Nähe zu den Trails rund um den Kahlen Asten.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
-
-#### [Uppu-Biketours](https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/uppu-biketours)
-- **Kategorie:** Freizeit > Fahrradverleih
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 19A, 59955 Winterberg
-- **Telefon:** 02981 2245
-- **Webseite:** http://www.uppu-biketours.de
-- **Beschreibung (DE):** Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/fahrradverleih/uppu-biketours
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/fahrradverleih/uppu-biketours
-
-#### [Skiverleih Schneider](https://www.winterberg-verzeichnis.de/freizeit/skiverleih/skiverleih-schneider)
-- **Kategorie:** Freizeit > Skiverleih
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Fichtenweg 20a, 59955 Winterberg
-- **Telefon:** 02981 9296692
-- **Webseite:** https://www.ski-schneider.de
-- **Beschreibung (DE):** Traditionsreicher Skiverleih und Skiservice am Fichtenweg in Winterberg. Neueste Carving-Ski, Snowboards, Langlaufski, Schlitten, Helme sowie modernes Skidepot direkt an der Piste Herrloh / Brabander.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/skiverleih/skiverleih-schneider
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/skiverleih/skiverleih-schneider
-
 #### [Filmtheater Winterberg](https://www.winterberg-verzeichnis.de/freizeit/kino/filmtheater-winterberg)
 - **Kategorie:** Freizeit > Kino
 - **Ort / Ortsteil:** Winterberg
@@ -2379,25 +2404,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Das moderne Lichtspieltheater mit 2 Sälen zeigt neben aktuellen Blockbustern in 3D-Qualität auch Independent-Filme, Kinderfilme und Sonderreihen in gemütlicher Atmosphäre.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/kino/filmtheater-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/kino/filmtheater-winterberg
-
-#### [Reitsportfreunde Winterberg - Western & Klassisch e.V.](https://www.winterberg-verzeichnis.de/freizeit/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v)
-- **Kategorie:** Freizeit > Reitsport
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Postteich 7, 59955 Winterberg
-- **Webseite:** https://reitsportfreunde-winterberg.com
-- **Beschreibung (DE):** Reiterverein für Western- und klassisches Reiten in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
-
-#### [Mountain-Yoga Winterberg](https://www.winterberg-verzeichnis.de/freizeit/yoga/mountain-yoga-winterberg)
-- **Kategorie:** Freizeit > Yoga
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Rad 11, 59955 Winterberg
-- **Telefon:** 01516 8597514
-- **Webseite:** https://mountain-yoga-winterberg.de
-- **Beschreibung (DE):** Yogastudio in Winterberg. Entspannung und Bewegung für Körper und Geist.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/yoga/mountain-yoga-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/yoga/mountain-yoga-winterberg
 
 ---
 
