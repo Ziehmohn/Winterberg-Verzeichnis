@@ -2018,16 +2018,19 @@ export default function App() {
                 />
 
                 {(activeCategory === 'Tankstellen' || activeCategory === 'Einzelhandel') && (
-                  <div className="bg-gradient-to-r from-[#FAF8F5] to-white border-2 border-[#E7E2DA] rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-2xs">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center font-bold shrink-0">
-                        <Fuel className="w-4 h-4 text-[#0F4C2E]" />
+                  <div className="w-full bg-gradient-to-r from-[#0F4C2E] to-[#0A3620] text-white rounded-xl p-4 flex items-center justify-between gap-3 shadow-md border border-[#0F4C2E]">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-white/15 backdrop-blur-sm text-white border border-white/20 flex items-center justify-center font-bold shrink-0">
+                        <Fuel className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <span className="font-bold text-xs text-[#1B211D] block">
-                          {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
-                        </span>
-                        <span className="text-[11px] text-[#5F6B63] block">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-bold text-sm text-white block leading-tight">
+                            {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
+                          </span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        </div>
+                        <span className="text-[11.5px] text-emerald-100/80 block mt-0.5">
                           {lang === 'nl' ? 'Live tankstations & calculator' : 'Live Diesel, E10 & E5 vergleichen'}
                         </span>
                       </div>
@@ -2041,7 +2044,7 @@ export default function App() {
                         window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="inline-flex items-center gap-1 bg-[#0F4C2E] text-white px-3 py-1.5 rounded-md font-bold text-xs shrink-0 no-underline shadow-2xs"
+                      className="inline-flex items-center gap-1 bg-[#F2761B] hover:bg-[#D65F0C] text-white px-3.5 py-2 rounded-lg font-bold text-xs shrink-0 no-underline shadow-sm"
                     >
                       <span>{lang === 'nl' ? 'Bekijken →' : 'Ansehen →'}</span>
                     </a>
@@ -2398,32 +2401,45 @@ export default function App() {
 
               {/* Special Spritpreise CTA Card under advertisement */}
               {(activeCategory === 'Tankstellen' || activeCategory === 'Einzelhandel') && (
-                <div className="w-[160px] sm:w-[200px] xl:w-[240px] bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#E7E2DA] hover:border-[#0F4C2E] rounded-xl p-4 shadow-sm transition-all text-center">
-                  <div className="w-10 h-10 rounded-xl bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center mx-auto mb-2.5 font-bold">
-                    <Fuel className="w-5 h-5 text-[#0F4C2E]" />
+                <div className="w-full rounded-2xl bg-gradient-to-b from-[#0F4C2E] via-[#0D4429] to-[#082C1A] text-white p-5 text-center shadow-lg border border-[#0F4C2E] flex flex-col gap-3 transition-all relative overflow-hidden group">
+                  {/* Subtle decorative glow */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#F2761B]/20 rounded-full blur-2xl pointer-events-none -mr-8 -mt-8" />
+                  
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-emerald-200 border border-white/20 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase mb-3 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      {lang === 'nl' ? 'Live MTS-K Daten' : 'Live MTS-K Preise'}
+                    </div>
+
+                    <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-md text-white border border-white/25 flex items-center justify-center mb-2.5 shadow-sm group-hover:scale-105 transition-transform">
+                      <Fuel className="w-6 h-6 text-white" />
+                    </div>
+
+                    <h4 className="font-display font-bold text-[17px] text-white mb-1.5 leading-snug">
+                      {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
+                    </h4>
+
+                    <p className="text-[12.5px] text-emerald-100/90 mb-4 leading-relaxed max-w-[210px] mx-auto">
+                      {lang === 'nl'
+                        ? 'Live prijzen van alle tankstations in Winterberg vergelijken en tankkosten berekenen.'
+                        : 'Live Diesel-, E10- & E5-Preise vergleichen und Tankkosten berechnen.'}
+                    </p>
+
+                    <a
+                      href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        resetToDirectory();
+                        setIsFuelPricesMode(true);
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#F2761B] hover:bg-[#D65F0C] text-white py-3 px-4 rounded-xl font-bold text-[13.5px] shadow-md hover:shadow-lg transition-all cursor-pointer no-underline group-hover:translate-y-[-1px]"
+                    >
+                      <Fuel className="w-4 h-4" />
+                      <span>{lang === 'nl' ? 'Spritpreise ansehen →' : 'Spritpreise ansehen →'}</span>
+                    </a>
                   </div>
-                  <h4 className="font-display font-bold text-[15px] text-[#1B211D] mb-1 leading-tight">
-                    {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
-                  </h4>
-                  <p className="text-[12px] text-[#5F6B63] mb-3 leading-snug">
-                    {lang === 'nl'
-                      ? 'Live diesel- & benzineprijzen in Winterberg vergelijken en tankkosten berekenen.'
-                      : 'Live Diesel-, E10- & E5-Preise vergleichen und Tankkosten berechnen.'}
-                  </p>
-                  <a
-                    href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      resetToDirectory();
-                      setIsFuelPricesMode(true);
-                      window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2.5 px-3 rounded-lg font-bold text-xs shadow-2xs transition-colors cursor-pointer no-underline"
-                  >
-                    <Fuel className="w-3.5 h-3.5" />
-                    <span>{lang === 'nl' ? 'Prijzen bekijken →' : 'Spritpreise ansehen →'}</span>
-                  </a>
                 </div>
               )}
             </div>
