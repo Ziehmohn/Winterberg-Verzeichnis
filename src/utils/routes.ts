@@ -61,6 +61,22 @@ export const SUBCATEGORY_SLUGS: Record<string, RouteMapping> = {
   'Fußballvereine': { de: 'fussballvereine', nl: 'voetbalclubs' },
   'Schwimmbäder': { de: 'schwimmbaeder', nl: 'zwembaden' },
   'Outdoor-Freizeitgebiet': { de: 'outdoor-freizeitgebiet', nl: 'buitenrecreatiegebied' },
+  'Apotheken': { de: 'apotheken', nl: 'apotheken' },
+  'Ärzte & Praxen': { de: 'aerzte-und-praxen', nl: 'artsen-en-praktijken' },
+  'Zahnärzte': { de: 'zahnaerzte', nl: 'tandartsen' },
+  'Physiotherapie': { de: 'physiotherapie', nl: 'fysiotherapie' },
+  'Pflegedienste': { de: 'pflegedienste', nl: 'thuiszorg' },
+  'Massagen': { de: 'massagen', nl: 'massages' },
+  'Kosmetikstudios': { de: 'kosmetikstudios', nl: 'schoonheidssalons' },
+  'Tiergesundheit': { de: 'tiergesundheit', nl: 'diergezondheid' },
+  'Yoga': { de: 'yoga', nl: 'yoga' },
+  'Skiverleih': { de: 'skiverleih', nl: 'skiverhuur' },
+  'Fahrradverleih': { de: 'fahrradverleih', nl: 'fietsverhuur' },
+  'Fahrradgeschäfte': { de: 'fahrradgeschaefte', nl: 'fietsenwinkels' },
+  'Sport & Outdoor': { de: 'sport-und-outdoor', nl: 'sport-en-outdoor' },
+  'Reitsport': { de: 'reitsport', nl: 'paardensport' },
+  'Kino': { de: 'kino', nl: 'bioscoop' },
+  'Immobilienmakler': { de: 'immobilienmakler', nl: 'makelaars' },
 };
 
 // Static Pages Slugs
@@ -284,4 +300,67 @@ export function getAlternateUrls(state: RouteState, baseUrl = 'https://www.winte
     nl: nlUrl,
     xDefault: deUrl,
   };
+}
+
+// Former category assignments before the 9-category restructuring
+export const LEGACY_SUBCATEGORY_PARENTS: Record<string, string> = {
+  'KFZ-Werkstätten': 'Handwerk',
+  'Tankstellen': 'Einzelhandel',
+  'Autohäuser': 'Einzelhandel',
+  'Fahrradgeschäfte': 'Einzelhandel',
+  'Sport & Outdoor': 'Einzelhandel',
+  'Ärzte & Praxen': 'Dienstleistungen',
+  'Zahnärzte': 'Dienstleistungen',
+  'Apotheken': 'Dienstleistungen',
+  'Physiotherapie': 'Dienstleistungen',
+  'Pflegedienste': 'Dienstleistungen',
+  'Massagen': 'Dienstleistungen',
+  'Kosmetikstudios': 'Dienstleistungen',
+  'Tiergesundheit': 'Dienstleistungen',
+  'Skiverleih': 'Freizeit',
+  'Fahrradverleih': 'Freizeit',
+  'Fitnessstudios': 'Freizeit',
+  'Tennisplätze': 'Freizeit',
+  'Fußballvereine': 'Freizeit',
+  'Reitsport': 'Freizeit',
+  'Yoga': 'Freizeit',
+};
+
+/**
+ * Checks if a path corresponds to a legacy category location and returns the new canonical URL (301)
+ */
+export function getLegacyCategoryRedirect(pathname: string, categoriesList: Array<{ name: string; subcategories: string[] }>): string | null {
+  const cleanPath = pathname.split('?')[0].replace(/\/+$/, '');
+  const parts = cleanPath.split('/').filter(Boolean);
+  if (parts.length === 0) return null;
+
+  const isNl = parts[0] === 'nl';
+  const offset = isNl ? 1 : 0;
+  if (parts.length < offset + 2) return null;
+
+  const catSlug = parts[offset];
+  const subSlug = parts[offset + 1];
+  const rest = parts.slice(offset + 2);
+
+  const subName = findSubcategoryFromSlug(subSlug);
+  if (!subName) return null;
+
+  const oldParentCat = LEGACY_SUBCATEGORY_PARENTS[subName];
+  if (!oldParentCat) return null;
+
+  const targetLang = isNl ? 'nl' : 'de';
+  const expectedOldCatSlug = getCategorySlug(oldParentCat, targetLang);
+
+  if (catSlug.toLowerCase() !== expectedOldCatSlug.toLowerCase() && catSlug.toLowerCase() !== slugify(oldParentCat).toLowerCase()) {
+    return null;
+  }
+
+  const newParentCat = categoriesList.find(c => c.subcategories.includes(subName))?.name;
+  if (!newParentCat) return null;
+
+  const newCatSlug = getCategorySlug(newParentCat, targetLang);
+  const prefix = isNl ? '/nl' : '';
+  const restPath = rest.length > 0 ? `/${rest.join('/')}` : '';
+
+  return `${prefix}/${newCatSlug}/${subSlug}${restPath}`;
 }

@@ -10,7 +10,8 @@ import {
   slugify,
   buildLocalizedUrl,
   getAlternateUrls,
-  RouteState
+  RouteState,
+  LEGACY_SUBCATEGORY_PARENTS
 } from '../src/utils/routes';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
@@ -602,3 +603,70 @@ pagesToPrerender.forEach(page => {
 });
 
 console.log(`✅ Successfully pre-rendered ${createdCount} static HTML pages in dist/!`);
+
+// 7. Generate 301 Redirect HTML files and update _redirects for legacy URLs
+let redirectCount = 0;
+const redirectsLines: string[] = [];
+
+for (const lang of ['de', 'nl'] as const) {
+  const prefix = lang === 'nl' ? 'nl/' : '';
+  for (const [subName, oldCatName] of Object.entries(LEGACY_SUBCATEGORY_PARENTS)) {
+    const newCatName = categories.find(c => c.subcategories.includes(subName))?.name;
+    if (!newCatName) continue;
+    const oldCatSlug = getCategorySlug(oldCatName, lang);
+    const newCatSlug = getCategorySlug(newCatName, lang);
+    const subSlug = getSubcategorySlug(subName, lang);
+
+    const oldSubRelPath = `${prefix}${oldCatSlug}/${subSlug}`;
+    const newSubUrl = `${baseUrl}/${prefix}${newCatSlug}/${subSlug}`;
+
+    const createRedirectHtml = (targetUrl: string, title: string) => `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=${escapeHtml(targetUrl)}">
+  <link rel="canonical" href="${escapeHtml(targetUrl)}">
+  <title>${escapeHtml(title)} - 301 Moved Permanently</title>
+  <script>window.location.replace("${escapeHtml(targetUrl)}");</script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 50px;">
+  <p>Die Seite ist umgezogen.</p>
+  <p><a href="${escapeHtml(targetUrl)}">Klicken Sie hier, falls Sie nicht automatisch weitergeleitet werden.</a></p>
+</body>
+</html>`;
+
+    // Write redirect index.html for old subcategory
+    const subTargetDir = path.join(distDir, oldSubRelPath);
+    if (!fs.existsSync(subTargetDir)) {
+      fs.mkdirSync(subTargetDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(subTargetDir, 'index.html'), createRedirectHtml(newSubUrl, subName), 'utf8');
+    redirectCount++;
+    redirectsLines.push(`/${oldSubRelPath}/*  /${prefix}${newCatSlug}/${subSlug}/:splat  301!`);
+    redirectsLines.push(`/${oldSubRelPath}    /${prefix}${newCatSlug}/${subSlug}         301!`);
+
+    const subBusinesses = businesses.filter(b => b.subcategory === subName);
+    for (const b of subBusinesses) {
+      const bSlug = slugify(b.name);
+      const oldBizRelPath = `${prefix}${oldCatSlug}/${subSlug}/${bSlug}`;
+      const newBizUrl = `${baseUrl}/${prefix}${newCatSlug}/${subSlug}/${bSlug}`;
+      const bizTargetDir = path.join(distDir, oldBizRelPath);
+      if (!fs.existsSync(bizTargetDir)) {
+        fs.mkdirSync(bizTargetDir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(bizTargetDir, 'index.html'), createRedirectHtml(newBizUrl, b.name), 'utf8');
+      redirectCount++;
+    }
+  }
+}
+
+// Update dist/_redirects and public/_redirects
+const redirectsFilePath = path.join(distDir, '_redirects');
+const existingRedirects = fs.existsSync(redirectsFilePath) ? fs.readFileSync(redirectsFilePath, 'utf8') : '/*    /index.html   200\n';
+const updatedRedirects = `# 301 Permanent Redirects for Restructured Categories\n${redirectsLines.join('\n')}\n\n${existingRedirects}`;
+fs.writeFileSync(redirectsFilePath, updatedRedirects, 'utf8');
+
+const publicRedirectsFilePath = path.resolve(process.cwd(), 'public/_redirects');
+fs.writeFileSync(publicRedirectsFilePath, updatedRedirects, 'utf8');
+
+console.log(`✅ Generated ${redirectCount} static 301 redirect pages and updated _redirects!`);

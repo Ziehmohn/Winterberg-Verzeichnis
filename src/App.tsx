@@ -40,7 +40,8 @@ import {
   getBusinessSlug,
   getBusinessPath,
   slugify,
-  STATIC_PAGE_SLUGS
+  STATIC_PAGE_SLUGS,
+  getLegacyCategoryRedirect
 } from './utils/routes';
 import { getLocalizedBusiness } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
@@ -506,6 +507,11 @@ export default function App() {
         }
         window.history.replaceState(null, '', newUrl);
       }
+    }
+
+    const legacyRedirect = getLegacyCategoryRedirect(window.location.pathname, categories);
+    if (legacyRedirect) {
+      window.history.replaceState(null, '', legacyRedirect);
     }
 
     const handlePopState = () => {

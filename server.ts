@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import Stripe from 'stripe';
+import { categories } from './src/data';
+import { getLegacyCategoryRedirect } from './src/utils/routes';
 
 let stripeClient: Stripe | null = null;
 function getStripe(): Stripe {
@@ -66,12 +68,18 @@ async function startServer() {
     next();
   });
 
-  // Redirect Middleware
+  // Redirect Middleware (Firestore + Legacy Categories 301)
   app.use((req, res, next) => {
     const target = redirectsMap.get(req.path);
     if (target) {
       return res.redirect(301, target);
     }
+
+    const legacyRedirect = getLegacyCategoryRedirect(req.path, categories);
+    if (legacyRedirect) {
+      return res.redirect(301, legacyRedirect);
+    }
+
     next();
   });
 

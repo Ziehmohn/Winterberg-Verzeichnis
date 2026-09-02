@@ -1651,7 +1651,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Ihr erfahrener Immobilienmakler für Winterberg und das Sauerland. Professionelle Immobilienbewertung, Kauf, Verkauf und Vermittlung von Wohn- und Ferienimmobilien.
 - **Status:** Verifizierter Premium-Eintrag
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/house-of-immo-sauerlandmakler
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/house-of-immo-sauerlandmakler
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/makelaars/house-of-immo-sauerlandmakler
 
 #### [VON POLL IMMOBILIEN Winterberg](https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/von-poll-immobilien-winterberg)
 - **Kategorie:** Dienstleistungen > Immobilienmakler
@@ -1659,7 +1659,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Adresse:** Hauptstraße 10, 59955 Winterberg
 - **Beschreibung (DE):** VON POLL IMMOBILIEN in Winterberg – Ihr zuverlässiger Partner für Immobilienvermittlung und kostenfreie Immobilienbewertung in der Region.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/von-poll-immobilien-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/von-poll-immobilien-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/makelaars/von-poll-immobilien-winterberg
 
 #### [Evernest Winterberg](https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/evernest-winterberg)
 - **Kategorie:** Dienstleistungen > Immobilienmakler
@@ -1668,7 +1668,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 0170 2050167
 - **Beschreibung (DE):** Evernest Winterberg – Moderne Immobilienberatung, Dienste für Ersterwerber, Immobilieninvestition sowie Kauf und Verkauf.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/evernest-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/evernest-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/makelaars/evernest-winterberg
 
 #### [WINTERBERG IMMOBILIEN](https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/winterberg-immobilien)
 - **Kategorie:** Dienstleistungen > Immobilienmakler
@@ -1677,7 +1677,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 899433
 - **Beschreibung (DE):** Winterberg Immobilien & Appartements – Ihr Maklerbüro direkt am Waltenberg in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/winterberg-immobilien
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/winterberg-immobilien
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/makelaars/winterberg-immobilien
 
 #### [Grulke-Immobilien & Hausverwaltung](https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/grulke-immobilien-und-hausverwaltung)
 - **Kategorie:** Dienstleistungen > Immobilienmakler
@@ -1685,7 +1685,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Adresse:** Feldstraße 46, 59955 Winterberg
 - **Beschreibung (DE):** Grulke-Immobilien & Hausverwaltung in Winterberg – Professioneller Immobilienverkauf, Immobilienvermietung und verlässliche Hausverwaltung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/immobilienmakler/grulke-immobilien-und-hausverwaltung
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/immobilienmakler/grulke-immobilien-und-hausverwaltung
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/makelaars/grulke-immobilien-und-hausverwaltung
 
 ### Kategorie: Ski, Bike & Sport
 
@@ -1818,7 +1818,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.bike-klante.de
 - **Beschreibung (DE):** Ihr erstklassiger Bike- und E-Bike-Verleih direkt am Herrloh in Winterberg. Neueste E-Mountainbikes, Fullys, Hardtails, Kinder-Bikes, Helme und Schutzausrüstung für Touren und Trailparks.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-herrloh
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/bikeverleih-klante-am-herrloh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsverhuur/bikeverleih-klante-am-herrloh
 
 #### [e-Bike-Verleih Winterberg / Ski & Bike Schneider](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider)
 - **Kategorie:** Ski, Bike & Sport > Fahrradverleih
@@ -1828,7 +1828,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.ski-schneider.de
 - **Beschreibung (DE):** Großer E-Bike- & Mountainbike-Verleih an der Talstation Brabander / Herrloh in Winterberg. Neueste E-Bikes aller Kategorien, Kids E-MTBs ab 24 Zoll, Kinderanhänger, Kindersitze und Protektoren.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/e-bike-verleih-winterberg-ski-und-bike-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsverhuur/e-bike-verleih-winterberg-ski-und-bike-schneider
 
 #### [Bikeverleih Poppenberg Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-poppenberg-winterberg)
 - **Kategorie:** Ski, Bike & Sport > Fahrradverleih
@@ -1838,7 +1838,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.poppenberg-winterberg.de
 - **Beschreibung (DE):** Bike- und E-Bike-Verleih direkt an der Talstation Poppenberg in der Büre. Hochwertige Mountainbikes, Trekking- und City-E-Bikes für alle Altersklassen sowie Skiverleih im Winter.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-poppenberg-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/bikeverleih-poppenberg-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsverhuur/bikeverleih-poppenberg-winterberg
 
 #### [Bikeverleih Klante am Schneewittchenhaus](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus)
 - **Kategorie:** Ski, Bike & Sport > Fahrradverleih
@@ -1848,7 +1848,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.bike-klante.de
 - **Beschreibung (DE):** Moderner Verleihstützpunkt und Ausrüstungsdepot von Klante am Schneewittchenhaus / Kappe. Premium E-Mountainbikes, Schutzkleidung, Bike-Depot und direkte Nähe zu den Trails rund um den Kahlen Asten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/bikeverleih-klante-am-schneewittchenhaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsverhuur/bikeverleih-klante-am-schneewittchenhaus
 
 #### [Pro Biker](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/pro-biker)
 - **Kategorie:** Ski, Bike & Sport > Fahrradgeschäfte
@@ -1858,7 +1858,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.pro-biker.de
 - **Beschreibung (DE):** Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/pro-biker
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradgeschaefte/pro-biker
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsenwinkels/pro-biker
 
 #### [Uppu-Biketours](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/uppu-biketours)
 - **Kategorie:** Ski, Bike & Sport > Fahrradverleih
@@ -1868,7 +1868,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** http://www.uppu-biketours.de
 - **Beschreibung (DE):** Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradverleih/uppu-biketours
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradverleih/uppu-biketours
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsverhuur/uppu-biketours
 
 #### [Skiverleih Schneider](https://www.winterberg-verzeichnis.de/ski-bike-sport/skiverleih/skiverleih-schneider)
 - **Kategorie:** Ski, Bike & Sport > Skiverleih
@@ -1878,7 +1878,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.ski-schneider.de
 - **Beschreibung (DE):** Traditionsreicher Skiverleih und Skiservice am Fichtenweg in Winterberg. Neueste Carving-Ski, Snowboards, Langlaufski, Schlitten, Helme sowie modernes Skidepot direkt an der Piste Herrloh / Brabander.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/skiverleih/skiverleih-schneider
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/skiverleih/skiverleih-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/skiverhuur/skiverleih-schneider
 
 #### [Green Bikes GmbH - Fahrradfachmarkt & -werkstatt](https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt)
 - **Kategorie:** Ski, Bike & Sport > Fahrradgeschäfte
@@ -1888,7 +1888,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://greenbikes.de
 - **Beschreibung (DE):** Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fahrradgeschaefte/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/fietsenwinkels/green-bikes-gmbh-fahrradfachmarkt-und-werkstatt
 
 #### [Outdoor 842](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoor-842)
 - **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
@@ -1897,7 +1897,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 928443
 - **Beschreibung (DE):** Sportgeschäft in Winterberg mit großer Auswahl an Outdoor-Bekleidung und Ausrüstung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoor-842
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-und-outdoor/outdoor-842
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/outdoor-842
 
 #### [Peter O. SPORT MODE](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/peter-o-sport-mode)
 - **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
@@ -1906,7 +1906,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 1756
 - **Beschreibung (DE):** Ihr Fachgeschäft für Sport und Mode in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/peter-o-sport-mode
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-und-outdoor/peter-o-sport-mode
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/peter-o-sport-mode
 
 #### [Outdoorfashion Winterberg](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoorfashion-winterberg)
 - **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
@@ -1915,7 +1915,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 820668
 - **Beschreibung (DE):** Outdoor-Sportgeschäft in Winterberg. Entdecken Sie hochwertige Funktionsbekleidung für Ihr nächstes Abenteuer.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoorfashion-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-und-outdoor/outdoorfashion-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/outdoorfashion-winterberg
 
 #### [Reitsportfreunde Winterberg - Western & Klassisch e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v)
 - **Kategorie:** Ski, Bike & Sport > Reitsport
@@ -1924,7 +1924,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://reitsportfreunde-winterberg.com
 - **Beschreibung (DE):** Reiterverein für Western- und klassisches Reiten in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/paardensport/reitsportfreunde-winterberg-western-und-klassisch-e-v
 
 ### Kategorie: Gesundheit & Medizin
 
@@ -1936,7 +1936,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://sauerlandpraxis.de
 - **Beschreibung (DE):** Moderne überörtliche Gemeinschaftspraxis und Hausarztpraxis an der Hauptstraße in Winterberg. Ganzheitliche Allgemeinmedizin, Vorsorgeuntersuchungen, Ultraschall, Labor, EKG und psychosomatische Grundversorgung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/sauerlandpraxis-wolf-kolbe-und-nicole-schramm
 
 #### [Praxis Dr. med. Martin Nieswand](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-martin-nieswand)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -1946,7 +1946,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.dr-nieswand.de
 - **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin, Sportmedizin, Chirotherapie und offizielle Gelbfieberimpfstelle der WHO in Winterberg an der Nuhnestraße. Betreuung von Freizeitsportlern, Leistungsathleten und Patienten aller Kassen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-martin-nieswand
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/praxis-dr-med-martin-nieswand
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/praxis-dr-med-martin-nieswand
 
 #### [Sauerlandpraxis – Dr. Maja Jelicic](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -1956,7 +1956,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://sauerlandpraxis.de
 - **Beschreibung (DE):** Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/sauerlandpraxis-dr-maja-jelicic
 
 #### [Hausarztpraxis Dr. Bojana Lukic-Jablonka](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -1966,7 +1966,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.hausarztpraxis-winterberg.de
 - **Beschreibung (DE):** Moderne Facharztpraxis für Allgemeinmedizin im Zentrum von Winterberg (Marktstraße). Herzliche und qualifizierte hausärztliche Rundumbetreuung für Erwachsene, Jugendliche und Senioren.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/hausarztpraxis-dr-bojana-lukic-jablonka
 
 #### [Praxis Dr. med. Rikardo Mihalic](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -1976,7 +1976,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.praxis-dr-mihalic.de
 - **Beschreibung (DE):** Facharztpraxis für Allgemeinmedizin in Winterberg-Siedlinghausen mit Schwerpunkten in Reisemedizin, Venenheilkunde (Phlebologie) und hausärztlicher Geriatrie. Umfassende moderne Diagnostik und persönliche Betreuung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/praxis-dr-med-rikardo-mihalic
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/praxis-dr-med-rikardo-mihalic
 
 #### [Praxis Rosa Lange – Fachärztin für Allgemeinmedizin](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -1985,7 +1985,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 7775
 - **Beschreibung (DE):** Hausarztpraxis und Fachärztin für Allgemeinmedizin und Chirotherapie in Winterberg-Züschen. Ganzheitliche Behandlung, manuelle Therapie, Gesundheitsvorsorge und individuelle Betreuung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/praxis-rosa-lange-fachaerztin-fuer-allgemeinmedizin
 
 #### [Kinderarztpraxis Winterberg (MVZ)](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -1995,7 +1995,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.gesundheitszentrum-winterberg.de
 - **Beschreibung (DE):** Fachärztliche Kinder- und Jugendärztliche Praxis an der Poststraße in Winterberg unter dem Dach des Gesundheitszentrums St. Franziskus. U-Untersuchungen, Impfberatung, Allergiediagnostik und Akutsprechstunde für Kinder & Jugendliche.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/kinderarztpraxis-winterberg-mvz
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/kinderarztpraxis-winterberg-mvz
 
 #### [St. Franziskus-Hospital Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/st-franziskus-hospital-winterberg)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
@@ -2005,7 +2005,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.gesundheitszentrum-winterberg.de
 - **Beschreibung (DE):** Modernes Akutkrankenhaus und regionales Gesundheitszentrum für Winterberg und das Sauerland mit 24/7 Notfallambulanz, Chirurgie, Unfallchirurgie & Orthopädie (AMIS-Methode), Innerer Medizin, Anästhesie und Radiologie.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/st-franziskus-hospital-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/aerzte-und-praxen/st-franziskus-hospital-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/st-franziskus-hospital-winterberg
 
 #### [Zahnarztpraxis Dr. med. dent. Daniel Castillo-Chevallier](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier)
 - **Kategorie:** Gesundheit & Medizin > Zahnärzte
@@ -2015,7 +2015,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.winterberg-zahnarzt.de
 - **Beschreibung (DE):** Moderne Zahnarztpraxis an der Poststraße in Winterberg (über der Kur-Apotheke). Ästhetische Zahnheilkunde, Prophylaxe, Implantologie, Zahnersatz, Parodontologie und schonende Behandlung für die ganze Familie.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/tandartsen/zahnarztpraxis-dr-med-dent-daniel-castillo-chevallier
 
 #### [Zahnarztpraxis Dr. Nassrin Grickschat](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat)
 - **Kategorie:** Gesundheit & Medizin > Zahnärzte
@@ -2024,7 +2024,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 1556
 - **Beschreibung (DE):** Etablierte Zahnarztpraxis an der Marktstraße im Zentrum von Winterberg. Umfassende zahnmedizinische Versorgung, Vorsorge, Zahnerhaltung, Bleaching und einfühlsame Behandlung von Angstpatienten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-dr-nassrin-grickschat
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/tandartsen/zahnarztpraxis-dr-nassrin-grickschat
 
 #### [Zahnarztpraxis Michaela Fieseler-Koch](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch)
 - **Kategorie:** Gesundheit & Medizin > Zahnärzte
@@ -2033,7 +2033,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 1710
 - **Beschreibung (DE):** Ihre Zahnarztpraxis an der Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuelle Prophylaxe, Zahnerhaltung, moderne Füllungstherapie und Zahnersatzlösungen für Jung und Alt.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-michaela-fieseler-koch
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/tandartsen/zahnarztpraxis-michaela-fieseler-koch
 
 #### [Zahnarztpraxis Dr. med. dent. Sonja Kuhl](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl)
 - **Kategorie:** Gesundheit & Medizin > Zahnärzte
@@ -2042,7 +2042,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02985 1422
 - **Beschreibung (DE):** Zahnarztpraxis an der Ruhrstraße in Winterberg-Niedersfeld. Qualifizierte Zahnmedizin, ganzheitliche Vorsorge, ästhetische Zahnkorrekturen und Zahnersatz in freundlicher Atmosphäre.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/zahnaerzte/zahnarztpraxis-dr-med-dent-sonja-kuhl
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/tandartsen/zahnarztpraxis-dr-med-dent-sonja-kuhl
 
 #### [Kur-Apotheke](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/apotheken/kur-apotheke)
 - **Kategorie:** Gesundheit & Medizin > Apotheken
@@ -2069,7 +2069,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://thaimassagewinterberg.de
 - **Beschreibung (DE):** Traditionelle Thai-Massage in Winterberg für Entspannung und Wohlbefinden.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/massagen/thai-massage-ooy-lumtong
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/massagen/thai-massage-ooy-lumtong
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/massages/thai-massage-ooy-lumtong
 
 #### [Physiotherapie Paula Hennecke&Team](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/physiotherapie/physiotherapie-paula-henneckeundteam)
 - **Kategorie:** Gesundheit & Medizin > Physiotherapie
@@ -2079,7 +2079,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://physiotherapie-winterberg.de
 - **Beschreibung (DE):** Ihre Praxis für Physiotherapie und Kinderphysiotherapie in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/physiotherapie/physiotherapie-paula-henneckeundteam
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/physiotherapie/physiotherapie-paula-henneckeundteam
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/fysiotherapie/physiotherapie-paula-henneckeundteam
 
 #### [CB House of Beauty & Ästhetik by Carolin Berghoff](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff)
 - **Kategorie:** Gesundheit & Medizin > Kosmetikstudios
@@ -2088,7 +2088,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://cbbeauty.de
 - **Beschreibung (DE):** Kosmetikstudio in Winterberg für Gesichtsbehandlungen, Anti-Aging und Ästhetik.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/schoonheidssalons/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff
 
 #### [Tierisch bewegt - Tierphysiotherapie & Bewegung](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung)
 - **Kategorie:** Gesundheit & Medizin > Tiergesundheit
@@ -2097,7 +2097,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://tierphysio-tierischbewegt.de
 - **Beschreibung (DE):** Professionelle Tierphysiotherapie und Bewegungstherapie für Hunde und Pferde in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/diergezondheid/tierisch-bewegt-tierphysiotherapie-und-bewegung
 
 #### [Mountain-Yoga Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/mountain-yoga-winterberg)
 - **Kategorie:** Gesundheit & Medizin > Yoga
@@ -2117,7 +2117,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://tagespflege-niedersfeld.de
 - **Beschreibung (DE):** Ambulanter Pflegedienst und Tagespflege in Niedersfeld.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/thuiszorg/ambulanter-pflegedienst-und-tagespflege-doenekes
 
 ### Kategorie: Mobilität & KFZ
 
@@ -2403,7 +2403,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://filmtheater-winterberg.de
 - **Beschreibung (DE):** Das moderne Lichtspieltheater mit 2 Sälen zeigt neben aktuellen Blockbustern in 3D-Qualität auch Independent-Filme, Kinderfilme und Sonderreihen in gemütlicher Atmosphäre.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/kino/filmtheater-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/kino/filmtheater-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/bioscoop/filmtheater-winterberg
 
 ---
 
