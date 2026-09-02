@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 

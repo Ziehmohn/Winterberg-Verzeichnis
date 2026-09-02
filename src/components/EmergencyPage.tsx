@@ -13,7 +13,8 @@ import {
   HelpCircle, 
   AlertTriangle,
   Stethoscope,
-  Phone
+  Phone,
+  Search
 } from 'lucide-react';
 import { ThemeConfig } from '../types';
 import { 
