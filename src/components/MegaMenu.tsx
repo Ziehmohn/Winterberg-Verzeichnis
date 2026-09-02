@@ -16,7 +16,8 @@ import {
   ChevronRight,
   Trophy,
   Fuel,
-  Siren
+  Siren,
+  CableCar
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -302,75 +303,91 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                     </p>
                   </a>
 
-                  {/* Card: Spritpreise */}
-                  <a
-                    href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (onSelectFuelPrices) {
-                        onSelectFuelPrices();
-                      } else {
-                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
-                        window.dispatchEvent(new PopStateEvent('popstate'));
-                      }
-                      onClose();
-                    }}
-                    className="bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group no-underline block"
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-md bg-emerald-50 text-[#0F4C2E] border border-emerald-200/80 flex items-center justify-center shadow-2xs">
-                          <Fuel className="w-3.5 h-3.5" />
-                        </div>
-                        <span className="font-display font-bold text-[14px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors">
-                          {lang === 'nl' ? 'Brandstofprijzen' : 'Aktuelle Spritpreise'}
-                        </span>
-                      </div>
-                      <span className="text-[11.5px] font-bold text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                        Live <ArrowRight className="w-3 h-3" />
-                      </span>
-                    </div>
-                    <p className="text-[12px] text-[#5F6B63] leading-relaxed m-0 pl-9">
-                      {lang === 'nl' 
-                        ? 'Live brandstofprijzen van alle tankstations & tankcalculator.' 
-                        : 'Live-Spritpreise aller Tankstellen in Winterberg & Tankrechner.'}
-                    </p>
-                  </a>
+                  {/* Subtle Divider */}
+                  <hr className="border-[#EDE8E0] my-1" />
 
-                  {/* Card: Notdienste */}
-                  <a
-                    href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (onSelectEmergency) {
-                        onSelectEmergency();
-                      } else {
-                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
-                        window.dispatchEvent(new PopStateEvent('popstate'));
-                      }
-                      onClose();
-                    }}
-                    className="bg-red-50/60 border border-red-200/90 hover:border-red-500 rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(220,38,38,0.08)] hover:-translate-y-0.5 transition-all group no-underline block"
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-md bg-red-100 text-red-600 border border-red-200 flex items-center justify-center shadow-2xs">
-                          <Siren className="w-3.5 h-3.5" />
+                  {/* Section: Live-Daten (3 horizontal cards side by side) */}
+                  <div>
+                    <div className="font-display font-bold text-[11px] uppercase tracking-[0.1em] text-[#8A928B] mb-2.5 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>{lang === 'nl' ? 'Live-informatie' : 'Live-Daten'}</span>
+                      </span>
+                      <span className="text-[10px] font-medium text-[#8A928B] lowercase">{lang === 'nl' ? 'realtime' : 'echtzeit'}</span>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2">
+                      {/* Card 1: Spritpreise */}
+                      <a
+                        href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onSelectFuelPrices) {
+                            onSelectFuelPrices();
+                          } else {
+                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                          }
+                          onClose();
+                        }}
+                        className="bg-white border border-[#EDE8E0] hover:border-emerald-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                        title={lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#0F4C2E] border border-emerald-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Fuel className="w-4 h-4" />
                         </div>
-                        <span className="font-display font-bold text-[14px] text-red-950 group-hover:text-red-700 transition-colors">
-                          {lang === 'nl' ? 'Nooddiensten & Notfall' : 'Notdienste & Notfallnummern'}
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-tight">
+                          {lang === 'nl' ? 'Brandstof' : 'Spritpreise'}
+                        </span>
+                        <span className="text-[9.5px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded mt-1">
+                          Live
+                        </span>
+                      </a>
+
+                      {/* Card 2: Notdienste */}
+                      <a
+                        href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onSelectEmergency) {
+                            onSelectEmergency();
+                          } else {
+                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                          }
+                          onClose();
+                        }}
+                        className="bg-white border border-[#EDE8E0] hover:border-red-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(220,38,38,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                        title={lang === 'nl' ? 'Nooddiensten & Apotheekwacht' : 'Notdienste & Notfallnummern'}
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 border border-red-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Siren className="w-4 h-4" />
+                        </div>
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-red-700 leading-tight">
+                          {lang === 'nl' ? 'Nooddienst' : 'Notdienste'}
+                        </span>
+                        <span className="text-[9.5px] font-bold text-red-700 bg-red-50 px-1.5 py-0.5 rounded mt-1">
+                          24/7
+                        </span>
+                      </a>
+
+                      {/* Card 3: Skiliftdaten (ausgegraut / in Kürze) */}
+                      <div
+                        className="bg-gray-50/70 border border-dashed border-gray-300 rounded-xl p-2.5 flex flex-col items-center text-center cursor-not-allowed opacity-60 select-none"
+                        title={lang === 'nl' ? 'Binnenkort: Live skiliften & pistes' : 'In Kürze verfügbar: Live Skilifte & Pisten'}
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-gray-100 text-gray-400 border border-gray-200 flex items-center justify-center mb-1.5 shadow-2xs">
+                          <CableCar className="w-4 h-4" />
+                        </div>
+                        <span className="font-display font-bold text-[12px] text-gray-500 leading-tight">
+                          {lang === 'nl' ? 'Skiliften' : 'Skilifte'}
+                        </span>
+                        <span className="text-[9px] font-semibold text-gray-400 bg-gray-200/70 px-1.5 py-0.5 rounded mt-1 whitespace-nowrap">
+                          {lang === 'nl' ? 'Binnenkort' : 'In Kürze'}
                         </span>
                       </div>
-                      <span className="text-[11.5px] font-bold text-red-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                        24/7 <ArrowRight className="w-3 h-3" />
-                      </span>
                     </div>
-                    <p className="text-[12px] text-red-900/80 leading-relaxed m-0 pl-9">
-                      {lang === 'nl' 
-                        ? 'Apotheekwacht, ziekenhuizen met spoedopname & 112.' 
-                        : 'Apotheken-Notdienst, Notaufnahmen & 112 Notruf.'}
-                    </p>
-                  </a>
+                  </div>
 
                   {/* Ortsteile Quick Chips */}
                   <div>
