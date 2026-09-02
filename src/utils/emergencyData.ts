@@ -221,11 +221,3 @@ export const WINTERBERG_PHARMACIES: PharmacyRota[] = [
     distanceKm: 18.2,
   }
 ];
-
-export const DEFIBRILLATOR_LOCATIONS = [
-  { nameDe: 'Rathaus Winterberg (Foyer)', nameNl: 'Gemeentehuis Winterberg (Foyer)', address: 'Fichtenweg 10, 59955 Winterberg', access: 'Zu Öffnungszeiten' },
-  { nameDe: 'Bahnhof Winterberg (Wartehalle)', nameNl: 'Station Winterberg (Wachtruimte)', address: 'Bahnhofstraße 1, 59955 Winterberg', access: '24/7 zugänglich' },
-  { nameDe: 'St. Franziskus-Hospital (Eingang)', nameNl: 'St. Franziskus-Hospital (Ingang)', address: 'Franziskusstraße 2, 59955 Winterberg', access: '24/7 Notaufnahme' },
-  { nameDe: 'Sparkasse Winterberg (SB-Bereich)', nameNl: 'Sparkasse Winterberg (Pinnen)', address: 'Am Waltenberg 4, 59955 Winterberg', access: '06:00 - 23:00 Uhr' },
-  { nameDe: 'Skiliftkarussell P1 Herrloh', nameNl: 'Skiliftkarussell P1 Herrloh', address: 'Am Herrloh, 59955 Winterberg', access: 'Während Liftbetrieb' },
-];

@@ -333,7 +333,8 @@ export default function App() {
   const [newsId, setNewsId] = useState<string | null>(initialNewsId);
   const [isGroundingMode, setIsGroundingMode] = useState(initialGroundingMode);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
-  const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isMobileSidebarFilterOpen, setIsMobileSidebarFilterOpen] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(initialSelectedBusiness);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const megaMenuTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -1140,8 +1141,8 @@ export default function App() {
       {/* Main Container */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header (Claude Design) */}
-        <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(255,255,255,0.94)', backdropFilter: 'blur(10px)', borderBottom: '1px solid #E7E2DA' }}>
-          <div style={{ maxWidth: 1180, margin: '0 auto', padding: '12px 24px', display: 'flex', alignItems: 'center', gap: '28px' }}>
+        <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(10px)', borderBottom: '1px solid #E7E2DA' }}>
+          <div className="w-full max-w-[1180px] mx-auto px-3.5 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-6">
             <div 
               onClick={(e) => {
                 e.preventDefault();
@@ -1150,14 +1151,15 @@ export default function App() {
                 setActiveCategory('Alle');
                 setActiveLocation('Alle');
                 resetToDirectory();
+                if (isMobileNavOpen) setIsMobileNavOpen(false);
               }} 
-              style={{ cursor: 'pointer', display: 'flex', alignItems: 'baseline', gap: '8px' }}
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'baseline', gap: '6px', flexShrink: 0 }}
             >
-              <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '15px', fontWeight: 500, color: '#5F6B63' }}>{lang === 'nl' ? 'De' : 'Das'}</span>
+              <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '14px', fontWeight: 500, color: '#5F6B63' }}>{lang === 'nl' ? 'De' : 'Das'}</span>
               <span style={{ display: 'inline-block' }}>
-                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '24px', fontWeight: 800, letterSpacing: '0.05em', color: '#0F4C2E', display: 'block', lineHeight: 1 }}>WINTERBERG</span>
-                <svg viewBox="0 0 200 10" preserveAspectRatio="none" style={{ width: '100%', height: '7px', display: 'block', marginTop: '2px' }}><path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/></svg>
-                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '12.5px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '3px' }}>{lang === 'nl' ? 'BEDRIJVENGIDS' : 'VERZEICHNIS'}</span>
+                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '21px', fontWeight: 800, letterSpacing: '0.05em', color: '#0F4C2E', display: 'block', lineHeight: 1 }}>WINTERBERG</span>
+                <svg viewBox="0 0 200 10" preserveAspectRatio="none" style={{ width: '100%', height: '6px', display: 'block', marginTop: '2px' }}><path d="M3 7C38 2 78 1 118 4c28 2 52 5 79 1" stroke="#F2761B" strokeWidth="3.4" fill="none" strokeLinecap="round"/></svg>
+                <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '11px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '2px' }}>{lang === 'nl' ? 'BEDRIJVENGIDS' : 'VERZEICHNIS'}</span>
               </span>
             </div>
             <nav className="hidden md:flex items-center" style={{ gap: '18px', fontSize: '15px', marginLeft: 'auto' }}>
@@ -1263,7 +1265,7 @@ export default function App() {
             </button>
 
             {/* Mobile Language Switch & Menu Button */}
-            <div className="md:hidden ml-auto flex items-center gap-2">
+            <div className="md:hidden flex items-center gap-2 shrink-0">
               <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA] gap-0.5">
                 <button 
                   type="button" 
@@ -1289,8 +1291,13 @@ export default function App() {
                 </button>
               </div>
 
-              <button className="text-[#0F4C2E] p-1 cursor-pointer" onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}>
-                <Menu className="w-6 h-6" />
+              <button 
+                type="button"
+                className="text-[#0F4C2E] p-2 rounded-lg bg-[#F3F0EA] hover:bg-[#EDE8E0] active:scale-95 border border-[#E7E2DA] cursor-pointer flex items-center justify-center shadow-2xs" 
+                onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                aria-label="Menü öffnen"
+              >
+                {isMobileNavOpen ? <X className="w-5 h-5 text-[#0F4C2E]" /> : <Menu className="w-5 h-5 text-[#0F4C2E]" />}
               </button>
             </div>
           </div>
@@ -1364,13 +1371,6 @@ export default function App() {
               setIsFuelPricesMode(true);
               setIsMegaMenuOpen(false);
               window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onSelectEmergency={() => {
-              resetToDirectory();
-              setIsEmergencyMode(true);
-              setIsMegaMenuOpen(false);
-              window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             getPath={getPath}
@@ -1906,14 +1906,14 @@ export default function App() {
               
               {/* Mobile Toggle Button */}
               <button 
-                className="w-full lg:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-md mb-4"
-                onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
+                className="w-full lg:hidden flex items-center justify-between p-3 font-display font-bold text-sm bg-gray-50 rounded-md mb-4 cursor-pointer"
+                onClick={() => setIsMobileSidebarFilterOpen(!isMobileSidebarFilterOpen)}
               >
                 <span>{lang === 'nl' ? 'Filters & Categorieën' : 'Filter & Kategorien'}</span>
-                {isMobileCategoriesOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isMobileSidebarFilterOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
 
-              <div className={`${isMobileCategoriesOpen ? 'block' : 'hidden lg:block'}`}>
+              <div className={`${isMobileSidebarFilterOpen ? 'block' : 'hidden lg:block'}`}>
                 <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Categorie' : 'Kategorie'}</div>
                 <div className="flex flex-col gap-1 mb-[24px]">
                   {categories.map((group) => {
@@ -1930,7 +1930,7 @@ export default function App() {
                           setActiveCategory(group.name);
                           setSearchQuery('');
                           setIsAllMode(false);
-                          if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                          if(isMobileSidebarFilterOpen) setIsMobileSidebarFilterOpen(false);
                           window.scrollTo({top: 0, behavior: 'smooth'});
                         }}
                         className={`text-left border-none rounded-md px-3 py-2 text-[14.5px] cursor-pointer flex justify-between gap-2 transition-colors ${isActive ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-medium hover:bg-[#F3F0EA]'}`}
@@ -1961,7 +1961,7 @@ export default function App() {
                                   window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
                                   setActiveCategory(sub);
                                   setSearchQuery('');
-                                  if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                                  if(isMobileSidebarFilterOpen) setIsMobileSidebarFilterOpen(false);
                                   window.scrollTo({top: 0, behavior: 'smooth'});
                                 }}
                                 className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isSubActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
@@ -1994,7 +1994,7 @@ export default function App() {
                           window.history.pushState(null, '', d !== 'Alle' ? `${url}?ort=${encodeURIComponent(d)}` : url);
                           setActiveLocation(d);
                           if(activeCategory === 'Alle') setIsAllMode(true);
-                          if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                          if(isMobileSidebarFilterOpen) setIsMobileSidebarFilterOpen(false);
                         }}
                         className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isDistActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}
                       >
@@ -2012,7 +2012,7 @@ export default function App() {
                      setActiveLocation('Alle');
                      setSearchQuery('');
                      setIsAllMode(true);
-                     if(isMobileCategoriesOpen) setIsMobileCategoriesOpen(false);
+                     if(isMobileSidebarFilterOpen) setIsMobileSidebarFilterOpen(false);
                      window.scrollTo({top: 0, behavior: 'smooth'});
                   }}
                   className="mt-6 w-full bg-transparent border border-[#E7E2DA] rounded-md p-2.5 text-[14px] font-medium cursor-pointer text-[#5F6B63] hover:border-[#0F4C2E] hover:text-[#0F4C2E] transition-colors"
@@ -2521,20 +2521,23 @@ export default function App() {
       </main>
 
       {/* Mobile Full Screen Menu */}
-      {isMobileCategoriesOpen && (
-        <div className={`md:hidden fixed inset-0 z-[100] overflow-y-auto ${theme.bgPage} flex flex-col`}>
+      {isMobileNavOpen && (
+        <div className="md:hidden fixed inset-0 z-[99999] bg-[#FAF8F5] overflow-y-auto flex flex-col shadow-2xl">
           {/* Mobile Header (inside full screen menu) */}
-          <div className={`flex items-center justify-between p-4 border-b border-black/10 dark:border-white/10 sticky top-0 ${theme.bgPage} z-10 shadow-sm`}>
+          <div className="flex items-center justify-between p-4 border-b border-[#E7E2DA] sticky top-0 bg-[#FAF8F5] z-10 shadow-xs">
             <div className="flex items-center gap-2">
-              <span className="font-display text-[16px] font-extrabold tracking-wider text-[#0F4C2E]">WINTERBERG</span>
-              <span className="text-xs text-[#5F6B63] font-medium">Navigation</span>
+              <span className="font-display text-[17px] font-extrabold tracking-wider text-[#0F4C2E]">WINTERBERG</span>
+              <span className="text-xs text-[#0F4C2E] font-bold bg-[#E8F1EB] px-2 py-0.5 rounded-full">
+                {lang === 'nl' ? 'Menu' : 'Menü'}
+              </span>
             </div>
             <button 
-              onClick={() => setIsMobileCategoriesOpen(false)} 
-              className="p-2 -mr-2 transition-colors hover:bg-black/5 dark:hover:bg-white/5 rounded-full text-[#1B211D]"
+              type="button"
+              onClick={() => setIsMobileNavOpen(false)} 
+              className="p-2 transition-colors bg-white hover:bg-gray-100 border border-[#EDE8E0] rounded-full text-[#1B211D] shadow-xs cursor-pointer"
               aria-label="Menü schließen"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
@@ -2550,7 +2553,7 @@ export default function App() {
                   type="button"
                   onClick={() => {
                     switchLanguage('de');
-                    setIsMobileCategoriesOpen(false);
+                    setIsMobileNavOpen(false);
                   }}
                   className={`w-9 h-9 rounded-full text-[20px] flex items-center justify-center transition-all cursor-pointer ${
                     lang === 'de' ? 'bg-white shadow-sm ring-1 ring-black/10 scale-105' : 'opacity-40 hover:opacity-100'
@@ -2564,7 +2567,7 @@ export default function App() {
                   type="button"
                   onClick={() => {
                     switchLanguage('nl');
-                    setIsMobileCategoriesOpen(false);
+                    setIsMobileNavOpen(false);
                   }}
                   className={`w-9 h-9 rounded-full text-[20px] flex items-center justify-center transition-all cursor-pointer ${
                     lang === 'nl' ? 'bg-white shadow-sm ring-1 ring-black/10 scale-105' : 'opacity-40 hover:opacity-100'
@@ -2589,7 +2592,7 @@ export default function App() {
                   setSearchQuery('');
                   resetToDirectory();
                   setIsAllMode(true);
-                  setIsMobileCategoriesOpen(false);
+                  setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
@@ -2609,7 +2612,7 @@ export default function App() {
                   setBestOfCategory('Alle');
                   setBestOfSubcategory(undefined);
                   setIsBestOfMode(true);
-                  setIsMobileCategoriesOpen(false);
+                  setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3 rounded-lg bg-white border border-[#EDE8E0] hover:border-[#F2761B] font-display font-bold text-sm text-[#1B211D] transition-all shadow-xs"
@@ -2628,7 +2631,7 @@ export default function App() {
                   resetToDirectory();
                   setIsJobsMode(true);
                   setJobsCategory(null);
-                  setIsMobileCategoriesOpen(false);
+                  setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
@@ -2646,7 +2649,7 @@ export default function App() {
                   window.history.pushState(null, '', getPath('/news'));
                   resetToDirectory();
                   setIsNewsMode(true);
-                  setIsMobileCategoriesOpen(false);
+                  setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
@@ -2664,7 +2667,7 @@ export default function App() {
                   window.history.pushState(null, '', getPath('/faq'));
                   resetToDirectory();
                   setIsFaqMode(true);
-                  setIsMobileCategoriesOpen(false);
+                  setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
@@ -2682,7 +2685,7 @@ export default function App() {
                   window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
                   resetToDirectory();
                   setIsEmergencyMode(true);
-                  setIsMobileCategoriesOpen(false);
+                  setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3.5 rounded-lg bg-red-50 border border-red-200 font-display font-bold text-sm text-red-950 hover:border-red-500 transition-all shadow-xs"
@@ -2715,7 +2718,7 @@ export default function App() {
                           if (!isExpanded) {
                             setExpandedGroups(prev => [...prev, group.name]);
                           }
-                          setIsMobileCategoriesOpen(false);
+                          setIsMobileNavOpen(false);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                         className={`flex-1 flex items-center justify-between px-4 py-3 text-sm font-medium rounded-md transition-colors ${
@@ -2752,7 +2755,7 @@ export default function App() {
                               window.history.pushState(null, '', getPath(`/${encodeURIComponent(group.name)}/${encodeURIComponent(sub)}`));
                               setActiveCategory(sub);
                               resetToDirectory();
-                              setIsMobileCategoriesOpen(false);
+                              setIsMobileNavOpen(false);
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`block w-full text-left px-3 py-2 text-[13.5px] font-medium rounded-md transition-colors ${
@@ -2770,13 +2773,14 @@ export default function App() {
             </nav>
           </div>
 
-          <div className="mt-auto p-4 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col gap-2.5">
+          <div className="mt-auto p-4 pt-4 border-t border-[#EDE8E0] bg-white flex flex-col gap-2.5">
             <button 
+              type="button"
               onClick={() => {
                 resetToDirectory();
                 window.history.pushState(null, '', getPath('/eintragen'));
                 setIsSubmitMode(true);
-                setIsMobileCategoriesOpen(false);
+                setIsMobileNavOpen(false);
                 window.scrollTo(0, 0);
               }}
               className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md shadow-sm transition-colors cursor-pointer"
@@ -2784,10 +2788,11 @@ export default function App() {
               <Plus className="w-4 h-4" /> Unternehmen eintragen
             </button>
             <button 
+              type="button"
               onClick={() => {
                 resetToDirectory();
                 setIsAdminMode(true);
-                setIsMobileCategoriesOpen(false);
+                setIsMobileNavOpen(false);
                 window.scrollTo(0, 0);
               }}
               className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-white text-[#1B211D] border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-md transition-colors cursor-pointer"

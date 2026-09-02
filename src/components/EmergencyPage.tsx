@@ -10,11 +10,7 @@ import {
   MapPin, 
   Navigation, 
   ExternalLink, 
-  HeartPulse, 
-  Sparkles, 
   HelpCircle, 
-  Search, 
-  CheckCircle2, 
   AlertTriangle,
   Stethoscope,
   Phone
@@ -23,8 +19,7 @@ import { ThemeConfig } from '../types';
 import { 
   EMERGENCY_NUMBERS, 
   HOSPITALS_DATA, 
-  WINTERBERG_PHARMACIES, 
-  DEFIBRILLATOR_LOCATIONS 
+  WINTERBERG_PHARMACIES 
 } from '../utils/emergencyData';
 
 interface EmergencyPageProps {
@@ -39,13 +34,6 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
   onSelectBusiness,
 }) => {
   const { t, lang } = useTranslation();
-  const [searchPostCode, setSearchPostCode] = useState('59955');
-
-  // Determine on-duty pharmacy for today (rotating formula based on date)
-  const today = new Date();
-  const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24);
-  const activePharmacyIndex = dayOfYear % WINTERBERG_PHARMACIES.length;
-  const currentDutyPharmacy = WINTERBERG_PHARMACIES[activePharmacyIndex];
 
   return (
     <main className="flex-1 w-full max-w-[1140px] mx-auto px-4 sm:px-6 py-8 pb-16">
@@ -204,7 +192,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 2: Apotheken-Notdienst (Live via aponet.de / ABDA) */}
+      {/* SECTION 2: Apotheken-Notdienst (Offizielle Abfrage via aponet.de / ABDA) */}
       <section className="bg-white border-2 border-[#E7E2DA] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-[#EDE8E0] mb-6">
           <div className="flex items-center gap-3">
@@ -218,7 +206,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
               <span className="text-xs text-[#5F6B63]">
                 {lang === 'nl'
                   ? 'Officiële gegevens via aponet.de / ABDA (Bundesvereinigung Deutscher Apothekerverbände)'
-                  : 'Offizielle Notdienstabfrage via aponet.de / ABDA (Bundesvereinigung Deutscher Apothekerverbände)'}
+                  : 'Offizielle Notdienstabfrage der Bundesvereinigung Deutscher Apothekerverbände (ABDA / aponet.de)'}
               </span>
             </div>
           </div>
@@ -227,89 +215,94 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
             href="https://www.aponet.de/apotheke/notdienstsuche/59955"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2 px-3.5 rounded-lg text-xs font-bold transition-colors no-underline shadow-2xs"
+            className="inline-flex items-center gap-2 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2.5 px-4 rounded-xl text-sm font-bold transition-all no-underline shadow-sm hover:shadow-md cursor-pointer"
           >
-            <span>{lang === 'nl' ? 'Openen op aponet.de' : 'Offizielle Suche auf aponet.de'}</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <span>{lang === 'nl' ? 'Live Notdienst-Apotheek Zoeken' : 'Tagesaktuelle Notdienst-Apotheke auf aponet.de abrufen'}</span>
+            <ExternalLink className="w-4 h-4" />
           </a>
         </div>
 
-        {/* Highlight Card: Today's On-Duty Pharmacy */}
-        <div className="bg-gradient-to-br from-emerald-50 via-white to-emerald-50/40 border-2 border-emerald-300 rounded-2xl p-6 shadow-sm mb-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-bold text-xs uppercase tracking-wider text-emerald-900">
-                {lang === 'nl' ? 'Dienstdoende Apotheek Vandaag (tot morgen 09:00 uur)' : 'Heute Notdienst (von 09:00 bis morgen 09:00 Uhr)'}
-              </span>
-            </div>
-            <span className="text-xs bg-emerald-100 text-emerald-900 font-bold px-3 py-1 rounded-full border border-emerald-200">
-              {today.toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' })}
-            </span>
-          </div>
-
+        {/* Info & Hotlines Card */}
+        <div className="bg-gradient-to-br from-red-50 via-white to-red-50/30 border-2 border-red-200 rounded-2xl p-6 shadow-2xs mb-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-7">
-              <h3 className="font-display text-2xl font-black text-[#1B211D] mb-2">
-                {currentDutyPharmacy.name}
+              <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full mb-3">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                {lang === 'nl' ? 'Officiële 24/7 Nooddienst-Infolijnen' : 'Offizielle 24/7 Notdienst-Auskunft'}
+              </div>
+              <h3 className="font-display text-xl font-bold text-[#1B211D] mb-2">
+                {lang === 'nl' ? 'Welke apotheek heeft vandaag dienst in Winterberg?' : 'Welche Apotheke hat heute in Winterberg Notdienst?'}
               </h3>
-              <p className="text-sm text-[#4A544D] flex items-center gap-1.5 mb-1">
-                <MapPin className="w-4 h-4 text-[#0F4C2E] shrink-0" />
-                <span>{currentDutyPharmacy.street}, {currentDutyPharmacy.postCode} {currentDutyPharmacy.city}</span>
-                {currentDutyPharmacy.distanceKm && (
-                  <span className="text-xs text-[#8A928B] font-semibold">({currentDutyPharmacy.distanceKm} km)</span>
-                )}
+              <p className="text-xs text-[#4A544D] leading-relaxed mb-4">
+                {lang === 'nl'
+                  ? 'De spoeddienst rouleert dagelijks vanaf 09:00 uur (tot de volgende ochtend 09:00 uur) tussen de apotheken in Winterberg, Medebach, Hallenberg en Olsberg. Raadpleeg direct de actuele dagdienst via aponet.de of telefonisch:'
+                  : 'Der Apotheken-Notdienst wechselt täglich um 09:00 Uhr morgens (24h bis zum Folgetag 09:00 Uhr) zwischen den Apotheken in Winterberg und den Nachbargemeinden. Rufen Sie die tagesaktuelle Einteilung direkt live ab:'}
               </p>
-              <p className="text-xs text-[#5F6B63] mt-2">
-                💡 {lang === 'nl' 
-                  ? 'Buiten de normale openingstijden geldt een wettelijke noodtoeslag van € 2,50.' 
-                  : 'Außerhalb der regulären Ladenöffnungszeiten fällt die gesetzliche Notdienstgebühr von 2,50 € an.'}
-              </p>
+
+              <div className="flex flex-wrap gap-2 text-xs text-[#5F6B63]">
+                <span className="bg-white border border-[#EDE8E0] px-3 py-1.5 rounded-lg font-medium">
+                  💡 Notdienstgebühr: 2,50 € außerhalb der Öffnungszeiten
+                </span>
+                <span className="bg-white border border-[#EDE8E0] px-3 py-1.5 rounded-lg font-medium">
+                  🏥 Wechsel täglich um 09:00 Uhr
+                </span>
+              </div>
             </div>
 
-            <div className="md:col-span-5 flex flex-col sm:flex-row gap-3">
+            <div className="md:col-span-5 flex flex-col gap-2.5">
               <a
-                href={`tel:${currentDutyPharmacy.phone}`}
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-3 px-4 rounded-xl font-bold text-sm shadow-sm transition-colors no-underline"
+                href="https://www.aponet.de/apotheke/notdienstsuche/59955"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-xl font-bold text-sm shadow-sm transition-all no-underline"
               >
-                <PhoneCall className="w-4 h-4" />
-                <span>{currentDutyPharmacy.phoneDisplay}</span>
+                <Search className="w-4 h-4" />
+                <span>{lang === 'nl' ? 'Apotheek-Notdienst Live bekijken' : 'Notdienstsuche Winterberg (PLZ 59955)'}</span>
+                <ExternalLink className="w-4 h-4 ml-auto" />
               </a>
 
               <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentDutyPharmacy.name + ' ' + currentDutyPharmacy.street + ' ' + currentDutyPharmacy.city)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-[#FAF8F5] border border-[#EDE8E0] text-[#1B211D] py-3 px-4 rounded-xl font-bold text-sm shadow-2xs transition-colors no-underline"
+                href="tel:08000022833"
+                className="w-full inline-flex items-center justify-between bg-white hover:bg-emerald-50 border border-emerald-300 text-[#0F4C2E] py-2.5 px-4 rounded-xl font-bold text-xs shadow-2xs transition-colors no-underline"
               >
-                <Navigation className="w-4 h-4 text-[#D65F0C]" />
-                <span>{lang === 'nl' ? 'Route' : 'Route'}</span>
+                <div className="flex items-center gap-2">
+                  <PhoneCall className="w-4 h-4 text-[#0F4C2E]" />
+                  <span>Festnetz (kostenlos):</span>
+                </div>
+                <span className="font-mono text-sm font-black">0800 00 22 833</span>
+              </a>
+
+              <a
+                href="tel:22833"
+                className="w-full inline-flex items-center justify-between bg-white hover:bg-blue-50 border border-[#EDE8E0] text-[#1B211D] py-2.5 px-4 rounded-xl font-semibold text-xs shadow-2xs transition-colors no-underline"
+              >
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-blue-600" />
+                  <span>Mobilfunk (69 ct/Min):</span>
+                </div>
+                <span className="font-mono text-sm font-black text-blue-700">22 8 33</span>
               </a>
             </div>
           </div>
         </div>
 
         {/* All rotating pharmacies list in region */}
-        <h4 className="font-display font-bold text-sm text-[#1B211D] uppercase tracking-wider mb-3">
-          {lang === 'nl' ? 'Apotheken in Winterberg & Omliggende Gemeenten' : 'Apotheken im Notdienst-Turnus Winterberg & Umgebung'}
-        </h4>
+        <div className="flex items-center justify-between mb-3">
+          <h4 className="font-display font-bold text-sm text-[#1B211D] uppercase tracking-wider m-0">
+            {lang === 'nl' ? 'Apotheken in Winterberg & Regio' : 'Apotheken in Winterberg & Region'}
+          </h4>
+          <span className="text-xs text-[#5F6B63]">
+            {lang === 'nl' ? 'Direct contact & route' : 'Direkte Kontaktdaten & Route'}
+          </span>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {WINTERBERG_PHARMACIES.map((pharmacy) => (
             <div
               key={pharmacy.id}
-              className={`p-4 rounded-xl border transition-all ${
-                pharmacy.id === currentDutyPharmacy.id
-                  ? 'bg-emerald-50/70 border-emerald-300'
-                  : 'bg-[#FAF8F5] border-[#EDE8E0]'
-              }`}
+              className="bg-[#FAF8F5] border border-[#EDE8E0] hover:border-[#0F4C2E]/40 p-4 rounded-xl transition-all"
             >
               <div className="flex justify-between items-start mb-1">
                 <h5 className="font-bold text-sm text-[#1B211D] m-0">{pharmacy.name}</h5>
-                {pharmacy.id === currentDutyPharmacy.id && (
-                  <span className="text-[10px] bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded">
-                    {lang === 'nl' ? 'Nu dienst' : 'Notdienst'}
-                  </span>
-                )}
               </div>
               <p className="text-xs text-[#5F6B63] m-0">{pharmacy.street}, {pharmacy.postCode} {pharmacy.city}</p>
               <div className="mt-2.5 pt-2 border-t border-[#EDE8E0]/70 flex items-center justify-between">
@@ -324,8 +317,9 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.name + ' ' + pharmacy.street + ' ' + pharmacy.city)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#8A928B] hover:text-[#1B211D]"
+                  className="text-xs text-[#8A928B] hover:text-[#1B211D] flex items-center gap-1"
                 >
+                  <span>Route</span>
                   <Navigation className="w-3 h-3" />
                 </a>
               </div>
@@ -393,46 +387,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 4: Defibrillatoren Standorte (AED) */}
-      <section className="bg-white border border-[#EDE8E0] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
-        <div className="flex items-center gap-3 mb-5 pb-4 border-b border-[#EDE8E0]">
-          <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
-            <HeartPulse className="w-6 h-6 text-rose-600" />
-          </div>
-          <div>
-            <h2 className="font-display text-xl font-bold text-[#1B211D]">
-              {lang === 'nl' ? 'Defibrillatoren (AED) in Winterberg' : 'Defibrillatoren (AED-Standorte) in Winterberg'}
-            </h2>
-            <span className="text-xs text-[#5F6B63]">
-              {lang === 'nl' ? 'Publiek toegankelijke AED-apparaten bij hartstilstand' : 'Öffentlich zugängliche Lebensretter im Stadtgebiet'}
-            </span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {DEFIBRILLATOR_LOCATIONS.map((aed, idx) => (
-            <div key={idx} className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-4 flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full inline-block mb-1.5">
-                  AED
-                </span>
-                <h4 className="font-bold text-sm text-[#1B211D] mb-1">
-                  {lang === 'nl' ? aed.nameNl : aed.nameDe}
-                </h4>
-                <p className="text-xs text-[#5F6B63] flex items-center gap-1 mb-2">
-                  <MapPin className="w-3 h-3 text-[#8A928B] shrink-0" />
-                  <span>{aed.address}</span>
-                </p>
-              </div>
-              <div className="text-[11.5px] font-semibold text-[#0F4C2E] pt-2 border-t border-[#EDE8E0]/70">
-                {aed.access}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 5: Notfall-Leitfaden (Die 5 W-Fragen) */}
+      {/* SECTION 4: Notfall-Leitfaden (Die 5 W-Fragen) */}
       <section className="bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#E7E2DA] rounded-2xl p-6 sm:p-8 shadow-sm">
         <h3 className="font-display text-lg font-bold text-[#1B211D] mb-3 flex items-center gap-2">
           <HelpCircle className="w-5 h-5 text-[#0F4C2E]" />
