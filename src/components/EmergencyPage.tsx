@@ -8,7 +8,6 @@ import {
   Building2, 
   Clock, 
   MapPin, 
-  Navigation, 
   ExternalLink, 
   HelpCircle, 
   AlertTriangle,
@@ -19,8 +18,7 @@ import {
 import { ThemeConfig } from '../types';
 import { 
   EMERGENCY_NUMBERS, 
-  HOSPITALS_DATA, 
-  WINTERBERG_PHARMACIES 
+  HOSPITALS_DATA 
 } from '../utils/emergencyData';
 
 interface EmergencyPageProps {
@@ -354,47 +352,6 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
             <span>💡 <strong>Hinweis:</strong> Der Apotheken-Notdienst wechselt täglich um 09:00 Uhr morgens (24h bis zum Folgetag 09:00 Uhr).</span>
             <span>💶 Gesetzliche Notdienstgebühr: 2,50 € außerhalb der regulären Ladenöffnungszeiten.</span>
           </div>
-        </div>
-
-        {/* All rotating pharmacies list in region */}
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="font-display font-bold text-sm text-[#1B211D] uppercase tracking-wider m-0">
-            {lang === 'nl' ? 'Apotheken in Winterberg & Regio' : 'Apotheken in Winterberg & Region'}
-          </h4>
-          <span className="text-xs text-[#5F6B63]">
-            {lang === 'nl' ? 'Direct contact & route' : 'Direkte Kontaktdaten & Route'}
-          </span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {WINTERBERG_PHARMACIES.map((pharmacy) => (
-            <div
-              key={pharmacy.id}
-              className="bg-[#FAF8F5] border border-[#EDE8E0] hover:border-[#0F4C2E]/40 p-4 rounded-xl transition-all"
-            >
-              <div className="flex justify-between items-start mb-1">
-                <h5 className="font-bold text-sm text-[#1B211D] m-0">{pharmacy.name}</h5>
-              </div>
-              <p className="text-xs text-[#5F6B63] m-0">{pharmacy.street}, {pharmacy.postCode} {pharmacy.city}</p>
-              <div className="mt-2.5 pt-2 border-t border-[#EDE8E0]/70 flex items-center justify-between">
-                <a
-                  href={`tel:${pharmacy.phone}`}
-                  className="text-xs font-bold text-[#0F4C2E] hover:underline flex items-center gap-1"
-                >
-                  <Phone className="w-3 h-3" />
-                  <span>{pharmacy.phoneDisplay}</span>
-                </a>
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.name + ' ' + pharmacy.street + ' ' + pharmacy.city)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#8A928B] hover:text-[#1B211D] flex items-center gap-1"
-                >
-                  <span>Route</span>
-                  <Navigation className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
