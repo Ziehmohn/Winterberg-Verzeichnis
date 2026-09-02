@@ -33,7 +33,6 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
   onSelectBusiness,
 }) => {
   const { t, lang } = useTranslation();
-  const [searchTab, setSearchTab] = useState<'emergency' | 'pharmacy'>('emergency');
   const [zipCity, setZipCity] = useState('59955 Winterberg');
 
   return (
@@ -246,32 +245,30 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
               : 'Geben Sie eine Postleitzahl oder einen Ort ein (voreingestellt auf 59955 Winterberg).'}
           </p>
 
-          {/* Search Tab Switcher */}
-          <div className="flex items-center gap-2 mb-4">
-            <button
-              type="button"
-              onClick={() => setSearchTab('emergency')}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                searchTab === 'emergency'
-                  ? 'bg-red-600 text-white shadow-xs'
-                  : 'bg-[#FAF8F5] text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
-              }`}
+          {/* Direct link to local regular pharmacies in directory */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span className="text-xs font-bold text-red-700 flex items-center gap-1.5">
+              <Pill className="w-3.5 h-3.5 text-red-600" />
+              <span>{lang === 'nl' ? '24/7 Nooddienst Live-Query (aponet.de)' : '24/7 Notdienst Live-Abfrage (aponet.de)'}</span>
+            </span>
+
+            <a
+              href={lang === 'nl' ? '/nl/dienstverlening/apotheken' : '/dienstleistungen/apotheken'}
+              onClick={(e) => {
+                e.preventDefault();
+                const targetPath = lang === 'nl' ? '/nl/dienstverlening/apotheken' : '/dienstleistungen/apotheken';
+                if (onSelectBusiness) {
+                  onSelectBusiness(targetPath);
+                } else {
+                  window.history.pushState(null, '', targetPath);
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C2E] hover:text-[#155D38] hover:underline bg-[#E8F1EB] hover:bg-[#d8e7dc] px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
             >
-              <Pill className="w-3.5 h-3.5" />
-              <span>{lang === 'nl' ? 'Notdienstapotheek vinden' : 'Notdienstapotheke finden'}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setSearchTab('pharmacy')}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                searchTab === 'pharmacy'
-                  ? 'bg-[#0F4C2E] text-white shadow-xs'
-                  : 'bg-[#FAF8F5] text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
-              }`}
-            >
-              <Building2 className="w-3.5 h-3.5" />
-              <span>{lang === 'nl' ? 'Reguliere apotheek vinden' : 'Apotheke finden (Regulär)'}</span>
-            </button>
+              <Building2 className="w-3.5 h-3.5 text-[#0F4C2E]" />
+              <span>{lang === 'nl' ? 'Reguliere openingstijden: Apotheken in Winterberg bekijken →' : 'Reguläre Öffnungszeiten: Apotheken in Winterberg anzeigen →'}</span>
+            </a>
           </div>
 
           {/* Form directly opening exact PLZ/city on official aponet search */}
@@ -281,10 +278,8 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
               const clean = zipCity.trim();
               const plzMatch = clean.match(/\b\d{5}\b/);
               const query = plzMatch ? plzMatch[0] : (clean || '59955');
-              const baseUrl = searchTab === 'emergency'
-                ? `https://www.aponet.de/apotheke/notdienstsuche/${encodeURIComponent(query)}`
-                : `https://www.aponet.de/apotheke/apothekensuche/${encodeURIComponent(query)}`;
-              window.open(baseUrl, '_blank', 'noopener,noreferrer');
+              const url = `https://www.aponet.de/apotheke/notdienstsuche/${encodeURIComponent(query)}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
             }}
             className="flex flex-col sm:flex-row gap-2.5 max-w-3xl"
           >
@@ -301,9 +296,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
             </div>
             <button
               type="submit"
-              className={`px-6 py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer whitespace-nowrap ${
-                searchTab === 'emergency' ? 'bg-red-600 hover:bg-red-700' : 'bg-[#0F4C2E] hover:bg-[#155D38]'
-              }`}
+              className="px-6 py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer whitespace-nowrap bg-red-600 hover:bg-red-700"
             >
               <Search className="w-4 h-4" />
               <span>{lang === 'nl' ? 'Nu live zoeken' : 'Jetzt Notdienst abrufen'}</span>
