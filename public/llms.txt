@@ -34,7 +34,7 @@
 - [Handwerk](https://www.winterberg-verzeichnis.de/handwerk): Betriebe im Bereich Handwerk (u.a. Bäderstudios, Baumschulen, KFZ-Werkstätten, Schreinereien, Wäschereien, Dachdecker)
 - [Einzelhandel](https://www.winterberg-verzeichnis.de/einzelhandel): Betriebe im Bereich Einzelhandel (u.a. Supermarkt, Drogerien, Baustoffe, Baumärkte, Blumengeschäfte, Schuhgeschäfte)
 - [Gastronomie](https://www.winterberg-verzeichnis.de/gastronomie): Betriebe im Bereich Gastronomie (u.a. Restaurant, Cafés, Kneipen und Bars, Skihütten, Eisdielen, Pizzerien)
-- [Dienstleistungen](https://www.winterberg-verzeichnis.de/dienstleistungen): Betriebe im Bereich Dienstleistungen (u.a. Immobilienmakler, Apotheken, Ärzte & Praxen, Zahnärzte, Physiotherapie, Massagen)
+- [Dienstleistungen](https://www.winterberg-verzeichnis.de/dienstleistungen): Betriebe im Bereich Dienstleistungen (u.a. Immobilienmakler, Apotheken, Ärzte & Praxen, Zahnärzte, Physiotherapie, Pflegedienste)
 - [Freizeit](https://www.winterberg-verzeichnis.de/freizeit): Betriebe im Bereich Freizeit (u.a. Kino, Reitsport, Yoga, Indoor-Spielplätze, Fitnessstudios, Bowling)
 
 ## Technische Endpunkte & Schnittstellen

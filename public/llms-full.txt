@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (251 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (258 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1121,6 +1121,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modeorth-winterberg-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/modeorth-winterberg-gmbh
 
+#### [Viertmann's Obst- und GemüseScheune](https://www.winterberg-verzeichnis.de/einzelhandel/feinkost-und-lebensmittel/viertmann-s-obst-und-gemuesescheune)
+- **Kategorie:** Einzelhandel > Feinkost & Lebensmittel
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 23, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 908676
+- **Beschreibung (DE):** Obst- und Gemüsehandel in Niedersfeld mit frischen und regionalen Produkten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/feinkost-und-lebensmittel/viertmann-s-obst-und-gemuesescheune
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/feinkost-und-lebensmittel/viertmann-s-obst-und-gemuesescheune
+
 ### Kategorie: Gastronomie
 
 #### [Hessenkeller Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/hessenkeller-winterberg)
@@ -1484,6 +1493,54 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Traditionelle Grillspeisen mit Fisch und Fleisch sowie Bifteki in einem zwanglosen griechischen Restaurant mit Terrasse.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-athen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-athen
+
+#### [Cortina](https://www.winterberg-verzeichnis.de/gastronomie/eisdielen/cortina)
+- **Kategorie:** Gastronomie > Eisdielen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 17, 59955 Winterberg
+- **Telefon:** 02981 9277520
+- **Webseite:** https://cortina-eiscafe.de
+- **Beschreibung (DE):** Eiscafé in Winterberg. Genießen Sie hausgemachtes Eis und Kaffeespezialitäten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/eisdielen/cortina
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/ijssalons/cortina
+
+#### [Eiscafé Venezia](https://www.winterberg-verzeichnis.de/gastronomie/eisdielen/eiscaf-venezia)
+- **Kategorie:** Gastronomie > Eisdielen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Untere Pforte 9, 59955 Winterberg
+- **Telefon:** 02983 908108
+- **Beschreibung (DE):** Traditionelles Eiscafé im Zentrum von Winterberg mit einer großen Auswahl an Eiskreationen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/eisdielen/eiscaf-venezia
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/ijssalons/eiscaf-venezia
+
+#### [ASLAN Fast Restaurant (Bistro Efes)](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/aslan-fast-restaurant-bistro-efes)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 20-22, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 908868
+- **Webseite:** https://aslan-restaurant.de
+- **Beschreibung (DE):** Bistro und Restaurant in Niedersfeld mit einer großen Auswahl an Speisen für vor Ort, zur Abholung oder Lieferung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/aslan-fast-restaurant-bistro-efes
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/aslan-fast-restaurant-bistro-efes
+
+#### [Hochheide-Hütte](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hochheide-huette)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Auf der Knippe 100, 59955 Winterberg
+- **Webseite:** https://hochheidehuette-niedersfeld.de
+- **Beschreibung (DE):** Gemütliche Hütte auf der Hochheide mit großer Sonnenterrasse, Speisen und Getränken.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hochheide-huette
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/hochheide-huette
+
+#### [Restaurant Forsthaus](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-forsthaus)
+- **Kategorie:** Gastronomie > Restaurant
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Orkestraße 14, 59955 Winterberg
+- **Telefon:** 02981 1023
+- **Webseite:** https://hotel-forsthaus-winterberg.de
+- **Beschreibung (DE):** Gehobenes Restaurant im Hotel Forsthaus mit hervorragender Küche.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-forsthaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-forsthaus
 
 ### Kategorie: Dienstleistungen
 
@@ -1991,6 +2048,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Professionelle Tierphysiotherapie und Bewegungstherapie für Hunde und Pferde in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/tiergesundheit/tierisch-bewegt-tierphysiotherapie-und-bewegung
+
+#### [Ambulanter Pflegedienst und Tagespflege Dönekes](https://www.winterberg-verzeichnis.de/dienstleistungen/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes)
+- **Kategorie:** Dienstleistungen > Pflegedienste
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 38A, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 3689975
+- **Webseite:** https://tagespflege-niedersfeld.de
+- **Beschreibung (DE):** Ambulanter Pflegedienst und Tagespflege in Niedersfeld.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
 
 ### Kategorie: Freizeit
 

@@ -389,6 +389,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                     </div>
                   </div>
 
+                  {/* Subtle Divider below Live-Daten */}
+                  <hr className="border-[#EDE8E0] my-1" />
+
                   {/* Ortsteile Quick Chips */}
                   <div>
                     <div className="font-display font-bold text-xs uppercase tracking-[0.1em] text-[#8A928B] mb-2.5 flex items-center gap-1.5">

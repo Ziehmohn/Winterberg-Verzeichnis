@@ -4137,6 +4137,172 @@ export const businesses: Business[] = [
       saturday: '08:00 - 22:00',
       sunday: '08:00 - 22:00'
     }
+  },
+  {
+    id: 'eiscafe-cortina',
+    name: 'Cortina',
+    category: 'Gastronomie',
+    subcategory: 'Eisdielen',
+    description: 'Eiscafé in Winterberg. Genießen Sie hausgemachtes Eis und Kaffeespezialitäten.',
+    address: 'Am Waltenberg 17, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9277520',
+    website: 'https://cortina-eiscafe.de',
+    imageFallback: 'CO',
+    isPremium: false,
+    status: 'approved',
+    services: ['Eis', 'Kaffee', 'Speisen vor Ort', 'Zum Mitnehmen'],
+    openingHours: {
+      monday: '10:00 - 22:00',
+      tuesday: '10:00 - 22:00',
+      wednesday: '10:00 - 22:00',
+      thursday: '10:00 - 22:00',
+      friday: '10:00 - 22:00',
+      saturday: '10:00 - 22:00',
+      sunday: '10:00 - 22:00'
+    }
+  },
+  {
+    id: 'eiscafe-venezia',
+    name: 'Eiscafé Venezia',
+    category: 'Gastronomie',
+    subcategory: 'Eisdielen',
+    description: 'Traditionelles Eiscafé im Zentrum von Winterberg mit einer großen Auswahl an Eiskreationen.',
+    address: 'Untere Pforte 9, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02983 908108',
+    imageFallback: 'EV',
+    isPremium: false,
+    status: 'approved',
+    services: ['Eis', 'Kaffeespezialitäten', 'Speisen vor Ort', 'Zum Mitnehmen'],
+    openingHours: {
+      monday: '11:30 - 21:00',
+      tuesday: '11:30 - 21:00',
+      wednesday: '11:30 - 21:00',
+      thursday: '11:30 - 21:00',
+      friday: '11:30 - 21:00',
+      saturday: '11:30 - 21:00',
+      sunday: '11:30 - 21:00'
+    }
+  },
+  {
+    id: 'aslan-fast-restaurant',
+    name: 'ASLAN Fast Restaurant (Bistro Efes)',
+    category: 'Gastronomie',
+    subcategory: 'Imbisse',
+    description: 'Bistro und Restaurant in Niedersfeld mit einer großen Auswahl an Speisen für vor Ort, zur Abholung oder Lieferung.',
+    address: 'Ruhrstraße 20-22, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 908868',
+    website: 'https://aslan-restaurant.de',
+    imageFallback: 'AR',
+    isPremium: false,
+    status: 'approved',
+    services: ['Speisen vor Ort', 'Abholung', 'Lieferdienst'],
+    openingHours: {
+      monday: '11:30 - 22:00',
+      tuesday: '11:30 - 22:00',
+      wednesday: '11:30 - 22:00',
+      thursday: '11:30 - 22:00',
+      friday: '11:30 - 22:00',
+      saturday: '11:30 - 22:00',
+      sunday: '11:30 - 22:00'
+    }
+  },
+  {
+    id: 'viertmanns-obst-gemuesescheune',
+    name: "Viertmann's Obst- und GemüseScheune",
+    category: 'Einzelhandel',
+    subcategory: 'Feinkost & Lebensmittel',
+    description: 'Obst- und Gemüsehandel in Niedersfeld mit frischen und regionalen Produkten.',
+    address: 'Ruhrstraße 23, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 908676',
+    imageFallback: 'VO',
+    isPremium: false,
+    status: 'approved',
+    services: ['Obst', 'Gemüse', 'Regionale Produkte'],
+    openingHours: {
+      monday: '08:30 - 18:00',
+      tuesday: '08:30 - 18:00',
+      wednesday: '08:30 - 18:00',
+      thursday: '08:30 - 18:00',
+      friday: '08:30 - 18:00',
+      saturday: '08:30 - 13:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'pflegedienst-doenekes',
+    name: 'Ambulanter Pflegedienst und Tagespflege Dönekes',
+    category: 'Dienstleistungen',
+    subcategory: 'Pflegedienste',
+    description: 'Ambulanter Pflegedienst und Tagespflege in Niedersfeld.',
+    address: 'Ruhrstraße 38A, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 3689975',
+    website: 'https://tagespflege-niedersfeld.de',
+    imageFallback: 'PD',
+    isPremium: false,
+    status: 'approved',
+    services: ['Ambulante Pflege', 'Tagespflege', 'Pflegedienst'],
+    openingHours: {
+      monday: '08:00 - 16:00',
+      tuesday: '08:00 - 16:00',
+      wednesday: '08:00 - 16:00',
+      thursday: '08:00 - 16:00',
+      friday: '08:00 - 16:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'hochheide-huette',
+    name: 'Hochheide-Hütte',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    additionalCategories: [{ category: 'Gastronomie', subcategory: 'Restaurant' }],
+    description: 'Gemütliche Hütte auf der Hochheide mit großer Sonnenterrasse, Speisen und Getränken.',
+    address: 'Auf der Knippe 100, 59955 Winterberg',
+    district: 'Niedersfeld',
+    website: 'https://hochheidehuette-niedersfeld.de',
+    imageFallback: 'HH',
+    isPremium: false,
+    status: 'approved',
+    services: ['Speisen vor Ort', 'Sonnenterrasse', 'Ausflugsziel'],
+    openingHours: {
+      monday: '11:00 - 18:00',
+      tuesday: '11:00 - 18:00',
+      wednesday: '11:00 - 18:00',
+      thursday: '11:00 - 18:00',
+      friday: '11:00 - 18:00',
+      saturday: '11:00 - 18:00',
+      sunday: '11:00 - 18:00'
+    }
+  },
+  {
+    id: 'restaurant-forsthaus',
+    name: 'Restaurant Forsthaus',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    description: 'Gehobenes Restaurant im Hotel Forsthaus mit hervorragender Küche.',
+    address: 'Orkestraße 14, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1023',
+    website: 'https://hotel-forsthaus-winterberg.de',
+    imageFallback: 'RF',
+    isPremium: false,
+    status: 'approved',
+    services: ['Speisen vor Ort', 'Gehobene Küche', 'Wein'],
+    openingHours: {
+      monday: '12:00 - 22:00',
+      tuesday: '12:00 - 22:00',
+      wednesday: '12:00 - 22:00',
+      thursday: '12:00 - 22:00',
+      friday: '12:00 - 22:00',
+      saturday: '12:00 - 22:00',
+      sunday: '12:00 - 22:00'
+    }
   }
 
 ];
@@ -4257,9 +4423,9 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Ferienparks', 'Ferienhäuser', 'Ferienwohnungen', 'Hotels'] },
   { name: 'Handwerk', subcategories: ['Bäderstudios', 'Baumschulen', 'KFZ-Werkstätten', 'Schreinereien', 'Wäschereien', 'Dachdecker', 'Elektriker', 'Friseur', 'Bäckerei', 'Fleischerei', 'Heizungstechnik', 'Bauunternehmen', 'Maler & Lackierer', 'Gartenbauer'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Drogerien', 'Baustoffe', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Gaststättenbedarf', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Drogerien', 'Baustoffe', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Tankstellen', 'Fleischerei', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Bekleidung', 'Bürobedarf', 'Autohäuser'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Cafés', 'Kneipen und Bars', 'Skihütten', 'Eisdielen', 'Pizzerien', 'Imbisse', 'Weinstuben'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Apotheken', 'Ärzte & Praxen', 'Zahnärzte', 'Physiotherapie', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Apotheken', 'Ärzte & Praxen', 'Zahnärzte', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Steuerberater', 'Marketingdienstleistungen', 'Finanzberatung', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen'] },
   { name: 'Freizeit', subcategories: ['Kino', 'Reitsport', 'Yoga', 'Indoor-Spielplätze', 'Fitnessstudios', 'Bowling', 'Fahrradverleih', 'Skiverleih', 'Tennisplätze', 'Fußballvereine', 'Schwimmbäder', 'Outdoor-Freizeitgebiet'] }
 ];
 
