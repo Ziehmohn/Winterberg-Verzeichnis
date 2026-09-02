@@ -1190,22 +1190,6 @@ export default function App() {
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
-              <a 
-                href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')} 
-                onClick={(e) => { 
-                  e.preventDefault(); 
-                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')); 
-                  resetToDirectory(); 
-                  setIsEmergencyMode(true); 
-                }} 
-                style={{ textDecoration: 'none' }} 
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 hover:bg-red-100 text-red-700 font-bold text-[13.5px] border border-red-200/80 transition-all cursor-pointer shadow-2xs"
-                title={lang === 'nl' ? 'Nooddiensten & Apotheken' : 'Notdienste & Notfall'}
-              >
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <span>{lang === 'nl' ? 'Nooddiensten' : 'Notdienste'}</span>
-              </a>
-              
               <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
 
               {/* Länderschieber (Sprachumschalter nur Flaggen) */}
@@ -1371,6 +1355,13 @@ export default function App() {
               setIsFuelPricesMode(true);
               setIsMegaMenuOpen(false);
               window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectEmergency={() => {
+              resetToDirectory();
+              setIsEmergencyMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             getPath={getPath}
