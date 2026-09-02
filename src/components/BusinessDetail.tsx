@@ -16,6 +16,7 @@ import { getBusinessPath } from '../utils/routes';
 import { RankingInfoModal } from './RankingInfoModal';
 import { RankingBadge } from './RankingBadge';
 import { getBusinessRankingBadge } from '../utils/bestOfRankingBadges';
+import FuelPriceWidget from './FuelPriceWidget';
 
 interface BusinessDetailProps {
   business: Business;
@@ -25,9 +26,10 @@ interface BusinessDetailProps {
   onReviewSubmit?: (businessId: string, review: Review) => void;
   similarBusinesses?: Business[];
   allBusinesses?: Business[];
+  onNavigateToFuelPrices?: () => void;
 }
 
-export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [], allBusinesses = [] }: BusinessDetailProps) {
+export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [], allBusinesses = [], onNavigateToFuelPrices }: BusinessDetailProps) {
 
   const { t, lang } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
@@ -512,6 +514,13 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             </>
           )}
+
+          {/* Live Spritpreise Widget (nur bei Tankstellen) */}
+          <FuelPriceWidget
+            business={business}
+            lang={lang}
+            onNavigateToFuelPrices={onNavigateToFuelPrices}
+          />
 
           {/* PDF Documents, Speisekarten & Preislisten (Premium) */}
           {business.isPremium && Array.isArray(business.documents) && business.documents.length > 0 && (

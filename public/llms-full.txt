@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-09-01
+# Stand: 2026-09-02
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 

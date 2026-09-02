@@ -173,6 +173,17 @@ const staticPageConfigs: {
     h2Nl: 'Transparante voorwaarden voor optimaal resultaat'
   },
   {
+    key: 'fuelPrices',
+    titleDe: 'Aktuelle Spritpreise in Winterberg | Live-Tankstellenvergleich & Rechner',
+    titleNl: 'Actuele Brandstofprijzen in Winterberg | Live Tankstations & Calculator',
+    descDe: 'Vergleichen Sie die aktuellen Spritpreise für Diesel, Super E10 und Super E5 aller Tankstellen in Winterberg in Echtzeit. Mit praktischem Tankkosten-Rechner.',
+    descNl: 'Vergelijk de actuele prijzen voor Diesel, Super E10 en Super E5 van alle tankstations in Winterberg. Inclusief handige tankkosten calculator.',
+    h1De: 'Aktuelle Spritpreise in Winterberg & Umgebung',
+    h1Nl: 'Actuele Brandstofprijzen in Winterberg & Omgeving',
+    h2De: 'Live-Preise der Markttransparenzstelle (MTS-K) & interaktiver Tankrechner',
+    h2Nl: 'Live brandstofprijzen & interactieve tankcalculator'
+  },
+  {
     key: 'impressum',
     titleDe: 'Impressum | Das Winterberg Verzeichnis',
     titleNl: 'Colofon / Impressum | Het Winterberg Overzicht',

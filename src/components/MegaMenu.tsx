@@ -14,7 +14,8 @@ import {
   Building2, 
   Sparkles,
   ChevronRight,
-  Trophy
+  Trophy,
+  Fuel
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -27,6 +28,7 @@ interface MegaMenuProps {
   onSelectCategory: (category: string, subcategory?: string) => void;
   onSelectAll: () => void;
   onSelectBestOf?: () => void;
+  onSelectFuelPrices?: () => void;
   onSelectLocation: (location: string) => void;
   onOpenMap: () => void;
   onOpenSubmit: () => void;
@@ -41,6 +43,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onSelectCategory,
   onSelectAll,
   onSelectBestOf,
+  onSelectFuelPrices,
   onSelectLocation,
   onOpenMap,
   onOpenSubmit,
@@ -293,6 +296,41 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       {lang === 'nl' 
                         ? 'De best beoordeelde bedrijven in Winterberg per categorie.' 
                         : 'Die am besten bewerteten Betriebe in Winterberg nach Branchen.'}
+                    </p>
+                  </a>
+
+                  {/* Card: Spritpreise */}
+                  <a
+                    href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onSelectFuelPrices) {
+                        onSelectFuelPrices();
+                      } else {
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      }
+                      onClose();
+                    }}
+                    className="bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group no-underline block"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-md bg-emerald-50 text-[#0F4C2E] border border-emerald-200/80 flex items-center justify-center shadow-2xs">
+                          <Fuel className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-display font-bold text-[14px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors">
+                          {lang === 'nl' ? 'Brandstofprijzen' : 'Aktuelle Spritpreise'}
+                        </span>
+                      </div>
+                      <span className="text-[11.5px] font-bold text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                        Live <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-[#5F6B63] leading-relaxed m-0 pl-9">
+                      {lang === 'nl' 
+                        ? 'Live brandstofprijzen van alle tankstations & tankcalculator.' 
+                        : 'Live-Spritpreise aller Tankstellen in Winterberg & Tankrechner.'}
                     </p>
                   </a>
 

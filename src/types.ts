@@ -275,3 +275,33 @@ export interface PricingSettings {
   ribbonTextColor?: string;
 }
 
+export interface FuelStationPrice {
+  id: string;
+  tankerId?: string;
+  name: string;
+  brand: string;
+  street: string;
+  houseNumber?: string;
+  postCode: string;
+  city: string;
+  district?: string;
+  isOpen: boolean;
+  diesel: number | null;
+  e5: number | null;
+  e10: number | null;
+  dist?: number;
+  lat?: number;
+  lng?: number;
+  businessSlug?: string;
+  businessPath?: string;
+}
+
+export interface FuelPriceResponse {
+  ok: boolean;
+  source: string;
+  lastUpdated: string;
+  isLive?: boolean;
+  apiKeyRequired?: boolean;
+  stations: FuelStationPrice[];
+}
+

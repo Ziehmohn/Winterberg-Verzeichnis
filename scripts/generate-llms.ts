@@ -38,6 +38,8 @@ const llmsTxtContent = `# Das Winterberg Verzeichnis | Het Winterberg Overzicht
 - [Nieuws (NL)](https://www.winterberg-verzeichnis.de/nl/nieuws): Nieuwsberichten en updates uit Winterberg
 - [Winterberg FAQ (DE)](https://www.winterberg-verzeichnis.de/faq): Häufige Fragen zu Unternehmen, Tourismus, Gastronomie und Handwerk
 - [Veelgestelde Vragen (NL)](https://www.winterberg-verzeichnis.de/nl/veelgestelde-vragen): Veelgestelde vragen over bedrijven en toerisme
+- [Aktuelle Spritpreise & Tankrechner (DE)](https://www.winterberg-verzeichnis.de/aktuelle-spritpreise): Live-Spritpreisvergleich (Diesel, E10, E5) und Tankkosten-Rechner für Winterberg
+- [Actuele Brandstofprijzen (NL)](https://www.winterberg-verzeichnis.de/nl/actuele-brandstofprijzen): Live brandstofprijzen en tankcalculator voor Winterberg
 - [Preise & Pakete](https://www.winterberg-verzeichnis.de/preise): Kostenloser Basiseintrag und Premium-Pakete für lokale Unternehmen
 - [Unternehmen eintragen](https://www.winterberg-verzeichnis.de/eintragen): Neues Unternehmen oder Handwerksbetrieb registrieren
 

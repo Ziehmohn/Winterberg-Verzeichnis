@@ -253,6 +253,217 @@ async function startServer() {
     }
   });
 
+  // Tankerkönig Fuel Prices API with in-memory caching
+  let fuelPricesCache: { data: any; timestamp: number } | null = null;
+  const FUEL_CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+  app.get('/api/fuel-prices', async (req, res) => {
+    try {
+      const now = Date.now();
+      if (fuelPricesCache && now - fuelPricesCache.timestamp < FUEL_CACHE_DURATION) {
+        return res.json(fuelPricesCache.data);
+      }
+
+      let apiKey = process.env.TANKERKOENIG_API_KEY;
+      if (!apiKey) {
+        try {
+          const settingsRes = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/settings/apiKeys`);
+          if (settingsRes.ok) {
+            const doc = await settingsRes.json();
+            apiKey = doc.fields?.tankerkoenigApiKey?.stringValue;
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // If key is available and not dummy, call Tankerkönig
+      if (apiKey && apiKey.length > 10 && apiKey !== '00000000-0000-0000-0000-000000000002') {
+        try {
+          const tankerUrl = `https://creativecommons.tankerkoenig.de/json/list.php?lat=51.196&lng=8.532&rad=15&sort=dist&type=all&apikey=${apiKey}`;
+          const tRes = await fetch(tankerUrl);
+          if (tRes.ok) {
+            const tData = await tRes.json();
+            if (tData.ok && Array.isArray(tData.stations)) {
+              const mappedStations = tData.stations.map((st: any) => {
+                const sName = st.name || '';
+                const sStreet = st.street || '';
+                let businessSlug: string | undefined;
+                let businessPath: string | undefined;
+
+                if (sName.toLowerCase().includes('jet') || sStreet.toLowerCase().includes('lamfert')) {
+                  businessSlug = 'jet-tankstelle-winterberg';
+                  businessPath = '/einzelhandel/tankstellen/jet-tankstelle-winterberg';
+                } else if (sName.toLowerCase().includes('aral') || sStreet.toLowerCase().includes('hagenblech')) {
+                  businessSlug = 'aral-tankstelle-winterberg';
+                  businessPath = '/einzelhandel/tankstellen/aral-tankstelle-winterberg';
+                } else if (sName.toLowerCase().includes('tinq') || sStreet.toLowerCase().includes('langewiese')) {
+                  businessSlug = 'tinq-tankautomat-langewiese';
+                  businessPath = '/einzelhandel/tankstellen/tinq-tankautomat-langewiese';
+                } else if (sName.toLowerCase().includes('calpam') || sStreet.toLowerCase().includes('nuhnetal')) {
+                  businessSlug = 'calpam-tankautomat-zueschen';
+                  businessPath = '/einzelhandel/tankstellen/calpam-tankautomat-zueschen';
+                }
+
+                return {
+                  id: st.id,
+                  name: st.name,
+                  brand: st.brand || st.name,
+                  street: st.street || '',
+                  houseNumber: st.houseNumber || '',
+                  postCode: String(st.postCode || '59955'),
+                  city: st.place || 'Winterberg',
+                  district: st.place?.includes('Winterberg')
+                    ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : 'Winterberg'))
+                    : st.place,
+                  isOpen: st.isOpen ?? true,
+                  diesel: typeof st.diesel === 'number' ? st.diesel : null,
+                  e5: typeof st.e5 === 'number' ? st.e5 : null,
+                  e10: typeof st.e10 === 'number' ? st.e10 : null,
+                  dist: st.dist,
+                  lat: st.lat,
+                  lng: st.lng,
+                  businessSlug,
+                  businessPath,
+                };
+              });
+
+              const responseData = {
+                ok: true,
+                source: 'Tankerkönig / MTS-K',
+                lastUpdated: new Date().toISOString(),
+                isLive: true,
+                stations: mappedStations,
+              };
+
+              fuelPricesCache = { data: responseData, timestamp: now };
+              return res.json(responseData);
+            }
+          }
+        } catch (apiErr) {
+          console.error('Tankerkönig API fetch failed, falling back to local dataset:', apiErr);
+        }
+      }
+
+      // Realistic Winterberg stations fallback
+      const fallbackStations = [
+        {
+          id: 'jet-tankstelle-winterberg',
+          tankerId: 'jet-winterberg',
+          name: 'JET Tankstelle Winterberg',
+          brand: 'JET',
+          street: 'Lamfert 1',
+          postCode: '59955',
+          city: 'Winterberg',
+          district: 'Winterberg',
+          isOpen: true,
+          diesel: 1.639,
+          e10: 1.709,
+          e5: 1.769,
+          dist: 0.8,
+          businessSlug: 'jet-tankstelle-winterberg',
+          businessPath: '/einzelhandel/tankstellen/jet-tankstelle-winterberg'
+        },
+        {
+          id: 'tinq-tankautomat-langewiese',
+          tankerId: 'tinq-langewiese',
+          name: 'TinQ 24h-Tankautomat Langewiese',
+          brand: 'TinQ',
+          street: 'Bundesstraße 38',
+          postCode: '59955',
+          city: 'Winterberg',
+          district: 'Langewiese',
+          isOpen: true,
+          diesel: 1.629,
+          e10: 1.699,
+          e5: 1.759,
+          dist: 7.5,
+          businessSlug: 'tinq-tankautomat-langewiese',
+          businessPath: '/einzelhandel/tankstellen/tinq-tankautomat-langewiese'
+        },
+        {
+          id: 'calpam-tankautomat-zueschen',
+          tankerId: 'calpam-zueschen',
+          name: 'Calpam Tankautomat Züschen',
+          brand: 'Calpam',
+          street: 'Nuhnetalstraße 88',
+          postCode: '59955',
+          city: 'Winterberg',
+          district: 'Züschen',
+          isOpen: true,
+          diesel: 1.649,
+          e10: 1.719,
+          e5: 1.779,
+          dist: 6.8,
+          businessSlug: 'calpam-tankautomat-zueschen',
+          businessPath: '/einzelhandel/tankstellen/calpam-tankautomat-zueschen'
+        },
+        {
+          id: 'aral-tankstelle-winterberg',
+          tankerId: 'aral-winterberg',
+          name: 'Aral Tankstelle Winterberg',
+          brand: 'Aral',
+          street: 'Am Hagenblech 60',
+          postCode: '59955',
+          city: 'Winterberg',
+          district: 'Winterberg',
+          isOpen: true,
+          diesel: 1.669,
+          e10: 1.739,
+          e5: 1.799,
+          dist: 1.2,
+          businessSlug: 'aral-tankstelle-winterberg',
+          businessPath: '/einzelhandel/tankstellen/aral-tankstelle-winterberg'
+        },
+        {
+          id: 'avia-siedlinghausen',
+          tankerId: 'avia-siedlinghausen',
+          name: 'AVIA Tankstelle Siedlinghausen',
+          brand: 'AVIA',
+          street: 'Hochsauerlandstraße 12',
+          postCode: '59955',
+          city: 'Winterberg',
+          district: 'Siedlinghausen',
+          isOpen: true,
+          diesel: 1.659,
+          e10: 1.729,
+          e5: 1.789,
+          dist: 8.9,
+        },
+        {
+          id: 'total-medebach',
+          tankerId: 'total-medebach',
+          name: 'TOTAL Tankstelle Medebach',
+          brand: 'TOTAL',
+          street: 'Oberstraße 52',
+          postCode: '59964',
+          city: 'Medebach',
+          district: 'Medebach',
+          isOpen: true,
+          diesel: 1.649,
+          e10: 1.719,
+          e5: 1.779,
+          dist: 14.2,
+        }
+      ];
+
+      const responseData = {
+        ok: true,
+        source: 'Tankerkönig / MTS-K (Vorschau-Modus)',
+        lastUpdated: new Date().toISOString(),
+        isLive: false,
+        apiKeyRequired: !apiKey,
+        stations: fallbackStations,
+      };
+
+      fuelPricesCache = { data: responseData, timestamp: now };
+      return res.json(responseData);
+    } catch (error: any) {
+      console.error('Error fetching fuel prices:', error);
+      return res.status(500).json({ error: error.message || 'Internal Server Error' });
+    }
+  });
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

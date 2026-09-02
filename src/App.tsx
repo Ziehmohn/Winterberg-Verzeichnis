@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -52,6 +52,7 @@ const AGB = React.lazy(() => import('./components/AGB'));
 const SubmitBusiness = React.lazy(() => import('./components/SubmitBusiness'));
 const PricingTable = React.lazy(() => import('./components/PricingTable'));
 const AdminPricingManager = React.lazy(() => import('./components/AdminPricingManager'));
+const FuelPricesPage = React.lazy(() => import('./components/FuelPricesPage'));
 const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
 const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
 const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
@@ -132,6 +133,7 @@ export default function App() {
   let initialAGBMode = false;
   let initialGroundingMode = false;
   let initialPricingMode = false;
+  let initialFuelPricesMode = false;
   let initialSubmitMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
@@ -210,6 +212,8 @@ export default function App() {
         initialGroundingMode = true;
       } else if (decodedPart1 === 'preise' || decodedPart1 === 'pricing' || decodedPart1 === 'prijzen') {
         initialPricingMode = true;
+      } else if (decodedPart1 === 'aktuelle-spritpreise' || decodedPart1 === 'spritpreise' || decodedPart1 === 'actuele-brandstofprijzen' || decodedPart1 === 'brandstofprijzen') {
+        initialFuelPricesMode = true;
       } else if (decodedPart1 === 'eintragen' || decodedPart1 === 'unternehmen-eintragen' || decodedPart1 === 'bedrijf-aanmelden') {
         initialSubmitMode = true;
       } else {
@@ -364,6 +368,7 @@ export default function App() {
     if (isFaqMode) return { view: 'faq' };
     if (isSubmitMode) return { view: 'submit' };
     if (isPricingMode) return { view: 'pricing' };
+    if (isFuelPricesMode) return { view: 'fuel-prices' };
     if (isImpressumMode) return { view: 'impressum' };
     if (isDatenschutzMode) return { view: 'datenschutz' };
     if (isAGBMode) return { view: 'agb' };
@@ -442,6 +447,7 @@ export default function App() {
     setIsDatenschutzMode(false);
     setIsSubmitMode(false);
     setIsPricingMode(false);
+    setIsFuelPricesMode(false);
     setIsJobsMode(false);
     setIsNotFound(false);
     setIsAllMode(false);
@@ -524,6 +530,8 @@ export default function App() {
           setIsJobsMode(true);
         } else if (p1 === 'preise' || p1 === 'pricing') {
           setIsPricingMode(true);
+        } else if (p1 === 'aktuelle-spritpreise' || p1 === 'spritpreise' || p1 === 'actuele-brandstofprijzen' || p1 === 'brandstofprijzen') {
+          setIsFuelPricesMode(true);
         } else if (p1 === 'faq' || p1 === 'faqs' || p1 === 'winterberg-faq') {
           setIsFaqMode(true);
         } else if (p1 === 'impressum') {
@@ -583,6 +591,7 @@ export default function App() {
   const [isDatenschutzMode, setIsDatenschutzMode] = useState(initialDatenschutzMode);
   const [isSubmitMode, setIsSubmitMode] = useState(initialSubmitMode);
   const [isPricingMode, setIsPricingMode] = useState(initialPricingMode);
+  const [isFuelPricesMode, setIsFuelPricesMode] = useState(initialFuelPricesMode);
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
@@ -726,6 +735,13 @@ export default function App() {
     } else if (isPricingMode) {
       currentTitle = isNl ? `Pakketten & Prijzen voor bedrijven | ${baseTitle}` : `Pakete & Preise für Unternehmen | ${baseTitle}`;
       currentDesc = isNl ? `Kies het passende pakket voor uw bedrijf in het Winterberg-overzicht.` : `Wählen Sie das passende Paket für Ihr Unternehmen im Winterberg-Verzeichnis.`;
+    } else if (isFuelPricesMode) {
+      currentTitle = isNl
+        ? `Actuele brandstofprijzen Winterberg | Live tankstations & calculator | ${baseTitle}`
+        : `Aktuelle Spritpreise Winterberg | Live-Tankstellenvergleich & Rechner | ${baseTitle}`;
+      currentDesc = isNl
+        ? `Actuele brandstofprijzen voor Diesel, Super E10 en Super E5 in Winterberg. Vergelijk tankstations en bereken direct je totale tankkosten.`
+        : `Aktuelle Spritpreise für Diesel, Super E10 und Super E5 in Winterberg und Umgebung. Günstigste Tankstelle finden und Tankkosten berechnen.`;
     } else if (isSubmitMode) {
       currentTitle = isNl ? `Bedrijf aanmelden | ${baseTitle}` : `Unternehmen eintragen | ${baseTitle}`;
       currentDesc = isNl ? `Meld uw bedrijf gratis aan in de officiële Winterberg gids.` : `Tragen Sie Ihr Unternehmen kostenlos im offiziellen Winterberg-Verzeichnis ein.`;
@@ -811,7 +827,7 @@ export default function App() {
       head.appendChild(ogLocale);
     }
     ogLocale.setAttribute('content', lang === 'nl' ? 'nl_NL' : 'de_DE');
-  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
+  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
 
   const loadAds = async () => {
     try {
@@ -1344,7 +1360,12 @@ export default function App() {
             const url = getPath(basePath);
             window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
             setSelectedBusiness(null); 
-          }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} allBusinesses={businesses} />
+          }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} allBusinesses={businesses} onNavigateToFuelPrices={() => {
+            setSelectedBusiness(null);
+            setIsFuelPricesMode(true);
+            window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} />
         ) : isBestOfMode ? (
           <BestOfPage
             theme={theme}
@@ -1443,6 +1464,27 @@ export default function App() {
             onInquireAd={() => {
               setInquiryCategory('Alle');
               setIsAdInquiryOpen(true);
+            }}
+          />
+        ) : isFuelPricesMode ? (
+          <FuelPricesPage
+            theme={theme}
+            onSelectBusiness={(slugOrPath) => {
+              setIsFuelPricesMode(false);
+              const clean = slugOrPath.replace(/^\//, '').split('/').pop();
+              const match = businesses.find(b => slugify(b.name) === clean || b.id === clean);
+              if (match) {
+                setSelectedBusiness(match);
+              } else {
+                window.history.pushState(null, '', getPath(slugOrPath));
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsFuelPricesMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         ) : isGroundingMode ? (
@@ -1964,7 +2006,7 @@ export default function App() {
               </div>
 
               {/* Mobile Sponsor Banner – below search/sort, always visible */}
-              <div className="block lg:hidden mb-5">
+              <div className="block lg:hidden mb-5 space-y-3">
                 <SkyscraperBanner 
                   banners={ads} 
                   activeCategory={activeCategory} 
@@ -1974,6 +2016,37 @@ export default function App() {
                   }} 
                   isMobile={true} 
                 />
+
+                {(activeCategory === 'Tankstellen' || activeCategory === 'Einzelhandel') && (
+                  <div className="bg-gradient-to-r from-[#FAF8F5] to-white border-2 border-[#E7E2DA] rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-2xs">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center font-bold shrink-0">
+                        <Fuel className="w-4 h-4 text-[#0F4C2E]" />
+                      </div>
+                      <div>
+                        <span className="font-bold text-xs text-[#1B211D] block">
+                          {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
+                        </span>
+                        <span className="text-[11px] text-[#5F6B63] block">
+                          {lang === 'nl' ? 'Live tankstations & calculator' : 'Live Diesel, E10 & E5 vergleichen'}
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        resetToDirectory();
+                        setIsFuelPricesMode(true);
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="inline-flex items-center gap-1 bg-[#0F4C2E] text-white px-3 py-1.5 rounded-md font-bold text-xs shrink-0 no-underline shadow-2xs"
+                    >
+                      <span>{lang === 'nl' ? 'Bekijken →' : 'Ansehen →'}</span>
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Directory Grid or Map */}
@@ -2313,7 +2386,7 @@ export default function App() {
             </div>
 
             {/* Desktop Sticky Right Skyscraper Banner */}
-            <div className="hidden lg:block shrink-0 sticky top-[100px] self-start z-20">
+            <div className="hidden lg:block shrink-0 sticky top-[100px] self-start z-20 space-y-4">
               <SkyscraperBanner 
                 banners={ads} 
                 activeCategory={activeCategory} 
@@ -2322,6 +2395,37 @@ export default function App() {
                   setIsAdInquiryOpen(true);
                 }} 
               />
+
+              {/* Special Spritpreise CTA Card under advertisement */}
+              {(activeCategory === 'Tankstellen' || activeCategory === 'Einzelhandel') && (
+                <div className="w-[160px] sm:w-[200px] xl:w-[240px] bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#E7E2DA] hover:border-[#0F4C2E] rounded-xl p-4 shadow-sm transition-all text-center">
+                  <div className="w-10 h-10 rounded-xl bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center mx-auto mb-2.5 font-bold">
+                    <Fuel className="w-5 h-5 text-[#0F4C2E]" />
+                  </div>
+                  <h4 className="font-display font-bold text-[15px] text-[#1B211D] mb-1 leading-tight">
+                    {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
+                  </h4>
+                  <p className="text-[12px] text-[#5F6B63] mb-3 leading-snug">
+                    {lang === 'nl'
+                      ? 'Live diesel- & benzineprijzen in Winterberg vergelijken en tankkosten berekenen.'
+                      : 'Live Diesel-, E10- & E5-Preise vergleichen und Tankkosten berechnen.'}
+                  </p>
+                  <a
+                    href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      resetToDirectory();
+                      setIsFuelPricesMode(true);
+                      window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2.5 px-3 rounded-lg font-bold text-xs shadow-2xs transition-colors cursor-pointer no-underline"
+                  >
+                    <Fuel className="w-3.5 h-3.5" />
+                    <span>{lang === 'nl' ? 'Prijzen bekijken →' : 'Spritpreise ansehen →'}</span>
+                  </a>
+                </div>
+              )}
             </div>
             </div>
 
