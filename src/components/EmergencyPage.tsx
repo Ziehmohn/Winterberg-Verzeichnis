@@ -195,7 +195,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
 
       {/* SECTION 2: Apotheken-Notdienst (Offizielle Abfrage via aponet.de / ABDA) */}
       <section className="bg-white border-2 border-[#E7E2DA] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-[#EDE8E0] mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#EDE8E0] mb-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold">
               <Pill className="w-6 h-6 text-red-600" />
@@ -212,54 +212,39 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
             </div>
           </div>
 
-          <a
-            href="https://www.aponet.de/apotheke/notdienstsuche/59955"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2.5 px-4 rounded-xl text-sm font-bold transition-all no-underline shadow-sm hover:shadow-md cursor-pointer"
-          >
-            <span>{lang === 'nl' ? 'Live Notdienst-Apotheek Zoeken' : 'Tagesaktuelle Notdienst-Apotheke auf aponet.de abrufen'}</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+          {/* Official Logo Attribution */}
+          <div className="flex items-center gap-2 shrink-0 bg-[#FAF8F5] border border-[#EDE8E0] px-3 py-1.5 rounded-xl self-start sm:self-auto">
+            <span className="text-[11px] text-[#8A928B] font-medium">Ein Service von:</span>
+            <a 
+              href="https://www.aponet.de" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              title="aponet.de - Das offizielle Gesundheitsportal der deutschen ApothekerInnen"
+              className="hover:opacity-85 transition-opacity inline-flex items-center"
+            >
+              <img 
+                decoding="async"
+                src="https://www.aponet.de/fileadmin/public/widgets/logo_search_widget.svg" 
+                alt="aponet.de - Offizielles Gesundheitsportal der deutschen ApothekerInnen" 
+                className="h-6 w-auto"
+              />
+            </a>
+          </div>
         </div>
 
-        {/* Official aponet.de / ABDA Search Widget */}
-        <div className="bg-gradient-to-br from-red-50/80 via-white to-red-50/40 border-2 border-red-200 rounded-2xl p-5 sm:p-7 shadow-xs mb-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-[#EDE8E0]">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full mb-2">
-                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                {lang === 'nl' ? 'Officiële Live Nooddienst-Zoekmodule (ABDA)' : 'Offizielle Notdienstabfrage der ABDA'}
-              </div>
-              <h3 className="font-display text-xl font-bold text-[#1B211D] m-0">
-                {lang === 'nl' ? 'Vind direct de actuele dienstdoende apotheek' : 'Tagesaktuelle Notdienst-Apotheke jetzt live ermitteln'}
-              </h3>
-              <p className="text-xs text-[#5F6B63] mt-1 mb-0">
-                {lang === 'nl'
-                  ? 'Typ een postcode of plaatsnaam in (standaard ingesteld op 59955 Winterberg).'
-                  : 'Geben Sie eine Postleitzahl oder einen Ort ein (voreingestellt auf 59955 Winterberg).'}
-              </p>
-            </div>
-
-            {/* Official Logo Attribution */}
-            <div className="flex items-center gap-2 shrink-0 bg-white border border-[#EDE8E0] px-3 py-1.5 rounded-xl shadow-2xs self-start sm:self-auto">
-              <span className="text-[11px] text-[#8A928B] font-medium">Ein Service von:</span>
-              <a 
-                href="https://www.aponet.de" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                title="aponet.de - Das offizielle Gesundheitsportal der deutschen ApothekerInnen"
-                className="hover:opacity-85 transition-opacity inline-flex items-center"
-              >
-                <img 
-                  decoding="async"
-                  src="https://www.aponet.de/fileadmin/public/widgets/logo_search_widget.svg" 
-                  alt="aponet.de - Offizielles Gesundheitsportal der deutschen ApothekerInnen" 
-                  className="h-6 w-auto"
-                />
-              </a>
-            </div>
+        <div>
+          <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full mb-2">
+            <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+            {lang === 'nl' ? 'Officiële Live Nooddienst-Zoekmodule (ABDA)' : 'Offizielle Notdienstabfrage der ABDA'}
           </div>
+          <h3 className="font-display text-xl font-bold text-[#1B211D] m-0">
+            {lang === 'nl' ? 'Vind direct de actuele dienstdoende apotheek' : 'Tagesaktuelle Notdienst-Apotheke jetzt live ermitteln'}
+          </h3>
+          <p className="text-xs text-[#5F6B63] mt-1 mb-5">
+            {lang === 'nl'
+              ? 'Typ een postcode of plaatsnaam in (standaard ingesteld op 59955 Winterberg).'
+              : 'Geben Sie eine Postleitzahl oder einen Ort ein (voreingestellt auf 59955 Winterberg).'}
+          </p>
 
           {/* Search Tab Switcher */}
           <div className="flex items-center gap-2 mb-4">
@@ -269,7 +254,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                 searchTab === 'emergency'
                   ? 'bg-red-600 text-white shadow-xs'
-                  : 'bg-white text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
+                  : 'bg-[#FAF8F5] text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
               }`}
             >
               <Pill className="w-3.5 h-3.5" />
@@ -281,7 +266,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                 searchTab === 'pharmacy'
                   ? 'bg-[#0F4C2E] text-white shadow-xs'
-                  : 'bg-white text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
+                  : 'bg-[#FAF8F5] text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
               }`}
             >
               <Building2 className="w-3.5 h-3.5" />
@@ -289,26 +274,29 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
             </button>
           </div>
 
-          {/* Form directly submitting to official aponet search endpoint */}
+          {/* Form directly opening exact PLZ/city on official aponet search */}
           <form
-            action={
-              searchTab === 'emergency'
-                ? "https://www.aponet.de/apotheke/notdienstsuche?tx_aponetpharmacy_search%5Baction%5D=search&tx_aponetpharmacy_search%5Bcontroller%5D=Search&cHash=d60644fbe4920abed16b25ce29f3b7c8"
-                : "https://www.aponet.de/apotheke/apothekensuche?tx_aponetpharmacy_search%5Baction%5D=search&tx_aponetpharmacy_search%5Bcontroller%5D=Search&cHash=fc3c77fe8cbcb73573464fc782e9987f"
-            }
-            method="post"
-            target="_blank"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const clean = zipCity.trim();
+              const plzMatch = clean.match(/\b\d{5}\b/);
+              const query = plzMatch ? plzMatch[0] : (clean || '59955');
+              const baseUrl = searchTab === 'emergency'
+                ? `https://www.aponet.de/apotheke/notdienstsuche/${encodeURIComponent(query)}`
+                : `https://www.aponet.de/apotheke/apothekensuche/${encodeURIComponent(query)}`;
+              window.open(baseUrl, '_blank', 'noopener,noreferrer');
+            }}
             className="flex flex-col sm:flex-row gap-2.5 max-w-3xl"
           >
             <div className="relative flex-1">
               <MapPin className="w-4 h-4 text-[#8A928B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                name="tx_aponetpharmacy_search[search][plzort]"
+                name="plzort"
                 value={zipCity}
                 onChange={(e) => setZipCity(e.target.value)}
                 placeholder="PLZ oder Ort (z. B. 59955 Winterberg)"
-                className="w-full bg-white border border-[#D8D2C8] focus:border-red-500 rounded-xl pl-10 pr-4 py-3 text-sm text-[#1B211D] font-semibold outline-none shadow-2xs transition-all"
+                className="w-full bg-[#FAF8F5] border border-[#D8D2C8] focus:border-red-500 focus:bg-white rounded-xl pl-10 pr-4 py-3 text-sm text-[#1B211D] font-semibold outline-none shadow-2xs transition-all"
               />
             </div>
             <button
@@ -324,10 +312,10 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
           </form>
 
           {/* 24/7 Telephone Hotlines & Notice */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 pt-4 border-t border-[#EDE8E0]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 pt-5 border-t border-[#EDE8E0]">
             <a
               href="tel:08000022833"
-              className="inline-flex items-center justify-between bg-white hover:bg-emerald-50/70 border border-emerald-300 text-[#0F4C2E] py-2.5 px-4 rounded-xl font-bold text-xs shadow-2xs transition-colors no-underline"
+              className="inline-flex items-center justify-between bg-[#FAF8F5] hover:bg-emerald-50/70 border border-emerald-300 text-[#0F4C2E] py-2.5 px-4 rounded-xl font-bold text-xs shadow-2xs transition-colors no-underline"
             >
               <div className="flex items-center gap-2">
                 <PhoneCall className="w-4 h-4 text-[#0F4C2E]" />
@@ -338,7 +326,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
 
             <a
               href="tel:22833"
-              className="inline-flex items-center justify-between bg-white hover:bg-blue-50/70 border border-[#EDE8E0] text-[#1B211D] py-2.5 px-4 rounded-xl font-semibold text-xs shadow-2xs transition-colors no-underline"
+              className="inline-flex items-center justify-between bg-[#FAF8F5] hover:bg-blue-50/70 border border-[#EDE8E0] text-[#1B211D] py-2.5 px-4 rounded-xl font-semibold text-xs shadow-2xs transition-colors no-underline"
             >
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-blue-600" />
