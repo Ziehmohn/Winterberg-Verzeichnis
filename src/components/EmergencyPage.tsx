@@ -35,6 +35,8 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
   onSelectBusiness,
 }) => {
   const { t, lang } = useTranslation();
+  const [searchTab, setSearchTab] = useState<'emergency' | 'pharmacy'>('emergency');
+  const [zipCity, setZipCity] = useState('59955 Winterberg');
 
   return (
     <main className="flex-1 w-full max-w-[1140px] mx-auto px-4 sm:px-6 py-8 pb-16">
@@ -223,67 +225,134 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
           </a>
         </div>
 
-        {/* Info & Hotlines Card */}
-        <div className="bg-gradient-to-br from-red-50 via-white to-red-50/30 border-2 border-red-200 rounded-2xl p-6 shadow-2xs mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-7">
-              <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full mb-3">
+        {/* Official aponet.de / ABDA Search Widget */}
+        <div className="bg-gradient-to-br from-red-50/80 via-white to-red-50/40 border-2 border-red-200 rounded-2xl p-5 sm:p-7 shadow-xs mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-[#EDE8E0]">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full mb-2">
                 <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                {lang === 'nl' ? 'Officiële 24/7 Nooddienst-Infolijnen' : 'Offizielle 24/7 Notdienst-Auskunft'}
+                {lang === 'nl' ? 'Officiële Live Nooddienst-Zoekmodule (ABDA)' : 'Offizielle Notdienstabfrage der ABDA'}
               </div>
-              <h3 className="font-display text-xl font-bold text-[#1B211D] mb-2">
-                {lang === 'nl' ? 'Welke apotheek heeft vandaag dienst in Winterberg?' : 'Welche Apotheke hat heute in Winterberg Notdienst?'}
+              <h3 className="font-display text-xl font-bold text-[#1B211D] m-0">
+                {lang === 'nl' ? 'Vind direct de actuele dienstdoende apotheek' : 'Tagesaktuelle Notdienst-Apotheke jetzt live ermitteln'}
               </h3>
-              <p className="text-xs text-[#4A544D] leading-relaxed mb-4">
+              <p className="text-xs text-[#5F6B63] mt-1 mb-0">
                 {lang === 'nl'
-                  ? 'De spoeddienst rouleert dagelijks vanaf 09:00 uur (tot de volgende ochtend 09:00 uur) tussen de apotheken in Winterberg, Medebach, Hallenberg en Olsberg. Raadpleeg direct de actuele dagdienst via aponet.de of telefonisch:'
-                  : 'Der Apotheken-Notdienst wechselt täglich um 09:00 Uhr morgens (24h bis zum Folgetag 09:00 Uhr) zwischen den Apotheken in Winterberg und den Nachbargemeinden. Rufen Sie die tagesaktuelle Einteilung direkt live ab:'}
+                  ? 'Typ een postcode of plaatsnaam in (standaard ingesteld op 59955 Winterberg).'
+                  : 'Geben Sie eine Postleitzahl oder einen Ort ein (voreingestellt auf 59955 Winterberg).'}
               </p>
-
-              <div className="flex flex-wrap gap-2 text-xs text-[#5F6B63]">
-                <span className="bg-white border border-[#EDE8E0] px-3 py-1.5 rounded-lg font-medium">
-                  💡 Notdienstgebühr: 2,50 € außerhalb der Öffnungszeiten
-                </span>
-                <span className="bg-white border border-[#EDE8E0] px-3 py-1.5 rounded-lg font-medium">
-                  🏥 Wechsel täglich um 09:00 Uhr
-                </span>
-              </div>
             </div>
 
-            <div className="md:col-span-5 flex flex-col gap-2.5">
-              <a
-                href="https://www.aponet.de/apotheke/notdienstsuche/59955"
-                target="_blank"
+            {/* Official Logo Attribution */}
+            <div className="flex items-center gap-2 shrink-0 bg-white border border-[#EDE8E0] px-3 py-1.5 rounded-xl shadow-2xs self-start sm:self-auto">
+              <span className="text-[11px] text-[#8A928B] font-medium">Ein Service von:</span>
+              <a 
+                href="https://www.aponet.de" 
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-xl font-bold text-sm shadow-sm transition-all no-underline"
+                title="aponet.de - Das offizielle Gesundheitsportal der deutschen ApothekerInnen"
+                className="hover:opacity-85 transition-opacity inline-flex items-center"
               >
-                <Search className="w-4 h-4" />
-                <span>{lang === 'nl' ? 'Apotheek-Notdienst Live bekijken' : 'Notdienstsuche Winterberg (PLZ 59955)'}</span>
-                <ExternalLink className="w-4 h-4 ml-auto" />
-              </a>
-
-              <a
-                href="tel:08000022833"
-                className="w-full inline-flex items-center justify-between bg-white hover:bg-emerald-50 border border-emerald-300 text-[#0F4C2E] py-2.5 px-4 rounded-xl font-bold text-xs shadow-2xs transition-colors no-underline"
-              >
-                <div className="flex items-center gap-2">
-                  <PhoneCall className="w-4 h-4 text-[#0F4C2E]" />
-                  <span>Festnetz (kostenlos):</span>
-                </div>
-                <span className="font-mono text-sm font-black">0800 00 22 833</span>
-              </a>
-
-              <a
-                href="tel:22833"
-                className="w-full inline-flex items-center justify-between bg-white hover:bg-blue-50 border border-[#EDE8E0] text-[#1B211D] py-2.5 px-4 rounded-xl font-semibold text-xs shadow-2xs transition-colors no-underline"
-              >
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-blue-600" />
-                  <span>Mobilfunk (69 ct/Min):</span>
-                </div>
-                <span className="font-mono text-sm font-black text-blue-700">22 8 33</span>
+                <img 
+                  decoding="async"
+                  src="https://www.aponet.de/fileadmin/public/widgets/logo_search_widget.svg" 
+                  alt="aponet.de - Offizielles Gesundheitsportal der deutschen ApothekerInnen" 
+                  className="h-6 w-auto"
+                />
               </a>
             </div>
+          </div>
+
+          {/* Search Tab Switcher */}
+          <div className="flex items-center gap-2 mb-4">
+            <button
+              type="button"
+              onClick={() => setSearchTab('emergency')}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                searchTab === 'emergency'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'bg-white text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
+              }`}
+            >
+              <Pill className="w-3.5 h-3.5" />
+              <span>{lang === 'nl' ? 'Notdienstapotheek vinden' : 'Notdienstapotheke finden'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setSearchTab('pharmacy')}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                searchTab === 'pharmacy'
+                  ? 'bg-[#0F4C2E] text-white shadow-xs'
+                  : 'bg-white text-[#5F6B63] hover:text-[#1B211D] border border-[#EDE8E0]'
+              }`}
+            >
+              <Building2 className="w-3.5 h-3.5" />
+              <span>{lang === 'nl' ? 'Reguliere apotheek vinden' : 'Apotheke finden (Regulär)'}</span>
+            </button>
+          </div>
+
+          {/* Form directly submitting to official aponet search endpoint */}
+          <form
+            action={
+              searchTab === 'emergency'
+                ? "https://www.aponet.de/apotheke/notdienstsuche?tx_aponetpharmacy_search%5Baction%5D=search&tx_aponetpharmacy_search%5Bcontroller%5D=Search&cHash=d60644fbe4920abed16b25ce29f3b7c8"
+                : "https://www.aponet.de/apotheke/apothekensuche?tx_aponetpharmacy_search%5Baction%5D=search&tx_aponetpharmacy_search%5Bcontroller%5D=Search&cHash=fc3c77fe8cbcb73573464fc782e9987f"
+            }
+            method="post"
+            target="_blank"
+            className="flex flex-col sm:flex-row gap-2.5 max-w-3xl"
+          >
+            <div className="relative flex-1">
+              <MapPin className="w-4 h-4 text-[#8A928B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                name="tx_aponetpharmacy_search[search][plzort]"
+                value={zipCity}
+                onChange={(e) => setZipCity(e.target.value)}
+                placeholder="PLZ oder Ort (z. B. 59955 Winterberg)"
+                className="w-full bg-white border border-[#D8D2C8] focus:border-red-500 rounded-xl pl-10 pr-4 py-3 text-sm text-[#1B211D] font-semibold outline-none shadow-2xs transition-all"
+              />
+            </div>
+            <button
+              type="submit"
+              className={`px-6 py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer whitespace-nowrap ${
+                searchTab === 'emergency' ? 'bg-red-600 hover:bg-red-700' : 'bg-[#0F4C2E] hover:bg-[#155D38]'
+              }`}
+            >
+              <Search className="w-4 h-4" />
+              <span>{lang === 'nl' ? 'Nu live zoeken' : 'Jetzt Notdienst abrufen'}</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-85" />
+            </button>
+          </form>
+
+          {/* 24/7 Telephone Hotlines & Notice */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 pt-4 border-t border-[#EDE8E0]">
+            <a
+              href="tel:08000022833"
+              className="inline-flex items-center justify-between bg-white hover:bg-emerald-50/70 border border-emerald-300 text-[#0F4C2E] py-2.5 px-4 rounded-xl font-bold text-xs shadow-2xs transition-colors no-underline"
+            >
+              <div className="flex items-center gap-2">
+                <PhoneCall className="w-4 h-4 text-[#0F4C2E]" />
+                <span>Festnetz-Ansage (kostenlos):</span>
+              </div>
+              <span className="font-mono text-sm font-black">0800 00 22 833</span>
+            </a>
+
+            <a
+              href="tel:22833"
+              className="inline-flex items-center justify-between bg-white hover:bg-blue-50/70 border border-[#EDE8E0] text-[#1B211D] py-2.5 px-4 rounded-xl font-semibold text-xs shadow-2xs transition-colors no-underline"
+            >
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-blue-600" />
+                <span>Mobilfunk-Hotline (69 ct/Min):</span>
+              </div>
+              <span className="font-mono text-sm font-black text-blue-700">22 8 33</span>
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 text-xs text-[#5F6B63] mt-3">
+            <span>💡 <strong>Hinweis:</strong> Der Apotheken-Notdienst wechselt täglich um 09:00 Uhr morgens (24h bis zum Folgetag 09:00 Uhr).</span>
+            <span>💶 Gesetzliche Notdienstgebühr: 2,50 € außerhalb der regulären Ladenöffnungszeiten.</span>
           </div>
         </div>
 
