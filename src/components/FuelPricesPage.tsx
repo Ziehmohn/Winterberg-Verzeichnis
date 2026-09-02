@@ -163,16 +163,42 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
         </button>
       </div>
 
+      {/* Inactive / Setup Notice Banner if no live key */}
+      {!fuelData?.isLive && (
+        <div className="mb-6 bg-gradient-to-r from-amber-50 to-orange-50/70 border-2 border-amber-300/90 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 text-amber-950 shadow-sm">
+          <div className="w-9 h-9 rounded-xl bg-amber-200/80 text-amber-900 flex items-center justify-center font-bold shrink-0 mt-0.5 shadow-2xs">
+            <Clock className="w-5 h-5 text-amber-800" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              <h3 className="font-display font-bold text-[15.5px] text-amber-950 m-0">
+                {lang === 'nl' ? 'Live-interface wordt momenteel geactiveerd' : 'Live-Schnittstelle wird derzeit eingerichtet'}
+              </h3>
+              <span className="text-[11px] bg-amber-200 text-amber-900 font-bold px-2.5 py-0.5 rounded-full border border-amber-300">
+                {lang === 'nl' ? 'Binnenkort online' : 'In Kürze live'}
+              </span>
+            </div>
+            <p className="text-xs sm:text-[13px] text-amber-900/90 leading-relaxed m-0">
+              {lang === 'nl'
+                ? 'De directe koppeling met de Markttransparantie-instantie (MTS-K / Tankerkönig) wordt op dit moment voorbereid. De onderstaande gegevens zijn momenteel inactief en worden na koppeling realtime geüpdatet.'
+                : 'Die direkte Anbindung an die Markttransparenzstelle für Kraftstoffe (MTS-K / Tankerkönig) wird gerade vorbereitet. Die untenstehenden Inhalte sind derzeit als Vorschau inaktiv geschaltet und gehen nach Aktivierung der Schnittstelle live.'}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Hero Header */}
-      <div className="bg-gradient-to-r from-[#0F4C2E] to-[#176B42] rounded-2xl p-6 sm:p-10 text-white shadow-md relative overflow-hidden mb-8">
+      <div className={`bg-gradient-to-r from-[#0F4C2E] to-[#176B42] rounded-2xl p-6 sm:p-10 text-white shadow-md relative overflow-hidden mb-8 ${!fuelData?.isLive ? 'opacity-85' : ''}`}>
         <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none flex items-center justify-end pr-10">
           <Fuel className="w-64 h-64 text-white" />
         </div>
 
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold tracking-wide text-emerald-100 mb-3 border border-white/20">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            {lang === 'nl' ? 'Live-gegevens van MTS-K / Tankerkönig' : 'Echtzeit-Preise der Markttransparenzstelle (MTS-K)'}
+            <span className={`w-2 h-2 rounded-full ${fuelData?.isLive ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+            {fuelData?.isLive
+              ? (lang === 'nl' ? 'Live-gegevens van MTS-K / Tankerkönig' : 'Echtzeit-Preise der Markttransparenzstelle (MTS-K)')
+              : (lang === 'nl' ? 'Koppeling in voorbereiding' : 'Schnittstelle in Vorbereitung')}
           </div>
 
           <h1 className="font-display text-[clamp(28px,4vw,44px)] font-extrabold leading-tight mb-3">
@@ -188,8 +214,10 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
         </div>
       </div>
 
-      {/* 3 Best Price Highlights */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      {/* Container with Inactive / Grayscale overlay if no API key */}
+      <div className={!fuelData?.isLive ? 'opacity-65 grayscale-[35%] pointer-events-none select-none transition-all' : 'transition-all'}>
+        {/* 3 Best Price Highlights */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         {/* Cheapest Diesel */}
         <div className="bg-white border-2 border-[#E7E2DA] rounded-xl p-5 shadow-sm relative overflow-hidden hover:border-[#D65F0C] transition-all">
           <div className="flex justify-between items-start mb-2">
@@ -750,6 +778,7 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
           </div>
         </div>
       </section>
+      </div>
     </main>
   );
 };

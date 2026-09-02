@@ -17,6 +17,7 @@ export const FuelPriceWidget: React.FC<FuelPriceWidgetProps> = ({
 }) => {
   const [station, setStation] = useState<FuelStationPrice | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isLive, setIsLive] = useState<boolean>(false);
   const [lastUpdated, setLastUpdated] = useState<string>('');
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export const FuelPriceWidget: React.FC<FuelPriceWidgetProps> = ({
       if (!isMounted) return;
       const matched = matchBusinessToStation(business, res.stations);
       setStation(matched);
+      setIsLive(res.isLive ?? false);
       setLastUpdated(res.lastUpdated);
       setLoading(false);
     });
@@ -49,7 +51,7 @@ export const FuelPriceWidget: React.FC<FuelPriceWidgetProps> = ({
   const e5Fmt = formatFuelPrice(station?.e5);
 
   return (
-    <div className="my-6 bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#E7E2DA] rounded-xl p-5 shadow-sm transition-all hover:border-[#F2761B]/40">
+    <div className={`my-6 bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#E7E2DA] rounded-xl p-5 shadow-sm transition-all hover:border-[#F2761B]/40 ${!isLive ? 'relative' : ''}`}>
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-[#EDE8E0]">
         <div className="flex items-center gap-2.5">
@@ -57,21 +59,30 @@ export const FuelPriceWidget: React.FC<FuelPriceWidgetProps> = ({
             <Fuel className="w-5 h-5 text-[#0F4C2E]" />
           </div>
           <div>
-            <h3 className="font-display text-[17px] font-bold text-[#1B211D] flex items-center gap-2 m-0">
+            <h3 className="font-display text-[17px] font-bold text-[#1B211D] flex items-center gap-2 m-0 flex-wrap">
               {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
-              {station?.isOpen ? (
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-100/90 px-2 py-0.5 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  {lang === 'nl' ? 'Nu geopend' : 'Jetzt geöffnet'}
-                </span>
+              {isLive ? (
+                station?.isOpen ? (
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-100/90 px-2 py-0.5 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    {lang === 'nl' ? 'Nu geopend' : 'Jetzt geöffnet'}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                    {lang === 'nl' ? 'Gesloten' : 'Geschlossen'}
+                  </span>
+                )
               ) : (
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                  {lang === 'nl' ? 'Gesloten' : 'Geschlossen'}
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-900 bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-full">
+                  <Clock className="w-3 h-3 text-amber-700" />
+                  {lang === 'nl' ? 'Binnenkort live' : 'In Kürze live'}
                 </span>
               )}
             </h3>
             <span className="text-[11.5px] text-[#8A928B]">
-              {lang === 'nl' ? 'Live via Tankerkönig / MTS-K' : 'Live via Markttransparenzstelle (MTS-K)'}
+              {isLive
+                ? (lang === 'nl' ? 'Live via Tankerkönig / MTS-K' : 'Live via Markttransparenzstelle (MTS-K)')
+                : (lang === 'nl' ? 'Koppeling in voorbereiding' : 'Schnittstelle in Vorbereitung')}
             </span>
           </div>
         </div>
