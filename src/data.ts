@@ -2128,8 +2128,7 @@ export const businesses: Business[] = [
     category: 'Handwerk',
     subcategory: 'Bäckerei',
     additionalCategories: [
-      { category: 'Gastronomie', subcategory: 'Cafés' },
-      { category: 'Einzelhandel', subcategory: 'Supermarkt' }
+      { category: 'Gastronomie', subcategory: 'Cafés' }
     ],
     description: 'Traditionelle Handwerksbäckerei und gemütlicher Dorfladen in Winterberg-Langewiese. Frische Brötchen, handwerklich gebackene Brote, Kuchen, Kaffeespezialitäten sowie Lebensmittel des täglichen Bedarfs.',
     address: 'Bundesstraße 19, 59955 Winterberg-Langewiese',
@@ -2154,10 +2153,7 @@ export const businesses: Business[] = [
     name: 'TinQ 24h-Tankautomat Langewiese',
     category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
-    additionalCategories: [
-      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
-    ],
-    description: 'Moderne 24-Stunden-Automatentankstelle an der Bundesstraße in Winterberg-Langewiese für PKW und LKW mit EC-, Kreditkarten- und Flottenkarten-Zahlung.',
+        description: 'Moderne 24-Stunden-Automatentankstelle an der Bundesstraße in Winterberg-Langewiese für PKW und LKW mit EC-, Kreditkarten- und Flottenkarten-Zahlung.',
     address: 'Bundesstraße 38, 59955 Winterberg-Langewiese',
     district: 'Langewiese',
     phone: '02758 287',
@@ -2180,11 +2176,7 @@ export const businesses: Business[] = [
     name: 'JET Tankstelle Winterberg',
     category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
-    additionalCategories: [
-      { category: 'Gastronomie', subcategory: 'Imbisse' },
-      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
-    ],
-    description: 'JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.',
+        description: 'JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.',
     address: 'Lamfert 1, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 9298634',
@@ -2207,11 +2199,7 @@ export const businesses: Business[] = [
     name: 'Aral Tankstelle Winterberg',
     category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
-    additionalCategories: [
-      { category: 'Gastronomie', subcategory: 'Imbisse' },
-      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
-    ],
-    description: 'Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.',
+        description: 'Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.',
     address: 'Am Hagenblech 60, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 92600',
@@ -2234,10 +2222,7 @@ export const businesses: Business[] = [
     name: 'Calpam Tankautomat Züschen',
     category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
-    additionalCategories: [
-      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
-    ],
-    description: '24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.',
+        description: '24-Stunden-Automatentankstelle von Calpam in Winterberg-Züschen. Schnelles und unkompliziertes Tanken rund um die Uhr mit EC- und Tankkarten an der Nuhnetalstraße.',
     address: 'Nuhnetalstraße 88, 59955 Winterberg-Züschen',
     district: 'Züschen',
     phone: '02981 908301',
@@ -2363,8 +2348,7 @@ export const businesses: Business[] = [
     category: 'Handwerk',
     subcategory: 'Bäckerei',
     additionalCategories: [
-      { category: 'Gastronomie', subcategory: 'Cafés' },
-      { category: 'Einzelhandel', subcategory: 'Supermarkt' }
+      { category: 'Gastronomie', subcategory: 'Cafés' }
     ],
     description: 'Bäckerei- und Caféfiliale von Isken im REWE Center an der Poststraße in Winterberg. Frische Backwaren, Frühstückssnacks, belegte Brötchen und Kaffeespezialitäten mit gemütlichem Sitzbereich.',
     address: 'Poststraße 6, 59955 Winterberg',
@@ -2857,11 +2841,7 @@ export const businesses: Business[] = [
     name: 'Fleischerei Heinz-Thomas Knieb',
     category: 'Handwerk',
     subcategory: 'Fleischerei',
-    additionalCategories: [
-      { category: 'Einzelhandel', subcategory: 'Supermarkt' },
-      { category: 'Gastronomie', subcategory: 'Imbisse' }
-    ],
-    description: 'Traditionelle Handwerksfleischerei in Winterberg-Siedlinghausen mit meisterhaften Fleisch- und Wurstwaren aus eigener Herstellung, hausgemachten Spezialitäten sowie 24/7 Grillfleisch- & Wurstautomat vor dem Geschäft.',
+        description: 'Traditionelle Handwerksfleischerei in Winterberg-Siedlinghausen mit meisterhaften Fleisch- und Wurstwaren aus eigener Herstellung, hausgemachten Spezialitäten sowie 24/7 Grillfleisch- & Wurstautomat vor dem Geschäft.',
     address: 'Hochsauerlandstraße 3, 59955 Winterberg-Siedlinghausen',
     district: 'Siedlinghausen',
     phone: '02983 1636',
@@ -2997,8 +2977,7 @@ export const businesses: Business[] = [
     category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradgeschäfte',
     additionalCategories: [
-      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' },
-      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' }
     ],
     description: 'Ihr führendes Fahrrad-Fachgeschäft und E-Bike-Spezialist in Winterberg. Verkauf von Premium-Bikes, Textilien und Zubehör, professionelle Meisterwerkstatt mit Generalüberholung & Radeinstellung sowie moderner Bike- & Skiverleih.',
     address: 'Am Waltenberg 49, 59955 Winterberg',
@@ -3025,8 +3004,7 @@ export const businesses: Business[] = [
     category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradverleih',
     additionalCategories: [
-      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' },
-      { category: 'Gastronomie', subcategory: 'Restaurant' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradgeschäfte' }
     ],
     description: 'Geführte E-Bike- und Mountainbike-Touren, Bikeverleih und Events in Winterberg am Waltenberg. Individuelle Erlebnistouren durch das Sauerland, Fahrtechnik-Kurse und Einkehr im Bistorant UPPU.',
     address: 'Am Waltenberg 19A, 59955 Winterberg',
@@ -3081,8 +3059,7 @@ export const businesses: Business[] = [
     category: 'Ski, Bike & Sport',
     subcategory: 'Fahrradgeschäfte',
     additionalCategories: [
-      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' },
-      { category: 'Mobilität & KFZ', subcategory: 'KFZ-Werkstätten' }
+      { category: 'Ski, Bike & Sport', subcategory: 'Fahrradverleih' }
     ],
     description: 'Großer Fahrradfachmarkt und zertifizierte Fachwerkstatt in Winterberg (Am Hagenblech). Riesige Auswahl an E-Bikes, Mountainbikes, Gravel- und Cityrädern, Zubehör, Bekleidung sowie professionelle Inspektion und Reparatur.',
     address: 'Am Hagenblech 93, 59955 Winterberg',
