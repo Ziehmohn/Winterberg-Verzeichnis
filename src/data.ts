@@ -2839,8 +2839,7 @@ export const businesses: Business[] = [
     category: 'Hotels und Unterkünfte',
     subcategory: 'Hotels',
     additionalCategories: [
-      { category: 'Gastronomie', subcategory: 'Restaurant' },
-      { category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
     ],
     description: 'Familiengeführter 3-Sterne-Landgasthof & Hotel in Winterberg-Altenfeld mit gemütlichen Zimmern, Sauerländer Frischeküche, herrlicher Sonnenterrasse und hauseigener Minigolfanlage im Grünen.',
     address: 'Bödefelder Str. 32, 59955 Winterberg-Altenfeld',
