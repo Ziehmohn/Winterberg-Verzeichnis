@@ -336,19 +336,26 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 3: Krankenhäuser & Notfallpraxis */}
-      <section className="bg-white border border-[#EDE8E0] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
-        <div className="flex items-center gap-3 mb-5 pb-4 border-b border-[#EDE8E0]">
-          <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold">
-            <Building2 className="w-6 h-6 text-blue-700" />
-          </div>
-          <div>
-            <h2 className="font-display text-xl font-bold text-[#1B211D]">
-              {lang === 'nl' ? 'Ziekenhuizen & Centrale Huisartsenpost' : 'Krankenhäuser & Zentrale Notfallpraxis'}
-            </h2>
-            <span className="text-xs text-[#5F6B63]">
-              {lang === 'nl' ? 'Medische spoedopname en eerste hulp in het Sauerland' : 'Stationäre Notfallversorgung und Bereitschaftspraxen'}
-            </span>
+      {/* SECTION 3: Krankenhäuser & Notfallpraxis (Klinisches Blau zur klaren Unterscheidung) */}
+      <section className="bg-gradient-to-br from-[#F0F6FA] via-[#F8FAFC] to-[#EFF6FB] border-2 border-[#BCD7E8] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-[#D0E2EE]">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#005288] text-white flex items-center justify-center font-bold shadow-xs">
+              <Building2 className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h2 className="font-display text-xl font-bold text-[#0F2942] m-0">
+                  {lang === 'nl' ? 'Ziekenhuizen & Centrale Huisartsenpost' : 'Krankenhäuser & Zentrale Notfallpraxis'}
+                </h2>
+                <span className="bg-[#DCEBF6] text-[#004777] font-bold text-[11px] px-2.5 py-0.5 rounded-full">
+                  24/7 Notaufnahmen
+                </span>
+              </div>
+              <span className="text-xs text-[#526D82] mt-0.5 block">
+                {lang === 'nl' ? 'Medische spoedopname en eerste hulp in het Sauerland' : 'Stationäre Notfallversorgung und Bereitschaftspraxen im Hochsauerland'}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -356,37 +363,37 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
           {HOSPITALS_DATA.map((hospital, idx) => (
             <div
               key={idx}
-              className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-5 hover:border-[#0F4C2E]/40 transition-all"
+              className="bg-white border border-[#D0E2EE] hover:border-[#005288]/60 rounded-xl p-5 shadow-2xs hover:shadow-xs transition-all"
             >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-2">
                 <div>
-                  <span className="text-[11px] font-bold text-[#0F4C2E] uppercase tracking-wider block mb-0.5">
+                  <span className="text-[11px] font-bold text-[#005288] uppercase tracking-wider block mb-0.5">
                     {lang === 'nl' ? hospital.typeNl : hospital.typeDe}
                   </span>
-                  <h3 className="font-display font-bold text-lg text-[#1B211D] m-0">
+                  <h3 className="font-display font-bold text-lg text-[#0F2942] m-0">
                     {hospital.name}
                   </h3>
                 </div>
                 <a
                   href={`tel:${hospital.phone}`}
-                  className="inline-flex items-center gap-1.5 bg-white hover:bg-[#0F4C2E] hover:text-white border border-[#EDE8E0] text-[#0F4C2E] px-3.5 py-2 rounded-lg font-bold text-xs transition-colors shadow-2xs no-underline"
+                  className="inline-flex items-center gap-1.5 bg-[#F0F6FA] hover:bg-[#005288] hover:text-white border border-[#BCD7E8] text-[#005288] px-3.5 py-2 rounded-lg font-bold text-xs transition-all shadow-2xs no-underline"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
                   <span>{hospital.phoneDisplay}</span>
                 </a>
               </div>
 
-              <p className="text-xs text-[#5F6B63] flex items-center gap-1.5 mb-2">
-                <MapPin className="w-3.5 h-3.5 text-[#8A928B] shrink-0" />
+              <p className="text-xs text-[#526D82] flex items-center gap-1.5 mb-2">
+                <MapPin className="w-3.5 h-3.5 text-[#005288]/70 shrink-0" />
                 <span>{hospital.address}</span>
               </p>
 
-              <div className="bg-white border border-[#EDE8E0] rounded-lg p-3 text-xs text-[#4A544D] mt-3">
-                <div className="font-bold text-[#1B211D] mb-1 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#0F4C2E]" />
+              <div className="bg-[#F8FAFC] border border-[#DCEBF6] rounded-lg p-3 text-xs text-[#334E68] mt-3">
+                <div className="font-bold text-[#0F2942] mb-1 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[#005288]" />
                   <span>{lang === 'nl' ? hospital.emergencyRoomNl : hospital.emergencyRoomDe}</span>
                 </div>
-                <div className="text-[#5F6B63] leading-relaxed">
+                <div className="text-[#526D82] leading-relaxed">
                   {lang === 'nl' ? hospital.hoursNl : hospital.hoursDe}
                 </div>
               </div>
