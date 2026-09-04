@@ -64,17 +64,19 @@ export default function TestKachelPreview() {
         </div>
 
         {/* Kachel 3 - Premium mit allen Features */}
-        <div className="bg-white rounded-2xl shadow-sm border border-[#E7E2DA] overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-          <div className="h-[200px] w-full bg-gray-200 relative">
-            <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" 
-              alt="SICHTBAR SEO - Simon Kräling" 
-              className="w-full h-full object-cover"
-            />
+        <div className="bg-white rounded-2xl shadow-sm border border-[#E7E2DA] flex flex-col hover:shadow-md transition-shadow">
+          <div className="h-[200px] w-full bg-gray-200 relative shrink-0">
+            <div className="w-full h-full overflow-hidden rounded-t-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" 
+                alt="SICHTBAR SEO - Simon Kräling" 
+                className="w-full h-full object-cover"
+              />
+            </div>
             {/* Top Badges */}
-            <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
+            <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none z-10">
               {/* Premium Label */}
-              <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm">
+              <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm backdrop-blur-xs">
                 Premium
               </div>
               
@@ -86,9 +88,9 @@ export default function TestKachelPreview() {
               </div>
             </div>
             
-            {/* Logo overlayed at bottom of image */}
-            <div className="absolute -bottom-6 left-5">
-              <div className="w-[60px] h-[60px] bg-white rounded-xl shadow-md border border-[#E7E2DA] flex items-center justify-center overflow-hidden p-1">
+            {/* Logo overlayed at bottom of image - Top Z-Index, Not Clipped! */}
+            <div className="absolute -bottom-6 left-5 z-30 pointer-events-none">
+              <div className="w-[60px] h-[60px] bg-white rounded-xl shadow-lg border border-[#E7E2DA] flex items-center justify-center overflow-hidden p-1">
                 {/* Placeholder Logo */}
                 <div className="w-full h-full bg-[#1B211D] rounded-lg flex items-center justify-center text-white text-[10px] font-bold text-center leading-tight">
                   SICHTBAR<br/>SEO
@@ -97,17 +99,22 @@ export default function TestKachelPreview() {
             </div>
           </div>
           
-          <div className="px-5 pt-9 pb-5 flex flex-col flex-1">
+          <div className="px-5 pt-9 pb-5 flex flex-col flex-1 relative z-10 bg-white rounded-b-2xl">
             <span className="text-[11px] font-bold text-[#5F6B63] tracking-wide uppercase mb-1.5 line-clamp-1">
-              Dienstleistungen · Marketing & PR
+              Dienstleistungen · Marketingdienstleistungen
             </span>
             <h3 className="text-[20px] font-bold text-[#1B211D] mb-3 leading-tight">
               SICHTBAR SEO - Simon Kräling
             </h3>
             
-            {/* Ranking Badge */}
-            <div className="bg-[#FCD34D] text-[#1B211D] px-3 py-2 rounded-lg flex items-center gap-2 mb-4 font-bold text-[13px] shadow-sm">
-               <span className="text-[#D97706] text-[16px] leading-none">★</span> PLATZ 1: WINTERBERG
+            {/* Multiple Platz 1 Ranking Badges */}
+            <div className="flex items-center gap-2 flex-wrap mb-4">
+              <div className="bg-[#FCD34D] text-[#1B211D] px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-bold text-[12px] shadow-sm">
+                <span className="text-[#D97706] text-[15px] leading-none">★</span> PLATZ 1: MARKETINGDIENSTLEISTUNGEN
+              </div>
+              <div className="bg-[#FCD34D] text-[#1B211D] px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-bold text-[12px] shadow-sm">
+                <span className="text-[#D97706] text-[15px] leading-none">★</span> PLATZ 1: DIENSTLEISTUNGEN
+              </div>
             </div>
             
             {/* Review USP */}

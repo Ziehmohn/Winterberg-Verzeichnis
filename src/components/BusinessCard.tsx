@@ -4,7 +4,7 @@ import { Business } from '../types';
 import { useTranslation } from '../i18n';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
-import { getBusinessRankingBadge } from '../utils/bestOfRankingBadges';
+import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import RankingBadge from './RankingBadge';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 
@@ -37,7 +37,7 @@ export default function BusinessCard({
     : null;
 
   const cardUsps = getBusinessReviewUsps(business, lang);
-  const cardRankingBadge = getBusinessRankingBadge(business, allBusinesses);
+  const cardRankingBadges = getBusinessRankingBadges(business, allBusinesses);
 
   const imageSrc = business.headerImage || 
                    business.uploadedImage || 
@@ -49,35 +49,37 @@ export default function BusinessCard({
   return (
     <div 
       onClick={onClick}
-      className={`group bg-white rounded-2xl shadow-sm border ${business.isPremium ? 'border-[#F2761B]/60 hover:border-[#F2761B]' : 'border-[#E7E2DA]'} overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all duration-200 cursor-pointer ${className}`}
+      className={`group bg-white rounded-2xl shadow-sm border ${business.isPremium ? 'border-[#F2761B]/60 hover:border-[#F2761B]' : 'border-[#E7E2DA]'} flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all duration-200 cursor-pointer ${className}`}
     >
-      {/* Top Image Banner */}
-      <div className="h-[200px] w-full bg-[#FAF8F5] relative overflow-hidden shrink-0">
-        {imageSrc ? (
-          <img 
-            src={imageSrc} 
-            alt={business.name} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#06301C] via-[#0F4C2E] to-[#1B211D] flex items-center justify-center relative overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" 
-              style={{ backgroundImage: 'url(/winterberg-header.webp)' }}
+      {/* Top Image Banner (no overflow-hidden on wrapper so logo extends down!) */}
+      <div className="h-[200px] w-full bg-[#FAF8F5] relative shrink-0">
+        <div className="w-full h-full overflow-hidden rounded-t-2xl">
+          {imageSrc ? (
+            <img 
+              src={imageSrc} 
+              alt={business.name} 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
             />
-            <div className="relative z-10">
-              <BusinessCategoryIcon 
-                category={business.category} 
-                subcategory={business.subcategory} 
-                name={business.name} 
-                isPremium={business.isPremium} 
-                size="xl" 
-                className="shadow-md"
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#06301C] via-[#0F4C2E] to-[#1B211D] flex items-center justify-center relative overflow-hidden">
+              <div 
+                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" 
+                style={{ backgroundImage: 'url(/winterberg-header.webp)' }}
               />
+              <div className="relative z-10">
+                <BusinessCategoryIcon 
+                  category={business.category} 
+                  subcategory={business.subcategory} 
+                  name={business.name} 
+                  isPremium={business.isPremium} 
+                  size="xl" 
+                  className="shadow-md"
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Top Badges (Premium + Star Rating) */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none z-10">
@@ -96,11 +98,11 @@ export default function BusinessCard({
           )}
         </div>
 
-        {/* Logo overlayed at bottom-left of image */}
+        {/* Logo overlayed at bottom-left of image - Top level Z-Index, not clipped! */}
         {business.logoUrl && (
-          <div className="absolute -bottom-6 left-5 z-20">
+          <div className="absolute -bottom-6 left-5 z-30 pointer-events-none">
             <div 
-              className="w-[60px] h-[60px] bg-white rounded-xl shadow-md border border-[#E7E2DA] flex items-center justify-center overflow-hidden p-1.5"
+              className="w-[60px] h-[60px] bg-white rounded-xl shadow-lg border border-[#E7E2DA] flex items-center justify-center overflow-hidden p-1.5"
               style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
             >
               <img 
@@ -114,7 +116,7 @@ export default function BusinessCard({
       </div>
 
       {/* Content Area */}
-      <div className={`px-5 ${business.logoUrl ? 'pt-9' : 'pt-5'} pb-5 flex flex-col flex-1`}>
+      <div className={`px-5 ${business.logoUrl ? 'pt-9' : 'pt-5'} pb-5 flex flex-col flex-1 relative z-10 bg-white rounded-b-2xl`}>
         {/* Category */}
         <div className="text-[11px] font-bold text-[#F2761B] tracking-wider uppercase mb-1.5 line-clamp-1">
           {t(business.category)}{business.subcategory ? ` · ${t(business.subcategory)}` : ''}
@@ -125,10 +127,12 @@ export default function BusinessCard({
           {business.name}
         </h3>
 
-        {/* Ranking Badge */}
-        {cardRankingBadge && (
-          <div className="mb-3">
-            <RankingBadge badge={cardRankingBadge} lang={lang} variant="compact" />
+        {/* Ranking Badges (Support multiple Platz 1 badges) */}
+        {cardRankingBadges.length > 0 && (
+          <div className="flex items-center gap-1.5 flex-wrap mb-3">
+            {cardRankingBadges.map((badge, bIdx) => (
+              <RankingBadge key={bIdx} badge={badge} lang={lang} variant="compact" />
+            ))}
           </div>
         )}
 

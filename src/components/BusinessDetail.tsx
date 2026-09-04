@@ -15,7 +15,7 @@ import WidgetGeneratorModal from './WidgetGeneratorModal';
 import { getBusinessPath } from '../utils/routes';
 import { RankingInfoModal } from './RankingInfoModal';
 import { RankingBadge } from './RankingBadge';
-import { getBusinessRankingBadge } from '../utils/bestOfRankingBadges';
+import { getBusinessRankingBadge, getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import FuelPriceWidget from './FuelPriceWidget';
 
 interface BusinessDetailProps {
@@ -34,7 +34,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const { t, lang } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
   const { currentUser: user } = useAuth();
-  const rankingBadge = getBusinessRankingBadge(business, allBusinesses.length > 0 ? allBusinesses : (similarBusinesses.length > 0 ? [business, ...similarBusinesses] : [business]));
+  const allBusinessesPool = allBusinesses.length > 0 ? allBusinesses : (similarBusinesses.length > 0 ? [business, ...similarBusinesses] : [business]);
+  const rankingBadges = getBusinessRankingBadges(business, allBusinessesPool);
+  const rankingBadge = rankingBadges[0] || null;
   const [showClaimScreen, setShowClaimScreen] = useState(false);
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [showWidgetModal, setShowWidgetModal] = useState(false);
@@ -289,13 +291,18 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
             )}
 
-            {/* Official Top 10 / Top 5 / Top 3 / Top 1 Ranking Badge for Premium */}
-            {rankingBadge && (
-              <RankingBadge 
-                badge={rankingBadge} 
-                lang={lang} 
-                variant="seal" 
-              />
+            {/* Official Top 10 / Top 5 / Top 3 / Top 1 Ranking Badges for Premium */}
+            {rankingBadges.length > 0 && (
+              <div className="flex items-center gap-2 flex-wrap">
+                {rankingBadges.map((badge, bIdx) => (
+                  <RankingBadge 
+                    key={bIdx}
+                    badge={badge} 
+                    lang={lang} 
+                    variant="seal" 
+                  />
+                ))}
+              </div>
             )}
 
             {business.isVerified && (

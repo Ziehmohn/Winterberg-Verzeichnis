@@ -39,75 +39,26 @@ export function calculateBusinessRankingScore(b: Business): number {
  * 2. Main Category (e.g., "Gastronomie")
  * 3. Overall Winterberg
  */
-export function getBusinessRankingBadge(
-  business: Business,
-  allBusinesses: Business[]
-): BusinessRankingBadgeInfo | null {
-  // Only Premium businesses receive the official Top Badge
-  if (!business.isPremium) return null;
-
-  const approvedReviews = (business.reviews || []).filter(r => !r.status || r.status === 'approved');
-  if (approvedReviews.length === 0) return null;
-
-  // Score all businesses
-  const scored = allBusinesses.map(b => ({
-    ...b,
-    score: calculateBusinessRankingScore(b)
-  })).sort((a, b) => b.score - a.score);
-
-  // 1. Check Subcategory rank
-  let bestRank: number | null = null;
-  let categoryName = business.category;
-  let targetSubcategory: string | undefined = undefined;
-  let isOverall = false;
-
-  if (business.subcategory) {
-    const subList = scored.filter(b => b.category === business.category && b.subcategory === business.subcategory);
-    const subIdx = subList.findIndex(b => b.id === business.id);
-    if (subIdx !== -1 && subIdx < 10) {
-      bestRank = subIdx + 1;
-      categoryName = business.subcategory;
-      targetSubcategory = business.subcategory;
-    }
-  }
-
-  // 2. Check Category rank if better or if subcategory wasn't top 10
-  const catList = scored.filter(b => b.category === business.category);
-  const catIdx = catList.findIndex(b => b.id === business.id);
-  if (catIdx !== -1 && catIdx < 10) {
-    const catRank = catIdx + 1;
-    if (bestRank === null || catRank <= bestRank) {
-      bestRank = catRank;
-      categoryName = business.category;
-      targetSubcategory = undefined;
-    }
-  }
-
-  // 3. Check Overall rank
-  const overallIdx = scored.findIndex(b => b.id === business.id);
-  if (overallIdx !== -1 && overallIdx < 10) {
-    const overallRank = overallIdx + 1;
-    if (bestRank === null || overallRank <= bestRank) {
-      bestRank = overallRank;
-      categoryName = 'Winterberg';
-      targetSubcategory = undefined;
-      isOverall = true;
-    }
-  }
-
-  if (bestRank === null || bestRank > 10) return null;
-
-  // Generate target paths
+/**
+ * Helper to build a badge object for a specific rank and category
+ */
+function createBadgeInfo(
+  rank: number,
+  categoryName: string,
+  category: string,
+  subcategory: string | undefined,
+  isOverall: boolean
+): BusinessRankingBadgeInfo {
   let targetPathDe = '/die-besten';
   let targetPathNl = '/nl/de-beste';
 
   if (!isOverall) {
-    const catSlugDe = getCategorySlug(business.category, 'de');
-    const catSlugNl = getCategorySlug(business.category, 'nl');
+    const catSlugDe = getCategorySlug(category, 'de');
+    const catSlugNl = getCategorySlug(category, 'nl');
 
-    if (targetSubcategory) {
-      const subSlugDe = getSubcategorySlug(targetSubcategory, 'de');
-      const subSlugNl = getSubcategorySlug(targetSubcategory, 'nl');
+    if (subcategory) {
+      const subSlugDe = getSubcategorySlug(subcategory, 'de');
+      const subSlugNl = getSubcategorySlug(subcategory, 'nl');
       targetPathDe = `/die-besten/${catSlugDe}/${subSlugDe}`;
       targetPathNl = `/nl/de-beste/${catSlugNl}/${subSlugNl}`;
     } else {
@@ -116,18 +67,13 @@ export function getBusinessRankingBadge(
     }
   }
 
-  // Determine Badge Tier:
-  // Top 1 = Gold Star Badge
-  // Top 3 (ranks 2-3) = Gold Badge
-  // Top 5 (ranks 4-5) = Silver Badge
-  // Top 10 (ranks 6-10) = Bronze Badge
-  if (bestRank === 1) {
+  if (rank === 1) {
     return {
       tier: 'top1_star',
       rank: 1,
       categoryName,
-      category: business.category,
-      subcategory: targetSubcategory,
+      category,
+      subcategory,
       isOverall,
       labelDe: `🌟 Platz 1: ${categoryName}`,
       labelNl: `🌟 Nummer 1: ${categoryName}`,
@@ -136,13 +82,13 @@ export function getBusinessRankingBadge(
       targetPathDe,
       targetPathNl
     };
-  } else if (bestRank <= 3) {
+  } else if (rank <= 3) {
     return {
       tier: 'top3_gold',
-      rank: bestRank,
+      rank,
       categoryName,
-      category: business.category,
-      subcategory: targetSubcategory,
+      category,
+      subcategory,
       isOverall,
       labelDe: `🥇 Top 3: ${categoryName}`,
       labelNl: `🥇 Top 3: ${categoryName}`,
@@ -151,13 +97,13 @@ export function getBusinessRankingBadge(
       targetPathDe,
       targetPathNl
     };
-  } else if (bestRank <= 5) {
+  } else if (rank <= 5) {
     return {
       tier: 'top5_silver',
-      rank: bestRank,
+      rank,
       categoryName,
-      category: business.category,
-      subcategory: targetSubcategory,
+      category,
+      subcategory,
       isOverall,
       labelDe: `🥈 Top 5: ${categoryName}`,
       labelNl: `🥈 Top 5: ${categoryName}`,
@@ -169,10 +115,10 @@ export function getBusinessRankingBadge(
   } else {
     return {
       tier: 'top10_bronze',
-      rank: bestRank,
+      rank,
       categoryName,
-      category: business.category,
-      subcategory: targetSubcategory,
+      category,
+      subcategory,
       isOverall,
       labelDe: `🥉 Top 10: ${categoryName}`,
       labelNl: `🥉 Top 10: ${categoryName}`,
@@ -182,4 +128,154 @@ export function getBusinessRankingBadge(
       targetPathNl
     };
   }
+}
+
+/**
+ * Returns all ranking badges for a business.
+ * If a business is Rank 1 in multiple categories/subcategories,
+ * all Rank 1 badges are returned!
+ */
+export function getBusinessRankingBadges(
+  business: Business,
+  allBusinesses: Business[]
+): BusinessRankingBadgeInfo[] {
+  if (!business.isPremium) return [];
+
+  const approvedReviews = (business.reviews || []).filter(r => !r.status || r.status === 'approved');
+  if (approvedReviews.length === 0) return [];
+
+  // Score all businesses
+  const scored = allBusinesses.map(b => ({
+    ...b,
+    score: calculateBusinessRankingScore(b)
+  })).sort((a, b) => b.score - a.score);
+
+  const candidateCategories: { category: string; subcategory?: string; name: string }[] = [];
+
+  // Primary subcategory
+  if (business.subcategory) {
+    candidateCategories.push({
+      category: business.category,
+      subcategory: business.subcategory,
+      name: business.subcategory
+    });
+  }
+
+  // Primary main category
+  candidateCategories.push({
+    category: business.category,
+    subcategory: undefined,
+    name: business.category
+  });
+
+  // Additional categories
+  if (Array.isArray(business.additionalCategories)) {
+    business.additionalCategories.forEach(ac => {
+      if (ac.subcategory) {
+        candidateCategories.push({
+          category: ac.category,
+          subcategory: ac.subcategory,
+          name: ac.subcategory
+        });
+      }
+      if (ac.category) {
+        candidateCategories.push({
+          category: ac.category,
+          subcategory: undefined,
+          name: ac.category
+        });
+      }
+    });
+  }
+
+  // De-duplicate candidate categories
+  const seenKeys = new Set<string>();
+  const uniqueCandidates = candidateCategories.filter(c => {
+    const key = `${c.category}::${c.subcategory || ''}`;
+    if (seenKeys.has(key)) return false;
+    seenKeys.add(key);
+    return true;
+  });
+
+  const badges: BusinessRankingBadgeInfo[] = [];
+
+  // 1. Check every category for Platz 1
+  for (const cand of uniqueCandidates) {
+    let list: typeof scored;
+    if (cand.subcategory) {
+      list = scored.filter(b => 
+        (b.category === cand.category && b.subcategory === cand.subcategory) ||
+        b.additionalCategories?.some(ac => ac.category === cand.category && ac.subcategory === cand.subcategory)
+      );
+    } else {
+      list = scored.filter(b => 
+        b.category === cand.category || 
+        b.additionalCategories?.some(ac => ac.category === cand.category)
+      );
+    }
+
+    const idx = list.findIndex(b => b.id === business.id);
+    if (idx === 0) { // Rank 1!
+      badges.push(createBadgeInfo(1, cand.name, cand.category, cand.subcategory, false));
+    }
+  }
+
+  // Check Overall Winterberg rank for Platz 1
+  const overallIdx = scored.findIndex(b => b.id === business.id);
+  if (overallIdx === 0) {
+    badges.unshift(createBadgeInfo(1, 'Winterberg', 'Alle', undefined, true));
+  }
+
+  // If the business has at least one Platz 1 badge, return all Platz 1 badges!
+  if (badges.length > 0) {
+    return badges;
+  }
+
+  // 2. Fallback: If not Platz 1 anywhere, return the single best rank achieved (Top 3, Top 5, Top 10)
+  let bestRank: number | null = null;
+  let bestBadge: BusinessRankingBadgeInfo | null = null;
+
+  for (const cand of uniqueCandidates) {
+    let list: typeof scored;
+    if (cand.subcategory) {
+      list = scored.filter(b => 
+        (b.category === cand.category && b.subcategory === cand.subcategory) ||
+        b.additionalCategories?.some(ac => ac.category === cand.category && ac.subcategory === cand.subcategory)
+      );
+    } else {
+      list = scored.filter(b => 
+        b.category === cand.category || 
+        b.additionalCategories?.some(ac => ac.category === cand.category)
+      );
+    }
+
+    const idx = list.findIndex(b => b.id === business.id);
+    if (idx !== -1 && idx < 10) {
+      const rank = idx + 1;
+      if (bestRank === null || rank < bestRank) {
+        bestRank = rank;
+        bestBadge = createBadgeInfo(rank, cand.name, cand.category, cand.subcategory, false);
+      }
+    }
+  }
+
+  if (overallIdx !== -1 && overallIdx < 10) {
+    const overallRank = overallIdx + 1;
+    if (bestRank === null || overallRank < bestRank) {
+      bestBadge = createBadgeInfo(overallRank, 'Winterberg', 'Alle', undefined, true);
+    }
+  }
+
+  return bestBadge ? [bestBadge] : [];
+}
+
+/**
+ * Backward compatibility: returns the first/best badge
+ */
+export function getBusinessRankingBadge(
+  business: Business,
+  allBusinesses: Business[]
+): BusinessRankingBadgeInfo | null {
+  const badges = getBusinessRankingBadges(business, allBusinesses);
+  return badges[0] || null;
 }
