@@ -147,9 +147,9 @@ export default function BusinessCard({
           </div>
         )}
 
-        {/* Complete Short Description (Not clamped as requested) */}
+        {/* Short Description (Max 4 lines) */}
         {localized.description && (
-          <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 whitespace-normal">
+          <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 line-clamp-4">
             {localized.description}
           </p>
         )}

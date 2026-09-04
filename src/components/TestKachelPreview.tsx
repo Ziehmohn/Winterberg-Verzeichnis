@@ -115,7 +115,7 @@ export default function TestKachelPreview() {
               <span className="text-[#F2761B]">✓</span> Kompetente Beratung
             </div>
             
-            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 whitespace-normal">
+            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 line-clamp-4">
               Simon Kräling ist Berater für digitale Sichtbarkeit aus Winterberg im Sauerland. Er unterstützt lokale Unternehmen und Ferienbetriebe dabei, bei Google und in modernen KI-Suchen wie ChatGPT und Perplexity ganz oben gefunden zu werden.
             </p>
             
