@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
@@ -272,13 +273,13 @@ async function startServer() {
         return res.json(fuelPricesCache.data);
       }
 
-      let apiKey = process.env.TANKERKOENIG_API_KEY;
-      if (!apiKey) {
+      let apiKey = process.env.TANKERKOENIG_API_KEY || 'd20facb9-fc4c-4c3b-80db-7987da020af5';
+      if (!process.env.TANKERKOENIG_API_KEY) {
         try {
           const settingsRes = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/settings/apiKeys`);
           if (settingsRes.ok) {
             const doc = await settingsRes.json();
-            apiKey = doc.fields?.tankerkoenigApiKey?.stringValue;
+            apiKey = doc.fields?.tankerkoenigApiKey?.stringValue || apiKey;
           }
         } catch (e) {
           // ignore
@@ -301,16 +302,16 @@ async function startServer() {
 
                 if (sName.toLowerCase().includes('jet') || sStreet.toLowerCase().includes('lamfert')) {
                   businessSlug = 'jet-tankstelle-winterberg';
-                  businessPath = '/einzelhandel/tankstellen/jet-tankstelle-winterberg';
+                  businessPath = '/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg';
                 } else if (sName.toLowerCase().includes('aral') || sStreet.toLowerCase().includes('hagenblech')) {
                   businessSlug = 'aral-tankstelle-winterberg';
-                  businessPath = '/einzelhandel/tankstellen/aral-tankstelle-winterberg';
-                } else if (sName.toLowerCase().includes('tinq') || sStreet.toLowerCase().includes('langewiese')) {
+                  businessPath = '/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg';
+                } else if (sName.toLowerCase().includes('tinq') || sStreet.toLowerCase().includes('langewiese') || sStreet.toLowerCase().includes('bundesstr')) {
                   businessSlug = 'tinq-tankautomat-langewiese';
-                  businessPath = '/einzelhandel/tankstellen/tinq-tankautomat-langewiese';
+                  businessPath = '/mobilitaet-und-kfz/tankstellen/tinq-tankautomat-langewiese';
                 } else if (sName.toLowerCase().includes('calpam') || sStreet.toLowerCase().includes('nuhnetal')) {
                   businessSlug = 'calpam-tankautomat-zueschen';
-                  businessPath = '/einzelhandel/tankstellen/calpam-tankautomat-zueschen';
+                  businessPath = '/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen';
                 }
 
                 return {

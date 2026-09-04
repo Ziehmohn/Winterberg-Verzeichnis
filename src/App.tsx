@@ -2093,8 +2093,9 @@ export default function App() {
                           <span className="font-bold text-sm text-white block leading-tight">
                             {lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
                           </span>
-                          <span className="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-1.5 py-0.2 rounded border border-amber-300/30">
-                            {lang === 'nl' ? 'Binnenkort live' : 'In Kürze live'}
+                          <span className="text-[10px] bg-emerald-400/25 text-emerald-200 font-bold px-1.5 py-0.2 rounded border border-emerald-300/30 inline-flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            {lang === 'nl' ? 'Live data' : 'Live-Preise'}
                           </span>
                         </div>
                         <span className="text-[11.5px] text-emerald-100/80 block mt-0.5">
@@ -2509,9 +2510,9 @@ export default function App() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#F2761B]/20 rounded-full blur-2xl pointer-events-none -mr-8 -mt-8" />
                   
                   <div className="relative z-10 flex flex-col items-center">
-                    <div className="inline-flex items-center gap-1.5 bg-amber-500/25 backdrop-blur-sm text-amber-200 border border-amber-400/40 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase mb-3 shadow-xs">
-                      <Clock className="w-3 h-3 text-amber-300" />
-                      {lang === 'nl' ? 'Binnenkort live' : 'In Kürze live'}
+                    <div className="inline-flex items-center gap-1.5 bg-emerald-500/25 backdrop-blur-sm text-emerald-200 border border-emerald-400/40 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase mb-3 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      {lang === 'nl' ? 'Live data' : 'Live-Preise'}
                     </div>
 
                     <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-md text-white border border-white/25 flex items-center justify-center mb-2.5 shadow-sm group-hover:scale-105 transition-transform">

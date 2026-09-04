@@ -16,7 +16,7 @@ export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
     e5: 1.769,
     dist: 0.8,
     businessSlug: 'jet-tankstelle-winterberg',
-    businessPath: '/einzelhandel/tankstellen/jet-tankstelle-winterberg'
+    businessPath: '/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg'
   },
   {
     id: 'tinq-tankautomat-langewiese',
@@ -33,7 +33,7 @@ export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
     e5: 1.759,
     dist: 7.5,
     businessSlug: 'tinq-tankautomat-langewiese',
-    businessPath: '/einzelhandel/tankstellen/tinq-tankautomat-langewiese'
+    businessPath: '/mobilitaet-und-kfz/tankstellen/tinq-tankautomat-langewiese'
   },
   {
     id: 'calpam-tankautomat-zueschen',
@@ -50,7 +50,7 @@ export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
     e5: 1.779,
     dist: 6.8,
     businessSlug: 'calpam-tankautomat-zueschen',
-    businessPath: '/einzelhandel/tankstellen/calpam-tankautomat-zueschen'
+    businessPath: '/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen'
   },
   {
     id: 'aral-tankstelle-winterberg',
@@ -67,7 +67,7 @@ export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
     e5: 1.799,
     dist: 1.2,
     businessSlug: 'aral-tankstelle-winterberg',
-    businessPath: '/einzelhandel/tankstellen/aral-tankstelle-winterberg'
+    businessPath: '/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg'
   },
   {
     id: 'avia-siedlinghausen',
@@ -125,7 +125,75 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
       }
     }
   } catch (e) {
-    console.warn('Could not fetch /api/fuel-prices, using fallback data:', e);
+    console.warn('Could not fetch /api/fuel-prices, trying direct Tankerkönig query:', e);
+  }
+
+  // Direct client-side fetch from Tankerkönig (CORS enabled) with the configured API key
+  try {
+    const apiKey = 'd20facb9-fc4c-4c3b-80db-7987da020af5';
+    const tankerUrl = `https://creativecommons.tankerkoenig.de/json/list.php?lat=51.196&lng=8.532&rad=15&sort=dist&type=all&apikey=${apiKey}`;
+    const directRes = await fetch(tankerUrl);
+    if (directRes.ok) {
+      const tData = await directRes.json();
+      if (tData.ok && Array.isArray(tData.stations)) {
+        const mappedStations = tData.stations.map((st: any) => {
+          const sName = st.name || '';
+          const sStreet = st.street || '';
+          let businessSlug: string | undefined;
+          let businessPath: string | undefined;
+
+          if (sName.toLowerCase().includes('jet') || sStreet.toLowerCase().includes('lamfert')) {
+            businessSlug = 'jet-tankstelle-winterberg';
+            businessPath = '/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg';
+          } else if (sName.toLowerCase().includes('aral') || sStreet.toLowerCase().includes('hagenblech')) {
+            businessSlug = 'aral-tankstelle-winterberg';
+            businessPath = '/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg';
+          } else if (sName.toLowerCase().includes('tinq') || sStreet.toLowerCase().includes('langewiese') || sStreet.toLowerCase().includes('bundesstr')) {
+            businessSlug = 'tinq-tankautomat-langewiese';
+            businessPath = '/mobilitaet-und-kfz/tankstellen/tinq-tankautomat-langewiese';
+          } else if (sName.toLowerCase().includes('calpam') || sStreet.toLowerCase().includes('nuhnetal')) {
+            businessSlug = 'calpam-tankautomat-zueschen';
+            businessPath = '/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen';
+          }
+
+          return {
+            id: st.id,
+            name: st.name,
+            brand: st.brand || st.name,
+            street: st.street || '',
+            houseNumber: st.houseNumber || '',
+            postCode: String(st.postCode || '59955'),
+            city: st.place || 'Winterberg',
+            district: st.place?.includes('Winterberg')
+              ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : 'Winterberg'))
+              : st.place,
+            isOpen: st.isOpen ?? true,
+            diesel: typeof st.diesel === 'number' ? st.diesel : null,
+            e5: typeof st.e5 === 'number' ? st.e5 : null,
+            e10: typeof st.e10 === 'number' ? st.e10 : null,
+            dist: st.dist,
+            lat: st.lat,
+            lng: st.lng,
+            businessSlug,
+            businessPath,
+          };
+        });
+
+        const liveResponse: FuelPriceResponse = {
+          ok: true,
+          source: 'Tankerkönig / MTS-K',
+          lastUpdated: new Date().toISOString(),
+          isLive: true,
+          stations: mappedStations,
+        };
+
+        cachedPrices = liveResponse;
+        lastFetchTime = now;
+        return liveResponse;
+      }
+    }
+  } catch (directErr) {
+    console.warn('Direct Tankerkönig fetch fallback failed:', directErr);
   }
 
   // Fallback response
@@ -134,7 +202,7 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
     source: 'Tankerkönig / MTS-K',
     lastUpdated: new Date().toISOString(),
     isLive: false,
-    apiKeyRequired: true,
+    apiKeyRequired: false,
     stations: FALLBACK_FUEL_STATIONS,
   };
 
