@@ -76,6 +76,10 @@ import { RankingBadge } from './components/RankingBadge';
 import { getBusinessRankingBadge } from './utils/bestOfRankingBadges';
 import TestKachelPreview from './components/TestKachelPreview';
 import BusinessCard from './components/BusinessCard';
+import ClaimsAdminPanel from './components/ClaimsAdminPanel';
+import PromoTopBar from './components/PromoTopBar';
+import PwaInstallPrompt from './components/PwaInstallPrompt';
+import { generateLocalBusinessSchema, generateCollectionPageSchema, generateItemListSchema, generateWebSiteSearchSchema } from './utils/schemaGenerator';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   state = { hasError: false, error: null as Error | null };
@@ -957,12 +961,14 @@ export default function App() {
     if (b.status === 'pending') return false;
     const lowerInput = homeSearchInput.toLowerCase().trim();
     const matchesServices = Array.isArray(b.services) && b.services.some(s => s.toLowerCase().includes(lowerInput));
+    const matchesProducts = Array.isArray(b.products) && b.products.some(p => p.toLowerCase().includes(lowerInput));
     const matchesExtended = !!(b.extendedDescription && b.extendedDescription.toLowerCase().includes(lowerInput));
     return b.name.toLowerCase().includes(lowerInput) || 
            (b.description && b.description.toLowerCase().includes(lowerInput)) ||
            b.category.toLowerCase().includes(lowerInput) || 
            (b.subcategory && b.subcategory.toLowerCase().includes(lowerInput)) ||
            matchesServices ||
+           matchesProducts ||
            matchesExtended;
   }).slice(0, 8) : [];
 
@@ -979,19 +985,12 @@ export default function App() {
     const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     
     const lowerSearch = searchQuery.toLowerCase().trim();
-    const allowedServices = bus.isPremium ? (bus.services || []) : (bus.services || []).slice(0, 3);
-    const allowedServicesNl = bus.isPremium ? (bus.services_nl || []) : (bus.services_nl || []).slice(0, 3);
-    const matchesServices = !!lowerSearch && (
-      allowedServices.some(s => s.toLowerCase().includes(lowerSearch)) ||
-      allowedServicesNl.some(s => s.toLowerCase().includes(lowerSearch))
-    );
+    const allServices = (bus.services || []).concat(bus.services_nl || []);
+    const matchesServices = !!lowerSearch && allServices.some(s => s.toLowerCase().includes(lowerSearch));
 
-    const allowedProducts = bus.isPremium ? (bus.products || []) : (bus.products || []).slice(0, 3);
-    const allowedProductsNl = bus.isPremium ? (bus.products_nl || []) : (bus.products_nl || []).slice(0, 3);
-    const matchesProducts = !!lowerSearch && (
-      allowedProducts.some(p => p.toLowerCase().includes(lowerSearch)) ||
-      allowedProductsNl.some(p => p.toLowerCase().includes(lowerSearch))
-    );
+    const allProducts = (bus.products || []).concat(bus.products_nl || []);
+    const matchesProducts = !!lowerSearch && allProducts.some(p => p.toLowerCase().includes(lowerSearch));
+
     const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
                             !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
     
@@ -1042,6 +1041,40 @@ export default function App() {
     if (!a.isPremium && b.isPremium) return 1;
     return a.name.localeCompare(b.name);
   });
+
+  // Dynamic Schema.org JSON-LD (LocalBusiness, CollectionPage, ItemList, WebSite)
+  useEffect(() => {
+    const head = document.head;
+    let schemaScript = document.getElementById('wb-dynamic-schema') as HTMLScriptElement | null;
+    if (!schemaScript) {
+      schemaScript = document.createElement('script');
+      schemaScript.id = 'wb-dynamic-schema';
+      schemaScript.type = 'application/ld+json';
+      head.appendChild(schemaScript);
+    }
+
+    let schemaData: any = null;
+    if (selectedBusiness) {
+      schemaData = generateLocalBusinessSchema(selectedBusiness, lang);
+    } else if (isBestOfMode) {
+      const canonicalUrl = `https://winterberg-verzeichnis.de${window.location.pathname}`;
+      schemaData = generateItemListSchema(lang === 'nl' ? 'Beste Bedrijven Winterberg Ranglijst' : 'Best of Winterberg Rangliste', filteredBusinesses, canonicalUrl, lang);
+    } else if (activeCategory && activeCategory !== 'Alle') {
+      const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
+      const catName = parentCat ? parentCat.name : activeCategory;
+      const subName = parentCat ? activeCategory : undefined;
+      schemaData = generateCollectionPageSchema(catName, subName, filteredBusinesses, lang);
+    } else if (!isJobsMode && !isNewsMode && !isFaqMode && !isPricingMode && !isFuelPricesMode && !isEmergencyMode && !isSubmitMode && !isImpressumMode && !isDatenschutzMode && !isAGBMode && !isGroundingMode) {
+      schemaData = generateWebSiteSearchSchema();
+    }
+
+    if (schemaData) {
+      schemaScript.textContent = JSON.stringify(schemaData);
+    } else if (schemaScript && schemaScript.parentNode) {
+      schemaScript.parentNode.removeChild(schemaScript);
+    }
+  }, [selectedBusiness, isBestOfMode, activeCategory, filteredBusinesses, lang, isJobsMode, isNewsMode, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode]);
+
 
   const getCategoryBadges = () => {
     if (activeCategory === 'Alle') {
@@ -1391,6 +1424,24 @@ export default function App() {
         }} 
       />
 
+      {/* Promo Bar above Main Content */}
+      {!isAdminMode && (
+        <PromoTopBar 
+          lang={lang} 
+          onNavigate={(path) => {
+            resetToDirectory();
+            if (path.includes('preise') || path.includes('prijzen')) {
+              setIsPricingMode(true);
+              window.history.pushState(null, '', getPath(path));
+            } else {
+              window.history.pushState(null, '', getPath(path));
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} 
+        />
+      )}
+
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col">
         <ErrorBoundary>
@@ -1627,8 +1678,12 @@ export default function App() {
                         {showHomeSuggestions && homeSuggestions.length > 0 && (
                           <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-md shadow-2xl border border-gray-100 overflow-hidden z-[100] text-left">
                             {homeSuggestions.map(s => {
+                              const lowerInput = homeSearchInput.toLowerCase().trim();
                               const matchingServices = (s.services || []).filter(srv => 
-                                srv.toLowerCase().includes(homeSearchInput.toLowerCase().trim())
+                                srv.toLowerCase().includes(lowerInput)
+                              );
+                              const matchingProducts = (s.products || []).filter(prd => 
+                                prd.toLowerCase().includes(lowerInput)
                               );
                               return (
                                 <div 
@@ -1651,7 +1706,12 @@ export default function App() {
                                         <span className="text-gray-500 text-xs truncate">{t(s.category)}{s.subcategory ? ` > ${t(s.subcategory)}` : ''}</span>
                                         {matchingServices.length > 0 && (
                                           <span className="text-[#0F4C2E] bg-[#E8F1EB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
-                                            {t("foundService")}: {matchingServices.join(', ')}
+                                            🏷️ {t("foundService")}: {matchingServices.join(', ')}
+                                          </span>
+                                        )}
+                                        {matchingProducts.length > 0 && (
+                                          <span className="text-[#D65F0C] bg-[#FFF8F1] border border-[#FBD9BC] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                            📦 Produkt: {matchingProducts.join(', ')}
                                           </span>
                                         )}
                                       </div>
@@ -2938,6 +2998,7 @@ export default function App() {
       {/* GDPR Cookie Consent & Dynamic Scripts (Google Analytics 302481363) */}
       <CookieConsent theme={theme} />
       <DynamicScriptLoader />
+      <PwaInstallPrompt lang={lang} />
       </div>
     </div>
   );
@@ -3831,7 +3892,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
@@ -3959,7 +4020,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             { id: 'seo', label: 'SEO' },
             { id: 'redirects', label: 'Redirects' },
             { id: 'scripts', label: 'Skripte' },
-            { id: 'test_kachel', label: 'Test Kachel' }
+            { id: 'test_kachel', label: 'Test Kachel' },
+            { id: 'claims', label: '📋 Übernahmen' }
           ] : [])
         ].map(tab => (
           <button 
@@ -4301,6 +4363,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <ScriptManager theme={theme} activeThemeKey={activeThemeKey} />
         ) : activeTab === 'test_kachel' ? (
           <TestKachelPreview />
+        ) : activeTab === 'claims' ? (
+          <ClaimsAdminPanel businesses={businesses} setBusinesses={setBusinesses} />
         ) : (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
         )}

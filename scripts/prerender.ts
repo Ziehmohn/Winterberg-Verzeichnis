@@ -13,6 +13,7 @@ import {
   RouteState,
   LEGACY_SUBCATEGORY_PARENTS
 } from '../src/utils/routes';
+import { generateLocalBusinessSchema, generateCollectionPageSchema } from '../src/utils/schemaGenerator';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
 const distDir = path.resolve(process.cwd(), 'dist');
@@ -369,6 +370,7 @@ categories.forEach(c => {
 categories.forEach(c => {
   const catDe = getCategorySlug(c.name, 'de');
   const catNl = getCategorySlug(c.name, 'nl');
+  const catBusinesses = businesses.filter(b => b.category === c.name);
 
   // Main Category DE & NL
   pagesToPrerender.push({
@@ -381,7 +383,8 @@ categories.forEach(c => {
     alternateXDefault: `${baseUrl}/${catDe}`,
     lang: 'de',
     h1: `${c.name} in Winterberg`,
-    h2: `Übersicht aller Fachbetriebe für ${c.name} in der Region`
+    h2: `Übersicht aller Fachbetriebe für ${c.name} in der Region`,
+    jsonLd: generateCollectionPageSchema(c.name, undefined, catBusinesses as any, 'de')
   });
 
   pagesToPrerender.push({
@@ -394,13 +397,15 @@ categories.forEach(c => {
     alternateXDefault: `${baseUrl}/${catDe}`,
     lang: 'nl',
     h1: `${c.name} in Winterberg`,
-    h2: `Overzicht van alle bedrijven voor ${c.name} in de regio`
+    h2: `Overzicht van alle bedrijven voor ${c.name} in de regio`,
+    jsonLd: generateCollectionPageSchema(c.name, undefined, catBusinesses as any, 'nl')
   });
 
   // Subcategories
   c.subcategories.forEach(sub => {
     const subDe = getSubcategorySlug(sub, 'de');
     const subNl = getSubcategorySlug(sub, 'nl');
+    const subBusinesses = businesses.filter(b => b.subcategory === sub || (b.category === c.name && b.subcategory === sub));
 
     pagesToPrerender.push({
       path: `${catDe}/${subDe}`,
@@ -412,7 +417,8 @@ categories.forEach(c => {
       alternateXDefault: `${baseUrl}/${catDe}/${subDe}`,
       lang: 'de',
       h1: `${sub} in Winterberg`,
-      h2: `Geprüfte Adressen & Spezialisten für ${sub}`
+      h2: `Geprüfte Adressen & Spezialisten für ${sub}`,
+      jsonLd: generateCollectionPageSchema(c.name, sub, subBusinesses as any, 'de')
     });
 
     pagesToPrerender.push({
@@ -425,7 +431,8 @@ categories.forEach(c => {
       alternateXDefault: `${baseUrl}/${catDe}/${subDe}`,
       lang: 'nl',
       h1: `${sub} in Winterberg`,
-      h2: `Geverifieerde adressen & specialisten voor ${sub}`
+      h2: `Geverifieerde adressen & specialisten voor ${sub}`,
+      jsonLd: generateCollectionPageSchema(c.name, sub, subBusinesses as any, 'nl')
     });
   });
 });
@@ -433,7 +440,10 @@ categories.forEach(c => {
 // 5. Business Detail Pages
 businesses.forEach((b: any) => {
   const bSlugClean = slugify(b.name);
-  const bSlugLegacy = b.name.replace(/\s+/g, '-').toLowerCase();
+  const bSlugLegacy = (b.id && !b.id.startsWith('b_') && !b.id.startsWith('custom_') && b.id !== 'custom')
+    ? b.id
+    : bSlugClean;
+
   const catDe = getCategorySlug(b.category, 'de');
   const catNl = getCategorySlug(b.category, 'nl');
   const subDe = b.subcategory ? getSubcategorySlug(b.subcategory, 'de') : '';
@@ -446,22 +456,8 @@ businesses.forEach((b: any) => {
   const shortDesc = b.description ? b.description.substring(0, 140).trim() + '...' : 'Ihr Fachbetrieb in Winterberg.';
   const shortDescNl = (b.description_nl || b.description) ? (b.description_nl || b.description).substring(0, 140).trim() + '...' : 'Uw specialist in Winterberg.';
 
-  const schemaJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: b.name,
-    description: b.description,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: b.address || 'Winterberg',
-      addressLocality: city,
-      postalCode: '59955',
-      addressCountry: 'DE'
-    },
-    telephone: b.phone || undefined,
-    url: b.website || `${baseUrl}/${pathDe}`,
-    image: b.logoUrl ? `${baseUrl}${b.logoUrl}` : undefined
-  };
+  const schemaJsonLdDe = generateLocalBusinessSchema(b as any, 'de');
+  const schemaJsonLdNl = generateLocalBusinessSchema(b as any, 'nl');
 
   // DE Business Page (Canonical clean URL)
   pagesToPrerender.push({
@@ -475,7 +471,7 @@ businesses.forEach((b: any) => {
     lang: 'de',
     h1: b.name,
     h2: `Über ${b.name} in ${city}`,
-    jsonLd: schemaJsonLd
+    jsonLd: schemaJsonLdDe
   });
 
   // NL Business Page (Canonical clean URL)
@@ -490,10 +486,10 @@ businesses.forEach((b: any) => {
     lang: 'nl',
     h1: b.name,
     h2: `Over ${b.name} in ${city}`,
-    jsonLd: schemaJsonLd
+    jsonLd: schemaJsonLdNl
   });
 
-  // Also pre-render legacy alias URL (e.g. abenteuergolf-winterberg---erlebnisberg-kappe) so ANY legacy crawl/link gets exact static HTML with self-referencing or canonical URL!
+  // Also pre-render legacy alias URL
   if (bSlugLegacy !== bSlugClean && !bSlugLegacy.includes('/') && !bSlugLegacy.includes('\\') && !bSlugLegacy.includes('|') && !bSlugLegacy.includes(':')) {
     const legacyPathDe = subDe ? `${catDe}/${subDe}/${bSlugLegacy}` : `${catDe}/${bSlugLegacy}`;
     const legacyPathNl = subNl ? `nl/${catNl}/${subNl}/${bSlugLegacy}` : `nl/${catNl}/${bSlugLegacy}`;
@@ -509,7 +505,7 @@ businesses.forEach((b: any) => {
       lang: 'de',
       h1: b.name,
       h2: `Über ${b.name} in ${city}`,
-      jsonLd: schemaJsonLd
+      jsonLd: schemaJsonLdDe
     });
 
     pagesToPrerender.push({
@@ -523,7 +519,7 @@ businesses.forEach((b: any) => {
       lang: 'nl',
       h1: b.name,
       h2: `Over ${b.name} in ${city}`,
-      jsonLd: schemaJsonLd
+      jsonLd: schemaJsonLdNl
     });
   }
 });

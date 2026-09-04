@@ -1,7 +1,7 @@
 import { useTranslation } from '../i18n';
 import React, { useState, useEffect } from 'react';
 import { Business, ThemeConfig, Job } from '../types';
-import { MapPin, Briefcase, Clock, ArrowRight, ChevronRight, Search, Building } from 'lucide-react';
+import { MapPin, Briefcase, Clock, ArrowRight, ChevronRight, Search, Building, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface JobsBoardProps {
@@ -89,17 +89,43 @@ export default function JobsBoard({ businesses, theme, activeThemeKey, initialCa
             <div 
               key={job.id} 
               onClick={() => onBusinessSelect(business)} 
-              className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] transition-all hover:-translate-y-[2px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)]"
+              className="bg-white border border-[#EDE8E0] rounded-xl p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] transition-all hover:-translate-y-[2px] hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] group"
             >
               <div className="flex justify-between gap-[14px] items-baseline flex-wrap">
-                <div className="font-display text-[19px] font-semibold">{job.title}</div>
-                <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2.5 py-0.5 text-[12.5px] font-semibold">
-                  {job.type}
-                </span>
+                <div className="font-display text-[19px] font-semibold text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors">{job.title}</div>
+                <div className="flex items-center gap-2">
+                  {job.source && (
+                    <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">
+                      {job.source}
+                    </span>
+                  )}
+                  <span className="bg-[#FFF1E4] text-[#D65F0C] rounded-full px-2.5 py-0.5 text-[12.5px] font-semibold">
+                    {job.type}
+                  </span>
+                </div>
               </div>
               <div className="text-[14px] text-[#5F6B63] mt-[5px]">
-                {business.name} · {business.district || business.city || 'Winterberg'}
+                {business.name} · {job.location || business.district || business.city || 'Winterberg'}
               </div>
+              {job.description && (
+                <p className="mt-2 text-[13.5px] text-[#717E75] line-clamp-2 leading-relaxed">
+                  {job.description}
+                </p>
+              )}
+              {job.externalUrl && (
+                <div className="mt-3 pt-3 border-t border-gray-100 flex justify-end">
+                  <a
+                    href={job.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0F4C2E] hover:bg-[#15603A] text-white text-xs font-semibold shadow-sm transition-all"
+                  >
+                    <span>Jetzt bewerben</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
             </div>
           ))
         )}

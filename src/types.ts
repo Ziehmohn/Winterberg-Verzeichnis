@@ -39,6 +39,8 @@ export interface Review {
   status: 'pending' | 'approved';
   date: string;
   ownerReply?: string;
+  source?: 'internal' | 'google' | 'provenexpert' | 'tripadvisor' | string;
+  sourceUrl?: string;
 }
 
 export interface Job {
@@ -47,6 +49,10 @@ export interface Job {
   description: string;
   type: string; // z.B. Vollzeit, Teilzeit, Minijob, Ausbildung, Praktikum, Freelance
   createdAt: string;
+  externalUrl?: string;
+  source?: string;
+  location?: string;
+  salary?: string;
 }
 
 export interface NewsArticle {
