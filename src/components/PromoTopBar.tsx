@@ -1,41 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, ArrowRight, X } from 'lucide-react';
+import { PricingSettings } from '../types';
 
 interface PromoTopBarProps {
+  pricingSettings?: PricingSettings | null;
   onNavigate?: (path: string) => void;
   lang?: 'de' | 'nl';
 }
 
-export default function PromoTopBar({ onNavigate, lang = 'de' }: PromoTopBarProps) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function PromoTopBar({ pricingSettings, onNavigate, lang = 'de' }: PromoTopBarProps) {
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Check if dismissed within the last 7 days
     try {
-      const dismissedAt = localStorage.getItem('wb_promo_topbar_dismissed');
-      if (dismissedAt) {
-        const timePassed = Date.now() - parseInt(dismissedAt, 10);
-        if (timePassed < 7 * 24 * 60 * 60 * 1000) {
-          return;
-        }
+      const dismissed = sessionStorage.getItem('dismissedOfferTopBar');
+      if (dismissed === 'true') {
+        setIsVisible(false);
       }
-      setIsVisible(true);
     } catch {
-      setIsVisible(true);
+      // ignore
     }
   }, []);
 
+  // If explicitly disabled in admin settings
+  if (pricingSettings && pricingSettings.showRibbon === false) {
+    return null;
+  }
+
+  if (!isVisible) return null;
+
   const handleDismiss = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     setIsVisible(false);
     try {
-      localStorage.setItem('wb_promo_topbar_dismissed', Date.now().toString());
+      sessionStorage.setItem('dismissedOfferTopBar', 'true');
     } catch {}
   };
 
   const handleCtaClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const targetUrl = lang === 'nl' ? '/nl/prijzen' : '/preise';
+    const targetUrl = pricingSettings?.ribbonLink || (lang === 'nl' ? '/nl/prijzen' : '/preise');
     if (onNavigate) {
       onNavigate(targetUrl);
     } else {
@@ -45,35 +50,50 @@ export default function PromoTopBar({ onNavigate, lang = 'de' }: PromoTopBarProp
     }
   };
 
-  if (!isVisible) return null;
+  const badgeText = pricingSettings?.offerBadgeText || (lang === 'nl' ? 'Tijdelijke actie' : 'Limitiertes Angebot');
+  const offerText = pricingSettings?.ribbonText || (lang === 'nl' 
+    ? '🔥 Tijdelijke actie: Premium-vermelding vanaf € 4,95 / maand!' 
+    : '🔥 Limitiertes Angebot: Premium ab 4,95 € / Monat sichern!');
+  const ctaText = lang === 'nl' ? 'Aanbieding bekijken' : 'Jetzt Angebot sichern';
+
+  const bgColor = pricingSettings?.ribbonBgColor || '#F2761B';
+  const textColor = pricingSettings?.ribbonTextColor || '#FFFFFF';
 
   return (
-    <div className="relative bg-gradient-to-r from-[#06301C] via-[#0F4C2E] to-[#06301C] text-white py-2.5 px-4 shadow-sm border-b border-[#F2761B]/30 z-30 transition-all">
-      <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-3 text-xs sm:text-sm">
+    <div 
+      style={{ 
+        background: `linear-gradient(90deg, #0F4C2E 0%, ${bgColor} 45%, ${bgColor} 65%, #0F4C2E 100%)`,
+        color: textColor 
+      }}
+      className="relative py-2.5 px-4 shadow-md border-b border-white/20 z-30 transition-all select-none"
+    >
+      <div className="max-w-[1280px] mx-auto flex items-center justify-between gap-3 text-xs sm:text-sm">
         <div 
           onClick={handleCtaClick}
-          className="flex items-center gap-2 flex-wrap cursor-pointer group flex-1 justify-center sm:justify-start"
+          className="flex items-center gap-2.5 flex-wrap cursor-pointer group flex-1 justify-center sm:justify-start"
         >
-          <span className="inline-flex items-center gap-1 bg-[#F2761B] text-white font-bold px-2 py-0.5 rounded text-[11px] uppercase tracking-wider shadow-xs">
-            <Sparkles className="w-3 h-3" />
-            {lang === 'nl' ? 'Bedrijven' : 'Für Betriebe'}
+          {/* Badge */}
+          <span className="inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 text-white font-bold px-2.5 py-0.5 rounded-full text-[11px] uppercase tracking-wider backdrop-blur-xs border border-white/30 shrink-0">
+            <Sparkles className="w-3 h-3 text-amber-300 animate-pulse" />
+            {badgeText}
           </span>
 
-          <span className="text-gray-100 font-medium leading-tight text-center sm:text-left">
-            {lang === 'nl' 
-              ? 'Ondernemer in Winterberg? Krijg tot 5x meer zichtbaarheid en nieuwe klanten met een Premium-profiel.'
-              : 'Sie führen einen Betrieb in Winterberg? Erhalten Sie bis zu 5x mehr Sichtbarkeit, DoFollow-Backlinks und Neukunden.'}
+          {/* Offer headline */}
+          <span className="font-semibold tracking-tight text-white leading-tight text-center sm:text-left drop-shadow-xs">
+            {offerText}
           </span>
 
-          <span className="inline-flex items-center gap-1 font-bold text-[#FCD34D] group-hover:underline underline-offset-2 shrink-0">
-            {lang === 'nl' ? 'Vrijblijvend bekijken' : 'Jetzt Vorteile entdecken'}
+          {/* CTA Link */}
+          <span className="inline-flex items-center gap-1 font-bold text-white bg-black/20 hover:bg-black/30 px-2.5 py-0.5 rounded-full transition-all group-hover:scale-105 shrink-0 border border-white/20">
+            <span>{ctaText}</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </span>
         </div>
 
+        {/* Dismiss button */}
         <button
           onClick={handleDismiss}
-          className="text-white/70 hover:text-white p-1 rounded hover:bg-white/10 transition-colors shrink-0 cursor-pointer ml-2"
+          className="text-white/80 hover:text-white p-1 rounded-full hover:bg-black/20 transition-colors shrink-0 cursor-pointer ml-1"
           title={lang === 'nl' ? 'Sluiten' : 'Schließen'}
           aria-label="Schließen"
         >

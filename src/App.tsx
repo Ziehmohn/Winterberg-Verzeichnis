@@ -9,7 +9,6 @@ import {
 } from './data';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner, PricingSettings } from './types';
 import { DEFAULT_PRICING_SETTINGS } from './config';
-import OfferRibbon from './components/OfferRibbon';
 import Logo from './components/Logo';
 import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
@@ -1180,6 +1179,25 @@ export default function App() {
 
       {/* Main Container */}
       <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Promobar right at the very top above the navigation bar */}
+        {!isAdminMode && (
+          <PromoTopBar 
+            pricingSettings={pricingSettings}
+            lang={lang} 
+            onNavigate={(path) => {
+              resetToDirectory();
+              if (path.includes('preise') || path.includes('prijzen')) {
+                setIsPricingMode(true);
+                window.history.pushState(null, '', getPath(path));
+              } else {
+                window.history.pushState(null, '', getPath(path));
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }} 
+          />
+        )}
+
         {/* Header (Claude Design) */}
         <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(10px)', borderBottom: '1px solid #E7E2DA' }}>
           <div className="w-full max-w-[1180px] mx-auto px-3.5 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-6">
@@ -1408,39 +1426,6 @@ export default function App() {
           />
         </div>
 
-      {/* Offer Ribbon (Top Right) */}
-      <OfferRibbon 
-        pricingSettings={pricingSettings} 
-        onNavigate={(path) => {
-          resetToDirectory();
-          if (path === '/preise') {
-            setIsPricingMode(true);
-            window.history.pushState(null, '', getPath('/preise'));
-          } else {
-            window.history.pushState(null, '', getPath(path));
-            window.dispatchEvent(new PopStateEvent('popstate'));
-          }
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }} 
-      />
-
-      {/* Promo Bar above Main Content */}
-      {!isAdminMode && (
-        <PromoTopBar 
-          lang={lang} 
-          onNavigate={(path) => {
-            resetToDirectory();
-            if (path.includes('preise') || path.includes('prijzen')) {
-              setIsPricingMode(true);
-              window.history.pushState(null, '', getPath(path));
-            } else {
-              window.history.pushState(null, '', getPath(path));
-              window.dispatchEvent(new PopStateEvent('popstate'));
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }} 
-        />
-      )}
 
       {/* Main Content */}
       <main className="flex-1 w-full flex flex-col">

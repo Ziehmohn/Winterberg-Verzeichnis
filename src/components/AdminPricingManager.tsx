@@ -340,10 +340,10 @@ export default function AdminPricingManager({
           <div>
             <h3 className="font-bold text-base text-[#1B211D] flex items-center gap-2">
               <Eye className="w-4 h-4 text-[#0F4C2E]" />
-              3. Aktions-Banderole oben rechts auf der Website
+              3. Promo-Zeile ganz oben (über der Menüleiste)
             </h3>
             <p className="text-xs text-[#5F6B63] mt-0.5">
-              Zeigt eine auffällige Banderole / Badge in der oberen rechten Bildschirmecke für Besucher an.
+              Zeigt eine auffällige Angebotsleiste ganz oben über dem Menü für Besucher an (vom Nutzer schließbar).
             </p>
           </div>
 
@@ -354,7 +354,7 @@ export default function AdminPricingManager({
               onChange={e => setFormData({ ...formData, showRibbon: e.target.checked })}
               className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E]"
             />
-            <span className="text-xs font-bold text-[#1B211D]">Banderole anzeigen</span>
+            <span className="text-xs font-bold text-[#1B211D]">Promo-Zeile anzeigen</span>
           </label>
         </div>
 
@@ -362,7 +362,7 @@ export default function AdminPricingManager({
           <div className="space-y-4 pt-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className={labelClass}>Banderolen-Text *</label>
+                <label className={labelClass}>Promo-Text *</label>
                 <input
                   type="text"
                   value={formData.ribbonText || ''}

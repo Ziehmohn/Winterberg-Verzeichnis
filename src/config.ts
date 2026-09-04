@@ -101,8 +101,8 @@ export const DEFAULT_PRICING_SETTINGS: PricingSettings = {
   strikethroughMonthly: '12,95 €',
   strikethroughYearly: '9,95 €',
 
-  // Banderole
-  showRibbon: false,
+  // Promo-Zeile (Angebotsleiste über der Menüleiste)
+  showRibbon: true,
   ribbonText: '🔥 Limitiertes Angebot: Premium ab 4,95 € / Monat!',
   ribbonLink: '/preise',
   ribbonBgColor: '#F2761B',
