@@ -27,8 +27,8 @@ export default function TestKachelPreview() {
             <h3 className="text-[20px] font-bold text-[#1B211D] mb-2 leading-tight">
               Insider Fashion Store
             </h3>
-            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-5 line-clamp-2">
-              Moderner Fashion Store im Herzen von Winterberg mit aktueller Damen- und Herrenmode, Schuhen und Accessoires für jeden...
+            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-5 whitespace-normal">
+              Moderner Fashion Store im Herzen von Winterberg mit aktueller Damen- und Herrenmode, Schuhen und Accessoires für jeden Anlass.
             </p>
             <div className="mt-auto pt-4 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
               <MapPin className="w-4 h-4" />
@@ -53,7 +53,7 @@ export default function TestKachelPreview() {
             <h3 className="text-[20px] font-bold text-[#1B211D] mb-2 leading-tight">
               Café Extrablatt
             </h3>
-            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-5 line-clamp-2">
+            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-5 whitespace-normal">
               Gemütliches Café mit großem Frühstücksbuffet, leckeren Burgern und frischen Cocktails am Abend. Täglich geöffnet.
             </p>
             <div className="mt-auto pt-4 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
@@ -115,8 +115,8 @@ export default function TestKachelPreview() {
               <span className="text-[#F2761B]">✓</span> Kompetente Beratung
             </div>
             
-            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 line-clamp-2">
-              Simon Kräling ist Berater für digitale Sichtbarkeit aus Winterberg im Sauerland. Er unters...
+            <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 whitespace-normal">
+              Simon Kräling ist Berater für digitale Sichtbarkeit aus Winterberg im Sauerland. Er unterstützt lokale Unternehmen und Ferienbetriebe dabei, bei Google und in modernen KI-Suchen wie ChatGPT und Perplexity ganz oben gefunden zu werden.
             </p>
             
             {/* Tags (Services & Products) */}
