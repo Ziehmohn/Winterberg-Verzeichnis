@@ -74,8 +74,7 @@ import { getSeoContent } from './utils/seoContent';
 import { signOut } from 'firebase/auth';
 import { RankingBadge } from './components/RankingBadge';
 import { getBusinessRankingBadge } from './utils/bestOfRankingBadges';
-
-
+import TestKachelPreview from './components/TestKachelPreview';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   state = { hasError: false, error: null as Error | null };
@@ -4013,7 +4012,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
@@ -4140,7 +4139,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             { id: 'news', label: 'News' },
             { id: 'seo', label: 'SEO' },
             { id: 'redirects', label: 'Redirects' },
-            { id: 'scripts', label: 'Skripte' }
+            { id: 'scripts', label: 'Skripte' },
+            { id: 'test_kachel', label: 'Test Kachel' }
           ] : [])
         ].map(tab => (
           <button 
@@ -4480,6 +4480,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} categories={categories} businesses={businesses} />
         ) : activeTab === 'scripts' ? (
           <ScriptManager theme={theme} activeThemeKey={activeThemeKey} />
+        ) : activeTab === 'test_kachel' ? (
+          <TestKachelPreview />
         ) : (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
         )}
