@@ -57,10 +57,9 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
     // On iOS (which never fires beforeinstallprompt), show prompt banner directly if eligible
     if (isIos && shouldShow) {
       // Show banner after a gentle delay
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         setShowPrompt(true);
       }, 1500);
-      return () => clearTimeout(timer);
     }
 
     // 3. Listen for browser install prompt
@@ -88,18 +87,22 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
       
       const promptToUse = deferredPrompt || (window as any).__wb_deferredPrompt;
       if (promptToUse) {
-        promptToUse.prompt();
-        promptToUse.userChoice.then(({ outcome }: any) => {
-          if (outcome === 'accepted') {
-            setIsInstalled(true);
-            setShowPrompt(false);
-            setShowGuideModal(false);
-          }
-        });
-      } else {
-        // If native prompt is not available (e.g. iOS Safari), show modal / guide
-        setShowGuideModal(true);
+        try {
+          promptToUse.prompt();
+          promptToUse.userChoice.then(({ outcome }: any) => {
+            if (outcome === 'accepted') {
+              setIsInstalled(true);
+              setShowPrompt(false);
+              setShowGuideModal(false);
+            }
+          });
+          return;
+        } catch (e) {
+          console.warn('Install prompt error in manual open:', e);
+        }
       }
+      // If native prompt is not available (e.g. iOS Safari), show modal / guide
+      setShowGuideModal(true);
     };
 
     window.addEventListener('open-pwa-install', handleManualOpen);
@@ -112,13 +115,17 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
     };
   }, []);
 
-  const handleInstallClick = async () => {
+  const handleInstallClick = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     const promptToUse = deferredPrompt || (window as any).__wb_deferredPrompt;
     if (promptToUse) {
       try {
-        promptToUse.prompt();
-        const { outcome } = await promptToUse.userChoice;
-        if (outcome === 'accepted') {
+        await promptToUse.prompt();
+        const choice = await promptToUse.userChoice;
+        if (choice && choice.outcome === 'accepted') {
           setIsInstalled(true);
           setShowPrompt(false);
           setShowGuideModal(false);
@@ -126,12 +133,13 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
         setDeferredPrompt(null);
         (window as any).__wb_deferredPrompt = null;
         return;
-      } catch (e) {
-        console.warn('Install prompt error:', e);
+      } catch (err) {
+        console.warn('Install prompt error:', err);
       }
     }
 
-    // If on iOS Safari, show the iOS specific bottom sheet / guide
+    // If native prompt is not available (e.g. iOS Safari, or already triggered once),
+    // open the helpful step-by-step modal guide immediately
     setShowGuideModal(true);
   };
 
@@ -236,22 +244,6 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
               </div>
             </div>
 
-            {/* Direct install button if deferred prompt is ready */}
-            {deferredPrompt && (
-              <div className="mb-5 p-3.5 bg-[#E8F1EB] rounded-xl border border-[#0F4C2E]/20">
-                <p className="text-xs text-[#0F4C2E] font-medium mb-2.5">
-                  {lang === 'nl' ? 'Uw browser ondersteunt directe installatie:' : 'Ihr Browser unterstützt die direkte Installation:'}
-                </p>
-                <button
-                  onClick={handleInstallClick}
-                  className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white py-2 px-4 rounded-lg text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>{lang === 'nl' ? 'Nu met één klik installeren' : 'Jetzt mit einem Klick installieren'}</span>
-                </button>
-              </div>
-            )}
-
             {/* Platform instructions */}
             <div className="space-y-4 text-sm text-[#374151]">
               {platform === 'ios' ? (
@@ -287,20 +279,20 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
                   <p className="text-xs text-[#5F6B63] mb-3">
                     {lang === 'nl'
                       ? 'Klik op de knop om de app direct te installeren:'
-                      : 'Klicken Sie auf den Button, um die App direkt auf Ihrem Gerät zu installieren:'}
+                      : 'Klicken Sie auf den Button, um die Installation im Browser zu starten:'}
                   </p>
                   <button
                     onClick={handleInstallClick}
                     className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white py-3 px-4 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer mb-3"
                   >
                     <Download className="w-4 h-4" />
-                    <span>{lang === 'nl' ? 'Jetzt installieren' : 'Jetzt installieren'}</span>
+                    <span>{lang === 'nl' ? 'Nu installeren' : 'Jetzt installieren'}</span>
                   </button>
-                  <p className="text-[11.5px] text-gray-400 text-center">
-                    {platform === 'android'
-                      ? 'Oder im Chrome-Menü (⋮) auf „App installieren“ tippen.'
-                      : 'Oder im Browser-Menü auf „App installieren“ klicken.'}
-                  </p>
+                  <div className="bg-[#FAF8F5] p-3 rounded-lg border border-[#EDE8E0] text-[12px] text-[#5F6B63] space-y-1.5">
+                    <p className="font-semibold text-[#1B211D]">Falls Ihr Browser keinen Dialog anzeigt:</p>
+                    <p>• <strong>Chrome / Android:</strong> Tippen Sie oben rechts auf die drei Punkte <strong>(⋮)</strong> und wählen Sie <strong>„App installieren“</strong> oder <strong>„Zum Startbildschirm hinzufügen“</strong>.</p>
+                    <p>• <strong>Desktop:</strong> Klicken Sie in der Browser-Adressleiste auf das Installieren-Symbol.</p>
+                  </div>
                 </div>
               )}
             </div>
