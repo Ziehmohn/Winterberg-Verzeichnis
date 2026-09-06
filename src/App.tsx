@@ -78,6 +78,7 @@ import BusinessCard from './components/BusinessCard';
 import ClaimsAdminPanel from './components/ClaimsAdminPanel';
 import PromoTopBar from './components/PromoTopBar';
 import PwaInstallPrompt from './components/PwaInstallPrompt';
+import AppBottomNav from './components/AppBottomNav';
 import { generateLocalBusinessSchema, generateCollectionPageSchema, generateItemListSchema, generateWebSiteSearchSchema } from './utils/schemaGenerator';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
@@ -1178,7 +1179,7 @@ export default function App() {
       )}
 
       {/* Main Container */}
-      <div className="relative z-10 min-h-screen flex flex-col">
+      <div className="relative z-10 min-h-screen flex flex-col pb-16 md:pb-0">
         {/* Promobar right at the very top above the navigation bar */}
         {!isAdminMode && (
           <PromoTopBar 
@@ -3014,6 +3015,46 @@ export default function App() {
       <CookieConsent theme={theme} />
       <DynamicScriptLoader />
       <PwaInstallPrompt lang={lang} />
+
+      {/* Mobile App Bottom Navigation Bar */}
+      {!isAdminMode && (
+        <AppBottomNav
+          currentView={getCurrentRouteState().view}
+          onNavigateHome={() => {
+            window.history.pushState(null, '', getPath('/'));
+            setSearchQuery('');
+            setActiveCategory('Alle');
+            setActiveLocation('Alle');
+            resetToDirectory();
+            if (isMobileNavOpen) setIsMobileNavOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onNavigateBusinesses={() => {
+            window.history.pushState(null, '', getPath('/alle-unternehmen'));
+            resetToDirectory();
+            setIsAllMode(true);
+            if (isMobileNavOpen) setIsMobileNavOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onNavigateFuel={() => {
+            window.history.pushState(null, '', getPath('/aktuelle-spritpreise'));
+            resetToDirectory();
+            setIsFuelPricesMode(true);
+            if (isMobileNavOpen) setIsMobileNavOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onNavigateEmergency={() => {
+            window.history.pushState(null, '', getPath('/notdienste'));
+            resetToDirectory();
+            setIsEmergencyMode(true);
+            if (isMobileNavOpen) setIsMobileNavOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onOpenMenu={() => {
+            setIsMobileNavOpen(prev => !prev);
+          }}
+        />
+      )}
       </div>
     </div>
   );

@@ -166,7 +166,7 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
     <>
       {/* 1. Floating Bottom Banner (auto-prompt) */}
       {!isInstalled && showPrompt && !showGuideModal && (
-        <div className="fixed bottom-4 right-4 z-[99] max-w-sm w-[calc(100vw-2rem)] bg-white border border-[#E7E2DA] rounded-2xl shadow-2xl p-4 transition-all animate-in fade-in slide-in-from-bottom-5">
+        <div className="fixed bottom-20 md:bottom-4 right-4 z-[99] max-w-sm w-[calc(100vw-2rem)] bg-white border border-[#E7E2DA] rounded-2xl shadow-2xl p-4 transition-all animate-in fade-in slide-in-from-bottom-5">
           <button 
             onClick={handleDismissLater}
             className="absolute top-2.5 right-2.5 text-gray-400 hover:text-gray-600 p-1 rounded-full cursor-pointer"

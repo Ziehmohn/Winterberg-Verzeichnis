@@ -1,4 +1,4 @@
-const CACHE_NAME = 'winterberg-pwa-v1';
+const CACHE_NAME = 'winterberg-pwa-v2';
 const STATIC_ASSETS = [
   '/',
   '/manifest.webmanifest',
