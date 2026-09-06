@@ -54,6 +54,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   // Categorized Gallery State
   const [activeGalleryTab, setActiveGalleryTab] = useState<string>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [reviewImageModal, setReviewImageModal] = useState<string | null>(null);
 
   // Normalize gallery categories with fallback for legacy flat gallery
   const rawCategories: GalleryCategory[] = Array.isArray(business.galleryCategories) && business.galleryCategories.length > 0
@@ -728,6 +729,29 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                       </div>
                     </div>
                     <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.6]">{r.text || (r as any).comment || ''}</p>
+
+                    {/* Attached Review Images */}
+                    {Array.isArray(r.images) && r.images.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2.5">
+                        {r.images.map((imgUrl, imgIdx) => (
+                          <button
+                            key={imgIdx}
+                            type="button"
+                            onClick={() => setReviewImageModal(imgUrl)}
+                            className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-[#EDE8E0] shadow-2xs hover:opacity-90 transition-opacity cursor-pointer p-0 bg-black/5 shrink-0"
+                            title={lang === 'nl' ? 'Klik om te vergroten' : 'Klicken zum Vergrößern'}
+                          >
+                            <img 
+                              src={imgUrl} 
+                              alt={`Bewertungsbild ${imgIdx + 1}`} 
+                              className="w-full h-full object-cover" 
+                              loading="lazy"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
                     {r.ownerReply && (
                       <div className="mt-3 ml-3 pl-3 border-l-2 border-[#0F4C2E] bg-white rounded p-2.5 text-xs text-[#5F6B63]">
                         <div className="font-bold text-[#0F4C2E] mb-1">
@@ -1150,6 +1174,37 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   {currentLightboxImage.alt}
                 </p>
               )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Review Image Zoom Modal */}
+      <AnimatePresence>
+        {reviewImageModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[120] bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-4"
+            onClick={() => setReviewImageModal(null)}
+          >
+            <button
+              type="button"
+              onClick={() => setReviewImageModal(null)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors cursor-pointer"
+              title="Schließen"
+              aria-label="Schließen"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="relative max-w-4xl max-h-[85vh] flex items-center justify-center" onClick={e => e.stopPropagation()}>
+              <img 
+                src={reviewImageModal} 
+                alt="Kundenfoto zur Bewertung" 
+                className="max-h-[85vh] max-w-full object-contain rounded-xl shadow-2xl" 
+              />
             </div>
           </motion.div>
         )}

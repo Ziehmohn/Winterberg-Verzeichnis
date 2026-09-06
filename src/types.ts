@@ -38,6 +38,7 @@ export interface Review {
   rating: number;
   status: 'pending' | 'approved';
   date: string;
+  images?: string[];
   ownerReply?: string;
   source?: 'internal' | 'google' | 'provenexpert' | 'tripadvisor' | string;
   sourceUrl?: string;

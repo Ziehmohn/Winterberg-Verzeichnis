@@ -4257,8 +4257,27 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="font-semibold text-[15px]">{review.businessName}</div>
                       <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
                     </div>
-                    <div className="text-[13px] text-[#8A928B] mt-[2px]">{review.authorName} · {review.createdAt ? new Date(review.createdAt).toLocaleDateString('de-DE') : ''}</div>
+                    <div className="text-[13px] text-[#8A928B] mt-[2px]">{review.authorName} · {review.createdAt ? new Date(review.createdAt).toLocaleDateString('de-DE') : (review.date ? new Date(review.date).toLocaleDateString('de-DE') : '')}</div>
                     <p className="my-[10px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    
+                    {/* Attached Review Images in Admin */}
+                    {Array.isArray(review.images) && review.images.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {review.images.map((imgUrl: string, idx: number) => (
+                          <a 
+                            key={idx} 
+                            href={imgUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-16 h-16 rounded-lg overflow-hidden border border-[#EDE8E0] block bg-black/5 hover:opacity-80 transition-opacity"
+                            title="Bild in neuem Tab öffnen"
+                          >
+                            <img src={imgUrl} alt={`Foto ${idx + 1}`} className="w-full h-full object-cover" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="flex gap-[8px]">
                       <button 
                         onClick={() => {
@@ -4299,8 +4318,27 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="font-semibold text-[15px]">{review.businessName}</div>
                       <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
                     </div>
+                    <div className="text-[13px] text-[#8A928B] mt-[2px]">{review.authorName} · {review.date ? new Date(review.date).toLocaleDateString('de-DE') : ''}</div>
                     <p className="my-[8px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
                     
+                    {/* Attached Review Images in Admin (approved) */}
+                    {Array.isArray(review.images) && review.images.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {review.images.map((imgUrl: string, idx: number) => (
+                          <a 
+                            key={idx} 
+                            href={imgUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-16 h-16 rounded-lg overflow-hidden border border-[#EDE8E0] block bg-black/5 hover:opacity-80 transition-opacity"
+                            title="Bild in neuem Tab öffnen"
+                          >
+                            <img src={imgUrl} alt={`Foto ${idx + 1}`} className="w-full h-full object-cover" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
                     {review.ownerReply && (
                       <div className="mt-2 pl-4 border-l-2 border-[#E7E2DA] text-[14px] text-[#5F6B63] italic">
                         <strong>Antwort:</strong> {review.ownerReply}
