@@ -191,6 +191,158 @@ export default function JobsBoard({
         </div>
       </div>
 
+      {/* 1. Featured Partner Jobs (Exclusively placed above the search mask) */}
+      {partnerJobs.length > 0 && (
+        <section className="mb-8" aria-label={t("jobsFeaturedTitle")}>
+          <div className="flex items-center justify-between mb-3.5">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-600">
+                <Sparkles className="w-4 h-4 text-[#F2761B]" />
+              </div>
+              <div>
+                <h2 className="font-display text-lg sm:text-xl font-bold text-[#1B211D] flex items-center gap-2">
+                  <span>{t("jobsFeaturedTitle")}</span>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-[#0F4C2E] border border-emerald-200">
+                    {lang === 'nl' ? 'Top-Werkgevers' : 'Top-Arbeitgeber'}
+                  </span>
+                </h2>
+                <p className="text-xs sm:text-[13px] text-[#5F6B63]">
+                  {t("jobsFeaturedSubtitle")}
+                </p>
+              </div>
+            </div>
+            <span className="hidden sm:inline-flex text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-[#0F4C2E] border border-emerald-200">
+              {partnerJobs.length} {partnerJobs.length === 1 ? (lang === 'nl' ? 'top-vacature' : 'Top-Stelle') : (lang === 'nl' ? 'top-vacatures' : 'Top-Stellen')}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {partnerJobs.map((job) => (
+              <article
+                key={`featured-top-${job.id}`}
+                className="relative bg-gradient-to-br from-[#FAFBF9] to-white border-2 border-emerald-600/30 hover:border-emerald-600/60 rounded-2xl p-5 shadow-xs hover:shadow-md transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#0F4C2E] text-white shadow-2xs">
+                        <Sparkles className="w-3 h-3 text-amber-300" />
+                        <span>{t("jobsFeaturedBadge")}</span>
+                      </span>
+                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${getTypeBadgeStyle(job.type)}`}>
+                        {job.type}
+                      </span>
+                    </div>
+                    {job.relativeDate && (
+                      <span className="text-[11.5px] text-[#8A958E] flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        <span>{job.relativeDate}</span>
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="font-display text-[17.5px] font-bold text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors leading-snug">
+                    {job.title}
+                  </h3>
+
+                  <div className="flex items-center gap-2 text-[13.5px] text-[#5F6B63] mt-1.5 flex-wrap">
+                    {job.matchedBusiness ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const found = businesses.find(b => b.id === job.matchedBusiness?.id);
+                          if (found) onBusinessSelect(found);
+                        }}
+                        className="font-bold text-[#0F4C2E] hover:underline flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>{job.company}</span>
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                      </button>
+                    ) : (
+                      <span className="font-semibold text-[#1B211D]">{job.company}</span>
+                    )}
+                    <span className="text-gray-300">·</span>
+                    <span className="flex items-center gap-1 text-[#6F7B73]">
+                      <MapPin className="w-3 h-3 text-[#8A958E]" />
+                      <span>{job.location}</span>
+                    </span>
+                  </div>
+
+                  {job.description && (
+                    <p className="mt-2 text-[13px] text-[#5F6B63] line-clamp-2 leading-relaxed">
+                      {job.description}
+                    </p>
+                  )}
+
+                  {job.salary && (
+                    <div className="mt-2 text-xs font-semibold text-[#0F4C2E] bg-emerald-50 inline-block px-2.5 py-0.5 rounded-md border border-emerald-100">
+                      💰 {job.salary}
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-[#EDE8E0] flex items-center justify-between gap-2">
+                  {job.matchedBusiness && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const found = businesses.find(b => b.id === job.matchedBusiness?.id);
+                        if (found) onBusinessSelect(found);
+                      }}
+                      className="text-xs font-semibold text-[#0F4C2E] hover:underline cursor-pointer"
+                    >
+                      {t("toCompanyProfile")} →
+                    </button>
+                  )}
+                  {job.externalUrl && (
+                    <a
+                      href={job.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0F4C2E] hover:bg-[#15603A] text-white text-xs font-bold shadow-xs transition-all ml-auto"
+                    >
+                      <span>{t("jobsApplyNow")}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Teaser for employers if no featured jobs are active yet */}
+      {partnerJobs.length === 0 && (
+        <div className="mb-6 bg-gradient-to-r from-emerald-50/70 via-amber-50/40 to-[#FAF8F5] border border-emerald-200/80 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-[#1B211D]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-[#0F4C2E] flex items-center justify-center text-white shrink-0 shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            </div>
+            <div>
+              <strong className="text-[#0F4C2E]">{t("jobsTeaserEmployerTitle")}</strong>{' '}
+              <span className="text-[#5F6B63]">{t("jobsTeaserEmployerDesc")}</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              if (onNavigatePricing) {
+                onNavigatePricing();
+              } else {
+                window.history.pushState(null, '', lang === 'nl' ? '/nl/prijzen' : '/preise');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className="shrink-0 font-bold text-[#0F4C2E] hover:underline cursor-pointer flex items-center gap-1 whitespace-nowrap"
+          >
+            <span>{lang === 'nl' ? 'Vacature plaatsen' : 'Jetzt Stelle inserieren'}</span>
+            <span>→</span>
+          </button>
+        </div>
+      )}
+
       {/* Filter and Search Bar */}
       <div className="bg-white border border-[#E7E2DA] rounded-2xl p-4 sm:p-5 shadow-xs mb-8 space-y-4">
         {/* Search input */}
