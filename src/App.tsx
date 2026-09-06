@@ -4007,7 +4007,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const currentUid = currentUser?.uid;
   const allowedBusinesses = isAdmin 
     ? businesses 
-    : businesses.filter((b: Business) => b.id === ownerBusinessId || b.ownerId === currentUid || b.ownerId === userProfile?.uid);
+    : businesses.filter((b: Business) => b.id === ownerBusinessId || b.ownerId === currentUid || b.ownerId === userProfile?.uid || (b.ownerEmail && b.ownerEmail === currentUser?.email));
 
 
 
