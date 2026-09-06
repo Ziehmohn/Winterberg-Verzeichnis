@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc } from 'firebase/firestore';
 import { Business } from '../types';
 import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock } from 'lucide-react';
 
@@ -55,7 +55,7 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     }
 
     try {
-      // 1. Update business document in Firestore: assign owner
+      // 1. Update business document in Firestore: assign owner (use setDoc with merge in case it's only in data.ts)
       const busRef = doc(db, 'businesses', claim.businessId);
       const updates: any = {
         ownerEmail: claim.applicantEmail,
@@ -64,7 +64,12 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       if (claim.userId) {
         updates.ownerId = claim.userId;
       }
-      await updateDoc(busRef, updates);
+      
+      // We must write the full business data if it doesn't exist, but we can just use setDoc with merge.
+      // Wait, if it doesn't exist in Firestore at all, setDoc with merge will ONLY write these few fields!
+      // This means the rest of the business data from data.ts won't be in Firestore. 
+      // But the app merges Firestore data over data.ts data on load! So partial documents in Firestore are perfectly fine.
+      await setDoc(busRef, updates, { merge: true });
 
       // 2. Update claim status
       await updateDoc(doc(db, 'claims', claim.id), { status: 'approved' });
@@ -72,10 +77,33 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       // 3. Update local state
       setClaims(prev => prev.map(c => c.id === claim.id ? { ...c, status: 'approved' } : c));
       setBusinesses(prev => prev.map(b => b.id === claim.businessId ? { ...b, ...updates } : b));
+
+      // 4. Notify applicant of approval
+      try {
+        await fetch('/api/send-mail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: claim.applicantEmail,
+            subject: 'Profil-Übernahme freigeschaltet - Das Winterberg Verzeichnis',
+            html: `
+              <div style="font-family: sans-serif; color: #1B211D;">
+                <p>Hallo ${claim.applicantName},</p>
+                <p>gute Nachrichten: Wir haben Ihre Anfrage geprüft und die Übernahme des Profils <strong>${claim.businessName}</strong> soeben erfolgreich freigeschaltet!</p>
+                <p>Sie können sich nun jederzeit auf <a href="https://www.winterberg-verzeichnis.de">winterberg-verzeichnis.de</a> mit Ihrer E-Mail-Adresse (${claim.applicantEmail}) einloggen, um Ihr Profil zu verwalten, Daten zu aktualisieren oder Widgets abzurufen.</p>
+                <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
+              </div>
+            `
+          })
+        });
+      } catch (e) {
+        console.error("Could not send approval email", e);
+      }
+
       alert(`Übernahme erfolgreich freigegeben! ${claim.applicantEmail} hat nun Zugriff als Inhaber.`);
     } catch (err) {
       console.error('Error approving claim:', err);
-      alert('Fehler beim Freigeben der Übernahme.');
+      alert('Fehler beim Freigeben der Übernahme. Bitte versuchen Sie es später erneut.');
     }
   };
 
