@@ -134,10 +134,10 @@ export default function PromoTopBar({ pricingSettings, onNavigate, lang = 'de' }
       }}
       className="relative py-2.5 px-4 shadow-md border-b border-white/20 z-30 transition-all select-none"
     >
-      <div className="max-w-[1280px] mx-auto flex items-center justify-between gap-3 text-xs sm:text-sm">
+      <div className="max-w-[1280px] mx-auto flex items-center justify-center gap-3 text-xs sm:text-sm px-6">
         <div 
           onClick={handleCtaClick}
-          className="flex items-center gap-2.5 flex-wrap cursor-pointer group flex-1 justify-center sm:justify-start"
+          className="flex items-center gap-2.5 flex-wrap cursor-pointer group justify-center text-center"
         >
           {/* Badge */}
           <span className="inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 text-white font-bold px-2.5 py-0.5 rounded-full text-[11px] uppercase tracking-wider backdrop-blur-xs border border-white/30 shrink-0">
@@ -146,7 +146,7 @@ export default function PromoTopBar({ pricingSettings, onNavigate, lang = 'de' }
           </span>
 
           {/* Offer headline */}
-          <span className="font-semibold tracking-tight text-white leading-tight text-center sm:text-left drop-shadow-xs">
+          <span className="font-semibold tracking-tight text-white leading-tight drop-shadow-xs">
             {offerText}
           </span>
 
@@ -185,10 +185,10 @@ export default function PromoTopBar({ pricingSettings, onNavigate, lang = 'de' }
           </span>
         </div>
 
-        {/* Dismiss button */}
+        {/* Dismiss button positioned on the right */}
         <button
           onClick={handleDismiss}
-          className="text-white/80 hover:text-white p-1 rounded-full hover:bg-black/20 transition-colors shrink-0 cursor-pointer ml-1"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-white/80 hover:text-white p-1 rounded-full hover:bg-black/20 transition-colors shrink-0 cursor-pointer"
           title={lang === 'nl' ? 'Sluiten' : 'Schließen'}
           aria-label="Schließen"
         >
