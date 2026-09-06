@@ -521,6 +521,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       status: formData.status || 'approved',
       id: newId
     };
+
+    const currentUser = auth.currentUser;
+    if (currentUser && !dataToSubmit.ownerId && dataToSubmit.ownerEmail === currentUser.email) {
+      dataToSubmit.ownerId = currentUser.uid;
+    }
     
     try {
       // 10 second timeout for setDoc to catch hanging issues
