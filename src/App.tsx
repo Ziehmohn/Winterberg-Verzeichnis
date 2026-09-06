@@ -1539,7 +1539,17 @@ export default function App() {
               setSelectedBusiness(business);
               setIsJobsMode(false);
             }}
-            onBack={() => setIsJobsMode(false)}
+            onBack={() => {
+              setIsJobsMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigatePricing={() => {
+              resetToDirectory();
+              setIsPricingMode(true);
+              window.history.pushState(null, '', getPath('/preise'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         ) : isPricingMode ? (
           <PricingTable 
@@ -3020,6 +3030,13 @@ export default function App() {
       {!isAdminMode && (
         <AppBottomNav
           currentView={getCurrentRouteState().view}
+          isJobsMode={isJobsMode}
+          onNavigateJobs={() => {
+            window.history.pushState(null, '', getPath('/jobs-und-karriere'));
+            setIsJobsMode(true);
+            if (isMobileNavOpen) setIsMobileNavOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           onNavigateHome={() => {
             window.history.pushState(null, '', getPath('/'));
             setSearchQuery('');

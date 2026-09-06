@@ -516,6 +516,73 @@ async function startServer() {
     }
   });
 
+  // Bundesagentur für Arbeit - Jobsuche API with in-memory caching (30 min TTL)
+  const jobsCache = new Map<string, { data: any; timestamp: number }>();
+  const JOBS_CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+
+  app.get('/api/jobs', async (req, res) => {
+    try {
+      const wo = (req.query.wo as string) || 'Winterberg';
+      const umkreis = (req.query.umkreis as string) || '10';
+      const was = (req.query.was as string) || '';
+      const size = (req.query.size as string) || '100';
+      const page = (req.query.page as string) || '1';
+
+      const cacheKey = `${wo}_${umkreis}_${was}_${size}_${page}`.toLowerCase();
+      const now = Date.now();
+      const cached = jobsCache.get(cacheKey);
+
+      if (cached && now - cached.timestamp < JOBS_CACHE_DURATION) {
+        return res.json(cached.data);
+      }
+
+      // Build query URL
+      const queryParams = new URLSearchParams({
+        wo,
+        umkreis,
+        size,
+        page
+      });
+      if (was.trim()) {
+        queryParams.set('was', was.trim());
+      }
+
+      const baUrl = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v6/jobs?${queryParams.toString()}`;
+
+      const baResponse = await fetch(baUrl, {
+        headers: {
+          'X-API-Key': 'jobboerse-jobsuche',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) WinterbergVerzeichnis/1.0',
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!baResponse.ok) {
+        throw new Error(`Arbeitsagentur API returned status ${baResponse.status}`);
+      }
+
+      const baData = await baResponse.json();
+
+      const responsePayload = {
+        ok: true,
+        source: 'Bundesagentur für Arbeit',
+        total: baData.maxErgebnisse || (baData.ergebnisliste ? baData.ergebnisliste.length : 0),
+        jobs: baData.ergebnisliste || [],
+        lastUpdated: new Date().toISOString()
+      };
+
+      jobsCache.set(cacheKey, { data: responsePayload, timestamp: now });
+      return res.json(responsePayload);
+    } catch (err: any) {
+      console.error('Error fetching jobs from Arbeitsagentur:', err);
+      return res.status(500).json({ 
+        ok: false, 
+        error: err.message || 'Failed to fetch jobs', 
+        jobs: [] 
+      });
+    }
+  });
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
