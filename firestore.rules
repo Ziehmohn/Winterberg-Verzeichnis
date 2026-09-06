@@ -56,5 +56,10 @@ service cloud.firestore {
       allow read: if isAdmin() || (request.auth != null && (resource.data.customerEmail == request.auth.token.email || resource.data.customerId == request.auth.uid));
       allow write: if isAdmin();
     }
+
+    match /claims/{claimId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
   }
 }

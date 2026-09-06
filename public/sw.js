@@ -3,8 +3,10 @@ const STATIC_ASSETS = [
   '/',
   '/manifest.webmanifest',
   '/favicon.svg',
+  '/pwa-icon-192.png',
+  '/pwa-icon-512.png',
+  '/apple-touch-icon.png',
   '/logo-green-bg.png',
-  '/logo.png',
   '/winterberg-header.webp'
 ];
 

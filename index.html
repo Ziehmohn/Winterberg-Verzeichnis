@@ -14,6 +14,16 @@
     <meta name="apple-mobile-web-app-title" content="Winterberg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     
+    <!-- Capture PWA beforeinstallprompt early before any bundles execute -->
+    <script>
+      window.__wb_deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        window.__wb_deferredPrompt = e;
+        window.dispatchEvent(new CustomEvent('wb-prompt-available'));
+      });
+    </script>
+    
     <!-- Google Consent Mode v2 & Google Tag (gtag.js) -->
     <script>
       window.dataLayer = window.dataLayer || [];

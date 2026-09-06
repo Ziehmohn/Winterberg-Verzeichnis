@@ -17,6 +17,18 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
     else if (isAndroid) setPlatform('android');
     else setPlatform('desktop');
 
+    // Check if early deferred prompt is already present on window
+    if ((window as any).__wb_deferredPrompt) {
+      setDeferredPrompt((window as any).__wb_deferredPrompt);
+    }
+
+    const handlePromptAvailable = () => {
+      if ((window as any).__wb_deferredPrompt) {
+        setDeferredPrompt((window as any).__wb_deferredPrompt);
+      }
+    };
+    window.addEventListener('wb-prompt-available', handlePromptAvailable);
+
     // 1. Register Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -37,30 +49,40 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
       return;
     }
 
+    // Check if user chose "Nicht mehr nachfragen"
+    const neverAsk = localStorage.getItem('wb_pwa_never_ask');
+    const dismissed = localStorage.getItem('wb_pwa_prompt_dismissed');
+    const shouldShow = neverAsk !== 'true' && (!dismissed || Date.now() - parseInt(dismissed, 10) > 24 * 60 * 60 * 1000);
+
+    // On iOS (which never fires beforeinstallprompt), show prompt banner directly if eligible
+    if (isIos && shouldShow) {
+      // Show banner after a gentle delay
+      const timer = setTimeout(() => {
+        setShowPrompt(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+
     // 3. Listen for browser install prompt
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e);
       (window as any).__wb_deferredPrompt = e;
 
-      // Check if user chose "Nicht mehr nachfragen"
-      const neverAsk = localStorage.getItem('wb_pwa_never_ask');
-      if (neverAsk === 'true') {
-        return;
-      }
-
-      // Check if user dismissed prompt within the last 24 hours
-      const dismissed = localStorage.getItem('wb_pwa_prompt_dismissed');
-      if (!dismissed || Date.now() - parseInt(dismissed, 10) > 24 * 60 * 60 * 1000) {
+      if (shouldShow) {
         setShowPrompt(true);
       }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
+    // If deferred prompt was already captured before this hook mounted, show prompt if eligible
+    if ((window as any).__wb_deferredPrompt && shouldShow) {
+      setShowPrompt(true);
+    }
+
     // 4. Custom event listener for manual trigger ("App installieren" buttons across site)
     const handleManualOpen = () => {
-      // Clear dismissal flags so it can be shown
       localStorage.removeItem('wb_pwa_prompt_dismissed');
       localStorage.removeItem('wb_pwa_never_ask');
       
@@ -75,7 +97,7 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
           }
         });
       } else {
-        // If native prompt is not available (e.g. iOS Safari, or already triggered once), show step-by-step guide
+        // If native prompt is not available (e.g. iOS Safari), show modal / guide
         setShowGuideModal(true);
       }
     };
@@ -84,27 +106,33 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
     (window as any).__wb_openPwaInstall = handleManualOpen;
 
     return () => {
+      window.removeEventListener('wb-prompt-available', handlePromptAvailable);
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('open-pwa-install', handleManualOpen);
     };
-  }, [deferredPrompt]);
+  }, []);
 
   const handleInstallClick = async () => {
     const promptToUse = deferredPrompt || (window as any).__wb_deferredPrompt;
-    if (!promptToUse) {
-      setShowGuideModal(true);
-      return;
+    if (promptToUse) {
+      try {
+        promptToUse.prompt();
+        const { outcome } = await promptToUse.userChoice;
+        if (outcome === 'accepted') {
+          setIsInstalled(true);
+          setShowPrompt(false);
+          setShowGuideModal(false);
+        }
+        setDeferredPrompt(null);
+        (window as any).__wb_deferredPrompt = null;
+        return;
+      } catch (e) {
+        console.warn('Install prompt error:', e);
+      }
     }
 
-    promptToUse.prompt();
-    const { outcome } = await promptToUse.userChoice;
-    if (outcome === 'accepted') {
-      setIsInstalled(true);
-      setShowPrompt(false);
-      setShowGuideModal(false);
-    }
-    setDeferredPrompt(null);
-    (window as any).__wb_deferredPrompt = null;
+    // If on iOS Safari, show the iOS specific bottom sheet / guide
+    setShowGuideModal(true);
   };
 
   const handleDismissLater = () => {
@@ -226,55 +254,58 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
 
             {/* Platform instructions */}
             <div className="space-y-4 text-sm text-[#374151]">
-              <div className="font-semibold text-xs uppercase tracking-wider text-[#0F4C2E] border-b border-gray-100 pb-1">
-                {platform === 'ios' ? '📱 Anleitung für iPhone & iPad (Safari)' : platform === 'android' ? '📱 Anleitung für Android (Chrome)' : '💻 Anleitung für PC & Mac'}
-              </div>
-
               {platform === 'ios' ? (
-                <ol className="space-y-2.5 text-[13.5px] leading-relaxed">
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-                    <span>Tippen Sie unten in der Safari-Leiste auf das <strong className="text-[#0F4C2E] inline-flex items-center gap-1"><Share className="w-3.5 h-3.5 inline" /> Teilen-Symbol</strong> (Quadrat mit Pfeil nach oben).</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-                    <span>Scrollen Sie im Menü etwas nach unten und wählen Sie <strong>„Zum Home-Bildschirm“</strong>.</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
-                    <span>Tippen Sie oben rechts auf <strong>„Hinzufügen“</strong>. Fertig! Die Winterberg App ist sofort verfügbar.</span>
-                  </li>
-                </ol>
-              ) : platform === 'android' ? (
-                <ol className="space-y-2.5 text-[13.5px] leading-relaxed">
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-                    <span>Tippen Sie oben rechts auf das <strong className="text-[#0F4C2E] inline-flex items-center gap-1"><MoreVertical className="w-3.5 h-3.5 inline" /> Drei-Punkte-Menü</strong> in Chrome.</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-                    <span>Wählen Sie <strong>„App installieren“</strong> oder <strong>„Zum Startbildschirm hinzufügen“</strong>.</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
-                    <span>Bestätigen Sie mit <strong>„Installieren“</strong>.</span>
-                  </li>
-                </ol>
+                <div>
+                  <div className="font-semibold text-xs uppercase tracking-wider text-[#0F4C2E] border-b border-gray-100 pb-2 mb-3">
+                    📱 Installation auf dem iPhone / iPad
+                  </div>
+                  <p className="text-xs text-[#5F6B63] mb-3">
+                    {lang === 'nl'
+                      ? 'Apple staat installaties in Safari alleen toe via het deel-menu van uw telefoon:'
+                      : 'Apple erlaubt in Safari die Installation direkt über das iOS-Teilen-Menü Ihres iPhones:'}
+                  </p>
+                  <ol className="space-y-3 text-[13.5px] leading-relaxed">
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                      <span>Tippen Sie unten in der Safari-Menüleiste auf das <strong className="text-[#0F4C2E] inline-flex items-center gap-1 font-semibold"><Share className="w-4 h-4 inline text-[#0F4C2E]" /> Teilen-Symbol</strong>.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                      <span>Wischen Sie etwas nach oben und tippen Sie auf <strong className="text-[#1B211D]">„Zum Home-Bildschirm“</strong>.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                      <span>Oben rechts auf <strong className="text-[#0F4C2E]">„Hinzufügen“</strong> tippen – fertig!</span>
+                    </li>
+                  </ol>
+                </div>
               ) : (
-                <ol className="space-y-2.5 text-[13.5px] leading-relaxed">
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-                    <span>Klicken Sie ganz rechts in Ihrer Browser-Adresszeile auf das <strong className="text-[#0F4C2E] inline-flex items-center gap-1"><Download className="w-3.5 h-3.5 inline" /> Installieren-Symbol</strong>.</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-5 h-5 rounded-full bg-[#0F4C2E] text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-                    <span>Bestätigen Sie den Dialog mit <strong>„Installieren“</strong>.</span>
-                  </li>
-                </ol>
+                <div>
+                  <div className="font-semibold text-xs uppercase tracking-wider text-[#0F4C2E] border-b border-gray-100 pb-2 mb-3">
+                    {platform === 'android' ? '📱 Installation auf Android' : '💻 Installation am Desktop'}
+                  </div>
+                  <p className="text-xs text-[#5F6B63] mb-3">
+                    {lang === 'nl'
+                      ? 'Klik op de knop om de app direct te installeren:'
+                      : 'Klicken Sie auf den Button, um die App direkt auf Ihrem Gerät zu installieren:'}
+                  </p>
+                  <button
+                    onClick={handleInstallClick}
+                    className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white py-3 px-4 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer mb-3"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>{lang === 'nl' ? 'Jetzt installieren' : 'Jetzt installieren'}</span>
+                  </button>
+                  <p className="text-[11.5px] text-gray-400 text-center">
+                    {platform === 'android'
+                      ? 'Oder im Chrome-Menü (⋮) auf „App installieren“ tippen.'
+                      : 'Oder im Browser-Menü auf „App installieren“ klicken.'}
+                  </p>
+                </div>
               )}
             </div>
 
-            {/* Reset Button */}
+            {/* Actions */}
             <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
               <button
                 type="button"
