@@ -102,7 +102,7 @@ export default function CookieConsent({ theme }: { theme: ThemeConfig }) {
       {!showBanner && (
         <button
           onClick={() => setShowBanner(true)}
-          className="fixed bottom-6 left-6 z-50 p-3 bg-white border border-[#E7E2DA] rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:bg-[#FAF8F5] transition-all hover:scale-110 group cursor-pointer"
+          className="hidden md:block fixed bottom-6 left-6 z-50 p-3 bg-white border border-[#E7E2DA] rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:bg-[#FAF8F5] transition-all hover:scale-110 group cursor-pointer"
           title={isNl ? "Cookie-instellingen openen" : "Cookie-Einstellungen öffnen"}
         >
           <Fingerprint className="w-5 h-5 text-[#0F4C2E] group-hover:text-[#F2761B] transition-colors" />

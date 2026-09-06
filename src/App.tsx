@@ -1343,15 +1343,6 @@ export default function App() {
                   <span className="leading-none">🇳🇱</span>
                 </button>
               </div>
-
-              <button 
-                type="button"
-                className="text-[#0F4C2E] p-2 rounded-lg bg-[#F3F0EA] hover:bg-[#EDE8E0] active:scale-95 border border-[#E7E2DA] cursor-pointer flex items-center justify-center shadow-2xs" 
-                onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-                aria-label="Menü öffnen"
-              >
-                {isMobileNavOpen ? <X className="w-5 h-5 text-[#0F4C2E]" /> : <Menu className="w-5 h-5 text-[#0F4C2E]" />}
-              </button>
             </div>
           </div>
         </header>
