@@ -4022,6 +4022,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         onCancel={() => setView('list')} 
         token={token}
         businessToEdit={editingBusiness}
+        isAdmin={isAdmin}
       />
     );
   }

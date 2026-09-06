@@ -243,7 +243,7 @@ function NewBusinessArticleForm({ onAdd }: { onAdd: (article: BusinessNewsArticl
   );
 }
 
-export default function AdminPanel({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onCancel, businessToEdit }: any) {
+export default function AdminPanel({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onCancel, businessToEdit, isAdmin }: any) {
 
   const { t } = useTranslation();
   const [formData, setFormData] = useState<Business>(() => {
@@ -1348,10 +1348,13 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 type="checkbox" 
                 id="isPremium" 
                 checked={!!formData.isPremium} 
-                onChange={e => setFormData({...formData, isPremium: e.target.checked})} 
-                className="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer" 
+                onChange={e => {
+                  if (isAdmin) setFormData({...formData, isPremium: e.target.checked});
+                }} 
+                className={`w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500 ${isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}`}
+                disabled={!isAdmin}
               />
-              <label htmlFor="isPremium" className={`text-lg font-bold cursor-pointer ${theme.textBase}`}>
+              <label htmlFor="isPremium" className={`text-lg font-bold ${isAdmin ? 'cursor-pointer' : 'cursor-not-allowed'} ${theme.textBase}`}>
                 Als Premium-Eintrag aktivieren (Logo, Hero-Header, Galerie, Öffnungszeiten, Stellenanzeigen, News)
               </label>
             </div>
@@ -1366,7 +1369,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <div>
                 <strong>Premium-Funktionen sind für diesen Eintrag deaktiviert (ausgegraut).</strong>
                 <p className="text-xs text-amber-800 mt-1">
-                  Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Hero-Headerbild, die kategorisierte Bildergalerie, Öffnungszeiten, ausführliche Beschreibung und Stellenanzeigen zu bearbeiten und für diesen Eintrag freizuschalten.
+                  {isAdmin 
+                    ? "Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Hero-Headerbild, die kategorisierte Bildergalerie, Öffnungszeiten, ausführliche Beschreibung und Stellenanzeigen zu bearbeiten und für diesen Eintrag freizuschalten."
+                    : "Sie nutzen aktuell den kostenlosen Basiseintrag. Um Bildergalerien, Ihr Logo, Öffnungszeiten, News und Stellenangebote hinzuzufügen, können Sie im Reiter 'Abrechnung' jederzeit bequem auf Premium upgraden!"}
                 </p>
               </div>
             </div>
