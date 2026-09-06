@@ -43,7 +43,13 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
       setDeferredPrompt(e);
       (window as any).__wb_deferredPrompt = e;
 
-      // Only suppress automatic pop-up if dismissed within last 24 hours
+      // Check if user chose "Nicht mehr nachfragen"
+      const neverAsk = localStorage.getItem('wb_pwa_never_ask');
+      if (neverAsk === 'true') {
+        return;
+      }
+
+      // Check if user dismissed prompt within the last 24 hours
       const dismissed = localStorage.getItem('wb_pwa_prompt_dismissed');
       if (!dismissed || Date.now() - parseInt(dismissed, 10) > 24 * 60 * 60 * 1000) {
         setShowPrompt(true);
@@ -54,8 +60,9 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
 
     // 4. Custom event listener for manual trigger ("App installieren" buttons across site)
     const handleManualOpen = () => {
-      // Clear dismissal so it can be shown
+      // Clear dismissal flags so it can be shown
       localStorage.removeItem('wb_pwa_prompt_dismissed');
+      localStorage.removeItem('wb_pwa_never_ask');
       
       const promptToUse = deferredPrompt || (window as any).__wb_deferredPrompt;
       if (promptToUse) {
@@ -100,14 +107,21 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
     (window as any).__wb_deferredPrompt = null;
   };
 
-  const handleDismiss = () => {
+  const handleDismissLater = () => {
     setShowPrompt(false);
-    // Dismiss only for 24 hours
+    // Dismiss temporarily for 24 hours
     localStorage.setItem('wb_pwa_prompt_dismissed', Date.now().toString());
+  };
+
+  const handleNeverAskAgain = () => {
+    setShowPrompt(false);
+    // Dismiss permanently
+    localStorage.setItem('wb_pwa_never_ask', 'true');
   };
 
   const handleResetDismissal = () => {
     localStorage.removeItem('wb_pwa_prompt_dismissed');
+    localStorage.removeItem('wb_pwa_never_ask');
     setShowGuideModal(false);
     setShowPrompt(true);
   };
@@ -118,8 +132,9 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
       {!isInstalled && showPrompt && !showGuideModal && (
         <div className="fixed bottom-4 right-4 z-[99] max-w-sm w-[calc(100vw-2rem)] bg-white border border-[#E7E2DA] rounded-2xl shadow-2xl p-4 transition-all animate-in fade-in slide-in-from-bottom-5">
           <button 
-            onClick={handleDismiss}
+            onClick={handleDismissLater}
             className="absolute top-2.5 right-2.5 text-gray-400 hover:text-gray-600 p-1 rounded-full cursor-pointer"
+            title={lang === 'nl' ? 'Sluiten (later herinneren)' : 'Schließen (später erinnern)'}
             aria-label="Schließen"
           >
             <X className="w-4 h-4" />
@@ -140,19 +155,25 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
                   ? 'Installeer het Winterberg-overzicht direct op je telefoon voor supersnelle toegang en actuele informatie.'
                   : 'Nutzen Sie das Winterberg-Verzeichnis wie eine native App: Schneller Zugriff, Spritpreise & Notdienste direkt auf Ihrem Startbildschirm.'}
               </p>
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap pt-0.5">
                 <button
                   onClick={handleInstallClick}
-                  className="bg-[#0F4C2E] hover:bg-[#06301C] text-white px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer"
+                  className="bg-[#0F4C2E] hover:bg-[#06301C] text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>{lang === 'nl' ? 'Nu installeren' : 'Jetzt installieren'}</span>
                 </button>
                 <button
-                  onClick={handleDismiss}
-                  className="text-xs text-[#5F6B63] hover:text-[#1B211D] px-2 py-1.5 cursor-pointer"
+                  onClick={handleDismissLater}
+                  className="bg-[#FAF8F5] hover:bg-[#EDE8E0] text-[#1B211D] border border-[#EDE8E0] px-2.5 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-colors"
                 >
                   {lang === 'nl' ? 'Later' : 'Später'}
+                </button>
+                <button
+                  onClick={handleNeverAskAgain}
+                  className="text-[11px] text-[#8A928B] hover:text-[#DC2626] transition-colors cursor-pointer px-1 py-1 underline-offset-2 hover:underline"
+                >
+                  {lang === 'nl' ? 'Niet meer vragen' : 'Nicht mehr nachfragen'}
                 </button>
               </div>
             </div>
