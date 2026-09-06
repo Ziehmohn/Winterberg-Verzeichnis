@@ -126,9 +126,11 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
           </button>
 
           <div className="flex items-start gap-3">
-            <div className="w-12 h-12 rounded-xl bg-[#0F4C2E] text-white flex items-center justify-center shrink-0 shadow-md">
-              <Smartphone className="w-6 h-6 text-[#FCD34D]" />
-            </div>
+            <img 
+              src="/favicon.svg" 
+              alt="Winterberg App" 
+              className="w-12 h-12 rounded-xl shrink-0 shadow-md object-cover" 
+            />
             <div className="flex-1 pr-4">
               <h4 className="font-display font-bold text-[15px] text-[#1B211D] leading-tight mb-1">
                 {lang === 'nl' ? 'Als App installeren' : 'Als App installieren'}
@@ -170,9 +172,11 @@ export default function PwaInstallPrompt({ lang = 'de' }: { lang?: 'de' | 'nl' }
             </button>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-[#0F4C2E] text-white flex items-center justify-center shrink-0 shadow-md">
-                <Smartphone className="w-6 h-6 text-[#FCD34D]" />
-              </div>
+              <img 
+                src="/favicon.svg" 
+                alt="Winterberg App" 
+                className="w-12 h-12 rounded-xl shrink-0 shadow-md object-cover" 
+              />
               <div>
                 <h3 className="font-display font-bold text-lg text-[#1B211D] leading-tight">
                   {lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}
