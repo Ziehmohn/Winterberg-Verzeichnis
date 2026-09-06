@@ -376,8 +376,24 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
       </div>
 
-      <div className="max-w-[1000px] mx-auto px-6 py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[26px] items-start">
-        <div className="bg-white border border-[#EDE8E0] rounded-lg p-7 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 py-[24px] sm:py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[20px] sm:gap-[26px] items-start">
+        {/* Mobile Logo: Directly under header, above text section */}
+        {business.logoUrl && (
+          <div className="block lg:hidden w-full">
+            <div 
+              className="bg-white border border-[#EDE8E0] rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(27,33,29,0.06)] h-32 sm:h-40 w-full flex items-center justify-center p-4 transition-colors"
+              style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+            >
+              <img 
+                src={business.logoUrl} 
+                alt={`Logo von ${business.name}`} 
+                className="max-w-full max-h-full object-contain" 
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="bg-white border border-[#EDE8E0] rounded-lg p-5 sm:p-7 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
           <h2 className="font-display text-[22px] font-semibold mb-3">{lang === 'nl' ? 'Over het bedrijf' : 'Über das Unternehmen'}</h2>
           <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{localized.description}</p>
           
@@ -784,10 +800,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
 
         <aside className="sticky top-[116px] flex flex-col gap-4">
-          {/* Dedicated Premium Logo Card */}
-          {business.isPremium && business.logoUrl && (
+          {/* Dedicated Logo Card (Desktop only, as mobile displays it above text) */}
+          {business.logoUrl && (
             <div 
-              className="border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-36 sm:h-44 w-full flex items-center justify-center p-3 sm:p-4 transition-colors"
+              className="hidden lg:flex border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-36 sm:h-44 w-full items-center justify-center p-3 sm:p-4 transition-colors"
               style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
             >
               <img 

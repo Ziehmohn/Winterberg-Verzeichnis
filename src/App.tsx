@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -1296,6 +1296,16 @@ export default function App() {
                 )}
               </button>
             </nav>
+
+            <button 
+              type="button" 
+              onClick={() => window.dispatchEvent(new CustomEvent('open-pwa-install'))}
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-[#EDE8E0] bg-[#FAF8F5] hover:bg-[#E8F1EB] hover:border-[#0F4C2E] text-[#0F4C2E] text-[13.5px] font-semibold transition-all cursor-pointer shadow-2xs"
+              title={lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}
+            >
+              <Smartphone className="w-4 h-4 text-[#F2761B]" />
+              <span>App</span>
+            </button>
 
             <button 
               type="button" 
@@ -2727,7 +2737,17 @@ export default function App() {
               }}
               className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md shadow-sm transition-colors cursor-pointer"
             >
-              <Plus className="w-4 h-4" /> Unternehmen eintragen
+              <Plus className="w-4 h-4" /> {t("createEntry")}
+            </button>
+            <button 
+              type="button"
+              onClick={() => {
+                setIsMobileNavOpen(false);
+                window.dispatchEvent(new CustomEvent('open-pwa-install'));
+              }}
+              className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#06301C] text-white rounded-md shadow-sm transition-colors cursor-pointer"
+            >
+              <Smartphone className="w-4 h-4 text-[#FCD34D]" /> {lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}
             </button>
             <button 
               type="button"
@@ -2868,6 +2888,16 @@ export default function App() {
             >
               {lang === 'nl' ? 'Pakketten & Prijzen' : 'Preise & Pakete'}
             </a>
+            <button 
+              type="button"
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent('open-pwa-install'));
+              }}
+              className="text-left text-[#FCD34D] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer font-medium"
+            >
+              <Smartphone className="w-3.5 h-3.5" />
+              <span>{lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}</span>
+            </button>
             <a 
               href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')} 
               onClick={(e) => { 
