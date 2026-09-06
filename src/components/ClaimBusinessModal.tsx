@@ -57,9 +57,11 @@ export default function ClaimBusinessModal({
       });
 
       // Send confirmation to applicant
-      await addDoc(collection(db, 'mail'), {
-        to: applicantEmail,
-        message: {
+      await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: applicantEmail,
           subject: 'Eingang Ihrer Anfrage - Das Winterberg Verzeichnis',
           html: `
             <div style="font-family: sans-serif; color: #1B211D;">
@@ -69,14 +71,16 @@ export default function ClaimBusinessModal({
               <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
             </div>
           `
-        }
+        })
       });
 
       // Send notification to admin
-      await addDoc(collection(db, 'mail'), {
-        to: 'info@sichtbar-online.com',
-        cc: 'simon.kraeling@sichtbar-online.com',
-        message: {
+      await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: 'info@sichtbar-online.com',
+          cc: 'simon.kraeling@sichtbar-online.com',
           subject: `Neue Profil-Anfrage (Basis): ${business.name}`,
           html: `
             <div style="font-family: sans-serif; color: #1B211D;">
@@ -91,7 +95,7 @@ export default function ClaimBusinessModal({
               <p>Bitte prüfen Sie die Anfrage im Adminbereich (Reiter "Freigaben").</p>
             </div>
           `
-        }
+        })
       });
 
       setSubmitSuccess(true);

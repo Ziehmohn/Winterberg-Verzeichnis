@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import Stripe from 'stripe';
+import nodemailer from 'nodemailer';
 import { categories } from './src/data';
 import { getLegacyCategoryRedirect } from './src/utils/routes';
 
@@ -86,6 +87,48 @@ async function startServer() {
 
 
   app.use(express.json());
+
+  // Email Route
+  app.post('/api/send-mail', async (req, res) => {
+    try {
+      const { to, subject, html, cc } = req.body;
+      if (!to || !subject || !html) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
+
+      // Read SMTP credentials from env
+      const host = process.env.SMTP_HOST || 'smtp.strato.de';
+      const port = parseInt(process.env.SMTP_PORT || '465', 10);
+      const secure = port === 465;
+      const user = process.env.SMTP_USER || 'info@sichtbar-online.com';
+      const pass = process.env.SMTP_PASS;
+
+      if (!pass) {
+        console.warn('SMTP_PASS is not set. Email not sent.');
+        return res.status(500).json({ error: 'SMTP configuration missing' });
+      }
+
+      const transporter = nodemailer.createTransport({
+        host,
+        port,
+        secure,
+        auth: { user, pass }
+      });
+
+      await transporter.sendMail({
+        from: '"Das Winterberg Verzeichnis" <info@sichtbar-online.com>',
+        to,
+        cc,
+        subject,
+        html
+      });
+
+      res.status(200).json({ success: true });
+    } catch (err: any) {
+      console.error('Error sending email:', err);
+      res.status(500).json({ error: err.message || 'Error sending email' });
+    }
+  });
 
   // Helper to parse price string to number
   const parsePriceNum = (str: any): number => {

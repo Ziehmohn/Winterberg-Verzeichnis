@@ -149,9 +149,11 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
         // Basic Plan Email Notifications
         const userEmail = formData.email || user?.email;
         if (userEmail) {
-          await addDoc(collection(db, 'mail'), {
-            to: userEmail,
-            message: {
+          await fetch('/api/send-mail', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              to: userEmail,
               subject: 'Eingang Ihres Eintrags - Das Winterberg Verzeichnis',
               html: `
                 <div style="font-family: sans-serif; color: #1B211D;">
@@ -161,14 +163,16 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                   <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
                 </div>
               `
-            }
+            })
           });
         }
         
-        await addDoc(collection(db, 'mail'), {
-          to: 'info@sichtbar-online.com',
-          cc: 'simon.kraeling@sichtbar-online.com',
-          message: {
+        await fetch('/api/send-mail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: 'info@sichtbar-online.com',
+            cc: 'simon.kraeling@sichtbar-online.com',
             subject: `Neuer Unternehmenseintrag (Basis): ${formData.name}`,
             html: `
               <div style="font-family: sans-serif; color: #1B211D;">
@@ -181,7 +185,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <p>Bitte prüfen Sie den Eintrag im Adminbereich.</p>
               </div>
             `
-          }
+          })
         });
       }
       
