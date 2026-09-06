@@ -55,6 +55,45 @@ export default function ClaimBusinessModal({
         type: 'basic',
         createdAt: new Date().toISOString()
       });
+
+      // Send confirmation to applicant
+      await addDoc(collection(db, 'mail'), {
+        to: applicantEmail,
+        message: {
+          subject: 'Eingang Ihrer Anfrage - Das Winterberg Verzeichnis',
+          html: `
+            <div style="font-family: sans-serif; color: #1B211D;">
+              <p>Hallo ${applicantName},</p>
+              <p>wir haben Ihre Anfrage zur Übernahme des Profils <strong>${business.name}</strong> erhalten.</p>
+              <p>Unser Team wird die Anfrage in Kürze prüfen. Sobald wir Sie als rechtmäßigen Inhaber verifiziert haben, schalten wir den Zugriff frei und informieren Sie per E-Mail.</p>
+              <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
+            </div>
+          `
+        }
+      });
+
+      // Send notification to admin
+      await addDoc(collection(db, 'mail'), {
+        to: 'info@sichtbar-online.com',
+        cc: 'simon.kraeling@sichtbar-online.com',
+        message: {
+          subject: `Neue Profil-Anfrage (Basis): ${business.name}`,
+          html: `
+            <div style="font-family: sans-serif; color: #1B211D;">
+              <p>Es liegt eine neue Übernahme-Anfrage (Kostenloser Basis-Account) vor:</p>
+              <ul>
+                <li><strong>Unternehmen:</strong> ${business.name}</li>
+                <li><strong>Antragsteller:</strong> ${applicantName}</li>
+                <li><strong>E-Mail:</strong> ${applicantEmail}</li>
+                <li><strong>Telefon:</strong> ${applicantPhone || '-'}</li>
+                <li><strong>Notiz/Nachweis:</strong> ${proofNote || '-'}</li>
+              </ul>
+              <p>Bitte prüfen Sie die Anfrage im Adminbereich (Reiter "Freigaben").</p>
+            </div>
+          `
+        }
+      });
+
       setSubmitSuccess(true);
     } catch (err) {
       console.error('Error submitting claim:', err);
