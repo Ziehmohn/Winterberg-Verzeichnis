@@ -1175,12 +1175,34 @@ export const businesses: Business[] = [
     name: 'K-OFFICE BÜRODESIGN',
     category: 'Einzelhandel',
     subcategory: 'Bürobedarf',
-    description: 'Bürodesign und individuelle Beratung. Vertrieb von Büroeinrichtungen. Inhaber: Burkhard Kräling.',
+    description: 'Bürodesign und individuelle Beratung. Vertrieb von Büroeinrichtungen.',
     address: 'Buchenweg 17, 59955 Winterberg',
     district: 'Winterberg',
     phone: '0170 220 1240',
     email: 'info@k-office.eu',
     imageFallback: 'KO',
+    isPremium: true,
+    ownerEmail: 'simon.kraeling@googlemail.com',
+    ownerId: 'E6rLQ5W3evYU8284s19QHFHEaI93',
+    headerImage: 'https://k-office.eu/hero-bg.jpg',
+    imageLink: 'https://k-office.eu/hero-bg.jpg',
+    services: ['Beratung', 'Planung', 'Lieferung'],
+    products: [
+      'Hochwertige Büromöbel',
+      'Tischsysteme',
+      'Schranksysteme',
+      'Drehstühle',
+      'Roll- & Standcontainer',
+      'Komplettausrüstung Konferenzräume',
+      'Höhenverstellbare Tisch',
+      'E-Tische'
+    ],
+    customCta: {
+      text: 'Jetzt Kontakt aufnehmen!',
+      type: 'custom',
+      url: 'https://k-office.eu/#contact'
+    },
+    status: 'approved'
   },
   {
     id: '107',

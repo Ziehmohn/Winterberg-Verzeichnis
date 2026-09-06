@@ -902,7 +902,7 @@ export default function App() {
   const loadBusinesses = async () => {
     console.log("Loading businesses from Firestore...");
     try {
-      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_READ')), 5000));
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_READ')), 15000));
       const querySnapshot = await Promise.race([
         getDocs(collection(db, 'businesses')),
         timeoutPromise
@@ -914,6 +914,7 @@ export default function App() {
         loadedBusinesses.push({ id: doc.id, ...doc.data() } as Business);
       });
       if (loadedBusinesses.length > 0) {
+        let finalMerged: Business[] = [];
         setBusinesses(prev => {
           const merged = [...initialBusinesses];
           loadedBusinesses.forEach(fb => {
@@ -932,13 +933,50 @@ export default function App() {
               merged.push(fb);
             }
           });
+          finalMerged = merged;
           return merged;
         });
+
+        // Synchronize currently opened business with fresh Firestore data
+        setSelectedBusiness(curr => {
+          if (!curr) return null;
+          const fresh = finalMerged.find(b => b.id === curr.id);
+          return fresh || curr;
+        });
+
+        // If URL previously didn't match static data, re-evaluate against newly loaded businesses
+        if (isNotFound) {
+          const pathParts = window.location.pathname.split('/').filter(Boolean);
+          const rawSlug = pathParts[pathParts.length - 1];
+          if (rawSlug) {
+            const cleanSlug = slugify(decodeURIComponent(rawSlug));
+            const matched = finalMerged.find(b => {
+              const bSlug = slugify(b.name);
+              return bSlug === cleanSlug || b.id.toLowerCase() === rawSlug.toLowerCase();
+            });
+            if (matched) {
+              setSelectedBusiness(matched);
+              setIsNotFound(false);
+              setSearchQuery(matched.name);
+              setActiveCategory(matched.category);
+            }
+          }
+        }
       }
     } catch (err) {
       console.error("Error fetching businesses:", err);
     }
   };
+
+  // Keep selectedBusiness in sync whenever businesses state updates
+  useEffect(() => {
+    if (selectedBusiness) {
+      const fresh = businesses.find(b => b.id === selectedBusiness.id);
+      if (fresh && fresh !== selectedBusiness) {
+        setSelectedBusiness(fresh);
+      }
+    }
+  }, [businesses]);
 
   // Ads and businesses load independently so a slow businesses fetch
   // does not block the ads from appearing

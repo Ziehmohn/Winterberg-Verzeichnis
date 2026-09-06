@@ -805,7 +805,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Buchenweg 17, 59955 Winterberg
 - **Telefon:** 0170 220 1240
-- **Beschreibung (DE):** Bürodesign und individuelle Beratung. Vertrieb von Büroeinrichtungen. Inhaber: Burkhard Kräling.
+- **Beschreibung (DE):** Bürodesign und individuelle Beratung. Vertrieb von Büroeinrichtungen.
+- **Status:** Verifizierter Premium-Eintrag
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/buerobedarf/k-office-buerodesign
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kantoorbenodigdheden/k-office-buerodesign
 
