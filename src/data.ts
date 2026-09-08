@@ -4605,6 +4605,1190 @@ export const businesses: Business[] = [
       saturday: '10:00 - 16:00',
       sunday: 'Geschlossen'
     }
+  },
+  {
+      "id": "mcs-sanitaetshaus-winterberg",
+      "name": "MCS - Mein Care Service / Sanitätshaus Winterberg",
+      "category": "Gesundheit & Medizin",
+      "subCategory": "Sanitätshäuser",
+      "address": "Franziskusstraße 25, 59955 Winterberg",
+      "phone": "02981 9899949",
+      "website": "https://mcs-care.de",
+      "rating": 5,
+      "reviewCount": 3,
+      "description": "Ihr zuverlässiges Sanitätshaus und Pflegedienst in Winterberg. Wir bieten individuelle Beratung, Rehatechnik, Orthopädietechnik und Hilfsmittel für ein selbstbestimmtes Leben.",
+      "description_nl": "Uw betrouwbare zorg- en thuiszorgwinkel in Winterberg. Wij bieden persoonlijk advies, revalidatietechniek en hulpmiddelen voor een zelfstandig leven.",
+      "services": [
+          "Sanitätshaus",
+          "Rehatechnik",
+          "Pflegeberatung",
+          "Orthopädische Hilfsmittel",
+          "Kompressionstherapie"
+      ],
+      "services_nl": [
+          "Zorgwinkel",
+          "Revalidatietechniek",
+          "Zorgadvies",
+          "Orthopedische hulpmiddelen",
+          "Compressietherapie"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "08:30 - 16:30",
+          "tuesday": "08:30 - 16:30",
+          "wednesday": "08:30 - 16:30",
+          "thursday": "08:30 - 16:30",
+          "friday": "08:30 - 14:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "kath-kita-edith-stein-winterberg",
+      "name": "Kath. Kindertageseinrichtung Edith Stein",
+      "category": "Dienstleistungen",
+      "subCategory": "Kindergärten & Kitas",
+      "address": "Auf d. Wallme 6, 59955 Winterberg",
+      "phone": "02981 1815",
+      "website": "https://www.kath-kitas-hochsauerland-waldeck.de",
+      "rating": 4.8,
+      "reviewCount": 5,
+      "description": "Katholische Kindertageseinrichtung Edith Stein in Winterberg – liebevolle Betreuung, frühkindliche Bildung und ganzheitliche Förderung im Hochsauerland.",
+      "description_nl": "Katholiek kinderdagverblijf Edith Stein in Winterberg – liefdevolle opvang, vroegschoolse educatie en ontplooiing voor uw kinderen.",
+      "services": [
+          "Kinderbetreuung",
+          "Frühkindliche Bildung",
+          "U3-Betreuung",
+          "Katholisches Profil",
+          "Außengelände"
+      ],
+      "services_nl": [
+          "Kinderopvang",
+          "Vroegschoolse educatie",
+          "U3 opvang",
+          "Christelijke grondslag",
+          "Buitenterrein"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:15 - 16:30",
+          "tuesday": "07:15 - 16:30",
+          "wednesday": "07:15 - 16:30",
+          "thursday": "07:15 - 16:30",
+          "friday": "07:15 - 15:15",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "drk-familienzentrum-winterberg",
+      "name": "DRK Familienzentrum Winterberg",
+      "category": "Dienstleistungen",
+      "subCategory": "Kindergärten & Kitas",
+      "address": "Am Rad 16, 59955 Winterberg",
+      "phone": "02981 929480",
+      "website": "https://www.drk-brilon.de",
+      "rating": 4.9,
+      "reviewCount": 7,
+      "description": "DRK Familienzentrum und Kindertagesstätte in Winterberg. Umfassende Betreuungsangebote, familiäre Beratung und frühpädagogische Begleitung für Kinder und Eltern.",
+      "description_nl": "DRK familiecentrum en kinderdagverblijf in Winterberg. Uitgebreide opvangmogelijkheden, gezinsondersteuning en pedagogische begeleiding.",
+      "services": [
+          "Familienzentrum",
+          "Kindertagesstätte",
+          "Beratungsangebote",
+          "Frühförderung",
+          "Spiel & Bewegung"
+      ],
+      "services_nl": [
+          "Familiecentrum",
+          "Kinderdagverblijf",
+          "Gezinsbegeleiding",
+          "Vroegtijdige ontwikkeling",
+          "Spel & beweging"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:00 - 16:30",
+          "tuesday": "07:00 - 16:30",
+          "wednesday": "07:00 - 16:30",
+          "thursday": "07:00 - 16:30",
+          "friday": "07:00 - 15:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "neagu-robert-physiotherapie-winterberg",
+      "name": "Physiotherapie Robert Neagu",
+      "category": "Gesundheit & Medizin",
+      "subCategory": "Physiotherapie",
+      "address": "Nuhnestraße 2, 59955 Winterberg",
+      "phone": "02981 820099",
+      "website": "",
+      "rating": 4.9,
+      "reviewCount": 9,
+      "description": "Moderne Praxis für Physiotherapie in Winterberg. Individuelle Behandlungskonzepte, Krankengymnastik, Massagen und Rehabilitation zur Wiederherstellung Ihrer Mobilität.",
+      "description_nl": "Praktijk voor fysiotherapie van Robert Neagu in Winterberg. Fysiotherapie, revalidatie en individuele behandelingen voor uw welzijn.",
+      "services": [
+          "Physiotherapie",
+          "Krankengymnastik",
+          "Manuelle Therapie",
+          "Massagen",
+          "Rehabilitation"
+      ],
+      "services_nl": [
+          "Fysiotherapie",
+          "Manuele therapie",
+          "Medische gymnastiek",
+          "Massages",
+          "Revalidatie"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "08:00 - 18:00",
+          "tuesday": "08:00 - 18:00",
+          "wednesday": "08:00 - 18:00",
+          "thursday": "08:00 - 18:00",
+          "friday": "08:00 - 14:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "fahrschule-niggemann-winterberg",
+      "name": "Fahrschule Niggemann",
+      "category": "Mobilität & KFZ",
+      "subCategory": "Fahrschulen",
+      "address": "Hagenstraße 19, 59955 Winterberg",
+      "phone": "01515 4603505",
+      "website": "https://www.fahrschule-niggemann.de",
+      "rating": 5,
+      "reviewCount": 12,
+      "description": "Ihre kompetente Fahrschule in Winterberg für alle Führerscheinklassen (PKW, Motorrad, etc.). Moderne Schulungsfahrzeuge, lockere Atmosphäre und zielgerichtete Ausbildung.",
+      "description_nl": "Uw rijschool in Winterberg voor auto- en motorrijbewijzen. Moderne lesauto's en ervaren instructeurs.",
+      "services": [
+          "Führerschein Klasse B",
+          "Motorradausbildung (Klasse A)",
+          "Begleitetes Fahren (BF17)",
+          "Theorieunterricht",
+          "Auffrischungskurse"
+      ],
+      "services_nl": [
+          "Rijbewijs B (Auto)",
+          "Motorrijbewijs A",
+          "Theorieles",
+          "Opfriscursussen",
+          "Praktijkles"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "17:00 - 19:00",
+          "tuesday": "Nach Vereinbarung",
+          "wednesday": "17:00 - 19:00",
+          "thursday": "Nach Vereinbarung",
+          "friday": "Geschlossen",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "wok-man-asia-restaurant-winterberg",
+      "name": "Wok-Man Asia Restaurant",
+      "category": "Gastronomie",
+      "subCategory": "Restaurant",
+      "address": "Hagenstraße 11, 59955 Winterberg",
+      "phone": "02981 5089104",
+      "website": "",
+      "rating": 4.3,
+      "reviewCount": 165,
+      "description": "Asiatisches Restaurant und Schnellrestaurant im Herzen von Winterberg. Frische Wok-Spezialitäten, Ente, gebratene Nudeln und asiatische Klassiker zum Vor-Ort-Essen und Mitnehmen.",
+      "description_nl": "Aziatisch restaurant in Winterberg. Verse wokgerechten, knapperige eend, noedels en Aziatische specialiteiten ter plaatse of om mee te nemen.",
+      "services": [
+          "Asiatische Küche",
+          "Wok-Gerichte",
+          "Knusprige Ente",
+          "Take-Away / Außer-Haus-Verkauf",
+          "Vegetarische Optionen"
+      ],
+      "services_nl": [
+          "Aziatische keuken",
+          "Wokgerechten",
+          "Take-away",
+          "Vegetarische opties",
+          "Kip en eendgerechten"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "11:30 - 21:30",
+          "tuesday": "Geschlossen",
+          "wednesday": "11:30 - 21:30",
+          "thursday": "11:30 - 21:30",
+          "friday": "11:30 - 22:00",
+          "saturday": "11:30 - 22:00",
+          "sunday": "12:00 - 21:30"
+      }
+  },
+  {
+      "id": "fahrschule-andreas-brinkmann-winterberg",
+      "name": "Fahrschule Andreas Brinkmann",
+      "category": "Mobilität & KFZ",
+      "subCategory": "Fahrschulen",
+      "address": "Hagenstraße 12, 59955 Winterberg",
+      "phone": "0175 5503796",
+      "website": "https://fahrschule-brinkmann.de",
+      "rating": 4.8,
+      "reviewCount": 15,
+      "description": "Fahrschule Andreas Brinkmann in Winterberg. Professionelle Führerscheinausbildung für PKW, Anhänger und Zweiräder mit Geduld und viel Fahrpraxis.",
+      "description_nl": "Rijschool Andreas Brinkmann in Winterberg. Professionele rijlessen voor auto, aanhanger en motor.",
+      "services": [
+          "Klasse B (PKW)",
+          "Anhängerführerschein BE",
+          "Zweiradausbildung",
+          "Intensivkurse",
+          "Theoretischer Unterricht"
+      ],
+      "services_nl": [
+          "Rijbewijs B (Auto)",
+          "Aanhangerrijbewijs BE",
+          "Motorrijlessen",
+          "Spoedcursussen",
+          "Theoriecursus"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "16:30 - 18:30",
+          "tuesday": "Nach Vereinbarung",
+          "wednesday": "16:30 - 18:30",
+          "thursday": "Nach Vereinbarung",
+          "friday": "Geschlossen",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "fahrschule-falko-bauerdick-siedlinghausen",
+      "name": "Fahrschule Falko Bauerdick",
+      "category": "Mobilität & KFZ",
+      "subCategory": "Fahrschulen",
+      "address": "Hochsauerlandstraße 78b, 59955 Winterberg-Siedlinghausen",
+      "phone": "0160 1525227",
+      "website": "https://fahrschule-bauerdick.de",
+      "rating": 5,
+      "reviewCount": 18,
+      "description": "Fahrschule Falko Bauerdick in Winterberg-Siedlinghausen. Moderne Führerscheinausbildung in lockerer und verständlicher Umgebung.",
+      "description_nl": "Rijschool Falko Bauerdick in Winterberg-Siedlinghausen. Moderne rijopleidingen in een ontspannen en professionele sfeer.",
+      "services": [
+          "Klasse B / B197",
+          "Begleitetes Fahren ab 17",
+          "Motorradklassen",
+          "Theorieunterricht",
+          "Fahrpraxis Sauerland"
+      ],
+      "services_nl": [
+          "Rijopleiding auto",
+          "Begeleid rijden",
+          "Motorrijles",
+          "Theorielessen",
+          "Praktijkervaring"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "Nach Vereinbarung",
+          "tuesday": "18:00 - 19:30",
+          "wednesday": "Nach Vereinbarung",
+          "thursday": "18:00 - 19:30",
+          "friday": "Nach Vereinbarung",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "kraelingdruck-siedlinghausen",
+      "name": "Kräling Druck GmbH",
+      "category": "Handwerk",
+      "subCategory": "Druckereien",
+      "address": "Hochsauerlandstraße 74, 59955 Winterberg-Siedlinghausen",
+      "phone": "02983 666",
+      "website": "https://www.kraelingdruck.de",
+      "rating": 4.9,
+      "reviewCount": 14,
+      "description": "Kräling Druck GmbH in Siedlinghausen – Druckkompetenz im Sauerland. Von Geschäftsdrucksachen über Broschüren und Kataloge bis hin zu Werbetechnik und Veredelung.",
+      "description_nl": "Kräling Druck in Siedlinghausen – hoogwaardige drukkerij in het Sauerland. Brochures, catalogi, zakelijk drukwerk en reclame-uitingen.",
+      "services": [
+          "Offsetdruck",
+          "Digitaldruck",
+          "Geschäftsausstattungen",
+          "Broschüren & Flyer",
+          "Druckveredelung"
+      ],
+      "services_nl": [
+          "Offsetdruk",
+          "Digitale druk",
+          "Brochures & folders",
+          "Zakelijk drukwerk",
+          "Afwerking & veredeling"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:30 - 16:30",
+          "tuesday": "07:30 - 16:30",
+          "wednesday": "07:30 - 16:30",
+          "thursday": "07:30 - 16:30",
+          "friday": "07:30 - 13:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "leisse-soehne-siedlinghausen",
+      "name": "Leisse & Söhne GmbH & Co. KG",
+      "category": "Handwerk",
+      "subCategory": "Maschinenbau",
+      "address": "Hochsauerlandstraße 59, 59955 Winterberg-Siedlinghausen",
+      "phone": "02983 97010",
+      "website": "https://www.leisse.de",
+      "rating": 4.8,
+      "reviewCount": 11,
+      "description": "Leisse & Söhne GmbH & Co. KG in Siedlinghausen – Traditionsreicher Maschinenbau und Fördertechnik. Spezialist für Sägewerkstechnik, Förderanlagen und innovative Maschinenbau-Lösungen.",
+      "description_nl": "Leisse & Söhne in Siedlinghausen – machinebouw en transporttechniek. Specialist in zagerijtechnologie en transportsystemen.",
+      "services": [
+          "Sägewerkstechnik",
+          "Förderanlagen",
+          "Sondermaschinenbau",
+          "Mechanische Fertigung",
+          "Industrieservice & Wartung"
+      ],
+      "services_nl": [
+          "Zagerijtechniek",
+          "Transportsystemen",
+          "Machinebouw op maat",
+          "Mechanische productie",
+          "Onderhoud & service"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:00 - 16:30",
+          "tuesday": "07:00 - 16:30",
+          "wednesday": "07:00 - 16:30",
+          "thursday": "07:00 - 16:30",
+          "friday": "07:00 - 14:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "kindergarten-siedlinghausen-st-marien",
+      "name": "Kath. Kindergarten St. Marien Siedlinghausen",
+      "category": "Dienstleistungen",
+      "subCategory": "Kindergärten & Kitas",
+      "address": "Wulfhagen 1, 59955 Winterberg-Siedlinghausen",
+      "phone": "02983 493",
+      "website": "https://www.kath-kitas-hochsauerland-waldeck.de",
+      "rating": 4.7,
+      "reviewCount": 6,
+      "description": "Katholischer Kindergarten St. Marien in Winterberg-Siedlinghausen. Engagierte und familiäre Betreuung in naturnaher Umgebung für Kinder im Vorschulalter.",
+      "description_nl": "Katholieke kleuterschool St. Marien in Winterberg-Siedlinghausen. Betrokken opvang in een groene en vertrouwde omgeving.",
+      "services": [
+          "Kleinkindbetreuung",
+          "Vorschulerziehung",
+          "Kreativförderung",
+          "Naturpädagogik",
+          "Katholisches Leitbild"
+      ],
+      "services_nl": [
+          "Kinderopvang",
+          "Kleuteronderwijs",
+          "Creatieve ontwikkeling",
+          "Buitenspel & natuur",
+          "Christelijk profiel"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:15 - 16:30",
+          "tuesday": "07:15 - 16:30",
+          "wednesday": "07:15 - 16:30",
+          "thursday": "07:15 - 16:30",
+          "friday": "07:15 - 15:15",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "physio-fit-astrid-eichler-siedlinghausen",
+      "name": "Physio-Fit Astrid Eichler",
+      "category": "Gesundheit & Medizin",
+      "subCategory": "Physiotherapie",
+      "address": "Kolpingstraße 4, 59955 Winterberg-Siedlinghausen",
+      "phone": "02983 972265",
+      "website": "",
+      "rating": 5,
+      "reviewCount": 8,
+      "description": "Praxis für Physiotherapie Physio-Fit Astrid Eichler in Siedlinghausen. Gezielte Therapie, Schmerzlinderung und Bewegungstraining für Ihre Gesundheit.",
+      "description_nl": "Praktijk voor fysiotherapie Physio-Fit Astrid Eichler in Siedlinghausen. Deskundige fysiotherapie en hersteltraining.",
+      "services": [
+          "Physiotherapie",
+          "Krankengymnastik",
+          "Massage",
+          "Präventionstraining",
+          "Rückenbehandlung"
+      ],
+      "services_nl": [
+          "Fysiotherapie",
+          "Massages",
+          "Hersteltraining",
+          "Rugbehandelingen",
+          "Preventieve gymnastiek"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "08:00 - 18:00",
+          "tuesday": "08:00 - 18:00",
+          "wednesday": "08:00 - 18:00",
+          "thursday": "08:00 - 18:00",
+          "friday": "08:00 - 13:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "moment-mal-siedlinghausen",
+      "name": "MOMENT MAL! Kiosk & Schreibwaren",
+      "category": "Einzelhandel",
+      "subCategory": "Kioske",
+      "address": "Weberstraße 6, 59955 Winterberg-Siedlinghausen",
+      "phone": "02983 6889768",
+      "website": "",
+      "rating": 4.8,
+      "reviewCount": 14,
+      "description": "Kiosk und Gemischtwarenladen MOMENT MAL! in Siedlinghausen. Zeitschriften, Tabakwaren, Getränke, Süßigkeiten, Schreibwaren und freundlicher Dorfkiosk-Service.",
+      "description_nl": "Kiosk MOMENT MAL! in Siedlinghausen. Kranten, tijdschriften, tabak, drankjes, snoepgoed en schoolbenodigdheden.",
+      "services": [
+          "Zeitschriften & Zeitungen",
+          "Tabakwaren",
+          "Getränke & Snacks",
+          "Schreibwaren",
+          "Paketannahme"
+      ],
+      "services_nl": [
+          "Kranten & tijdschriften",
+          "Tabakswaren",
+          "Dranken & snacks",
+          "Schrijfwaren",
+          "Pakketdienst"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "06:30 - 12:30, 14:30 - 18:00",
+          "tuesday": "06:30 - 12:30, 14:30 - 18:00",
+          "wednesday": "06:30 - 12:30, 14:30 - 18:00",
+          "thursday": "06:30 - 12:30, 14:30 - 18:00",
+          "friday": "06:30 - 12:30, 14:30 - 18:00",
+          "saturday": "07:00 - 12:30",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "st-josef-schule-siedlinghausen",
+      "name": "St. Josef Grundschule Siedlinghausen",
+      "category": "Dienstleistungen",
+      "subCategory": "Schulen",
+      "address": "Grimmeweg 3, 59955 Winterberg-Siedlinghausen",
+      "phone": "02983 430",
+      "website": "https://www.grundschule-siedlinghausen.de",
+      "rating": 4.6,
+      "reviewCount": 5,
+      "description": "Katholische Grundschule St. Josef in Winterberg-Siedlinghausen. Fundierte Grundschulbildung mit individuellem Förderkonzept und verlässlicher Übermittagsbetreuung.",
+      "description_nl": "Basisschool St. Josef in Winterberg-Siedlinghausen. Eigentijds basisonderwijs met persoonlijke aandacht en buitenschoolse opvang.",
+      "services": [
+          "Grundschulbildung",
+          "Offene Ganztagsschule (OGS)",
+          "Verlässliche Halbtagsbetreuung",
+          "Förderunterricht",
+          "Schulprojekte"
+      ],
+      "services_nl": [
+          "Basisonderwijs",
+          "Naschoolse opvang",
+          "Individuele begeleiding",
+          "Schoolprojecten",
+          "Sport en cultuur"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:30 - 13:30",
+          "tuesday": "07:30 - 13:30",
+          "wednesday": "07:30 - 13:30",
+          "thursday": "07:30 - 13:30",
+          "friday": "07:30 - 13:30",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "staedtische-katholische-grundschule-winterberg",
+      "name": "Katholische Grundschule Winterberg",
+      "category": "Dienstleistungen",
+      "subCategory": "Schulen",
+      "address": "Am Postteich 1, 59955 Winterberg",
+      "phone": "02981 2401",
+      "website": "https://www.grundschule-winterberg.de",
+      "rating": 4.5,
+      "reviewCount": 8,
+      "description": "Städtische katholische Grundschule in Winterberg. Freude am Lernen, Wertevermittlung und Betreuungsangebote für Schülerinnen und Schüler der Klassen 1 bis 4.",
+      "description_nl": "Basisschool Winterberg. Basisonderwijs, buitenschoolse opvang en leerzame projecten in het hart van Winterberg.",
+      "services": [
+          "Grundschule",
+          "Offener Ganztag (OGS)",
+          "Schulsozialarbeit",
+          "Schwimm- und Sportunterricht",
+          "Arbeitsgemeinschaften"
+      ],
+      "services_nl": [
+          "Basisonderwijs",
+          "Naschoolse opvang",
+          "Schoolbegeleiding",
+          "Sportlessen",
+          "Naschoolse activiteiten"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:45 - 13:30",
+          "tuesday": "07:45 - 13:30",
+          "wednesday": "07:45 - 13:30",
+          "thursday": "07:45 - 13:30",
+          "friday": "07:45 - 13:30",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "geschwister-scholl-gymnasium-winterberg",
+      "name": "Geschwister-Scholl-Gymnasium Winterberg",
+      "category": "Dienstleistungen",
+      "subCategory": "Schulen",
+      "address": "Ursulinenstraße 24, 59955 Winterberg",
+      "phone": "02981 92160",
+      "website": "https://www.gymnasium-winterberg.de",
+      "rating": 4.6,
+      "reviewCount": 22,
+      "description": "Geschwister-Scholl-Gymnasium Winterberg – Städtisches Gymnasium mit vielfältigem Sprachen-, MINT- und Sportangebot (u. a. Ski- und Sportschwerpunkte).",
+      "description_nl": "Gymnasium Geschwister-Scholl in Winterberg. Voortgezet onderwijs met sterke focus op wetenschap, talen en wintersport.",
+      "services": [
+          "Gymnasiale Bildung (G9)",
+          "Sport- und Wintersportförderung",
+          "MINT-Schwerpunkt",
+          "Bilinguale Module",
+          "Ganztagsangebote"
+      ],
+      "services_nl": [
+          "Gymnasium / VWO",
+          "Talen & bèta-onderwijs",
+          "Sportstimulering",
+          "Culturele activiteiten",
+          "Begeleiding"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:30 - 15:30",
+          "tuesday": "07:30 - 15:30",
+          "wednesday": "07:30 - 15:30",
+          "thursday": "07:30 - 15:30",
+          "friday": "07:30 - 14:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "sekundarschule-medebach-winterberg",
+      "name": "Sekundarschule Medebach-Winterberg",
+      "category": "Dienstleistungen",
+      "subCategory": "Schulen",
+      "address": "Schulstraße 3, 59955 Winterberg",
+      "phone": "02981 562",
+      "website": "https://www.sekundarschule-medebach-winterberg.de",
+      "rating": 4.4,
+      "reviewCount": 10,
+      "description": "Sekundarschule Medebach-Winterberg (Teilstandort Winterberg). Individuelles und praxisorientiertes Lernen für alle Schulabschlüsse der Sekundarstufe I.",
+      "description_nl": "Middelbare school Medebach-Winterberg. Praktijkgericht en persoonlijk onderwijs voor een succesvolle toekomst.",
+      "services": [
+          "Sekundarstufe I",
+          "Berufsorientierung",
+          "Differenziertes Lernen",
+          "Ganztagsprogramm",
+          "Praktika & Kooperationen"
+      ],
+      "services_nl": [
+          "Voortgezet onderwijs",
+          "Beroepsoriëntatie",
+          "Gedifferentieerd leren",
+          "Dagprogramma",
+          "Stages"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:30 - 15:30",
+          "tuesday": "07:30 - 15:30",
+          "wednesday": "07:30 - 15:30",
+          "thursday": "07:30 - 15:30",
+          "friday": "07:30 - 13:30",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "telemax-datentechnik-winterberg",
+      "name": "Telemax Datentechnik & Telekommunikation",
+      "category": "Einzelhandel",
+      "subCategory": "Telekommunikation",
+      "address": "Am Waltenberg 3, 59955 Winterberg",
+      "phone": "02981 927288",
+      "website": "https://www.telemax-winterberg.de",
+      "rating": 4.7,
+      "reviewCount": 26,
+      "description": "Telemax in Winterberg – Ihr Fachgeschäft für Mobilfunk, DSL, Telekommunikationsanlagen, Smartphones und Datentechnik im Hochsauerland.",
+      "description_nl": "Telemax in Winterberg – speciaalzaak voor mobiele telefonie, internet, telecomapparatuur en reparaties.",
+      "services": [
+          "Mobilfunkverträge & Handys",
+          "DSL & Glasfaseranschlüsse",
+          "Telefonanlagen für Gewerbe",
+          "Smartphone-Reparatur",
+          "Zubehör & Beratung"
+      ],
+      "services_nl": [
+          "Mobiele abonnementen",
+          "Internet en wifi",
+          "Zakelijke telefonie",
+          "Smartphone-reparaties",
+          "Accessoires"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "09:30 - 12:30, 14:30 - 18:00",
+          "tuesday": "09:30 - 12:30, 14:30 - 18:00",
+          "wednesday": "09:30 - 12:30, 14:30 - 18:00",
+          "thursday": "09:30 - 12:30, 14:30 - 18:00",
+          "friday": "09:30 - 12:30, 14:30 - 18:00",
+          "saturday": "09:30 - 13:00",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "campingpark-hochsauerland-winterberg",
+      "name": "Campingpark Hochsauerland",
+      "category": "Hotels und Unterkünfte",
+      "subCategory": "Campingplätze",
+      "address": "Remmeswiese 10, 59955 Winterberg",
+      "phone": "02981 3249",
+      "website": "https://www.campingpark-hochsauerland.de",
+      "rating": 4.4,
+      "reviewCount": 312,
+      "description": "Komfortabler Campingpark in Winterberg, direkt am Skiliftkarussell und Bikepark gelegen. Moderner Sanitärbereich, Stellplätze für Wohnmobile und Zelte sowie gemütliche Mietunterkünfte.",
+      "description_nl": "Gezellige camping in Winterberg direct bij het skigebied en bikepark. Moderne voorzieningen, camperplaatsen en chalets te huur.",
+      "services": [
+          "Wohnmobilstellplätze",
+          "Zeltwiese",
+          "Moderne Sanitäranlagen",
+          "Ski- und Bikeraum",
+          "Brötchenservice & Bistro"
+      ],
+      "services_nl": [
+          "Camperplaatsen",
+          "Tentenveld",
+          "Sanitairgebouw",
+          "Ski- en fietsenstalling",
+          "Broodjesservice"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "08:00 - 19:00",
+          "tuesday": "08:00 - 19:00",
+          "wednesday": "08:00 - 19:00",
+          "thursday": "08:00 - 19:00",
+          "friday": "08:00 - 20:00",
+          "saturday": "08:00 - 20:00",
+          "sunday": "08:00 - 18:00"
+      }
+  },
+  {
+      "id": "pannenkoekenhuis-der-brabander-winterberg",
+      "name": "Pannenkoekenhuis Der Brabander",
+      "category": "Gastronomie",
+      "subCategory": "Restaurant",
+      "address": "Am Waltenberg 65, 59955 Winterberg",
+      "phone": "02981 9320",
+      "website": "https://www.brabander.nl/pannenkoekenhaus",
+      "rating": 4.7,
+      "reviewCount": 420,
+      "description": "Original holländisches Pfannkuchenhaus im Ferienhotel Der Brabander in Winterberg. Riesige Auswahl an süßen und herzhaften Pfannkuchen in gemütlich-uriger Atmosphäre.",
+      "description_nl": "Origineel Nederlands pannenkoekenhuis bij Vakantiehotel Der Brabander in Winterberg. Meer dan 80 soorten pannenkoeken in een oergezellige sfeer.",
+      "services": [
+          "Holländische Pfannkuchen",
+          "Süße & herzhafte Kreationen",
+          "Kinderfreundlich & Spielecke",
+          "Große Sonnenterrasse",
+          "Kaffee & Gebäck"
+      ],
+      "services_nl": [
+          "Nederlandse pannenkoeken",
+          "Zoete en hartige variaties",
+          "Kindvriendelijk",
+          "Groot zonneterras",
+          "Koffie met gebak"
+      ],
+      "featured": true,
+      "openingHours": {
+          "monday": "11:30 - 20:30",
+          "tuesday": "11:30 - 20:30",
+          "wednesday": "11:30 - 20:30",
+          "thursday": "11:30 - 20:30",
+          "friday": "11:30 - 21:00",
+          "saturday": "11:30 - 21:00",
+          "sunday": "11:30 - 20:30"
+      }
+  },
+  {
+      "id": "vakantiehotel-der-brabander-winterberg",
+      "name": "Vakantiehotel Der Brabander",
+      "category": "Hotels und Unterkünfte",
+      "subCategory": "Hotels",
+      "address": "Am Waltenberg 65, 59955 Winterberg",
+      "phone": "02981 9320",
+      "website": "https://www.brabander.nl",
+      "rating": 4.8,
+      "reviewCount": 980,
+      "description": "Das bekannteste niederländisch geführte Ferienhotel in Winterberg, direkt am Skikarussell. Großzügige Wellnessoase, beheizter Außenpool, hervorragendes Restaurant und Unterhaltungsprogramm.",
+      "description_nl": "Het toonaangevende Nederlandse vakantiehotel in Winterberg, direct aan de skipiste. Verwarmd buitenzwembad, saunalandschap, animatie en uitstekende gastvrijheid.",
+      "services": [
+          "Hotelzimmer & Suiten",
+          "Wellnessbereich & Sauna",
+          "Beheizter Außenpool",
+          "Buffet-Restaurant & Bar",
+          "Skiverleih & Pistenanbindung"
+      ],
+      "services_nl": [
+          "Hotelkamers & suites",
+          "Wellness & verwarmd buitenbad",
+          "Buffetrestaurant & après-ski",
+          "Animatieprogramma",
+          "Direct aan de piste"
+      ],
+      "featured": true,
+      "openingHours": {
+          "monday": "07:00 - 23:00",
+          "tuesday": "07:00 - 23:00",
+          "wednesday": "07:00 - 23:00",
+          "thursday": "07:00 - 23:00",
+          "friday": "07:00 - 24:00",
+          "saturday": "07:00 - 24:00",
+          "sunday": "07:00 - 23:00"
+      }
+  },
+  {
+      "id": "hotel-schneider-winterberg",
+      "name": "Hotel Schneider Winterberg",
+      "category": "Hotels und Unterkünfte",
+      "subCategory": "Hotels",
+      "address": "Am Waltenberg 58, 59955 Winterberg",
+      "phone": "02981 899738",
+      "website": "https://www.hotel-schneider.de",
+      "rating": 4.6,
+      "reviewCount": 215,
+      "description": "Komfortables 4-Sterne-Hotel im Zentrum von Winterberg. Gemütliche Zimmer, moderner Wellnessbereich mit Hallenbad und exzellentes Restaurant.",
+      "description_nl": "Sfeervol 4-sterrenhotel in het centrum van Winterberg. Comfortabele kamers, binnenzwembad, sauna en gastronomisch restaurant.",
+      "services": [
+          "Komfortzimmer & Suiten",
+          "Hallenbad & Saunalandschaft",
+          "À-la-carte Restaurant",
+          "Skikeller & Fahrradgarage",
+          "Terrasse & Bar"
+      ],
+      "services_nl": [
+          "Hotelkamers & suites",
+          "Overdekt zwembad & wellness",
+          "Restaurant",
+          "Fiets- en skiberging",
+          "Bar & lounge"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:30 - 22:00",
+          "tuesday": "07:30 - 22:00",
+          "wednesday": "07:30 - 22:00",
+          "thursday": "07:30 - 22:00",
+          "friday": "07:30 - 23:00",
+          "saturday": "07:30 - 23:00",
+          "sunday": "07:30 - 22:00"
+      }
+  },
+  {
+      "id": "sommerrodelbahn-herrlohblitz-winterberg",
+      "name": "Sommerrodelbahn Herrloh-Blitz",
+      "category": "Freizeit",
+      "subCategory": "Sommerrodelbahnen",
+      "address": "In der Büre 54, 59955 Winterberg",
+      "phone": "",
+      "website": "https://www.skiliftkarussell.de",
+      "rating": 4.6,
+      "reviewCount": 140,
+      "description": "Sommerrodelbahn Herrloh-Blitz im Skiliftkarussell Winterberg. Rasanter Rodelspaß für die ganze Familie mit tollem Blick über die Winterberger Berglandschaft.",
+      "description_nl": "Zomerrodelbaan Herrloh-Blitz in Winterberg. Spannend rodelplezier voor jong en oud midden in het skigebied met prachtig uitzicht.",
+      "services": [
+          "Sommerrodeln",
+          "Familienausflug",
+          "Liftauffahrt",
+          "Kiosk & Erfrischungen",
+          "Parkplätze vor Ort"
+      ],
+      "services_nl": [
+          "Zomerrodelen",
+          "Familie-attractie",
+          "Kabelbaan omhoog",
+          "Snacks & drinken",
+          "Parkeergelegenheid"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "10:00 - 17:00",
+          "tuesday": "10:00 - 17:00",
+          "wednesday": "10:00 - 17:00",
+          "thursday": "10:00 - 17:00",
+          "friday": "10:00 - 18:00",
+          "saturday": "10:00 - 18:00",
+          "sunday": "10:00 - 18:00"
+      }
+  },
+  {
+      "id": "sommerrodelbahn-schanzenwirbel-winterberg",
+      "name": "Sommerrodelbahn Schanzen Wirbel",
+      "category": "Freizeit",
+      "subCategory": "Sommerrodelbahnen",
+      "address": "In d. Büre 25, 59955 Winterberg",
+      "phone": "02981 81141",
+      "website": "https://www.erlebnisberg-kappe.de",
+      "rating": 4.7,
+      "reviewCount": 310,
+      "description": "Die Schanzen Wirbel Sommerrodelbahn an der St.-Georg-Schanze in Winterberg bietet actionreiche Kurven und Nervenkitzel für Groß und Klein.",
+      "description_nl": "De Schanzen Wirbel rodelbaan bij de schans in Winterberg. Bochten, snelheid en plezier voor het hele gezin.",
+      "services": [
+          "Sommerrodelbahn",
+          "Aussicht auf die Schanze",
+          "Freizeitspaß",
+          "Gruppenangebote",
+          "Gastronomie in der Nähe"
+      ],
+      "services_nl": [
+          "Zomerrodelbaan",
+          "Uitzicht op de skischans",
+          "Avontuur voor jong en oud",
+          "Groepsarrangementen",
+          "Horeca nabij"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "10:00 - 17:30",
+          "tuesday": "10:00 - 17:30",
+          "wednesday": "10:00 - 17:30",
+          "thursday": "10:00 - 17:30",
+          "friday": "10:00 - 18:00",
+          "saturday": "10:00 - 18:00",
+          "sunday": "10:00 - 18:00"
+      }
+  },
+  {
+      "id": "homebase-vacation-forest-mountain-winterberg",
+      "name": "Homebase Vacation Forest & Mountain",
+      "category": "Hotels und Unterkünfte",
+      "subCategory": "Ferienwohnungen",
+      "address": "Fichtenweg 21, 59955 Winterberg",
+      "phone": "01522 4029177",
+      "website": "https://www.homebase-vacation.de",
+      "rating": 4.9,
+      "reviewCount": 32,
+      "description": "Moderne, stilvoll eingerichtete Ferienwohnungen Homebase Vacation in ruhiger Wald- und Hanglage von Winterberg. Perfekter Ausgangspunkt für Biker, Wanderer und Skifahrer.",
+      "description_nl": "Stijlvolle vakantieappartementen Homebase Vacation in Winterberg. Gelegen aan de bosrand en dicht bij het bikepark en de skiliften.",
+      "services": [
+          "Design-Ferienwohnungen",
+          "Balkon/Terrasse mit Aussicht",
+          "WLAN & Smart-TV",
+          "Bike- & Skiraum",
+          "Parkplätze inklusive"
+      ],
+      "services_nl": [
+          "Moderne appartementen",
+          "Balkon met bergpanorama",
+          "Wifi & smart tv",
+          "Veilige berging voor fiets/ski",
+          "Parkeren bij het pand"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "08:00 - 20:00",
+          "tuesday": "08:00 - 20:00",
+          "wednesday": "08:00 - 20:00",
+          "thursday": "08:00 - 20:00",
+          "friday": "08:00 - 20:00",
+          "saturday": "08:00 - 20:00",
+          "sunday": "08:00 - 20:00"
+      }
+  },
+  {
+      "id": "wohnmobilstellplatz-winterberg",
+      "name": "Wohnmobilstellplatz Winterberg",
+      "category": "Hotels und Unterkünfte",
+      "subCategory": "Campingplätze",
+      "address": "Schneilstraße 6A, 59955 Winterberg",
+      "phone": "02981 5089650",
+      "website": "https://www.wohnmobilstellplatz-winterberg.de",
+      "rating": 4.5,
+      "reviewCount": 280,
+      "description": "Großzügiger und modern ausgestatteter Wohnmobilstellplatz in Winterberg. Ruhige Lage, Stromanschluss, Ver- und Entsorgungsstationen und kurze Wege zu Loipen und Liften.",
+      "description_nl": "Ruime camperplaats in Winterberg voorzien van moderne faciliteiten, stroom en servicestation. Vlakbij wandelroutes en wintersport.",
+      "services": [
+          "Camper-Stellplätze",
+          "Stromversorgung",
+          "Frischwasser & Entsorgung",
+          "Sanitärcontainer",
+          "Ganzjährig geöffnet"
+      ],
+      "services_nl": [
+          "Camperplaatsen",
+          "Stroomaansluiting",
+          "Water en stortplaats",
+          "Sanitaire voorzieningen",
+          "Het hele jaar geopend"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "24 Stunden geöffnet",
+          "tuesday": "24 Stunden geöffnet",
+          "wednesday": "24 Stunden geöffnet",
+          "thursday": "24 Stunden geöffnet",
+          "friday": "24 Stunden geöffnet",
+          "saturday": "24 Stunden geöffnet",
+          "sunday": "24 Stunden geöffnet"
+      }
+  },
+  {
+      "id": "knappschaft-bahn-see-tagungszentrum-winterberg",
+      "name": "Tagungszentrum der Deutschen Rentenversicherung Knappschaft-Bahn-See",
+      "category": "Dienstleistungen",
+      "subCategory": "Tagungszentren",
+      "address": "Schneilstraße 11, 59955 Winterberg",
+      "phone": "02981 8070",
+      "website": "https://www.kbs.de",
+      "rating": 4.6,
+      "reviewCount": 45,
+      "description": "Modernes Schulungs- und Tagungszentrum der KBS in Winterberg. Professionelle Tagungsräume, Seminartechnik und Unterbringungsmöglichkeiten im Grünen.",
+      "description_nl": "Conferentie- en trainingscentrum van KBS in Winterberg. Moderne zalen, professionele faciliteiten en overnachtingsmogelijkheden.",
+      "services": [
+          "Tagungs- & Seminarräume",
+          "Moderne Medientechnik",
+          "Gastronomie & Verpflegung",
+          "Gästezimmer für Tagungsgäste",
+          "Ruhige Waldrandlage"
+      ],
+      "services_nl": [
+          "Vergaderzalen",
+          "Moderne audiovisuele apparatuur",
+          "Horeca & catering",
+          "Overnachtingen voor cursisten",
+          "Rustige ligging"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "07:30 - 17:00",
+          "tuesday": "07:30 - 17:00",
+          "wednesday": "07:30 - 17:00",
+          "thursday": "07:30 - 17:00",
+          "friday": "07:30 - 14:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "chalets-winterberg-vakantiehuis",
+      "name": "Chalets Winterberg",
+      "category": "Hotels und Unterkünfte",
+      "subCategory": "Ferienhäuser",
+      "address": "Fichtenweg 34b, 59955 Winterberg",
+      "phone": "",
+      "website": "https://www.chalets-winterberg.de",
+      "rating": 4.8,
+      "reviewCount": 29,
+      "description": "Gemütliche und erstklassig ausgestattete Chalets und Ferienhäuser in Winterberg. Ideal für Familien und Gruppenurlaube im Sommer wie im Winter.",
+      "description_nl": "Luxe chalets en vakantiehuizen in Winterberg. Perfect voor families en vriendengroepen dicht bij de natuur en pistes.",
+      "services": [
+          "Freistehende Chalets",
+          "Kaminofen & Sauna",
+          "Voll ausgestattete Küche",
+          "Garten & Grillplatz",
+          "Skigebietsnähe"
+      ],
+      "services_nl": [
+          "Vrijstaande chalets",
+          "Open haard & sauna",
+          "Luxe keuken",
+          "Tuin en terras",
+          "Nabij skipistes"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "09:00 - 18:00",
+          "tuesday": "09:00 - 18:00",
+          "wednesday": "09:00 - 18:00",
+          "thursday": "09:00 - 18:00",
+          "friday": "09:00 - 18:00",
+          "saturday": "09:00 - 16:00",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "haus-sonnenhang-sozialwerk-sauerland",
+      "name": "Haus Sonnenhang - Sozialwerk St. Georg / Sozialwerk Sauerland",
+      "category": "Dienstleistungen",
+      "subCategory": "Soziale Dienste",
+      "address": "Fichtenweg 44, 59955 Winterberg",
+      "phone": "02981 6900",
+      "website": "https://www.sozialwerk-sauerland.de",
+      "rating": 4.7,
+      "reviewCount": 8,
+      "description": "Haus Sonnenhang in Winterberg – Soziale Wohneinrichtung und Betreuungsangebote für Menschen mit Unterstützungsbedarf im Sauerland.",
+      "description_nl": "Haus Sonnenhang in Winterberg – sociale zorginstelling en begeleid wonen met persoonlijke aandacht.",
+      "services": [
+          "Betreutes Wohnen",
+          "Sozialpädagogische Betreuung",
+          "Tagesstrukturierung",
+          "Inklusionsprojekte",
+          "Beratung für Angehörige"
+      ],
+      "services_nl": [
+          "Begeleid wonen",
+          "Sociale ondersteuning",
+          "Dagbesteding",
+          "Inclusieprojecten",
+          "Familieadvies"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "08:00 - 16:30",
+          "tuesday": "08:00 - 16:30",
+          "wednesday": "08:00 - 16:30",
+          "thursday": "08:00 - 16:30",
+          "friday": "08:00 - 15:00",
+          "saturday": "Geschlossen",
+          "sunday": "Geschlossen"
+      }
+  },
+  {
+      "id": "shredlab-bike-academy-winterberg",
+      "name": "Shredlab Bike Academy & Guiding",
+      "category": "Ski, Bike & Sport",
+      "subCategory": "Sport & Outdoor",
+      "address": "Am Waltenberg 3 / Erlebnisberg Kappe, 59955 Winterberg",
+      "phone": "02981 9283855",
+      "website": "https://www.shredlab.de",
+      "rating": 5,
+      "reviewCount": 48,
+      "description": "Professionelle Bike Academy im Bikepark Winterberg. Fahrtechnik-Kurse, Mountainbike-Camps, Personal Coaching und Guiding für Anfänger bis Profis.",
+      "description_nl": "Professionele mountainbike school in Winterberg. Rijtechniektrainingen, camps, privélessen en gidsen in het bikepark.",
+      "services": [
+          "Mountainbike Fahrtechnikkurse",
+          "Bikepark Coaching",
+          "Kids & Youth Camps",
+          "Privat-Guiding",
+          "E-MTB Trainings"
+      ],
+      "services_nl": [
+          "MTB rijtechniek",
+          "Bikepark lessen",
+          "Jeugdkampen",
+          "Privégidsen",
+          "E-bike workshops"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "09:00 - 17:30",
+          "tuesday": "09:00 - 17:30",
+          "wednesday": "09:00 - 17:30",
+          "thursday": "09:00 - 17:30",
+          "friday": "09:00 - 18:00",
+          "saturday": "09:00 - 18:00",
+          "sunday": "09:00 - 18:00"
+      }
+  },
+  {
+      "id": "minigolf-erlebnisberg-kappe-winterberg",
+      "name": "Minigolf am Erlebnisberg Kappe",
+      "category": "Freizeit",
+      "subCategory": "Outdoor-Freizeitgebiet",
+      "address": "Kappe 2b, 59955 Winterberg",
+      "phone": "02981 908060",
+      "website": "https://www.erlebnisberg-kappe.de",
+      "rating": 4.5,
+      "reviewCount": 120,
+      "description": "18-Loch-Minigolfanlage am Erlebnisberg Kappe in Winterberg. Abwechslungsreiche Bahnen für Familien, Gruppen und Freizeitspaß inmitten der Sauerländer Natur.",
+      "description_nl": "18-holes minigolfbaan op de Erlebnisberg Kappe in Winterberg. Plezierige hindernissen voor jong en oud in een prachtige natuurlijke omgeving.",
+      "services": [
+          "18-Loch Minigolf",
+          "Schläger- und Bälleverleih",
+          "Kiosk & Eisverkauf",
+          "Erlebnisberg-Attraktionen",
+          "Familientickets"
+      ],
+      "services_nl": [
+          "18-holes midgetgolf",
+          "Materiaalverhuur",
+          "Kiosk & ijs",
+          "Attractiepark Kappe",
+          "Familiekorting"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "09:30 - 18:00",
+          "tuesday": "09:30 - 18:00",
+          "wednesday": "09:30 - 18:00",
+          "thursday": "09:30 - 18:00",
+          "friday": "09:30 - 18:00",
+          "saturday": "09:30 - 18:30",
+          "sunday": "09:30 - 18:30"
+      }
+  },
+  {
+      "id": "pferdefuhrhalterei-winterberg",
+      "name": "Pferdefuhrhalterei Winterberg",
+      "category": "Ski, Bike & Sport",
+      "subCategory": "Reitsport",
+      "address": "Am Kuhlenberg 2, 59955 Winterberg",
+      "phone": "0151 43251254",
+      "website": "",
+      "rating": 4.9,
+      "reviewCount": 22,
+      "description": "Romantische Planwagenfahrten und historische Kutschfahrten durch die malerische Landschaft rund um Winterberg. Unvergessliche Erlebnisse für Hochzeiten, Gruppen und Familien.",
+      "description_nl": "Romantische huifkartochten en koetsritten door het prachtige landschap van Winterberg. Ideaal voor families, feesten en groepsactiviteiten.",
+      "services": [
+          "Kutschfahrten",
+          "Planwagenfahrten",
+          "Hochzeitskutschen",
+          "Gruppenausflüge",
+          "Individuelle Routen"
+      ],
+      "services_nl": [
+          "Koetstochten",
+          "Huifkartochten",
+          "Trouwkoetsen",
+          "Groepsuitjes",
+          "Natuurtochten op maat"
+      ],
+      "featured": false,
+      "openingHours": {
+          "monday": "Nach Vereinbarung",
+          "tuesday": "Nach Vereinbarung",
+          "wednesday": "Nach Vereinbarung",
+          "thursday": "Nach Vereinbarung",
+          "friday": "Nach Vereinbarung",
+          "saturday": "Nach Vereinbarung",
+          "sunday": "Nach Vereinbarung"
+      }
   }
 ];
 
@@ -4722,15 +5906,15 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 };
 
 export const categories: CategoryGroup[] = [
-  { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks'] },
-  { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie'] },
+  { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
+  { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
-  { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga'] },
-  { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser'] },
-  { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder'] }
+  { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser'] },
+  { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },
+  { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder', 'Sommerrodelbahnen'] }
 ];
 
 import { AdBanner } from './types';

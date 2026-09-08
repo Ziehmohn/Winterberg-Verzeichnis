@@ -53,6 +53,7 @@ import {
   Fuel,
   Film,
   Briefcase,
+  Printer,
   LucideIcon
 } from 'lucide-react';
 
@@ -127,6 +128,9 @@ export function getCategoryStyle(category = '', subcategory = '', name = '', isP
   if (matchSubOrName('immobilien', 'makler', 'immo')) {
     return { icon: Building2, bg: 'bg-stone-100', text: 'text-stone-700', border: 'border-stone-300' };
   }
+  if (matchSubOrName('kindergarten', 'kindergärten', 'kita', 'kitas', 'familienzentrum', 'kinderbetreuung')) {
+    return { icon: Smile, bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' };
+  }
 
   // --- 3. Gesundheit & Schönheit (Kosmetikstudios, Friseure, Ärzte) ---
   if (matchSubOrName('kosmetik', 'kosmetikstudios', 'kosmetikstudio', 'nagelstudio', 'nageldesign', 'beauty', 'fußpflege', 'maniküre', 'pediküre', 'ästhetik')) {
@@ -143,6 +147,9 @@ export function getCategoryStyle(category = '', subcategory = '', name = '', isP
   }
   if (matchSubOrName('arzt', 'ärzte', 'praxis', 'mediz', 'klinik', 'doktor', 'hausarzt', 'facharzt')) {
     return { icon: Stethoscope, bg: 'bg-rose-50', text: 'text-rose-600', border: 'border-rose-200' };
+  }
+  if (matchSubOrName('sanitätshaus', 'sanitätshäuser', 'rehatechnik', 'orthopädie')) {
+    return { icon: HeartPulse, bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' };
   }
   if (matchSubOrName('physio', 'physiotherapie', 'massage', 'massagen', 'osteopathie', 'ergotherapie')) {
     return { icon: HeartPulse, bg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-200' };
