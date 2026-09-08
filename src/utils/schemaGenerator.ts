@@ -1,5 +1,6 @@
 import { Business, Job, Review } from '../types';
 import { getBusinessPath, getCategorySlug, getSubcategorySlug } from './routes';
+import { getLocalizedBusiness } from './translator';
 
 const BASE_URL = 'https://winterberg-verzeichnis.de';
 
@@ -88,12 +89,14 @@ export function generateLocalBusinessSchema(business: Business, lang: 'de' | 'nl
                 (Array.isArray(business.gallery) && business.gallery[0]) || 
                 `${BASE_URL}/winterberg-header.webp`;
 
+  const localized = getLocalizedBusiness(business, lang);
+
   const schema: any = {
     '@context': 'https://schema.org',
     '@type': schemaType,
     '@id': businessUrl,
     name: business.name,
-    description: business.description,
+    description: localized.description || business.description,
     url: business.website || businessUrl,
     image,
     telephone: business.phone || undefined,

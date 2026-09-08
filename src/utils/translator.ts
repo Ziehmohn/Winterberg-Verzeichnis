@@ -1,4 +1,15 @@
 import { Business, NewsArticle, AdBanner } from '../types';
+import translationsNlData from '../translations_nl.json';
+
+const PRETRANSLATED_BUSINESSES: Record<string, {
+  description?: string;
+  extendedDescription?: string;
+  services?: string[];
+  products?: string[];
+}> = (translationsNlData as any)?.businesses || {};
+
+const PRETRANSLATED_SERVICES: Record<string, string> = (translationsNlData as any)?.services || {};
+const PRETRANSLATED_PRODUCTS: Record<string, string> = (translationsNlData as any)?.products || {};
 
 /**
  * High-quality Dutch dictionary and phrase mapping for business directories and news in Winterberg.
@@ -517,11 +528,25 @@ export function translateServiceToDutch(service: string): string {
   const trimmed = service.trim();
   const lower = trimmed.toLowerCase();
 
+  // 1. Check pre-translated services from batch Google Translate
+  if (PRETRANSLATED_SERVICES[lower]) {
+    const match = PRETRANSLATED_SERVICES[lower];
+    return match.charAt(0).toUpperCase() + match.slice(1);
+  }
+
+  // 2. Check pre-translated products
+  if (PRETRANSLATED_PRODUCTS[lower]) {
+    const match = PRETRANSLATED_PRODUCTS[lower];
+    return match.charAt(0).toUpperCase() + match.slice(1);
+  }
+
+  // 3. Exact dictionary match
   if (SERVICES_DICTIONARY[lower]) {
     const match = SERVICES_DICTIONARY[lower];
     return match.charAt(0).toUpperCase() + match.slice(1);
   }
 
+  // 4. Substring dictionary match
   for (const [key, translation] of Object.entries(SERVICES_DICTIONARY)) {
     if (lower.includes(key)) {
       const replaced = lower.replace(new RegExp(key, 'gi'), translation);
@@ -667,17 +692,25 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
   const customServices = customNl?.services || business.services_nl;
   const customProducts = customNl?.products || business.products_nl;
 
+  const pre = PRETRANSLATED_BUSINESSES[business.id] || PRETRANSLATED_BUSINESSES[business.slug || ''];
+
   const description = (customDesc && customDesc.trim().length > 0)
-    ? customDesc
-    : translateTextToDutch(business.description || '');
+    ? customDesc.trim()
+    : (pre?.description && pre.description.trim().length > 0)
+      ? pre.description.trim()
+      : (business.description || '');
 
   const extendedDescription = (customExtended && customExtended.trim().length > 0)
-    ? customExtended
-    : (business.extendedDescription ? translateTextToDutch(business.extendedDescription) : undefined);
+    ? customExtended.trim()
+    : (pre?.extendedDescription && pre.extendedDescription.trim().length > 0)
+      ? pre.extendedDescription.trim()
+      : business.extendedDescription;
 
   let services: string[] = [];
   if (customServices && customServices.length > 0) {
     services = customServices;
+  } else if (pre?.services && pre.services.length > 0) {
+    services = pre.services;
   } else if (business.services && business.services.length > 0) {
     services = business.services.map(s => translateServiceToDutch(s));
   }
@@ -685,6 +718,8 @@ export function getLocalizedBusiness(business: Business, lang: 'de' | 'nl'): {
   let products: string[] = [];
   if (customProducts && customProducts.length > 0) {
     products = customProducts;
+  } else if (pre?.products && pre.products.length > 0) {
+    products = pre.products;
   } else if (business.products && business.products.length > 0) {
     products = business.products.map(p => translateServiceToDutch(p));
   }

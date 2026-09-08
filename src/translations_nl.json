@@ -1,0 +1,2027 @@
+{
+  "generatedAt": "2026-09-08T21:12:11.366Z",
+  "services": {
+    "suchmaschinenoptimierung (seo)": "Zoekmachineoptimalisatie (SEO)",
+    "generative engine optimization (geo)": "Generatieve motoroptimalisatie (GEO)",
+    "digitale sichtbarkeit": "Digitale zichtbaarheid",
+    "google business optimierung": "Google Bedrijfsoptimalisatie",
+    "webdesign & strategie": "Webdesign & strategie",
+    "beratung": "Advies",
+    "planung": "Plannen",
+    "lieferung": "Levering",
+    "haftpflicht- & sachversicherungen": "Aansprakelijkheids- en eigendomsverzekering",
+    "kfz-versicherung": "Auto verzekering",
+    "altersvorsorge & berufsunfähigkeit": "Pensioenvoorziening & arbeidsongeschiktheid",
+    "gewerbeversicherungen": "Commerciële verzekeringen",
+    "vor-ort-schadensregulierung": "Schadeafhandeling ter plaatse",
+    "privat- & gewerbeversicherungen": "Persoonlijke en commerciële verzekeringen",
+    "kfz- & flottenversicherung": "Auto- en wagenparkverzekering",
+    "landwirtschaftliche absicherung": "Landbouw verzekering",
+    "altersvorsorge & geldanlage": "Pensioenvoorziening & beleggingen",
+    "zahn- & krankenzusatzversicherung": "Tandarts- en aanvullende zorgverzekering",
+    "unabhängiger versicherungsvergleich": "Onafhankelijke verzekeringsvergelijking",
+    "finanzanlagen & vorsorge": "Financiële investeringen en voorzieningen",
+    "gewerbeversicherung": "Commerciële verzekeringen",
+    "baufinanzierung": "Bouwfinanciering",
+    "private krankenversicherung": "Particuliere zorgverzekering",
+    "haftpflicht- & wohngebäudeversicherung": "Aansprakelijkheids- en huiseigenarenverzekering",
+    "rechtsschutzversicherung": "Rechtsbescherming verzekering",
+    "altersvorsorge": "Pensioenplanning",
+    "unfall- & berufsunfähigkeitsschutz": "Ongevallen- en arbeidsongeschiktheidsbescherming",
+    "axa vorsorgekonzepte": "AXA pensioenconcepten",
+    "gewerbeschutz": "Commerciële bescherming",
+    "gebäude- & hausratversicherung": "Opstal- en inboedelverzekering",
+    "privatkunden-absicherung": "Verzekering particuliere klanten",
+    "kfz-versicherung & schadenservice": "Autoverzekering en schadeservice",
+    "vermögensaufbau & vorsorge": "Creatie en voorziening van activa",
+    "handwerker- & gewerbeversicherungen": "Ambachtelijke en commerciële verzekeringen",
+    "berufsunfähigkeit & altersvorsorge": "Arbeidsongeschiktheids- en pensioenvoorziening",
+    "unfall- & haftpflichtversicherung": "Ongevallen- en aansprakelijkheidsverzekering",
+    "unabhängige maklerberatung": "Onafhankelijk makelaarsadvies",
+    "sach- & vermögensabsicherung": "Bescherming van eigendommen en activa",
+    "finanz- und kapitalanlagen": "Financiële en kapitaalinvesteringen",
+    "kranken- und lebensversicherungen": "Ziektekosten- en levensverzekeringen",
+    "r+v versicherungen & vorsorge": "R+V verzekering & pensioenvoorziening",
+    "genossenschaftliche beratung": "Coöperatief advies",
+    "kfz- & sachversicherungen": "Motor- en eigendomsverzekering",
+    "geldanlage & bausparen": "Investeringen en bouwbesparingen",
+    "4-sterne-erlebnishotel": "4-sterren avonturenhotel",
+    "wellness & spa-landschaft": "Wellness- & spa-landschap",
+    "themenzimmer & suiten": "Themakamers en suites",
+    "gourmet-restaurant": "Gastronomisch restaurant",
+    "saunadorf & außenpool": "Saunadorp en buitenzwembad",
+    "direkt am kurpark": "Direct aan het kuurpark",
+    "echter deutscher bienenhonig": "Echte Duitse bijenhoning",
+    "hochsauerländer blütenhonig": "Hochsauerlandse bloesemhoning",
+    "naturgerechte bienenhaltung": "Natuurlijke bijenteelt",
+    "direktverkauf & regionalprodukt": "Directe verkoop & streekproduct",
+    "reifenservice & montage": "Bandenservice en montage",
+    "auswuchten & radwechsel": "Balanceren en verwisselen van wielen",
+    "markenreifen pkw & lkw": "Merkbanden voor auto's en vrachtwagens",
+    "felgen & zubehör": "Velgen en accessoires",
+    "reifeneinlagerung": "Banden opslag",
+    "naturschieferarbeiten": "Natuurlijk leisteenwerk",
+    "dacheindeckungen & isolierung": "Dakbedekking & Isolatie",
+    "schornsteinsanierung": "Schoorsteen renovatie",
+    "dachreparaturen & wartung": "Reparatie en onderhoud van daken",
+    "kfz-reparaturen aller marken": "Autoreparaties van alle merken",
+    "inspektion & wartung": "Inspectie & Onderhoud",
+    "fehlerdiagnose & instandsetzung": "Storingsdiagnose en reparatie",
+    "mechanik & verschleißteile": "Mechanica en slijtdelen",
+    "echter deutscher honig": "Echte Duitse honing",
+    "blüten- & waldhonig": "Bloemen- en boshoning",
+    "bienenprodukte & wabenhonig": "Bijenproducten en honingraathoning",
+    "direktverkauf vor ort": "Directe verkoop ter plaatse",
+    "3-sterne-hotel & gasthof": "3-sterrenhotel en herberg",
+    "regionales restaurant & biergarten": "Regionaal restaurant en biertuin",
+    "hauseigene minigolfanlage": "Minigolfbaan in huis",
+    "wander- & bikerfreundlich": "Wandelaar- en fietsvriendelijk",
+    "wlan & parkplätze": "WiFi en parkeren",
+    "meisterhafte fleisch- & wurstwaren": "Meesterlijke vlees- en worstproducten",
+    "eigene schlachtung & herstellung": "Eigen slachting & productie",
+    "24/7 grill- & wurstautomat": "24/7 grill- en worstmachine",
+    "partyservice & grillfleisch": "Partyservice & gegrild vlees",
+    "sauerländer spezialitäten": "Sauerlandse specialiteiten",
+    "e-mtb & fully verleih": "E-MTB & volledig verhuur",
+    "hardtails & trekkingräder": "Hardtails en trekkingfietsen",
+    "kinder-bikes & zubehör": "Kinderfietsen & accessoires",
+    "helme & protektoren": "Helmen en beschermers",
+    "direkt am einstieg skiliftkarussell / herrloh": "Direct bij de ingang van de skiliftcarrousel / Herrloh",
+    "mountainbike & e-bike verleih": "Verhuur van mountainbikes en e-bikes",
+    "kids e-mtb ab 24 zoll": "E-MTB voor kinderen vanaf 24 inch",
+    "kinder-anhänger & kindersitze": "Kinderkarren en kinderzitjes",
+    "protektoren & helme": "Beschermers en helmen",
+    "bike-depot & service": "Fietsendepot & service",
+    "e-bikes & mtbs im verleih": "E-bikes en MTB's beschikbaar voor verhuur",
+    "geführte touren & beratung": "Rondleidingen en advies",
+    "zubehör & helme": "Accessoires & Helmen",
+    "skiverleih im winter": "Skiverhuur in de winter",
+    "großer parkplatz vor ort": "Grote parkeerplaats op eigen terrein",
+    "e-mtb & trailbike verleih": "Verhuur van e-MTB's en trailfietsen",
+    "depot & schutzausrüstung": "Depot en beschermende uitrusting",
+    "familien-bikes & kinderanhänger": "Familiefietsen en kinderaanhangers",
+    "direkte lage am kahlen asten / schneewittchenhang": "Directe ligging aan Kahler Asten / Schneewittchenhang",
+    "fahrradverkauf & e-bikes": "Verkoop van fietsen en e-bikes",
+    "meisterwerkstatt & inspektion": "Meesterworkshop & inspectie",
+    "bekleidung & helm-sortiment": "Kleding- en helmassortiment",
+    "e-bike & mtb verleih": "E-bike- en MTB-verhuur",
+    "geführte e-bike touren": "Begeleide e-biketochten",
+    "e-mtb & trekking verleih": "E-MTB- en trekkingverhuur",
+    "gruppen- & firmenevents": "Groeps- en bedrijfsevenementen",
+    "fahrtechnik & guiding": "Rijtechniek & begeleiding",
+    "kombination mit gastronomie uppu": "Combinatie met gastronomie UPPU",
+    "alpin- & carving-ski verleih": "Verhuur van alpine- en carvingski's",
+    "snowboard & boots": "Snowboards en laarzen",
+    "langlauf-ausrüstung & schlitten": "Langlaufuitrusting en sleeën",
+    "skidepot & kantenschliff / wachsservice": "Skidepot en kantenslijp-/waxservice",
+    "direkt am skigebiet": "Direct aan het skigebied",
+    "fahrradfachmarkt & e-bikes": "Fietsenwinkel en e-bikes",
+    "zertifizierte meisterwerkstatt": "Gecertificeerde meesterworkshop",
+    "gravel-, trekking- & mountainbikes": "Gravel-, trekking- en mountainbikes",
+    "große bekleidungs- & zubehörabteilung": "Grote afdeling kleding & accessoires",
+    "bikeleasing (jobrad u.a.)": "Fietsleasing (JobRad etc.)",
+    "hausärztliche versorgung": "Medische thuiszorg",
+    "vorsorge & check-up 35+": "Preventie & Controle 35+",
+    "ultraschalldiagnostik (sonographie)": "Echografie diagnostiek (echografie)",
+    "ekg, belastungs-ekg & lungenfunktion": "ECG, inspannings-ECG en longfunctie",
+    "dmp-programme & impfberatung": "DMP programma’s & vaccinatieadvies",
+    "allgemeinmedizin & hausarzt": "Algemene geneeskunde en huisarts",
+    "sportmedizin & leistungsdiagnostik": "Sportgeneeskunde en prestatiediagnostiek",
+    "chirotherapie & manuelle medizin": "Chiropractie en manuele geneeskunde",
+    "who gelbfieberimpfstelle & reisemedizin": "WHO-vaccinatiecentrum tegen gele koorts en reisgeneeskunde",
+    "ultraschall & kardiologische basisdiagnostik": "Echografie en cardiologische basisdiagnostiek",
+    "hausärztliche grundversorgung": "Basis medische zorg",
+    "gesundheits- & krebsvorsorge": "Gezondheid en kankerpreventie",
+    "chroniker-programme (dmp)": "Chronicler-programma's (DMP)",
+    "laboruntersuchungen & ekg": "Laboratoriumtests en ECG",
+    "hausbesuche nach vereinbarung": "Huisbezoeken op afspraak",
+    "hausärztliche allgemeinmedizin": "Huisartsgeneeskunde",
+    "vorsorgeuntersuchungen & impfungen": "Controles & vaccinaties",
+    "labor- & ekg-diagnostik": "Laboratorium- en ECG-diagnostiek",
+    "wundversorgung & kleine chirurgie": "Wondverzorging en kleine operaties",
+    "dmp diabetes & khk": "DMP Diabetes & CHD",
+    "reisemedizin & reiseimpfberatung": "Reisgeneeskunde & reisvaccinatie advies",
+    "venenheilkunde / phlebologie": "Venopathie / Flebologie",
+    "hausärztliche geriatrie": "Algemene medische geriatrie",
+    "ultraschalldiagnostik": "Echografie diagnostiek",
+    "allgemeinmedizin & hausärztliche versorgung": "Algemene geneeskunde en gezinsgeneeskundige zorg",
+    "chirotherapie & manuelle therapie": "Chiropractie en manuele therapie",
+    "check-up untersuchungen & impfungen": "Controle onderzoeken & vaccinaties",
+    "kinder- & jugendmedizin": "Kinder- en jeugdgeneeskunde",
+    "u-untersuchungen (u2 bis j2)": "U-examens (U2 t/m J2)",
+    "schutzimpfungen & reiseberatung": "Vaccinaties & reisadvies",
+    "allergiediagnostik & asthmabetreuung": "Allergiediagnostiek en astmazorg",
+    "hör- & sehtests": "Gehoor- en zichttesten",
+    "24h zentrale notaufnahme & rettungswache": "24-uurs centrale spoedeisende hulp en reddingsstation",
+    "chirurgie, orthopädie & unfallchirurgie": "Chirurgie, orthopedie en traumachirurgie",
+    "innere medizin & kardiologie": "Interne geneeskunde en cardiologie",
+    "minimalinvasive op-verfahren (amis)": "Minimaal invasieve chirurgische procedures (AMIS)",
+    "radiologie & physiotherapiezentrum": "Centrum voor Radiologie en Fysiotherapie",
+    "ästhetische zahnheilkunde": "Esthetische tandheelkunde",
+    "professionelle zahnreinigung & prophylaxe": "Professionele tandenreiniging en profylaxe",
+    "implantologie & zahnersatz": "Implantologie & kunstgebitten",
+    "wurzelkanalbehandlung (endodontie)": "Wortelkanaalbehandeling (endodontie)",
+    "parodontaltherapie": "Parodontale therapie",
+    "allgemeine zahnheilkunde": "Algemene tandheelkunde",
+    "vorsorge & professionelle zahnreinigung": "Preventie & professionele gebitsreiniging",
+    "zahnersatz & kronen": "Kunstgebitten en kronen",
+    "zahnfleischbehandlung": "Tandvlees behandeling",
+    "schmerzarme behandlung": "Behandeling met weinig pijn",
+    "zahnvorsorge & prophylaxe": "Tandheelkundige zorg en profylaxe",
+    "konservierende zahnheilkunde": "Conservatieve tandheelkunde",
+    "hochwertiger zahnersatz": "Kunstgebitten van hoge kwaliteit",
+    "kinderzahnheilkunde": "Kindertandheelkunde",
+    "parodontosebehandlung": "Behandeling van parodontitis",
+    "moderne zahnheilkunde": "Moderne tandheelkunde",
+    "prophylaxe & pzr": "Profylaxe en PZR",
+    "zahnästhetik & bleaching": "Tandheelkundige esthetiek en bleken",
+    "behandlung für kinder & senioren": "Behandeling voor kinderen en senioren",
+    "immobilienverkauf": "Verkoop van onroerend goed",
+    "kostenfreie immobilienbewertung": "Gratis waardebepaling van onroerend goed",
+    "kaufberatung": "Koopadvies",
+    "ferienimmobilien": "Vakantie eigendommen",
+    "vermarktung & exposé-erstellung": "Marketing en exposécreatie",
+    "aktuelle immobilienangebote": "Actueel vastgoedaanbod",
+    "immobilie verkaufen": "Verkoop onroerend goed",
+    "dienste für ersterwerber eines hauses": "Diensten voor starters op de woningmarkt",
+    "immobilieninvestition": "Investering in onroerend goed",
+    "kauf und verkauf von immobilien": "Aan- en verkoop van onroerend goed",
+    "einkaufsmaklerdienste": "Inkoopmakelaardijdiensten",
+    "immobilienvermietung": "Verhuur van onroerend goed",
+    "hausverwaltung": "Vastgoedbeheer",
+    "aktuelles kinoprogramm": "Actueel bioscoopprogramma",
+    "3d-vorführungen": "3D-demonstraties",
+    "2 kinosäle": "2 bioscoopzalen",
+    "snacks & getränke": "Hapjes en drankjes",
+    "sondervorstellungen & events": "Bijzondere optredens & evenementen",
+    "persönliche beratung": "Persoonlijk advies",
+    "medikamenten-vorbestellung": "Medicijnen vooraf bestellen",
+    "rezepturherstellung": "Receptproductie",
+    "blutdruckmessung": "Bloeddrukmeting",
+    "ernährungsberatung": "Voedingsadvies",
+    "anmessen von venenstrümpfen": "Aderkousen meten",
+    "phytothek": "Fytotheek",
+    "kosmetik & körperpflege": "Cosmetica en persoonlijke verzorging",
+    "baby- & kleinkindartikel": "Baby- en peuterartikelen",
+    "bio-lebensmittel": "Biologisch voedsel",
+    "haushalt & reinigung": "Huishouding en schoonmaak",
+    "foto-service": "Fotoservice",
+    "baumarkt": "ijzerhandel",
+    "eisenwaren": "Hardware",
+    "beschläge": "Fittingen",
+    "werkzeuge & maschinen": "Gereedschappen & Machines",
+    "badplanung": "Badkamerplanning",
+    "bäderausstellung": "Badkamer tentoonstelling",
+    "sanitärinstallation": "Loodgieters installatie",
+    "frische schnittblumen": "Verse snijbloemen",
+    "hochzeitsfloristik": "Bruiloft bloemisterij",
+    "trauerfloristik": "Begrafenis bloemisterij",
+    "dekoration": "Decoratie",
+    "blumen & pflanzen": "Bloemen & Planten",
+    "floristik": "Bloemisterij",
+    "gestecke": "Regelingen",
+    "saisonale deko": "Seizoensgebonden decoratie",
+    "baumschule": "Kinderdagverblijf",
+    "gehölze & sträucher": "Houtige planten en struiken",
+    "heckenpflanzen": "haagplanten",
+    "pflanzenberatung": "Plantadvies",
+    "gaststättenbedarf": "Restaurantbenodigdheden",
+    "hotelbedarf": "Hotelbenodigdheden",
+    "gastro-zubehör": "Gastro-accessoires",
+    "baustoffe": "Bouwmaterialen",
+    "baumarktartikel": "Artikelen uit de ijzerhandel",
+    "werkzeuge": "Gereedschap",
+    "sportbekleidung": "Sportkleding",
+    "outdoor-ausrüstung": "Buitenuitrusting",
+    "wanderschuhe": "Wandelschoenen",
+    "freizeitmode": "Casual mode",
+    "accessoires": "Accessoires",
+    "outdoor-bekleidung": "Outdoorkleding",
+    "wander-equipment": "Wandeluitrusting",
+    "sportschuhe": "Sportschoenen",
+    "herrenmode": "Herenmode",
+    "markenbekleidung": "Merkkleding",
+    "schuhe": "Schoenen",
+    "markenschuhe": "Merkschoenen",
+    "familienmode": "Familie mode",
+    "kinderkleidung": "Kinderkleding",
+    "wohnartikel": "Home artikelen",
+    "damenmode": "Damesmode",
+    "kindermode": "Kindermode",
+    "wohnaccessoires": "Woonaccessoires",
+    "griechische spezialitäten": "Griekse specialiteiten",
+    "speisen vor ort": "Ter plaatse dineren",
+    "zum mitnehmen": "Om mee te nemen",
+    "terrasse": "Terras",
+    "traditionelle thai-massage": "Traditionele Thaise massage",
+    "wellness": "Welzijn",
+    "entspannung": "Ontspanning",
+    "physiotherapie": "Fysiotherapie",
+    "kinderphysiotherapie": "Kinderfysiotherapie",
+    "manuelle therapie": "Manuele therapie",
+    "kosmetik": "Cosmetica",
+    "gesichtsbehandlung": "Gezichtsbehandeling",
+    "ästhetik": "Esthetiek",
+    "tierphysiotherapie": "Dierenfysiotherapie",
+    "bewegungstherapie": "Bewegingstherapie",
+    "hundephysiotherapie": "Hondenfysiotherapie",
+    "pferdephysiotherapie": "Fysiotherapie voor paarden",
+    "reitunterricht": "Paardrijlessen",
+    "westernreiten": "Western rijden",
+    "klassisches reiten": "Klassiek rijden",
+    "reitverein": "Paardrijclub",
+    "yoga": "Yoga",
+    "yogakurse": "Yogalessen",
+    "übernachtung": "Overnachting",
+    "frühstück": "Ontbijt",
+    "wlan": "WiFi",
+    "parkplätze": "Parkeerplaatsen",
+    "eis": "IJs",
+    "kaffee": "Koffie",
+    "kaffeespezialitäten": "Koffie specialiteiten",
+    "abholung": "Ophalen",
+    "lieferdienst": "Bezorgservice",
+    "obst": "vrucht",
+    "gemüse": "groenten",
+    "regionale produkte": "Regionale producten",
+    "ambulante pflege": "Ambulante zorg",
+    "tagespflege": "Dagopvang",
+    "pflegedienst": "Verpleegkundige dienst",
+    "sonnenterrasse": "Zonneterras",
+    "ausflugsziel": "Excursiebestemming",
+    "gehobene küche": "Lekker eten",
+    "wein": "wijn"
+  },
+  "products": {
+    "seo-audits": "SEO-audits",
+    "geo-strategiepläne": "GEO strategische plannen",
+    "content-pakete": "Inhoud pakketten",
+    "lokale google-maps-optimierung": "Lokale Google Maps-optimalisatie",
+    "hochwertige büromöbel": "Kantoormeubilair van hoge kwaliteit",
+    "tischsysteme": "Tafelsystemen",
+    "schranksysteme": "Kastsystemen",
+    "drehstühle": "Draaistoelen",
+    "roll- & standcontainer": "Rol- en staande containers",
+    "komplettausrüstung konferenzräume": "Volledig uitgeruste conferentiezalen",
+    "höhenverstellbare tisch": "In hoogte verstelbare tafel",
+    "e-tische": "E-tafels",
+    "kostenlose immobilienbewertung": "Gratis waardebepaling van onroerend goed",
+    "exklusiv-exposés": "Exclusieve exposés",
+    "suchaufträge für kaufinteressenten": "Zoek bestellingen voor potentiële kopers",
+    "kinogutscheine": "Bioscoopvouchers",
+    "popcorn & nachos": "Popcorn en nacho's",
+    "kino-tickets": "Bioscoopkaartjes"
+  },
+  "businesses": {
+    "1": {
+      "description": "Wij zijn professionals! Wij bieden alle soorten autoreparaties aan.",
+      "services": [],
+      "products": []
+    },
+    "2": {
+      "description": "Uw vriendelijke autowerkplaats in Winterberg-Siedlinghausen. Snel, goedkoop en betrouwbaar.",
+      "services": [],
+      "products": []
+    },
+    "3": {
+      "description": "Bosch autoservice en werkplaatsdiensten voor alle merken in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "4": {
+      "description": "Uw meesterwinkel voor auto's en tweewielers in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "5": {
+      "description": "Betrouwbare service, merkoverschrijdende expertise en maximale precisie. Hoogwaardige upgrades, technische en prestatieoplossingen.",
+      "services": [],
+      "products": []
+    },
+    "6": {
+      "description": "Bikepark, zomerrodelbaan en klimbos - plezier voor het hele gezin.",
+      "services": [],
+      "products": []
+    },
+    "7": {
+      "description": "Timmerlieden NRW - Team Compact Ambachten met ideeën!",
+      "services": [],
+      "products": []
+    },
+    "8": {
+      "description": "Stockhausen Trappen - uw specialist voor individuele trappenbouw.",
+      "services": [],
+      "products": []
+    },
+    "9": {
+      "description": "Rudolf Ittermann timmerwerkplaats in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "10": {
+      "description": "Daniel Sögtrop timmerwerk - uw contactpersoon voor hout en meubels.",
+      "services": [],
+      "products": []
+    },
+    "11": {
+      "description": "Uw stomerij in Winterberg voor verstelwerk, dekbedreiniging, biochemische reiniging, strijkwerk en grootwasgoed.",
+      "services": [],
+      "products": []
+    },
+    "12": {
+      "description": "Elektrische installaties en gespecialiseerd bedrijf.",
+      "services": [],
+      "products": []
+    },
+    "13": {
+      "description": "Elektrische installaties",
+      "services": [],
+      "products": []
+    },
+    "14": {
+      "description": "Elektrische installaties",
+      "services": [],
+      "products": []
+    },
+    "15": {
+      "description": "Elektrische installaties",
+      "services": [],
+      "products": []
+    },
+    "16": {
+      "description": "Meester-dakdekkersbedrijf",
+      "services": [],
+      "products": []
+    },
+    "17": {
+      "description": "Dakbedekking",
+      "services": [],
+      "products": []
+    },
+    "18": {
+      "description": "Meester dakdekker grind",
+      "services": [],
+      "products": []
+    },
+    "19": {
+      "description": "Boodschappen, vers gebak, fruit en groenten.",
+      "services": [],
+      "products": []
+    },
+    "20": {
+      "description": "Boodschappen, vers gebak, fruit en groenten.",
+      "services": [],
+      "products": []
+    },
+    "21": {
+      "description": "Beste kwaliteit tegen een lage prijs.",
+      "services": [],
+      "products": []
+    },
+    "22": {
+      "description": "EDEKA Löffler - versheid en variatie in het hart van Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "23": {
+      "description": "Hoogwaardige producten tegen de originele ALDI-prijs.",
+      "services": [],
+      "products": []
+    },
+    "24": {
+      "description": "Boodschappen en artikelen voor de dagelijkse behoeften.",
+      "services": [],
+      "products": []
+    },
+    "25": {
+      "description": "EDEKA-markt met een divers aanbod.",
+      "services": [],
+      "products": []
+    },
+    "26": {
+      "description": "Tennisclub in Niedersfeld met 3 gravelbanen.",
+      "services": [],
+      "products": []
+    },
+    "27": {
+      "description": "Tennisclub in Züschen met zandbanen.",
+      "services": [],
+      "products": []
+    },
+    "28": {
+      "description": "Tennisclub in Winterberg Winterberg met gravelbanen.",
+      "services": [],
+      "products": []
+    },
+    "29": {
+      "description": "Tennisclub in Siedlinghausen (geen gravelbanen).",
+      "services": [],
+      "products": []
+    },
+    "30": {
+      "description": "Voetbalclub in Winterberg Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "31": {
+      "description": "Voetbal- en sportclub in Züschen.",
+      "services": [],
+      "products": []
+    },
+    "32": {
+      "description": "Sportclub in Silbach.",
+      "services": [],
+      "products": []
+    },
+    "33": {
+      "description": "Afdeling voetbal (2 seniorenteams en meerdere jeugdteams), populaire sporten (gymnastiek en fasciatraining), wervelkolomgymnastiek, Qi Gong, meditatie.",
+      "services": [],
+      "products": []
+    },
+    "34": {
+      "description": "Voetbalclub in Niedersfeld.",
+      "services": [],
+      "products": []
+    },
+    "35": {
+      "description": "Uw belastingadvies in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "36": {
+      "description": "Accountants en belastingadviseurs.",
+      "services": [],
+      "products": []
+    },
+    "37": {
+      "description": "Belastingadviseur in Silbach.",
+      "services": [],
+      "products": []
+    },
+    "38": {
+      "description": "Belastingadviesbureau in Züschen.",
+      "services": [],
+      "products": []
+    },
+    "39": {
+      "description": "Zakelijk en fiscaal advies in Siedlinghausen.",
+      "services": [],
+      "products": []
+    },
+    "40": {
+      "description": "Reclamebureau en webdesign in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "41": {
+      "description": "Reclamebureau voor holistische communicatie.",
+      "services": [],
+      "products": []
+    },
+    "42": {
+      "description": "Uw reclamebureau in Siedlinghausen.",
+      "services": [],
+      "products": []
+    },
+    "43": {
+      "description": "Ontwerp en reclame in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "44": {
+      "description": "Simon Kräling is adviseur digitale zichtbaarheid uit Winterberg in Sauerland. Het ondersteunt bedrijven uit alle sectoren bij het bereiken van hun doelgroepen precies daar waar ze naar op zoek zijn: zowel in klassieke zoekmachines als in moderne AI-zoeksystemen (Generative Engine Optimization - GEO). Door deze combinatie combineert hij technische kennis met praktische strategieën. Zo creëert hij meer digitale onafhankelijkheid en meetbaar succes voor zijn klanten.",
+      "services": [
+        "Zoekmachineoptimalisatie (SEO)",
+        "Generatieve motoroptimalisatie (GEO)",
+        "Digitale zichtbaarheid",
+        "Google Bedrijfsoptimalisatie",
+        "Webdesign & strategie"
+      ],
+      "products": [
+        "SEO-audits",
+        "GEO strategische plannen",
+        "Inhoud pakketten",
+        "Lokale Google Maps-optimalisatie"
+      ]
+    },
+    "45": {
+      "description": "Advocaat en notaris in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "46": {
+      "description": "Advocaat in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "47": {
+      "description": "Advocaat in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "48": {
+      "description": "Advocaat in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "49": {
+      "description": "Advocaat in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "100": {
+      "description": "Moderne modewinkel in hartje Winterberg met de nieuwste dames- en herenmode, schoenen en accessoires van toonaangevende trendmerken.",
+      "services": [],
+      "products": []
+    },
+    "101": {
+      "description": "Streetwear, skate- & snowboardkleding, schoenen, petten en accessoires direct aan de hoofdstraat van Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "102": {
+      "description": "Exclusieve herenmode, zakelijke kleding, sportieve vrijetijdsmode, schoenen en bijpassende accessoires in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "103": {
+      "description": "Traditioneel modehuis met een grote keuze aan dames- en herenkleding, schoenen, ondergoed en outdoorcollecties.",
+      "services": [],
+      "products": []
+    },
+    "104": {
+      "description": "Grote mode- en sportwinkel in de Neue Mitte Winterberg. Enorme keuze aan merkkleding, schoenen, sportschoenen, wandelschoenen en huishoudtextiel tegen betaalbare outletprijzen.",
+      "services": [],
+      "products": []
+    },
+    "105": {
+      "description": "Individuele mode, stijlvolle dameskleding, schoenen en accessoires voor elke gelegenheid.",
+      "services": [],
+      "products": []
+    },
+    "106": {
+      "description": "Kantoorinrichting en individueel advies. Verkoop van kantoorapparatuur.",
+      "services": [
+        "Advies",
+        "Plannen",
+        "Levering"
+      ],
+      "products": [
+        "Kantoormeubilair van hoge kwaliteit",
+        "Tafelsystemen",
+        "Kastsystemen",
+        "Draaistoelen",
+        "Rol- en staande containers",
+        "Volledig uitgeruste conferentiezalen",
+        "In hoogte verstelbare tafel",
+        "E-tafels"
+      ],
+      "extendedDescription": "<h2><strong>K-Office kantoorinrichting</strong></h2><p>Met meer dan 50 jaar ervaring in de kantoorinrichtingsbranche kennen wij de behoeften van onze klanten zeer goed. Profiteer ervan. Naast gecertificeerde kwaliteit bieden wij u advies, planning en levering uit één hand. Wij willen u ook graag overtuigen. U zult versteld staan ​​hoe gemakkelijk het kopen van kantoormeubilair kan zijn. Gegarandeerd!</p><p><br></p><h2><strong>Onze diensten</strong></h2><p>Perfect op elkaar afgestemd kantoormeubilair voor een productieve en gezonde werkplek.</p><p><br></p><ul><li><strong>Advies</strong></li><li><strong>Planning</strong></li><li><strong>Levering</strong></li></ul>"
+    },
+    "107": {
+      "description": "Tiroolse keuken in een traditionele sfeer.",
+      "services": [],
+      "products": []
+    },
+    "108": {
+      "description": "Gezellig restaurant met huisgemaakte gerechten",
+      "services": [],
+      "products": []
+    },
+    "109": {
+      "description": "Restaurant",
+      "services": [],
+      "products": []
+    },
+    "110": {
+      "description": "Restaurant",
+      "services": [],
+      "products": []
+    },
+    "111": {
+      "description": "Eenvoudige plek voor hamburgers en brunch",
+      "services": [],
+      "products": []
+    },
+    "112": {
+      "description": "Restaurant",
+      "services": [],
+      "products": []
+    },
+    "113": {
+      "description": "Informele plek voor Italiaanse pasta",
+      "services": [],
+      "products": []
+    },
+    "114": {
+      "description": "Restaurant",
+      "services": [],
+      "products": []
+    },
+    "115": {
+      "description": "Restaurant",
+      "services": [],
+      "products": []
+    },
+    "116": {
+      "description": "Bergpanorama en internationale gerechten",
+      "services": [],
+      "products": []
+    },
+    "117": {
+      "description": "Banken en diensten.",
+      "services": [],
+      "products": []
+    },
+    "118": {
+      "description": "Bank- en adviescentrum.",
+      "services": [],
+      "products": []
+    },
+    "119": {
+      "description": "Banken en diensten.",
+      "services": [],
+      "products": []
+    },
+    "120": {
+      "description": "Geldoverdrachtservice en bank.",
+      "services": [],
+      "products": []
+    },
+    "121": {
+      "description": "Banken en diensten.",
+      "services": [],
+      "products": []
+    },
+    "122": {
+      "description": "Banken en diensten.",
+      "services": [],
+      "products": []
+    },
+    "123": {
+      "description": "Klimmen - Avontuurlijke bergkap.",
+      "services": [],
+      "products": []
+    },
+    "124": {
+      "description": "Fietspark op de berghelling met stoeltjesliften naar de bergroutes in het bos en fietsverhuur.",
+      "services": [],
+      "products": []
+    },
+    "125": {
+      "description": "De panoramische avonturenbrug in Winterberg met uitkijkplatforms.",
+      "services": [],
+      "products": []
+    },
+    "126": {
+      "description": "Minigolfbaan op de avonturenberg Kappe.",
+      "services": [],
+      "products": []
+    },
+    "127": {
+      "description": "Het hart van de avonturenberg Kappe, populair bij jong en oud.",
+      "services": [],
+      "products": []
+    },
+    "128": {
+      "description": "Het spel wordt gespeeld op gevarieerde banen met verschillende obstakels.",
+      "services": [],
+      "products": []
+    },
+    "129": {
+      "description": "Virtual reality gaming (ideaal voor gezinnen, vrijgezellenfeesten, evenementen of als indoor alternatief bij slecht weer)",
+      "services": [],
+      "products": []
+    },
+    "130": {
+      "description": "Indoor Arena Full-One Lasertag Winterberg voor kinderverjaardagen, JGA's & evenementen - het ideale slechtweeralternatief en actie voor groepen.",
+      "services": [],
+      "products": []
+    },
+    "131": {
+      "description": "Uw VW, Audi & VW bedrijfswagendealer in Winterberg. Eersteklas service voor uw auto.",
+      "services": [],
+      "products": []
+    },
+    "132": {
+      "description": "Uw Toyota servicepartner voor zowel nieuwe auto's, gebruikte auto's, werkplaatsen voor andere merken.",
+      "services": [],
+      "products": []
+    },
+    "133": {
+      "description": "Autodealer in Winterberg. Verkoop van nieuwe en gebruikte auto's.",
+      "services": [],
+      "products": []
+    },
+    "134": {
+      "description": "Beleef een heerlijke vakantie bij UplandParcs Sauerland! Luxe accommodaties midden in de natuur.",
+      "services": [],
+      "products": []
+    },
+    "135": {
+      "description": "Ontdek UplandParcs Winterberg - luxe vakantiehuizen op een geweldige locatie. Ideaal voor gezinnen en actieve vakantiegangers.",
+      "services": [],
+      "products": [],
+      "extendedDescription": "<h2><strong>Uw perfecte vakantie op UplandParcs Winterberg</strong></h2><p><br></p><p>Verheug u op een onvergetelijke vakantie op vakantiepark UplandParcs Winterberg! Hier wachten u moderne, op het zuiden gelegen vakantiehuizen voor 4 tot 12 personen, waarin ook uw huisdieren zich helemaal thuis zullen voelen. Elk huis verwelkomt u met een luxe inrichting, hoogwaardige keukens, gezellige open haarden en praktische opslagruimtes voor fietsen of ski's. Een absoluut hoogtepunt voor ontspanning na een actieve dag in de frisse lucht is uw eigen sauna, die in de huizen al op u wacht voor 6, 8 en 12 personen.</p><p><br></p><h2><strong>Recreatie en plezier voor het hele gezin</strong></h2><p><br></p><p>Direct op het terrein vindt u het ontvangstgebouw met onder meer een bakkerij voor verse broodjes en heerlijke snacks. Terwijl u ontspant op het terras of aan de picknicktafels, kunnen uw kinderen zich naar hartelust uitleven in de moderne, veilige speeltuin met een kunstgrasvoetbalveld en een groot ingegraven springkussen. Zo hoeven jong en oud zich gegarandeerd geen moment te vervelen.</p><p><br></p><h2><strong>Slimme aankomst en duurzaam comfort</strong></h2><p><br></p><p>Dankzij het slimme concept ‘Vakantiepark 2.0’ kunt u volkomen ontspannen aan uw vakantie beginnen: u checkt zelf in met elektronische deursloten, en dat is geheel ongecompliceerd. Om het comfort compleet te maken, wordt uw accommodatie dankzij slimme bediening automatisch opgewarmd tot een comfortabele temperatuur voordat u aankomt. Ook over uw auto hoeft u zich geen zorgen te maken: er zijn parkeerplaatsen direct naast het huis en er zijn geschikte laadpalen voor elektrische voertuigen. Geniet van ontspannende dagen in het Sauerland, waar duurzaamheid ook klopt dankzij zonne-energiesystemen op de daken!</p>"
+    },
+    "136": {
+      "description": "Vakantieappartement met fantastisch uitzicht op de bergen.",
+      "services": [],
+      "products": []
+    },
+    "137": {
+      "description": "Luxe vakantieappartement Bergresidence.",
+      "services": [],
+      "products": []
+    },
+    "138": {
+      "description": "Comfortabel vakantiehuis Dumel voor een ontspannen verblijf.",
+      "services": [],
+      "products": []
+    },
+    "139": {
+      "description": "Hapimag resort in Winterberg. Vakanties voor het hele gezin met wellness en leuke activiteiten.",
+      "services": [],
+      "products": []
+    },
+    "140": {
+      "description": "Het bekende en populaire hotel in Winterberg. Wellness, gastronomie en directe nabijheid van de skilift.",
+      "services": [],
+      "products": []
+    },
+    "142": {
+      "description": "Café in Winterberg. Populaire ontmoetingsplaats met live-evenementen, dans- en quizavonden.",
+      "services": [],
+      "products": []
+    },
+    "143": {
+      "description": "Gastropub in Siedlinghausen. Biedt zitplaatsen buiten en honden zijn toegestaan.",
+      "services": [],
+      "products": []
+    },
+    "144": {
+      "description": "Populaire pub met traditionele inrichting, Ierse bieren van de tap en sport op groot scherm.",
+      "services": [],
+      "products": []
+    },
+    "145": {
+      "description": "Cocktailbar in Winterberg. Honden toegestaan.",
+      "services": [],
+      "products": []
+    },
+    "rewe-winterberg": {
+      "description": "Uw REWE supermarkt in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "nagel": {
+      "description": "AUTOREPARATIES",
+      "services": [],
+      "products": []
+    },
+    "siedlinghausen-elektro-2": {
+      "description": "Elektrische installaties en speciaalzaken in Winterberg-Siedlinghausen.",
+      "services": [],
+      "products": []
+    },
+    "mollseifer-hof": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "eickmann-bau": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "brinkmann-bau": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "hermann-josef-kiemen": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "wanderlust-restaurant": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "bennys-kartoffelkiste": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "andres-almstubn": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "ritmus-restaurant": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "die-sperre": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "gruener-apfel": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "restaurant-athen": {
+      "description": "Traditionele gegrilde vis en vlees, plus bifteki, in een informeel Grieks restaurant met terras.",
+      "services": [
+        "Griekse specialiteiten",
+        "Ter plaatse dineren",
+        "Om mee te nemen",
+        "Terras"
+      ],
+      "products": []
+    },
+    "pizzahaus-winterberg": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "pizzeria-dani": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "colosseum": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "pizzeria-venezia": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "da-salvatore": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "markus-klauke-gmbh": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "malerbetrieb-schnorbus": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "maler-leber": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "gartenbau-biene": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "garna-garten": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "tielke-garten": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "ralph-luetteken": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "creative-garden": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "santherm-heizung": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "lefarth-braun": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "schoermann": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "3werk-haustechnik": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "jens-winzenick": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "senge-gmbh": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "atmos-ecoheat": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "schuhhaus-winterberg": {
+      "description": "Speciaalzaak voor merkschoenen, comfortabele schoenen, wandelschoenen, kinderschoenen en orthopedische inlegzolen & schoenadvies in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "daswerk-friseure": {
+      "description": "Kapsalon in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "hair-anselm-winkler": {
+      "description": "Kapsalon met diensten zoals haarkleuring, haarstyling, balayage, föhnen en permanenten.",
+      "services": [],
+      "products": []
+    },
+    "winterberger-barber-simply-hair": {
+      "description": "Herenkapper in Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "brieden-friseur": {
+      "description": "Uw kapper in Winterberg. Gespecialiseerd in haarkleuring en haarstyling.",
+      "services": [],
+      "products": []
+    },
+    "amers-style": {
+      "description": "kapsalon. De diensten omvatten haarstyling, haarkleuring en epileren van wenkbrauwen.",
+      "services": [],
+      "products": []
+    },
+    "haarschneiderei": {
+      "description": "Kapsalon in Winterberg met focus op haarkleuring en haarstyling.",
+      "services": [],
+      "products": []
+    },
+    "hairfeeling-kai-padberg": {
+      "description": "Kapsalon in de wijk Hildfeld.",
+      "services": [],
+      "products": []
+    },
+    "hairlounge-by-hannah": {
+      "description": "Kapsalon in Züschen.",
+      "services": [],
+      "products": []
+    },
+    "friseursalon-koch": {
+      "description": "Kapsalon in de wijk Züschen.",
+      "services": [],
+      "products": []
+    },
+    "cutja": {
+      "description": "Kapsalon in Siedlinghausen. Gespecialiseerd in bruidskapsels, vlechten en opsteekkapsels.",
+      "services": [],
+      "products": []
+    },
+    "weinlaedchen-pfaelzer": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "wineland": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "gasthof-zur-post-neuastenberg": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "clemens-altastenberg": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "nordhang-jause": {
+      "description": "Rustieke hut in wintersportgebied direct aan de skilift met huiselijke Duitse keuken en zonneterras.",
+      "services": [],
+      "products": []
+    },
+    "hotel-altastenberg": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "alm-salettl": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "brabander-skihutte": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "quicks-skihutte": {
+      "description": "Skihut met huisgemaakte keuken, snacks, soepen, zelfgemaakt gebak en een grote buitenruimte.",
+      "services": [],
+      "products": []
+    },
+    "rauher-busch": {
+      "description": "Gezellige, rustieke skihut met warme en koude Duitse buffetmaaltijden, bier en koffie van de tap.",
+      "services": [],
+      "products": []
+    },
+    "bei-moppi": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "schirmbar-postwiese": {
+      "description": "",
+      "services": [],
+      "products": []
+    },
+    "escape-room-winterberg": {
+      "description": "Escape roomcentrum in Winterberg-Altastenberg. Spannende puzzelkamers zoals “Max Disappearance” en “Lost in Paradise” voor teams, families en groepen.",
+      "services": [],
+      "products": []
+    },
+    "foxx-club-winterberg": {
+      "description": "Moderne binnenspeeltuin in resort Schöner Asten in Altastenberg met klimfaciliteiten, trampolines, buisglijbanen en plezier voor kinderen.",
+      "services": [],
+      "products": []
+    },
+    "monkey-island-winterberg": {
+      "description": "Grote binnenspeeltuin en gezinsavonturenwereld in Winterberg met klimvulkaan, trampolines, draaimolen, funpark en peutergedeelte.",
+      "services": [],
+      "products": []
+    },
+    "fun-fitness-24-winterberg": {
+      "description": "Moderne 24/7 fitnessstudio in Winterberg. 24 uur per dag geopend voor apparatuurtraining, uithoudingsvermogen, vrije gewichtenruimte, voedingsadvies en personal training.",
+      "services": [],
+      "products": []
+    },
+    "corpus-pro-winterberg": {
+      "description": "Fitness- en gezondheidsstudio in Winterberg met de modernste Matrix-apparatuur, losse gewichten en cardioruimte, voedingsadvies en individuele personal training.",
+      "services": [],
+      "products": []
+    },
+    "koerperformen-winterberg": {
+      "description": "Effectieve EMS-training van het hele lichaam in slechts 20 minuten per week met een personal trainer in het centrum van Winterberg.",
+      "services": [],
+      "products": []
+    },
+    "fitnessclub-niedersfeld": {
+      "description": "Fitnessclub zonder winstoogmerk in Winterberg-Niedersfeld met een moderne kracht- en duurruimte, cursussen en een familiale sfeer.",
+      "services": [],
+      "products": []
+    },
+    "hotel-herrloh": {
+      "description": "Gezellig 3-sterrenhotel direct aan de voet van de Herrloh en de St. Georg-skischans in Winterberg. Ideale locatie voor skiërs, wandelaars en actieve vakantiegangers met restaurant en zonneterras.",
+      "services": [],
+      "products": []
+    },
+    "cafe-extrablatt-winterberg": {
+      "description": "Populair café & restaurant in hartje Winterberg aan de Untere Pforte met groot zonneterras, dagelijks uitgebreid ontbijtbuffet, burgers, pizza, cocktails en koffiespecialiteiten.",
+      "services": [],
+      "products": []
+    },
+    "markt-alm-winterberg": {
+      "description": "Gezellig alpine dineren in het Lodge Hotel op Waltenberg. Biedt 's ochtends een uitgebreid alpine ontbijtbuffet en overdag hartige specialiteiten uit de Alpen en klassiekers uit het Sauerland.",
+      "services": [],
+      "products": []
+    },
+    "bowlhaus-winterberg": {
+      "description": "Modern bowling- en recreatiecentrum in Winterberg met 8 competitieve bowlingbanen, discobowling op zaterdag, pooltafels, darts, airhockey en een restaurantgedeelte met hamburgers, snacks en drankjes.",
+      "services": [],
+      "products": []
+    },
+    "landhotel-gasthof-zur-post": {
+      "description": "Traditioneel, gezellig landhotel en herberg in Winterberg-Langewiese. Sauerlandse gastvrijheid, comfortabele kamers en een ideaal startpunt voor wandelaars (Rothaarsteig) en wintersporters.",
+      "services": [],
+      "products": []
+    },
+    "landgasthof-gilsbach": {
+      "description": "Door een familie gerunde 3-sterren herberg in Winterberg-Langewiese met gezellige kamers, regionale Sauerlandse verse keuken, prachtige uitzichten en directe toegang tot wandelpaden en langlaufloipes.",
+      "services": [],
+      "products": []
+    },
+    "haus-berchstein": {
+      "description": "Groot, modern groepsvakantiehuis in Winterberg-Langewiese voor maximaal 25 personen met 11 slaapkamers, 8 badkamers, grote gemeenschappelijke ruimte, tuin en panoramisch uitzicht - ideaal voor gezinnen, vriendengroepen en seminars.",
+      "services": [],
+      "products": []
+    },
+    "friseursalon-farbspiel-langewiese": {
+      "description": "Moderne kapsalon in Langewiese. Professionele kniptechnieken, kleurverfijningen, balayage, permanenten, vlechten en opsteekkapsels, evenals wenkbrauw- en wimperverzorging.",
+      "services": [],
+      "products": []
+    },
+    "salon-farbspiel-siedlinghausen": {
+      "description": "Uw feel-good kapsalon in Winterberg-Siedlinghausen voor passende kapsels, briljante kleuringen, styling en haarverzorging in een ontspannen sfeer.",
+      "services": [],
+      "products": []
+    },
+    "standpunkt-verlag": {
+      "description": "Regionale uitgeverij en mediabureau in Winterberg-Siedlinghausen. Uitgever van hoogwaardige regionale en lifestylemagazines (o.a. Woll-Magazin, Heimatliebe), printmedia, redactionele en marketingdiensten.",
+      "services": [],
+      "products": []
+    },
+    "baeckerei-gerke-langewiese": {
+      "description": "Traditionele ambachtelijke bakkerij en gezellige dorpswinkel in Winterberg-Langewiese. Verse broodjes, handgebakken broden, taarten, koffiespecialiteiten en dagelijkse boodschappen.",
+      "services": [],
+      "products": []
+    },
+    "tinq-tankautomat-langewiese": {
+      "description": "Modern 24-uurs automatisch tankstation aan de hoofdweg in Winterberg-Langewiese voor auto's en vrachtwagens met EC-, creditcard- en wagenparkkaartbetalingen.",
+      "services": [],
+      "products": []
+    },
+    "jet-tankstelle-winterberg": {
+      "description": "Benzinestation van het merk JET in Winterberg met goedkope brandstof, moderne winkel, bistro-snacks (belegde baguettes, bockworst, gehaktballen, koffie to go), crushed ijs, autoverzorging en self-carwash.",
+      "services": [],
+      "products": []
+    },
+    "aral-tankstelle-winterberg": {
+      "description": "Aral-tankstation in Winterberg Am Hagenblech. 24/7 geopend met Aral brandstoffen waaronder Ultimate, REWE To Go Shop, PetitBistro met verse snacks, koffiespecialiteiten, truckdiesel en carwash.",
+      "services": [],
+      "products": []
+    },
+    "calpam-tankautomat-zueschen": {
+      "description": "Calpam 24-uurs automatisch tankstation in Winterberg-Züschen. 24 uur per dag snel en ongecompliceerd tanken met EC- en tankkaarten in de Nuhnetalstrasse.",
+      "services": [],
+      "products": []
+    },
+    "baeckerei-isken-am-waltenberg": {
+      "description": "Populair bakkerij-café van bakkerij Isken in hartje Winterberg aan de Am Waltenbergpromenade. Grote ontbijtselectie, koffiespecialiteiten, verse ambachtelijke broodjes, brood en fijne taarten.",
+      "services": [],
+      "products": []
+    },
+    "baeckerei-gerke-hauptstrasse": {
+      "description": "Traditionele ambachtelijke bakkerij in het centrum van Winterberg. Krokante broodjes, traditioneel Sauerlands natuurzuurdesembrood, gebak en snacks.",
+      "services": [],
+      "products": []
+    },
+    "cafe-engemann-winterberg": {
+      "description": "Traditioneel patisseriecafé op de Waltenberg in Winterberg. Bekend om de zelfgemaakte taarten, handgemaakte chocolaatjes, heerlijke zoete deegwaren en het gezellige ontbijtaanbod.",
+      "services": [],
+      "products": []
+    },
+    "landbaeckerei-sommer-winterberg": {
+      "description": "Tak van de Landbäckerei Sommer in de Neue Mitte Winterberg. Vers brood, diverse broodjes, snacks, belegde broodjes en koffiespecialiteiten voor onderweg of om te blijven hangen.",
+      "services": [],
+      "products": []
+    },
+    "baeckerei-isken-rewe-winterberg": {
+      "description": "Bakkerij- en caféfiliaal Isken in het REWE Center aan de Poststrasse in Winterberg. Vers gebak, ontbijtsnacks, broodjes en koffiespecialiteiten met een gezellige zithoek.",
+      "services": [],
+      "products": []
+    },
+    "baeckerei-isken-niedersfeld": {
+      "description": "Hoofdkantoor en traditioneel bakkerij-café van bakkerij Isken in Winterberg-Niedersfeld. Ambachtelijk brood van hoge kwaliteit, heerlijk gebak, chocoladewinkel, uitgebreid ontbijt en café-aanbod.",
+      "services": [],
+      "products": []
+    },
+    "cafe-kraemer-winterberg": {
+      "description": "Gezellig bakkerij-café en banketbakkerij aan de Hagenstrasse in het centrum van Winterberg. Verse brood- en broodjesspecialiteiten, handgemaakte taarten, taarten en een heerlijk ontbijt.",
+      "services": [],
+      "products": []
+    },
+    "tismes-baeckerei-neuastenberg": {
+      "description": "Gezellige bakkerij & café in Winterberg-Neuastenberg aan de Winterberger Straße. Verse broodjes, ambachtelijk brood, gebak, ontbijt en koffie voor vakantiegangers, skiërs en locals.",
+      "services": [],
+      "products": []
+    },
+    "tismes-baeckerei-siedlinghausen": {
+      "description": "Traditionele familiebakkerij en gezellig café in Winterberg-Siedlinghausen aan de Kahlenbergstraße. Meesterlijk ambachtelijk gebak, taarten, taarten, ontbijt- en koffiespecialiteiten.",
+      "services": [],
+      "products": []
+    },
+    "provinzial-simon-cramer-winterberg": {
+      "description": "Uw provinciekantoor in Winterberg. Simon Cramer en zijn team geven persoonlijk en deskundig advies over particuliere en commerciële verzekeringen, pensioenvoorzieningen, bouwfinancieringen en schadeafwikkeling ter plaatse.",
+      "services": [
+        "Aansprakelijkheids- en eigendomsverzekering",
+        "Auto verzekering",
+        "Pensioenvoorziening & arbeidsongeschiktheid",
+        "Commerciële verzekeringen",
+        "Schadeafhandeling ter plaatse"
+      ],
+      "products": []
+    },
+    "lvm-marius-berkenkopf-winterberg": {
+      "description": "Modern LVM-verzekeringskantoor aan de Bahnhofstrasse in Winterberg. Holistische verzekeringen voor particulieren, landbouw en bedrijfsleven, voorzorgsadvies en snelle schadeafhandeling.",
+      "services": [
+        "Persoonlijke en commerciële verzekeringen",
+        "Auto- en wagenparkverzekering",
+        "Landbouw verzekering",
+        "Pensioenvoorziening & beleggingen",
+        "Tandarts- en aanvullende zorgverzekering"
+      ],
+      "products": []
+    },
+    "jop-versicherungsmakler-winterberg": {
+      "description": "Onafhankelijke verzekeringsmakelaar en financiële beleggingsmakelaar in Winterberg (Am Hagenblech). Bedrijfsonafhankelijk advies, individuele tariefvergelijking en geoptimaliseerde financiële concepten.",
+      "services": [
+        "Onafhankelijke verzekeringsvergelijking",
+        "Financiële investeringen en voorzieningen",
+        "Commerciële verzekeringen",
+        "Bouwfinanciering",
+        "Particuliere zorgverzekering"
+      ],
+      "products": []
+    },
+    "lvm-torsten-decker-zueschen": {
+      "description": "Uw betrouwbare LVM-verzekeringskantoor in Winterberg-Züschen. Uitgebreid advies voor particuliere en zakelijke klanten, autoverzekeringen, rechtsbescherming en levenszekerheid.",
+      "services": [
+        "Auto verzekering",
+        "Aansprakelijkheids- en huiseigenarenverzekering",
+        "Rechtsbescherming verzekering",
+        "Pensioenplanning",
+        "Ongevallen- en arbeidsongeschiktheidsbescherming"
+      ],
+      "products": []
+    },
+    "axa-lothar-haas-winterberg": {
+      "description": "AXA hoofdvertegenwoordiger Lothar Haas aan de Poststrasse in het centrum van Winterberg. Individuele pensioen- en verzekeringsoplossingen voor particulieren, zzp’ers en middelgrote bedrijven.",
+      "services": [
+        "AXA pensioenconcepten",
+        "Particuliere zorgverzekering",
+        "Auto- en wagenparkverzekering",
+        "Commerciële bescherming",
+        "Opstal- en inboedelverzekering"
+      ],
+      "products": []
+    },
+    "lvm-tobias-klauke-siedlinghausen": {
+      "description": "Uw LVM-verzekeringskantoor in Winterberg-Siedlinghausen. Tobias Klauke en zijn team geven persoonlijk advies over verzekeringen, pensioenvoorzieningen, financiering en commerciële zekerheid.",
+      "services": [
+        "Verzekering particuliere klanten",
+        "Autoverzekering en schadeservice",
+        "Commerciële verzekeringen",
+        "Particuliere zorgverzekering",
+        "Creatie en voorziening van activa"
+      ],
+      "products": []
+    },
+    "signal-iduna-bernhard-poellmann-zueschen": {
+      "description": "SIGNAAL IDUNA algemeen agentschap Bernhard Pöllmann in Winterberg-Züschen. Gespecialiseerd in allround bescherming op maat voor ambacht, commercie, bedrijven en particulieren.",
+      "services": [
+        "Ambachtelijke en commerciële verzekeringen",
+        "Particuliere zorgverzekering",
+        "Arbeidsongeschiktheids- en pensioenvoorziening",
+        "Ongevallen- en aansprakelijkheidsverzekering"
+      ],
+      "products": []
+    },
+    "joachim-wiese-versicherungsmakler-zueschen": {
+      "description": "Freelance financierings- en verzekeringsmakelaar in Winterberg-Züschen aan de Nuhnetalstrasse. Ongebonden advies over materiële bezittingen, persoonlijke verzekeringen en kapitaalinvesteringen.",
+      "services": [
+        "Onafhankelijk makelaarsadvies",
+        "Bescherming van eigendommen en activa",
+        "Financiële en kapitaalinvesteringen",
+        "Ziektekosten- en levensverzekeringen"
+      ],
+      "products": []
+    },
+    "ruv-versicherung-winterberg": {
+      "description": "R+V Versicherung in het adviescentrum Volksbank Sauerland eG aan de Poststrasse in Winterberg. Competente service en coöperatieve pensioen- en verzekeringsoplossingen voor particuliere en zakelijke klanten.",
+      "services": [
+        "R+V verzekering & pensioenvoorziening",
+        "Coöperatief advies",
+        "Commerciële verzekeringen",
+        "Motor- en eigendomsverzekering",
+        "Investeringen en bouwbesparingen"
+      ],
+      "products": []
+    },
+    "landhotel-grimmeblick": {
+      "description": "Sprookjesachtig 4-sterren avonturenhotel en wellnesshotel in Winterberg-Elkeringhausen met unieke themakamers, uitgestrekt kuurlandschap, saunadorp, buitenzwembad, regionale gastronomische keuken en idyllische ligging in het kuurpark.",
+      "services": [
+        "4-sterren avonturenhotel",
+        "Wellness- & spa-landschap",
+        "Themakamers en suites",
+        "Gastronomisch restaurant",
+        "Saunadorp en buitenzwembad",
+        "Direct aan het kuurpark"
+      ],
+      "products": []
+    },
+    "imkerei-niggemann-groenebach": {
+      "description": "Traditionele familiebijenteelt in Winterberg-Grönebach. Echte Hochsauerlandse bloemenhoning en bijenhoning van de natuurlijke bijenteelt en onze eigen oogst in het Sauerland.",
+      "services": [
+        "Echte Duitse bijenhoning",
+        "Hochsauerlandse bloesemhoning",
+        "Natuurlijke bijenteelt",
+        "Directe verkoop & streekproduct"
+      ],
+      "products": []
+    },
+    "reifen-merter-groenebach": {
+      "description": "Uw bandenspecialist in Winterberg-Grönebach. Professionele bandenservice, bandenwissel, balanceren, nieuwe banden van alle toonaangevende merken, velgen en opslag voor auto's, bestelwagens en tweewielers.",
+      "services": [
+        "Bandenservice en montage",
+        "Balanceren en verwisselen van wielen",
+        "Merkbanden voor auto's en vrachtwagens",
+        "Velgen en accessoires",
+        "Banden opslag"
+      ],
+      "products": []
+    },
+    "padberg-wietell-bedachungen": {
+      "description": "Gespecialiseerd bedrijf voor dakdekkers en traditionele natuurleien ambachten in Winterberg. Gespecialiseerd in leistenen gevels, isolatie, dakrenovaties en schoorsteenrenovaties.",
+      "services": [
+        "Natuurlijk leisteenwerk",
+        "Dakbedekking & Isolatie",
+        "Schoorsteen renovatie",
+        "Reparatie en onderhoud van daken"
+      ],
+      "products": []
+    },
+    "reparaturen-markus-becker-groenebach": {
+      "description": "Gratis werkplaats voor alle soorten reparaties in Winterberg-Grönebach. Voertuigreparatie, reparatie, onderhoud en service voor auto's en kleine voertuigen.",
+      "services": [
+        "Autoreparaties van alle merken",
+        "Inspectie & Onderhoud",
+        "Storingsdiagnose en reparatie",
+        "Mechanica en slijtdelen"
+      ],
+      "products": []
+    },
+    "imkerei-ralf-becker-altenfeld": {
+      "description": "Traditionele bijenteelt in het idyllische Altenfeld (Winterberg). Echte Duitse honing, bloesemhoning, boshoning en bijenproducten uit onze eigen regionale imkerij en zachte bijenteelt.",
+      "services": [
+        "Echte Duitse honing",
+        "Bloemen- en boshoning",
+        "Bijenproducten en honingraathoning",
+        "Directe verkoop ter plaatse"
+      ],
+      "products": []
+    },
+    "landgasthof-wuellner-altenfeld": {
+      "description": "Door een familie gerund 3-sterren landherberg en hotel in Winterberg-Altenfeld met gezellige kamers, verse Sauerlandse keuken, een heerlijk zonneterras en onze eigen midgetgolfbaan op het platteland.",
+      "services": [
+        "3-sterrenhotel en herberg",
+        "Regionaal restaurant en biertuin",
+        "Minigolfbaan in huis",
+        "Wandelaar- en fietsvriendelijk",
+        "WiFi en parkeren"
+      ],
+      "products": []
+    },
+    "fleischerei-heinz-thomas-knieb-siedlinghausen": {
+      "description": "Traditionele ambachtelijke slagerij in Winterberg-Siedlinghausen met meesterlijke vlees- en worstproducten uit eigen productie, huisgemaakte specialiteiten en een 24/7 gegrilde vlees- en worstmachine voor de winkel.",
+      "services": [
+        "Meesterlijke vlees- en worstproducten",
+        "Eigen slachting & productie",
+        "24/7 grill- en worstmachine",
+        "Partyservice & gegrild vlees",
+        "Sauerlandse specialiteiten"
+      ],
+      "products": []
+    },
+    "bikeverleih-klante-herrloh": {
+      "description": "Uw eersteklas fiets- en e-bike-verhuur direct bij Herrloh in Winterberg. De nieuwste e-mountainbikes, fulls, hardtails, kinderfietsen, helmen en beschermingsmiddelen voor tochten en trailparken.",
+      "services": [
+        "E-MTB & volledig verhuur",
+        "Hardtails en trekkingfietsen",
+        "Kinderfietsen & accessoires",
+        "Helmen en beschermers",
+        "Direct bij de ingang van de skiliftcarrousel / Herrloh"
+      ],
+      "products": []
+    },
+    "ebike-verleih-ski-bike-schneider": {
+      "description": "Grote e-bike- en mountainbikeverhuur bij het Brabander / Herrloh dalstation in Winterberg. De nieuwste e-bikes in alle categorieën, kinder e-MTB’s vanaf 24 inch, kinderaanhangers, kinderzitjes en beschermers.",
+      "services": [
+        "Verhuur van mountainbikes en e-bikes",
+        "E-MTB voor kinderen vanaf 24 inch",
+        "Kinderkarren en kinderzitjes",
+        "Beschermers en helmen",
+        "Fietsendepot & service"
+      ],
+      "products": []
+    },
+    "bikeverleih-poppenberg-winterberg": {
+      "description": "Fiets- en e-bikeverhuur direct bij het dalstation Poppenberg in Büre. Hoogwaardige mountainbikes, trekking- en stads-e-bikes voor alle leeftijden, evenals skiverhuur in de winter.",
+      "services": [
+        "E-bikes en MTB's beschikbaar voor verhuur",
+        "Rondleidingen en advies",
+        "Accessoires & Helmen",
+        "Skiverhuur in de winter",
+        "Grote parkeerplaats op eigen terrein"
+      ],
+      "products": []
+    },
+    "bikeverleih-klante-schneewittchenhaus": {
+      "description": "Moderne huurbasis en uitrustingsdepot van Klante in het Schneewittchenhaus / Kappe. Premium e-mountainbikes, beschermende kleding, fietsendepot en directe nabijheid van de paden rond de Kahler Asten.",
+      "services": [
+        "Verhuur van e-MTB's en trailfietsen",
+        "Depot en beschermende uitrusting",
+        "Familiefietsen en kinderaanhangers",
+        "Directe ligging aan Kahler Asten / Schneewittchenhang"
+      ],
+      "products": []
+    },
+    "pro-biker-winterberg": {
+      "description": "Uw toonaangevende fietsspeciaalzaak en e-bike specialist in Winterberg. Verkoop van premium fietsen, textiel en accessoires, professionele meesterwerkplaats met algemene revisie en wielafstelling, evenals moderne fiets- en skiverhuur.",
+      "services": [
+        "Verkoop van fietsen en e-bikes",
+        "Meesterworkshop & inspectie",
+        "Kleding- en helmassortiment",
+        "E-bike- en MTB-verhuur",
+        "Skiverhuur in de winter"
+      ],
+      "products": []
+    },
+    "uppu-biketours-winterberg": {
+      "description": "Begeleide e-bike- en mountainbiketochten, fietsverhuur en evenementen in Winterberg am Waltenberg. Individuele avontuurlijke tochten door het Sauerland, rijtechniekcursussen en een stop bij de Bistorant UPPU.",
+      "services": [
+        "Begeleide e-biketochten",
+        "E-MTB- en trekkingverhuur",
+        "Groeps- en bedrijfsevenementen",
+        "Rijtechniek & begeleiding",
+        "Combinatie met gastronomie UPPU"
+      ],
+      "products": []
+    },
+    "skiverleih-schneider-winterberg": {
+      "description": "Traditionele skiverhuur en skiservice aan de Fichtenweg in Winterberg. De nieuwste carvingski's, snowboards, langlaufski's, sleeën, helmen en een modern skidepot direct aan de Herrloh/Brabander piste.",
+      "services": [
+        "Verhuur van alpine- en carvingski's",
+        "Snowboards en laarzen",
+        "Langlaufuitrusting en sleeën",
+        "Skidepot en kantenslijp-/waxservice",
+        "Direct aan het skigebied"
+      ],
+      "products": []
+    },
+    "green-bikes-winterberg": {
+      "description": "Grote fietsenspeciaalzaak en gecertificeerde vakwerkplaats in Winterberg (Am Hagenblech). Enorme keuze aan e-bikes, mountainbikes, grind- en stadsfietsen, accessoires, kleding en professionele inspectie en reparatie.",
+      "services": [
+        "Fietsenwinkel en e-bikes",
+        "Gecertificeerde meesterworkshop",
+        "Gravel-, trekking- en mountainbikes",
+        "Grote afdeling kleding & accessoires",
+        "Fietsleasing (JobRad etc.)"
+      ],
+      "products": []
+    },
+    "sauerlandpraxis-kolbe-schramm-winterberg": {
+      "description": "Moderne regionale groepspraktijk en huisartsenpraktijk aan de Hoofdstraat in Winterberg. Holistische huisartsgeneeskunde, preventieve onderzoeken, echografie, laboratorium, ECG en psychosomatische basiszorg.",
+      "services": [
+        "Medische thuiszorg",
+        "Preventie & Controle 35+",
+        "Echografie diagnostiek (echografie)",
+        "ECG, inspannings-ECG en longfunctie",
+        "DMP programma’s & vaccinatieadvies"
+      ],
+      "products": []
+    },
+    "dr-martin-nieswand-winterberg": {
+      "description": "Gespecialiseerde praktijk voor algemene geneeskunde, sportgeneeskunde, chiropractie en officieel WHO-vaccinatiecentrum tegen gele koorts in Winterberg aan de Nuhnestrasse. Zorg voor recreatieve sporters, wedstrijdsporters en patiënten van alle zorgverzekeraars.",
+      "services": [
+        "Algemene geneeskunde en huisarts",
+        "Sportgeneeskunde en prestatiediagnostiek",
+        "Chiropractie en manuele geneeskunde",
+        "WHO-vaccinatiecentrum tegen gele koorts en reisgeneeskunde",
+        "Echografie en cardiologische basisdiagnostiek"
+      ],
+      "products": []
+    },
+    "sauerlandpraxis-dr-jelicic-winterberg": {
+      "description": "Huisartspraktijk in de praktijk Sauerland aan de Franziskusstrasse in Winterberg. Competente eerstelijnszorg, acute behandeling, preventieve onderzoeken en chronische patiëntenzorg.",
+      "services": [
+        "Basis medische zorg",
+        "Gezondheid en kankerpreventie",
+        "Chronicler-programma's (DMP)",
+        "Laboratoriumtests en ECG",
+        "Huisbezoeken op afspraak"
+      ],
+      "products": []
+    },
+    "dr-bojana-lukic-jablonka-winterberg": {
+      "description": "Moderne specialistische praktijk voor huisartsgeneeskunde in het centrum van Winterberg (Marktstrasse). Warme en gekwalificeerde allround medische gezinszorg voor volwassenen, jongeren en senioren.",
+      "services": [
+        "Huisartsgeneeskunde",
+        "Controles & vaccinaties",
+        "Laboratorium- en ECG-diagnostiek",
+        "Wondverzorging en kleine operaties",
+        "DMP Diabetes & CHD"
+      ],
+      "products": []
+    },
+    "dr-rikardo-mihalic-siedlinghausen": {
+      "description": "Specialistenpraktijk voor huisartsgeneeskunde in Winterberg-Siedlinghausen met een focus op reisgeneeskunde, veneuze geneeskunde (flebologie) en algemene medische geriatrie. Uitgebreide moderne diagnostiek en persoonlijke zorg.",
+      "services": [
+        "Algemene geneeskunde en huisarts",
+        "Reisgeneeskunde & reisvaccinatie advies",
+        "Venopathie / Flebologie",
+        "Algemene medische geriatrie",
+        "Echografie diagnostiek"
+      ],
+      "products": []
+    },
+    "rosa-lange-allgemeinmedizin-zueschen": {
+      "description": "Huisartspraktijk en specialist in algemene geneeskunde en chiropractie in Winterberg-Züschen. Holistische behandeling, manuele therapie, gezondheidszorg en individuele zorg.",
+      "services": [
+        "Algemene geneeskunde en gezinsgeneeskundige zorg",
+        "Chiropractie en manuele therapie",
+        "Controle onderzoeken & vaccinaties",
+        "Laboratorium- en ECG-diagnostiek"
+      ],
+      "products": []
+    },
+    "kinderarztpraxis-winterberg": {
+      "description": "Gespecialiseerde kinder- en jeugdartspraktijk aan de Poststrasse in Winterberg onder het dak van het St. Franziskus Gezondheidscentrum. U-onderzoeken, vaccinatieadvies, allergiediagnostiek en acute consulten voor kinderen en jongeren.",
+      "services": [
+        "Kinder- en jeugdgeneeskunde",
+        "U-examens (U2 t/m J2)",
+        "Vaccinaties & reisadvies",
+        "Allergiediagnostiek en astmazorg",
+        "Gehoor- en zichttesten"
+      ],
+      "products": []
+    },
+    "st-franziskus-hospital-winterberg": {
+      "description": "Modern acuut ziekenhuis en regionaal gezondheidscentrum voor Winterberg en het Sauerland met 24/7 spoedeisende hulp, chirurgie, traumachirurgie & orthopedie (AMIS-methode), interne geneeskunde, anesthesie en radiologie.",
+      "services": [
+        "24-uurs centrale spoedeisende hulp en reddingsstation",
+        "Chirurgie, orthopedie en traumachirurgie",
+        "Interne geneeskunde en cardiologie",
+        "Minimaal invasieve chirurgische procedures (AMIS)",
+        "Centrum voor Radiologie en Fysiotherapie"
+      ],
+      "products": []
+    },
+    "dr-daniel-castillo-chevallier-winterberg": {
+      "description": "Moderne tandartspraktijk aan de Poststrasse in Winterberg (boven de kuurapotheek). Esthetische tandheelkunde, profylaxe, implantologie, kunstgebitten, parodontologie en zachte behandeling voor het hele gezin.",
+      "services": [
+        "Esthetische tandheelkunde",
+        "Professionele tandenreiniging en profylaxe",
+        "Implantologie & kunstgebitten",
+        "Wortelkanaalbehandeling (endodontie)",
+        "Parodontale therapie"
+      ],
+      "products": []
+    },
+    "dr-nassrin-grickschat-winterberg": {
+      "description": "Gevestigde tandartspraktijk aan de Marktstrasse in het centrum van Winterberg. Uitgebreide tandheelkundige zorg, preventie, tandbehoud, bleken en gevoelige behandeling voor angstige patiënten.",
+      "services": [
+        "Algemene tandheelkunde",
+        "Preventie & professionele gebitsreiniging",
+        "Kunstgebitten en kronen",
+        "Tandvlees behandeling",
+        "Behandeling met weinig pijn"
+      ],
+      "products": []
+    },
+    "michaela-fieseler-koch-siedlinghausen": {
+      "description": "Uw tandartspraktijk aan de Hochsauerlandstraße in Winterberg-Siedlinghausen. Individuele profylaxe, tandbehoud, moderne vultherapie en prothese-oplossingen voor jong en oud.",
+      "services": [
+        "Tandheelkundige zorg en profylaxe",
+        "Conservatieve tandheelkunde",
+        "Kunstgebitten van hoge kwaliteit",
+        "Kindertandheelkunde",
+        "Behandeling van parodontitis"
+      ],
+      "products": []
+    },
+    "dr-sonja-kuhl-niedersfeld": {
+      "description": "Tandartspraktijk aan de Ruhrstrasse in Winterberg-Niedersfeld. Gekwalificeerde tandheelkunde, holistische preventie, esthetische tandcorrecties en kunstgebitten in een vriendelijke sfeer.",
+      "services": [
+        "Moderne tandheelkunde",
+        "Profylaxe en PZR",
+        "Kunstgebitten van hoge kwaliteit",
+        "Tandheelkundige esthetiek en bleken",
+        "Behandeling voor kinderen en senioren"
+      ],
+      "products": []
+    },
+    "house-of-immo-sauerlandmakler": {
+      "description": "Uw ervaren makelaar voor Winterberg en het Sauerland. Professionele vastgoedtaxatie, aan-, verkoop en bemiddeling van woningen en vakantie-eigendommen.",
+      "services": [
+        "Verkoop van onroerend goed",
+        "Gratis waardebepaling van onroerend goed",
+        "Koopadvies",
+        "Vakantie eigendommen",
+        "Marketing en exposécreatie"
+      ],
+      "products": [
+        "Gratis waardebepaling van onroerend goed",
+        "Exclusieve exposés",
+        "Zoek bestellingen voor potentiële kopers"
+      ],
+      "extendedDescription": "<h2><strong>Uw partner voor vastgoed in het Sauerland en daarbuiten</strong></h2><p>Sauerland Makelaar is gespecialiseerd in het adviseren en bemiddelen bij de aankoop van onroerend goed in het Sauerland. Dankzij onze jarenlange ervaring en ons uitgebreide netwerk kunnen wij u optimaal ondersteunen bij de aankoop van uw woning in het Sauerland. Wij bieden u een ruim en gevarieerd aanbod aan appartementen, vakantiewoningen, woongebouwen, bouwkavels en bedrijfspanden. </p><h2><br></h2><h2><strong>Bij ons krijgt u</strong></h2><ul><li>Een uitgebreid aanbod aan woningen in het Sauerland  </li><li>Individueel advies bij de aankoop van een woning uit ons aanbod </li><li>Uitgebreide ondersteuning bij de verkoop van uw woning - vanaf het eerste adviesgesprek tot aan de succesvolle afronding  </li><li>Advies over fiscale aspecten bij de aankoop van een woning in het Sauerland  </li><li>Ondersteuning bij onderwerpen zoals verzekeringen, verbouwingen en benodigde vergunningen </li></ul>"
+    },
+    "von-poll-immobilien-winterberg": {
+      "description": "VON POLL IMMOBILIEN in Winterberg – uw betrouwbare partner voor makelaardij en gratis vastgoedtaxatie in de regio.",
+      "services": [
+        "Gratis waardebepaling van onroerend goed",
+        "Actueel vastgoedaanbod",
+        "Verkoop onroerend goed"
+      ],
+      "products": []
+    },
+    "evernest-winterberg": {
+      "description": "Evernest Winterberg – Modern vastgoedadvies, dienstverlening voor starters, vastgoedbeleggen en aan- en verkoop.",
+      "services": [
+        "Diensten voor starters op de woningmarkt",
+        "Investering in onroerend goed",
+        "Aan- en verkoop van onroerend goed"
+      ],
+      "products": []
+    },
+    "winterberg-immobilien": {
+      "description": "Winterberg Real Estate & Apartments – uw makelaarskantoor direct aan Waltenberg in Winterberg.",
+      "services": [
+        "Diensten voor starters op de woningmarkt",
+        "Inkoopmakelaardijdiensten",
+        "Investering in onroerend goed"
+      ],
+      "products": []
+    },
+    "grulke-immobilien-hausverwaltung": {
+      "description": "Grulke vastgoed & vastgoedbeheer in Winterberg – professionele vastgoedverkoop, vastgoedverhuur en betrouwbaar vastgoedbeheer.",
+      "services": [
+        "Verkoop van onroerend goed",
+        "Verhuur van onroerend goed",
+        "Vastgoedbeheer"
+      ],
+      "products": []
+    },
+    "filmtheater-winterberg": {
+      "description": "De moderne bioscoop met 2 zalen toont in een gezellige sfeer actuele blockbusters in 3D-kwaliteit, maar ook onafhankelijke films, kinderfilms en bijzondere series.",
+      "services": [
+        "Actueel bioscoopprogramma",
+        "3D-demonstraties",
+        "2 bioscoopzalen",
+        "Hapjes en drankjes",
+        "Bijzondere optredens & evenementen"
+      ],
+      "products": [
+        "Bioscoopvouchers",
+        "Popcorn en nacho's",
+        "Bioscoopkaartjes"
+      ]
+    },
+    "kur-apotheke": {
+      "description": "Uw vriendelijke apotheek in hartje Winterberg. Wij geven deskundig advies over alle gezondheidskwesties, van voorgeschreven medicijnen tot natuurlijke remedies.",
+      "services": [
+        "Persoonlijk advies",
+        "Medicijnen vooraf bestellen",
+        "Receptproductie"
+      ],
+      "products": []
+    },
+    "franziskus-apotheke": {
+      "description": "De Franziskus-Apotheke aan de Poststrasse biedt uitgebreide diensten voor uw gezondheid.",
+      "services": [
+        "Bloeddrukmeting",
+        "Voedingsadvies",
+        "Aderkousen meten",
+        "Fytotheek"
+      ],
+      "products": []
+    },
+    "dm-drogerie-markt-winterberg": {
+      "description": "Uw dm-drogeriemarkt in Winterberg biedt een uitgebreid assortiment cosmetica, verzorgingsproducten, biologische voeding en huishoudelijke artikelen.",
+      "services": [
+        "Cosmetica en persoonlijke verzorging",
+        "Baby- en peuterartikelen",
+        "Biologisch voedsel",
+        "Huishouding en schoonmaak",
+        "Fotoservice"
+      ],
+      "products": []
+    },
+    "luetteken-beschlaege-eisenwaren": {
+      "description": "Uw betrouwbare bouwmarkt en speciaalzaak voor beslag, ijzerwaren, gereedschappen en machines in Winterberg-Siedlinghausen.",
+      "services": [
+        "ijzerhandel",
+        "Hardware",
+        "Fittingen",
+        "Gereedschappen & Machines"
+      ],
+      "products": []
+    },
+    "pieper-bad": {
+      "description": "Uw professionele badkamerstudio in Winterberg-Siedlinghausen voor modern badkamerontwerp, planning en installatie.",
+      "services": [
+        "Badkamerplanning",
+        "Badkamer tentoonstelling",
+        "Loodgieters installatie"
+      ],
+      "products": []
+    },
+    "blatt-und-bluete": {
+      "description": "Bloemenwinkel in Winterberg met verse snijbloemen, creatieve bloemsierkunst voor elke gelegenheid en liefdevol vormgegeven arrangementen.",
+      "services": [
+        "Verse snijbloemen",
+        "Bruiloft bloemisterij",
+        "Begrafenis bloemisterij",
+        "Decoratie"
+      ],
+      "products": []
+    },
+    "blumenhandel-kleinsorge": {
+      "description": "Blumenhandel Kleinsorge – uw bloemisterijspeciaalzaak in Winterberg voor bloemen, planten en decoratie.",
+      "services": [
+        "Bloemen & Planten",
+        "Bloemisterij",
+        "Regelingen",
+        "Seizoensgebonden decoratie"
+      ],
+      "products": []
+    },
+    "kiessler-baumschulen": {
+      "description": "Boomkwekerij Kiessler in Winterberg. Uitgebreid assortiment bomen, haagplanten en vaste planten voor uw tuininrichting.",
+      "services": [
+        "Kinderdagverblijf",
+        "Houtige planten en struiken",
+        "haagplanten",
+        "Plantadvies"
+      ],
+      "products": []
+    },
+    "steinruecke-felsengrund": {
+      "description": "Groot- en detailhandel in restaurantbenodigdheden in Winterberg. Alles voor hotels, restaurants en catering.",
+      "services": [
+        "Restaurantbenodigdheden",
+        "Hotelbenodigdheden",
+        "Gastro-accessoires"
+      ],
+      "products": []
+    },
+    "happe-bauzentrum": {
+      "description": "Handel in bouwmaterialen in Winterberg-Siedlinghausen. Alles voor bouw, renovatie en tuinontwerp.",
+      "services": [
+        "Bouwmaterialen",
+        "Artikelen uit de ijzerhandel",
+        "Gereedschap"
+      ],
+      "products": []
+    },
+    "outdoor-842": {
+      "description": "Sportwinkel in Winterberg met een groot assortiment outdoorkleding en uitrusting.",
+      "services": [
+        "Sportkleding",
+        "Buitenuitrusting",
+        "Wandelschoenen"
+      ],
+      "products": []
+    },
+    "peter-o-sport-mode": {
+      "description": "Uw speciaalzaak voor sport en mode in Winterberg.",
+      "services": [
+        "Sportkleding",
+        "Casual mode",
+        "Accessoires"
+      ],
+      "products": []
+    },
+    "outdoorfashion-winterberg": {
+      "description": "Buitensportwinkel in Winterberg. Ontdek hoogwaardige functionele kleding voor je volgende avontuur.",
+      "services": [
+        "Outdoorkleding",
+        "Wandeluitrusting",
+        "Sportschoenen"
+      ],
+      "products": []
+    },
+    "christian-leisse": {
+      "description": "Herenoutfit in Winterberg. Exclusieve herenmode en competent advies voor zaken en vrije tijd.",
+      "services": [
+        "Herenmode",
+        "Merkkleding",
+        "Advies"
+      ],
+      "products": []
+    },
+    "faupel-schoene-schuhe": {
+      "description": "Uw schoenenwinkel in Winterberg met een groot assortiment merk- en speciaalschoenen.",
+      "services": [
+        "Schoenen",
+        "Merkschoenen",
+        "Advies"
+      ],
+      "products": []
+    },
+    "ernstings-family": {
+      "description": "De familie Ernsting biedt betaalbare mode en accessoires voor het hele gezin, maar ook speelgoed en woonartikelen.",
+      "services": [
+        "Familie mode",
+        "Kinderkleding",
+        "Accessoires",
+        "Home artikelen"
+      ],
+      "products": []
+    },
+    "nkd": {
+      "description": "NKD in Winterberg biedt modieuze en betaalbare kleding voor het hele gezin en woonaccessoires.",
+      "services": [
+        "Damesmode",
+        "Herenmode",
+        "Kindermode",
+        "Woonaccessoires"
+      ],
+      "products": []
+    },
+    "modeorth-winterberg": {
+      "description": "Herenmodewinkel in Winterberg. Ontdek de huidige modetrends voor mannen.",
+      "services": [
+        "Herenmode",
+        "Merkkleding",
+        "Accessoires"
+      ],
+      "products": []
+    },
+    "thai-massage-ooy-lumtong": {
+      "description": "Traditionele Thaise massage in Winterberg voor ontspanning en welzijn.",
+      "services": [
+        "Traditionele Thaise massage",
+        "Welzijn",
+        "Ontspanning"
+      ],
+      "products": []
+    },
+    "physiotherapie-paula-hennecke": {
+      "description": "Uw praktijk voor fysiotherapie en kinderfysiotherapie in Winterberg.",
+      "services": [
+        "Fysiotherapie",
+        "Kinderfysiotherapie",
+        "Manuele therapie"
+      ],
+      "products": []
+    },
+    "cb-house-of-beauty": {
+      "description": "Cosmetische studio in Winterberg voor gezichtsbehandelingen, anti-aging en esthetiek.",
+      "services": [
+        "Cosmetica",
+        "Gezichtsbehandeling",
+        "Esthetiek"
+      ],
+      "products": []
+    },
+    "tierisch-bewegt": {
+      "description": "Professionele dierenfysiotherapie en bewegingstherapie voor honden en paarden in Winterberg.",
+      "services": [
+        "Dierenfysiotherapie",
+        "Bewegingstherapie",
+        "Hondenfysiotherapie",
+        "Fysiotherapie voor paarden"
+      ],
+      "products": []
+    },
+    "reitsportfreunde-winterberg": {
+      "description": "Manege voor western- en klassiek rijden in Winterberg.",
+      "services": [
+        "Paardrijlessen",
+        "Western rijden",
+        "Klassiek rijden",
+        "Paardrijclub"
+      ],
+      "products": []
+    },
+    "mountain-yoga-winterberg": {
+      "description": "Yogastudio in Winterberg. Ontspanning en beweging voor lichaam en geest.",
+      "services": [
+        "Yoga",
+        "Ontspanning",
+        "Yogalessen"
+      ],
+      "products": []
+    },
+    "hotel-schneider": {
+      "description": "Gezellig hotel in hartje Winterberg met comfortabele kamers en warme gastvrijheid.",
+      "services": [
+        "Overnachting",
+        "Ontbijt",
+        "WiFi",
+        "Parkeerplaatsen"
+      ],
+      "products": []
+    },
+    "eiscafe-cortina": {
+      "description": "IJssalon in Winterberg. Geniet van huisgemaakt ijs en koffiespecialiteiten.",
+      "services": [
+        "IJs",
+        "Koffie",
+        "Ter plaatse dineren",
+        "Om mee te nemen"
+      ],
+      "products": []
+    },
+    "eiscafe-venezia": {
+      "description": "Traditionele ijssalon in het centrum van Winterberg met een grote keuze aan ijscreaties.",
+      "services": [
+        "IJs",
+        "Koffie specialiteiten",
+        "Ter plaatse dineren",
+        "Om mee te nemen"
+      ],
+      "products": []
+    },
+    "aslan-fast-restaurant": {
+      "description": "Bistro en restaurant in Niedersfeld met een grote keuze aan eten ter plaatse, afhalen of bezorgen.",
+      "services": [
+        "Ter plaatse dineren",
+        "Ophalen",
+        "Bezorgservice"
+      ],
+      "products": []
+    },
+    "viertmanns-obst-gemuesescheune": {
+      "description": "Groenten- en fruithandel in Niedersfeld met verse en regionale producten.",
+      "services": [
+        "vrucht",
+        "groenten",
+        "Regionale producten"
+      ],
+      "products": []
+    },
+    "pflegedienst-doenekes": {
+      "description": "Poliklinische verpleegdienst en dagopvang in Niedersfeld.",
+      "services": [
+        "Ambulante zorg",
+        "Dagopvang",
+        "Verpleegkundige dienst"
+      ],
+      "products": []
+    },
+    "hochheide-huette": {
+      "description": "Gezellige hut op de Hochheide met groot zonneterras, eten en drinken.",
+      "services": [
+        "Ter plaatse dineren",
+        "Zonneterras",
+        "Excursiebestemming"
+      ],
+      "products": []
+    },
+    "restaurant-forsthaus": {
+      "description": "Luxe restaurant in Hotel Forsthaus met een uitstekende keuken.",
+      "services": [
+        "Ter plaatse dineren",
+        "Lekker eten",
+        "wijn"
+      ],
+      "products": []
+    }
+  }
+}

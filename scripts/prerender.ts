@@ -14,6 +14,7 @@ import {
   LEGACY_SUBCATEGORY_PARENTS
 } from '../src/utils/routes';
 import { generateLocalBusinessSchema, generateCollectionPageSchema } from '../src/utils/schemaGenerator';
+import { getLocalizedBusiness } from '../src/utils/translator';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
 const distDir = path.resolve(process.cwd(), 'dist');
@@ -453,8 +454,10 @@ businesses.forEach((b: any) => {
   const pathNl = subNl ? `nl/${catNl}/${subNl}/${bSlugClean}` : `nl/${catNl}/${bSlugClean}`;
 
   const city = b.district || 'Winterberg';
-  const shortDesc = b.description ? b.description.substring(0, 140).trim() + '...' : 'Ihr Fachbetrieb in Winterberg.';
-  const shortDescNl = (b.description_nl || b.description) ? (b.description_nl || b.description).substring(0, 140).trim() + '...' : 'Uw specialist in Winterberg.';
+  const localizedDe = getLocalizedBusiness(b, 'de');
+  const localizedNl = getLocalizedBusiness(b, 'nl');
+  const shortDesc = localizedDe.description ? localizedDe.description.substring(0, 140).trim() + '...' : 'Ihr Fachbetrieb in Winterberg.';
+  const shortDescNl = localizedNl.description ? localizedNl.description.substring(0, 140).trim() + '...' : 'Uw specialist in Winterberg.';
 
   const schemaJsonLdDe = generateLocalBusinessSchema(b as any, 'de');
   const schemaJsonLdNl = generateLocalBusinessSchema(b as any, 'nl');

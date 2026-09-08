@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeConfig } from '../types';
 import { ArrowLeft } from 'lucide-react';
 import { OPERATOR, SITE, PRICING } from '../config';
+import { useTranslation } from '../i18n';
 
 interface AGBProps {
   theme: ThemeConfig;
@@ -9,6 +10,157 @@ interface AGBProps {
 }
 
 export default function AGB({ theme, activeThemeKey }: AGBProps) {
+  const { lang } = useTranslation();
+
+  if (lang === 'nl') {
+    return (
+      <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
+        <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+          <button 
+            onClick={() => {
+              window.history.pushState(null, '', '/nl');
+              window.dispatchEvent(new Event('popstate'));
+            }}
+            className="flex items-center gap-2 text-sm font-medium hover:underline mb-6 text-[#4A544D]"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Terug naar startpagina
+          </button>
+          <h1 className="font-display text-[34px] font-bold mb-6">Algemene Voorwaarden (AV)</h1>
+          <p className="text-sm opacity-70 mb-8">Stand: {new Date().toLocaleDateString('nl-NL')}</p>
+          
+          <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
+          <section>
+            <h2 className="text-xl font-bold mb-3">1. Toepassingsbereik</h2>
+            <p>
+              1.1. Deze algemene voorwaarden zijn van toepassing op alle overeenkomsten betreffende het gebruik van het portaal „{SITE.shortName}" (hierna „Portaal"), die worden gesloten tussen {OPERATOR.shortName} (hierna „Aanbieder") en de desbetreffende klant (hierna „Klant").
+            </p>
+            <p className="mt-2">
+              1.2. Het aanbod van het portaal richt zich uitsluitend op ondernemers in de zin van § 14 BGB, publiekrechtelijke rechtspersonen of publiekrechtelijke bijzondere fondsen (B2B). Een overeenkomst met consumenten (§ 13 BGB) is uitgesloten.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">2. Totstandkoming van de overeenkomst en looptijd</h2>
+            <p>
+              2.1. De overeenkomst over een Premium-vermelding komt tot stand door de bestelling van de klant en de activering of orderbevestiging door de aanbieder.
+            </p>
+            <p className="mt-2">
+              2.2. De klant kan kiezen tussen een maandelijkse en een jaarlijkse betalingswijze.
+            </p>
+            <p className="mt-2">
+              2.3. Abonnementen worden automatisch verlengd. De opzegtermijn bedraagt {PRICING.cancellationPeriod} tegen het einde van de respectievelijke contractperiode.
+            </p>
+            <p className="mt-2">
+              2.4. <strong>Bijzonderheid bij jaarabonnementen:</strong> Wordt een jaarabonnement niet tijdig opgezegd, dan wordt dit niet met nog een jaar verlengd, maar gaat het automatisch over in een maandelijks opzegbaar abonnement tegen de reguliere maandprijs. De betalingswijze wordt dienovereenkomstig omgezet naar maandelijkse facturatie.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">3. Dienstverlening</h2>
+            <p>
+              3.1. De aanbieder stelt een online bedrijvengids ter beschikking waarin lokale ondernemingen, ambachtslieden en dienstverleners uit {SITE.city} en omgeving zich kunnen presenteren.
+            </p>
+            <p className="mt-2">
+              3.2. De dienst geldt als geleverd zodra de bedrijfsvermelding van de klant met de geboekte functies (Basis of Premium) online beschikbaar is op het portaal.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">4. Prijzen en betalingsvoorwaarden</h2>
+            <p>
+              4.1. Alle op het portaal vermelde prijzen zijn in euro's exclusief de toepasselijke wettelijke btw.
+            </p>
+            <p className="mt-2">
+              4.2. Betaling geschiedt uitsluitend via de betalingsdienstaanbieder {PRICING.paymentProvider}. De klant heeft de keuze uit de door {PRICING.paymentProvider} aangeboden betaalmethoden (bijv. creditcard, SEPA-incasso, iDEAL, PayPal).
+            </p>
+            <p className="mt-2">
+              4.3. Facturatie geschiedt vooraf voor de respectievelijke facturatieperiode (maandelijks of jaarlijks).
+            </p>
+            <p className="mt-2">
+              4.4. De klant ontvangt voor elke facturatieperiode een elektronische factuur. Deze wordt automatisch gegenereerd en ter download aangeboden in het klantaccount of per e-mail verzonden.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">5. Banneradvertenties en Skyscraper-reclame</h2>
+            <p>
+              5.1. De aanbieder biedt klanten de mogelijkheid om skyscraper-reclamebanners in geselecteerde branchecategorieën of in de hele gids te plaatsen.
+            </p>
+            <p className="mt-2">
+              5.2. <strong>Prijzen &amp; staffel voor banneradvertenties:</strong>
+            </p>
+            <ul className="list-disc pl-5 mt-1 space-y-1 text-sm">
+              <li>1 tot 2 categorieën / subcategorieën: <strong>{PRICING.bannerTier1}</strong> per categorie / maand (excl. btw)</li>
+              <li>Vanaf 3 categorieën / subcategorieën: <strong>{PRICING.bannerTier2}</strong> per categorie / maand (excl. btw)</li>
+              <li>Vanaf 5 categorieën / subcategorieën: <strong>{PRICING.bannerTier3}</strong> per categorie / maand (excl. btw)</li>
+            </ul>
+            <p className="mt-2">
+              5.3. <strong>Looptijd en opzegging:</strong> Overeenkomsten over banneradvertenties worden automatisch telkens met nog een maand verlengd. De opzegtermijn bedraagt zoals bij het Premium-account <strong>{PRICING.cancellationPeriod} tegen het einde van de respectievelijke maandelijkse facturatieperiode</strong>.
+            </p>
+            <p className="mt-2">
+              5.4. De klant is als enige verantwoordelijk voor de rechtmatigheid van het door hem aangeleverde advertentiemateriaal.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">6. Verplichtingen van de klant</h2>
+            <p>
+              6.1. De klant is als enige verantwoordelijk voor de door hem geplaatste inhoud (teksten, afbeeldingen, links, vacatures etc.). Hij garandeert over alle nodige rechten te beschikken en geen rechten van derden te schenden.
+            </p>
+            <p className="mt-2">
+              6.2. De klant vrijwaart de aanbieder van alle aanspraken van derden die worden ingediend wegens inbreuk op rechten door de geplaatste inhoud.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">7. Aansprakelijkheid</h2>
+            <p>
+              7.1. De aanbieder biedt geen garantie voor ononderbroken beschikbaarheid van het portaal evenals voor technische storingen.
+            </p>
+            <p className="mt-2">
+              7.2. De aanbieder is onbeperkt aansprakelijk voor opzet en grove nalatigheid. Bij gewone nalatigheid is de aansprakelijkheid beperkt tot de voorzienbare, contracttypische schade.
+            </p>
+            <p className="mt-2">
+              7.3. Aansprakelijkheid voor gederfde winst of gevolgschade is uitgesloten.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">8. Privacy</h2>
+            <p>
+              8.1. De aanbieder verwerkt persoonsgegevens ter uitvoering van de overeenkomst conform art. 6 lid 1 sub b AVG.
+            </p>
+            <p className="mt-2">
+              8.2. Voor verdere details verwijzen wij naar onze Privacyverklaring.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">9. Herroepingsrecht (uitsluiting)</h2>
+            <p>
+              Aangezien het aanbod zich uitsluitend richt op ondernemers (B2B) in de zin van § 14 BGB, bestaat er <strong>geen wettelijk herroepingsrecht</strong> voor consumenten conform § 312g BGB.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold mb-3">10. Slotbepalingen</h2>
+            <p>
+              10.1. Het recht van de Bondsrepubliek Duitsland is van toepassing.
+            </p>
+            <p className="mt-2">
+              10.2. De bevoegde rechtbank is die van de vestigingsplaats van de aanbieder ({OPERATOR.city}).
+            </p>
+            <p className="mt-2">
+              10.3. Indien individuele bepalingen ongeldig blijken, blijft de geldigheid van de overige bepalingen onaangetast.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+    );
+  }
+
   return (
     <main className="flex-1 w-full max-w-[820px] mx-auto px-6 py-[54px] pb-[80px]">
       <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-10 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
@@ -26,8 +178,8 @@ export default function AGB({ theme, activeThemeKey }: AGBProps) {
         <p className="text-sm opacity-70 mb-8">Stand: {new Date().toLocaleDateString('de-DE')}</p>
         
         <div className="text-[16px] leading-[1.75] text-[#4A544D] prose prose-sm md:prose-base max-w-none">
-        <section>
-          <h2 className="text-xl font-bold mb-3">1. Geltungsbereich</h2>
+          <section>
+            <h2 className="text-xl font-bold mb-3">1. Geltungsbereich</h2>
           <p>
             1.1. Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über die Nutzung des Portals „{SITE.shortName}" (nachfolgend „Portal"), die zwischen {OPERATOR.shortName} (nachfolgend „Anbieter") und dem jeweiligen Kunden (nachfolgend „Kunde") geschlossen werden.
           </p>
