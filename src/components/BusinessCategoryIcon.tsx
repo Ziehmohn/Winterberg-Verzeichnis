@@ -225,6 +225,12 @@ export function getCategoryStyle(category = '', subcategory = '', name = '', isP
   if (matchSubOrName('bürobedarf', 'buch', 'schreibwaren', 'papier')) {
     return { icon: BookOpen, bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-300' };
   }
+  if (matchSubOrName('spielwaren', 'spielzeug', 'spielwarengeschäft', 'pfiffikus')) {
+    return { icon: Smile, bg: 'bg-yellow-50', text: 'text-yellow-700', border: 'border-yellow-200' };
+  }
+  if (matchSubOrName('parfümerie', 'parfumerie', 'parfum', 'kosmetik')) {
+    return { icon: Sparkles, bg: 'bg-pink-50', text: 'text-pink-700', border: 'border-pink-200' };
+  }
 
   // --- 7. Hotels & Unterkünfte ---
   if (matchSubOrName('hotel', 'hotels', 'resort', 'lodge', 'pension', 'gästehaus', 'landhotel')) {

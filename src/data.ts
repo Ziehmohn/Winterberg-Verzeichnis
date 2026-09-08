@@ -4301,8 +4301,175 @@ export const businesses: Business[] = [
       saturday: '12:00 - 22:00',
       sunday: '12:00 - 22:00'
     }
+  },
+  {
+    id: 'pfiffikus-winterberg',
+    name: 'Pfiffikus Winterberg',
+    category: 'Einzelhandel',
+    subcategory: 'Spielwaren',
+    description: 'Beliebtes Fachgeschäft für Spielwaren, Kinderspiele und Geschenke im Herzen von Winterberg. Großes Sortiment an LEGO, Playmobil, Holzspielzeug, Puzzles, Büchern und Gesellschaftsspielen mit persönlicher Beratung.',
+    description_nl: 'Populaire speciaalzaak voor speelgoed, kinderspellen en cadeaus in het hart van Winterberg. Ruim assortiment LEGO, Playmobil, houten speelgoed, puzzels en gezelschapsspellen met deskundig advies.',
+    address: 'Hauptstraße 12, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 899970',
+    email: 'info@pfiffikus-winterberg.de',
+    website: 'https://www.pfiffikus-winterberg.de',
+    imageFallback: 'PW',
+    isPremium: false,
+    status: 'approved',
+    services: ['Spielwaren & Kinderspiele', 'LEGO & Playmobil', 'Puzzles & Gesellschaftsspiele', 'Holzspielzeug', 'Geschenkservice & Beratung'],
+    services_nl: ['Speelgoed & Kinderspellen', 'LEGO & Playmobil', 'Puzzels & Gezelschapsspellen', 'Houten speelgoed', 'Cadeauservice & Advies'],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 15:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'parfuemerie-becker-winterberg',
+    name: 'Parfümerie Becker GmbH',
+    category: 'Einzelhandel',
+    subcategory: 'Parfümerie',
+    additionalCategories: [
+      { category: 'Gesundheit & Medizin', subcategory: 'Kosmetikstudios' }
+    ],
+    description: 'Traditionelle Parfümerie und Fachgeschäft für exklusive Düfte, hochwertige Pflegekosmetik, Make-up und professionelle Kosmetikbehandlungen im Herzen von Winterberg.',
+    description_nl: 'Traditionele parfumerie en speciaalzaak voor exclusieve geuren, hoogwaardige verzorgingscosmetica, make-up en professionele schoonheidsbehandelingen in het centrum van Winterberg.',
+    address: 'Am Waltenberg 22, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2607',
+    website: 'https://www.parfuemerie-becker.de',
+    imageFallback: 'PB',
+    isPremium: false,
+    status: 'approved',
+    services: ['Exklusive Düfte & Parfums', 'Pflegekosmetik & Make-up', 'Kosmetiksalon & Behandlungen', 'Individuelle Duftberatung', 'Geschenkgutscheine'],
+    services_nl: ['Exclusieve geuren & parfums', 'Verzorgingscosmetica & make-up', 'Schoonheidssalon & behandelingen', 'Persoonlijk geuradvies', 'Cadeaubonnen'],
+    openingHours: {
+      monday: '10:00 - 13:00, 14:00 - 18:00',
+      tuesday: '10:00 - 13:00, 14:00 - 18:00',
+      wednesday: '10:00 - 13:00, 14:00 - 18:00',
+      thursday: '10:00 - 13:00, 14:00 - 18:00',
+      friday: '10:00 - 13:00, 14:00 - 18:00',
+      saturday: '10:00 - 13:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'camel-active-store-winterberg',
+    name: 'camel active Store Winterberg',
+    category: 'Einzelhandel',
+    subcategory: 'Bekleidung',
+    additionalCategories: [
+      { category: 'Ski, Bike & Sport', subcategory: 'Sport & Outdoor' }
+    ],
+    description: 'Offizieller camel active Store in Winterberg mit lässiger und funktionaler Bekleidung, Outdoor-Jacken, Schuhen und Accessoires für Damen und Herren im urbanen und Outdoor-Lifestyle.',
+    description_nl: 'Officiële camel active Store in Winterberg met casual en functionele kleding, outdoorjassen, schoenen en accessoires voor dames en heren in urban en outdoorstijl.',
+    address: 'Am Waltenberg 8, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9251927',
+    email: 'welcome@cmlc.de',
+    website: 'https://www.camelactive.com',
+    imageFallback: 'CA',
+    isPremium: false,
+    status: 'approved',
+    services: ['Herren- & Damenmode', 'Outdoor-Jacken & Westen', 'Schuhe & Boots', 'Lässige Freizeitbekleidung', 'Accessoires & Taschen'],
+    services_nl: ['Heren- & damesmode', 'Outdoorjassen & bodywarmers', 'Schoenen & boots', 'Casual vrijetijdskleding', 'Accessoires & tassen'],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 17:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'liftstation-snowboard-skateshop-winterberg',
+    name: 'Liftstation - Snowboard & Skateshop',
+    category: 'Ski, Bike & Sport',
+    subcategory: 'Sport & Outdoor',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Bekleidung' },
+      { category: 'Ski, Bike & Sport', subcategory: 'Skiverleih' }
+    ],
+    description: 'Spezialisierter Snowboard- und Skateshop in Winterberg mit großer Auswahl an Snowboards, Skateboards, Streetwear, Boots, Bindungen, Schutzausrüstung und fachkundigem Service.',
+    description_nl: 'Gespecialiseerde snowboard- en skateshop in Winterberg met een grote selectie snowboards, skateboards, streetwear, boots, bindingen, bescherming en deskundig advies.',
+    address: 'Hauptstraße 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8160919',
+    email: 'info@liftstation.eu',
+    website: 'https://www.liftstation.eu',
+    imageFallback: 'LS',
+    isPremium: false,
+    status: 'approved',
+    services: ['Snowboards & Bindungen', 'Skateboards & Zubehör', 'Winter- & Streetwear', 'Snowboard-Service & Verleih', 'Boots & Helme'],
+    services_nl: ['Snowboards & bindingen', 'Skateboards & accessoires', 'Winter- & streetwear', 'Snowboardservice & verhuur', 'Boots & helmen'],
+    openingHours: {
+      monday: '12:00 - 18:00',
+      tuesday: '12:00 - 18:00',
+      wednesday: '12:00 - 18:00',
+      thursday: '12:00 - 18:00',
+      friday: '12:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'jeans-fritz-winterberg',
+    name: 'JEANS FRITZ',
+    category: 'Einzelhandel',
+    subcategory: 'Bekleidung',
+    description: 'Bekanntes Bekleidungsgeschäft für Damen- und Herrenmode mit großer Auswahl an modernen Jeans, Oberteilen, Jacken und modischen Accessoires in bester Qualität zu fairen Preisen.',
+    description_nl: 'Bekende kledingwinkel voor dames- en herenmode met een ruim assortiment moderne jeans, tops, jassen en stijlvolle accessoires van goede kwaliteit tegen eerlijke prijzen.',
+    address: 'Hauptstraße 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 802902',
+    website: 'https://www.jeans-fritz.de',
+    imageFallback: 'JF',
+    isPremium: false,
+    status: 'approved',
+    services: ['Damen- & Herrenmode', 'Jeans & Denim-Spezialist', 'Shirts, Pullover & Jacken', 'Gürtel & Accessoires', 'Passformberatung'],
+    services_nl: ['Dames- & herenmode', 'Jeans & denimportfolio', 'Shirts, truien & jassen', 'Riemen & accessoires', 'Persoonlijk pasadvies'],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 17:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'pommes-and-co-winterberg',
+    name: 'Pommes & Co Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Imbisse',
+    description: 'Beliebter Imbiss und Fast-Food-Klassiker am Waltenberg in Winterberg mit knusprigen Pommes Frites, original Sauerländer Currywurst, Schnitzeln, Burgern und frischen Salatbowls.',
+    description_nl: 'Populaire snackbar en fastfood-klassieker aan de Waltenberg in Winterberg met knapperige friet, originele Sauerlandse curryworst, schnitzels, burgers en verse saladebowls.',
+    address: 'Am Waltenberg 27, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9021601',
+    imageFallback: 'PC',
+    isPremium: false,
+    status: 'approved',
+    services: ['Knusprige Pommes & Currywurst', 'Schnitzel & Burger', 'Salatbowls', 'Speisen vor Ort', 'Schnelle Abholung'],
+    services_nl: ['Knapperige friet & curryworst', 'Schnitzels & burgers', 'Saladebowls', 'Eten ter plaatse', 'Afhalen'],
+    openingHours: {
+      monday: '12:00 - 20:00',
+      tuesday: '12:00 - 20:00',
+      wednesday: '12:00 - 20:00',
+      thursday: '12:00 - 20:00',
+      friday: '12:00 - 20:00',
+      saturday: '12:00 - 20:00',
+      sunday: '12:00 - 20:00'
+    }
   }
-
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {
@@ -4421,7 +4588,7 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks'] },
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
