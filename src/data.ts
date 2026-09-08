@@ -4469,6 +4469,62 @@ export const businesses: Business[] = [
       saturday: '12:00 - 20:00',
       sunday: '12:00 - 20:00'
     }
+  },
+  {
+    id: 'borgschulte-friseur-winterberg',
+    name: 'Borgschulte Friseur by W & O Schmidt',
+    category: 'Handwerk',
+    subcategory: 'Friseur',
+    description: 'Moderner Friseursalon in Winterberg für Damen, Herren und Kinder. Professionelle Haarschnitte, typgerechte Coloration, Balayage, Styling und Pflegeberatung mit bequemer Online-Terminbuchung.',
+    description_nl: 'Moderne kapsalon in Winterberg voor dames, heren en kinderen. Professionele knipbeurten, kleuringen, balayage, styling en haarverzorging met eenvoudig online afspraken maken.',
+    address: 'Hellenstraße 4, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1866',
+    website: 'https://www.wundo.eu',
+    imageFallback: 'BF',
+    isPremium: false,
+    status: 'approved',
+    services: ['Damen-, Herren- & Kinderschnitte', 'Farbe, Strähnen & Balayage', 'Braut- & Event-Styling', 'Haarpflege & Kuren', 'Online-Terminbuchung'],
+    services_nl: ['Dames-, heren- & kinderknipbeurten', 'Kleur, highlights & balayage', 'Bruids- & eventstyling', 'Haarverzorging', 'Online afspraak maken'],
+    openingHours: {
+      monday: 'Geschlossen',
+      tuesday: '08:30 - 18:30',
+      wednesday: '08:30 - 18:30',
+      thursday: '08:30 - 18:30',
+      friday: '08:30 - 18:30',
+      saturday: '08:00 - 13:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'sport-und-mode-menke-winterberg',
+    name: 'Sport und Mode Menke',
+    category: 'Ski, Bike & Sport',
+    subcategory: 'Sport & Outdoor',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Bekleidung' }
+    ],
+    description: 'Traditionsreiches Fachgeschäft für Sport, Outdoor und Mode am Waltenberg in Winterberg. Riesige Auswahl an Wintersport-Ausrüstung, Wanderbekleidung, Sportschuhen und aktueller Freizeitmode.',
+    description_nl: 'Traditierijke speciaalzaak voor sport, outdoor en mode aan de Waltenberg in Winterberg. Groot aanbod wintersportuitrusting, wandelkleding, sportschoenen en actuele vrijetijdsmode.',
+    address: 'Am Waltenberg 5, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2222',
+    email: 'info@sport-menke.de',
+    website: 'https://www.sport-menke.de',
+    imageFallback: 'SM',
+    isPremium: false,
+    status: 'approved',
+    services: ['Sport- & Funktionsbekleidung', 'Ski- & Wintersportausrüstung', 'Wanderschuhe & Outdoor', 'Markenmode für Damen & Herren', 'Fachkundige Beratung'],
+    services_nl: ['Sport- & functionele kleding', 'Ski- & wintersportuitrusting', 'Wandelschoenen & outdoor', 'Merkkleding voor dames & heren', 'Deskundig advies'],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: '11:00 - 17:00'
+    }
   }
 ];
 

@@ -199,6 +199,9 @@ export function getCategoryStyle(category = '', subcategory = '', name = '', isP
   if (matchSubOrName('fleischerei', 'metzgerei', 'metzger')) {
     return { icon: Utensils, bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' };
   }
+  if (matchSubOrName('friseur', 'haare', 'barbier', 'barber', 'haarschnitt')) {
+    return { icon: Scissors, bg: 'bg-pink-50', text: 'text-pink-600', border: 'border-pink-200' };
+  }
 
   // --- 6. Einzelhandel & Shopping ---
   if (matchSubOrName('supermarkt', 'lebensmittel', 'rewe', 'edeka', 'lidl', 'aldi', 'netto', 'dorfladen')) {
