@@ -4525,6 +4525,31 @@ export const businesses: Business[] = [
       saturday: '10:00 - 16:00',
       sunday: '11:00 - 17:00'
     }
+  },
+  {
+    id: 'luma-restaurant-winterberg',
+    name: 'Luma',
+    category: 'Gastronomie',
+    subcategory: 'Restaurant',
+    description: 'Stilvolles Restaurant am Waltenberg in Winterberg für anspruchsvolle Gaumen. Kreatives Casual Fine Dining, wechselnde saisonale Spezialitäten, erlesene Weine und gemütliche Außenterrasse.',
+    description_nl: 'Stijlvol restaurant aan de Waltenberg in Winterberg voor de fijnproever. Creatieve casual fine dining, wisselende seizoensspecialiteiten, geselecteerde wijnen en een sfeervol buitenterras.',
+    address: 'Am Waltenberg 24, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9271857',
+    imageFallback: 'LU',
+    isPremium: false,
+    status: 'approved',
+    services: ['Casual Fine Dining', 'Saisonale Frischeküche', 'Vegetarische Optionen', 'Ausgesuchte Weinkarte', 'Sonnenterrasse'],
+    services_nl: ['Casual fine dining', 'Seizoensgebonden gerechten', 'Vegetarische opties', 'Geselecteerde wijnkaart', 'Zonneterras'],
+    openingHours: {
+      monday: 'Geschlossen',
+      tuesday: 'Geschlossen',
+      wednesday: '12:00 - 21:00',
+      thursday: '12:00 - 21:00',
+      friday: '12:00 - 21:00',
+      saturday: '12:00 - 21:00',
+      sunday: '12:00 - 21:00'
+    }
   }
 ];
 
