@@ -29,6 +29,20 @@ entries.push({
   priority: '1.0',
 });
 
+// Add News
+entries.push({
+  locDe: `${baseUrl}/news/freistehende-ladenlokale-winterberg`,
+  locNl: `${baseUrl}/nl/news/freistehende-ladenlokale-winterberg`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
+entries.push({
+  locDe: `${baseUrl}/news/neue-kinderarztpraxis-winterberg-poststrasse`,
+  locNl: `${baseUrl}/nl/news/neue-kinderarztpraxis-winterberg-poststrasse`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
+
 // 2. All businesses
 entries.push({
   locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
