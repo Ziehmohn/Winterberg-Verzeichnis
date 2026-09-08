@@ -1287,9 +1287,43 @@ export default function App() {
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
-              <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
+              <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5"></div>
 
-              {/* Länderschieber (Sprachumschalter nur Flaggen) */}
+              {/* Button: Eintrag kostenlos hinzufügen */}
+              <button 
+                type="button" 
+                onClick={() => {
+                  resetToDirectory();
+                  setIsSubmitMode(true);
+                  window.history.pushState(null, '', getPath('/eintragen'));
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }} 
+                className="hover:-translate-y-0.5 transition-transform cursor-pointer"
+                style={{ background: '#F2761B', color: '#fff', border: 'none', borderRadius: '6px', padding: '7px 13px', fontSize: '13.5px', fontWeight: 600, boxShadow: '0 3px 10px rgba(242,118,27,0.22)', whiteSpace: 'nowrap' }}
+              >
+                {t("createEntry")}
+              </button>
+
+              {/* Profile / Admin Login Icon */}
+              <button 
+                onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
+                className="flex items-center justify-center transition-colors cursor-pointer"
+                title={currentUser ? 'Dashboard' : t("adminLogin")}
+              >
+                {currentUser ? (
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[13px] tracking-wider ${isAdminMode ? 'bg-[#0F4C2E] shadow-inner' : 'bg-[#F2761B] shadow-md hover:bg-[#D65F0C]'} transition-colors`}>
+                    {currentUser.email ? currentUser.email.substring(0, 2).toUpperCase() : 'A'}
+                  </div>
+                ) : (
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#FAF8F5] border border-[#E7E2DA] transition-colors">
+                    <User className={`w-4 h-4 ${isAdminMode ? 'text-[#F2761B]' : 'text-[#0F4C2E] hover:text-orange-500'}`} />
+                  </div>
+                )}
+              </button>
+
+              <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5"></div>
+
+              {/* Länderschieber (Sprachumschalter ganz rechts) */}
               <div className="flex items-center bg-[#F3F0EA] p-1 rounded-full border border-[#E7E2DA] shadow-inner select-none gap-1">
                 <button 
                   type="button" 
@@ -1318,45 +1352,20 @@ export default function App() {
                   <span className="leading-none select-none">🇳🇱</span>
                 </button>
               </div>
-
-              <div className="w-[1px] h-[20px] bg-[#E7E2DA] mx-0.5"></div>
-
-              <button 
-                onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
-                className="flex items-center justify-center transition-colors cursor-pointer"
-                title={currentUser ? 'Dashboard' : t("adminLogin")}
-              >
-                {currentUser ? (
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[13px] tracking-wider ${isAdminMode ? 'bg-[#0F4C2E] shadow-inner' : 'bg-[#F2761B] shadow-md hover:bg-[#D65F0C]'} transition-colors`}>
-                    {currentUser.email ? currentUser.email.substring(0, 2).toUpperCase() : 'A'}
-                  </div>
-                ) : (
-                  <User className={`w-5 h-5 ${isAdminMode ? 'text-[#F2761B]' : 'text-[#0F4C2E] hover:text-orange-500'}`} />
-                )}
-              </button>
             </nav>
 
-            <button 
-              type="button" 
-              onClick={() => window.dispatchEvent(new CustomEvent('open-pwa-install'))}
-              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-[#EDE8E0] bg-[#FAF8F5] hover:bg-[#E8F1EB] hover:border-[#0F4C2E] text-[#0F4C2E] text-[13.5px] font-semibold transition-all cursor-pointer shadow-2xs"
-              title={lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}
-            >
-              <Smartphone className="w-4 h-4 text-[#F2761B]" />
-              <span>App</span>
-            </button>
-
-            <button 
-              type="button" 
-              onClick={() => setIsSubmitMode(true)} 
-              className="hidden md:block hover:-translate-y-0.5"
-              style={{ background: '#F2761B', color: '#fff', border: 'none', borderRadius: '6px', padding: '10px 18px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 12px rgba(242,118,27,0.25)', transition: 'background 0.15s, transform 0.15s' }}
-            >
-              {t("createEntry")}
-            </button>
-
-            {/* Mobile Language Switch & Menu Button */}
+            {/* Mobile Header: App Button (nur Mobilgerät) + Language Switcher */}
             <div className="md:hidden flex items-center gap-2 shrink-0">
+              <button 
+                type="button" 
+                onClick={() => window.dispatchEvent(new CustomEvent('open-pwa-install'))}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-[#EDE8E0] bg-[#FAF8F5] active:bg-[#E8F1EB] text-[#0F4C2E] text-xs font-semibold shadow-2xs cursor-pointer"
+                title={lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}
+              >
+                <Smartphone className="w-3.5 h-3.5 text-[#F2761B]" />
+                <span>App</span>
+              </button>
+
               <div className="flex items-center bg-[#F3F0EA] p-0.5 rounded-full border border-[#E7E2DA] gap-0.5">
                 <button 
                   type="button" 

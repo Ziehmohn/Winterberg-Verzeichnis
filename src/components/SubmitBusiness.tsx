@@ -18,7 +18,7 @@ interface SubmitBusinessProps {
 
 export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricingSettings }: SubmitBusinessProps) {
   const { currentUser: user, loading } = useAuth();
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   const isOffer = isPricingOfferActive(pricingSettings);
   const activePricing = pricingSettings || PRICING;
