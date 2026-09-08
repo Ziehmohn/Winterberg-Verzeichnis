@@ -4579,6 +4579,32 @@ export const businesses: Business[] = [
       saturday: '12:00 - 22:00',
       sunday: '12:00 - 22:00'
     }
+  },
+  {
+    id: 'winterberger-strumpfhaus',
+    name: 'Winterberger Strumpfhaus',
+    category: 'Einzelhandel',
+    subcategory: 'Bekleidung',
+    description: 'Spezialisiertes Fachgeschäft am Waltenberg in Winterberg für hochwertige Strumpfwaren, Funktions- und Wandersocken, Strumpfhosen, Nachtwäsche und bequeme Homewear für Damen, Herren und Kinder.',
+    description_nl: 'Gespecialiseerde winkel aan de Waltenberg in Winterberg voor hoogwaardige beenmode, functionele en wandelsokken, panty\'s, nachtkleding en comfortabele homewear.',
+    address: 'Am Waltenberg 24, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 81360',
+    website: 'https://www.winterberger-strumpfhaus.de',
+    imageFallback: 'WS',
+    isPremium: false,
+    status: 'approved',
+    services: ['Strümpfe, Socken & Strumpfhosen', 'Wandersocken & Funktionsstrümpfe', 'Nachtwäsche & Homewear', 'Gesundheitssocken & Kompression', 'Fachberatung vor Ort'],
+    services_nl: ['Sokken, kousen & panty\'s', 'Wandelsokken & functionele kousen', 'Nachtkleding & homewear', 'Gezondheidssokken', 'Persoonlijk advies'],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen'
+    }
   }
 ];
 
