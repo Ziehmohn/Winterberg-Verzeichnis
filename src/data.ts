@@ -4550,6 +4550,35 @@ export const businesses: Business[] = [
       saturday: '12:00 - 21:00',
       sunday: '12:00 - 21:00'
     }
+  },
+  {
+    id: 'pizzeria-pronto-pronto-winterberg',
+    name: 'Pizzeria & Bistro Pronto Pronto',
+    category: 'Gastronomie',
+    subcategory: 'Pizzerien',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' },
+      { category: 'Gastronomie', subcategory: 'Imbisse' }
+    ],
+    description: 'Beliebte Pizzeria und Bistro am Waltenberg in Winterberg mit großer Auswahl an knuspriger Steinofenpizza, Pasta, Schnitzeln, Salaten und schnellem Lieferservice.',
+    description_nl: 'Populaire pizzeria en bistro aan de Waltenberg in Winterberg met een ruime keuze aan knapperige steenovenpizza\'s, pasta, schnitzels, salades en snelle bezorgservice.',
+    address: 'Am Waltenberg 50, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9021541',
+    imageFallback: 'PP',
+    isPremium: false,
+    status: 'approved',
+    services: ['Knusprige Steinofenpizza', 'Pasta & Überbackenes', 'Schnitzel & Burger', 'Lieferservice & Drive-in', 'Speisen vor Ort & Abholung'],
+    services_nl: ['Knapperige steenovenpizza', 'Pasta & ovenschotels', 'Schnitzels & burgers', 'Bezorgservice & drive-in', 'Eten ter plaatse & afhalen'],
+    openingHours: {
+      monday: '12:00 - 22:00',
+      tuesday: '12:00 - 22:00',
+      wednesday: '12:00 - 22:00',
+      thursday: '12:00 - 22:00',
+      friday: '12:00 - 22:00',
+      saturday: '12:00 - 22:00',
+      sunday: '12:00 - 22:00'
+    }
   }
 ];
 
