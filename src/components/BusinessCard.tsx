@@ -217,10 +217,23 @@ export default function BusinessCard({
         )}
 
         {/* Address at Bottom */}
-        <div className="mt-auto pt-4 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
+        <div className="mt-auto pt-3.5 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
           <MapPin className="w-4 h-4 shrink-0 text-[#8A928B]" />
-          <span className="text-[13.5px] leading-tight">{business.address}</span>
+          <span className="text-[13.5px] leading-tight truncate">{business.address}</span>
         </div>
+
+        {/* Subtle claim hint for unclaimed profiles */}
+        {!business.isPremium && !business.ownerId && (
+          <div className="mt-2 pt-2 border-t border-dashed border-[#EDE8E0] flex items-center justify-between text-[11.5px] text-[#0F4C2E]">
+            <span className="font-semibold flex items-center gap-1 group-hover:underline">
+              <span>{lang === 'nl' ? 'Uw bedrijf? Nu gratis claimen' : 'Ihr Betrieb? Jetzt kostenlos übernehmen'}</span>
+              <span className="text-[#F2761B] font-bold">→</span>
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-50 text-[#0F4C2E] border border-emerald-200">
+              0 €
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

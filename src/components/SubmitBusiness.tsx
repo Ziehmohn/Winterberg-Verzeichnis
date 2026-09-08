@@ -221,8 +221,63 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
 
   return (
     <main className="flex-1 w-full max-w-[720px] mx-auto px-6 py-[54px] pb-[80px]">
-      <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">Unternehmen eintragen</h1>
-      <p className="text-[17px] leading-[1.65] text-[#4A544D] mb-[30px]">Kostenlos gelistet werden — oder mit <a href="/preise" target="_blank" rel="noopener noreferrer" className="text-[#F2761B] hover:underline font-semibold">Premium</a> Bildergalerie, ausführliches Profil und Top-Platzierung freischalten.</p>
+      <h1 className="font-display text-[clamp(32px,5vw,48px)] font-bold mb-3.5">
+        {lang === 'nl' ? 'Bedrijf aanmelden' : 'Unternehmen eintragen'}
+      </h1>
+      <div className="mb-[30px] space-y-3">
+        <p className="text-[16.5px] leading-[1.65] text-[#4A544D]">
+          {lang === 'nl' ? (
+            <>
+              <strong>100% gratis vermeld worden</strong> en openingstijden, contactgegevens en adres zelf beheren — of met een{' '}
+              <a 
+                href="/nl/prijzen" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', '/nl/prijzen');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="text-[#F2761B] hover:underline font-bold inline-flex items-center gap-0.5"
+              >
+                <span>Premium-pakket</span>
+                <span className="text-xs">↗</span>
+              </a>{' '}
+              fotogalerij, uitgebreid profiel, backlinks en toppositie ontgrendelen.
+            </>
+          ) : (
+            <>
+              <strong>100% kostenlos gelistet werden</strong> und Öffnungszeiten, Kontaktdaten und Adresse selbst verwalten — oder mit einem{' '}
+              <a 
+                href="/preise" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', '/preise');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="text-[#F2761B] hover:underline font-bold inline-flex items-center gap-0.5"
+              >
+                <span>Premium-Paket</span>
+                <span className="text-xs">↗</span>
+              </a>{' '}
+              Bildergalerie, ausführliches Profil, Website-Verlinkung und Top-Platzierung freischalten.
+            </>
+          )}
+        </p>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-semibold text-[#0F4C2E]">
+          <span>✓</span>
+          <span>{lang === 'nl' ? 'Basisinvoer is en blijft blijvend kosteloos zonder abonnement.' : 'Der Basiseintrag ist und bleibt dauerhaft gebührenfrei ohne Abo.'}</span>
+          <a
+            href={lang === 'nl' ? '/nl/prijzen' : '/preise'}
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState(null, '', lang === 'nl' ? '/nl/prijzen' : '/preise');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+            className="text-[#0F4C2E] underline hover:text-[#15603A] font-bold ml-1"
+          >
+            {lang === 'nl' ? 'Alle pakketdetails bekijken →' : 'Alle Paket-Details ansehen →'}
+          </a>
+        </div>
+      </div>
       
       <form onSubmit={handleSubmit} className="bg-white border border-[#EDE8E0] rounded-lg p-7 grid gap-[18px] shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
         <label className="grid gap-[7px] text-[14px] font-semibold">Unternehmensname

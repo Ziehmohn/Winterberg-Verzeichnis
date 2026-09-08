@@ -936,7 +936,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             <span>{lang === 'nl' ? 'Zegel voor eigen website' : 'Siegel für eigene Website'}</span>
           </button>
 
-          {!business.isPremium && (
+          {!business.isPremium && !business.ownerId && (
             <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
               <div className="font-semibold text-[15px] mb-1">{t("isThisYourBusiness")}</div>
               <p className="text-[13px] text-[#5F6B63] mb-3">{t("claimProfileDesc")}</p>
@@ -949,9 +949,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     setShowClaimScreen(true);
                   }
                 }}
-                className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-md py-2.5 text-[14px] font-semibold cursor-pointer transition-colors"
+                className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-md py-2.5 text-[14px] font-semibold cursor-pointer transition-colors shadow-xs"
               >
-                {lang === 'nl' ? 'Profiel claimen & upgraden' : 'Profil übernehmen & upgraden'}
+                {lang === 'nl' ? 'Profiel gratis claimen' : 'Profil kostenlos übernehmen'}
               </button>
             </div>
           )}
