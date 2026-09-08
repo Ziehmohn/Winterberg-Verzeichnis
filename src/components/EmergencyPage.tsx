@@ -79,120 +79,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
       </div>
 
-      {/* SECTION 1: Top 4 Quick Emergency Numbers (Direktwahl) */}
-      <section className="mb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* 112 Notruf */}
-          <div className="bg-red-50 border-2 border-red-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-red-500 transition-all">
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <span className="bg-red-600 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                  {lang === 'nl' ? 'Levensgevaar' : 'Lebensgefahr'}
-                </span>
-                <Siren className="w-5 h-5 text-red-600" />
-              </div>
-              <h3 className="font-display font-bold text-base text-red-950 mt-1 mb-1">
-                {lang === 'nl' ? 'Brandweer & Ambulance' : 'Notarzt & Feuerwehr'}
-              </h3>
-              <p className="text-xs text-red-900/80 leading-snug mb-3">
-                {lang === 'nl'
-                  ? 'Voor acute, levensbedreigende noodgevallen en ongevallen.'
-                  : 'Für lebensbedrohliche Notfälle, schwere Unfälle und Brände.'}
-              </p>
-            </div>
-            <a
-              href="tel:112"
-              className="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2.5 px-4 rounded-xl font-bold text-lg shadow-sm transition-colors no-underline"
-            >
-              <PhoneCall className="w-5 h-5" />
-              <span>112</span>
-            </a>
-          </div>
-
-          {/* 110 Polizei */}
-          <div className="bg-blue-50 border-2 border-blue-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-blue-500 transition-all">
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <span className="bg-blue-600 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                  {lang === 'nl' ? 'Politie' : 'Polizei'}
-                </span>
-                <ShieldAlert className="w-5 h-5 text-blue-600" />
-              </div>
-              <h3 className="font-display font-bold text-base text-blue-950 mt-1 mb-1">
-                {lang === 'nl' ? 'Politie Noodnummer' : 'Polizei Notruf'}
-              </h3>
-              <p className="text-xs text-blue-900/80 leading-snug mb-3">
-                {lang === 'nl'
-                  ? 'Bij acute misdrijven, gevaar en verkeersongevallen.'
-                  : 'Für akute Gefahrenlagen, Einbrüche und Unfälle.'}
-              </p>
-            </div>
-            <a
-              href="tel:110"
-              className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-xl font-bold text-lg shadow-sm transition-colors no-underline"
-            >
-              <PhoneCall className="w-5 h-5" />
-              <span>110</span>
-            </a>
-          </div>
-
-          {/* 116 117 Ärztlicher Bereitschaftsdienst */}
-          <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-emerald-500 transition-all">
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <span className="bg-[#0F4C2E] text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                  {lang === 'nl' ? 'Huisartsenpost' : 'Ärztlicher Dienst'}
-                </span>
-                <Stethoscope className="w-5 h-5 text-[#0F4C2E]" />
-              </div>
-              <h3 className="font-display font-bold text-base text-emerald-950 mt-1 mb-1">
-                {lang === 'nl' ? 'Medische Hulpdienst' : 'Ärztlicher Bereitschaftsdienst'}
-              </h3>
-              <p className="text-xs text-emerald-900/80 leading-snug mb-3">
-                {lang === 'nl'
-                  ? 'Buiten kantooruren bij niet-levensbedreigende klachten.'
-                  : 'Außerhalb der Praxiszeiten bei nicht lebensbedrohlichen Fällen.'}
-              </p>
-            </div>
-            <a
-              href="tel:116117"
-              className="w-full inline-flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2.5 px-4 rounded-xl font-bold text-lg shadow-sm transition-colors no-underline"
-            >
-              <PhoneCall className="w-5 h-5" />
-              <span>116 117</span>
-            </a>
-          </div>
-
-          {/* Giftnotruf 0228 19240 */}
-          <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-amber-500 transition-all">
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <span className="bg-amber-600 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                  {lang === 'nl' ? 'Antigifcentrum' : 'Giftnotruf NRW'}
-                </span>
-                <AlertTriangle className="w-5 h-5 text-amber-600" />
-              </div>
-              <h3 className="font-display font-bold text-base text-amber-950 mt-1 mb-1">
-                {lang === 'nl' ? 'Giftnotrufzentrale (Bonn)' : 'Giftnotrufzentrale (Bonn)'}
-              </h3>
-              <p className="text-xs text-amber-900/80 leading-snug mb-3">
-                {lang === 'nl'
-                  ? 'Deskundig advies bij vermoeden van vergiftiging 24/7.'
-                  : '24-Stunden-Beratung bei Vergiftungen mit Pflanzen, Pilzen etc.'}
-              </p>
-            </div>
-            <a
-              href="tel:022819240"
-              className="w-full inline-flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white py-2.5 px-3 rounded-xl font-bold text-sm shadow-sm transition-colors no-underline"
-            >
-              <PhoneCall className="w-4 h-4" />
-              <span>0228 19 240</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: Apotheken-Notdienst (Offizielle Abfrage via aponet.de / ABDA) */}
+      {/* 1. NOTFALL-APOTHEKEN-INFO (Offizielle Abfrage via aponet.de / ABDA) */}
       <section className="bg-white border-2 border-[#E7E2DA] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#EDE8E0] mb-6">
           <div className="flex items-center gap-3">
@@ -336,7 +223,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 3: Krankenhäuser & Notfallpraxis (Klinisches Blau zur klaren Unterscheidung) */}
+      {/* 2. KRANKENHÄUSER & NOTFALLPRAXEN */}
       <section className="bg-gradient-to-br from-[#F0F6FA] via-[#F8FAFC] to-[#EFF6FB] border-2 border-[#BCD7E8] rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-[#D0E2EE]">
           <div className="flex items-center gap-3">
@@ -402,7 +289,188 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 4: Notfall-Leitfaden (Die 5 W-Fragen) */}
+      {/* 3. WICHTIGE NOTFALLTELEFONNUMMERN (Direktwahl) */}
+      <section className="mb-10">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold shadow-xs">
+            <PhoneCall className="w-6 h-6 text-red-600" />
+          </div>
+          <div>
+            <h2 className="font-display text-xl font-bold text-[#1B211D] m-0">
+              {lang === 'nl' ? 'Belangrijke Noodtelefoonnummers (Direct kiezen)' : 'Wichtige Notfalltelefonnummern (Direktwahl)'}
+            </h2>
+            <span className="text-xs text-[#5F6B63]">
+              {lang === 'nl'
+                ? 'Directe verbinding met hulpdiensten, politie en medische bereikbaarheid'
+                : 'Direkte Durchwahl zu Rettungsdienst, Polizei und Bereitschaftsdiensten'}
+            </span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {/* 112 Notruf */}
+          <div className="bg-red-50 border-2 border-red-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-red-500 transition-all">
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span className="bg-red-600 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                  {lang === 'nl' ? 'Levensgevaar' : 'Lebensgefahr'}
+                </span>
+                <Siren className="w-5 h-5 text-red-600" />
+              </div>
+              <h3 className="font-display font-bold text-base text-red-950 mt-1 mb-1">
+                {lang === 'nl' ? 'Brandweer & Ambulance' : 'Notarzt & Feuerwehr'}
+              </h3>
+              <p className="text-xs text-red-900/80 leading-snug mb-3">
+                {lang === 'nl'
+                  ? 'Voor acute, levensbedreigende noodgevallen en ongevallen.'
+                  : 'Für lebensbedrohliche Notfälle, schwere Unfälle und Brände.'}
+              </p>
+            </div>
+            <a
+              href="tel:112"
+              className="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2.5 px-4 rounded-xl font-bold text-lg shadow-sm transition-colors no-underline"
+            >
+              <PhoneCall className="w-5 h-5" />
+              <span>112</span>
+            </a>
+          </div>
+
+          {/* 110 Polizei */}
+          <div className="bg-blue-50 border-2 border-blue-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-blue-500 transition-all">
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span className="bg-blue-600 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                  {lang === 'nl' ? 'Politie' : 'Polizei'}
+                </span>
+                <ShieldAlert className="w-5 h-5 text-blue-600" />
+              </div>
+              <h3 className="font-display font-bold text-base text-blue-950 mt-1 mb-1">
+                {lang === 'nl' ? 'Politie Noodnummer' : 'Polizei Notruf'}
+              </h3>
+              <p className="text-xs text-blue-900/80 leading-snug mb-3">
+                {lang === 'nl'
+                  ? 'Bij acute misdrijven, gevaar en verkeersongevallen.'
+                  : 'Für akute Gefahrenlagen, Einbrüche und Unfälle.'}
+              </p>
+            </div>
+            <a
+              href="tel:110"
+              className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-xl font-bold text-lg shadow-sm transition-colors no-underline"
+            >
+              <PhoneCall className="w-5 h-5" />
+              <span>110</span>
+            </a>
+          </div>
+
+          {/* 116 117 Ärztlicher Bereitschaftsdienst */}
+          <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-emerald-500 transition-all">
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span className="bg-[#0F4C2E] text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                  {lang === 'nl' ? 'Huisartsenpost' : 'Ärztlicher Dienst'}
+                </span>
+                <Stethoscope className="w-5 h-5 text-[#0F4C2E]" />
+              </div>
+              <h3 className="font-display font-bold text-base text-emerald-950 mt-1 mb-1">
+                {lang === 'nl' ? 'Medische Hulpdienst' : 'Ärztlicher Bereitschaftsdienst'}
+              </h3>
+              <p className="text-xs text-emerald-900/80 leading-snug mb-3">
+                {lang === 'nl'
+                  ? 'Buiten kantooruren bij niet-levensbedreigende klachten.'
+                  : 'Außerhalb der Praxiszeiten bei nicht lebensbedrohlichen Fällen.'}
+              </p>
+            </div>
+            <a
+              href="tel:116117"
+              className="w-full inline-flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#155D38] text-white py-2.5 px-4 rounded-xl font-bold text-lg shadow-sm transition-colors no-underline"
+            >
+              <PhoneCall className="w-5 h-5" />
+              <span>116 117</span>
+            </a>
+          </div>
+
+          {/* Giftnotruf 0228 19240 */}
+          <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between hover:border-amber-500 transition-all">
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span className="bg-amber-600 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                  {lang === 'nl' ? 'Antigifcentrum' : 'Giftnotruf NRW'}
+                </span>
+                <AlertTriangle className="w-5 h-5 text-amber-600" />
+              </div>
+              <h3 className="font-display font-bold text-base text-amber-950 mt-1 mb-1">
+                {lang === 'nl' ? 'Giftnotrufzentrale (Bonn)' : 'Giftnotrufzentrale (Bonn)'}
+              </h3>
+              <p className="text-xs text-amber-900/80 leading-snug mb-3">
+                {lang === 'nl'
+                  ? 'Deskundig advies bij vermoeden van vergiftiging 24/7.'
+                  : '24-Stunden-Beratung bei Vergiftungen mit Pflanzen, Pilzen etc.'}
+              </p>
+            </div>
+            <a
+              href="tel:022819240"
+              className="w-full inline-flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white py-2.5 px-3 rounded-xl font-bold text-sm shadow-sm transition-colors no-underline"
+            >
+              <PhoneCall className="w-4 h-4" />
+              <span>0228 19 240</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Lokale Zusatz-Notfallkontakte: Polizeiwache Winterberg & Zahnärztlicher Notdienst */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Polizeiwache Winterberg */}
+          <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-4 flex items-center justify-between gap-3 shadow-2xs hover:border-[#D8D2C8] transition-all">
+            <div>
+              <span className="text-[11px] font-bold text-blue-800 uppercase tracking-wider block">
+                {lang === 'nl' ? 'Lokale Politie' : 'Lokale Dienststelle'}
+              </span>
+              <h4 className="font-display font-bold text-sm text-[#1B211D] mt-0.5 mb-1">
+                {lang === 'nl' ? 'Politiebureau Winterberg' : 'Polizeiwache Winterberg'}
+              </h4>
+              <p className="text-xs text-[#5F6B63] m-0">
+                Fichtenweg 1, 59955 Winterberg
+              </p>
+            </div>
+            <a
+              href="tel:0298192850"
+              className="inline-flex items-center gap-1.5 bg-white hover:bg-blue-50 border border-[#D0E2EE] text-blue-700 px-3.5 py-2 rounded-lg font-bold text-xs shadow-2xs transition-colors no-underline shrink-0"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>02981 92850</span>
+            </a>
+          </div>
+
+          {/* Zahnärztlicher Notdienst */}
+          <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-4 flex items-center justify-between gap-3 shadow-2xs hover:border-[#D8D2C8] transition-all">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wider block">
+                  {lang === 'nl' ? 'Tandartsen Spoeddienst' : 'Zahnärztlicher Notdienst'}
+                </span>
+                <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.2 rounded-full">
+                  {lang === 'nl' ? 'Weekend' : 'Wochenende'}
+                </span>
+              </div>
+              <h4 className="font-display font-bold text-sm text-[#1B211D] mt-0.5 mb-1">
+                {lang === 'nl' ? 'Tandarts Nooddienst HSK' : 'Notfalldienst Westfalen-Lippe'}
+              </h4>
+              <p className="text-xs text-[#5F6B63] m-0">
+                {lang === 'nl' ? 'Zentrale bandopname weekend & feestdagen (14 ct/min)' : 'Zentrale Ansage Sa/So & Feiertage (14 ct/Min.)'}
+              </p>
+            </div>
+            <a
+              href="tel:01805986700"
+              className="inline-flex items-center gap-1.5 bg-white hover:bg-amber-50 border border-[#E7E2DA] text-amber-800 px-3.5 py-2 rounded-lg font-bold text-xs shadow-2xs transition-colors no-underline shrink-0"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>01805 986700</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. NOTFALL-LEITFADEN (Die 5 W-Fragen) */}
       <section className="bg-gradient-to-br from-[#FAF8F5] to-white border-2 border-[#E7E2DA] rounded-2xl p-6 sm:p-8 shadow-sm">
         <h3 className="font-display text-lg font-bold text-[#1B211D] mb-3 flex items-center gap-2">
           <HelpCircle className="w-5 h-5 text-[#0F4C2E]" />

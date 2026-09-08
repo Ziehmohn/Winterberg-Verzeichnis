@@ -3007,10 +3007,9 @@ export default function App() {
               onClick={() => {
                 window.dispatchEvent(new CustomEvent('open-pwa-install'));
               }}
-              className="text-left text-[#FCD34D] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer font-medium"
+              className="text-left bg-transparent border-none p-0 text-white/80 hover:text-white transition-colors cursor-pointer text-[14.5px]"
             >
-              <Smartphone className="w-3.5 h-3.5" />
-              <span>{lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}</span>
+              {lang === 'nl' ? 'Winterberg App' : 'Winterberg App'}
             </button>
             <a 
               href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')} 
@@ -3034,10 +3033,9 @@ export default function App() {
                 setIsEmergencyMode(true); 
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }} 
-              className="text-rose-300 hover:text-white font-semibold transition-colors flex items-center gap-1.5"
+              className="text-white/80 hover:text-white transition-colors"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
-              <span>{lang === 'nl' ? 'Nooddiensten & Apotheken' : 'Notdienste & Notfallnummern'}</span>
+              {lang === 'nl' ? 'Nooddiensten' : 'Notdienste'}
             </a>
             <a 
               href={getPath('/grounding')} 
