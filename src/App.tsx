@@ -1724,7 +1724,16 @@ export default function App() {
                           onBlur={() => setTimeout(() => setShowHomeSuggestions(false), 200)}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                              setSearchQuery(homeSearchInput);
+                              if (homeSearchInput.trim()) {
+                                setSearchQuery(homeSearchInput.trim());
+                              } else {
+                                setSearchQuery('');
+                              }
+                              setIsAllMode(true);
+                              const targetUrl = activeLocation !== 'Alle' 
+                                ? `${getPath('/alle-unternehmen')}?ort=${encodeURIComponent(activeLocation)}` 
+                                : getPath('/alle-unternehmen');
+                              window.history.pushState(null, '', targetUrl);
                               setShowHomeSuggestions(false);
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }
@@ -1756,22 +1765,33 @@ export default function App() {
                                 prd.toLowerCase().includes(lowerInput)
                               );
                               return (
-                                <div 
+                                <a 
                                   key={s.id} 
-                                  className="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between transition-colors border-b border-gray-50 last:border-0"
-                                  onMouseDown={() => {
-                                    setHomeSearchInput(s.name);
-                                    setSearchQuery(s.name);
-                                    setShowHomeSuggestions(false);
-                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                  href={getPath(getBusinessPath(s, lang))}
+                                  className="px-4 py-3 hover:bg-[#F9F7F4] cursor-pointer flex items-center justify-between transition-colors border-b border-gray-100 last:border-0 no-underline text-inherit block group"
+                                  onMouseDown={(e) => {
+                                    // Prevent input blur before click event
+                                    e.preventDefault();
+                                  }}
+                                  onClick={(e) => {
+                                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                                      e.preventDefault();
+                                      setSelectedBusiness(s);
+                                      const url = getPath(getBusinessPath(s, lang));
+                                      window.history.pushState(null, '', url);
+                                      setShowHomeSuggestions(false);
+                                      setHomeSearchInput('');
+                                      setSearchQuery('');
+                                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }
                                   }}
                                 >
                                   <div className="flex items-center gap-3 overflow-hidden">
-                                    <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center flex-shrink-0">
-                                      <Search className="w-4 h-4 text-gray-400" />
+                                    <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#E8F1EB] transition-colors">
+                                      <Search className="w-4 h-4 text-gray-400 group-hover:text-[#0F4C2E] transition-colors" />
                                     </div>
-                                    <div className="flex flex-col overflow-hidden">
-                                      <span className="text-gray-900 font-medium truncate">{s.name}</span>
+                                    <div className="flex flex-col overflow-hidden text-left">
+                                      <span className="text-gray-900 font-medium truncate group-hover:text-[#0F4C2E] transition-colors">{s.name}</span>
                                       <div className="flex items-center gap-1.5 flex-wrap">
                                         <span className="text-gray-500 text-xs truncate">{t(s.category)}{s.subcategory ? ` > ${t(s.subcategory)}` : ''}</span>
                                         {matchingServices.length > 0 && (
@@ -1787,7 +1807,11 @@ export default function App() {
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                  <div className="hidden sm:flex items-center text-xs text-[#0F4C2E] font-medium shrink-0 ml-3 gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                                    <span>{lang === 'nl' ? 'Profiel' : 'Profil'}</span>
+                                    <ChevronRight className="w-3.5 h-3.5" />
+                                  </div>
+                                </a>
                               );
                             })}
                           </div>
@@ -1807,7 +1831,17 @@ export default function App() {
                       <button 
                         type="button" 
                         onClick={() => {
-                          setSearchQuery(homeSearchInput);
+                          if (homeSearchInput.trim()) {
+                            setSearchQuery(homeSearchInput.trim());
+                          } else {
+                            setSearchQuery('');
+                          }
+                          setIsAllMode(true);
+                          const targetUrl = activeLocation !== 'Alle' 
+                            ? `${getPath('/alle-unternehmen')}?ort=${encodeURIComponent(activeLocation)}` 
+                            : getPath('/alle-unternehmen');
+                          window.history.pushState(null, '', targetUrl);
+                          setShowHomeSuggestions(false);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }} 
                         className="w-full md:w-auto shrink-0 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-6 py-2.5 font-semibold transition-colors cursor-pointer shadow-sm"
@@ -1828,6 +1862,11 @@ export default function App() {
                           onClick={() => {
                             setHomeSearchInput(term);
                             setSearchQuery(term);
+                            setIsAllMode(true);
+                            const targetUrl = activeLocation !== 'Alle' 
+                              ? `${getPath('/alle-unternehmen')}?ort=${encodeURIComponent(activeLocation)}` 
+                              : getPath('/alle-unternehmen');
+                            window.history.pushState(null, '', targetUrl);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
                           className="bg-white/15 hover:bg-white/30 text-white px-3 py-1 rounded-full border border-white/20 transition-all cursor-pointer font-medium"
