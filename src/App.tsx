@@ -1698,11 +1698,12 @@ export default function App() {
                     <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 leading-relaxed">{t("heroText1")}</p>
                     <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">{t("heroText2")}</p>
 
-                    <div className="bg-white rounded-lg p-2.5 flex flex-col md:flex-row gap-2.5 items-center max-w-3xl shadow-2xl">
-                      <div className="flex items-center gap-3 w-full md:flex-[2] px-3 relative">
-                        <Search className="w-5 h-5 text-gray-400" />
+                    <div className="bg-white rounded-lg p-2.5 flex flex-col md:flex-row gap-2.5 items-center max-w-4xl shadow-2xl">
+                      <div className="flex items-center gap-3 w-full flex-1 min-w-0 px-3 relative">
+                        <Search className="w-5 h-5 text-gray-400 shrink-0" />
                         <input 
                           placeholder={t("searchPlaceholderHero")} 
+                          title={t("searchPlaceholderHero")}
                           value={homeSearchInput}
                           onChange={(e) => {
                             setHomeSearchInput(e.target.value);
@@ -1717,8 +1718,22 @@ export default function App() {
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }
                           }}
-                          className="border-none outline-none text-base w-full py-2.5 text-gray-900 bg-transparent" 
+                          className="border-none outline-none text-[15px] sm:text-base w-full py-2.5 text-gray-900 bg-transparent placeholder:text-gray-400" 
                         />
+                        {homeSearchInput && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setHomeSearchInput('');
+                              setSearchQuery('');
+                              setShowHomeSuggestions(false);
+                            }}
+                            className="text-gray-400 hover:text-gray-600 p-1 shrink-0 cursor-pointer"
+                            title="Eingabe löschen"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
                         {showHomeSuggestions && homeSuggestions.length > 0 && (
                           <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-md shadow-2xl border border-gray-100 overflow-hidden z-[100] text-left">
                             {homeSuggestions.map(s => {
@@ -1770,7 +1785,7 @@ export default function App() {
                       <select 
                         value={activeLocation} 
                         onChange={(e) => setActiveLocation(e.target.value)}
-                        className="w-full md:w-auto md:flex-1 border border-gray-200 rounded-md px-3.5 py-2.5 text-base text-gray-900 bg-gray-50 focus:outline-none focus:border-[#F2761B]"
+                        className="w-full md:w-auto md:w-[195px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[15px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 focus:border-[#F2761B] transition-colors cursor-pointer"
                       >
                         <option value="Alle">{t("allTowns")}</option>
                         {categories.flatMap(c => c.subcategories).map(s => s).filter((v,i,a)=>a.indexOf(v)===i).slice(0,0)} {/* Dummy to avoid unused */}
@@ -1784,7 +1799,7 @@ export default function App() {
                           setSearchQuery(homeSearchInput);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }} 
-                        className="w-full md:w-auto bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-5 py-2.5 font-semibold transition-colors cursor-pointer"
+                        className="w-full md:w-auto shrink-0 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-6 py-2.5 font-semibold transition-colors cursor-pointer shadow-sm"
                       >
                         {lang === 'nl' ? 'Zoeken' : 'Suchen'}
                       </button>
