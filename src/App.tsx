@@ -79,6 +79,7 @@ import ClaimsAdminPanel from './components/ClaimsAdminPanel';
 import PromoTopBar from './components/PromoTopBar';
 import PwaInstallPrompt from './components/PwaInstallPrompt';
 import AppBottomNav from './components/AppBottomNav';
+import { GermanFlag, DutchFlag } from './components/FlagIcons';
 import { generateLocalBusinessSchema, generateCollectionPageSchema, generateItemListSchema, generateWebSiteSearchSchema } from './utils/schemaGenerator';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
@@ -1336,7 +1337,7 @@ export default function App() {
                   title="Deutsch"
                   aria-label="Deutsch"
                 >
-                  <span className="leading-none select-none">🇩🇪</span>
+                  <GermanFlag className="w-[18px] h-[18px]" />
                 </button>
                 <button 
                   type="button" 
@@ -1349,7 +1350,7 @@ export default function App() {
                   title="Nederlands"
                   aria-label="Nederlands"
                 >
-                  <span className="leading-none select-none">🇳🇱</span>
+                  <DutchFlag className="w-[18px] h-[18px]" />
                 </button>
               </div>
             </nav>
@@ -1376,7 +1377,7 @@ export default function App() {
                   title="Deutsch"
                   aria-label="Deutsch"
                 >
-                  <span className="leading-none">🇩🇪</span>
+                  <GermanFlag className="w-4 h-4" />
                 </button>
                 <button 
                   type="button" 
@@ -1387,7 +1388,7 @@ export default function App() {
                   title="Nederlands"
                   aria-label="Nederlands"
                 >
-                  <span className="leading-none">🇳🇱</span>
+                  <DutchFlag className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -2577,7 +2578,7 @@ export default function App() {
                   title="Deutsch"
                   aria-label="Deutsch"
                 >
-                  <span className="leading-none">🇩🇪</span>
+                  <GermanFlag className="w-5 h-5" />
                 </button>
                 <button
                   type="button"
@@ -2591,7 +2592,7 @@ export default function App() {
                   title="Nederlands"
                   aria-label="Nederlands"
                 >
-                  <span className="leading-none">🇳🇱</span>
+                  <DutchFlag className="w-5 h-5" />
                 </button>
               </div>
             </div>
