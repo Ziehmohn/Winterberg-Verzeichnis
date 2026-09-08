@@ -88,6 +88,61 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Translation Route (Google Translate)
+  app.all('/api/translate', async (req, res) => {
+    let text = '';
+    let from = 'de';
+    let to = 'nl';
+
+    if (req.method === 'POST') {
+      let body = req.body;
+      if (typeof body === 'string') {
+        try {
+          body = JSON.parse(body);
+        } catch (e) {
+          // ignore
+        }
+      }
+      text = body?.text || '';
+      from = body?.from || 'de';
+      to = body?.to || 'nl';
+    } else {
+      text = req.query?.text as string || '';
+      from = req.query?.from as string || 'de';
+      to = req.query?.to as string || 'nl';
+    }
+
+    if (!text || typeof text !== 'string') {
+      return res.status(400).json({ error: 'Text parameter is required' });
+    }
+
+    try {
+      const upstreamUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(from)}&tl=${encodeURIComponent(to)}&dt=t`;
+      const response = await fetch(upstreamUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: new URLSearchParams({ q: text })
+      });
+
+      if (!response.ok) {
+        return res.status(response.status).json({ error: `Translation upstream error ${response.status}` });
+      }
+
+      const data: any = await response.json();
+      const translatedText = Array.isArray(data[0]) 
+        ? data[0].map((s: any) => s[0]).join('')
+        : text;
+
+      res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=604800');
+      return res.status(200).json({ translatedText });
+    } catch (err: any) {
+      console.error('Translation error:', err);
+      return res.status(500).json({ error: err.message });
+    }
+  });
+
   // Email Route
   app.post('/api/send-mail', async (req, res) => {
     try {

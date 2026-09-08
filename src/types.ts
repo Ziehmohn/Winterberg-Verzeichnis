@@ -60,7 +60,9 @@ export interface NewsArticle {
   id: string;
   slug?: string;
   title: string;
+  title_nl?: string;
   content: string;
+  content_nl?: string;
   author: string;
   businessId?: string;
   businessName?: string;

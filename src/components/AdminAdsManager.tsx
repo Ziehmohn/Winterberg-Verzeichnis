@@ -12,7 +12,7 @@ import { db, storage } from '../firebase';
 import { doc, setDoc, deleteDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getBusinessPath } from '../utils/routes';
-import { translateTextToDutch } from '../utils/translator';
+import { translateTextToDutch, fetchDutchTranslation } from '../utils/translator';
 
 interface AdminAdsManagerProps {
   ads: AdBanner[];
@@ -97,16 +97,27 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
     }
   };
 
-  const handleAutoTranslateToDutch = () => {
-    if (title.trim()) {
-      setTitleNl(translateTextToDutch(title.trim()));
+  const [isTranslatingNl, setIsTranslatingNl] = useState(false);
+
+  const handleAutoTranslateToDutch = async () => {
+    setIsTranslatingNl(true);
+    try {
+      if (title.trim()) {
+        const trTitle = await fetchDutchTranslation(title.trim(), 'de', 'nl');
+        setTitleNl(trTitle || translateTextToDutch(title.trim()));
+      }
+      if (ctaText.trim()) {
+        const trCta = await fetchDutchTranslation(ctaText.trim(), 'de', 'nl');
+        setCtaTextNl(trCta || translateTextToDutch(ctaText.trim()));
+      } else {
+        setCtaTextNl('Meer informatie');
+      }
+      setBadgeTextNl(badgeText === 'Werbung' ? 'Reclame' : 'Advertentie');
+    } catch (err) {
+      console.error('Translation error in AdminAdsManager:', err);
+    } finally {
+      setIsTranslatingNl(false);
     }
-    if (ctaText.trim()) {
-      setCtaTextNl(translateTextToDutch(ctaText.trim()));
-    } else {
-      setCtaTextNl('Meer informatie');
-    }
-    setBadgeTextNl(badgeText === 'Werbung' ? 'Reclame' : 'Advertentie');
   };
 
   const handleOpenNew = () => {
@@ -598,10 +609,11 @@ export default function AdminAdsManager({ ads, setAds, businesses = [], currentU
                 <button
                   type="button"
                   onClick={handleAutoTranslateToDutch}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#0F4C2E] hover:bg-[#06301C] text-white rounded-md text-xs font-semibold transition-colors shadow-xs cursor-pointer"
+                  disabled={isTranslatingNl}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#0F4C2E] hover:bg-[#06301C] text-white rounded-md text-xs font-semibold transition-colors shadow-xs cursor-pointer disabled:opacity-50"
                 >
                   <Sparkles className="w-3 h-3 text-[#F2761B]" />
-                  <span>Auf Niederländisch vorübersetzen</span>
+                  <span>{isTranslatingNl ? 'Übersetze via Google Translate...' : 'Auf Niederländisch vorübersetzen'}</span>
                 </button>
               )}
             </div>

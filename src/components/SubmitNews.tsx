@@ -5,6 +5,7 @@ import { db, storage } from '../firebase';
 import { ThemeConfig } from '../types';
 import { ImagePlus, X, Check } from 'lucide-react';
 import { useTranslation } from '../i18n';
+import { fetchDutchTranslation } from '../utils/translator';
 
 interface SubmitNewsProps {
   theme: ThemeConfig;
@@ -58,9 +59,35 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         finalImageUrl = await getDownloadURL(imageRef);
       }
 
+      let titleDe = formData.title;
+      let titleNl = '';
+      let contentDe = formData.content;
+      let contentNl = '';
+
+      if (isNl) {
+        titleNl = formData.title;
+        contentNl = formData.content;
+        try {
+          titleDe = await fetchDutchTranslation(formData.title, 'nl', 'de');
+          contentDe = await fetchDutchTranslation(formData.content, 'nl', 'de');
+        } catch (e) {
+          titleDe = formData.title;
+          contentDe = formData.content;
+        }
+      } else {
+        try {
+          titleNl = await fetchDutchTranslation(formData.title, 'de', 'nl');
+          contentNl = await fetchDutchTranslation(formData.content, 'de', 'nl');
+        } catch (e) {
+          // ignore
+        }
+      }
+
       await addDoc(collection(db, 'news'), {
-        title: formData.title,
-        content: formData.content,
+        title: titleDe,
+        title_nl: titleNl || '',
+        content: contentDe,
+        content_nl: contentNl || '',
         author: formData.author,
         businessName: formData.businessName || '',
         imageUrl: finalImageUrl,

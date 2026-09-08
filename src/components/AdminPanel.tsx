@@ -3,7 +3,7 @@ import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus
 import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
-import { translateTextToDutch, translateServiceToDutch } from '../utils/translator';
+import { translateTextToDutch, translateServiceToDutch, fetchDutchTranslation } from '../utils/translator';
 import { db, storage, auth } from '../firebase';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
@@ -313,6 +313,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   const [newProduct, setNewProduct] = useState('');
   const [newProductNl, setNewProductNl] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [isTranslatingNl, setIsTranslatingNl] = useState(false);
 
   // New Document Upload State
   const [uploadingDoc, setUploadingDoc] = useState(false);
@@ -399,29 +400,36 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   };
 
 
-  const handleAutoTranslateToDutch = () => {
-    const autoDesc = translateTextToDutch(formData.description || '');
-    const autoExt = formData.extendedDescription ? translateTextToDutch(formData.extendedDescription) : '';
-    const autoServices = (formData.services || []).map(s => translateServiceToDutch(s));
-    const autoProducts = (formData.products || []).map(p => translateServiceToDutch(p));
+  const handleAutoTranslateToDutch = async () => {
+    setIsTranslatingNl(true);
+    try {
+      const autoDesc = formData.description ? await fetchDutchTranslation(formData.description) : '';
+      const autoExt = formData.extendedDescription ? await fetchDutchTranslation(formData.extendedDescription) : '';
+      const autoServices = (formData.services || []).map(s => translateServiceToDutch(s));
+      const autoProducts = (formData.products || []).map(p => translateServiceToDutch(p));
 
-    setFormData(prev => ({
-      ...prev,
-      description_nl: autoDesc,
-      extendedDescription_nl: autoExt,
-      services_nl: autoServices,
-      products_nl: autoProducts,
-      translations: {
-        ...prev.translations,
-        nl: {
-          description: autoDesc,
-          extendedDescription: autoExt,
-          services: autoServices,
-          products: autoProducts
+      setFormData(prev => ({
+        ...prev,
+        description_nl: autoDesc,
+        extendedDescription_nl: autoExt,
+        services_nl: autoServices,
+        products_nl: autoProducts,
+        translations: {
+          ...prev.translations,
+          nl: {
+            description: autoDesc,
+            extendedDescription: autoExt,
+            services: autoServices,
+            products: autoProducts
+          }
         }
-      }
-    }));
-    setActiveLangTab('nl');
+      }));
+      setActiveLangTab('nl');
+    } catch (err) {
+      console.error('Translation error in AdminPanel:', err);
+    } finally {
+      setIsTranslatingNl(false);
+    }
   };
 
   const addServicesNlFromInput = (input: string) => {
@@ -1037,11 +1045,12 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <button
               type="button"
               onClick={handleAutoTranslateToDutch}
-              className="bg-orange-50 hover:bg-orange-100 text-[#D65F0C] border border-orange-200 rounded-md px-3 py-1.5 text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 shadow-2xs"
-              title="Generiert automatisch eine niederländische Übersetzung aus den deutschen Texten"
+              disabled={isTranslatingNl}
+              className="bg-orange-50 hover:bg-orange-100 text-[#D65F0C] border border-orange-200 rounded-md px-3 py-1.5 text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 shadow-2xs disabled:opacity-50"
+              title="Generiert automatisch eine professionelle niederländische Übersetzung via Google Translate"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
-              <span>⚡ Automatisch ins Niederländische übersetzen</span>
+              <span>{isTranslatingNl ? 'Übersetze via Google Translate...' : '⚡ Automatisch ins Niederländische übersetzen'}</span>
             </button>
           </div>
 

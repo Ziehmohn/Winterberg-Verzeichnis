@@ -326,8 +326,9 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
 
   const article = rawArticle ? getLocalizedNewsArticle(rawArticle, lang) : null;
   const plainText = article ? stripMarkdownAndHtml(article.content || '') : '';
-  const summary = plainText.length > 200 ? plainText.substring(0, 197).trim() + '...' : plainText;
-  const newsUrl = article && rawArticle ? `https://www.winterberg-verzeichnis.de/news/${article.slug || rawArticle.id}` : 'https://www.winterberg-verzeichnis.de/news';
+  const newsUrl = article && rawArticle 
+    ? `https://www.winterberg-verzeichnis.de${lang === 'nl' ? '/nl/nieuws' : '/news'}/${article.slug || rawArticle.id}` 
+    : (lang === 'nl' ? 'https://www.winterberg-verzeichnis.de/nl/nieuws' : 'https://www.winterberg-verzeichnis.de/news');
   const isoDate = article ? formatIsoDate(article.date) : new Date().toISOString();
 
   const schemaOrg = article && rawArticle ? {

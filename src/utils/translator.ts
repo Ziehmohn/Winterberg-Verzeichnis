@@ -553,17 +553,86 @@ export function translateTextToDutch(text: string): string {
   return translated;
 }
 
+// In-memory cache for translations
+const translationMemoryCache = new Map<string, string>();
+
+/**
+ * Translates text into fluent Dutch using Google Translate via /api/translate.
+ * Caches results in-memory and in localStorage.
+ * Falls back gracefully to local dictionary translation if offline or on network failure.
+ */
+export async function fetchDutchTranslation(text: string, from = 'de', to = 'nl'): Promise<string> {
+  if (!text || typeof text !== 'string' || !text.trim()) return text;
+  const trimmed = text.trim();
+  const cacheKey = `wv_tr_${from}_${to}_${trimmed.slice(0, 100)}_${trimmed.length}`;
+
+  if (translationMemoryCache.has(cacheKey)) {
+    return translationMemoryCache.get(cacheKey)!;
+  }
+
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = window.localStorage.getItem(cacheKey);
+      if (stored) {
+        translationMemoryCache.set(cacheKey, stored);
+        return stored;
+      }
+    }
+  } catch (e) {
+    // Ignore localStorage errors
+  }
+
+  try {
+    const res = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: trimmed, from, to })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.translatedText) {
+        const translated = data.translatedText;
+        translationMemoryCache.set(cacheKey, translated);
+        try {
+          if (typeof window !== 'undefined' && window.localStorage && translated.length < 50000) {
+            window.localStorage.setItem(cacheKey, translated);
+          }
+        } catch (e) {
+          // Ignore localStorage quota exceeded
+        }
+        return translated;
+      }
+    }
+  } catch (err) {
+    console.warn('Network translation error, using fallback:', err);
+  }
+
+  // Fallback to local dictionary translation
+  return translateTextToDutch(trimmed);
+}
+
 /**
  * Localizes a NewsArticle for the given language.
+ * Uses dedicated Dutch translation fields (title_nl, content_nl) if present,
+ * falling back to the original title and content or translation pipeline.
  */
 export function getLocalizedNewsArticle(article: NewsArticle, lang: 'de' | 'nl'): NewsArticle {
   if (!article) return article;
   if (lang === 'de') return article;
 
+  const title = (article.title_nl && article.title_nl.trim().length > 0)
+    ? article.title_nl.trim()
+    : translateTextToDutch(article.title || '');
+
+  const content = (article.content_nl && article.content_nl.trim().length > 0)
+    ? article.content_nl.trim()
+    : translateTextToDutch(article.content || '');
+
   return {
     ...article,
-    title: translateTextToDutch(article.title),
-    content: translateTextToDutch(article.content),
+    title,
+    content,
     imageSource: article.imageSource ? translateTextToDutch(article.imageSource) : undefined,
   };
 }

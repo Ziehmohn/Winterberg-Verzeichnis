@@ -43,7 +43,7 @@ import {
   getLegacyCategoryRedirect,
   getSystemRedirects
 } from './utils/routes';
-import { getLocalizedBusiness } from './utils/translator';
+import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
 
 // Lazy-load heavy components that most visitors never see (code-splitting)
@@ -522,15 +522,18 @@ export default function App() {
 
     const handlePopState = () => {
       const path = window.location.pathname;
-      const pathParts = path.split('/').filter(Boolean);
+      let pathParts = path.split('/').filter(Boolean);
+      if (pathParts[0] === 'nl') {
+        pathParts.shift();
+      }
       
       resetToDirectory();
       
       if (pathParts[0]) {
         const p1 = decodeURIComponent(pathParts[0]).toLowerCase();
-        if (p1 === 'news') {
+        if (p1 === 'news' || p1 === 'nieuws') {
           setIsNewsMode(true);
-          if (pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen') {
+          if (pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'einreichen' || decodeURIComponent(pathParts[1]).toLowerCase() === 'indienen')) {
             setIsNewsSubmitMode(true);
           } else if (pathParts[1]) {
             setNewsId(decodeURIComponent(pathParts[1]));
@@ -545,25 +548,30 @@ export default function App() {
               setBestOfSubcategory(sub);
             }
           }
-        } else if (p1 === 'alle-unternehmen') {
+        } else if (p1 === 'alle-unternehmen' || p1 === 'alle-bedrijven') {
           setIsAllMode(true);
-        } else if (p1 === 'stellenangebote' || p1 === 'jobs') {
+        } else if (p1 === 'stellenangebote' || p1 === 'jobs' || p1 === 'vacatures') {
           setIsJobsMode(true);
-        } else if (p1 === 'preise' || p1 === 'pricing') {
+          if (pathParts[1]) {
+            setJobsCategory(decodeURIComponent(pathParts[1]));
+          }
+        } else if (p1 === 'preise' || p1 === 'pricing' || p1 === 'prijzen') {
           setIsPricingMode(true);
         } else if (p1 === 'aktuelle-spritpreise' || p1 === 'spritpreise' || p1 === 'actuele-brandstofprijzen' || p1 === 'brandstofprijzen') {
           setIsFuelPricesMode(true);
-        } else if (p1 === 'faq' || p1 === 'faqs' || p1 === 'winterberg-faq') {
+        } else if (p1 === 'notdienste' || p1 === 'notdienst' || p1 === 'nooddiensten' || p1 === 'nooddienst' || p1 === 'apotheken-notdienst') {
+          setIsEmergencyMode(true);
+        } else if (p1 === 'faq' || p1 === 'faqs' || p1 === 'veelgestelde-vragen' || p1 === 'winterberg-faq') {
           setIsFaqMode(true);
-        } else if (p1 === 'impressum') {
+        } else if (p1 === 'impressum' || p1 === 'colofon') {
           setIsImpressumMode(true);
-        } else if (p1 === 'datenschutz') {
+        } else if (p1 === 'datenschutz' || p1 === 'privacy') {
           setIsDatenschutzMode(true);
-        } else if (p1 === 'agb') {
+        } else if (p1 === 'agb' || p1 === 'algemene-voorwaarden') {
           setIsAGBMode(true);
         } else if (p1 === 'grounding' || p1 === 'groundingpage' || p1 === 'grounding-page') {
           setIsGroundingMode(true);
-        } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen') {
+        } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen' || p1 === 'bedrijf-aanmelden') {
           setIsSubmitMode(true);
         } else {
            window.location.reload();
@@ -1535,7 +1543,8 @@ export default function App() {
             theme={theme} 
             activeThemeKey={activeThemeKey} 
             onBack={() => {
-              window.history.pushState(null, '', '/news');
+              const targetUrl = buildLocalizedUrl({ view: 'news' }, lang);
+              window.history.pushState(null, '', targetUrl);
               window.dispatchEvent(new PopStateEvent('popstate'));
             }} 
           />
@@ -1544,7 +1553,8 @@ export default function App() {
             theme={theme} 
             activeThemeKey={activeThemeKey} 
             onNewsClick={(id) => {
-              window.history.pushState(null, '', `/news/${id}`);
+              const targetUrl = buildLocalizedUrl({ view: 'news-detail', newsSlug: id }, lang);
+              window.history.pushState(null, '', targetUrl);
               window.dispatchEvent(new PopStateEvent('popstate'));
             }}
           />
@@ -3170,15 +3180,18 @@ function NewsAdminPanel() {
 
   // Form Fields
   const [title, setTitle] = useState('');
+  const [titleNl, setTitleNl] = useState('');
   const [slug, setSlug] = useState('');
   const [author, setAuthor] = useState('Redaktion');
   const [businessName, setBusinessName] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [content, setContent] = useState('');
+  const [contentNl, setContentNl] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [imageSource, setImageSource] = useState('');
   const [isAiGenerated, setIsAiGenerated] = useState(false);
   const [status, setStatus] = useState<'pending' | 'approved'>('approved');
+  const [isTranslating, setIsTranslating] = useState(false);
 
   const loadNews = async () => {
     try {
@@ -3201,11 +3214,13 @@ function NewsAdminPanel() {
   const handleOpenNew = () => {
     setEditingItem(null);
     setTitle('');
+    setTitleNl('');
     setSlug('');
     setAuthor('Redaktion');
     setBusinessName('');
     setDate(new Date().toISOString().split('T')[0]);
     setContent('');
+    setContentNl('');
     setImageUrl('');
     setImageSource('');
     setIsAiGenerated(false);
@@ -3217,17 +3232,43 @@ function NewsAdminPanel() {
   const handleOpenEdit = (item: any) => {
     setEditingItem(item);
     setTitle(item.title || '');
+    setTitleNl(item.title_nl || '');
     setSlug(item.slug || slugify(item.title || ''));
     setAuthor(item.author || '');
     setBusinessName(item.businessName || '');
     setDate(item.date ? new Date(item.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]);
     setContent(item.content || '');
+    setContentNl(item.content_nl || '');
     setImageUrl(item.imageUrl || '');
     setImageSource(item.imageSource || '');
     setIsAiGenerated(!!item.isAiGenerated);
     setStatus(item.status || 'approved');
     setFormError(null);
     setIsEditing(true);
+  };
+
+  const handleAutoTranslateNews = async () => {
+    if (!title.trim() && !content.trim()) {
+      alert('Bitte geben Sie zuerst eine deutsche Überschrift oder einen Text ein.');
+      return;
+    }
+    setIsTranslating(true);
+    setFormError(null);
+    try {
+      if (title.trim()) {
+        const trTitle = await fetchDutchTranslation(title.trim(), 'de', 'nl');
+        setTitleNl(trTitle);
+      }
+      if (content.trim()) {
+        const trContent = await fetchDutchTranslation(content.trim(), 'de', 'nl');
+        setContentNl(trContent);
+      }
+    } catch (err: any) {
+      console.error('Translation error:', err);
+      setFormError('Fehler bei der automatischen Übersetzung: ' + (err.message || err));
+    } finally {
+      setIsTranslating(false);
+    }
   };
 
   const handleImageFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -3312,14 +3353,35 @@ function NewsAdminPanel() {
     setIsSubmitting(true);
     setFormError(null);
 
+    let finalTitleNl = titleNl.trim();
+    let finalContentNl = contentNl.trim();
+
+    // Auto-translate on save if empty so Dutch version is guaranteed
+    if (!finalTitleNl && title.trim()) {
+      try {
+        finalTitleNl = await fetchDutchTranslation(title.trim(), 'de', 'nl');
+      } catch (e) {
+        console.warn('Auto-translating title on save failed:', e);
+      }
+    }
+    if (!finalContentNl && content.trim()) {
+      try {
+        finalContentNl = await fetchDutchTranslation(content.trim(), 'de', 'nl');
+      } catch (e) {
+        console.warn('Auto-translating content on save failed:', e);
+      }
+    }
+
     const finalSlug = slug.trim() || slugify(title.trim());
     const articleData: any = {
       title: title.trim(),
+      title_nl: finalTitleNl || '',
       slug: finalSlug,
       author: author.trim(),
       businessName: businessName.trim() || '',
       date: new Date(date).toISOString(),
       content: content.trim(),
+      content_nl: finalContentNl || '',
       imageUrl: imageUrl.trim() || '',
       imageSource: imageSource.trim() || '',
       isAiGenerated: !!isAiGenerated,
@@ -3410,7 +3472,7 @@ function NewsAdminPanel() {
           <form onSubmit={handleSave} className="space-y-5">
             <div>
               <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
-                Überschrift *
+                Überschrift (Deutsch) *
               </label>
               <input 
                 type="text" 
@@ -3424,6 +3486,22 @@ function NewsAdminPanel() {
                 }}
                 placeholder="z. B. Winterberg legt bei Übernachtungen deutlich zu"
                 className="w-full border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-base bg-white focus:outline-none focus:border-[#0F4C2E] font-semibold text-gray-900 shadow-xs"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-[#0F4C2E] uppercase tracking-wider">
+                  Überschrift (Niederländisch) 🇳🇱
+                </label>
+                <span className="text-[11px] text-gray-500">Wird für NL-Besucher angezeigt (leer = automatische Übersetzung)</span>
+              </div>
+              <input 
+                type="text" 
+                value={titleNl} 
+                onChange={e => setTitleNl(e.target.value)}
+                placeholder="z. B. Winterberg stijgt flink in overnachtingen..."
+                className="w-full border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-base bg-[#F7FAF8] focus:outline-none focus:border-[#0F4C2E] font-semibold text-gray-900 shadow-xs"
               />
             </div>
 
@@ -3562,11 +3640,11 @@ function NewsAdminPanel() {
               </div>
             </div>
 
-            {/* Content Textarea */}
+            {/* Content Textarea (Deutsch) */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">
-                  Text / Inhalt der News *
+                  Text / Inhalt der News (Deutsch) *
                 </label>
                 <span className="text-xs text-[#5F6B63]">
                   Formatierung: <code>## Überschrift</code>, <code>**fett**</code>, <code>&gt; Zitat</code>, <code>:::contact ... :::</code>
@@ -3574,11 +3652,37 @@ function NewsAdminPanel() {
               </div>
               <textarea 
                 required 
-                rows={12}
+                rows={10}
                 value={content} 
                 onChange={e => setContent(e.target.value)}
                 placeholder="Geben Sie hier den ausführlichen Text der Pressemitteilung / News ein..."
                 className="w-full border border-[#E7E2DA] rounded-md p-4 text-sm bg-white focus:outline-none focus:border-[#0F4C2E] font-sans leading-relaxed shadow-xs"
+              />
+            </div>
+
+            {/* Content Textarea (Niederländisch) */}
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                <label className="block text-xs font-bold text-[#0F4C2E] uppercase tracking-wider flex items-center gap-1.5">
+                  <span>Text / Inhalt (Niederländisch) 🇳🇱</span>
+                </label>
+                <button
+                  type="button"
+                  onClick={handleAutoTranslateNews}
+                  disabled={isTranslating}
+                  className="bg-[#E8F1EB] hover:bg-[#d8e8dd] text-[#0F4C2E] border border-[#0F4C2E]/30 rounded-md px-3 py-1.5 text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 disabled:opacity-50 self-start sm:self-auto shadow-2xs"
+                  title="Übersetzt deutsche Überschrift und Inhalt via Google Translate ins Niederländische"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                  <span>{isTranslating ? 'Übersetze via Google Translate...' : '⚡ Jetzt automatisch ins Niederländische übersetzen'}</span>
+                </button>
+              </div>
+              <textarea 
+                rows={10}
+                value={contentNl} 
+                onChange={e => setContentNl(e.target.value)}
+                placeholder="Niederländische Übersetzung des Artikels (wird beim Speichern automatisch erstellt, falls leer)..."
+                className="w-full border border-[#E7E2DA] rounded-md p-4 text-sm bg-[#F7FAF8] focus:outline-none focus:border-[#0F4C2E] font-sans leading-relaxed shadow-xs"
               />
             </div>
 
@@ -3722,6 +3826,16 @@ function NewsAdminPanel() {
                       {item.imageSource && (
                         <span className="bg-gray-100 text-gray-700 rounded px-2 py-0.5 text-[11px] font-medium">
                           Quelle: {item.imageSource}
+                        </span>
+                      )}
+
+                      {item.title_nl ? (
+                        <span className="bg-emerald-50 text-emerald-800 border border-emerald-200 rounded px-2 py-0.5 text-[11px] font-semibold flex items-center gap-1">
+                          🇳🇱 NL bereit
+                        </span>
+                      ) : (
+                        <span className="bg-amber-50 text-amber-800 border border-amber-200 rounded px-2 py-0.5 text-[11px] font-medium flex items-center gap-1">
+                          ⚠️ NL fehlt
                         </span>
                       )}
                     </div>
