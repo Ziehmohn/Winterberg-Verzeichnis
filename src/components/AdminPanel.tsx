@@ -7,6 +7,7 @@ import { translateTextToDutch, translateServiceToDutch, fetchDutchTranslation } 
 import { db, storage, auth } from '../firebase';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { invalidateCache, CACHE_KEYS } from '../utils/dbCache';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -549,6 +550,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         setDoc(doc(db, 'businesses', newId), dataToSubmit, { merge: true }),
         timeoutPromise
       ]);
+      invalidateCache(CACHE_KEYS.BUSINESSES);
 
       // Sync published businessNews to 'news' collection for review if not yet submitted
       if (Array.isArray(formData.businessNews) && formData.businessNews.length > 0) {

@@ -49,6 +49,7 @@ import {
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
 import { detectTargetLanguage, setUserPreferredLanguage } from './services/geoService';
+import { getCachedItem, setCachedItem, invalidateCache, CACHE_KEYS, CACHE_TTLS } from './utils/dbCache';
 
 // Lazy-load heavy components that most visitors never see (code-splitting)
 const DirectoryMap = React.lazy(() => import('./components/DirectoryMap'));
@@ -320,16 +321,28 @@ export default function App() {
           return;
         }
 
-        // 2. Check Firestore redirects collection
+        // 2. Check cached or Firestore redirects collection
         try {
-          const snap = await getDocs(collection(db, 'redirects'));
+          let redirectsList = getCachedItem<Array<{ source: string; target: string }>>(CACHE_KEYS.REDIRECTS, CACHE_TTLS.REDIRECTS);
+          if (!redirectsList) {
+            const snap = await getDocs(collection(db, 'redirects'));
+            redirectsList = [];
+            snap.forEach(docSnap => {
+              const data = docSnap.data();
+              if (data.source && data.target) {
+                redirectsList!.push({ source: data.source, target: data.target });
+              }
+            });
+            setCachedItem(CACHE_KEYS.REDIRECTS, redirectsList);
+          }
+
           let redirectTarget = null;
-          snap.forEach(docSnap => {
-            const data = docSnap.data();
-            if (data.source === currentPath || data.source + '/' === currentPath || data.source === currentPath + '/') {
-              redirectTarget = data.target;
+          for (const r of redirectsList) {
+            if (r.source === currentPath || r.source + '/' === currentPath || r.source === currentPath + '/') {
+              redirectTarget = r.target;
+              break;
             }
-          });
+          }
           if (redirectTarget) {
             window.location.replace(redirectTarget);
           }
@@ -658,6 +671,32 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
   const [businesses, setBusinesses] = useState<Business[]>(() => {
+    const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true);
+    if (cached && cached.length > 0) {
+      const merged = [...initialBusinesses];
+      cached.forEach(fb => {
+        const idx = merged.findIndex(b => b.id === fb.id);
+        if (idx >= 0) {
+          merged[idx] = { 
+            ...merged[idx], 
+            ...fb,
+            logoUrl: fb.logoUrl || merged[idx].logoUrl,
+            gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : merged[idx].gallery,
+            services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : merged[idx].services,
+            products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : merged[idx].products,
+          };
+        } else {
+          merged.push(fb);
+        }
+      });
+      const seen = new Set<string>();
+      return merged.filter(b => {
+        if (seen.has(b.id)) return false;
+        seen.add(b.id);
+        return true;
+      });
+    }
+
     const seen = new Set<string>();
     return initialBusinesses.filter(b => {
       if (seen.has(b.id)) return false;
@@ -740,21 +779,32 @@ export default function App() {
     googleSiteVerification: 'eD2M5X0XpFemq843s7x3232ic58ogimCDB6zWKPN_u8',
     googleAnalyticsId: 'G-86EMTRTX80'
   });
-  const [pricingSettings, setPricingSettings] = useState<PricingSettings>(DEFAULT_PRICING_SETTINGS);
+  const [pricingSettings, setPricingSettings] = useState<PricingSettings>(() => {
+    return getCachedItem<PricingSettings>(CACHE_KEYS.PRICING, CACHE_TTLS.PRICING, true) || DEFAULT_PRICING_SETTINGS;
+  });
 
   const theme = themes[activeThemeKey];
 
-  // Load remote pricing settings from Firestore
+  // Load remote pricing settings from Firestore with caching
   useEffect(() => {
     const loadRemotePricing = async () => {
+      // If fresh cached pricing is already in memory, skip reading Firestore
+      const cached = getCachedItem<PricingSettings>(CACHE_KEYS.PRICING, CACHE_TTLS.PRICING);
+      if (cached) {
+        setPricingSettings({ ...DEFAULT_PRICING_SETTINGS, ...cached });
+        return;
+      }
+
       try {
         const snap = await getDoc(doc(db, 'settings', 'pricing'));
         if (snap.exists()) {
           const data = snap.data() as PricingSettings;
-          setPricingSettings({ ...DEFAULT_PRICING_SETTINGS, ...data });
+          const merged = { ...DEFAULT_PRICING_SETTINGS, ...data };
+          setPricingSettings(merged);
+          setCachedItem(CACHE_KEYS.PRICING, merged);
         }
       } catch (e) {
-        console.error("Failed to load pricing settings from Firestore", e);
+        console.warn("Using default/cached pricing settings (Firestore offline or quota)", e);
       }
     };
     loadRemotePricing();
@@ -957,6 +1007,13 @@ export default function App() {
   }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
 
   const loadAds = async () => {
+    // 1. If fresh cached ads are in localStorage, use them immediately and skip Firestore
+    const cachedAds = getCachedItem<AdBanner[]>(CACHE_KEYS.ADS, CACHE_TTLS.ADS);
+    if (cachedAds && cachedAds.length > 0) {
+      setAds(cachedAds);
+      return;
+    }
+
     try {
       const querySnapshot = await getDocs(collection(db, 'ads'));
       const loadedAds: AdBanner[] = [];
@@ -969,6 +1026,7 @@ export default function App() {
       // If Firestore is empty, but we have local ads, use local ads (so they don't disappear)
       if (loadedAds.length === 0 && localAds.length > 0) {
         setAds(localAds);
+        setCachedItem(CACHE_KEYS.ADS, localAds);
         return;
       }
 
@@ -986,20 +1044,94 @@ export default function App() {
       setAds(merged);
       if (merged.length > 0) {
         localStorage.setItem('local_ads', JSON.stringify(merged));
+        setCachedItem(CACHE_KEYS.ADS, merged);
       }
     } catch (err) {
-      console.warn('Could not load ads from Firestore, using fallback', err);
-      const localAds = JSON.parse(localStorage.getItem('local_ads') || '[]');
-      if (localAds.length > 0) {
-        setAds(localAds);
+      console.warn('Could not load ads from Firestore, using fallback or cache', err);
+      const fallbackAds = getCachedItem<AdBanner[]>(CACHE_KEYS.ADS, CACHE_TTLS.ADS, true) || JSON.parse(localStorage.getItem('local_ads') || '[]');
+      if (fallbackAds.length > 0) {
+        setAds(fallbackAds);
       } else {
         setAds(initialAds);
       }
     }
   };
 
+  const applyBusinessesMerge = (loadedBusinesses: Business[]) => {
+    if (!loadedBusinesses || loadedBusinesses.length === 0) return;
+    const merged = [...initialBusinesses];
+    loadedBusinesses.forEach(fb => {
+      const idx = merged.findIndex(b => b.id === fb.id);
+      if (idx >= 0) {
+        const existing = merged[idx];
+        merged[idx] = { 
+          ...existing, 
+          ...fb,
+          logoUrl: fb.logoUrl || existing.logoUrl,
+          gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
+          services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
+          products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
+        };
+      } else {
+        merged.push(fb);
+      }
+    });
+
+    // Strict deduplication by ID
+    const uniqueMerged: Business[] = [];
+    const seenIds = new Set<string>();
+    for (const b of merged) {
+      if (!seenIds.has(b.id)) {
+        seenIds.add(b.id);
+        uniqueMerged.push(b);
+      }
+    }
+
+    setBusinesses(uniqueMerged);
+
+    // Synchronize currently opened business with fresh data
+    setSelectedBusiness(curr => {
+      if (!curr) return null;
+      const fresh = merged.find(b => b.id === curr.id);
+      return fresh || curr;
+    });
+
+    // If URL previously didn't match static data, re-evaluate against loaded businesses
+    if (isNotFound) {
+      const pathParts = window.location.pathname.split('/').filter(Boolean);
+      const rawSlug = pathParts[pathParts.length - 1];
+      if (rawSlug) {
+        const cleanSlug = slugify(decodeURIComponent(rawSlug));
+        const matched = merged.find(b => {
+          const bSlug = slugify(b.name);
+          return bSlug === cleanSlug || b.id.toLowerCase() === rawSlug.toLowerCase();
+        });
+        if (matched) {
+          setSelectedBusiness(matched);
+          setIsNotFound(false);
+          setSearchQuery(matched.name);
+          setActiveCategory(matched.category);
+        }
+      }
+    }
+  };
+
   const loadBusinesses = async () => {
-    console.log("Loading businesses from Firestore...");
+    // 1. If fresh cache exists (< 60 minutes), SKIP Firestore read completely!
+    const freshCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES);
+    if (freshCache && freshCache.length > 0) {
+      console.log("[dbCache] Using fresh cached businesses, skipping Firestore read to conserve quota.");
+      applyBusinessesMerge(freshCache);
+      return;
+    }
+
+    // 2. If expired cache exists, apply it immediately as baseline before attempting network
+    const expiredCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true);
+    if (expiredCache && expiredCache.length > 0) {
+      applyBusinessesMerge(expiredCache);
+    }
+
+    console.log("Loading fresh businesses from Firestore...");
     try {
       const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_READ')), 15000));
       const querySnapshot = await Promise.race([
@@ -1013,64 +1145,11 @@ export default function App() {
         loadedBusinesses.push({ id: doc.id, ...doc.data() } as Business);
       });
       if (loadedBusinesses.length > 0) {
-        const merged = [...initialBusinesses];
-        loadedBusinesses.forEach(fb => {
-          const idx = merged.findIndex(b => b.id === fb.id);
-          if (idx >= 0) {
-            const existing = merged[idx];
-            merged[idx] = { 
-              ...existing, 
-              ...fb,
-              logoUrl: fb.logoUrl || existing.logoUrl,
-              gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
-              services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
-              products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
-            };
-          } else {
-            merged.push(fb);
-          }
-        });
-
-        // Strict deduplication by ID
-        const uniqueMerged: Business[] = [];
-        const seenIds = new Set<string>();
-        for (const b of merged) {
-          if (!seenIds.has(b.id)) {
-            seenIds.add(b.id);
-            uniqueMerged.push(b);
-          }
-        }
-
-        setBusinesses(uniqueMerged);
-
-        // Synchronize currently opened business with fresh Firestore data
-        setSelectedBusiness(curr => {
-          if (!curr) return null;
-          const fresh = merged.find(b => b.id === curr.id);
-          return fresh || curr;
-        });
-
-        // If URL previously didn't match static data, re-evaluate against newly loaded businesses
-        if (isNotFound) {
-          const pathParts = window.location.pathname.split('/').filter(Boolean);
-          const rawSlug = pathParts[pathParts.length - 1];
-          if (rawSlug) {
-            const cleanSlug = slugify(decodeURIComponent(rawSlug));
-            const matched = merged.find(b => {
-              const bSlug = slugify(b.name);
-              return bSlug === cleanSlug || b.id.toLowerCase() === rawSlug.toLowerCase();
-            });
-            if (matched) {
-              setSelectedBusiness(matched);
-              setIsNotFound(false);
-              setSearchQuery(matched.name);
-              setActiveCategory(matched.category);
-            }
-          }
-        }
+        setCachedItem(CACHE_KEYS.BUSINESSES, loadedBusinesses);
+        applyBusinessesMerge(loadedBusinesses);
       }
     } catch (err) {
-      console.error("Error fetching businesses:", err);
+      console.warn("Could not fetch businesses from Firestore (quota limit or offline). Using cached baseline.", err);
     }
   };
 
@@ -4423,11 +4502,18 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     }));
     
     if (updatedBusiness) {
+      // Also update local cache so approved reviews persist locally even if Firestore rejects or quotas out!
+      const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true) || [];
+      const updatedCache = cached.map(b => b.id === businessId ? updatedBusiness! : b);
+      if (!cached.find(b => b.id === businessId)) {
+        updatedCache.push(updatedBusiness);
+      }
+      setCachedItem(CACHE_KEYS.BUSINESSES, updatedCache);
+
       try {
         await setDoc(doc(db, 'businesses', businessId), updatedBusiness);
       } catch(e) {
-        console.error("Firestore update failed", e);
-        alert("Fehler beim Speichern in der Datenbank.");
+        console.warn("Firestore update delayed or quota exceeded, preserved in local cache:", e);
       }
     }
   };

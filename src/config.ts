@@ -90,8 +90,8 @@ export const DEFAULT_PRICING_SETTINGS: PricingSettings = {
 
   cancellationPeriod: '14 Tage',
 
-  // Aktion standardmäßig deaktiviert
-  isOfferActive: false,
+  // Aktion standardmäßig aktiviert
+  isOfferActive: true,
   offerStartDate: '',
   offerEndDate: '',
   offerBadgeText: 'Limitiertes Angebot',

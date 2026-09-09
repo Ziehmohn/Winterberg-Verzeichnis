@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, { StrictMode } from 'react';
+import React, { StrictMode, Component, type ReactNode } from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -25,11 +25,8 @@ if (typeof window !== 'undefined') {
   }
 }
 
-class RootErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: Error | null }> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
+class RootErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
+  state = { hasError: false, error: null as Error | null };
 
   static getDerivedStateFromError(error: Error) {
     return { hasError: true, error };
@@ -40,7 +37,8 @@ class RootErrorBoundary extends React.Component<{ children: React.ReactNode }, {
   }
 
   render() {
-    if (this.state.hasError) {
+    const s = (this as any).state;
+    if (s && s.hasError) {
       return (
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F8F9FA', fontFamily: 'system-ui, sans-serif', padding: '20px' }}>
           <div style={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: '16px', padding: '32px', maxWidth: '520px', width: '100%', textAlign: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.05)' }}>
@@ -66,7 +64,7 @@ class RootErrorBoundary extends React.Component<{ children: React.ReactNode }, {
         </div>
       );
     }
-    return this.props.children;
+    return (this as any).props?.children;
   }
 }
 

@@ -3,6 +3,7 @@ import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { PricingSettings, ThemeConfig } from '../types';
 import { DEFAULT_PRICING_SETTINGS, isPricingOfferActive } from '../config';
+import { setCachedItem, CACHE_KEYS } from '../utils/dbCache';
 import { Check, Sparkles, AlertCircle, Save, ArrowRight, Tag, Calendar, Eye, Palette } from 'lucide-react';
 
 interface AdminPricingManagerProps {
@@ -55,6 +56,7 @@ export default function AdminPricingManager({
     try {
       await setDoc(doc(db, 'settings', 'pricing'), payload, { merge: true });
       onUpdatePricing(payload);
+      setCachedItem(CACHE_KEYS.PRICING, payload);
       setSavedSuccess(true);
       setTimeout(() => setSavedSuccess(false), 4000);
     } catch (err: any) {

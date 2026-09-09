@@ -4,6 +4,8 @@ import { db } from '../firebase';
 import { NewsArticle, ThemeConfig } from '../types';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
+import { initialNews } from '../dataNews';
+import { getCachedItem, setCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 
 interface NewsBoardProps {
   theme: ThemeConfig;
@@ -38,20 +40,39 @@ export function generateSlug(title: string): string {
 
 export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBoardProps) {
   const { t, lang } = useTranslation();
-  const [news, setNews] = useState<NewsArticle[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<NewsArticle[]>(() => {
+    const cached = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true);
+    return (cached && cached.length > 0) ? cached : initialNews;
+  });
+  const [loading, setLoading] = useState(() => {
+    const cached = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS);
+    return !cached && (!initialNews || initialNews.length === 0);
+  });
 
   useEffect(() => {
     const fetchNews = async () => {
+      // 1. If fresh cache exists, skip network read
+      const fresh = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS);
+      if (fresh && fresh.length > 0) {
+        setNews(fresh);
+        setLoading(false);
+        return;
+      }
+
       try {
         const q = query(collection(db, 'news'), where('status', '==', 'approved'));
         const snapshot = await getDocs(q);
         const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as NewsArticle));
         // Sort by date descending
         fetched.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        setNews(fetched);
+        if (fetched.length > 0) {
+          setNews(fetched);
+          setCachedItem(CACHE_KEYS.NEWS, fetched);
+        }
       } catch (e) {
-        console.error("Error fetching news", e);
+        console.warn("Error fetching news from Firestore (quota or offline), using cached/initial news:", e);
+        const fallback = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true) || initialNews;
+        setNews(fallback);
       } finally {
         setLoading(false);
       }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { TrackingScript } from '../types';
+import { getCachedItem, setCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 
 const COOKIE_CONSENT_KEY = 'winterberg_cookie_consent';
 
@@ -24,13 +25,17 @@ export default function DynamicScriptLoader() {
       }
       if (!consentSettings) return;
 
-      // 2. Fetch scripts from DB
+      // 2. Fetch scripts from Cache or DB
       try {
-        const snap = await getDocs(collection(db, 'scripts'));
-        const scripts: TrackingScript[] = [];
-        snap.forEach(d => {
-          scripts.push({ id: d.id, ...d.data() } as TrackingScript);
-        });
+        let scripts = getCachedItem<TrackingScript[]>(CACHE_KEYS.SCRIPTS, CACHE_TTLS.SCRIPTS);
+        if (!scripts) {
+          const snap = await getDocs(collection(db, 'scripts'));
+          scripts = [];
+          snap.forEach(d => {
+            scripts!.push({ id: d.id, ...d.data() } as TrackingScript);
+          });
+          setCachedItem(CACHE_KEYS.SCRIPTS, scripts);
+        }
 
         if (!isMounted) return;
 

@@ -6,6 +6,8 @@ import { ArrowLeft, ExternalLink, Store, ShoppingBag, ArrowUpRight } from 'lucid
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
 import { getBusinessPath, slugify } from '../utils/routes';
+import { initialNews } from '../dataNews';
+import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 
 interface NewsDetailProps {
   newsId: string;
@@ -379,6 +381,30 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
 
   useEffect(() => {
     const fetchArticle = async () => {
+      // 0. Instant Cache / Baseline lookup (avoids Firestore read completely!)
+      const allBaselineNews: NewsArticle[] = [
+        ...(getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true) || []),
+        ...initialNews
+      ];
+
+      const localMatch = allBaselineNews.find(item => {
+        const itemSlug = item.slug || (item.title || '')
+          .toLowerCase()
+          .replace(/ä/g, 'ae')
+          .replace(/ö/g, 'oe')
+          .replace(/ü/g, 'ue')
+          .replace(/ß/g, 'ss')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+        return item.id === newsId || item.slug === newsId || itemSlug === newsId;
+      });
+
+      if (localMatch) {
+        setRawArticle(localMatch);
+        setLoading(false);
+        return;
+      }
+
       try {
         // 1. First attempt: direct doc ID lookup
         const docRef = doc(db, 'news', newsId);
@@ -416,7 +442,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
           setRawArticle({ id: found.id, ...found.data() } as NewsArticle);
         }
       } catch (e) {
-        console.error("Error fetching news article:", e);
+        console.warn("Could not fetch news article from Firestore (quota limit or offline):", e);
       } finally {
         setLoading(false);
       }
