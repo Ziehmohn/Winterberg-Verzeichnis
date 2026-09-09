@@ -357,6 +357,17 @@ export default function App() {
     }, 300);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsMegaMenuOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const getCurrentRouteState = (): RouteState => {
     if (selectedBusiness) {
       return {
@@ -1298,6 +1309,22 @@ export default function App() {
               
               <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5"></div>
 
+              {/* Quick Search Button in Header */}
+              <button 
+                type="button" 
+                onClick={() => {
+                  setIsMegaMenuOpen(prev => !prev);
+                }}
+                className="hidden lg:flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F0ECE1] text-[#5F6B63] hover:text-[#0F4C2E] border border-[#E7E2DA] hover:border-[#0F4C2E]/40 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all cursor-pointer shadow-2xs group"
+                title={lang === 'nl' ? 'Zoeken in gids' : 'Im Verzeichnis suchen'}
+              >
+                <Search className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:scale-110 transition-transform" />
+                <span>{lang === 'nl' ? 'Zoeken...' : 'Suche...'}</span>
+                <kbd className="hidden xl:inline-block bg-white text-[10px] text-[#8A928B] px-1.5 py-0.5 rounded border border-[#EDE8E0] font-sans font-semibold">⌘K</kbd>
+              </button>
+
+              <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5 hidden lg:block"></div>
+
               {/* Button: Eintrag kostenlos hinzufügen */}
               <button 
                 type="button" 
@@ -1404,12 +1431,33 @@ export default function App() {
         </header>
 
         {/* Mega Menu Overlay */}
-        <div onMouseEnter={handleMouseEnterMegaMenu} onMouseLeave={handleMouseLeaveMegaMenu}>
+        <div className="relative z-[9999]" onMouseEnter={handleMouseEnterMegaMenu} onMouseLeave={handleMouseLeaveMegaMenu}>
           <MegaMenu
             isOpen={isMegaMenuOpen}
             onClose={() => setIsMegaMenuOpen(false)}
             categories={categories}
             businesses={businesses}
+            onSearch={(query, location) => {
+              setSearchQuery(query);
+              if (location && location !== 'Alle') {
+                setActiveLocation(location);
+                const targetUrl = `${getPath('/alle-unternehmen')}?ort=${encodeURIComponent(location)}`;
+                window.history.pushState(null, '', targetUrl);
+              } else {
+                setActiveLocation('Alle');
+                window.history.pushState(null, '', getPath('/alle-unternehmen'));
+              }
+              setIsAllMode(true);
+              setIsMegaMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              const url = getPath(getBusinessPath(bus, lang));
+              window.history.pushState(null, '', url);
+              setIsMegaMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             onSelectCategory={(catName, subcat) => {
               const catGroup = categories.find(c => c.name === catName || c.subcategories.includes(catName));
               const groupName = catGroup?.name || catName;
@@ -1996,15 +2044,71 @@ export default function App() {
             {/* List View Header */}
             {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (
               <div className="w-full bg-[#0F4C2E] text-white">
-                <div className="max-w-[1180px] mx-auto px-6 py-[40px] pb-[44px]">
+                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-[32px] sm:py-[38px] pb-[36px] sm:pb-[42px]">
                   <div className="text-[14px] text-white/70 mb-2.5">
                     <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
                   </div>
-                  <h1 className="font-display text-[30px] md:text-[46px] font-bold m-0 mb-2.5">
+                  <h1 className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-bold m-0 mb-3 leading-tight">
                     {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
                   </h1>
-                  <div className="flex items-center justify-between flex-wrap gap-3">
-                    <p className="m-0 text-[16px] text-white/80">{filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}</p>
+
+                  {/* Prominent Search Bar on Category Banner */}
+                  <div className="bg-white rounded-lg p-2 sm:p-2.5 flex flex-col md:flex-row gap-2 sm:gap-2.5 items-stretch md:items-center max-w-4xl shadow-2xl my-3 sm:my-4 text-[#1B211D]">
+                    <div className="flex items-center gap-2.5 sm:gap-3 w-full flex-1 min-w-0 px-3 relative">
+                      <Search className="w-5 h-5 text-gray-400 shrink-0" />
+                      <input 
+                        placeholder={
+                          activeCategory === 'Alle'
+                            ? (lang === 'nl' ? 'Bedrijf, product of dienst zoeken (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Leistungen suchen (z. B. Schuhe, Bäcker, Ski)...')
+                            : (lang === 'nl' ? `In „${t(activeCategory)}" zoeken naar namen, diensten...` : `In „${activeCategory}" nach Namen, Produkten oder Leistungen suchen...`)
+                        }
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="border-none outline-none text-[15px] sm:text-base w-full py-2 text-gray-900 bg-transparent placeholder:text-gray-400"
+                      />
+                      {searchQuery && (
+                        <button
+                          type="button"
+                          onClick={() => setSearchQuery('')}
+                          className="text-gray-400 hover:text-gray-600 p-1 shrink-0 cursor-pointer"
+                          title={lang === 'nl' ? 'Wissen' : 'Löschen'}
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                    <select
+                      value={activeLocation}
+                      onChange={(e) => {
+                        const loc = e.target.value;
+                        setActiveLocation(loc);
+                        const basePath = activeCategory !== 'Alle' 
+                          ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
+                          : '/alle-unternehmen';
+                        const url = getPath(basePath);
+                        window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
+                      }}
+                      className="w-full md:w-auto md:w-[195px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[14.5px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
+                    >
+                      <option value="Alle">{t("allTowns")}</option>
+                      {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
+                        <option key={d} value={d}>{d}</option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const resultsEl = document.getElementById('company-results-section');
+                        if (resultsEl) resultsEl.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="w-full md:w-auto shrink-0 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-6 py-2.5 font-bold transition-colors cursor-pointer shadow-sm text-[14.5px]"
+                    >
+                      {lang === 'nl' ? 'Zoeken' : 'Suchen'}
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between flex-wrap gap-3 mt-3">
+                    <p className="m-0 text-[15px] sm:text-[16px] text-white/80">{filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}</p>
                     <div className="flex bg-white/12 rounded-md p-1">
                       <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
                       <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
@@ -2138,7 +2242,7 @@ export default function App() {
 
 
             {/* Main Area */}
-            <div className="flex-1 min-w-0 w-full">
+            <div id="company-results-section" className="flex-1 min-w-0 w-full">
 
               {/* Search Bar & Sorting Controls – mobile: above banner */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
