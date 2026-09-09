@@ -174,12 +174,16 @@ export async function createQuestion(params: {
   // Always resolve the freshest email & claim status directly from Firestore for business questions
   let targetBusinessEmail = params.businessEmail;
   let isClaimed = !!params.isClaimed;
+  let isOptedOut = false;
 
   if (params.type === 'business' && params.businessId) {
     try {
       const bSnap = await getDoc(doc(db, 'businesses', params.businessId));
       if (bSnap.exists()) {
         const bData = bSnap.data() as Business;
+        if (bData.emailNotifications === false) {
+          isOptedOut = true;
+        }
         const freshEmail = bData.ownerEmail || bData.email || bData.contactPerson?.email;
         if (freshEmail) {
           targetBusinessEmail = freshEmail;
@@ -196,6 +200,9 @@ export async function createQuestion(params: {
     if (!targetBusinessEmail) {
       const staticMatch = initialBusinesses.find(b => b.id === params.businessId || b.name.toLowerCase() === params.businessName?.toLowerCase());
       if (staticMatch) {
+        if (staticMatch.emailNotifications === false) {
+          isOptedOut = true;
+        }
         targetBusinessEmail = staticMatch.ownerEmail || staticMatch.email || staticMatch.contactPerson?.email;
         if (staticMatch.ownerId) isClaimed = true;
       }
@@ -223,12 +230,13 @@ export async function createQuestion(params: {
   const docRef = await addDoc(collection(db, QUESTIONS_COLLECTION), newQuestionData);
   const created: Question = { id: docRef.id, ...newQuestionData };
 
-  // Trigger email notification
-  if (params.type === 'business' && params.businessName) {
+  // Trigger email notification (if business has not opted out)
+  if (params.type === 'business' && params.businessName && !isOptedOut) {
     const profileUrl = `https://www.winterberg-verzeichnis.de${params.businessSlug ? `/${params.businessSlug}` : ''}`;
     const targetEmail = targetBusinessEmail || 'info@sichtbar-online.com';
     const isOwnerKnown = !!targetBusinessEmail;
     const isNl = params.lang === 'nl';
+    const unsubscribeUrl = `https://www.winterberg-verzeichnis.de/abmelden?b=${encodeURIComponent(params.businessId || '')}`;
 
     const claimCtaHtml = !isClaimed ? (isNl ? `
       <div style="background-color: #FAF8F5; border: 1px solid #EDE8E0; border-left: 4px solid #F2761B; border-radius: 6px; padding: 16px; margin: 24px 0;">
@@ -282,10 +290,16 @@ export async function createQuestion(params: {
           ${claimCtaHtml}
 
           <hr style="border: 0; border-top: 1px solid #EDE8E0; margin: 25px 0;" />
-          <p style="font-size: 12px; color: #8A928B;">Diese E-Mail wurde automatisch vom Winterberg Verzeichnis (winterberg-verzeichnis.de) versendet.</p>
+          <p style="font-size: 11px; color: #8A928B; line-height: 1.4;">
+            ${isNl 
+              ? `Deze e-mail is automatisch verzonden door Winterberg Verzeichnis.<br />Wilt u geen automatische e-mailmeldingen meer ontvangen voor dit profiel? <a href="${unsubscribeUrl}" style="color: #5F6B63; text-decoration: underline;">Hier met één klik uitschakelen</a>.` 
+              : `Diese E-Mail wurde automatisch vom Winterberg Verzeichnis (winterberg-verzeichnis.de) versendet.<br />Sie möchten keine automatischen E-Mail-Benachrichtigungen mehr für diesen Eintrag erhalten? <a href="${unsubscribeUrl}" style="color: #5F6B63; text-decoration: underline;">Hier mit einem Klick abmelden</a>.`}
+          </p>
         </div>
       `
     });
+  } else if (params.type === 'business' && isOptedOut) {
+    console.log(`[QuestionNotification] Business ${params.businessName} has opted out of notifications. Skipping.`);
   } else {
     // General FAQ community question -> notify team
     sendNotificationEmail({

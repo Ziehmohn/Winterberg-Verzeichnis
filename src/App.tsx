@@ -25,6 +25,8 @@ import AdInquiryModal from './components/AdInquiryModal';
 import AdminAdsManager from './components/AdminAdsManager';
 import ReviewWidget, { WidgetLayout, WidgetTheme } from './components/ReviewWidget';
 import WidgetGeneratorModal from './components/WidgetGeneratorModal';
+import UnsubscribeModal from './components/UnsubscribeModal';
+import { notifyBusinessNewReview } from './services/reviewNotificationService';
 import CookieConsent from './components/CookieConsent';
 import DynamicScriptLoader from './components/DynamicScriptLoader';
 import { trackPageView, initGA, getGoogleAnalyticsId } from './utils/analytics';
@@ -229,6 +231,8 @@ export default function App() {
         initialEmergencyMode = true;
       } else if (decodedPart1 === 'eintragen' || decodedPart1 === 'unternehmen-eintragen' || decodedPart1 === 'bedrijf-aanmelden') {
         initialSubmitMode = true;
+      } else if (decodedPart1 === 'abmelden' || decodedPart1 === 'uitschrijven') {
+        // Will be handled by UnsubscribeModal
       } else {
         const catName = findCategoryFromSlug(decodedPart1) || categories.find(c => c.name.toLowerCase() === decodedPart1)?.name;
         
@@ -289,6 +293,18 @@ export default function App() {
   const [showHomeSuggestions, setShowHomeSuggestions] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>(defaultCategory);
   const [isNotFound, setIsNotFound] = useState(initialNotFound);
+  const [unsubscribeBusinessId, setUnsubscribeBusinessId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      const bFromQuery = searchParams.get('b') || searchParams.get('abmelden') || searchParams.get('unsubscribe') || searchParams.get('businessId');
+      const isAbmeldenPath = window.location.pathname.includes('/abmelden') || window.location.pathname.includes('/uitschrijven');
+      if (bFromQuery || (isAbmeldenPath && searchParams.get('b'))) {
+        setUnsubscribeBusinessId(bFromQuery || searchParams.get('b') || null);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (isNotFound) {
@@ -659,6 +675,13 @@ export default function App() {
       } catch (e2) {
         console.error("Fallback review save error", e2);
       }
+    }
+
+    // Trigger automated email notification to business owner / recipient
+    try {
+      notifyBusinessNewReview(businessId, review, lang);
+    } catch (notifErr) {
+      console.warn("Could not dispatch review notification email:", notifErr);
     }
   };
 
@@ -3244,6 +3267,32 @@ export default function App() {
         onClose={() => setIsAdInquiryOpen(false)} 
         initialCategory={inquiryCategory} 
       />
+
+      {/* 1-Click Email Notification Unsubscribe Modal */}
+      {unsubscribeBusinessId && (
+        <UnsubscribeModal
+          businessId={unsubscribeBusinessId}
+          isOpen={!!unsubscribeBusinessId}
+          onClose={() => {
+            setUnsubscribeBusinessId(null);
+            const url = new URL(window.location.href);
+            url.searchParams.delete('b');
+            url.searchParams.delete('abmelden');
+            url.searchParams.delete('unsubscribe');
+            url.searchParams.delete('businessId');
+            if (url.pathname === '/abmelden' || url.pathname === '/uitschrijven' || url.pathname === '/nl/uitschrijven') {
+              url.pathname = lang === 'nl' ? '/nl' : '/';
+            }
+            window.history.replaceState({}, '', url.toString());
+          }}
+          onUpdateBusiness={(updated) => {
+            setBusinesses(prev => prev.map(b => b.id === updated.id ? { ...b, ...updated } : b));
+            if (selectedBusiness && selectedBusiness.id === updated.id) {
+              setSelectedBusiness(prev => prev ? { ...prev, ...updated } : null);
+            }
+          }}
+        />
+      )}
 
       {/* GDPR Cookie Consent & Dynamic Scripts (Google Analytics 302481363) */}
       <CookieConsent theme={theme} />

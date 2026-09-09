@@ -138,6 +138,8 @@ export interface Business {
   services_nl?: string[];
   products_nl?: string[];
   contactPerson?: ContactPerson;
+  emailNotifications?: boolean;
+  notificationOptOutAt?: string;
 }
 
 export interface ContactPerson {

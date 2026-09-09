@@ -528,6 +528,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       featureBadges: formData.featureBadges || [],
       customCta: formData.customCta?.text ? formData.customCta : null,
       contactPerson: formData.contactPerson?.name?.trim() ? formData.contactPerson : null,
+      emailNotifications: formData.emailNotifications !== false,
       status: formData.status || 'approved',
       id: newId
     };
@@ -1130,6 +1131,28 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <label className={labelClass}>Website</label>
             <input type="url" value={formData.website || ''} onChange={e => setFormData({...formData, website: e.target.value})} className={inputClass} placeholder="https://..." />
           </div>
+        </div>
+
+        {/* E-Mail-Benachrichtigungen & Präferenzen */}
+        <div className="p-4 bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg mt-4 flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <h4 className="text-[14px] font-bold text-[#1B211D] flex items-center gap-2 m-0">
+              <Mail className="w-4 h-4 text-[#0F4C2E]" />
+              E-Mail-Benachrichtigungen bei Anfragen & Bewertungen
+            </h4>
+            <p className="text-xs text-[#5F6B63] mt-1 m-0 leading-relaxed">
+              Automatischer E-Mail-Hinweis an {formData.email ? <strong className="text-[#1B211D]">{formData.email}</strong> : 'die hinterlegte E-Mail-Adresse'}, sobald Besucher eine Frage stellen oder eine Bewertung abgeben.
+            </p>
+          </div>
+          <label className="relative inline-flex items-center cursor-pointer shrink-0">
+            <input 
+              type="checkbox" 
+              checked={formData.emailNotifications !== false} 
+              onChange={e => setFormData({ ...formData, emailNotifications: e.target.checked })} 
+              className="sr-only peer" 
+            />
+            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0F4C2E]"></div>
+          </label>
         </div>
 
         <div className="mt-4 pt-4 border-t border-black/10">

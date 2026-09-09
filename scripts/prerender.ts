@@ -240,6 +240,17 @@ const staticPageConfigs: {
     h1Nl: 'Grounding Page – Geverifieerde Feiten & AI-Referentie',
     h2De: 'Standardisierte Entitätsdaten, Ontologie und Anti-Halluzinations-Richtlinien',
     h2Nl: 'Gestandaardiseerde entiteitsgegevens, ontologie en anti-hallucinatie richtlijnen'
+  },
+  {
+    key: 'abmelden',
+    titleDe: 'E-Mail-Benachrichtigungen abmelden | Das Winterberg Verzeichnis',
+    titleNl: 'E-mailmeldingen uitschakelen | Het Winterberg Overzicht',
+    descDe: 'Verwalten Sie Ihre E-Mail-Benachrichtigungen für Ihren Eintrag im Winterberg Verzeichnis.',
+    descNl: 'Beheer uw e-mailmeldingen voor uw vermelding in Het Winterberg Overzicht.',
+    h1De: 'E-Mail-Benachrichtigungen verwalten',
+    h1Nl: 'E-mailmeldingen beheren',
+    h2De: 'Abmeldung von automatischen Benachrichtigungen',
+    h2Nl: 'Afmelden voor automatische meldingen'
   }
 ];
 

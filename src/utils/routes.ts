@@ -95,6 +95,7 @@ export const STATIC_PAGE_SLUGS = {
   datenschutz: { de: 'datenschutz', nl: 'privacy' },
   agb: { de: 'agb', nl: 'algemene-voorwaarden' },
   grounding: { de: 'grounding', nl: 'grounding' },
+  abmelden: { de: 'abmelden', nl: 'uitschrijven' },
 };
 
 export function slugify(str: string): string {
