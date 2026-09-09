@@ -5775,6 +5775,31 @@ export const businesses: Business[] = [
       saturday: '08:30 - 14:00',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'insider-fashion-store-winterberg',
+    name: 'Insider Fashion Store (Precious)',
+    category: 'Einzelhandel',
+    subCategory: 'Bekleidung',
+    address: 'Am Waltenberg 15, 59955 Winterberg',
+    phone: '02981 9288820',
+    website: 'https://preciouswinterberg.de',
+    rating: 4.8,
+    reviewCount: 36,
+    description: 'Trendbewusster Fashion Store im Herzen von Winterberg mit ausgewählten Kollektionen angesagter Modemarken für Damen und Herren, stilvollen Accessoires und persönlicher Beratung sowie eigenem Onlineshop.',
+    description_nl: 'Modieuze kledingboetiek in het centrum van Winterberg met geselecteerde collecties dames- en herenmode, stijlvolle accessoires en een eigen webshop.',
+    services: ['Damen- & Herrenmode', 'Trends & Streetwear', 'Accessoires & Taschen', 'Persönliche Modeberatung', 'Onlineshop & Versand'],
+    services_nl: ['Dames- & herenmode', 'Trends & streetwear', 'Accessoires & tassen', 'Persoonlijk modeadvies', 'Webshop & verzending'],
+    featured: false,
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 17:00',
+      sunday: 'Geschlossen'
+    }
   }
 ];
 

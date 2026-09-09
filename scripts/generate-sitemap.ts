@@ -48,6 +48,12 @@ entries.push({
   changefreq: 'monthly',
   priority: '0.8',
 });
+entries.push({
+  locDe: `${baseUrl}/news/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops`,
+  locNl: `${baseUrl}/nl/nieuws/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
 
 // 2. All businesses
 entries.push({
