@@ -89,6 +89,7 @@ export default function PricingTable({
     { name: t("pricingCommentReviews"), free: false, premium: true },
     { name: t("pricingWhiteLabel"), free: false, premium: true },
     { name: t("pricingTestimonialSlider"), free: false, premium: true },
+    { name: t("pricingContactPerson"), free: false, premium: true },
   ];
   return (
     <main className="flex-1 w-full max-w-[1000px] mx-auto px-6 py-[54px] pb-[80px]">
@@ -253,6 +254,7 @@ export default function PricingTable({
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingCommentReviews")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingWhiteLabel")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingTestimonialSlider")}</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingContactPerson")}</div>
           </div>
           
           {!hideAction && (

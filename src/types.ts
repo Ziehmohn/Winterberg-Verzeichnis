@@ -137,6 +137,15 @@ export interface Business {
   extendedDescription_nl?: string;
   services_nl?: string[];
   products_nl?: string[];
+  contactPerson?: ContactPerson;
+}
+
+export interface ContactPerson {
+  name: string;
+  role?: string;
+  email?: string;
+  phone?: string;
+  imageUrl?: string;
 }
 
 export interface BusinessDocument {

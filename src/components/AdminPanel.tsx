@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake } from 'lucide-react';
-import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta } from '../types';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail } from 'lucide-react';
+import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta, ContactPerson } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { translateTextToDutch, translateServiceToDutch, fetchDutchTranslation } from '../utils/translator';
@@ -301,7 +301,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       description_nl: base.translations?.nl?.description || base.description_nl || '',
       extendedDescription_nl: base.translations?.nl?.extendedDescription || base.extendedDescription_nl || '',
       services_nl: Array.isArray(base.translations?.nl?.services) ? [...base.translations.nl.services] : (Array.isArray(base.services_nl) ? [...base.services_nl] : []),
-      products_nl: Array.isArray(base.translations?.nl?.products) ? [...base.translations.nl.products] : (Array.isArray(base.products_nl) ? [...base.products_nl] : [])
+      products_nl: Array.isArray(base.translations?.nl?.products) ? [...base.translations.nl.products] : (Array.isArray(base.products_nl) ? [...base.products_nl] : []),
+      contactPerson: base.contactPerson ? { ...base.contactPerson } : { name: '', role: '', phone: '', email: '', imageUrl: '' }
     };
   });
   
@@ -526,6 +527,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       documents: formData.documents || [],
       featureBadges: formData.featureBadges || [],
       customCta: formData.customCta?.text ? formData.customCta : null,
+      contactPerson: formData.contactPerson?.name?.trim() ? formData.contactPerson : null,
       status: formData.status || 'approved',
       id: newId
     };
@@ -695,7 +697,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     });
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'gallery' | 'title' | 'logo' | 'header' = 'gallery', categoryId?: string) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'gallery' | 'title' | 'logo' | 'header' | 'contactPerson' = 'gallery', categoryId?: string) => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
     setUploadingImage(true);
@@ -745,6 +747,15 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         }
         if (target === 'logo') {
           return { ...prev, logoUrl: url };
+        }
+        if (target === 'contactPerson') {
+          return {
+            ...prev,
+            contactPerson: {
+              ...(prev.contactPerson || { name: '' }),
+              imageUrl: url
+            }
+          };
         }
         if (target === 'title') {
           return { ...prev, uploadedImage: url, imageLink: url };
@@ -1487,6 +1498,128 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Ansprechpartner (Premium-Feature) */}
+            <div className="border-b border-orange-200/50 pb-5">
+              <div className="flex items-center gap-2 mb-2">
+                <User className="w-5 h-5 text-[#F2761B]" />
+                <label className={`${labelClass} mb-0`}>Persönlicher Ansprechpartner (Premium-Feature)</label>
+              </div>
+              <p className="text-xs text-gray-500 mb-4">
+                Präsentieren Sie einen persönlichen Ansprechpartner direkt in der Kontaktbox Ihres Profils (Desktop rechte Spalte) inklusive Foto und direkten Kontaktdaten.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">Name des Ansprechpartners</label>
+                  <input
+                    type="text"
+                    value={formData.contactPerson?.name || ''}
+                    onChange={e => setFormData(prev => ({
+                      ...prev,
+                      contactPerson: { ...(prev.contactPerson || { name: '' }), name: e.target.value }
+                    }))}
+                    placeholder="z. B. Max Mustermann"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">Rolle / Position</label>
+                  <input
+                    type="text"
+                    value={formData.contactPerson?.role || ''}
+                    onChange={e => setFormData(prev => ({
+                      ...prev,
+                      contactPerson: { ...(prev.contactPerson || { name: '' }), role: e.target.value }
+                    }))}
+                    placeholder="z. B. Inhaber & Geschäftsführung"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">Direkte Telefonnummer (optional)</label>
+                  <input
+                    type="text"
+                    value={formData.contactPerson?.phone || ''}
+                    onChange={e => setFormData(prev => ({
+                      ...prev,
+                      contactPerson: { ...(prev.contactPerson || { name: '' }), phone: e.target.value }
+                    }))}
+                    placeholder="z. B. +49 2981 12345"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">Direkte E-Mail-Adresse (optional)</label>
+                  <input
+                    type="email"
+                    value={formData.contactPerson?.email || ''}
+                    onChange={e => setFormData(prev => ({
+                      ...prev,
+                      contactPerson: { ...(prev.contactPerson || { name: '' }), email: e.target.value }
+                    }))}
+                    placeholder="z. B. m.mustermann@firma.de"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              {/* Foto Upload & Vorschau */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">Foto des Ansprechpartners (Portrait)</label>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <div className="relative">
+                    {formData.contactPerson?.imageUrl ? (
+                      <div className="relative w-16 h-16 rounded-full border-2 border-[#0F4C2E]/20 shadow-xs overflow-hidden bg-gray-50">
+                        <img 
+                          src={formData.contactPerson.imageUrl} 
+                          alt="Ansprechpartner Vorschau" 
+                          className="w-full h-full object-cover" 
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setFormData(prev => ({
+                            ...prev,
+                            contactPerson: { ...(prev.contactPerson || { name: '' }), imageUrl: '' }
+                          }))}
+                          className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-0.5 shadow hover:bg-red-600 transition-colors cursor-pointer"
+                          title="Foto entfernen"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 rounded-full bg-gray-100 border border-dashed border-gray-300 flex items-center justify-center text-gray-400">
+                        <User className="w-7 h-7" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1 flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <input
+                      type="url"
+                      value={formData.contactPerson?.imageUrl || ''}
+                      onChange={e => setFormData(prev => ({
+                        ...prev,
+                        contactPerson: { ...(prev.contactPerson || { name: '' }), imageUrl: e.target.value }
+                      }))}
+                      placeholder="https://... oder Foto hochladen"
+                      className={inputClass}
+                    />
+                    <label className="flex items-center justify-center gap-2 px-3 py-2 bg-white border border-gray-300 rounded-lg shadow-2xs hover:bg-gray-50 text-sm font-medium text-gray-700 cursor-pointer shrink-0 transition-colors">
+                      <Upload className="w-4 h-4 text-gray-500" />
+                      <span>{uploadingImage ? 'Lädt...' : 'Foto hochladen'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={e => handleImageUpload(e, 'contactPerson')}
+                        disabled={uploadingImage}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="border-b border-orange-200/50 pb-5">
