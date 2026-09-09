@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { NewsArticle, ThemeConfig } from '../types';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Store, ShoppingBag, ArrowUpRight } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
 import { getBusinessPath, slugify } from '../utils/routes';
@@ -99,6 +99,49 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
       return <em key={idx} className="italic text-[#5F6B63]">{token.content}</em>;
     }
     if (token.type === 'link') {
+      const isInternalStatic = /^\/(news|nl\/nieuws|impressum|datenschutz|agb|faq|kontakt)(\/|$)/i.test(token.url);
+      const isProfile = !isInternalStatic && (
+        /unternehmensprofil|bedrijfsprofiel|profilseite|profil/i.test(token.text) ||
+        (token.url.startsWith('/') && !isInternalStatic) ||
+        (token.url.includes('winterberg-verzeichnis.de') && !isInternalStatic)
+      );
+      const isShop = !isProfile && (
+        /onlineshop|webshop|shop|store|online bestellen|webwinkel/i.test(token.text) ||
+        /onlineshop|webshop|ideeundspiel|preciouswinterberg|liftstation|mein-heimwerkermarkt/i.test(token.url)
+      );
+
+      if (isProfile) {
+        return (
+          <a 
+            key={idx} 
+            href={token.url} 
+            target={token.url.startsWith('/') ? '_self' : '_blank'} 
+            rel={token.url.startsWith('/') ? undefined : 'noopener noreferrer'} 
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 my-1 mr-2 rounded-lg font-semibold text-[13.5px] sm:text-[14px] bg-[#EAF2EC] text-[#0F4C2E] border border-[#0F4C2E]/25 hover:bg-[#0F4C2E] hover:text-white transition-all duration-150 shadow-sm hover:shadow active:scale-[0.98] group no-underline"
+          >
+            <Store size={15} className="shrink-0 text-[#0F4C2E] group-hover:text-white transition-colors" />
+            <span>{token.text}</span>
+            <ArrowUpRight size={14} className="shrink-0 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
+        );
+      }
+
+      if (isShop) {
+        return (
+          <a 
+            key={idx} 
+            href={token.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 my-1 mr-2 rounded-lg font-semibold text-[13.5px] sm:text-[14px] bg-[#FFF5EB] text-[#C2410C] border border-[#EA580C]/35 hover:bg-[#EA580C] hover:text-white transition-all duration-150 shadow-sm hover:shadow active:scale-[0.98] group no-underline"
+          >
+            <ShoppingBag size={15} className="shrink-0 text-[#EA580C] group-hover:text-white transition-colors" />
+            <span>{token.text}</span>
+            <ExternalLink size={13} className="shrink-0 opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
+        );
+      }
+
       return (
         <a 
           key={idx} 
@@ -180,7 +223,63 @@ export function NewsContentRenderer({ content }: { content: string }) {
           );
         }
 
-        // 4. Bullet lists (- Item or * Item or 1. Item)
+        // 4. Feature Entry / Shop Card (e.g. * **Store Name** followed by description and action links)
+        const lines = trimmed.split('\n');
+        const firstLineMatch = lines[0].match(/^(\s*[-*•]\s*\*\*([^*:]+)\*\*)/);
+        if (firstLineMatch && lines.length > 1) {
+          const title = firstLineMatch[2].trim();
+          const restLines = lines.slice(1);
+          
+          const descLines: string[] = [];
+          const linkLines: string[] = [];
+          
+          restLines.forEach(l => {
+            const clean = l.replace(/^\s*[-*•]\s*/, '').trim();
+            if (!clean) return;
+            if (/\[([^\]]+)\]\(([^)]+)\)/.test(clean)) {
+              linkLines.push(clean);
+            } else {
+              descLines.push(clean);
+            }
+          });
+
+          if (linkLines.length > 0) {
+            return (
+              <div 
+                key={index} 
+                className="my-6 bg-[#FAF8F5] border border-[#EDE8E0] rounded-2xl p-5 sm:p-7 shadow-[0_4px_25px_rgba(27,33,29,0.03)] hover:border-[#D8CFBF] transition-all"
+              >
+                <h3 className="text-[20px] sm:text-[22px] font-bold text-[#1B211D] font-display mb-2.5">
+                  {title}
+                </h3>
+                {descLines.length > 0 && (
+                  <p className="text-[16px] sm:text-[17.5px] text-[#3F4B42] leading-relaxed mb-4">
+                    {renderInlineFormatted(descLines.join(' '))}
+                  </p>
+                )}
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  {linkLines.map((ll, lIdx) => (
+                    <React.Fragment key={lIdx}>
+                      {renderInlineFormatted(ll)}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div key={index} className="flex items-start gap-3.5 my-4 pl-1 text-[16px] md:text-[17px] text-[#3F4B42] leading-relaxed">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0F4C2E] mt-2 shrink-0" />
+                <div className="flex-1 space-y-1">
+                  <strong className="block text-[#1B211D] font-bold text-[17px] md:text-[18px]">{title}</strong>
+                  {descLines.length > 0 && <p className="text-[#3F4B42]">{renderInlineFormatted(descLines.join(' '))}</p>}
+                </div>
+              </div>
+            );
+          }
+        }
+
+        // 5. Bullet lists (- Item or * Item or 1. Item)
         const isList = trimmed.split('\n').every(line => /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim()));
         if (isList) {
           const items = trimmed.split('\n').map(line => line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim());
@@ -196,7 +295,7 @@ export function NewsContentRenderer({ content }: { content: string }) {
           );
         }
 
-        // 5. Standard Paragraphs
+        // 6. Standard Paragraphs
         return (
           <p key={index} className="text-[16.5px] md:text-[18px] text-[#2F3A33] leading-[1.8] font-normal">
             {renderInlineFormatted(trimmed)}
