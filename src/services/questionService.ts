@@ -12,7 +12,8 @@ import {
   limit 
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { Question, QnAnswer } from '../types';
+import { Business, Question, QnAnswer } from '../types';
+import { businesses as initialBusinesses } from '../data';
 
 const QUESTIONS_COLLECTION = 'questions';
 
@@ -170,6 +171,37 @@ export async function createQuestion(params: {
   userId?: string;
   lang?: 'de' | 'nl';
 }): Promise<Question> {
+  // Always resolve the freshest email & claim status directly from Firestore for business questions
+  let targetBusinessEmail = params.businessEmail;
+  let isClaimed = !!params.isClaimed;
+
+  if (params.type === 'business' && params.businessId) {
+    try {
+      const bSnap = await getDoc(doc(db, 'businesses', params.businessId));
+      if (bSnap.exists()) {
+        const bData = bSnap.data() as Business;
+        const freshEmail = bData.ownerEmail || bData.email || bData.contactPerson?.email;
+        if (freshEmail) {
+          targetBusinessEmail = freshEmail;
+        }
+        if (bData.ownerId || bData.ownerEmail) {
+          isClaimed = true;
+        }
+      }
+    } catch (err) {
+      console.warn('Could not fetch business doc in createQuestion:', err);
+    }
+
+    // Fallback: check initialBusinesses if still no email
+    if (!targetBusinessEmail) {
+      const staticMatch = initialBusinesses.find(b => b.id === params.businessId || b.name.toLowerCase() === params.businessName?.toLowerCase());
+      if (staticMatch) {
+        targetBusinessEmail = staticMatch.ownerEmail || staticMatch.email || staticMatch.contactPerson?.email;
+        if (staticMatch.ownerId) isClaimed = true;
+      }
+    }
+  }
+
   const newQuestionData: any = {
     type: params.type,
     question: params.question.trim(),
@@ -184,7 +216,7 @@ export async function createQuestion(params: {
   if (params.businessId) newQuestionData.businessId = params.businessId;
   if (params.businessName) newQuestionData.businessName = params.businessName;
   if (params.businessSlug) newQuestionData.businessSlug = params.businessSlug;
-  if (params.businessEmail) newQuestionData.businessEmail = params.businessEmail;
+  if (targetBusinessEmail) newQuestionData.businessEmail = targetBusinessEmail;
   if (params.authorEmail && params.authorEmail.trim()) newQuestionData.authorEmail = params.authorEmail.trim();
   if (params.userId) newQuestionData.userId = params.userId;
 
@@ -194,9 +226,8 @@ export async function createQuestion(params: {
   // Trigger email notification
   if (params.type === 'business' && params.businessName) {
     const profileUrl = `https://www.winterberg-verzeichnis.de${params.businessSlug ? `/${params.businessSlug}` : ''}`;
-    const targetEmail = params.businessEmail || 'info@sichtbar-online.com';
-    const isOwnerKnown = !!params.businessEmail;
-    const isClaimed = !!params.isClaimed;
+    const targetEmail = targetBusinessEmail || 'info@sichtbar-online.com';
+    const isOwnerKnown = !!targetBusinessEmail;
     const isNl = params.lang === 'nl';
 
     const claimCtaHtml = !isClaimed ? (isNl ? `

@@ -972,33 +972,30 @@ export default function App() {
         loadedBusinesses.push({ id: doc.id, ...doc.data() } as Business);
       });
       if (loadedBusinesses.length > 0) {
-        let finalMerged: Business[] = [];
-        setBusinesses(prev => {
-          const merged = [...initialBusinesses];
-          loadedBusinesses.forEach(fb => {
-            const idx = merged.findIndex(b => b.id === fb.id);
-            if (idx >= 0) {
-              const existing = merged[idx];
-              merged[idx] = { 
-                ...existing, 
-                ...fb,
-                logoUrl: fb.logoUrl || existing.logoUrl,
-                gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
-                services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
-                products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
-              };
-            } else {
-              merged.push(fb);
-            }
-          });
-          finalMerged = merged;
-          return merged;
+        const merged = [...initialBusinesses];
+        loadedBusinesses.forEach(fb => {
+          const idx = merged.findIndex(b => b.id === fb.id);
+          if (idx >= 0) {
+            const existing = merged[idx];
+            merged[idx] = { 
+              ...existing, 
+              ...fb,
+              logoUrl: fb.logoUrl || existing.logoUrl,
+              gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
+              services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
+              products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
+            };
+          } else {
+            merged.push(fb);
+          }
         });
+
+        setBusinesses(merged);
 
         // Synchronize currently opened business with fresh Firestore data
         setSelectedBusiness(curr => {
           if (!curr) return null;
-          const fresh = finalMerged.find(b => b.id === curr.id);
+          const fresh = merged.find(b => b.id === curr.id);
           return fresh || curr;
         });
 
@@ -1008,7 +1005,7 @@ export default function App() {
           const rawSlug = pathParts[pathParts.length - 1];
           if (rawSlug) {
             const cleanSlug = slugify(decodeURIComponent(rawSlug));
-            const matched = finalMerged.find(b => {
+            const matched = merged.find(b => {
               const bSlug = slugify(b.name);
               return bSlug === cleanSlug || b.id.toLowerCase() === rawSlug.toLowerCase();
             });

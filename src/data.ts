@@ -1978,6 +1978,7 @@ export const businesses: Business[] = [
     address: 'Untere Pforte 4, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 8995180',
+    email: 'winterberg@extrablatt.de',
     website: 'https://cafe-extrablatt.de/standorte/details/winterberg',
     imageFallback: 'CE',
     isPremium: false,
