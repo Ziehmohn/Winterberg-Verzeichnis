@@ -11,6 +11,7 @@ export interface CacheEnvelope<T> {
 
 export const CACHE_KEYS = {
   BUSINESSES: 'wb_cache_businesses_v1',
+  BUSINESSES_VERSION: 'wb_businesses_version_v1',
   NEWS: 'wb_cache_news_v1',
   PRICING: 'wb_cache_pricing_v1',
   ADS: 'wb_cache_ads_v1',
@@ -73,4 +74,65 @@ export function invalidateCache(key: string): void {
   try {
     localStorage.removeItem(key);
   } catch (e) {}
+}
+
+/**
+ * Gets local stored version number (timestamp) for a given cache key.
+ */
+export function getLocalVersion(versionKey: string): number {
+  if (typeof window === 'undefined') return 0;
+  try {
+    const raw = localStorage.getItem(versionKey);
+    return raw ? parseInt(raw, 10) || 0 : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
+/**
+ * Sets local stored version number (timestamp) for a given cache key.
+ */
+export function setLocalVersion(versionKey: string, version: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(versionKey, version.toString());
+  } catch (e) {}
+}
+
+/**
+ * Fetches the remote version timestamp from Firestore (system/metadata) with a single document read.
+ * Cost: Exactly 1 document read.
+ */
+export async function getRemoteBusinessesVersion(firestoreDb: any): Promise<number | null> {
+  try {
+    const { doc, getDoc } = await import('firebase/firestore');
+    const metaDoc = await getDoc(doc(firestoreDb, 'system', 'metadata'));
+    if (metaDoc.exists()) {
+      const data = metaDoc.data();
+      return typeof data?.businessesUpdatedAt === 'number' ? data.businessesUpdatedAt : null;
+    }
+    return null;
+  } catch (e) {
+    console.warn('[dbCache] Failed to read remote businesses version (offline or quota):', e);
+    return null;
+  }
+}
+
+/**
+ * Updates the remote version timestamp in Firestore (system/metadata)
+ * to instantly notify all clients worldwide of a data change.
+ */
+export async function bumpRemoteBusinessesVersion(firestoreDb: any): Promise<number> {
+  const newVersion = Date.now();
+  try {
+    const { doc, setDoc } = await import('firebase/firestore');
+    await setDoc(doc(firestoreDb, 'system', 'metadata'), {
+      businessesUpdatedAt: newVersion
+    }, { merge: true });
+    setLocalVersion(CACHE_KEYS.BUSINESSES_VERSION, newVersion);
+    console.log(`[dbCache] Remote businesses version bumped to ${newVersion}`);
+  } catch (e) {
+    console.warn('[dbCache] Failed to bump remote businesses version (offline or quota):', e);
+  }
+  return newVersion;
 }

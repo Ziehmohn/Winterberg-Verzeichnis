@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc } from 'firebase/firestore';
+import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
 import { Business } from '../types';
 import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock } from 'lucide-react';
 
@@ -77,6 +78,8 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       // 3. Update local state
       setClaims(prev => prev.map(c => c.id === claim.id ? { ...c, status: 'approved' } : c));
       setBusinesses(prev => prev.map(b => b.id === claim.businessId ? { ...b, ...updates } : b));
+      invalidateCache(CACHE_KEYS.BUSINESSES);
+      bumpRemoteBusinessesVersion(db);
 
       // 4. Notify applicant of approval
       try {

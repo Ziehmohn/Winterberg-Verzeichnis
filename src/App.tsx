@@ -49,7 +49,17 @@ import {
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
 import { detectTargetLanguage, setUserPreferredLanguage } from './services/geoService';
-import { getCachedItem, setCachedItem, invalidateCache, CACHE_KEYS, CACHE_TTLS } from './utils/dbCache';
+import { 
+  getCachedItem, 
+  setCachedItem, 
+  invalidateCache, 
+  getLocalVersion, 
+  setLocalVersion, 
+  getRemoteBusinessesVersion, 
+  bumpRemoteBusinessesVersion, 
+  CACHE_KEYS, 
+  CACHE_TTLS 
+} from './utils/dbCache';
 
 // Lazy-load heavy components that most visitors never see (code-splitting)
 const DirectoryMap = React.lazy(() => import('./components/DirectoryMap'));
@@ -1117,21 +1127,45 @@ export default function App() {
   };
 
   const loadBusinesses = async () => {
-    // 1. If fresh cache exists (< 60 minutes), SKIP Firestore read completely!
-    const freshCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES);
-    if (freshCache && freshCache.length > 0) {
-      console.log("[dbCache] Using fresh cached businesses, skipping Firestore read to conserve quota.");
-      applyBusinessesMerge(freshCache);
+    // 1. Instantly apply cached data (zero-flicker baseline)
+    const cachedBusinesses = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, undefined, true);
+    if (cachedBusinesses && cachedBusinesses.length > 0) {
+      applyBusinessesMerge(cachedBusinesses);
+    }
+
+    const localVersion = getLocalVersion(CACHE_KEYS.BUSINESSES_VERSION);
+
+    // 2. Perform 1-Read Version Check against system/metadata
+    console.log("[dbCache] Checking remote businesses version (1 Read)...");
+    let remoteVersion: number | null = null;
+    try {
+      const timeoutPromise = new Promise<null>((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_VERSION')), 5000));
+      remoteVersion = await Promise.race([
+        getRemoteBusinessesVersion(db),
+        timeoutPromise
+      ]);
+    } catch (err) {
+      console.warn("[dbCache] Remote version check timed out or quota exceeded:", err);
+    }
+
+    // 3. If remote version matches or is older than our localVersion, and we have cached data:
+    // We are 100% up to date! Skip the 450-document read!
+    if (remoteVersion !== null && localVersion > 0 && remoteVersion <= localVersion && cachedBusinesses && cachedBusinesses.length > 0) {
+      console.log(`[dbCache] Businesses are fully up to date (version ${localVersion}). Skipping 450 reads.`);
       return;
     }
 
-    // 2. If expired cache exists, apply it immediately as baseline before attempting network
-    const expiredCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true);
-    if (expiredCache && expiredCache.length > 0) {
-      applyBusinessesMerge(expiredCache);
+    // Fallback: If remote metadata could not be reached (offline or quota), but local cache is fresh (< 60m), skip read:
+    if (remoteVersion === null && cachedBusinesses && cachedBusinesses.length > 0) {
+      const freshCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES);
+      if (freshCache && freshCache.length > 0) {
+        console.log("[dbCache] Remote metadata unavailable, but local cache is fresh (< 60m). Skipping read.");
+        return;
+      }
     }
 
-    console.log("Loading fresh businesses from Firestore...");
+    // 4. Newer version detected OR first visit without cache -> fetch full businesses collection
+    console.log(`[dbCache] Fetching fresh businesses (local: ${localVersion}, remote: ${remoteVersion})...`);
     try {
       const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_READ')), 15000));
       const querySnapshot = await Promise.race([
@@ -1146,6 +1180,8 @@ export default function App() {
       });
       if (loadedBusinesses.length > 0) {
         setCachedItem(CACHE_KEYS.BUSINESSES, loadedBusinesses);
+        const versionToStore = remoteVersion || Date.now();
+        setLocalVersion(CACHE_KEYS.BUSINESSES_VERSION, versionToStore);
         applyBusinessesMerge(loadedBusinesses);
       }
     } catch (err) {
@@ -4485,6 +4521,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     try {
       await deleteDoc(doc(db, 'businesses', id));
       setBusinesses((businesses: Business[]) => businesses.filter(b => b.id !== id));
+      invalidateCache(CACHE_KEYS.BUSINESSES);
+      bumpRemoteBusinessesVersion(db);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Löschen');
@@ -4512,6 +4550,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
       try {
         await setDoc(doc(db, 'businesses', businessId), updatedBusiness);
+        bumpRemoteBusinessesVersion(db);
       } catch(e) {
         console.warn("Firestore update delayed or quota exceeded, preserved in local cache:", e);
       }
