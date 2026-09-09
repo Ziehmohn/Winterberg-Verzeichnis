@@ -88,6 +88,48 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Geolocation Endpoint (detect country from CDN/Proxy headers or IP)
+  app.get('/api/geo', async (req, res) => {
+    // 1. Check Cloudflare / CDN / Reverse proxy country headers
+    const countryHeader = 
+      (req.headers['cf-ipcountry'] as string) ||
+      (req.headers['x-country-code'] as string) ||
+      (req.headers['x-vercel-ip-country'] as string) ||
+      (req.headers['geoip-country-code'] as string);
+
+    if (countryHeader && countryHeader !== 'XX' && countryHeader !== 'T1') {
+      const country = countryHeader.toUpperCase();
+      return res.json({
+        country,
+        lang: ['NL', 'BE'].includes(country) ? 'nl' : (['DE', 'AT', 'CH', 'LI'].includes(country) ? 'de' : null)
+      });
+    }
+
+    // 2. If no header (e.g. local dev / direct connection), try client IP
+    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress;
+    if (clientIp && clientIp !== '127.0.0.1' && clientIp !== '::1' && !clientIp.startsWith('192.168.') && !clientIp.startsWith('10.')) {
+      try {
+        const geoRes = await fetch(`https://freeipapi.com/api/json/${clientIp}`, {
+          signal: AbortSignal.timeout(1500)
+        });
+        if (geoRes.ok) {
+          const geoData = await geoRes.json();
+          if (geoData?.countryCode) {
+            const country = geoData.countryCode.toUpperCase();
+            return res.json({
+              country,
+              lang: ['NL', 'BE'].includes(country) ? 'nl' : (['DE', 'AT', 'CH', 'LI'].includes(country) ? 'de' : null)
+            });
+          }
+        }
+      } catch (e) {
+        // ignore lookup failure
+      }
+    }
+
+    return res.json({ country: null, lang: null });
+  });
+
   // Translation Route (Google Translate)
   app.all('/api/translate', async (req, res) => {
     let text = '';

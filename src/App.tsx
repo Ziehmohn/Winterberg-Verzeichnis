@@ -45,6 +45,7 @@ import {
 } from './utils/routes';
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
+import { detectTargetLanguage, setUserPreferredLanguage } from './services/geoService';
 
 // Lazy-load heavy components that most visitors never see (code-splitting)
 const DirectoryMap = React.lazy(() => import('./components/DirectoryMap'));
@@ -409,8 +410,44 @@ export default function App() {
     return { view: 'home' };
   };
 
+  // Automatic Geotargeting: Redirect visitors from Netherlands / Belgium (or Dutch browser) to Dutch version
+  useEffect(() => {
+    let isMounted = true;
+    const runGeotargeting = async () => {
+      try {
+        const targetLang = await detectTargetLanguage();
+        if (!isMounted || !targetLang) return;
+
+        const currentPath = window.location.pathname;
+        const isNlUrl = currentPath.startsWith('/nl/') || currentPath === '/nl';
+        const currentUrlLang = isNlUrl ? 'nl' : 'de';
+
+        if (targetLang !== currentUrlLang) {
+          const state = getCurrentRouteState();
+          const newUrl = buildLocalizedUrl(state, targetLang);
+          if (newUrl && newUrl !== currentPath) {
+            const search = window.location.search;
+            const hash = window.location.hash;
+            const finalUrl = newUrl.includes('?') ? newUrl : `${newUrl}${search}${hash}`;
+            setLang(targetLang);
+            window.history.replaceState(null, '', finalUrl);
+          }
+        }
+      } catch (e) {
+        console.warn('Geotargeting skipped:', e);
+      }
+    };
+
+    runGeotargeting();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const switchLanguage = (newLang: 'de' | 'nl') => {
     if (newLang === lang) return;
+    setUserPreferredLanguage(newLang);
     setLang(newLang);
     const state = getCurrentRouteState();
     const newUrl = buildLocalizedUrl(state, newLang);
