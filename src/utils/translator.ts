@@ -316,8 +316,10 @@ const PHRASE_REPLACEMENTS: [RegExp, string][] = [
   [/Positive Entwicklung über Winter und Sommer hinweg/gi, 'Positieve ontwikkeling over winter en zomer heen'],
   [/Ansprechpartner & Beratung/gi, 'Contactpersoon & Advies'],
   [/Pressemitteilung/gi, 'Persbericht'],
-  [/Symbolbild · KI-generiert/gi, 'Symboolafbeelding · AI-gegenereerd'],
-  [/Symbolbild · KI/gi, 'Symboolafbeelding · AI'],
+  [/Bild KI-generiert/gi, 'Afbeelding AI-gegenereerd'],
+  [/Bild KI/gi, 'Afbeelding AI'],
+  [/Symbolbild · KI-generiert/gi, 'Afbeelding AI-gegenereerd'],
+  [/Symbolbild · KI/gi, 'Afbeelding AI'],
   [/Quelle:/gi, 'Bron:'],
 ];
 

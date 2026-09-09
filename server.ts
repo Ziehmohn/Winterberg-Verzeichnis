@@ -5,7 +5,7 @@ import { createServer as createViteServer } from 'vite';
 import Stripe from 'stripe';
 import nodemailer from 'nodemailer';
 import { categories } from './src/data';
-import { getLegacyCategoryRedirect } from './src/utils/routes';
+import { getLegacyCategoryRedirect, BUSINESS_DEDUPLICATION_REDIRECTS } from './src/utils/routes';
 
 let stripeClient: Stripe | null = null;
 function getStripe(): Stripe {
@@ -21,18 +21,25 @@ function getStripe(): Stripe {
 
 
 const PROJECT_ID = 'gen-lang-client-0671429103';
+const DB_ID = 'ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319';
 let redirectsMap = new Map<string, string>();
+
+// Pre-seed redirects with permanent deduplication 301 rules
+BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => redirectsMap.set(r.source, r.target));
 
 async function fetchRedirects() {
   try {
-    const res = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/redirects`);
+    const res = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/${DB_ID}/documents/redirects`);
 
     const data = await res.json();
     const newMap = new Map<string, string>();
+    // Keep deduplication rules
+    BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => newMap.set(r.source, r.target));
+
     if (data.documents) {
       data.documents.forEach((doc: any) => {
-        const source = doc.fields.source?.stringValue;
-        const target = doc.fields.target?.stringValue;
+        const source = doc.fields?.source?.stringValue;
+        const target = doc.fields?.target?.stringValue;
         if (source && target) {
           newMap.set(source, target);
         }

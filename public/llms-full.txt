@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (300 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (295 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -85,16 +85,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Hapimag Resort in Winterberg. Urlaub für die ganze Familie mit Wellness und tollen Aktivitäten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienparks/hapimag-resort-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantieparken/hapimag-resort-winterberg
-
-#### [Der Brabander](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/der-brabander)
-- **Kategorie:** Hotels und Unterkünfte > Hotels
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 65, 59955 Winterberg
-- **Telefon:** 02981 9320
-- **Webseite:** https://www.brabander.nl
-- **Beschreibung (DE):** Das bekannte und beliebte Hotel in Winterberg. Wellness, Gastronomie und direkte Nähe zum Skilift.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/der-brabander
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/der-brabander
 
 #### [Hotel Altastenberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-altastenberg)
 - **Kategorie:** Hotels und Unterkünfte > Hotels
@@ -162,16 +152,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landgasthof-wuellner
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landgasthof-wuellner
 
-#### [Hotel Schneider](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider)
-- **Kategorie:** Hotels und Unterkünfte > Hotels
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 58, 59955 Winterberg
-- **Telefon:** 02981 899738
-- **Webseite:** https://hotel-schneider-winterberg.de
-- **Beschreibung (DE):** Gemütliches Hotel im Herzen von Winterberg mit komfortablen Zimmern und herzlicher Gastfreundschaft.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-schneider
-
 #### [Campingpark Hochsauerland](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/campingpark-hochsauerland)
 - **Kategorie:** Hotels und Unterkünfte
 - **Ort / Ortsteil:** Winterberg
@@ -183,27 +163,27 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/campingpark-hochsauerland
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/campingpark-hochsauerland
 
-#### [Vakantiehotel Der Brabander](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/vakantiehotel-der-brabander)
-- **Kategorie:** Hotels und Unterkünfte
+#### [Vakantiehotel Der Brabander](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/vakantiehotel-der-brabander)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 65, 59955 Winterberg
 - **Telefon:** 02981 9320
 - **Webseite:** https://www.brabander.nl
 - **Beschreibung (DE):** Das bekannteste niederländisch geführte Ferienhotel in Winterberg, direkt am Skikarussell. Großzügige Wellnessoase, beheizter Außenpool, hervorragendes Restaurant und Unterhaltungsprogramm.
 - **Beschreibung (NL):** Het toonaangevende Nederlandse vakantiehotel in Winterberg, direct aan de skipiste. Verwarmd buitenzwembad, saunalandschap, animatie en uitstekende gastvrijheid.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/vakantiehotel-der-brabander
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehotel-der-brabander
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/vakantiehotel-der-brabander
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/vakantiehotel-der-brabander
 
-#### [Hotel Schneider Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotel-schneider-winterberg)
-- **Kategorie:** Hotels und Unterkünfte
+#### [Hotel Schneider Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 58, 59955 Winterberg
 - **Telefon:** 02981 899738
 - **Webseite:** https://www.hotel-schneider.de
 - **Beschreibung (DE):** Komfortables 4-Sterne-Hotel im Zentrum von Winterberg. Gemütliche Zimmer, moderner Wellnessbereich mit Hallenbad und exzellentes Restaurant.
 - **Beschreibung (NL):** Sfeervol 4-sterrenhotel in het centrum van Winterberg. Comfortabele kamers, binnenzwembad, sauna en gastronomisch restaurant.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotel-schneider-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotel-schneider-winterberg
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-schneider-winterberg
 
 #### [Homebase Vacation Forest & Mountain](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/homebase-vacation-forest-und-mountain)
 - **Kategorie:** Hotels und Unterkünfte
@@ -333,13 +313,14 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/brinkmann-gmbh-und-co-kg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bouwbedrijven/brinkmann-gmbh-und-co-kg
 
-#### [Hermann Josef Kiemen](https://www.winterberg-verzeichnis.de/handwerk/elektriker/hermann-josef-kiemen)
+#### [Kiemen Hermann J. Elektroinstallation](https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation)
 - **Kategorie:** Handwerk > Elektriker
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Briloner Str. 15, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 8260
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/hermann-josef-kiemen
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/hermann-josef-kiemen
+- **Beschreibung (DE):** Ihr Meisterbetrieb für Elektroinstallationen, Gebäudetechnik und Elektroservice in Winterberg-Siedlinghausen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/kiemen-hermann-j-elektroinstallation
 
 #### [Markus Klauke GmbH](https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/markus-klauke-gmbh)
 - **Kategorie:** Handwerk > Maler & Lackierer
@@ -477,15 +458,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Elektroinstallationen
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/koesler-elektro
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/koesler-elektro
-
-#### [Kiemen Hermann J. Elektroinstallation](https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation)
-- **Kategorie:** Handwerk > Elektriker
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Briloner Str. 15, 59955 Winterberg
-- **Telefon:** 02983 82 60
-- **Beschreibung (DE):** Elektroinstallationen
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/kiemen-hermann-j-elektroinstallation
 
 #### [Meisterbetrieb Menke](https://www.winterberg-verzeichnis.de/handwerk/dachdecker/meisterbetrieb-menke)
 - **Kategorie:** Handwerk > Dachdecker
@@ -1202,6 +1174,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Sorpestraße 80, 59955 Winterberg
+- **Telefon:** 02983 969960
+- **Beschreibung (DE):** Gemütliches Landhotel und Restaurant in Winterberg-Siedlinghausen mit regionaler Sauerländer Küche und herzlicher Gastfreundschaft.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/die-sperre-landhotel-und-restaurant
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/die-sperre-landhotel-und-restaurant
 
@@ -1310,14 +1284,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Restaurant
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-der-brabander
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-der-brabander
-
-#### [Die Sperre](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/die-sperre)
-- **Kategorie:** Gastronomie > Restaurant
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Sorpestraße 80, 59955 Winterberg
-- **Beschreibung (DE):** Restaurant
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/die-sperre
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/die-sperre
 
 #### [Panorama Restaurant & Café](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/panorama-restaurant-und-caf)
 - **Kategorie:** Gastronomie > Restaurant
@@ -2736,16 +2702,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/panorama-erlebnis-bruecke
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/panorama-erlebnis-bruecke
 
-#### [Abenteuergolf Winterberg - Erlebnisberg Kappe](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/abenteuergolf-winterberg-erlebnisberg-kappe)
-- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Kappe, 59955 Winterberg
-- **Telefon:** 02981 9296433
-- **Webseite:** https://www.erlebnisbergkappe.de/
-- **Beschreibung (DE):** Minigolfplatz am Erlebnisberg Kappe.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/abenteuergolf-winterberg-erlebnisberg-kappe
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/abenteuergolf-winterberg-erlebnisberg-kappe
-
 #### [Sommerrodelbahn Winterberg - Erlebnisberg Kappe](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/sommerrodelbahn-winterberg-erlebnisberg-kappe)
 - **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
 - **Ort / Ortsteil:** Winterberg
@@ -2857,16 +2813,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/sommerrodelbahn-schanzen-wirbel
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/sommerrodelbahn-schanzen-wirbel
 
-#### [Minigolf am Erlebnisberg Kappe](https://www.winterberg-verzeichnis.de/freizeit/minigolf-am-erlebnisberg-kappe)
-- **Kategorie:** Freizeit
+#### [Minigolf am Erlebnisberg Kappe](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/minigolf-am-erlebnisberg-kappe)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Kappe 2b, 59955 Winterberg
 - **Telefon:** 02981 908060
 - **Webseite:** https://www.erlebnisberg-kappe.de
 - **Beschreibung (DE):** 18-Loch-Minigolfanlage am Erlebnisberg Kappe in Winterberg. Abwechslungsreiche Bahnen für Familien, Gruppen und Freizeitspaß inmitten der Sauerländer Natur.
 - **Beschreibung (NL):** 18-holes minigolfbaan op de Erlebnisberg Kappe in Winterberg. Plezierige hindernissen voor jong en oud in een prachtige natuurlijke omgeving.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/minigolf-am-erlebnisberg-kappe
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/minigolf-am-erlebnisberg-kappe
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/minigolf-am-erlebnisberg-kappe
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/minigolf-am-erlebnisberg-kappe
 
 ---
 

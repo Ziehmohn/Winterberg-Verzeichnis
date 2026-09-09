@@ -2630,13 +2630,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/handwerk/elektriker/hermann-josef-kiemen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/hermann-josef-kiemen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/kiemen-hermann-j-elektroinstallation</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -2973,18 +2973,6 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/koesler-elektro</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/kiemen-hermann-j-elektroinstallation</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -3566,18 +3554,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/gastronomie/restaurant/die-sperre</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/die-sperre</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/gastronomie/restaurant/panorama-restaurant-und-caf</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -3693,18 +3669,6 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/panorama-erlebnis-bruecke</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/abenteuergolf-winterberg-erlebnisberg-kappe</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/abenteuergolf-winterberg-erlebnisberg-kappe</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -3861,18 +3825,6 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantieparken/hapimag-resort-winterberg</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/der-brabander</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/der-brabander</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5330,18 +5282,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-schneider</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/gastronomie/eisdielen/cortina</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -5798,25 +5738,25 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/vakantiehotel-der-brabander</loc>
+    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/vakantiehotel-der-brabander</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehotel-der-brabander</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/vakantiehotel-der-brabander</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotel-schneider-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider-winterberg</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotel-schneider-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-schneider-winterberg</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5918,13 +5858,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/freizeit/minigolf-am-erlebnisberg-kappe</loc>
+    <loc>https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/minigolf-am-erlebnisberg-kappe</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/minigolf-am-erlebnisberg-kappe</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/minigolf-am-erlebnisberg-kappe</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

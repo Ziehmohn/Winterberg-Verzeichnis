@@ -310,9 +310,19 @@ export default function App() {
   useEffect(() => {
     if (isNotFound) {
       const checkRedirect = async () => {
+        const currentPath = window.location.pathname.replace(/\/+$/, '');
+
+        // 1. Immediate in-memory check for business deduplication and system redirects
+        const sysRedirects = getSystemRedirects(categories, businesses);
+        const match = sysRedirects.find(r => r.source === currentPath || r.source === `${currentPath}/`);
+        if (match) {
+          window.location.replace(match.target);
+          return;
+        }
+
+        // 2. Check Firestore redirects collection
         try {
           const snap = await getDocs(collection(db, 'redirects'));
-          const currentPath = window.location.pathname;
           let redirectTarget = null;
           snap.forEach(docSnap => {
             const data = docSnap.data();
@@ -327,7 +337,7 @@ export default function App() {
       };
       checkRedirect();
     }
-  }, [isNotFound]);
+  }, [isNotFound, businesses]);
 
   // Google Analytics Pageview Tracking (Property ID 302481363)
   useEffect(() => {
@@ -3876,7 +3886,7 @@ function NewsAdminPanel() {
                       onChange={e => setIsAiGenerated(e.target.checked)}
                       className="w-4 h-4 accent-[#0F4C2E] rounded cursor-pointer"
                     />
-                    <span>Dieses Bild ist KI-generiert (Symbolbild)</span>
+                    <span>Dieses Bild ist KI-generiert</span>
                   </label>
                 </div>
               </div>
@@ -4278,7 +4288,7 @@ function RedirectsAdminPanel({ theme, activeThemeKey, categories: catsProp, busi
             onClick={() => setActiveFilter('system')}
             className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${activeFilter === 'system' ? 'bg-white shadow-xs text-emerald-800' : 'opacity-60 hover:opacity-100'}`}
           >
-            System-Kategorien ({systemRedirects.length})
+            System-Redirects ({systemRedirects.length})
           </button>
           <button
             type="button"

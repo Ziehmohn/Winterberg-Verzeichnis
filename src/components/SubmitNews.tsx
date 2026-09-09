@@ -280,7 +280,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
                     className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E] accent-[#0F4C2E]"
                   />
                   <span className="text-[13.5px] font-medium text-[#1B211D]">
-                    {isNl ? 'Deze afbeelding is AI-gegenereerd (symboolafbeelding)' : 'Dieses Bild ist KI-generiert (Symbolbild)'}
+                    {isNl ? 'Deze afbeelding is AI-gegenereerd' : 'Dieses Bild ist KI-generiert'}
                   </span>
                 </label>
               </div>

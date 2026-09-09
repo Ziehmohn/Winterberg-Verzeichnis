@@ -11,7 +11,8 @@ import {
   buildLocalizedUrl,
   getAlternateUrls,
   RouteState,
-  LEGACY_SUBCATEGORY_PARENTS
+  LEGACY_SUBCATEGORY_PARENTS,
+  BUSINESS_DEDUPLICATION_REDIRECTS
 } from '../src/utils/routes';
 import { generateLocalBusinessSchema, generateCollectionPageSchema } from '../src/utils/schemaGenerator';
 import { getLocalizedBusiness } from '../src/utils/translator';
@@ -670,10 +671,38 @@ for (const lang of ['de', 'nl'] as const) {
   }
 }
 
-// Update dist/_redirects and public/_redirects
+// Generate static 301 redirects for deduplicated businesses
+for (const dedup of BUSINESS_DEDUPLICATION_REDIRECTS) {
+  const cleanRelPath = dedup.source.replace(/^\/+/, '');
+  const targetUrl = `${baseUrl}${dedup.target}`;
+  const targetDir = path.join(distDir, cleanRelPath);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+  const createDedupRedirectHtml = (url: string) => `<!DOCTYPE html>
+<html lang="${dedup.lang}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=${escapeHtml(url)}">
+  <link rel="canonical" href="${escapeHtml(url)}">
+  <title>301 Moved Permanently</title>
+  <script>window.location.replace("${escapeHtml(url)}");</script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 50px;">
+  <p>Die Seite ist umgezogen.</p>
+  <p><a href="${escapeHtml(url)}">Klicken Sie hier, falls Sie nicht automatisch weitergeleitet werden.</a></p>
+</body>
+</html>`;
+
+  fs.writeFileSync(path.join(targetDir, 'index.html'), createDedupRedirectHtml(targetUrl), 'utf8');
+  redirectCount++;
+  redirectsLines.push(`${dedup.source}    ${dedup.target}         301!`);
+}
+
+// Update dist/_redirects and public/_redirects cleanly without accumulation
 const redirectsFilePath = path.join(distDir, '_redirects');
-const existingRedirects = fs.existsSync(redirectsFilePath) ? fs.readFileSync(redirectsFilePath, 'utf8') : '/*    /index.html   200\n';
-const updatedRedirects = `# 301 Permanent Redirects for Restructured Categories\n${redirectsLines.join('\n')}\n\n${existingRedirects}`;
+const uniqueRedirectLines = Array.from(new Set(redirectsLines));
+const updatedRedirects = `# 301 Permanent Redirects for Restructured Categories & Deduplicated Businesses\n${uniqueRedirectLines.join('\n')}\n\n# SPA Fallback\n/*    /index.html   200\n`;
 fs.writeFileSync(redirectsFilePath, updatedRedirects, 'utf8');
 
 const publicRedirectsFilePath = path.resolve(process.cwd(), 'public/_redirects');
