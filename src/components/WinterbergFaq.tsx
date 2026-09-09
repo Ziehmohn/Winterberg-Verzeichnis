@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { ThemeConfig } from '../types';
+import CommunityQA from './CommunityQA';
 import { 
   Search, 
   ChevronDown, 
@@ -1697,6 +1698,13 @@ export default function WinterbergFaq({
           })
         )}
       </div>
+
+      {/* Community Q&A Section */}
+      <CommunityQA 
+        type="general" 
+        title={isNl ? 'Winterberg Community Vragen & Antwoorden' : 'Winterberg Community-Fragen & Antworten'}
+        subtitle={isNl ? 'Heeft u een vraag die hierboven niet beantwoord is? Stel uw vraag aan de community of help andere bezoekers!' : 'War Ihre Frage oben nicht dabei? Fragen Sie die Winterberg-Community oder helfen Sie anderen Besuchern mit Ihren Tipps!'}
+      />
 
       {/* Footer Call to Action / Help Box */}
       <div className="mt-12 bg-gradient-to-br from-[#06301C] to-[#0F4C2E] text-white rounded-lg p-8 text-center md:text-left md:flex justify-between items-center gap-6 shadow-xl">

@@ -76,6 +76,7 @@ import { getBusinessRankingBadge } from './utils/bestOfRankingBadges';
 import TestKachelPreview from './components/TestKachelPreview';
 import BusinessCard from './components/BusinessCard';
 import ClaimsAdminPanel from './components/ClaimsAdminPanel';
+import QuestionsAdminPanel from './components/QuestionsAdminPanel';
 import PromoTopBar from './components/PromoTopBar';
 import PwaInstallPrompt from './components/PwaInstallPrompt';
 import AppBottomNav from './components/AppBottomNav';
@@ -4258,7 +4259,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
@@ -4388,7 +4389,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             { id: 'redirects', label: 'Redirects' },
             { id: 'scripts', label: 'Skripte' },
             { id: 'test_kachel', label: 'Test Kachel' },
-            { id: 'claims', label: '📋 Übernahmen' }
+            { id: 'claims', label: '📋 Übernahmen' },
+            { id: 'questions', label: '💬 Fragen & Antworten' }
           ] : [])
         ].map(tab => (
           <button 
@@ -4770,6 +4772,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <TestKachelPreview />
         ) : activeTab === 'claims' ? (
           <ClaimsAdminPanel businesses={businesses} setBusinesses={setBusinesses} />
+        ) : activeTab === 'questions' ? (
+          <QuestionsAdminPanel />
         ) : (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
         )}

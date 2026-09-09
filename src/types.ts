@@ -314,3 +314,34 @@ export interface FuelPriceResponse {
   stations: FuelStationPrice[];
 }
 
+export interface QnAnswer {
+  id: string;
+  authorName: string;
+  authorEmail?: string;
+  userId?: string;
+  isOwner?: boolean;      // True if answered by the verified business owner
+  isAdmin?: boolean;      // True if answered by Winterberg Verzeichnis Team
+  text: string;
+  createdAt: string;     // ISO Date
+  status: 'approved' | 'pending';
+  likes?: number;
+}
+
+export interface Question {
+  id: string;
+  type: 'general' | 'business'; // 'general' = Winterberg FAQ, 'business' = Business profile
+  businessId?: string;
+  businessName?: string;
+  businessSlug?: string;
+  businessEmail?: string;
+  question: string;
+  authorName: string;
+  authorEmail?: string;         // Optional for answer notification
+  userId?: string;
+  createdAt: string;            // ISO Date
+  status: 'approved' | 'pending';
+  answers: QnAnswer[];
+  likes?: number;
+  lang?: 'de' | 'nl';
+}
+

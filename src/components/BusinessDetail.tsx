@@ -18,6 +18,7 @@ import { RankingBadge } from './RankingBadge';
 import { getBusinessRankingBadge, getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import FuelPriceWidget from './FuelPriceWidget';
 import ClaimBusinessModal from './ClaimBusinessModal';
+import CommunityQA from './CommunityQA';
 
 interface BusinessDetailProps {
   business: Business;
@@ -821,6 +822,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             </div>
           )}
+
+          {/* Community Q&A Section */}
+          <CommunityQA type="business" business={business} />
         </div>
 
         <aside className="sticky top-[116px] flex flex-col gap-4">
