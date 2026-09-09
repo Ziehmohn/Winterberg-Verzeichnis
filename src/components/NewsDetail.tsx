@@ -5,6 +5,8 @@ import { NewsArticle, ThemeConfig } from '../types';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
+import { businesses } from '../data';
+import { buildLocalizedUrl } from '../utils/routes';
 
 interface NewsDetailProps {
   newsId: string;
@@ -402,61 +404,53 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
 
   if (loading) {
     return (
-      <div className="flex justify-center py-[100px]">
-        <div className="w-8 h-8 border-4 border-[#0F4C2E]/20 border-t-[#0F4C2E] rounded-full animate-spin"></div>
+      <div className="max-w-[850px] mx-auto py-[60px] px-[20px] text-center">
+        <div className="inline-block w-8 h-8 border-4 border-[#0F4C2E] border-t-transparent rounded-full animate-spin mb-4" />
+        <p className="text-[#5F6B63]">{t('newsLoading')}</p>
       </div>
     );
   }
 
-  if (!rawArticle || !article) {
+  if (!article) {
     return (
       <div className="max-w-[850px] mx-auto py-[60px] px-[20px] text-center">
-        <h1 className="text-[24px] font-bold mb-[16px]">{lang === 'nl' ? 'Nieuwsbericht niet gevonden' : 'News nicht gefunden'}</h1>
-        <button onClick={onBack} className={`${theme.primaryBtn} px-5 py-2.5 rounded-md`}>
-          {t('newsBack')}
+        <h2 className="text-[24px] font-bold text-[#1B211D] mb-4">{t('newsNotFound')}</h2>
+        <button 
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0F4C2E] text-white font-semibold hover:bg-[#186841] transition-colors"
+        >
+          <ArrowLeft size={16} />
+          {t('newsBackToOverview')}
         </button>
       </div>
     );
   }
 
-  // Extract contact block if present
-  let mainContent = article.content || '';
-  let contactContent: string | null = null;
-
-  const contactBlockMatch = mainContent.match(/:::contact\s*([\s\S]*?)\s*:::/i);
-  if (contactBlockMatch) {
-    mainContent = mainContent.replace(/:::contact\s*([\s\S]*?)\s*:::/i, '').trim();
-    contactContent = contactBlockMatch[1].trim();
-  }
+  // Extract contact box if present (:::contact ... :::)
+  const contactMatch = article.content ? article.content.match(/:::contact([\s\S]*?):::/) : null;
+  const contactContent = contactMatch ? contactMatch[1].trim() : null;
+  const mainContent = article.content ? article.content.replace(/:::contact[\s\S]*?:::/, '').trim() : '';
 
   return (
     <article className="max-w-[850px] mx-auto py-[40px] px-[20px]">
-      {schemaOrg && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
-      )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
       
       <button 
         onClick={onBack}
         className="flex items-center gap-[8px] text-[14px] font-semibold text-[#5F6B63] hover:text-[#1B211D] mb-[32px] transition-colors group"
       >
         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-        {t('newsBack')}
+        {t('newsBackToOverview')}
       </button>
 
       {article.imageUrl && (
-        <div className="relative w-full h-[320px] md:h-[440px] rounded-lg overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
-          <img 
-            src={article.imageUrl} 
-            alt={article.title} 
-            onError={(e) => {
-              (e.target as HTMLElement).style.display = 'none';
-            }}
-            className="w-full h-full object-cover" 
-          />
+        <div className="relative w-full h-[320px] md:h-[440px] rounded-[24px] overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
+          <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+          
           {(article.isAiGenerated || article.imageSource) && (
-            <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
+            <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
               {article.isAiGenerated && (
-                <span>{t('newsAiBadge')}</span>
+                <span>{t('newsAiGenerated')}</span>
               )}
               {article.isAiGenerated && article.imageSource && (
                 <span className="opacity-60">|</span>
@@ -481,8 +475,17 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         {article.businessName && (
           <>
             <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
-            <div className="text-[#0F4C2E] font-semibold">
-              {article.businessName}
+            <div>
+              {businessProfileUrl ? (
+                <a
+                  href={businessProfileUrl}
+                  className="text-[#0F4C2E] hover:text-[#186841] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all cursor-pointer"
+                >
+                  {article.businessName}
+                </a>
+              ) : (
+                <span className="text-[#0F4C2E] font-semibold">{article.businessName}</span>
+              )}
             </div>
           </>
         )}
@@ -501,40 +504,6 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}
       {contactContent && (
         <StandaloneContactBox rawContact={contactContent} heading={t('newsContactHeading')} />
-      )}
-
-      {/* Dedicated Business Publisher / Backlink Box */}
-      {(article.businessName || (article as any).externalLink) && (
-        <div className="mt-8 bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-[#0F4C2E] mb-1">
-              {lang === 'nl' ? 'Gepubliceerd door' : 'Veröffentlicht durch'}
-            </div>
-            <div className="font-display font-bold text-lg text-[#1B211D]">
-              {article.businessName || article.author}
-            </div>
-          </div>
-          <div className="flex items-center gap-3 flex-wrap">
-            {article.businessName && (
-              <a
-                href={`/unternehmen/${article.businessSlug || (article.businessName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-                className="px-4 py-2 bg-[#0F4C2E] hover:bg-[#186841] text-white text-xs font-bold rounded-md transition-colors inline-flex items-center gap-1.5 shadow-sm cursor-pointer"
-              >
-                {lang === 'nl' ? 'Bedrijfsprofiel bekijken' : 'Zum Unternehmensprofil'}
-              </a>
-            )}
-            {(article as any).externalLink && (
-              <a
-                href={(article as any).externalLink.startsWith('http') ? (article as any).externalLink : `https://${(article as any).externalLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-white hover:bg-gray-50 border border-[#E7E2DA] text-[#0F4C2E] text-xs font-bold rounded-md transition-colors inline-flex items-center gap-1.5"
-              >
-                {lang === 'nl' ? 'Website bezoeken' : 'Website besuchen'} <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
-          </div>
-        </div>
       )}
     </article>
   );

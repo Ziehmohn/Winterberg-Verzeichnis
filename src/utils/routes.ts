@@ -375,11 +375,116 @@ export interface SystemRedirectEntry {
   lang: 'de' | 'nl';
 }
 
+export const BUSINESS_DEDUPLICATION_REDIRECTS: SystemRedirectEntry[] = [
+  // 1. Hotel Schneider
+  {
+    id: 'dedup-hotel-schneider-de',
+    source: '/hotels-und-unterkuenfte/hotels/hotel-schneider',
+    target: '/hotels-und-unterkuenfte/hotels/hotel-schneider-winterberg',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'de',
+  },
+  {
+    id: 'dedup-hotel-schneider-nl',
+    source: '/nl/hotels-en-accommodaties/hotels/hotel-schneider',
+    target: '/nl/hotels-en-accommodaties/hotels/hotel-schneider-winterberg',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'nl',
+  },
+  // 2. Die Sperre
+  {
+    id: 'dedup-die-sperre-de',
+    source: '/gastronomie/restaurants/die-sperre',
+    target: '/gastronomie/restaurants/die-sperre-landhotel-restaurant',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'de',
+  },
+  {
+    id: 'dedup-die-sperre-nl',
+    source: '/nl/gastronomie/restaurants/die-sperre',
+    target: '/nl/gastronomie/restaurants/die-sperre-landhotel-restaurant',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'nl',
+  },
+  // 3. Kiemen Elektroinstallation
+  {
+    id: 'dedup-kiemen-de',
+    source: '/handwerk/elektriker/hermann-josef-kiemen',
+    target: '/handwerk/elektriker/kiemen-hermann-j-elektroinstallation',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'de',
+  },
+  {
+    id: 'dedup-kiemen-nl',
+    source: '/nl/ambacht-en-bouw/elektriciens/hermann-josef-kiemen',
+    target: '/nl/ambacht-en-bouw/elektriciens/kiemen-hermann-j-elektroinstallation',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'nl',
+  },
+  // 4. Der Brabander
+  {
+    id: 'dedup-der-brabander-de',
+    source: '/hotels-und-unterkuenfte/hotels/der-brabander',
+    target: '/hotels-und-unterkuenfte/hotels/vakantiehotel-der-brabander',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'de',
+  },
+  {
+    id: 'dedup-der-brabander-nl',
+    source: '/nl/hotels-en-accommodaties/hotels/der-brabander',
+    target: '/nl/hotels-en-accommodaties/hotels/vakantiehotel-der-brabander',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'nl',
+  },
+  // 5. Minigolf am Erlebnisberg Kappe
+  {
+    id: 'dedup-minigolf-kappe-de',
+    source: '/freizeit-und-erlebnis/outdoor/abenteuergolf-winterberg-erlebnisberg-kappe',
+    target: '/freizeit-und-erlebnis/outdoor/minigolf-am-erlebnisberg-kappe',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'de',
+  },
+  {
+    id: 'dedup-minigolf-kappe-nl',
+    source: '/nl/vrije-tijd-en-beleving/outdoor/abenteuergolf-winterberg-erlebnisberg-kappe',
+    target: '/nl/vrije-tijd-en-beleving/outdoor/minigolf-am-erlebnisberg-kappe',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'nl',
+  },
+  // 6. Modeorth
+  {
+    id: 'dedup-modeorth-de',
+    source: '/einzelhandel/bekleidung/modeorth-winterberg-gmbh',
+    target: '/einzelhandel/bekleidung/modeorth-winterberg',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'de',
+  },
+  {
+    id: 'dedup-modeorth-nl',
+    source: '/nl/winkelen/kleding/modeorth-winterberg-gmbh',
+    target: '/nl/winkelen/kleding/modeorth-winterberg',
+    isSystem: true,
+    type: 'Unternehmen',
+    lang: 'nl',
+  }
+];
+
 export function getSystemRedirects(
   categoriesList: Array<{ name: string; subcategories: string[] }>,
   businessesList: Array<{ name: string; subcategory?: string }>
 ): SystemRedirectEntry[] {
-  const redirects: SystemRedirectEntry[] = [];
+  const redirects: SystemRedirectEntry[] = [...BUSINESS_DEDUPLICATION_REDIRECTS];
 
   for (const lang of ['de', 'nl'] as const) {
     const prefix = lang === 'nl' ? '/nl' : '';

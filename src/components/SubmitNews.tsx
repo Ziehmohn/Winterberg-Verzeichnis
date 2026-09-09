@@ -6,6 +6,7 @@ import { ThemeConfig } from '../types';
 import { ImagePlus, X, Check } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { fetchDutchTranslation } from '../utils/translator';
+import { businesses } from '../data';
 
 interface SubmitNewsProps {
   theme: ThemeConfig;
@@ -83,13 +84,22 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         }
       }
 
+      const matchedBiz = businesses.find(b => 
+        (formData.businessName && (
+          b.name.toLowerCase() === formData.businessName.trim().toLowerCase() ||
+          b.id === formData.businessName.trim().toLowerCase()
+        ))
+      );
+
       await addDoc(collection(db, 'news'), {
         title: titleDe,
         title_nl: titleNl || '',
         content: contentDe,
         content_nl: contentNl || '',
         author: formData.author,
-        businessName: formData.businessName || '',
+        businessName: matchedBiz ? matchedBiz.name : (formData.businessName || ''),
+        businessId: matchedBiz ? matchedBiz.id : '',
+        businessSlug: matchedBiz ? ((matchedBiz as any).slug || (matchedBiz.name || '').toLowerCase().replace(/\s+/g, '-')) : '',
         imageUrl: finalImageUrl,
         imageSource: formData.imageSource.trim() || '',
         isAiGenerated: !!formData.isAiGenerated,
@@ -191,11 +201,17 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
               </label>
               <input 
                 type="text" 
+                list="business-options"
                 value={formData.businessName} 
                 onChange={e => setFormData({...formData, businessName: e.target.value})} 
                 className={inputClass} 
-                placeholder={isNl ? 'Om welk bedrijf gaat het?' : 'Welches Unternehmen betrifft das?'}
+                placeholder={isNl ? 'Typ of kies een bedrijf uit Winterberg...' : 'Name eingeben oder aus Liste wählen...'}
               />
+              <datalist id="business-options">
+                {businesses.map(b => (
+                  <option key={b.id} value={b.name} />
+                ))}
+              </datalist>
             </div>
           </div>
 

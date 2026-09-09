@@ -43,7 +43,8 @@ import {
   slugify,
   STATIC_PAGE_SLUGS,
   getLegacyCategoryRedirect,
-  getSystemRedirects
+  getSystemRedirects,
+  BUSINESS_DEDUPLICATION_REDIRECTS
 } from './utils/routes';
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
@@ -3598,13 +3599,22 @@ function NewsAdminPanel() {
       }
     }
 
+    const matchedBiz = businesses.find(b => 
+      (businessName.trim() && (
+        b.name.toLowerCase() === businessName.trim().toLowerCase() ||
+        b.id === businessName.trim().toLowerCase()
+      ))
+    );
+
     const finalSlug = slug.trim() || slugify(title.trim());
     const articleData: any = {
       title: title.trim(),
       title_nl: finalTitleNl || '',
       slug: finalSlug,
       author: author.trim(),
-      businessName: businessName.trim() || '',
+      businessName: matchedBiz ? matchedBiz.name : (businessName.trim() || ''),
+      businessId: matchedBiz ? matchedBiz.id : '',
+      businessSlug: matchedBiz ? ((matchedBiz as any).slug || (matchedBiz.name || '').toLowerCase().replace(/\s+/g, '-')) : '',
       date: new Date(date).toISOString(),
       content: content.trim(),
       content_nl: finalContentNl || '',
@@ -3747,15 +3757,21 @@ function NewsAdminPanel() {
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-                  Bezug zu Unternehmen
+                  Bezug zu Unternehmen (Verlinktes Profil)
                 </label>
                 <input 
                   type="text" 
+                  list="admin-news-business-options"
                   value={businessName} 
                   onChange={e => setBusinessName(e.target.value)}
-                  placeholder="z. B. Winterberg Touristik"
+                  placeholder="Unternehmen suchen oder eingeben..."
                   className="w-full border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
                 />
+                <datalist id="admin-news-business-options">
+                  {businesses.map(b => (
+                    <option key={b.id} value={b.name} />
+                  ))}
+                </datalist>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
