@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail } from 'lucide-react';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail, ShoppingBag } from 'lucide-react';
 import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta, ContactPerson } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
@@ -302,7 +302,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       extendedDescription_nl: base.translations?.nl?.extendedDescription || base.extendedDescription_nl || '',
       services_nl: Array.isArray(base.translations?.nl?.services) ? [...base.translations.nl.services] : (Array.isArray(base.services_nl) ? [...base.services_nl] : []),
       products_nl: Array.isArray(base.translations?.nl?.products) ? [...base.translations.nl.products] : (Array.isArray(base.products_nl) ? [...base.products_nl] : []),
-      contactPerson: base.contactPerson ? { ...base.contactPerson } : { name: '', role: '', phone: '', email: '', imageUrl: '' }
+      contactPerson: base.contactPerson ? { ...base.contactPerson } : { name: '', role: '', phone: '', email: '', imageUrl: '' },
+      hasShop: !!base.hasShop,
+      shopUrl: base.shopUrl || ''
     };
   });
   
@@ -529,6 +531,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       customCta: formData.customCta?.text ? formData.customCta : null,
       contactPerson: formData.contactPerson?.name?.trim() ? formData.contactPerson : null,
       emailNotifications: formData.emailNotifications !== false,
+      hasShop: !!formData.hasShop,
+      shopUrl: formData.hasShop && formData.shopUrl ? formData.shopUrl.trim() : '',
       status: formData.status || 'approved',
       id: newId
     };
@@ -2629,6 +2633,55 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* ─── E-Commerce & Onlineshop (Premium) ── */}
+            <div className="mt-8 border-t-2 border-orange-200 pt-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                <div>
+                  <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5 text-[#F2761B]" />
+                    🛍️ Onlineshop & E-Commerce
+                  </h3>
+                  <p className="text-sm text-[#5F6B63] mt-0.5">
+                    Verfügt dieses Unternehmen über einen eigenen Onlineshop oder Bestellshop?
+                  </p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                  <input
+                    type="checkbox"
+                    checked={!!formData.hasShop}
+                    onChange={e => setFormData({
+                      ...formData,
+                      hasShop: e.target.checked,
+                      shopUrl: e.target.checked ? (formData.shopUrl || formData.website || '') : formData.shopUrl
+                    })}
+                    disabled={!formData.isPremium}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0F4C2E]"></div>
+                </label>
+              </div>
+
+              {formData.hasShop && (
+                <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-4 space-y-2 mt-2">
+                  <label className="block text-xs font-bold text-[#1B211D]">
+                    URL zum Onlineshop *
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="url"
+                      value={formData.shopUrl || ''}
+                      onChange={e => setFormData({ ...formData, shopUrl: e.target.value })}
+                      placeholder="https://shop.unternehmen.de..."
+                      className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                    />
+                  </div>
+                  <p className="text-xs text-[#5F6B63]">
+                    Wird mit auffälligem Call-to-Action („Onlineshop von {formData.name || 'Unternehmen'} besuchen“) und Direktverlinkung auf dem Profil hervorgehoben.
+                  </p>
+                </div>
+              )}
             </div>
 
           </div>

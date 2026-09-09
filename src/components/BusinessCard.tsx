@@ -83,11 +83,19 @@ export default function BusinessCard({
 
         {/* Top Badges (Premium + Star Rating) */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none z-10">
-          {business.isPremium ? (
-            <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm backdrop-blur-xs">
-              Premium
-            </div>
-          ) : <div />}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {business.isPremium && (
+              <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm backdrop-blur-xs">
+                Premium
+              </div>
+            )}
+            {business.isPremium && business.hasShop && (
+              <div className="bg-[#0F4C2E] text-white border border-[#0F4C2E]/30 px-2 py-1 rounded-md text-[11px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
+                <span>🛍️</span>
+                <span>{lang === 'nl' ? 'Webshop' : 'Onlineshop'}</span>
+              </div>
+            )}
+          </div>
 
           {avgRating && (
             <div className="bg-white/95 backdrop-blur-sm border border-[#E7E2DA] px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm ml-auto">

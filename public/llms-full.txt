@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (295 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (296 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1088,6 +1088,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Telemax in Winterberg – speciaalzaak voor mobiele telefonie, internet, telecomapparatuur en reparaties.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/telemax-datentechnik-und-telekommunikation
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/telemax-datentechnik-und-telekommunikation
+
+#### [hagebau kompakt - Müllenhoff Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/hagebau-kompakt-muellenhoff-winterberg)
+- **Kategorie:** Einzelhandel
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 23, 59955 Winterberg
+- **Telefon:** 02981 90210
+- **Webseite:** https://www.muellenhoff.de
+- **Beschreibung (DE):** hagebau kompakt Müllenhoff in Winterberg – Ihr kompetenter Fachmarkt für Bauen, Renovieren, Garten und Heimwerken. Großes Sortiment an Werkzeugen, Farben, Baustoffen, Eisenwaren und Gartenbedarf mit persönlicher Fachberatung und Abholservice.
+- **Beschreibung (NL):** hagebau kompakt Müllenhoff in Winterberg – uw bouwmarkt en tuincentrum voor doe-het-zelf, verbouwen, gereedschap, verf, bouwmaterialen en tuinbenodigdheden.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/hagebau-kompakt-muellenhoff-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/hagebau-kompakt-muellenhoff-winterberg
 
 ### Kategorie: Gastronomie
 

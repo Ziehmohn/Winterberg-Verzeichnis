@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag } from 'lucide-react';
 import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
@@ -169,6 +169,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
   const telHref = business.phone ? `tel:${String(business.phone).replace(/[^0-9+]/g, '')}` : undefined;
   const webHref = business.website ? (String(business.website).startsWith('http') ? String(business.website) : `https://${business.website}`) : undefined;
+  const shopHref = business.shopUrl ? (String(business.shopUrl).startsWith('http') ? String(business.shopUrl) : `https://${business.shopUrl}`) : undefined;
   const showHours = canDisplayOpeningHours(business);
   const openState = showHours && business.openingHours && typeof business.openingHours === 'object' ? isOpenNow(business.openingHours, t) : null;
   const approvedReviews = Array.isArray(business.reviews) 
@@ -487,6 +488,40 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   );
                 })}
               </div>
+            </div>
+          )}
+
+          {/* E-Commerce & Onlineshop Showcase (Premium) */}
+          {business.isPremium && business.hasShop && business.shopUrl && shopHref && (
+            <div className="mb-[34px] bg-gradient-to-br from-[#FAF8F5] via-[#F4F9F6] to-[#EBF4EE] border border-[#CDE3D5] rounded-2xl p-5 md:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start sm:items-center gap-4 min-w-0">
+                <div className="w-12 h-12 rounded-xl bg-[#0F4C2E] text-white flex items-center justify-center shrink-0 shadow-sm">
+                  <ShoppingBag className="w-6 h-6 text-[#F2761B]" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-white border border-[#0F4C2E]/20 px-2.5 py-0.5 rounded-full shadow-2xs">
+                      {t('officialOnlineShop')}
+                    </span>
+                  </div>
+                  <h3 className="font-display font-bold text-[#1B211D] text-lg leading-snug">
+                    {t('onlineShopOf')} {business.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5F6B63] mt-0.5">
+                    {t('onlineShopDesc')}
+                  </p>
+                </div>
+              </div>
+              <a
+                href={shopHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#09321E] text-white font-bold text-[14.5px] px-5 py-3 rounded-xl transition-all shadow-xs hover:shadow-md shrink-0 w-full sm:w-auto text-center"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#F2761B]" />
+                <span>{t('visitOnlineShop')}</span>
+                <ExternalLink className="w-4 h-4 opacity-75" />
+              </a>
             </div>
           )}
 
@@ -954,6 +989,21 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </a>
           )}
           
+          {business.isPremium && business.hasShop && business.shopUrl && shopHref && (
+            <a 
+              href={shopHref} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center justify-between gap-[11px] bg-[#0F4C2E] text-white rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#09321E] shadow-sm transition-all hover:scale-[1.01]"
+            >
+              <div className="flex items-center gap-[11px] min-w-0">
+                <ShoppingBag className="w-4 h-4 text-[#F2761B] shrink-0" />
+                <span className="truncate">{t('visitOnlineShop')}</span>
+              </div>
+              <ExternalLink className="w-3.5 h-3.5 opacity-70 shrink-0" />
+            </a>
+          )}
+
           {business.isPremium && business.website && webHref && (
             <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
               <Globe className="w-4 h-4" />

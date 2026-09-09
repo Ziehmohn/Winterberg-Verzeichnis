@@ -80,6 +80,7 @@ export default function PricingTable({
     { name: t("openingHours"), free: false, premium: true },
     { name: t("detailedDesc"), free: false, premium: true },
     { name: t("pricingLogoDesc"), free: false, premium: true },
+    { name: t("pricingOnlineShop"), free: false, premium: true },
     { name: t("pricingPremiumBadge"), free: false, premium: true },
     { name: t("priorityInSearch"), free: false, premium: true },
     { name: t("login"), free: false, premium: true },

@@ -140,6 +140,8 @@ export interface Business {
   contactPerson?: ContactPerson;
   emailNotifications?: boolean;
   notificationOptOutAt?: string;
+  hasShop?: boolean;
+  shopUrl?: string;
 }
 
 export interface ContactPerson {

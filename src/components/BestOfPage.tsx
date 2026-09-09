@@ -22,7 +22,8 @@ import {
   ArrowLeft,
   Info,
   HelpCircle,
-  Scale
+  Scale,
+  ShoppingBag
 } from 'lucide-react';
 import { Business, CategoryGroup, ThemeConfig } from '../types';
 import { useTranslation } from '../i18n';
@@ -603,6 +604,19 @@ export default function BestOfPage({
                         {business.customCta.type === 'emergency' && <Siren className="w-3.5 h-3.5" />}
                         {business.customCta.type === 'booking' && <CalendarDays className="w-3.5 h-3.5" />}
                         <span>{business.customCta.text}</span>
+                      </a>
+                    )}
+
+                    {/* Onlineshop Button (Premium) */}
+                    {business.isPremium && business.hasShop && business.shopUrl && (
+                      <a
+                        href={business.shopUrl.startsWith('http') ? business.shopUrl : `https://${business.shopUrl}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2 px-3 rounded-lg text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5 shadow-xs bg-[#0F4C2E] hover:bg-[#06301C] text-white"
+                      >
+                        <ShoppingBag className="w-3.5 h-3.5 text-[#F2761B]" />
+                        <span>{isNl ? 'Webshop bezoeken' : 'Onlineshop besuchen'}</span>
                       </a>
                     )}
 
