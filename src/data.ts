@@ -5749,6 +5749,32 @@ export const businesses: Business[] = [
       saturday: 'Je nach Veranstaltung',
       sunday: 'Je nach Veranstaltung'
     }
+  },
+  {
+    id: 'hagebau-kompakt-muellenhoff-winterberg',
+    name: 'hagebau kompakt - Müllenhoff Winterberg',
+    category: 'Einzelhandel',
+    subCategory: 'Baumärkte',
+    address: 'Remmeswiese 23, 59955 Winterberg',
+    phone: '02981 90210',
+    email: 'post@muellenhoff.com',
+    website: 'https://www.muellenhoff.de',
+    rating: 4.3,
+    reviewCount: 470,
+    description: 'hagebau kompakt Müllenhoff in Winterberg – Ihr kompetenter Fachmarkt für Bauen, Renovieren, Garten und Heimwerken. Großes Sortiment an Werkzeugen, Farben, Baustoffen, Eisenwaren und Gartenbedarf mit persönlicher Fachberatung und Abholservice.',
+    description_nl: 'hagebau kompakt Müllenhoff in Winterberg – uw bouwmarkt en tuincentrum voor doe-het-zelf, verbouwen, gereedschap, verf, bouwmaterialen en tuinbenodigdheden.',
+    services: ['Baumarkt & Heimwerkerbedarf', 'Gartencenter & Pflanzen', 'Farben, Lacke & Malerbedarf', 'Eisenwaren & Werkzeuge', 'Abholservice & Fachberatung'],
+    services_nl: ['Bouwmarkt & doe-het-zelf', 'Tuincentrum', 'Verf & schildersbenodigdheden', 'IJzerwaren & gereedschap', 'Afhaalservice & deskundig advies'],
+    featured: false,
+    openingHours: {
+      monday: '08:30 - 18:30',
+      tuesday: '08:30 - 18:30',
+      wednesday: '08:30 - 18:30',
+      thursday: '08:30 - 18:30',
+      friday: '08:30 - 18:30',
+      saturday: '08:30 - 14:00',
+      sunday: 'Geschlossen'
+    }
   }
 ];
 
