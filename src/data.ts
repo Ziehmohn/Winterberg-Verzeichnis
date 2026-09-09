@@ -5800,10 +5800,10 @@ export const businesses: Business[] = [
     website: 'https://www.oversum-vitalresort.de',
     rating: 4.3,
     reviewCount: 2187,
-    description: 'Spektakuläres 4-Sterne-Superior Wellnesshotel im markanten "Ei" direkt am Kurpark Winterberg. Weitläufiger Wellness- & Spa-Bereich, Innen- und Außenbecken, Saunalandschaft, Fitness und gehobene Gastronomie.',
-    description_nl: 'Spectaculair 4-sterren superior wellnesshotel in de opvallende koepelarchitectuur aan het kuurpark in Winterberg. Uitgebreide spa- en wellnessfaciliteiten, binnen- en buitenzwembaden, sauna\'s en gastronomie.',
-    services: ['Wellness & Spa', 'Hallenbad & Außenpool', 'Saunalandschaft & Dampfbad', 'Feinschmecker-Restaurant & Bar', 'Tagungsräume & Fitnessstudio'],
-    services_nl: ['Wellness & spa', 'Binnen- en buitenzwembad', 'Sauna\'s & stoombad', 'Gastronomisch restaurant & bar', 'Vergaderfaciliteiten & fitness'],
+    description: 'Spektakuläres 4-Sterne-Superior Wellnesshotel im markanten "Ei" direkt am Kurpark Winterberg. Beheimatet neben dem weitläufigen Wellness- & Spa-Bereich auch die Stadthalle Winterberg für Konzerte, Tagungen und Kultur-Events.',
+    description_nl: 'Spectaculair 4-sterren superior wellnesshotel in de opvallende koepelarchitectuur aan het kuurpark in Winterberg. Bevat naast uitgebreide wellnessfaciliteiten tevens de Stadthalle Winterberg voor evenementen en congressen.',
+    services: ['Wellness & Spa', 'Hallenbad & Außenpool', 'Saunalandschaft & Dampfbad', 'Feinschmecker-Restaurant & Bar', 'Tagungsräume & Stadthalle'],
+    services_nl: ['Wellness & spa', 'Binnen- en buitenzwembad', 'Sauna\'s & stoombad', 'Gastronomisch restaurant & bar', 'Vergaderfaciliteiten & stadshal'],
     featured: true,
     openingHours: {
       monday: '24 Stunden geöffnet',
@@ -5813,6 +5813,31 @@ export const businesses: Business[] = [
       friday: '24 Stunden geöffnet',
       saturday: '24 Stunden geöffnet',
       sunday: '24 Stunden geöffnet'
+    }
+  },
+  {
+    id: 'stadthalle-oversum-winterberg',
+    name: 'Stadthalle Oversum',
+    category: 'Dienstleistungen',
+    subCategory: 'Tagungszentren',
+    address: 'Am Kurpark 6, 59955 Winterberg',
+    phone: '02981 929550',
+    website: 'https://www.oversum-vitalresort.de',
+    rating: 4.5,
+    reviewCount: 48,
+    description: 'Die Stadthalle Oversum ist das zentrale Veranstaltungs- und Kongresszentrum der Stadt Winterberg im architektonisch einzigartigen Gebäudeensemble am Kurpark. Austragungsort für Konzerte, Tagungen, Theater, Messen und gesellschaftliche Events mit modernster Veranstaltungstechnik.',
+    description_nl: 'De Stadthalle Oversum is het centrale evenementen- en congrescentrum van Winterberg, gelegen in het markante gebouw aan het kuurpark. Locatie voor concerten, congressen, beurzen en culturele bijeenkomsten.',
+    services: ['Veranstaltungsstätte', 'Kongresse & Tagungen', 'Konzerte & Theater', 'Messen & Firmenevents', 'Catering & Eventtechnik'],
+    services_nl: ['Evenementenlocatie', 'Congressen & conferenties', 'Concerten & theater', 'Beurzen & bedrijfsevenementen', 'Catering & techniek'],
+    featured: true,
+    openingHours: {
+      monday: '08:00 - 18:00',
+      tuesday: '08:00 - 18:00',
+      wednesday: '08:00 - 18:00',
+      thursday: '08:00 - 18:00',
+      friday: '08:00 - 18:00',
+      saturday: 'Je nach Veranstaltung',
+      sunday: 'Je nach Veranstaltung'
     }
   }
 ];

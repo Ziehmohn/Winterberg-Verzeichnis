@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Bed, 
@@ -20,10 +20,13 @@ import {
   CableCar,
   MountainSnow,
   HeartPulse,
-  Car
+  Car,
+  Search,
+  X
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
+import { getBusinessPath } from '../utils/routes';
 
 interface MegaMenuProps {
   isOpen: boolean;
@@ -39,6 +42,8 @@ interface MegaMenuProps {
   onOpenMap: () => void;
   onOpenSubmit: () => void;
   getPath: (path: string) => string;
+  onSearch?: (query: string, location?: string) => void;
+  onSelectBusiness?: (business: Business) => void;
 }
 
 export const MegaMenu: React.FC<MegaMenuProps> = ({
@@ -55,8 +60,79 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onOpenMap,
   onOpenSubmit,
   getPath,
+  onSearch,
+  onSelectBusiness,
 }) => {
   const { t, lang } = useTranslation();
+  const [searchInput, setSearchInput] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('Alle');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [headerBottom, setHeaderBottom] = useState(65);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const updateHeaderBottom = () => {
+      const headerEl = document.querySelector('header');
+      if (headerEl) {
+        setHeaderBottom(headerEl.getBoundingClientRect().bottom);
+      }
+    };
+    if (isOpen) {
+      updateHeaderBottom();
+      const timer = setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const updateHeaderBottom = () => {
+      const headerEl = document.querySelector('header');
+      if (headerEl) {
+        setHeaderBottom(headerEl.getBoundingClientRect().bottom);
+      }
+    };
+    window.addEventListener('resize', updateHeaderBottom);
+    window.addEventListener('scroll', updateHeaderBottom);
+    return () => {
+      window.removeEventListener('resize', updateHeaderBottom);
+      window.removeEventListener('scroll', updateHeaderBottom);
+    };
+  }, []);
+
+  const suggestions = useMemo(() => {
+    const q = searchInput.toLowerCase().trim();
+    if (!q || q.length < 2) return [];
+    return businesses.filter(b => {
+      const matchName = b.name.toLowerCase().includes(q);
+      const matchCat = (b.category || '').toLowerCase().includes(q);
+      const matchSub = (b.subcategory || '').toLowerCase().includes(q);
+      const matchServices = (b.services || []).some(s => s.toLowerCase().includes(q));
+      const matchProducts = (b.products || []).some(p => p.toLowerCase().includes(q));
+      const matchDistrict = (b.district || '').toLowerCase().includes(q);
+      return matchName || matchCat || matchSub || matchServices || matchProducts || matchDistrict;
+    }).slice(0, 6);
+  }, [businesses, searchInput]);
+
+  const availableDistricts = useMemo(() => {
+    return Array.from(
+      new Set(
+        businesses.map(b => b.district || b.address?.split(',')[1]?.trim()?.split(' ')[1] || 'Winterberg')
+      )
+    ).filter(Boolean).sort();
+  }, [businesses]);
+
+  const handleExecuteSearch = () => {
+    setShowSuggestions(false);
+    if (onSearch) {
+      onSearch(searchInput.trim(), selectedLocation);
+    } else {
+      onSelectAll();
+    }
+    onClose();
+  };
+
   // Category Icons & Color Accents mapping
   const getCategoryMeta = (catName: string) => {
     switch (catName) {
@@ -145,20 +221,22 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[65px] bg-black/20 backdrop-blur-[2px] z-40"
+            style={{ top: `${headerBottom}px` }}
+            className="fixed inset-x-0 bottom-0 bg-black/30 backdrop-blur-[2px] z-[9990]"
             onClick={onClose}
           />
 
           {/* Mega Menu Dropdown Container */}
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.99 }}
+            initial={{ opacity: 0, y: -6, scale: 0.995 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.99 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed left-0 right-0 top-[65px] z-50 px-4 pointer-events-none"
+            exit={{ opacity: 0, y: -6, scale: 0.995 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ top: `${headerBottom}px` }}
+            className="fixed left-0 right-0 z-[9999] px-2 sm:px-4 pointer-events-none"
           >
             <div 
-              className="max-w-[1180px] mx-auto bg-white/98 backdrop-blur-xl border border-[#EDE8E0] rounded-xl shadow-[0_25px_60px_-15px_rgba(15,76,46,0.18),0_10px_25px_-5px_rgba(0,0,0,0.06)] overflow-hidden pointer-events-auto"
+              className="max-w-[1180px] mx-auto bg-white border border-[#EDE8E0] rounded-b-2xl shadow-[0_25px_60px_-15px_rgba(15,76,46,0.18),0_10px_25px_-5px_rgba(0,0,0,0.08)] overflow-hidden pointer-events-auto max-h-[calc(100vh-${headerBottom + 16}px)] flex flex-col"
               onMouseLeave={(e) => {
                 const currentTarget = e.currentTarget;
                 if (!currentTarget.contains(e.relatedTarget as Node)) {
@@ -166,7 +244,151 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                 }
               }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+              {/* Search Bar at the Top */}
+              <div className="bg-[#FAF8F5] border-b border-[#EDE8E0] px-4 py-3.5 sm:px-6 sm:py-4 shrink-0">
+                <div className="flex flex-col sm:flex-row items-center gap-2.5">
+                  <div className="relative flex-1 w-full">
+                    <div className="flex items-center gap-2.5 bg-white border border-[#D5D0C5] focus-within:border-[#0F4C2E] focus-within:ring-2 focus-within:ring-[#0F4C2E]/15 rounded-lg px-3.5 py-2 transition-all shadow-2xs">
+                      <Search className="w-4 h-4 sm:w-5 sm:h-5 text-[#0F4C2E] shrink-0" />
+                      <input
+                        ref={searchInputRef}
+                        type="text"
+                        value={searchInput}
+                        onChange={(e) => {
+                          setSearchInput(e.target.value);
+                          setShowSuggestions(true);
+                        }}
+                        onFocus={() => setShowSuggestions(true)}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 220)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleExecuteSearch();
+                          } else if (e.key === 'Escape') {
+                            setShowSuggestions(false);
+                          }
+                        }}
+                        placeholder={
+                          lang === 'nl'
+                            ? 'Bedrijf, categorie of trefwoord zoeken (bijv. ski, hotel, bakker)...'
+                            : 'Unternehmen, Branche oder Begriff suchen (z. B. Ski, Hotel, Bäcker)...'
+                        }
+                        className="w-full bg-transparent border-none outline-none text-[14.5px] sm:text-[15px] text-[#1B211D] placeholder:text-[#8A928B]"
+                      />
+                      {searchInput && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSearchInput('');
+                            setShowSuggestions(false);
+                          }}
+                          className="text-[#8A928B] hover:text-[#1B211D] p-0.5 rounded cursor-pointer"
+                          title={lang === 'nl' ? 'Wissen' : 'Löschen'}
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Live Suggestions Dropdown */}
+                    {showSuggestions && suggestions.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 mt-1.5 bg-white rounded-lg shadow-2xl border border-[#EDE8E0] overflow-hidden z-[10000] text-left divide-y divide-[#F3F0EA]">
+                        {suggestions.map((s) => {
+                          const lowerInput = searchInput.toLowerCase().trim();
+                          const matchingServices = (s.services || []).filter(srv =>
+                            srv.toLowerCase().includes(lowerInput)
+                          );
+                          const matchingProducts = (s.products || []).filter(prd =>
+                            prd.toLowerCase().includes(lowerInput)
+                          );
+                          return (
+                            <a
+                              key={s.id}
+                              href={getPath(getBusinessPath(s, lang))}
+                              onMouseDown={(e) => e.preventDefault()}
+                              onClick={(e) => {
+                                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                                  e.preventDefault();
+                                  if (onSelectBusiness) {
+                                    onSelectBusiness(s);
+                                  } else {
+                                    window.history.pushState(null, '', getPath(getBusinessPath(s, lang)));
+                                    window.dispatchEvent(new PopStateEvent('popstate'));
+                                  }
+                                  onClose();
+                                }
+                              }}
+                              className="px-4 py-2.5 hover:bg-[#FAF8F5] cursor-pointer flex items-center justify-between transition-colors no-underline text-inherit group"
+                            >
+                              <div className="flex items-center gap-3 overflow-hidden">
+                                <div className="w-8 h-8 rounded-md bg-[#FAF8F5] group-hover:bg-[#E8F1EB] flex items-center justify-center shrink-0 transition-colors">
+                                  <Search className="w-4 h-4 text-[#8A928B] group-hover:text-[#0F4C2E]" />
+                                </div>
+                                <div className="flex flex-col overflow-hidden">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-[14px] font-bold text-[#1B211D] group-hover:text-[#0F4C2E] truncate transition-colors">
+                                      {s.name}
+                                    </span>
+                                    {s.district && (
+                                      <span className="text-[11px] text-[#5F6B63] bg-[#F3F0EA] px-1.5 py-0.2 rounded shrink-0">
+                                        {s.district}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="flex items-center gap-1.5 flex-wrap text-xs">
+                                    <span className="text-[#5F6B63] truncate">
+                                      {t(s.category)}{s.subcategory ? ` > ${t(s.subcategory)}` : ''}
+                                    </span>
+                                    {matchingServices.length > 0 && (
+                                      <span className="text-[#0F4C2E] bg-[#E8F1EB] text-[11px] font-semibold px-1.5 py-0.2 rounded truncate">
+                                        🏷️ {matchingServices.join(', ')}
+                                      </span>
+                                    )}
+                                    {matchingProducts.length > 0 && (
+                                      <span className="text-[#D65F0C] bg-[#FFF8F1] border border-[#FBD9BC] text-[11px] font-semibold px-1.5 py-0.2 rounded truncate">
+                                        📦 {matchingProducts.join(', ')}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="hidden sm:flex items-center text-xs text-[#0F4C2E] font-semibold shrink-0 ml-3 gap-0.5 opacity-70 group-hover:opacity-100 transition-opacity">
+                                <span>{lang === 'nl' ? 'Profiel' : 'Profil'}</span>
+                                <ChevronRight className="w-3.5 h-3.5" />
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Ortsteil Select */}
+                  <select
+                    value={selectedLocation}
+                    onChange={(e) => setSelectedLocation(e.target.value)}
+                    className="w-full sm:w-[180px] shrink-0 border border-[#D5D0C5] rounded-lg px-3 py-2 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
+                  >
+                    <option value="Alle">{t("allTowns")}</option>
+                    {availableDistricts.map(d => (
+                      <option key={d} value={d}>{d}</option>
+                    ))}
+                  </select>
+
+                  {/* Search Button */}
+                  <button
+                    type="button"
+                    onClick={handleExecuteSearch}
+                    className="w-full sm:w-auto shrink-0 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-lg px-5 py-2 font-bold text-[14px] transition-colors cursor-pointer shadow-sm flex items-center justify-center gap-1.5"
+                  >
+                    <Search className="w-4 h-4" />
+                    <span>{lang === 'nl' ? 'Zoeken' : 'Suchen'}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Scrollable Content: Categories & Highlights */}
+              <div className="overflow-y-auto flex-1 overscroll-contain">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                 
                 {/* Left Area: 6 Main Categories with Subcategories (8 Cols) */}
                 <div className="lg:col-span-8 p-6 sm:p-8 bg-white border-b lg:border-b-0 lg:border-r border-[#EDE8E0]">
@@ -466,6 +688,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
 
                 </div>
 
+              </div>
               </div>
 
               {/* Bottom Subtle Trust Bar */}
