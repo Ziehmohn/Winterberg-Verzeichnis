@@ -43,6 +43,16 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [showWidgetModal, setShowWidgetModal] = useState(false);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
+
+  // Auto-open claim modal if visitor arrives via ?claim=true link and business is unclaimed
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.get('claim') === 'true' && !business.ownerId && !business.ownerEmail) {
+        setShowClaimScreen(true);
+      }
+    }
+  }, [business.id, business.ownerId, business.ownerEmail]);
   
   const [isReportingError, setIsReportingError] = useState(false);
   const [errorReportText, setErrorReportText] = useState('');

@@ -107,12 +107,15 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
     setIsSubmittingQuestion(true);
     try {
       const businessSlug = business ? getBusinessPath(business, lang).replace(/^\//, '') : undefined;
+      const targetBusinessEmail = business?.ownerEmail || business?.email;
+      const isClaimed = !!(business?.ownerId || business?.ownerEmail);
       const newQ = await createQuestion({
         type,
         businessId: business?.id,
         businessName: business?.name,
         businessSlug,
-        businessEmail: business?.email,
+        businessEmail: targetBusinessEmail,
+        isClaimed,
         question: askQuestionText,
         authorName: askAuthorName.trim() || (isNl ? 'Bezoeker' : 'Besucher'),
         authorEmail: askAuthorEmail.trim() || undefined,
