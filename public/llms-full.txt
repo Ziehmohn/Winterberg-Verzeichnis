@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (303 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (300 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -864,15 +864,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/street-point-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/street-point-winterberg
 
-#### [MODEORTH Winterberg GmbH](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modeorth-winterberg-gmbh)
-- **Kategorie:** Einzelhandel > Bekleidung
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Hauptstraße 11, 59955 Winterberg
-- **Telefon:** 02981 1775
-- **Beschreibung (DE):** Exklusive Herrenmode, Business-Kleidung, sportive Freizeitmode, Schuhe und passende Accessoires in Winterberg.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modeorth-winterberg-gmbh
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/modeorth-winterberg-gmbh
-
 #### [Lütkemeier Modehaus](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/luetkemeier-modehaus)
 - **Kategorie:** Einzelhandel > Bekleidung
 - **Ort / Ortsteil:** Winterberg
@@ -1035,6 +1026,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Einzelhandel > Bekleidung
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Hauptstraße 11, 59955 Winterberg
+- **Telefon:** 02981 1775
 - **Webseite:** https://modeorth-winterberg.de
 - **Beschreibung (DE):** Herrenmodengeschäft in Winterberg. Entdecken Sie aktuelle Modetrends für Männer.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modeorth-winterberg-gmbh
@@ -1221,14 +1213,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/gruener-apfel-bistro-pizzeria
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/gruener-apfel-bistro-pizzeria
 
-#### [Restaurant Athen](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-athen)
-- **Kategorie:** Gastronomie > Restaurant
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Hauptstraße 22, 59955 Winterberg
-- **Telefon:** 02981 7754
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-athen
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-athen
-
 #### [Pizzahaus Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzahaus-winterberg)
 - **Kategorie:** Gastronomie > Pizzerien
 - **Ort / Ortsteil:** Winterberg
@@ -1294,14 +1278,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Restaurant
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-rot-und-kehlchen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-rot-und-kehlchen
-
-#### [Restaurant Forsthaus](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-forsthaus)
-- **Kategorie:** Gastronomie > Restaurant
-- **Ort / Ortsteil:** Winterberg
-- **Adresse:** Orkestraße 14, 59955 Winterberg
-- **Beschreibung (DE):** Restaurant
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-forsthaus
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-forsthaus
 
 #### [Bistorant Uppu](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/bistorant-uppu)
 - **Kategorie:** Gastronomie > Restaurant
@@ -1485,6 +1461,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Hauptstraße 22, 59955 Winterberg
+- **Telefon:** 02981 7754
 - **Beschreibung (DE):** Traditionelle Grillspeisen mit Fisch und Fleisch sowie Bifteki in einem zwanglosen griechischen Restaurant mit Terrasse.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-athen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-athen

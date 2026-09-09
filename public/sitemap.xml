@@ -2702,18 +2702,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-athen</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-athen</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzahaus-winterberg</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -3422,18 +3410,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modeorth-winterberg-gmbh</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/modeorth-winterberg-gmbh</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/luetkemeier-modehaus</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -3525,18 +3501,6 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-rot-und-kehlchen</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-forsthaus</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-forsthaus</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

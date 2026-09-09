@@ -646,7 +646,14 @@ export default function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
-  const [businesses, setBusinesses] = useState<Business[]>(initialBusinesses);
+  const [businesses, setBusinesses] = useState<Business[]>(() => {
+    const seen = new Set<string>();
+    return initialBusinesses.filter(b => {
+      if (seen.has(b.id)) return false;
+      seen.add(b.id);
+      return true;
+    });
+  });
 
   const handleReviewSubmit = async (businessId: string, review: Review) => {
     const business = businesses.find(b => b.id === businessId);
@@ -1013,7 +1020,17 @@ export default function App() {
           }
         });
 
-        setBusinesses(merged);
+        // Strict deduplication by ID
+        const uniqueMerged: Business[] = [];
+        const seenIds = new Set<string>();
+        for (const b of merged) {
+          if (!seenIds.has(b.id)) {
+            seenIds.add(b.id);
+            uniqueMerged.push(b);
+          }
+        }
+
+        setBusinesses(uniqueMerged);
 
         // Synchronize currently opened business with fresh Firestore data
         setSelectedBusiness(curr => {
@@ -4421,7 +4438,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     );
   }
 
-  const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business) => {
+  const filteredAdminBusinesses = allowedBusinesses.filter((bus: Business, idx: number, arr: Business[]) => {
+    // Defense-in-depth: ensure each business ID appears at most once in the admin list
+    if (arr.findIndex(b => b.id === bus.id) !== idx) return false;
+
     let matchesCategory = true;
     if (activeAdminCategory === 'In Prüfung') {
       matchesCategory = bus.status === 'pending';
@@ -4540,7 +4560,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
               const showHeader = firstLetter !== prevLetter;
               
               return (
-                <React.Fragment key={bus.id}>
+                <React.Fragment key={`${bus.id}-${i}`}>
                   {showHeader && (
                     <div className="flex items-center gap-[12px] mt-[16px] mb-[8px]">
                       <span className="text-[15px] font-bold text-[#0F4C2E] bg-[#E8F1EB] rounded-full min-w-[28px] h-[28px] flex items-center justify-center">
