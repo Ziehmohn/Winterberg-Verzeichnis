@@ -883,10 +883,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     {business.contactPerson.name.charAt(0)}
                   </div>
                 )}
-                <div className="flex-1 min-w-0 p-3.5 flex flex-col justify-center">
-                  <div className="text-[11px] font-bold text-[#F2761B] uppercase tracking-wider flex items-center gap-1 mb-0.5">
+                <div className="flex-1 min-w-0 p-3 flex flex-col justify-center">
+                  <div className="text-[10px] font-bold text-[#F2761B] uppercase tracking-wider flex items-center gap-1 mb-0.5 whitespace-nowrap">
                     <User className="w-3 h-3 shrink-0" />
-                    <span className="truncate">{lang === 'nl' ? 'Uw contactpersoon' : 'Ihr Ansprechpartner'}</span>
+                    <span>{lang === 'nl' ? 'Uw contactpersoon' : 'Ihr Ansprechpartner'}</span>
                   </div>
                   <div className="font-display font-bold text-[15px] text-[#1B211D] truncate leading-tight">
                     {business.contactPerson.name}
