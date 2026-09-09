@@ -163,6 +163,7 @@ export async function createQuestion(params: {
   businessName?: string;
   businessSlug?: string;
   businessEmail?: string;
+  isClaimed?: boolean;
   question: string;
   authorName: string;
   authorEmail?: string;
@@ -195,6 +196,34 @@ export async function createQuestion(params: {
     const profileUrl = `https://www.winterberg-verzeichnis.de${params.businessSlug ? `/${params.businessSlug}` : ''}`;
     const targetEmail = params.businessEmail || 'info@sichtbar-online.com';
     const isOwnerKnown = !!params.businessEmail;
+    const isClaimed = !!params.isClaimed;
+    const isNl = params.lang === 'nl';
+
+    const claimCtaHtml = !isClaimed ? (isNl ? `
+      <div style="background-color: #FAF8F5; border: 1px solid #EDE8E0; border-left: 4px solid #F2761B; border-radius: 6px; padding: 16px; margin: 24px 0;">
+        <p style="margin: 0 0 6px 0; font-size: 14px; font-weight: bold; color: #0F4C2E;">
+          💡 Bent u de eigenaar van ${escapeHtml(params.businessName)}?
+        </p>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #5F6B63; line-height: 1.5;">
+          Uw vermelding in het <strong>Winterberg Verzeichnis</strong> is momenteel nog niet geclaimd. Claim uw vermelding gratis om uw openingstijden en gegevens te beheren en direct officiële antwoorden te geven.
+        </p>
+        <a href="${profileUrl}?claim=true" style="background-color: #F2761B; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: bold; display: inline-block;">
+          Vermelding nu gratis claimen &rarr;
+        </a>
+      </div>
+    ` : `
+      <div style="background-color: #FAF8F5; border: 1px solid #EDE8E0; border-left: 4px solid #F2761B; border-radius: 6px; padding: 16px; margin: 24px 0;">
+        <p style="margin: 0 0 6px 0; font-size: 14px; font-weight: bold; color: #0F4C2E;">
+          💡 Sie sind Inhaber von ${escapeHtml(params.businessName)}?
+        </p>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #5F6B63; line-height: 1.5;">
+          Ihr Eintrag im <strong>Winterberg Verzeichnis</strong> ist aktuell noch nicht beansprucht. Übernehmen Sie Ihr Profil kostenlos, um Ihre Kontaktdaten & Öffnungszeiten selbst zu pflegen und direkt auf Kundenanfragen zu antworten.
+        </p>
+        <a href="${profileUrl}?claim=true" style="background-color: #F2761B; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: bold; display: inline-block;">
+          Eintrag jetzt kostenlos übernehmen &rarr;
+        </a>
+      </div>
+    `) : '';
 
     sendNotificationEmail({
       to: targetEmail,
@@ -213,11 +242,13 @@ export async function createQuestion(params: {
 
           <p>Sie können die Frage direkt auf Ihrem Profil beantworten. Antworten des Inhabers werden als <strong>Offizielle Inhaber-Antwort</strong> hervorgehoben:</p>
 
-          <div style="margin: 25px 0;">
+          <div style="margin: 22px 0;">
             <a href="${profileUrl}" style="background-color: #0F4C2E; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; display: inline-block;">
               Frage jetzt beantworten &rarr;
             </a>
           </div>
+
+          ${claimCtaHtml}
 
           <hr style="border: 0; border-top: 1px solid #EDE8E0; margin: 25px 0;" />
           <p style="font-size: 12px; color: #8A928B;">Diese E-Mail wurde automatisch vom Winterberg Verzeichnis (winterberg-verzeichnis.de) versendet.</p>

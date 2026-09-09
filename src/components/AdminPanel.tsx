@@ -1620,6 +1620,59 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   </div>
                 </div>
               </div>
+
+              {/* Live Preview der Karte */}
+              {formData.contactPerson?.name && (
+                <div className="mt-4">
+                  <span className="text-[11px] text-[#5F6B63] block mb-1.5 font-medium">Live-Vorschau (wie im Profil dargestellt):</span>
+                  <div className="max-w-md bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl overflow-hidden flex items-stretch shadow-2xs">
+                    {formData.contactPerson.imageUrl ? (
+                      <div className="w-[28%] min-w-[85px] max-w-[115px] shrink-0 relative bg-gray-100">
+                        <img
+                          src={formData.contactPerson.imageUrl}
+                          alt="Vorschau"
+                          className="w-full h-full object-cover object-top absolute inset-0"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-[28%] min-w-[75px] max-w-[100px] shrink-0 bg-[#E8F1EB] text-[#0F4C2E] flex items-center justify-center font-bold text-2xl">
+                        {formData.contactPerson.name.charAt(0)}
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0 p-3.5 flex flex-col justify-center">
+                      <div className="text-[11px] font-bold text-[#F2761B] uppercase tracking-wider flex items-center gap-1 mb-0.5">
+                        <User className="w-3 h-3 shrink-0" />
+                        <span>Ihr Ansprechpartner</span>
+                      </div>
+                      <div className="font-display font-bold text-[15px] text-[#1B211D] truncate leading-tight">
+                        {formData.contactPerson.name}
+                      </div>
+                      {formData.contactPerson.role && (
+                        <div className="text-xs text-[#5F6B63] truncate leading-tight mt-0.5">
+                          {formData.contactPerson.role}
+                        </div>
+                      )}
+                      {(formData.contactPerson.phone || formData.contactPerson.email) && (
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-xs text-[#0F4C2E]">
+                          {formData.contactPerson.phone && (
+                            <span className="flex items-center gap-1 font-medium">
+                              <PhoneCall className="w-3 h-3 shrink-0" />
+                              <span className="truncate">{formData.contactPerson.phone}</span>
+                            </span>
+                          )}
+                          {formData.contactPerson.phone && formData.contactPerson.email && <span className="text-gray-300">•</span>}
+                          {formData.contactPerson.email && (
+                            <span className="flex items-center gap-1 font-medium">
+                              <Mail className="w-3 h-3 shrink-0" />
+                              <span className="truncate">{formData.contactPerson.email}</span>
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="border-b border-orange-200/50 pb-5">

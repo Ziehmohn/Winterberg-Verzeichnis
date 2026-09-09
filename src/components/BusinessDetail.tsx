@@ -859,39 +859,41 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
             {/* Contact Person (Premium) */}
             {business.isPremium && business.contactPerson && business.contactPerson.name && (
-              <div className="p-3.5 bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl flex items-center gap-3.5 shadow-2xs mb-1">
+              <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl overflow-hidden flex items-stretch shadow-2xs mb-1">
                 {business.contactPerson.imageUrl ? (
-                  <img
-                    src={business.contactPerson.imageUrl}
-                    alt={business.contactPerson.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm shrink-0"
-                  />
+                  <div className="w-[28%] min-w-[85px] max-w-[115px] shrink-0 relative bg-gray-100">
+                    <img
+                      src={business.contactPerson.imageUrl}
+                      alt={business.contactPerson.name}
+                      className="w-full h-full object-cover object-top absolute inset-0"
+                    />
+                  </div>
                 ) : (
-                  <div className="w-14 h-14 rounded-full bg-[#E8F1EB] text-[#0F4C2E] border-2 border-white shadow-sm flex items-center justify-center font-bold text-lg shrink-0">
+                  <div className="w-[28%] min-w-[75px] max-w-[100px] shrink-0 bg-[#E8F1EB] text-[#0F4C2E] flex items-center justify-center font-bold text-2xl">
                     {business.contactPerson.name.charAt(0)}
                   </div>
                 )}
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 p-3.5 flex flex-col justify-center">
                   <div className="text-[11px] font-bold text-[#F2761B] uppercase tracking-wider flex items-center gap-1 mb-0.5">
-                    <User className="w-3 h-3" />
-                    <span>{lang === 'nl' ? 'Uw contactpersoon' : 'Ihr Ansprechpartner'}</span>
+                    <User className="w-3 h-3 shrink-0" />
+                    <span className="truncate">{lang === 'nl' ? 'Uw contactpersoon' : 'Ihr Ansprechpartner'}</span>
                   </div>
-                  <div className="font-display font-bold text-[15px] text-[#1B211D] truncate">
+                  <div className="font-display font-bold text-[15px] text-[#1B211D] truncate leading-tight">
                     {business.contactPerson.name}
                   </div>
                   {business.contactPerson.role && (
-                    <div className="text-xs text-[#5F6B63] truncate">
+                    <div className="text-xs text-[#5F6B63] truncate leading-tight mt-0.5">
                       {business.contactPerson.role}
                     </div>
                   )}
                   {(business.contactPerson.phone || business.contactPerson.email) && (
-                    <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-xs">
                       {business.contactPerson.phone && (
                         <a 
                           href={`tel:${business.contactPerson.phone.replace(/[^0-9+]/g, '')}`} 
                           className="text-[#0F4C2E] hover:underline font-medium flex items-center gap-1"
                         >
-                          <Phone className="w-3 h-3" />
+                          <Phone className="w-3 h-3 shrink-0" />
                           <span>{lang === 'nl' ? 'Bellen' : 'Anrufen'}</span>
                         </a>
                       )}
@@ -901,7 +903,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                           href={`mailto:${business.contactPerson.email}`} 
                           className="text-[#0F4C2E] hover:underline font-medium flex items-center gap-1"
                         >
-                          <Mail className="w-3 h-3" />
+                          <Mail className="w-3 h-3 shrink-0" />
                           <span>E-Mail</span>
                         </a>
                       )}
