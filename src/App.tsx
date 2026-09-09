@@ -1309,22 +1309,6 @@ export default function App() {
               
               <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5"></div>
 
-              {/* Quick Search Button in Header */}
-              <button 
-                type="button" 
-                onClick={() => {
-                  setIsMegaMenuOpen(prev => !prev);
-                }}
-                className="hidden lg:flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#F0ECE1] text-[#5F6B63] hover:text-[#0F4C2E] border border-[#E7E2DA] hover:border-[#0F4C2E]/40 px-3 py-1.5 rounded-full text-[13px] font-medium transition-all cursor-pointer shadow-2xs group"
-                title={lang === 'nl' ? 'Zoeken in gids' : 'Im Verzeichnis suchen'}
-              >
-                <Search className="w-3.5 h-3.5 text-[#0F4C2E] group-hover:scale-110 transition-transform" />
-                <span>{lang === 'nl' ? 'Zoeken...' : 'Suche...'}</span>
-                <kbd className="hidden xl:inline-block bg-white text-[10px] text-[#8A928B] px-1.5 py-0.5 rounded border border-[#EDE8E0] font-sans font-semibold">⌘K</kbd>
-              </button>
-
-              <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5 hidden lg:block"></div>
-
               {/* Button: Eintrag kostenlos hinzufügen */}
               <button 
                 type="button" 
