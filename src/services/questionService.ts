@@ -169,22 +169,23 @@ export async function createQuestion(params: {
   userId?: string;
   lang?: 'de' | 'nl';
 }): Promise<Question> {
-  const newQuestionData: Omit<Question, 'id'> = {
+  const newQuestionData: any = {
     type: params.type,
-    businessId: params.businessId || undefined,
-    businessName: params.businessName || undefined,
-    businessSlug: params.businessSlug || undefined,
-    businessEmail: params.businessEmail || undefined,
     question: params.question.trim(),
     authorName: params.authorName.trim() || 'Gast',
-    authorEmail: params.authorEmail?.trim() || undefined,
-    userId: params.userId || undefined,
     createdAt: new Date().toISOString(),
     status: 'approved', // Instant publish with post-moderation
     answers: [],
     likes: 0,
     lang: params.lang || 'de'
   };
+
+  if (params.businessId) newQuestionData.businessId = params.businessId;
+  if (params.businessName) newQuestionData.businessName = params.businessName;
+  if (params.businessSlug) newQuestionData.businessSlug = params.businessSlug;
+  if (params.businessEmail) newQuestionData.businessEmail = params.businessEmail;
+  if (params.authorEmail && params.authorEmail.trim()) newQuestionData.authorEmail = params.authorEmail.trim();
+  if (params.userId) newQuestionData.userId = params.userId;
 
   const docRef = await addDoc(collection(db, QUESTIONS_COLLECTION), newQuestionData);
   const created: Question = { id: docRef.id, ...newQuestionData };
@@ -267,11 +268,9 @@ export async function createAnswer(
   }
 
   const questionData = qSnap.data() as Question;
-  const newAnswer: QnAnswer = {
+  const newAnswer: any = {
     id: 'ans_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 6),
     authorName: params.authorName.trim() || 'Gast',
-    authorEmail: params.authorEmail?.trim() || undefined,
-    userId: params.userId || undefined,
     isOwner: !!params.isOwner,
     isAdmin: !!params.isAdmin,
     text: params.text.trim(),
@@ -279,6 +278,9 @@ export async function createAnswer(
     status: 'approved',
     likes: 0
   };
+
+  if (params.authorEmail && params.authorEmail.trim()) newAnswer.authorEmail = params.authorEmail.trim();
+  if (params.userId) newAnswer.userId = params.userId;
 
   const updatedAnswers = [...(questionData.answers || []), newAnswer];
   await updateDoc(qDocRef, { answers: updatedAnswers });
