@@ -42,6 +42,12 @@ entries.push({
   changefreq: 'monthly',
   priority: '0.8',
 });
+entries.push({
+  locDe: `${baseUrl}/news/new-york-gospel-stars-konzert-oversum-winterberg`,
+  locNl: `${baseUrl}/nl/news/new-york-gospel-stars-konzert-oversum-winterberg`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
 
 // 2. All businesses
 entries.push({
