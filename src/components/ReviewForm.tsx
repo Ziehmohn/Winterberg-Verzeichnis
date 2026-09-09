@@ -75,8 +75,8 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
       return;
     }
 
-    const filesToAdd = files.slice(0, remainingSlots);
-    const newItems: SelectedImage[] = filesToAdd.map(file => ({
+    const filesToAdd = files.slice(0, remainingSlots) as File[];
+    const newItems: SelectedImage[] = filesToAdd.map((file: File) => ({
       id: Math.random().toString(36).substring(2, 9),
       file,
       previewUrl: URL.createObjectURL(file)

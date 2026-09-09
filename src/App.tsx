@@ -313,7 +313,7 @@ export default function App() {
         const currentPath = window.location.pathname.replace(/\/+$/, '');
 
         // 1. Immediate in-memory check for business deduplication and system redirects
-        const sysRedirects = getSystemRedirects(categories, businesses);
+        const sysRedirects = getSystemRedirects(categories, initialBusinesses);
         const match = sysRedirects.find(r => r.source === currentPath || r.source === `${currentPath}/`);
         if (match) {
           window.location.replace(match.target);
@@ -337,7 +337,7 @@ export default function App() {
       };
       checkRedirect();
     }
-  }, [isNotFound, businesses]);
+  }, [isNotFound]);
 
   // Google Analytics Pageview Tracking (Property ID 302481363)
   useEffect(() => {
@@ -3406,7 +3406,8 @@ function InteractiveLockOverlay({ children, groupHoverClass = "group-hover/revie
   );
 }
 
-function NewsAdminPanel() {
+function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; activeThemeKey?: string; businesses?: Business[] }) {
+  const businessesList = businesses || initialBusinesses;
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
@@ -3609,7 +3610,7 @@ function NewsAdminPanel() {
       }
     }
 
-    const matchedBiz = businesses.find(b => 
+    const matchedBiz = businessesList.find(b => 
       (businessName.trim() && (
         b.name.toLowerCase() === businessName.trim().toLowerCase() ||
         b.id === businessName.trim().toLowerCase()
@@ -3778,7 +3779,7 @@ function NewsAdminPanel() {
                   className="w-full border border-[#E7E2DA] rounded-md px-3.5 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
                 />
                 <datalist id="admin-news-business-options">
-                  {businesses.map(b => (
+                  {businessesList.map(b => (
                     <option key={b.id} value={b.name} />
                   ))}
                 </datalist>
@@ -4727,7 +4728,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           </div>
 
         ) : activeTab === 'news' ? (
-          <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} />
+          <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} businesses={businesses} />
         ) : activeTab === 'reviews' ? (
           <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
             <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Offene Bewertungen</h2>

@@ -5,8 +5,7 @@ import { NewsArticle, ThemeConfig } from '../types';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
-import { businesses } from '../data';
-import { buildLocalizedUrl } from '../utils/routes';
+import { getBusinessPath, slugify } from '../utils/routes';
 
 interface NewsDetailProps {
   newsId: string;
@@ -430,6 +429,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
   const contactMatch = article.content ? article.content.match(/:::contact([\s\S]*?):::/) : null;
   const contactContent = contactMatch ? contactMatch[1].trim() : null;
   const mainContent = article.content ? article.content.replace(/:::contact[\s\S]*?:::/, '').trim() : '';
+
+  // Build business profile URL from slug
+  const businessProfileUrl = article.businessSlug
+    ? (lang === 'nl' ? `/nl/${article.businessSlug}` : `/${article.businessSlug}`)
+    : null;
 
   return (
     <article className="max-w-[850px] mx-auto py-[40px] px-[20px]">

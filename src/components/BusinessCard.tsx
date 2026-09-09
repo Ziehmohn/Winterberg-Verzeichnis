@@ -9,6 +9,7 @@ import RankingBadge from './RankingBadge';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 
 interface BusinessCardProps {
+  key?: any;
   business: Business;
   lang: 'de' | 'nl';
   allBusinesses: Business[];

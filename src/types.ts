@@ -142,6 +142,12 @@ export interface Business {
   notificationOptOutAt?: string;
   hasShop?: boolean;
   shopUrl?: string;
+  ownerEmail?: string;
+  slug?: string;
+  rating?: number;
+  reviewCount?: number;
+  featured?: boolean;
+  [key: string]: any;
 }
 
 export interface ContactPerson {
