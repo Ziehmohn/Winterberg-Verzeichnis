@@ -19,7 +19,7 @@ const QUESTIONS_COLLECTION = 'questions';
 /**
  * Send automated email notification via /api/send-mail
  */
-async function sendNotificationEmail(payload: { to: string; subject: string; html: string; cc?: string }) {
+async function sendNotificationEmail(payload: { to: string; subject: string; html: string; cc?: string; bcc?: string }) {
   try {
     const res = await fetch('/api/send-mail', {
       method: 'POST',
@@ -198,7 +198,7 @@ export async function createQuestion(params: {
 
     sendNotificationEmail({
       to: targetEmail,
-      cc: isOwnerKnown ? 'info@sichtbar-online.com' : undefined,
+      bcc: isOwnerKnown ? 'info@sichtbar-online.com' : undefined,
       subject: `Neue Frage zu ${params.businessName} - Das Winterberg Verzeichnis`,
       html: `
         <div style="font-family: Arial, sans-serif; color: #1B211D; line-height: 1.5; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #EDE8E0; border-radius: 8px;">
@@ -295,6 +295,7 @@ export async function createAnswer(
 
     sendNotificationEmail({
       to: questionData.authorEmail,
+      bcc: 'info@sichtbar-online.com',
       subject: `Neue Antwort auf Ihre Frage zu ${questionData.businessName || 'Winterberg'}`,
       html: `
         <div style="font-family: Arial, sans-serif; color: #1B211D; line-height: 1.5; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #EDE8E0; border-radius: 8px;">

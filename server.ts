@@ -146,7 +146,7 @@ async function startServer() {
   // Email Route
   app.post('/api/send-mail', async (req, res) => {
     try {
-      const { to, subject, html, cc } = req.body;
+      const { to, subject, html, cc, bcc } = req.body;
       if (!to || !subject || !html) {
         return res.status(400).json({ error: 'Missing required fields' });
       }
@@ -174,6 +174,7 @@ async function startServer() {
         from: '"Das Winterberg Verzeichnis" <info@sichtbar-online.com>',
         to,
         cc,
+        bcc,
         subject,
         html
       });
