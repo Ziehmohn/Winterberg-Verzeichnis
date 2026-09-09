@@ -5789,6 +5789,31 @@ export const businesses: Business[] = [
           "saturday": "Nach Vereinbarung",
           "sunday": "Nach Vereinbarung"
       }
+  },
+  {
+    id: 'hotel-oversum-winterberg',
+    name: 'Hotel Oversum Ski & Vital Resort Winterberg',
+    category: 'Hotels und Unterkünfte',
+    subCategory: 'Hotels',
+    address: 'Am Kurpark 6, 59955 Winterberg',
+    phone: '02981 929550',
+    website: 'https://www.oversum-vitalresort.de',
+    rating: 4.3,
+    reviewCount: 2187,
+    description: 'Spektakuläres 4-Sterne-Superior Wellnesshotel im markanten "Ei" direkt am Kurpark Winterberg. Weitläufiger Wellness- & Spa-Bereich, Innen- und Außenbecken, Saunalandschaft, Fitness und gehobene Gastronomie.',
+    description_nl: 'Spectaculair 4-sterren superior wellnesshotel in de opvallende koepelarchitectuur aan het kuurpark in Winterberg. Uitgebreide spa- en wellnessfaciliteiten, binnen- en buitenzwembaden, sauna\'s en gastronomie.',
+    services: ['Wellness & Spa', 'Hallenbad & Außenpool', 'Saunalandschaft & Dampfbad', 'Feinschmecker-Restaurant & Bar', 'Tagungsräume & Fitnessstudio'],
+    services_nl: ['Wellness & spa', 'Binnen- en buitenzwembad', 'Sauna\'s & stoombad', 'Gastronomisch restaurant & bar', 'Vergaderfaciliteiten & fitness'],
+    featured: true,
+    openingHours: {
+      monday: '24 Stunden geöffnet',
+      tuesday: '24 Stunden geöffnet',
+      wednesday: '24 Stunden geöffnet',
+      thursday: '24 Stunden geöffnet',
+      friday: '24 Stunden geöffnet',
+      saturday: '24 Stunden geöffnet',
+      sunday: '24 Stunden geöffnet'
+    }
   }
 ];
 
