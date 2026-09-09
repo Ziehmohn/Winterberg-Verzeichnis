@@ -286,30 +286,79 @@ export async function createAnswer(
   await updateDoc(qDocRef, { answers: updatedAnswers });
 
   // If question asker gave an email, notify them that someone answered!
-  if (questionData.authorEmail && questionData.authorEmail !== params.authorEmail) {
-    const roleLabel = params.isOwner 
-      ? 'vom Inhaber' 
-      : params.isAdmin 
-        ? 'vom Winterberg Verzeichnis Team' 
-        : `von ${escapeHtml(newAnswer.authorName)}`;
+  const askerEmail = (questionData.authorEmail || '').trim().toLowerCase();
+  const answererEmail = (params.authorEmail || '').trim().toLowerCase();
+
+  if (askerEmail && askerEmail !== answererEmail) {
+    const isOwner = !!params.isOwner;
+    const isAdmin = !!params.isAdmin;
+    const isNl = questionData.lang === 'nl';
+
+    const roleLabel = isOwner 
+      ? (isNl ? 'van de ondernemer' : 'vom Inhaber') 
+      : isAdmin 
+        ? (isNl ? 'van het Winterberg Verzeichnis Team' : 'vom Winterberg Verzeichnis Team') 
+        : (isNl ? `van ${escapeHtml(newAnswer.authorName)}` : `von ${escapeHtml(newAnswer.authorName)}`);
+
+    const targetPath = questionData.businessSlug 
+      ? (questionData.businessSlug.startsWith('/') ? questionData.businessSlug : `/${questionData.businessSlug}`) 
+      : (isNl ? '/nl/faq' : '/faq');
+    const profileUrl = `https://www.winterberg-verzeichnis.de${targetPath}`;
+    const businessName = questionData.businessName || 'Winterberg Verzeichnis';
+
+    const subject = isNl
+      ? `Nieuw antwoord op uw vraag over ${businessName} - Winterberg Verzeichnis`
+      : `Neue Antwort auf Ihre Frage zu ${businessName} - Das Winterberg Verzeichnis`;
+
+    const html = isNl ? `
+      <div style="font-family: Arial, sans-serif; color: #1B211D; line-height: 1.5; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #EDE8E0; border-radius: 8px;">
+        <h2 style="color: #0F4C2E; margin-top: 0;">Nieuw antwoord op uw vraag</h2>
+        <p>Hallo ${escapeHtml(questionData.authorName || 'Bezoeker')},</p>
+        <p>op uw vraag over <strong>${escapeHtml(businessName)}</strong>:</p>
+        <div style="background-color: #FAF8F5; border-left: 4px solid #F2761B; padding: 12px 16px; margin: 16px 0; border-radius: 4px;">
+          <p style="margin: 0; font-size: 15px; font-weight: bold; color: #1B211D;">„${escapeHtml(questionData.question)}“</p>
+        </div>
+        <p>is zojuist een antwoord ${roleLabel} geplaatst:</p>
+        <div style="background-color: #FAF8F5; border-left: 4px solid #0F4C2E; padding: 14px 18px; margin: 16px 0; border-radius: 4px;">
+          <p style="margin: 0; font-size: 15px; color: #1B211D; white-space: pre-line;">„${escapeHtml(params.text)}“</p>
+        </div>
+        <p>U kunt het volledige profiel en eventuele vervolgvragen direct bekijken:</p>
+        <div style="margin: 25px 0;">
+          <a href="${profileUrl}" style="background-color: #0F4C2E; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; display: inline-block;">
+            Antwoord op het profiel bekijken &rarr;
+          </a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #EDE8E0; margin: 25px 0;" />
+        <p style="font-size: 12px; color: #8A928B;">Deze e-mail is automatisch verzonden door Winterberg Verzeichnis (winterberg-verzeichnis.de).</p>
+      </div>
+    ` : `
+      <div style="font-family: Arial, sans-serif; color: #1B211D; line-height: 1.5; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #EDE8E0; border-radius: 8px;">
+        <h2 style="color: #0F4C2E; margin-top: 0;">Neue Antwort auf Ihre Frage</h2>
+        <p>Hallo ${escapeHtml(questionData.authorName || 'Besucher')},</p>
+        <p>auf Ihre Frage zu <strong>${escapeHtml(businessName)}</strong>:</p>
+        <div style="background-color: #FAF8F5; border-left: 4px solid #F2761B; padding: 12px 16px; margin: 16px 0; border-radius: 4px;">
+          <p style="margin: 0; font-size: 15px; font-weight: bold; color: #1B211D;">„${escapeHtml(questionData.question)}“</p>
+        </div>
+        <p>wurde soeben eine Antwort ${roleLabel} veröffentlicht:</p>
+        <div style="background-color: #FAF8F5; border-left: 4px solid #0F4C2E; padding: 14px 18px; margin: 16px 0; border-radius: 4px;">
+          <p style="margin: 0; font-size: 15px; color: #1B211D; white-space: pre-line;">„${escapeHtml(params.text)}“</p>
+        </div>
+        <p>Sie können das Profil und alle Details direkt aufrufen:</p>
+        <div style="margin: 25px 0;">
+          <a href="${profileUrl}" style="background-color: #0F4C2E; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; display: inline-block;">
+            Antwort auf dem Profil ansehen &rarr;
+          </a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #EDE8E0; margin: 25px 0;" />
+        <p style="font-size: 12px; color: #8A928B;">Diese E-Mail wurde automatisch vom Winterberg Verzeichnis (winterberg-verzeichnis.de) versendet.</p>
+      </div>
+    `;
 
     sendNotificationEmail({
       to: questionData.authorEmail,
       bcc: 'info@sichtbar-online.com',
-      subject: `Neue Antwort auf Ihre Frage zu ${questionData.businessName || 'Winterberg'}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; color: #1B211D; line-height: 1.5; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #EDE8E0; border-radius: 8px;">
-          <h2 style="color: #0F4C2E; margin-top: 0;">Neue Antwort auf Ihre Frage</h2>
-          <p>Hallo ${escapeHtml(questionData.authorName)},</p>
-          <p>auf Ihre Frage:</p>
-          <p style="background: #F3F0EA; padding: 10px 14px; border-radius: 6px; font-weight: bold;">„${escapeHtml(questionData.question)}“</p>
-          <p>wurde soeben eine Antwort ${roleLabel} veröffentlicht:</p>
-          <div style="background-color: #FAF8F5; border-left: 4px solid #0F4C2E; padding: 14px 18px; margin: 18px 0; border-radius: 4px;">
-            <p style="margin: 0; font-size: 15px; color: #1B211D;">„${escapeHtml(params.text)}“</p>
-          </div>
-          <p><a href="https://www.winterberg-verzeichnis.de${questionData.businessSlug ? `/${questionData.businessSlug}` : '/faq'}" style="color: #0F4C2E; font-weight: bold;">Auf der Webseite ansehen &rarr;</a></p>
-        </div>
-      `
+      subject,
+      html
     });
   }
 

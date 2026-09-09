@@ -233,7 +233,13 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
 
         <button
           type="button"
-          onClick={() => setShowAskModal(true)}
+          onClick={() => {
+            if (currentUser) {
+              if (!askAuthorName) setAskAuthorName(currentUser.displayName || '');
+              if (!askAuthorEmail) setAskAuthorEmail(currentUser.email || '');
+            }
+            setShowAskModal(true);
+          }}
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#0F4C2E] hover:bg-[#15603A] text-white text-sm font-semibold shadow-sm transition-all cursor-pointer shrink-0 self-start sm:self-center"
         >
           <Plus className="w-4 h-4" />
@@ -251,8 +257,12 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
             </strong>
             <span className="text-[#344038]">
               {type === 'business'
-                ? (isNl ? 'De vraag is gepubliceerd en de eigenaar is op de hoogte gebracht.' : 'Die Frage wurde veröffentlicht und der Betriebsinhaber wurde per E-Mail benachrichtigt.')
-                : (isNl ? 'Uw vraag is gepubliceerd in het FAQ-gedeelte.' : 'Ihre Frage wurde in der Community-Übersicht veröffentlicht.')}
+                ? (isNl 
+                    ? 'De vraag is gepubliceerd en de eigenaar is op de hoogte gebracht. Zodra er een antwoord is, ontvangt u automatisch een e-mail.' 
+                    : 'Die Frage wurde veröffentlicht und der Betriebsinhaber wurde per E-Mail benachrichtigt. Sobald eine Antwort eingeht, werden Sie automatisch per E-Mail informiert.')
+                : (isNl 
+                    ? 'Uw vraag is gepubliceerd in het FAQ-gedeelte. U ontvangt automatisch een e-mail bij nieuwe antwoorden.' 
+                    : 'Ihre Frage wurde in der Community-Übersicht veröffentlicht. Sie erhalten automatisch eine E-Mail, sobald eine Antwort vorliegt.')}
             </span>
           </div>
         </div>
@@ -579,8 +589,9 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#1B211D] mb-1">
-                    {isNl ? 'E-mailadres (optioneel)' : 'E-Mail-Adresse (optional)'}
+                  <label className="block text-xs font-bold text-[#1B211D] mb-1 flex items-center justify-between">
+                    <span>{isNl ? 'E-mailadres' : 'E-Mail-Adresse'}</span>
+                    <span className="text-[11px] font-normal text-[#8A928B]">{isNl ? 'optioneel' : 'optional'}</span>
                   </label>
                   <input
                     type="email"
@@ -589,8 +600,9 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
                     placeholder="name@beispiel.de"
                     className="w-full bg-[#FAF8F5] border border-[#D5D0C5] rounded-lg px-3 py-2 text-sm text-[#1B211D] focus:outline-none focus:border-[#0F4C2E] focus:bg-white"
                   />
-                  <span className="block text-[11px] text-[#8A928B] mt-0.5">
-                    {isNl ? 'Om u te informeren bij een nieuw antwoord.' : 'Nur zur Benachrichtigung bei Antworten.'}
+                  <span className="flex items-center gap-1.5 text-[11.5px] text-[#0F4C2E] mt-1 font-medium leading-tight">
+                    <span>🔔</span>
+                    <span>{isNl ? 'U wordt per e-mail geïnformeerd zodra een antwoord binnenkomt.' : 'Sie werden automatisch per E-Mail informiert, sobald eine Antwort vorliegt.'}</span>
                   </span>
                 </div>
               </div>
