@@ -2,11 +2,12 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag, Heart } from 'lucide-react';
 import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta } from '../types';
 import { isOpenNow, canDisplayOpeningHours } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
+import { useFavorites } from '../utils/favorites';
 import ReviewForm from './ReviewForm';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
@@ -35,6 +36,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
   const { t, lang } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isFav = isFavorite(business.id);
   const { currentUser: user } = useAuth();
   const allBusinessesPool = allBusinesses.length > 0 ? allBusinesses : (similarBusinesses.length > 0 ? [business, ...similarBusinesses] : [business]);
   const rankingBadges = getBusinessRankingBadges(business, allBusinessesPool);
@@ -252,6 +255,20 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             >
               <ArrowLeft className="w-4 h-4" />
               {t("back")}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => toggleFavorite(business.id)}
+              className={`rounded-md px-3.5 py-1.5 text-[14px] cursor-pointer inline-flex items-center gap-2 transition-all ${
+                isFav 
+                  ? 'bg-white text-red-600 font-bold shadow' 
+                  : 'bg-white/10 border border-white/20 text-white hover:bg-white/20'
+              }`}
+              title={isFav ? (lang === 'nl' ? 'Verwijderen uit favorieten' : 'Aus Favoriten entfernen') : (lang === 'nl' ? 'Toevoegen aan favorieten' : 'Als Favorit merken')}
+            >
+              <Heart className={`w-4 h-4 ${isFav ? 'fill-red-500 text-red-500' : ''}`} />
+              <span>{isFav ? (lang === 'nl' ? 'Opgeslagen' : 'Gemerkt') : (lang === 'nl' ? 'Merken' : 'Merken')}</span>
             </button>
             
             {!business.isPremium && (

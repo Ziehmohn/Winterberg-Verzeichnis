@@ -371,8 +371,13 @@ export interface SystemRedirectEntry {
   source: string;
   target: string;
   isSystem: boolean;
-  type: 'Kategorie' | 'Unternehmen';
+  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert';
   lang: 'de' | 'nl';
+  statusCode?: 301 | 302;
+}
+
+export function isBusinessDeactivated(bus: { isActive?: boolean; status?: string; deactivated?: boolean }): boolean {
+  return bus.isActive === false || bus.deactivated === true || bus.status === 'inactive' || bus.status === 'deactivated';
 }
 
 export const BUSINESS_DEDUPLICATION_REDIRECTS: SystemRedirectEntry[] = [
@@ -514,6 +519,63 @@ export function getSystemRedirects(
           isSystem: true,
           type: 'Unternehmen',
           lang,
+        });
+      }
+    }
+  }
+
+  // 301 / 302 Redirects for deactivated businesses
+  for (const b of businessesList) {
+    if (isBusinessDeactivated(b as any)) {
+      const bSlug = slugify(b.name);
+      const statusCode = (b as any).deactivationRedirectType === '302' ? 302 : 301;
+      const bCat = (b as any).category || 'Unternehmen';
+      const bSub = (b as any).subcategory;
+
+      const pathDe = getBusinessPath({ category: bCat, subcategory: bSub, name: b.name }, 'de');
+      const pathNl = getBusinessPath({ category: bCat, subcategory: bSub, name: b.name }, 'nl');
+
+      redirects.push({
+        id: `deact-${bSlug}-de`,
+        source: pathDe,
+        target: '/alle-unternehmen',
+        isSystem: true,
+        type: 'Deaktiviert',
+        lang: 'de',
+        statusCode
+      });
+
+      redirects.push({
+        id: `deact-${bSlug}-nl`,
+        source: pathNl,
+        target: '/nl/alle-bedrijven',
+        isSystem: true,
+        type: 'Deaktiviert',
+        lang: 'nl',
+        statusCode
+      });
+
+      // Also redirect direct category URL without subcategory if subcategory exists
+      if (bSub) {
+        const catSlugDe = getCategorySlug(bCat, 'de');
+        const catSlugNl = getCategorySlug(bCat, 'nl');
+        redirects.push({
+          id: `deact-${bSlug}-nosub-de`,
+          source: `/${catSlugDe}/${bSlug}`,
+          target: '/alle-unternehmen',
+          isSystem: true,
+          type: 'Deaktiviert',
+          lang: 'de',
+          statusCode
+        });
+        redirects.push({
+          id: `deact-${bSlug}-nosub-nl`,
+          source: `/nl/${catSlugNl}/${bSlug}`,
+          target: '/nl/alle-bedrijven',
+          isSystem: true,
+          type: 'Deaktiviert',
+          lang: 'nl',
+          statusCode
         });
       }
     }

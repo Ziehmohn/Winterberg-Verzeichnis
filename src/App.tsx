@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -44,7 +44,8 @@ import {
   STATIC_PAGE_SLUGS,
   getLegacyCategoryRedirect,
   getSystemRedirects,
-  BUSINESS_DEDUPLICATION_REDIRECTS
+  BUSINESS_DEDUPLICATION_REDIRECTS,
+  isBusinessDeactivated
 } from './utils/routes';
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
@@ -97,6 +98,8 @@ import PwaInstallPrompt from './components/PwaInstallPrompt';
 import AppBottomNav from './components/AppBottomNav';
 import { GermanFlag, DutchFlag } from './components/FlagIcons';
 import { generateLocalBusinessSchema, generateCollectionPageSchema, generateItemListSchema, generateWebSiteSearchSchema } from './utils/schemaGenerator';
+import FavoritesDrawer from './components/FavoritesDrawer';
+import { useFavorites } from './utils/favorites';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   state = { hasError: false, error: null as Error | null };
@@ -269,8 +272,13 @@ export default function App() {
                 };
                 const business = initialBusinesses.find(b => matchBusiness(b, decodedPart3));
                 if (business) {
-                  defaultSearchQuery = business.name;
-                  initialSelectedBusiness = business;
+                  if (isBusinessDeactivated(business)) {
+                    const isNl = window.location.pathname.startsWith('/nl');
+                    window.location.replace(isNl ? '/nl/alle-bedrijven' : '/alle-unternehmen');
+                  } else {
+                    defaultSearchQuery = business.name;
+                    initialSelectedBusiness = business;
+                  }
                 } else {
                   initialNotFound = true;
                 }
@@ -286,8 +294,13 @@ export default function App() {
               };
               const business = initialBusinesses.find(b => matchBusiness(b, decodedPart2));
               if (business) {
-                defaultSearchQuery = business.name;
-                initialSelectedBusiness = business;
+                if (isBusinessDeactivated(business)) {
+                  const isNl = window.location.pathname.startsWith('/nl');
+                  window.location.replace(isNl ? '/nl/alle-bedrijven' : '/alle-unternehmen');
+                } else {
+                  defaultSearchQuery = business.name;
+                  initialSelectedBusiness = business;
+                }
               } else {
                 initialNotFound = true;
               }
@@ -395,6 +408,8 @@ export default function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isMobileSidebarFilterOpen, setIsMobileSidebarFilterOpen] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(initialSelectedBusiness);
+  const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
+  const { count: favoriteCount } = useFavorites();
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const megaMenuTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -1103,6 +1118,11 @@ export default function App() {
     setSelectedBusiness(curr => {
       if (!curr) return null;
       const fresh = merged.find(b => b.id === curr.id);
+      if (fresh && isBusinessDeactivated(fresh)) {
+        const isNl = window.location.pathname.startsWith('/nl');
+        window.location.replace(isNl ? '/nl/alle-bedrijven' : '/alle-unternehmen');
+        return null;
+      }
       return fresh || curr;
     });
 
@@ -1117,6 +1137,11 @@ export default function App() {
           return bSlug === cleanSlug || b.id.toLowerCase() === rawSlug.toLowerCase();
         });
         if (matched) {
+          if (isBusinessDeactivated(matched)) {
+            const isNl = window.location.pathname.startsWith('/nl');
+            window.location.replace(isNl ? '/nl/alle-bedrijven' : '/alle-unternehmen');
+            return;
+          }
           setSelectedBusiness(matched);
           setIsNotFound(false);
           setSearchQuery(matched.name);
@@ -1193,8 +1218,15 @@ export default function App() {
   useEffect(() => {
     if (selectedBusiness) {
       const fresh = businesses.find(b => b.id === selectedBusiness.id);
-      if (fresh && fresh !== selectedBusiness) {
-        setSelectedBusiness(fresh);
+      if (fresh) {
+        if (isBusinessDeactivated(fresh)) {
+          const isNl = window.location.pathname.startsWith('/nl');
+          window.location.replace(isNl ? '/nl/alle-bedrijven' : '/alle-unternehmen');
+          return;
+        }
+        if (fresh !== selectedBusiness) {
+          setSelectedBusiness(fresh);
+        }
       }
     }
   }, [businesses]);
@@ -1217,7 +1249,7 @@ export default function App() {
   const availableLocations = Array.from(new Set(businesses.map(b => extractLocation(b)))).sort();
 
   const homeSuggestions = homeSearchInput.length > 1 ? businesses.filter(b => {
-    if (b.status === 'pending') return false;
+    if (b.status === 'pending' || isBusinessDeactivated(b)) return false;
     const lowerInput = homeSearchInput.toLowerCase().trim();
     const matchesServices = Array.isArray(b.services) && b.services.some(s => s.toLowerCase().includes(lowerInput));
     const matchesProducts = Array.isArray(b.products) && b.products.some(p => p.toLowerCase().includes(lowerInput));
@@ -1239,7 +1271,7 @@ export default function App() {
   };
 
   const filteredBusinesses = businesses.filter((bus) => {
-    if (bus.status === 'pending') return false;
+    if (bus.status === 'pending' || isBusinessDeactivated(bus)) return false;
     const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
     const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
     
@@ -1339,6 +1371,7 @@ export default function App() {
     if (activeCategory === 'Alle') {
       const counts: Record<string, number> = {};
       businesses.forEach(b => {
+        if (isBusinessDeactivated(b) || b.status === 'pending') return;
         counts[b.category] = (counts[b.category] || 0) + 1;
       });
       return Object.entries(counts).map(([name, count]) => ({ name, count })).sort((a,b) => b.count - a.count);
@@ -1347,14 +1380,14 @@ export default function App() {
     const mainCategory = categories.find(c => c.name === activeCategory);
     if (mainCategory) {
       const counts: Record<string, number> = {};
-      businesses.filter(b => b.category === activeCategory).forEach(b => {
+      businesses.filter(b => b.category === activeCategory && !isBusinessDeactivated(b) && b.status !== 'pending').forEach(b => {
         const sub = b.subcategory || 'Andere';
         counts[sub] = (counts[sub] || 0) + 1;
       });
       return Object.entries(counts).map(([name, count]) => ({ name, count })).sort((a,b) => b.count - a.count);
     }
 
-    return [{ name: activeCategory, count: businesses.filter(b => b.subcategory === activeCategory).length }];
+    return [{ name: activeCategory, count: businesses.filter(b => b.subcategory === activeCategory && !isBusinessDeactivated(b) && b.status !== 'pending').length }];
   };
 
   const categoryBadges = getCategoryBadges();
@@ -1363,7 +1396,7 @@ export default function App() {
   const popularSearches = useMemo(() => {
     const counts = new Map<string, number>();
     businesses.forEach(b => {
-      if (b.status === 'pending') return;
+      if (b.status === 'pending' || isBusinessDeactivated(b)) return;
       if (b.subcategory) counts.set(b.subcategory, (counts.get(b.subcategory) || 0) + 1);
       
       const allowedServices = b.isPremium ? (b.services || []) : (b.services || []).slice(0, 3);
@@ -1525,6 +1558,22 @@ export default function App() {
                 {t("createEntry")}
               </button>
 
+              {/* Favorites Heart Icon (Desktop) */}
+              <button 
+                type="button"
+                onClick={() => setIsFavoritesOpen(true)}
+                className="relative w-8 h-8 rounded-full flex items-center justify-center hover:bg-[#FAF8F5] border border-[#E7E2DA] transition-colors cursor-pointer"
+                title={lang === 'nl' ? 'Mijn favorieten bekijken' : 'Meine Favoriten ansehen'}
+                aria-label={lang === 'nl' ? 'Mijn favorieten' : 'Meine Favoriten'}
+              >
+                <Heart className={`w-4 h-4 transition-colors ${favoriteCount > 0 ? 'text-red-500 fill-red-500' : 'text-[#0F4C2E] hover:text-red-500'}`} />
+                {favoriteCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-bold rounded-full min-w-[16px] h-4 px-1 flex items-center justify-center shadow-xs">
+                    {favoriteCount > 9 ? '9+' : favoriteCount}
+                  </span>
+                )}
+              </button>
+
               {/* Profile / Admin Login Icon */}
               <button 
                 onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
@@ -1575,8 +1624,23 @@ export default function App() {
               </div>
             </nav>
 
-            {/* Mobile Header: App Button (nur Mobilgerät) + Language Switcher */}
+            {/* Mobile Header: Favorites + App Button (nur Mobilgerät) + Language Switcher */}
             <div className="md:hidden flex items-center gap-2 shrink-0">
+              <button 
+                type="button"
+                onClick={() => setIsFavoritesOpen(true)}
+                className="relative w-7 h-7 rounded-full flex items-center justify-center bg-[#FAF8F5] border border-[#EDE8E0] active:bg-[#E8F1EB] transition-colors cursor-pointer"
+                title={lang === 'nl' ? 'Favorieten' : 'Favoriten'}
+                aria-label="Favorites"
+              >
+                <Heart className={`w-3.5 h-3.5 ${favoriteCount > 0 ? 'text-red-500 fill-red-500' : 'text-[#717E75]'}`} />
+                {favoriteCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold rounded-full min-w-[14px] h-3.5 px-0.5 flex items-center justify-center">
+                    {favoriteCount}
+                  </span>
+                )}
+              </button>
+
               <button 
                 type="button" 
                 onClick={() => window.dispatchEvent(new CustomEvent('open-pwa-install'))}
@@ -3442,6 +3506,26 @@ export default function App() {
       <DynamicScriptLoader />
       <PwaInstallPrompt lang={lang} />
 
+      {/* User Favorites Drawer (Merkliste) */}
+      <FavoritesDrawer
+        isOpen={isFavoritesOpen}
+        onClose={() => setIsFavoritesOpen(false)}
+        allBusinesses={businesses}
+        onSelectBusiness={(bus) => {
+          setSelectedBusiness(bus);
+          setSearchQuery(bus.name);
+          const path = getBusinessPath(bus, lang);
+          window.history.pushState(null, '', path);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onBrowseDirectory={() => {
+          resetToDirectory();
+          setIsAllMode(true);
+          window.history.pushState(null, '', getPath('/alle-unternehmen'));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
+
       {/* Mobile App Bottom Navigation Bar */}
       {!isAdminMode && (
         <AppBottomNav
@@ -4467,13 +4551,20 @@ function RedirectsAdminPanel({ theme, activeThemeKey, categories: catsProp, busi
                   </td>
                   <td className="py-2.5 px-4 whitespace-nowrap">
                     {r.isSystem ? (
-                      <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded text-[11px] font-bold">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        301 System ({r.type || 'Kategorie'})
-                      </span>
+                      r.statusCode === 302 ? (
+                        <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded text-[11px] font-bold">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                          302 Temporär ({r.type || 'Deaktiviert'})
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded text-[11px] font-bold">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                          301 Permanent ({r.type || 'Kategorie'})
+                        </span>
+                      )
                     ) : (
                       <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded text-[11px] font-bold">
-                        301 Manuell
+                        {r.statusCode === 302 ? '302 Manuell' : '301 Manuell'}
                       </span>
                     )}
                   </td>
@@ -4510,6 +4601,9 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const [activeAdminLocation, setActiveAdminLocation] = useState<string>('Alle');
   const [adminSearchQuery, setAdminSearchQuery] = useState('');
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
+  const [deactivatingBusiness, setDeactivatingBusiness] = useState<Business | null>(null);
+  const [deactivationType, setDeactivationType] = useState<'301' | '302'>('301');
+  const [deactivationReason, setDeactivationReason] = useState<string>('');
 
   const handleLogout = () => {
     signOut(auth);
@@ -4597,6 +4691,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     let matchesCategory = true;
     if (activeAdminCategory === 'In Prüfung') {
       matchesCategory = bus.status === 'pending';
+    } else if (activeAdminCategory === 'Aktiv') {
+      matchesCategory = bus.status !== 'pending' && bus.isActive !== false;
+    } else if (activeAdminCategory === 'Deaktiviert') {
+      matchesCategory = isBusinessDeactivated(bus);
     } else if (activeAdminCategory !== 'Alle') {
       const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeAdminCategory || ac.subcategory === activeAdminCategory);
       matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory || !!inAdditional;
@@ -4659,7 +4757,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       </div>
 
       {activeTab === 'entries' ? (
-        <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+        <>
+          <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
           <div className="flex flex-col gap-[16px] mb-[24px]">
             <div className="flex gap-[12px] flex-wrap items-center">
               {isAdmin && (
@@ -4681,7 +4780,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             {isAdmin && (
               <div className="flex gap-2 flex-wrap mb-4 items-center">
                 <div className="flex gap-2 flex-wrap flex-1">
-                  {['Alle', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
+                  {['Alle', 'Aktiv', 'Deaktiviert', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
                     <button 
                       key={c}
                       onClick={() => setActiveAdminCategory(c)}
@@ -4726,13 +4825,68 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="flex items-center gap-[9px] flex-wrap">
                         <span className="font-semibold text-[15.5px]">{bus.name}</span>
                         {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2 py-0.5 text-[11px] font-bold">PREMIUM</span>}
-                        {bus.status === 'pending' && <span className="bg-[#FDF3D3] text-[#96700B] rounded px-2 py-0.5 text-[11px] font-bold">IN PRÜFUNG</span>}
+                        {isBusinessDeactivated(bus) ? (
+                          <span className="bg-[#FBEAE7] text-[#C0392B] border border-[#FCD5CC] rounded px-2 py-0.5 text-[11px] font-bold inline-flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                            DEAKTIVIERT ({(bus as any).deactivationRedirectType || '301'})
+                          </span>
+                        ) : bus.status === 'pending' ? (
+                          <span className="bg-[#FDF3D3] text-[#96700B] rounded px-2 py-0.5 text-[11px] font-bold">IN PRÜFUNG</span>
+                        ) : (
+                          <span className="bg-[#E8F1EB] text-[#0F4C2E] rounded px-2 py-0.5 text-[11px] font-bold">AKTIV</span>
+                        )}
                       </div>
                       <div className="text-[13.5px] text-[#5F6B63] mt-[3px]">
                         {bus.category} {bus.subcategory ? `· ${bus.subcategory}` : ''} {bus.district ? `· ${bus.district}` : ''}
                       </div>
                     </div>
-                    <div className="flex gap-[8px]">
+                    <div className="flex gap-[8px] items-center flex-wrap">
+                      {isBusinessDeactivated(bus) ? (
+                        <button 
+                          onClick={async () => {
+                            const updated: Business = {
+                              ...bus,
+                              isActive: true,
+                              deactivationRedirectType: undefined,
+                              deactivationReason: undefined,
+                              deactivatedAt: undefined
+                            };
+                            try {
+                              await setDoc(doc(db, 'businesses', bus.id), updated, { merge: true });
+                              try {
+                                await deleteDoc(doc(db, 'redirects', `deact-${bus.id}-de`));
+                                await deleteDoc(doc(db, 'redirects', `deact-${bus.id}-nl`));
+                              } catch(e) {}
+                              invalidateCache(CACHE_KEYS.BUSINESSES);
+                              invalidateCache(CACHE_KEYS.REDIRECTS);
+                              bumpRemoteBusinessesVersion(db);
+                              setBusinesses((prev: Business[]) => prev.map((b: Business) => b.id === bus.id ? updated : b));
+                            } catch (e) {
+                              console.error("Reactivation error", e);
+                              alert("Fehler beim Aktivieren");
+                            }
+                          }}
+                          className="bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] border-none rounded-md px-3.5 py-2 text-[13.5px] font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5"
+                          title="Profil reaktivieren und Weiterleitungen aufheben"
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span>Aktivieren</span>
+                        </button>
+                      ) : bus.status !== 'pending' ? (
+                        <button 
+                          onClick={() => {
+                            setDeactivatingBusiness(bus);
+                            setDeactivationType((bus as any).deactivationRedirectType || '301');
+                            setDeactivationReason((bus as any).deactivationReason || '');
+                          }}
+                          className="bg-[#FFF0ED] text-[#C0392B] hover:bg-[#FCD5CC] border border-[#FCD5CC] rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer transition-colors inline-flex items-center gap-1.5"
+                          title="Unternehmen deaktivieren und Weiterleitung einrichten"
+                        >
+                          <EyeOff className="w-4 h-4" />
+                          <span>Deaktivieren</span>
+                        </button>
+                      ) : null}
+
                       {bus.status === 'pending' && (
                         <button 
                           onClick={async () => {
@@ -4790,7 +4944,152 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             )}
           </div>
         </div>
-        
+
+        {/* Schnell-Deaktivierungs Modal mit 301 / 302 Auswahl */}
+        {deactivatingBusiness && (
+          <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+            <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-[#EDE8E0] relative animate-in zoom-in-95">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#E7E2DA]">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-red-50 text-red-600 flex items-center justify-center">
+                    <EyeOff className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#1B211D] m-0">Unternehmen deaktivieren</h3>
+                    <div className="text-xs text-[#5F6B63]">{deactivatingBusiness.name}</div>
+                  </div>
+                </div>
+                <button 
+                  type="button"
+                  onClick={() => setDeactivatingBusiness(null)}
+                  className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 cursor-pointer"
+                  title="Schließen"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="space-y-4 text-sm text-[#1B211D]">
+                <p className="text-xs text-[#5F6B63] leading-relaxed bg-[#FAF8F5] p-3 rounded-lg border border-[#E7E2DA]">
+                  Das Profil wird für Besucher gesperrt und aus Suche, Karte, Kategorien sowie Sitemap entfernt. 
+                  Jeder direkte Aufruf der URL wird automatisch auf die Übersichtsseite weitergeleitet.
+                </p>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#1B211D] mb-2">
+                    Art der Weiterleitung (HTTP-Statuscode):
+                  </label>
+                  <div className="space-y-2">
+                    <label className="flex items-start gap-3 p-3 rounded-xl border border-[#E7E2DA] hover:border-red-400 cursor-pointer transition-colors bg-white">
+                      <input 
+                        type="radio" 
+                        name="modalRedirectType" 
+                        value="301" 
+                        checked={deactivationType === '301'} 
+                        onChange={() => setDeactivationType('301')}
+                        className="accent-[#0F4C2E] mt-0.5 w-4 h-4 cursor-pointer"
+                      />
+                      <div>
+                        <div className="font-bold text-red-700 text-xs">301 – Permanent weiterleiten (Empfohlen für dauerhaft geschlossene Betriebe)</div>
+                        <div className="text-[11px] text-[#5F6B63] mt-0.5">
+                          Suchmaschinen übertragen das Link-Gewicht auf die Übersichtsseite und entfernen das Profil mittelfristig aus dem Suchindex.
+                        </div>
+                      </div>
+                    </label>
+
+                    <label className="flex items-start gap-3 p-3 rounded-xl border border-[#E7E2DA] hover:border-amber-400 cursor-pointer transition-colors bg-white">
+                      <input 
+                        type="radio" 
+                        name="modalRedirectType" 
+                        value="302" 
+                        checked={deactivationType === '302'} 
+                        onChange={() => setDeactivationType('302')}
+                        className="accent-[#0F4C2E] mt-0.5 w-4 h-4 cursor-pointer"
+                      />
+                      <div>
+                        <div className="font-bold text-amber-700 text-xs">302 – Temporär weiterleiten (Für Umbau, Pause, Saisonende)</div>
+                        <div className="text-[11px] text-[#5F6B63] mt-0.5">
+                          Suchmaschinen behalten das Ranking im Suchindex, sodass die Seite bei späterer Reaktivierung sofort wieder rankt.
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#1B211D] mb-1.5">
+                    Grund / Notiz (optional):
+                  </label>
+                  <input 
+                    type="text" 
+                    value={deactivationReason}
+                    onChange={(e) => setDeactivationReason(e.target.value)}
+                    placeholder="z.B. Betriebsurlaub bis 01.11. oder Aufgabe"
+                    className="w-full border border-[#E7E2DA] rounded-lg px-3 py-2 text-xs bg-white focus:outline-none focus:border-[#0F4C2E]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-2.5 mt-6 pt-4 border-t border-[#E7E2DA]">
+                <button 
+                  type="button"
+                  onClick={() => setDeactivatingBusiness(null)}
+                  className="px-4 py-2 rounded-lg border border-[#E7E2DA] text-xs font-semibold text-[#5F6B63] hover:bg-gray-100 cursor-pointer"
+                >
+                  Abbrechen
+                </button>
+                <button 
+                  type="button"
+                  onClick={async () => {
+                    if (!deactivatingBusiness) return;
+                    const bus = deactivatingBusiness;
+                    const updated: Business = {
+                      ...bus,
+                      isActive: false,
+                      deactivationRedirectType: deactivationType,
+                      deactivationReason: deactivationReason || undefined,
+                      deactivatedAt: new Date().toISOString()
+                    };
+                    try {
+                      await setDoc(doc(db, 'businesses', bus.id), updated, { merge: true });
+                      const pathDe = getBusinessPath(bus, 'de');
+                      const pathNl = getBusinessPath(bus, 'nl');
+                      await setDoc(doc(db, 'redirects', `deact-${bus.id}-de`), {
+                        source: pathDe,
+                        target: '/alle-unternehmen',
+                        statusCode: deactivationType,
+                        businessId: bus.id,
+                        reason: deactivationReason || 'deactivated',
+                        createdAt: new Date().toISOString()
+                      });
+                      await setDoc(doc(db, 'redirects', `deact-${bus.id}-nl`), {
+                        source: pathNl,
+                        target: '/nl/alle-bedrijven',
+                        statusCode: deactivationType,
+                        businessId: bus.id,
+                        reason: deactivationReason || 'deactivated',
+                        createdAt: new Date().toISOString()
+                      });
+                      invalidateCache(CACHE_KEYS.BUSINESSES);
+                      invalidateCache(CACHE_KEYS.REDIRECTS);
+                      bumpRemoteBusinessesVersion(db);
+                      setBusinesses((prev: Business[]) => prev.map((b: Business) => b.id === bus.id ? updated : b));
+                      setDeactivatingBusiness(null);
+                    } catch (err) {
+                      console.error("Deactivation failed", err);
+                      alert("Fehler beim Deaktivieren");
+                    }
+                  }}
+                  className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                >
+                  <EyeOff className="w-3.5 h-3.5" />
+                  <span>Jetzt deaktivieren ({deactivationType} Redirect)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        </>
         ) : activeTab === 'widgets' ? (
           <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
             <div className="flex justify-between items-start flex-wrap gap-4 mb-6">

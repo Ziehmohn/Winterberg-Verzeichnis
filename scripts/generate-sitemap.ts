@@ -7,7 +7,8 @@ import {
   STATIC_PAGE_SLUGS,
   getCategorySlug,
   getSubcategorySlug,
-  slugify
+  slugify,
+  isBusinessDeactivated
 } from '../src/utils/routes';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
@@ -133,6 +134,7 @@ categories.forEach(c => {
 
 // 5. Businesses (Detail Pages)
 businesses.forEach((b: any) => {
+  if (isBusinessDeactivated(b)) return;
   const bSlug = slugify(b.name);
   const catDe = getCategorySlug(b.category, 'de');
   const catNl = getCategorySlug(b.category, 'nl');

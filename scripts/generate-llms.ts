@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { businesses, categories } from '../src/data';
 import { FAQ_DATA } from '../src/components/WinterbergFaq';
-import { getBusinessPath, getCategorySlug, getSubcategorySlug } from '../src/utils/routes';
+import { getBusinessPath, getCategorySlug, getSubcategorySlug, isBusinessDeactivated } from '../src/utils/routes';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
 const publicDir = path.resolve(process.cwd(), 'public');
@@ -100,12 +100,14 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (${businesses.length} Einträge)
-
 `;
 
+const activeBusinesses = businesses.filter((b: any) => !isBusinessDeactivated(b));
+
+fullTxt += `## 2. Vollständiges Unternehmensverzeichnis (${activeBusinesses.length} Einträge)\n\n`;
+
 categories.forEach(cat => {
-  const catBusinesses = businesses.filter((b: any) => b.category === cat.name);
+  const catBusinesses = activeBusinesses.filter((b: any) => b.category === cat.name);
   if (catBusinesses.length === 0) return;
 
   fullTxt += `### Kategorie: ${cat.name}\n\n`;

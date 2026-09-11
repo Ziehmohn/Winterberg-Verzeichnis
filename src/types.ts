@@ -142,6 +142,10 @@ export interface Business {
   notificationOptOutAt?: string;
   hasShop?: boolean;
   shopUrl?: string;
+  isActive?: boolean;
+  deactivationRedirectType?: '301' | '302';
+  deactivationReason?: string;
+  deactivatedAt?: string;
   ownerEmail?: string;
   slug?: string;
   rating?: number;

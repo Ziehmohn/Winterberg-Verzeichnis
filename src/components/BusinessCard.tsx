@@ -1,10 +1,11 @@
 import React from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Heart } from 'lucide-react';
 import { Business } from '../types';
 import { useTranslation } from '../i18n';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
+import { useFavorites } from '../utils/favorites';
 import RankingBadge from './RankingBadge';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 
@@ -28,6 +29,9 @@ export default function BusinessCard({
 }: BusinessCardProps) {
   const { t } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
+
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isFav = isFavorite(business.id);
 
   const approvedReviews = Array.isArray(business.reviews) 
     ? business.reviews.filter(r => !r.status || r.status === 'approved') 
@@ -82,9 +86,9 @@ export default function BusinessCard({
           )}
         </div>
 
-        {/* Top Badges (Premium + Star Rating) */}
-        <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none z-10">
-          <div className="flex items-center gap-1.5 flex-wrap">
+        {/* Top Badges (Premium + Star Rating + Favorite Heart) */}
+        <div className="absolute top-3 left-3 right-3 flex justify-between items-start z-10">
+          <div className="flex items-center gap-1.5 flex-wrap pointer-events-none">
             {business.isPremium && (
               <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm backdrop-blur-xs">
                 Premium
@@ -98,13 +102,33 @@ export default function BusinessCard({
             )}
           </div>
 
-          {avgRating && (
-            <div className="bg-white/95 backdrop-blur-sm border border-[#E7E2DA] px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm ml-auto">
-              <span className="text-[#F2761B] text-[13px] leading-none">★</span>
-              <span className="font-bold text-[13.5px] text-[#1B211D]">{avgRating}</span>
-              <span className="text-[12px] text-[#5F6B63]">({reviewCount})</span>
-            </div>
-          )}
+          <div className="flex items-center gap-2 ml-auto">
+            {avgRating && (
+              <div className="bg-white/95 backdrop-blur-sm border border-[#E7E2DA] px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm pointer-events-none">
+                <span className="text-[#F2761B] text-[13px] leading-none">★</span>
+                <span className="font-bold text-[13.5px] text-[#1B211D]">{avgRating}</span>
+                <span className="text-[12px] text-[#5F6B63]">({reviewCount})</span>
+              </div>
+            )}
+
+            {/* Favorite Heart Button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(business.id);
+              }}
+              title={isFav ? (lang === 'nl' ? 'Verwijderen uit favorieten' : 'Aus Favoriten entfernen') : (lang === 'nl' ? 'Toevoegen aan favorieten' : 'Als Favorit merken')}
+              aria-label={isFav ? 'Aus Favoriten entfernen' : 'Als Favorit merken'}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md pointer-events-auto shrink-0 ${
+                isFav
+                  ? 'bg-white text-red-500 hover:scale-110 shadow-red-100'
+                  : 'bg-white/90 backdrop-blur-sm text-gray-400 hover:text-red-500 hover:bg-white hover:scale-110'
+              }`}
+            >
+              <Heart className={`w-4 h-4 transition-transform ${isFav ? 'fill-red-500 text-red-500 scale-110' : ''}`} />
+            </button>
+          </div>
         </div>
 
         {/* Logo overlayed at bottom-left of image - Top level Z-Index, not clipped! */}

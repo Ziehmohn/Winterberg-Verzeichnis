@@ -22,26 +22,33 @@ function getStripe(): Stripe {
 
 const PROJECT_ID = 'gen-lang-client-0671429103';
 const DB_ID = 'ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319';
-let redirectsMap = new Map<string, string>();
+interface RedirectRule {
+  target: string;
+  statusCode: 301 | 302;
+}
+
+let redirectsMap = new Map<string, RedirectRule>();
 
 // Pre-seed redirects with permanent deduplication 301 rules
-BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => redirectsMap.set(r.source, r.target));
+BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => redirectsMap.set(r.source, { target: r.target, statusCode: (r.statusCode as 301 | 302) || 301 }));
 
 async function fetchRedirects() {
   try {
     const res = await fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/${DB_ID}/documents/redirects`);
 
     const data = await res.json();
-    const newMap = new Map<string, string>();
+    const newMap = new Map<string, RedirectRule>();
     // Keep deduplication rules
-    BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => newMap.set(r.source, r.target));
+    BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => newMap.set(r.source, { target: r.target, statusCode: (r.statusCode as 301 | 302) || 301 }));
 
     if (data.documents) {
       data.documents.forEach((doc: any) => {
         const source = doc.fields?.source?.stringValue;
         const target = doc.fields?.target?.stringValue;
+        const codeRaw = doc.fields?.statusCode?.stringValue || doc.fields?.statusCode?.integerValue;
+        const statusCode: 301 | 302 = codeRaw === '302' || codeRaw === 302 ? 302 : 301;
         if (source && target) {
-          newMap.set(source, target);
+          newMap.set(source, { target, statusCode });
         }
       });
     }
@@ -77,11 +84,11 @@ async function startServer() {
     next();
   });
 
-  // Redirect Middleware (Firestore + Legacy Categories 301)
+  // Redirect Middleware (Firestore 301/302 + Legacy Categories 301)
   app.use((req, res, next) => {
-    const target = redirectsMap.get(req.path);
-    if (target) {
-      return res.redirect(301, target);
+    const rule = redirectsMap.get(req.path);
+    if (rule) {
+      return res.redirect(rule.statusCode, rule.target);
     }
 
     const legacyRedirect = getLegacyCategoryRedirect(req.path, categories);

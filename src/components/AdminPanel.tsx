@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail, ShoppingBag, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta, ContactPerson } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
 import { translateTextToDutch, translateServiceToDutch, fetchDutchTranslation } from '../utils/translator';
 import { db, storage, auth } from '../firebase';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
+import { getBusinessPath } from '../utils/routes';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -305,7 +306,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       products_nl: Array.isArray(base.translations?.nl?.products) ? [...base.translations.nl.products] : (Array.isArray(base.products_nl) ? [...base.products_nl] : []),
       contactPerson: base.contactPerson ? { ...base.contactPerson } : { name: '', role: '', phone: '', email: '', imageUrl: '' },
       hasShop: !!base.hasShop,
-      shopUrl: base.shopUrl || ''
+      shopUrl: base.shopUrl || '',
+      isActive: base.isActive !== false,
+      deactivationRedirectType: base.deactivationRedirectType || '301',
+      deactivationReason: base.deactivationReason || '',
+      deactivatedAt: base.deactivatedAt || ''
     };
   });
   
@@ -535,6 +540,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       hasShop: !!formData.hasShop,
       shopUrl: formData.hasShop && formData.shopUrl ? formData.shopUrl.trim() : '',
       status: formData.status || 'approved',
+      isActive: formData.isActive !== false,
+      deactivationRedirectType: formData.isActive === false ? (formData.deactivationRedirectType || '301') : null,
+      deactivationReason: formData.isActive === false ? (formData.deactivationReason || '') : null,
+      deactivatedAt: formData.isActive === false ? (formData.deactivatedAt || new Date().toISOString()) : null,
       id: newId
     };
 
@@ -552,6 +561,41 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       ]);
       invalidateCache(CACHE_KEYS.BUSINESSES);
       bumpRemoteBusinessesVersion(db);
+
+      // Sync or clear 301/302 redirects for deactivated status
+      const pathDe = getBusinessPath(dataToSubmit, 'de');
+      const pathNl = getBusinessPath(dataToSubmit, 'nl');
+      const redirectCode = dataToSubmit.deactivationRedirectType || '301';
+
+      if (dataToSubmit.isActive === false) {
+        try {
+          await setDoc(doc(db, 'redirects', `deact-${newId}-de`), {
+            source: pathDe,
+            target: '/alle-unternehmen',
+            statusCode: redirectCode,
+            businessId: newId,
+            reason: dataToSubmit.deactivationReason || 'deactivated',
+            createdAt: new Date().toISOString()
+          });
+          await setDoc(doc(db, 'redirects', `deact-${newId}-nl`), {
+            source: pathNl,
+            target: '/nl/alle-bedrijven',
+            statusCode: redirectCode,
+            businessId: newId,
+            reason: dataToSubmit.deactivationReason || 'deactivated',
+            createdAt: new Date().toISOString()
+          });
+          invalidateCache(CACHE_KEYS.REDIRECTS);
+        } catch (rErr) {
+          console.warn("Could not write deactivation redirects to Firestore:", rErr);
+        }
+      } else {
+        try {
+          await deleteDoc(doc(db, 'redirects', `deact-${newId}-de`));
+          await deleteDoc(doc(db, 'redirects', `deact-${newId}-nl`));
+          invalidateCache(CACHE_KEYS.REDIRECTS);
+        } catch (e) {}
+      }
 
       // Sync published businessNews to 'news' collection for review if not yet submitted
       if (Array.isArray(formData.businessNews) && formData.businessNews.length > 0) {
@@ -924,6 +968,104 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       </div>
         
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Status: Aktiv / Deaktiviert mit 301/302 Redirect-Option */}
+        <div className={`p-4 md:p-5 rounded-xl border transition-all ${formData.isActive !== false ? 'bg-[#F4F9F5] border-[#D0E7D8]' : 'bg-[#FFF8F6] border-[#FCD5CC]'}`}>
+          <div className="flex items-start justify-between flex-wrap gap-4">
+            <div className="flex-1 min-w-[260px]">
+              <div className="flex items-center gap-2 mb-1">
+                <span className={`w-3 h-3 rounded-full ${formData.isActive !== false ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
+                <span className="font-bold text-[15.5px] text-[#1B211D]">
+                  Status des Eintrags: {formData.isActive !== false ? 'Aktiv (Öffentlich sichtbar)' : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`}
+                </span>
+              </div>
+              <p className="text-xs text-[#5F6B63] m-0 max-w-[70ch]">
+                {formData.isActive !== false 
+                  ? 'Das Unternehmen ist öffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
+                  : 'Die Profilseite ist für Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Übersichtsseite (/alle-unternehmen) weitergeleitet.'}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setFormData({ ...formData, isActive: !(formData.isActive !== false) })}
+                className={`px-4 py-2 rounded-lg font-bold text-xs cursor-pointer transition-all flex items-center gap-2 border ${
+                  formData.isActive !== false
+                    ? 'bg-emerald-700 hover:bg-emerald-800 text-white border-emerald-700'
+                    : 'bg-red-600 hover:bg-red-700 text-white border-red-600'
+                }`}
+              >
+                {formData.isActive !== false ? (
+                  <>
+                    <Eye className="w-4 h-4" />
+                    <span>Aktiv</span>
+                  </>
+                ) : (
+                  <>
+                    <EyeOff className="w-4 h-4" />
+                    <span>Deaktiviert</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Erweiterte Redirect-Optionen, wenn deaktiviert */}
+          {formData.isActive === false && (
+            <div className="mt-4 pt-4 border-t border-[#FCD5CC] flex flex-col md:flex-row gap-4 items-start justify-between">
+              <div className="flex-1">
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-2">
+                  Art der Weiterleitung (HTTP-Statuscode):
+                </label>
+                <div className="flex flex-wrap gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-[#1B211D]">
+                    <input
+                      type="radio"
+                      name="deactivationRedirectType"
+                      value="301"
+                      checked={(formData.deactivationRedirectType || '301') === '301'}
+                      onChange={() => setFormData({ ...formData, deactivationRedirectType: '301' })}
+                      className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
+                    />
+                    <div>
+                      <span className="font-bold text-red-700">301 – Permanent</span>
+                      <span className="text-gray-500 ml-1">(Dauerhaft geschlossen / aufgegeben)</span>
+                    </div>
+                  </label>
+
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-[#1B211D]">
+                    <input
+                      type="radio"
+                      name="deactivationRedirectType"
+                      value="302"
+                      checked={formData.deactivationRedirectType === '302'}
+                      onChange={() => setFormData({ ...formData, deactivationRedirectType: '302' })}
+                      className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
+                    />
+                    <div>
+                      <span className="font-bold text-amber-700">302 – Temporär</span>
+                      <span className="text-gray-500 ml-1">(Vorübergehend geschlossen / Umbau / Pause)</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div className="w-full md:w-72">
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                  Grund / Notiz (optional):
+                </label>
+                <input
+                  type="text"
+                  value={formData.deactivationReason || ''}
+                  onChange={(e) => setFormData({ ...formData, deactivationReason: e.target.value })}
+                  placeholder="z.B. Betriebsurlaub bis 01.11. oder Aufgabe"
+                  className="w-full border border-[#E7E2DA] rounded-md px-3 py-1.5 text-xs bg-white focus:outline-none focus:border-[#0F4C2E]"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label className={labelClass}>Unternehmensname *</label>

@@ -12,7 +12,8 @@ import {
   getAlternateUrls,
   RouteState,
   LEGACY_SUBCATEGORY_PARENTS,
-  BUSINESS_DEDUPLICATION_REDIRECTS
+  BUSINESS_DEDUPLICATION_REDIRECTS,
+  isBusinessDeactivated
 } from '../src/utils/routes';
 import { generateLocalBusinessSchema, generateCollectionPageSchema } from '../src/utils/schemaGenerator';
 import { getLocalizedBusiness } from '../src/utils/translator';
@@ -451,6 +452,8 @@ categories.forEach(c => {
 });
 
 // 5. Business Detail Pages
+const deactivatedRedirects: { source: string; target: string; lang: 'de' | 'nl'; statusCode: 301 | 302; name: string }[] = [];
+
 businesses.forEach((b: any) => {
   const bSlugClean = slugify(b.name);
   const bSlugLegacy = (b.id && !b.id.startsWith('b_') && !b.id.startsWith('custom_') && b.id !== 'custom')
@@ -464,6 +467,25 @@ businesses.forEach((b: any) => {
 
   const pathDe = subDe ? `${catDe}/${subDe}/${bSlugClean}` : `${catDe}/${bSlugClean}`;
   const pathNl = subNl ? `nl/${catNl}/${subNl}/${bSlugClean}` : `nl/${catNl}/${bSlugClean}`;
+
+  if (isBusinessDeactivated(b)) {
+    const statusCode: 301 | 302 = b.deactivationRedirectType === '302' ? 302 : 301;
+    deactivatedRedirects.push({
+      source: `/${pathDe}`,
+      target: '/alle-unternehmen',
+      lang: 'de',
+      statusCode,
+      name: b.name
+    });
+    deactivatedRedirects.push({
+      source: `/${pathNl}`,
+      target: '/nl/alle-bedrijven',
+      lang: 'nl',
+      statusCode,
+      name: b.name
+    });
+    return;
+  }
 
   const city = b.district || 'Winterberg';
   const localizedDe = getLocalizedBusiness(b, 'de');
@@ -697,6 +719,35 @@ for (const dedup of BUSINESS_DEDUPLICATION_REDIRECTS) {
   fs.writeFileSync(path.join(targetDir, 'index.html'), createDedupRedirectHtml(targetUrl), 'utf8');
   redirectCount++;
   redirectsLines.push(`${dedup.source}    ${dedup.target}         301!`);
+}
+
+// Generate static 301/302 redirects for deactivated businesses
+for (const deact of deactivatedRedirects) {
+  const cleanRelPath = deact.source.replace(/^\/+/, '');
+  const targetUrl = `${baseUrl}${deact.target}`;
+  const targetDir = path.join(distDir, cleanRelPath);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+  const createDeactRedirectHtml = (url: string, code: number) => `<!DOCTYPE html>
+<html lang="${deact.lang}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=${escapeHtml(url)}">
+  <link rel="canonical" href="${escapeHtml(url)}">
+  <title>${code === 302 ? '302 Found' : '301 Moved Permanently'}</title>
+  <script>window.location.replace("${escapeHtml(url)}");</script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 50px;">
+  <p>Die Seite wird weitergeleitet.</p>
+  <p><a href="${escapeHtml(url)}">Klicken Sie hier, falls Sie nicht automatisch weitergeleitet werden.</a></p>
+</body>
+</html>`;
+
+  fs.writeFileSync(path.join(targetDir, 'index.html'), createDeactRedirectHtml(targetUrl, deact.statusCode), 'utf8');
+  redirectCount++;
+  const ruleFlag = deact.statusCode === 302 ? '302' : '301!';
+  redirectsLines.push(`${deact.source}    ${deact.target}         ${ruleFlag}`);
 }
 
 // Update dist/_redirects and public/_redirects cleanly without accumulation
