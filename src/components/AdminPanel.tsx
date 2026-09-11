@@ -1242,8 +1242,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className={labelClass}>Adresse *</label>
-            <input required type="text" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} className={inputClass} placeholder="Straße, PLZ Ort" />
+            <label className={labelClass}>Adresse (optional)</label>
+            <input type="text" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className={inputClass} placeholder="Straße, Hausnummer (oder leer lassen)" />
+            <span className="text-[11px] text-gray-500 block mt-1">Falls die genaue Straße unbekannt ist, kann das Feld leer gelassen werden. Der Ortsteil rechts reicht aus.</span>
           </div>
           <div>
             <label className={labelClass}>Ortsteil</label>

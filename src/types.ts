@@ -102,7 +102,7 @@ export interface Business {
   subcategory?: string;
   description: string;
   email?: string;
-  address: string;
+  address?: string;
   district?: string;
   coordinates?: { lat: number, lng: number };
   phone?: string;

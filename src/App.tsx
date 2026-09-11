@@ -2121,7 +2121,7 @@ export default function App() {
                       >
                         <option value="Alle">{t("allTowns")}</option>
                         {categories.flatMap(c => c.subcategories).map(s => s).filter((v,i,a)=>a.indexOf(v)===i).slice(0,0)} {/* Dummy to avoid unused */}
-                        {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
+                        {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
                           <option key={d} value={d}>{d}</option>
                         ))}
                       </select>
@@ -2218,7 +2218,7 @@ export default function App() {
 
                   <div className="mb-16">
                     <div className="flex flex-wrap gap-[10px]">
-                      {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
+                      {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
                         <button 
                           key={d}
                           onClick={() => { setActiveLocation(d); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -2226,7 +2226,7 @@ export default function App() {
                         >
                           {d}
                           <span className="bg-[#F3F0EA] rounded px-2 py-0.5 text-[12px] font-semibold text-[#5F6B63]">
-                            {businesses.filter(b => (b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg') === d).length}
+                            {businesses.filter(b => (b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg') === d).length}
                           </span>
                         </button>
                       ))}
@@ -2340,7 +2340,7 @@ export default function App() {
                       className="w-full md:w-auto md:w-[195px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[14.5px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
                     >
                       <option value="Alle">{t("allTowns")}</option>
-                      {Array.from(new Set(businesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort().map(d => (
+                      {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
                         <option key={d} value={d}>{d}</option>
                       ))}
                     </select>
@@ -2446,7 +2446,7 @@ export default function App() {
 
                 <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Dorp / Wijk' : 'Ortsteil'}</div>
                 <div className="flex gap-[7px] flex-wrap mb-[24px]">
-                  {['Alle', ...Array.from(new Set(initialBusinesses.map(b => b.district || b.address.split(',')[1]?.trim().split(' ')[1] || 'Winterberg'))).sort()].map(d => {
+                  {['Alle', ...Array.from(new Set(initialBusinesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort()].map(d => {
                     const isDistActive = activeLocation === d;
                     return (
                       <button

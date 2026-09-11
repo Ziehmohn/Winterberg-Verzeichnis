@@ -543,7 +543,7 @@ export default function BestOfPage({
 
                       <span className="flex items-center gap-1 text-xs">
                         <MapPin className="w-3.5 h-3.5 text-[#0F4C2E]" />
-                        {business.address}
+                        {business.address || (business.district ? `59955 Winterberg-${business.district}` : '59955 Winterberg')}
                       </span>
                     </div>
 

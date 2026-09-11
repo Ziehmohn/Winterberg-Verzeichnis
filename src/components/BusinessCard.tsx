@@ -252,7 +252,9 @@ export default function BusinessCard({
         {/* Address at Bottom */}
         <div className="mt-auto pt-3.5 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
           <MapPin className="w-4 h-4 shrink-0 text-[#8A928B]" />
-          <span className="text-[13.5px] leading-tight truncate">{business.address}</span>
+          <span className="text-[13.5px] leading-tight truncate">
+            {business.address || (business.district ? `59955 Winterberg-${business.district}` : '59955 Winterberg')}
+          </span>
         </div>
 
         {/* Subtle claim hint for unclaimed profiles */}

@@ -335,10 +335,12 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           <h1 className="font-display text-[clamp(30px,4.6vw,50px)] font-bold mb-[12px] leading-[1.08]">{business.name}</h1>
           
           <div className="flex items-center gap-4 flex-wrap text-[16px] text-white/80">
-            <span className="inline-flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              {business.address}
-            </span>
+            {(business.address || business.district) && (
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="w-4 h-4 shrink-0" />
+                <span>{business.address || (business.district ? `59955 Winterberg-${business.district}` : '59955 Winterberg')}</span>
+              </span>
+            )}
             {avgRating ? (
               <button
                 type="button"
@@ -1038,30 +1040,56 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           {/* Address – prominent for all accounts, street and city on separate lines */}
           {(() => {
-            const parts = business.address.split(',');
-            const street = parts[0]?.trim() || business.address;
-            const city = parts.slice(1).join(',').trim();
+            const hasAddress = !!(business.address && business.address.trim());
+            const hasDistrict = !!(business.district && business.district.trim());
+            if (!hasAddress && !hasDistrict) return null;
+
+            let street = '';
+            let city = '';
+
+            if (hasAddress) {
+              const raw = business.address!.trim();
+              if (raw.includes(',')) {
+                const parts = raw.split(',');
+                street = parts[0]?.trim();
+                city = parts.slice(1).join(',').trim();
+              } else {
+                if (/^\d{5}/.test(raw) || raw.toLowerCase().includes('winterberg') || (hasDistrict && raw.toLowerCase() === business.district!.toLowerCase())) {
+                  city = raw;
+                } else {
+                  street = raw;
+                  city = hasDistrict ? `59955 Winterberg-${business.district}` : '59955 Winterberg';
+                }
+              }
+            } else if (hasDistrict) {
+              city = business.district === 'Winterberg' ? '59955 Winterberg' : `59955 Winterberg-${business.district}`;
+            }
+
             return (
               <div className="flex items-start gap-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md py-3 px-4">
                 <MapPin className="w-4 h-4 text-[#0F4C2E] mt-0.5 shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-[15px] font-semibold text-[#1B211D] leading-snug">{street}</span>
-                  {city && <span className="text-[14px] text-[#5F6B63] leading-snug mt-0.5">{city}</span>}
+                  {street && <span className="text-[15px] font-semibold text-[#1B211D] leading-snug">{street}</span>}
+                  {city && <span className={`${street ? 'text-[14px] text-[#5F6B63] mt-0.5' : 'text-[15px] font-semibold text-[#1B211D]'} leading-snug`}>{city}</span>}
                 </div>
               </div>
             );
           })()}
 
-          {/* Route planen – for all businesses */}
-          <a
-            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors"
-          >
-            <MapPin className="w-4 h-4" />
-            {lang === 'nl' ? 'Route plannen' : 'Route planen'}
-          </a>
+          {/* Route planen – for all businesses with location */}
+          {(business.address || business.district) && (
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                business.address || `${business.district || ''}, Winterberg, Deutschland`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors"
+            >
+              <MapPin className="w-4 h-4" />
+              {lang === 'nl' ? 'Route plannen' : 'Route planen'}
+            </a>
+          )}
 
           <button 
             type="button" 
@@ -1209,7 +1237,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             "telephone": business.phone || undefined,
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": business.address,
+              "streetAddress": business.address || (business.district ? `59955 Winterberg-${business.district}` : "Winterberg"),
               "addressLocality": business.district || "Winterberg",
               "addressRegion": "NRW",
               "postalCode": "59955",

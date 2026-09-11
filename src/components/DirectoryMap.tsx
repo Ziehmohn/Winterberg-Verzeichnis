@@ -38,7 +38,8 @@ const GeocodedMarker: React.FC<{ bus: Business; onClick: () => void; onPopupClic
   useEffect(() => {
     if (position) return;
 
-    const cacheKey = bus.address + ", Winterberg, Deutschland";
+    const queryAddress = bus.address || (bus.district ? `${bus.district}, Winterberg` : 'Winterberg');
+    const cacheKey = queryAddress + ", Deutschland";
     if (geocodeCache[cacheKey]) {
       setPosition(geocodeCache[cacheKey]);
       return;
@@ -91,7 +92,7 @@ const GeocodedMarker: React.FC<{ bus: Business; onClick: () => void; onPopupClic
             </a>
             {bus.isVerified && <BadgeCheck className="w-4 h-4 text-orange-500 shrink-0" title={t("verifiedBusiness") || "Verifiziertes Unternehmen"} />}
           </div>
-          <p className="text-xs text-black/60 m-0">{bus.address}</p>
+          <p className="text-xs text-black/60 m-0">{bus.address || (bus.district ? `59955 Winterberg-${bus.district}` : '59955 Winterberg')}</p>
           {showHours && openState && (
             <p className={`text-xs mt-1 mb-0 font-medium ${openState.isOpen ? 'text-emerald-600' : 'text-red-600'}`}>
               {openState.text}

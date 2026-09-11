@@ -357,8 +357,12 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
           </label>
         </div>
         
-        <label className="grid gap-[7px] text-[14px] font-semibold">Adresse
-          <input required placeholder="Straße, PLZ Ort" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+        <label className="grid gap-[7px] text-[14px] font-semibold">
+          Adresse (optional)
+          <input placeholder="Straße und Hausnummer (oder leer lassen wenn unbekannt)" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className="border border-[#E7E2DA] rounded-md p-3 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:ring-2 focus:ring-[#F2761B]" />
+          <span className="text-[12px] font-normal text-[#5F6B63]">
+            Falls die genaue Straße nicht bekannt ist, reicht die Angabe des Ortsteils oben aus.
+          </span>
         </label>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">

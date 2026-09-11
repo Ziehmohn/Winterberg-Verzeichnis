@@ -50,7 +50,8 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
   useEffect(() => {
     if (position) return;
 
-    const cacheKey = `${business.address}, Winterberg, Deutschland`;
+    const queryAddress = business.address || (business.district ? `${business.district}, Winterberg` : 'Winterberg');
+    const cacheKey = `${queryAddress}, Deutschland`;
     if (geocodeCache[cacheKey]) {
       setPosition(geocodeCache[cacheKey]);
       setIsLoading(false);
@@ -82,9 +83,9 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
     };
 
     fetchGeocode();
-  }, [business.address, position]);
+  }, [business.address, business.district, position]);
 
-  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address)}`;
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address || (business.district ? `${business.district}, Winterberg` : 'Winterberg'))}`;
 
   if (isLoading) {
     return (
