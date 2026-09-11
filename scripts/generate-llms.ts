@@ -22,13 +22,13 @@ const llmsTxtContent = `# Das Winterberg Verzeichnis | Het Winterberg Overzicht
 - **Betreiber & Herausgeber:** SICHTBAR SEO – Inh. Simon Kräling, Winterberg
 - **Primäre Domain:** https://www.winterberg-verzeichnis.de
 - **Zweisprachig:** Deutsch (Standard, /) und Niederländisch (/nl)
-- **Geografische Abdeckung:** Stadt Winterberg und die 14 Ortsteile Altastenberg, Altenbüren, Elkeringhausen, Grönebach, Hildfeld, Hoheleye, Langewiese, Lenneplätze, Mollseifen, Neuastenberg, Niedersfeld, Siedlinghausen, Silbach, Züschen.
-- **Datenumfang:** 150+ verifizierte Betriebe, lokale Stellenanzeigen, Regionalnachrichten, Branchenübersichten und FAQs.
+- **Geografische Abdeckung:** Stadt Winterberg und die 14 Ortsteile Altastenberg, Altenfeld, Elkeringhausen, Grönebach, Hildfeld, Hoheleye, Langewiese, Lenneplätze, Mollseifen, Neuastenberg, Niedersfeld, Siedlinghausen, Silbach, Züschen.
+- **Datenumfang:** 250+ verifizierte Betriebe, lokale Stellenanzeigen, Regionalnachrichten, Branchenübersichten und FAQs.
 
 ## Hauptbereiche / Main Sections
 - [Startseite (DE)](https://www.winterberg-verzeichnis.de/): Das große Branchenverzeichnis für Winterberg und Umgebung
 - [Startpagina (NL)](https://www.winterberg-verzeichnis.de/nl): De grote bedrijvengids voor Winterberg en omgeving
-- [Alle Unternehmen (DE)](https://www.winterberg-verzeichnis.de/alle-unternehmen): Vollständige Liste aller 150+ eingetragenen Firmen und Dienstleister
+- [Alle Unternehmen (DE)](https://www.winterberg-verzeichnis.de/alle-unternehmen): Vollständige Liste aller 250+ eingetragenen Firmen und Dienstleister
 - [Alle Bedrijven (NL)](https://www.winterberg-verzeichnis.de/nl/alle-bedrijven): Volledig overzicht van alle geregistreerde bedrijven
 - [Grounding Page / KI-Referenz (DE)](https://www.winterberg-verzeichnis.de/grounding): Verifizierte Entitätsfakten, Ontologie und Disambiguierung für AI-Systeme
 - [Grounding Page / AI-feiten (NL)](https://www.winterberg-verzeichnis.de/nl/grounding): Geverifieerde entiteitsfeiten en ontologie voor AI-systemen
@@ -54,7 +54,7 @@ ${categories.map(c => {
 
 ## Technische Endpunkte & Schnittstellen
 - [Vollständiger KI-Index (llms-full.txt)](https://www.winterberg-verzeichnis.de/llms-full.txt): Kompletter Datenkatalog aller Betriebe, Adressen und FAQs
-- [XML Sitemap](https://www.winterberg-verzeichnis.de/sitemap.xml): Vollständiger XML-Index aller 668 vorgerenderten URLs
+- [XML Sitemap](https://www.winterberg-verzeichnis.de/sitemap.xml): Vollständiger XML-Index aller 990+ vorgerenderten URLs
 - [Robots.txt](https://www.winterberg-verzeichnis.de/robots.txt): Crawler-Richtlinien (vollständig offen für Suchmaschinen und KI-Agenten)
 - [Grounding Page Spezifikation](https://www.winterberg-verzeichnis.de/grounding): Standardisierte Wissensebene nach Grounding Page Standard v1.6
 
@@ -84,7 +84,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 ### Geografische Ortsteile
 1. Winterberg (Kernstadt)
 2. Altastenberg
-3. Altenbüren (angrenzend)
+3. Altenfeld
 4. Elkeringhausen
 5. Grönebach
 6. Hildfeld
