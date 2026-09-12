@@ -20,6 +20,13 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
   const [selectedImages, setSelectedImages] = useState<SelectedImage[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [alreadyReviewed, setAlreadyReviewed] = useState(() => {
+    try {
+      return localStorage.getItem(`wv_reviewed_${business.id}`) === 'true';
+    } catch {
+      return false;
+    }
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Client-side image compression helper (max 1600px, 0.82 JPEG quality)
@@ -151,6 +158,11 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
     
     try {
       await onReviewSubmit(business.id, newReview);
+      try {
+        localStorage.setItem(`wv_reviewed_${business.id}`, 'true');
+      } catch (e) {
+        console.warn('Could not set review localStorage flag', e);
+      }
       setSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -168,6 +180,13 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
             {lang === 'nl' 
               ? 'Bedankt voor uw beoordeling! Deze wordt na een korte controle door de redactie gepubliceerd.' 
               : 'Danke für deine Bewertung! Sie wird nach einer kurzen Prüfung durch die Redaktion freigeschaltet.'}
+          </p>
+        </div>
+      ) : alreadyReviewed ? (
+        <div className="bg-emerald-50/70 rounded-xl p-4 text-[#0F4C2E] text-[14px] border border-emerald-200/50 flex items-center gap-3">
+          <span className="text-xl">✓</span>
+          <p className="m-0 leading-relaxed font-medium">
+            {t("alreadyReviewed")}
           </p>
         </div>
       ) : (

@@ -333,7 +333,7 @@ export default function ReviewWidget({
           <div>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-600 mb-1.5 border border-emerald-500/20">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Verifizierte Bewertungen</span>
+              <span>{lang === 'nl' ? 'Klantbeoordelingen' : 'Kundenbewertungen'}</span>
             </div>
             <h3 className="font-bold text-[17px] leading-snug">{business.name}</h3>
             <p className={`text-[12.5px] ${themeStyles.textMuted} mt-0.5`}>
@@ -351,7 +351,7 @@ export default function ReviewWidget({
         {featuredReview ? (
           <div className={`p-3.5 rounded-xl border ${themeStyles.border} ${themeStyles.cardBg} mb-3`}>
             <div className="flex items-center justify-between gap-2 mb-1.5">
-              <span className="font-semibold text-[13px]">{featuredReview.authorName || 'Kunde'}</span>
+              <span className="font-semibold text-[13px]">{featuredReview.authorName || (lang === 'nl' ? 'Klant' : 'Kunde')}</span>
               <div className="scale-90 origin-right">{renderStars(featuredReview.rating, 'w-3 h-3')}</div>
             </div>
             {featuredReview.text ? (
@@ -360,7 +360,7 @@ export default function ReviewWidget({
               </p>
             ) : (
               <p className={`text-[12px] leading-relaxed italic ${themeStyles.textMuted}`}>
-                (Verifizierte Sterne-Bewertung ohne Textbericht)
+                ({lang === 'nl' ? 'Sterrebeoordeling zonder tekst' : 'Sterne-Bewertung ohne Textbericht'})
               </p>
             )}
             {featuredReview.ownerReply && (
@@ -451,7 +451,7 @@ export default function ReviewWidget({
         <div className={`p-4 rounded-xl border ${themeStyles.border} ${themeStyles.cardBg} min-h-[110px] flex flex-col justify-between`}>
           <div>
             <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="font-bold text-[13.5px]">{currentReview.authorName || 'Verifizierter Kunde'}</span>
+              <span className="font-bold text-[13.5px]">{currentReview.authorName || (lang === 'nl' ? 'Klant' : 'Kunde')}</span>
               <div className="scale-90 origin-right">{renderStars(currentReview.rating, 'w-3.5 h-3.5')}</div>
             </div>
             {currentReview.text ? (
@@ -460,7 +460,7 @@ export default function ReviewWidget({
               </p>
             ) : (
               <p className={`text-[12px] leading-relaxed italic ${themeStyles.textMuted}`}>
-                (Verifizierte Sterne-Bewertung ohne Textbericht)
+                ({lang === 'nl' ? 'Sterrebeoordeling zonder tekst' : 'Sterne-Bewertung ohne Textbericht'})
               </p>
             )}
           </div>

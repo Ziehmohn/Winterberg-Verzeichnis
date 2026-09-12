@@ -774,11 +774,6 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                                 {r.source}
                               </span>
                             )}
-                            {(!r.source || r.source === 'internal') && (
-                              <span className="inline-flex items-center gap-1 text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-emerald-50 text-[#0F4C2E] border border-emerald-200/60">
-                                Verifiziert
-                              </span>
-                            )}
                           </div>
                           {r.date && (
                             <div className="text-[11.5px] text-[#8A928B]">
@@ -833,6 +828,14 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             ) : (
               <p className="text-[#8A928B] text-[15px] m-0">{lang === 'nl' ? 'Nog geen beoordelingen — wees de eerste stem!' : 'Noch keine Bewertungen — sei die erste Stimme.'}</p>
             )}
+          </div>
+
+          {/* Transparenzhinweis zu Bewertungen (EU-Omnibus / § 5b UWG) */}
+          <div className="mt-3 p-3.5 rounded-lg bg-[#FAF8F5] border border-[#EDE8E0] text-[12px] leading-relaxed text-[#7A837C] flex items-start gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-[#8A928B] shrink-0 mt-0.5" />
+            <p className="m-0">
+              {t("reviewsTransparencyNote")}
+            </p>
           </div>
 
           {onReviewSubmit && (

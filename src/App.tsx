@@ -748,15 +748,29 @@ export default function App() {
     
     try {
       await updateDoc(doc(db, 'businesses', businessId), { reviews: updatedReviews });
+      bumpRemoteBusinessesVersion(db);
     } catch (err) {
       console.error("Review save error", err);
       // Fallback if doc doesn't exist yet
       try {
         const bToUpdate = { ...business, reviews: updatedReviews };
         await setDoc(doc(db, 'businesses', businessId), bToUpdate, { merge: true });
+        bumpRemoteBusinessesVersion(db);
       } catch (e2) {
         console.error("Fallback review save error", e2);
       }
+    }
+
+    // Update local cache so that current client also preserves the new review across refreshes
+    try {
+      const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true) || [];
+      const updatedCache = cached.map(b => b.id === businessId ? { ...b, reviews: updatedReviews } : b);
+      if (!cached.find(b => b.id === businessId)) {
+        updatedCache.push({ ...business, reviews: updatedReviews });
+      }
+      setCachedItem(CACHE_KEYS.BUSINESSES, updatedCache);
+    } catch (cacheErr) {
+      console.warn("Could not update businesses cache after review submit:", cacheErr);
     }
 
     // Trigger automated email notification to business owner / recipient
