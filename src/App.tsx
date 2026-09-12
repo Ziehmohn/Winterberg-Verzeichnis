@@ -5166,7 +5166,11 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
                     </div>
                     <div className="text-[13px] text-[#8A928B] mt-[2px]">{review.authorName} · {review.createdAt ? new Date(review.createdAt).toLocaleDateString('de-DE') : (review.date ? new Date(review.date).toLocaleDateString('de-DE') : '')}</div>
-                    <p className="my-[10px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    {review.text ? (
+                      <p className="my-[10px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    ) : (
+                      <p className="my-[10px] text-[13.5px] text-[#8A928B] italic">(Reine Sterne-Bewertung ohne Text)</p>
+                    )}
                     
                     {/* Attached Review Images in Admin */}
                     {Array.isArray(review.images) && review.images.length > 0 && (
@@ -5227,7 +5231,11 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="text-[#F2761B] tracking-[2px]">{'★'.repeat(review.rating)}{'☆'.repeat(5-review.rating)}</div>
                     </div>
                     <div className="text-[13px] text-[#8A928B] mt-[2px]">{review.authorName} · {review.date ? new Date(review.date).toLocaleDateString('de-DE') : ''}</div>
-                    <p className="my-[8px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    {review.text ? (
+                      <p className="my-[8px] text-[15px] text-[#4A544D] leading-[1.6]">{review.text}</p>
+                    ) : (
+                      <p className="my-[8px] text-[13.5px] text-[#8A928B] italic">(Reine Sterne-Bewertung ohne Text)</p>
+                    )}
                     
                     {/* Attached Review Images in Admin (approved) */}
                     {Array.isArray(review.images) && review.images.length > 0 && (

@@ -323,7 +323,7 @@ export default function ReviewWidget({
   // 3. CARD LAYOUT (Rating Card with Quote)
   // ==========================================
   if (layout === 'card') {
-    const featuredReview = approvedReviews[0] || null;
+    const featuredReview = approvedReviews.find(r => !!r.text) || approvedReviews[0] || null;
 
     return (
       <div className={`font-sans antialiased p-5 rounded-2xl border transition-all max-w-[420px] w-full ${themeStyles.container}`}>
@@ -354,9 +354,15 @@ export default function ReviewWidget({
               <span className="font-semibold text-[13px]">{featuredReview.authorName || 'Kunde'}</span>
               <div className="scale-90 origin-right">{renderStars(featuredReview.rating, 'w-3 h-3')}</div>
             </div>
-            <p className={`text-[13px] leading-relaxed italic ${themeStyles.textMuted} line-clamp-3`}>
-              "{featuredReview.text}"
-            </p>
+            {featuredReview.text ? (
+              <p className={`text-[13px] leading-relaxed italic ${themeStyles.textMuted} line-clamp-3`}>
+                "{featuredReview.text}"
+              </p>
+            ) : (
+              <p className={`text-[12px] leading-relaxed italic ${themeStyles.textMuted}`}>
+                (Verifizierte Sterne-Bewertung ohne Textbericht)
+              </p>
+            )}
             {featuredReview.ownerReply && (
               <div className="mt-2 pt-2 border-t border-black/5 text-[11.5px] text-emerald-700 italic flex items-center gap-1">
                 <MessageSquare className="w-3 h-3 shrink-0" />
@@ -408,35 +414,31 @@ export default function ReviewWidget({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       
       {/* Header */}
-      <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-black/5">
+      <div className="flex items-center justify-between gap-4 mb-4">
         <div>
-          <div className="flex items-center gap-1.5">
-            <h3 className="font-bold text-[16.5px] leading-snug">{business.name}</h3>
-            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-600 mb-1 border border-emerald-500/20">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Kundenfeedback</span>
           </div>
-          <div className="flex items-center gap-2 mt-1">
-            {renderStars(Number(avgRating), 'w-3.5 h-3.5')}
-            <span className="font-bold text-[13px] text-[#F2761B]">{avgRating}</span>
-            <span className={`text-[12px] ${themeStyles.textMuted}`}>({reviewCount} Bewertungen)</span>
-          </div>
+          <h3 className="font-bold text-[16px] leading-snug">{business.name}</h3>
         </div>
 
         {approvedReviews.length > 1 && (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={() => setActiveSlide(prev => (prev === 0 ? approvedReviews.length - 1 : prev - 1))}
-              className="p-1.5 rounded-lg border border-black/10 hover:bg-black/5 transition-colors cursor-pointer"
-              aria-label="Vorherige Bewertung"
+              className={`p-1.5 rounded-lg border ${themeStyles.border} ${themeStyles.badgeBg} hover:opacity-80 transition-opacity cursor-pointer`}
+              title="Vorherige Bewertung"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="text-[11.5px] font-medium px-1 text-[#5F6B63]">
+            <span className={`text-[11.5px] px-1.5 font-semibold ${themeStyles.textMuted}`}>
               {activeSlide + 1}/{approvedReviews.length}
             </span>
             <button
               onClick={() => setActiveSlide(prev => (prev === approvedReviews.length - 1 ? 0 : prev + 1))}
-              className="p-1.5 rounded-lg border border-black/10 hover:bg-black/5 transition-colors cursor-pointer"
-              aria-label="Nächste Bewertung"
+              className={`p-1.5 rounded-lg border ${themeStyles.border} ${themeStyles.badgeBg} hover:opacity-80 transition-opacity cursor-pointer`}
+              title="Nächste Bewertung"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -452,9 +454,15 @@ export default function ReviewWidget({
               <span className="font-bold text-[13.5px]">{currentReview.authorName || 'Verifizierter Kunde'}</span>
               <div className="scale-90 origin-right">{renderStars(currentReview.rating, 'w-3.5 h-3.5')}</div>
             </div>
-            <p className={`text-[13.5px] leading-relaxed italic ${themeStyles.textMuted}`}>
-              "{currentReview.text}"
-            </p>
+            {currentReview.text ? (
+              <p className={`text-[13.5px] leading-relaxed italic ${themeStyles.textMuted}`}>
+                "{currentReview.text}"
+              </p>
+            ) : (
+              <p className={`text-[12px] leading-relaxed italic ${themeStyles.textMuted}`}>
+                (Verifizierte Sterne-Bewertung ohne Textbericht)
+              </p>
+            )}
           </div>
 
           {currentReview.ownerReply && (

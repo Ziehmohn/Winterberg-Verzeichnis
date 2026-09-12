@@ -103,8 +103,8 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
       alert(t("alertStarRating"));
       return;
     }
-    if (text.trim() === '') {
-      alert(t("alertReviewText"));
+    if (authorName.trim() === '') {
+      alert(t("alertAuthorName"));
       return;
     }
 
@@ -140,7 +140,7 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
     
     const newReview: Review = {
       id: 'rev_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 6),
-      authorName: authorName.trim() || (lang === 'nl' ? 'Bezoeker' : 'Besucher'),
+      authorName: authorName.trim(),
       businessId: business.id,
       text: text.trim(),
       rating,
@@ -177,45 +177,60 @@ export default function ReviewForm({ business, onReviewSubmit }: { business: Bus
           </div>
 
           {/* Star rating selector */}
-          <div className="flex items-center gap-1.5 mb-3.5">
-            {[1, 2, 3, 4, 5].map(star => (
-              <button 
-                key={star}
-                type="button"
-                className="border-none bg-transparent cursor-pointer text-[28px] leading-none p-0 transition-transform hover:scale-110"
-                style={{ color: star <= (hoverRating || rating) ? '#F2761B' : '#E7E2DA' }}
-                onMouseEnter={() => setHoverRating(star)}
-                onMouseLeave={() => setHoverRating(0)}
-                onClick={() => setRating(star)}
-                aria-label={`${star} Sterne`}
-              >
-                ★
-              </button>
-            ))}
-            {rating > 0 && (
-              <span className="text-xs font-semibold text-[#5F6B63] ml-2">
-                {rating} / 5
-              </span>
-            )}
+          <div className="mb-3.5">
+            <div className="text-xs font-semibold text-[#5F6B63] mb-1">
+              {lang === 'nl' ? 'Uw waardering *' : 'Deine Bewertung *'}
+            </div>
+            <div className="flex items-center gap-1.5">
+              {[1, 2, 3, 4, 5].map(star => (
+                <button 
+                  key={star}
+                  type="button"
+                  className="border-none bg-transparent cursor-pointer text-[28px] leading-none p-0 transition-transform hover:scale-110"
+                  style={{ color: star <= (hoverRating || rating) ? '#F2761B' : '#E7E2DA' }}
+                  onMouseEnter={() => setHoverRating(star)}
+                  onMouseLeave={() => setHoverRating(0)}
+                  onClick={() => setRating(star)}
+                  aria-label={`${star} Sterne`}
+                >
+                  ★
+                </button>
+              ))}
+              {rating > 0 && (
+                <span className="text-xs font-semibold text-[#5F6B63] ml-2">
+                  {rating} / 5
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Author Name */}
-          <input 
-            type="text"
-            placeholder={lang === 'nl' ? 'Uw naam (bijv. Jan Jansen)' : 'Dein Name (z. B. Michael S.)'}
-            value={authorName}
-            onChange={(e) => setAuthorName(e.target.value)}
-            className="w-full border border-[#E7E2DA] rounded-lg px-3.5 py-2.5 text-[14.5px] mb-3 bg-white outline-none focus:border-[#0F4C2E] focus:ring-1 focus:ring-[#0F4C2E] transition-all"
-          />
+          <div className="mb-3">
+            <label className="block text-xs font-semibold text-[#5F6B63] mb-1">
+              {lang === 'nl' ? 'Uw naam *' : 'Dein Name *'}
+            </label>
+            <input 
+              type="text"
+              placeholder={lang === 'nl' ? 'Uw naam (bijv. Jan Jansen)' : 'Dein Name (z. B. Michael S.)'}
+              value={authorName}
+              onChange={(e) => setAuthorName(e.target.value)}
+              className="w-full border border-[#E7E2DA] rounded-lg px-3.5 py-2.5 text-[14.5px] bg-white outline-none focus:border-[#0F4C2E] focus:ring-1 focus:ring-[#0F4C2E] transition-all"
+            />
+          </div>
 
           {/* Review Text */}
-          <textarea 
-            rows={3} 
-            placeholder={lang === 'nl' ? 'Hoe waren uw ervaringen? Wat vond u goed of wat kan beter?' : 'Wie waren deine Erfahrungen? Was hat dir besonders gefallen?'}
-            value={text} 
-            onChange={(e) => setText(e.target.value)} 
-            className="w-full border border-[#E7E2DA] rounded-lg px-3.5 py-2.5 text-[14.5px] bg-white resize-y outline-none focus:border-[#0F4C2E] focus:ring-1 focus:ring-[#0F4C2E] transition-all mb-3"
-          ></textarea>
+          <div className="mb-3">
+            <label className="block text-xs font-semibold text-[#5F6B63] mb-1">
+              {lang === 'nl' ? 'Ervaringsverslag (optioneel)' : 'Erfahrungsbericht (optional)'}
+            </label>
+            <textarea 
+              rows={3} 
+              placeholder={lang === 'nl' ? 'Optioneel: Hoe waren uw ervaringen? Wat vond u goed of wat kan beter?' : 'Optional: Wie waren deine Erfahrungen? Was hat dir besonders gefallen?'}
+              value={text} 
+              onChange={(e) => setText(e.target.value)} 
+              className="w-full border border-[#E7E2DA] rounded-lg px-3.5 py-2.5 text-[14.5px] bg-white resize-y outline-none focus:border-[#0F4C2E] focus:ring-1 focus:ring-[#0F4C2E] transition-all"
+            ></textarea>
+          </div>
 
           {/* Image Upload Area (Max 3 Images) */}
           <div className="mb-4">

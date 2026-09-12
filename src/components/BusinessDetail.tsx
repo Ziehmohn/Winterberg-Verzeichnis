@@ -793,7 +793,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                         ))}
                       </div>
                     </div>
-                    <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.6]">{r.text || (r as any).comment || ''}</p>
+                    {Boolean(r.text || (r as any).comment) && (
+                      <p className="mt-2 text-[14.5px] text-[#4A544D] leading-[1.6]">{r.text || (r as any).comment}</p>
+                    )}
 
                     {/* Attached Review Images */}
                     {Array.isArray(r.images) && r.images.length > 0 && (

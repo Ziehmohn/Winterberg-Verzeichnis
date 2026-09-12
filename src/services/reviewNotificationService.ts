@@ -115,7 +115,7 @@ export async function notifyBusinessNewReview(
       
       <div style="background-color: #FAF8F5; border-left: 4px solid #F2761B; padding: 14px 18px; margin: 18px 0; border-radius: 4px;">
         <div style="color: #F2761B; font-size: 18px; letter-spacing: 2px; margin-bottom: 6px;">${starsHtml} (${review.rating}/5)</div>
-        <p style="margin: 0; font-size: 15px; color: #1B211D; font-style: italic;">„${escapeHtml(review.text)}“</p>
+        ${review.text ? `<p style="margin: 0; font-size: 15px; color: #1B211D; font-style: italic;">„${escapeHtml(review.text)}“</p>` : `<p style="margin: 0; font-size: 13px; color: #8A928B; font-style: italic;">(Sterne-Bewertung ohne Textbericht)</p>`}
         <p style="margin: 8px 0 0 0; font-size: 12px; color: #5F6B63;">Gegeven door: ${escapeHtml(review.authorName || 'Bezoeker')}</p>
       </div>
 
@@ -144,7 +144,7 @@ export async function notifyBusinessNewReview(
       
       <div style="background-color: #FAF8F5; border-left: 4px solid #F2761B; padding: 14px 18px; margin: 18px 0; border-radius: 4px;">
         <div style="color: #F2761B; font-size: 18px; letter-spacing: 2px; margin-bottom: 6px;">${starsHtml} (${review.rating}/5 Sterne)</div>
-        <p style="margin: 0; font-size: 15px; color: #1B211D; font-style: italic;">„${escapeHtml(review.text)}“</p>
+        ${review.text ? `<p style="margin: 0; font-size: 15px; color: #1B211D; font-style: italic;">„${escapeHtml(review.text)}“</p>` : `<p style="margin: 0; font-size: 13px; color: #8A928B; font-style: italic;">(Sterne-Bewertung ohne Textbericht)</p>`}
         <p style="margin: 8px 0 0 0; font-size: 12px; color: #5F6B63;">Verfasst von: ${escapeHtml(review.authorName || 'Besucher')}</p>
       </div>
 
