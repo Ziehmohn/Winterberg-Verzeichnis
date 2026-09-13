@@ -9,6 +9,7 @@ import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
 import { getBusinessPath } from '../utils/routes';
+import { formatBusinessAddress } from '../utils';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -504,8 +505,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     const syncedGallery = (formData.galleryCategories || []).flatMap(c => (c.images || []).map(img => typeof img === 'string' ? img : img.url).filter(Boolean));
 
     const newId = formData.id || 'b_' + Date.now().toString(36);
+    const normalizedAddress = formatBusinessAddress(formData.address, formData.district);
     const dataToSubmit: Business = {
       ...formData,
+      address: normalizedAddress || formData.address || '',
       logoUrl: formData.logoUrl || '',
       logoBgColor: formData.logoBgColor || '#ffffff',
       jobs: formData.jobs || [],

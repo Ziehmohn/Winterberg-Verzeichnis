@@ -4,7 +4,7 @@ import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag, Heart } from 'lucide-react';
 import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta } from '../types';
-import { isOpenNow, canDisplayOpeningHours } from '../utils';
+import { isOpenNow, canDisplayOpeningHours, formatBusinessAddress, parseBusinessAddress } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { useFavorites } from '../utils/favorites';
@@ -338,7 +338,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             {(business.address || business.district) && (
               <span className="inline-flex items-center gap-2">
                 <MapPin className="w-4 h-4 shrink-0" />
-                <span>{business.address || (business.district ? `59955 Winterberg-${business.district}` : '59955 Winterberg')}</span>
+                <span>{formatBusinessAddress(business.address, business.district)}</span>
               </span>
             )}
             {avgRating ? (
@@ -1049,26 +1049,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             const hasDistrict = !!(business.district && business.district.trim());
             if (!hasAddress && !hasDistrict) return null;
 
-            let street = '';
-            let city = '';
-
-            if (hasAddress) {
-              const raw = business.address!.trim();
-              if (raw.includes(',')) {
-                const parts = raw.split(',');
-                street = parts[0]?.trim();
-                city = parts.slice(1).join(',').trim();
-              } else {
-                if (/^\d{5}/.test(raw) || raw.toLowerCase().includes('winterberg') || (hasDistrict && raw.toLowerCase() === business.district!.toLowerCase())) {
-                  city = raw;
-                } else {
-                  street = raw;
-                  city = hasDistrict ? `59955 Winterberg-${business.district}` : '59955 Winterberg';
-                }
-              }
-            } else if (hasDistrict) {
-              city = business.district === 'Winterberg' ? '59955 Winterberg' : `59955 Winterberg-${business.district}`;
-            }
+            const { street, city } = parseBusinessAddress(business.address, business.district);
+            if (!street && !city) return null;
 
             return (
               <div className="flex items-start gap-3 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md py-3 px-4">
@@ -1085,7 +1067,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           {(business.address || business.district) && (
             <a
               href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                business.address || `${business.district || ''}, Winterberg, Deutschland`
+                formatBusinessAddress(business.address, business.district) || `${business.district || ''}, Winterberg, Deutschland`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -1242,7 +1224,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             "telephone": business.phone || undefined,
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": business.address || (business.district ? `59955 Winterberg-${business.district}` : "Winterberg"),
+              "streetAddress": formatBusinessAddress(business.address, business.district) || "Winterberg",
               "addressLocality": business.district || "Winterberg",
               "addressRegion": "NRW",
               "postalCode": "59955",

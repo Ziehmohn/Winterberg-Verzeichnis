@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Business } from '../types';
 import { MapPin, ExternalLink } from 'lucide-react';
+import { formatBusinessAddress } from '../utils';
 
 // Fix Leaflet default icon path issues in React
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -50,7 +51,7 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
   useEffect(() => {
     if (position) return;
 
-    const queryAddress = business.address || (business.district ? `${business.district}, Winterberg` : 'Winterberg');
+    const queryAddress = formatBusinessAddress(business.address, business.district) || 'Winterberg';
     const cacheKey = `${queryAddress}, Deutschland`;
     if (geocodeCache[cacheKey]) {
       setPosition(geocodeCache[cacheKey]);
@@ -60,23 +61,20 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
 
     const fetchGeocode = async () => {
       try {
-        const query = encodeURIComponent(cacheKey);
         const res = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${query}&limit=1`,
-          { headers: { 'Accept': 'application/json', 'User-Agent': 'WinterbergVerzeichnisApp/1.0' } }
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(queryAddress + ', Deutschland')}&limit=1`
         );
         const data = await res.json();
         if (data && data.length > 0) {
-          const newPos: [number, number] = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
-          geocodeCache[cacheKey] = newPos;
-          setPosition(newPos);
+          const coords: [number, number] = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+          geocodeCache[cacheKey] = coords;
+          setPosition(coords);
         } else {
-          // Fallback to Winterberg city center
-          setPosition([51.1963, 8.5244]);
+          setError(true);
         }
-      } catch {
-        // Fallback to Winterberg city center on network error or rate limit
-        setPosition([51.1963, 8.5244]);
+      } catch (err) {
+        console.warn('Geocoding error:', err);
+        setError(true);
       } finally {
         setIsLoading(false);
       }
@@ -85,7 +83,7 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
     fetchGeocode();
   }, [business.address, business.district, position]);
 
-  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(business.address || (business.district ? `${business.district}, Winterberg` : 'Winterberg'))}`;
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(formatBusinessAddress(business.address, business.district) || 'Winterberg')}`;
 
   if (isLoading) {
     return (

@@ -29,6 +29,7 @@ import { Business, CategoryGroup, ThemeConfig } from '../types';
 import { useTranslation } from '../i18n';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 import { getLocalizedBusiness } from '../utils/translator';
+import { formatBusinessAddress } from '../utils';
 import { getCategorySlug, getSubcategorySlug } from '../utils/routes';
 import { getBestOfTitle, BEST_OF_DISCLAIMER, SUBCATEGORY_PLURALS } from '../utils/bestOfTitles';
 import { RankingInfoModal } from './RankingInfoModal';
@@ -543,7 +544,7 @@ export default function BestOfPage({
 
                       <span className="flex items-center gap-1 text-xs">
                         <MapPin className="w-3.5 h-3.5 text-[#0F4C2E]" />
-                        {business.address || (business.district ? `59955 Winterberg-${business.district}` : '59955 Winterberg')}
+                        {formatBusinessAddress(business.address, business.district)}
                       </span>
                     </div>
 

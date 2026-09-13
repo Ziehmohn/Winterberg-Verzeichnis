@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import { categories } from '../data';
 import { doc, setDoc } from 'firebase/firestore';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
+import { formatBusinessAddress } from '../utils';
 import { useAuth } from '../AuthContext';
 import Login from './Login';
 import { PRICING, isPricingOfferActive } from '../config';
@@ -93,8 +94,10 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
       .filter(Boolean);
 
     const newId = 'b_' + Date.now().toString(36);
+    const normalizedAddress = formatBusinessAddress(formData.address, formData.district);
     const dataToSubmit = {
       ...formData,
+      address: normalizedAddress || formData.address || '',
       id: newId,
       services: parsedServices.length > 0 ? parsedServices : (formData.services || []),
       products: parsedProducts.length > 0 ? parsedProducts : (formData.products || []),

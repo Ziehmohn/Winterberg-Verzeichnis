@@ -1,6 +1,7 @@
 import { Business, Job, Review } from '../types';
 import { getBusinessPath, getCategorySlug, getSubcategorySlug } from './routes';
 import { getLocalizedBusiness } from './translator';
+import { formatBusinessAddress } from '../utils';
 
 const BASE_URL = 'https://winterberg-verzeichnis.de';
 
@@ -103,7 +104,7 @@ export function generateLocalBusinessSchema(business: Business, lang: 'de' | 'nl
     email: business.email || undefined,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: business.address,
+      streetAddress: formatBusinessAddress(business.address, business.district) || undefined,
       addressLocality: business.district || 'Winterberg',
       postalCode: '59955',
       addressCountry: 'DE'

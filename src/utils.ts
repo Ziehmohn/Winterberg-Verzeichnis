@@ -84,3 +84,90 @@ export function isOpenNow(openingHours: OpeningHours | undefined, t: (key: strin
 
   return { isOpen: currentlyOpen, text };
 }
+
+/**
+ * Standardizes a business address to always guarantee that a non-Winterberg district
+ * is correctly reflected as "59955 Winterberg-[Ortsteil]".
+ *
+ * Examples:
+ * - ("Hochsauerlandstraße 15, 59955 Winterberg", "Siedlinghausen") => "Hochsauerlandstraße 15, 59955 Winterberg-Siedlinghausen"
+ * - ("Poststraße 6, 59955 Winterberg", "Winterberg") => "Poststraße 6, 59955 Winterberg"
+ * - ("", "Siedlinghausen") => "59955 Winterberg-Siedlinghausen"
+ * - ("Hochsauerlandstraße 15", "Siedlinghausen") => "Hochsauerlandstraße 15, 59955 Winterberg-Siedlinghausen"
+ */
+export function formatBusinessAddress(address?: string, district?: string): string {
+  const cleanAddr = address?.trim() || '';
+  const cleanDist = district?.trim() || '';
+
+  const isCoreOrEmptyDistrict = !cleanDist || cleanDist === 'Winterberg' || cleanDist === 'Winterberg (Kernstadt)';
+
+  if (!cleanAddr) {
+    if (isCoreOrEmptyDistrict) {
+      return cleanDist ? '59955 Winterberg' : '';
+    }
+    return `59955 Winterberg-${cleanDist}`;
+  }
+
+  if (cleanAddr.includes(',')) {
+    const parts = cleanAddr.split(',').map(p => p.trim()).filter(Boolean);
+    const street = parts[0] || '';
+    const cityPart = parts.slice(1).join(', ').trim();
+
+    if (isCoreOrEmptyDistrict) {
+      return cleanAddr;
+    }
+
+    if (cityPart.toLowerCase().includes(cleanDist.toLowerCase())) {
+      return cleanAddr;
+    }
+
+    if (/59955\s+Winterberg/i.test(cityPart)) {
+      const updatedCity = cityPart.replace(/59955\s+Winterberg/i, `59955 Winterberg-${cleanDist}`);
+      return `${street}, ${updatedCity}`;
+    }
+
+    if (/Winterberg/i.test(cityPart)) {
+      const updatedCity = cityPart.replace(/Winterberg/i, `Winterberg-${cleanDist}`);
+      return `${street}, ${updatedCity}`;
+    }
+
+    return `${cleanAddr}-${cleanDist}`;
+  }
+
+  // Address has no comma
+  if (/^\d{5}\s+Winterberg/i.test(cleanAddr)) {
+    if (!isCoreOrEmptyDistrict && !cleanAddr.toLowerCase().includes(cleanDist.toLowerCase())) {
+      return cleanAddr.replace(/59955\s+Winterberg/i, `59955 Winterberg-${cleanDist}`);
+    }
+    return cleanAddr;
+  }
+
+  if (/^Winterberg/i.test(cleanAddr)) {
+    if (!isCoreOrEmptyDistrict && !cleanAddr.toLowerCase().includes(cleanDist.toLowerCase())) {
+      return cleanAddr.replace(/Winterberg/i, `Winterberg-${cleanDist}`);
+    }
+    return cleanAddr;
+  }
+
+  // Street only
+  const city = isCoreOrEmptyDistrict ? '59955 Winterberg' : `59955 Winterberg-${cleanDist}`;
+  return `${cleanAddr}, ${city}`;
+}
+
+/**
+ * Splits a formatted address into street and city parts for two-line UI display.
+ */
+export function parseBusinessAddress(address?: string, district?: string): { street: string; city: string; full: string } {
+  const full = formatBusinessAddress(address, district);
+  if (!full) return { street: '', city: '', full: '' };
+
+  if (full.includes(',')) {
+    const parts = full.split(',').map(p => p.trim()).filter(Boolean);
+    const street = parts[0] || '';
+    const city = parts.slice(1).join(', ').trim();
+    return { street, city, full };
+  }
+
+  return { street: '', city: full, full };
+}
+

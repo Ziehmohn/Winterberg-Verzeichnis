@@ -6,6 +6,7 @@ import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import { useFavorites } from '../utils/favorites';
+import { formatBusinessAddress } from '../utils';
 import RankingBadge from './RankingBadge';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 
@@ -253,7 +254,7 @@ export default function BusinessCard({
         <div className="mt-auto pt-3.5 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
           <MapPin className="w-4 h-4 shrink-0 text-[#8A928B]" />
           <span className="text-[13.5px] leading-tight truncate">
-            {business.address || (business.district ? `59955 Winterberg-${business.district}` : '59955 Winterberg')}
+            {formatBusinessAddress(business.address, business.district)}
           </span>
         </div>
 
