@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -4735,6 +4735,87 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     return matchesCategory && matchesLocation && matchesSearch;
   }).sort((a, b) => a.name.localeCompare(b.name));
 
+  // --- 2-Stufige Backend-Navigation (Variante A) ---
+  type AdminCategoryKey = 'content' | 'business' | 'design' | 'tech';
+
+  interface AdminSubTab {
+    id: 'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions';
+    label: string;
+    badge?: number | string;
+    icon: any;
+  }
+
+  interface AdminCategoryGroup {
+    key: AdminCategoryKey;
+    label: string;
+    shortDesc: string;
+    icon: any;
+    tabs: AdminSubTab[];
+  }
+
+  const pendingReviewsCount = allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending')).length;
+  const pendingBusinessesCount = allowedBusinesses.filter((b: Business) => b.status === 'pending').length;
+
+  const adminCategories: AdminCategoryGroup[] = [
+    {
+      key: 'content',
+      label: 'Inhalte & Redaktion',
+      shortDesc: 'Einträge, News, Reviews & Q&A',
+      icon: FileText,
+      tabs: [
+        { id: 'entries', label: 'Einträge', badge: pendingBusinessesCount > 0 ? pendingBusinessesCount : undefined, icon: Building2 },
+        ...(isAdmin ? [{ id: 'news' as const, label: 'News & Aktuelles', icon: Newspaper }] : []),
+        { id: 'reviews', label: 'Bewertungen', badge: pendingReviewsCount > 0 ? pendingReviewsCount : undefined, icon: Star },
+        ...(isAdmin ? [{ id: 'questions' as const, label: 'Fragen & Antworten', icon: MessageSquare }] : [])
+      ]
+    },
+    {
+      key: 'business',
+      label: 'Geschäft & Partner',
+      shortDesc: 'Claims, Abrechnung, Preise & Siegel',
+      icon: Briefcase,
+      tabs: [
+        ...(isAdmin ? [{ id: 'claims' as const, label: 'Übernahmen (Claims)', icon: ShieldCheck }] : []),
+        { id: 'abrechnung', label: 'Abrechnung', icon: CreditCard },
+        ...(isAdmin ? [
+          { id: 'pricing' as const, label: 'Preise & Aktionen', icon: Award },
+          { id: 'werbung' as const, label: 'Werbung', icon: Sparkles }
+        ] : []),
+        { id: 'widgets', label: 'Widget & Siegel', icon: Sparkles }
+      ]
+    },
+    ...(isAdmin ? [
+      {
+        key: 'design' as AdminCategoryKey,
+        label: 'Design & Optik',
+        shortDesc: 'Schriften, Divider & Vorschau',
+        icon: Palette,
+        tabs: [
+          { id: 'design' as const, label: 'Design, Fonts & Divider', icon: Palette },
+          { id: 'test_kachel' as const, label: 'Test-Kachel Vorschau', icon: Layers }
+        ]
+      },
+      {
+        key: 'tech' as AdminCategoryKey,
+        label: 'Technik & SEO',
+        shortDesc: 'SEO, 301/302 Redirects & Skripte',
+        icon: Settings,
+        tabs: [
+          { id: 'seo' as const, label: 'SEO & Indexierung', icon: SearchCode },
+          { id: 'redirects' as const, label: 'Redirects (301/302)', icon: ArrowUpDown },
+          { id: 'scripts' as const, label: 'Skripte & Tracking', icon: Code2 }
+        ]
+      }
+    ] : [])
+  ];
+
+  const activeCategoryKey = useMemo<AdminCategoryKey>(() => {
+    const found = adminCategories.find(cat => cat.tabs.some(t => t.id === activeTab));
+    return found ? found.key : adminCategories[0]?.key || 'content';
+  }, [activeTab, adminCategories]);
+
+  const currentCategory = adminCategories.find(c => c.key === activeCategoryKey) || adminCategories[0];
+
   return (
     <main className="flex-1 max-w-[1180px] mx-auto w-full px-6 py-[32px] pb-[80px]">
       <div className="flex justify-between items-center gap-4 flex-wrap mb-[22px]">
@@ -4750,33 +4831,97 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         </button>
       </div>
 
-      <div className="flex gap-[6px] flex-wrap mb-[24px] bg-white border border-[#EDE8E0] rounded-md p-1.5">
-        {[
-          { id: 'entries', label: 'Einträge' },
-          { id: 'widgets', label: '⚡ Widget & Siegel' },
-          { id: 'reviews', label: 'Bewertungen' },
-          { id: 'abrechnung', label: 'Abrechnung' },
-          ...(isAdmin ? [
-            { id: 'pricing', label: '🏷️ Preise & Aktionen' },
-            { id: 'design', label: 'Design & Fonts' },
-            { id: 'werbung', label: 'Werbung' },
-            { id: 'news', label: 'News' },
-            { id: 'seo', label: 'SEO' },
-            { id: 'redirects', label: 'Redirects' },
-            { id: 'scripts', label: 'Skripte' },
-            { id: 'test_kachel', label: 'Test Kachel' },
-            { id: 'claims', label: '📋 Übernahmen' },
-            { id: 'questions', label: '💬 Fragen & Antworten' }
-          ] : [])
-        ].map(tab => (
-          <button 
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
-            className={`border-none rounded px-4 py-2 text-[14.5px] cursor-pointer transition-colors ${activeTab === tab.id ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-normal hover:bg-black/5'}`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* 2-Stufiges Navigationsmenü (Variante A) */}
+      <div className="mb-6 space-y-2.5">
+        {/* Ebene 1: Hauptkategorien */}
+        <div className={`grid gap-2 ${adminCategories.length <= 2 ? 'grid-cols-2' : 'grid-cols-2 lg:grid-cols-4'}`}>
+          {adminCategories.map((category) => {
+            const isCategoryActive = activeCategoryKey === category.key;
+            const CategoryIcon = category.icon;
+            
+            // Total pending badge inside this category
+            const totalCategoryBadge = category.tabs.reduce((sum, t) => sum + (typeof t.badge === 'number' ? t.badge : 0), 0);
+
+            return (
+              <button
+                key={category.key}
+                type="button"
+                onClick={() => {
+                  if (!isCategoryActive && category.tabs.length > 0) {
+                    setActiveTab(category.tabs[0].id);
+                  }
+                }}
+                className={`relative text-left p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer flex items-center gap-3 ${
+                  isCategoryActive
+                    ? 'bg-[#0F4C2E] border-[#0F4C2E] text-white shadow-md ring-2 ring-[#0F4C2E]/20'
+                    : 'bg-white border-[#EDE8E0] text-[#1B211D] hover:border-[#0F4C2E]/40 hover:bg-[#FAF8F5]'
+                }`}
+              >
+                <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                  isCategoryActive
+                    ? 'bg-white/15 text-[#F2761B]'
+                    : 'bg-[#FAF8F5] border border-[#EDE8E0] text-[#5F6B63]'
+                }`}>
+                  <CategoryIcon className="w-5 h-5" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="font-bold text-xs sm:text-sm truncate leading-tight">
+                      {category.label}
+                    </span>
+                    {totalCategoryBadge > 0 && (
+                      <span className="bg-[#F2761B] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full shrink-0">
+                        {totalCategoryBadge}
+                      </span>
+                    )}
+                  </div>
+                  <div className={`text-[11px] truncate mt-0.5 ${
+                    isCategoryActive ? 'text-white/75' : 'text-[#8A928B]'
+                  }`}>
+                    {category.shortDesc}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Ebene 2: Unterreiter der aktiven Kategorie */}
+        <div className="bg-white border border-[#EDE8E0] rounded-xl p-2 flex flex-wrap items-center gap-1.5 shadow-xs">
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#8A928B] uppercase tracking-wider border-r border-[#EDE8E0] mr-1">
+            <span>{currentCategory.label}:</span>
+          </div>
+
+          {currentCategory.tabs.map((tab) => {
+            const isTabActive = activeTab === tab.id;
+            const TabIcon = tab.icon;
+
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                  isTabActive
+                    ? 'bg-[#E8F1EB] text-[#0F4C2E] font-bold border border-[#0F4C2E]/25 shadow-xs'
+                    : 'text-[#5F6B63] hover:text-[#1B211D] hover:bg-[#FAF8F5] border border-transparent'
+                }`}
+              >
+                <TabIcon className={`w-4 h-4 ${isTabActive ? 'text-[#0F4C2E]' : 'text-[#8A928B]'}`} />
+                <span>{tab.label}</span>
+
+                {typeof tab.badge === 'number' && tab.badge > 0 && (
+                  <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
+                    isTabActive ? 'bg-[#0F4C2E] text-white' : 'bg-[#F2761B] text-white'
+                  }`}>
+                    {tab.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {activeTab === 'entries' ? (

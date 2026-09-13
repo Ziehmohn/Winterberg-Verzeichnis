@@ -167,7 +167,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
                     </span>
                   </div>
                   
-                  <h3 className="font-display text-[20px] font-bold text-[#1B211D] leading-snug mb-[12px] line-clamp-2 group-hover:text-[#0F4C2E] transition-colors">
+                  <h3 className="font-display text-[20px] font-bold text-[#1B211D] leading-snug mb-[12px] group-hover:text-[#0F4C2E] transition-colors">
                     {item.title}
                   </h3>
                   
