@@ -312,13 +312,23 @@ export function NewsContentRenderer({ content }: { content: string }) {
 function StandaloneContactBox({ rawContact, heading }: { rawContact: string; heading?: string }) {
   if (!rawContact) return null;
 
+  // Extract heading if inside markdown
+  const headingMatch = rawContact.match(/^###\s+([^\n]+)/m);
+  const effectiveHeading = heading || (headingMatch ? headingMatch[1].trim() : "Ansprechpartner & Beratung");
+  const contentWithoutHeading = rawContact.replace(/^###\s+[^\n]+\n?/m, '').trim();
+
+  // Collect bottom action buttons across all blocks
+  const bottomActions: string[] = [];
+
+  const blocks = contentWithoutHeading.split(/\n{2,}/);
+
   return (
-    <div className="mt-12 bg-white border border-[#EDE8E0] rounded-lg p-6 sm:p-8 shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
+    <div className="mt-12 bg-white border border-[#EDE8E0] rounded-2xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
       <div className="mb-6">
-        <UnderlinedHeading text={heading || "Ansprechpartner & Beratung"} as="h3" />
+        <UnderlinedHeading text={effectiveHeading} as="h3" />
       </div>
       <div className="space-y-4 text-[15.5px] md:text-[16.5px] text-[#3F4B42] leading-relaxed">
-        {rawContact.split(/\n{2,}/).map((sec, cIdx) => {
+        {blocks.map((sec, cIdx) => {
           const secLines = sec.trim().split('\n');
           return (
             <div key={cIdx} className="space-y-2.5">
@@ -326,8 +336,20 @@ function StandaloneContactBox({ rawContact, heading }: { rawContact: string; hea
                 const isBullet = /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim());
                 const cleaned = isBullet ? line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim() : line.trim();
                 
-                if (cleaned.startsWith('### ')) {
-                  return null; // Heading already displayed above
+                if (!cleaned) return null;
+
+                // Check if this line is a profile link or bottom action button
+                const linkMatch = cleaned.match(/\[([^\]]+)\]\(([^)]+)\)/);
+                const isMailto = /mailto:/i.test(cleaned) || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(cleaned);
+                const isActionLink = linkMatch && !isMailto && (
+                  /unternehmensprofil|bedrijfsprofiel|profilseite|location-profil|profil|ticket/i.test(cleaned) ||
+                  /^\s*\[/.test(cleaned)
+                );
+
+                if (isActionLink) {
+                  // Save for the bottom container and do NOT render inside the bullet list!
+                  bottomActions.push(linkMatch[0]);
+                  return null;
                 }
 
                 return (
@@ -342,6 +364,16 @@ function StandaloneContactBox({ rawContact, heading }: { rawContact: string; hea
             </div>
           );
         })}
+
+        {bottomActions.length > 0 && (
+          <div className="pt-3 mt-4 border-t border-[#EDE8E0]/70 flex flex-wrap items-center gap-3">
+            {bottomActions.map((action, aIdx) => (
+              <React.Fragment key={aIdx}>
+                {renderInlineFormatted(action)}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
