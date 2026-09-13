@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-09-12
+# Stand: 2026-09-13
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -243,7 +243,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Stockhausen Treppen GmbH](https://www.winterberg-verzeichnis.de/handwerk/schreinereien/stockhausen-treppen-gmbh)
 - **Kategorie:** Handwerk > Schreinereien
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Nuhnetalstraße 132, 59955 Winterberg
+- **Adresse:** Nuhnetalstraße 132, 59955 Winterberg-Züschen
 - **Telefon:** 02981 8969060
 - **Webseite:** https://stockhausen-treppen.de/
 - **Beschreibung (DE):** Stockhausen Treppen - Ihr Spezialist für individuellen Treppenbau.
@@ -253,7 +253,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Rudolf Ittermann](https://www.winterberg-verzeichnis.de/handwerk/schreinereien/rudolf-ittermann)
 - **Kategorie:** Handwerk > Schreinereien
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Am Eschenberg 8, 59955 Winterberg
+- **Adresse:** Am Eschenberg 8, 59955 Winterberg-Niedersfeld
 - **Telefon:** 02985 8100
 - **Beschreibung (DE):** Rudolf Ittermann Tischlerei in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/schreinereien/rudolf-ittermann
@@ -262,7 +262,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Daniel Sögtrop Tischlerei](https://www.winterberg-verzeichnis.de/handwerk/schreinereien/daniel-soegtrop-tischlerei)
 - **Kategorie:** Handwerk > Schreinereien
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstr. 72, 59955 Winterberg
+- **Adresse:** Hochsauerlandstr. 72, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 9740310
 - **Webseite:** https://tischlerei-soegtrop.de/
 - **Beschreibung (DE):** Daniel Sögtrop Tischlerei - Ihr Ansprechpartner für Holz und Möbel.
@@ -290,7 +290,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Elektro Leiße GmbH](https://www.winterberg-verzeichnis.de/handwerk/elektriker/elektro-leisse-gmbh)
 - **Kategorie:** Handwerk > Elektriker
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Sorpestraße 11, 59955 Winterberg
+- **Adresse:** Sorpestraße 11, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 97000
 - **Webseite:** https://elektro-leisse.de
 - **Beschreibung (DE):** Elektroinstallationen und Fachhandel in Winterberg-Siedlinghausen.
@@ -325,7 +325,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Markus Klauke GmbH](https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/markus-klauke-gmbh)
 - **Kategorie:** Handwerk > Maler & Lackierer
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Senge-Platten-Straße 8, 59955 Winterberg
+- **Adresse:** Senge-Platten-Straße 8, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 974390
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/markus-klauke-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/schilders/markus-klauke-gmbh
@@ -333,7 +333,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Malerbetrieb Schnorbus](https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/malerbetrieb-schnorbus)
 - **Kategorie:** Handwerk > Maler & Lackierer
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Oberstraße 12, 59955 Winterberg
+- **Adresse:** Oberstraße 12, 59955 Winterberg-Züschen
 - **Telefon:** 02981 928737
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/malerbetrieb-schnorbus
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/schilders/malerbetrieb-schnorbus
@@ -357,7 +357,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [GarNa; Garten und Natur](https://www.winterberg-verzeichnis.de/handwerk/gartenbauer/garna-garten-und-natur)
 - **Kategorie:** Handwerk > Gartenbauer
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Sorpestraße 34a, 59955 Winterberg
+- **Adresse:** Sorpestraße 34a, 59955 Winterberg-Siedlinghausen
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/gartenbauer/garna-garten-und-natur
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/hoveniers/garna-garten-und-natur
 
@@ -436,7 +436,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [ATMOS EcoHeat - Effiziente Direktheizungen & Heizkörper](https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper)
 - **Kategorie:** Handwerk > Heizungstechnik
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Allenbergstraße 26, 59955 Winterberg
+- **Adresse:** Allenbergstraße 26, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 891056
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper
@@ -462,7 +462,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Meisterbetrieb Menke](https://www.winterberg-verzeichnis.de/handwerk/dachdecker/meisterbetrieb-menke)
 - **Kategorie:** Handwerk > Dachdecker
 - **Ort / Ortsteil:** Silbach
-- **Adresse:** Am Iberg 2, 59955 Winterberg
+- **Adresse:** Am Iberg 2, 59955 Winterberg-Silbach
 - **Telefon:** 02983 1404
 - **Webseite:** mailto:info@meisterbetrieb-menke.de
 - **Beschreibung (DE):** Dachdecker Meisterbetrieb
@@ -546,7 +546,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Hairfeeling Kai Padberg](https://www.winterberg-verzeichnis.de/handwerk/friseur/hairfeeling-kai-padberg)
 - **Kategorie:** Handwerk > Friseur
 - **Ort / Ortsteil:** Hildfeld
-- **Adresse:** Hildfelder Str. 37, 59955 Winterberg
+- **Adresse:** Hildfelder Str. 37, 59955 Winterberg-Hildfeld
 - **Telefon:** 02985 1046
 - **Beschreibung (DE):** Friseursalon im Ortsteil Hildfeld.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/hairfeeling-kai-padberg
@@ -555,7 +555,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Hairlounge by Hannah](https://www.winterberg-verzeichnis.de/handwerk/friseur/hairlounge-by-hannah)
 - **Kategorie:** Handwerk > Friseur
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Mittelstraße 20, 59955 Winterberg
+- **Adresse:** Mittelstraße 20, 59955 Winterberg-Züschen
 - **Beschreibung (DE):** Friseursalon in Züschen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/hairlounge-by-hannah
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/kappers/hairlounge-by-hannah
@@ -563,7 +563,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Friseursalon Koch](https://www.winterberg-verzeichnis.de/handwerk/friseur/friseursalon-koch)
 - **Kategorie:** Handwerk > Friseur
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Mollseifener Str. 2, 59955 Winterberg
+- **Adresse:** Mollseifener Str. 2, 59955 Winterberg-Züschen
 - **Telefon:** 02981 6899
 - **Beschreibung (DE):** Friseursalon im Ortsteil Züschen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/friseursalon-koch
@@ -572,7 +572,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Cutja](https://www.winterberg-verzeichnis.de/handwerk/friseur/cutja)
 - **Kategorie:** Handwerk > Friseur
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Negertstraße 1, 59955 Winterberg
+- **Adresse:** Negertstraße 1, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 1256
 - **Beschreibung (DE):** Friseursalon in Siedlinghausen. Spezialisiert auf Brautfrisuren, Flechtfrisuren und Hochsteckfrisuren.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/cutja
@@ -758,7 +758,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Netto Marken-Discount](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/netto-marken-discount)
 - **Kategorie:** Einzelhandel > Supermarkt
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstr. 60, 59955 Winterberg
+- **Adresse:** Hochsauerlandstr. 60, 59955 Winterberg-Siedlinghausen
 - **Webseite:** https://www.netto-online.de/
 - **Beschreibung (DE):** Lebensmittel, frische Backwaren, Obst und Gemüse.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/netto-marken-discount
@@ -767,7 +767,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Netto Marken-Discount](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/netto-marken-discount)
 - **Kategorie:** Einzelhandel > Supermarkt
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstr. 4, 59955 Winterberg
+- **Adresse:** Ruhrstr. 4, 59955 Winterberg-Niedersfeld
 - **Webseite:** https://www.netto-online.de/
 - **Beschreibung (DE):** Lebensmittel, frische Backwaren, Obst und Gemüse.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/netto-marken-discount
@@ -803,7 +803,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Dorfladen Wilmes](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/dorfladen-wilmes)
 - **Kategorie:** Einzelhandel > Supermarkt
 - **Ort / Ortsteil:** Silbach
-- **Adresse:** Wiesenstr. 12, 59955 Winterberg
+- **Adresse:** Wiesenstr. 12, 59955 Winterberg-Silbach
 - **Telefon:** 02983 1774
 - **Beschreibung (DE):** Lebensmittel und Artikel für den täglichen Bedarf.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/dorfladen-wilmes
@@ -812,7 +812,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [EDEKA Lingenauber](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/edeka-lingenauber)
 - **Kategorie:** Einzelhandel > Supermarkt
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Nuhnetalstraße 46, 59955 Winterberg
+- **Adresse:** Nuhnetalstraße 46, 59955 Winterberg-Züschen
 - **Webseite:** https://www.edeka.de/
 - **Beschreibung (DE):** EDEKA Markt mit vielfältigem Sortiment.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/edeka-lingenauber
@@ -1126,7 +1126,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Lingenauber](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/lingenauber)
 - **Kategorie:** Gastronomie > Kneipen und Bars
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstraße 15, 59955 Winterberg
+- **Adresse:** Hochsauerlandstraße 15, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 8231
 - **Webseite:** https://lingenaubers.de
 - **Beschreibung (DE):** Gastrokneipe in Siedlinghausen. Bietet Sitzplätze im Freien und Hunde sind erlaubt.
@@ -1195,7 +1195,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Die Sperre | Landhotel & Restaurant](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/die-sperre-landhotel-und-restaurant)
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Sorpestraße 80, 59955 Winterberg
+- **Adresse:** Sorpestraße 80, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 969960
 - **Beschreibung (DE):** Gemütliches Landhotel und Restaurant in Winterberg-Siedlinghausen mit regionaler Sauerländer Küche und herzlicher Gastfreundschaft.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/die-sperre-landhotel-und-restaurant
@@ -1341,7 +1341,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Restaurant Clemens Altastenberg](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-clemens-altastenberg)
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Altastenberg
-- **Adresse:** Renauweg 48, 59955 Winterberg
+- **Adresse:** Renauweg 48, 59955 Winterberg-Altastenberg
 - **Telefon:** 02981 92410
 - **Webseite:** https://hotel-clemens.de
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-clemens-altastenberg
@@ -1486,7 +1486,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Hochheide-Hütte](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hochheide-huette)
 - **Kategorie:** Gastronomie > Skihütten
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Auf der Knippe 100, 59955 Winterberg
+- **Adresse:** Auf der Knippe 100, 59955 Winterberg-Niedersfeld
 - **Webseite:** https://hochheidehuette-niedersfeld.de
 - **Beschreibung (DE):** Gemütliche Hütte auf der Hochheide mit großer Sonnenterrasse, Speisen und Getränken.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hochheide-huette
@@ -1576,7 +1576,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Wingenbach & Partner mbB](https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/wingenbach-und-partner-mbb)
 - **Kategorie:** Dienstleistungen > Steuerberater
 - **Ort / Ortsteil:** Silbach
-- **Adresse:** Wiesenstraße 35, 59955 Winterberg
+- **Adresse:** Wiesenstraße 35, 59955 Winterberg-Silbach
 - **Telefon:** 02983 969260
 - **Beschreibung (DE):** Steuerberater in Silbach.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/wingenbach-und-partner-mbb
@@ -1585,7 +1585,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [BSK Steuerberatung GmbH](https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/bsk-steuerberatung-gmbh)
 - **Kategorie:** Dienstleistungen > Steuerberater
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** An d. Ebenau 4, 59955 Winterberg
+- **Adresse:** An d. Ebenau 4, 59955 Winterberg-Züschen
 - **Telefon:** 02981 92530
 - **Beschreibung (DE):** Steuerberatungsgesellschaft in Züschen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/bsk-steuerberatung-gmbh
@@ -1594,7 +1594,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Lückel & Partner](https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/lueckel-und-partner)
 - **Kategorie:** Dienstleistungen > Steuerberater
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstraße 78b, 59955 Winterberg
+- **Adresse:** Hochsauerlandstraße 78b, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02751 93636
 - **Beschreibung (DE):** Unternehmens- und Steuerberatung in Siedlinghausen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/lueckel-und-partner
@@ -1621,7 +1621,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Werbeagentur WERBSTATT](https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/werbeagentur-werbstatt)
 - **Kategorie:** Dienstleistungen > Marketingdienstleistungen
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Senge-Platten-Straße 2, 59955 Winterberg
+- **Adresse:** Senge-Platten-Straße 2, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 1632
 - **Beschreibung (DE):** Ihre Werbeagentur in Siedlinghausen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/werbeagentur-werbstatt
@@ -1712,7 +1712,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Sparkasse Mitten im Sauerland BeratungsCenter Siedlinghausen](https://www.winterberg-verzeichnis.de/dienstleistungen/banken/sparkasse-mitten-im-sauerland-beratungscenter-siedlinghausen)
 - **Kategorie:** Dienstleistungen > Banken
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstr. 17, 59955 Winterberg
+- **Adresse:** Hochsauerlandstr. 17, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 0291 2080
 - **Beschreibung (DE):** Bank und Serviceleistungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/banken/sparkasse-mitten-im-sauerland-beratungscenter-siedlinghausen
@@ -1721,7 +1721,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Sparkasse Mitten im Sauerland - SB Center](https://www.winterberg-verzeichnis.de/dienstleistungen/banken/sparkasse-mitten-im-sauerland-sb-center)
 - **Kategorie:** Dienstleistungen > Banken
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Nuhnetalstraße 54, 59955 Winterberg
+- **Adresse:** Nuhnetalstraße 54, 59955 Winterberg-Züschen
 - **Telefon:** 0291 2080
 - **Beschreibung (DE):** Geldtransferdienst und Bank.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/banken/sparkasse-mitten-im-sauerland-sb-center
@@ -1730,7 +1730,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Sparkasse Mitten im Sauerland - BeratungsCenter](https://www.winterberg-verzeichnis.de/dienstleistungen/banken/sparkasse-mitten-im-sauerland-beratungscenter)
 - **Kategorie:** Dienstleistungen > Banken
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstraße 34, 59955 Winterberg
+- **Adresse:** Ruhrstraße 34, 59955 Winterberg-Niedersfeld
 - **Telefon:** 0291 2080
 - **Beschreibung (DE):** Bank und Serviceleistungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/banken/sparkasse-mitten-im-sauerland-beratungscenter
@@ -1739,7 +1739,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Volksbank Brilon, Filiale Niedersfeld](https://www.winterberg-verzeichnis.de/dienstleistungen/banken/volksbank-brilon-filiale-niedersfeld)
 - **Kategorie:** Dienstleistungen > Banken
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstraße 24-26, 59955 Winterberg
+- **Adresse:** Ruhrstraße 24-26, 59955 Winterberg-Niedersfeld
 - **Telefon:** 02985 425
 - **Beschreibung (DE):** Bank und Serviceleistungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/banken/volksbank-brilon-filiale-niedersfeld
@@ -2004,7 +2004,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Tennisplätze Niedersfeld](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-niedersfeld)
 - **Kategorie:** Ski, Bike & Sport > Tennisplätze
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** An der Hille 6b, 59955 Winterberg
+- **Adresse:** An der Hille 6b, 59955 Winterberg-Niedersfeld
 - **Webseite:** http://www.sv-niedersfeld.de
 - **Beschreibung (DE):** Tennisverein in Niedersfeld mit 3 Sandplätzen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-niedersfeld
@@ -2013,7 +2013,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Tennisplätze Züschen](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-zueschen)
 - **Kategorie:** Ski, Bike & Sport > Tennisplätze
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Schützenstraße 5, 59955 Winterberg
+- **Adresse:** Schützenstraße 5, 59955 Winterberg-Züschen
 - **Telefon:** 02981 2541
 - **Beschreibung (DE):** Tennisverein in Züschen mit Sandplätzen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-zueschen
@@ -2031,7 +2031,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Tennisplätze Siedlinghausen](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-siedlinghausen)
 - **Kategorie:** Ski, Bike & Sport > Tennisplätze
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Grimmeweg 9, 59955 Winterberg
+- **Adresse:** Grimmeweg 9, 59955 Winterberg-Siedlinghausen
 - **Webseite:** mailto:bm.hoemberg@gmail.com
 - **Beschreibung (DE):** Tennisverein in Siedlinghausen (keine Sandplätze).
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-siedlinghausen
@@ -2050,7 +2050,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [TuS Züschen e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/tus-zueschen-e-v)
 - **Kategorie:** Ski, Bike & Sport > Fußballvereine
 - **Ort / Ortsteil:** Züschen
-- **Adresse:** Junkerstraße 38, 59955 Winterberg
+- **Adresse:** Junkerstraße 38, 59955 Winterberg-Züschen
 - **Webseite:** http://www.tus-zueschen.de/
 - **Beschreibung (DE):** Fußball- und Sportverein in Züschen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/tus-zueschen-e-v
@@ -2059,7 +2059,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Spiel- und Sportverein Silbach 1923 e.V.](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/spiel-und-sportverein-silbach-1923-e-v)
 - **Kategorie:** Ski, Bike & Sport > Fußballvereine
 - **Ort / Ortsteil:** Silbach
-- **Adresse:** Am Schieferberg 2, 59955 Winterberg
+- **Adresse:** Am Schieferberg 2, 59955 Winterberg-Silbach
 - **Beschreibung (DE):** Sportverein in Silbach.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/spiel-und-sportverein-silbach-1923-e-v
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/spiel-und-sportverein-silbach-1923-e-v
@@ -2067,7 +2067,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [FC Siedlinghausen 1920 e.V](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-siedlinghausen-1920-e-v)
 - **Kategorie:** Ski, Bike & Sport > Fußballvereine
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Sorpestraße 41, 59955 Winterberg
+- **Adresse:** Sorpestraße 41, 59955 Winterberg-Siedlinghausen
 - **Beschreibung (DE):** Fußballabteilung (2 Seniorenmannschaften und mehrere Jugendmannschaften), Breitensport (Gymnastik und Faszientraining), Wirbelsäulengymnastik, Qi Gong, Meditation.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-siedlinghausen-1920-e-v
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/voetbalclubs/fc-siedlinghausen-1920-e-v
@@ -2075,7 +2075,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [FC Hilletal 2003](https://www.winterberg-verzeichnis.de/ski-bike-sport/fussballvereine/fc-hilletal-2003)
 - **Kategorie:** Ski, Bike & Sport > Fußballvereine
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** An der Hille 6 a, 59955 Winterberg
+- **Adresse:** An der Hille 6 a, 59955 Winterberg-Niedersfeld
 - **Telefon:** 02985 979916
 - **Webseite:** http://www.fc-hilletal.de/
 - **Beschreibung (DE):** Fußballverein in Niedersfeld.
@@ -2519,7 +2519,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Autoservice Kruk](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/autoservice-kruk)
 - **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstraße 78a, 59955 Winterberg
+- **Adresse:** Hochsauerlandstraße 78a, 59955 Winterberg-Siedlinghausen
 - **Webseite:** https://www.autoservice-kruk.de/
 - **Beschreibung (DE):** Ihre freundliche Autofachwerkstatt in Winterberg-Siedlinghausen. Schnell, Preiswert & Zuverlässig.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/autoservice-kruk
@@ -2528,7 +2528,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Nagel Udo Autoreparatur](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/nagel-udo-autoreparatur)
 - **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstr. 56, 59955 Winterberg
+- **Adresse:** Hochsauerlandstr. 56, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 7 61
 - **Beschreibung (DE):** AUTOREPARATUREN
 - **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/nagel-udo-autoreparatur
@@ -2546,7 +2546,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Andreas Mantel Auto & Zweirad](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/andreas-mantel-auto-und-zweirad)
 - **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstraße 69, 59955 Winterberg
+- **Adresse:** Ruhrstraße 69, 59955 Winterberg-Niedersfeld
 - **Webseite:** https://www.mantel-kfz.de/
 - **Beschreibung (DE):** Ihr Meisterbetrieb für Auto & Zweirad in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/andreas-mantel-auto-und-zweirad
@@ -2737,7 +2737,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Adventure Golf Winterberg](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/adventure-golf-winterberg)
 - **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
 - **Ort / Ortsteil:** Grönebach
-- **Adresse:** Am Sportpl. 4, 59955 Winterberg
+- **Adresse:** Am Sportpl. 4, 59955 Winterberg-Grönebach
 - **Telefon:** 02985 9698636
 - **Webseite:** https://adventuregolf-winterberg.de
 - **Beschreibung (DE):** Gespielt wird auf abwechslungsreichen Bahnen mit verschiedenen Hindernissen.
@@ -2767,7 +2767,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Escape Room Winterberg](https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/escape-room-winterberg)
 - **Kategorie:** Freizeit > Indoor-Spielplätze
 - **Ort / Ortsteil:** Altastenberg
-- **Adresse:** Renauweg 34, 59955 Winterberg
+- **Adresse:** Renauweg 34, 59955 Winterberg-Altastenberg
 - **Telefon:** 01516 4974348
 - **Webseite:** https://escaperoomwinterberg.de
 - **Beschreibung (DE):** Escape-Room-Zentrum in Winterberg-Altastenberg. Spannende Rätselräume wie „Max Verschwinden“ und „Lost in Paradise“ für Teams, Familien und Gruppen.
@@ -2777,7 +2777,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Foxx Club Winterberg](https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/foxx-club-winterberg)
 - **Kategorie:** Freizeit > Indoor-Spielplätze
 - **Ort / Ortsteil:** Altastenberg
-- **Adresse:** Renauweg 54, 59955 Winterberg
+- **Adresse:** Renauweg 54, 59955 Winterberg-Altastenberg
 - **Telefon:** 02981 8050
 - **Webseite:** https://www.foxx-club.de
 - **Beschreibung (DE):** Moderner Indoorspielplatz im Resort Schöner Asten in Altastenberg mit Kletteranlagen, Trampolinen, Röhrenrutschen und Spielspaß für Kinder.

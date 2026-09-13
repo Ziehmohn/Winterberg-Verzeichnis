@@ -3,7 +3,8 @@ const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag, Heart } from 'lucide-react';
-import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta } from '../types';
+import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta, DesignSettings } from '../types';
+import HeaderShapeDivider, { getEffectiveDivider } from './HeaderShapeDivider';
 import { isOpenNow, canDisplayOpeningHours, formatBusinessAddress, parseBusinessAddress } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
@@ -26,13 +27,14 @@ interface BusinessDetailProps {
   onBack: () => void;
   theme: ThemeConfig;
   activeThemeKey: string;
+  designSettings?: DesignSettings;
   onReviewSubmit?: (businessId: string, review: Review) => void;
   similarBusinesses?: Business[];
   allBusinesses?: Business[];
   onNavigateToFuelPrices?: () => void;
 }
 
-export default function BusinessDetail({ business, onBack, theme, activeThemeKey, onReviewSubmit, similarBusinesses = [], allBusinesses = [], onNavigateToFuelPrices }: BusinessDetailProps) {
+export default function BusinessDetail({ business, onBack, theme, activeThemeKey, designSettings, onReviewSubmit, similarBusinesses = [], allBusinesses = [], onNavigateToFuelPrices }: BusinessDetailProps) {
 
   const { t, lang } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
@@ -406,6 +408,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </div>
           )}
         </div>
+        <HeaderShapeDivider
+          style={getEffectiveDivider('businessDetail', designSettings)}
+          color="#FAF8F5"
+        />
       </div>
 
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 py-[24px] sm:py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[20px] sm:gap-[26px] items-start">

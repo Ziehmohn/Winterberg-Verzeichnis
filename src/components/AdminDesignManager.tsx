@@ -16,9 +16,11 @@ import {
   Palette,
   Search,
   ExternalLink,
-  Info
+  Info,
+  Waves
 } from 'lucide-react';
-import { DesignSettings, ThemeConfig } from '../types';
+import { DesignSettings, ThemeConfig, HeaderDividerStyle, HeaderDividerPageConfig } from '../types';
+import HeaderShapeDivider, { DIVIDER_OPTIONS, getEffectiveDivider } from './HeaderShapeDivider';
 import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 
@@ -233,6 +235,14 @@ export const letterSpacingsMap = {
   wide: '0.03em'
 };
 
+export const DIVIDER_PAGES: { key: keyof HeaderDividerPageConfig; label: string; badge: string; description: string }[] = [
+  { key: 'category', label: 'Kategorien & Branchen', badge: 'Screenshot', description: 'Listen-Banner für Branchen (z. B. Kneipen & Bars, Gastronomie)' },
+  { key: 'allCompanies', label: 'Alle Unternehmen', badge: 'Übersicht', description: 'Die Gesamtliste aller Winterberger Unternehmen' },
+  { key: 'home', label: 'Startseite (Hero)', badge: 'Startseite', description: 'Der obere Willkommens- und Suchbereich auf der Startseite' },
+  { key: 'businessDetail', label: 'Unternehmensprofile', badge: 'Detailseiten', description: 'Der Kopfbereich auf den einzelnen Firmen-Profilseiten' },
+  { key: 'global', label: 'Globaler Standard', badge: 'Fallback', description: 'Standard-Divider für alle Seiten, sofern nicht individuell überschrieben' }
+];
+
 export default function AdminDesignManager({
   designSettings,
   setDesignSettings,
@@ -244,7 +254,9 @@ export default function AdminDesignManager({
   const [customBodyFont, setCustomBodyFont] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [activeTab, setActiveTab] = useState<'presets' | 'custom'>('presets');
+  const [activeTab, setActiveTab] = useState<'presets' | 'custom' | 'divider'>('presets');
+  const [selectedDividerPage, setSelectedDividerPage] = useState<keyof HeaderDividerPageConfig>('category');
+  const [dividerAppliedAllMsg, setDividerAppliedAllMsg] = useState(false);
 
   // Load Google Fonts on mount and whenever font changes
   useEffect(() => {
@@ -307,13 +319,49 @@ export default function AdminDesignManager({
     }
   };
 
+  const handleSelectDivider = (styleId: HeaderDividerStyle) => {
+    setFormData(prev => ({
+      ...prev,
+      headerDividers: {
+        ...(prev.headerDividers || {}),
+        [selectedDividerPage]: styleId
+      }
+    }));
+  };
+
+  const handleApplyDividerToAll = (styleId: HeaderDividerStyle) => {
+    setFormData(prev => ({
+      ...prev,
+      headerDividers: {
+        global: styleId,
+        home: styleId,
+        category: styleId,
+        allCompanies: styleId,
+        businessDetail: styleId,
+        jobs: styleId,
+        news: styleId,
+        faq: styleId,
+        subpages: styleId
+      }
+    }));
+    setDividerAppliedAllMsg(true);
+    setTimeout(() => setDividerAppliedAllMsg(false), 3000);
+  };
+
   const handleReset = () => {
     const defaultSettings: DesignSettings = {
       headlineFont: 'Manrope',
       bodyFont: 'Public Sans',
       headlineWeight: 'bold',
       headlineLetterSpacing: 'normal',
-      presetId: 'modern-clean'
+      presetId: 'modern-clean',
+      headerDividers: {
+        global: 'none',
+        home: 'none',
+        category: 'none',
+        allCompanies: 'none',
+        businessDetail: 'none'
+      }
     };
     setFormData(defaultSettings);
     loadGoogleFont('Manrope');
@@ -395,10 +443,15 @@ export default function AdminDesignManager({
             <div className="text-xs text-[#5F6B63]">
               Stil: <span className="bg-white border border-[#EDE8E0] px-2 py-0.5 rounded text-xs font-medium text-[#4A544D] ml-1">{formData.headlineWeight} / {formData.headlineLetterSpacing}</span>
             </div>
+            <div className="h-4 w-px bg-[#D8D2C8] hidden md:block"></div>
+            <div className="text-xs text-[#5F6B63] flex items-center gap-1">
+              <Waves className="w-3.5 h-3.5 text-[#F2761B]" />
+              Kategorien Divider: <strong className="text-[#0F4C2E] text-xs ml-1 font-bold">{DIVIDER_OPTIONS.find(d => d.id === (formData.headerDividers?.category || formData.headerDividers?.global || 'none'))?.label || 'Kein Divider'}</strong>
+            </div>
           </div>
 
           {/* Sub-tab navigation */}
-          <div className="flex gap-1.5 bg-white border border-[#EDE8E0] rounded-md p-1">
+          <div className="flex flex-wrap gap-1.5 bg-white border border-[#EDE8E0] rounded-md p-1">
             <button
               type="button"
               onClick={() => setActiveTab('presets')}
@@ -415,13 +468,23 @@ export default function AdminDesignManager({
                 activeTab === 'custom' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-black'
               }`}
             >
-              Freie Google-Fonts Auswahl
+              Freie Google-Fonts
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('divider')}
+              className={`px-3 py-1.5 rounded text-xs font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5 ${
+                activeTab === 'divider' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-black'
+              }`}
+            >
+              <Waves className="w-3.5 h-3.5 text-[#F2761B]" />
+              Header-Divider (Trenner)
             </button>
           </div>
         </div>
 
         {/* Tab 1: Presets Showcase */}
-        {activeTab === 'presets' ? (
+        {activeTab === 'presets' && (
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {FONT_PRESETS.map((preset) => {
@@ -475,8 +538,10 @@ export default function AdminDesignManager({
               })}
             </div>
           </div>
-        ) : (
-          /* Tab 2: Custom Google Fonts selection */
+        )}
+
+        {/* Tab 2: Custom Google Fonts selection */}
+        {activeTab === 'custom' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Headline Font Selector */}
@@ -634,6 +699,277 @@ export default function AdminDesignManager({
                       {ls.label}
                     </button>
                   ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Header Divider Configuration & Preview */}
+        {activeTab === 'divider' && (
+          <div className="space-y-6">
+            {/* Info & Purpose Banner */}
+            <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-5">
+              <div className="flex items-start justify-between gap-4 flex-wrap">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Waves className="w-5 h-5 text-[#F2761B]" />
+                    <h3 className="font-display text-base font-bold text-[#1B211D] m-0">
+                      Dekorative Header-Shape-Divider (Trennlinien)
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[#5F6B63] max-w-3xl m-0 leading-relaxed">
+                    Wählen Sie einen formschönen Übergang zwischen den dunkelgrünen Header-Bannern und den Seiteninhalten. 
+                    Sie können entweder für jede Seite einen individuellen Stil wählen oder einen Divider für alle Seiten aktivieren.
+                    Mit der Option <strong>„Kein Divider (Standard)"</strong> bleibt die Seite wie gewohnt mit einer geraden Kante.
+                  </p>
+                </div>
+
+                {dividerAppliedAllMsg && (
+                  <span className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold px-3 py-1.5 rounded-md animate-in fade-in">
+                    <Check className="w-3.5 h-3.5" />
+                    Divider für alle Seiten übernommen!
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Step 1: Page Selector */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider block">
+                  1. Seite auswählen, die Sie konfigurieren möchten:
+                </label>
+                <button
+                  type="button"
+                  onClick={() => handleApplyDividerToAll(getEffectiveDivider(selectedDividerPage, formData))}
+                  className="text-xs text-[#0F4C2E] hover:text-[#06301C] font-semibold inline-flex items-center gap-1 bg-[#E8F1EB] hover:bg-[#D5E6DC] px-2.5 py-1 rounded transition-colors cursor-pointer"
+                  title="Wendet den aktuell gewählten Divider dieser Seite auf alle Seiten an"
+                >
+                  <Sparkles className="w-3 h-3 text-[#F2761B]" />
+                  Aktuellen Divider für alle Seiten übernehmen
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+                {DIVIDER_PAGES.map(page => {
+                  const isPageSelected = selectedDividerPage === page.key;
+                  const currentStyle = getEffectiveDivider(page.key, formData);
+                  const styleLabel = DIVIDER_OPTIONS.find(d => d.id === currentStyle)?.label || 'Kein Divider';
+
+                  return (
+                    <button
+                      key={page.key}
+                      type="button"
+                      onClick={() => setSelectedDividerPage(page.key)}
+                      className={`p-3 rounded-lg border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                        isPageSelected
+                          ? 'bg-[#E8F1EB] border-[#0F4C2E] ring-2 ring-[#0F4C2E]/20 shadow-sm'
+                          : 'bg-white border-[#EDE8E0] hover:border-[#0F4C2E]/40 hover:bg-[#FAF8F5]'
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-1 mb-1">
+                          <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                            page.key === 'category' ? 'bg-[#FFF1E4] text-[#D65F0C]' : 'bg-gray-100 text-[#5F6B63]'
+                          }`}>
+                            {page.badge}
+                          </span>
+                          {isPageSelected && (
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                          )}
+                        </div>
+                        <div className="font-semibold text-xs text-[#1B211D] leading-tight mb-1">
+                          {page.label}
+                        </div>
+                      </div>
+                      <div className="text-[11px] text-[#5F6B63] mt-2 pt-1.5 border-t border-gray-100 flex items-center justify-between">
+                        <span>Aktiv:</span>
+                        <span className="font-semibold text-[#0F4C2E] truncate max-w-[120px] text-right">
+                          {styleLabel}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Step 2: Divider Style Selection Grid */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider block">
+                  2. Divider-Stil für „{DIVIDER_PAGES.find(p => p.key === selectedDividerPage)?.label}“ wählen:
+                </label>
+                <span className="text-xs text-[#5F6B63]">
+                  Klicken zum Auswählen &bull; Sofortige Live-Vorschau unten
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                {DIVIDER_OPTIONS.map((opt) => {
+                  const currentSelectedStyle = getEffectiveDivider(selectedDividerPage, formData);
+                  const isChosen = currentSelectedStyle === opt.id;
+
+                  return (
+                    <div
+                      key={opt.id}
+                      onClick={() => handleSelectDivider(opt.id)}
+                      className={`p-3.5 rounded-lg border text-left transition-all cursor-pointer flex flex-col justify-between relative group ${
+                        isChosen
+                          ? 'bg-[#E8F1EB] border-[#0F4C2E] ring-2 ring-[#0F4C2E]/25 shadow-sm'
+                          : 'bg-white border-[#EDE8E0] hover:border-[#0F4C2E]/50 hover:bg-[#FAF8F5]'
+                      }`}
+                    >
+                      <div>
+                        {/* Title & Badge */}
+                        <div className="flex items-center justify-between gap-1 mb-1.5">
+                          <span className="font-bold text-xs text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors">
+                            {opt.label}
+                          </span>
+                          {opt.badge && (
+                            <span className="bg-[#FFF1E4] text-[#D65F0C] text-[10px] font-bold px-1.5 py-0.5 rounded">
+                              {opt.badge}
+                            </span>
+                          )}
+                          {isChosen && !opt.badge && (
+                            <CheckCircle2 className="w-4 h-4 text-[#0F4C2E] shrink-0" />
+                          )}
+                        </div>
+
+                        {/* Miniature Visual SVG Preview Box */}
+                        <div className="w-full h-14 bg-[#0F4C2E] rounded-md relative overflow-hidden flex flex-col justify-end border border-[#0A3821] shadow-inner mb-2.5">
+                          {opt.id === 'none' ? (
+                            <div className="w-full h-full flex items-center justify-center text-[11px] text-white/70 font-medium">
+                              — Gerade Kante —
+                            </div>
+                          ) : (
+                            <HeaderShapeDivider
+                              style={opt.id}
+                              color="#FAF8F5"
+                              heightClass="h-[30px]"
+                            />
+                          )}
+                        </div>
+
+                        <p className="text-[11px] text-[#5F6B63] m-0 leading-relaxed">
+                          {opt.description}
+                        </p>
+                      </div>
+
+                      <div className="pt-2 mt-2 border-t border-gray-100 flex items-center justify-between text-[11px]">
+                        <span className={isChosen ? 'font-bold text-[#0F4C2E]' : 'text-[#8A928B]'}>
+                          {isChosen ? '✓ Aktiviert' : 'Klicken'}
+                        </span>
+                        <span className="font-semibold text-xs text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform">
+                          {isChosen ? 'Ausgewählt' : 'Wählen →'}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Step 3: Interactive Dedicated Live Preview (Category Header Mockup exactly like Screenshot) */}
+            <div className="mt-8 pt-6 border-t border-[#EDE8E0]">
+              <div className="flex items-center justify-between gap-4 mb-3">
+                <div className="flex items-center gap-2">
+                  <Eye className="w-5 h-5 text-[#0F4C2E]" />
+                  <h3 className="font-display text-base font-bold text-[#1B211D] m-0">
+                    Live-Vorschau: So sieht die Seite mit dem gewählten Divider aus
+                  </h3>
+                </div>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-[#5F6B63]">Ansicht:</span>
+                  <span className="bg-[#0F4C2E] text-white font-bold px-2.5 py-1 rounded">
+                    {DIVIDER_PAGES.find(p => p.key === selectedDividerPage)?.label}
+                  </span>
+                </div>
+              </div>
+
+              {/* Realistic Mockup of the Category Banner from the screenshot */}
+              <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg">
+                {/* Green Header Area */}
+                <div className="w-full bg-[#0F4C2E] text-white relative overflow-hidden">
+                  <div className="max-w-[900px] mx-auto px-6 py-8 pb-6">
+                    <div className="text-xs text-white/70 mb-2">
+                      Start / {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen' : 'Verzeichnis Winterberg'}
+                    </div>
+                    <h2 className="font-display text-2xl sm:text-3xl font-bold m-0 mb-3 text-white" style={previewHeadlineStyle}>
+                      {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen in Winterberg' : 'Winterberg Verzeichnis'}
+                    </h2>
+
+                    {/* Search bar inside mockup */}
+                    <div className="bg-white rounded-lg p-2 flex flex-col sm:flex-row gap-2 items-stretch sm:items-center shadow-md my-3 text-[#1B211D]">
+                      <div className="flex items-center gap-2 flex-1 px-2.5">
+                        <Search className="w-4 h-4 text-gray-400 shrink-0" />
+                        <span className="text-xs text-gray-400 truncate">
+                          In „Kneipen und Bars" nach Namen oder Produkten suchen...
+                        </span>
+                      </div>
+                      <div className="bg-[#EDE9E1] px-3 py-1.5 rounded text-xs font-medium text-[#1B211D] shrink-0">
+                        Alle Orte
+                      </div>
+                      <button type="button" className="bg-[#F2761B] text-white rounded px-4 py-1.5 text-xs font-bold shrink-0 cursor-default">
+                        Suchen
+                      </button>
+                    </div>
+
+                    <div className="flex items-center justify-between flex-wrap gap-2 mt-3 text-xs text-white/80">
+                      <span>1 Unternehmen gefunden</span>
+                      <div className="flex bg-white/10 rounded p-0.5 text-[11px]">
+                        <span className="bg-white text-[#1B211D] px-2 py-0.5 rounded font-semibold">Liste</span>
+                        <span className="px-2 py-0.5 text-white/70">Karte</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* The Live Header Shape Divider */}
+                  <HeaderShapeDivider
+                    style={getEffectiveDivider(selectedDividerPage, formData)}
+                    color="#FAF8F5"
+                    heightClass="h-[42px] sm:h-[54px] md:h-[68px]"
+                  />
+                </div>
+
+                {/* Light Content Area directly below the divider */}
+                <div className="bg-[#FAF8F5] p-6 sm:p-8">
+                  <div className="max-w-[900px] mx-auto">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">
+                        Ergebnis-Vorschau (Hintergrundfarbe: #FAF8F5)
+                      </span>
+                      <span className="text-xs text-[#0F4C2E] font-semibold">
+                        Fließender Übergang ohne Kantenbruch
+                      </span>
+                    </div>
+
+                    {/* Mock Result Card */}
+                    <div className="bg-white border border-[#EDE8E0] rounded-lg p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div className="flex items-center gap-3.5">
+                        <div className="w-12 h-12 bg-[#0F4C2E]/10 text-[#0F4C2E] rounded-lg flex items-center justify-center font-display font-bold text-lg shrink-0">
+                          B
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-display font-bold text-sm text-[#1B211D] m-0" style={previewHeadlineStyle}>
+                              Gasthof Bergpanorama &amp; Bar
+                            </h4>
+                            <span className="bg-[#FFF1E4] text-[#D65F0C] text-[10px] font-bold px-2 py-0.5 rounded">
+                              Premium
+                            </span>
+                          </div>
+                          <p className="text-xs text-[#5F6B63] m-0 mt-0.5">
+                            Kneipen und Bars &bull; Am Waltenberg 14, 59955 Winterberg
+                          </p>
+                        </div>
+                      </div>
+                      <span className="bg-[#E8F1EB] text-[#0F4C2E] text-xs font-bold px-3 py-1 rounded">
+                        Jetzt geöffnet
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

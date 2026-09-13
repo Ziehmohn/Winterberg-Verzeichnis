@@ -14,6 +14,7 @@ import NotFound from './components/NotFound';
 import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
 import AdminDesignManager, { loadGoogleFont } from './components/AdminDesignManager';
+import HeaderShapeDivider, { getEffectiveDivider } from './components/HeaderShapeDivider';
 import { isOpenNow, canDisplayOpeningHours } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
@@ -1809,7 +1810,7 @@ export default function App() {
             const url = getPath(basePath);
             window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
             setSelectedBusiness(null); 
-          }} theme={theme} activeThemeKey={activeThemeKey} onReviewSubmit={handleReviewSubmit} allBusinesses={businesses} onNavigateToFuelPrices={() => {
+          }} theme={theme} activeThemeKey={activeThemeKey} designSettings={designSettings} onReviewSubmit={handleReviewSubmit} allBusinesses={businesses} onNavigateToFuelPrices={() => {
             setSelectedBusiness(null);
             setIsFuelPricesMode(true);
             window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
@@ -2003,7 +2004,7 @@ export default function App() {
             {/* Conditional Claude Home View */}
             {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode ? (
               <div className="w-full flex flex-col mb-8">
-                <section className="relative text-white w-full" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
+                <section className="relative text-white w-full overflow-hidden" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
                   <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px]">
                     <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-md px-3.5 py-1.5 text-sm font-medium tracking-wide">
                       <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
@@ -2193,6 +2194,10 @@ export default function App() {
                       <div><div className="font-display text-4xl font-bold">14</div><div className="text-sm text-white/70 mt-1">{lang === 'nl' ? 'Dorpen & Wijken' : 'Ortsteile'}</div></div>
                     </div>
                   </div>
+                  <HeaderShapeDivider
+                    style={getEffectiveDivider('home', designSettings)}
+                    color="#FAF8F5"
+                  />
                 </section>
                 
                 {/* Claude Home Sections */}
@@ -2306,7 +2311,7 @@ export default function App() {
 
             {/* List View Header */}
             {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (
-              <div className="w-full bg-[#0F4C2E] text-white">
+              <div className="w-full bg-[#0F4C2E] text-white relative overflow-hidden">
                 <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-[32px] sm:py-[38px] pb-[36px] sm:pb-[42px]">
                   <div className="text-[14px] text-white/70 mb-2.5">
                     <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
@@ -2378,6 +2383,10 @@ export default function App() {
                     </div>
                   </div>
                 </div>
+                <HeaderShapeDivider
+                  style={getEffectiveDivider(activeCategory === 'Alle' ? 'allCompanies' : 'category', designSettings)}
+                  color="#FAF8F5"
+                />
               </div>
             )}
 

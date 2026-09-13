@@ -21,12 +21,35 @@ export interface SeoSettings {
   googleAnalyticsId?: string;
 }
 
+export type HeaderDividerStyle = 
+  | 'none'
+  | 'mountains'
+  | 'wave-smooth'
+  | 'wave-asymmetric'
+  | 'slant-right'
+  | 'slant-left'
+  | 'curve'
+  | 'peaks-gentle';
+
+export interface HeaderDividerPageConfig {
+  global?: HeaderDividerStyle;
+  home?: HeaderDividerStyle;
+  category?: HeaderDividerStyle;
+  allCompanies?: HeaderDividerStyle;
+  businessDetail?: HeaderDividerStyle;
+  jobs?: HeaderDividerStyle;
+  news?: HeaderDividerStyle;
+  faq?: HeaderDividerStyle;
+  subpages?: HeaderDividerStyle;
+}
+
 export interface DesignSettings {
   headlineFont: string;
   bodyFont: string;
   headlineWeight: 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
   headlineLetterSpacing: 'tight' | 'normal' | 'wide';
   presetId?: string;
+  headerDividers?: HeaderDividerPageConfig;
 }
 
 export interface Review {
