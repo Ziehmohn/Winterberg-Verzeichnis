@@ -55,6 +55,12 @@ entries.push({
   changefreq: 'monthly',
   priority: '0.8',
 });
+entries.push({
+  locDe: `${baseUrl}/news/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte`,
+  locNl: `${baseUrl}/nl/nieuws/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
 
 // 2. All businesses
 entries.push({
