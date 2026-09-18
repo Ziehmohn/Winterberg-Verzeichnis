@@ -269,6 +269,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       services: Array.isArray(base.services) ? [...base.services] : [],
       products: Array.isArray(base.products) ? [...base.products] : [],
       jobs: Array.isArray(base.jobs) ? [...base.jobs] : [],
+      events: Array.isArray(base.events) ? base.events.map(ev => ({...ev})) : [],
       openingHours: base.openingHours ? { ...base.openingHours } : { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
       headerImage: base.headerImage || '',
       headerPosition: base.headerPosition || {
@@ -512,6 +513,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       logoUrl: formData.logoUrl || '',
       logoBgColor: formData.logoBgColor || '#ffffff',
       jobs: formData.jobs || [],
+      events: formData.events || [],
       headerImage: formData.headerImage || '',
       headerPosition: formData.headerPosition || {
         desktop: '50% 50%',
