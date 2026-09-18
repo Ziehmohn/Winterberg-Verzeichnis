@@ -38,8 +38,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             timeoutPromise
           ]) as any;
 
-          const adminEmails = ['simon.kraeling@sichtbar-online.com', 'info@sichtbar-online.com', 'info@winterberg.sichtbar-online.com'];
-          const isAdminEmail = user.email && adminEmails.includes(user.email);
+          const adminEmails = [
+            'simon.kraeling@sichtbar-online.com', 
+            'info@sichtbar-online.com', 
+            'info@winterberg.sichtbar-online.com',
+            'simon.kraeling@googlemail.com',
+            'simon.kraeling@gmail.com'
+          ];
+          const isAdminEmail = user.email && (adminEmails.includes(user.email) || user.email.endsWith('@sichtbar-online.com'));
           if (docSnap && docSnap.exists && docSnap.exists()) {
             const data = docSnap.data() as UserProfile;
             if (isAdminEmail) {
@@ -56,8 +62,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } catch (error: any) {
           if (error?.code === 'unavailable' || error?.message?.includes('offline')) {
             console.warn("Client offline. Using fallback profile.");
-            const adminEmails = ['simon.kraeling@sichtbar-online.com', 'info@sichtbar-online.com', 'info@winterberg.sichtbar-online.com'];
-            const isFallbackAdmin = user.email && adminEmails.includes(user.email);
+            const adminEmails = [
+              'simon.kraeling@sichtbar-online.com', 
+              'info@sichtbar-online.com', 
+              'info@winterberg.sichtbar-online.com',
+              'simon.kraeling@googlemail.com',
+              'simon.kraeling@gmail.com'
+            ];
+            const isFallbackAdmin = user.email && (adminEmails.includes(user.email) || user.email.endsWith('@sichtbar-online.com'));
             setUserProfile({ uid: user.uid, email: user.email, role: isFallbackAdmin ? 'admin' : 'user' });
           } else {
             console.error("Error fetching user profile:", error);

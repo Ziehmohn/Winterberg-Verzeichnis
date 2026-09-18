@@ -7,6 +7,8 @@ service cloud.firestore {
         request.auth.token.email == 'simon.kraeling@sichtbar-online.com' || 
         request.auth.token.email == 'info@sichtbar-online.com' ||
         request.auth.token.email == 'info@winterberg.sichtbar-online.com' ||
+        request.auth.token.email == 'simon.kraeling@googlemail.com' ||
+        request.auth.token.email == 'simon.kraeling@gmail.com' ||
         request.auth.token.email.matches('.*@sichtbar-online\\.com$')
       );
     }

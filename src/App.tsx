@@ -4889,14 +4889,86 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     }
   };
 
+  const handleReviewAction = async (businessId: string, reviewId: string, action: 'approve' | 'reject' | 'delete' | 'reply', replyText?: string) => {
+    // 1. Optimistic UI update and cache update
+    setBusinesses((prev: Business[]) => prev.map(b => {
+      if (b.id === businessId) {
+        let updatedReviews = b.reviews || [];
+        if (action === 'approve') {
+          updatedReviews = updatedReviews.map(r => r.id === reviewId ? { ...r, status: 'approved' } : r);
+        } else if (action === 'reject' || action === 'delete') {
+          updatedReviews = updatedReviews.filter(r => r.id !== reviewId);
+        } else if (action === 'reply' && replyText !== undefined) {
+          updatedReviews = updatedReviews.map(r => r.id === reviewId ? { ...r, ownerReply: replyText } : r);
+        }
+        const updated = { ...b, reviews: updatedReviews };
+        
+        // Cache update
+        const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true) || [];
+        const updatedCache = cached.map(cb => cb.id === businessId ? updated : cb);
+        if (!cached.find(cb => cb.id === businessId)) updatedCache.push(updated);
+        setCachedItem(CACHE_KEYS.BUSINESSES, updatedCache);
+
+        return updated;
+      }
+      return b;
+    }));
+
+    // 2. Call serverless API with admin privileges
+    try {
+      const response = await fetch('/api/manage-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ businessId, reviewId, action, replyText })
+      });
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || `HTTP ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result.version) {
+        setLocalVersion(CACHE_KEYS.BUSINESSES_VERSION, result.version);
+      }
+    } catch (apiErr) {
+      console.warn('Backend API /api/manage-review failed or unavailable, falling back to direct Firestore updateDoc:', apiErr);
+      try {
+        const { doc, updateDoc } = await import('firebase/firestore');
+        const currentBus = businesses.find((b: Business) => b.id === businessId);
+        if (currentBus) {
+          let updatedReviews = currentBus.reviews || [];
+          if (action === 'approve') {
+            updatedReviews = updatedReviews.map(r => r.id === reviewId ? { ...r, status: 'approved' } : r);
+          } else if (action === 'reject' || action === 'delete') {
+            updatedReviews = updatedReviews.filter(r => r.id !== reviewId);
+          } else if (action === 'reply' && replyText !== undefined) {
+            updatedReviews = updatedReviews.map(r => r.id === reviewId ? { ...r, ownerReply: replyText } : r);
+          }
+          await updateDoc(doc(db, 'businesses', businessId), { reviews: updatedReviews });
+          bumpRemoteBusinessesVersion(db);
+        }
+      } catch (fallbackErr) {
+        console.error('Failed to persist review update in Firestore:', fallbackErr);
+        alert('Fehler beim Speichern der Bewertung in der Datenbank. Bitte versuchen Sie es erneut.');
+      }
+    }
+  };
+
   if (!currentUser) {
     return <Login theme={theme} activeThemeKey={activeThemeKey} onBack={onBack} />;
   }
 
   // Determine allowed businesses based on role
-  const adminEmails = ['simon.kraeling@sichtbar-online.com', 'info@sichtbar-online.com', 'info@winterberg.sichtbar-online.com'];
+  const adminEmails = [
+    'simon.kraeling@sichtbar-online.com', 
+    'info@sichtbar-online.com', 
+    'info@winterberg.sichtbar-online.com',
+    'simon.kraeling@googlemail.com',
+    'simon.kraeling@gmail.com'
+  ];
   const isAdmin = userProfile?.role === 'admin' || 
-                  (currentUser?.email && adminEmails.includes(currentUser.email));
+                  (currentUser?.email && (adminEmails.includes(currentUser.email) || currentUser.email.endsWith('@sichtbar-online.com')));
 
   const ownerBusinessId = userProfile?.businessId;
   const currentUid = currentUser?.uid;
@@ -5593,21 +5665,13 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
                     <div className="flex gap-[8px]">
                       <button 
-                        onClick={() => {
-                          updateBusinessInFirestore(review.businessId, b => {
-                            return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, status: 'approved' } : r) };
-                          });
-                        }}
+                        onClick={() => handleReviewAction(review.businessId, review.id, 'approve')}
                         className="bg-[#0F4C2E] text-white border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
                       >
                         Freigeben
                       </button>
                       <button 
-                        onClick={() => {
-                          updateBusinessInFirestore(review.businessId, b => {
-                            return { ...b, reviews: (b.reviews || []).filter(r => r.id !== review.id) };
-                          });
-                        }}
+                        onClick={() => handleReviewAction(review.businessId, review.id, 'reject')}
                         className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
                       >
                         Ablehnen
@@ -5671,9 +5735,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                           }
                           const reply = window.prompt("Ihre Antwort:", review.ownerReply || "");
                           if (reply !== null) {
-                            updateBusinessInFirestore(review.businessId, b => {
-                              return { ...b, reviews: (b.reviews || []).map(r => r.id === review.id ? { ...r, ownerReply: reply } : r) };
-                            });
+                            handleReviewAction(review.businessId, review.id, 'reply', reply);
                           }
                         }}
                         className={`border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer transition-colors ${review.isPremium ? 'bg-[#F3F0EA] hover:bg-[#EAE5DB]' : 'bg-[#FAF8F5] text-[#A3ABA5]'}`}
@@ -5684,9 +5746,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <button 
                         onClick={() => {
                           if (window.confirm("Bewertung wirklich löschen?")) {
-                            updateBusinessInFirestore(review.businessId, b => {
-                              return { ...b, reviews: (b.reviews || []).filter(r => r.id !== review.id) };
-                            });
+                            handleReviewAction(review.businessId, review.id, 'delete');
                           }
                         }}
                         className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
