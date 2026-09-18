@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (298 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (302 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1035,6 +1035,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/parfuemerie/parfuemerie-becker-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/parfuemerie/parfuemerie-becker-gmbh
 
+#### [camel active Store Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/camel-active-store-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 8, 59955 Winterberg
+- **Telefon:** 02981 9251927
+- **Webseite:** https://www.camelactive.com
+- **Beschreibung (DE):** Offizieller camel active Store in Winterberg mit lässiger und funktionaler Bekleidung, Outdoor-Jacken, Schuhen und Accessoires für Damen und Herren im urbanen und Outdoor-Lifestyle.
+- **Beschreibung (NL):** Officiële camel active Store in Winterberg met casual en functionele kleding, outdoorjassen, schoenen en accessoires voor dames en heren in urban en outdoorstijl.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/camel-active-store-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/camel-active-store-winterberg
+
 #### [JEANS FRITZ](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/jeans-fritz)
 - **Kategorie:** Einzelhandel > Bekleidung
 - **Ort / Ortsteil:** Winterberg
@@ -1099,6 +1110,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Modieuze kledingboetiek in het centrum van Winterberg met geselecteerde collecties dames- en herenmode, stijlvolle accessoires en een eigen webshop.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/insider-fashion-store-precious
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/insider-fashion-store-precious
+
+#### [camel active Store Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/camel-active-store-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 8, 59955 Winterberg
+- **Telefon:** 02981 9251927
+- **Beschreibung (DE):** Bekleidungsgeschäft in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/camel-active-store-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/camel-active-store-winterberg
 
 ### Kategorie: Gastronomie
 
@@ -2227,6 +2247,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/reitsport/reitsportfreunde-winterberg-western-und-klassisch-e-v
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/paardensport/reitsportfreunde-winterberg-western-und-klassisch-e-v
 
+#### [Liftstation - Snowboard & Skateshop](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 2, 59955 Winterberg
+- **Telefon:** 02981 8160919
+- **Webseite:** https://www.liftstation.eu
+- **Beschreibung (DE):** Spezialisierter Snowboard- und Skateshop in Winterberg mit großer Auswahl an Snowboards, Skateboards, Streetwear, Boots, Bindungen, Schutzausrüstung und fachkundigem Service.
+- **Beschreibung (NL):** Gespecialiseerde snowboard- en skateshop in Winterberg met een grote selectie snowboards, skateboards, streetwear, boots, bindingen, bescherming en deskundig advies.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/liftstation-snowboard-und-skateshop
+
 #### [Sport und Mode Menke](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/sport-und-mode-menke)
 - **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
 - **Ort / Ortsteil:** Winterberg
@@ -2258,6 +2289,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Romantische huifkartochten en koetsritten door het prachtige landschap van Winterberg. Ideaal voor families, feesten en groepsactiviteiten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/pferdefuhrhalterei-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/pferdefuhrhalterei-winterberg
+
+#### [Liftstation - Snowboard & Skateshop](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 2, 59955 Winterberg
+- **Telefon:** 02981 8160919
+- **Beschreibung (DE):** Snowboardgeschäft in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/liftstation-snowboard-und-skateshop
 
 ### Kategorie: Gesundheit & Medizin
 
