@@ -5801,6 +5801,63 @@ export const businesses: Business[] = [
       sunday: 'Geschlossen'
     }
   }
+,
+  {
+    id: 'liftstation-snowboard-skateshop-winterberg',
+    name: 'Liftstation - Snowboard & Skateshop',
+    category: 'Ski, Bike & Sport',
+    subcategory: 'Sport & Outdoor',
+    description: 'Snowboardgeschäft in Winterberg.',
+    address: 'Hauptstraße 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8160919',
+    email: 'info@liftstation.eu',
+    openingHours: {
+      saturday: '10:00 - 18:00',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
+    id: 'amplifon-hoergeraete-winterberg',
+    name: 'Amplifon Hörgeräte Winterberg',
+    category: 'Gesundheit & Medizin',
+    subcategory: 'Hörgeräteakustiker',
+    description: 'Hörgeräteakustiker in Winterberg.',
+    address: 'Am Waltenberg 10, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 929999',
+    openingHours: {
+      monday: '08:00 - 18:00'
+    }
+  },
+  {
+    id: 'see-you-by-v-k-optik-kuhnert-winterberg',
+    name: 'See you by V&K Optik Kuhnert Winterberg',
+    category: 'Gesundheit & Medizin',
+    subcategory: 'Optiker',
+    description: 'Augenoptikergeschäft in Winterberg.',
+    address: 'Am Waltenberg 6, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 929986',
+    email: 'info@seeyou-winterberg.de',
+    openingHours: {
+      saturday: '09:30 - 14:00'
+    }
+  },
+  {
+    id: 'lu-brillenschmiede-winterberg',
+    name: 'Lu Brillenschmiede',
+    category: 'Gesundheit & Medizin',
+    subcategory: 'Optiker',
+    description: 'Augenoptikergeschäft in Winterberg.',
+    address: 'Hellenstraße 6b, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 908666',
+    email: 'mail@lu-brillenschmiede.de',
+    openingHours: {
+      saturday: '09:30 - 14:00'
+    }
+  }
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {
@@ -5923,7 +5980,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
-  { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser'] },
+  { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser', 'Hörgeräteakustiker', 'Optiker'] },
   { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },
   { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder', 'Sommerrodelbahnen'] }
 ];

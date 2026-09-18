@@ -49,7 +49,7 @@ import {
   Building2,
   Building,
   HeartPulse,
-  Stethoscope,
+  Stethoscope, Ear, Glasses,
   Fuel,
   Film,
   Briefcase,
@@ -142,7 +142,14 @@ export function getCategoryStyle(category = '', subcategory = '', name = '', isP
   if (matchSubOrName('zahnarzt', 'zahnärzte', 'dental', 'zähne')) {
     return { icon: Smile, bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' };
   }
-  if (matchSubOrName('apotheke', 'apotheken')) {
+  
+    if (matchSubOrName('optiker', 'brillen', 'augenoptiker')) {
+      return { icon: Glasses, bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' };
+    }
+    if (matchSubOrName('hörgeräte', 'hörgeräteakustiker', 'audicien')) {
+      return { icon: Ear, bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200' };
+    }
+    if (matchSubOrName('apotheke', 'apotheken')) {
     return { icon: HeartPulse, bg: 'bg-rose-50', text: 'text-rose-600', border: 'border-rose-200' };
   }
   if (matchSubOrName('arzt', 'ärzte', 'praxis', 'mediz', 'klinik', 'doktor', 'hausarzt', 'facharzt')) {

@@ -212,6 +212,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "Reitsport": "Reitsport",
     "Yoga": "Yoga",
     "Sanitätshäuser": "Sanitätshäuser",
+      "Hörgeräteakustiker": "Hörgeräteakustiker",
+      "Optiker": "Optiker",
     "Kindergärten & Kitas": "Kindergärten & Kitas",
     "Fahrschulen": "Fahrschulen",
     "Druckereien": "Druckereien",
