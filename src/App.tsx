@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -754,6 +754,7 @@ export default function App() {
     if (!business) return;
     const updatedReviews = [...(business.reviews || []), review];
     
+    // 1. Optimistic UI update
     setBusinesses(prev => prev.map(b => {
       if (b.id === businessId) {
         return { ...b, reviews: updatedReviews };
@@ -765,22 +766,58 @@ export default function App() {
       setSelectedBusiness(prev => prev ? { ...prev, reviews: updatedReviews } : null);
     }
     
+    // 2. Call serverless API (handles both existing & static businesses, bumps version, sends email)
+    let apiSuccess = false;
     try {
-      await updateDoc(doc(db, 'businesses', businessId), { reviews: updatedReviews });
-      bumpRemoteBusinessesVersion(db);
-    } catch (err) {
-      console.error("Review save error", err);
-      // Fallback if doc doesn't exist yet
+      const res = await fetch('/api/submit-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessId,
+          review,
+          businessData: business,
+          lang
+        })
+      });
+      if (res.ok) {
+        apiSuccess = true;
+        const data = await res.json();
+        if (data?.version) {
+          setLocalVersion(CACHE_KEYS.BUSINESSES_VERSION, data.version);
+        }
+      } else {
+        console.warn('/api/submit-review returned non-200, falling back to direct Firestore write');
+      }
+    } catch (apiErr) {
+      console.warn('Network error calling /api/submit-review, falling back to direct Firestore write:', apiErr);
+    }
+
+    // 3. Fallback: If API was unreachable or failed, try direct Firestore client write and notifyBusinessNewReview
+    if (!apiSuccess) {
       try {
-        const bToUpdate = { ...business, reviews: updatedReviews };
-        await setDoc(doc(db, 'businesses', businessId), bToUpdate, { merge: true });
+        await updateDoc(doc(db, 'businesses', businessId), { reviews: updatedReviews });
         bumpRemoteBusinessesVersion(db);
-      } catch (e2) {
-        console.error("Fallback review save error", e2);
+      } catch (err) {
+        console.error("Review save error", err);
+        // Fallback if doc doesn't exist yet
+        try {
+          const bToUpdate = { ...business, reviews: updatedReviews };
+          await setDoc(doc(db, 'businesses', businessId), bToUpdate, { merge: true });
+          bumpRemoteBusinessesVersion(db);
+        } catch (e2) {
+          console.error("Fallback review save error", e2);
+        }
+      }
+
+      // Trigger automated email notification to business owner / recipient
+      try {
+        notifyBusinessNewReview(businessId, review, lang);
+      } catch (notifErr) {
+        console.warn("Could not dispatch review notification email:", notifErr);
       }
     }
 
-    // Update local cache so that current client also preserves the new review across refreshes
+    // 4. Update local cache so that current client also preserves the new review across refreshes
     try {
       const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true) || [];
       const updatedCache = cached.map(b => b.id === businessId ? { ...b, reviews: updatedReviews } : b);
@@ -790,13 +827,6 @@ export default function App() {
       setCachedItem(CACHE_KEYS.BUSINESSES, updatedCache);
     } catch (cacheErr) {
       console.warn("Could not update businesses cache after review submit:", cacheErr);
-    }
-
-    // Trigger automated email notification to business owner / recipient
-    try {
-      notifyBusinessNewReview(businessId, review, lang);
-    } catch (notifErr) {
-      console.warn("Could not dispatch review notification email:", notifErr);
     }
   };
 
@@ -1184,46 +1214,48 @@ export default function App() {
     }
   };
 
-  const loadBusinesses = async () => {
-    // 1. Instantly apply cached data (zero-flicker baseline)
+  const loadBusinesses = async (forceFresh = false) => {
+    // 1. Instantly apply cached data (zero-flicker baseline) unless forced fresh
     const cachedBusinesses = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, undefined, true);
-    if (cachedBusinesses && cachedBusinesses.length > 0) {
+    if (cachedBusinesses && cachedBusinesses.length > 0 && !forceFresh) {
       applyBusinessesMerge(cachedBusinesses);
     }
 
     const localVersion = getLocalVersion(CACHE_KEYS.BUSINESSES_VERSION);
 
-    // 2. Perform 1-Read Version Check against system/metadata
-    console.log("[dbCache] Checking remote businesses version (1 Read)...");
-    let remoteVersion: number | null = null;
-    try {
-      const timeoutPromise = new Promise<null>((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_VERSION')), 5000));
-      remoteVersion = await Promise.race([
-        getRemoteBusinessesVersion(db),
-        timeoutPromise
-      ]);
-    } catch (err) {
-      console.warn("[dbCache] Remote version check timed out or quota exceeded:", err);
-    }
+    if (!forceFresh) {
+      // 2. Perform 1-Read Version Check against system/metadata
+      console.log("[dbCache] Checking remote businesses version (1 Read)...");
+      let remoteVersion: number | null = null;
+      try {
+        const timeoutPromise = new Promise<null>((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_VERSION')), 5000));
+        remoteVersion = await Promise.race([
+          getRemoteBusinessesVersion(db),
+          timeoutPromise
+        ]);
+      } catch (err) {
+        console.warn("[dbCache] Remote version check timed out or quota exceeded:", err);
+      }
 
-    // 3. If remote version matches or is older than our localVersion, and we have cached data:
-    // We are 100% up to date! Skip the 450-document read!
-    if (remoteVersion !== null && localVersion > 0 && remoteVersion <= localVersion && cachedBusinesses && cachedBusinesses.length > 0) {
-      console.log(`[dbCache] Businesses are fully up to date (version ${localVersion}). Skipping 450 reads.`);
-      return;
-    }
-
-    // Fallback: If remote metadata could not be reached (offline or quota), but local cache is fresh (< 60m), skip read:
-    if (remoteVersion === null && cachedBusinesses && cachedBusinesses.length > 0) {
-      const freshCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES);
-      if (freshCache && freshCache.length > 0) {
-        console.log("[dbCache] Remote metadata unavailable, but local cache is fresh (< 60m). Skipping read.");
+      // 3. If remote version matches or is older than our localVersion, and we have cached data:
+      // We are 100% up to date! Skip the 450-document read!
+      if (remoteVersion !== null && localVersion > 0 && remoteVersion <= localVersion && cachedBusinesses && cachedBusinesses.length > 0) {
+        console.log(`[dbCache] Businesses are fully up to date (version ${localVersion}). Skipping 450 reads.`);
         return;
+      }
+
+      // Fallback: If remote metadata could not be reached (offline or quota), but local cache is fresh (< 60m), skip read:
+      if (remoteVersion === null && cachedBusinesses && cachedBusinesses.length > 0) {
+        const freshCache = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES);
+        if (freshCache && freshCache.length > 0) {
+          console.log("[dbCache] Remote metadata unavailable, but local cache is fresh (< 60m). Skipping read.");
+          return;
+        }
       }
     }
 
-    // 4. Newer version detected OR first visit without cache -> fetch full businesses collection
-    console.log(`[dbCache] Fetching fresh businesses (local: ${localVersion}, remote: ${remoteVersion})...`);
+    // 4. Newer version detected OR first visit without cache OR forceFresh -> fetch full businesses collection
+    console.log(`[dbCache] Fetching fresh businesses (local: ${localVersion}, force: ${forceFresh})...`);
     try {
       const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_READ')), 15000));
       const querySnapshot = await Promise.race([
@@ -1238,7 +1270,7 @@ export default function App() {
       });
       if (loadedBusinesses.length > 0) {
         setCachedItem(CACHE_KEYS.BUSINESSES, loadedBusinesses);
-        const versionToStore = remoteVersion || Date.now();
+        const versionToStore = Date.now();
         setLocalVersion(CACHE_KEYS.BUSINESSES_VERSION, versionToStore);
         applyBusinessesMerge(loadedBusinesses);
       }
@@ -2033,6 +2065,7 @@ export default function App() {
             businesses={businesses} 
             setBusinesses={setBusinesses} 
             onBusinessAdded={loadBusinesses} 
+            onRefreshBusinesses={loadBusinesses}
             reviewsEnabled={reviewsEnabled} 
             setReviewsEnabled={(v: boolean) => { setReviewsEnabled(v); localStorage.setItem('premium_reviews_enabled', String(v)); }} 
             seoSettings={seoSettings} 
@@ -4784,7 +4817,7 @@ function RedirectsAdminPanel({ theme, activeThemeKey, categories: catsProp, busi
   );
 }
 
-function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, pricingSettings, setPricingSettings, onBack }: any) {
+function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onRefreshBusinesses, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, pricingSettings, setPricingSettings, onBack }: any) {
 
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
@@ -4793,6 +4826,14 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
+  const [isRefreshingReviews, setIsRefreshingReviews] = useState(false);
+
+  useEffect(() => {
+    if (activeTab === 'reviews' && onRefreshBusinesses) {
+      setIsRefreshingReviews(true);
+      onRefreshBusinesses(true).finally(() => setIsRefreshingReviews(false));
+    }
+  }, [activeTab]);
 
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
   const [activeAdminLocation, setActiveAdminLocation] = useState<string>('Alle');
@@ -5494,7 +5535,28 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} businesses={businesses} />
         ) : activeTab === 'reviews' ? (
           <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-            <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Offene Bewertungen</h2>
+            <div className="flex items-center justify-between mb-[16px]">
+              <h2 className="font-display text-[21px] font-bold m-0">Offene Bewertungen</h2>
+              <button
+                type="button"
+                onClick={async () => {
+                  if (onRefreshBusinesses) {
+                    setIsRefreshingReviews(true);
+                    try {
+                      await onRefreshBusinesses(true);
+                    } finally {
+                      setIsRefreshingReviews(false);
+                    }
+                  }
+                }}
+                disabled={isRefreshingReviews}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md border border-[#EDE8E0] bg-[#FAF8F5] text-[#0F4C2E] hover:bg-[#EAE5DB] transition-colors cursor-pointer disabled:opacity-50"
+                title="Bewertungen live aus der Datenbank neu laden"
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${isRefreshingReviews ? 'animate-spin' : ''}`} />
+                {isRefreshingReviews ? 'Wird geladen...' : 'Aktualisieren'}
+              </button>
+            </div>
             
             {allowedBusinesses.flatMap((b: Business) => (b.reviews || []).filter(r => r.status === 'pending').map(r => ({ ...r, businessId: b.id, businessName: b.name }))).length > 0 ? (
               <div className="grid gap-[10px] mb-[30px]">
