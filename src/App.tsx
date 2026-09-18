@@ -147,6 +147,7 @@ export default function App() {
   let defaultSearchQuery = '';
   let initialSelectedBusiness: Business | null = null;
   let initialJobsMode = false;
+  let initialEventsMode = false;
   let initialJobsCategory: string | null = null;
   let initialAllMode = false;
   let initialBestOfMode = false;
@@ -229,6 +230,8 @@ export default function App() {
         if (pathParts[1]) {
           initialJobsCategory = decodeURIComponent(pathParts[1]);
         }
+      } else if (decodedPart1 === 'veranstaltungen' || decodedPart1 === 'events' || decodedPart1 === 'evenementen') {
+        initialEventsMode = true;
       } else if (decodedPart1 === 'faq' || decodedPart1 === 'faqs' || decodedPart1 === 'veelgestelde-vragen' || decodedPart1 === 'winterberg-faq') {
         initialFaqMode = true;
       } else if (decodedPart1 === 'impressum' || decodedPart1 === 'colofon') {

@@ -118,6 +118,23 @@ export interface BusinessTranslations {
   };
 }
 
+export interface EventItem {
+  id: string;
+  title: string;
+  title_nl?: string;
+  description: string;
+  description_nl?: string;
+  startDate: string; // ISO-Datum (YYYY-MM-DD)
+  endDate?: string;  // ISO-Datum (YYYY-MM-DD)
+  startTime?: string; // z.B. "18:00"
+  endTime?: string;   // z.B. "22:00"
+  location?: string;
+  category: string;
+  imageUrl?: string;
+  externalUrl?: string;
+  isPremium?: boolean;
+}
+
 export interface Business {
   id: string;
   name: string;
@@ -138,6 +155,7 @@ export interface Business {
   services?: string[];
   products?: string[];
   jobs?: Job[];
+  events?: EventItem[];
   businessNews?: BusinessNewsArticle[];
   documents?: BusinessDocument[];
   featureBadges?: string[];
