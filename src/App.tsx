@@ -1638,7 +1638,7 @@ export default function App() {
 
               <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
-              <a href={getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Evenementen' : 'Veranstaltungen'}</a>
+              <a href={getPath(lang === 'nl' ? '/evenementen' : '/events')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Evenementen' : 'Events'}</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
@@ -3321,10 +3321,10 @@ export default function App() {
               </a>
 
               <a
-                href={getPath(lang === 'nl' ? "/evenementen" : "/veranstaltungen")}
+                href={getPath(lang === 'nl' ? "/evenementen" : "/events")}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen'));
+                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events'));
                   resetToDirectory();
                   setIsEventsMode(true);
                   setIsMobileNavOpen(false);
@@ -3335,7 +3335,7 @@ export default function App() {
                 <div className="w-8 h-8 rounded-md bg-purple-50 text-purple-800 flex items-center justify-center shrink-0">
                   <Calendar className="w-4 h-4" />
                 </div>
-                <span>{lang === 'nl' ? 'Evenementen' : 'Veranstaltungen'}</span>
+                <span>{lang === 'nl' ? 'Evenementen' : 'Events'}</span>
               </a>
 
               <a
@@ -3581,17 +3581,17 @@ export default function App() {
               {lang === 'nl' ? 'Vacatures' : 'Jobs & Karriere'}
             </a>
             <a 
-              href={getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')} 
+              href={getPath(lang === 'nl' ? '/evenementen' : '/events')} 
               onClick={(e) => { 
                 e.preventDefault(); 
-                window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events')); 
                 resetToDirectory(); 
                 setIsEventsMode(true); 
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              {lang === 'nl' ? 'Evenementen' : 'Veranstaltungen'}
+              {lang === 'nl' ? 'Evenementen' : 'Events'}
             </a>
             <a 
               href={getPath('/news')} 
