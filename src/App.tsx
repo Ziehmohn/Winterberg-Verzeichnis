@@ -4809,10 +4809,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     ] : [])
   ];
 
-  const activeCategoryKey = useMemo<AdminCategoryKey>(() => {
-    const found = adminCategories.find(cat => cat.tabs.some(t => t.id === activeTab));
-    return found ? found.key : adminCategories[0]?.key || 'content';
-  }, [activeTab, adminCategories]);
+  const activeCategoryKey: AdminCategoryKey = adminCategories.find(cat => cat.tabs.some(t => t.id === activeTab))?.key || adminCategories[0]?.key || 'content';
 
   const currentCategory = adminCategories.find(c => c.key === activeCategoryKey) || adminCategories[0];
 
