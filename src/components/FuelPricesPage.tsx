@@ -26,6 +26,7 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
   const [fuelTypeFilter, setFuelTypeFilter] = useState<'all' | 'diesel' | 'e10' | 'e5'>('all');
   const [sortBy, setSortBy] = useState<'diesel' | 'e10' | 'e5' | 'dist' | 'name'>('diesel');
   const [onlyOpen, setOnlyOpen] = useState<boolean>(false);
+  const [includeSurrounding, setIncludeSurrounding] = useState<boolean>(false);
 
   // Calculator State
   const [calcFuelType, setCalcFuelType] = useState<'diesel' | 'e10' | 'e5'>('diesel');
@@ -51,7 +52,13 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
     loadPrices();
   }, []);
 
-  const stations = useMemo(() => (fuelData?.stations || []).filter(isWinterbergStation), [fuelData]);
+  const allStations = fuelData?.stations || [];
+  const stations = useMemo(() => {
+    if (includeSurrounding) {
+      return allStations;
+    }
+    return allStations.filter(s => s.isLocal ?? isWinterbergStation(s));
+  }, [allStations, includeSurrounding]);
 
   // Filter & Sort stations
   const filteredStations = useMemo(() => {
@@ -336,23 +343,35 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
           <div>
             <h2 className="font-display text-xl font-bold text-[#1B211D] flex items-center gap-2">
               <Fuel className="w-5 h-5 text-[#F2761B]" />
-              {lang === 'nl' ? 'Overzicht van alle tankstations' : 'Übersicht aller Tankstellen in und um Winterberg'}
+              {includeSurrounding
+                ? (lang === 'nl' ? 'Overzicht tankstations (Winterberg & buurgemeenten)' : 'Übersicht aller Tankstellen (Winterberg & Nachbarorte)')
+                : (lang === 'nl' ? 'Overzicht tankstations in Stadtgebiet Winterberg' : 'Übersicht der Tankstellen im Stadtgebiet Winterberg')}
             </h2>
             <p className="text-xs text-[#5F6B63] mt-1">
-              {lang === 'nl'
-                ? 'Prijzen worden continu geactualiseerd via de officiële Markttransparantie-instantie (MTS-K).'
-                : 'Preise werden laufend über die Markttransparenzstelle für Kraftstoffe aktualisiert.'}
+              {includeSurrounding
+                ? (lang === 'nl' ? 'Toont alle tankstations in Winterberg en omliggende buurgemeenten binnen 15 km.' : 'Zeigt alle Tankstellen in Winterberg und umliegenden Nachbargemeinden im Umkreis von 15 km.')
+                : (lang === 'nl' ? 'Toont uitsluitend tankstations binnen het stadsgebied Winterberg (PLZ 59955).' : 'Zeigt ausschließlich Tankstellen innerhalb des Stadtgebiets Winterberg (PLZ 59955).')}
             </p>
           </div>
 
-          {/* Controls: Sort & Only Open */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <label className="flex items-center gap-2 text-xs font-semibold text-[#1B211D] cursor-pointer bg-[#FAF8F5] px-3 py-2 rounded-lg border border-[#EDE8E0]">
+          {/* Controls: Sort, Only Open & Include Surrounding */}
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <label className="flex items-center gap-2 text-xs font-semibold text-[#1B211D] cursor-pointer bg-[#FAF8F5] hover:bg-[#F3F0EA] px-3 py-2 rounded-lg border border-[#EDE8E0] transition-colors shadow-2xs">
+              <input
+                type="checkbox"
+                checked={includeSurrounding}
+                onChange={(e) => setIncludeSurrounding(e.target.checked)}
+                className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E] cursor-pointer"
+              />
+              <span>{lang === 'nl' ? 'Ook buurgemeenten (+15 km)' : 'Auch Nachbarorte anzeigen (+15 km)'}</span>
+            </label>
+
+            <label className="flex items-center gap-2 text-xs font-semibold text-[#1B211D] cursor-pointer bg-[#FAF8F5] hover:bg-[#F3F0EA] px-3 py-2 rounded-lg border border-[#EDE8E0] transition-colors shadow-2xs">
               <input
                 type="checkbox"
                 checked={onlyOpen}
                 onChange={(e) => setOnlyOpen(e.target.checked)}
-                className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E]"
+                className="w-4 h-4 rounded text-[#0F4C2E] focus:ring-[#0F4C2E] cursor-pointer"
               />
               <span>{lang === 'nl' ? 'Alleen geopend' : 'Nur geöffnete'}</span>
             </label>
@@ -401,7 +420,14 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
                   <tr key={station.id} className="hover:bg-[#FAF8F5]/80 transition-colors">
                     {/* Station Name & Location */}
                     <td className="py-4 px-4">
-                      <div className="font-bold text-[#1B211D] text-[15px]">{station.name}</div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-bold text-[#1B211D] text-[15px]">{station.name}</span>
+                        {(!station.isLocal && !isWinterbergStation(station)) && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200/80">
+                            {lang === 'nl' ? 'Buurgemeente' : 'Nachbarort'} ({station.city || station.district})
+                          </span>
+                        )}
+                      </div>
                       <div className="text-xs text-[#8A928B] flex items-center gap-1 mt-0.5">
                         <MapPin className="w-3 h-3 text-[#8A928B]" />
                         <span>{station.street}, {station.postCode} {station.city}</span>
@@ -518,10 +544,18 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
               <div key={station.id} className="border border-[#EDE8E0] rounded-xl p-4 bg-[#FAF8F5]">
                 <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-bold text-base text-[#1B211D]">{station.name}</h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="font-bold text-base text-[#1B211D]">{station.name}</h3>
+                      {(!station.isLocal && !isWinterbergStation(station)) && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200/80">
+                          {lang === 'nl' ? 'Buurgemeente' : 'Nachbarort'} ({station.city || station.district})
+                        </span>
+                      )}
+                    </div>
                     <p className="text-xs text-[#8A928B] flex items-center gap-1 mt-0.5">
                       <MapPin className="w-3 h-3 text-[#8A928B]" />
                       {station.street}, {station.city}
+                      {station.dist && <span className="font-semibold text-[#5F6B63]">({station.dist.toFixed(1)} km)</span>}
                     </p>
                   </div>
                   {station.isOpen ? (

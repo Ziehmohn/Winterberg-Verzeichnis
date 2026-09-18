@@ -449,14 +449,10 @@ async function startServer() {
           if (tRes.ok) {
             const tData = await tRes.json();
             if (tData.ok && Array.isArray(tData.stations)) {
-              const winterbergStations = tData.stations.filter((st: any) => {
+              const mappedStations = tData.stations.map((st: any) => {
                 const pc = String(st.postCode || '').trim();
-                if (pc && pc !== '59955') return false;
-                if (pc === '59955') return true;
                 const place = (st.place || st.city || '').toLowerCase();
-                return place.includes('winterberg');
-              });
-              const mappedStations = winterbergStations.map((st: any) => {
+                const isLocal = pc === '59955' || (!pc && place.includes('winterberg')) || (pc !== '59964' && pc !== '59969' && pc !== '34508' && pc !== '59939' && place.includes('winterberg'));
                 const sName = st.name || '';
                 const sStreet = st.street || '';
                 let businessSlug: string | undefined;
@@ -482,11 +478,13 @@ async function startServer() {
                   brand: st.brand || st.name,
                   street: st.street || '',
                   houseNumber: st.houseNumber || '',
-                  postCode: String(st.postCode || '59955'),
-                  city: st.place || 'Winterberg',
-                  district: st.place?.includes('Winterberg')
-                    ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : 'Winterberg'))
-                    : st.place,
+                  postCode: String(st.postCode || ''),
+                  city: st.place || (isLocal ? 'Winterberg' : ''),
+                  district: isLocal
+                    ? (st.place?.includes('Winterberg')
+                      ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : 'Winterberg'))
+                      : (st.place || 'Winterberg'))
+                    : (st.place || 'Nachbarort'),
                   isOpen: st.isOpen ?? true,
                   diesel: typeof st.diesel === 'number' ? st.diesel : null,
                   e5: typeof st.e5 === 'number' ? st.e5 : null,
@@ -496,6 +494,7 @@ async function startServer() {
                   lng: st.lng,
                   businessSlug,
                   businessPath,
+                  isLocal,
                 };
               });
 

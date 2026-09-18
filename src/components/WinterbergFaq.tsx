@@ -1491,6 +1491,29 @@ export default function WinterbergFaq({
             : 'Alles Wichtige rund um Aktivitäten im Sommer, Radfahren, Wandern, Regentage, Urlaub mit Kindern oder Hund, Skifahren, Rodeln, Restaurants, Einkaufen, Sonntagsöffnung und praktische Tipps für Ihren Aufenthalt in Winterberg.'}
         </p>
 
+        {/* Call to action to submit questions */}
+        <div className="mb-6 bg-[#EBF3EE] border-l-4 border-[#0F4C2E] p-4 rounded-r-md text-[14.5px] text-[#0F4C2E] flex items-start gap-3 shadow-sm">
+          <HelpCircle className="w-5 h-5 shrink-0 mt-0.5" />
+          <div>
+            <strong>{isNl ? 'Staat uw vraag er niet bij?' : 'Ihre Frage ist nicht dabei?'}</strong>
+            <p className="mt-1 opacity-90">
+              {isNl 
+                ? 'U kunt uw eigen vragen indienen! De community of ons team zal deze zo snel mogelijk beantwoorden. '
+                : 'Sie können selbst Fragen einreichen! Die Community oder unser Team beantwortet diese schnellstmöglich. '}
+              <a 
+                href="#community-qa" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('community-qa')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="font-bold underline hover:text-[#1B211D] cursor-pointer"
+              >
+                {isNl ? 'Klik hier om een vraag te stellen' : 'Klicken Sie hier, um eine Frage zu stellen'}
+              </a>
+            </p>
+          </div>
+        </div>
+
         {/* Live Search Bar */}
         <div className="relative w-full max-w-[650px]">
           <Search className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -1700,11 +1723,13 @@ export default function WinterbergFaq({
       </div>
 
       {/* Community Q&A Section */}
-      <CommunityQA 
-        type="general" 
-        title={isNl ? 'Winterberg Community Vragen & Antwoorden' : 'Winterberg Community-Fragen & Antworten'}
-        subtitle={isNl ? 'Heeft u een vraag die hierboven niet beantwoord is? Stel uw vraag aan de community of help andere bezoekers!' : 'War Ihre Frage oben nicht dabei? Fragen Sie die Winterberg-Community oder helfen Sie anderen Besuchern mit Ihren Tipps!'}
-      />
+      <div id="community-qa" className="scroll-mt-6">
+        <CommunityQA 
+          type="general" 
+          title={isNl ? 'Winterberg Community Vragen & Antwoorden' : 'Winterberg Community-Fragen & Antworten'}
+          subtitle={isNl ? 'Heeft u een vraag die hierboven niet beantwoord is? Stel uw vraag aan de community of help andere bezoekers!' : 'War Ihre Frage oben nicht dabei? Fragen Sie die Winterberg-Community oder helfen Sie anderen Besuchern mit Ihren Tipps!'}
+        />
+      </div>
 
       {/* Footer Call to Action / Help Box */}
       <div className="mt-12 bg-gradient-to-br from-[#06301C] to-[#0F4C2E] text-white rounded-lg p-8 text-center md:text-left md:flex justify-between items-center gap-6 shadow-xl">

@@ -349,6 +349,7 @@ export interface FuelStationPrice {
   lng?: number;
   businessSlug?: string;
   businessPath?: string;
+  isLocal?: boolean;
 }
 
 export interface FuelPriceResponse {

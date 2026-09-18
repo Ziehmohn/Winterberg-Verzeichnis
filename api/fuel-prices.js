@@ -32,8 +32,8 @@ export default async function handler(req, res) {
 
     const tData = await response.json();
     if (tData.ok && Array.isArray(tData.stations)) {
-      const winterbergStations = tData.stations.filter(isWinterbergStation);
-      const mappedStations = winterbergStations.map((st) => {
+      const mappedStations = tData.stations.map((st) => {
+        const isLocal = isWinterbergStation(st);
         const sName = st.name || '';
         const sStreet = st.street || '';
         let businessSlug;
@@ -59,11 +59,13 @@ export default async function handler(req, res) {
           brand: st.brand || st.name,
           street: st.street || '',
           houseNumber: st.houseNumber || '',
-          postCode: String(st.postCode || '59955'),
-          city: st.place || 'Winterberg',
-          district: st.place?.includes('Winterberg')
-            ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : (st.street?.toLowerCase().includes('ruhrstr') ? 'Niedersfeld' : 'Winterberg')))
-            : st.place,
+          postCode: String(st.postCode || ''),
+          city: st.place || (isLocal ? 'Winterberg' : ''),
+          district: isLocal
+            ? (st.place?.includes('Winterberg')
+              ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : (st.street?.toLowerCase().includes('ruhrstr') ? 'Niedersfeld' : 'Winterberg')))
+              : (st.place || 'Winterberg'))
+            : (st.place || 'Nachbarort'),
           isOpen: st.isOpen ?? true,
           diesel: typeof st.diesel === 'number' ? st.diesel : null,
           e5: typeof st.e5 === 'number' ? st.e5 : null,
@@ -73,6 +75,7 @@ export default async function handler(req, res) {
           lng: st.lng,
           businessSlug,
           businessPath,
+          isLocal,
         };
       });
 
@@ -114,7 +117,8 @@ export default async function handler(req, res) {
         e5: 1.769,
         dist: 0.8,
         businessSlug: 'jet-tankstelle-winterberg',
-        businessPath: '/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg'
+        businessPath: '/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg',
+        isLocal: true
       },
       {
         id: 'tinq-tankautomat-langewiese',
@@ -130,7 +134,8 @@ export default async function handler(req, res) {
         e5: 1.759,
         dist: 7.5,
         businessSlug: 'tinq-tankautomat-langewiese',
-        businessPath: '/mobilitaet-und-kfz/tankstellen/tinq-tankautomat-langewiese'
+        businessPath: '/mobilitaet-und-kfz/tankstellen/tinq-tankautomat-langewiese',
+        isLocal: true
       },
       {
         id: 'calpam-tankautomat-zueschen',
@@ -146,7 +151,8 @@ export default async function handler(req, res) {
         e5: 1.779,
         dist: 6.8,
         businessSlug: 'calpam-tankautomat-zueschen',
-        businessPath: '/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen'
+        businessPath: '/mobilitaet-und-kfz/tankstellen/calpam-tankautomat-zueschen',
+        isLocal: true
       },
       {
         id: 'aral-tankstelle-winterberg',
@@ -162,7 +168,8 @@ export default async function handler(req, res) {
         e5: 1.799,
         dist: 1.2,
         businessSlug: 'aral-tankstelle-winterberg',
-        businessPath: '/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg'
+        businessPath: '/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg',
+        isLocal: true
       },
       {
         id: 'avia-siedlinghausen',
@@ -177,6 +184,37 @@ export default async function handler(req, res) {
         e10: 1.729,
         e5: 1.789,
         dist: 8.9,
+        isLocal: true
+      },
+      {
+        id: 'total-medebach',
+        name: 'TOTAL Tankstelle Medebach',
+        brand: 'TOTAL',
+        street: 'Oberstraße 52',
+        postCode: '59964',
+        city: 'Medebach',
+        district: 'Medebach',
+        isOpen: true,
+        diesel: 1.649,
+        e10: 1.719,
+        e5: 1.779,
+        dist: 11.1,
+        isLocal: false
+      },
+      {
+        id: 'aral-willingen',
+        name: 'Aral Tankstelle Willingen',
+        brand: 'Aral',
+        street: 'Briloner Straße 36',
+        postCode: '34508',
+        city: 'Willingen',
+        district: 'Willingen',
+        isOpen: true,
+        diesel: 1.679,
+        e10: 1.749,
+        e5: 1.809,
+        dist: 12.0,
+        isLocal: false
       }
     ]
   };

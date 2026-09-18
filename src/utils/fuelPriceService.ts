@@ -95,6 +95,39 @@ export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
     e10: 1.729,
     e5: 1.789,
     dist: 8.9,
+    isLocal: true,
+  },
+  {
+    id: 'total-medebach',
+    tankerId: 'total-medebach',
+    name: 'TOTAL Tankstelle Medebach',
+    brand: 'TOTAL',
+    street: 'Oberstraße 52',
+    postCode: '59964',
+    city: 'Medebach',
+    district: 'Medebach',
+    isOpen: true,
+    diesel: 1.649,
+    e10: 1.719,
+    e5: 1.779,
+    dist: 11.1,
+    isLocal: false,
+  },
+  {
+    id: 'aral-willingen',
+    tankerId: 'aral-willingen',
+    name: 'Aral Tankstelle Willingen',
+    brand: 'Aral',
+    street: 'Briloner Straße 36',
+    postCode: '34508',
+    city: 'Willingen',
+    district: 'Willingen',
+    isOpen: true,
+    diesel: 1.679,
+    e10: 1.749,
+    e5: 1.809,
+    dist: 12.0,
+    isLocal: false,
   }
 ];
 
@@ -116,7 +149,7 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
     if (res.ok) {
       const data: FuelPriceResponse = await res.json();
       if (data && Array.isArray(data.stations) && data.stations.length > 0) {
-        data.stations = data.stations.filter(isWinterbergStation);
+        data.stations = data.stations.map(s => ({ ...s, isLocal: s.isLocal ?? isWinterbergStation(s) }));
         cachedPrices = data;
         lastFetchTime = now;
         return data;
@@ -134,8 +167,8 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
     if (directRes.ok) {
       const tData = await directRes.json();
       if (tData.ok && Array.isArray(tData.stations)) {
-        const winterbergStations = tData.stations.filter(isWinterbergStation);
-        const mappedStations = winterbergStations.map((st: any) => {
+        const mappedStations = tData.stations.map((st: any) => {
+          const isLocal = isWinterbergStation(st);
           const sName = st.name || '';
           const sStreet = st.street || '';
           let businessSlug: string | undefined;
@@ -161,11 +194,13 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
             brand: st.brand || st.name,
             street: st.street || '',
             houseNumber: st.houseNumber || '',
-            postCode: String(st.postCode || '59955'),
-            city: st.place || 'Winterberg',
-            district: st.place?.includes('Winterberg')
-              ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : 'Winterberg'))
-              : st.place,
+            postCode: String(st.postCode || ''),
+            city: st.place || (isLocal ? 'Winterberg' : ''),
+            district: isLocal
+              ? (st.place?.includes('Winterberg')
+                ? (st.street?.toLowerCase().includes('langewiese') ? 'Langewiese' : (st.street?.toLowerCase().includes('zueschen') || st.street?.toLowerCase().includes('züschen') ? 'Züschen' : (st.street?.toLowerCase().includes('ruhrstr') ? 'Niedersfeld' : 'Winterberg')))
+                : (st.place || 'Winterberg'))
+              : (st.place || 'Nachbarort'),
             isOpen: st.isOpen ?? true,
             diesel: typeof st.diesel === 'number' ? st.diesel : null,
             e5: typeof st.e5 === 'number' ? st.e5 : null,
@@ -175,6 +210,7 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
             lng: st.lng,
             businessSlug,
             businessPath,
+            isLocal,
           };
         });
 
