@@ -10,3 +10,4 @@ coverage/
 *_dump.html
 test_*.cjs
 
+.vercel
