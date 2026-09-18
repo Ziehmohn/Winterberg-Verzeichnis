@@ -5858,6 +5858,21 @@ export const businesses: Business[] = [
       saturday: '09:30 - 14:00'
     }
   }
+,
+  {
+    id: 'camel-active-store-winterberg',
+    name: 'camel active Store Winterberg',
+    category: 'Einzelhandel',
+    subcategory: 'Bekleidung',
+    description: 'Bekleidungsgeschäft in Winterberg.',
+    address: 'Am Waltenberg 8, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9251927',
+    email: 'welcome@cmlc.de',
+    openingHours: {
+      saturday: '10:00 - 18:00'
+    }
+  }
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {

@@ -1,5 +1,17 @@
 import { FuelPriceResponse, FuelStationPrice } from '../types';
 
+export function isWinterbergStation(st: { postCode?: string | number; place?: string; city?: string; street?: string }): boolean {
+  const pc = String(st.postCode || '').trim();
+  // If postal code is present and not 59955, it belongs to neighboring municipalities (e.g. Medebach 59964, Hallenberg 59969, Willingen 34508, Olsberg 59939)
+  if (pc && pc !== '59955') {
+    return false;
+  }
+  if (pc === '59955') return true;
+
+  const place = (st.place || st.city || '').toLowerCase();
+  return place.includes('winterberg');
+}
+
 export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
   {
     id: 'jet-tankstelle-winterberg',
@@ -83,21 +95,6 @@ export const FALLBACK_FUEL_STATIONS: FuelStationPrice[] = [
     e10: 1.729,
     e5: 1.789,
     dist: 8.9,
-  },
-  {
-    id: 'total-medebach',
-    tankerId: 'total-medebach',
-    name: 'TOTAL Tankstelle Medebach',
-    brand: 'TOTAL',
-    street: 'Oberstraße 52',
-    postCode: '59964',
-    city: 'Medebach',
-    district: 'Medebach',
-    isOpen: true,
-    diesel: 1.649,
-    e10: 1.719,
-    e5: 1.779,
-    dist: 14.2,
   }
 ];
 
@@ -119,6 +116,7 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
     if (res.ok) {
       const data: FuelPriceResponse = await res.json();
       if (data && Array.isArray(data.stations) && data.stations.length > 0) {
+        data.stations = data.stations.filter(isWinterbergStation);
         cachedPrices = data;
         lastFetchTime = now;
         return data;
@@ -136,7 +134,8 @@ export async function fetchFuelPrices(forceRefresh = false): Promise<FuelPriceRe
     if (directRes.ok) {
       const tData = await directRes.json();
       if (tData.ok && Array.isArray(tData.stations)) {
-        const mappedStations = tData.stations.map((st: any) => {
+        const winterbergStations = tData.stations.filter(isWinterbergStation);
+        const mappedStations = winterbergStations.map((st: any) => {
           const sName = st.name || '';
           const sStreet = st.street || '';
           let businessSlug: string | undefined;

@@ -449,7 +449,14 @@ async function startServer() {
           if (tRes.ok) {
             const tData = await tRes.json();
             if (tData.ok && Array.isArray(tData.stations)) {
-              const mappedStations = tData.stations.map((st: any) => {
+              const winterbergStations = tData.stations.filter((st: any) => {
+                const pc = String(st.postCode || '').trim();
+                if (pc && pc !== '59955') return false;
+                if (pc === '59955') return true;
+                const place = (st.place || st.city || '').toLowerCase();
+                return place.includes('winterberg');
+              });
+              const mappedStations = winterbergStations.map((st: any) => {
                 const sName = st.name || '';
                 const sStreet = st.street || '';
                 let businessSlug: string | undefined;

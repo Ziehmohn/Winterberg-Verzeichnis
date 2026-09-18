@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from '../i18n';
 import { Fuel, ArrowRight, RefreshCw, Calculator, Sparkles, MapPin, Clock, ExternalLink, CheckCircle, HelpCircle, Navigation, Info } from 'lucide-react';
 import { FuelPriceResponse, FuelStationPrice, ThemeConfig } from '../types';
-import { fetchFuelPrices, formatFuelPrice } from '../utils/fuelPriceService';
+import { fetchFuelPrices, formatFuelPrice, isWinterbergStation } from '../utils/fuelPriceService';
 import { getBusinessPath } from '../utils/routes';
 
 interface FuelPricesPageProps {
@@ -51,7 +51,7 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
     loadPrices();
   }, []);
 
-  const stations = fuelData?.stations || [];
+  const stations = useMemo(() => (fuelData?.stations || []).filter(isWinterbergStation), [fuelData]);
 
   // Filter & Sort stations
   const filteredStations = useMemo(() => {
@@ -204,12 +204,12 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
           <h1 className="font-display text-[clamp(28px,4vw,44px)] font-extrabold leading-tight mb-3">
             {lang === 'nl'
               ? 'Actuele brandstofprijzen in Winterberg'
-              : 'Aktuelle Spritpreise in Winterberg & Umgebung'}
+              : 'Aktuelle Spritpreise in Winterberg'}
           </h1>
           <p className="text-emerald-100 text-sm sm:text-base leading-relaxed max-w-xl">
             {lang === 'nl'
               ? 'Vind direct het voordeligste tankstation voor Diesel, Super E10 en Super E5 in Winterberg en bereken direct je totale tankkosten.'
-              : 'Finde immer die günstigste Tankstelle für Diesel, Super E10 und Super E5 in Winterberg und berechne Deine Tankkosten mit unserem Rechner.'}
+              : 'Finde immer die günstigste Tankstelle für Diesel, Super E10 und Super E5 im Stadtgebiet Winterberg und berechne Deine Tankkosten mit unserem Rechner.'}
           </p>
         </div>
       </div>

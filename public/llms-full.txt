@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (297 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (301 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2281,6 +2281,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/pferdefuhrhalterei-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/pferdefuhrhalterei-winterberg
 
+#### [Liftstation - Snowboard & Skateshop](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 2, 59955 Winterberg
+- **Telefon:** 02981 8160919
+- **Beschreibung (DE):** Snowboardgeschäft in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/liftstation-snowboard-und-skateshop
+
 ### Kategorie: Gesundheit & Medizin
 
 #### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
@@ -2504,6 +2513,33 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Praktijk voor fysiotherapie Physio-Fit Astrid Eichler in Siedlinghausen. Deskundige fysiotherapie en hersteltraining.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/physio-fit-astrid-eichler
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/physio-fit-astrid-eichler
+
+#### [Amplifon Hörgeräte Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/hoergeraeteakustiker/amplifon-hoergeraete-winterberg)
+- **Kategorie:** Gesundheit & Medizin > Hörgeräteakustiker
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 10, 59955 Winterberg
+- **Telefon:** 02981 929999
+- **Beschreibung (DE):** Hörgeräteakustiker in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/hoergeraeteakustiker/amplifon-hoergeraete-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/hoergeraeteakustiker/amplifon-hoergeraete-winterberg
+
+#### [See you by V&K Optik Kuhnert Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg)
+- **Kategorie:** Gesundheit & Medizin > Optiker
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 6, 59955 Winterberg
+- **Telefon:** 02981 929986
+- **Beschreibung (DE):** Augenoptikergeschäft in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker/see-you-by-vundk-optik-kuhnert-winterberg
+
+#### [Lu Brillenschmiede](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/lu-brillenschmiede)
+- **Kategorie:** Gesundheit & Medizin > Optiker
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hellenstraße 6b, 59955 Winterberg
+- **Telefon:** 02981 908666
+- **Beschreibung (DE):** Augenoptikergeschäft in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/lu-brillenschmiede
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker/lu-brillenschmiede
 
 ### Kategorie: Mobilität & KFZ
 
