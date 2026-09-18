@@ -2,6 +2,94 @@ import { Business, ThemeConfig, ThemeKey, CategoryGroup } from './types';
 
 export const businesses: Business[] = [
   {
+    id: 'winterberg-touristik',
+    name: 'Winterberg Touristik und Wirtschaft GmbH',
+    category: 'Dienstleister',
+    subcategory: 'Tourismus',
+    isPremium: true,
+    description: 'Offizielle Touristik-Organisation der Stadt Winterberg.',
+    address: 'Am Kurpark 4, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92500',
+    email: 'info@winterberg.de',
+    website: 'https://www.winterberg.de',
+    isActive: true,
+    events: [
+      {
+        id: 'eberspaecher-rodel-weltcup-2026',
+        title: 'EBERSPÄCHER Rodel-Weltcup',
+        startDate: '2026-11-28',
+        endDate: '2026-11-29',
+        startTime: '',
+        endTime: '',
+        category: 'Sport',
+        location: 'VELTINS-EisArena, Winterberg',
+        description: 'Saisonauftakt des EBERSPÄCHER Rodel-Weltcups in der VELTINS-EisArena. Zuschauer erwartet ein Rahmenprogramm mit DJ, Essensständen und Videowänden.',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/eberspaecher-rodel-weltcup/6a869d19435b6f203718828f/'
+      },
+      {
+        id: 'ibsf-europacup-bob-2026',
+        title: 'IBSF Europacup Bob',
+        startDate: '2026-12-14',
+        endDate: '2026-12-20',
+        startTime: '',
+        endTime: '',
+        category: 'Sport',
+        location: 'VELTINS-EisArena, Winterberg',
+        description: 'Wettbewerbe der IBSF Europacup-Serie im Bobsport in der VELTINS-EisArena. Ein fester Bestandteil des internationalen Sportkalenders in Winterberg.',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/ibsf-europacup-bob-4719/685e7d339864f076fafda8bf/'
+      },
+      {
+        id: 'ibsf-bob-skeleton-weltcup-2027',
+        title: 'IBSF Bob & Skeleton Weltcup',
+        startDate: '2027-01-29',
+        endDate: '2027-01-31',
+        startTime: '',
+        endTime: '',
+        category: 'Sport',
+        location: 'VELTINS-EisArena, Winterberg',
+        description: 'Die internationale Elite des Bob- und Skeletonsports tritt an, um Weltcuppunkte zu sammeln. Das Event wird von einem stimmungsvollen Rahmenprogramm begleitet.',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/ibsf-bob-and-skelton-weltcup/6a69b219e89cc1653f60454b/'
+      },
+      {
+        id: 'visa-fis-snowboard-alpine-weltcup-2027',
+        title: 'VISA FIS Snowboard Alpine Weltcup',
+        startDate: '2027-03-20',
+        endDate: '2027-03-21',
+        startTime: '',
+        endTime: '',
+        category: 'Sport',
+        location: 'Poppenberghang, Skiliftkarussell Winterberg',
+        description: 'Ein hochkarätiges Sportereignis, bei dem sich die Weltelite des Parallelslalom-Snowboardens misst. Wichtige Wettbewerbe für den Gesamtweltcup.',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/visa-fis-snowboard-alpine-weltcup/6a8e9739ee100d679364fe72/'
+      },
+      {
+        id: 'oktoberfest-niedersfeld-2026',
+        title: 'Oktoberfest in Niedersfeld',
+        startDate: '2026-10-02',
+        endDate: '2026-10-02',
+        startTime: '19:00',
+        endTime: '',
+        category: 'Fest',
+        location: 'Schützenhalle Niedersfeld',
+        description: 'Gemeinsames Fest von Blasmusik und Löschzug Niedersfeld mit zünftiger Musik und DJ. Es werden bayerische Spezialitäten und Starnberger Hell angeboten.',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/oktoberfest-in-niedersfeld/6a8d704128d31c1c7c59f821/'
+      },
+      {
+        id: 'sauerland-herbst-brass-band-limburg-2026',
+        title: 'Sauerland-Herbst 2026: Brass Band Limburg',
+        startDate: '2026-10-24',
+        endDate: '2026-10-24',
+        startTime: '19:30',
+        endTime: '',
+        category: 'Konzert',
+        location: 'Stadthalle Oversum, Winterberg',
+        description: 'Das Konzert der niederländischen Brass Band bildet den klangvollen Abschluss des 27. Sauerland-Herbstes. Es erwarten Sie Tuba-Konzerte und Filmmusik.',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/sauerland-herbst-2026-brass-band-limburg/6a6c6adf39060abf29624a04/'
+      }
+    ],
+  },
+  {
     id: 'rewe-winterberg',
     name: 'REWE',
     category: 'Einzelhandel',

@@ -465,7 +465,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab {formattedYearlyPerMonth} <span className="text-[12px] font-normal text-[#5F6B63]">netto</span></div>
               )}
               
-              <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Hero-Header, Galerie (5 Kat. à 5 Bilder mit SEO-Tags), Öffnungszeiten, Jobs, News, White-Label Widget, Top-Platzierung.</div>
+              <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Hero-Header, Galerie (5 Kat. à 5 Bilder mit SEO-Tags), Öffnungszeiten, Jobs, News, Events, White-Label Widget, Top-Platzierung.</div>
             </div>
           </div>
         </div>

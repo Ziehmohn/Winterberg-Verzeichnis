@@ -87,6 +87,7 @@ export default function PricingTable({
     { name: t("editAnytime"), free: false, premium: true },
     { name: t("pricingPublishJobs"), free: false, premium: true },
     { name: t("pricingPublishNews"), free: false, premium: true },
+    { name: lang === 'nl' ? 'Evenementen & termijnen toevoegen' : 'Veranstaltungen & Termine eintragen', free: false, premium: true },
     { name: t("pricingCommentReviews"), free: false, premium: true },
     { name: t("pricingWhiteLabel"), free: false, premium: true },
     { name: t("pricingTestimonialSlider"), free: false, premium: true },
