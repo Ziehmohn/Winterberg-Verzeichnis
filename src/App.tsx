@@ -73,6 +73,7 @@ const AdminPricingManager = React.lazy(() => import('./components/AdminPricingMa
 const FuelPricesPage = React.lazy(() => import('./components/FuelPricesPage'));
 const EmergencyPage = React.lazy(() => import('./components/EmergencyPage'));
 const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
+const EventsBoard = React.lazy(() => import('./components/EventsBoard'));
 const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
 const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
 const Datenschutz = React.lazy(() => import('./components/Datenschutz'));
@@ -405,6 +406,7 @@ export default function App() {
   const [bestOfSubcategory, setBestOfSubcategory] = useState<string | undefined>(initialBestOfSubcategory);
 
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
+  const [isEventsMode, setIsEventsMode] = useState(initialEventsMode);
   const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
   const [newsId, setNewsId] = useState<string | null>(initialNewsId);
   const [isGroundingMode, setIsGroundingMode] = useState(initialGroundingMode);
@@ -456,6 +458,7 @@ export default function App() {
       };
     }
     if (isJobsMode) return { view: 'jobs', jobsCategory: jobsCategory || undefined };
+    if (isEventsMode) return { view: 'events' };
     if (isNewsSubmitMode) return { view: 'news-submit' };
     if (newsId) return { view: 'news-detail', newsSlug: newsId };
     if (isNewsMode) return { view: 'news' };
@@ -583,6 +586,7 @@ export default function App() {
     setIsFuelPricesMode(false);
     setIsEmergencyMode(false);
     setIsJobsMode(false);
+    setIsEventsMode(false);
     setIsNotFound(false);
     setIsAllMode(false);
     setIsBestOfMode(false);
@@ -1634,6 +1638,7 @@ export default function App() {
 
               <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
+              <a href={getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Evenementen' : 'Veranstaltungen'}</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
               
@@ -1983,6 +1988,27 @@ export default function App() {
             }}
             onBack={() => {
               setIsJobsMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigatePricing={() => {
+              resetToDirectory();
+              setIsPricingMode(true);
+              window.history.pushState(null, '', getPath('/preise'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isEventsMode ? (
+          <EventsBoard 
+            businesses={businesses} 
+            theme={theme} 
+            activeThemeKey={activeThemeKey}
+            onBusinessSelect={(business) => {
+              setSelectedBusiness(business);
+              setIsEventsMode(false);
+            }}
+            onBack={() => {
+              setIsEventsMode(false);
               window.history.pushState(null, '', getPath('/'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
@@ -3295,6 +3321,24 @@ export default function App() {
               </a>
 
               <a
+                href={getPath(lang === 'nl' ? "/evenementen" : "/veranstaltungen")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen'));
+                  resetToDirectory();
+                  setIsEventsMode(true);
+                  setIsMobileNavOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-md bg-purple-50 text-purple-800 flex items-center justify-center shrink-0">
+                  <Calendar className="w-4 h-4" />
+                </div>
+                <span>{lang === 'nl' ? 'Evenementen' : 'Veranstaltungen'}</span>
+              </a>
+
+              <a
                 href={getPath("/news")}
                 onClick={(e) => {
                   e.preventDefault();
@@ -3534,7 +3578,20 @@ export default function App() {
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              {lang === 'nl' ? 'Vacatures & Banen' : 'Jobs & Stellenangebote'}
+              {lang === 'nl' ? 'Vacatures' : 'Jobs & Karriere'}
+            </a>
+            <a 
+              href={getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/veranstaltungen')); 
+                resetToDirectory(); 
+                setIsEventsMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Evenementen' : 'Veranstaltungen'}
             </a>
             <a 
               href={getPath('/news')} 

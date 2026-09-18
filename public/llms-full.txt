@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (300 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (301 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -227,6 +227,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Spectaculair 4-sterren superior wellnesshotel in de opvallende koepelarchitectuur aan het kuurpark in Winterberg. Bevat naast uitgebreide wellnessfaciliteiten tevens de Stadthalle Winterberg voor evenementen en congressen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotel-oversum-ski-und-vital-resort-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotel-oversum-ski-und-vital-resort-winterberg
+
+#### [Landal Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienparks/landal-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Ferienparks
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** In d. Büre 21, 59955 Winterberg
+- **Telefon:** 02981 9093500
+- **Beschreibung (DE):** Ferienpark in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienparks/landal-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantieparken/landal-winterberg
 
 ### Kategorie: Handwerk
 

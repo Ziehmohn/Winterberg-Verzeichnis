@@ -145,7 +145,7 @@ function NewBusinessArticleForm({ onAdd }: { onAdd: (article: BusinessNewsArticl
           onClick={() => setIsOpen(false)}
           className="text-xs text-gray-400 hover:text-gray-700 cursor-pointer"
         >
-          ✕ Schließen
+          âœ• SchlieÃŸen
         </button>
       </div>
 
@@ -156,33 +156,33 @@ function NewBusinessArticleForm({ onAdd }: { onAdd: (article: BusinessNewsArticl
           required
           value={title}
           onChange={e => setTitle(e.target.value)}
-          placeholder="z. B. Neueröffnung unserer Sonnenterrasse im Frühjahr"
+          placeholder="z. B. NeuerÃ¶ffnung unserer Sonnenterrasse im FrÃ¼hjahr"
           className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
         />
       </div>
 
       <div>
         <label className="block text-xs font-bold text-[#1B211D] mb-1">
-          Kurzfassung / Teaser (wird auf Kacheln & Übersichten angezeigt)
+          Kurzfassung / Teaser (wird auf Kacheln & Ãœbersichten angezeigt)
         </label>
         <textarea
           rows={2}
           maxLength={300}
           value={excerpt}
           onChange={e => setExcerpt(e.target.value)}
-          placeholder="Kurze Zusammenfassung in 1-2 Sätzen (max. 300 Zeichen)..."
+          placeholder="Kurze Zusammenfassung in 1-2 SÃ¤tzen (max. 300 Zeichen)..."
           className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
         />
         <div className="text-[11px] text-right text-[#8A928B]">{excerpt.length}/300</div>
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-[#1B211D] mb-1">Volltext / Ausführlicher Bericht</label>
+        <label className="block text-xs font-bold text-[#1B211D] mb-1">Volltext / AusfÃ¼hrlicher Bericht</label>
         <textarea
           rows={4}
           value={content}
           onChange={e => setContent(e.target.value)}
-          placeholder="Beschreiben Sie Ihr Angebot, Ihre Neuigkeit oder Ihr Event ausführlich..."
+          placeholder="Beschreiben Sie Ihr Angebot, Ihre Neuigkeit oder Ihr Event ausfÃ¼hrlich..."
           className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
         />
       </div>
@@ -239,7 +239,7 @@ function NewBusinessArticleForm({ onAdd }: { onAdd: (article: BusinessNewsArticl
           disabled={!title.trim()}
           className="px-4 py-1.5 text-xs font-bold text-white bg-[#F2761B] hover:bg-[#D65F0C] rounded-md shadow-sm disabled:opacity-50 transition-colors cursor-pointer"
         >
-          Beitrag speichern & veröffentlichen
+          Beitrag speichern & verÃ¶ffentlichen
         </button>
       </div>
     </div>
@@ -341,7 +341,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     }
 
     if (file.size > 15 * 1024 * 1024) {
-      alert('Die PDF-Datei ist zu groß (maximal 15 MB).');
+      alert('Die PDF-Datei ist zu groÃŸ (maximal 15 MB).');
       return;
     }
 
@@ -637,7 +637,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     } catch (error: any) {
       console.error("Save error:", error);
       if (error.message === 'TIMEOUT') {
-        alert("Fehler: Zeitüberschreitung beim Speichern. Bitte logge dich einmal aus und wieder ein (Logout-Button), da dein Sicherheitsschlüssel veraltet sein könnte!");
+        alert("Fehler: ZeitÃ¼berschreitung beim Speichern. Bitte logge dich einmal aus und wieder ein (Logout-Button), da dein SicherheitsschlÃ¼ssel veraltet sein kÃ¶nnte!");
       } else {
         alert("Fehler beim Speichern: " + (error.message || JSON.stringify(error)));
       }
@@ -649,10 +649,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   const handleAddCategory = (name: string = '') => {
     const currentCats = formData.galleryCategories || [];
     if (currentCats.length >= 5) {
-      alert("Maximal 5 Galerie-Kategorien im Premium-Account möglich.");
+      alert("Maximal 5 Galerie-Kategorien im Premium-Account mÃ¶glich.");
       return;
     }
-    const defaultNames = ['Räumlichkeiten', 'Team', 'Speisen & Getränke', 'Werkstatt & Handwerk', 'Events & Feiern'];
+    const defaultNames = ['RÃ¤umlichkeiten', 'Team', 'Speisen & GetrÃ¤nke', 'Werkstatt & Handwerk', 'Events & Feiern'];
     const fallbackName = defaultNames.find(n => !currentCats.some(c => c.name.toLowerCase() === n.toLowerCase())) || `Kategorie ${currentCats.length + 1}`;
     const newCatName = name.trim() || fallbackName;
     const newCat: GalleryCategory = {
@@ -677,7 +677,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   };
 
   const handleDeleteCategory = (catId: string) => {
-    if (confirm("Möchten Sie diese Kategorie und alle darin enthaltenen Bilder wirklich löschen?")) {
+    if (confirm("MÃ¶chten Sie diese Kategorie und alle darin enthaltenen Bilder wirklich lÃ¶schen?")) {
       setFormData(prev => {
         const newCats = (prev.galleryCategories || []).filter(c => c.id !== catId);
         const syncedGallery = newCats.flatMap(c => c.images.map(img => img.url));
@@ -697,7 +697,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       const updatedCats = currentCats.map(c => {
         if (c.id === catId) {
           if (c.images.length >= 5) {
-            alert("Maximal 5 Bilder pro Kategorie möglich.");
+            alert("Maximal 5 Bilder pro Kategorie mÃ¶glich.");
             return c;
           }
           return {
@@ -835,7 +835,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         const targetCatIndex = categoryId ? currentCats.findIndex(c => c.id === categoryId) : 0;
         const indexToUse = targetCatIndex >= 0 ? targetCatIndex : 0;
         if (currentCats[indexToUse].images.length >= 5) {
-          alert("Maximal 5 Bilder pro Kategorie möglich.");
+          alert("Maximal 5 Bilder pro Kategorie mÃ¶glich.");
           return prev;
         }
         
@@ -966,7 +966,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   return (
     <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-8 shadow-[0_10px_30px_rgba(27,33,29,0.06)] w-full max-w-[1180px] mx-auto">
       <div className="flex justify-between items-center mb-[22px]">
-        <h2 className="font-display text-[24px] font-bold m-0">{formData.id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen hinzufügen'}</h2>
+        <h2 className="font-display text-[24px] font-bold m-0">{formData.id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen hinzufÃ¼gen'}</h2>
         <button type="button" onClick={onCancel} className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[14px] cursor-pointer hover:bg-[#EAE5DB]">Abbrechen</button>
       </div>
         
@@ -978,13 +978,13 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <div className="flex items-center gap-2 mb-1">
                 <span className={`w-3 h-3 rounded-full ${formData.isActive !== false ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
                 <span className="font-bold text-[15.5px] text-[#1B211D]">
-                  Status des Eintrags: {formData.isActive !== false ? 'Aktiv (Öffentlich sichtbar)' : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`}
+                  Status des Eintrags: {formData.isActive !== false ? 'Aktiv (Ã–ffentlich sichtbar)' : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`}
                 </span>
               </div>
               <p className="text-xs text-[#5F6B63] m-0 max-w-[70ch]">
                 {formData.isActive !== false 
-                  ? 'Das Unternehmen ist öffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
-                  : 'Die Profilseite ist für Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Übersichtsseite (/alle-unternehmen) weitergeleitet.'}
+                  ? 'Das Unternehmen ist Ã¶ffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
+                  : 'Die Profilseite ist fÃ¼r Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Ãœbersichtsseite (/alle-unternehmen) weitergeleitet.'}
               </p>
             </div>
 
@@ -1031,7 +1031,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
                     />
                     <div>
-                      <span className="font-bold text-red-700">301 – Permanent</span>
+                      <span className="font-bold text-red-700">301 â€“ Permanent</span>
                       <span className="text-gray-500 ml-1">(Dauerhaft geschlossen / aufgegeben)</span>
                     </div>
                   </label>
@@ -1046,8 +1046,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
                     />
                     <div>
-                      <span className="font-bold text-amber-700">302 – Temporär</span>
-                      <span className="text-gray-500 ml-1">(Vorübergehend geschlossen / Umbau / Pause)</span>
+                      <span className="font-bold text-amber-700">302 â€“ TemporÃ¤r</span>
+                      <span className="text-gray-500 ml-1">(VorÃ¼bergehend geschlossen / Umbau / Pause)</span>
                     </div>
                   </label>
                 </div>
@@ -1118,7 +1118,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 onClick={() => setFormData({ ...formData, additionalCategories: [...(formData.additionalCategories || []), { category: '', subcategory: '' }]})}
                 className="text-xs text-[#F2761B] hover:underline font-semibold"
               >
-                + Weitere Kategorie hinzufügen
+                + Weitere Kategorie hinzufÃ¼gen
               </button>
             </div>
             
@@ -1148,7 +1148,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     }} 
                     className={inputClass}
                   >
-                    <option value="">Kategorie wählen...</option>
+                    <option value="">Kategorie wÃ¤hlen...</option>
                     {categories.map(group => (
                       <optgroup key={t(group.name)} label={t(group.name)}>
                         {group.subcategories.length === 0 ? (
@@ -1170,11 +1170,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </div>
         </div>
 
-        {/* Mehrsprachigkeit & Übersetzung */}
+        {/* Mehrsprachigkeit & Ãœbersetzung */}
         <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-3.5">
           <div className="flex items-center justify-between flex-wrap gap-3 mb-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">Sprache für Texte:</span>
+              <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">Sprache fÃ¼r Texte:</span>
               <div className="flex items-center bg-white p-1 rounded-md border border-[#E7E2DA] gap-1">
                 <button
                   type="button"
@@ -1185,7 +1185,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       : 'text-[#5F6B63] hover:text-[#1B211D]'
                   }`}
                 >
-                  <span>🇩🇪</span>
+                  <span>ðŸ‡©ðŸ‡ª</span>
                   <span>Deutsch (Standard)</span>
                 </button>
                 <button
@@ -1197,10 +1197,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       : 'text-[#5F6B63] hover:text-[#1B211D]'
                   }`}
                 >
-                  <span>🇳🇱</span>
-                  <span>Niederländisch (NL)</span>
+                  <span>ðŸ‡³ðŸ‡±</span>
+                  <span>NiederlÃ¤ndisch (NL)</span>
                   {(formData.description_nl || (formData.services_nl && formData.services_nl.length > 0)) ? (
-                    <span className="w-2 h-2 rounded-full bg-[#F2761B]" title="Angepasste Übersetzung vorhanden"></span>
+                    <span className="w-2 h-2 rounded-full bg-[#F2761B]" title="Angepasste Ãœbersetzung vorhanden"></span>
                   ) : null}
                 </button>
               </div>
@@ -1211,10 +1211,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               onClick={handleAutoTranslateToDutch}
               disabled={isTranslatingNl}
               className="bg-orange-50 hover:bg-orange-100 text-[#D65F0C] border border-orange-200 rounded-md px-3 py-1.5 text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5 shadow-2xs disabled:opacity-50"
-              title="Generiert automatisch eine professionelle niederländische Übersetzung via Google Translate"
+              title="Generiert automatisch eine professionelle niederlÃ¤ndische Ãœbersetzung via Google Translate"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
-              <span>{isTranslatingNl ? 'Übersetze via Google Translate...' : '⚡ Automatisch ins Niederländische übersetzen'}</span>
+              <span>{isTranslatingNl ? 'Ãœbersetze via Google Translate...' : 'âš¡ Automatisch ins NiederlÃ¤ndische Ã¼bersetzen'}</span>
             </button>
           </div>
 
@@ -1222,20 +1222,20 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <div className="bg-emerald-50 border border-emerald-200 rounded p-2.5 text-xs text-emerald-800 mb-3 flex items-start gap-2">
               <Globe className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
               <div>
-                <strong>Automatische Übersetzung aktiv:</strong> Wenn Sie die niederländischen Felder leer lassen, übersetzt das System die Unternehmensseite für niederländische Besucher (/nl/...) automatisch in Echtzeit. Sie können hier aber beliebige Texte manuell anpassen oder überschreiben.
+                <strong>Automatische Ãœbersetzung aktiv:</strong> Wenn Sie die niederlÃ¤ndischen Felder leer lassen, Ã¼bersetzt das System die Unternehmensseite fÃ¼r niederlÃ¤ndische Besucher (/nl/...) automatisch in Echtzeit. Sie kÃ¶nnen hier aber beliebige Texte manuell anpassen oder Ã¼berschreiben.
               </div>
             </div>
           )}
 
           {activeLangTab === 'de' ? (
             <div>
-              <label className={labelClass}>Kurzbeschreibung (Deutsch) * (max. 90 Zeichen für Suchergebnisse & Vorschau)</label>
-              <textarea required maxLength={90} value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={2} placeholder="Kurze Zusammenfassung für die Suchliste..." />
+              <label className={labelClass}>Kurzbeschreibung (Deutsch) * (max. 90 Zeichen fÃ¼r Suchergebnisse & Vorschau)</label>
+              <textarea required maxLength={90} value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} className={inputClass} rows={2} placeholder="Kurze Zusammenfassung fÃ¼r die Suchliste..." />
               <div className="text-right text-xs opacity-70 mt-1">{(formData.description || '').length}/90 Zeichen</div>
             </div>
           ) : (
             <div>
-              <label className={labelClass}>Kurzbeschreibung (Niederländisch) (max. 90 Zeichen für /nl/...)</label>
+              <label className={labelClass}>Kurzbeschreibung (NiederlÃ¤ndisch) (max. 90 Zeichen fÃ¼r /nl/...)</label>
               <textarea maxLength={90} value={formData.description_nl || ''} onChange={e => setFormData({...formData, description_nl: e.target.value})} className={inputClass} rows={2} placeholder="Korte samenvatting voor Nederlandse bezoekers (optional)..." />
               <div className="text-right text-xs opacity-70 mt-1">{(formData.description_nl || '').length}/90 Zeichen</div>
             </div>
@@ -1246,8 +1246,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label className={labelClass}>Adresse (optional)</label>
-            <input type="text" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className={inputClass} placeholder="Straße, Hausnummer (oder leer lassen)" />
-            <span className="text-[11px] text-gray-500 block mt-1">Falls die genaue Straße unbekannt ist, kann das Feld leer gelassen werden. Der Ortsteil rechts reicht aus.</span>
+            <input type="text" value={formData.address || ''} onChange={e => setFormData({...formData, address: e.target.value})} className={inputClass} placeholder="StraÃŸe, Hausnummer (oder leer lassen)" />
+            <span className="text-[11px] text-gray-500 block mt-1">Falls die genaue StraÃŸe unbekannt ist, kann das Feld leer gelassen werden. Der Ortsteil rechts reicht aus.</span>
           </div>
           <div>
             <label className={labelClass}>Ortsteil</label>
@@ -1257,16 +1257,16 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <option value="Altastenberg">Altastenberg</option>
               <option value="Altenfeld">Altenfeld</option>
               <option value="Elkeringhausen">Elkeringhausen</option>
-              <option value="Grönebach">Grönebach</option>
+              <option value="GrÃ¶nebach">GrÃ¶nebach</option>
               <option value="Hildfeld">Hildfeld</option>
               <option value="Hoheleye">Hoheleye</option>
               <option value="Langewiese">Langewiese</option>
-              <option value="Lenneplätze">Lenneplätze</option>
+              <option value="LenneplÃ¤tze">LenneplÃ¤tze</option>
               <option value="Neuastenberg">Neuastenberg</option>
               <option value="Niedersfeld">Niedersfeld</option>
               <option value="Siedlinghausen">Siedlinghausen</option>
               <option value="Silbach">Silbach</option>
-              <option value="Züschen">Züschen</option>
+              <option value="ZÃ¼schen">ZÃ¼schen</option>
             </select>
           </div>
         </div>
@@ -1286,7 +1286,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </div>
         </div>
 
-        {/* E-Mail-Benachrichtigungen & Präferenzen */}
+        {/* E-Mail-Benachrichtigungen & PrÃ¤ferenzen */}
         <div className="p-4 bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg mt-4 flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h4 className="text-[14px] font-bold text-[#1B211D] flex items-center gap-2 m-0">
@@ -1322,25 +1322,25 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </p>
         </div>
 
-        {/* Leistungen & Produkte (Für alle Einträge: Bis zu 3 im Basiseintrag / bis zu 15 mit Premium) */}
+        {/* Leistungen & Produkte (FÃ¼r alle EintrÃ¤ge: Bis zu 3 im Basiseintrag / bis zu 15 mit Premium) */}
         <div className="p-5 bg-white border border-gray-200 rounded-lg space-y-6 mt-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <div>
               <h3 className={`text-base font-bold ${theme.textBase}`}>Leistungen & Produkte</h3>
-              <p className="text-xs text-[#5F6B63] mt-0.5">Für die Volltextsuche und das Profil (Basiseintrag: bis zu 3 aktiv | Premium: bis zu 15 aktiv)</p>
+              <p className="text-xs text-[#5F6B63] mt-0.5">FÃ¼r die Volltextsuche und das Profil (Basiseintrag: bis zu 3 aktiv | Premium: bis zu 15 aktiv)</p>
             </div>
             <span className="text-xs font-semibold px-2.5 py-1 rounded bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E]">
-              {formData.isPremium ? '🌟 Premium (bis zu 15)' : '🟢 Basiseintrag (bis zu 3)'}
+              {formData.isPremium ? 'ðŸŒŸ Premium (bis zu 15)' : 'ðŸŸ¢ Basiseintrag (bis zu 3)'}
             </span>
           </div>
 
           <div className="border-b border-gray-100 pb-5">
             <div className="flex items-center justify-between mb-1">
               <label className={labelClass}>
-                {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (Niederländisch)'}
+                {activeLangTab === 'de' ? 'Leistungen & Services (Deutsch)' : 'Leistungen & Services (NiederlÃ¤ndisch)'}
               </label>
               <span className="text-xs text-[#5F6B63]">
-                {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+                {activeLangTab === 'de' ? 'ðŸ‡©ðŸ‡ª Deutsch aktiv' : 'ðŸ‡³ðŸ‡± NiederlÃ¤ndisch aktiv'}
               </span>
             </div>
 
@@ -1365,17 +1365,17 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       }
                     }} 
                     className={inputClass} 
-                    placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drücken" 
+                    placeholder="Leistung eingeben (oder mehrere mit Komma trennen) und Enter drÃ¼cken" 
                   />
                   <button 
                     type="button" 
                     onClick={() => addServicesFromInput(newService)}
                     className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
                   >
-                    Hinzufügen
+                    HinzufÃ¼gen
                   </button>
                 </div>
-                <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen können mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
+                <p className="text-xs opacity-70 mb-3">Tipp: Mehrere Leistungen kÃ¶nnen mit Komma getrennt eingegeben werden (z. B. "Dacheindeckung, Sanierung, Reparatur").</p>
                 <div className="flex flex-wrap gap-2">
                   {(formData.services || []).map((service, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-black/5 px-2.5 py-1 rounded-md text-sm">
@@ -1417,10 +1417,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     onClick={() => addServicesNlFromInput(newServiceNl)}
                     className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
                   >
-                    Hinzufügen
+                    HinzufÃ¼gen
                   </button>
                 </div>
-                <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Leistungen automatisch in Echtzeit ins Niederländische übersetzt.</p>
+                <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Leistungen automatisch in Echtzeit ins NiederlÃ¤ndische Ã¼bersetzt.</p>
                 <div className="flex flex-wrap gap-2">
                   {(formData.services_nl || []).map((service, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm">
@@ -1440,10 +1440,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           <div>
             <div className="flex items-center justify-between mb-1">
               <label className={labelClass}>
-                {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (Niederländisch)'}
+                {activeLangTab === 'de' ? 'Produkte & Angebote (Deutsch)' : 'Produkte & Angebote (NiederlÃ¤ndisch)'}
               </label>
               <span className="text-xs text-[#5F6B63]">
-                {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+                {activeLangTab === 'de' ? 'ðŸ‡©ðŸ‡ª Deutsch aktiv' : 'ðŸ‡³ðŸ‡± NiederlÃ¤ndisch aktiv'}
               </span>
             </div>
 
@@ -1468,17 +1468,17 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       }
                     }} 
                     className={inputClass} 
-                    placeholder="Produkt/Angebot eingeben und Enter drücken" 
+                    placeholder="Produkt/Angebot eingeben und Enter drÃ¼cken" 
                   />
                   <button 
                     type="button" 
                     onClick={() => addProductsFromInput(newProduct)}
                     className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
                   >
-                    Hinzufügen
+                    HinzufÃ¼gen
                   </button>
                 </div>
-                <p className="text-xs opacity-70 mb-3">Tipp: Hier können Sie konkrete Waren, Tarife oder Produkte auflisten (z. B. "Wohngebäudeversicherung, Kfz-Versicherung, Skier, E-Bikes"). Kommagetrennt möglich.</p>
+                <p className="text-xs opacity-70 mb-3">Tipp: Hier kÃ¶nnen Sie konkrete Waren, Tarife oder Produkte auflisten (z. B. "WohngebÃ¤udeversicherung, Kfz-Versicherung, Skier, E-Bikes"). Kommagetrennt mÃ¶glich.</p>
                 <div className="flex flex-wrap gap-2">
                   {(formData.products || []).map((product, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-[#FFF1E4] border border-[#F2761B]/30 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
@@ -1520,10 +1520,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     onClick={() => addProductsNlFromInput(newProductNl)}
                     className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'}`}
                   >
-                    Hinzufügen
+                    HinzufÃ¼gen
                   </button>
                 </div>
-                <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Produkte automatisch in Echtzeit ins Niederländische übersetzt.</p>
+                <p className="text-xs opacity-70 mb-3">Optional: Falls leer, werden die deutschen Produkte automatisch in Echtzeit ins NiederlÃ¤ndische Ã¼bersetzt.</p>
                 <div className="flex flex-wrap gap-2">
                   {(formData.products_nl || []).map((product, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-orange-100/70 border border-orange-200 px-2.5 py-1 rounded-md text-sm text-[#D65F0C] font-medium">
@@ -1556,23 +1556,23 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 disabled={!isAdmin}
               />
               <label htmlFor="isPremium" className={`text-lg font-bold ${isAdmin ? 'cursor-pointer' : 'cursor-not-allowed'} ${theme.textBase}`}>
-                Als Premium-Eintrag aktivieren (Logo, Hero-Header, Galerie, Öffnungszeiten, Stellenanzeigen, News)
+                Als Premium-Eintrag aktivieren (Logo, Hero-Header, Galerie, Ã–ffnungszeiten, Stellenanzeigen, News)
               </label>
             </div>
             <span className={`text-xs font-bold px-3 py-1 rounded-full ${formData.isPremium ? 'bg-[#F2761B] text-white shadow-sm' : 'bg-gray-200 text-gray-700'}`}>
-              {formData.isPremium ? '🌟 Premium Aktiv' : '🔒 Deaktiviert (Basiseintrag)'}
+              {formData.isPremium ? 'ðŸŒŸ Premium Aktiv' : 'ðŸ”’ Deaktiviert (Basiseintrag)'}
             </span>
           </div>
 
           {!formData.isPremium && (
             <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 text-sm flex items-start gap-3">
-              <span className="text-xl leading-none">🔒</span>
+              <span className="text-xl leading-none">ðŸ”’</span>
               <div>
-                <strong>Premium-Funktionen sind für diesen Eintrag deaktiviert (ausgegraut).</strong>
+                <strong>Premium-Funktionen sind fÃ¼r diesen Eintrag deaktiviert (ausgegraut).</strong>
                 <p className="text-xs text-amber-800 mt-1">
                   {isAdmin 
-                    ? "Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Hero-Headerbild, die kategorisierte Bildergalerie, Öffnungszeiten, ausführliche Beschreibung und Stellenanzeigen zu bearbeiten und für diesen Eintrag freizuschalten."
-                    : "Sie nutzen aktuell den kostenlosen Basiseintrag. Um Bildergalerien, Ihr Logo, Öffnungszeiten, News und Stellenangebote hinzuzufügen, können Sie im Reiter 'Abrechnung' jederzeit bequem auf Premium upgraden!"}
+                    ? "Aktivieren Sie die Checkbox oben, um das Unternehmens-Logo, Hero-Headerbild, die kategorisierte Bildergalerie, Ã–ffnungszeiten, ausfÃ¼hrliche Beschreibung und Stellenanzeigen zu bearbeiten und fÃ¼r diesen Eintrag freizuschalten."
+                    : "Sie nutzen aktuell den kostenlosen Basiseintrag. Um Bildergalerien, Ihr Logo, Ã–ffnungszeiten, News und Stellenangebote hinzuzufÃ¼gen, kÃ¶nnen Sie im Reiter 'Abrechnung' jederzeit bequem auf Premium upgraden!"}
                 </p>
               </div>
             </div>
@@ -1597,12 +1597,12 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 />
                 <label className={`px-4 py-2 font-medium transition-colors ${theme.primaryBtn} cursor-pointer flex items-center justify-center shrink-0 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${uploadingImage ? 'opacity-50' : ''}`}>
                   <Upload className="w-4 h-4 mr-1.5" />
-                  {uploadingImage ? 'Lädt...' : 'Hochladen'}
+                  {uploadingImage ? 'LÃ¤dt...' : 'Hochladen'}
                   <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'logo')} disabled={uploadingImage || !formData.isPremium} />
                 </label>
               </div>
               <p className="text-xs opacity-70 mt-1.5 leading-relaxed">
-                Das Logo wird in den Suchergebnissen auf der Karte sowie im Unternehmensprofil direkt über der Kontaktbox dargestellt.
+                Das Logo wird in den Suchergebnissen auf der Karte sowie im Unternehmensprofil direkt Ã¼ber der Kontaktbox dargestellt.
               </p>
 
               {/* Logo-Box Hintergrundfarbe */}
@@ -1612,10 +1612,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 </label>
                 <div className="flex flex-wrap items-center gap-2">
                   {[
-                    { label: 'Weiß', value: '#ffffff', bgClass: 'bg-white text-gray-800' },
-                    { label: 'Creme / Warmweiß', value: '#FAF8F5', bgClass: 'bg-[#FAF8F5] text-gray-800' },
+                    { label: 'WeiÃŸ', value: '#ffffff', bgClass: 'bg-white text-gray-800' },
+                    { label: 'Creme / WarmweiÃŸ', value: '#FAF8F5', bgClass: 'bg-[#FAF8F5] text-gray-800' },
                     { label: 'Hellgrau', value: '#F3F4F6', bgClass: 'bg-gray-100 text-gray-800' },
-                    { label: 'Dunkelgrün', value: '#0F4C2E', bgClass: 'bg-[#0F4C2E] text-white' },
+                    { label: 'DunkelgrÃ¼n', value: '#0F4C2E', bgClass: 'bg-[#0F4C2E] text-white' },
                     { label: 'Dunkel', value: '#1B211D', bgClass: 'bg-[#1B211D] text-white' },
                     { label: 'Transparent', value: 'transparent', bgClass: 'bg-transparent text-gray-800 border-dashed' },
                   ].map(preset => {
@@ -1642,7 +1642,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       value={formData.logoBgColor?.startsWith('#') ? formData.logoBgColor : '#ffffff'} 
                       onChange={e => setFormData(prev => ({ ...prev, logoBgColor: e.target.value }))}
                       className="w-7 h-7 rounded border border-gray-300 cursor-pointer p-0.5"
-                      title="Eigene Hintergrundfarbe wählen"
+                      title="Eigene Hintergrundfarbe wÃ¤hlen"
                     />
                     <input
                       type="text"
@@ -1657,7 +1657,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
               {formData.logoUrl && (
                 <div className="mt-3.5">
-                  <span className="text-[11px] text-[#5F6B63] block mb-1">Logo-Vorschau mit gewählter Hintergrundfarbe:</span>
+                  <span className="text-[11px] text-[#5F6B63] block mb-1">Logo-Vorschau mit gewÃ¤hlter Hintergrundfarbe:</span>
                   <div 
                     className="relative w-36 h-24 border border-black/15 rounded-lg p-2.5 shadow-xs flex items-center justify-center transition-colors"
                     style={{ backgroundColor: formData.logoBgColor || '#ffffff' }}
@@ -1680,10 +1680,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <div className="border-b border-orange-200/50 pb-5">
               <div className="flex items-center gap-2 mb-2">
                 <User className="w-5 h-5 text-[#F2761B]" />
-                <label className={`${labelClass} mb-0`}>Persönlicher Ansprechpartner (Premium-Feature)</label>
+                <label className={`${labelClass} mb-0`}>PersÃ¶nlicher Ansprechpartner (Premium-Feature)</label>
               </div>
               <p className="text-xs text-gray-500 mb-4">
-                Präsentieren Sie einen persönlichen Ansprechpartner direkt in der Kontaktbox Ihres Profils (Desktop rechte Spalte) inklusive Foto und direkten Kontaktdaten.
+                PrÃ¤sentieren Sie einen persÃ¶nlichen Ansprechpartner direkt in der Kontaktbox Ihres Profils (Desktop rechte Spalte) inklusive Foto und direkten Kontaktdaten.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -1709,7 +1709,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       ...prev,
                       contactPerson: { ...(prev.contactPerson || { name: '' }), role: e.target.value }
                     }))}
-                    placeholder="z. B. Inhaber & Geschäftsführung"
+                    placeholder="z. B. Inhaber & GeschÃ¤ftsfÃ¼hrung"
                     className={inputClass}
                   />
                 </div>
@@ -1784,7 +1784,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     />
                     <label className="flex items-center justify-center gap-2 px-3 py-2 bg-white border border-gray-300 rounded-lg shadow-2xs hover:bg-gray-50 text-sm font-medium text-gray-700 cursor-pointer shrink-0 transition-colors">
                       <Upload className="w-4 h-4 text-gray-500" />
-                      <span>{uploadingImage ? 'Lädt...' : 'Foto hochladen'}</span>
+                      <span>{uploadingImage ? 'LÃ¤dt...' : 'Foto hochladen'}</span>
                       <input
                         type="file"
                         accept="image/*"
@@ -1836,7 +1836,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                               <span className="truncate">{formData.contactPerson.phone}</span>
                             </span>
                           )}
-                          {formData.contactPerson.phone && formData.contactPerson.email && <span className="text-gray-300">•</span>}
+                          {formData.contactPerson.phone && formData.contactPerson.email && <span className="text-gray-300">â€¢</span>}
                           {formData.contactPerson.email && (
                             <span className="flex items-center gap-1 font-medium">
                               <Mail className="w-3 h-3 shrink-0" />
@@ -1852,7 +1852,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             </div>
 
             <div className="border-b border-orange-200/50 pb-5">
-              <label className={labelClass}>Öffnungszeiten (Premium-Feature)</label>
+              <label className={labelClass}>Ã–ffnungszeiten (Premium-Feature)</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => {
                   const val = formData.openingHours?.[day as keyof typeof formData.openingHours] || '';
@@ -1886,7 +1886,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             }}
                             className="rounded border-orange-300 text-orange-500 focus:ring-orange-500"
                           />
-                          Geöffnet
+                          GeÃ¶ffnet
                         </label>
                       </div>
                       {!isClosed && (
@@ -1917,6 +1917,96 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 })}
               </div>
             </div>
+            {/* Events Section */}
+            <div className="border-b border-orange-200/50 pb-6 pt-6">
+              <label className={labelClass}>Veranstaltungen & Termine (Premium-Feature)</label>
+              <p className="text-xs opacity-70 mb-3">
+                Tragen Sie hier Events wie Konzerte, Workshops, Partys oder spezielle Angebote ein. Diese werden im Unternehmensprofil und im globalen Veranstaltungskalender angezeigt.
+              </p>
+              
+              {!formData.isPremium ? (
+                <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg text-sm text-orange-800">
+                  Diese Funktion ist Premium-Kunden vorbehalten.
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {(formData.events || []).map((ev, idx) => (
+                    <div key={ev.id || idx} className="border border-gray-200 p-4 rounded-lg bg-gray-50 flex flex-col gap-3 relative">
+                      <button 
+                        type="button" 
+                        onClick={() => {
+                          const newEvents = [...(formData.events || [])];
+                          newEvents.splice(idx, 1);
+                          setFormData({ ...formData, events: newEvents });
+                        }}
+                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input type="text" value={ev.title} onChange={e => {
+                          const newEvents = [...(formData.events || [])];
+                          newEvents[idx] = { ...ev, title: e.target.value };
+                          setFormData({ ...formData, events: newEvents });
+                        }} placeholder="Event Titel" className={inputClass} />
+                        
+                        <input type="date" value={ev.startDate} onChange={e => {
+                          const newEvents = [...(formData.events || [])];
+                          newEvents[idx] = { ...ev, startDate: e.target.value };
+                          setFormData({ ...formData, events: newEvents });
+                        }} className={inputClass} />
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <input type="text" value={ev.startTime || ''} onChange={e => {
+                          const newEvents = [...(formData.events || [])];
+                          newEvents[idx] = { ...ev, startTime: e.target.value };
+                          setFormData({ ...formData, events: newEvents });
+                        }} placeholder="Startzeit (z.B. 18:00)" className={inputClass} />
+                        
+                        <input type="text" value={ev.category} onChange={e => {
+                          const newEvents = [...(formData.events || [])];
+                          newEvents[idx] = { ...ev, category: e.target.value };
+                          setFormData({ ...formData, events: newEvents });
+                        }} placeholder="Kategorie (z.B. Party, Workshop)" className={inputClass} />
+                        
+                        <input type="text" value={ev.imageUrl || ''} onChange={e => {
+                          const newEvents = [...(formData.events || [])];
+                          newEvents[idx] = { ...ev, imageUrl: e.target.value };
+                          setFormData({ ...formData, events: newEvents });
+                        }} placeholder="Bild-URL (optional)" className={inputClass} />
+                      </div>
+                      
+                      <textarea value={ev.description} onChange={e => {
+                        const newEvents = [...(formData.events || [])];
+                        newEvents[idx] = { ...ev, description: e.target.value };
+                        setFormData({ ...formData, events: newEvents });
+                      }} placeholder="Kurze Beschreibung" className={inputClass} rows={2} />
+                    </div>
+                  ))}
+                  
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      const newEvent = {
+                        id: Math.random().toString(36).substr(2, 9),
+                        title: '',
+                        startDate: new Date().toISOString().split('T')[0],
+                        category: '',
+                        description: ''
+                      };
+                      setFormData({ ...formData, events: [...(formData.events || []), newEvent] });
+                    }}
+                    className={`flex items-center gap-2 px-3 py-1.5 text-sm font-medium transition-colors ${theme.primaryBtn} rounded-md`}
+                  >
+                    <Plus className="w-4 h-4" />
+                    Event hinzufÃ¼gen
+                  </button>
+                </div>
+              )}
+            </div>
+
+
 
             
             {/* Hero / Header Hintergrundbild (Premium) */}
@@ -1938,7 +2028,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   />
                   <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium shrink-0 transition-colors ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${uploadingImage || !formData.isPremium ? 'opacity-50' : ''}`}>
                     <Upload className="w-4 h-4" />
-                    {uploadingImage ? 'Lädt...' : 'Header-Bild hochladen'}
+                    {uploadingImage ? 'LÃ¤dt...' : 'Header-Bild hochladen'}
                     <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'header')} disabled={uploadingImage || !formData.isPremium} />
                   </label>
                 </div>
@@ -1949,7 +2039,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
                       <div className="text-xs font-bold text-[#0F4C2E] flex items-center gap-1.5">
                         <Crosshair className="w-3.5 h-3.5 text-[#F2761B]" />
-                        Bild-Ausschnitt & Fokuspunkt je Endgerät anpassen:
+                        Bild-Ausschnitt & Fokuspunkt je EndgerÃ¤t anpassen:
                       </div>
                       <div className="flex bg-[#FAF8F5] p-1 rounded-md border border-[#EDE8E0] gap-1 self-start sm:self-auto">
                         <button
@@ -2060,15 +2150,15 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                               </span>
                               <div className="grid grid-cols-3 gap-1 w-fit">
                                 {[
-                                  { label: '↖', title: 'Oben Links', x: 0, y: 0 },
-                                  { label: '↑', title: 'Oben Mitte', x: 50, y: 0 },
-                                  { label: '↗', title: 'Oben Rechts', x: 100, y: 0 },
-                                  { label: '←', title: 'Mitte Links', x: 0, y: 50 },
-                                  { label: '⦿', title: 'Zentriert', x: 50, y: 50 },
-                                  { label: '→', title: 'Mitte Rechts', x: 100, y: 50 },
-                                  { label: '↙', title: 'Unten Links', x: 0, y: 100 },
-                                  { label: '↓', title: 'Unten Mitte', x: 50, y: 100 },
-                                  { label: '↘', title: 'Unten Rechts', x: 100, y: 100 }
+                                  { label: 'â†–', title: 'Oben Links', x: 0, y: 0 },
+                                  { label: 'â†‘', title: 'Oben Mitte', x: 50, y: 0 },
+                                  { label: 'â†—', title: 'Oben Rechts', x: 100, y: 0 },
+                                  { label: 'â†', title: 'Mitte Links', x: 0, y: 50 },
+                                  { label: 'â¦¿', title: 'Zentriert', x: 50, y: 50 },
+                                  { label: 'â†’', title: 'Mitte Rechts', x: 100, y: 50 },
+                                  { label: 'â†™', title: 'Unten Links', x: 0, y: 100 },
+                                  { label: 'â†“', title: 'Unten Mitte', x: 50, y: 100 },
+                                  { label: 'â†˜', title: 'Unten Rechts', x: 100, y: 100 }
                                 ].map((preset, idx) => {
                                   const isSelected = Math.abs(x - preset.x) < 5 && Math.abs(y - preset.y) < 5;
                                   return (
@@ -2135,9 +2225,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                           </div>
 
                           <div className="text-[11px] text-[#5F6B63] bg-[#FFF8F1] border border-orange-200/50 p-2.5 rounded-md flex items-start gap-2">
-                            <span className="text-[#F2761B] font-bold">💡</span>
+                            <span className="text-[#F2761B] font-bold">ðŸ’¡</span>
                             <span>
-                              <strong>Tipp:</strong> Sie können direkt in das Vorschaubild klicken, um den Bildausschnitt für <em>{headerDeviceTab === 'desktop' ? 'Desktop' : headerDeviceTab === 'tablet' ? 'Tablet' : 'Mobil'}</em> millimetergenau zu platzieren.
+                              <strong>Tipp:</strong> Sie kÃ¶nnen direkt in das Vorschaubild klicken, um den Bildausschnitt fÃ¼r <em>{headerDeviceTab === 'desktop' ? 'Desktop' : headerDeviceTab === 'tablet' ? 'Tablet' : 'Mobil'}</em> millimetergenau zu platzieren.
                             </span>
                           </div>
                         </div>
@@ -2165,7 +2255,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     </button>
                   </div>
                 ) : (
-                   <p className="text-sm opacity-70 italic">Wählen Sie unten ein Bild aus der Galerie als Titelbild aus, laden Sie eines hoch oder geben Sie eine URL ein.</p>
+                   <p className="text-sm opacity-70 italic">WÃ¤hlen Sie unten ein Bild aus der Galerie als Titelbild aus, laden Sie eines hoch oder geben Sie eine URL ein.</p>
                 )}
                 
                 <div className="flex gap-2">
@@ -2179,19 +2269,19 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   />
                   <label className={`cursor-pointer flex items-center gap-2 px-4 py-2 text-sm font-medium shrink-0 transition-colors bg-white border border-black/20 hover:bg-black/5 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${!formData.isPremium ? 'opacity-50' : ''}`}>
                     <Upload className="w-4 h-4" />
-                    {uploadingImage ? 'Lädt...' : 'Direkt hochladen'}
+                    {uploadingImage ? 'LÃ¤dt...' : 'Direkt hochladen'}
                     <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'title')} disabled={uploadingImage || !formData.isPremium} />
                   </label>
                 </div>
               </div>
             </div>
 
-            {/* Kategorisierte Bildergalerie (Bis zu 5 Kategorien à 5 Bilder) */}
+            {/* Kategorisierte Bildergalerie (Bis zu 5 Kategorien Ã  5 Bilder) */}
             <div className="border-b border-orange-200/50 pb-6">
               <div className="flex items-center justify-between mb-2">
                 <div>
                   <label className={`${labelClass} mb-0`}>
-                    Kategorisierte Bildergalerie (Bis zu 5 Kategorien à 5 Bilder)
+                    Kategorisierte Bildergalerie (Bis zu 5 Kategorien Ã  5 Bilder)
                   </label>
                   <p className="text-xs opacity-70 mt-0.5">
                     Strukturieren Sie Ihre Bilder nach Themenbereichen inkl. SEO Alt- & Titel-Tags.
@@ -2207,10 +2297,10 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 <div className="my-3 p-3 bg-white/80 border border-orange-200/60 rounded-lg">
                   <div className="text-xs font-semibold text-[#5F6B63] mb-2 flex items-center gap-1.5">
                     <FolderPlus className="w-3.5 h-3.5 text-[#F2761B]" />
-                    Neue Kategorie hinzufügen (Vorschlag wählen oder selbst benennen):
+                    Neue Kategorie hinzufÃ¼gen (Vorschlag wÃ¤hlen oder selbst benennen):
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Räumlichkeiten', 'Team', 'Speisen & Getränke', 'Werkstatt & Handwerk', 'Events & Feiern', 'Ausstattung'].map((catSuggestion) => {
+                    {['RÃ¤umlichkeiten', 'Team', 'Speisen & GetrÃ¤nke', 'Werkstatt & Handwerk', 'Events & Feiern', 'Ausstattung'].map((catSuggestion) => {
                       const isExisting = (formData.galleryCategories || []).some(c => c.name.toLowerCase() === catSuggestion.toLowerCase());
                       if (isExisting) return null;
                       return (
@@ -2252,7 +2342,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             value={category.name} 
                             onChange={e => handleUpdateCategoryName(category.id, e.target.value)} 
                             className="text-sm font-bold border border-gray-200 rounded px-2.5 py-1 bg-[#FAF8F5] focus:outline-none focus:ring-1 focus:ring-[#F2761B] w-full max-w-[280px]"
-                            placeholder="Kategoriename (z. B. Räumlichkeiten)"
+                            placeholder="Kategoriename (z. B. RÃ¤umlichkeiten)"
                           />
                         </div>
                         
@@ -2264,7 +2354,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             type="button" 
                             onClick={() => handleDeleteCategory(category.id)} 
                             className="text-xs text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded transition-colors flex items-center gap-1"
-                            title="Kategorie löschen"
+                            title="Kategorie lÃ¶schen"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                             <span className="hidden sm:inline">Kategorie entfernen</span>
@@ -2296,7 +2386,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                                         type="button" 
                                         onClick={() => handleDeleteImageFromCategory(category.id, imgIdx)} 
                                         className="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow"
-                                        title="Bild löschen"
+                                        title="Bild lÃ¶schen"
                                       >
                                         <X className="w-3.5 h-3.5" />
                                       </button>
@@ -2321,7 +2411,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                                         type="text" 
                                         value={titleText} 
                                         onChange={e => handleUpdateImageMeta(category.id, imgIdx, { title: e.target.value })} 
-                                        placeholder={`z. B. ${category.name} Übersicht`} 
+                                        placeholder={`z. B. ${category.name} Ãœbersicht`} 
                                         className="w-full text-xs border border-gray-200 rounded px-2 py-1 bg-white focus:outline-none focus:ring-1 focus:ring-[#F2761B]"
                                       />
                                     </div>
@@ -2332,7 +2422,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                                         onClick={() => setFormData(prev => ({ ...prev, imageLink: imgUrl, uploadedImage: imgUrl }))} 
                                         className="w-full text-xs font-semibold py-1 px-2 rounded bg-white hover:bg-orange-50 border border-[#EDE8E0] text-[#D65F0C] transition-colors"
                                       >
-                                        ★ Als Titelbild festlegen
+                                        â˜… Als Titelbild festlegen
                                       </button>
                                     )}
                                   </div>
@@ -2351,7 +2441,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                           <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-gray-100">
                             <label className={`cursor-pointer flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] rounded ${uploadingImage ? 'opacity-50' : ''}`}>
                               <Upload className="w-3.5 h-3.5" />
-                              {uploadingImage ? 'Lädt...' : `Foto zu "${category.name}" hochladen`}
+                              {uploadingImage ? 'LÃ¤dt...' : `Foto zu "${category.name}" hochladen`}
                               <input type="file" accept="image/*" className="hidden" onChange={e => handleImageUpload(e, 'gallery', category.id)} disabled={uploadingImage} />
                             </label>
                           </div>
@@ -2369,7 +2459,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       onClick={() => handleAddCategory('Impressionen')}
                       className="px-4 py-2 text-xs font-bold rounded bg-[#0F4C2E] text-white hover:bg-[#0B3B24] transition-colors"
                     >
-                      + Erste Kategorie „Impressionen“ anlegen
+                      + Erste Kategorie â€žImpressionenâ€œ anlegen
                     </button>
                   </div>
                 )}
@@ -2379,16 +2469,16 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             <div className="border-t border-orange-200/50 pt-5">
               <div className="flex items-center justify-between mb-1">
                 <label className={labelClass}>
-                  {activeLangTab === 'de' ? 'Ausführliche Premium-Beschreibung (Deutsch - "Über uns")' : 'Ausführliche Premium-Beschreibung (Niederländisch - "Over het bedrijf")'}
+                  {activeLangTab === 'de' ? 'AusfÃ¼hrliche Premium-Beschreibung (Deutsch - "Ãœber uns")' : 'AusfÃ¼hrliche Premium-Beschreibung (NiederlÃ¤ndisch - "Over het bedrijf")'}
                 </label>
                 <span className="text-xs text-[#5F6B63]">
-                  {activeLangTab === 'de' ? '🇩🇪 Deutsch aktiv' : '🇳🇱 Niederländisch aktiv'}
+                  {activeLangTab === 'de' ? 'ðŸ‡©ðŸ‡ª Deutsch aktiv' : 'ðŸ‡³ðŸ‡± NiederlÃ¤ndisch aktiv'}
                 </span>
               </div>
               <p className="text-xs opacity-70 mb-2">
                 {activeLangTab === 'de' 
-                  ? 'Hier können Sie umfangreiche Texte, Formatierungen und Bilder über den WYSIWYG-Editor gestalten.' 
-                  : 'Optional: Gestalten Sie hier die niederländische Übersetzung. Bleibt dieses Feld leer, wird der deutsche Text automatisch übersetzt.'}
+                  ? 'Hier kÃ¶nnen Sie umfangreiche Texte, Formatierungen und Bilder Ã¼ber den WYSIWYG-Editor gestalten.' 
+                  : 'Optional: Gestalten Sie hier die niederlÃ¤ndische Ãœbersetzung. Bleibt dieses Feld leer, wird der deutsche Text automatisch Ã¼bersetzt.'}
               </p>
               <div className="bg-white rounded-md border border-black/10">
                 {activeLangTab === 'de' ? (
@@ -2407,13 +2497,13 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               <div className="h-12"></div>
             </div>
 
-            {/* ─── Business News ─────────────────────────────────── */}
+            {/* â”€â”€â”€ Business News â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
             <div className="mt-6 border-t-2 border-orange-200 pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-[#0F4C2E]">📰 News & Aktuelle Beiträge</h3>
+                  <h3 className="text-lg font-bold text-[#0F4C2E]">ðŸ“° News & Aktuelle BeitrÃ¤ge</h3>
                   <p className="text-sm text-[#5F6B63] mt-0.5">
-                    Bis zu 5 Beiträge pro Monat · erscheinen sofort auf der Unternehmensseite · im News-Board erst nach Admin-Freigabe
+                    Bis zu 5 BeitrÃ¤ge pro Monat Â· erscheinen sofort auf der Unternehmensseite Â· im News-Board erst nach Admin-Freigabe
                   </p>
                 </div>
                 {(() => {
@@ -2436,7 +2526,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1">
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${article.status === 'published' ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-gray-100 text-gray-500'}`}>
-                            {article.status === 'published' ? 'Veröffentlicht' : 'Entwurf'}
+                            {article.status === 'published' ? 'VerÃ¶ffentlicht' : 'Entwurf'}
                           </span>
                           <span className="text-xs text-[#8A928B]">
                             {new Date(article.publishedAt).toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -2455,7 +2545,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             setFormData(prev => ({ ...prev, businessNews: updated }));
                           }}
                           className="text-xs px-2 py-1 rounded bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#C5DFCE] transition-colors font-medium"
-                          title={article.status === 'published' ? 'Als Entwurf speichern' : 'Veröffentlichen'}
+                          title={article.status === 'published' ? 'Als Entwurf speichern' : 'VerÃ¶ffentlichen'}
                         >
                           {article.status === 'published' ? 'Verbergen' : 'Publizieren'}
                         </button>
@@ -2466,7 +2556,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             setFormData(prev => ({ ...prev, businessNews: updated }));
                           }}
                           className="text-xs px-2 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
-                          title="Löschen"
+                          title="LÃ¶schen"
                         >
                           <X className="w-3 h-3" />
                         </button>
@@ -2475,7 +2565,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                   </div>
                 ))}
                 {(formData.businessNews || []).length === 0 && (
-                  <p className="text-sm text-[#8A928B] italic">Noch keine Beiträge vorhanden.</p>
+                  <p className="text-sm text-[#8A928B] italic">Noch keine BeitrÃ¤ge vorhanden.</p>
                 )}
               </div>
 
@@ -2485,7 +2575,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
                 const count = (formData.businessNews || []).filter(n => n.publishedAt?.startsWith(thisMonth)).length;
                 if (count >= 5) {
-                  return <p className="text-sm text-red-600 font-medium">Monatliches Limit von 5 Beiträgen erreicht.</p>;
+                  return <p className="text-sm text-red-600 font-medium">Monatliches Limit von 5 BeitrÃ¤gen erreicht.</p>;
                 }
                 return (
                   <NewBusinessArticleForm
@@ -2500,16 +2590,16 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               })()}
             </div>
 
-            {/* ─── PDF-Speisekarten, Preislisten & Dokumente ──────── */}
+            {/* â”€â”€â”€ PDF-Speisekarten, Preislisten & Dokumente â”€â”€â”€â”€â”€â”€â”€â”€ */}
             <div className="mt-8 border-t-2 border-orange-200 pt-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
                     <FileDown className="w-5 h-5 text-[#F2761B]" />
-                    📄 Speisekarten, Preislisten & PDF-Dokumente
+                    ðŸ“„ Speisekarten, Preislisten & PDF-Dokumente
                   </h3>
                   <p className="text-sm text-[#5F6B63] mt-0.5">
-                    Laden Sie Speisekarten, Getränkekarten, Preislisten, Verleihgebühren oder Imagebroschüren als PDF hoch (max. 15 MB).
+                    Laden Sie Speisekarten, GetrÃ¤nkekarten, Preislisten, VerleihgebÃ¼hren oder ImagebroschÃ¼ren als PDF hoch (max. 15 MB).
                   </p>
                 </div>
               </div>
@@ -2524,11 +2614,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       onChange={e => setDocType(e.target.value as any)}
                       className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
                     >
-                      <option value="menu">🍽️ Speise- / Getränkekarte</option>
-                      <option value="pricelist">🏷️ Preis- / Verleihliste</option>
-                      <option value="flyer">📰 Flyer &amp; Angebote</option>
-                      <option value="brochure">📖 Broschüre &amp; Katalog</option>
-                      <option value="other">📁 Sonstiges Dokument</option>
+                      <option value="menu">ðŸ½ï¸ Speise- / GetrÃ¤nkekarte</option>
+                      <option value="pricelist">ðŸ·ï¸ Preis- / Verleihliste</option>
+                      <option value="flyer">ðŸ“° Flyer &amp; Angebote</option>
+                      <option value="brochure">ðŸ“– BroschÃ¼re &amp; Katalog</option>
+                      <option value="other">ðŸ“ Sonstiges Dokument</option>
                     </select>
                   </div>
 
@@ -2547,7 +2637,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 <div className="flex items-center gap-3">
                   <label className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md text-white bg-[#0F4C2E] hover:bg-[#06301C] transition-colors shadow-xs ${uploadingDoc ? 'opacity-50 cursor-not-allowed' : ''}`}>
                     <Upload className="w-4 h-4" />
-                    {uploadingDoc ? 'Wird hochgeladen...' : '+ PDF-Datei auswählen & hochladen'}
+                    {uploadingDoc ? 'Wird hochgeladen...' : '+ PDF-Datei auswÃ¤hlen & hochladen'}
                     <input
                       type="file"
                       accept="application/pdf,.pdf"
@@ -2563,11 +2653,11 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               {/* Uploaded Documents List */}
               <div className="space-y-2.5">
                 {(formData.documents || []).map((docItem) => {
-                  const typeLabel = docItem.type === 'menu' ? '🍽️ Speisekarte'
-                    : docItem.type === 'pricelist' ? '🏷️ Preisliste'
-                    : docItem.type === 'flyer' ? '📰 Flyer'
-                    : docItem.type === 'brochure' ? '📖 Broschüre'
-                    : '📁 Dokument';
+                  const typeLabel = docItem.type === 'menu' ? 'ðŸ½ï¸ Speisekarte'
+                    : docItem.type === 'pricelist' ? 'ðŸ·ï¸ Preisliste'
+                    : docItem.type === 'flyer' ? 'ðŸ“° Flyer'
+                    : docItem.type === 'brochure' ? 'ðŸ“– BroschÃ¼re'
+                    : 'ðŸ“ Dokument';
 
                   return (
                     <div key={docItem.id} className="bg-white border border-[#EDE8E0] rounded-lg p-3.5 flex items-center justify-between gap-3 shadow-2xs">
@@ -2592,13 +2682,13 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                           className="text-xs font-semibold px-3 py-1.5 rounded-md bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] hover:bg-[#E8F1EB] transition-colors inline-flex items-center gap-1"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
-                          Öffnen
+                          Ã–ffnen
                         </a>
                         <button
                           type="button"
                           onClick={() => handleDeleteDocument(docItem.id)}
                           className="text-xs px-2.5 py-1.5 rounded-md bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
-                          title="Dokument löschen"
+                          title="Dokument lÃ¶schen"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -2612,22 +2702,22 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               </div>
             </div>
 
-            {/* ─── Ausstattungs- & Besonderheiten-Badges (USPs) ── */}
+            {/* â”€â”€â”€ Ausstattungs- & Besonderheiten-Badges (USPs) â”€â”€ */}
             <div className="mt-8 border-t-2 border-orange-200 pt-6">
               <div>
                 <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
                   <Tag className="w-5 h-5 text-[#F2761B]" />
-                  🏷️ Ausstattungs- &amp; Besonderheiten-Badges (USPs)
+                  ðŸ·ï¸ Ausstattungs- &amp; Besonderheiten-Badges (USPs)
                 </h3>
                 <p className="text-sm text-[#5F6B63] mt-0.5 mb-3">
-                  Wählen Sie passende Ausstattungsmerkmale und Besonderheiten für Ihr Unternehmen (z. B. Hunde erlaubt, Notdienst, Terrasse).
+                  WÃ¤hlen Sie passende Ausstattungsmerkmale und Besonderheiten fÃ¼r Ihr Unternehmen (z. B. Hunde erlaubt, Notdienst, Terrasse).
                 </p>
               </div>
 
               {/* Active Badges */}
               {(formData.featureBadges || []).length > 0 && (
                 <div className="mb-4 p-3 bg-white rounded-lg border border-[#EDE8E0]">
-                  <span className="text-xs font-bold text-[#1B211D] block mb-2">Ausgewählte Badges:</span>
+                  <span className="text-xs font-bold text-[#1B211D] block mb-2">AusgewÃ¤hlte Badges:</span>
                   <div className="flex flex-wrap gap-2">
                     {(formData.featureBadges || []).map((b, idx) => (
                       <span key={idx} className="bg-[#E8F1EB] text-[#0F4C2E] font-medium text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#0F4C2E]/20">
@@ -2650,24 +2740,24 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider block">Schnellauswahl nach Branche:</span>
                 <div className="flex flex-wrap gap-1.5">
                   {[
-                    '🐶 Hunde erlaubt',
-                    '☀️ Biergarten / Terrasse',
-                    '🌱 Vegan & Vegetarisch',
-                    '💳 Kartenzahlung',
-                    '♿ Barrierefrei',
-                    '👶 Kinderfreundlich',
-                    '🚨 24h Notdienst',
-                    '🏆 Meisterbetrieb',
-                    '📝 Kostenloses Angebot',
-                    '🎿 Skikeller mit Schuhtrockner',
-                    '🚴 E-Bike Ladestation',
-                    '🎫 Sauerland SommerCard inklusive',
-                    '🧖 Sauna & Wellness',
-                    '🅿️ Kostenloser Parkplatz',
-                    '🎿 Ausrüstungsverleih',
-                    '🏂 Skischule vor Ort',
-                    '📅 Online-Terminbuchung',
-                    '💬 Kostenlose Erstberatung'
+                    'ðŸ¶ Hunde erlaubt',
+                    'â˜€ï¸ Biergarten / Terrasse',
+                    'ðŸŒ± Vegan & Vegetarisch',
+                    'ðŸ’³ Kartenzahlung',
+                    'â™¿ Barrierefrei',
+                    'ðŸ‘¶ Kinderfreundlich',
+                    'ðŸš¨ 24h Notdienst',
+                    'ðŸ† Meisterbetrieb',
+                    'ðŸ“ Kostenloses Angebot',
+                    'ðŸŽ¿ Skikeller mit Schuhtrockner',
+                    'ðŸš´ E-Bike Ladestation',
+                    'ðŸŽ« Sauerland SommerCard inklusive',
+                    'ðŸ§– Sauna & Wellness',
+                    'ðŸ…¿ï¸ Kostenloser Parkplatz',
+                    'ðŸŽ¿ AusrÃ¼stungsverleih',
+                    'ðŸ‚ Skischule vor Ort',
+                    'ðŸ“… Online-Terminbuchung',
+                    'ðŸ’¬ Kostenlose Erstberatung'
                   ].map((preset) => {
                     const isSelected = (formData.featureBadges || []).includes(preset);
                     return (
@@ -2681,7 +2771,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                             : 'bg-white text-[#4A544D] border border-[#EDE8E0] hover:border-[#0F4C2E]'
                         }`}
                       >
-                        {isSelected ? '✓ ' : '+ '} {preset}
+                        {isSelected ? 'âœ“ ' : '+ '} {preset}
                       </button>
                     );
                   })}
@@ -2694,7 +2784,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     value={newCustomBadge}
                     onChange={e => setNewCustomBadge(e.target.value)}
                     onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); handleAddCustomBadge(); } }}
-                    placeholder="Eigenes Merkmal hinzufügen (z. B. Panorama-Aussicht)..."
+                    placeholder="Eigenes Merkmal hinzufÃ¼gen (z. B. Panorama-Aussicht)..."
                     className="flex-1 border border-[#E7E2DA] rounded-md px-3 py-1.5 text-xs bg-white focus:outline-none focus:border-[#0F4C2E]"
                   />
                   <button
@@ -2702,21 +2792,21 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     onClick={handleAddCustomBadge}
                     className="px-3 py-1.5 bg-[#0F4C2E] text-white text-xs font-semibold rounded-md hover:bg-[#06301C] transition-colors"
                   >
-                    Hinzufügen
+                    HinzufÃ¼gen
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* ─── Individueller Call-to-Action (Action-Button) ── */}
+            {/* â”€â”€â”€ Individueller Call-to-Action (Action-Button) â”€â”€ */}
             <div className="mt-8 border-t-2 border-orange-200 pt-6">
               <div>
                 <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-[#F2761B]" />
-                  🔘 Individueller Action-Button (Call-to-Action)
+                  ðŸ”˜ Individueller Action-Button (Call-to-Action)
                 </h3>
                 <p className="text-sm text-[#5F6B63] mt-0.5 mb-3">
-                  Heben Sie eine primäre Kundenaktion im Profil hervor (z. B. Tisch reservieren, Notdienst rufen, Termin vereinbaren).
+                  Heben Sie eine primÃ¤re Kundenaktion im Profil hervor (z. B. Tisch reservieren, Notdienst rufen, Termin vereinbaren).
                 </p>
               </div>
 
@@ -2736,12 +2826,12 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                       })}
                       className="w-full border border-[#E7E2DA] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
                     >
-                      <option value="table">🍽️ Tisch online reservieren</option>
-                      <option value="emergency">🚨 24h Notdienst anrufen</option>
-                      <option value="booking">📅 Termin online buchen</option>
-                      <option value="rental">🎿 Ausrüstung vorbestellen</option>
-                      <option value="inquiry">📝 Angebot / Anfrage</option>
-                      <option value="custom">🔗 Individuelle Verlinkung</option>
+                      <option value="table">ðŸ½ï¸ Tisch online reservieren</option>
+                      <option value="emergency">ðŸš¨ 24h Notdienst anrufen</option>
+                      <option value="booking">ðŸ“… Termin online buchen</option>
+                      <option value="rental">ðŸŽ¿ AusrÃ¼stung vorbestellen</option>
+                      <option value="inquiry">ðŸ“ Angebot / Anfrage</option>
+                      <option value="custom">ðŸ”— Individuelle Verlinkung</option>
                     </select>
                   </div>
 
@@ -2784,16 +2874,16 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
               </div>
             </div>
 
-            {/* ─── E-Commerce & Onlineshop (Premium) ── */}
+            {/* â”€â”€â”€ E-Commerce & Onlineshop (Premium) â”€â”€ */}
             <div className="mt-8 border-t-2 border-orange-200 pt-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                 <div>
                   <h3 className="text-lg font-bold text-[#0F4C2E] flex items-center gap-2">
                     <ShoppingBag className="w-5 h-5 text-[#F2761B]" />
-                    🛍️ Onlineshop & E-Commerce
+                    ðŸ›ï¸ Onlineshop & E-Commerce
                   </h3>
                   <p className="text-sm text-[#5F6B63] mt-0.5">
-                    Verfügt dieses Unternehmen über einen eigenen Onlineshop oder Bestellshop?
+                    VerfÃ¼gt dieses Unternehmen Ã¼ber einen eigenen Onlineshop oder Bestellshop?
                   </p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer shrink-0">
@@ -2827,7 +2917,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                     />
                   </div>
                   <p className="text-xs text-[#5F6B63]">
-                    Wird mit auffälligem Call-to-Action („Onlineshop von {formData.name || 'Unternehmen'} besuchen“) und Direktverlinkung auf dem Profil hervorgehoben.
+                    Wird mit auffÃ¤lligem Call-to-Action (â€žOnlineshop von {formData.name || 'Unternehmen'} besuchenâ€œ) und Direktverlinkung auf dem Profil hervorgehoben.
                   </p>
                 </div>
               )}
@@ -2843,7 +2933,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
             disabled={isSubmitting}
             className={`px-6 py-2.5 font-bold transition-colors flex-1 ${theme.primaryBtn} ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-md'} ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
-            {isSubmitting ? 'Wird gespeichert...' : 'Speichern & Veröffentlichen'}
+            {isSubmitting ? 'Wird gespeichert...' : 'Speichern & VerÃ¶ffentlichen'}
           </button>
           <button 
             type="button" 
