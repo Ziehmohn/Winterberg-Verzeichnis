@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -588,6 +588,24 @@ export default function App() {
     setNewsId(null);
     setIsFaqMode(false);
     setIsGroundingMode(false);
+  };
+
+  const handleCategoryChange = (catName: string) => {
+    resetToDirectory();
+    if (catName === 'Alle') {
+      const url = getPath('/alle-unternehmen');
+      window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
+      setActiveCategory('Alle');
+      setIsAllMode(true);
+    } else {
+      const parentCat = categories.find(c => c.subcategories.includes(catName));
+      const url = parentCat 
+        ? getPath(`/${encodeURIComponent(parentCat.name)}/${encodeURIComponent(catName)}`)
+        : getPath(`/${encodeURIComponent(catName)}`);
+      window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
+      setActiveCategory(catName);
+      setIsAllMode(false);
+    }
   };
   
   useEffect(() => {
@@ -1347,6 +1365,34 @@ export default function App() {
     if (!a.isPremium && b.isPremium) return 1;
     return a.name.localeCompare(b.name);
   });
+
+  const globalMatchesCount = useMemo(() => {
+    if (!searchQuery.trim() || activeCategory === 'Alle') return 0;
+    const lowerSearch = searchQuery.toLowerCase().trim();
+    return businesses.filter(bus => {
+      if (bus.status === 'pending' || isBusinessDeactivated(bus)) return false;
+      const busLocation = extractLocation(bus);
+      const matchesLocation = activeLocation === 'Alle' || busLocation === activeLocation;
+      if (!matchesLocation) return false;
+      
+      const allServices = (bus.services || []).concat(bus.services_nl || []);
+      const matchesServices = allServices.some(s => s.toLowerCase().includes(lowerSearch));
+      const allProducts = (bus.products || []).concat(bus.products_nl || []);
+      const matchesProducts = allProducts.some(p => p.toLowerCase().includes(lowerSearch));
+      const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
+                              !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
+      return (
+        bus.name.toLowerCase().includes(lowerSearch) ||
+        (bus.description && bus.description.toLowerCase().includes(lowerSearch)) ||
+        (bus.description_nl && bus.description_nl.toLowerCase().includes(lowerSearch)) ||
+        bus.category.toLowerCase().includes(lowerSearch) ||
+        (bus.subcategory && bus.subcategory.toLowerCase().includes(lowerSearch)) ||
+        matchesServices ||
+        matchesProducts ||
+        matchesExtended
+      );
+    }).length;
+  }, [businesses, searchQuery, activeCategory, activeLocation]);
 
   // Dynamic Schema.org JSON-LD (LocalBusiness, CollectionPage, ItemList, WebSite)
   useEffect(() => {
@@ -2313,8 +2359,26 @@ export default function App() {
             {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (
               <div className="w-full bg-[#0F4C2E] text-white relative overflow-hidden">
                 <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-[32px] sm:py-[38px] pb-[36px] sm:pb-[42px]">
-                  <div className="text-[14px] text-white/70 mb-2.5">
-                    <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a> / {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
+                  <div className="text-[14px] text-white/70 mb-2.5 flex items-center gap-1.5 flex-wrap">
+                    <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a>
+                    <span>/</span>
+                    {activeCategory !== 'Alle' && (
+                      <>
+                        <a 
+                          href={getPath('/alle-unternehmen')} 
+                          onClick={(e) => { 
+                            e.preventDefault(); 
+                            handleCategoryChange('Alle');
+                            setSearchQuery('');
+                          }} 
+                          className="text-white/80 hover:text-white transition-colors"
+                        >
+                          {t("allCompanies")}
+                        </a>
+                        <span>/</span>
+                      </>
+                    )}
+                    <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
                   </div>
                   <h1 className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-bold m-0 mb-3 leading-tight">
                     {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
@@ -2328,7 +2392,7 @@ export default function App() {
                         placeholder={
                           activeCategory === 'Alle'
                             ? (lang === 'nl' ? 'Bedrijf, product of dienst zoeken (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Leistungen suchen (z. B. Schuhe, Bäcker, Ski)...')
-                            : (lang === 'nl' ? `In „${t(activeCategory)}" zoeken naar namen, diensten...` : `In „${activeCategory}" nach Namen, Produkten oder Leistungen suchen...`)
+                            : (lang === 'nl' ? `In „${t(activeCategory)}" suchen (oder Kategorie wählen)...` : `In „${activeCategory}" suchen (oder Kategorie wählen)...`)
                         }
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -2345,6 +2409,26 @@ export default function App() {
                         </button>
                       )}
                     </div>
+
+                    {/* Category Selector Dropdown */}
+                    <select
+                      value={activeCategory}
+                      onChange={(e) => handleCategoryChange(e.target.value)}
+                      className="w-full md:w-auto md:w-[190px] shrink-0 border border-[#D5D0C5] rounded-md px-3 py-2.5 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
+                      title={lang === 'nl' ? 'Categorie kiezen' : 'Kategorie wählen'}
+                    >
+                      <option value="Alle">{lang === 'nl' ? '🌐 Alle categorieën' : '🌐 Alle Kategorien'}</option>
+                      {categories.map(c => (
+                        <optgroup key={c.name} label={t(c.name)}>
+                          <option value={c.name}>{lang === 'nl' ? `Alle in ${t(c.name)}` : `Alle in ${t(c.name)}`}</option>
+                          {c.subcategories.map(sub => (
+                            <option key={sub} value={sub}>&nbsp;&nbsp;{t(sub)}</option>
+                          ))}
+                        </optgroup>
+                      ))}
+                    </select>
+
+                    {/* Location Selector Dropdown */}
                     <select
                       value={activeLocation}
                       onChange={(e) => {
@@ -2356,13 +2440,15 @@ export default function App() {
                         const url = getPath(basePath);
                         window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
                       }}
-                      className="w-full md:w-auto md:w-[195px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[14.5px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
+                      className="w-full md:w-auto md:w-[160px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
                     >
                       <option value="Alle">{t("allTowns")}</option>
                       {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
                         <option key={d} value={d}>{d}</option>
                       ))}
                     </select>
+
+                    {/* Search Button */}
                     <button
                       type="button"
                       onClick={() => {
@@ -2376,7 +2462,27 @@ export default function App() {
                   </div>
 
                   <div className="flex items-center justify-between flex-wrap gap-3 mt-3">
-                    <p className="m-0 text-[15px] sm:text-[16px] text-white/80">{filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}</p>
+                    <div className="flex items-center gap-2.5 flex-wrap">
+                      <p className="m-0 text-[15px] sm:text-[16px] text-white/80">
+                        {filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}
+                        {activeCategory !== 'Alle' && <span className="text-white/60"> {lang === 'nl' ? `in ${t(activeCategory)}` : `in ${t(activeCategory)}`}</span>}
+                      </p>
+                      {activeCategory !== 'Alle' && (
+                        <button
+                          type="button"
+                          onClick={() => handleCategoryChange('Alle')}
+                          className="inline-flex items-center gap-1.5 text-[12.5px] bg-white/15 hover:bg-white/25 text-white px-3 py-1 rounded-full backdrop-blur-xs transition-colors cursor-pointer border border-white/20"
+                        >
+                          <Building2 className="w-3 h-3 opacity-80" />
+                          <span>
+                            {searchQuery.trim() && globalMatchesCount > filteredBusinesses.length
+                              ? (lang === 'nl' ? `In alle categorieën zoeken (${globalMatchesCount})` : `In allen Kategorien suchen (${globalMatchesCount} Treffer)`)
+                              : (lang === 'nl' ? 'Alle categorieën bekijken' : 'Alle Kategorien anzeigen')}
+                          </span>
+                          <ArrowRight className="w-3 h-3 opacity-70" />
+                        </button>
+                      )}
+                    </div>
                     <div className="flex bg-white/12 rounded-md p-1">
                       <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
                       <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
@@ -2406,6 +2512,24 @@ export default function App() {
               <div className={`${isMobileSidebarFilterOpen ? 'block' : 'hidden lg:block'}`}>
                 <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Categorie' : 'Kategorie'}</div>
                 <div className="flex flex-col gap-1 mb-[24px]">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleCategoryChange('Alle');
+                      if(isMobileSidebarFilterOpen) setIsMobileSidebarFilterOpen(false);
+                      window.scrollTo({top: 0, behavior: 'smooth'});
+                    }}
+                    className={`text-left border-none rounded-md px-3 py-2 text-[14.5px] cursor-pointer flex justify-between gap-2 transition-colors ${activeCategory === 'Alle' ? 'bg-[#0F4C2E] text-white font-semibold' : 'bg-transparent text-[#1B211D] font-medium hover:bg-[#F3F0EA]'}`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Building2 className="w-4 h-4 opacity-70" />
+                      {t("allCompanies")}
+                    </span>
+                    <span className={activeCategory === 'Alle' ? 'text-white/70 text-[13px]' : 'text-[#8A928B] text-[13px]'}>
+                      {initialBusinesses.filter(b => b.status !== 'pending' && !isBusinessDeactivated(b)).length}
+                    </span>
+                  </button>
                   {categories.map((group) => {
                     const count = initialBusinesses.filter(b => b.category === group.name).length;
                     const isActive = activeCategory === group.name || categories.find(c => c.name === group.name)?.subcategories.includes(activeCategory);
@@ -2525,12 +2649,23 @@ export default function App() {
                       placeholder={
                         activeCategory === 'Alle'
                           ? (lang === 'nl' ? 'Zoek bedrijven, producten of diensten (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Dienstleistungen suchen (z. B. Schuhe, Bäcker, Ski)…')
-                          : (lang === 'nl' ? `In „${t(activeCategory)}" zoeken naar namen, producten of diensten…` : `In „${activeCategory}" nach Namen, Produkten oder Leistungen suchen…`)
+                          : (lang === 'nl' ? `In „${t(activeCategory)}" suchen...` : `In „${activeCategory}" nach Namen, Produkten oder Leistungen suchen…`)
                       } 
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="border-none outline-none bg-transparent text-[15px] w-full text-[#1B211D] placeholder:text-[#8A928B]"
                     />
+                    {activeCategory !== 'Alle' && (
+                      <button
+                        type="button"
+                        onClick={() => handleCategoryChange('Alle')}
+                        className="shrink-0 text-xs font-semibold bg-[#EDE9E1] hover:bg-[#E2DDD3] text-[#0F4C2E] px-2.5 py-1 rounded-md transition-colors flex items-center gap-1 cursor-pointer"
+                        title={lang === 'nl' ? 'In alle categorieën zoeken' : 'In allen Kategorien suchen'}
+                      >
+                        <span>{t(activeCategory)}</span>
+                        <X className="w-3 h-3 opacity-60 hover:opacity-100" />
+                      </button>
+                    )}
                     {searchQuery && (
                       <button 
                         type="button" 
@@ -2561,6 +2696,28 @@ export default function App() {
                   </select>
                 </div>
               </div>
+
+              {/* Cross-category search banner */}
+              {searchQuery.trim() && activeCategory !== 'Alle' && globalMatchesCount > filteredBusinesses.length && (
+                <div className="mb-4 p-3 bg-[#E8F3ED] border border-[#0F4C2E]/20 rounded-lg flex items-center justify-between gap-3 text-sm text-[#0F4C2E] flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#F2761B] shrink-0" />
+                    <span>
+                      {lang === 'nl' 
+                        ? `Er zijn ${globalMatchesCount} passende resultaten gevonden in alle categorieën.` 
+                        : `Insgesamt ${globalMatchesCount} passende Treffer in anderen Kategorien gefunden.`}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleCategoryChange('Alle')}
+                    className="font-bold text-[#0F4C2E] hover:text-[#155D38] underline cursor-pointer flex items-center gap-1"
+                  >
+                    <span>{lang === 'nl' ? 'In alle categorieën tonen' : 'In allen Kategorien anzeigen'}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
 
               {/* Mobile Sponsor Banner – below search/sort, always visible */}
               <div className="block lg:hidden mb-5 space-y-3">
@@ -2705,6 +2862,23 @@ export default function App() {
                     <div className={`col-span-full py-16 text-center border-dashed border-2 ${activeThemeKey === 'modern' ? 'rounded-none' : 'rounded-lg'} ${theme.cardBorder} ${theme.textMuted}`}>
                       <p className="text-lg font-medium">{t("noBusinessesFound")}</p>
                       <p className="text-sm mt-1">{t("adjustSearchCriteria")}</p>
+                      {activeCategory !== 'Alle' && (
+                        <div className="mt-5">
+                          <button
+                            type="button"
+                            onClick={() => handleCategoryChange('Alle')}
+                            className="inline-flex items-center gap-2 bg-[#0F4C2E] hover:bg-[#155D38] text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm cursor-pointer"
+                          >
+                            <Search className="w-4 h-4" />
+                            <span>
+                              {globalMatchesCount > 0 
+                                ? (lang === 'nl' ? `In alle categorieën zoeken (${globalMatchesCount} gevonden)` : `In allen Kategorien nach „${searchQuery}“ suchen (${globalMatchesCount} Treffer)`)
+                                : (lang === 'nl' ? 'Alle bedrijven bekijken' : 'Alle Unternehmen anzeigen')}
+                            </span>
+                            <ArrowRight className="w-4 h-4 ml-0.5" />
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </motion.div>
