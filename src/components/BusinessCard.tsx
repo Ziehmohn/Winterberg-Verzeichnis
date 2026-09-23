@@ -6,29 +6,31 @@ import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import { useFavorites } from '../utils/favorites';
-import { formatBusinessAddress } from '../utils';
+import { formatBusinessAddress, isSundayOpen } from '../utils';
 import RankingBadge from './RankingBadge';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 
 interface BusinessCardProps {
   key?: any;
   business: Business;
-  lang: 'de' | 'nl';
-  allBusinesses: Business[];
+  lang?: 'de' | 'nl';
+  allBusinesses?: Business[];
   searchQuery?: string;
   onClick: (e: React.MouseEvent) => void;
   className?: string;
+  theme?: any;
 }
 
 export default function BusinessCard({
   business,
-  lang,
-  allBusinesses,
+  lang: propLang,
+  allBusinesses = [],
   searchQuery = '',
   onClick,
   className = ''
 }: BusinessCardProps) {
-  const { t } = useTranslation();
+  const { t, lang: contextLang } = useTranslation();
+  const lang = propLang || contextLang || 'de';
   const localized = getLocalizedBusiness(business, lang);
 
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -99,6 +101,12 @@ export default function BusinessCard({
               <div className="bg-[#0F4C2E] text-white border border-[#0F4C2E]/30 px-2 py-1 rounded-md text-[11px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
                 <span>🛍️</span>
                 <span>{lang === 'nl' ? 'Webshop' : 'Onlineshop'}</span>
+              </div>
+            )}
+            {isSundayOpen(business.openingHours) && (
+              <div className="bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-2 py-1 rounded-md text-[11px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
+                <span>☀️</span>
+                <span>{lang === 'nl' ? 'Zondag open' : 'So. geöffnet'}</span>
               </div>
             )}
           </div>

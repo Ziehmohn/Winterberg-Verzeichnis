@@ -253,6 +253,61 @@ const staticPageConfigs: {
     h1Nl: 'E-mailmeldingen beheren',
     h2De: 'Abmeldung von automatischen Benachrichtigungen',
     h2Nl: 'Afmelden voor automatische meldingen'
+  },
+  {
+    key: 'sundayOpen',
+    titleDe: 'Sonntags geöffnet in Winterberg | Bäderregelung & Shopping',
+    titleNl: 'Op zondag geopend in Winterberg | Bäderregeling & Winkels',
+    descDe: 'Übersicht aller Geschäfte, Bäckereien, Skiverleiher und Restaurants in Winterberg, die sonntags im Rahmen der Bäderregelung geöffnet haben.',
+    descNl: 'Overzicht van alle winkels, bakkers en restaurants in Winterberg die op zondag geopend zijn dankzij de officiële Bäderregeling.',
+    h1De: 'Sonntags geöffnet in Winterberg',
+    h1Nl: 'Op zondag geopend in Winterberg',
+    h2De: 'Bäderregelung für den heilklimatischen Kurort Winterberg',
+    h2Nl: 'Bäderregeling voor het kuuroord Winterberg'
+  },
+  {
+    key: 'skiReport',
+    titleDe: 'Schnee- & Pistenbericht Winterberg | Skiliftkarussell Live',
+    titleNl: 'Sneeuwhoogte & Pistebericht Winterberg | Skiliftkarussell',
+    descDe: 'Aktueller Schneebericht, geöffnete Liftanlagen, Schneehöhen, Flutlicht und Loipen im Skiliftkarussell Winterberg und Umgebung.',
+    descNl: 'Actueel sneeuwbericht, geopende skiliften, avondskiën en live pistes in Winterberg en omliggende dorpen.',
+    h1De: 'Schnee- & Pistenbericht Winterberg',
+    h1Nl: 'Pistebericht & Sneeuwhoogte Winterberg',
+    h2De: 'Live-Status der Skigebiete im Stadtgebiet',
+    h2Nl: 'Live-status van de skigebieden'
+  },
+  {
+    key: 'webcams',
+    titleDe: 'Live Webcams Winterberg | Marktplatz, Kahler Asten, Bobbahn',
+    titleNl: 'Live Webcams Winterberg | Marktplein, Kahler Asten, Pistes',
+    descDe: 'Alle Live-Webcams in Winterberg auf einen Blick: Marktplatz, Kahler Asten Wetterstation, VELTINS-EisArena, Skiliftkarussell und St. Georg Schanze.',
+    descNl: 'Alle live webcams in Winterberg in één overzicht: Marktplein, Kahler Asten, bobsleebaan en skiliften.',
+    h1De: 'Live Webcams Winterberg',
+    h1Nl: 'Live Webcams Winterberg',
+    h2De: 'Panoramablicke und HD-Livestreams aus der Region',
+    h2Nl: 'Panoramabeelden en livestreams'
+  },
+  {
+    key: 'wasteCalendar',
+    titleDe: 'Digitaler Abfallkalender Winterberg | Müllabfuhr für alle 14 Ortsteile',
+    titleNl: 'Digitale Afvalkalender Winterberg | Ophaaldagen voor 14 dorpen',
+    descDe: 'Müllabfuhrtermine für Restmüll, Altpapier, Biomüll und Gelben Sack für alle 14 Ortsteile von Winterberg inkl. ICS-Kalender-Export.',
+    descNl: 'Ophaaldata voor restafval, papier, GFT en PMD voor alle 14 dorpen in Winterberg inclusief kalender-export.',
+    h1De: 'Digitaler Abfallkalender Winterberg',
+    h1Nl: 'Digitale Afvalkalender Winterberg',
+    h2De: 'Abfuhrtermine und Wertstoffhof für alle 14 Ortsteile',
+    h2Nl: 'Ophaaldata en milieustraat'
+  },
+  {
+    key: 'chargingStations',
+    titleDe: 'E-Ladestationen Winterberg | Schnelllader (HPC) & Ladesäulen-Karte',
+    titleNl: 'Elektrische Laadpalen Winterberg | Snelladers & Laadpunten Kaart',
+    descDe: 'Interaktive Übersicht aller öffentlichen E-Ladesäulen und Hypercharger (bis 300 kW) in Winterberg mit Tipps für die Ladezeit.',
+    descNl: 'Interactieve kaart van alle openbare laadpalen en snelladers (tot 300 kW) in Winterberg met tips voor horeca in de buurt.',
+    h1De: 'E-Ladestationen & Schnelllader Winterberg',
+    h1Nl: 'E-Laadpalen & Snelladers Winterberg',
+    h2De: 'Ladeinfrastruktur für Elektrofahrzeuge im Stadtgebiet',
+    h2Nl: 'Laadinfrastructuur voor elektrische auto\'s'
   }
 ];
 

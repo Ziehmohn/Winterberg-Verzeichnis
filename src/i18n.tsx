@@ -390,7 +390,13 @@ export const translations: Record<Lang, Record<string, string>> = {
     "adInquiryCancelTerm": "Kündigungsfrist: 14 Tage zum Monatsende (wie Premium-Account)",
     "adInquirySubmit": "Unverbindlich anfragen",
     "adInquirySuccessTitle": "Vielen Dank für Ihre Anfrage!",
-    "adInquirySuccessDesc": "Wir haben Ihre Anfrage erhalten und melden uns zeitnah bei Ihnen."
+    "adInquirySuccessDesc": "Wir haben Ihre Anfrage erhalten und melden uns zeitnah bei Ihnen.",
+    "sundayOpen": "Sonntags geöffnet",
+    "sundayOpenDesc": "Geschäfte, Bäckereien & Gastronomie im Rahmen der Bäderregelung",
+    "skiReport": "Schnee- & Pistenbericht",
+    "webcams": "Live Webcams",
+    "wasteCalendar": "Abfallkalender",
+    "chargingStations": "E-Ladestationen"
   },
   nl: {
     "searchPlaceholder": "Zoek naar namen, aanbiedingen of trefwoorden...",
@@ -778,7 +784,13 @@ export const translations: Record<Lang, Record<string, string>> = {
     "adInquiryCancelTerm": "Opzegtermijn: 14 dagen tot het einde van de maand (zoals bij Premium-account)",
     "adInquirySubmit": "Vrijblijvend aanvragen",
     "adInquirySuccessTitle": "Hartelijk dank voor uw aanvraag!",
-    "adInquirySuccessDesc": "Wij hebben uw aanvraag ontvangen en nemen spoedig contact met u op."
+    "adInquirySuccessDesc": "Wij hebben uw aanvraag ontvangen en nemen spoedig contact met u op.",
+    "sundayOpen": "Zondag geopend",
+    "sundayOpenDesc": "Winkels, bakkers & horeca geopend dankzij de Bäderregeling",
+    "skiReport": "Pistebericht & Sneeuwhoogte",
+    "webcams": "Live Webcams",
+    "wasteCalendar": "Afvalkalender",
+    "chargingStations": "Laadpalen"
   }
 };
 

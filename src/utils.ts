@@ -171,3 +171,24 @@ export function parseBusinessAddress(address?: string, district?: string): { str
   return { street: '', city: full, full };
 }
 
+/**
+ * Checks whether a business is open on Sunday (regularly or via Bäderregelung)
+ */
+export function isSundayOpen(openingHours?: OpeningHours | null): boolean {
+  if (!openingHours || !openingHours.sunday) return false;
+  const sun = openingHours.sunday.trim().toLowerCase();
+  if (!sun || sun === 'geschlossen' || sun === 'gesloten' || sun === '-' || sun === 'ruhetag') {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Returns clean Sunday opening hours formatted string
+ */
+export function getSundayHoursText(openingHours?: OpeningHours | null): string {
+  if (!isSundayOpen(openingHours)) return '';
+  return openingHours!.sunday!.trim();
+}
+
+

@@ -15,7 +15,7 @@ import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
 import AdminDesignManager, { loadGoogleFont } from './components/AdminDesignManager';
 import HeaderShapeDivider, { getEffectiveDivider } from './components/HeaderShapeDivider';
-import { isOpenNow, canDisplayOpeningHours } from './utils';
+import { isOpenNow, canDisplayOpeningHours, isSundayOpen } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
 import { useAuth } from './AuthContext';
@@ -84,6 +84,10 @@ const WinterbergFaq = React.lazy(() => import('./components/WinterbergFaq'));
 const GroundingPage = React.lazy(() => import('./components/GroundingPage'));
 const BestOfPage = React.lazy(() => import('./components/BestOfPage'));
 const HeimatCardPage = React.lazy(() => import('./components/HeimatCardPage'));
+const SundayOpenPage = React.lazy(() => import('./components/SundayOpenPage'));
+const SkiReportPage = React.lazy(() => import('./components/SkiReportPage'));
+const WasteCalendarPage = React.lazy(() => import('./components/WasteCalendarPage'));
+const ChargingStationsPage = React.lazy(() => import('./components/ChargingStationsPage'));
 import { db, auth, storage } from './firebase';
 import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -168,6 +172,11 @@ export default function App() {
   let initialFuelPricesMode = false;
   let initialEmergencyMode = false;
   let initialSubmitMode = false;
+  let initialSundayOpenMode = false;
+  let initialSkiReportMode = false;
+  let initialWebcamsMode = false;
+  let initialWasteCalendarMode = false;
+  let initialChargingStationsMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
   let initialEmbedLayout: WidgetLayout = 'badge';
@@ -255,6 +264,16 @@ export default function App() {
         initialEmergencyMode = true;
       } else if (decodedPart1 === 'eintragen' || decodedPart1 === 'unternehmen-eintragen' || decodedPart1 === 'bedrijf-aanmelden') {
         initialSubmitMode = true;
+      } else if (decodedPart1 === 'sonntags-geoeffnet' || decodedPart1 === 'zondag-geopend') {
+        initialSundayOpenMode = true;
+      } else if (decodedPart1 === 'pistenbericht' || decodedPart1 === 'skigebied-piste' || decodedPart1 === 'piste') {
+        initialSkiReportMode = true;
+      } else if (decodedPart1 === 'webcams' || decodedPart1 === 'webcam') {
+        initialWebcamsMode = true;
+      } else if (decodedPart1 === 'abfallkalender' || decodedPart1 === 'afvalkalender') {
+        initialWasteCalendarMode = true;
+      } else if (decodedPart1 === 'e-ladestationen' || decodedPart1 === 'laadpalen' || decodedPart1 === 'ladestationen') {
+        initialChargingStationsMode = true;
       } else if (decodedPart1 === 'abmelden' || decodedPart1 === 'uitschrijven') {
         // Will be handled by UnsubscribeModal
       } else {
@@ -476,6 +495,11 @@ export default function App() {
     if (isAGBMode) return { view: 'agb' };
     if (isGroundingMode) return { view: 'grounding' };
     if (isHeimatCardMode) return { view: 'heimatkarte' };
+    if (isSundayOpenMode) return { view: 'sunday-open' };
+    if (isSkiReportMode) return { view: 'ski-report' };
+    if (isWebcamsMode) return { view: 'webcams' };
+    if (isWasteCalendarMode) return { view: 'waste-calendar' };
+    if (isChargingStationsMode) return { view: 'charging-stations' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
       const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
@@ -557,6 +581,11 @@ export default function App() {
     if (p === '/agb' || p === '/algemene-voorwaarden') return buildLocalizedUrl({ view: 'agb' }, lang);
     if (p === '/grounding' || p === '/groundingpage' || p === '/grounding-page') return buildLocalizedUrl({ view: 'grounding' }, lang);
     if (p === '/heimatkarte' || p === '/heimatcard' || p === '/buergerkarte') return buildLocalizedUrl({ view: 'heimatkarte' }, lang);
+    if (p === '/sonntags-geoeffnet' || p === '/zondag-geopend') return buildLocalizedUrl({ view: 'sunday-open' }, lang);
+    if (p === '/pistenbericht' || p === '/skigebied-piste' || p === '/piste') return buildLocalizedUrl({ view: 'ski-report' }, lang);
+    if (p === '/webcams' || p === '/webcam') return buildLocalizedUrl({ view: 'webcams' }, lang);
+    if (p === '/abfallkalender' || p === '/afvalkalender') return buildLocalizedUrl({ view: 'waste-calendar' }, lang);
+    if (p === '/e-ladestationen' || p === '/laadpalen' || p === '/ladestationen') return buildLocalizedUrl({ view: 'charging-stations' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
     const parts = clean.split('/').filter(Boolean);
@@ -602,6 +631,11 @@ export default function App() {
     setIsFaqMode(false);
     setIsGroundingMode(false);
     setIsHeimatCardMode(false);
+    setIsSundayOpenMode(false);
+    setIsSkiReportMode(false);
+    setIsWebcamsMode(false);
+    setIsWasteCalendarMode(false);
+    setIsChargingStationsMode(false);
   };
 
   const handleCategoryChange = (catName: string) => {
@@ -722,6 +756,16 @@ export default function App() {
           setIsHeimatCardMode(true);
         } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen' || p1 === 'bedrijf-aanmelden') {
           setIsSubmitMode(true);
+        } else if (p1 === 'sonntags-geoeffnet' || p1 === 'zondag-geopend') {
+          setIsSundayOpenMode(true);
+        } else if (p1 === 'pistenbericht' || p1 === 'skigebied-piste' || p1 === 'piste') {
+          setIsSkiReportMode(true);
+        } else if (p1 === 'webcams' || p1 === 'webcam') {
+          setIsWebcamsMode(true);
+        } else if (p1 === 'abfallkalender' || p1 === 'afvalkalender') {
+          setIsWasteCalendarMode(true);
+        } else if (p1 === 'e-ladestationen' || p1 === 'laadpalen' || p1 === 'ladestationen') {
+          setIsChargingStationsMode(true);
         } else {
            window.location.reload();
         }
@@ -859,6 +903,12 @@ export default function App() {
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
   const [isHeimatCardMode, setIsHeimatCardMode] = useState(initialHeimatCardMode);
+  const [isSundayOpenMode, setIsSundayOpenMode] = useState(initialSundayOpenMode);
+  const [isSkiReportMode, setIsSkiReportMode] = useState(initialSkiReportMode);
+  const [isWebcamsMode, setIsWebcamsMode] = useState(initialWebcamsMode);
+  const [isWasteCalendarMode, setIsWasteCalendarMode] = useState(initialWasteCalendarMode);
+  const [isChargingStationsMode, setIsChargingStationsMode] = useState(initialChargingStationsMode);
+  const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
   const [embedBusinessId] = useState(initialEmbedBusinessId);
   const [embedLayout] = useState<WidgetLayout>(initialEmbedLayout);
@@ -1379,7 +1429,8 @@ export default function App() {
 
     const busLocation = extractLocation(bus);
     const matchesLocation = activeLocation === 'Alle' || busLocation === activeLocation;
-    return matchesCategory && matchesSearch && matchesLocation;
+    const matchesSunday = !onlySundayOpenFilter || isSundayOpen(bus.openingHours);
+    return matchesCategory && matchesSearch && matchesLocation && matchesSunday;
   }).sort((a, b) => {
     if (sortBy === 'rating') {
       const aStats = getBusinessRatingStats(a);
@@ -1888,6 +1939,34 @@ export default function App() {
               window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onSelectSkiReport={() => {
+              resetToDirectory();
+              setIsSkiReportMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectSundayOpen={() => {
+              resetToDirectory();
+              setIsSundayOpenMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectWasteCalendar={() => {
+              resetToDirectory();
+              setIsWasteCalendarMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/afvalkalender' : '/abfallkalender'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectChargingStations={() => {
+              resetToDirectory();
+              setIsChargingStationsMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             getPath={getPath}
           />
         </div>
@@ -2109,6 +2188,71 @@ export default function App() {
                 window.history.pushState(null, '', getPath(slugOrPath));
                 window.dispatchEvent(new PopStateEvent('popstate'));
               }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isSundayOpenMode ? (
+          <SundayOpenPage
+            businesses={businesses}
+            theme={theme}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsSundayOpenMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsSundayOpenMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isSkiReportMode || isWebcamsMode ? (
+          <SkiReportPage
+            businesses={businesses}
+            theme={theme}
+            defaultTab={isWebcamsMode ? 'webcams' : 'pisten'}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsSkiReportMode(false);
+              setIsWebcamsMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateCategory={(cat, sub) => {
+              resetToDirectory();
+              setActiveCategory(sub || cat);
+              window.history.pushState(null, '', getPath(`/${encodeURIComponent(cat)}${sub ? `/${encodeURIComponent(sub)}` : ''}`));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsSkiReportMode(false);
+              setIsWebcamsMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isWasteCalendarMode ? (
+          <WasteCalendarPage
+            theme={theme}
+            onBack={() => {
+              setIsWasteCalendarMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isChargingStationsMode ? (
+          <ChargingStationsPage
+            theme={theme}
+            onBack={() => {
+              setIsChargingStationsMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectBusinessPath={(path) => {
+              setIsChargingStationsMode(false);
+              window.history.pushState(null, '', getPath(path));
+              window.dispatchEvent(new PopStateEvent('popstate'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
@@ -2578,9 +2722,25 @@ export default function App() {
                         </button>
                       )}
                     </div>
-                    <div className="flex bg-white/12 rounded-md p-1">
-                      <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
-                      <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setOnlySundayOpenFilter(!onlySundayOpenFilter)}
+                        className={`inline-flex items-center gap-1.5 text-[12.5px] px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer border ${
+                          onlySundayOpenFilter 
+                            ? 'bg-amber-400 text-amber-950 border-amber-300 shadow-sm' 
+                            : 'bg-white/15 hover:bg-white/25 text-white border-white/20'
+                        }`}
+                        title={lang === 'nl' ? 'Toon alleen bedrijven die op zondag geopend zijn' : 'Nur Unternehmen anzeigen, die sonntags geöffnet haben'}
+                      >
+                        <Sun className="w-3.5 h-3.5" />
+                        <span>{lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}</span>
+                      </button>
+
+                      <div className="flex bg-white/12 rounded-md p-1">
+                        <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
+                        <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3714,6 +3874,58 @@ export default function App() {
               {lang === 'nl' ? 'Nooddiensten' : 'Notdienste'}
             </a>
             <a 
+              href={getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht')); 
+                resetToDirectory(); 
+                setIsSkiReportMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Pistebericht & Webcams' : 'Pistenbericht & Webcams'}
+            </a>
+            <a 
+              href={getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet')); 
+                resetToDirectory(); 
+                setIsSundayOpenMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}
+            </a>
+            <a 
+              href={getPath(lang === 'nl' ? '/afvalkalender' : '/abfallkalender')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/afvalkalender' : '/abfallkalender')); 
+                resetToDirectory(); 
+                setIsWasteCalendarMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Afvalkalender' : 'Abfallkalender'}
+            </a>
+            <a 
+              href={getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen')); 
+                resetToDirectory(); 
+                setIsChargingStationsMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Laadpalen' : 'E-Ladestationen'}
+            </a>
+            <a 
               href={getPath('/grounding')} 
               onClick={(e) => { 
                 e.preventDefault(); 
@@ -3905,6 +4117,13 @@ export default function App() {
             window.history.pushState(null, '', getPath('/notdienste'));
             resetToDirectory();
             setIsEmergencyMode(true);
+            if (isMobileNavOpen) setIsMobileNavOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onNavigateSkiReport={() => {
+            window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht'));
+            resetToDirectory();
+            setIsSkiReportMode(true);
             if (isMobileNavOpen) setIsMobileNavOpen(false);
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}

@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (302 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (311 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1562,6 +1562,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/pannenkoekenhuis-der-brabander
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/pannenkoekenhuis-der-brabander
 
+#### [Die Tenne Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-tenne-winterberg)
+- **Kategorie:** Gastronomie > Kneipen und Bars
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Marktstraße 12, 59955 Winterberg
+- **Telefon:** 02981 1234
+- **Webseite:** https://www.tenne-winterberg.de
+- **Beschreibung (DE):** Traditionsreicher Party- und Kneipentreffpunkt in der Winterberger Altstadt mit Club-Bereichen, Cocktailbar und Tanzstimmung.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-tenne-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/die-tenne-winterberg
+
 ### Kategorie: Dienstleistungen
 
 #### [CEB-Steuerberater](https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/ceb-steuerberater)
@@ -2290,6 +2300,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/pferdefuhrhalterei-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/pferdefuhrhalterei-winterberg
 
+#### [Sportzentrum Hochsauerland](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/sportzentrum-hochsauerland)
+- **Kategorie:** Ski, Bike & Sport > Tennisplätze
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 69, 59955 Winterberg
+- **Telefon:** 02981 8000
+- **Webseite:** https://www.sportzentrum-hochsauerland.de
+- **Beschreibung (DE):** Sportzentrum für Indoor-Tennis und Squash im Herzen von Winterberg mit flexiblen Platzbuchungen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/sportzentrum-hochsauerland
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/tennisbanen/sportzentrum-hochsauerland
+
 ### Kategorie: Gesundheit & Medizin
 
 #### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
@@ -2881,6 +2901,76 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** 18-holes minigolfbaan op de Erlebnisberg Kappe in Winterberg. Plezierige hindernissen voor jong en oud in een prachtige natuurlijke omgeving.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/minigolf-am-erlebnisberg-kappe
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/minigolf-am-erlebnisberg-kappe
+
+#### [Astenkick Megazipline](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/astenkick-megazipline)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Astenstraße 34, 59955 Winterberg
+- **Telefon:** 02981 9199590
+- **Webseite:** https://www.astenkick.de
+- **Beschreibung (DE):** Europas zweitlängste Megazipline in Altastenberg: Mit über 70 km/h auf der Doppelseilrutsche über das Tal rauschen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/astenkick-megazipline
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/astenkick-megazipline
+
+#### [Kartfun Neuastenberg](https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/kartfun-neuastenberg)
+- **Kategorie:** Freizeit > Indoor-Spielplätze
+- **Ort / Ortsteil:** Neuastenberg
+- **Adresse:** Winterberger Str. 2, 59955 Winterberg
+- **Telefon:** 02981 908708
+- **Webseite:** https://www.kartfun-astenberg.de
+- **Beschreibung (DE):** Moderne Indoor-Kartbahn auf 550 Metern Länge mit Rennsport-Atmosphäre für Groß und Klein in Neuastenberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/kartfun-neuastenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/kartfun-neuastenberg
+
+#### [Freibad Siedlinghausen](https://www.winterberg-verzeichnis.de/freizeit/schwimmbaeder/freibad-siedlinghausen)
+- **Kategorie:** Freizeit > Schwimmbäder
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Am Freibad 1, 59955 Winterberg
+- **Telefon:** 02983 8333
+- **Webseite:** https://www.baederverein-siedlinghausen.de
+- **Beschreibung (DE):** Beheiztes Freibad des Bädervereins Siedlinghausen mit Schwimmerbecken, Rutsche, Nichtschwimmerbereich und großer Liegewiese.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/schwimmbaeder/freibad-siedlinghausen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/zwembaden/freibad-siedlinghausen
+
+#### [Schwimmbad Winterberg](https://www.winterberg-verzeichnis.de/freizeit/schwimmbaeder/schwimmbad-winterberg)
+- **Kategorie:** Freizeit > Schwimmbäder
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Kurpark 6, 59955 Winterberg
+- **Telefon:** 02981 92500
+- **Webseite:** https://www.schwimmbad-winterberg.de
+- **Beschreibung (DE):** Modernes städtisches Hallenbad am Kurpark (im Oversum) mit 28 °C Wassertemperatur, Bahnenbecken und Entspannungsmöglichkeiten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/schwimmbaeder/schwimmbad-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/zwembaden/schwimmbad-winterberg
+
+#### [Westdeutsches Wintersport-Museum Neuastenberg](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/westdeutsches-wintersport-museum-neuastenberg)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Neuastenberg
+- **Adresse:** Neuastenberger Str. 17, 59955 Winterberg
+- **Telefon:** 02981 2636
+- **Webseite:** https://www.skimuseum-winterberg.de
+- **Beschreibung (DE):** Umfassende Ausstellung auf 250 m² zur über 100-jährigen Historie des Ski- und Wintersports im Sauerland.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/westdeutsches-wintersport-museum-neuastenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/westdeutsches-wintersport-museum-neuastenberg
+
+#### [Kurparkstuben - Mini- & Billardgolf](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/kurparkstuben-mini-und-billardgolf)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Kurpark 2, 59955 Winterberg
+- **Telefon:** 02981 3333
+- **Webseite:** https://www.kurparkstuben-winterberg.de
+- **Beschreibung (DE):** Idyllisch gelegene Minigolfanlage und Pit-Pat-Billardgolf direkt am Kurpark Winterberg mit gemütlicher Einkehrmöglichkeit.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/kurparkstuben-mini-und-billardgolf
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/kurparkstuben-mini-und-billardgolf
+
+#### [VELTINS-EisArena](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/veltins-eisarena)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Kapperundweg, 59955 Winterberg
+- **Telefon:** 02981 92600
+- **Webseite:** https://www.veltins-eisarena.de
+- **Beschreibung (DE):** Eine der modernsten Kunsteisbahnen weltweit für Bob, Rodel und Skeleton sowie Austragungsort internationaler Weltcups und Führungen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/veltins-eisarena
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/veltins-eisarena
 
 ---
 

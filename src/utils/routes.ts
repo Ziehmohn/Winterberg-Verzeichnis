@@ -97,6 +97,12 @@ export const STATIC_PAGE_SLUGS = {
   grounding: { de: 'grounding', nl: 'grounding' },
   abmelden: { de: 'abmelden', nl: 'uitschrijven' },
   heimatkarte: { de: 'heimatkarte', nl: 'heimatkarte' },
+  events: { de: 'veranstaltungen', nl: 'evenementen' },
+  sundayOpen: { de: 'sonntags-geoeffnet', nl: 'zondag-geopend' },
+  skiReport: { de: 'pistenbericht', nl: 'skigebied-piste' },
+  webcams: { de: 'webcams', nl: 'webcams' },
+  wasteCalendar: { de: 'abfallkalender', nl: 'afvalkalender' },
+  chargingStations: { de: 'e-ladestationen', nl: 'laadpalen' },
 };
 
 export function slugify(str: string): string {
@@ -175,7 +181,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -244,6 +250,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
       return `${baseUrl}${prefix}/${slug}`;
     }
 
+    case 'events':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.events[targetLang]}`;
+
     case 'news': {
       const slug = STATIC_PAGE_SLUGS.news[targetLang];
       return `${baseUrl}${prefix}/${slug}`;
@@ -288,6 +297,21 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'heimatkarte':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.heimatkarte[targetLang]}`;
+
+    case 'sunday-open':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.sundayOpen[targetLang]}`;
+
+    case 'ski-report':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.skiReport[targetLang]}`;
+
+    case 'webcams':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.webcams[targetLang]}`;
+
+    case 'waste-calendar':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.wasteCalendar[targetLang]}`;
+
+    case 'charging-stations':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.chargingStations[targetLang]}`;
 
     default:
       return `${baseUrl}${prefix || '/'}`;

@@ -10,6 +10,7 @@ interface AppBottomNavProps {
   onNavigateFuel: () => void;
   onNavigateEmergency: () => void;
   onNavigateJobs: () => void;
+  onNavigateSkiReport?: () => void;
   onOpenMenu: () => void;
   isAppStandalone?: boolean;
 }
@@ -22,6 +23,7 @@ export default function AppBottomNav({
   onNavigateFuel,
   onNavigateEmergency,
   onNavigateJobs,
+  onNavigateSkiReport,
   onOpenMenu,
   isAppStandalone = false
 }: AppBottomNavProps) {
@@ -116,13 +118,15 @@ export default function AppBottomNav({
                   <Siren className="w-5 h-5 text-[#DC2626]" />
                   <span className="font-medium text-gray-800 text-sm">{lang === 'nl' ? 'Noodhulp' : 'Notdienste'}</span>
                 </button>
-                <div className="flex items-center gap-3 px-4 py-3 opacity-50 text-left">
-                  <Snowflake className="w-5 h-5 text-blue-500" />
-                  <div className="flex flex-col">
-                    <span className="font-medium text-gray-800 text-sm">{lang === 'nl' ? 'Skiliften' : 'Skilifte'}</span>
-                    <span className="text-[10px] text-gray-500">{lang === 'nl' ? 'Binnenkort' : 'In Kürze'}</span>
-                  </div>
-                </div>
+                {onNavigateSkiReport && (
+                  <button 
+                    onClick={() => { setLiveMenuOpen(false); onNavigateSkiReport(); }}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors text-left"
+                  >
+                    <Snowflake className="w-5 h-5 text-blue-500" />
+                    <span className="font-medium text-gray-800 text-sm">{lang === 'nl' ? 'Pistes & Webcams' : 'Pisten & Webcams'}</span>
+                  </button>
+                )}
               </div>
             </>
           )}

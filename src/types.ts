@@ -410,3 +410,88 @@ export interface Question {
   lang?: 'de' | 'nl';
 }
 
+// 1. Wintersport & Pistenbericht
+export interface SkiResortStatus {
+  id: string;
+  name: string;
+  name_nl?: string;
+  status: 'open' | 'partial' | 'closed';
+  openLifts: number;
+  totalLifts: number;
+  openSlopesKm: number;
+  totalSlopesKm: number;
+  snowDepthMountain: number; // in cm
+  snowDepthValley: number;   // in cm
+  snowCondition: 'powder' | 'compact' | 'wet' | 'machine' | 'none';
+  floodlightTonight: boolean;
+  tobogganLiftsOpen: number;
+  crossCountryTrailsKm: number;
+  lastUpdated: string;
+  websiteUrl: string;
+  description: string;
+  description_nl?: string;
+}
+
+export interface WebcamSpot {
+  id: string;
+  title: string;
+  title_nl?: string;
+  location: string;
+  altitudeMeters: number;
+  operator: string;
+  previewImageUrl: string;
+  liveStreamUrl: string;
+  statusText?: string;
+  statusText_nl?: string;
+}
+
+// 2. Abfallkalender
+export type WasteBinType = 'rest' | 'paper' | 'organic' | 'yellow' | 'hazard' | 'bulky';
+
+export interface WasteCollectionItem {
+  id: string;
+  date: string; // YYYY-MM-DD
+  binType: WasteBinType;
+  title: string;
+  title_nl?: string;
+  notes?: string;
+  notes_nl?: string;
+}
+
+export interface DistrictWasteSchedule {
+  district: string;
+  district_nl?: string;
+  collections: WasteCollectionItem[];
+}
+
+// 3. E-Ladestationen
+export interface ChargingStation {
+  id: string;
+  name: string;
+  operator: string;
+  address: string;
+  district: string;
+  lat: number;
+  lng: number;
+  isFastCharger: boolean; // DC >= 50 kW
+  maxPowerKw: number;
+  plugs: {
+    type: 'CCS' | 'Type2' | 'CHAdeMO' | 'Schuko';
+    count: number;
+    powerKw: number;
+  }[];
+  costInfo?: string;
+  costInfo_nl?: string;
+  parkingFeeInfo?: string;
+  parkingFeeInfo_nl?: string;
+  availableHours?: string;
+  nearbyHighlights?: {
+    name: string;
+    category: string;
+    distanceMeters: number;
+    businessSlug?: string;
+    businessPath?: string;
+  }[];
+}
+
+

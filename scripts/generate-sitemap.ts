@@ -77,7 +77,25 @@ entries.push({
 });
 
 // 3. Static Pages
-const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'fuelPrices', 'emergency', 'impressum', 'datenschutz', 'agb', 'grounding', 'heimatkarte'] as const;
+const staticPages = [
+  'jobs', 
+  'news', 
+  'faq', 
+  'submit', 
+  'pricing', 
+  'fuelPrices', 
+  'emergency', 
+  'impressum', 
+  'datenschutz', 
+  'agb', 
+  'grounding', 
+  'heimatkarte',
+  'sundayOpen',
+  'skiReport',
+  'webcams',
+  'wasteCalendar',
+  'chargingStations'
+] as const;
 staticPages.forEach(p => {
   entries.push({
     locDe: `${baseUrl}/${STATIC_PAGE_SLUGS[p].de}`,

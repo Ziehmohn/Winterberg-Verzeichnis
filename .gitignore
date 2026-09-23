@@ -11,3 +11,4 @@ coverage/
 test_*.cjs
 
 .vercel
+scratch/

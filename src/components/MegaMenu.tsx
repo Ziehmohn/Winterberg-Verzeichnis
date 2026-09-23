@@ -22,7 +22,11 @@ import {
   HeartPulse,
   Car,
   Search,
-  X
+  X,
+  Zap,
+  Sun,
+  Trash2,
+  Snowflake
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -38,6 +42,10 @@ interface MegaMenuProps {
   onSelectBestOf?: () => void;
   onSelectFuelPrices?: () => void;
   onSelectEmergency?: () => void;
+  onSelectSkiReport?: () => void;
+  onSelectSundayOpen?: () => void;
+  onSelectWasteCalendar?: () => void;
+  onSelectChargingStations?: () => void;
   onSelectLocation: (location: string) => void;
   onOpenMap: () => void;
   onOpenSubmit: () => void;
@@ -56,6 +64,10 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onSelectBestOf,
   onSelectFuelPrices,
   onSelectEmergency,
+  onSelectSkiReport,
+  onSelectSundayOpen,
+  onSelectWasteCalendar,
+  onSelectChargingStations,
   onSelectLocation,
   onOpenMap,
   onOpenSubmit,
@@ -559,7 +571,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       <span className="text-[10px] font-medium text-[#8A928B] lowercase">{lang === 'nl' ? 'realtime' : 'echtzeit'}</span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                       {/* Card 1: Spritpreise */}
                       <a
                         href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
@@ -614,22 +626,117 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                         </span>
                       </a>
 
-                      {/* Card 3: Skiliftdaten (ausgegraut / in Kürze) */}
-                      <div
-                        className="bg-gray-50/70 border border-dashed border-gray-300 rounded-xl p-2.5 flex flex-col items-center text-center cursor-not-allowed opacity-60 select-none"
-                        title={lang === 'nl' ? 'Binnenkort: Live skiliften & pistes' : 'In Kürze verfügbar: Live Skilifte & Pisten'}
+                      {/* Card 3: Pisten & Webcams */}
+                      <a
+                        href={getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht')}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onSelectSkiReport) {
+                            onSelectSkiReport();
+                          } else {
+                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht'));
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                          }
+                          onClose();
+                        }}
+                        className="bg-white border border-[#EDE8E0] hover:border-blue-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(37,99,235,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                        title={lang === 'nl' ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams'}
                       >
-                        <div className="w-8 h-8 rounded-lg bg-gray-100 text-gray-400 border border-gray-200 flex items-center justify-center mb-1.5 shadow-2xs">
-                          <CableCar className="w-4 h-4" />
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 border border-blue-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Snowflake className="w-4 h-4" />
                         </div>
-                        <span className="font-display font-bold text-[12px] text-gray-500 leading-tight">
-                          {lang === 'nl' ? 'Skiliften' : 'Skilifte'}
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-blue-600 leading-tight">
+                          {lang === 'nl' ? 'Pistes' : 'Pisten'}
                         </span>
-                        <span className="text-[9px] font-semibold text-gray-400 bg-gray-200/70 px-1.5 py-0.5 rounded mt-1 whitespace-nowrap">
-                          {lang === 'nl' ? 'Binnenkort' : 'In Kürze'}
+                        <span className="text-[9.5px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded mt-1">
+                          Live
+                        </span>
+                      </a>
+
+                      {/* Card 4: E-Ladesäulen */}
+                      <a
+                        href={getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen')}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onSelectChargingStations) {
+                            onSelectChargingStations();
+                          } else {
+                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen'));
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                          }
+                          onClose();
+                        }}
+                        className="bg-white border border-[#EDE8E0] hover:border-cyan-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(6,182,212,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                        title={lang === 'nl' ? 'Elektrische laadpalen' : 'E-Ladestationen & Schnelllader'}
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-700 border border-cyan-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Zap className="w-4 h-4" />
+                        </div>
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-cyan-700 leading-tight">
+                          {lang === 'nl' ? 'Laadpalen' : 'E-Lader'}
+                        </span>
+                        <span className="text-[9.5px] font-bold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded mt-1">
+                          HPC
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Service Quick Links (Sonntagsöffnung & Abfallkalender) */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href={getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectSundayOpen) {
+                          onSelectSundayOpen();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-[#F8FAF9] hover:bg-[#EEF4F0] border border-[#E1EAE4] rounded-lg p-2.5 flex items-center gap-2.5 cursor-pointer no-underline group transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-md bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                        <Sun className="w-4 h-4" />
+                      </div>
+                      <div className="flex flex-col text-left">
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E]">
+                          {lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}
+                        </span>
+                        <span className="text-[10px] text-[#5F6B63]">
+                          {lang === 'nl' ? 'Bäderregeling' : 'Bäderregelung'}
                         </span>
                       </div>
-                    </div>
+                    </a>
+
+                    <a
+                      href={getPath(lang === 'nl' ? '/afvalkalender' : '/abfallkalender')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectWasteCalendar) {
+                          onSelectWasteCalendar();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/afvalkalender' : '/abfallkalender'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-[#F8FAF9] hover:bg-[#EEF4F0] border border-[#E1EAE4] rounded-lg p-2.5 flex items-center gap-2.5 cursor-pointer no-underline group transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                        <Trash2 className="w-4 h-4" />
+                      </div>
+                      <div className="flex flex-col text-left">
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E]">
+                          {lang === 'nl' ? 'Afvalkalender' : 'Abfallkalender'}
+                        </span>
+                        <span className="text-[10px] text-[#5F6B63]">
+                          {lang === 'nl' ? '14 dorpen' : '14 Ortsteile'}
+                        </span>
+                      </div>
+                    </a>
                   </div>
 
                   {/* Subtle Divider below Live-Daten */}
