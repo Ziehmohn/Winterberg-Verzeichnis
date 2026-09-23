@@ -144,6 +144,25 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
         );
       }
 
+      const isWebsite = !isProfile && !isShop && (
+        /website|webseite|offizielle seite|offizielle website|officiële website/i.test(token.text)
+      );
+
+      if (isWebsite) {
+        return (
+          <a 
+            key={idx} 
+            href={token.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 my-1 mr-2 rounded-lg font-medium text-[13.5px] sm:text-[14px] bg-[#F5F2EC] text-[#4A453E] border border-[#DDD6CA] hover:bg-[#EAE5DC] hover:text-[#1B211D] transition-all duration-150 shadow-xs hover:shadow active:scale-[0.98] group no-underline"
+          >
+            <span>{token.text}</span>
+            <ExternalLink size={13} className="shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
+          </a>
+        );
+      }
+
       return (
         <a 
           key={idx} 
@@ -282,19 +301,31 @@ export function NewsContentRenderer({ content }: { content: string }) {
         }
 
         // 5. Bullet lists (- Item or * Item or 1. Item)
-        const isList = trimmed.split('\n').every(line => /^(\s*[-*•]|\s*\d+\.)\s+/.test(line.trim()));
-        if (isList) {
-          const items = trimmed.split('\n').map(line => line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim());
-          return (
-            <ul key={index} className="my-5 space-y-3 pl-2">
-              {items.map((item, itemIdx) => (
-                <li key={itemIdx} className="flex items-start gap-3 text-[16px] md:text-[17px] text-[#3F4B42] leading-relaxed">
-                  <span className="w-2 h-2 rounded-full bg-[#0F4C2E] mt-2.5 shrink-0" />
-                  <span className="flex-1">{renderInlineFormatted(item)}</span>
-                </li>
-              ))}
-            </ul>
-          );
+        const rawLines = trimmed.split('\n');
+        const startsWithList = /^(\s*[-*•]|\s*\d+\.)\s+/.test(rawLines[0]);
+        if (startsWithList) {
+          const items: string[] = [];
+          rawLines.forEach(line => {
+            const isNewItem = /^(\s*[-*•]|\s*\d+\.)\s+/.test(line);
+            if (isNewItem) {
+              items.push(line.replace(/^(\s*[-*•]|\s*\d+\.)\s+/, '').trim());
+            } else if (items.length > 0) {
+              items[items.length - 1] += ' ' + line.trim();
+            }
+          });
+
+          if (items.length > 0) {
+            return (
+              <ul key={index} className="my-5 space-y-3 pl-2">
+                {items.map((item, itemIdx) => (
+                  <li key={itemIdx} className="flex items-start gap-3 text-[16px] md:text-[17px] text-[#3F4B42] leading-relaxed">
+                    <span className="w-2 h-2 rounded-full bg-[#0F4C2E] mt-2.5 shrink-0" />
+                    <span className="flex-1">{renderInlineFormatted(item)}</span>
+                  </li>
+                ))}
+              </ul>
+            );
+          }
         }
 
         // 6. Standard Paragraphs
