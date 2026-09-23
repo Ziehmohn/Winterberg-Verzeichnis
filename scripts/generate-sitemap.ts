@@ -61,6 +61,12 @@ entries.push({
   changefreq: 'monthly',
   priority: '0.8',
 });
+entries.push({
+  locDe: `${baseUrl}/news/winterberger-aufgepasst-kennt-ihr-schon-die-heimatcard`,
+  locNl: `${baseUrl}/nl/nieuws/winterberger-aufgepasst-kennt-ihr-schon-die-heimatcard`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
 
 // 2. All businesses
 entries.push({
@@ -71,7 +77,7 @@ entries.push({
 });
 
 // 3. Static Pages
-const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'fuelPrices', 'emergency', 'impressum', 'datenschutz', 'agb', 'grounding'] as const;
+const staticPages = ['jobs', 'news', 'faq', 'submit', 'pricing', 'fuelPrices', 'emergency', 'impressum', 'datenschutz', 'agb', 'grounding', 'heimatkarte'] as const;
 staticPages.forEach(p => {
   entries.push({
     locDe: `${baseUrl}/${STATIC_PAGE_SLUGS[p].de}`,

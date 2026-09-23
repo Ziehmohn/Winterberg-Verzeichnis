@@ -135,7 +135,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           setErrorReportText('');
         }, 3000);
       } else {
-        alert("Fehler beim Senden. Bitte spÃ¤ter versuchen.");
+        alert("Fehler beim Senden. Bitte später versuchen.");
       }
     } catch (e) {
       alert("Ein Fehler ist aufgetreten.");
@@ -167,7 +167,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       }
     } catch (err) {
       console.error(err);
-      alert("Fehler beim Checkout. Bitte spÃ¤ter erneut versuchen.");
+      alert("Fehler beim Checkout. Bitte später erneut versuchen.");
       setIsLoadingCheckout(false);
     }
   };
@@ -201,7 +201,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             <div className="min-h-screen flex flex-col pt-10">
               <div className="text-center px-6">
                 <h2 className="text-2xl font-bold mb-2">Bitte loggen Sie sich ein</h2>
-                <p className="text-[#5F6B63]">Um dieses Unternehmen zu bearbeiten oder zu beanspruchen, benÃ¶tigen Sie ein Konto.</p>
+                <p className="text-[#5F6B63]">Um dieses Unternehmen zu bearbeiten oder zu beanspruchen, benötigen Sie ein Konto.</p>
               </div>
               <Login theme={theme} activeThemeKey={activeThemeKey} onBack={() => setShowLoginScreen(false)} />
             </div>
@@ -321,9 +321,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   setIsInfoModalOpen(true);
                 }}
                 className="bg-white/10 hover:bg-white/20 transition-colors rounded px-2.5 py-1 text-[13px] inline-flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                title="Was bedeutet 'Verifiziert'? Hier klicken fÃ¼r Details"
+                title="Was bedeutet 'Verifiziert'? Hier klicken für Details"
               >
-                <span>{lang === 'nl' ? 'âœ“ Geverifieerd' : 'âœ“ Verifiziert'}</span>
+                <span>{lang === 'nl' ? '✓ Geverifieerd' : '✓ Verifiziert'}</span>
                 <HelpCircle className="w-3.5 h-3.5 text-white/80" />
               </button>
             )}
@@ -355,10 +355,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               >
                 <span className="text-[#F2761B] tracking-[1px]">
                   {Array.from({length: 5}).map((_, i) => (
-                    <span key={i}>{i < Math.round(Number(avgRating)) ? 'â˜…' : 'â˜†'}</span>
+                    <span key={i}>{i < Math.round(Number(avgRating)) ? '★' : '☆'}</span>
                   ))}
                 </span>
-                <span>{avgRating} Â· {approvedReviews.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}</span>
+                <span>{avgRating} · {approvedReviews.length} {lang === 'nl' ? 'beoordelingen' : 'Bewertungen'}</span>
                 <HelpCircle className="w-3.5 h-3.5 text-white/70 ml-0.5" />
               </button>
             ) : (
@@ -387,7 +387,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     key={idx} 
                     className="bg-white/20 backdrop-blur-xs text-white rounded-full px-3 py-0.5 text-[13px] font-semibold border border-white/25 flex items-center gap-1.5 shadow-xs"
                   >
-                    <span className="text-[#F2761B] text-[12px] font-bold">âœ“</span>
+                    <span className="text-[#F2761B] text-[12px] font-bold">✓</span>
                     {usp}
                   </span>
                 ))}
@@ -432,7 +432,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         )}
 
         <div className="bg-white border border-[#EDE8E0] rounded-lg p-5 sm:p-7 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-          <h2 className="font-display text-[22px] font-semibold mb-3">{lang === 'nl' ? 'Over het bedrijf' : 'Ãœber das Unternehmen'}</h2>
+          <h2 className="font-display text-[22px] font-semibold mb-3">{lang === 'nl' ? 'Over het bedrijf' : 'Über das Unternehmen'}</h2>
           <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{localized.description}</p>
           
           {localized.extendedDescription && (
@@ -483,7 +483,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               {/* Gallery Image Grid with SEO Alt/Title and Lightbox Trigger */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {displayedImages.map((img, i) => {
-                  const altText = img.alt || `${business.name} â€“ ${img.categoryName}`;
+                  const altText = img.alt || `${business.name} – ${img.categoryName}`;
                   const titleText = img.title || img.categoryName;
                   return (
                     <div 
@@ -594,7 +594,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           />
 
           {/* Notdienst-Hinweis bei Apotheken & Praxen */}
-          {(business.subcategory === 'Apotheken' || business.subcategory === 'Ã„rzte & Praxen' || business.subcategory === 'ZahnÃ¤rzte') && (
+          {(business.subcategory === 'Apotheken' || business.subcategory === 'Ärzte & Praxen' || business.subcategory === 'Zahnärzte') && (
             <div className="my-6 bg-red-50/80 border border-red-200 rounded-xl p-4 flex items-center justify-between gap-3 shadow-2xs">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-red-100 text-red-600 flex items-center justify-center font-bold shrink-0">
@@ -602,7 +602,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 </div>
                 <div>
                   <span className="font-bold text-sm text-red-950 block">
-                    {lang === 'nl' ? 'Medische Spoeddienst & Apotheek-Nooddienst' : 'Ã„rztlicher Notdienst & Apotheken-Notdienst'}
+                    {lang === 'nl' ? 'Medische Spoeddienst & Apotheek-Nooddienst' : 'Ärztlicher Notdienst & Apotheken-Notdienst'}
                   </span>
                   <span className="text-xs text-red-900/80 block">
                     {lang === 'nl' ? '24/7 Noodnummers, dienstdoende apotheek & 116 117' : '24/7 Notfallnummern, Notdienst-Apotheke & Notfallpraxis 116 117'}
@@ -618,7 +618,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 }}
                 className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3.5 py-2 rounded-lg transition-colors no-underline shrink-0 shadow-2xs"
               >
-                <span>{lang === 'nl' ? 'Bekijken â†’' : 'Notdienste â†’'}</span>
+                <span>{lang === 'nl' ? 'Bekijken →' : 'Notdienste →'}</span>
               </a>
             </div>
           )}
@@ -638,11 +638,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {business.documents.map((docItem) => {
-                  const typeLabel = docItem.type === 'menu' ? (lang === 'nl' ? 'ðŸ½ï¸ Menukaart' : 'ðŸ½ï¸ Speisekarte')
-                    : docItem.type === 'pricelist' ? (lang === 'nl' ? 'ðŸ·ï¸ Prijslijst' : 'ðŸ·ï¸ Preisliste')
-                    : docItem.type === 'flyer' ? (lang === 'nl' ? 'ðŸ“° Flyer' : 'ðŸ“° Flyer')
-                    : docItem.type === 'brochure' ? (lang === 'nl' ? 'ðŸ“– Brochure' : 'ðŸ“– BroschÃ¼re')
-                    : (lang === 'nl' ? 'ðŸ“ Document' : 'ðŸ“ Dokument');
+                  const typeLabel = docItem.type === 'menu' ? (lang === 'nl' ? '🍽️ Menukaart' : '🍽️ Speisekarte')
+                    : docItem.type === 'pricelist' ? (lang === 'nl' ? '🏷️ Prijslijst' : '🏷️ Preisliste')
+                    : docItem.type === 'flyer' ? (lang === 'nl' ? '📰 Flyer' : '📰 Flyer')
+                    : docItem.type === 'brochure' ? (lang === 'nl' ? '📖 Brochure' : '📖 Broschüre')
+                    : (lang === 'nl' ? '📁 Document' : '📁 Dokument');
 
                   return (
                     <a
@@ -665,7 +665,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                           </h3>
                           {docItem.fileSize && (
                             <span className="text-xs text-[#8A928B] block mt-0.5">
-                              PDF Â· {docItem.fileSize}
+                              PDF · {docItem.fileSize}
                             </span>
                           )}
                         </div>
@@ -683,7 +683,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
           {showHours && business.openingHours && typeof business.openingHours === 'object' && !Array.isArray(business.openingHours) && (
             <>
-              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Openingstijden' : 'Ã–ffnungszeiten'}</h2>
+              <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Openingstijden' : 'Öffnungszeiten'}</h2>
               <div className="border border-[#EDE8E0] rounded-md overflow-hidden mb-[30px]">
                 {Object.entries(business.openingHours).map(([day, hours], i) => (
                   <div key={day} className={`flex justify-between py-3 px-4 text-[15px] border-b border-[#F3F0EA] last:border-b-0 ${i % 2 === 0 ? 'bg-white' : 'bg-[#FAF8F5]'}`}>
@@ -703,7 +703,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               </div>
             </>
           )}
-          {Array.isArray(business.events) && business.events.length > 0 && (
+
+                    {Array.isArray(business.events) && business.events.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5 mt-8">{lang === 'nl' ? 'Evenementen & Termijnen' : 'Veranstaltungen & Termine'}</h2>
               <div className="grid gap-3 mb-[30px]">
@@ -776,9 +777,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-
-
-          {Array.isArray(business.jobs) && business.jobs.length > 0 && (
+{Array.isArray(business.jobs) && business.jobs.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Vacatures' : 'Offene Stellen'}</h2>
               <div className="grid gap-3 mb-[30px]">
@@ -864,7 +863,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                       </div>
                       <div className="text-[#F2761B] text-[15px] tracking-[2px] shrink-0">
                         {Array.from({length: 5}).map((_, i) => (
-                          <span key={i}>{i < r.rating ? 'â˜…' : 'â˜†'}</span>
+                          <span key={i}>{i < r.rating ? '★' : '☆'}</span>
                         ))}
                       </div>
                     </div>
@@ -881,7 +880,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                             type="button"
                             onClick={() => setReviewImageModal(imgUrl)}
                             className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-[#EDE8E0] shadow-2xs hover:opacity-90 transition-opacity cursor-pointer p-0 bg-black/5 shrink-0"
-                            title={lang === 'nl' ? 'Klik om te vergroten' : 'Klicken zum VergrÃ¶ÃŸern'}
+                            title={lang === 'nl' ? 'Klik om te vergroten' : 'Klicken zum Vergrößern'}
                           >
                             <img 
                               src={imgUrl} 
@@ -906,11 +905,11 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 );
               })
             ) : (
-              <p className="text-[#8A928B] text-[15px] m-0">{lang === 'nl' ? 'Nog geen beoordelingen â€” wees de eerste stem!' : 'Noch keine Bewertungen â€” sei die erste Stimme.'}</p>
+              <p className="text-[#8A928B] text-[15px] m-0">{lang === 'nl' ? 'Nog geen beoordelingen — wees de eerste stem!' : 'Noch keine Bewertungen — sei die erste Stimme.'}</p>
             )}
           </div>
 
-          {/* Transparenzhinweis zu Bewertungen (EU-Omnibus / Â§ 5b UWG) */}
+          {/* Transparenzhinweis zu Bewertungen (EU-Omnibus / § 5b UWG) */}
           <div className="mt-3 p-3.5 rounded-lg bg-[#FAF8F5] border border-[#EDE8E0] text-[12px] leading-relaxed text-[#7A837C] flex items-start gap-2.5">
             <ShieldCheck className="w-4 h-4 text-[#8A928B] shrink-0 mt-0.5" />
             <p className="m-0">
@@ -924,7 +923,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </div>
           )}
 
-          {/* Business News â€“ visible immediately after publishing (Premium only) */}
+          {/* Business News – visible immediately after publishing (Premium only) */}
           {business.isPremium && Array.isArray(business.businessNews) && business.businessNews.filter(n => n.status === 'published').length > 0 && (
             <div className="mt-8 border-t border-[#EDE8E0] pt-6">
               <h2 className="font-display text-[22px] font-semibold mb-4 flex items-center gap-2.5">
@@ -1046,7 +1045,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                           <span>{lang === 'nl' ? 'Bellen' : 'Anrufen'}</span>
                         </a>
                       )}
-                      {business.contactPerson.phone && business.contactPerson.email && <span className="text-gray-300">â€¢</span>}
+                      {business.contactPerson.phone && business.contactPerson.email && <span className="text-gray-300">•</span>}
                       {business.contactPerson.email && (
                         <a 
                           href={`mailto:${business.contactPerson.email}`} 
@@ -1111,7 +1110,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           {business.isPremium && business.website && webHref && (
             <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
               <Globe className="w-4 h-4" />
-              {lang === 'nl' ? 'Website bezoeken' : 'Website Ã¶ffnen'}
+              {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>
           )}
           {/* Map for all businesses */}
@@ -1123,7 +1122,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             <BusinessMap business={business} lang={lang} />
           </Suspense>
 
-          {/* Address â€“ prominent for all accounts, street and city on separate lines */}
+          {/* Address – prominent for all accounts, street and city on separate lines */}
           {(() => {
             const hasAddress = !!(business.address && business.address.trim());
             const hasDistrict = !!(business.district && business.district.trim());
@@ -1143,7 +1142,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             );
           })()}
 
-          {/* Route planen â€“ for all businesses with location */}
+          {/* Route planen – for all businesses with location */}
           {(business.address || business.district) && (
             <a
               href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
@@ -1162,10 +1161,10 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             type="button" 
             onClick={() => setShowWidgetModal(true)} 
             className="flex items-center justify-center gap-2 bg-[#FAF8F5] border border-[#EDE8E0] hover:border-[#0F4C2E] hover:bg-[#E8F1EB]/40 text-[#0F4C2E] rounded-md py-2.5 px-4 text-[14px] font-semibold transition-all shadow-xs cursor-pointer"
-            title={lang === 'nl' ? 'Vertrouwenszegel & widget voor eigen website configureren' : 'Trust-Siegel & Bewertungs-Widget fÃ¼r die eigene Website konfigurieren'}
+            title={lang === 'nl' ? 'Vertrouwenszegel & widget voor eigen website configureren' : 'Trust-Siegel & Bewertungs-Widget für die eigene Website konfigurieren'}
           >
             <Star className="w-4 h-4 text-[#F2761B]" />
-            <span>{lang === 'nl' ? 'Zegel voor eigen website' : 'Siegel fÃ¼r eigene Website'}</span>
+            <span>{lang === 'nl' ? 'Zegel voor eigen website' : 'Siegel für eigene Website'}</span>
           </button>
 
           {!business.isPremium && !business.ownerId && (
@@ -1183,7 +1182,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 }}
                 className="w-full bg-[#0F4C2E] hover:bg-[#06301C] text-white border-none rounded-md py-2.5 text-[14px] font-semibold cursor-pointer transition-colors shadow-xs"
               >
-                {lang === 'nl' ? 'Profiel gratis claimen' : 'Profil kostenlos Ã¼bernehmen'}
+                {lang === 'nl' ? 'Profiel gratis claimen' : 'Profil kostenlos übernehmen'}
               </button>
             </div>
           )}
@@ -1226,7 +1225,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             
             {reportSuccess && (
               <div className="text-center text-emerald-600 text-[13px] font-semibold py-2">
-                {lang === 'nl' ? 'Hartelijk dank! Wij controleren het.' : 'Vielen Dank! Wir prÃ¼fen das.'}
+                {lang === 'nl' ? 'Hartelijk dank! Wij controleren het.' : 'Vielen Dank! Wir prüfen das.'}
               </div>
             )}
           </div>
@@ -1236,7 +1235,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
       {similarBusinesses.length > 0 && (
         <div className="max-w-[1000px] mx-auto px-6 pb-[80px]">
-          <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">{lang === 'nl' ? 'Vergelijkbare bedrijven' : 'Ã„hnliche Unternehmen'}</h2>
+          <h2 className="font-display text-[26px] font-bold m-0 mb-[18px]">{lang === 'nl' ? 'Vergelijkbare bedrijven' : 'Ähnliche Unternehmen'}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[18px]">
             {similarBusinesses.map(b => {
               const bApproved = Array.isArray(b.reviews) ? b.reviews.filter(r => !r.status || r.status === 'approved') : [];
@@ -1271,7 +1270,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     </div>
                     {bAvg && (
                       <div className="flex items-center gap-1 text-[12.5px] font-bold text-[#1B211D] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EDE8E0] shrink-0">
-                        <span className="text-[#F2761B]">â˜…</span>
+                        <span className="text-[#F2761B]">★</span>
                         <span>{bAvg}</span>
                       </div>
                     )}
@@ -1280,7 +1279,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                     <div className="flex items-center gap-1.5 flex-wrap mt-3 pt-2.5 border-t border-[#F3F0EA]">
                       {bUsps.slice(0, 2).map((u, i) => (
                         <span key={i} className="bg-[#E8F1EB] text-[#0F4C2E] text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
-                          <span className="text-[#F2761B] text-[9.5px]">âœ“</span> {u}
+                          <span className="text-[#F2761B] text-[9.5px]">✓</span> {u}
                         </span>
                       ))}
                     </div>
@@ -1358,7 +1357,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 type="button" 
                 onClick={() => setLightboxIndex(null)}
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
-                title="SchlieÃŸen (Esc)"
+                title="Schließen (Esc)"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1379,7 +1378,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
 
               <img 
                 src={currentLightboxImage.url} 
-                alt={currentLightboxImage.alt || `${business.name} â€“ ${currentLightboxImage.categoryName}`}
+                alt={currentLightboxImage.alt || `${business.name} – ${currentLightboxImage.categoryName}`}
                 title={currentLightboxImage.title || currentLightboxImage.categoryName}
                 className="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl" 
               />
@@ -1389,7 +1388,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                   type="button"
                   onClick={() => setLightboxIndex(prev => prev !== null && prev < displayedImages.length - 1 ? prev + 1 : 0)}
                   className="absolute right-2 sm:-right-4 z-10 w-11 h-11 rounded-full bg-black/60 hover:bg-[#F2761B] text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer"
-                  title="NÃ¤chstes Bild"
+                  title="Nächstes Bild"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
@@ -1399,7 +1398,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             {/* Bottom Caption Bar */}
             <div className="w-full max-w-2xl text-center py-2" onClick={e => e.stopPropagation()}>
               <p className="text-white text-sm font-medium drop-shadow">
-                {currentLightboxImage.title || currentLightboxImage.alt || `${business.name} â€“ ${currentLightboxImage.categoryName}`}
+                {currentLightboxImage.title || currentLightboxImage.alt || `${business.name} – ${currentLightboxImage.categoryName}`}
               </p>
               {currentLightboxImage.alt && currentLightboxImage.title && (
                 <p className="text-white/70 text-xs mt-0.5">
@@ -1425,8 +1424,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               type="button"
               onClick={() => setReviewImageModal(null)}
               className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors cursor-pointer"
-              title="SchlieÃŸen"
-              aria-label="SchlieÃŸen"
+              title="Schließen"
+              aria-label="Schließen"
             >
               <X className="w-6 h-6" />
             </button>

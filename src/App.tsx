@@ -83,6 +83,7 @@ const SubmitNews = React.lazy(() => import('./components/SubmitNews'));
 const WinterbergFaq = React.lazy(() => import('./components/WinterbergFaq'));
 const GroundingPage = React.lazy(() => import('./components/GroundingPage'));
 const BestOfPage = React.lazy(() => import('./components/BestOfPage'));
+const HeimatCardPage = React.lazy(() => import('./components/HeimatCardPage'));
 import { db, auth, storage } from './firebase';
 import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -158,6 +159,7 @@ export default function App() {
   let initialNewsSubmitMode = false;
   let initialNewsId: string | null = null;
   let initialFaqMode = false;
+  let initialHeimatCardMode = false;
   let initialImpressumMode = false;
   let initialDatenschutzMode = false;
   let initialAGBMode = false;
@@ -243,6 +245,8 @@ export default function App() {
         initialAGBMode = true;
       } else if (decodedPart1 === 'grounding' || decodedPart1 === 'groundingpage' || decodedPart1 === 'grounding-page') {
         initialGroundingMode = true;
+      } else if (decodedPart1 === 'heimatkarte' || decodedPart1 === 'heimatcard' || decodedPart1 === 'buergerkarte') {
+        initialHeimatCardMode = true;
       } else if (decodedPart1 === 'preise' || decodedPart1 === 'pricing' || decodedPart1 === 'prijzen') {
         initialPricingMode = true;
       } else if (decodedPart1 === 'aktuelle-spritpreise' || decodedPart1 === 'spritpreise' || decodedPart1 === 'actuele-brandstofprijzen' || decodedPart1 === 'brandstofprijzen') {
@@ -471,6 +475,7 @@ export default function App() {
     if (isDatenschutzMode) return { view: 'datenschutz' };
     if (isAGBMode) return { view: 'agb' };
     if (isGroundingMode) return { view: 'grounding' };
+    if (isHeimatCardMode) return { view: 'heimatkarte' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
       const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
@@ -551,6 +556,7 @@ export default function App() {
     if (p === '/datenschutz' || p === '/privacy') return buildLocalizedUrl({ view: 'datenschutz' }, lang);
     if (p === '/agb' || p === '/algemene-voorwaarden') return buildLocalizedUrl({ view: 'agb' }, lang);
     if (p === '/grounding' || p === '/groundingpage' || p === '/grounding-page') return buildLocalizedUrl({ view: 'grounding' }, lang);
+    if (p === '/heimatkarte' || p === '/heimatcard' || p === '/buergerkarte') return buildLocalizedUrl({ view: 'heimatkarte' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
     const parts = clean.split('/').filter(Boolean);
@@ -595,6 +601,7 @@ export default function App() {
     setNewsId(null);
     setIsFaqMode(false);
     setIsGroundingMode(false);
+    setIsHeimatCardMode(false);
   };
 
   const handleCategoryChange = (catName: string) => {
@@ -711,6 +718,8 @@ export default function App() {
           setIsAGBMode(true);
         } else if (p1 === 'grounding' || p1 === 'groundingpage' || p1 === 'grounding-page') {
           setIsGroundingMode(true);
+        } else if (p1 === 'heimatkarte' || p1 === 'heimatcard' || p1 === 'buergerkarte') {
+          setIsHeimatCardMode(true);
         } else if (p1 === 'eintragen' || p1 === 'unternehmen-eintragen' || p1 === 'bedrijf-aanmelden') {
           setIsSubmitMode(true);
         } else {
@@ -849,6 +858,7 @@ export default function App() {
   const [isJobsMode, setIsJobsMode] = useState(initialJobsMode);
   const [jobsCategory, setJobsCategory] = useState<string | null>(initialJobsCategory);
   const [isFaqMode, setIsFaqMode] = useState(initialFaqMode);
+  const [isHeimatCardMode, setIsHeimatCardMode] = useState(initialHeimatCardMode);
   const [isEmbedMode] = useState(initialEmbedMode);
   const [embedBusinessId] = useState(initialEmbedBusinessId);
   const [embedLayout] = useState<WidgetLayout>(initialEmbedLayout);
@@ -2079,6 +2089,28 @@ export default function App() {
           />
         ) : isGroundingMode ? (
           <GroundingPage theme={theme} activeThemeKey={activeThemeKey} onBack={() => setIsGroundingMode(false)} />
+        ) : isHeimatCardMode ? (
+          <HeimatCardPage 
+            theme={theme} 
+            lang={lang} 
+            onBack={() => {
+              setIsHeimatCardMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectBusiness={(slugOrPath) => {
+              setIsHeimatCardMode(false);
+              const clean = slugOrPath.replace(/^\//, '').split('/').pop();
+              const match = businesses.find(b => slugify(b.name) === clean || b.id === clean);
+              if (match) {
+                setSelectedBusiness(match);
+              } else {
+                window.history.pushState(null, '', getPath(slugOrPath));
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         ) : isImpressumMode ? (
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
@@ -3747,8 +3779,26 @@ export default function App() {
             </a>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
-            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Externe Links' : 'Externe Links'}</div>
-            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">Wirtschaftsförderung Winterberg</a>
+            <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Informatie & Links' : 'Informationen & Links'}</div>
+            <a 
+              href={getPath('/heimatkarte')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/heimatkarte')); 
+                resetToDirectory(); 
+                setIsHeimatCardMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Winterberg Card (HeimatCard)' : 'Winterberg Card (HeimatCard)'}
+            </a>
+            <a href="https://www.rathaus-winterberg.de/leben-wohnen/heimatkarte/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+              {lang === 'nl' ? 'Gemeente Winterberg (Rathaus)' : 'Stadt Winterberg (Rathaus)'}
+            </a>
+            <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+              {lang === 'nl' ? 'Economische Zaken (Wirtschaftsförderung)' : 'Wirtschaftsförderung Winterberg'}
+            </a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
