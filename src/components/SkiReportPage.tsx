@@ -15,7 +15,8 @@ import {
   Layers, 
   ChevronRight,
   HelpCircle,
-  Eye
+  Eye,
+  Sun
 } from 'lucide-react';
 import { Business, SkiResortStatus, ThemeConfig, WebcamSpot } from '../types';
 import { SKI_RESORTS_DATA, WEBCAMS_DATA } from '../utils/skiData';
@@ -118,21 +119,24 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
             <div className="bg-white/10 backdrop-blur-sm border border-white/15 p-3 rounded-xl">
               <span className="text-xs text-white/70 block">{isNl ? 'Liften geopend' : 'Lifte geöffnet'}</span>
               <span className="text-xl sm:text-2xl font-black text-cyan-300">{totalOpenLifts} / {totalLifts}</span>
+              <span className="text-[10px] text-white/60 block">{totalOpenLifts === 0 ? (isNl ? 'Zomerseizoen' : 'Sommerbetrieb') : (isNl ? 'Winterseizoen' : 'Winterbetrieb')}</span>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/15 p-3 rounded-xl">
               <span className="text-xs text-white/70 block">{isNl ? 'Max. Sneeuwhoogte' : 'Max. Schneehöhe'}</span>
               <span className="text-xl sm:text-2xl font-black text-cyan-300">{maxSnow} cm</span>
+              <span className="text-[10px] text-white/60 block">{isNl ? 'Sneeuwcondities: Zomer' : 'Saisonstart ab Dez.'}</span>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/15 p-3 rounded-xl">
               <span className="text-xs text-white/70 block">{isNl ? 'Avondskiën vandaag' : 'Flutlicht heute'}</span>
-              <span className="text-base sm:text-lg font-bold text-emerald-300 flex items-center gap-1.5 mt-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                {hasFloodlight ? (isNl ? 'Ja (18:30)' : 'Aktiv (18:30)') : (isNl ? 'Neen' : 'Nein')}
+              <span className="text-base sm:text-lg font-bold text-amber-200 flex items-center gap-1.5 mt-1">
+                <span className={`w-2.5 h-2.5 rounded-full ${hasFloodlight ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+                {hasFloodlight ? (isNl ? 'Ja (18:30)' : 'Aktiv (18:30)') : (isNl ? 'Inactief (Zomer)' : 'Inaktiv (Sommer)')}
               </span>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/15 p-3 rounded-xl">
-              <span className="text-xs text-white/70 block">{isNl ? 'Loipes gespoord' : 'Gespurte Loipen'}</span>
-              <span className="text-xl sm:text-2xl font-black text-cyan-300">80+ km</span>
+              <span className="text-xs text-white/70 block">{isNl ? 'Totale Pistes' : 'Gesamte Pisten'}</span>
+              <span className="text-xl sm:text-2xl font-black text-cyan-300">55+ km</span>
+              <span className="text-[10px] text-white/60 block">{isNl ? 'in 5 skigebieden' : 'in 5 Skigebieten'}</span>
             </div>
           </div>
         </div>
@@ -167,13 +171,35 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
           }`}
         >
           <Video className="w-4 h-4" />
-          {isNl ? 'Live Webcams (6 Cams)' : 'Live Webcams (6 Spots)'}
+          {isNl ? `Live Webcams (${WEBCAMS_DATA.length} Spots)` : `Live Webcams (${WEBCAMS_DATA.length} Spots)`}
         </button>
       </div>
 
       {/* TAB 1: PISTENBERICHT */}
       {activeTab === 'pisten' && (
         <div className="space-y-8">
+          {/* Seasonal Info Callout */}
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-[#2A2315] dark:to-[#221A10] border border-amber-200 dark:border-amber-800/60 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-xs">
+            <Sun className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-bold text-sm text-amber-950 dark:text-amber-200 mb-1">
+                {isNl 
+                  ? 'Actuele seizoensinformatie: Zomerbedrijf in Winterberg' 
+                  : 'Aktuelle Saison-Information: Sommerbetrieb in der Ferienregion Winterberg'}
+              </h3>
+              <p className="text-xs text-amber-900/90 dark:text-amber-300/80 leading-relaxed mb-2">
+                {isNl
+                  ? 'Het reguliere skiseizoen in de Wintersport-Arena Sauerland loopt traditiegetrouw van medio december tot eind maart. Momenteel zijn de hellingen groen. Diverse kabelbanen en attracties (waaronder de Panoramabrug & Erlebnisberg Kappe, Schanzenwirbel Herrloh en de zomerrodelbanen) zijn geopend voor wandelaars, fietsers en dagjesmensen.'
+                  : 'Die Wintersportsaison in der Wintersport-Arena Sauerland läuft traditionell von ca. Mitte Dezember bis Ende März (abhängig von Witterung und Beschneiungstemperaturen). Derzeit herrscht regulärer Sommer- und Herbstbetrieb. Für Ausflügler, Wanderer und Biker sind u. a. die Panoramabahn Kappe (Erlebnisberg / Bikepark) und der Schanzenwirbel am Herrloh in Betrieb!'}
+              </p>
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-amber-900 dark:text-amber-300 bg-amber-100/80 dark:bg-amber-900/40 px-2.5 py-1 rounded-md">
+                <span>🚠 {isNl ? 'Zomerseizoen actief' : 'Sommerbahnen geöffnet'}</span>
+                <span>•</span>
+                <span>🎿 {isNl ? 'Wintersportseizoen start dec 2026' : 'Skisaison 2026/27 startet ab Dezember'}</span>
+              </div>
+            </div>
+          </div>
+
           {/* Resorts List */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {SKI_RESORTS_DATA.map((resort) => {
@@ -188,10 +214,22 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
                     <div className="flex justify-between items-start gap-3 mb-3">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300">
-                            <CheckCircle2 className="w-3 h-3" />
-                            {isNl ? 'Geopend' : 'In Betrieb'}
-                          </span>
+                          {resort.status === 'open' ? (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300">
+                              <CheckCircle2 className="w-3 h-3" />
+                              {isNl ? 'Geopend' : 'In Betrieb'}
+                            </span>
+                          ) : resort.status === 'partial' ? (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-100 text-blue-800 dark:bg-blue-950/70 dark:text-blue-300">
+                              <CheckCircle2 className="w-3 h-3" />
+                              {isNl ? 'Deels geopend' : 'Teilbetrieb'}
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300">
+                              <Sun className="w-3 h-3 text-amber-600" />
+                              {isNl ? 'Zomerseizoen' : 'Sommerbetrieb'}
+                            </span>
+                          )}
                           <span className="text-xs text-gray-400 dark:text-gray-500">
                             {resort.lastUpdated}
                           </span>
@@ -223,16 +261,19 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
                           {isNl ? 'Geopende Liften' : 'Geöffnete Liftanlagen'}:
                         </span>
                         <span className="text-[#0F4C2E] dark:text-emerald-400 font-bold">
-                          {resort.openLifts} von {resort.totalLifts} ({openPct}%)
+                          {resort.openLifts === 0 
+                            ? (isNl ? `0 van ${resort.totalLifts} (Zomerpauze skibedrijf)` : `0 von ${resort.totalLifts} (Skibetrieb pausiert)`)
+                            : `${resort.openLifts} von ${resort.totalLifts} (${openPct}%)`}
                         </span>
                       </div>
                       <div className="w-full h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-gradient-to-r from-emerald-500 to-green-600 rounded-full"
-                          style={{ width: `${openPct}%` }}
+                          style={{ width: `${Math.max(openPct, resort.openLifts > 0 ? openPct : 0)}%` }}
                         />
                       </div>
                     </div>
+
 
                     {/* Metrics Grid */}
                     <div className="grid grid-cols-3 gap-2.5 text-center mb-4">

@@ -495,31 +495,33 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                 </div>
 
                 {/* Right Area: Highlights, Ortsteile & Actions (4 Cols) */}
-                <div className="lg:col-span-4 p-6 sm:p-7 bg-[#FAF8F5] flex flex-col justify-between gap-5">
+                <div className="lg:col-span-4 p-4 sm:p-5 bg-[#FAF8F5] flex flex-col justify-between gap-2.5">
                   
-                  {/* Card: Alle Unternehmen Gesamtübersicht */}
+                  {/* Card: Alle Unternehmen Gesamtübersicht (Genauso groß wie Bestenlisten) */}
                   <div 
                     onClick={() => {
                       onSelectAll();
                       onClose();
                     }}
-                    className="bg-white border border-[#EDE8E0] rounded-lg p-4 cursor-pointer hover:border-[#0F4C2E] hover:shadow-[0_8px_20px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group"
+                    className="bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group"
                   >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="w-8 h-8 rounded-md bg-[#0F4C2E] text-white flex items-center justify-center shadow-sm">
-                        <Building2 className="w-4 h-4" />
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-md bg-emerald-50 text-[#0F4C2E] border border-emerald-200/80 flex items-center justify-center shadow-2xs">
+                          <Building2 className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-display font-bold text-[14px] text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors">
+                          {lang === 'nl' ? `Alle ${businesses.length} bedrijven` : `Alle ${businesses.length} Unternehmen`}
+                        </span>
                       </div>
-                      <span className="text-[12px] font-bold text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                        {lang === 'nl' ? 'Overzicht' : 'Übersicht'} <ArrowRight className="w-3.5 h-3.5" />
+                      <span className="text-[11.5px] font-bold text-[#0F4C2E] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                        {lang === 'nl' ? 'Overzicht' : 'Übersicht'} <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>
-                    <div className="font-display font-bold text-[15px] text-[#1B211D] mb-1">
-                      {lang === 'nl' ? `Alle ${businesses.length} bedrijven` : `Alle ${businesses.length} Unternehmen`}
-                    </div>
-                    <p className="text-[12.5px] text-[#5F6B63] leading-relaxed m-0">
+                    <p className="text-[12px] text-[#5F6B63] leading-relaxed m-0 pl-9">
                       {lang === 'nl' 
-                        ? 'Volledige gids met alle actieve ondernemingen, contactgegevens en openingstijden.' 
-                        : 'Vollständiges Verzeichnis mit allen Betrieben, Kontakten und Öffnungszeiten.'}
+                        ? 'Volledige gids met alle actieve ondernemingen en contacten.' 
+                        : 'Vollständiges Verzeichnis aller Betriebe mit Kontakten & Zeiten.'}
                     </p>
                   </div>
 
@@ -559,130 +561,120 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                   </a>
 
                   {/* Subtle Divider */}
-                  <hr className="border-[#EDE8E0] my-1" />
+                  <hr className="border-[#EDE8E0] my-0.5" />
 
-                  {/* Section: Live-Daten (3 horizontal cards side by side) */}
-                  <div>
-                    <div className="font-display font-bold text-[11px] uppercase tracking-[0.1em] text-[#8A928B] mb-2.5 flex items-center justify-between">
-                      <span className="flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>{lang === 'nl' ? 'Live-informatie' : 'Live-Daten'}</span>
+                  {/* Section: Live-Daten (Kompakte Kacheln ohne Titelzeile) */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                    {/* Card 1: Spritpreise */}
+                    <a
+                      href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectFuelPrices) {
+                          onSelectFuelPrices();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-white border border-[#EDE8E0] hover:border-emerald-500 rounded-lg p-2 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_4px_12px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                      title={lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
+                    >
+                      <div className="w-7 h-7 rounded-md bg-emerald-50 text-[#0F4C2E] border border-emerald-200/80 flex items-center justify-center mb-1 shadow-2xs group-hover:scale-105 transition-transform">
+                        <Fuel className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-display font-bold text-[11.5px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-tight">
+                        {lang === 'nl' ? 'Brandstof' : 'Spritpreise'}
                       </span>
-                      <span className="text-[10px] font-medium text-[#8A928B] lowercase">{lang === 'nl' ? 'realtime' : 'echtzeit'}</span>
-                    </div>
+                      <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded mt-0.5">
+                        Live
+                      </span>
+                    </a>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {/* Card 1: Spritpreise */}
-                      <a
-                        href={getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise')}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (onSelectFuelPrices) {
-                            onSelectFuelPrices();
-                          } else {
-                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
-                            window.dispatchEvent(new PopStateEvent('popstate'));
-                          }
-                          onClose();
-                        }}
-                        className="bg-white border border-[#EDE8E0] hover:border-emerald-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(15,76,46,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
-                        title={lang === 'nl' ? 'Actuele brandstofprijzen' : 'Aktuelle Spritpreise'}
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#0F4C2E] border border-emerald-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
-                          <Fuel className="w-4 h-4" />
-                        </div>
-                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-tight">
-                          {lang === 'nl' ? 'Brandstof' : 'Spritpreise'}
-                        </span>
-                        <span className="text-[9.5px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded mt-1">
-                          Live
-                        </span>
-                      </a>
+                    {/* Card 2: Notdienste */}
+                    <a
+                      href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectEmergency) {
+                          onSelectEmergency();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-white border border-[#EDE8E0] hover:border-red-500 rounded-lg p-2 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_4px_12px_rgba(220,38,38,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                      title={lang === 'nl' ? 'Nooddiensten & Apotheekwacht' : 'Notdienste & Notfallnummern'}
+                    >
+                      <div className="w-7 h-7 rounded-md bg-red-50 text-red-600 border border-red-200/80 flex items-center justify-center mb-1 shadow-2xs group-hover:scale-105 transition-transform">
+                        <Siren className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-display font-bold text-[11.5px] text-[#1B211D] group-hover:text-red-700 leading-tight">
+                        {lang === 'nl' ? 'Nooddienst' : 'Notdienste'}
+                      </span>
+                      <span className="text-[9px] font-bold text-red-700 bg-red-50 px-1.5 py-0.2 rounded mt-0.5">
+                        24/7
+                      </span>
+                    </a>
 
-                      {/* Card 2: Notdienste */}
-                      <a
-                        href={getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste')}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (onSelectEmergency) {
-                            onSelectEmergency();
-                          } else {
-                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/nooddiensten' : '/notdienste'));
-                            window.dispatchEvent(new PopStateEvent('popstate'));
-                          }
-                          onClose();
-                        }}
-                        className="bg-white border border-[#EDE8E0] hover:border-red-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(220,38,38,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
-                        title={lang === 'nl' ? 'Nooddiensten & Apotheekwacht' : 'Notdienste & Notfallnummern'}
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 border border-red-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
-                          <Siren className="w-4 h-4" />
-                        </div>
-                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-red-700 leading-tight">
-                          {lang === 'nl' ? 'Nooddienst' : 'Notdienste'}
-                        </span>
-                        <span className="text-[9.5px] font-bold text-red-700 bg-red-50 px-1.5 py-0.5 rounded mt-1">
-                          24/7
-                        </span>
-                      </a>
+                    {/* Card 3: Pisten & Webcams */}
+                    <a
+                      href={getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectSkiReport) {
+                          onSelectSkiReport();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-white border border-[#EDE8E0] hover:border-blue-500 rounded-lg p-2 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_4px_12px_rgba(37,99,235,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                      title={lang === 'nl' ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams'}
+                    >
+                      <div className="w-7 h-7 rounded-md bg-blue-50 text-blue-600 border border-blue-200/80 flex items-center justify-center mb-1 shadow-2xs group-hover:scale-105 transition-transform">
+                        <Snowflake className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-display font-bold text-[11.5px] text-[#1B211D] group-hover:text-blue-600 leading-tight">
+                        {lang === 'nl' ? 'Pistes' : 'Pisten'}
+                      </span>
+                      <span className="text-[9px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.2 rounded mt-0.5">
+                        Live
+                      </span>
+                    </a>
 
-                      {/* Card 3: Pisten & Webcams */}
-                      <a
-                        href={getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht')}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (onSelectSkiReport) {
-                            onSelectSkiReport();
-                          } else {
-                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht'));
-                            window.dispatchEvent(new PopStateEvent('popstate'));
-                          }
-                          onClose();
-                        }}
-                        className="bg-white border border-[#EDE8E0] hover:border-blue-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(37,99,235,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
-                        title={lang === 'nl' ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams'}
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 border border-blue-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
-                          <Snowflake className="w-4 h-4" />
-                        </div>
-                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-blue-600 leading-tight">
-                          {lang === 'nl' ? 'Pistes' : 'Pisten'}
-                        </span>
-                        <span className="text-[9.5px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded mt-1">
-                          Live
-                        </span>
-                      </a>
-
-                      {/* Card 4: E-Ladesäulen */}
-                      <a
-                        href={getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen')}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (onSelectChargingStations) {
-                            onSelectChargingStations();
-                          } else {
-                            window.history.pushState(null, '', getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen'));
-                            window.dispatchEvent(new PopStateEvent('popstate'));
-                          }
-                          onClose();
-                        }}
-                        className="bg-white border border-[#EDE8E0] hover:border-cyan-500 rounded-xl p-2.5 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_6px_16px_rgba(6,182,212,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
-                        title={lang === 'nl' ? 'Elektrische laadpalen' : 'E-Ladestationen & Schnelllader'}
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-700 border border-cyan-200/80 flex items-center justify-center mb-1.5 shadow-2xs group-hover:scale-105 transition-transform">
-                          <Zap className="w-4 h-4" />
-                        </div>
-                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-cyan-700 leading-tight">
-                          {lang === 'nl' ? 'Laadpalen' : 'E-Lader'}
-                        </span>
-                        <span className="text-[9.5px] font-bold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded mt-1">
-                          HPC
-                        </span>
-                      </a>
-                    </div>
+                    {/* Card 4: E-Ladesäulen */}
+                    <a
+                      href={getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectChargingStations) {
+                          onSelectChargingStations();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-white border border-[#EDE8E0] hover:border-cyan-500 rounded-lg p-2 flex flex-col items-center text-center cursor-pointer hover:shadow-[0_4px_12px_rgba(6,182,212,0.08)] hover:-translate-y-0.5 transition-all group no-underline"
+                      title={lang === 'nl' ? 'Elektrische laadpalen' : 'E-Ladestationen & Schnelllader'}
+                    >
+                      <div className="w-7 h-7 rounded-md bg-cyan-50 text-cyan-700 border border-cyan-200/80 flex items-center justify-center mb-1 shadow-2xs group-hover:scale-105 transition-transform">
+                        <Zap className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-display font-bold text-[11.5px] text-[#1B211D] group-hover:text-cyan-700 leading-tight">
+                        {lang === 'nl' ? 'Laadpalen' : 'E-Lader'}
+                      </span>
+                      <span className="text-[9px] font-bold text-cyan-700 bg-cyan-50 px-1.5 py-0.2 rounded mt-0.5">
+                        HPC
+                      </span>
+                    </a>
                   </div>
 
-                  {/* Service Quick Links (Sonntagsöffnung & Abfallkalender) */}
+                  {/* Service Quick Links: Sonntags geöffnete Betriebe & Abfallkalender Winterberg */}
                   <div className="grid grid-cols-2 gap-2">
                     <a
                       href={getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet')}
@@ -699,11 +691,11 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       className="bg-[#F8FAF9] hover:bg-[#EEF4F0] border border-[#E1EAE4] rounded-lg p-2.5 flex items-center gap-2.5 cursor-pointer no-underline group transition-colors"
                     >
                       <div className="w-7 h-7 rounded-md bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                        <Sun className="w-4 h-4" />
+                        <Sun className="w-3.5 h-3.5" />
                       </div>
                       <div className="flex flex-col text-left">
-                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E]">
-                          {lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-snug">
+                          {lang === 'nl' ? 'Zondag geopende bedrijven' : 'Sonntags geöffnete Betriebe'}
                         </span>
                         <span className="text-[10px] text-[#5F6B63]">
                           {lang === 'nl' ? 'Bäderregeling' : 'Bäderregelung'}
@@ -726,11 +718,11 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       className="bg-[#F8FAF9] hover:bg-[#EEF4F0] border border-[#E1EAE4] rounded-lg p-2.5 flex items-center gap-2.5 cursor-pointer no-underline group transition-colors"
                     >
                       <div className="w-7 h-7 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3.5 h-3.5" />
                       </div>
                       <div className="flex flex-col text-left">
-                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E]">
-                          {lang === 'nl' ? 'Afvalkalender' : 'Abfallkalender'}
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-snug">
+                          {lang === 'nl' ? 'Afvalkalender Winterberg' : 'Abfallkalender Winterberg'}
                         </span>
                         <span className="text-[10px] text-[#5F6B63]">
                           {lang === 'nl' ? '14 dorpen' : '14 Ortsteile'}
@@ -740,15 +732,16 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                   </div>
 
                   {/* Subtle Divider below Live-Daten */}
-                  <hr className="border-[#EDE8E0] my-1" />
+                  <hr className="border-[#EDE8E0] my-0.5" />
+
 
                   {/* Ortsteile Quick Chips */}
                   <div>
-                    <div className="font-display font-bold text-xs uppercase tracking-[0.1em] text-[#8A928B] mb-2.5 flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                    <div className="font-display font-bold text-[11px] uppercase tracking-[0.1em] text-[#8A928B] mb-1.5 flex items-center gap-1.5">
+                      <MapPin className="w-3 h-3 text-[#0F4C2E]" />
                       <span>{lang === 'nl' ? 'Populaire dorpen & wijken' : 'Beliebte Ortsteile'}</span>
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-1">
                       {featuredDistricts.map((district) => (
                         <button
                           key={district}
@@ -757,7 +750,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                             onSelectLocation(district);
                             onClose();
                           }}
-                          className="text-[12px] font-medium bg-white hover:bg-[#0F4C2E] text-[#1B211D] hover:text-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded px-2 py-1 transition-all cursor-pointer shadow-xs"
+                          className="text-[11.5px] font-medium bg-white hover:bg-[#0F4C2E] text-[#1B211D] hover:text-white border border-[#EDE8E0] hover:border-[#0F4C2E] rounded px-2 py-0.5 transition-all cursor-pointer shadow-2xs"
                         >
                           {district}
                         </button>
@@ -766,7 +759,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                   </div>
 
                   {/* Quick Shortcuts & Submit Promo */}
-                  <div className="flex flex-col gap-2 pt-2 border-t border-[#EDE8E0]">
+                  <div className="flex flex-col gap-1.5 pt-1.5 border-t border-[#EDE8E0]">
                     <div className="flex gap-2">
                       <button
                         type="button"
@@ -774,9 +767,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                           onOpenMap();
                           onClose();
                         }}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] hover:text-[#0F4C2E] text-[#1B211D] rounded-md py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-[#EDE8E0] hover:border-[#0F4C2E] hover:text-[#0F4C2E] text-[#1B211D] rounded-md py-1.5 px-3 text-[12.5px] font-semibold transition-all cursor-pointer"
                       >
-                        <MapIcon className="w-4 h-4 text-[#0F4C2E]" />
+                        <MapIcon className="w-3.5 h-3.5 text-[#0F4C2E]" />
                         <span>{t("viewMap")}</span>
                       </button>
                       <button
@@ -785,9 +778,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                           onOpenSubmit();
                           onClose();
                         }}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md py-2 px-3 text-[13px] font-semibold transition-all cursor-pointer shadow-sm"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md py-1.5 px-3 text-[12.5px] font-semibold transition-all cursor-pointer shadow-sm"
                       >
-                        <Plus className="w-4 h-4" />
+                        <Plus className="w-3.5 h-3.5" />
                         <span>{t("createEntry")}</span>
                       </button>
                     </div>
@@ -799,7 +792,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
               </div>
 
               {/* Bottom Subtle Trust Bar */}
-              <div className="bg-[#0F4C2E] text-white/90 px-6 sm:px-8 py-2.5 flex items-center justify-between flex-wrap gap-3 text-[12px] font-medium">
+              <div className="bg-[#0F4C2E] text-white/90 px-6 sm:px-8 py-1.5 sm:py-2 flex items-center justify-between flex-wrap gap-3 text-[11.5px] font-medium">
                 <div className="flex items-center gap-4 flex-wrap">
                   <span className="flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />

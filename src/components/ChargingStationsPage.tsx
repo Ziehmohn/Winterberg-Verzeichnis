@@ -17,11 +17,26 @@ import {
   HelpCircle,
   Sparkles
 } from 'lucide-react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { ChargingStation, ThemeConfig } from '../types';
 import { CHARGING_STATIONS_DATA } from '../utils/chargingStationsData';
+
+const MapBoundsHandler: React.FC<{ stations: ChargingStation[] }> = ({ stations }) => {
+  const map = useMap();
+  React.useEffect(() => {
+    if (!stations || stations.length === 0) return;
+    if (stations.length === 1) {
+      map.flyTo([stations[0].lat, stations[0].lng], 15, { duration: 0.8 });
+    } else {
+      const bounds = L.latLngBounds(stations.map(s => [s.lat, s.lng]));
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
+    }
+  }, [stations, map]);
+  return null;
+};
+
 
 // Custom Map Markers
 const fastChargerIcon = new L.Icon({
@@ -239,6 +254,8 @@ export const ChargingStationsPage: React.FC<ChargingStationsPageProps> = ({
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <MapBoundsHandler stations={filteredStations} />
+
             {filteredStations.map(station => (
               <Marker
                 key={station.id}

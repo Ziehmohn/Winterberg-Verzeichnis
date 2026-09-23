@@ -747,8 +747,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie / Innogy",
     "address": "Hochsauerlandstraße 60",
     "district": "Siedlinghausen",
-    "lat": 51.2577,
-    "lng": 8.5297,
+    "lat": 51.2505,
+    "lng": 8.47,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -783,12 +783,12 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
   },
   {
     "id": "siedlinghausen-gewerbegebiet",
-    "name": "Siedlinghausen Heinrich-Sommer-Straße",
+    "name": "Siedlinghausen Dorfmitte & Netto",
     "operator": "Westenergie",
-    "address": "Heinrich-Sommer-Straße 4",
+    "address": "Heinrich-Sommer-Straße / Hochsauerlandstraße",
     "district": "Siedlinghausen",
-    "lat": 51.2458,
-    "lng": 8.5285,
+    "lat": 51.2492,
+    "lng": 8.4812,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -805,9 +805,14 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "availableHours": "24/7 geöffnet",
     "nearbyHighlights": [
       {
+        "name": "Netto Marken-Discount Siedlinghausen",
+        "category": "Einzelhandel",
+        "distanceMeters": 30
+      },
+      {
         "name": "Gewerbegebiet Siedlinghausen",
         "category": "Handwerk",
-        "distanceMeters": 50
+        "distanceMeters": 100
       }
     ]
   },
@@ -817,8 +822,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie AG",
     "address": "Josefsweg 2",
     "district": "Niedersfeld",
-    "lat": 51.2558,
-    "lng": 8.5591,
+    "lat": 51.2602,
+    "lng": 8.5297,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -852,8 +857,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie AG",
     "address": "Grönebacher Straße (Parkplatz See)",
     "district": "Niedersfeld",
-    "lat": 51.251,
-    "lng": 8.563,
+    "lat": 51.253,
+    "lng": 8.5363,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -887,8 +892,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie / Innogy",
     "address": "Hardtstraße 2 (Dorfmitte)",
     "district": "Züschen",
-    "lat": 51.1522,
-    "lng": 8.5607,
+    "lat": 51.1549,
+    "lng": 8.5698,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -925,10 +930,10 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "id": "zueschen-homberg-skigebiet",
     "name": "Züschen Mein Homberg Skigebiet",
     "operator": "Mein Homberg / Westenergie",
-    "address": "Am Homberg 1",
+    "address": "Zum Homberg 1",
     "district": "Züschen",
-    "lat": 51.145,
-    "lng": 8.572,
+    "lat": 51.1415,
+    "lng": 8.565,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -962,8 +967,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "ecotap / Postwiese",
     "address": "Winterberger Straße 8",
     "district": "Neuastenberg",
-    "lat": 51.166,
-    "lng": 8.4866,
+    "lat": 51.1641,
+    "lng": 8.4836,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -1002,8 +1007,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie AG",
     "address": "Astenstraße 15",
     "district": "Altastenberg",
-    "lat": 51.1857,
-    "lng": 8.4902,
+    "lat": 51.1861,
+    "lng": 8.4779,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -1037,8 +1042,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie AG",
     "address": "Bundesstraße B236 (Nähe TinQ)",
     "district": "Langewiese",
-    "lat": 51.155,
-    "lng": 8.478,
+    "lat": 51.159,
+    "lng": 8.465,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -1070,10 +1075,10 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "id": "groenebach-lambertusplatz",
     "name": "Grönebach Lambertusplatz Dorfmitte",
     "operator": "Westenergie AG",
-    "address": "Küstelberger Straße 2",
+    "address": "Lambertusplatz / Küstelberger Straße",
     "district": "Grönebach",
-    "lat": 51.223,
-    "lng": 8.6041,
+    "lat": 51.2294,
+    "lng": 8.5594,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -1105,10 +1110,10 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "id": "silbach-bahnhof",
     "name": "Silbach Bahnhof & Bürgerhaus",
     "operator": "Westenergie AG",
-    "address": "Bergstraße 4",
+    "address": "Bergfreiheit / Bahnhof Silbach",
     "district": "Silbach",
-    "lat": 51.2402,
-    "lng": 8.5261,
+    "lat": 51.2233,
+    "lng": 8.4823,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
@@ -1142,8 +1147,8 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     "operator": "Westenergie AG",
     "address": "Astenturm 1",
     "district": "Winterberg Kernstadt",
-    "lat": 51.1795,
-    "lng": 8.49,
+    "lat": 51.1794,
+    "lng": 8.489,
     "isFastCharger": false,
     "maxPowerKw": 22,
     "plugs": [
