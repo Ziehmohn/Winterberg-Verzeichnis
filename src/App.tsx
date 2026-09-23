@@ -6082,6 +6082,119 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
               </div>
             </div>
           </div>
+
+          {/* Aktuelle Premium-Kunden Übersicht */}
+          <div className="mb-[36px]">
+            <div className="flex items-center justify-between gap-3 mb-[16px]">
+              <div>
+                <h2 className="font-display text-[21px] font-bold m-0 flex items-center gap-2">
+                  <span className="text-[#D65F0C]">★</span>
+                  Aktuelle Premium-Kunden ({businesses.filter((b: Business) => b.isPremium).length})
+                </h2>
+                <p className="text-[13px] text-[#5F6B63] m-0 mt-0.5">
+                  Alle aktuell freigeschalteten Premium-Unternehmen mit Kontaktdaten und Abonnement-Status
+                </p>
+              </div>
+            </div>
+
+            {businesses.filter((b: Business) => b.isPremium).length > 0 ? (
+              <div className="overflow-x-auto border border-[#EDE8E0] rounded-lg">
+                <table className="w-full text-left text-[14px] border-collapse bg-white">
+                  <thead>
+                    <tr className="border-b border-[#EDE8E0] bg-[#FAF8F5] text-[#5F6B63] text-[13px]">
+                      <th className="py-3 px-4 font-semibold">Unternehmen</th>
+                      <th className="py-3 px-4 font-semibold">Ortsteil / Kategorie</th>
+                      <th className="py-3 px-4 font-semibold">Kontakt / E-Mail</th>
+                      <th className="py-3 px-4 font-semibold">Abo-Status</th>
+                      <th className="py-3 px-4 font-semibold text-right">Aktionen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {businesses.filter((b: Business) => b.isPremium).map((bus: Business) => {
+                      const isStripe = !!(bus as any).stripeSubscriptionId;
+                      const isCanceling = !!(bus as any).cancelAtPeriodEnd;
+                      const contactEmail = bus.ownerEmail || bus.email || bus.contactPerson?.email || '';
+
+                      return (
+                        <tr key={bus.id} className="border-b border-[#EDE8E0] hover:bg-[#FAF8F5]/80 transition-colors">
+                          <td className="py-3.5 px-4">
+                            <div className="font-bold text-[#1B211D] flex items-center gap-1.5">
+                              <span className="text-amber-500 text-xs">★</span>
+                              {bus.name}
+                            </div>
+                            <div className="text-[12px] text-[#8A928B] flex items-center gap-2 mt-0.5">
+                              <span>ID: {bus.id}</span>
+                              {bus.phone && <span>· 📞 {bus.phone}</span>}
+                            </div>
+                          </td>
+                          <td className="py-3.5 px-4">
+                            <div className="text-[#1B211D] font-medium">{bus.district || 'Winterberg'}</div>
+                            <div className="text-[12px] text-[#5F6B63]">{bus.category}{bus.subcategory ? ` · ${bus.subcategory}` : ''}</div>
+                          </td>
+                          <td className="py-3.5 px-4">
+                            {contactEmail ? (
+                              <a href={`mailto:${contactEmail}`} className="text-[#0F4C2E] hover:underline font-medium block">
+                                {contactEmail}
+                              </a>
+                            ) : (
+                              <span className="text-[#8A928B] italic">Keine E-Mail hinterlegt</span>
+                            )}
+                            {bus.website && (
+                              <a href={bus.website} target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#F2761B] hover:underline inline-flex items-center gap-1 mt-0.5">
+                                <span>Website</span>
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            )}
+                          </td>
+                          <td className="py-3.5 px-4">
+                            {isCanceling ? (
+                              <span className="bg-amber-100 text-amber-800 text-[11px] font-semibold px-2.5 py-1 rounded-full inline-block">
+                                Kündigung vorgemerkt
+                              </span>
+                            ) : isStripe ? (
+                              <span className="bg-emerald-100 text-[#0F4C2E] text-[11px] font-semibold px-2.5 py-1 rounded-full inline-block">
+                                Stripe-Abo aktiv
+                              </span>
+                            ) : (
+                              <span className="bg-blue-50 text-blue-700 text-[11px] font-semibold px-2.5 py-1 rounded-full inline-block">
+                                Direkt / Manuell freigeschaltet
+                              </span>
+                            )}
+                          </td>
+                          <td className="py-3.5 px-4 text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <a 
+                                href={`/unternehmen/${bus.id}`} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="px-2.5 py-1 rounded text-xs font-semibold bg-[#FAF8F5] text-[#0F4C2E] border border-[#EDE8E0] hover:bg-[#EAE5DB] transition-colors"
+                              >
+                                Profil
+                              </a>
+                              {!isCanceling && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleCancelSubscription(bus)}
+                                  className="px-2.5 py-1 rounded text-xs font-semibold bg-[#FBEAE7] text-[#C0392B] border border-red-200 hover:bg-[#FADBD5] transition-colors cursor-pointer"
+                                  title="Abo kündigen bzw. Downgrade auf Basis-Eintrag"
+                                >
+                                  Kündigen
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
+                Aktuell sind keine Premium-Kunden im Verzeichnis vorhanden.
+              </div>
+            )}
+          </div>
           
           <h2 className="font-display text-[21px] font-bold m-0 mb-[16px]">Alle Rechnungen (Admin-Ansicht)</h2>
           
