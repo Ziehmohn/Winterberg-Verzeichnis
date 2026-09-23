@@ -13,14 +13,14 @@ import {
   HelpCircle, 
   ChevronDown, 
   ChevronUp, 
-  Info, 
   ArrowLeft,
-  Flame,
   ShieldCheck,
-  Mountain,
-  Heart
+  Building2,
+  Ticket
 } from 'lucide-react';
 import { ThemeConfig } from '../types';
+import { businesses } from '../data';
+import { getBusinessPath } from '../utils/routes';
 import { UnderlinedHeading } from './NewsDetail';
 
 interface HeimatCardPageProps {
@@ -40,7 +40,7 @@ interface Attraction {
   description_nl: string;
   website: string;
   location: string;
-  profilePath?: string;
+  businessId?: string;
 }
 
 export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }: HeimatCardPageProps) {
@@ -56,8 +56,8 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
     document.title = pageTitle;
 
     const descContent = isNl
-      ? 'Alle info over de Winterberg Card (HeimatCard / burgerkaart): 90 minuten gratis parkeren, 12x zwembad Winterberg en meer dan 30 topattracties in het Sauerland.'
-      : 'Alle Infos zur Winterberg Card (HeimatCard / Bürgerkarte): 90 Minuten kostenfrei parken, 12x Hallenbad Winterberg und über 30 Top-Freizeitattraktionen im Sauerland ab 25 €.';
+      ? 'Ontdek alle voordelen van de officiële WinterbergCard (HeimatCard): 90 minuten gratis parkeren, 12x zwemmen en meer dan 30 topattracties voor inwoners en werknemers.'
+      : 'Alle Vorteile der offiziellen Winterberg Card (HeimatCard Bürgerkarte): 90 Minuten kostenfrei parken, 12x Hallenbad und über 30 Top-Freizeiterlebnisse für Einheimische und Beschäftigte.';
 
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -82,112 +82,131 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       category: 'action',
       benefit: '1x Flug (sitzend oder liegend)',
       benefit_nl: '1x vlucht (zittend of liggend)',
-      description: 'Die zweitlängste Megazipline Europas: Mit über 70 km/h auf der Doppelseilrutsche ins Tal sausen. Vorab-Reservierung erforderlich.',
-      description_nl: 'De op één na langste megazipline van Europa: met ruim 70 km/u op de dubbele kabelbaan het dal in suizen. Reservering vooraf vereist.',
+      description: 'Adrenalinkick pur hoch über dem Hochsauerland: Auf der zweitlängsten Doppelseilrutsche Europas saust man mit bis zu 70 km/h ins Tal. Vorab-Terminreservierung erforderlich.',
+      description_nl: 'Pure adrenaline boven het Sauerland: op de op één na langste kabelbaan van Europa suis je met 70 km/u door het dal. Vooraf reserveren verplicht.',
       website: 'https://www.astenkick.de',
       location: 'Altastenberg',
-      profilePath: '/freizeit/outdoor/astenkick-megazipline'
+      businessId: 'astenkick-megazipline'
     },
     {
       name: 'Der Brabander Sauna & Spa',
       name_nl: 'Der Brabander Sauna & Spa',
       category: 'wellness',
-      benefit: '1x 2 Stunden Saunalandschaft (ab 16 J., Mo–Fr)',
-      benefit_nl: '1x 2 uur saunalandschap (vanaf 16 jr., ma–vr)',
-      description: 'Exklusive Entspannung mit verschiedenen Saunen, balinesischem Garten, Ruheraum, Kaltwasser-Tauchbecken und Erlebnisduschen.',
-      description_nl: 'Exclusieve ontspanning met verschillende sauna\'s, Balinese tuin, ontspanningsruimte, koudwater-dompelbad en belevingsdouches.',
+      benefit: '1x 2 Stunden Saunalandschaft (Mo–Fr, ab 16 J.)',
+      benefit_nl: '1x 2 uur saunalandschap (ma–vr, vanaf 16 jr.)',
+      description: 'Wohltuende Auszeit für Körper und Seele: Großzügige Saunawelt mit balinesischem Ruhegarten, Aromasaunen, Tauchbecken und Wärmebänken. Reservierung erbeten.',
+      description_nl: 'Heerlijk ontspannen in het sfeervolle saunacomplex met Balinese rusttuin, verschillende sauna\'s en koudwaterbad. Reservering gewenst.',
       website: 'https://www.saunawinterberg.de',
       location: 'Winterberg',
-      profilePath: '/hotels-und-unterkuenfte/hotels/vakantiehotel-der-brabander'
+      businessId: '284'
     },
     {
       name: 'Kletterwald Winterberg',
       name_nl: 'Klimbos Winterberg',
       category: 'action',
-      benefit: '1x Besuch im Kletterwald (Mo–Fr)',
-      benefit_nl: '1x bezoek aan het klimbos (ma–vr)',
-      description: 'Fünf abwechslungsreiche Kletterparcours auf dem Erlebnisberg Kappe mit Hängebrücken und Seilbahnen.',
-      description_nl: 'Vijf afwisselende klimroutes op de Erlebnisberg Kappe met hangbruggen en tokkelbanen.',
+      benefit: '1x Parcours-Klettern (Mo–Fr)',
+      benefit_nl: '1x klimavontuur (ma–vr)',
+      description: 'Hoch hinaus in den Wipfeln des Kappe-Berges: Fünf unterschiedliche Kletterparcours bieten Geschicklichkeitstests und Seilbahnen für jedes Erfahrungslevel.',
+      description_nl: 'Klimmen tussen de boomtoppen op de Kappe: vijf uitdagende routes met hangbruggen en tokkelbanen voor jong en oud.',
       website: 'https://www.erlebnisbergkappe.de',
-      location: 'Erlebnisberg Kappe'
+      location: 'Erlebnisberg Kappe',
+      businessId: '123'
     },
     {
       name: 'Fly-Line Winterberg',
       name_nl: 'Fly-Line Winterberg',
       category: 'action',
-      benefit: '1x Fahrt mit der Fly-Line (Mo–Fr)',
-      benefit_nl: '1x rit met de Fly-Line (ma–vr)',
-      description: 'Sanftes Gleiten mit 12 km/h in Rollschlitten durch die Baumwipfel – eine Mischung aus Achterbahn und Naturerlebnis.',
-      description_nl: 'Zweef met ca. 12 km/u in een speciale rolstoel door de boomtoppen – een mix van achtbaan en natuurbeleving.',
+      benefit: '1x Flugfahrt (Mo–Fr)',
+      benefit_nl: '1x zweefvlucht (ma–vr)',
+      description: 'Sanft und kurvenreich durch das Blätterdach: Im bequemen Hängegurtsystem gleitet man fast lautlos mit etwa 12 km/h hangabwärts mitten durch den Wald.',
+      description_nl: 'Rustig en bochtig tussen de bomen door glijden: in een comfortabel tuigje daal je met ca. 12 km/u af door het bos.',
       website: 'https://www.erlebnisbergkappe.de',
-      location: 'Erlebnisberg Kappe'
+      location: 'Erlebnisberg Kappe',
+      businessId: '6'
     },
     {
-      name: 'Panorama Erlebnis Brücke',
+      name: 'Panorama-Erlebnis-Brücke',
       name_nl: 'Panorama Belevenisbrug',
       category: 'ausflug',
-      benefit: '1x freier Eintritt',
+      benefit: '1x freier Rundgang',
       benefit_nl: '1x gratis toegang',
-      description: '435 Meter lange und 20 Meter hohe Aussichtsbrücke über das Sauerland mit 5 lustigen Kletter- und Hangelelementen.',
-      description_nl: '435 meter lange en 20 meter hoge panoramabrug over het Sauerland met 5 klim- en speelelementen.',
+      description: 'Atemberaubende Weitsichten über das Rothaargebirge: 435 Meter lange Aussichtsbrücke in 20 Metern Höhe inklusive abenteuerlicher Spaßelemente zum Klettern.',
+      description_nl: 'Schitterend uitzicht over het Sauerland: 435 meter lange loopbrug op 20 meter hoogte met speelse klimelementen.',
       website: 'https://www.erlebnisbergkappe.de',
-      location: 'Erlebnisberg Kappe'
+      location: 'Erlebnisberg Kappe',
+      businessId: '125'
     },
     {
       name: 'Sommerrodelbahn Kappe',
       name_nl: 'Zomerrodelbaan Kappe',
       category: 'action',
-      benefit: '1x Fahrt auf der Sommerrodelbahn',
-      benefit_nl: '1x rit op de zomerrodelbaan',
-      description: 'Mit dem Lift hinauf und dann mit Vollgas durch rasante Kurven, Brücken und Jumps talwärts sausen.',
-      description_nl: 'Met de lift omhoog en daarna vol gas door spannende bochten, bruggen en jumps naar beneden suizen.',
+      benefit: '1x Rodelfahrt talwärts',
+      benefit_nl: '1x afdaling zomerrodelbaan',
+      description: 'Kurvenspaß für die ganze Familie: Mit dem Schlepplift geht es bergauf, bevor der Rodelschlitten durch Steilkurven und Jumps rasant nach unten saust.',
+      description_nl: 'Plezier voor het hele gezin: met de lift omhoog en vervolgens op volle snelheid door de scherpe bochten omlaag roetsjen.',
       website: 'https://www.erlebnisbergkappe.de',
-      location: 'Erlebnisberg Kappe'
+      location: 'Erlebnisberg Kappe',
+      businessId: '127'
     },
     {
-      name: 'Schanzen Wirbel oder Herrloh Blitz',
-      name_nl: 'Schanzen Wirbel of Herrloh Blitz',
+      name: 'Sommerrodelbahn Herrloh-Blitz & Schanzen Wirbel',
+      name_nl: 'Zomerrodelbanen Herrloh-Blitz & Schanzen Wirbel',
       category: 'action',
       benefit: '1x Fahrt auf einer der Sommerrodelbahnen',
-      benefit_nl: '1x rit op een van de zomerrodelbanen',
-      description: 'Wahlweise 600 oder 700 Meter lange Rodelbahn mit Steilkurven, Kreisel und Tunnel direkt am Skiliftkarussell.',
-      description_nl: 'Keuze uit een 600 of 700 meter lange rodelbaan met scherpe bochten, tunnels en een looping direct bij de skiliften.',
+      benefit_nl: '1x rit op een van de twee banen',
+      description: 'Rasanter Fahrspaß direkt am Herrloh und der St.-Georg-Schanze: Zur Wahl stehen 600 oder 700 Meter Bahnlänge mit Tunneln, Kehren und Kreiseln.',
+      description_nl: 'Snelheid en actie bij de schans: keuze uit twee banen van 600 of 700 meter lengte met tunnels en steile bochten.',
       website: 'https://www.skiliftkarussell.de',
-      location: 'Herrloh / Skiliftkarussell'
+      location: 'Winterberg Herrloh',
+      businessId: '286'
     },
     {
-      name: 'Abenteuergolf Erlebnisberg Kappe',
-      name_nl: 'Avonturengolf Erlebnisberg Kappe',
+      name: 'Adventure Golf Kappe',
+      name_nl: 'Adventure Golf Kappe',
       category: 'sport',
-      benefit: '1 Runde Abenteuergolf (18 Loch)',
-      benefit_nl: '1 ronde avonturengolf (18 holes)',
-      description: 'Spaß für die ganze Familie auf liebevoll und naturgetreu gestalteten Kunstrasen-Bahnen mit Geländehindernissen.',
-      description_nl: 'Plezier voor het hele gezin op prachtig vormgegeven kunstgrasbanen met natuurlijke hindernissen.',
+      benefit: '1 komplette Runde (18 Bahnen)',
+      benefit_nl: '1 ronde minigolf (18 holes)',
+      description: 'Minigolf im modernen Gewand: Naturnah modellierte Bahnen mit Steinformationen, Gefällen und Raffinessen für spannende Duelle mit Freunden oder Familie.',
+      description_nl: 'Minigolf in een modern jasje: fraai aangelegde kunstgrasbanen met natuurlijke hindernissen voor een gezellige competitie.',
       website: 'https://www.erlebnisbergkappe.de',
-      location: 'Erlebnisberg Kappe'
+      location: 'Erlebnisberg Kappe',
+      businessId: '128'
     },
     {
-      name: 'Schwimmbad Winterberg',
-      name_nl: 'Zwembad Winterberg',
+      name: 'Mini- & Billardgolf Kurparkstuben',
+      name_nl: 'Mini- & Biljartgolf Kurparkstuben',
+      category: 'sport',
+      benefit: '1x Minigolf & 1x Pit-Pat Billardgolf',
+      benefit_nl: '1x minigolf & 1x pit-pat biljartgolf',
+      description: 'Zwei Geschicklichkeitsklassiker mitten im Grünen des Winterberger Kurparks: Klassischer Minigolfkurs plus die faszinierende Kombination aus Billard und Hindernisparcours.',
+      description_nl: 'Twee klassiekers in het groen van het Kurpark: een klassieke minigolfbaan én het geliefde pit-pat biljartgolf.',
+      website: 'https://www.kurparkstuben-winterberg.de',
+      location: 'Kurpark Winterberg',
+      businessId: 'kurparkstuben-minigolf'
+    },
+    {
+      name: 'Schwimmbad Winterberg (Hallenbad Oversum)',
+      name_nl: 'Zwembad Winterberg (Oversum)',
       category: 'wellness',
       benefit: '12x freier Eintritt (auch in Nass.Mobil inkl.)',
-      benefit_nl: '12x gratis toegang (ook inbegrepen in Nass.Mobil)',
-      description: 'Modernes Hallenbad mit 28°C Wassertemperatur, Bahnenbecken, Entspannungsbereich und wunderbarem Blick ins Grüne.',
-      description_nl: 'Modern binnenzwembad met 28°C watertemperatuur, baantjesbad en ontspanningsruimte met uitzicht op de natuur.',
+      benefit_nl: '12x gratis toegang (ook in Nass.Mobil)',
+      description: 'Das moderne städtische Hallenbad am Kurpark lädt zum sportlichen Bahnenziehen im 28 Grad warmen Wasser ein – ideal für regelmäßiges Training und Entspannung.',
+      description_nl: 'Modern overdekt zwembad aan het Kurpark: perfect om baantjes te trekken in het 28 graden warme water of ontspannen te genieten.',
       website: 'https://www.schwimmbad-winterberg.de',
       location: 'Winterberg',
-      profilePath: '/gesundheit-und-medizin/sport-outdoor/schwimmbad-winterberg'
+      businessId: 'schwimmbad-winterberg'
     },
     {
       name: 'Freibad Siedlinghausen',
       name_nl: 'Openluchtzwembad Siedlinghausen',
       category: 'wellness',
-      benefit: '1x freier Eintritt ins Freibad',
-      benefit_nl: '1x gratis toegang tot het openluchtbad',
-      description: 'Schwimmerbecken, Nichtschwimmerbecken mit Rutsche und Baby-Planschbecken bei angenehmer Wassertemperatur im Sommer.',
-      description_nl: 'Zwemmersbad, recreatiebad met glijbaan en peuterbad in het gezellige openluchtbad van Siedlinghausen.',
+      benefit: '1x Sommereintritt ins Freibad',
+      benefit_nl: '1x toegang tot het openluchtbad',
+      description: 'Herrliches Sommerbadvergnügen unter freiem Himmel: Beheizte Schwimmbecken, Wasserrutsche, Planschbereich und eine gepflegte Liegewiese im Grünen.',
+      description_nl: 'Heerlijk buiten zwemmen in de zomer: verwarmde baden, waterglijbaan, peuterbad en een ruime zonneweide.',
       website: 'https://www.baederverein-siedlinghausen.de',
-      location: 'Siedlinghausen'
+      location: 'Siedlinghausen',
+      businessId: 'freibad-siedlinghausen'
     },
     {
       name: 'Sportzentrum Hochsauerland',
@@ -195,53 +214,140 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       category: 'sport',
       benefit: '1 Stunde Tennis oder Squash (Mo–Fr)',
       benefit_nl: '1 uur tennis of squash (ma–vr)',
-      description: 'Sportlich aktiv bei jedem Wetter: Eine volle Stunde Tennis oder Squash nach Voranmeldung.',
-      description_nl: 'Lekker sporten bij elk weer: een heel uur tennis of squash op reservering.',
+      description: 'Matchball bei jedem Wetter: Eine volle Stunde Hallensport auf erstklassigen Tennis- oder Squash-Courts nach vorheriger Platzbuchung.',
+      description_nl: 'Sporten ongeacht het weer: een heel uur tennissen of squashen op uitstekende binnenbanen (vooraf reserveren).',
       website: 'https://www.sportzentrum-hochsauerland.de',
       location: 'Winterberg',
-      profilePath: '/ski-bike-sport/sport-outdoor/sportzentrum-hochsauerland'
+      businessId: 'sportzentrum-hochsauerland'
     },
     {
-      name: 'VELTINS-EisArena (Bobbahn)',
-      name_nl: 'VELTINS-EisArena (Bobsleebaan)',
+      name: 'VELTINS-EisArena (Event-Eintritt & Führung)',
+      name_nl: 'VELTINS-EisArena (Events & Rondleiding)',
       category: 'kultur',
-      benefit: '1x Event-Eintritt (Weltcup/WM) + 1x Bahnführung',
-      benefit_nl: '1x toegang wereldbeker/WK-event + 1x rondleiding',
-      description: 'Erleben Sie die schnellsten Bob-, Rodel- und Skeleton-Sportler der Welt live vor Ort oder blicken Sie bei einer Führung hinter die Kulissen.',
-      description_nl: 'Beleef \'s werelds snelste bobslee- en skeletonatleten live of neem een uniek kijkje achter de schermen tijdens een rondleiding.',
+      benefit: '1x Event-Ticket (Weltcup) + 1x Bahnführung',
+      benefit_nl: '1x event-ticket (wereldbeker) + 1x rondleiding',
+      description: 'Hautnah an der weltberühmten Eisrinne: Die schnellsten Bob-, Rodel- und Skeletonsportler bei Weltcup-Rennen anfeuern und bei einer exklusiven Führung den Eiskanal erkunden.',
+      description_nl: 'Beleef de wereldtop in bobslee en skeleton live langs de snelle ijsbaan, of neem deel aan een interessante rondleiding achter de schermen.',
       website: 'https://www.veltins-eisarena.de',
-      location: 'Winterberg'
+      location: 'Winterberg',
+      businessId: 'veltins-eisarena'
     },
     {
       name: 'Kartfun Neuastenberg',
       name_nl: 'Kartfun Neuastenberg',
       category: 'action',
-      benefit: '1x 10 Minuten Fahrt auf der Kartbahn (Mo–Fr)',
-      benefit_nl: '1x 10 minuten karten (ma–vr)',
-      description: 'Formel-1-Feeling pur auf einer der modernsten Indoor-Kartbahnen Deutschlands mit 550 Metern Streckenlänge.',
-      description_nl: 'Formule 1-gevoel op een van de modernste overdekte kartbanen van Duitsland met 550 meter lengte.',
+      benefit: '1x 10-Minuten-Fahrt (werktags)',
+      benefit_nl: '1x 10 minuten karten (werkdagen)',
+      description: 'Echtes Rennsportgefühl auf einer der modernsten Indoor-Kartstrecken Deutschlands: Schnelle Geraden, anspruchsvolle Kurvenkombinationen und moderne Karts.',
+      description_nl: 'Echte racesensatie op een van de modernste overdekte kartbanen van Duitsland met 550 meter asfalt en snelle bochten.',
       website: 'https://www.kartfun-astenberg.de',
-      location: 'Neuastenberg'
+      location: 'Neuastenberg',
+      businessId: 'kartfun-neuastenberg'
     },
     {
-      name: 'Bikeverleih PROBIKER',
-      name_nl: 'Fietsverhuur PROBIKER',
+      name: 'Bikeverleih PRO BIKER',
+      name_nl: 'Fietsverhuur PRO BIKER',
       category: 'sport',
-      benefit: '1x E-MTB leihen (Mo–Fr außerhalb Ferien)',
-      benefit_nl: '1x E-MTB huren (ma–vr buiten schoolvakanties)',
-      description: 'Hochwertiges E-Mountainbike ausleihen und die schönsten Trails und Waldwege der Ferienwelt Winterberg erkunden.',
-      description_nl: 'Huur een topklasse elektrische mountainbike en ontdek de mooiste routes rondom Winterberg.',
+      benefit: '1x E-Mountainbike-Tagesleihe (Mo–Fr außerhalb Ferien)',
+      benefit_nl: '1x daghuur e-mountainbike (ma–vr buiten schoolvakanties)',
+      description: 'Auf zwei Rädern durch die Sauerländer Bergwelt: Leistungsstarkes E-MTB ausleihen und die schönsten Waldtrails und Hochheiden rund um den Kahlen Asten erobern.',
+      description_nl: 'Verken de heuvels op een moderne elektrische mountainbike en ontdek de panoramische routes rond de Kahler Asten.',
       website: 'https://www.pro-biker.de',
-      location: 'Winterberg'
+      location: 'Winterberg',
+      businessId: '199'
+    },
+    {
+      name: 'Pferdefuhrhalterei Winterberg',
+      name_nl: 'Huifkartocht Paardenhouderij',
+      category: 'ausflug',
+      benefit: '1x Planwagenfahrt (freitags um 14 Uhr)',
+      benefit_nl: '1x huifkartocht (vrijdag 14:00 uur)',
+      description: 'Entschleunigung auf traditionelle Art: Im gemütlichen Planwagen, gezogen von kräftigen Kaltblutpferden, durch die idyllischen Wälder und Täler reisen.',
+      description_nl: 'Geniet van een sfeervolle rit in een traditionele huifkar, getrokken door sterke koudbloedpaarden door de prachtige natuur.',
+      website: 'https://www.pferdefuhrhalterei.de',
+      location: 'Winterberg',
+      businessId: '295'
+    },
+    {
+      name: 'Landhotel Grimmeblick (Bergwerk-Kegelbahn)',
+      name_nl: 'Landhotel Grimmeblick (Mijn-kegelbaan)',
+      category: 'sport',
+      benefit: '1x zwei Stunden Erlebnis-Kegeln',
+      benefit_nl: '1x 2 uur belevingskegelen',
+      description: 'Einzigartiges Kegelvergnügen in einer nachgebildeten Zechenlandschaft mit schummrigem Schwarzlicht und überraschenden Lichteffekten.',
+      description_nl: 'Bijzonder kegelen in een nagebouwde historische mijnschacht met sfeervol blacklight en speciale effecten.',
+      website: 'https://www.grimmeblick.de',
+      location: 'Altastenberg',
+      businessId: '187'
+    },
+    {
+      name: 'Die Tenne Winterberg',
+      name_nl: 'Die Tenne Winterberg',
+      category: 'action',
+      benefit: '1x TenneCard Clubvorteil',
+      benefit_nl: '1x TenneCard clubvoordeel',
+      description: 'Winterbergs Party-Institution im Ortskern: Vielfältige Dancefloors von Schlager über Charts bis Club-Sounds und gemütliche Kneipenbereiche.',
+      description_nl: 'Het bekende uitgaanscentrum in het centrum van Winterberg met meerdere muziekzalen, bar en dansvloeren.',
+      website: 'https://www.tenne-winterberg.de',
+      location: 'Winterberg',
+      businessId: 'tenne-winterberg'
+    },
+    {
+      name: 'Westdeutsches Wintersport-Museum',
+      name_nl: 'West-Duits Wintersportmuseum',
+      category: 'kultur',
+      benefit: '1x Museumseintritt',
+      benefit_nl: '1x toegang museum',
+      description: 'Faszinierende Zeitreise in Neuastenberg: Historische Holzski, Skiausrüstungen früherer Jahrzehnte und die spannende Geschichte des Tourismus im Hochsauerland.',
+      description_nl: 'Fascinerende blik op de geschiedenis van de wintersport in het Sauerland: van antieke houten ski\'s tot hedendaagse kampioenen.',
+      website: 'https://www.skimuseum-winterberg.de',
+      location: 'Neuastenberg',
+      businessId: 'westdeutsches-wintersport-museum'
+    },
+    {
+      name: 'Kappe Express & 6er Sesselbahn',
+      name_nl: 'Kappe Express & 6-persoons Stoeltjeslift',
+      category: 'ausflug',
+      benefit: '1x Fahrt im Panoramazug + 1x Sesselliftfahrt',
+      benefit_nl: '1x rit panoramatrein + 1x stoeltjeslift',
+      description: 'Bequem vom Stadtzentrum zum Erlebnisberg und mit der modernen Sesselbahn aussichtsreich über die Hänge schweben.',
+      description_nl: 'Gemakkelijk met het toeristentreintje van de stad naar de belevingsberg en met de stoeltjeslift genieten van het uitzicht.',
+      website: 'https://www.erlebnisbergkappe.de',
+      location: 'Erlebnisberg Kappe',
+      businessId: '6'
+    },
+    {
+      name: 'Stadtmarketing Winterberg (KuKuK Kulturabende)',
+      name_nl: 'Stadtmarketing Winterberg (KuKuK Cultuur)',
+      category: 'kultur',
+      benefit: '1x Eintritt zu einer KuKuK-Veranstaltung (VVK)',
+      benefit_nl: '1x toegang tot KuKuK-voorstelling (voorverkoop)',
+      description: 'Feinsinnige Bühnenkunst direkt vor Ort: Konzerte, Kabarett, Theater und Comedy im Rahmen der bekannten Winterberger KuKuK-Kulturreihe.',
+      description_nl: 'Hoogwaardige cultuurvoorstellingen in Winterberg: cabaret, muziek, toneel en comedy georganiseerd door Stadtmarketing.',
+      website: 'https://www.kukuk-winterberg.de',
+      location: 'Winterberg',
+      businessId: 'winterberg-touristik'
+    },
+    {
+      name: 'Geführte Altstadtrundgänge Winterberg & Hallenberg',
+      name_nl: 'Stadswandelingen Winterberg & Hallenberg',
+      category: 'kultur',
+      benefit: '1x Stadtführung in Winterberg oder Nachtwächtertour Hallenberg',
+      benefit_nl: '1x stadswandeling of nachtwachttocht',
+      description: 'Verborgene Ecken, Fachwerkhistorie und spannende Anekdoten aus vergangenen Jahrhunderten in den malerischen Gassen der Nachbarstädte.',
+      description_nl: 'Ontdek de geschiedenis, vakwerkhuizen en spannende verhalen over het verleden van Winterberg en Hallenberg.',
+      website: 'https://www.winterberg.de',
+      location: 'Winterberg / Hallenberg',
+      businessId: 'winterberg-touristik'
     },
     {
       name: 'Ettelsberg-Kabinenseilbahn Willingen',
       name_nl: 'Ettelsberg Kabelbaan Willingen',
       category: 'ausflug',
-      benefit: '1x Berg- und Talfahrt mit der Kabinenbahn',
-      benefit_nl: '1x retour bergrit met de kabelbaan',
-      description: 'Bequem auf den 838m hohen Ettelsberg schweben, den Hochheideturm besuchen oder gemütlich einkehren.',
-      description_nl: 'Comfortabel omhoog naar de 838 m hoge Ettelsberg, de Hochheideturm beklimmen of genieten op het terras.',
+      benefit: '1x Berg- und Talfahrt mit der Gondel',
+      benefit_nl: '1x retour bergrit kabelbaan',
+      description: 'Mit modernen Panorama-Gondeln auf den 838 Meter hohen Ettelsberg schweben, den Hochheideturm erklimmen und die Aussicht genießen.',
+      description_nl: 'Zweef in moderne gondels naar de top van de Ettelsberg op 838 meter hoogte en bezoek de uitzichttoren.',
       website: 'https://www.ettelsberg-seilbahn.de',
       location: 'Willingen'
     },
@@ -249,32 +355,21 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       name: 'Personenschifffahrt Biggesee',
       name_nl: 'Rondvaartboot Biggesee',
       category: 'ausflug',
-      benefit: '1x 1,5-stündige Schifffahrt (werktags bis 13 Uhr)',
-      benefit_nl: '1x 1,5 uur durende rondvaart (werkdagen tot 13 uur)',
-      description: 'Entspannte Bootstour über einen der schönsten Stauseen Nordrhein-Westfalens mit herrlichen Ausblicken.',
-      description_nl: 'Ontspannen boottocht over een van de mooiste meren van Noordrijn-Westfalen met prachtig uitzicht.',
+      benefit: '1x 90-minütige Seerundfahrt (werktags bis 13 Uhr)',
+      benefit_nl: '1x 90 minuten rondvaart (werkdagen tot 13 uur)',
+      description: 'Maritimes Flair mitten in Westfalen: Eine entspannte Schiffsrundfahrt auf den weiten Wasserflächen des Biggesees.',
+      description_nl: 'Heerlijk uitwaaien op het water: een ontspannen boottocht over het uitgestrekte stuwmeer van de Biggesee.',
       website: 'https://www.biggesee.de',
       location: 'Biggesee (Olpe)'
-    },
-    {
-      name: 'Westdeutsches Wintersport-Museum',
-      name_nl: 'West-Duits Wintersportmuseum',
-      category: 'kultur',
-      benefit: '1x freier Eintritt ins Museum',
-      benefit_nl: '1x gratis toegang tot het museum',
-      description: 'Spannende Zeitreise auf 250 qm Ausstellungsfläche durch die über 100-jährige Geschichte des Wintersports im Sauerland.',
-      description_nl: 'Fascinerende reis door meer dan 100 jaar wintersportgeschiedenis in het Sauerland op 250 m² tentoonstellingsruimte.',
-      website: 'https://www.skimuseum-winterberg.de',
-      location: 'Neuastenberg'
     },
     {
       name: 'Sauerland-Museum Arnsberg',
       name_nl: 'Sauerland-Museum Arnsberg',
       category: 'kultur',
-      benefit: '1x Tagesticket für Dauer- und Sonderausstellung',
-      benefit_nl: '1x dagkaart vaste en tijdelijke tentoonstelling',
-      description: 'Das hochmoderne Landesmuseum der Region im historischen Landsberger Hof mit faszinierenden interaktiven Ausstellungen.',
-      description_nl: 'Het toonaangevende streekmuseum in de historische Landsberger Hof met interactieve exposities.',
+      benefit: '1x Tageseintritt (Dauer- und Sonderausstellung)',
+      benefit_nl: '1x dagkaart museum & exposities',
+      description: 'Das preisgekrönte Kultur- und Geschichtsmuseum der Region im geschichtsträchtigen Landsberger Hof mit interaktiven Ausstellungen.',
+      description_nl: 'Het toonaangevende museum voor de cultuurgeschiedenis van het Sauerland in het historische paleis in Arnsberg.',
       website: 'https://www.sauerland-museum.de',
       location: 'Arnsberg'
     },
@@ -282,58 +377,57 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       name: 'Heinz Nixdorf MuseumsForum Paderborn',
       name_nl: 'Heinz Nixdorf MuseumsForum Paderborn',
       category: 'kultur',
-      benefit: '1x freier Eintritt',
-      benefit_nl: '1x gratis toegang',
-      description: 'Das weltgrößte Computermuseum: 5.000 Jahre Geschichte der Informationstechnik von der Keilschrift bis zur Künstlichen Intelligenz.',
-      description_nl: '\'s Werelds grootste computermuseum: 5.000 jaar geschiedenis van informatietechnologie van spijkerschrift tot AI.',
+      benefit: '1x Museumseintritt',
+      benefit_nl: '1x toegang museum',
+      description: 'Das weltgrößte Computermuseum: Eine fesselnde Reise durch 5.000 Jahre Informations- und Kommunikationstechnologie.',
+      description_nl: '\'s Werelds grootste computermuseum: interactieve ontdekkingstocht door 5.000 jaar communicatietechnologie en computers.',
       website: 'https://www.hnf.de',
       location: 'Paderborn'
     },
     {
-      name: 'Kegelbahn Landhotel Grimmeblick',
-      name_nl: 'Kegelbaan Landhotel Grimmeblick',
-      category: 'sport',
-      benefit: '1x zwei Stunden Erlebnis-Kegeln',
-      benefit_nl: '1x twee uur belevingskegelen',
-      description: 'Uriges Kegelerlebnis in einer als Bergwerk-Zeche gestalteten Bahn mit geheimnisvollen Schwarzlicht-Effekten.',
-      description_nl: 'Gezellig kegelen in een nagebouwde mijngang met mysterieuze blacklight-effecten.',
-      website: 'https://www.grimmeblick.de',
-      location: 'Altastenberg',
-      profilePath: '/hotels-und-unterkuenfte/hotels/landhotel-grimmeblick'
-    },
-    {
-      name: 'Pferdefuhrhalterei Winterberg',
-      name_nl: 'Huifkartocht Paardenhouderij',
-      category: 'ausflug',
-      benefit: '1x Planwagenfahrt (Freitags um 14 Uhr, mit Anm.)',
-      benefit_nl: '1x huifkartocht (vrijdag 14:00 uur, met aanm.)',
-      description: 'Gemütlich im Planwagen von kräftigen Kaltblutpferden gezogen durch die atemberaubende Natur rund um Winterberg.',
-      description_nl: 'Gezellig in de huifkar getrokken door sterke koudbloedpaarden door de schitterende natuur van Winterberg.',
-      website: 'https://www.pferdefuhrhalterei.de',
-      location: 'Winterberg'
-    },
-    {
-      name: 'KuKuK Kulturveranstaltung',
-      name_nl: 'KuKuK Cultuurevenement',
+      name: 'Residenzschloss Bad Arolsen',
+      name_nl: 'Residentieslot Bad Arolsen',
       category: 'kultur',
-      benefit: '1x Eintritt zu einer KuKuK-Veranstaltung',
-      benefit_nl: '1x toegang tot een KuKuK-voorstelling',
-      description: 'Vom Stadtmarketingverein Winterberg präsentierte Kultur-Highlights: Konzerte, Theater, Kabarett und Comedy (im VVK Tourist-Info).',
-      description_nl: 'Cultuurvoorstellingen gepresenteerd door Stadtmarketing: concerten, toneel, cabaret en comedy (voorverkoop Tourist Info).',
-      website: 'https://www.kukuk-winterberg.de',
-      location: 'Winterberg'
+      benefit: '1x Eintritt in die Ausstellung',
+      benefit_nl: '1x toegang kasteeltentoonstelling',
+      description: 'Barocke Prachtarchitektur im waldeckischen Versailles: Bedeutende Sammlungen zur Jagd- und Militärgeschichte in herrschaftlichen Sälen.',
+      description_nl: 'Prachtig barokkasteel naar voorbeeld van Versailles met indrukwekkende historische vertrekken en collecties.',
+      website: 'https://www.schloss-arolsen.de',
+      location: 'Bad Arolsen'
     },
     {
-      name: 'Tenne Winterberg',
-      name_nl: 'Tenne Winterberg',
-      category: 'action',
-      benefit: '1x TenneCard (Club & Kneipe)',
-      benefit_nl: '1x TenneCard (club & bar)',
-      description: 'Die Kult-Location in Winterberg für ausgelassene Partyabende mit Schlager, Charts, Club-Beats und gemütlicher Kneipenatmosphäre.',
-      description_nl: 'De bekende feestlocatie in Winterberg voor gezellige avonden met muziek, cocktails en dans.',
-      website: 'https://www.tenne-winterberg.de',
-      location: 'Winterberg',
-      profilePath: '/gastronomie/kneipen-und-bars/die-tenne-winterberg'
+      name: 'Disc Golf Park Altastenberg',
+      name_nl: 'Disc Golf Park Altastenberg',
+      category: 'sport',
+      benefit: '1x Frisbeescheiben-Ausleihe (mit Pfand)',
+      benefit_nl: '1x frisbeeschijf huur (met borg)',
+      description: 'Trendsportart in gesunder Höhenluft: Mit speziellen Frisbees wird über Wiesen und Hänge nach Zielen geworfen – Spaß für Jung und Alt.',
+      description_nl: 'Actieve buitensport in de berglucht: gooi de speciale frisbee in zo min mogelijk worpen in de doelmanden op de berghelling.',
+      website: 'https://www.altastenberg.de',
+      location: 'Altastenberg'
+    },
+    {
+      name: 'Baumpflanz-Aktion im Winterberger Stadtwald',
+      name_nl: 'Boomplantactie in het stadsbos',
+      category: 'ausflug',
+      benefit: '1x aktives Pflanzen eines eigenen Baumes (Oster-/Herbstferien)',
+      benefit_nl: '1x zelf een boom planten (vakanties)',
+      description: 'Aktiv zur Zukunft unserer Wälder beitragen: Bei geführten Pflanzaktionen setzen HeimatCard-Inhaber selbst junge Setzlinge im Revier.',
+      description_nl: 'Draag bij aan de natuur: plant je eigen boompje in het stadsbos van Winterberg tijdens speciale actiedagen.',
+      website: 'https://www.rathaus-winterberg.de',
+      location: 'Winterberg Stadtwald'
+    },
+    {
+      name: 'Wanderkarte & Broschüre Goldener Pfad',
+      name_nl: 'Wandelkaart & Gids Gouden Pad',
+      category: 'ausflug',
+      benefit: '1x detaillierte Wanderkarte & Erlebnisbroschüre',
+      benefit_nl: '1x wandelkaart & brochure',
+      description: 'Die besten Routen der Region griffbereit in der Tasche: Kostenfreie Ausgabe in der Tourist-Information am Kurpark.',
+      description_nl: 'Ontvang een complete wandelkaart en gids over het landschapstherapiepad op de Niedersfelder Hochheide.',
+      website: 'https://www.winterberg.de',
+      location: 'Tourist-Info Winterberg',
+      businessId: 'winterberg-touristik'
     }
   ];
 
@@ -352,46 +446,46 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
 
   const faqs = [
     {
-      q: isNl ? 'Wie kan de WinterbergCard kopen?' : 'Wer ist zum Kauf der WinterbergCard berechtigt?',
+      q: isNl ? 'Wie kan de WinterbergCard kopen?' : 'Wer kann die HeimatCard erwerben?',
       a: isNl 
-        ? 'De kaart richt zich exclusief op inwoners van de gemeente Winterberg (inclusief alle dorpen) met eerste of tweede verblijfplaats, evenals geregistreerde werknemers in Winterberg. Bij uitgifte en gebruik is een legitimatiebewijs vereist.' 
-        : 'Die Karte richtet sich exklusiv an die Bürgerinnen und Bürger der Stadt Winterberg (einschließlich aller Ortsteile) mit Erst- oder Zweitwohnsitz sowie an Beschäftigte in Winterberger Betrieben. Beim Kauf und bei der Nutzung muss ein amtlicher Lichtbildausweis vorgelegt werden.'
+        ? 'De kaart is exclusief ontwikkeld voor iedereen die in de gemeente Winterberg (inclusief alle dorpen zoals Züschen, Siedlinghausen, Niedersfeld etc.) woont met een eerste of tweede verblijfplaats, of die werkzaam is bij een bedrijf in Winterberg.' 
+        : 'Die Karte richtet sich gezielt an alle, die in der Stadt Winterberg oder einem ihrer 14 Ortsteile gemeldet sind (mit Erst- oder Zweitwohnsitz) sowie an alle Arbeitnehmerinnen und Arbeitnehmer, die in einem Winterberger Betrieb beschäftigt sind.'
     },
     {
-      q: isNl ? 'Wat is het verschil tussen de twee varianten?' : 'Was ist der Unterschied zwischen den beiden Varianten?',
+      q: isNl ? 'Wat is het verschil tussen de tarieven Nass.Mobil en Aktiv.Entspannt?' : 'Worin unterscheiden sich Nass.Mobil und Aktiv.Entspannt?',
       a: isNl 
-        ? 'De kleine variant „Nass.Mobil“ (25 € voor volwassenen / 20 € voor kinderen) bevat het hele jaar door 90 minuten gratis parkeren op alle openbare gemeentelijke parkeerplaatsen en 12 gratis bezoeken aan het overdekte zwembad van Winterberg. De grote variant „Aktiv.Entspannt“ (50 € / 40 €) bevat alle voordelen van Nass.Mobil PLUS meer dan 30 gratis vrijetijdsattracties in het Sauerland!' 
-        : 'Die kleine Variante „Nass.Mobil“ (25 € Erw. / 20 € Kinder) beinhaltet ganzjährig 90 Minuten kostenloses Parken auf städtischen Parkflächen und 12 Eintritte ins Hallenbad Winterberg. Die große Variante „Aktiv.Entspannt“ (50 € Erw. / 40 € Kinder) umfasst alle Leistungen von Nass.Mobil PLUS über 30 einmalige Freizeit- und Ausflugserlebnisse in der Region im Wert von über 350 €!'
+        ? '„Nass.Mobil“ (25 € voor volwassenen / 20 € voor kinderen tot 16 jaar) is de basispas voor het dagelijks leven: het biedt het hele jaar door 90 minuten gratis parkeren op 11 stadspleinen plus 12 bezoeken aan het overdekte zwembad. „Aktiv.Entspannt“ (50 € / 40 €) bevat alles van Nass.Mobil PLUS toegang tot meer dan 30 regionale topattracties met een totale waarde van ruim 350 €.' 
+        : '„Nass.Mobil“ (25 € Erwachsene / 20 € Kinder bis 16 Jahre) ist der ideale Alltagsbegleiter mit ganzjährig 90 Minuten Gratisparken auf 11 Parkplätzen und 12 Eintritten ins Schwimmbad Winterberg. „Aktiv.Entspannt“ (50 € Erwachsene / 40 € Kinder) beinhaltet das komplette Nass.Mobil-Paket und schaltet zusätzlich über 30 regionale Top-Freizeitattraktionen im Gesamtwert von über 350 € frei.'
     },
     {
-      q: isNl ? 'Hoe werkt het gratis parkeren van 90 minuten precies?' : 'Wie funktioniert das kostenlose Parken für 90 Minuten?',
+      q: isNl ? 'Hoe werkt het 90 minuten gratis parkeren in de praktijk?' : 'Wie funktioniert das 90-Minuten-Gratisparken in der Praxis?',
       a: isNl 
-        ? 'Met de kaart ontvangt u een parkeerkaart op kenteken. Plaats eenvoudig uw parkeerschijf samen met de zichtbare parkeerkaart achter de voorruit van uw auto. Dit geldt op alle openbare gemeentelijke parkeerzones in Winterberg (o.a. Waltenberg, Neue Mitte, Bremberg, Hillebachsee etc.).' 
-        : 'Mit dem Kauf der Karte wird Ihr Kfz-Kennzeichen erfasst und Sie erhalten einen gut sichtbaren Parkausweis. Legen Sie diesen zusammen mit einer Parkscheibe gut sichtbar hinter die Windschutzscheibe. Sie parken dann auf allen ausgewiesenen städtischen Parkflächen in Winterberg für 90 Minuten gebührenfrei.'
+        ? 'Bij aankoop van de kaart wordt uw autokenteken geregistreerd en ontvangt u een parkeerkaart. Plaats deze parkeerkaart samen met uw blauwe parkeerschijf duidelijk zichtbaar achter de voorruit van uw auto. Hiermee parkeert u 90 minuten gratis op alle deelnemende gemeentelijke parkeerterreinen.' 
+        : 'Beim Kauf der HeimatCard wird das amtliche Kennzeichen Ihres Pkw hinterlegt und Sie erhalten einen Berechtigungsausweis. Legen Sie diesen zusammen mit einer normalen blauen Parkscheibe gut sichtbar hinter die Windschutzscheibe. Sie parken damit auf allen 11 ausgewiesenen städtischen Parkflächen 90 Minuten kostenlos.'
     },
     {
-      q: isNl ? 'Hoe lang is de kaart geldig?' : 'Wie lange ist die Karte gültig?',
+      q: isNl ? 'Wat is de geldigheidsperiode van de kaart?' : 'Welcher Gültigkeitszeitraum gilt für die Karte?',
       a: isNl 
-        ? 'De kaart geldt altijd voor één kalenderjaar, vanaf de dag van uitgifte (vroegstens 1 januari) tot en met 31 december van het betreffende jaar.' 
-        : 'Die Karte gilt immer für ein volles Kalenderjahr – vom Tag der Ausstellung (frühestens ab dem 01. Januar) bis zum 31. Dezember des jeweiligen Jahres.'
+        ? 'De kaart geldt altijd voor één kalenderjaar, vanaf het moment van aankoop (op zijn vroegst vanaf 1 januari) tot en met 31 december van hetzelfde jaar.' 
+        : 'Die Gültigkeit umfasst ein volles Kalenderjahr – jeweils vom Tag der Ausstellung (frühestens ab dem 01. Januar) bis zum 31. Dezember des betreffenden Jahres.'
     },
     {
-      q: isNl ? 'Waar kan ik de kaart kopen?' : 'Wo kann ich die Karte kaufen?',
+      q: isNl ? 'Waar kan ik de kaart aanvragen en afhalen?' : 'Wo erhalte ich die HeimatCard?',
       a: isNl 
-        ? 'De kaart is uitsluitend verkrijgbaar bij de Tourist Information Winterberg (Am Kurpark 4, 59955 Winterberg, Tel: 02981 92500).' 
-        : 'Die Karte ist persönlich in der Tourist-Information Winterberg (Winterberg Touristik und Wirtschaft GmbH, Am Kurpark 4, 59955 Winterberg, Telefon: 02981 92500, E-Mail: info@winterberg.de) erhältlich.'
+        ? 'De kaart is persoonlijk verkrijgbaar bij de balie van de Tourist-Information Winterberg (Winterberg Touristik und Wirtschaft GmbH, Am Kurpark 4, 59955 Winterberg).' 
+        : 'Die Karte wird persönlich vor Ort in der Tourist-Information Winterberg (Winterberg Touristik und Wirtschaft GmbH, Am Kurpark 4, 59955 Winterberg, Tel.: 02981 92500) ausgestellt.'
     },
     {
-      q: isNl ? 'Wat moet ik doen met het zwembad-muntje (Schwimmbadcoin)?' : 'Was muss ich beim Schwimmbad-Coin beachten?',
+      q: isNl ? 'Wat gebeurt er met het zwembadmuntje aan het einde van het jaar?' : 'Was muss ich bezüglich des Schwimmbad-Coins beachten?',
       a: isNl 
-        ? 'De elektronische zwembadmunt moet, ongeacht het aantal bezoeken, uiterlijk op 15 januari van het volgende jaar weer worden ingeleverd bij de Tourist Info. Bij niet inleveren wordt 5 euro in rekening gebracht.' 
-        : 'Der elektronische Schwimmbadcoin für die 12 Hallenbadbesuche ist unabhängig von der tatsächlichen Nutzung bis spätestens 15. Januar des Folgejahres in der Tourist-Information abzugeben. Bei Verlust oder Nicht-Rückgabe fällt eine Gebühr von 5 Euro an.'
+        ? 'Het elektronische zwembad-muntje moet vóór 15 januari van het volgende jaar weer worden ingeleverd bij de Tourist-Info, ongeacht of alle 12 bezoeken zijn gebruikt. Bij verlies of niet-inleveren geldt een vergoeding van 5 Euro.' 
+        : 'Der Chip-Coin für das Schwimmbad Winterberg ist unabhängig von der Anzahl der tatsächlich genutzten Eintritte bis spätestens zum 15. Januar des Folgejahres in der Tourist-Information zurückzugeben. Andernfalls wird ein Pfandbetrag von 5 Euro fällig.'
     },
     {
-      q: isNl ? 'Kan de kaart worden overgedragen of cadeau worden gegeven?' : 'Kann die Karte übertragen oder verschenkt werden?',
+      q: isNl ? 'Mag de kaart worden doorgegeven aan familieleden of vrienden?' : 'Ist die Karte übertragbar?',
       a: isNl 
-        ? 'Nee, de kaart is strikt persoonsgebonden (naam en kenteken staan geregistreerd). Zij kan niet worden overgedragen aan andere personen.' 
-        : 'Nein, die Karte wird personalisiert auf den Namen und das Kennzeichen des Inhabers ausgestellt. Eine Weitergabe an Dritte ist ausgeschlossen.'
+        ? 'Nee, de kaart is strikt persoonsgebonden. Zowel de naam van de houder als het kenteken worden vastgelegd. Bij de aangesloten attracties dient een identiteitsbewijs te worden getoond.' 
+        : 'Nein, die HeimatCard ist personengebunden und nicht auf andere Personen übertragbar. Bei den Partnerbetrieben wird zur Legitimation ein amtlicher Lichtbildausweis herangezogen.'
     }
   ];
 
@@ -408,10 +502,10 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
 
       {/* Hero Banner */}
       <div className="relative bg-gradient-to-br from-[#0F4C2E] via-[#145A38] to-[#0A3822] rounded-3xl p-6 sm:p-10 md:p-12 text-white overflow-hidden shadow-xl mb-12">
-        <div className="relative z-10 max-w-[760px]">
+        <div className="relative z-10 max-w-[780px]">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 text-[#FCD34D] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4 backdrop-blur-xs border border-white/20">
             <Sparkles size={15} />
-            {isNl ? 'Exclusief voor inwoners van Winterberg' : 'Exklusiv für Bürgerinnen & Bürger von Winterberg'}
+            {isNl ? 'De officiële burgerkaart voor Winterberg' : 'Die offizielle Bürgerkarte für Einheimische & Beschäftigte'}
           </div>
 
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
@@ -421,26 +515,26 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
 
           <p className="text-white/90 text-base sm:text-lg md:text-xl leading-relaxed mb-6 font-normal">
             {isNl 
-              ? 'Ken jij je eigen streek eigenlijk wel? Met de officiële burgerkaart van de stad Winterberg geniet je van ruim 30 topattracties, 90 minuten gratis parkeren op städtische parkeerplaatsen en 12x gratis zwemmen – voor een fractie van de reguliere prijs!'
-              : 'Sag mal, kennst du eigentlich deine Heimat? Mit der offiziellen Bürgerkarte der Stadt Winterberg sicherst du dir über 30 unverwechselbare Erlebnisse, ganzjährig 90 Minuten freies Parken und 12 Hallenbad-Besuche direkt vor deiner Haustür – für einen Bruchteil des regulären Preises!'}
+              ? 'Wonen en werken in Winterberg heeft ontzettend veel te bieden. Met de officiële burgerkaart haal je het maximale uit je eigen streek: 90 minuten gratis parkeren bij het boodschappen doen, 12x ontspannen zwemmen én gratis toegang tot ruim 30 topattracties – al vanaf 25 Euro per jaar!'
+              : 'Leben und arbeiten, wo andere Urlaub machen: Mit der offiziellen HeimatCard der Stadt Winterberg genießen Bürgerinnen, Bürger und im Stadtgebiet Beschäftigte herausragende Privilegien. Ob 90 Minuten freies Parken bei Erledigungen, 12 Besuche im städtischen Hallenbad oder über 30 Freizeit-Highlights vor der eigenen Haustür – hier spart die ganze Familie!'}
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             <div className="bg-white/10 rounded-xl p-3 border border-white/10 text-center">
               <div className="text-2xl font-black text-white">ab 25 €</div>
-              <div className="text-xs text-white/80">{isNl ? 'Per kalenderjaar' : 'Pro Kalenderjahr'}</div>
+              <div className="text-xs text-white/80">{isNl ? 'Jaarkaart' : 'Pro Kalenderjahr'}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-3 border border-white/10 text-center">
               <div className="text-2xl font-black text-white">90 Min.</div>
-              <div className="text-xs text-white/80">{isNl ? 'Gratis parkeren' : 'Gratis Parken'}</div>
+              <div className="text-xs text-white/80">{isNl ? 'Gratis parkeren' : 'Freies Parken'}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-3 border border-white/10 text-center">
               <div className="text-2xl font-black text-white">12x</div>
-              <div className="text-xs text-white/80">{isNl ? 'Zwemmen Winterberg' : 'Hallenbad Winterberg'}</div>
+              <div className="text-xs text-white/80">{isNl ? 'Zwemmen Winterberg' : 'Hallenbad-Eintritt'}</div>
             </div>
             <div className="bg-white/10 rounded-xl p-3 border border-white/10 text-center">
               <div className="text-2xl font-black text-white">30+</div>
-              <div className="text-xs text-white/80">{isNl ? 'Topattracties gratis' : 'Freizeit-Highlights'}</div>
+              <div className="text-xs text-white/80">{isNl ? 'Topattracties gratis' : 'Freizeit-Erlebnisse'}</div>
             </div>
           </div>
         </div>
@@ -450,141 +544,124 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#F2761B]/10 rounded-full pointer-events-none blur-3xl" />
       </div>
 
-      {/* The Two Plans / Tariffs */}
+      {/* Tariffs Comparison */}
       <div className="mb-16">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <UnderlinedHeading 
-            text={isNl ? 'Kies jouw HeimatCard-variant' : 'Wähle dein HeimatCard-Modell'} 
+            text={isNl ? 'Twee sterke tarieven voor elke behoefte' : 'Zwei maßgeschneiderte Tarife für deinen Alltag'} 
             as="h2" 
           />
-          <p className="text-[#5F6B63] text-base sm:text-lg mt-3">
+          <p className="text-[#5F6B63] text-sm sm:text-base mt-3">
             {isNl 
-              ? 'Twee aantrekkelijke opties, perfect afgestemd op dagelijks gebruik of maximale vrijetijdsbeleving.'
-              : 'Zwei attraktive Varianten, perfekt abgestimmt auf Alltag, Besorgungen oder maximale Freizeit-Action.'}
+              ? 'Kies het pakket dat bij je past: van de handige parkeer- en zwempas tot het complete avonturenpakket voor het hele gezin.' 
+              : 'Wähle das Modell, das am besten zu deinen Lebensgewohnheiten passt – von der täglichen Alltagserleichterung bis zum vollen Abenteuerprogramm.'}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {/* Plan 1: Nass.Mobil */}
-          <div className="bg-white border-2 border-[#E5E0D6] rounded-3xl p-7 sm:p-9 shadow-sm hover:shadow-md transition-all flex flex-col relative">
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <div>
+          {/* Tariff 1: Nass.Mobil */}
+          <div className="bg-white border-2 border-[#EDE8E0] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#0F4C2E]/40 transition-all">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#0F4C2E] bg-[#EAF2EC] px-3 py-1 rounded-full">
-                  Basis-Tarif
+                  {isNl ? 'Voor het dagelijks leven' : 'Der Alltagsbegleiter'}
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#1B211D] mt-2">
-                  „Nass.Mobil“
-                </h3>
+                <span className="text-xs text-[#5F6B63] font-medium">{isNl ? 'Basispakket' : 'Basis-Tarif'}</span>
               </div>
-              <div className="w-12 h-12 rounded-2xl bg-[#EAF2EC] text-[#0F4C2E] flex items-center justify-center shrink-0">
-                <Waves className="w-6 h-6" />
-              </div>
-            </div>
 
-            <p className="text-[#5F6B63] text-sm sm:text-base leading-relaxed mb-6">
-              {isNl 
-                ? 'Ideaal voor dagelijkse boodschappen in de stad en regelmatige bezoekers van het overdekte zwembad.'
-                : 'Ideal für alle, die regelmäßig in Winterberg Besorgungen machen und gerne ihre Bahnen im Hallenbad ziehen.'}
-            </p>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#1B211D] mb-1">
+                Nass.Mobil
+              </h3>
+              <p className="text-xs sm:text-sm text-[#5F6B63] mb-6">
+                {isNl ? 'Perfect voor wie geregeld in Winterberg parkeert en graag zwemt.' : 'Ideal für Erledigungen in der Innenstadt und regelmäßige Schwimmbad-Besuche.'}
+              </p>
 
-            <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-2xl p-4 mb-6">
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl sm:text-4xl font-extrabold text-[#1B211D]">25 €</span>
-                <span className="text-sm font-medium text-[#7C8780]">{isNl ? 'volwassenen / jaar' : 'Erwachsene / Kalenderjahr'}</span>
+              <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[#EDE8E0]">
+                <span className="text-4xl font-black text-[#0F4C2E]">25 €</span>
+                <span className="text-sm text-[#5F6B63]">{isNl ? 'voor volwassenen' : 'Erwachsene'}</span>
+                <span className="text-xs text-[#5F6B63] ml-2">({isNl ? 'Kinderen tot 16 jr.: 20 €' : 'Kinder bis 16 J.: 20 €'})</span>
               </div>
-              <div className="text-sm font-semibold text-[#0F4C2E] mt-1">
-                20 € {isNl ? 'voor kinderen (t/m 16 jaar)' : 'für Kinder & Jugendliche (bis 16 Jahre)'}
-              </div>
-            </div>
 
-            <div className="space-y-3.5 mb-8 flex-1">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
-                <div className="text-sm sm:text-[15px] text-[#2F3A33]">
-                  <strong>{isNl ? '90 minuten gratis parkeren' : '90 Minuten gebührenfrei parken'}</strong> {isNl ? 'op alle openbare gemeentelijke parkeerzones in Winterberg' : 'auf allen städtischen Parkflächen'}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <Car className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <div className="text-sm sm:text-[15px] text-[#2F3A33]">
+                    <strong>{isNl ? '90 minuten gratis parkeren' : '90 Minuten kostenfreies Parken'}</strong> {isNl ? 'op 11 centrale parkeerterreinen in Winterberg.' : 'auf 11 zentralen städtischen Parkflächen im gesamten Stadtgebiet.'}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
-                <div className="text-sm sm:text-[15px] text-[#2F3A33]">
-                  <strong>{isNl ? '12x gratis toegang tot het zwembad Winterberg' : '12x freier Eintritt ins Hallenbad Winterberg'}</strong> {isNl ? '(28°C warm water, banenzwemmen & ontspanning)' : '(28°C Wassertemperatur, sportives Schwimmen mit Waldblick)'}
+                <div className="flex items-start gap-3">
+                  <Waves className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <div className="text-sm sm:text-[15px] text-[#2F3A33]">
+                    <strong>{isNl ? '12x gratis toegang tot het overdekte zwembad' : '12 kostenfreie Eintritte ins Hallenbad Winterberg'}</strong> {isNl ? 'in het Oversum (28 °C sportbad).' : 'am Kurpark (im Oversum) für sportliche Bahnen und Entspannung.'}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3 text-[#7C8780]">
-                <Info className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm">
-                  {isNl 
-                    ? 'Al na 4 zwembeurten heeft deze kaart zichzelf volledig terugverdiend!' 
-                    : 'Bereits ab dem vierten Schwimmbadbesuch hat sich die Karte komplett amortisiert!'}
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <div className="text-sm sm:text-[15px] text-[#2F3A33]">
+                    {isNl ? 'Geldig voor één heel kalenderjaar (januari t/m december).' : 'Volle 12 Monate Gültigkeit für ein komplettes Kalenderjahr.'}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-[#EDE8E0] text-xs text-[#7C8780]">
-              {isNl ? 'Verkrijgbaar bij Tourist-Info Winterberg' : 'Erhältlich persönlich in der Tourist-Information Winterberg'}
+            <div className="pt-4 border-t border-[#EDE8E0] text-xs text-[#5F6B63] flex items-center justify-between">
+              <span>{isNl ? 'Verkrijgbaar bij Tourist-Info' : 'Erhältlich bei der Tourist-Info'}</span>
+              <span className="font-semibold text-[#0F4C2E]">Am Kurpark 4</span>
             </div>
           </div>
 
-          {/* Plan 2: Aktiv.Entspannt */}
-          <div className="bg-white border-2 border-[#0F4C2E] rounded-3xl p-7 sm:p-9 shadow-lg hover:shadow-xl transition-all flex flex-col relative ring-4 ring-[#0F4C2E]/10">
-            <div className="absolute -top-3.5 right-6 bg-[#F2761B] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1.5">
-              <Flame size={14} />
-              {isNl ? 'Aanbevolen & Populairst' : 'Empfohlen & Bester Wert'}
+          {/* Tariff 2: Aktiv.Entspannt */}
+          <div className="relative bg-gradient-to-b from-[#F3FAF5] to-white border-2 border-[#0F4C2E] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-lg">
+            <div className="absolute -top-3.5 right-6 bg-[#F2761B] text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-xs">
+              {isNl ? 'Meest gekozen' : 'Beste Empfehlung'}
             </div>
 
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <div>
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3">
                 <span className="text-xs font-bold uppercase tracking-wider text-white bg-[#0F4C2E] px-3 py-1 rounded-full">
-                  All-Inclusive Erlebnis
+                  {isNl ? 'Vrijetijd & Beleving' : 'Das Rundum-Sorglos-Paket'}
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#1B211D] mt-2">
-                  „Aktiv.Entspannt“
-                </h3>
+                <span className="text-xs text-[#0F4C2E] font-bold">{isNl ? 'Alles-in-1' : '30+ Erlebnisse'}</span>
               </div>
-              <div className="w-12 h-12 rounded-2xl bg-[#0F4C2E] text-white flex items-center justify-center shrink-0">
-                <Compass className="w-6 h-6" />
-              </div>
-            </div>
 
-            <p className="text-[#5F6B63] text-sm sm:text-base leading-relaxed mb-6">
-              {isNl 
-                ? 'Het complete pakket: alle voordelen van Nass.Mobil PLUS meer dan 30 topattracties, kabelbanen, sauna en actie in het Sauerland!'
-                : 'Das ultimative Heimaterlebnis: Beinhaltet alle Leistungen von Nass.Mobil PLUS über 30 erstklassige Freizeit-, Sport- und Wellness-Highlights!'}
-            </p>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#1B211D] mb-1">
+                Aktiv.Entspannt
+              </h3>
+              <p className="text-xs sm:text-sm text-[#5F6B63] mb-6">
+                {isNl ? 'Maximale afwisseling voor gezinnen, sporters en cultuurliefhebbers.' : 'Für alle, die ihre Region aktiv erkunden und das volle Freizeitangebot auskosten möchten.'}
+              </p>
 
-            <div className="bg-[#EAF2EC] border border-[#0F4C2E]/20 rounded-2xl p-4 mb-6">
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl sm:text-4xl font-extrabold text-[#0F4C2E]">50 €</span>
-                <span className="text-sm font-medium text-[#2F3A33]">{isNl ? 'volwassenen / jaar' : 'Erwachsene / Kalenderjahr'}</span>
+              <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[#0F4C2E]/20">
+                <span className="text-4xl font-black text-[#0F4C2E]">50 €</span>
+                <span className="text-sm text-[#5F6B63]">{isNl ? 'voor volwassenen' : 'Erwachsene'}</span>
+                <span className="text-xs text-[#5F6B63] ml-2">({isNl ? 'Kinderen tot 16 jr.: 40 €' : 'Kinder bis 16 J.: 40 €'})</span>
               </div>
-              <div className="text-sm font-semibold text-[#0F4C2E] mt-1">
-                40 € {isNl ? 'voor kinderen (t/m 16 jaar)' : 'für Kinder & Jugendliche (bis 16 Jahre)'}
-              </div>
-            </div>
 
-            <div className="space-y-3.5 mb-8 flex-1">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
-                <div className="text-sm sm:text-[15px] text-[#2F3A33]">
-                  <strong>{isNl ? 'Alle voordelen van Nass.Mobil inbegrepen' : 'Komplette Leistungen von Nass.Mobil inklusive'}</strong> (90 Min. Gratisparken + 12x Hallenbad Winterberg)
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <div className="text-sm sm:text-[15px] text-[#2F3A33]">
+                    <strong>{isNl ? 'Inclusief alle voordelen van Nass.Mobil' : 'Vollständiges Leistungspaket von Nass.Mobil enthalten'}</strong> (90 Min. Gratisparken & 12x Hallenbad-Eintritt).
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
-                <div className="text-sm sm:text-[15px] text-[#2F3A33]">
-                  <strong>{isNl ? 'Meer dan 30 gratis topattracties' : 'Über 30 kostenfreie Freizeit- & Ausflugsziele'}</strong> (Astenkick, Brabander Sauna, Kletterwald, Fly-Line, Sommerrodelbahn, EisArena Bobbahn, Seilbahn Willingen, Biggesee-Schifffahrt uvm.)
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <div className="text-sm sm:text-[15px] text-[#2F3A33]">
+                    <strong>{isNl ? 'Meer dan 30 gratis topattracties' : 'Über 30 kostenfreie Freizeit- & Ausflugsziele'}</strong> (Astenkick Megazipline, Brabander Sauna, Kletterwald, Fly-Line, Sommerrodelbahnen, EisArena Bobbahn uvm.).
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
-                <div className="text-sm sm:text-[15px] text-[#2F3A33]">
-                  <strong>{isNl ? 'Gezamenlijke waarde van ruim 350 €' : 'Gesamtwert der Einzelleistungen über 350 €'}</strong> {isNl ? '– maximale besparing voor het hele gezin!' : '– maximaler Freizeitspaß vor der Haustür!'}
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                  <div className="text-sm sm:text-[15px] text-[#2F3A33]">
+                    <strong>{isNl ? 'Gezamenlijke waarde van ruim 350 €' : 'Gesamtwert aller Einzelleistungen über 350 €'}</strong> {isNl ? '– enorme besparing bij een investering van slechts 50 €!' : '– unschlagbarer Erlebnisfaktor für ein ganzes Jahr!'}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-[#0F4C2E]/20 text-xs text-[#0F4C2E] font-medium">
-              {isNl ? 'Verkrijgbaar bij Tourist-Info Winterberg' : 'Erhältlich persönlich in der Tourist-Information Winterberg'}
+            <div className="pt-4 border-t border-[#0F4C2E]/20 text-xs text-[#0F4C2E] font-medium flex items-center justify-between">
+              <span>{isNl ? 'Verkrijgbaar bij Tourist-Info Winterberg' : 'Ausstellung in der Tourist-Information'}</span>
+              <span className="font-bold">Am Kurpark 4</span>
             </div>
           </div>
         </div>
@@ -597,20 +674,20 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
             <Car className="w-5 h-5" />
           </div>
           <h2 className="font-display text-xl sm:text-2xl font-bold text-[#1B211D]">
-            {isNl ? '90 Minuten Gratis Parkeren in Winterberg' : '90 Minuten Gratis Parken im Stadtgebiet'}
+            {isNl ? '90 Minuten Gratis Parkeren in Winterberg' : '90 Minuten Gratis Parken im gesamten Stadtgebiet'}
           </h2>
         </div>
 
         <p className="text-[#3F4B42] text-sm sm:text-base leading-relaxed mb-6">
           {isNl 
-            ? 'Zowel bij „Nass.Mobil“ als bij „Aktiv.Entspannt“ is het felbegeerde gratis parkeren inbegrepen. Plaats eenvoudig uw parkeerschijf én het zichtbare Beschäftigten-/Bürger-parkeervignet achter de voorruit.'
-            : 'Sowohl bei „Nass.Mobil“ als auch bei „Aktiv.Entspannt“ ist das beliebte 90-Minuten-Gratisparken enthalten. Voraussetzung ist das gut sichtbare Auslegen der Parkscheibe sowie des ausgegebenen Parkausweises mit Ihrem amtlichen Kfz-Kennzeichen.'}
+            ? 'Zowel bij „Nass.Mobil“ als bij „Aktiv.Entspannt“ is het felbegeerde gratis parkeren inbegrepen. Plaats eenvoudig uw blauwe parkeerschijf samen met de officiële HeimatCard-parkeerkaart duidelijk zichtbaar achter de voorruit van uw auto. Zo parkeert u zonder parkeerkosten voor snelle boodschappen, winkelbezoeken of een kop koffie.'
+            : 'In beiden Tarifen ist das begehrte 90-Minuten-Freiparken fest integriert. Nach Ausstellung Ihrer Karte legen Sie einfach den personalisierten Parkausweis zusammen mit einer Parkscheibe gut lesbar hinter die Windschutzscheibe Ihres Pkw. So erledigen Sie Ihre Einkäufe, Arztbesuche oder Stadtbummel völlig entspannt ohne Parkgebühren.'}
         </p>
 
         <div className="bg-white rounded-2xl p-5 border border-[#EDE8E0]">
           <h4 className="font-bold text-sm text-[#1B211D] mb-3 flex items-center gap-2">
             <MapPin size={16} className="text-[#0F4C2E]" />
-            {isNl ? 'Geldig op de volgende openbare gemeentelijke parkeerplaatsen:' : 'Gültig auf folgenden städtischen Parkflächen in Winterberg:'}
+            {isNl ? 'Geldig op de volgende 11 gemeentelijke parkeerlocaties:' : 'Gültig auf folgenden 11 städtischen Parkflächen in Winterberg:'}
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs sm:text-sm text-[#5F6B63]">
             <div className="flex items-center gap-2">
@@ -623,7 +700,7 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]" />
-              Untere Pforte / Poststr. / Hagenstr.
+              Untere Pforte (Poststr. / Hagenstr.)
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]" />
@@ -631,7 +708,7 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]" />
-              Waltenberg-Galerie Parkplatz
+              Parkplatz Waltenberg-Galerie
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]" />
@@ -647,7 +724,7 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]" />
-              Parkplatz Bremberg (P3)
+              Parkplatz Bremberg (P3 Skigebiet)
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E]" />
@@ -666,13 +743,13 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
             <UnderlinedHeading 
-              text={isNl ? 'Alle inbegrepen attracties (Tarif Aktiv.Entspannt)' : 'Inkludierte Ausflugsziele & Erlebnisse'} 
+              text={isNl ? 'Alle inbegrepen attracties (Tarief Aktiv.Entspannt)' : 'Inkludierte Ausflugsziele & Erlebnisse'} 
               as="h2" 
             />
             <p className="text-[#5F6B63] text-sm sm:text-base mt-2">
               {isNl 
-                ? 'Ontdek meer dan 30 unieke vrijetijdservaringen direct voor uw voordeur.' 
-                : 'Über 30 einmalige Freizeit-, Sport- und Kulturerlebnisse im Sauerland und der Region.'}
+                ? 'Ontdek meer dan 30 topbestemmingen. Klik op het bedrijfsprofiel om meer te weten te komen over de onderneming in onze bedrijvengids.' 
+                : 'Über 30 hochwertige Freizeit-, Sport- und Naturangebote. Viele Partnerunternehmen sind direkt mit ihrem Profil in unserem Winterberg-Verzeichnis verknüpft.'}
             </p>
           </div>
 
@@ -695,60 +772,76 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredAttractions.map((att, idx) => (
-            <div 
-              key={idx}
-              className="bg-white border border-[#EDE8E0] rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#0F4C2E]/40 transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-[#EAF2EC] px-2.5 py-0.5 rounded-md">
-                    {att.location}
-                  </span>
+          {filteredAttractions.map((att, idx) => {
+            // Find linked business in database
+            const matchedBusiness = att.businessId ? businesses.find(b => b.id === att.businessId) : null;
+            const businessPath = matchedBusiness ? getBusinessPath(matchedBusiness, lang) : null;
+
+            return (
+              <div 
+                key={idx}
+                className="bg-white border border-[#EDE8E0] rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#0F4C2E]/40 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#0F4C2E] bg-[#EAF2EC] px-2.5 py-0.5 rounded-md">
+                      {att.location}
+                    </span>
+                    {matchedBusiness && (
+                      <span className="text-[10.5px] font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <Building2 size={11} />
+                        {isNl ? 'In gids' : 'Im Verzeichnis'}
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-[#1B211D] mb-1.5">
+                    {isNl ? att.name_nl : att.name}
+                  </h3>
+
+                  <div className="inline-block text-xs font-bold text-[#F2761B] bg-[#FFF7ED] px-2.5 py-1 rounded-md mb-3 border border-[#F2761B]/20">
+                    ✨ {isNl ? att.benefit_nl : att.benefit}
+                  </div>
+
+                  <p className="text-xs sm:text-[13.5px] text-[#5F6B63] leading-relaxed mb-4">
+                    {isNl ? att.description_nl : att.description}
+                  </p>
                 </div>
 
-                <h3 className="font-display font-bold text-lg text-[#1B211D] mb-1.5">
-                  {isNl ? att.name_nl : att.name}
-                </h3>
+                <div className="pt-3 border-t border-[#EDE8E0]/70 flex items-center justify-between gap-2">
+                  {businessPath ? (
+                    <button
+                      onClick={() => {
+                        if (onSelectBusiness) {
+                          onSelectBusiness(businessPath);
+                        } else {
+                          window.location.href = businessPath;
+                        }
+                      }}
+                      className="text-xs font-bold text-[#0F4C2E] hover:text-[#06301C] hover:underline flex items-center gap-1 cursor-pointer transition-colors"
+                      title={isNl ? `Bekijk profiel van ${matchedBusiness?.name || att.name}` : `Unternehmensprofil von ${matchedBusiness?.name || att.name} ansehen`}
+                    >
+                      <Building2 size={13} className="text-[#0F4C2E]" />
+                      <span>{isNl ? 'Unternehmensprofil' : 'Unternehmensprofil'}</span> →
+                    </button>
+                  ) : (
+                    <span />
+                  )}
 
-                <div className="inline-block text-xs font-bold text-[#F2761B] bg-[#FFF7ED] px-2.5 py-1 rounded-md mb-3 border border-[#F2761B]/20">
-                  ✨ {isNl ? att.benefit_nl : att.benefit}
+                  {att.website && (
+                    <a 
+                      href={att.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-xs font-medium text-gray-500 hover:text-gray-900 inline-flex items-center gap-1 transition-colors ml-auto"
+                    >
+                      Website <ExternalLink size={12} />
+                    </a>
+                  )}
                 </div>
-
-                <p className="text-xs sm:text-[13.5px] text-[#5F6B63] leading-relaxed mb-4">
-                  {isNl ? att.description_nl : att.description}
-                </p>
               </div>
-
-              <div className="pt-3 border-t border-[#EDE8E0]/70 flex items-center justify-between gap-2">
-                {att.profilePath ? (
-                  <button
-                    onClick={() => {
-                      if (onSelectBusiness) {
-                        onSelectBusiness(att.profilePath!);
-                      } else {
-                        window.location.href = att.profilePath!;
-                      }
-                    }}
-                    className="text-xs font-bold text-[#0F4C2E] hover:underline flex items-center gap-1 cursor-pointer"
-                  >
-                    {isNl ? 'Bedrijfsprofiel' : 'Unternehmensprofil'} →
-                  </button>
-                ) : (
-                  <span />
-                )}
-
-                <a 
-                  href={att.website} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-xs font-medium text-gray-500 hover:text-gray-900 inline-flex items-center gap-1 transition-colors"
-                >
-                  Website <ExternalLink size={12} />
-                </a>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -756,13 +849,13 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       <div className="mb-16 bg-white border border-[#EDE8E0] rounded-3xl p-6 sm:p-9 shadow-sm">
         <div className="max-w-2xl mb-8">
           <UnderlinedHeading 
-            text={isNl ? 'Zo kom je aan jouw WinterbergCard' : 'So einfach kommst du zu deiner HeimatCard'} 
+            text={isNl ? 'Zo eenvoudig vraag je jouw HeimatCard aan' : 'In 3 Schritten zu deiner HeimatCard'} 
             as="h2" 
           />
           <p className="text-[#5F6B63] text-sm sm:text-base mt-2">
             {isNl 
-              ? 'De kaart wordt persoonlijk uitgereikt bij de Tourist-Information Winterberg aan de Kurpark.' 
-              : 'Die Karte wird persönlich in der Tourist-Information am Kurpark für dich ausgestellt.'}
+              ? 'De pas wordt direct persoonlijk voor je aangemaakt bij de Tourist-Information Winterberg in het Kurpark.' 
+              : 'Die Karte wird direkt vor Ort in der Tourist-Information am Kurpark für dich personalisiert und ausgehändigt.'}
           </p>
         </div>
 
@@ -772,12 +865,12 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
               1
             </div>
             <h4 className="font-bold text-base text-[#1B211D] mb-1.5">
-              {isNl ? 'Voorwaarden controleren' : 'Voraussetzungen prüfen'}
+              {isNl ? 'Voorwaarde checken' : 'Berechtigung prüfen'}
             </h4>
             <p className="text-xs sm:text-sm text-[#5F6B63] leading-relaxed">
               {isNl 
-                ? 'Je woont in de stad Winterberg of een van de dorpen (eerste of tweede woning), of je werkt bij een bedrijf in Winterberg.' 
-                : 'Du hast deinen Erst- oder Zweitwohnsitz im Stadtgebiet Winterberg oder bist Beschäftigter in einem Winterberger Betrieb.'}
+                ? 'Je woont in de gemeente Winterberg (eerste of tweede woning) óf werkt bij een in Winterberg gevestigd bedrijf.' 
+                : 'Du hast deinen Wohnsitz im Stadtgebiet Winterberg oder arbeitest nachweislich in einem Betrieb vor Ort.'}
             </p>
           </div>
 
@@ -786,12 +879,12 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
               2
             </div>
             <h4 className="font-bold text-base text-[#1B211D] mb-1.5">
-              {isNl ? 'Documenten meenemen' : 'Unterlagen mitbringen'}
+              {isNl ? 'Documenten meenemen' : 'Unterlagen bereithalten'}
             </h4>
             <p className="text-xs sm:text-sm text-[#5F6B63] leading-relaxed">
               {isNl 
-                ? 'Breng je legitimatiebewijs en het kenteken van je auto mee (voor de registratie van het parkeervignet).' 
-                : 'Bringe einen amtlichen Lichtbildausweis sowie dein amtliches Kfz-Kennzeichen für den Parkausweis mit.'}
+                ? 'Neem een geldig identiteitsbewijs mee en houd het kenteken van je auto bij de hand voor het parkeervignet.' 
+                : 'Bringe deinen Personalausweis und das Kfz-Kennzeichen deines Pkw mit, damit der Parkausweis direkt ausgestellt werden kann.'}
             </p>
           </div>
 
@@ -800,12 +893,12 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
               3
             </div>
             <h4 className="font-bold text-base text-[#1B211D] mb-1.5">
-              {isNl ? 'Meteen meenemen & genieten' : 'Direkt mitnehmen & sparen'}
+              {isNl ? 'Meteen meenemen & genieten' : 'Sofort mitnehmen & sparen'}
             </h4>
             <p className="text-xs sm:text-sm text-[#5F6B63] leading-relaxed">
               {isNl 
-                ? 'Betaal je gewenste variant (25 € of 50 €) en neem je gepersonaliseerde pas en zwembadmunt direct mee!' 
-                : 'Zahle deinen Wunschtarif (25 € oder 50 €) und nimm deine personalisierte Karte inklusive Schwimmbadcoin direkt mit!'}
+                ? 'Kies je gewenste tarief (25 € of 50 €), reken af en neem je pas, parkeervignet en zwembadmunt meteen mee naar huis!' 
+                : 'Wähle deinen Wunschtarif (25 € oder 50 €) und nimm deine persönliche Karte samt Parkausweis und Schwimmbadcoin direkt mit!'}
             </p>
           </div>
         </div>
@@ -832,15 +925,32 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
             </div>
           </div>
 
-          <a
-            href="https://www.rathaus-winterberg.de/leben-wohnen/heimatkarte/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm bg-[#0F4C2E] hover:bg-[#0A3822] text-white shadow-sm transition-all shrink-0 cursor-pointer"
-          >
-            {isNl ? 'Website van de stad bezoeken' : 'Offizielle Rathaus-Seite'}
-            <ExternalLink size={14} />
-          </a>
+          <div className="flex items-center gap-3 flex-wrap">
+            <button
+              onClick={() => {
+                const tourBiz = businesses.find(b => b.id === 'winterberg-touristik');
+                if (tourBiz) {
+                  const p = getBusinessPath(tourBiz, lang);
+                  if (onSelectBusiness) onSelectBusiness(p);
+                  else window.location.href = p;
+                }
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-[#0F4C2E] border border-[#0F4C2E]/30 hover:bg-[#FAF8F5] transition-all cursor-pointer shadow-xs"
+            >
+              <Building2 size={13} />
+              {isNl ? 'Profiel Tourist-Info' : 'Profil im Verzeichnis'}
+            </button>
+
+            <a
+              href="https://www.rathaus-winterberg.de/leben-wohnen/heimatkarte/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-[#0F4C2E] hover:bg-[#0A3822] text-white shadow-sm transition-all shrink-0 cursor-pointer"
+            >
+              {isNl ? 'Officiële pagina van de stad' : 'Offizielle Rathaus-Seite'}
+              <ExternalLink size={14} />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -848,7 +958,7 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       <div className="mb-16">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <UnderlinedHeading 
-            text={isNl ? 'Veelgestelde Vragen' : 'Häufig gestellte Fragen'} 
+            text={isNl ? 'Veelgestelde Vragen over de Bürgerkarte' : 'Häufig gestellte Fragen zur HeimatCard'} 
             as="h2" 
           />
         </div>

@@ -5952,6 +5952,114 @@ export const businesses: Business[] = [
       saturday: '00:00 - 24:00',
       sunday: '00:00 - 24:00'
     }
+  },
+  {
+    id: 'astenkick-megazipline',
+    name: 'Astenkick Megazipline',
+    category: 'Freizeit',
+    subcategory: 'Outdoor-Freizeitgebiet',
+    description: 'Europas zweitlängste Megazipline in Altastenberg: Mit über 70 km/h auf der Doppelseilrutsche über das Tal rauschen.',
+    address: 'Astenstraße 34, 59955 Winterberg',
+    district: 'Altastenberg',
+    phone: '02981 9199590',
+    website: 'https://www.astenkick.de',
+    isActive: true
+  },
+  {
+    id: 'kartfun-neuastenberg',
+    name: 'Kartfun Neuastenberg',
+    category: 'Freizeit',
+    subcategory: 'Indoor-Spielplätze',
+    description: 'Moderne Indoor-Kartbahn auf 550 Metern Länge mit Rennsport-Atmosphäre für Groß und Klein in Neuastenberg.',
+    address: 'Winterberger Str. 2, 59955 Winterberg',
+    district: 'Neuastenberg',
+    phone: '02981 908708',
+    website: 'https://www.kartfun-astenberg.de',
+    isActive: true
+  },
+  {
+    id: 'freibad-siedlinghausen',
+    name: 'Freibad Siedlinghausen',
+    category: 'Freizeit',
+    subcategory: 'Schwimmbäder',
+    description: 'Beheiztes Freibad des Bädervereins Siedlinghausen mit Schwimmerbecken, Rutsche, Nichtschwimmerbereich und großer Liegewiese.',
+    address: 'Am Freibad 1, 59955 Winterberg',
+    district: 'Siedlinghausen',
+    phone: '02983 8333',
+    website: 'https://www.baederverein-siedlinghausen.de',
+    isActive: true
+  },
+  {
+    id: 'schwimmbad-winterberg',
+    name: 'Schwimmbad Winterberg',
+    category: 'Freizeit',
+    subcategory: 'Schwimmbäder',
+    description: 'Modernes städtisches Hallenbad am Kurpark (im Oversum) mit 28 °C Wassertemperatur, Bahnenbecken und Entspannungsmöglichkeiten.',
+    address: 'Am Kurpark 6, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92500',
+    website: 'https://www.schwimmbad-winterberg.de',
+    isActive: true
+  },
+  {
+    id: 'westdeutsches-wintersport-museum',
+    name: 'Westdeutsches Wintersport-Museum Neuastenberg',
+    category: 'Freizeit',
+    subcategory: 'Outdoor-Freizeitgebiet',
+    description: 'Umfassende Ausstellung auf 250 m² zur über 100-jährigen Historie des Ski- und Wintersports im Sauerland.',
+    address: 'Neuastenberger Str. 17, 59955 Winterberg',
+    district: 'Neuastenberg',
+    phone: '02981 2636',
+    website: 'https://www.skimuseum-winterberg.de',
+    isActive: true
+  },
+  {
+    id: 'sportzentrum-hochsauerland',
+    name: 'Sportzentrum Hochsauerland',
+    category: 'Ski, Bike & Sport',
+    subcategory: 'Tennisplätze',
+    description: 'Sportzentrum für Indoor-Tennis und Squash im Herzen von Winterberg mit flexiblen Platzbuchungen.',
+    address: 'Am Waltenberg 69, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8000',
+    website: 'https://www.sportzentrum-hochsauerland.de',
+    isActive: true
+  },
+  {
+    id: 'kurparkstuben-minigolf',
+    name: 'Kurparkstuben - Mini- & Billardgolf',
+    category: 'Freizeit',
+    subcategory: 'Outdoor-Freizeitgebiet',
+    description: 'Idyllisch gelegene Minigolfanlage und Pit-Pat-Billardgolf direkt am Kurpark Winterberg mit gemütlicher Einkehrmöglichkeit.',
+    address: 'Am Kurpark 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 3333',
+    website: 'https://www.kurparkstuben-winterberg.de',
+    isActive: true
+  },
+  {
+    id: 'veltins-eisarena',
+    name: 'VELTINS-EisArena',
+    category: 'Freizeit',
+    subcategory: 'Outdoor-Freizeitgebiet',
+    description: 'Eine der modernsten Kunsteisbahnen weltweit für Bob, Rodel und Skeleton sowie Austragungsort internationaler Weltcups und Führungen.',
+    address: 'Kapperundweg, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92600',
+    website: 'https://www.veltins-eisarena.de',
+    isActive: true
+  },
+  {
+    id: 'tenne-winterberg',
+    name: 'Die Tenne Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Kneipen und Bars',
+    description: 'Traditionsreicher Party- und Kneipentreffpunkt in der Winterberger Altstadt mit Club-Bereichen, Cocktailbar und Tanzstimmung.',
+    address: 'Marktstraße 12, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 1234',
+    website: 'https://www.tenne-winterberg.de',
+    isActive: true
   }
 ];
 

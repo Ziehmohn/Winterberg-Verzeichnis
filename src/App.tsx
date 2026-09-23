@@ -2104,6 +2104,7 @@ export default function App() {
               const match = businesses.find(b => slugify(b.name) === clean || b.id === clean);
               if (match) {
                 setSelectedBusiness(match);
+                window.history.pushState(null, '', getBusinessPath(match, lang));
               } else {
                 window.history.pushState(null, '', getPath(slugOrPath));
                 window.dispatchEvent(new PopStateEvent('popstate'));
