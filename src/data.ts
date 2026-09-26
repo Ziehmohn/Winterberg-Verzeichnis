@@ -331,7 +331,7 @@ export const businesses: Business[] = [
   {
     id: 'mollseifer-hof',
     name: 'Mollseifer Hof Inh. Volker Geier',
-    description: '',
+    description: 'Der Mollseifer Hof in Winterberg-Mollseifen ist ein traditionsreicher, familiengeführter Gasthof mit Restaurant und Gästezimmern unter der Leitung von Volker Geier. Weithin bekannt ist das Haus insbesondere für seine Spezialität, frische Hähnchen vom Buchenholzgrill. Dank seiner idyllischen Lage im Sauerland dient der Betrieb Erholungssuchenden und Aktivurlaubern als idealer Ausgangspunkt für Wanderungen und Radtouren.',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'In d. Trift 1, 59955 Winterberg-Mollseifen',
@@ -343,7 +343,7 @@ export const businesses: Business[] = [
   {
     id: 'eickmann-bau',
     name: 'Eickmann Bauunternehmung GmbH',
-    description: '',
+    description: 'Die Eickmann Bauunternehmung GmbH mit Sitz in Winterberg ist ein 1996 gegründetes Familienunternehmen für Bauprojekte im Hoch- und Tiefbau. Das Leistungsspektrum reicht vom Erd- und Tiefbau über den Gewerbe-, Industrie- und Wohnungsbau bis hin zu Brücken- und Ingenieurbauwerken sowie Sanierungen im Bestand. Ein besonderes Spezialgebiet des Betriebs liegt zudem in der baulichen Realisierung von Lift- und Seilbahnanlagen.',
     category: 'Handwerk',
     subcategory: 'Bauunternehmen',
     address: 'Am Hagenblech 63, 59955 Winterberg',
@@ -355,7 +355,7 @@ export const businesses: Business[] = [
   {
     id: 'brinkmann-bau',
     name: 'Brinkmann GmbH & Co. KG',
-    description: '',
+    description: 'Die Brinkmann GmbH & Co. KG ist ein Bau- und Tiefbauunternehmen mit Sitz in der Remmeswiese in Winterberg. Das Leistungsspektrum umfasst Tiefbau-, Ausschachtungs- und Planierungsarbeiten sowie fachgerechte Pflaster- und Teerarbeiten. Ergänzend steht den Kunden vor Ort ein zuverlässiger Containerdienst zur Verfügung.',
     category: 'Handwerk',
     subcategory: 'Bauunternehmen',
     address: 'Remmeswiese 8, 59955 Winterberg',
@@ -367,7 +367,7 @@ export const businesses: Business[] = [
   {
     id: 'hermann-josef-kiemen',
     name: 'Kiemen Hermann J. Elektroinstallation',
-    description: 'Ihr Meisterbetrieb für Elektroinstallationen, Gebäudetechnik und Elektroservice in Winterberg-Siedlinghausen.',
+    description: 'Hermann J. Kiemen Elektroinstallation ist ein inhabergeführter Elektrotechnik-Meisterbetrieb mit Sitz in Winterberg-Siedlinghausen. Das Unternehmen bietet ein umfassendes Leistungsspektrum im Bereich der Energie- und Gebäudetechnik, von klassischen Elektroinstallationen in Alt- und Neubauten über moderne KNX-Gebäudeautomation bis hin zur Installation von Photovoltaikanlagen und Ladeinfrastruktur.',
     category: 'Handwerk',
     subcategory: 'Elektriker',
     address: 'Briloner Str. 15, 59955 Winterberg-Siedlinghausen',
@@ -380,7 +380,7 @@ export const businesses: Business[] = [
   {
     id: 'wanderlust-restaurant',
     name: 'Restaurant Wanderlust',
-    description: '',
+    description: 'Das Restaurant Wanderlust im Hapimag Resort in Winterberg verbindet moderne deutsche Küche mit internationalen Einflüssen und setzt auf regionale sowie nachhaltige Zutaten. Neben saisonalen Gerichten und individuellen Überraschungsmenüs bietet die Küche eine vielseitige Auswahl an vegetarischen und veganen Speisen. In ungezwungener Atmosphäre laden ein gemütlicher Restaurant- und Barbereich sowie eine Terrasse zum Verweilen ein.',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Holtener Weg 21, 59955 Winterberg',
@@ -392,7 +392,7 @@ export const businesses: Business[] = [
   {
     id: 'bennys-kartoffelkiste',
     name: 'Benny\'s Kartoffelkiste',
-    description: '',
+    description: 'Benny\'s Kartoffelkiste in Winterberg bietet eine vielseitige, bodenständige Küche mit speziellem Fokus auf abwechslungsreiche Kartoffelgerichte und Grillspezialitäten. Die Speisekarte reicht von herzhaften Kartoffelgratins, Ofenkartoffeln und Reibekuchen bis hin zu Steaks vom Lavastein-Grill, Schnitzeln und Burgern. Dabei setzt der Gastronomiebetrieb auf frische Zutaten aus der Region und empfängt seine Gäste in einer gemütlich-rustikalen Atmosphäre.',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Am Waltenberg 45, 59955 Winterberg',
@@ -404,7 +404,7 @@ export const businesses: Business[] = [
   {
     id: 'andres-almstubn',
     name: 'AndRes Alm-Stub\'n',
-    description: '',
+    description: 'Die AndRes Alm-Stub’n im Zentrum von Winterberg bietet traditionelle bayerische Küche in uriger Hüttenatmosphäre. Auf der Speisekarte stehen herzhafte Schmankerl wie Schweinshaxe, Schnitzel oder Rinderbraten sowie vegetarische Gerichte. Neben dem gemütlichen Gastraum mit Kaminofen und Theke steht mit der separaten Feierstub’n auch ein Bereich für Gruppen und gesellige Anlässe zur Verfügung.',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Hauptstraße 28, 59955 Winterberg',
@@ -416,7 +416,7 @@ export const businesses: Business[] = [
   {
     id: 'ritmus-restaurant',
     name: 'RitmuS - Restaurant & Tapas Bar',
-    description: '',
+    description: 'Das Restaurant & Tapas Bar ',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Kolpingstraße 12, 59955 Winterberg-Siedlinghausen',
@@ -428,7 +428,7 @@ export const businesses: Business[] = [
   {
     id: 'die-sperre',
     name: 'Die Sperre | Landhotel & Restaurant',
-    description: 'Gemütliches Landhotel und Restaurant in Winterberg-Siedlinghausen mit regionaler Sauerländer Küche und herzlicher Gastfreundschaft.',
+    description: 'Das familiengeführte Landhotel & Restaurant ',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Sorpestraße 80, 59955 Winterberg-Siedlinghausen',
@@ -441,7 +441,7 @@ export const businesses: Business[] = [
   {
     id: 'gruener-apfel',
     name: 'Grüner Apfel Bistro-Pizzeria',
-    description: '',
+    description: 'Das Bistro-Pizzeria Grüner Apfel in Winterberg-Siedlinghausen bietet Gästen eine abwechslungsreiche Auswahl an italienischen und beliebten Bistro-Klassikern. Auf der Speisekarte stehen neben ofenfrischen Pizzen und verschiedenen Pastagerichten auch herzhafte Burger, Schnitzel sowie frische Salate. In gemütlicher Atmosphäre lädt das Lokal zum Speisen und Verweilen ein und hält bei gutem Wetter zudem Sitzplätze im Freien bereit.',
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     address: 'Inselstraße 1, 59955 Winterberg-Siedlinghausen',
