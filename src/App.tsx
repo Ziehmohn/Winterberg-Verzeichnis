@@ -6100,6 +6100,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             allowedBusinesses={allowedBusinesses} 
             businesses={businesses} 
             setBusinesses={setBusinesses} 
+            onEditBusiness={(bus: Business) => {
+              setEditingBusiness(bus);
+              setView('edit');
+            }}
           />
         
         ) : activeTab === 'pricing' ? (
@@ -6219,7 +6223,7 @@ function SeoAdminPanel({ theme, activeThemeKey, seoSettings, setSeoSettings, bus
   );
 }
 
-function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, businesses, setBusinesses }: any) {
+function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, businesses, setBusinesses, onEditBusiness }: any) {
   const [invoices, setInvoices] = useState<any[]>([]);
   const [loadingInvoices, setLoadingInvoices] = useState(true);
 
@@ -6338,9 +6342,20 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                       return (
                         <tr key={bus.id} className="border-b border-[#EDE8E0] hover:bg-[#FAF8F5]/80 transition-colors">
                           <td className="py-3.5 px-4">
-                            <div className="font-bold text-[#1B211D] flex items-center gap-1.5">
+                            <div className="flex items-center gap-1.5">
                               <span className="text-amber-500 text-xs">★</span>
-                              {bus.name}
+                              {onEditBusiness ? (
+                                <button
+                                  type="button"
+                                  onClick={() => onEditBusiness(bus)}
+                                  className="font-bold text-[#1B211D] hover:text-[#0F4C2E] hover:underline transition-colors text-left cursor-pointer p-0 bg-transparent border-none text-[14px]"
+                                  title="Unternehmensprofil im Backend bearbeiten"
+                                >
+                                  {bus.name}
+                                </button>
+                              ) : (
+                                <span className="font-bold text-[#1B211D]">{bus.name}</span>
+                              )}
                             </div>
                             <div className="text-[12px] text-[#8A928B] flex items-center gap-2 mt-0.5">
                               <span>ID: {bus.id}</span>
@@ -6383,13 +6398,26 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                           </td>
                           <td className="py-3.5 px-4 text-right">
                             <div className="flex items-center justify-end gap-2">
+                              {onEditBusiness && (
+                                <button 
+                                  type="button"
+                                  onClick={() => onEditBusiness(bus)}
+                                  className="px-2.5 py-1 rounded text-xs font-semibold bg-[#0F4C2E] text-white hover:bg-[#06301C] transition-colors cursor-pointer inline-flex items-center gap-1 shadow-2xs"
+                                  title="Unternehmensprofil im Backend bearbeiten"
+                                >
+                                  <Edit2 className="w-3 h-3" />
+                                  <span>Bearbeiten</span>
+                                </button>
+                              )}
                               <a 
-                                href={`/unternehmen/${bus.id}`} 
+                                href={getBusinessPath(bus)} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="px-2.5 py-1 rounded text-xs font-semibold bg-[#FAF8F5] text-[#0F4C2E] border border-[#EDE8E0] hover:bg-[#EAE5DB] transition-colors"
+                                className="px-2.5 py-1 rounded text-xs font-semibold bg-[#FAF8F5] text-[#5F6B63] border border-[#EDE8E0] hover:bg-[#EAE5DB] hover:text-[#1B211D] transition-colors inline-flex items-center gap-1"
+                                title="Öffentliches Live-Profil in neuem Tab öffnen"
                               >
-                                Profil
+                                <span>Live-Profil</span>
+                                <ExternalLink className="w-3 h-3" />
                               </a>
                               {!isCanceling && (
                                 <button
