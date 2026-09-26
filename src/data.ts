@@ -453,7 +453,7 @@ export const businesses: Business[] = [
   {
     id: 'pizzahaus-winterberg',
     name: 'Pizzahaus Winterberg',
-    description: '',
+    description: 'Das Pizzahaus in der Marktstraße im Zentrum von Winterberg bietet eine vielfältige Auswahl an ofenfrischen Pizzen und traditionellen Pastagerichten. Neben klassischen Spezialitäten hält das Lokal auch vegetarische und vegane Optionen bereit. Alle Gerichte können im Restaurant verzehrt, zur Abholung vorbestellt oder über den Lieferservice direkt nach Hause geliefert werden.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     address: 'Marktstraße 12, 59955 Winterberg',
@@ -466,7 +466,7 @@ export const businesses: Business[] = [
   {
     id: 'pizzeria-dani',
     name: 'Pizzeria Dani',
-    description: '',
+    description: 'Die Pizzeria Dani in Winterberg bietet klassische italienische Küche in zentraler Lage am Waltenberg. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -481,7 +481,7 @@ export const businesses: Business[] = [
   {
     id: 'colosseum',
     name: 'Restaurant Pizzeria Colosseum Winterberg',
-    description: '',
+    description: 'Das Restaurant Pizzeria Colosseum an der Hauptstraße in Winterberg bietet eine vielfältige Auswahl an italienischen und mediterranen Spezialitäten wie ofenfrische Pizzen, hausgemachte Pasta, Salate sowie Fleisch- und Fischgerichte. Das Lokal hält Sitzplätze im Innenbereich sowie auf einer Außenterrasse bereit und eignet sich gleichermaßen für Paare, Familien und Gruppen. Neben dem gemütlichen Verweilen vor Ort können Gäste alle Speisen auch bequem über den Abholservice bestellen.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -497,7 +497,7 @@ export const businesses: Business[] = [
   {
     id: 'pizzeria-venezia',
     name: 'Ristorante Pizzeria Venezia',
-    description: '',
+    description: 'Das Ristorante Pizzeria Venezia an der Unteren Pforte in Winterberg bietet traditionelle italienische Küche in einladender Atmosphäre. Auf der Speisekarte stehen neben knusprigen Steinofenpizzen und klassischen Pastagerichten auch frische Salate sowie italienische Eisspezialitäten und Desserts. Alle Gerichte können vor Ort im Restaurant genossen oder auch zur Mitnahme bestellt werden.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     address: 'u. Pforte 9, 59955 Winterberg',
@@ -509,7 +509,7 @@ export const businesses: Business[] = [
   {
     id: 'da-salvatore',
     name: 'Ristorante Da Salvatore',
-    description: '',
+    description: 'Das Ristorante Da Salvatore an der Bahnhofstraße in Winterberg bietet traditionelle italienische Küche in einladender Atmosphäre. Auf der Speisekarte finden sich klassische Spezialitäten wie hausgemachte Pasta, ofenfrische Pizzen, Antipasti sowie ausgewählte Fleisch- und Fischgerichte. Für die Gäste stehen neben dem stilvoll eingerichteten Innenbereich auch ein beheizter Wintergarten sowie eine Außenterrasse zur Verfügung.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -524,7 +524,7 @@ export const businesses: Business[] = [
   {
     id: 'markus-klauke-gmbh',
     name: 'Markus Klauke GmbH',
-    description: '',
+    description: 'Die Markus Klauke GmbH ist ein Malerfachbetrieb mit Sitz in Winterberg-Siedlinghausen. Das Unternehmen bietet ein vielseitiges Leistungsspektrum rund um Maler-, Lackier- und Tapezierarbeiten sowie Fassadengestaltungen und Instandsetzungen im Innen- und Außenbereich. Ergänzend umfasst das Portfolio Trockenbauarbeiten, das Verlegen von Bodenbelägen sowie fachgerechte Schimmelsanierungen.',
     category: 'Handwerk',
     subcategory: 'Maler & Lackierer',
     address: 'Senge-Platten-Straße 8, 59955 Winterberg-Siedlinghausen',
@@ -536,7 +536,7 @@ export const businesses: Business[] = [
   {
     id: 'malerbetrieb-schnorbus',
     name: 'Malerbetrieb Schnorbus',
-    description: '',
+    description: 'Der 1987 gegründete Malerbetrieb Schnorbus aus Winterberg-Züschen bietet umfassende Handwerksleistungen für die Gestaltung von Innen- und Außenbereichen. Das Spektrum des Familienunternehmens reicht von klassischen Maler-, Tapezier- und Fassadenarbeiten bis hin zu kreativen Spachteltechniken und Spezial-Wanddekoren. Ergänzend gehören fachgerechte Bodenbelagsarbeiten sowie fugenlose Badgestaltungen zum Leistungsangebot des Betriebs.',
     category: 'Handwerk',
     subcategory: 'Maler & Lackierer',
     address: 'Oberstraße 12, 59955 Winterberg-Züschen',
@@ -548,7 +548,7 @@ export const businesses: Business[] = [
   {
     id: 'maler-leber',
     name: 'Maler Leber Inh. Christopher Seston - Maler Winterberg / Brilon',
-    description: '',
+    description: 'Maler Leber ist ein traditionsreicher Malerfachbetrieb aus Winterberg, der von Maler- und Lackierermeister Christopher Seston geführt wird. Das 1964 gegründete Unternehmen bietet ein vielseitiges Leistungsspektrum rund um Maler-, Lackier- und Tapezierarbeiten sowie kreative Raum- und Wandgestaltungen im Innenbereich. Ergänzend umfasst das Angebot Fassadengestaltungen, Wärmedämmverbundsysteme, Bodenbelagsarbeiten sowie fachgerechte Schimmelpilzbeseitigungen.',
     category: 'Handwerk',
     subcategory: 'Maler & Lackierer',
     address: 'Eichendorffsiedlung 12, 59955 Winterberg',
@@ -560,7 +560,7 @@ export const businesses: Business[] = [
   {
     id: 'gartenbau-biene',
     name: 'Gartenbau Biene',
-    description: '',
+    description: 'Gartenbau Biene ist ein meistergeführter Fachbetrieb für Garten- und Landschaftsbau mit Sitz im Gewerbegebiet Burmecke in Winterberg-Siedlinghausen. Das im März 2006 gegründete Unternehmen bietet ein umfassendes Leistungsspektrum von der individuellen Gartengestaltung über Pflaster-, Terrassen- und Zaunbau bis hin zu Teichanlagen, Baumpflege und Baggerarbeiten. Als anerkannter Ausbildungsbetrieb und Mitglied im Verband Garten-, Landschafts- und Sportplatzbau NRW setzt der Betrieb Projekte im Außenbereich fachgerecht um.',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Am Iberg 7, 59955 Winterberg',
@@ -572,7 +572,7 @@ export const businesses: Business[] = [
   {
     id: 'garna-garten',
     name: 'GarNa; Garten und Natur',
-    description: '',
+    description: 'GarNa (Garten und Natur) in Winterberg-Siedlinghausen ist ein Fachbetrieb für naturnahe Gartengestaltung, ökologische Gartenpflege und fundierte Gartenberatung. Das Unternehmen von Dagmar Kramer legt den Schwerpunkt auf artenreiche, nachhaltige Gartenkonzepte und verzichtet dabei konsequent auf chemisch-synthetische Dünger oder Pestizide. Ergänzt wird das Angebot durch Kurse der GarNa Natur-Akademie sowie den am Standort gelegenen, mit der Plakette ',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Sorpestraße 34a, 59955 Winterberg-Siedlinghausen',
@@ -583,7 +583,7 @@ export const businesses: Business[] = [
   {
     id: 'tielke-garten',
     name: 'Tielke Garten-und Landschaftsbau',
-    description: '',
+    description: 'Tielke Garten- und Landschaftsbau ist ein von Gärtnermeister Frank Tielke geführter Meisterbetrieb mit Sitz in Winterberg-Züschen. Das Unternehmen bietet umfassende Leistungen von der Beratung und Planung über Neu- und Umgestaltungen bis hin zu Pflasterarbeiten sowie Mauer- und Zaunbau. Zudem übernimmt der Fachbetrieb die fachgerechte Pflege von Gartenanlagen sowie Baum- und Heckenschnitte.',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Ockelsbach 2, 59955 Winterberg',
@@ -595,7 +595,7 @@ export const businesses: Business[] = [
   {
     id: 'ralph-luetteken',
     name: 'Ralph Lütteken GmbH',
-    description: '',
+    description: 'Die Ralph Lütteken GmbH & Co. KG ist ein meistergeführter Fachbetrieb für Garten- und Landschaftsbau mit Sitz in Winterberg. Das Leistungsspektrum umfasst die individuelle Planung und Gestaltung von Außenanlagen, Pflaster- und Natursteinarbeiten sowie den Bau von Terrassen, Teichen und Pools. Ergänzend übernimmt das Unternehmen fachgerechte Pflegearbeiten, Baum- und Gehölzschnitte sowie Begrünungen für private und gewerbliche Kunden.',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Burmeckestraße 10, 59955 Winterberg',
@@ -607,7 +607,7 @@ export const businesses: Business[] = [
   {
     id: 'creative-garden',
     name: 'CREATIVE GARDEN',
-    description: '',
+    description: 'CREATIVE GARDEN ist ein Handwerksbetrieb für Garten- und Landschaftsbau mit Sitz in Winterberg. Das Dienstleistungsangebot umfasst die individuelle Beratung, Gestaltung und fachgerechte Ausführung verschiedener Garten- und Landschaftsbauarbeiten sowie die Pflege von Außenanlagen. Das Unternehmen bietet seinen Kunden maßgeschneiderte Lösungen für die kreative Verwirklichung privater Gartenprojekte.',
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Jakobusstraße 23, 59955 Winterberg',
@@ -619,7 +619,7 @@ export const businesses: Business[] = [
   {
     id: 'santherm-heizung',
     name: 'SanTHERM Heizung Sanitär Klima Haustechnik GmbH',
-    description: '',
+    description: 'Die SanTHERM Heizung Sanitär Klima Haustechnik GmbH in Winterberg ist ein Fachbetrieb für moderne Heizungs-, Sanitär- und Haustechnik. Das 1998 gegründete Handwerksunternehmen ist insbesondere auf energieeffiziente Heizsysteme wie Wärmepumpen und Pelletanlagen sowie auf die Planung und Umsetzung von Komplettbädern spezialisiert. Ein fachgerechter Kundendienst und Wartungsservice runden das Leistungsangebot des Betriebs ab.',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Lamfert 11, 59955 Winterberg',
@@ -631,7 +631,7 @@ export const businesses: Business[] = [
   {
     id: 'lefarth-braun',
     name: 'Lefarth & Braun Haustechnik GmbH',
-    description: '',
+    description: 'Die Lefarth & Braun Haustechnik GmbH (im Handelsregister als Braun & Lefarth Haustechnik GmbH geführt) ist ein Handwerksbetrieb für Heizungs- und Sanitärtechnik mit Sitz in Winterberg. Das Leistungsspektrum umfasst die Planung, fachgerechte Installation und Wartung moderner Heizsysteme, erneuerbarer Energien wie Wärmepumpen sowie umfassende Sanitär- und Badlösungen. Ergänzt wird das Angebot durch technische Dienstleistungen in den Bereichen Lüftungsanlagen und Schwimmbadtechnik.',
     category: 'Handwerk',
     subcategory: 'Heizungstechnik',
     address: 'Am Hagenblech 3, 59955 Winterberg',
