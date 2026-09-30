@@ -200,9 +200,9 @@ async function generatePdf() {
 
   <div class="hero">
     <h1>Verkaufsoffene Sonntage Winterberg 2026</h1>
-    <p>Übersicht aller 33 zugelassenen Sonn- & Feiertagsöffnungen für den Einzelhandel in der Ferien- und Kurstadt Winterberg. Erleben Sie Mode, Schuhe, Outdoor und Shopping mit alpinem Flair!</p>
+    <p>Übersicht aller 39 zugelassenen Sonn- & Feiertagsöffnungen für den Einzelhandel in der Ferien- und Kurstadt Winterberg. Erleben Sie Mode, Schuhe, Outdoor und Shopping mit alpinem Flair!</p>
     <div class="info-bar">
-      <div class="info-item">🕒 Kernöffnungszeit: 13:00 – 18:00 Uhr</div>
+      <div class="info-item">🕒 Öffnungszeiten: 11:00 – 17:00 Uhr</div>
       <div class="info-item">📍 Einkaufsmeile: Am Waltenberg, Hauptstraße & Neue Mitte</div>
       <div class="info-item">🛍️ Über 30 teilnehmende Boutiquen & Fachgeschäfte</div>
     </div>
@@ -211,8 +211,9 @@ async function generatePdf() {
   <div class="grid">
     <!-- Januar -->
     <div class="month-card">
-      <div class="month-header"><span>Januar 2026</span><span class="month-count">3 Sonntage</span></div>
+      <div class="month-header"><span>Januar 2026</span><span class="month-count">4 Sonntage</span></div>
       <ul class="date-list">
+        <li class="date-item"><span class="date-day">So. 04.01.</span><span class="date-event">Bob & Skeleton WC</span></li>
         <li class="date-item"><span class="date-day">So. 11.01.</span><span class="date-event">Rennrodel WC</span></li>
         <li class="date-item"><span class="date-day">So. 18.01.</span><span class="date-event">Junior WC Rodeln</span></li>
         <li class="date-item"><span class="date-day">So. 25.01.</span><span class="date-event">Wintersport</span></li>
@@ -226,7 +227,7 @@ async function generatePdf() {
         <li class="date-item"><span class="date-day">So. 01.02.</span><span class="date-event">Winterferien</span></li>
         <li class="date-item"><span class="date-day">So. 08.02.</span><span class="date-event">Skisaison</span></li>
         <li class="date-item"><span class="date-day">So. 15.02.</span><span class="date-event">Karnevalswochenende</span></li>
-        <li class="date-item"><span class="date-day">So. 22.02.</span><span class="date-event">Hauptsaison</span></li>
+        <li class="date-item"><span class="date-day">So. 22.02.</span><span class="date-event">Snowboard WC</span></li>
       </ul>
     </div>
 
@@ -240,9 +241,11 @@ async function generatePdf() {
 
     <!-- April -->
     <div class="month-card">
-      <div class="month-header"><span>April 2026</span><span class="month-count">2 Sonntage</span></div>
+      <div class="month-header"><span>April 2026</span><span class="month-count">4 Sonntage</span></div>
       <ul class="date-list">
-        <li class="date-item"><span class="date-day">So. 19.04.</span><span class="date-event">Frühling im Sauerland</span></li>
+        <li class="date-item"><span class="date-day">So. 05.04.</span><span class="date-event">Ostersonntag</span></li>
+        <li class="date-item"><span class="date-day">So. 12.04.</span><span class="date-event">Frühlings-Shopping</span></li>
+        <li class="date-item"><span class="date-day">So. 19.04.</span><span class="date-event">Osterferien-Ausklang</span></li>
         <li class="date-item"><span class="date-day">So. 26.04.</span><span class="date-event">Königstag (NL)</span></li>
       </ul>
     </div>
@@ -251,7 +254,7 @@ async function generatePdf() {
     <div class="month-card">
       <div class="month-header"><span>Mai 2026</span><span class="month-count">5 Sonntage</span></div>
       <ul class="date-list">
-        <li class="date-item"><span class="date-day">So. 03.05.</span><span class="date-event">Mai-Shopping</span></li>
+        <li class="date-item"><span class="date-day">So. 03.05.</span><span class="date-event">Mai-Auftakt</span></li>
         <li class="date-item"><span class="date-day">So. 10.05.</span><span class="date-event">Stadterlebnis</span></li>
         <li class="date-item"><span class="date-day">So. 17.05.</span><span class="date-event">Himmelfahrt-Woche</span></li>
         <li class="date-item"><span class="date-day">So. 24.05.</span><span class="date-event">Pfingstsonntag</span></li>
@@ -269,8 +272,11 @@ async function generatePdf() {
 
     <!-- Juli -->
     <div class="month-card">
-      <div class="month-header"><span>Juli 2026</span><span class="month-count">0 Sonntage</span></div>
-      <div class="no-dates">Keine Sonntagsöffnungen (Sommerpause Einzelhandel)</div>
+      <div class="month-header"><span>Juli 2026</span><span class="month-count">2 Sonntage</span></div>
+      <ul class="date-list">
+        <li class="date-item"><span class="date-day">So. 19.07.</span><span class="date-event">Gravel Festival</span></li>
+        <li class="date-item"><span class="date-day">So. 26.07.</span><span class="date-event">Sommer-Shopping</span></li>
+      </ul>
     </div>
 
     <!-- August -->
@@ -278,7 +284,7 @@ async function generatePdf() {
       <div class="month-header"><span>August 2026</span><span class="month-count">5 Sonntage</span></div>
       <ul class="date-list">
         <li class="date-item"><span class="date-day">So. 02.08.</span><span class="date-event">Sommerferien</span></li>
-        <li class="date-item"><span class="date-day">So. 09.08.</span><span class="date-event">Urlaubssaison</span></li>
+        <li class="date-item"><span class="date-day">So. 09.08.</span><span class="date-event">Sommer im Sauerland</span></li>
         <li class="date-item"><span class="date-day">So. 16.08.</span><span class="date-event">Winterberger Kirmes</span></li>
         <li class="date-item"><span class="date-day">So. 23.08.</span><span class="date-event">Sunshine Race</span></li>
         <li class="date-item"><span class="date-day">So. 30.08.</span><span class="date-event">Ferienausklang</span></li>
@@ -292,7 +298,7 @@ async function generatePdf() {
         <li class="date-item"><span class="date-day">So. 06.09.</span><span class="date-event">Sauerland Rundfahrt</span></li>
         <li class="date-item"><span class="date-day">So. 13.09.</span><span class="date-event">Spätsommer-Bummel</span></li>
         <li class="date-item"><span class="date-day">So. 20.09.</span><span class="date-event">Herbstkollektionen</span></li>
-        <li class="date-item"><span class="date-day">So. 27.09.</span><span class="date-event">Wanderwochenende</span></li>
+        <li class="date-item"><span class="date-day">So. 27.09.</span><span class="date-event">Herbst-Auftakt</span></li>
       </ul>
     </div>
 
@@ -300,10 +306,10 @@ async function generatePdf() {
     <div class="month-card">
       <div class="month-header"><span>Oktober 2026</span><span class="month-count">5 Termine</span></div>
       <ul class="date-list">
-        <li class="date-item"><span class="date-day">Sa. 03.10.</span><span class="date-event">Tag der dt. Einheit</span></li>
+        <li class="date-item"><span class="date-day">Sa. 03.10.</span><span class="date-event">Tag d. dt. Einheit</span></li>
         <li class="date-item"><span class="date-day">So. 04.10.</span><span class="date-event">Feiertagswochenende</span></li>
-        <li class="date-item"><span class="date-day">So. 11.10.</span><span class="date-event">Herbstferien</span></li>
-        <li class="date-item"><span class="date-day">So. 18.10.</span><span class="date-event">Herbstferien</span></li>
+        <li class="date-item"><span class="date-day">So. 11.10.</span><span class="date-event">Herbstferien NRW</span></li>
+        <li class="date-item"><span class="date-day">So. 18.10.</span><span class="date-event">Herbstferien NL</span></li>
         <li class="date-item"><span class="date-day">So. 25.10.</span><span class="date-event">Goldener Oktober</span></li>
       </ul>
     </div>
@@ -311,16 +317,17 @@ async function generatePdf() {
     <!-- November -->
     <div class="month-card">
       <div class="month-header"><span>November 2026</span><span class="month-count">0 Sonntage</span></div>
-      <div class="no-dates">Keine Sonntagsöffnungen (Stille Tage)</div>
+      <div class="no-dates">Keine Sonntagsöffnungen (Stille Feiertage)</div>
     </div>
 
     <!-- Dezember -->
     <div class="month-card">
-      <div class="month-header"><span>Dezember 2026</span><span class="month-count">3 Termine</span></div>
+      <div class="month-header"><span>Dezember 2026</span><span class="month-count">4 Termine</span></div>
       <ul class="date-list">
-        <li class="date-item"><span class="date-day">So. 20.12.</span><span class="date-event">4. Advent / Vorweihnacht</span></li>
+        <li class="date-item"><span class="date-day">So. 13.12.</span><span class="date-event">3. Advent</span></li>
+        <li class="date-item"><span class="date-day">So. 20.12.</span><span class="date-event">4. Advent</span></li>
         <li class="date-item"><span class="date-day">Sa. 26.12.</span><span class="date-event">2. Weihnachtstag</span></li>
-        <li class="date-item"><span class="date-day">So. 27.12.</span><span class="date-event">Winterdorf & Silvester</span></li>
+        <li class="date-item"><span class="date-day">So. 27.12.</span><span class="date-event">Winterdorf</span></li>
       </ul>
     </div>
   </div>
@@ -328,7 +335,7 @@ async function generatePdf() {
   <div class="rules-box">
     <div class="rules-title">Wichtige Besucher-Hinweise & Regelungen</div>
     <div class="rules-text">
-      <strong>Bäderverordnung NRW (§ 10 LÖG):</strong> Als heilklimatischer Kurort darf der Einzelhandel in Winterberg an bis zu 40 Sonn- und Feiertagen im Jahr öffnen. Die Kernöffnungszeit der Bekleidungsgeschäfte, Modegeschäfte, Schuhhäuser, Sportfachgeschäfte und Outlets liegt zwischen <strong>13:00 und 18:00 Uhr</strong>. Bäckereien und Gastronomien öffnen in der Regel früher. Supermärkte (Aldi, Lidl, etc.) bleiben sonntags geschlossen. Alle Angaben basieren auf der amtlichen Genehmigung für 2026 (Änderungen vorbehalten).
+      <strong>Bäderverordnung NRW (§ 10 LÖG):</strong> Als heilklimatischer Kurort darf der Einzelhandel in Winterberg an bis zu 40 Sonn- und Feiertagen im Jahr öffnen. Die Kernöffnungszeit der Bekleidungsgeschäfte, Modegeschäfte, Schuhhäuser, Sportfachgeschäfte und Outlets liegt zwischen <strong>11:00 und 17:00 Uhr</strong>. Bäckereien und Gastronomien öffnen in der Regel früher. Supermärkte (Aldi, Lidl, etc.) bleiben sonntags geschlossen. Alle Angaben basieren auf der amtlichen Genehmigung für 2026 (Änderungen vorbehalten).
     </div>
   </div>
 

@@ -529,7 +529,7 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Sport- & Outdoor-Spezialisten:</strong> Große Fachgeschäfte für Wintersportbekleidung, Skiausrüstung, Wanderschuhe, Funktionskleidung und Mountainbikes namhafter Marken.</li>
             <li><strong>Mode, Fashion & Boutiquen:</strong> Aktuelle Damen-, Herren- und Kindermode, Schuhfachgeschäfte, Taschen und Schmuck entlang der Einkaufsmeile <em>Am Waltenberg</em> und der <em>Hauptstraße</em>.</li>
             <li><strong>Regionale Spezialitäten & Geschenke:</strong> Sauerländer Schinken, Wildspezialitäten, lokale Edelbrände, Liköre, Senf, feine Pralinen und handwerkliche Dekoartikel.</li>
-            <li><strong>Sonntags-Shopping (Verkaufsoffene Sonntage):</strong> Als staatlich anerkannter heilklimatischer Kurort profitieren viele Winterberger Einzelhändler von der Tourismus-Sonderregelung. In der Wintersport- und Sommersaison öffnen die meisten Boutiquen, Mode- und Sportgeschäfte auch <strong>sonntags von ca. 13:00 bis 18:00 Uhr</strong> ihre Türen!</li>
+            <li><strong>Sonntags-Shopping (Verkaufsoffene Sonntage):</strong> Als staatlich anerkannter heilklimatischer Kurort profitieren viele Winterberger Einzelhändler von der Tourismus-Sonderregelung. In der Wintersport- und Sommersaison öffnen die meisten Boutiquen, Mode- und Sportgeschäfte auch <strong>sonntags von 11:00 bis 17:00 Uhr</strong> ihre Türen!</li>
           </ul>
 
           {/* Highlight Callout Box to Themenseite */}
@@ -565,8 +565,8 @@ export const FAQ_DATA: FaqItem[] = [
     },
     nl: {
       question: 'Kun je goed winkelen in Winterberg?',
-      quickSummary: 'Jazeker, in Winterberg kun je fantastisch winkelen: Aan de promenade Am Waltenberg en in het centrum vind je talloze sportzaken, modeboetieks en speciaalzaken. Dankzij de kuuroord-status zijn veel winkels ook op zondag geopend (zondagsopening meestal van 13:00 tot 18:00 uur)!',
-      plainAnswer: 'Winkelen in Winterberg: Aan de levendige flaneerstraat Am Waltenberg vind je grote outdoor- en wintersportzaken, kledingwinkels, schoenenboetieks en winkels met Sauerlandse streekproducten. Veel winkels zijn \'s zondags geopend tussen 13:00 en 18:00 uur.',
+      quickSummary: 'Jazeker, in Winterberg kun je fantastisch winkelen: Aan de promenade Am Waltenberg en in het centrum vind je talloze sportzaken, modeboetieks en speciaalzaken. Dankzij de kuuroord-status zijn veel winkels ook op zondag geopend (zondagsopening van 11:00 tot 17:00 uur)!',
+      plainAnswer: 'Winkelen in Winterberg: Aan de levendige flaneerstraat Am Waltenberg vind je grote outdoor- en wintersportzaken, kledingwinkels, schoenenboetieks en winkels met Sauerlandse streekproducten. Veel winkels zijn \'s zondags geopend tussen 11:00 en 17:00 uur.',
       answerHtml: (
         <div className="space-y-3">
           <p>Gezellig winkelen en flaneren in Winterberg:</p>
@@ -574,7 +574,7 @@ export const FAQ_DATA: FaqItem[] = [
             <li><strong>Sport & Outdoor:</strong> Grote speciaalzaken voor ski- en fietskleding, wandelschoenen en hoogwaardige outdoor-uitrusting.</li>
             <li><strong>Mode & Kleding:</strong> Dames- en herenmode, schoenen, lederwaren en accessoires aan de <em>Waltenberg</em>.</li>
             <li><strong>Streekproducten & Souvenirs:</strong> Echte Sauerlandse boerenham, ambachtelijke likeuren, lokale mosterd, chocolade en cadeaus.</li>
-            <li><strong>Zondags winkelen (Zondagsopening):</strong> Dankzij de toeristische kuuroordstatus mogen veel winkels in Winterberg in de winter- en zomermaanden ook op <strong>zondagmiddag open zijn (doorgaans van 13:00 tot 18:00 uur)</strong>!</li>
+            <li><strong>Zondags winkelen (Zondagsopening):</strong> Dankzij de toeristische kuuroordstatus mogen veel winkels in Winterberg in de winter- en zomermaanden ook op <strong>zondag open zijn (doorgaans van 11:00 tot 17:00 uur)</strong>!</li>
           </ul>
 
           {/* Highlight Callout Box to Themenseite (NL) */}
@@ -616,14 +616,14 @@ export const FAQ_DATA: FaqItem[] = [
     categoryGroup: 'Einkaufen & Shopping',
     de: {
       question: 'Wann sind verkaufsoffene Sonntage in Winterberg?',
-      quickSummary: 'Im Jahr 2026 öffnen die Geschäfte in Winterberg an 33 behördlich genehmigten Sonn- und Feiertagen (Bäderregelung NRW), typischerweise von 13:00 bis 18:00 Uhr.',
-      plainAnswer: 'Im Rahmen der nordrhein-westfälischen Bäderregelung für heilklimatische Kurorte hat Winterberg 2026 an 33 Sonn- und Feiertagen verkaufsoffen (Kernöffnungszeit meist 13:00 bis 18:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.',
+      quickSummary: 'Im Jahr 2026 öffnen die Geschäfte in Winterberg an 39 behördlich genehmigten Sonn- und Feiertagen (Bäderregelung NRW), jeweils von 11:00 bis 17:00 Uhr.',
+      plainAnswer: 'Im Rahmen der nordrhein-westfälischen Bäderregelung für heilklimatische Kurorte hat Winterberg 2026 an 39 Sonn- und Feiertagen verkaufsoffen (Öffnungszeiten: 11:00 bis 17:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.',
       answerHtml: (
         <div className="space-y-3">
           <p>Als anerkannter heilklimatischer Kurort gilt in Winterberg die Bäderregelung nach § 10 LÖG NRW:</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>33 Termine im Jahr 2026:</strong> An zahlreichen Sonntagen während der Wintersportsaison, an Pfingsten, Kirmes, im goldenen Oktober und an Adventswochenenden öffnen die Geschäfte ihre Türen.</li>
-            <li><strong>Kernöffnungszeit:</strong> Meist zwischen <strong>13:00 und 18:00 Uhr</strong>.</li>
+            <li><strong>39 Termine im Jahr 2026:</strong> An zahlreichen Sonntagen während der Wintersportsaison, an Pfingsten, Kirmes, im goldenen Oktober und an Adventswochenenden öffnen die Geschäfte ihre Türen.</li>
+            <li><strong>Öffnungszeiten:</strong> Jeweils von <strong>11:00 bis 17:00 Uhr</strong>.</li>
             <li><strong>Teilnehmende Bereiche:</strong> Insbesondere die Flaniermeile <em>Am Waltenberg</em>, die <em>Hauptstraße</em> und das Einkaufszentrum <em>Neue Mitte</em>.</li>
             <li><strong>Supermärkte:</strong> Lebensmitteldiscounter (Aldi, Lidl, REWE) bleiben sonntags geschlossen, Bäckereien öffnen sonntags morgens.</li>
           </ul>
@@ -631,7 +631,7 @@ export const FAQ_DATA: FaqItem[] = [
           <div className="mt-4 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="text-xs uppercase font-bold text-[#0F4C2E] dark:text-emerald-400">Offizieller Kalender 2026</div>
-              <div className="font-bold text-[#1B211D] dark:text-white text-sm">Alle 33 Termine & PDF-Download</div>
+              <div className="font-bold text-[#1B211D] dark:text-white text-sm">Alle 39 Termine & PDF-Download</div>
               <p className="text-xs text-[#5F6B63] dark:text-gray-300 mt-0.5">Laden Sie die druckfertige PDF-Übersicht herunter oder stöbern Sie durch die Termine.</p>
             </div>
             <a
@@ -656,21 +656,21 @@ export const FAQ_DATA: FaqItem[] = [
     },
     nl: {
       question: 'Wanneer zijn er koopzondagen in Winterberg?',
-      quickSummary: 'In 2026 zijn er in Winterberg maar liefst 33 officiële koopzondagen en feestdagopeningen, doorgaans geopend van 13:00 tot 18:00 uur.',
-      plainAnswer: 'Dankzij de kuuroord-status zijn winkels in Winterberg in 2026 op 33 zon- en feestdagen geopend, meestal van 13:00 tot 18:00 uur. Download de complete kalender op onze thesapagina Winkelen in Winterberg.',
+      quickSummary: 'In 2026 zijn er in Winterberg maar liefst 39 officiële koopzondagen en feestdagopeningen, doorgaans geopend van 11:00 tot 17:00 uur.',
+      plainAnswer: 'Dankzij de kuuroord-status zijn winkels in Winterberg in 2026 op 39 zon- en feestdagen geopend, van 11:00 tot 17:00 uur. Download de complete kalender op onze thesapagina Winkelen in Winterberg.',
       answerHtml: (
         <div className="space-y-3">
           <p>Winterberg beschikt dankzij de kuuroordstatus over een ruime koopzondagenregeling (Bäderregelung):</p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li><strong>33 Dagen in 2026:</strong> Veel zondagen in het wintersportseizoen, met Pinksteren, kermis, herfstvakantie en advent.</li>
-            <li><strong>Openingstijden:</strong> Meestal tussen <strong>13:00 en 18:00 uur</strong>.</li>
+            <li><strong>39 Dagen in 2026:</strong> Veel zondagen in het wintersportseizoen, met Pinksteren, kermis, herfstvakantie en advent.</li>
+            <li><strong>Openingstijden:</strong> Van <strong>11:00 tot 17:00 uur</strong>.</li>
             <li><strong>Locatie:</strong> Winkels aan de Waltenberg, Hauptstraße en Neue Mitte.</li>
           </ul>
 
           <div className="mt-4 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="text-xs uppercase font-bold text-[#0F4C2E] dark:text-emerald-400">Officiële Kalender 2026</div>
-              <div className="font-bold text-[#1B211D] dark:text-white text-sm">Alle 33 data & PDF download</div>
+              <div className="font-bold text-[#1B211D] dark:text-white text-sm">Alle 39 data & PDF download</div>
               <p className="text-xs text-[#5F6B63] dark:text-gray-300 mt-0.5">Bekijk alle koopzondagen of download het kant-en-klare PDF overzicht.</p>
             </div>
             <a

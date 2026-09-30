@@ -62,57 +62,64 @@ const MONTH_DEFINITIONS: MonthDefinition[] = [
   { monthNum: 4, nameDe: 'April', nameNl: 'April', shortNameDe: 'Apr', shortNameNl: 'Apr' },
   { monthNum: 5, nameDe: 'Mai', nameNl: 'Mei', shortNameDe: 'Mai', shortNameNl: 'Mei' },
   { monthNum: 6, nameDe: 'Juni', nameNl: 'Juni', shortNameDe: 'Jun', shortNameNl: 'Jun' },
-  { monthNum: 7, nameDe: 'Juli', nameNl: 'Juli', shortNameDe: 'Jul', shortNameNl: 'Jul', pauseReasonDe: 'Sommerpause · Keine Sonntagsöffnungen im Juli', pauseReasonNl: 'Zomerpauze · Geen koopzondagen in juli' },
+  { monthNum: 7, nameDe: 'Juli', nameNl: 'Juli', shortNameDe: 'Jul', shortNameNl: 'Jul' },
   { monthNum: 8, nameDe: 'August', nameNl: 'Augustus', shortNameDe: 'Aug', shortNameNl: 'Aug' },
   { monthNum: 9, nameDe: 'September', nameNl: 'September', shortNameDe: 'Sep', shortNameNl: 'Sep' },
   { monthNum: 10, nameDe: 'Oktober', nameNl: 'Oktober', shortNameDe: 'Okt', shortNameNl: 'Okt' },
-  { monthNum: 11, nameDe: 'November', nameNl: 'November', shortNameDe: 'Nov', shortNameNl: 'Nov', pauseReasonDe: 'Stille Feiertage (Allerheiligen, Totensonntag) · Keine Sonntagsöffnungen', pauseReasonNl: 'Stille dagen · Geen koopzondagen in november' },
+  { monthNum: 11, nameDe: 'November', nameNl: 'November', shortNameDe: 'Nov', shortNameNl: 'Nov', pauseReasonDe: 'Stille Feiertage (Allerheiligen, Volkstrauertag, Totensonntag, 1. Advent) · Keine Sonntagsöffnungen', pauseReasonNl: 'Stille dagen · Geen koopzondagen in november' },
   { monthNum: 12, nameDe: 'Dezember', nameNl: 'December', shortNameDe: 'Dez', shortNameNl: 'Dec' },
 ];
 
 const SUNDAY_OPENINGS_2026: SundayOpeningDate[] = [
-  // Januar
-  { dateStr: '2026-01-11', dayDisplay: 'So. 11.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Rennrodel Weltcup' },
-  { dateStr: '2026-01-18', dayDisplay: 'So. 18.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Junior Rennrodel Weltcup' },
+  // Januar (4)
+  { dateStr: '2026-01-04', dayDisplay: 'So. 04.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Bob & Skeleton Weltcup', highlight: true },
+  { dateStr: '2026-01-11', dayDisplay: 'So. 11.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Rennrodel Weltcup', highlight: true },
+  { dateStr: '2026-01-18', dayDisplay: 'So. 18.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Rodeln Junior Weltcup' },
   { dateStr: '2026-01-25', dayDisplay: 'So. 25.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Wintersport-Saison' },
-  // Februar
+  // Februar (4)
   { dateStr: '2026-02-01', dayDisplay: 'So. 01.02.2026', monthDisplay: 'Februar', monthNum: 2, year: 2026, eventName: 'Winterferien' },
   { dateStr: '2026-02-08', dayDisplay: 'So. 08.02.2026', monthDisplay: 'Februar', monthNum: 2, year: 2026, eventName: 'Skisaison Hochsauerland' },
   { dateStr: '2026-02-15', dayDisplay: 'So. 15.02.2026', monthDisplay: 'Februar', monthNum: 2, year: 2026, eventName: 'Karnevalswochenende' },
-  { dateStr: '2026-02-22', dayDisplay: 'So. 22.02.2026', monthDisplay: 'Februar', monthNum: 2, year: 2026, eventName: 'Wintersport-Hauptsaison' },
-  // März
+  { dateStr: '2026-02-22', dayDisplay: 'So. 22.02.2026', monthDisplay: 'Februar', monthNum: 2, year: 2026, eventName: 'Snowboard Weltcup (tba)' },
+  // März (1)
   { dateStr: '2026-03-29', dayDisplay: 'So. 29.03.2026', monthDisplay: 'März', monthNum: 3, year: 2026, eventName: 'Frühjahrsauftakt' },
-  // April
-  { dateStr: '2026-04-19', dayDisplay: 'So. 19.04.2026', monthDisplay: 'April', monthNum: 4, year: 2026, eventName: 'Frühlings-Shopping' },
+  // April (4)
+  { dateStr: '2026-04-05', dayDisplay: 'So. 05.04.2026', monthDisplay: 'April', monthNum: 4, year: 2026, eventName: 'Ostersonntag', highlight: true },
+  { dateStr: '2026-04-12', dayDisplay: 'So. 12.04.2026', monthDisplay: 'April', monthNum: 4, year: 2026, eventName: 'Frühlings-Shopping' },
+  { dateStr: '2026-04-19', dayDisplay: 'So. 19.04.2026', monthDisplay: 'April', monthNum: 4, year: 2026, eventName: 'Osterferien-Ausklang' },
   { dateStr: '2026-04-26', dayDisplay: 'So. 26.04.2026', monthDisplay: 'April', monthNum: 4, year: 2026, eventName: 'Königstag (Koningsdag NL)' },
-  // Mai
+  // Mai (5)
   { dateStr: '2026-05-03', dayDisplay: 'So. 03.05.2026', monthDisplay: 'Mai', monthNum: 5, year: 2026, eventName: 'Mai-Auftakt' },
   { dateStr: '2026-05-10', dayDisplay: 'So. 10.05.2026', monthDisplay: 'Mai', monthNum: 5, year: 2026, eventName: 'Stadterlebnis Winterberg', highlight: true },
   { dateStr: '2026-05-17', dayDisplay: 'So. 17.05.2026', monthDisplay: 'Mai', monthNum: 5, year: 2026, eventName: 'Himmelfahrt-Wochenende' },
   { dateStr: '2026-05-24', dayDisplay: 'So. 24.05.2026', monthDisplay: 'Mai', monthNum: 5, year: 2026, eventName: 'Pfingstsonntag', highlight: true },
-  { dateStr: '2026-05-31', dayDisplay: 'So. 31.05.2026', monthDisplay: 'Mai', monthNum: 5, year: 2026, eventName: 'Sauerland Klassik' },
-  // Juni
-  { dateStr: '2026-06-07', dayDisplay: 'So. 07.06.2026', monthDisplay: 'Juni', monthNum: 6, year: 2026, eventName: 'Sommer-Shopping' },
-  // August
+  { dateStr: '2026-05-31', dayDisplay: 'So. 31.05.2026', monthDisplay: 'Mai', monthNum: 5, year: 2026, eventName: 'Sauerland Klassik', highlight: true },
+  // Juni (1)
+  { dateStr: '2026-06-07', dayDisplay: 'So. 07.06.2026', monthDisplay: 'Juni', monthNum: 6, year: 2026, eventName: 'Sommer-Auftakt' },
+  // Juli (2)
+  { dateStr: '2026-07-19', dayDisplay: 'So. 19.07.2026', monthDisplay: 'Juli', monthNum: 7, year: 2026, eventName: 'Gravel Festival', highlight: true },
+  { dateStr: '2026-07-26', dayDisplay: 'So. 26.07.2026', monthDisplay: 'Juli', monthNum: 7, year: 2026, eventName: 'Sommer-Shopping' },
+  // August (5)
   { dateStr: '2026-08-02', dayDisplay: 'So. 02.08.2026', monthDisplay: 'August', monthNum: 8, year: 2026, eventName: 'Sommerferien-Bummel' },
   { dateStr: '2026-08-09', dayDisplay: 'So. 09.08.2026', monthDisplay: 'August', monthNum: 8, year: 2026, eventName: 'Sommer im Sauerland' },
   { dateStr: '2026-08-16', dayDisplay: 'So. 16.08.2026', monthDisplay: 'August', monthNum: 8, year: 2026, eventName: 'Winterberger Kirmes', highlight: true },
-  { dateStr: '2026-08-23', dayDisplay: 'So. 23.08.2026', monthDisplay: 'August', monthNum: 8, year: 2026, eventName: 'Maylen Sunshine Race' },
+  { dateStr: '2026-08-23', dayDisplay: 'So. 23.08.2026', monthDisplay: 'August', monthNum: 8, year: 2026, eventName: 'Maylen Sunshine Race', highlight: true },
   { dateStr: '2026-08-30', dayDisplay: 'So. 30.08.2026', monthDisplay: 'August', monthNum: 8, year: 2026, eventName: 'Ferienausklang' },
-  // September
-  { dateStr: '2026-09-06', dayDisplay: 'So. 06.09.2026', monthDisplay: 'September', monthNum: 9, year: 2026, eventName: 'Sauerland Rundfahrt', highlight: true },
+  // September (4)
+  { dateStr: '2026-09-06', dayDisplay: 'So. 06.09.2026', monthDisplay: 'September', monthNum: 9, year: 2026, eventName: 'Sauerland Rundfahrt (tba)', highlight: true },
   { dateStr: '2026-09-13', dayDisplay: 'So. 13.09.2026', monthDisplay: 'September', monthNum: 9, year: 2026, eventName: 'Spätsommer-Bummel' },
   { dateStr: '2026-09-20', dayDisplay: 'So. 20.09.2026', monthDisplay: 'September', monthNum: 9, year: 2026, eventName: 'Herbstmode-Kollektionen' },
   { dateStr: '2026-09-27', dayDisplay: 'So. 27.09.2026', monthDisplay: 'September', monthNum: 9, year: 2026, eventName: 'Herbst-Auftakt' },
-  // Oktober
+  // Oktober (5)
   { dateStr: '2026-10-03', dayDisplay: 'Sa. 03.10.2026', monthDisplay: 'Oktober', monthNum: 10, year: 2026, eventName: 'Tag der Deutschen Einheit (Feiertag)', highlight: true },
   { dateStr: '2026-10-04', dayDisplay: 'So. 04.10.2026', monthDisplay: 'Oktober', monthNum: 10, year: 2026, eventName: 'Feiertagswochenende' },
   { dateStr: '2026-10-11', dayDisplay: 'So. 11.10.2026', monthDisplay: 'Oktober', monthNum: 10, year: 2026, eventName: 'Herbstferien NRW' },
   { dateStr: '2026-10-18', dayDisplay: 'So. 18.10.2026', monthDisplay: 'Oktober', monthNum: 10, year: 2026, eventName: 'Herbstferien NL' },
   { dateStr: '2026-10-25', dayDisplay: 'So. 25.10.2026', monthDisplay: 'Oktober', monthNum: 10, year: 2026, eventName: 'Goldener Oktober' },
-  // Dezember
-  { dateStr: '2026-12-20', dayDisplay: 'So. 20.12.2026', monthDisplay: 'Dezember', monthNum: 12, year: 2026, eventName: '4. Advent / Weihnachts-Shopping', highlight: true },
-  { dateStr: '2026-12-26', dayDisplay: 'Sa. 26.12.2026', monthDisplay: 'Dezember', monthNum: 12, year: 2026, eventName: '2. Weihnachtstag (Feiertag)' },
+  // Dezember (4)
+  { dateStr: '2026-12-13', dayDisplay: 'So. 13.12.2026', monthDisplay: 'Dezember', monthNum: 12, year: 2026, eventName: '3. Advent / Vorweihnachts-Shopping', highlight: true },
+  { dateStr: '2026-12-20', dayDisplay: 'So. 20.12.2026', monthDisplay: 'Dezember', monthNum: 12, year: 2026, eventName: '4. Advent / Vorweihnachts-Bummel', highlight: true },
+  { dateStr: '2026-12-26', dayDisplay: 'Sa. 26.12.2026', monthDisplay: 'Dezember', monthNum: 12, year: 2026, eventName: '2. Weihnachtstag (Feiertag)', highlight: true },
   { dateStr: '2026-12-27', dayDisplay: 'So. 27.12.2026', monthDisplay: 'Dezember', monthNum: 12, year: 2026, eventName: 'Winterdorf & Jahresausklang', highlight: true },
 ];
 
@@ -156,8 +163,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
           "acceptedAnswer": {
             "@type": "Answer",
             "text": isNl
-              ? "Ja, dankzij de officiële Bäderregeling (kuuroord-status) mogen veel winkels in Winterberg op wel 33 zon- en feestdagen in 2026 openen, meestal van 13:00 tot 18:00 uur."
-              : "Ja, dank der Kurort-Bäderregelung (§ 10 LÖG NRW) öffnen viele Einzelhändler in Winterberg an bis zu 33 Sonn- und Feiertagen im Jahr 2026 ihre Türen, typischerweise von 13:00 bis 18:00 Uhr."
+              ? "Ja, dankzij de officiële Bäderregeling (kuuroord-status) mogen veel winkels in Winterberg op 39 zon- en feestdagen in 2026 openen, van 11:00 tot 17:00 uur."
+              : "Ja, dank der Kurort-Bäderregelung (§ 10 LÖG NRW) öffnen viele Einzelhändler in Winterberg an 39 Sonn- und Feiertagen im Jahr 2026 ihre Türen von 11:00 bis 17:00 Uhr."
           }
         },
         {
@@ -316,8 +323,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
     {
       q: isNl ? 'Kan men op zondag winkelen in Winterberg?' : 'Kann man in Winterberg sonntags shoppen?',
       a: isNl
-        ? 'Jazeker! Als officieel erkend kuuroord (Bäderregelung NRW) mogen winkels in Winterberg op 33 zon- en feestdagen in 2026 hun deuren openen. De winkels zijn dan meestal geopend van 13:00 tot 18:00 uur.'
-        : 'Ja, absolut! Als staatlich anerkannter heilklimatischer Kurort profitiert Winterberg von der nordrhein-westfälischen Bäderregelung (§ 10 LÖG NRW). Dadurch dürfen die Fachgeschäfte und Boutiquen an bis zu 33 Sonn- und Feiertagen im Jahr 2026 öffnen. Die Kernöffnungszeit liegt in der Regel zwischen 13:00 und 18:00 Uhr.'
+        ? 'Jazeker! Als officieel erkend kuuroord (Bäderregelung NRW) mogen winkels in Winterberg op 39 zon- en feestdagen in 2026 hun deuren openen. De winkels zijn dan geopend van 11:00 tot 17:00 uur.'
+        : 'Ja, absolut! Als staatlich anerkannter heilklimatischer Kurort profitiert Winterberg von der nordrhein-westfälischen Bäderregelung (§ 10 LÖG NRW). Dadurch dürfen die Fachgeschäfte und Boutiquen an bis zu 39 Sonn- und Feiertagen im Jahr 2026 öffnen. Die Öffnungszeiten sind sonntags von 11:00 bis 17:00 Uhr.'
     },
     {
       q: isNl ? 'Welke kledingwinkels en boetieks zijn er in Winterberg?' : 'Welche Modegeschäfte und Boutiquen gibt es in Winterberg?',
@@ -387,8 +394,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
 
           <p className="text-sm sm:text-base text-white/90 leading-relaxed mb-6">
             {isNl
-              ? 'Geniet van een levendig stadscentrum met korte afstanden! Aan de flaneerstraat Am Waltenberg en in de Hauptstraße vind je stijlvolle kleding voor elke leeftijd, bekende outdoor-merken, schoenenzaken, Juwelier Eiloff en het grote Bessmann Outlet. Dankzij de kuuroord-status shop je hier ook op maar liefst 33 zondagen per jaar!'
-              : 'Winterberg begeistert mit einem lebendigen Zentrum und kurzen Wegen: Entlang der beliebten Einkaufsmeile Am Waltenberg und der Hauptstraße erwarten Sie renommierte Modehäuser, junge Trendmarken, erstklassige Outdoor-Spezialisten, Schuhgeschäfte, Juwelier Eiloff und das beliebte Bessmann Outlet. Als staatlich anerkannter Kurort öffnen die Geschäfte an bis zu 33 Sonntagen im Jahr!'}
+              ? 'Geniet van een levendig stadscentrum met korte afstanden! Aan de flaneerstraat Am Waltenberg en in de Hauptstraße vind je stijlvolle kleding voor elke leeftijd, bekende outdoor-merken, schoenenzaken, Juwelier Eiloff en het grote Bessmann Outlet. Dankzij de kuuroord-status shop je hier ook op maar liefst 39 zon- en feestdagen per jaar van 11:00 tot 17:00 uur!'
+              : 'Winterberg begeistert mit einem lebendigen Zentrum und kurzen Wegen: Entlang der beliebten Einkaufsmeile Am Waltenberg und der Hauptstraße erwarten Sie renommierte Modehäuser, junge Trendmarken, erstklassige Outdoor-Spezialisten, Schuhgeschäfte, Juwelier Eiloff und das beliebte Bessmann Outlet. Als staatlich anerkannter Kurort öffnen die Geschäfte an 39 Sonn- und Feiertagen im Jahr von 11:00 bis 17:00 Uhr!'}
           </p>
 
           {/* Quick Stats & Badges */}
@@ -477,12 +484,12 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
               <Sun className="w-6 h-6" />
             </div>
             <h3 className="font-bold text-lg text-[#1B211D] dark:text-white mb-2">
-              {isNl ? '33 Koopzondagen per jaar' : '33 Verkaufsoffene Sonntage'}
+              {isNl ? '39 Koopzondagen & Feestdagen' : '39 Verkaufsoffene Sonn- & Feiertage'}
             </h3>
             <p className="text-sm text-[#5F6B63] dark:text-gray-300 leading-relaxed">
               {isNl
-                ? 'Dankzij de kuuroord-status openen winkels op wel 33 zon- en feestdagen tussen 13:00 en 18:00 uur. Ideaal te combineren met een weekendje weg!'
-                : 'Dank der nordrhein-westfälischen Kurort-Bäderregelung öffnen die Geschäfte an bis zu 33 Sonn- und Feiertagen von 13:00 bis 18:00 Uhr. Perfekt für einen entspannten Wochenendausflug!'}
+                ? 'Dankzij de kuuroord-status openen winkels op wel 39 zon- en feestdagen van 11:00 tot 17:00 uur. Ideaal te combineren met een weekendje weg!'
+                : 'Dank der nordrhein-westfälischen Kurort-Bäderregelung öffnen die Geschäfte an 39 Sonn- und Feiertagen von 11:00 bis 17:00 Uhr. Perfekt für einen entspannten Wochenendausflug!'}
             </p>
           </div>
         </div>
@@ -741,8 +748,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
               </h2>
               <p className="text-sm text-[#5F6B63] dark:text-gray-300 leading-relaxed">
                 {isNl
-                  ? 'In 2026 openen de winkels in het centrum op 33 officiële zon- en feestdagen hun deuren. Kernopeningstijd van de winkels: meestal van 13:00 tot 18:00 uur. Bakkers openen al \'s ochtends vroeg!'
-                  : 'An 33 behördlich genehmigten Sonn- und Feiertagen dürfen die Winterberger Einzelhändler ihre Türen für Sie öffnen. Die Kernöffnungszeit des Einzelhandels liegt zwischen 13:00 und 18:00 Uhr. Genießen Sie stressfreies Sonntags-Shopping mit der ganzen Familie!'}
+                  ? 'In 2026 openen de winkels in het centrum op 39 officiële zon- en feestdagen hun deuren. Openingstijden: van 11:00 tot 17:00 uur. Bakkers openen al \'s ochtends vroeg!'
+                  : 'An 39 behördlich genehmigten Sonn- und Feiertagen dürfen die Winterberger Einzelhändler ihre Türen für Sie öffnen. Die Öffnungszeiten sind sonntags und feiertags von 11:00 bis 17:00 Uhr. Genießen Sie stressfreies Sonntags-Shopping mit der ganzen Familie!'}
               </p>
             </div>
 
@@ -760,7 +767,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                 </div>
               </a>
               <span className="text-[11px] text-[#5F6B63] italic">
-                {isNl ? 'Drukklare versie (A4 formaat) · 33 datums' : 'Druckfertiges A4-Format · Alle 33 Termine'}
+                {isNl ? 'Drukklare versie (A4 formaat) · Alle 39 datums' : 'Druckfertiges A4-Format · Alle 39 Termine'}
               </span>
             </div>
           </div>
@@ -788,7 +795,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
               </div>
               <div className="text-xs text-amber-950 dark:text-amber-200 bg-amber-100/90 dark:bg-amber-950/60 px-3.5 py-2 rounded-xl border border-amber-300/50 shrink-0 font-bold flex items-center gap-2">
                 <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400" />
-                <span>{isNl ? 'Geopend van 13:00 – 18:00 uur' : 'Geöffnet: 13:00 – 18:00 Uhr'}</span>
+                <span>{isNl ? 'Geopend van 11:00 – 17:00 uur' : 'Geöffnet: 11:00 – 17:00 Uhr'}</span>
               </div>
             </div>
           )}
@@ -801,13 +808,13 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                 <span>
                   {calendarView === 'upcoming' 
                     ? (isNl ? 'Aankomende koopzondagen 2026' : 'Kommende Sonntagsöffnungen 2026') 
-                    : (isNl ? 'Alle 33 koopzondagen 2026 (Alle 12 maanden)' : 'Kalender 2026: Alle 33 Sonntagsöffnungen')}
+                    : (isNl ? 'Alle 39 koopzondagen 2026 (Alle 12 maanden)' : 'Kalender 2026: Alle 39 Sonntagsöffnungen')}
                 </span>
               </h3>
               <p className="text-xs text-[#5F6B63] dark:text-gray-400 mt-1">
                 {calendarView === 'upcoming'
                   ? (isNl ? 'Toont alle toekomstige openingsdagen gerangschikt per maand.' : 'Übersicht der kommenden Sonntage und Feiertage, sortiert nach Monaten.')
-                  : (isNl ? 'Volledig jaaroverzicht van alle 12 maanden inclusief pauzemaanden.' : 'Vollständige Monatsübersicht für das gesamte Jahr 2026 inklusive Sommer- und Herbstpausen.')}
+                  : (isNl ? 'Volledig jaaroverzicht van alle 12 maanden inclusief seizoens- en herfstpause.' : 'Vollständige Monatsübersicht für das gesamte Jahr 2026 inklusive aller 12 Monate.')}
               </p>
             </div>
 
@@ -828,7 +835,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                   calendarView === 'all' ? 'bg-[#0F4C2E] text-white shadow-sm' : 'text-[#5F6B63] hover:text-stone-900 dark:hover:text-white'
                 }`}
               >
-                {isNl ? 'Gesamtes Jahr (12 Monate)' : 'Gesamtes Jahr (33 Termine)'}
+                {isNl ? 'Gesamtes Jahr (12 Monate)' : 'Gesamtes Jahr (39 Termine)'}
               </button>
             </div>
           </div>
@@ -975,7 +982,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                               <div className="flex flex-col items-end gap-1">
                                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0F4C2E] dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 rounded-md">
                                   <Clock className="w-3 h-3" />
-                                  13–18 Uhr
+                                  11–17 Uhr
                                 </span>
                                 {item.highlight && (
                                   <span className="text-[10px] font-black text-amber-800 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-950/70 px-1.5 py-0.5 rounded border border-amber-300/60">
