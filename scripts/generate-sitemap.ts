@@ -67,6 +67,12 @@ entries.push({
   changefreq: 'monthly',
   priority: '0.8',
 });
+entries.push({
+  locDe: `${baseUrl}/news/filmtheater-winterberg-nachfolge-gesucht-kino-pachten`,
+  locNl: `${baseUrl}/nl/nieuws/filmtheater-winterberg-nachfolge-gesucht-kino-pachten`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
 
 // 2. All businesses
 entries.push({
