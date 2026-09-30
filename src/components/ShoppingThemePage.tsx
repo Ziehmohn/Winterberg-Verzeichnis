@@ -45,6 +45,31 @@ interface SundayOpeningDate {
   highlight?: boolean;
 }
 
+interface MonthDefinition {
+  monthNum: number;
+  nameDe: string;
+  nameNl: string;
+  shortNameDe: string;
+  shortNameNl: string;
+  pauseReasonDe?: string;
+  pauseReasonNl?: string;
+}
+
+const MONTH_DEFINITIONS: MonthDefinition[] = [
+  { monthNum: 1, nameDe: 'Januar', nameNl: 'Januari', shortNameDe: 'Jan', shortNameNl: 'Jan' },
+  { monthNum: 2, nameDe: 'Februar', nameNl: 'Februari', shortNameDe: 'Feb', shortNameNl: 'Feb' },
+  { monthNum: 3, nameDe: 'März', nameNl: 'Maart', shortNameDe: 'Mär', shortNameNl: 'Mrt' },
+  { monthNum: 4, nameDe: 'April', nameNl: 'April', shortNameDe: 'Apr', shortNameNl: 'Apr' },
+  { monthNum: 5, nameDe: 'Mai', nameNl: 'Mei', shortNameDe: 'Mai', shortNameNl: 'Mei' },
+  { monthNum: 6, nameDe: 'Juni', nameNl: 'Juni', shortNameDe: 'Jun', shortNameNl: 'Jun' },
+  { monthNum: 7, nameDe: 'Juli', nameNl: 'Juli', shortNameDe: 'Jul', shortNameNl: 'Jul', pauseReasonDe: 'Sommerpause · Keine Sonntagsöffnungen im Juli', pauseReasonNl: 'Zomerpauze · Geen koopzondagen in juli' },
+  { monthNum: 8, nameDe: 'August', nameNl: 'Augustus', shortNameDe: 'Aug', shortNameNl: 'Aug' },
+  { monthNum: 9, nameDe: 'September', nameNl: 'September', shortNameDe: 'Sep', shortNameNl: 'Sep' },
+  { monthNum: 10, nameDe: 'Oktober', nameNl: 'Oktober', shortNameDe: 'Okt', shortNameNl: 'Okt' },
+  { monthNum: 11, nameDe: 'November', nameNl: 'November', shortNameDe: 'Nov', shortNameNl: 'Nov', pauseReasonDe: 'Stille Feiertage (Allerheiligen, Totensonntag) · Keine Sonntagsöffnungen', pauseReasonNl: 'Stille dagen · Geen koopzondagen in november' },
+  { monthNum: 12, nameDe: 'Dezember', nameNl: 'December', shortNameDe: 'Dez', shortNameNl: 'Dec' },
+];
+
 const SUNDAY_OPENINGS_2026: SundayOpeningDate[] = [
   // Januar
   { dateStr: '2026-01-11', dayDisplay: 'So. 11.01.2026', monthDisplay: 'Januar', monthNum: 1, year: 2026, eventName: 'Rennrodel Weltcup' },
@@ -104,6 +129,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
   const [activeTab, setActiveTab] = useState<'all' | 'fashion' | 'shoes' | 'outdoor' | 'jewelry' | 'outlet'>('all');
   const [searchFilter, setSearchFilter] = useState('');
   const [calendarView, setCalendarView] = useState<'upcoming' | 'all'>('upcoming');
+  const [selectedMonth, setSelectedMonth] = useState<number | 'all'>('all');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
@@ -239,6 +265,33 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
 
   const displayedSundays = calendarView === 'upcoming' && upcomingSundays.length > 0 ? upcomingSundays : SUNDAY_OPENINGS_2026;
   const nextSunday = upcomingSundays.length > 0 ? upcomingSundays[0] : SUNDAY_OPENINGS_2026[0];
+
+  const currentMonthNum = parseInt(todayStr.split('-')[1], 10) || 1;
+  const currentYear = parseInt(todayStr.split('-')[0], 10) || 2026;
+
+  const monthGroups = useMemo(() => {
+    return MONTH_DEFINITIONS.map(mDef => {
+      // Find sundays in this month based on calendarView
+      const sundaysInMonth = SUNDAY_OPENINGS_2026.filter(s => {
+        if (s.monthNum !== mDef.monthNum) return false;
+        if (calendarView === 'upcoming' && s.dateStr < todayStr) return false;
+        return true;
+      });
+
+      const isPastMonth = calendarView === 'upcoming' && (currentYear > 2026 || (currentYear === 2026 && mDef.monthNum < currentMonthNum));
+
+      return {
+        ...mDef,
+        sundays: sundaysInMonth,
+        isPastMonth,
+        totalInYear: SUNDAY_OPENINGS_2026.filter(s => s.monthNum === mDef.monthNum).length
+      };
+    }).filter(m => {
+      if (selectedMonth !== 'all' && m.monthNum !== selectedMonth) return false;
+      if (calendarView === 'upcoming' && m.isPastMonth) return false;
+      return true;
+    });
+  }, [calendarView, todayStr, currentMonthNum, currentYear, selectedMonth]);
 
   const handleBusinessClick = (bus: Business) => {
     if (onSelectBusiness) {
@@ -674,7 +727,9 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
 
       {/* Verkaufsoffene Sonntage 2026 Sektion mit offiziellem PDF-Download */}
       <section id="sonntagsoeffnungen" className="mb-14 scroll-mt-6">
-        <div className="bg-gradient-to-br from-white to-emerald-50/50 dark:from-[#1E2621] dark:to-[#17201a] rounded-3xl p-6 sm:p-10 border border-emerald-900/10 shadow-lg">
+        <div className="bg-gradient-to-br from-white to-emerald-50/40 dark:from-[#1E2621] dark:to-[#17201a] rounded-3xl p-6 sm:p-10 border border-emerald-900/10 shadow-lg">
+          
+          {/* Header & Download Bar */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-8 border-b border-emerald-900/10">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-950 text-[#0F4C2E] dark:text-emerald-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
@@ -705,101 +760,257 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                 </div>
               </a>
               <span className="text-[11px] text-[#5F6B63] italic">
-                {isNl ? 'Drukklare versie (A4 formaat)' : 'Druckfertiges A4-Format · 33 Termine'}
+                {isNl ? 'Drukklare versie (A4 formaat) · 33 datums' : 'Druckfertiges A4-Format · Alle 33 Termine'}
               </span>
             </div>
           </div>
 
-          {/* Next Sunday Callout Box */}
+          {/* Next Sunday Feature Banner */}
           {nextSunday && (
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-500 text-stone-950 flex items-center justify-center shrink-0 font-bold">
-                  <Calendar className="w-5 h-5" />
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-amber-500 text-stone-950 flex flex-col items-center justify-center shrink-0 font-extrabold shadow-sm">
+                  <span className="text-[10px] uppercase tracking-wider leading-none">
+                    {nextSunday.dayDisplay.startsWith('Sa') ? (isNl ? 'ZA' : 'SA') : (isNl ? 'ZO' : 'SO')}
+                  </span>
+                  <span className="text-lg leading-none mt-0.5">
+                    {parseInt(nextSunday.dateStr.split('-')[2], 10)}
+                  </span>
                 </div>
                 <div>
                   <div className="text-xs uppercase font-bold text-amber-800 dark:text-amber-400">
                     {isNl ? 'Volgende koopzondag' : 'Nächster verkaufsoffener Termin'}
                   </div>
-                  <div className="text-base font-extrabold text-stone-900 dark:text-white">
+                  <div className="text-base sm:text-lg font-black text-stone-900 dark:text-white">
                     {nextSunday.dayDisplay} {nextSunday.eventName ? `· ${nextSunday.eventName}` : ''}
                   </div>
                 </div>
               </div>
-              <div className="text-xs text-amber-900 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 rounded-xl border border-amber-300/40 shrink-0 font-medium">
-                🕒 {isNl ? 'Winkels geopend ca. 13:00 – 18:00 uur' : 'Geschäfte geöffnet ca. 13:00 – 18:00 Uhr'}
+              <div className="text-xs text-amber-950 dark:text-amber-200 bg-amber-100/90 dark:bg-amber-950/60 px-3.5 py-2 rounded-xl border border-amber-300/50 shrink-0 font-bold flex items-center gap-2">
+                <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400" />
+                <span>{isNl ? 'Geopend van 13:00 – 18:00 uur' : 'Geöffnet: 13:00 – 18:00 Uhr'}</span>
               </div>
             </div>
           )}
 
-          {/* Filter switcher: Upcoming vs All */}
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-lg text-[#1B211D] dark:text-white">
-              {calendarView === 'upcoming' ? (isNl ? 'Aankomende koopzondagen' : 'Kommende Termine 2026') : (isNl ? 'Alle 33 koopzondagen 2026' : 'Alle 33 Sonntagsöffnungen 2026')}
-            </h3>
-            <div className="flex items-center bg-white dark:bg-stone-800 rounded-xl p-1 border border-black/5 text-xs font-semibold">
+          {/* View Filter Switcher (Kommende vs. Gesamtes Jahr) */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <h3 className="font-extrabold text-xl text-[#1B211D] dark:text-white flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-[#0F4C2E] dark:text-emerald-400" />
+                <span>
+                  {calendarView === 'upcoming' 
+                    ? (isNl ? 'Aankomende koopzondagen 2026' : 'Kommende Sonntagsöffnungen 2026') 
+                    : (isNl ? 'Alle 33 koopzondagen 2026 (Alle 12 maanden)' : 'Kalender 2026: Alle 33 Sonntagsöffnungen')}
+                </span>
+              </h3>
+              <p className="text-xs text-[#5F6B63] dark:text-gray-400 mt-1">
+                {calendarView === 'upcoming'
+                  ? (isNl ? 'Toont alle toekomstige openingsdagen gerangschikt per maand.' : 'Übersicht der kommenden Sonntage und Feiertage, sortiert nach Monaten.')
+                  : (isNl ? 'Volledig jaaroverzicht van alle 12 maanden inclusief pauzemaanden.' : 'Vollständige Monatsübersicht für das gesamte Jahr 2026 inklusive Sommer- und Herbstpausen.')}
+              </p>
+            </div>
+
+            <div className="flex items-center self-start sm:self-auto bg-stone-100 dark:bg-stone-800/80 rounded-xl p-1 border border-black/5 text-xs font-semibold shrink-0">
               <button
                 type="button"
-                onClick={() => setCalendarView('upcoming')}
-                className={`px-3 py-1.5 rounded-lg transition-colors ${
-                  calendarView === 'upcoming' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-stone-900'
+                onClick={() => { setCalendarView('upcoming'); setSelectedMonth('all'); }}
+                className={`px-3.5 py-1.5 rounded-lg transition-all ${
+                  calendarView === 'upcoming' ? 'bg-[#0F4C2E] text-white shadow-sm' : 'text-[#5F6B63] hover:text-stone-900 dark:hover:text-white'
                 }`}
               >
-                {isNl ? 'Aankomend' : 'Kommende'}
+                {isNl ? 'Aankomend' : 'Kommende Termine'}
               </button>
               <button
                 type="button"
-                onClick={() => setCalendarView('all')}
-                className={`px-3 py-1.5 rounded-lg transition-colors ${
-                  calendarView === 'all' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-stone-900'
+                onClick={() => { setCalendarView('all'); setSelectedMonth('all'); }}
+                className={`px-3.5 py-1.5 rounded-lg transition-all ${
+                  calendarView === 'all' ? 'bg-[#0F4C2E] text-white shadow-sm' : 'text-[#5F6B63] hover:text-stone-900 dark:hover:text-white'
                 }`}
               >
-                {isNl ? 'Heel 2026' : 'Gesamtes Jahr'} ({SUNDAY_OPENINGS_2026.length})
+                {isNl ? 'Gesamtes Jahr (12 Monate)' : 'Gesamtes Jahr (33 Termine)'}
               </button>
             </div>
           </div>
 
-          {/* Dates Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {displayedSundays.map((item, idx) => (
-              <div
-                key={idx}
-                className={`p-3.5 rounded-xl border flex items-center justify-between transition-all ${
-                  item.highlight
-                    ? 'bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 shadow-sm'
-                    : 'bg-white dark:bg-[#1E2621] border-black/5 dark:border-white/5'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${
-                    item.highlight ? 'bg-[#0F4C2E] text-white' : 'bg-stone-100 text-stone-700'
+          {/* Quick Month Jump / Selector Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 scrollbar-none">
+            <button
+              type="button"
+              onClick={() => setSelectedMonth('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                selectedMonth === 'all'
+                  ? 'bg-stone-900 dark:bg-white text-white dark:text-stone-900 shadow-sm'
+                  : 'bg-white dark:bg-[#1E2621] text-stone-600 dark:text-stone-300 border border-black/5 hover:border-black/20'
+              }`}
+            >
+              {isNl ? 'Alle maanden' : 'Alle Monate'} ({SUNDAY_OPENINGS_2026.length})
+            </button>
+            {MONTH_DEFINITIONS.map(m => {
+              const count = SUNDAY_OPENINGS_2026.filter(s => s.monthNum === m.monthNum).length;
+              const isSelected = selectedMonth === m.monthNum;
+              return (
+                <button
+                  key={m.monthNum}
+                  type="button"
+                  onClick={() => setSelectedMonth(isSelected ? 'all' : m.monthNum)}
+                  className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1 ${
+                    isSelected
+                      ? 'bg-[#0F4C2E] text-white shadow-sm'
+                      : count > 0
+                        ? 'bg-white dark:bg-[#1E2621] text-stone-700 dark:text-stone-300 border border-black/5 hover:bg-stone-50'
+                        : 'bg-stone-100/60 dark:bg-stone-900/40 text-stone-400 border border-dashed border-stone-200 dark:border-stone-800'
+                  }`}
+                >
+                  <span>{isNl ? m.shortNameNl : m.shortNameDe}</span>
+                  <span className={`text-[10px] px-1 py-0.2 rounded-full ${
+                    isSelected 
+                      ? 'bg-white/20 text-white' 
+                      : count > 0 
+                        ? 'bg-emerald-100 text-[#0F4C2E] dark:bg-emerald-950 dark:text-emerald-300' 
+                        : 'text-stone-400'
                   }`}>
-                    {item.dayDisplay.split('.')[0].replace(/[^0-9]/g, '') || item.monthNum}
-                  </div>
-                  <div>
-                    <div className="font-bold text-xs text-stone-900 dark:text-white">
-                      {item.dayDisplay}
+                    {count > 0 ? count : '–'}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Month by Month Calendar Sections */}
+          <div className="space-y-6">
+            {monthGroups.map((month) => (
+              <div 
+                key={month.monthNum}
+                className="bg-white dark:bg-[#1E2621] rounded-2xl border border-black/5 dark:border-white/10 p-5 sm:p-6 shadow-sm"
+              >
+                {/* Month Card Header */}
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-black/5 dark:border-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-[#0F4C2E] dark:text-emerald-400 flex items-center justify-center font-black text-sm border border-emerald-200/50 dark:border-emerald-800/40">
+                      {month.monthNum < 10 ? `0${month.monthNum}` : month.monthNum}
                     </div>
-                    {item.eventName && (
-                      <div className="text-[11px] text-[#5F6B63] dark:text-gray-400 truncate max-w-[160px]">
-                        {item.eventName}
-                      </div>
-                    )}
+                    <div>
+                      <h4 className="font-black text-lg sm:text-xl text-stone-900 dark:text-white leading-tight">
+                        {isNl ? month.nameNl : month.nameDe} 2026
+                      </h4>
+                    </div>
                   </div>
+
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${
+                    month.sundays.length > 0 
+                      ? 'bg-emerald-100/80 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300'
+                      : 'bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400'
+                  }`}>
+                    {month.sundays.length > 0 
+                      ? `${month.sundays.length} ${isNl ? (month.sundays.length === 1 ? 'koopzondag' : 'koopzondagen') : (month.sundays.length === 1 ? 'Verkaufsoffener Tag' : 'Verkaufsoffene Tage')}`
+                      : (isNl ? 'Geen openingen' : 'Keine Öffnungen')}
+                  </span>
                 </div>
-                <div className="text-[10px] font-semibold text-emerald-800 dark:text-emerald-400 bg-emerald-100/60 dark:bg-emerald-900/40 px-2 py-0.5 rounded">
-                  13–18h
-                </div>
+
+                {/* If no sundays in this month (Juli / November) */}
+                {month.sundays.length === 0 ? (
+                  <div className="p-4 rounded-xl bg-stone-50 dark:bg-black/20 border border-dashed border-stone-200 dark:border-stone-800 text-xs text-stone-600 dark:text-stone-400 flex items-center gap-3">
+                    <span className="text-2xl">{month.monthNum === 7 ? '🏖️' : '🕯️'}</span>
+                    <div>
+                      <div className="font-bold text-stone-800 dark:text-stone-200">
+                        {month.monthNum === 7 ? (isNl ? 'Zomerpauze in juli' : 'Sommerpause im Juli') : (isNl ? 'Stille dagen in november' : 'Stille Feiertage im November')}
+                      </div>
+                      <div className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">
+                        {isNl ? month.pauseReasonNl : month.pauseReasonDe}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  /* Grid of Calendar Day Tiles */
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                    {month.sundays.map((item) => {
+                      const [, , dStr] = item.dateStr.split('-');
+                      const dayNum = parseInt(dStr, 10);
+                      const formattedDay = dayNum < 10 ? `0${dayNum}` : `${dayNum}`;
+                      const isSaturday = item.dayDisplay.startsWith('Sa');
+                      const weekdayFull = isSaturday 
+                        ? (isNl ? 'Zaterdag' : 'Samstag') 
+                        : (isNl ? 'Zondag' : 'Sonntag');
+
+                      return (
+                        <div
+                          key={item.dateStr}
+                          className={`rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col overflow-hidden ${
+                            item.highlight
+                              ? 'bg-gradient-to-b from-amber-500/10 via-white to-white dark:from-amber-950/30 dark:via-[#1E2621] dark:to-[#1E2621] border-amber-400/60 dark:border-amber-600/50 shadow-sm ring-1 ring-amber-400/20'
+                              : 'bg-white dark:bg-[#1a231e] border-black/10 dark:border-white/10'
+                          }`}
+                        >
+                          {/* Calendar Top Header Ribbon */}
+                          <div className={`px-3 py-1.5 flex items-center justify-between text-[11px] font-bold tracking-wider uppercase ${
+                            item.highlight
+                              ? 'bg-amber-500 text-stone-950'
+                              : isSaturday
+                                ? 'bg-emerald-800 text-white'
+                                : 'bg-[#0F4C2E] text-white'
+                          }`}>
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5" />
+                              {weekdayFull}
+                            </span>
+                            <span className="text-[10px] font-bold opacity-90">
+                              {isNl ? month.nameNl : month.nameDe}
+                            </span>
+                          </div>
+
+                          {/* Calendar Day Tile Body */}
+                          <div className="p-4 flex flex-col justify-between flex-1 gap-3">
+                            <div className="flex items-start justify-between gap-2">
+                              <div>
+                                {/* Clear, unmistakable Day Number */}
+                                <div className="text-3xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight leading-none">
+                                  {formattedDay}.
+                                </div>
+                                <div className="text-xs font-bold text-[#0F4C2E] dark:text-emerald-400 mt-1">
+                                  {item.dayDisplay}
+                                </div>
+                              </div>
+
+                              <div className="flex flex-col items-end gap-1">
+                                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0F4C2E] dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 rounded-md">
+                                  <Clock className="w-3 h-3" />
+                                  13–18 Uhr
+                                </span>
+                                {item.highlight && (
+                                  <span className="text-[10px] font-black text-amber-800 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-950/70 px-1.5 py-0.5 rounded border border-amber-300/60">
+                                    ⭐ Highlight
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            {item.eventName && (
+                              <div className="pt-2 border-t border-black/5 dark:border-white/5 text-xs text-stone-700 dark:text-stone-300 font-semibold flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0F4C2E] shrink-0" />
+                                <span className="truncate">{item.eventName}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             ))}
           </div>
 
-          {/* Small Note Box */}
-          <p className="text-xs text-[#5F6B63] dark:text-gray-400 italic mt-6 bg-white/60 dark:bg-black/20 p-3 rounded-xl border border-black/5">
-            <strong>{isNl ? 'Opmerking:' : 'Rechtlicher Hinweis:'}</strong> {isNl
-              ? 'Openingstijden zijn onder voorbehoud van wijzigingen door de autoriteiten of de winkeliersvereniging. Supermarkten (zoals Aldi en Lidl) zijn op zondag gesloten.'
-              : 'Verkaufsoffene Sonntage erfolgen im Rahmen der Kurort-Bäderregelung des Landes Nordrhein-Westfalen (§ 10 LÖG NRW). Änderungen durch Behörden oder teilnehmende Händler vorbehalten. Supermärkte (Aldi, Lidl, etc.) bleiben sonntags geschlossen.'}
-          </p>
+          {/* Legal Note Box */}
+          <div className="mt-8 bg-white/70 dark:bg-black/30 p-4 rounded-2xl border border-black/5 flex items-start gap-3 text-xs text-[#5F6B63] dark:text-gray-400 leading-relaxed">
+            <span className="text-base shrink-0">ℹ️</span>
+            <div>
+              <strong className="text-stone-900 dark:text-stone-200">{isNl ? 'Wettelijke noot:' : 'Rechtlicher Hinweis zur Bäderregelung:'}</strong>{' '}
+              {isNl
+                ? 'Verkoopzondagen vinden plaats in het kader van de officiële kuuroord-bäderregeling van Noordrijn-Westfalen (§ 10 LÖG NRW). Wijzigingen door de overheid of individuele winkeliers voorbehouden. Supermarkten (zoals Aldi en Lidl) blijven op zondag gesloten.'
+                : 'Die Sonntagsöffnungen erfolgen im Rahmen der Kurort-Bäderregelung des Landes Nordrhein-Westfalen (§ 10 LÖG NRW). Änderungen durch Behörden oder teilnehmende Einzelhändler vorbehalten. Supermärkte und Discounter (Aldi, Lidl, REWE, etc.) bleiben sonntags geschlossen.'}
+            </div>
+          </div>
         </div>
       </section>
 
