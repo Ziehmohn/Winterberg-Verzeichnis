@@ -2,6 +2,97 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'dT2quWEQcMV2MW8kMfS0',
+    slug: 'filmtheater-winterberg-nachfolge-gesucht-kino-pachten',
+    title: 'Nachfolge gesucht: Traditionsreiches Filmtheater Winterberg sucht neue Kinobetreiber',
+    title_nl: 'Opvolging gezocht: Historische bioscoop Filmtheater Winterberg zoekt nieuwe uitbater',
+    author: 'Simon Kräling',
+    businessId: 'filmtheater-winterberg',
+    businessName: 'Filmtheater Winterberg',
+    businessSlug: 'freizeit/kino/filmtheater-winterberg',
+    imageUrl: '/news-filmtheater-winterberg-nachfolge.webp',
+    imageCredit: 'Foto: Filmtheater Winterberg / Familie Wahle',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-09-30T06:35:00.000Z',
+    content: `Das Filmtheater Winterberg steht vor einem Generationenwechsel: Die Familie Wahle, die das Lichtspielhaus an der Nuhnestraße bereits in der dritten Generation führt, sucht zum nächstmöglichen Zeitpunkt eine Nachfolge zur Verpachtung des Kinos. Für Winterberg und die Region steht damit eine zentrale Kultur- und Freizeiteinrichtung im Fokus – denn ohne neue Betreiber droht dem beliebten Lichtspielhaus die Schließung.
+
+Seit über 80 Jahren ist das Kino ein fester Bestandteil des Winterberger Stadtlebens. Sowohl für Einheimische als auch für die zahlreichen Urlaubsgäste im Sauerland gehört ein Kinobesuch zum festen Freizeitangebot, gerade auch an kühleren oder regnerischen Tagen. Ein dauerhaftes Aus wäre für die lokale Infrastruktur ein herber Verlust. Umso größer ist die Hoffnung, engagierte Nachfolger zu finden, die den Betrieb nahtlos fortführen.
+
+## Moderne Technik und kein Investitionsstau
+
+Das traditionsreiche Haus präsentiert sich auf dem aktuellen Stand der Kinotechnik. In den vergangenen Jahren hat die Familie Wahle kontinuierlich in beide Säle und den Empfangsbereich investiert (Modernisierungen in Saal 1 2015, Saal 2 2019 sowie im Foyer 2020):
+
+* **Kino 1 (121 Plätze):** Ausgestattet mit Dolby Atmos 3D-Soundsystem, sechs synchron bewegenden D-Box Motion-Seats und Barco-Laserprojektor inklusive X-Pand 3D-Technik.
+
+* **Kino 2 (70 Plätze):** Neben klassischen Kinosesseln bieten fünf bequeme Sofas in der letzten Reihe zusätzlichen Komfort – ebenfalls mit Barco-Laserprojektion und 3D ausgestattet.
+
+* **Energieeffizient und nachhaltig:** Geheizt wird in beiden Sälen und im Foyer über moderne Luftwärmepumpen, Gas oder Öl kommen nicht zum Einsatz. Eine Photovoltaikanlage auf dem Dach liefert jährlich rund 20.000 Kilowattstunden Strom.
+
+## Voll ausgestatteter Betrieb zur Verpachtung
+
+Neue Pächter übernehmen einen schlüsselfertigen, sofort einsatzbereiten Betrieb in einer der meistbesuchten Ferienregionen Nordrhein-Westfalens. Die Ausschreibung richtet sich gleichermaßen an erfahrene Kinobetreiber wie auch an motivierte Quereinsteiger oder Betreiberpaare mit Interesse an Kultur und Veranstaltungsbetrieb.
+
+* **Filmtheater Winterberg**
+  Modernes 2-Saal-Kino an der Nuhnestraße mit Foyer, Thekenbereich und neuester Vorführtechnik.
+  * [Zum Unternehmensprofil im Verzeichnis](/freizeit/kino/filmtheater-winterberg)
+  * [Zur offiziellen Website des Kinos](https://www.filmtheater-winterberg.de)
+
+## Kontakt für Interessenten
+
+Interessenten können sich direkt und vertraulich an Joachim und Annette Wahle wenden, um Details zur Verpachtung und Besichtigungstermine zu vereinbaren.
+
+:::contact
+### Kontakt zur Nachfolge
+Fragen zur Verpachtung und zum Kinobetrieb beantwortet Familie Wahle:
+
+* **Ansprechpartner:** Joachim und Annette Wahle
+* **Adresse:** Nuhnestraße 13, 59955 Winterberg
+* **Telefon:** 0170 162 11 77
+* **E-Mail:** info@filmtheater-winterberg.de
+* **Mitteilung des Betreibers:** [Zur offiziellen Ankündigung des Kinos](https://www.filmtheater-winterberg.de/event/126498)
+* **Verzeichniseintrag:** [Filmtheater Winterberg im Stadtportal](/freizeit/kino/filmtheater-winterberg)
+:::`,
+    content_nl: `Het Filmtheater Winterberg staat voor een generatiewisseling: de familie Wahle, die de bioscoop aan de Nuhnestraße inmiddels in de derde generatie leidt, zoekt op korte termijn een opvolger voor de verpachting van het bedrijf. Zowel voor de inwoners van Winterberg als voor de vele vakantiegangers in de regio is het theater een centrale culturele voorziening – zonder nieuwe exploitant dreigt de bioscoop definitief te moeten sluiten.
+
+Al meer dan 80 jaar is het Filmtheater een vaste waarde in Winterberg. Voor de lokale bevolking én voor toeristen in het Sauerland is een bioscoopbezoek een geliefde vrijetijdsbesteding, zeker ook op minder zonnige dagen. Een definitieve sluiting zou voor het vrijetijdsaanbod van de stad een groot gemis betekenen. Familie Wahle hoopt dan ook op een gemotiveerde opvolger die de bioscoop naadloos kan overnemen en voortzetten.
+
+## Moderne techniek zonder achterstallig onderhoud
+
+Het filmtheater is technisch en qua comfort volledig bij de tijd. De afgelopen jaren heeft de familie Wahle doelgericht geïnvesteerd in beide filmzalen en de ontvangstruimte (renovaties in Zaal 1 in 2015, Zaal 2 in 2019 en de foyer in 2020):
+
+* **Zaal 1 (121 zitplaatsen):** Voorzien van een Dolby Atmos 3D-geluidssysteem, zes synchroon bewegende D-Box Motion-stoelen en een moderne Barco-laserprojector met X-Pand 3D.
+
+* **Zaal 2 (70 zitplaatsen):** Naast reguliere bioscoopstoelen bieden vijf comfortabele banken op de achterste rij extra zitcomfort – eveneens met Barco-laserprojectie en 3D.
+
+* **Duurzaam en energiezuinig:** Beide filmzalen en de foyer worden verwarmd met moderne lucht-warmtepompen; gas of olie wordt niet gebruikt. Een zonnepaneleninstallatie op het dak levert jaarlijks circa 20.000 kWh aan stroom op.
+
+## Volledig ingericht bedrijf te pachten
+
+Nieuwe pachters nemen een instapklaar, direct operationeel bedrijf over in een van de drukst bezochte toeristische regio's van Duitsland. De oproep richt zich zowel op ervaren bioscoopondernemers als op enthousiaste zij-instromers of ondernemerskoppels met een hart voor film en cultuur.
+
+* **Filmtheater Winterberg**
+  Moderne 2-zalenbioscoop aan de Nuhnestraße met foyer, horecadeel en actuele vertoontechniek.
+  * [Naar het bedrijfsprofiel in het overzicht](/nl/vrije-tijd/bioscoop/filmtheater-winterberg)
+  * [Naar de officiële website van de bioscoop](https://www.filmtheater-winterberg.de)
+
+## Contact voor geïnteresseerden
+
+Kandidaten kunnen rechtstreeks en vertrouwelijk contact opnemen met Joachim en Annette Wahle voor meer toelichting en bezichtigingsafspraken.
+
+:::contact
+### Contact over de opvolging
+Vragen over de verpachting en de overname van de bioscoop? Familie Wahle staat u graag te woord:
+
+* **Contactpersonen:** Joachim en Annette Wahle
+* **Adres:** Nuhnestraße 13, 59955 Winterberg
+* **Telefoon:** 0170 162 11 77
+* **E-mail:** info@filmtheater-winterberg.de
+* **Officiële mededeling:** [Bekijk het bericht op de bioscoopwebsite](https://www.filmtheater-winterberg.de/event/126498)
+* **Gidsvermelding:** [Filmtheater Winterberg in het stadsportaal](/nl/vrije-tijd/bioscoop/filmtheater-winterberg)
+:::`,
+  },
+  {
     id: 'lokal-einkaufen-und-online-bestellen-winterberger-onlineshops',
     slug: 'lokal-einkaufen-und-online-bestellen-winterberger-onlineshops',
     title: 'Lokal einkaufen & online bestellen: Winterberger Geschäfte verbinden stationären Handel und Onlineshopping',
