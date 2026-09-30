@@ -607,7 +607,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
           className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0F4C2E] text-white font-semibold hover:bg-[#186841] transition-colors"
         >
           <ArrowLeft size={16} />
-          {t('newsBackToOverview')}
+          {t('newsBackToOverview') || t('newsBack') || (lang === 'nl' ? 'Terug naar het overzicht' : 'Zurück zur Übersicht')}
         </button>
       </div>
     );
@@ -632,7 +632,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         className="flex items-center gap-[8px] text-[14px] font-semibold text-[#5F6B63] hover:text-[#1B211D] mb-[32px] transition-colors group"
       >
         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-        {t('newsBackToOverview')}
+        {t('newsBackToOverview') || t('newsBack') || (lang === 'nl' ? 'Terug naar het overzicht' : 'Zurück zur Übersicht')}
       </button>
 
       {article.imageUrl && (
