@@ -308,6 +308,28 @@ const staticPageConfigs: {
     h1Nl: 'E-Laadpalen & Snelladers Winterberg',
     h2De: 'Ladeinfrastruktur für Elektrofahrzeuge im Stadtgebiet',
     h2Nl: 'Laadinfrastructuur voor elektrische auto\'s'
+  },
+  {
+    key: 'shoppingTheme',
+    titleDe: 'Shoppen in Winterberg | Mode, Boutiquen, Outlet & Verkaufsoffene Sonntage',
+    titleNl: 'Winkelen in Winterberg | Mode, Boetieks, Outlet & Koopzondagen',
+    descDe: 'Einkaufen & Shoppen in Winterberg: Flaniermeile Am Waltenberg, Modehäuser, Schuhe, Sport & Outdoor, Juwelier, Bessmann Outlet und 33 verkaufsoffene Sonntage 2026 inkl. PDF-Kalender.',
+    descNl: 'Winkelen in Winterberg: gezellig flaneren aan de Waltenberg, top modemerken, schoenen, outdoor kleding, juwelier en alle koopzondagen 2026 met PDF kalender.',
+    h1De: 'Shoppen in Winterberg – Das Einkaufs-Erlebnis im Sauerland',
+    h1Nl: 'Winkelen in Winterberg – Boetieks, Mode & Koopzondagen',
+    h2De: 'Modehäuser, Boutiquen, Fachgeschäfte & Termine 2026',
+    h2Nl: 'Winkels aan de Waltenberg, Neue Mitte en koopzondagen'
+  },
+  {
+    key: 'shoppenWinterberg',
+    titleDe: 'Shoppen in Winterberg | Geschäfte, Mode & Sonntagsöffnungen',
+    titleNl: 'Winkelen in Winterberg | Winkels, Kleding & Koopzondagen',
+    descDe: 'Erleben Sie die Winterberger Einkaufsmeile: Modegeschäfte, Schuhhäuser, Juweliere, Parfümerie und verkaufsoffene Sonntage im Sauerland.',
+    descNl: 'Ontdek de winkels in Winterberg: kledingwinkels, schoenen, juweliers, parfumerie en koopzondagen in het Sauerland.',
+    h1De: 'Shoppen in Winterberg',
+    h1Nl: 'Winkelen in Winterberg',
+    h2De: 'Boutiquen, Sportfachgeschäfte & Termine der Bäderregelung',
+    h2Nl: 'Boetieks, sportwinkels en koopzondagen'
   }
 ];
 

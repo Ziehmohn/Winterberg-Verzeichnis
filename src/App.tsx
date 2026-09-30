@@ -88,6 +88,7 @@ const SundayOpenPage = React.lazy(() => import('./components/SundayOpenPage'));
 const SkiReportPage = React.lazy(() => import('./components/SkiReportPage'));
 const WasteCalendarPage = React.lazy(() => import('./components/WasteCalendarPage'));
 const ChargingStationsPage = React.lazy(() => import('./components/ChargingStationsPage'));
+const ShoppingThemePage = React.lazy(() => import('./components/ShoppingThemePage'));
 import { db, auth, storage } from './firebase';
 import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -177,6 +178,7 @@ export default function App() {
   let initialWebcamsMode = false;
   let initialWasteCalendarMode = false;
   let initialChargingStationsMode = false;
+  let initialShoppingThemeMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
   let initialEmbedLayout: WidgetLayout = 'badge';
@@ -274,6 +276,13 @@ export default function App() {
         initialWasteCalendarMode = true;
       } else if (decodedPart1 === 'e-ladestationen' || decodedPart1 === 'laadpalen' || decodedPart1 === 'ladestationen') {
         initialChargingStationsMode = true;
+      } else if (
+        decodedPart1 === 'shoppen-in-winterberg' || 
+        decodedPart1 === 'winkelen-in-winterberg' || 
+        (decodedPart1 === 'themen' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'shoppen-in-winterberg') ||
+        (decodedPart1 === 'themas' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'winkelen-in-winterberg')
+      ) {
+        initialShoppingThemeMode = true;
       } else if (decodedPart1 === 'abmelden' || decodedPart1 === 'uitschrijven') {
         // Will be handled by UnsubscribeModal
       } else {
@@ -500,6 +509,7 @@ export default function App() {
     if (isWebcamsMode) return { view: 'webcams' };
     if (isWasteCalendarMode) return { view: 'waste-calendar' };
     if (isChargingStationsMode) return { view: 'charging-stations' };
+    if (isShoppingThemeMode) return { view: 'shopping-theme' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
       const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
@@ -586,6 +596,7 @@ export default function App() {
     if (p === '/webcams' || p === '/webcam') return buildLocalizedUrl({ view: 'webcams' }, lang);
     if (p === '/abfallkalender' || p === '/afvalkalender') return buildLocalizedUrl({ view: 'waste-calendar' }, lang);
     if (p === '/e-ladestationen' || p === '/laadpalen' || p === '/ladestationen') return buildLocalizedUrl({ view: 'charging-stations' }, lang);
+    if (p === '/shoppen-in-winterberg' || p === '/winkelen-in-winterberg' || p === '/themen/shoppen-in-winterberg' || p === '/themas/winkelen-in-winterberg') return buildLocalizedUrl({ view: 'shopping-theme' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
     const parts = clean.split('/').filter(Boolean);
@@ -636,6 +647,7 @@ export default function App() {
     setIsWebcamsMode(false);
     setIsWasteCalendarMode(false);
     setIsChargingStationsMode(false);
+    setIsShoppingThemeMode(false);
   };
 
   const handleCategoryChange = (catName: string) => {
@@ -766,6 +778,13 @@ export default function App() {
           setIsWasteCalendarMode(true);
         } else if (p1 === 'e-ladestationen' || p1 === 'laadpalen' || p1 === 'ladestationen') {
           setIsChargingStationsMode(true);
+        } else if (
+          p1 === 'shoppen-in-winterberg' || 
+          p1 === 'winkelen-in-winterberg' || 
+          (p1 === 'themen' && pathParts[1] && pathParts[1].toLowerCase() === 'shoppen-in-winterberg') ||
+          (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'winkelen-in-winterberg')
+        ) {
+          setIsShoppingThemeMode(true);
         } else {
            window.location.reload();
         }
@@ -908,6 +927,7 @@ export default function App() {
   const [isWebcamsMode, setIsWebcamsMode] = useState(initialWebcamsMode);
   const [isWasteCalendarMode, setIsWasteCalendarMode] = useState(initialWasteCalendarMode);
   const [isChargingStationsMode, setIsChargingStationsMode] = useState(initialChargingStationsMode);
+  const [isShoppingThemeMode, setIsShoppingThemeMode] = useState(initialShoppingThemeMode);
   const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
   const [embedBusinessId] = useState(initialEmbedBusinessId);
@@ -2253,6 +2273,28 @@ export default function App() {
               setIsChargingStationsMode(false);
               window.history.pushState(null, '', getPath(path));
               window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isShoppingThemeMode ? (
+          <ShoppingThemePage
+            businesses={businesses}
+            theme={theme}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsShoppingThemeMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateCategory={(cat, sub) => {
+              resetToDirectory();
+              setActiveCategory(sub || cat);
+              window.history.pushState(null, '', getPath(`/${encodeURIComponent(cat)}${sub ? `/${encodeURIComponent(sub)}` : ''}`));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsShoppingThemeMode(false);
+              window.history.pushState(null, '', getPath('/'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
@@ -4011,6 +4053,22 @@ export default function App() {
             </a>
             <a href="https://www.winterberg.de/service-kontakt/wirtschaftsfoerderung/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
               {lang === 'nl' ? 'Economische Zaken (Wirtschaftsförderung)' : 'Wirtschaftsförderung Winterberg'}
+            </a>
+
+            {/* Themenseiten */}
+            <div className="text-white font-semibold mt-3 mb-0.5">{lang === 'nl' ? 'Themapagina\'s' : 'Themenseiten'}</div>
+            <a 
+              href={getPath('/themen/shoppen-in-winterberg')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/themen/shoppen-in-winterberg')); 
+                resetToDirectory(); 
+                setIsShoppingThemeMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Winkelen in Winterberg' : 'Shoppen in Winterberg'}
             </a>
           </div>
         </div>

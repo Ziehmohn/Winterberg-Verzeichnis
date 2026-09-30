@@ -6065,6 +6065,43 @@ export const businesses: Business[] = [
     phone: '02981 1234',
     website: 'https://www.tenne-winterberg.de',
     isActive: true
+  },
+  {
+    id: 'juwelier-eiloff-winterberg',
+    name: 'Juwelier Eiloff',
+    category: 'Einzelhandel',
+    subcategory: 'Juweliere & Uhren',
+    description: 'Juwelier Eiloff ist das traditionsreiche Fachgeschäft für exklusiven Schmuck, edle Uhren und Trauringe am Waltenberg in Winterberg.',
+    extendedDescription: 'Juwelier Eiloff am Waltenberg 9 im Herzen von Winterberg ist seit vielen Jahren die führende Adresse für hochwertigen Schmuck, edle Uhrenmarken und liebevoll ausgewählte Trauringe im Sauerland. Ob Sie auf der Suche nach einem besonderen Geschenk, einer Reparatur Ihrer Armbanduhr oder einer kompetenten Beratung für Verlobungs- und Eheringe sind – Juwelier Eiloff überzeugt durch Fachkompetenz, exzellenten Service und eine stilvolle Atmosphäre.',
+    address: 'Am Waltenberg 9, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 928466',
+    website: 'https://www.juwelier-eiloff.de',
+    imageFallback: 'JE',
+    isActive: true,
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen (an verkaufsoffenen Sonntagen geöffnet)'
+    },
+    services: [
+      'Schmuckberatung',
+      'Trauringberatung',
+      'Uhrenservice & Batteriewechsel',
+      'Schmuckreinigung & Reparaturen',
+      'Gravuren'
+    ],
+    products: [
+      'Goldschmuck',
+      'Silberschmuck',
+      'Trauringe & Verlobungsringe',
+      'Armbanduhren bekannter Marken',
+      'Perlenschmuck'
+    ]
   }
 ];
 
@@ -6184,7 +6221,7 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },

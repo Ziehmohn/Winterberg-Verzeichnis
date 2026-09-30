@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (311 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (312 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1001,7 +1001,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 929910
 - **Beschreibung (DE):** Ihr Schuhgeschäft in Winterberg mit einer großen Auswahl an Marken- und Fachschuhen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/schuhgeschaefte/faupel-schoene-schuhe
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/schuhgeschaefte/faupel-schoene-schuhe
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/schoenenwinkels/faupel-schoene-schuhe
 
 #### [Ernsting's family](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/ernsting-s-family)
 - **Kategorie:** Einzelhandel > Bekleidung
@@ -1059,7 +1059,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Traditionelle Parfümerie und Fachgeschäft für exklusive Düfte, hochwertige Pflegekosmetik, Make-up und professionelle Kosmetikbehandlungen im Herzen von Winterberg.
 - **Beschreibung (NL):** Traditionele parfumerie en speciaalzaak voor exclusieve geuren, hoogwaardige verzorgingscosmetica, make-up en professionele schoonheidsbehandelingen in het centrum van Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/parfuemerie/parfuemerie-becker-gmbh
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/parfuemerie/parfuemerie-becker-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/parfumerie/parfuemerie-becker-gmbh
 
 #### [camel active Store Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/camel-active-store-winterberg)
 - **Kategorie:** Einzelhandel > Bekleidung
@@ -1136,6 +1136,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Modieuze kledingboetiek in het centrum van Winterberg met geselecteerde collecties dames- en herenmode, stijlvolle accessoires en een eigen webshop.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/insider-fashion-store-precious
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/insider-fashion-store-precious
+
+#### [Juwelier Eiloff](https://www.winterberg-verzeichnis.de/einzelhandel/juweliere-und-uhren/juwelier-eiloff)
+- **Kategorie:** Einzelhandel > Juweliere & Uhren
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 9, 59955 Winterberg
+- **Telefon:** 02981 928466
+- **Webseite:** https://www.juwelier-eiloff.de
+- **Beschreibung (DE):** Juwelier Eiloff ist das traditionsreiche Fachgeschäft für exklusiven Schmuck, edle Uhren und Trauringe am Waltenberg in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/juweliere-und-uhren/juwelier-eiloff
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/juweliers-en-horloges/juwelier-eiloff
 
 ### Kategorie: Gastronomie
 
@@ -3046,6 +3056,10 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Einkaufen & Shopping
 - **Antwort:** Ja, Winterberg bietet ein lebendiges Shopping-Erlebnis: An der Einkaufsmeile Am Waltenberg und rund um die Untere Pforte gibt es große Sportfachgeschäfte (Ski, Outdoor, Bikes), Modegeschäfte, Schuhhäuser, Sauerländer Spezialitäten und Souvenirs. Besonderes Highlight: In den Saisonmonaten haben viele Geschäfte auch sonntags von 11:00 bis 17:00 Uhr verkaufsoffen!
 
+#### Frage: Wann sind verkaufsoffene Sonntage in Winterberg?
+- **Kategorie:** Einkaufen & Shopping
+- **Antwort:** Im Rahmen der nordrhein-westfälischen Bäderregelung für heilklimatische Kurorte hat Winterberg 2026 an 33 Sonn- und Feiertagen verkaufsoffen (Kernöffnungszeit meist 13:00 bis 18:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.
+
 #### Frage: Wo kann man in Winterberg gut essen?
 - **Kategorie:** Essen & Trinken
 - **Antwort:** In Winterberg gibt es eine große gastronomische Auswahl. Beliebte Adressen sind das Hotel Hessenhof und Schneider's Restaurant für traditionelle Küche, die Kupferpfanne für Steaks, Da Salvatore für italienische Spezialitäten sowie die Panorama-Restaurants am Erlebnisberg Kappe und Möppi's Hütte. (Auswahl der beliebtesten Restaurants).
@@ -3162,7 +3176,11 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### Vraag: Kun je goed winkelen in Winterberg?
 - **Categorie:** Einkaufen & Shopping
-- **Antwoord:** Winkelen in Winterberg: Aan de levendige flaneerstraat Am Waltenberg vind je grote outdoor- en wintersportzaken, kledingwinkels, schoenenboetieks en winkels met Sauerlandse streekproducten. Veel winkels zijn 's zondags geopend tussen 11:00 en 17:00 uur.
+- **Antwoord:** Winkelen in Winterberg: Aan de levendige flaneerstraat Am Waltenberg vind je grote outdoor- en wintersportzaken, kledingwinkels, schoenenboetieks en winkels met Sauerlandse streekproducten. Veel winkels zijn 's zondags geopend tussen 13:00 en 18:00 uur.
+
+#### Vraag: Wanneer zijn er koopzondagen in Winterberg?
+- **Categorie:** Einkaufen & Shopping
+- **Antwoord:** Dankzij de kuuroord-status zijn winkels in Winterberg in 2026 op 33 zon- en feestdagen geopend, meestal van 13:00 tot 18:00 uur. Download de complete kalender op onze thesapagina Winkelen in Winterberg.
 
 #### Vraag: Waar kun je lekker eten in Winterberg?
 - **Categorie:** Essen & Trinken

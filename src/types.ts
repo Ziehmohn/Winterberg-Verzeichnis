@@ -93,6 +93,7 @@ export interface NewsArticle {
   date: string;
   imageUrl?: string;
   imageSource?: string;
+  imageCredit?: string;
   isAiGenerated?: boolean;
   isBusinessNews?: boolean; // true = von Premium-Unternehmen eingereicht
   status: 'pending' | 'approved';

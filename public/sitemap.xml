@@ -314,6 +314,30 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/themen/shoppen-in-winterberg</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/themas/winkelen-in-winterberg</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/shoppen-in-winterberg</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/winkelen-in-winterberg</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/die-besten</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -668,7 +692,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/schuhgeschaefte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/schoenenwinkels</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -740,7 +764,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/parfuemerie</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/parfumerie</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -765,6 +789,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/telekommunikation</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/die-besten/einzelhandel/juweliere-und-uhren</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/juweliers-en-horloges</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1772,7 +1808,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/schuhgeschaefte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/schoenenwinkels</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1844,7 +1880,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/parfuemerie</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/parfumerie</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1869,6 +1905,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/telekommunikation</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/juweliere-und-uhren</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/juweliers-en-horloges</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -5336,7 +5384,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/schuhgeschaefte/faupel-schoene-schuhe</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/schoenenwinkels/faupel-schoene-schuhe</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5564,7 +5612,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/parfuemerie/parfuemerie-becker-gmbh</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/parfumerie/parfuemerie-becker-gmbh</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6261,6 +6309,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/die-tenne-winterberg</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/juweliere-und-uhren/juwelier-eiloff</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/juweliers-en-horloges/juwelier-eiloff</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

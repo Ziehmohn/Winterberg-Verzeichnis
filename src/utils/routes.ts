@@ -77,6 +77,9 @@ export const SUBCATEGORY_SLUGS: Record<string, RouteMapping> = {
   'Reitsport': { de: 'reitsport', nl: 'paardensport' },
   'Kino': { de: 'kino', nl: 'bioscoop' },
   'Immobilienmakler': { de: 'immobilienmakler', nl: 'makelaars' },
+  'Juweliere & Uhren': { de: 'juweliere-und-uhren', nl: 'juweliers-en-horloges' },
+  'Parfümerie': { de: 'parfuemerie', nl: 'parfumerie' },
+  'Schuhgeschäfte': { de: 'schuhgeschaefte', nl: 'schoenenwinkels' },
 };
 
 // Static Pages Slugs
@@ -103,6 +106,8 @@ export const STATIC_PAGE_SLUGS = {
   webcams: { de: 'webcams', nl: 'webcams' },
   wasteCalendar: { de: 'abfallkalender', nl: 'afvalkalender' },
   chargingStations: { de: 'e-ladestationen', nl: 'laadpalen' },
+  shoppingTheme: { de: 'themen/shoppen-in-winterberg', nl: 'themas/winkelen-in-winterberg' },
+  shoppenWinterberg: { de: 'shoppen-in-winterberg', nl: 'winkelen-in-winterberg' },
 };
 
 export function slugify(str: string): string {
@@ -181,7 +186,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -312,6 +317,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'charging-stations':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.chargingStations[targetLang]}`;
+
+    case 'shopping-theme':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.shoppingTheme[targetLang]}`;
 
     default:
       return `${baseUrl}${prefix || '/'}`;
