@@ -4468,6 +4468,52 @@ export const businesses: Business[] = [
     }
   },
   {
+    id: 'nowa-kebabhaus-winterberg',
+    name: 'Nowa Kebabhaus Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Imbisse',
+    description: 'Neuer Imbiss und modernes Kebabhaus an der Flaniermeile Am Waltenberg in Winterberg. Das Angebot reicht von saftigen Drehspieß-Dönergerichten und Dürüm über frische Grillteller (Tavuk Şiş, Adana Kebab, Pirzola Lammkoteletts) bis hin zu knusprigen Steinofenpizzen, Rollos, Kapsalon, knackigen Salaten und ofenfrischem Baklava. Alle Speisen zum Verzehr vor Ort sowie zur schnellen Abholung mit telefonischer Vorbestellung.',
+    description_nl: 'Nieuwe snackbar en modern kebabrestaurant aan de boulevard Am Waltenberg in Winterberg. Het menu varieert van malse döner kebab van het spit en durum tot verse grillschotels (Tavuk Şiş kipspies, Adana kebab, Pirzola lamskoteletten), knapperige steenovenpizza\'s, rollos, kapsalon, verse salades en authentieke baklava. Zowel ter plaatse te nuttigen als voor snelle afhaal met telefonische voorbestelling.',
+    address: 'Am Waltenberg 27, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9296565',
+    mobile: '0151 10691618',
+    image: '/nowa-kebabhaus-speisekarte.jpg',
+    imageFallback: 'NK',
+    isPremium: false,
+    status: 'approved',
+    services: [
+      'Döner & Dürüm Spezialitäten',
+      'Grillspezialitäten & Kebabspieße',
+      'Steinofenpizza & Rollos',
+      'Kapsalon & Überbackene Pasta',
+      'Knackige Salate & Falafel',
+      'Traditionelles Baklava',
+      'Telefonische Vorbestellung & Abholung',
+      'Event- & Party-Catering'
+    ],
+    services_nl: [
+      'Döner & durum specialiteiten',
+      'Grillspecialiteiten & kebabspiezen',
+      'Steenovenpizza & rollos',
+      'Kapsalon & gegratineerde pasta',
+      'Knapperige salades & falafel',
+      'Traditionele baklava',
+      'Telefonische bestelling & afhaal',
+      'Event- & feestcatering'
+    ],
+    openingHours: {
+      monday: 'Geschlossen (außer Feiertage)',
+      tuesday: '11:00 - 22:00',
+      wednesday: '11:00 - 22:00',
+      thursday: '11:00 - 22:00',
+      friday: '11:00 - 23:00',
+      saturday: '11:00 - 23:00',
+      sunday: '11:00 - 22:00'
+    }
+  },
+
+  {
     id: 'borgschulte-friseur-winterberg',
     name: 'Borgschulte Friseur by W & O Schmidt',
     category: 'Handwerk',

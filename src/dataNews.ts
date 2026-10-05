@@ -2,6 +2,119 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'VrBTX4FCdOKW08Yy9eTM',
+    slug: 'neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung',
+    title: 'Neueröffnung am Waltenberg: Nowa Kebabhaus startet mit 1,99-Euro-Döneraktion in Winterberg',
+    title_nl: 'Nieuwe opening aan de Waltenberg: Nowa Kebabhaus start met 1,99 euro döneractie in Winterberg',
+    author: 'Simon Kräling',
+    businessId: 'nowa-kebabhaus-winterberg',
+    businessName: 'Nowa Kebabhaus Winterberg',
+    businessSlug: 'gastronomie/imbisse/nowa-kebabhaus-winterberg',
+    imageUrl: '/news-nowa-kebabhaus-eroeffnung.png',
+    imageCredit: 'Foto: Nowa Kebabhaus Winterberg',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-05T17:40:00.000Z',
+    content: `Winterbergs Gastronomieszene hat Zuwachs bekommen: Am heutigen Montag, den 5. Oktober 2026, hat an der belebten Flaniermeile Am Waltenberg 27 das neue **Nowa Kebabhaus** offiziell eröffnet. Zur großen Neueröffnung lockte das Team mit einer besonderen Aktion: Dönertaschen gab es am Eröffnungstag für unschlagbare 1,99 Euro.
+
+Die Resonanz ließ nicht lange auf sich warten. Schon am Nachmittag bildeten sich lange Warteschlangen neugieriger Einheimischer, Jugendlicher und Feriengäste vor dem neuen Imbiss, um sich den Eröffnungsdöner zu sichern und einen ersten Blick auf das kulinarische Angebot zu werfen.
+
+## Vielfältige Speisekarte: Vom Drehspieß bis zur Grillplatte
+
+Das Nowa Kebabhaus setzt neben klassischen Drehspießgerichten auf eine breite Auswahl an Grillspezialitäten, Steinofenpizza und mediterranen Klassikern:
+
+* **Döner- & Dürüm-Spezialitäten**
+  Das Drehspießfleisch besteht aus 70 % Kalb- und 20 % Putenfleisch. Neben der klassischen Dönertasche, XXL-Döner und Dürüm stehen auch der beliebte İskender Teller, Dönerteller sowie Kapsalon (mit Pommes, Dönerfleisch, frischem Salat, Knoblauchsauce und Käse überbacken) auf der Karte. Für Vegetarier gibt es hausgemachte Falafeltaschen und Falafelteller.
+
+* **Frische Holzkohle- & Grillgerichte**
+  Herzhafte Tellergerichte wie Tavuk Şiş (zarte marinierte Hähnchenspieße), Adana Kebab (würziger Hackfleischspieß vom Grill), Pirzola (saftige Lammkoteletts), Kanat (knusprige Hähnchenflügel) sowie die gemischte Kebab-Platte (Karışık Kebab) oder eine üppige Grillplatte für zwei Personen.
+
+* **Steinofenpizza, Rollos & überbackene Pasta**
+  Frisch belegte Pizzen in zahlreichen Variationen, gefüllte Pizzabrötchen, gerollte Teigspezialitäten (Rollos) sowie überbackene Nudelgerichte mit Sahnesauce und Käse.
+
+* **Knackige Salate & traditionelles Baklava**
+  Frische gemischte Salate, Feta-Salat oder Tavuk-Salat mit Hähnchen. Als süßer Abschluss wird traditionelles türkisches Baklava (Havuç Dilimi, auf Wunsch serviert mit Eis) angeboten.
+
+## Vor-Ort-Verzehr, Abholservice & Catering
+
+Alle Gerichte können sowohl direkt vor Ort verzehrt als auch bequem telefonisch vorbestellt und frisch abgeholt werden. Zudem bietet das Nowa Kebabhaus einen individuellen Catering-Service für private Feiern und Events im Stadtgebiet an.
+
+* **Nowa Kebabhaus Winterberg**
+  Der neue Treffpunkt für Kebab- und Grillspezialitäten, Pizza und Kapsalon am Waltenberg.
+  * [Zum Unternehmensprofil im Verzeichnis](/gastronomie/imbisse/nowa-kebabhaus-winterberg)
+
+## Öffnungszeiten & Kontakt
+
+* **Standort:** Am Waltenberg 27, 59955 Winterberg
+* **Telefon:** 02981 9296565
+* **Mobil / Vorbestellungen:** 0151 10691618
+* **Reguläre Öffnungszeiten:**
+  * Montag: Ruhetag (außer Feiertage & Winterferien)
+  * Dienstag bis Donnerstag: 11:00 – 22:00 Uhr
+  * Freitag & Samstag: 11:00 – 23:00 Uhr (am Wochenende bis 24:00 Uhr)
+  * Sonntag: 11:00 – 22:00 Uhr
+
+:::contact
+### Kontakt & Vorbestellungen
+Möchten Sie Speisen vorbestellen oder ein Catering für Ihre Feier anfragen?
+
+* **Betrieb:** Nowa Kebabhaus Winterberg
+* **Adresse:** Am Waltenberg 27, 59955 Winterberg
+* **Telefon:** 02981 9296565
+* **Mobil:** 0151 10691618
+* **Unternehmensprofil im Verzeichnis:** [Zum Profil von Nowa Kebabhaus](/gastronomie/imbisse/nowa-kebabhaus-winterberg)
+:::`,
+    content_nl: `Het gastronomische aanbod van Winterberg is uitgebreid: op maandag 5 oktober 2026 heeft aan de populaire wandelstraat Am Waltenberg 27 het nieuwe **Nowa Kebabhaus** officieel zijn deuren geopend. Ter gelegenheid van de grote opening pakte het team uit met een opvallende actie: broodjes döner kebab waren op de openingsdag verkrijgbaar voor slechts 1,99 euro.
+
+De actie trok meteen grote belangstelling. Al in de loop van de middag vormden zich lange rijen nieuwsgierige inwoners, jongeren en vakantiegangers voor de nieuwe snackbar om te profiteren van de openingsaanbieding en de menukaart te ontdekken.
+
+## Gevarieerde menukaart: Van döner van het spit tot grillschotels
+
+Nowa Kebabhaus biedt naast vertrouwde döner- en durumklassiekers ook een ruime keuze aan gegrilde vleesspiezen, steenovenpizza's en ovengerechten:
+
+* **Döner- & durumspecialiteiten**
+  Het spitvlees bestaat uit een hoogwaardige mix van 70% kalfsvlees en 20% kalkoenvlees. Naast het klassieke broodje döner, XXL-döner en durum staan ook de İskender-schotel, dönerteller en de bij Nederlandse gasten geliefde Kapsalon (friet, dönervlees, verse salade, knoflooksaus en gesmolten kaas) op het menu. Voor vegetariërs is er verse falafel.
+
+* **Verse grillschotels van de grill**
+  Smaakvolle vleesgerechten zoals Tavuk Şiş (malse gemarineerde kipspies), Adana Kebab (gekruide gehaktspies), Pirzola (sappige lamskoteletten), Kanat (krokante kippenvleugels) en royale gemengde grillschotels voor één of twee personen.
+
+* **Steenovenpizza's, rollos & pasta**
+  Vers belegde pizza's, gevulde pizzabroodjes, rollos en gegratineerde pastagerechten uit de oven met roomsaus en kaas.
+
+* **Knapperige salades & authentieke baklava**
+  Verse gemengde salades, fetasalade of salades met gegrilde kip. Als dessert serveert het huis traditionele Turkse baklava (Havuç Dilimi, naar wens met ijs).
+
+## Eten ter plaatse, afhalen & catering
+
+Alle gerechten zijn zowel ter plaatse te nuttigen als eenvoudig telefonisch vooraf te bestellen voor snelle afhaal. Daarnaast verzorgt Nowa Kebabhaus ook catering op maat voor feesten en partijen in en rondom Winterberg.
+
+* **Nowa Kebabhaus Winterberg**
+  De nieuwe hotspot voor döner, grillspecialiteiten, pizza en kapsalon aan de Waltenberg.
+  * [Naar het bedrijfsprofiel in het overzicht](/nl/gastronomie/snackbar-en-fastfood/nowa-kebabhaus-winterberg)
+
+## Openingstijden & contact
+
+* **Locatie:** Am Waltenberg 27, 59955 Winterberg
+* **Telefoon:** 02981 9296565
+* **Mobiel / Bestellingen:** 0151 10691618
+* **Reguliere openingstijden:**
+  * Maandag: Rustdag (behalve op feestdagen en in de wintervakanties)
+  * Dinsdag t/m donderdag: 11:00 – 22:00 uur
+  * Vrijdag & zaterdag: 11:00 – 23:00 uur
+  * Zondag: 11:00 – 22:00 uur
+
+:::contact
+### Contact & Bestellingen
+Wilt u gerechten vooraf bestellen of catering aanvragen voor uw evenement?
+
+* **Bedrijf:** Nowa Kebabhaus Winterberg
+* **Adres:** Am Waltenberg 27, 59955 Winterberg
+* **Telefoon:** 02981 9296565
+* **Mobiel:** 0151 10691618
+* **Bedrijfsprofiel in de gids:** [Naar het profiel van Nowa Kebabhaus](/nl/gastronomie/snackbar-en-fastfood/nowa-kebabhaus-winterberg)
+:::`,
+  },
+  {
     id: 'dT2quWEQcMV2MW8kMfS0',
     slug: 'filmtheater-winterberg-nachfolge-gesucht-kino-pachten',
     title: 'Nachfolge gesucht: Traditionsreiches Filmtheater Winterberg sucht neue Kinobetreiber',

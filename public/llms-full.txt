@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-09-30
+# Stand: 2026-10-05
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (312 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (313 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1558,6 +1558,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Populaire snackbar en fastfood-klassieker aan de Waltenberg in Winterberg met knapperige friet, originele Sauerlandse curryworst, schnitzels, burgers en verse saladebowls.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/pommes-und-co-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/pommes-und-co-winterberg
+
+#### [Nowa Kebabhaus Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/nowa-kebabhaus-winterberg)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 27, 59955 Winterberg
+- **Telefon:** 02981 9296565
+- **Beschreibung (DE):** Neuer Imbiss und modernes Kebabhaus an der Flaniermeile Am Waltenberg in Winterberg. Das Angebot reicht von saftigen Drehspieß-Dönergerichten und Dürüm über frische Grillteller (Tavuk Şiş, Adana Kebab, Pirzola Lammkoteletts) bis hin zu knusprigen Steinofenpizzen, Rollos, Kapsalon, knackigen Salaten und ofenfrischem Baklava. Alle Speisen zum Verzehr vor Ort sowie zur schnellen Abholung mit telefonischer Vorbestellung.
+- **Beschreibung (NL):** Nieuwe snackbar en modern kebabrestaurant aan de boulevard Am Waltenberg in Winterberg. Het menu varieert van malse döner kebab van het spit en durum tot verse grillschotels (Tavuk Şiş kipspies, Adana kebab, Pirzola lamskoteletten), knapperige steenovenpizza's, rollos, kapsalon, verse salades en authentieke baklava. Zowel ter plaatse te nuttigen als voor snelle afhaal met telefonische voorbestelling.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/nowa-kebabhaus-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/nowa-kebabhaus-winterberg
 
 #### [Luma](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/luma)
 - **Kategorie:** Gastronomie > Restaurant

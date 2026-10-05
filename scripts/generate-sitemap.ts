@@ -73,6 +73,12 @@ entries.push({
   changefreq: 'monthly',
   priority: '0.8',
 });
+entries.push({
+  locDe: `${baseUrl}/news/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung`,
+  locNl: `${baseUrl}/nl/nieuws/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung`,
+  changefreq: 'monthly',
+  priority: '0.8',
+});
 
 // 2. All businesses
 entries.push({
