@@ -31,8 +31,33 @@ entries.push({
   priority: '1.0',
 });
 
-// Add News
-initialNews.filter(n => n.status !== 'pending').forEach(n => {
+// Add News (local + Firestore, same set as prerender)
+const newsBySlug = new Map<string, any>();
+initialNews.forEach(n => { if (n.slug) newsBySlug.set(n.slug, n); });
+try {
+  const { initializeApp } = await import('firebase/app');
+  const { getFirestore, collection, getDocs } = await import('firebase/firestore');
+  const fbApp = initializeApp({
+    apiKey: 'AIzaSyCU_-ygCWdyCrGvoNXeyIjmt9YnbZgp0Dk',
+    authDomain: 'gen-lang-client-0671429103.firebaseapp.com',
+    projectId: 'gen-lang-client-0671429103',
+    storageBucket: 'gen-lang-client-0671429103.firebasestorage.app',
+    messagingSenderId: '363603639368',
+    appId: '1:363603639368:web:665f56c570afba7869ac7d'
+  }, 'sitemap-news');
+  const fbDb = getFirestore(fbApp, 'ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
+  const snap = await Promise.race([
+    getDocs(collection(fbDb, 'news')),
+    new Promise<never>((_, rej) => setTimeout(() => rej(new Error('Firestore timeout')), 15000))
+  ]);
+  snap.docs.forEach(d => {
+    const data: any = d.data();
+    if (data.slug && !newsBySlug.has(data.slug)) newsBySlug.set(data.slug, data);
+  });
+} catch (e) {
+  console.warn('Could not fetch Firestore news for sitemap, using local news only:', e);
+}
+Array.from(newsBySlug.values()).filter(n => n.status !== 'pending' && n.status !== 'rejected').forEach(n => {
   entries.push({
     locDe: `${baseUrl}/news/${n.slug}`,
     locNl: `${baseUrl}/nl/nieuws/${n.slug_nl || n.slug}`,
