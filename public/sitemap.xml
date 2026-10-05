@@ -14,73 +14,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/freistehende-ladenlokale-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/news/nowa-kebabhaus-winterberg-eroeffnung</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/news/freistehende-ladenlokale-winterberg</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/neue-kinderarztpraxis-winterberg-poststrasse</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/news/neue-kinderarztpraxis-winterberg-poststrasse</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/new-york-gospel-stars-konzert-oversum-winterberg</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/news/new-york-gospel-stars-konzert-oversum-winterberg</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/winterberger-aufgepasst-kennt-ihr-schon-die-heimatcard</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/winterberger-aufgepasst-kennt-ihr-schon-die-heimatcard</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/nowa-kebabhaus-winterberg-opening</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -98,13 +38,49 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung</loc>
+    <loc>https://www.winterberg-verzeichnis.de/news/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/news/new-york-gospel-stars-konzert-oversum-winterberg</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/new-york-gospel-stars-konzert-oversum-winterberg</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/news/neue-kinderarztpraxis-winterberg-poststrasse</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/neue-kinderarztpraxis-winterberg-poststrasse</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/news/freistehende-ladenlokale-und-foerderprogramme-winterberg</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/freistehende-ladenlokale-und-foerderprogramme-winterberg</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { businesses, categories } from '../src/data';
+import { initialNews } from '../src/dataNews';
 import {
   CATEGORY_SLUGS,
   SUBCATEGORY_SLUGS,
@@ -330,6 +331,17 @@ const staticPageConfigs: {
     h1Nl: 'Winkelen in Winterberg',
     h2De: 'Boutiquen, Sportfachgeschäfte & Termine der Bäderregelung',
     h2Nl: 'Boetieks, sportwinkels en koopzondagen'
+  },
+  {
+    key: 'heimatkarte',
+    titleDe: 'Winterberg HeimatCard | Vorteile, Guthaben & Partner | Das Winterberg Verzeichnis',
+    titleNl: 'Winterberg HeimatCard | Voordelen & Partners | Het Winterberg Overzicht',
+    descDe: 'Alles zur Winterberger HeimatCard: Stadtgutschein für Bürger und Gäste, Guthaben aufladen, Akzeptanzstellen und regionale Vorteile im Sauerland.',
+    descNl: 'Alles over de Winterberg HeimatCard: cadeaubon voor inwoners en gasten, saldo opwaarderen en aangesloten winkels in Winterberg.',
+    h1De: 'Winterberg HeimatCard',
+    h1Nl: 'Winterberg HeimatCard',
+    h2De: 'Die Gutscheinkarte für Bürger, Gäste & Unternehmen in Winterberg',
+    h2Nl: 'De officiële cadeaubon voor Winterberg en omgeving'
   }
 ];
 
@@ -636,6 +648,150 @@ businesses.forEach((b: any) => {
       jsonLd: schemaJsonLdNl
     });
   }
+});
+
+// 6. News Detail Pages
+function stripMarkdownForSeo(md: string): string {
+  return md
+    .replace(/#+\s+/g, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/:::[a-z]+/gi, '')
+    .replace(/\n+/g, ' ')
+    .trim();
+}
+
+// Merge local news with news stored only in Firestore (fetched at build time)
+const allNewsBySlug = new Map<string, any>();
+initialNews.forEach(n => { if (n.slug) allNewsBySlug.set(n.slug, n); });
+try {
+  const { initializeApp } = await import('firebase/app');
+  const { getFirestore, collection, getDocs } = await import('firebase/firestore');
+  const fbApp = initializeApp({
+    apiKey: 'AIzaSyCU_-ygCWdyCrGvoNXeyIjmt9YnbZgp0Dk',
+    authDomain: 'gen-lang-client-0671429103.firebaseapp.com',
+    projectId: 'gen-lang-client-0671429103',
+    storageBucket: 'gen-lang-client-0671429103.firebasestorage.app',
+    messagingSenderId: '363603639368',
+    appId: '1:363603639368:web:665f56c570afba7869ac7d'
+  }, 'prerender-news');
+  const fbDb = getFirestore(fbApp, 'ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
+  const snap = await Promise.race([
+    getDocs(collection(fbDb, 'news')),
+    new Promise<never>((_, rej) => setTimeout(() => rej(new Error('Firestore timeout')), 15000))
+  ]);
+  snap.docs.forEach(d => {
+    const data: any = { id: d.id, ...d.data() };
+    if (data.slug && !allNewsBySlug.has(data.slug)) {
+      if (typeof data.imageUrl === 'string' && data.imageUrl.startsWith('data:')) data.imageUrl = undefined;
+      allNewsBySlug.set(data.slug, data);
+    }
+  });
+  console.log(`News for prerender: ${allNewsBySlug.size} (incl. Firestore)`);
+} catch (e) {
+  console.warn('Could not fetch Firestore news for prerender, using local news only:', e);
+}
+
+Array.from(allNewsBySlug.values()).filter(n => n.status !== 'pending' && n.status !== 'rejected').forEach(article => {
+  const plainTextDe = stripMarkdownForSeo(article.content || '');
+  const descDe = plainTextDe.length > 160 ? plainTextDe.substring(0, 157).trim() + '...' : plainTextDe;
+  const pathDe = `news/${article.slug}`;
+
+  const plainTextNl = article.content_nl ? stripMarkdownForSeo(article.content_nl) : plainTextDe;
+  const descNl = plainTextNl.length > 160 ? plainTextNl.substring(0, 157).trim() + '...' : plainTextNl;
+  const titleNl = article.title_nl || article.title;
+  const pathNl = `nl/nieuws/${article.slug_nl || article.slug}`;
+
+  const newsImg = article.imageUrl
+    ? (article.imageUrl.startsWith('http') ? article.imageUrl : `${baseUrl}${article.imageUrl.startsWith('/') ? '' : '/'}${article.imageUrl}`)
+    : `${baseUrl}/winterberg-header.webp`;
+
+  const schemaJsonLdDe = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/${pathDe}`
+    },
+    headline: article.title,
+    description: descDe,
+    image: [newsImg],
+    datePublished: article.date,
+    dateModified: article.date,
+    author: [{
+      '@type': article.businessName ? 'Organization' : 'Person',
+      name: article.businessName || article.author || 'Redaktion Winterberg Verzeichnis'
+    }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Das Winterberg Verzeichnis',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/favicon.svg`
+      }
+    },
+    inLanguage: 'de-DE'
+  };
+
+  const schemaJsonLdNl = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/${pathNl}`
+    },
+    headline: titleNl,
+    description: descNl,
+    image: [newsImg],
+    datePublished: article.date,
+    dateModified: article.date,
+    author: [{
+      '@type': article.businessName ? 'Organization' : 'Person',
+      name: article.businessName || article.author || 'Redactie Het Winterberg Overzicht'
+    }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Het Winterberg Overzicht',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/favicon.svg`
+      }
+    },
+    inLanguage: 'nl-NL'
+  };
+
+  // DE News Article (Canonical clean URL)
+  pagesToPrerender.push({
+    path: pathDe,
+    title: `${article.title} | Das Winterberg Verzeichnis`,
+    description: descDe,
+    canonicalUrl: `${baseUrl}/${pathDe}`,
+    alternateDe: `${baseUrl}/${pathDe}`,
+    alternateNl: `${baseUrl}/${pathNl}`,
+    alternateXDefault: `${baseUrl}/${pathDe}`,
+    lang: 'de',
+    h1: article.title,
+    h2: 'News & Aktuelles aus Winterberg',
+    jsonLd: schemaJsonLdDe
+  });
+
+  // NL News Article (Canonical clean URL)
+  pagesToPrerender.push({
+    path: pathNl,
+    title: `${titleNl} | Het Winterberg Overzicht`,
+    description: descNl,
+    canonicalUrl: `${baseUrl}/${pathNl}`,
+    alternateDe: `${baseUrl}/${pathDe}`,
+    alternateNl: `${baseUrl}/${pathNl}`,
+    alternateXDefault: `${baseUrl}/${pathDe}`,
+    lang: 'nl',
+    h1: titleNl,
+    h2: 'Nieuws & Actualiteiten uit Winterberg',
+    jsonLd: schemaJsonLdNl
+  });
 });
 
 console.log(`Starting SSG Pre-rendering for ${pagesToPrerender.length} routes...`);

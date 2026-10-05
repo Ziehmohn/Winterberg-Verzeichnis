@@ -131,7 +131,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
             return (
               <div 
                 key={rawItem.id}
-                onClick={() => onNewsClick(rawItem.slug || generateSlug(rawItem.title) || rawItem.id)}
+                onClick={() => onNewsClick(item.slug || rawItem.slug || generateSlug(item.title) || rawItem.id)}
                 className={`bg-white border border-[#EDE8E0] rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#0F4C2E]/50 flex flex-col group`}
               >
                 {item.imageUrl ? (

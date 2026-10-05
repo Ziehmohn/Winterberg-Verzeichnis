@@ -2,6 +2,16 @@
   "installCommand": "npm install --legacy-peer-deps",
   "redirects": [
     {
+      "source": "/news/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung",
+      "destination": "/news/nowa-kebabhaus-winterberg-eroeffnung",
+      "permanent": true
+    },
+    {
+      "source": "/nl/nieuws/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung",
+      "destination": "/nl/nieuws/nowa-kebabhaus-winterberg-opening",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {

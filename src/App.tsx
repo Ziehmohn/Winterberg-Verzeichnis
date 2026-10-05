@@ -7,6 +7,7 @@ import {
   themes, 
   initialAds 
 } from './data';
+import { initialNews } from './dataNews';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner, PricingSettings } from './types';
 import { DEFAULT_PRICING_SETTINGS } from './config';
 import Logo from './components/Logo';
@@ -1060,8 +1061,17 @@ export default function App() {
     
     if (isNewsMode) {
       if (newsId) {
-        currentTitle = isNl ? `Nieuws uit Winterberg | ${baseTitle}` : `Aktuelles aus Winterberg | ${baseTitle}`;
-        currentDesc = isNl ? `Actueel nieuws en economische updates uit Winterberg en de dorpen.` : `Aktuelle Nachrichten, Wirtschafts-Updates und Neuigkeiten aus Winterberg.`;
+        const foundArticle = initialNews.find(n => n.slug === newsId || n.id === newsId);
+        if (foundArticle) {
+          const artTitle = isNl ? (foundArticle.title_nl || foundArticle.title) : foundArticle.title;
+          currentTitle = `${artTitle} | ${baseTitle}`;
+          const rawDesc = isNl ? (foundArticle.content_nl || foundArticle.content) : foundArticle.content;
+          const cleanDesc = rawDesc.replace(/[#*`_\[\]()]/g, '').replace(/\s+/g, ' ').trim();
+          currentDesc = cleanDesc.length > 160 ? cleanDesc.substring(0, 157) + '...' : cleanDesc;
+        } else {
+          currentTitle = isNl ? `Nieuws uit Winterberg | ${baseTitle}` : `Aktuelles aus Winterberg | ${baseTitle}`;
+          currentDesc = isNl ? `Actueel nieuws en economische updates uit Winterberg en de dorpen.` : `Aktuelle Nachrichten, Wirtschafts-Updates und Neuigkeiten aus Winterberg.`;
+        }
       } else {
         currentTitle = isNl ? `Nieuws & Berichten uit Winterberg | ${baseTitle}` : `Aktuelles aus Winterberg - News & Meldungen | ${baseTitle}`;
         currentDesc = isNl ? `Het laatste nieuws, aanbiedingen en mededelingen uit Winterberg en alle 14 dorpen.` : `Die neuesten Nachrichten, Angebote und Ankündigungen aus Winterberg und den Ortsteilen.`;

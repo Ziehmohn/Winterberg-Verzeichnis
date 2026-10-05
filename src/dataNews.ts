@@ -3,7 +3,8 @@ import { NewsArticle } from './types';
 export const initialNews: NewsArticle[] = [
   {
     id: 'VrBTX4FCdOKW08Yy9eTM',
-    slug: 'neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung',
+    slug: 'nowa-kebabhaus-winterberg-eroeffnung',
+    slug_nl: 'nowa-kebabhaus-winterberg-opening',
     title: 'Neueröffnung am Waltenberg: Nowa Kebabhaus startet mit 1,99-Euro-Döneraktion in Winterberg',
     title_nl: 'Nieuwe opening aan de Waltenberg: Nowa Kebabhaus start met 1,99 euro döneractie in Winterberg',
     author: 'Simon Kräling',
@@ -26,7 +27,7 @@ Das Nowa Kebabhaus setzt neben klassischen Drehspießgerichten auf eine breite A
 * **Döner- & Dürüm-Spezialitäten**
   Das Drehspießfleisch besteht aus 70 % Kalb- und 20 % Putenfleisch. Neben der klassischen Dönertasche, XXL-Döner und Dürüm stehen auch der beliebte İskender Teller, Dönerteller sowie Kapsalon (mit Pommes, Dönerfleisch, frischem Salat, Knoblauchsauce und Käse überbacken) auf der Karte. Für Vegetarier gibt es hausgemachte Falafeltaschen und Falafelteller.
 
-* **Frische Holzkohle- & Grillgerichte**
+* **Frische Grillspezialitäten vom Grill**
   Herzhafte Tellergerichte wie Tavuk Şiş (zarte marinierte Hähnchenspieße), Adana Kebab (würziger Hackfleischspieß vom Grill), Pirzola (saftige Lammkoteletts), Kanat (knusprige Hähnchenflügel) sowie die gemischte Kebab-Platte (Karışık Kebab) oder eine üppige Grillplatte für zwei Personen.
 
 * **Steinofenpizza, Rollos & überbackene Pasta**
@@ -90,7 +91,7 @@ Alle gerechten zijn zowel ter plaatse te nuttigen als eenvoudig telefonisch voor
 
 * **Nowa Kebabhaus Winterberg**
   De nieuwe hotspot voor döner, grillspecialiteiten, pizza en kapsalon aan de Waltenberg.
-  * [Naar het bedrijfsprofiel in het overzicht](/nl/gastronomie/snackbar-en-fastfood/nowa-kebabhaus-winterberg)
+  * [Naar het bedrijfsprofiel in het overzicht](/nl/horeca/snackbar-en-fastfood/nowa-kebabhaus-winterberg)
 
 ## Openingstijden & contact
 
@@ -111,7 +112,7 @@ Wilt u gerechten vooraf bestellen of catering aanvragen voor uw evenement?
 * **Adres:** Am Waltenberg 27, 59955 Winterberg
 * **Telefoon:** 02981 9296565
 * **Mobiel:** 0151 10691618
-* **Bedrijfsprofiel in de gids:** [Naar het profiel van Nowa Kebabhaus](/nl/gastronomie/snackbar-en-fastfood/nowa-kebabhaus-winterberg)
+* **Bedrijfsprofiel in de gids:** [Naar het profiel van Nowa Kebabhaus](/nl/horeca/snackbar-en-fastfood/nowa-kebabhaus-winterberg)
 :::`,
   },
   {

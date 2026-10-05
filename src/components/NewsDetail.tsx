@@ -7,6 +7,7 @@ import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
 import { getBusinessPath, slugify } from '../utils/routes';
 import { initialNews } from '../dataNews';
+import { businesses } from '../data';
 import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 
 interface NewsDetailProps {
@@ -459,7 +460,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
           .replace(/ß/g, 'ss')
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-+|-+$/g, '');
-        return item.id === newsId || item.slug === newsId || itemSlug === newsId;
+        const itemSlugNl = item.slug_nl || (item.title_nl || '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+        return item.id === newsId || item.slug === newsId || item.slug_nl === newsId || itemSlug === newsId || itemSlugNl === newsId;
       });
 
       if (localMatch) {
@@ -486,7 +491,16 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
           return;
         }
 
-        // 3. Fallback: match by title-generated slug
+        // 3. Third attempt: search by slug_nl field
+        const slugNlQuery = query(collection(db, 'news'), where('slug_nl', '==', newsId));
+        const slugNlSnap = await getDocs(slugNlQuery);
+        if (!slugNlSnap.empty) {
+          const matchedDoc = slugNlSnap.docs[0];
+          setRawArticle({ id: matchedDoc.id, ...matchedDoc.data() } as NewsArticle);
+          return;
+        }
+
+        // 4. Fallback: match by title-generated slug
         const allSnap = await getDocs(collection(db, 'news'));
         const found = allSnap.docs.find(d => {
           const data = d.data();
@@ -498,7 +512,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             .replace(/ß/g, 'ss')
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '');
-          return titleSlug === newsId || data.slug === newsId || d.id === newsId;
+          const titleNlSlug = (data.title_nl || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+          return titleSlug === newsId || titleNlSlug === newsId || data.slug === newsId || data.slug_nl === newsId || d.id === newsId;
         });
 
         if (found) {
@@ -570,6 +588,51 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       metaDesc.setAttribute('content', summary);
     }
 
+    // Set self-referential canonical URL
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    const previousCanonical = canonicalLink?.getAttribute('href') || null;
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', newsUrl);
+    } else {
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = newsUrl;
+      document.head.appendChild(link);
+    }
+
+    // Set OpenGraph URL & Title
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+      ogUrl = document.createElement('meta');
+      ogUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute('content', newsUrl);
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', article.title);
+    }
+
+    // Set Hreflang alternates
+    const deNewsUrl = `https://www.winterberg-verzeichnis.de/news/${article.slug || rawArticle?.id}`;
+    const nlNewsUrl = `https://www.winterberg-verzeichnis.de/nl/nieuws/${article.slug || rawArticle?.id}`;
+
+    const head = document.head;
+    const existingHreflangs = head.querySelectorAll('link[rel="alternate"][hreflang]');
+    existingHreflangs.forEach(el => el.remove());
+
+    const addAlt = (hLang: string, href: string) => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = hLang;
+      link.href = href;
+      head.appendChild(link);
+    };
+    addAlt('de', deNewsUrl);
+    addAlt('nl', nlNewsUrl);
+    addAlt('x-default', deNewsUrl);
+
     const scriptId = 'schema-news-article-jsonld';
     let scriptTag = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (!scriptTag) {
@@ -586,8 +649,11 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       if (previousDesc) {
         metaDesc?.setAttribute('content', previousDesc);
       }
+      if (previousCanonical && canonicalLink) {
+        canonicalLink.setAttribute('href', previousCanonical);
+      }
     };
-  }, [article?.title, article?.date, article?.content, lang]);
+  }, [article?.title, article?.date, article?.content, newsUrl, lang]);
 
   if (loading) {
     return (
@@ -618,10 +684,18 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
   const contactContent = contactMatch ? contactMatch[1].trim() : null;
   const mainContent = article.content ? article.content.replace(/:::contact[\s\S]*?:::/, '').trim() : '';
 
-  // Build business profile URL from slug
-  const businessProfileUrl = article.businessSlug
-    ? (lang === 'nl' ? `/nl/${article.businessSlug}` : `/${article.businessSlug}`)
-    : null;
+  // Build business profile URL properly for DE and NL
+  const matchedBusiness = article.businessId
+    ? businesses.find(b => b.id === article.businessId)
+    : businesses.find(b => b.name === article.businessName);
+
+  const businessProfileUrl = matchedBusiness
+    ? getBusinessPath(matchedBusiness, lang)
+    : (article.businessSlug
+        ? (lang === 'nl'
+            ? `/nl/${article.businessSlug.replace(/^gastronomie\//, 'horeca/').replace(/\/imbisse\//, '/snackbar-en-fastfood/')}`
+            : `/${article.businessSlug}`)
+        : null);
 
   return (
     <article className="max-w-[850px] mx-auto py-[40px] px-[20px]">

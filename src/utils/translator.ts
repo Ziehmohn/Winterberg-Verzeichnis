@@ -658,6 +658,7 @@ export function getLocalizedNewsArticle(article: NewsArticle, lang: 'de' | 'nl')
 
   return {
     ...article,
+    slug: article.slug_nl || article.slug,
     title,
     content,
     imageSource: article.imageSource ? translateTextToDutch(article.imageSource) : undefined,

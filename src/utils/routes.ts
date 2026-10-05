@@ -191,6 +191,7 @@ export interface RouteState {
   subcategory?: string;
   businessSlug?: string;
   newsSlug?: string;
+  newsSlugNl?: string;
   jobsCategory?: string;
   location?: string;
 }
@@ -265,7 +266,8 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'news-detail': {
       const slug = STATIC_PAGE_SLUGS.news[targetLang];
-      return `${baseUrl}${prefix}/${slug}/${state.newsSlug || ''}`;
+      const detailSlug = (targetLang === 'nl' && state.newsSlugNl) ? state.newsSlugNl : state.newsSlug;
+      return `${baseUrl}${prefix}/${slug}/${detailSlug || ''}`;
     }
 
     case 'news-submit': {

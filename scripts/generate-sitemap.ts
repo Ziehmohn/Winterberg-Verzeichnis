@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { businesses, categories } from '../src/data';
+import { initialNews } from '../src/dataNews';
 import {
   CATEGORY_SLUGS,
   SUBCATEGORY_SLUGS,
@@ -31,53 +32,13 @@ entries.push({
 });
 
 // Add News
-entries.push({
-  locDe: `${baseUrl}/news/freistehende-ladenlokale-winterberg`,
-  locNl: `${baseUrl}/nl/news/freistehende-ladenlokale-winterberg`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/neue-kinderarztpraxis-winterberg-poststrasse`,
-  locNl: `${baseUrl}/nl/news/neue-kinderarztpraxis-winterberg-poststrasse`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/new-york-gospel-stars-konzert-oversum-winterberg`,
-  locNl: `${baseUrl}/nl/news/new-york-gospel-stars-konzert-oversum-winterberg`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops`,
-  locNl: `${baseUrl}/nl/nieuws/lokal-einkaufen-und-online-bestellen-winterberger-onlineshops`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte`,
-  locNl: `${baseUrl}/nl/nieuws/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/winterberger-aufgepasst-kennt-ihr-schon-die-heimatcard`,
-  locNl: `${baseUrl}/nl/nieuws/winterberger-aufgepasst-kennt-ihr-schon-die-heimatcard`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/filmtheater-winterberg-nachfolge-gesucht-kino-pachten`,
-  locNl: `${baseUrl}/nl/nieuws/filmtheater-winterberg-nachfolge-gesucht-kino-pachten`,
-  changefreq: 'monthly',
-  priority: '0.8',
-});
-entries.push({
-  locDe: `${baseUrl}/news/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung`,
-  locNl: `${baseUrl}/nl/nieuws/neuer-imbiss-nowa-kebabhaus-winterberg-eroeffnung`,
-  changefreq: 'monthly',
-  priority: '0.8',
+initialNews.filter(n => n.status !== 'pending').forEach(n => {
+  entries.push({
+    locDe: `${baseUrl}/news/${n.slug}`,
+    locNl: `${baseUrl}/nl/nieuws/${n.slug_nl || n.slug}`,
+    changefreq: 'monthly',
+    priority: '0.8',
+  });
 });
 
 // 2. All businesses
