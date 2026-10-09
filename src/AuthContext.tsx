@@ -45,7 +45,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             'simon.kraeling@googlemail.com',
             'simon.kraeling@gmail.com'
           ];
-          const isAdminEmail = user.email && (adminEmails.includes(user.email) || user.email.endsWith('@sichtbar-online.com'));
+          const normalizedEmail = (user.email || '').toLowerCase().trim();
+          const isAdminEmail = !!normalizedEmail && (
+            adminEmails.some(ae => ae.toLowerCase() === normalizedEmail) || 
+            normalizedEmail.endsWith('@sichtbar-online.com')
+          );
           if (docSnap && docSnap.exists && docSnap.exists()) {
             const data = docSnap.data() as UserProfile;
             if (isAdminEmail) {
@@ -69,7 +73,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               'simon.kraeling@googlemail.com',
               'simon.kraeling@gmail.com'
             ];
-            const isFallbackAdmin = user.email && (adminEmails.includes(user.email) || user.email.endsWith('@sichtbar-online.com'));
+            const fallbackNormEmail = (user.email || '').toLowerCase().trim();
+            const isFallbackAdmin = !!fallbackNormEmail && (
+              adminEmails.some(ae => ae.toLowerCase() === fallbackNormEmail) || 
+              fallbackNormEmail.endsWith('@sichtbar-online.com')
+            );
             setUserProfile({ uid: user.uid, email: user.email, role: isFallbackAdmin ? 'admin' : 'user' });
           } else {
             console.error("Error fetching user profile:", error);

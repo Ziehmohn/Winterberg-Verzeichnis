@@ -57,20 +57,32 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
 
     try {
       // 1. Update business document in Firestore: assign owner (use setDoc with merge in case it's only in data.ts)
+      const cleanEmail = claim.applicantEmail.trim().toLowerCase();
       const busRef = doc(db, 'businesses', claim.businessId);
       const updates: any = {
-        ownerEmail: claim.applicantEmail,
+        ownerEmail: cleanEmail,
         isVerified: true
       };
       if (claim.userId) {
         updates.ownerId = claim.userId;
       }
-      
-      // We must write the full business data if it doesn't exist, but we can just use setDoc with merge.
-      // Wait, if it doesn't exist in Firestore at all, setDoc with merge will ONLY write these few fields!
-      // This means the rest of the business data from data.ts won't be in Firestore. 
-      // But the app merges Firestore data over data.ts data on load! So partial documents in Firestore are perfectly fine.
+      if (claim.type === 'premium') {
+        updates.isPremium = true;
+      }
       await setDoc(busRef, updates, { merge: true });
+
+      // If user ID is known, also ensure users/{uid} is marked as business_owner
+      if (claim.userId) {
+        try {
+          await setDoc(doc(db, 'users', claim.userId), {
+            role: 'business_owner',
+            businessId: claim.businessId,
+            email: cleanEmail
+          }, { merge: true });
+        } catch (uErr) {
+          console.warn('Could not update users document:', uErr);
+        }
+      }
 
       // 2. Update claim status
       await updateDoc(doc(db, 'claims', claim.id), { status: 'approved' });
@@ -87,13 +99,13 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            to: claim.applicantEmail,
+            to: cleanEmail,
             subject: 'Profil-Übernahme freigeschaltet - Das Winterberg Verzeichnis',
             html: `
               <div style="font-family: sans-serif; color: #1B211D;">
                 <p>Hallo ${claim.applicantName},</p>
                 <p>gute Nachrichten: Wir haben Ihre Anfrage geprüft und die Übernahme des Profils <strong>${claim.businessName}</strong> soeben erfolgreich freigeschaltet!</p>
-                <p>Sie können sich nun jederzeit auf <a href="https://www.winterberg-verzeichnis.de">winterberg-verzeichnis.de</a> mit Ihrer E-Mail-Adresse (${claim.applicantEmail}) einloggen, um Ihr Profil zu verwalten, Daten zu aktualisieren oder Widgets abzurufen.</p>
+                <p>Sie können sich nun jederzeit auf <a href="https://www.winterberg-verzeichnis.de">winterberg-verzeichnis.de</a> mit Ihrer E-Mail-Adresse (${cleanEmail}) einloggen, um Ihr Profil zu verwalten, Daten zu aktualisieren oder Widgets abzurufen.</p>
                 <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
               </div>
             `
@@ -103,7 +115,7 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
         console.error("Could not send approval email", e);
       }
 
-      alert(`Übernahme erfolgreich freigegeben! ${claim.applicantEmail} hat nun Zugriff als Inhaber.`);
+      alert(`Übernahme erfolgreich freigegeben! ${cleanEmail} hat nun Zugriff als Inhaber.`);
     } catch (err) {
       console.error('Error approving claim:', err);
       alert('Fehler beim Freigeben der Übernahme. Bitte versuchen Sie es später erneut.');
@@ -178,6 +190,13 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <span className="font-bold text-[17px] text-[#1B211D]">
                       {claim.businessName}
+                    </span>
+                    <span className={`text-[11px] font-bold px-2 py-0.5 rounded border ${
+                      claim.type === 'premium'
+                        ? 'bg-[#FFF1E4] text-[#D65F0C] border-[#F2761B]/40'
+                        : 'bg-[#F4F9F5] text-[#0F4C2E] border-[#D0E7D8]'
+                    }`}>
+                      {claim.type === 'premium' ? '🌟 PREMIUM' : '🟢 BASIS'}
                     </span>
                     {claim.status === 'pending' && (
                       <span className="bg-[#FFF1E4] text-[#D65F0C] border border-[#F2761B]/30 rounded px-2 py-0.5 text-[11px] font-bold">

@@ -244,6 +244,7 @@ export interface UserProfile {
   email: string | null;
   role: 'admin' | 'business_owner' | 'user';
   businessId?: string;
+  ownedBusinessId?: string;
 }
 
 export type ThemeKey = 'nature' | 'winter' | 'modern' | 'alpine' | 'panorama' | 'glass' | 'dark';

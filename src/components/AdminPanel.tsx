@@ -445,13 +445,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
   const addServicesNlFromInput = (input: string) => {
     if (!input.trim()) return;
+    const maxItems = (formData.isPremium || isAdmin) ? 15 : 3;
     const items = input.split(',').map(s => s.trim()).filter(Boolean);
     if (items.length > 0) {
       setFormData(prev => {
         const existing = prev.services_nl || [];
         const updated = [...existing];
         items.forEach(item => {
-          if (!updated.includes(item)) {
+          if (!updated.includes(item) && updated.length < maxItems) {
             updated.push(item);
           }
         });
@@ -473,13 +474,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
   const addProductsNlFromInput = (input: string) => {
     if (!input.trim()) return;
+    const maxItems = (formData.isPremium || isAdmin) ? 15 : 3;
     const items = input.split(',').map(s => s.trim()).filter(Boolean);
     if (items.length > 0) {
       setFormData(prev => {
         const existing = prev.products_nl || [];
         const updated = [...existing];
         items.forEach(item => {
-          if (!updated.includes(item)) {
+          if (!updated.includes(item) && updated.length < maxItems) {
             updated.push(item);
           }
         });
@@ -553,8 +555,30 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
     };
 
     const currentUser = auth.currentUser;
-    if (currentUser && !dataToSubmit.ownerId && dataToSubmit.ownerEmail === currentUser.email) {
-      dataToSubmit.ownerId = currentUser.uid;
+    if (!isAdmin) {
+      // Non-admin can NEVER elevate to premium, change ownership, status, or redirects
+      dataToSubmit.isPremium = businessToEdit ? !!businessToEdit.isPremium : false;
+      dataToSubmit.ownerId = businessToEdit?.ownerId || (currentUser ? currentUser.uid : '');
+      dataToSubmit.ownerEmail = businessToEdit?.ownerEmail || (currentUser ? currentUser.email : '');
+      dataToSubmit.status = businessToEdit?.status || 'approved';
+      dataToSubmit.isActive = businessToEdit ? (businessToEdit.isActive !== false) : true;
+      dataToSubmit.deactivationRedirectType = businessToEdit?.deactivationRedirectType || null;
+      dataToSubmit.deactivationReason = businessToEdit?.deactivationReason || null;
+      dataToSubmit.deactivatedAt = businessToEdit?.deactivatedAt || null;
+
+      // Cap services and products to 3 if not premium
+      if (!dataToSubmit.isPremium) {
+        if (dataToSubmit.services && dataToSubmit.services.length > 3) {
+          dataToSubmit.services = dataToSubmit.services.slice(0, 3);
+        }
+        if (dataToSubmit.products && dataToSubmit.products.length > 3) {
+          dataToSubmit.products = dataToSubmit.products.slice(0, 3);
+        }
+      }
+    } else {
+      if (currentUser && !dataToSubmit.ownerId && dataToSubmit.ownerEmail === currentUser.email) {
+        dataToSubmit.ownerId = currentUser.uid;
+      }
     }
     
     try {
@@ -928,36 +952,54 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
   const addServicesFromInput = (input: string) => {
     if (!input.trim()) return;
+    const maxItems = (formData.isPremium || isAdmin) ? 15 : 3;
     const items = input.split(',').map(s => s.trim()).filter(Boolean);
     if (items.length > 0) {
+      let limitHit = false;
       setFormData(prev => {
         const existing = prev.services || [];
         const updated = [...existing];
         items.forEach(item => {
           if (!updated.includes(item)) {
-            updated.push(item);
+            if (updated.length < maxItems) {
+              updated.push(item);
+            } else {
+              limitHit = true;
+            }
           }
         });
         return { ...prev, services: updated };
       });
+      if (limitHit && !formData.isPremium && !isAdmin) {
+        alert(`Im Basiseintrag können maximal ${maxItems} Leistungen hinterlegt werden. Schalten Sie Premium frei, um bis zu 15 Leistungen einzutragen.`);
+      }
       setNewService('');
     }
   };
 
   const addProductsFromInput = (input: string) => {
     if (!input.trim()) return;
+    const maxItems = (formData.isPremium || isAdmin) ? 15 : 3;
     const items = input.split(',').map(s => s.trim()).filter(Boolean);
     if (items.length > 0) {
+      let limitHit = false;
       setFormData(prev => {
         const existing = prev.products || [];
         const updated = [...existing];
         items.forEach(item => {
           if (!updated.includes(item)) {
-            updated.push(item);
+            if (updated.length < maxItems) {
+              updated.push(item);
+            } else {
+              limitHit = true;
+            }
           }
         });
         return { ...prev, products: updated };
       });
+      if (limitHit && !formData.isPremium && !isAdmin) {
+        alert(`Im Basiseintrag können maximal ${maxItems} Produkte hinterlegt werden. Schalten Sie Premium frei, um bis zu 15 Produkte einzutragen.`);
+      }
       setNewProduct('');
     }
   };
@@ -968,108 +1010,133 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
   return (
     <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 md:p-8 shadow-[0_10px_30px_rgba(27,33,29,0.06)] w-full max-w-[1180px] mx-auto">
       <div className="flex justify-between items-center mb-[22px]">
-        <h2 className="font-display text-[24px] font-bold m-0">{formData.id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen hinzufügen'}</h2>
+        <h2 className="font-display text-[24px] font-bold m-0">
+          {formData.id 
+            ? (isAdmin ? 'Unternehmen bearbeiten' : `Mein Unternehmensprofil: ${formData.name}`) 
+            : 'Neues Unternehmen hinzufügen'}
+        </h2>
         <button type="button" onClick={onCancel} className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[14px] cursor-pointer hover:bg-[#EAE5DB]">Abbrechen</button>
       </div>
         
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Status: Aktiv / Deaktiviert mit 301/302 Redirect-Option */}
-        <div className={`p-4 md:p-5 rounded-xl border transition-all ${formData.isActive !== false ? 'bg-[#F4F9F5] border-[#D0E7D8]' : 'bg-[#FFF8F6] border-[#FCD5CC]'}`}>
-          <div className="flex items-start justify-between flex-wrap gap-4">
-            <div className="flex-1 min-w-[260px]">
-              <div className="flex items-center gap-2 mb-1">
-                <span className={`w-3 h-3 rounded-full ${formData.isActive !== false ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
-                <span className="font-bold text-[15.5px] text-[#1B211D]">
-                  Status des Eintrags: {formData.isActive !== false ? 'Aktiv (Öffentlich sichtbar)' : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`}
-                </span>
+        {/* Status: Aktiv / Deaktiviert mit 301/302 Redirect-Option (Nur Admin kann Status & Weiterleitungen schalten) */}
+        {isAdmin ? (
+          <div className={`p-4 md:p-5 rounded-xl border transition-all ${formData.isActive !== false ? 'bg-[#F4F9F5] border-[#D0E7D8]' : 'bg-[#FFF8F6] border-[#FCD5CC]'}`}>
+            <div className="flex items-start justify-between flex-wrap gap-4">
+              <div className="flex-1 min-w-[260px]">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={`w-3 h-3 rounded-full ${formData.isActive !== false ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
+                  <span className="font-bold text-[15.5px] text-[#1B211D]">
+                    Status des Eintrags: {formData.isActive !== false ? 'Aktiv (Öffentlich sichtbar)' : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`}
+                  </span>
+                </div>
+                <p className="text-xs text-[#5F6B63] m-0 max-w-[70ch]">
+                  {formData.isActive !== false 
+                    ? 'Das Unternehmen ist öffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
+                    : 'Die Profilseite ist für Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Übersichtsseite (/alle-unternehmen) weitergeleitet.'}
+                </p>
               </div>
-              <p className="text-xs text-[#5F6B63] m-0 max-w-[70ch]">
-                {formData.isActive !== false 
-                  ? 'Das Unternehmen ist öffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
-                  : 'Die Profilseite ist für Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Übersichtsseite (/alle-unternehmen) weitergeleitet.'}
-              </p>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, isActive: !(formData.isActive !== false) })}
+                  className={`px-4 py-2 rounded-lg font-bold text-xs cursor-pointer transition-all flex items-center gap-2 border ${
+                    formData.isActive !== false
+                      ? 'bg-emerald-700 hover:bg-emerald-800 text-white border-emerald-700'
+                      : 'bg-red-600 hover:bg-red-700 text-white border-red-600'
+                  }`}
+                >
+                  {formData.isActive !== false ? (
+                    <>
+                      <Eye className="w-4 h-4" />
+                      <span>Aktiv</span>
+                    </>
+                  ) : (
+                    <>
+                      <EyeOff className="w-4 h-4" />
+                      <span>Deaktiviert</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, isActive: !(formData.isActive !== false) })}
-                className={`px-4 py-2 rounded-lg font-bold text-xs cursor-pointer transition-all flex items-center gap-2 border ${
-                  formData.isActive !== false
-                    ? 'bg-emerald-700 hover:bg-emerald-800 text-white border-emerald-700'
-                    : 'bg-red-600 hover:bg-red-700 text-white border-red-600'
-                }`}
-              >
-                {formData.isActive !== false ? (
-                  <>
-                    <Eye className="w-4 h-4" />
-                    <span>Aktiv</span>
-                  </>
-                ) : (
-                  <>
-                    <EyeOff className="w-4 h-4" />
-                    <span>Deaktiviert</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Erweiterte Redirect-Optionen, wenn deaktiviert */}
-          {formData.isActive === false && (
-            <div className="mt-4 pt-4 border-t border-[#FCD5CC] flex flex-col md:flex-row gap-4 items-start justify-between">
-              <div className="flex-1">
-                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-2">
-                  Art der Weiterleitung (HTTP-Statuscode):
-                </label>
-                <div className="flex flex-wrap gap-4">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-[#1B211D]">
-                    <input
-                      type="radio"
-                      name="deactivationRedirectType"
-                      value="301"
-                      checked={(formData.deactivationRedirectType || '301') === '301'}
-                      onChange={() => setFormData({ ...formData, deactivationRedirectType: '301' })}
-                      className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
-                    />
-                    <div>
-                      <span className="font-bold text-red-700">301 – Permanent</span>
-                      <span className="text-gray-500 ml-1">(Dauerhaft geschlossen / aufgegeben)</span>
-                    </div>
+            {/* Erweiterte Redirect-Optionen, wenn deaktiviert */}
+            {formData.isActive === false && (
+              <div className="mt-4 pt-4 border-t border-[#FCD5CC] flex flex-col md:flex-row gap-4 items-start justify-between">
+                <div className="flex-1">
+                  <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-2">
+                    Art der Weiterleitung (HTTP-Statuscode):
                   </label>
+                  <div className="flex flex-wrap gap-4">
+                    <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-[#1B211D]">
+                      <input
+                        type="radio"
+                        name="deactivationRedirectType"
+                        value="301"
+                        checked={(formData.deactivationRedirectType || '301') === '301'}
+                        onChange={() => setFormData({ ...formData, deactivationRedirectType: '301' })}
+                        className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
+                      />
+                      <div>
+                        <span className="font-bold text-red-700">301 – Permanent</span>
+                        <span className="text-gray-500 ml-1">(Dauerhaft geschlossen / aufgegeben)</span>
+                      </div>
+                    </label>
 
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-[#1B211D]">
-                    <input
-                      type="radio"
-                      name="deactivationRedirectType"
-                      value="302"
-                      checked={formData.deactivationRedirectType === '302'}
-                      onChange={() => setFormData({ ...formData, deactivationRedirectType: '302' })}
-                      className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
-                    />
-                    <div>
-                      <span className="font-bold text-amber-700">302 – Temporär</span>
-                      <span className="text-gray-500 ml-1">(Vorübergehend geschlossen / Umbau / Pause)</span>
-                    </div>
+                    <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-[#1B211D]">
+                      <input
+                        type="radio"
+                        name="deactivationRedirectType"
+                        value="302"
+                        checked={formData.deactivationRedirectType === '302'}
+                        onChange={() => setFormData({ ...formData, deactivationRedirectType: '302' })}
+                        className="accent-[#0F4C2E] w-4 h-4 cursor-pointer"
+                      />
+                      <div>
+                        <span className="font-bold text-amber-700">302 – Temporär</span>
+                        <span className="text-gray-500 ml-1">(Vorübergehend geschlossen / Umbau / Pause)</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="w-full md:w-72">
+                  <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                    Grund / Notiz (optional):
                   </label>
+                  <input
+                    type="text"
+                    value={formData.deactivationReason || ''}
+                    onChange={(e) => setFormData({ ...formData, deactivationReason: e.target.value })}
+                    placeholder="z.B. Betriebsurlaub bis 01.11. oder Aufgabe"
+                    className="w-full border border-[#E7E2DA] rounded-md px-3 py-1.5 text-xs bg-white focus:outline-none focus:border-[#0F4C2E]"
+                  />
                 </div>
               </div>
-
-              <div className="w-full md:w-72">
-                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
-                  Grund / Notiz (optional):
-                </label>
-                <input
-                  type="text"
-                  value={formData.deactivationReason || ''}
-                  onChange={(e) => setFormData({ ...formData, deactivationReason: e.target.value })}
-                  placeholder="z.B. Betriebsurlaub bis 01.11. oder Aufgabe"
-                  className="w-full border border-[#E7E2DA] rounded-md px-3 py-1.5 text-xs bg-white focus:outline-none focus:border-[#0F4C2E]"
-                />
+            )}
+          </div>
+        ) : (
+          <div className="p-4 rounded-xl border bg-[#F4F9F5] border-[#D0E7D8] flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-3">
+              <span className="w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] shrink-0" />
+              <div>
+                <span className="font-bold text-[15px] text-[#1B211D]">
+                  Status: {formData.isActive !== false ? 'Öffentlich im Verzeichnis aktiv' : 'Derzeit deaktiviert'}
+                </span>
+                <p className="text-xs text-[#5F6B63] m-0">
+                  {formData.isPremium ? '🌟 Freigeschaltetes Premium-Profil' : '🟢 Kostenloser Basiseintrag'}
+                </p>
               </div>
             </div>
-          )}
-        </div>
+            {!formData.isPremium && (
+              <span className="text-xs bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1 rounded-md font-semibold">
+                Kostenloser Basiseintrag
+              </span>
+            )}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
@@ -1310,19 +1377,21 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
           </label>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-black/10">
-          <label className={labelClass}>Besitzer Benutzer-ID (UID)</label>
-          <input 
-            type="text" 
-            value={formData.ownerId || ''} 
-            onChange={e => setFormData({...formData, ownerId: e.target.value})} 
-            className={inputClass} 
-            placeholder="z.B. jUa98zK..." 
-          />
-          <p className="text-xs mt-1.5 opacity-70">
-            Wenn Sie hier die UID eines Benutzers eintragen, sieht dieser das Unternehmen nach dem Login in seinem Dashboard.
-          </p>
-        </div>
+        {isAdmin && (
+          <div className="mt-4 pt-4 border-t border-black/10">
+            <label className={labelClass}>Besitzer Benutzer-ID (UID)</label>
+            <input 
+              type="text" 
+              value={formData.ownerId || ''} 
+              onChange={e => setFormData({...formData, ownerId: e.target.value})} 
+              className={inputClass} 
+              placeholder="z.B. jUa98zK..." 
+            />
+            <p className="text-xs mt-1.5 opacity-70">
+              Wenn Sie hier die UID eines Benutzers eintragen, sieht dieser das Unternehmen nach dem Login in seinem Dashboard.
+            </p>
+          </div>
+        )}
 
         {/* Leistungen & Produkte (Für alle Einträge: Bis zu 3 im Basiseintrag / bis zu 15 mit Premium) */}
         <div className="p-5 bg-white border border-gray-200 rounded-lg space-y-6 mt-4">

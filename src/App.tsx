@@ -5365,14 +5365,34 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     'simon.kraeling@googlemail.com',
     'simon.kraeling@gmail.com'
   ];
+  const normalizedUserEmail = currentUser?.email ? currentUser.email.toLowerCase().trim() : '';
   const isAdmin = userProfile?.role === 'admin' || 
-                  (currentUser?.email && (adminEmails.includes(currentUser.email) || currentUser.email.endsWith('@sichtbar-online.com')));
+                  (!!normalizedUserEmail && (
+                    adminEmails.some(ae => ae.toLowerCase() === normalizedUserEmail) || 
+                    normalizedUserEmail.endsWith('@sichtbar-online.com')
+                  ));
 
-  const ownerBusinessId = userProfile?.businessId;
+  const ownerBusinessId = userProfile?.businessId || (userProfile as any)?.ownedBusinessId;
   const currentUid = currentUser?.uid;
   const allowedBusinesses = isAdmin 
     ? businesses 
-    : businesses.filter((b: Business) => b.id === ownerBusinessId || b.ownerId === currentUid || b.ownerId === userProfile?.uid || (b.ownerEmail && b.ownerEmail === currentUser?.email));
+    : businesses.filter((b: Business) => 
+        (ownerBusinessId && b.id === ownerBusinessId) || 
+        (currentUid && b.ownerId === currentUid) || 
+        (userProfile?.uid && b.ownerId === userProfile?.uid) || 
+        (b.ownerEmail && normalizedUserEmail && b.ownerEmail.toLowerCase().trim() === normalizedUserEmail)
+      );
+
+  // Security guard: If a non-admin is in view 'add', reset to 'list'
+  if (view === 'add' && !isAdmin) {
+    setView('list');
+  }
+
+  // Security guard: If non-admin has activeTab that is admin-only, reset to entries
+  const ownerAllowedTabs = ['entries', 'reviews', 'widgets', 'abrechnung'];
+  if (!isAdmin && !ownerAllowedTabs.includes(activeTab)) {
+    setActiveTab('entries');
+  }
 
 
 
@@ -5502,8 +5522,15 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     <main className="flex-1 max-w-[1180px] mx-auto w-full px-6 py-[32px] pb-[80px]">
       <div className="flex justify-between items-center gap-4 flex-wrap mb-[22px]">
         <div>
-            <h2 className="text-[26px] font-bold tracking-tight mb-[4px]">{isAdmin ? 'Adminbereich' : 'Account'}</h2>
-            <div className="text-[13px] text-[#5F6B63]">Angemeldet als {currentUser?.email}</div>
+            <h2 className="text-[26px] font-bold tracking-tight mb-[4px]">
+              {isAdmin ? 'Adminbereich' : 'Unternehmens-Dashboard'}
+            </h2>
+            <div className="text-[13px] text-[#5F6B63]">
+              Angemeldet als {currentUser?.email}
+              {!isAdmin && allowedBusinesses.length === 1 && (
+                <span className="font-semibold text-[#0F4C2E]"> · Inhaber von {allowedBusinesses[0].name}</span>
+              )}
+            </div>
         </div>
         <button 
           onClick={handleLogout}
@@ -5513,69 +5540,15 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         </button>
       </div>
 
-      {/* 2-Stufiges Navigationsmenü (Variante A) */}
-      <div className="mb-6 space-y-2.5">
-        {/* Ebene 1: Hauptkategorien */}
-        <div className={`grid gap-2 ${adminCategories.length <= 2 ? 'grid-cols-2' : 'grid-cols-2 lg:grid-cols-4'}`}>
-          {adminCategories.map((category) => {
-            const isCategoryActive = activeCategoryKey === category.key;
-            const CategoryIcon = category.icon;
-            
-            // Total pending badge inside this category
-            const totalCategoryBadge = category.tabs.reduce((sum, t) => sum + (typeof t.badge === 'number' ? t.badge : 0), 0);
-
-            return (
-              <button
-                key={category.key}
-                type="button"
-                onClick={() => {
-                  if (!isCategoryActive && category.tabs.length > 0) {
-                    setActiveTab(category.tabs[0].id);
-                  }
-                }}
-                className={`relative text-left p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer flex items-center gap-3 ${
-                  isCategoryActive
-                    ? 'bg-[#0F4C2E] border-[#0F4C2E] text-white shadow-md ring-2 ring-[#0F4C2E]/20'
-                    : 'bg-white border-[#EDE8E0] text-[#1B211D] hover:border-[#0F4C2E]/40 hover:bg-[#FAF8F5]'
-                }`}
-              >
-                <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                  isCategoryActive
-                    ? 'bg-white/15 text-[#F2761B]'
-                    : 'bg-[#FAF8F5] border border-[#EDE8E0] text-[#5F6B63]'
-                }`}>
-                  <CategoryIcon className="w-5 h-5" />
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="font-bold text-xs sm:text-sm truncate leading-tight">
-                      {category.label}
-                    </span>
-                    {totalCategoryBadge > 0 && (
-                      <span className="bg-[#F2761B] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full shrink-0">
-                        {totalCategoryBadge}
-                      </span>
-                    )}
-                  </div>
-                  <div className={`text-[11px] truncate mt-0.5 ${
-                    isCategoryActive ? 'text-white/75' : 'text-[#8A928B]'
-                  }`}>
-                    {category.shortDesc}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Ebene 2: Unterreiter der aktiven Kategorie */}
-        <div className="bg-white border border-[#EDE8E0] rounded-xl p-2 flex flex-wrap items-center gap-1.5 shadow-xs">
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#8A928B] uppercase tracking-wider border-r border-[#EDE8E0] mr-1">
-            <span>{currentCategory.label}:</span>
-          </div>
-
-          {currentCategory.tabs.map((tab) => {
+      {!isAdmin ? (
+        /* Übersichtliche Inhaber-Navigation */
+        <div className="mb-6 bg-white border border-[#EDE8E0] rounded-xl p-2 flex flex-wrap items-center gap-2 shadow-xs">
+          {[
+            { id: 'entries' as const, label: 'Mein Unternehmen', icon: Building2 },
+            { id: 'reviews' as const, label: 'Kundenbewertungen', icon: Star, badge: pendingReviewsCount > 0 ? pendingReviewsCount : undefined },
+            { id: 'widgets' as const, label: 'Trust-Siegel & Widget', icon: Sparkles },
+            { id: 'abrechnung' as const, label: 'Abrechnung & Premium', icon: CreditCard },
+          ].map((tab) => {
             const isTabActive = activeTab === tab.id;
             const TabIcon = tab.icon;
 
@@ -5584,18 +5557,17 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                className={`px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer inline-flex items-center gap-2 ${
                   isTabActive
-                    ? 'bg-[#E8F1EB] text-[#0F4C2E] font-bold border border-[#0F4C2E]/25 shadow-xs'
-                    : 'text-[#5F6B63] hover:text-[#1B211D] hover:bg-[#FAF8F5] border border-transparent'
+                    ? 'bg-[#0F4C2E] text-white shadow-sm'
+                    : 'text-[#5F6B63] hover:text-[#1B211D] hover:bg-[#FAF8F5]'
                 }`}
               >
-                <TabIcon className={`w-4 h-4 ${isTabActive ? 'text-[#0F4C2E]' : 'text-[#8A928B]'}`} />
+                <TabIcon className={`w-4 h-4 ${isTabActive ? 'text-white' : 'text-[#8A928B]'}`} />
                 <span>{tab.label}</span>
-
                 {typeof tab.badge === 'number' && tab.badge > 0 && (
                   <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
-                    isTabActive ? 'bg-[#0F4C2E] text-white' : 'bg-[#F2761B] text-white'
+                    isTabActive ? 'bg-white text-[#0F4C2E]' : 'bg-[#F2761B] text-white'
                   }`}>
                     {tab.badge}
                   </span>
@@ -5604,30 +5576,121 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             );
           })}
         </div>
-      </div>
+      ) : (
+        /* 2-Stufiges Navigationsmenü (Admin) */
+        <div className="mb-6 space-y-2.5">
+          {/* Ebene 1: Hauptkategorien */}
+          <div className={`grid gap-2 ${adminCategories.length <= 2 ? 'grid-cols-2' : 'grid-cols-2 lg:grid-cols-4'}`}>
+            {adminCategories.map((category) => {
+              const isCategoryActive = activeCategoryKey === category.key;
+              const CategoryIcon = category.icon;
+              
+              // Total pending badge inside this category
+              const totalCategoryBadge = category.tabs.reduce((sum, t) => sum + (typeof t.badge === 'number' ? t.badge : 0), 0);
+
+              return (
+                <button
+                  key={category.key}
+                  type="button"
+                  onClick={() => {
+                    if (!isCategoryActive && category.tabs.length > 0) {
+                      setActiveTab(category.tabs[0].id);
+                    }
+                  }}
+                  className={`relative text-left p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer flex items-center gap-3 ${
+                    isCategoryActive
+                      ? 'bg-[#0F4C2E] border-[#0F4C2E] text-white shadow-md ring-2 ring-[#0F4C2E]/20'
+                      : 'bg-white border-[#EDE8E0] text-[#1B211D] hover:border-[#0F4C2E]/40 hover:bg-[#FAF8F5]'
+                  }`}
+                >
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                    isCategoryActive
+                      ? 'bg-white/15 text-[#F2761B]'
+                      : 'bg-[#FAF8F5] border border-[#EDE8E0] text-[#5F6B63]'
+                  }`}>
+                    <CategoryIcon className="w-5 h-5" />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="font-bold text-xs sm:text-sm truncate leading-tight">
+                        {category.label}
+                      </span>
+                      {totalCategoryBadge > 0 && (
+                        <span className="bg-[#F2761B] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full shrink-0">
+                          {totalCategoryBadge}
+                        </span>
+                      )}
+                    </div>
+                    <div className={`text-[11px] truncate mt-0.5 ${
+                      isCategoryActive ? 'text-white/75' : 'text-[#8A928B]'
+                    }`}>
+                      {category.shortDesc}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Ebene 2: Unterreiter der aktiven Kategorie */}
+          <div className="bg-white border border-[#EDE8E0] rounded-xl p-2 flex flex-wrap items-center gap-1.5 shadow-xs">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#8A928B] uppercase tracking-wider border-r border-[#EDE8E0] mr-1">
+              <span>{currentCategory.label}:</span>
+            </div>
+
+            {currentCategory.tabs.map((tab) => {
+              const isTabActive = activeTab === tab.id;
+              const TabIcon = tab.icon;
+
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                    isTabActive
+                      ? 'bg-[#E8F1EB] text-[#0F4C2E] font-bold border border-[#0F4C2E]/25 shadow-xs'
+                      : 'text-[#5F6B63] hover:text-[#1B211D] hover:bg-[#FAF8F5] border border-transparent'
+                  }`}
+                >
+                  <TabIcon className={`w-4 h-4 ${isTabActive ? 'text-[#0F4C2E]' : 'text-[#8A928B]'}`} />
+                  <span>{tab.label}</span>
+
+                  {typeof tab.badge === 'number' && tab.badge > 0 && (
+                    <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
+                      isTabActive ? 'bg-[#0F4C2E] text-white' : 'bg-[#F2761B] text-white'
+                    }`}>
+                      {tab.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {activeTab === 'entries' ? (
         <>
           <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
-          <div className="flex flex-col gap-[16px] mb-[24px]">
-            <div className="flex gap-[12px] flex-wrap items-center">
-              {isAdmin && (
+          {isAdmin ? (
+            <div className="flex flex-col gap-[16px] mb-[24px]">
+              <div className="flex gap-[12px] flex-wrap items-center">
                 <input 
                   placeholder="Unternehmen, E-Mail oder Text suchen..." 
                   value={adminSearchQuery}
                   onChange={(e) => setAdminSearchQuery(e.target.value)}
                   className="flex-1 min-w-[220px] border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-[15px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
                 />
-              )}
-              <button 
-                onClick={() => { setEditingBusiness(null); setView('add'); }}
-                className="bg-[#0F4C2E] text-white border-none rounded-md px-5 py-2.5 text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors ml-auto"
-              >
-                + Neues Unternehmen
-              </button>
-            </div>
-            
-            {isAdmin && (
+                <button 
+                  onClick={() => { setEditingBusiness(null); setView('add'); }}
+                  className="bg-[#0F4C2E] text-white border-none rounded-md px-5 py-2.5 text-[14.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors ml-auto"
+                >
+                  + Neues Unternehmen
+                </button>
+              </div>
+              
               <div className="flex gap-2 flex-wrap mb-4 items-center">
                 <div className="flex gap-2 flex-wrap flex-1">
                   {['Alle', 'Aktiv', 'Deaktiviert', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
@@ -5651,8 +5714,19 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                   ))}
                 </select>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="mb-5 pb-4 border-b border-[#EDE8E0] flex items-center justify-between flex-wrap gap-3">
+              <div>
+                <h3 className="font-display text-[19px] font-bold text-[#1B211D] m-0">
+                  {allowedBusinesses.length === 1 ? allowedBusinesses[0].name : 'Ihr Unternehmensprofil'}
+                </h3>
+                <p className="text-xs text-[#5F6B63] mt-0.5 m-0">
+                  Verwalten Sie die Daten, Ansprechpartner, Leistungen und Inhalte Ihres offiziellen Eintrags.
+                </p>
+              </div>
+            </div>
+          )}
           
           <div className="grid gap-[8px]">
             {filteredAdminBusinesses.map((bus: Business, i: number, arr: Business[]) => {
@@ -5691,53 +5765,55 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       </div>
                     </div>
                     <div className="flex gap-[8px] items-center flex-wrap">
-                      {isBusinessDeactivated(bus) ? (
-                        <button 
-                          onClick={async () => {
-                            const updated: Business = {
-                              ...bus,
-                              isActive: true,
-                              deactivationRedirectType: undefined,
-                              deactivationReason: undefined,
-                              deactivatedAt: undefined
-                            };
-                            try {
-                              await setDoc(doc(db, 'businesses', bus.id), updated, { merge: true });
+                      {isAdmin && (
+                        isBusinessDeactivated(bus) ? (
+                          <button 
+                            onClick={async () => {
+                              const updated: Business = {
+                                ...bus,
+                                isActive: true,
+                                deactivationRedirectType: undefined,
+                                deactivationReason: undefined,
+                                deactivatedAt: undefined
+                              };
                               try {
-                                await deleteDoc(doc(db, 'redirects', `deact-${bus.id}-de`));
-                                await deleteDoc(doc(db, 'redirects', `deact-${bus.id}-nl`));
-                              } catch(e) {}
-                              invalidateCache(CACHE_KEYS.BUSINESSES);
-                              invalidateCache(CACHE_KEYS.REDIRECTS);
-                              bumpRemoteBusinessesVersion(db);
-                              setBusinesses((prev: Business[]) => prev.map((b: Business) => b.id === bus.id ? updated : b));
-                            } catch (e) {
-                              console.error("Reactivation error", e);
-                              alert("Fehler beim Aktivieren");
-                            }
-                          }}
-                          className="bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] border-none rounded-md px-3.5 py-2 text-[13.5px] font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5"
-                          title="Profil reaktivieren und Weiterleitungen aufheben"
-                        >
-                          <Eye className="w-4 h-4" />
-                          <span>Aktivieren</span>
-                        </button>
-                      ) : bus.status !== 'pending' ? (
-                        <button 
-                          onClick={() => {
-                            setDeactivatingBusiness(bus);
-                            setDeactivationType((bus as any).deactivationRedirectType || '301');
-                            setDeactivationReason((bus as any).deactivationReason || '');
-                          }}
-                          className="bg-[#FFF0ED] text-[#C0392B] hover:bg-[#FCD5CC] border border-[#FCD5CC] rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer transition-colors inline-flex items-center gap-1.5"
-                          title="Unternehmen deaktivieren und Weiterleitung einrichten"
-                        >
-                          <EyeOff className="w-4 h-4" />
-                          <span>Deaktivieren</span>
-                        </button>
-                      ) : null}
+                                await setDoc(doc(db, 'businesses', bus.id), updated, { merge: true });
+                                try {
+                                  await deleteDoc(doc(db, 'redirects', `deact-${bus.id}-de`));
+                                  await deleteDoc(doc(db, 'redirects', `deact-${bus.id}-nl`));
+                                } catch(e) {}
+                                invalidateCache(CACHE_KEYS.BUSINESSES);
+                                invalidateCache(CACHE_KEYS.REDIRECTS);
+                                bumpRemoteBusinessesVersion(db);
+                                setBusinesses((prev: Business[]) => prev.map((b: Business) => b.id === bus.id ? updated : b));
+                              } catch (e) {
+                                console.error("Reactivation error", e);
+                                alert("Fehler beim Aktivieren");
+                              }
+                            }}
+                            className="bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] border-none rounded-md px-3.5 py-2 text-[13.5px] font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5"
+                            title="Profil reaktivieren und Weiterleitungen aufheben"
+                          >
+                            <Eye className="w-4 h-4" />
+                            <span>Aktivieren</span>
+                          </button>
+                        ) : bus.status !== 'pending' ? (
+                          <button 
+                            onClick={() => {
+                              setDeactivatingBusiness(bus);
+                              setDeactivationType((bus as any).deactivationRedirectType || '301');
+                              setDeactivationReason((bus as any).deactivationReason || '');
+                            }}
+                            className="bg-[#FFF0ED] text-[#C0392B] hover:bg-[#FCD5CC] border border-[#FCD5CC] rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer transition-colors inline-flex items-center gap-1.5"
+                            title="Unternehmen deaktivieren und Weiterleitung einrichten"
+                          >
+                            <EyeOff className="w-4 h-4" />
+                            <span>Deaktivieren</span>
+                          </button>
+                        ) : null
+                      )}
 
-                      {bus.status === 'pending' && (
+                      {isAdmin && bus.status === 'pending' && (
                         <button 
                           onClick={async () => {
                             try {
@@ -5763,6 +5839,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                           Freigeben
                         </button>
                       )}
+
                       <button 
                         onClick={() => { setGeneratorBusiness(bus); setIsGeneratorOpen(true); }}
                         className="bg-[#E8F1EB] text-[#0F4C2E] hover:bg-[#D6E7DC] border-none rounded-md px-3.5 py-2 text-[13.5px] font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5"
@@ -5770,26 +5847,65 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       >
                         <span>⚡ Widget</span>
                       </button>
+
+                      <a
+                        href={getBusinessPath(bus)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[#FAF8F5] text-[#5F6B63] border border-[#EDE8E0] hover:bg-[#EAE5DB] hover:text-[#1B211D] rounded-md px-3 py-2 text-[13.5px] font-medium transition-colors inline-flex items-center gap-1"
+                        title="Öffentliches Profil im Verzeichnis anzeigen"
+                      >
+                        <span>Live-Profil</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+
                       <button 
                         onClick={() => { setEditingBusiness(bus); setView('edit'); }}
-                        className="bg-[#F3F0EA] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#EAE5DB]"
+                        className={`${isAdmin ? 'bg-[#F3F0EA] hover:bg-[#EAE5DB] text-[#1B211D]' : 'bg-[#0F4C2E] hover:bg-[#06301C] text-white shadow-sm'} border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer transition-colors`}
                       >
-                        Bearbeiten
+                        {isAdmin ? 'Bearbeiten' : 'Profil bearbeiten'}
                       </button>
-                      <button 
-                        onClick={() => handleDelete(bus.id)}
-                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
-                      >
-                        Löschen
-                      </button>
+
+                      {!isAdmin && !bus.isPremium && (
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab('abrechnung')}
+                          className="bg-[#FFF1E4] text-[#D65F0C] hover:bg-[#FCE6D3] border border-[#F2761B]/30 rounded-md px-3 py-2 text-[13px] font-bold cursor-pointer transition-colors"
+                        >
+                          🌟 Auf Premium upgraden
+                        </button>
+                      )}
+
+                      {isAdmin && (
+                        <button 
+                          onClick={() => handleDelete(bus.id)}
+                          className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#FADBD5]"
+                        >
+                          Löschen
+                        </button>
+                      )}
                 </div>
               </div>
             </React.Fragment>
             );
           })}
             {filteredAdminBusinesses.length === 0 && (
-              <div className="border border-dashed border-[#D8D2C8] rounded-md p-6 text-center text-[#8A928B]">
-                Keine Einträge gefunden.
+              <div className="border border-dashed border-[#D8D2C8] rounded-xl p-8 text-center bg-[#FAF8F5]">
+                <ShieldCheck className="w-12 h-12 text-[#0F4C2E] mx-auto mb-3 opacity-80" />
+                <h3 className="font-display text-[18px] font-bold text-[#1B211D] mb-1">
+                  {isAdmin ? 'Keine Einträge gefunden.' : 'Noch kein Unternehmenseintrag zugeordnet'}
+                </h3>
+                <p className="text-sm text-[#5F6B63] max-w-[55ch] mx-auto mb-4">
+                  {isAdmin 
+                    ? 'Es wurden keine Unternehmen passend zu den aktuellen Such- und Filterkriterien gefunden.' 
+                    : 'Ihr Konto ist derzeit noch keinem freigegebenen Unternehmenseintrag zugeordnet. Wenn Sie kürzlich einen Antrag auf Profil-Übernahme eingereicht haben, wird dieser aktuell durch das Redaktionsteam geprüft.'}
+                </p>
+                {!isAdmin && (
+                  <div className="inline-flex items-center gap-2 text-xs bg-white border border-[#E7E2DA] rounded-lg px-4 py-2 text-[#5F6B63]">
+                    <span>Angemeldet mit:</span>
+                    <strong className="text-[#1B211D]">{currentUser?.email}</strong>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -6061,20 +6177,26 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       </div>
                     )}
 
-                    <div className="flex gap-[8px]">
-                      <button 
-                        onClick={() => handleReviewAction(review.businessId, review.id, 'approve')}
-                        className="bg-[#0F4C2E] text-white border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
-                      >
-                        Freigeben
-                      </button>
-                      <button 
-                        onClick={() => handleReviewAction(review.businessId, review.id, 'reject')}
-                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
-                      >
-                        Ablehnen
-                      </button>
-                    </div>
+                    {isAdmin ? (
+                      <div className="flex gap-[8px]">
+                        <button 
+                          onClick={() => handleReviewAction(review.businessId, review.id, 'approve')}
+                          className="bg-[#0F4C2E] text-white border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#06301C] transition-colors"
+                        >
+                          Freigeben
+                        </button>
+                        <button 
+                          onClick={() => handleReviewAction(review.businessId, review.id, 'reject')}
+                          className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-4 py-2 text-[13.5px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                        >
+                          Ablehnen
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="text-xs text-[#5F6B63] bg-[#FAF8F5] border border-[#E7E2DA] rounded-md px-3 py-1.5 inline-block">
+                        ⏳ Wird redaktionell vor Veröffentlichung geprüft
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -6141,16 +6263,18 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       >
                         Antworten {!review.isPremium && '🔒'}
                       </button>
-                      <button 
-                        onClick={() => {
-                          if (window.confirm("Bewertung wirklich löschen?")) {
-                            handleReviewAction(review.businessId, review.id, 'delete');
-                          }
-                        }}
-                        className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
-                      >
-                        Entfernen
-                      </button>
+                      {isAdmin && (
+                        <button 
+                          onClick={() => {
+                            if (window.confirm("Bewertung wirklich löschen?")) {
+                              handleReviewAction(review.businessId, review.id, 'delete');
+                            }
+                          }}
+                          className="bg-[#FBEAE7] text-[#C0392B] border-none rounded-md px-3.5 py-2 text-[13px] font-semibold cursor-pointer hover:bg-[#FADBD5]"
+                        >
+                          Entfernen
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -6174,34 +6298,34 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             }}
           />
         
-        ) : activeTab === 'pricing' ? (
+        ) : activeTab === 'pricing' && isAdmin ? (
           <AdminPricingManager 
             theme={theme}
             pricingSettings={pricingSettings}
             onUpdatePricing={(newPricing) => setPricingSettings(newPricing)}
           />
-        ) : activeTab === 'design' ? (
+        ) : activeTab === 'design' && isAdmin ? (
           <AdminDesignManager 
             designSettings={designSettings} 
             setDesignSettings={setDesignSettings} 
             theme={theme} 
             activeThemeKey={activeThemeKey} 
           />
-        ) : activeTab === 'werbung' ? (
+        ) : activeTab === 'werbung' && isAdmin ? (
           <AdminAdsManager ads={ads} setAds={setAds} businesses={businesses} currentUser={currentUser} />
-        ) : activeTab === 'redirects' ? (
+        ) : activeTab === 'redirects' && isAdmin ? (
           <RedirectsAdminPanel theme={theme} activeThemeKey={activeThemeKey} categories={categories} businesses={businesses} />
-        ) : activeTab === 'scripts' ? (
+        ) : activeTab === 'scripts' && isAdmin ? (
           <ScriptManager theme={theme} activeThemeKey={activeThemeKey} />
-        ) : activeTab === 'test_kachel' ? (
+        ) : activeTab === 'test_kachel' && isAdmin ? (
           <TestKachelPreview />
-        ) : activeTab === 'claims' ? (
+        ) : activeTab === 'claims' && isAdmin ? (
           <ClaimsAdminPanel businesses={businesses} setBusinesses={setBusinesses} />
-        ) : activeTab === 'questions' ? (
+        ) : activeTab === 'questions' && isAdmin ? (
           <QuestionsAdminPanel />
-        ) : (
+        ) : activeTab === 'seo' && isAdmin ? (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />
-        )}
+        ) : null}
 
         {generatorBusiness && (
           <WidgetGeneratorModal
