@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, ArrowRight, X, Clock } from 'lucide-react';
 import { PricingSettings } from '../types';
+import { isPricingOfferActive } from '../config';
 
 interface PromoTopBarProps {
   pricingSettings?: PricingSettings | null;
@@ -33,37 +34,23 @@ export default function PromoTopBar({ pricingSettings, onNavigate, lang = 'de' }
 
   // Calculate Countdown
   useEffect(() => {
+    if (!pricingSettings?.offerEndDate) {
+      setTimeLeft(null);
+      return;
+    }
+
     const calculateTimeLeft = (): TimeRemaining => {
       let targetDate: Date;
-
-      if (pricingSettings?.offerEndDate) {
-        // e.g. "2026-09-15" -> End of that day (23:59:59)
-        const dateParts = pricingSettings.offerEndDate.split('-');
-        if (dateParts.length === 3) {
-          targetDate = new Date(
-            parseInt(dateParts[0], 10),
-            parseInt(dateParts[1], 10) - 1,
-            parseInt(dateParts[2], 10),
-            23, 59, 59
-          );
-        } else {
-          targetDate = new Date(pricingSettings.offerEndDate);
-        }
+      const dateParts = pricingSettings.offerEndDate!.split('-');
+      if (dateParts.length === 3) {
+        targetDate = new Date(
+          parseInt(dateParts[0], 10),
+          parseInt(dateParts[1], 10) - 1,
+          parseInt(dateParts[2], 10),
+          23, 59, 59
+        );
       } else {
-        // Fallback: Persistent dynamic rolling campaign (e.g. ends in 3 days)
-        // Saved in localStorage so the user sees a realistic countdown that doesn't reset on refresh
-        const storedDeadline = localStorage.getItem('wb_promo_rolling_deadline');
-        const nowMs = Date.now();
-        if (storedDeadline && parseInt(storedDeadline, 10) > nowMs) {
-          targetDate = new Date(parseInt(storedDeadline, 10));
-        } else {
-          // Set to 3 days from now at 23:59:59
-          const future = new Date();
-          future.setDate(future.getDate() + 3);
-          future.setHours(23, 59, 59, 999);
-          localStorage.setItem('wb_promo_rolling_deadline', future.getTime().toString());
-          targetDate = future;
-        }
+        targetDate = new Date(pricingSettings.offerEndDate!);
       }
 
       const diff = targetDate.getTime() - Date.now();
@@ -89,8 +76,8 @@ export default function PromoTopBar({ pricingSettings, onNavigate, lang = 'de' }
     return () => clearInterval(timer);
   }, [pricingSettings?.offerEndDate]);
 
-  // If explicitly disabled in admin settings
-  if (pricingSettings && pricingSettings.showRibbon === false) {
+  // Only show if ribbon is enabled AND an offer is currently active and within its date range
+  if (!pricingSettings || !pricingSettings.showRibbon || !isPricingOfferActive(pricingSettings)) {
     return null;
   }
 

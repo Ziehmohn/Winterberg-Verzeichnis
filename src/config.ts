@@ -90,8 +90,8 @@ export const DEFAULT_PRICING_SETTINGS: PricingSettings = {
 
   cancellationPeriod: '14 Tage',
 
-  // Aktion standardmäßig aktiviert
-  isOfferActive: true,
+  // Aktion standardmäßig inaktiv (wird nur angezeigt, wenn in Einstellungen aktiviert)
+  isOfferActive: false,
   offerStartDate: '',
   offerEndDate: '',
   offerBadgeText: 'Limitiertes Angebot',
@@ -101,8 +101,8 @@ export const DEFAULT_PRICING_SETTINGS: PricingSettings = {
   strikethroughMonthly: '12,95 €',
   strikethroughYearly: '9,95 €',
 
-  // Promo-Zeile (Angebotsleiste über der Menüleiste)
-  showRibbon: true,
+  // Promo-Zeile (Angebotsleiste über der Menüleiste) standardmäßig inaktiv
+  showRibbon: false,
   ribbonText: '🔥 Limitiertes Angebot: Premium ab 4,95 € / Monat!',
   ribbonLink: '/preise',
   ribbonBgColor: '#F2761B',
