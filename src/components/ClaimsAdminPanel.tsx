@@ -428,12 +428,18 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
         </div>
       ) : (
         <div className="space-y-4">
-          {displayedClaims.map(claim => (
+          {displayedClaims.map(claim => {
+            const targetBus = businesses.find(b => b.id === claim.businessId);
+            const isAlreadyAssigned = targetBus?.ownerEmail && targetBus.ownerEmail.toLowerCase().trim() === claim.applicantEmail.toLowerCase().trim();
+
+            return (
             <div
               key={claim.id}
               className={`border rounded-xl p-5 transition-all ${
                 claim.status === 'pending'
-                  ? 'bg-[#FFF8F1] border-[#FBD9BC]'
+                  ? isAlreadyAssigned
+                    ? 'bg-[#F4F9F5] border-emerald-300'
+                    : 'bg-[#FFF8F1] border-[#FBD9BC]'
                   : claim.status === 'approved'
                   ? 'bg-[#FAF8F5] border-emerald-200'
                   : 'bg-gray-50 border-gray-200 opacity-70'
@@ -453,8 +459,12 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
                       {claim.type === 'premium' ? '🌟 PREMIUM' : '🟢 BASIS'}
                     </span>
                     {claim.status === 'pending' && (
-                      <span className="bg-[#FFF1E4] text-[#D65F0C] border border-[#F2761B]/30 rounded px-2 py-0.5 text-[11px] font-bold">
-                        OFFEN (PRÜFUNG)
+                      <span className={`rounded px-2 py-0.5 text-[11px] font-bold border ${
+                        isAlreadyAssigned
+                          ? 'bg-emerald-100 text-[#0F4C2E] border-emerald-300'
+                          : 'bg-[#FFF1E4] text-[#D65F0C] border-[#F2761B]/30'
+                      }`}>
+                        {isAlreadyAssigned ? '✓ BEREITS FREIGESCHALTET' : 'OFFEN (PRÜFUNG)'}
                       </span>
                     )}
                     {claim.status === 'approved' && (
@@ -531,7 +541,8 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
