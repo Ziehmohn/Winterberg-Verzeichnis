@@ -21,8 +21,13 @@ export default function UsersAdminPanel({ businesses }: { businesses: Business[]
   const loadUsers = async () => {
     setLoading(true);
     try {
-      const qs = await getDocs(query(collection(db, 'users'), orderBy('createdAt', 'desc')));
+      const qs = await getDocs(collection(db, 'users'));
       const data = qs.docs.map(d => d.data() as UserProfile);
+      data.sort((a, b) => {
+        const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+        const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+        return timeB - timeA;
+      });
       setUsers(data);
     } catch (e) {
       console.error(e);
