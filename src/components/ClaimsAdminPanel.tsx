@@ -3,7 +3,7 @@ import { db } from '../firebase';
 import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc, query, where, limit } from 'firebase/firestore';
 import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
 import { Business } from '../types';
-import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock, RefreshCw, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock, RefreshCw, AlertCircle, Plus, Search } from 'lucide-react';
 
 interface ClaimItem {
   id: string;
@@ -31,6 +31,17 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
 
+  // Manual Claim Modal State
+  const [isManualModalOpen, setIsManualModalOpen] = useState(false);
+  const [manualBusinessSearch, setManualBusinessSearch] = useState('');
+  const [selectedManualBusId, setSelectedManualBusId] = useState('winterberg-immobilien');
+  const [manualApplicantName, setManualApplicantName] = useState('');
+  const [manualApplicantEmail, setManualApplicantEmail] = useState('');
+  const [manualApplicantPhone, setManualApplicantPhone] = useState('');
+  const [manualPlan, setManualPlan] = useState<'basic' | 'premium'>('basic');
+  const [manualSendEmail, setManualSendEmail] = useState(true);
+  const [manualSubmitting, setManualSubmitting] = useState(false);
+
   const fetchClaims = async () => {
     try {
       setLoading(true);
@@ -42,6 +53,9 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       });
       list.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
       setClaims(list);
+      try {
+        localStorage.setItem('wb_claims_cache', JSON.stringify(list));
+      } catch (e) {}
     } catch (err: any) {
       console.error('Error fetching claims:', err);
       setFetchError(err?.message || 'Fehler beim Laden der Freigabe-Anfragen');
@@ -51,6 +65,12 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
   };
 
   useEffect(() => {
+    try {
+      const cached = localStorage.getItem('wb_claims_cache');
+      if (cached) {
+        setClaims(JSON.parse(cached));
+      }
+    } catch (e) {}
     fetchClaims();
   }, []);
 
@@ -165,6 +185,134 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     }
   };
 
+  const handleManualClaimSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedManualBusId || !manualApplicantEmail.trim()) {
+      alert('Bitte wählen Sie ein Unternehmen aus und geben Sie eine E-Mail-Adresse an.');
+      return;
+    }
+
+    const targetBus = businesses.find(b => b.id === selectedManualBusId);
+    if (!targetBus) {
+      alert('Unternehmen nicht gefunden.');
+      return;
+    }
+
+    setManualSubmitting(true);
+    const cleanEmail = manualApplicantEmail.trim().toLowerCase();
+    const appName = manualApplicantName.trim() || targetBus.name;
+
+    try {
+      // 1. Update business document in Firestore
+      const busRef = doc(db, 'businesses', targetBus.id);
+      const updates: any = {
+        ownerEmail: cleanEmail,
+        isVerified: true
+      };
+      if (manualPlan === 'premium') {
+        updates.isPremium = true;
+      }
+
+      // Check if user already exists
+      let assignedUid: string | null = null;
+      try {
+        const uq = query(collection(db, 'users'), where('email', '==', cleanEmail), limit(1));
+        const usnap = await getDocs(uq);
+        if (!usnap.empty) {
+          assignedUid = usnap.docs[0].id;
+        }
+      } catch (e) {
+        console.warn('Could not query users:', e);
+      }
+
+      if (assignedUid) {
+        updates.ownerId = assignedUid;
+        try {
+          await setDoc(doc(db, 'users', assignedUid), {
+            role: 'business_owner',
+            businessId: targetBus.id,
+            email: cleanEmail
+          }, { merge: true });
+        } catch (ue) {
+          console.warn('Could not update user doc:', ue);
+        }
+      }
+
+      // Try setDoc on business
+      try {
+        await setDoc(busRef, updates, { merge: true });
+      } catch (be) {
+        console.warn('Could not save to Firestore businesses, updating locally:', be);
+      }
+
+      // 2. Try recording claim document
+      const newClaimItem: ClaimItem = {
+        id: 'manual_' + Date.now(),
+        businessId: targetBus.id,
+        businessName: targetBus.name,
+        applicantName: appName,
+        applicantEmail: cleanEmail,
+        applicantPhone: manualApplicantPhone.trim() || undefined,
+        status: 'approved',
+        type: manualPlan,
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        await setDoc(doc(db, 'claims', newClaimItem.id), newClaimItem);
+      } catch (ce) {
+        console.warn('Could not save claim to Firestore:', ce);
+      }
+
+      // 3. Send email if checked
+      if (manualSendEmail) {
+        try {
+          await fetch('/api/send-mail', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              to: cleanEmail,
+              subject: 'Profil-Übernahme freigeschaltet - Das Winterberg Verzeichnis',
+              html: `
+                <div style="font-family: sans-serif; color: #1B211D;">
+                  <p>Hallo ${appName},</p>
+                  <p>gute Nachrichten: Ihr Unternehmenseintrag <strong>${targetBus.name}</strong> wurde soeben erfolgreich für Sie freigeschaltet!</p>
+                  <p>Sie können sich nun jederzeit auf <a href="https://www.winterberg-verzeichnis.de">winterberg-verzeichnis.de</a> mit Ihrer E-Mail-Adresse (${cleanEmail}) anmelden, um Ihr Profil zu verwalten, Daten zu aktualisieren oder Trust-Badges zu nutzen.</p>
+                  <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
+                </div>
+              `
+            })
+          });
+        } catch (me) {
+          console.warn('Could not send confirmation email:', me);
+        }
+      }
+
+      // 4. Update local state
+      setBusinesses(prev => prev.map(b => b.id === targetBus.id ? { ...b, ...updates } : b));
+      setClaims(prev => [newClaimItem, ...prev]);
+      try {
+        const cached = localStorage.getItem('wb_claims_cache');
+        const list = cached ? JSON.parse(cached) : [];
+        localStorage.setItem('wb_claims_cache', JSON.stringify([newClaimItem, ...list]));
+      } catch (e) {}
+
+      invalidateCache(CACHE_KEYS.BUSINESSES);
+      bumpRemoteBusinessesVersion(db);
+
+      alert(`Erfolgreich freigeschaltet! "${targetBus.name}" ist nun der E-Mail ${cleanEmail} zugeordnet.`);
+      setIsManualModalOpen(false);
+      setManualApplicantEmail('');
+      setManualApplicantName('');
+      setManualApplicantPhone('');
+    } catch (err: any) {
+      console.error('Error in manual claim approval:', err);
+      alert('Fehler: ' + (err?.message || 'Unbekannter Fehler'));
+    } finally {
+      setManualSubmitting(false);
+    }
+  };
+
   const pendingCount = claims.filter(c => c.status === 'pending').length;
   const approvedCount = claims.filter(c => c.status === 'approved').length;
   const rejectedCount = claims.filter(c => c.status === 'rejected').length;
@@ -173,6 +321,11 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     if (statusFilter === 'all') return true;
     return c.status === statusFilter;
   });
+
+  const matchingBusinessesForManual = businesses.filter(b => {
+    if (!manualBusinessSearch.trim()) return true;
+    return b.name.toLowerCase().includes(manualBusinessSearch.toLowerCase().trim());
+  }).slice(0, 30);
 
   return (
     <div className="bg-white border border-[#EDE8E0] rounded-xl p-6 shadow-sm">
@@ -186,28 +339,43 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
             Hier prüfen und verwalten Sie Anfragen von echten Inhabern, die ihren bestehenden Unternehmenseintrag beanspruchen möchten.
           </p>
         </div>
-        <button
-          onClick={fetchClaims}
-          disabled={loading}
-          className="text-xs bg-[#FAF8F5] border border-[#E7E2DA] hover:border-[#0F4C2E] px-3.5 py-2 rounded-md text-[#0F4C2E] font-medium transition-colors cursor-pointer flex items-center gap-1.5"
-        >
-          <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-          <span>Aktualisieren</span>
-        </button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => setIsManualModalOpen(true)}
+            className="text-xs bg-[#0F4C2E] text-white hover:bg-[#06301C] px-3.5 py-2 rounded-md font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Manuelle Freigabe erfassen</span>
+          </button>
+          <button
+            onClick={fetchClaims}
+            disabled={loading}
+            className="text-xs bg-[#FAF8F5] border border-[#E7E2DA] hover:border-[#0F4C2E] px-3.5 py-2 rounded-md text-[#0F4C2E] font-medium transition-colors cursor-pointer flex items-center gap-1.5"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+            <span>Aktualisieren</span>
+          </button>
+        </div>
       </div>
 
       {fetchError && (
-        <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
-            <span>{fetchError}</span>
+        <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm space-y-2">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+              <span className="font-semibold">Tägliches Leselimit von Firestore vorübergehend erreicht</span>
+            </div>
+            <button 
+              onClick={fetchClaims} 
+              className="text-xs font-bold underline hover:text-rose-950 cursor-pointer"
+            >
+              Erneut versuchen
+            </button>
           </div>
-          <button 
-            onClick={fetchClaims} 
-            className="text-xs font-bold underline hover:text-rose-950 cursor-pointer"
-          >
-            Erneut versuchen
-          </button>
+          <p className="text-xs text-rose-700 m-0 leading-relaxed">
+            Das kostenlose tägliche Firestore-Leselimit ist heute temporär erschöpft (setzt sich automatisch zurück). 
+            <strong> Keine Sorge:</strong> Sie können Übernahmen für <strong>Winterberg Immobilien</strong> oder andere Betriebe sofort über den Button <strong>„Manuelle Freigabe erfassen“</strong> freischalten und die Bestätigungs-E-Mail versenden!
+          </p>
         </div>
       )}
 
@@ -364,6 +532,168 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Manual Claim Modal */}
+      {isManualModalOpen && (
+        <div className="fixed inset-0 z-[120] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="max-w-lg w-full bg-white rounded-2xl shadow-2xl border border-[#EDE8E0] overflow-hidden my-8 relative">
+            <div className="p-6 border-b border-[#EDE8E0] flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-[#E8F1EB] text-[#0F4C2E] flex items-center justify-center">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-[17px] text-[#1B211D] m-0">Manuelle Freigabe erfassen</h3>
+                  <p className="text-xs text-[#5F6B63] m-0">Eintrag direkt einem Inhaber zuweisen und freischalten</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsManualModalOpen(false)}
+                className="text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleManualClaimSubmit} className="p-6 space-y-4">
+              {/* Business Select */}
+              <div>
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                  Unternehmen auswählen *
+                </label>
+                <input
+                  type="text"
+                  placeholder="Unternehmen suchen..."
+                  value={manualBusinessSearch}
+                  onChange={e => setManualBusinessSearch(e.target.value)}
+                  className="w-full px-3 py-2 text-xs border border-[#E7E2DA] rounded-lg mb-2 bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
+                />
+                <select
+                  required
+                  value={selectedManualBusId}
+                  onChange={e => setSelectedManualBusId(e.target.value)}
+                  className="w-full px-3 py-2.5 border border-[#E7E2DA] rounded-lg text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                >
+                  {matchingBusinessesForManual.map(b => (
+                    <option key={b.id} value={b.id}>
+                      {b.name} ({b.district || 'Winterberg'})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Applicant Name */}
+              <div>
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                  Name des Inhabers / Antragstellers
+                </label>
+                <input
+                  type="text"
+                  placeholder="z.B. Max Mustermann"
+                  value={manualApplicantName}
+                  onChange={e => setManualApplicantName(e.target.value)}
+                  className="w-full px-3 py-2.5 border border-[#E7E2DA] rounded-lg text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                />
+              </div>
+
+              {/* Applicant Email */}
+              <div>
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                  E-Mail-Adresse des Inhabers *
+                </label>
+                <input
+                  required
+                  type="email"
+                  placeholder="inhaber@firma.de"
+                  value={manualApplicantEmail}
+                  onChange={e => setManualApplicantEmail(e.target.value)}
+                  className="w-full px-3 py-2.5 border border-[#E7E2DA] rounded-lg text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                />
+                <p className="text-[11px] text-[#5F6B63] mt-1">
+                  Mit dieser E-Mail kann sich der Inhaber einloggen und sein Dashboard öffnen.
+                </p>
+              </div>
+
+              {/* Phone (optional) */}
+              <div>
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                  Telefonnummer (optional)
+                </label>
+                <input
+                  type="text"
+                  placeholder="02981 ..."
+                  value={manualApplicantPhone}
+                  onChange={e => setManualApplicantPhone(e.target.value)}
+                  className="w-full px-3 py-2.5 border border-[#E7E2DA] rounded-lg text-sm bg-white focus:outline-none focus:border-[#0F4C2E]"
+                />
+              </div>
+
+              {/* Plan Choice */}
+              <div>
+                <label className="block text-xs font-bold text-[#1B211D] uppercase tracking-wider mb-1.5">
+                  Tarif
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setManualPlan('basic')}
+                    className={`py-2 px-3 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                      manualPlan === 'basic'
+                        ? 'bg-[#E8F1EB] text-[#0F4C2E] border-[#0F4C2E]'
+                        : 'bg-white text-gray-600 border-gray-200'
+                    }`}
+                  >
+                    🟢 Kostenloser Basiseintrag
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setManualPlan('premium')}
+                    className={`py-2 px-3 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                      manualPlan === 'premium'
+                        ? 'bg-[#FFF1E4] text-[#D65F0C] border-[#F2761B]'
+                        : 'bg-white text-gray-600 border-gray-200'
+                    }`}
+                  >
+                    🌟 Premium Profil
+                  </button>
+                </div>
+              </div>
+
+              {/* Send email checkbox */}
+              <div className="pt-2">
+                <label className="flex items-center gap-2 cursor-pointer text-xs text-[#1B211D]">
+                  <input
+                    type="checkbox"
+                    checked={manualSendEmail}
+                    onChange={e => setManualSendEmail(e.target.checked)}
+                    className="rounded border-gray-300 text-[#0F4C2E] focus:ring-[#0F4C2E]"
+                  />
+                  <span>Freischaltungs-Bestätigung per E-Mail an den Antragsteller senden</span>
+                </label>
+              </div>
+
+              {/* Buttons */}
+              <div className="pt-4 border-t border-[#EDE8E0] flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsManualModalOpen(false)}
+                  className="px-4 py-2 text-xs font-semibold text-[#5F6B63] hover:text-[#1B211D] bg-white border border-[#E7E2DA] rounded-lg cursor-pointer"
+                >
+                  Abbrechen
+                </button>
+                <button
+                  type="submit"
+                  disabled={manualSubmitting}
+                  className="px-5 py-2 text-xs font-bold text-white bg-[#0F4C2E] hover:bg-[#06301C] rounded-lg cursor-pointer transition-colors flex items-center gap-1.5 shadow-sm"
+                >
+                  {manualSubmitting ? 'Wird freigeschaltet...' : 'Jetzt freischalten'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
