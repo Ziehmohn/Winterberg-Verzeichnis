@@ -21,6 +21,7 @@ import { getBusinessRankingBadge, getBusinessRankingBadges } from '../utils/best
 import FuelPriceWidget from './FuelPriceWidget';
 import ClaimBusinessModal from './ClaimBusinessModal';
 import CommunityQA from './CommunityQA';
+import BusinessInquiryForm from './BusinessInquiryForm';
 
 interface BusinessDetailProps {
   business: Business;
@@ -1113,6 +1114,28 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>
           )}
+
+          {/* Quick jump to direct inquiry form (Premium only) */}
+          {business.isPremium && (business.email || business.contactPerson?.email || business.ownerEmail) && (
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById('business-inquiry-form');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  const input = el.querySelector('input');
+                  if (input) input.focus();
+                }
+              }}
+              className="flex items-center justify-between gap-[11px] bg-[#0F4C2E] text-white rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#06301C] transition-colors cursor-pointer shadow-xs"
+            >
+              <div className="flex items-center gap-[11px]">
+                <Mail className="w-4 h-4" />
+                <span>{lang === 'nl' ? 'Direct bericht sturen' : 'Direkte Nachricht senden'}</span>
+              </div>
+              <span className="text-xs font-normal opacity-80">&darr;</span>
+            </button>
+          )}
           {/* Map for all businesses */}
           <Suspense fallback={
             <div className="w-full h-[200px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse">
@@ -1230,6 +1253,9 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             )}
           </div>
         </div>
+
+        {/* Direkte Kundenanfrage (Nur Premium-Accounts) */}
+        <BusinessInquiryForm business={business} lang={lang} />
       </aside>
     </div>
 

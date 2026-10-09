@@ -92,6 +92,7 @@ export default function PricingTable({
     { name: t("pricingWhiteLabel"), free: false, premium: true },
     { name: t("pricingTestimonialSlider"), free: false, premium: true },
     { name: t("pricingContactPerson"), free: false, premium: true },
+    { name: t("pricingDirectInquiry"), free: false, premium: true },
   ];
   return (
     <main className="flex-1 w-full max-w-[1000px] mx-auto px-6 py-[54px] pb-[80px]">

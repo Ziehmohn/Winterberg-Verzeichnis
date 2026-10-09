@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export async function sendMail({ to, subject, html, cc, bcc }) {
+export async function sendMail({ to, subject, html, cc, bcc, replyTo }) {
   if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
     console.warn("E-Mail nicht gesendet: SMTP-Umgebungsvariablen fehlen.");
     return;
@@ -23,6 +23,7 @@ export async function sendMail({ to, subject, html, cc, bcc }) {
     to,
     cc,
     bcc,
+    replyTo: replyTo || undefined,
     subject,
     html,
   });
