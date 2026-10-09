@@ -5363,6 +5363,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
   const ownerBusinessId = userProfile?.businessId || (userProfile as any)?.ownedBusinessId;
   const currentUid = currentUser?.uid;
+  const normalizedUserEmail = currentUser?.email ? currentUser.email.toLowerCase().trim() : '';
+
   const allowedBusinesses = isAdmin 
     ? businesses 
     : businesses.filter((b: Business) => 
