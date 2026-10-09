@@ -180,6 +180,13 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     try {
       await deleteDoc(doc(db, 'claims', id));
       setClaims(prev => prev.filter(c => c.id !== id));
+      try {
+        const cached = localStorage.getItem('wb_claims_cache');
+        if (cached) {
+          const list = JSON.parse(cached).filter((c: any) => c.id !== id);
+          localStorage.setItem('wb_claims_cache', JSON.stringify(list));
+        }
+      } catch (e) {}
     } catch (err) {
       console.error('Error deleting claim:', err);
     }
