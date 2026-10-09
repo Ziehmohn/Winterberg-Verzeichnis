@@ -21,7 +21,7 @@ if (!getApps().length) {
 export default async function handler(req, res) {
   if (req.query.sync === 'true') {
     try {
-      const db = getFirestore();
+      const db = getFirestore('ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
       const auth = getAuth();
       let synced = 0;
       let pageToken;
