@@ -1,13 +1,42 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, signOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, updateProfile } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import { useTranslation } from '../i18n';
 import { ThemeConfig } from '../types';
+import { useAuth } from '../AuthContext';
+import { isAdminEmail } from '../utils/admin';
+
+function mapAuthError(err: any): string {
+  const code = err?.code || '';
+  switch (code) {
+    case 'auth/network-request-failed':
+      return 'Verbindung zum Anmeldedienst fehlgeschlagen. Bitte prüfen Sie Ihre Internetverbindung, deaktivieren Sie ggf. Werbeblocker/VPN für diese Seite und versuchen Sie es erneut.';
+    case 'auth/email-already-in-use':
+      return 'Für diese E-Mail-Adresse existiert bereits ein Konto. Bitte melden Sie sich an oder setzen Sie Ihr Passwort zurück.';
+    case 'auth/invalid-email':
+      return 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+    case 'auth/weak-password':
+      return 'Das Passwort ist zu schwach (mindestens 6 Zeichen).';
+    case 'auth/invalid-credential':
+    case 'auth/wrong-password':
+    case 'auth/user-not-found':
+      return 'E-Mail oder Passwort ist falsch.';
+    case 'auth/too-many-requests':
+      return 'Zu viele Versuche. Bitte warten Sie einen Moment und versuchen Sie es erneut.';
+    case 'auth/user-disabled':
+      return 'Dieses Konto wurde deaktiviert.';
+    default:
+      return err?.message || 'Es ist ein Fehler aufgetreten.';
+  }
+}
 
 export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeConfig, activeThemeKey: string, onBack: () => void }) {
   const { t } = useTranslation();
+  const { bannedMessage, clearBannedMessage } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<'login' | 'register' | 'forgot'>('login');
@@ -17,38 +46,43 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
     e.preventDefault();
     setError('');
     setMsg('');
+    clearBannedMessage();
     setLoading(true);
     try {
       if (mode === 'login') {
-        const userCred = await signInWithEmailAndPassword(auth, email, password);
-        const isAdmin = userCred.user.email && (userCred.user.email.includes('sichtbar') || userCred.user.email.includes('simon.kraeling'));
-        // Email verification check removed to reduce friction during onboarding
-        // if (!isAdmin && !userCred.user.emailVerified) {
-        //   await signOut(auth);
-        //   throw new Error("Bitte bestätigen Sie zuerst Ihre E-Mail-Adresse. Überprüfen Sie Ihren Posteingang auf den Bestätigungslink.");
-        // }
+        await signInWithEmailAndPassword(auth, email.trim(), password);
         // Successful login will be handled by AuthContext listener and parent component
       } else if (mode === 'register') {
-        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-        const isAdmin = userCred.user.email && (userCred.user.email.includes('sichtbar') || userCred.user.email.includes('simon.kraeling'));
-        
-        if (!isAdmin) {
+        const userCred = await createUserWithEmailAndPassword(auth, email.trim(), password);
+        const nowIso = new Date().toISOString();
+        const name = displayName.trim();
+        try {
+          if (name) await updateProfile(userCred.user, { displayName: name });
+          await setDoc(doc(db, 'users', userCred.user.uid), {
+            uid: userCred.user.uid,
+            email: userCred.user.email,
+            displayName: name,
+            role: 'user',
+            createdAt: nowIso,
+            lastLoginAt: nowIso,
+          }, { merge: true });
+        } catch (profileErr) {
+          console.warn('Could not save profile details', profileErr);
+        }
+        if (!isAdminEmail(userCred.user.email)) {
           try {
             await sendEmailVerification(userCred.user);
           } catch (e) {
             console.error("Could not send verification email", e);
           }
-          // Do not sign out! Allow instant login.
-          // setMsg("Erfolgreich registriert! Wir haben Ihnen einen Bestätigungslink gesendet.");
-          return;
         }
       } else if (mode === 'forgot') {
-        await sendPasswordResetEmail(auth, email);
+        await sendPasswordResetEmail(auth, email.trim());
         setMsg(t("resetLinkSent"));
       }
     } catch (err: any) {
       console.error(err);
-      setError(err.message || t("errorOccurred"));
+      setError(mapAuthError(err));
     } finally {
       setLoading(false);
     }
@@ -64,10 +98,24 @@ export default function Login({ theme, activeThemeKey, onBack }: { theme: ThemeC
           {mode === 'login' ? 'Adminbereich und Unternehmens-Dashboard.' : mode === 'register' ? 'Neues Konto anlegen.' : 'Geben Sie Ihre E-Mail ein, um einen Link zu erhalten.'}
         </p>
 
+        {bannedMessage && <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-md text-center mb-4 text-[14px]">{bannedMessage}</div>}
         {msg && <div className="bg-[#E8F1EB] text-[#0F4C2E] p-4 rounded-md text-center mb-4 text-[14px]">{msg}</div>}
         {error && <div className="bg-[#FBEAE7] text-[#C0392B] p-4 rounded-md text-center mb-4 text-[14px]">{error}</div>}
         
         <form onSubmit={handleAuth} className="grid gap-[14px]">
+          {mode === 'register' && (
+            <label className="grid gap-[7px] text-[14px] font-semibold">
+              Name
+              <input 
+                type="text" 
+                required 
+                value={displayName} 
+                onChange={e => setDisplayName(e.target.value)} 
+                placeholder="Vor- und Nachname"
+                className="border border-[#E7E2DA] rounded-md px-3.5 py-2.5 text-[15px] font-normal bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E] transition-colors"
+              />
+            </label>
+          )}
           <label className="grid gap-[7px] text-[14px] font-semibold">
             E-Mail
             <input 

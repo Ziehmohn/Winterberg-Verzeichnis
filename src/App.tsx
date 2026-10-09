@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -101,6 +101,7 @@ import { getBusinessRankingBadge } from './utils/bestOfRankingBadges';
 import TestKachelPreview from './components/TestKachelPreview';
 import BusinessCard from './components/BusinessCard';
 import ClaimsAdminPanel from './components/ClaimsAdminPanel';
+import UsersAdminPanel from './components/UsersAdminPanel';
 import QuestionsAdminPanel from './components/QuestionsAdminPanel';
 import PromoTopBar from './components/PromoTopBar';
 import PwaInstallPrompt from './components/PwaInstallPrompt';
@@ -109,6 +110,7 @@ import { GermanFlag, DutchFlag } from './components/FlagIcons';
 import { generateLocalBusinessSchema, generateCollectionPageSchema, generateItemListSchema, generateWebSiteSearchSchema } from './utils/schemaGenerator';
 import FavoritesDrawer from './components/FavoritesDrawer';
 import { useFavorites } from './utils/favorites';
+import { isAdminEmail } from './utils/admin';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   state = { hasError: false, error: null as Error | null };
@@ -5220,7 +5222,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
@@ -5357,20 +5359,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     return <Login theme={theme} activeThemeKey={activeThemeKey} onBack={onBack} />;
   }
 
-  // Determine allowed businesses based on role
-  const adminEmails = [
-    'simon.kraeling@sichtbar-online.com', 
-    'info@sichtbar-online.com', 
-    'info@winterberg.sichtbar-online.com',
-    'simon.kraeling@googlemail.com',
-    'simon.kraeling@gmail.com'
-  ];
-  const normalizedUserEmail = currentUser?.email ? currentUser.email.toLowerCase().trim() : '';
-  const isAdmin = userProfile?.role === 'admin' || 
-                  (!!normalizedUserEmail && (
-                    adminEmails.some(ae => ae.toLowerCase() === normalizedUserEmail) || 
-                    normalizedUserEmail.endsWith('@sichtbar-online.com')
-                  ));
+  const isAdmin = userProfile?.role === 'admin' || isAdminEmail(currentUser?.email);
 
   const ownerBusinessId = userProfile?.businessId || (userProfile as any)?.ownedBusinessId;
   const currentUid = currentUser?.uid;
@@ -5444,7 +5433,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   type AdminCategoryKey = 'content' | 'business' | 'design' | 'tech';
 
   interface AdminSubTab {
-    id: 'entries' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions';
+    id: 'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions';
     label: string;
     badge?: number | string;
     icon: any;
@@ -5477,9 +5466,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     {
       key: 'business',
       label: 'Geschäft & Partner',
-      shortDesc: 'Claims, Abrechnung, Preise & Siegel',
+      shortDesc: 'Claims, Abrechnung, Nutzer & Preise',
       icon: Briefcase,
       tabs: [
+        ...(isAdmin ? [{ id: 'users' as const, label: 'Mitglieder', icon: Users }] : []),
         ...(isAdmin ? [{ id: 'claims' as const, label: 'Übernahmen (Claims)', icon: ShieldCheck }] : []),
         { id: 'abrechnung', label: 'Abrechnung', icon: CreditCard },
         ...(isAdmin ? [
@@ -6321,6 +6311,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <TestKachelPreview />
         ) : activeTab === 'claims' && isAdmin ? (
           <ClaimsAdminPanel businesses={businesses} setBusinesses={setBusinesses} />
+        ) : activeTab === 'users' && isAdmin ? (
+          <UsersAdminPanel businesses={businesses} />
         ) : activeTab === 'questions' && isAdmin ? (
           <QuestionsAdminPanel />
         ) : activeTab === 'seo' && isAdmin ? (

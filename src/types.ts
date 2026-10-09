@@ -245,6 +245,25 @@ export interface UserProfile {
   role: 'admin' | 'business_owner' | 'user';
   businessId?: string;
   ownedBusinessId?: string;
+  displayName?: string;
+  phone?: string;
+  createdAt?: string;
+  lastLoginAt?: string;
+  banned?: boolean;
+  bannedReason?: string;
+  bannedAt?: string;
+}
+
+export interface UserMessage {
+  id: string;
+  toUid: string;
+  toEmail?: string | null;
+  fromEmail?: string;
+  subject: string;
+  body: string;
+  createdAt: string;
+  read?: boolean;
+  readAt?: string;
 }
 
 export type ThemeKey = 'nature' | 'winter' | 'modern' | 'alpine' | 'panorama' | 'glass' | 'dark';
