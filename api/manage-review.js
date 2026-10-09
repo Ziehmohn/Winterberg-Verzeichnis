@@ -1,6 +1,8 @@
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
+import { getAuth } from 'firebase-admin/auth';
+
 if (!getApps().length) {
   try {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
@@ -17,6 +19,42 @@ if (!getApps().length) {
 }
 
 export default async function handler(req, res) {
+  if (req.query.sync === 'true') {
+    try {
+      const db = getFirestore();
+      const auth = getAuth();
+      let synced = 0;
+      let pageToken;
+      do {
+        const result = await auth.listUsers(1000, pageToken);
+        pageToken = result.pageToken;
+        for (const user of result.users) {
+          const docRef = db.collection('users').doc(user.uid);
+          const snap = await docRef.get();
+          if (!snap.exists) {
+            const nowIso = new Date(user.metadata.creationTime || Date.now()).toISOString();
+            let role = 'user';
+            if (user.email && user.email.toLowerCase() === 'simon.kraeling@sichtbar-online.com') {
+              role = 'admin';
+            }
+            await docRef.set({
+              uid: user.uid,
+              email: user.email || null,
+              displayName: user.displayName || '',
+              role,
+              createdAt: nowIso,
+              lastLoginAt: new Date(user.metadata.lastSignInTime || Date.now()).toISOString()
+            });
+            synced++;
+          }
+        }
+      } while (pageToken);
+      return res.status(200).json({ success: true, message: `Synced ${synced} missing users to Firestore.` });
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
