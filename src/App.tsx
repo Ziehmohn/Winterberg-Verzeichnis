@@ -91,7 +91,7 @@ const WasteCalendarPage = React.lazy(() => import('./components/WasteCalendarPag
 const ChargingStationsPage = React.lazy(() => import('./components/ChargingStationsPage'));
 const ShoppingThemePage = React.lazy(() => import('./components/ShoppingThemePage'));
 import { db, auth, storage } from './firebase';
-import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc, query, where, onSnapshot } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useTranslation } from './i18n';
 import { getSeoContent } from './utils/seoContent';
@@ -5235,6 +5235,24 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     }
   }, [activeTab]);
 
+  const [pendingClaimsCount, setPendingClaimsCount] = useState<number>(0);
+
+  useEffect(() => {
+    const isUserAdmin = userProfile?.role === 'admin' || isAdminEmail(currentUser?.email);
+    if (!isUserAdmin) return;
+    try {
+      const q = query(collection(db, 'claims'), where('status', '==', 'pending'));
+      const unsub = onSnapshot(q, (snapshot) => {
+        setPendingClaimsCount(snapshot.size);
+      }, (err) => {
+        console.warn('Could not listen to pending claims:', err);
+      });
+      return () => unsub();
+    } catch (e) {
+      console.warn('Claims listener error:', e);
+    }
+  }, [currentUser?.email, userProfile?.role]);
+
   const [activeAdminCategory, setActiveAdminCategory] = useState<string>('Alle');
   const [activeAdminLocation, setActiveAdminLocation] = useState<string>('Alle');
   const [adminSearchQuery, setAdminSearchQuery] = useState('');
@@ -5468,11 +5486,13 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     {
       key: 'business',
       label: 'Geschäft & Partner',
-      shortDesc: 'Claims, Abrechnung, Nutzer & Preise',
+      shortDesc: 'Freigaben, Mitglieder, Abrechnung & Tarife',
       icon: Briefcase,
       tabs: [
-        ...(isAdmin ? [{ id: 'users' as const, label: 'Mitglieder', icon: Users }] : []),
-        ...(isAdmin ? [{ id: 'claims' as const, label: 'Übernahmen (Claims)', icon: ShieldCheck }] : []),
+        ...(isAdmin ? [
+          { id: 'claims' as const, label: 'Freigaben', badge: pendingClaimsCount > 0 ? pendingClaimsCount : undefined, icon: ShieldCheck },
+          { id: 'users' as const, label: 'Mitglieder', icon: Users }
+        ] : []),
         { id: 'abrechnung', label: 'Abrechnung', icon: CreditCard },
         ...(isAdmin ? [
           { id: 'pricing' as const, label: 'Preise & Aktionen', icon: Award },
@@ -5531,6 +5551,34 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           Abmelden
         </button>
       </div>
+
+      {isAdmin && pendingClaimsCount > 0 && (
+        <div className="mb-6 p-4.5 rounded-xl bg-[#FFF8F1] border-2 border-[#FBD9BC] flex items-center justify-between gap-4 shadow-sm flex-wrap">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#F2761B]/15 text-[#D65F0C] flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="font-bold text-[15.5px] text-[#1B211D]">
+                {pendingClaimsCount === 1 
+                  ? '1 neue Übernahme-Anfrage wartet auf Freigabe' 
+                  : `${pendingClaimsCount} offene Übernahme-Anfragen warten auf Freigabe`}
+              </div>
+              <p className="text-xs text-[#5F6B63] m-0 mt-0.5">
+                Ein Inhaber hat einen Basiseintrag beansprucht. Bitte prüfen Sie die Angaben im Reiter „Freigaben“.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setActiveTab('claims')}
+            className="bg-[#0F4C2E] hover:bg-[#06301C] text-white px-4 py-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer shrink-0 shadow-xs flex items-center gap-1.5"
+          >
+            <span>Zu den Freigaben</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {!isAdmin ? (
         /* Übersichtliche Inhaber-Navigation */

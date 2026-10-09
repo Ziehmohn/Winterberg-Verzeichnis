@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc, query, where, limit } from 'firebase/firestore';
 import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
 import { Business } from '../types';
-import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock } from 'lucide-react';
+import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock, RefreshCw, AlertCircle } from 'lucide-react';
 
 interface ClaimItem {
   id: string;
@@ -28,10 +28,13 @@ interface ClaimsAdminPanelProps {
 export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAdminPanelProps) {
   const [claims, setClaims] = useState<ClaimItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
 
   const fetchClaims = async () => {
     try {
       setLoading(true);
+      setFetchError(null);
       const snap = await getDocs(collection(db, 'claims'));
       const list: ClaimItem[] = [];
       snap.forEach(d => {
@@ -39,8 +42,9 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       });
       list.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
       setClaims(list);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching claims:', err);
+      setFetchError(err?.message || 'Fehler beim Laden der Freigabe-Anfragen');
     } finally {
       setLoading(false);
     }
@@ -56,15 +60,30 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     }
 
     try {
-      // 1. Update business document in Firestore: assign owner (use setDoc with merge in case it's only in data.ts)
+      // 1. Update business document in Firestore: assign owner
       const cleanEmail = claim.applicantEmail.trim().toLowerCase();
       const busRef = doc(db, 'businesses', claim.businessId);
       const updates: any = {
         ownerEmail: cleanEmail,
         isVerified: true
       };
-      if (claim.userId) {
-        updates.ownerId = claim.userId;
+
+      // 2. Check if a user account already exists in users collection
+      let assignedUid = claim.userId || null;
+      if (!assignedUid) {
+        try {
+          const userQuery = query(collection(db, 'users'), where('email', '==', cleanEmail), limit(1));
+          const userSnap = await getDocs(userQuery);
+          if (!userSnap.empty) {
+            assignedUid = userSnap.docs[0].id;
+          }
+        } catch (findErr) {
+          console.warn('Could not query users by email:', findErr);
+        }
+      }
+
+      if (assignedUid) {
+        updates.ownerId = assignedUid;
       }
       if (claim.type === 'premium') {
         updates.isPremium = true;
@@ -72,9 +91,9 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       await setDoc(busRef, updates, { merge: true });
 
       // If user ID is known, also ensure users/{uid} is marked as business_owner
-      if (claim.userId) {
+      if (assignedUid) {
         try {
-          await setDoc(doc(db, 'users', claim.userId), {
+          await setDoc(doc(db, 'users', assignedUid), {
             role: 'business_owner',
             businessId: claim.businessId,
             email: cleanEmail
@@ -84,16 +103,16 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
         }
       }
 
-      // 2. Update claim status
+      // 3. Update claim status
       await updateDoc(doc(db, 'claims', claim.id), { status: 'approved' });
 
-      // 3. Update local state
+      // 4. Update local state
       setClaims(prev => prev.map(c => c.id === claim.id ? { ...c, status: 'approved' } : c));
       setBusinesses(prev => prev.map(b => b.id === claim.businessId ? { ...b, ...updates } : b));
       invalidateCache(CACHE_KEYS.BUSINESSES);
       bumpRemoteBusinessesVersion(db);
 
-      // 4. Notify applicant of approval
+      // 5. Notify applicant of approval
       try {
         await fetch('/api/send-mail', {
           method: 'POST',
@@ -146,35 +165,102 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     }
   };
 
+  const pendingCount = claims.filter(c => c.status === 'pending').length;
+  const approvedCount = claims.filter(c => c.status === 'approved').length;
+  const rejectedCount = claims.filter(c => c.status === 'rejected').length;
+
+  const displayedClaims = claims.filter(c => {
+    if (statusFilter === 'all') return true;
+    return c.status === statusFilter;
+  });
+
   return (
     <div className="bg-white border border-[#EDE8E0] rounded-xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
           <h2 className="font-display text-[21px] font-bold text-[#1B211D] mb-1 flex items-center gap-2">
             <ShieldCheck className="w-6 h-6 text-[#0F4C2E]" />
-            <span>Unternehmens-Übernahmen (Claims)</span>
+            <span>Freigaben & Übernahme-Anfragen (Claims)</span>
           </h2>
           <p className="text-[14px] text-[#5F6B63] m-0">
-            Hier verwalten Sie Anträge von echten Inhabern, die ihren bestehenden Basiseintrag beanspruchen möchten.
+            Hier prüfen und verwalten Sie Anfragen von echten Inhabern, die ihren bestehenden Unternehmenseintrag beanspruchen möchten.
           </p>
         </div>
         <button
           onClick={fetchClaims}
-          className="text-xs bg-[#FAF8F5] border border-[#E7E2DA] hover:border-[#0F4C2E] px-3 py-1.5 rounded-md text-[#0F4C2E] font-medium transition-colors cursor-pointer"
+          disabled={loading}
+          className="text-xs bg-[#FAF8F5] border border-[#E7E2DA] hover:border-[#0F4C2E] px-3.5 py-2 rounded-md text-[#0F4C2E] font-medium transition-colors cursor-pointer flex items-center gap-1.5"
         >
-          Aktualisieren
+          <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+          <span>Aktualisieren</span>
         </button>
       </div>
 
+      {fetchError && (
+        <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+            <span>{fetchError}</span>
+          </div>
+          <button 
+            onClick={fetchClaims} 
+            className="text-xs font-bold underline hover:text-rose-950 cursor-pointer"
+          >
+            Erneut versuchen
+          </button>
+        </div>
+      )}
+
+      {/* Filter Tabs */}
+      <div className="flex items-center gap-2 mb-5 flex-wrap border-b border-[#EDE8E0] pb-3">
+        {[
+          { key: 'all' as const, label: 'Alle Anfragen', count: claims.length },
+          { key: 'pending' as const, label: 'Offene Freigaben', count: pendingCount, highlight: pendingCount > 0 },
+          { key: 'approved' as const, label: 'Freigegeben', count: approvedCount },
+          { key: 'rejected' as const, label: 'Abgelehnt', count: rejectedCount }
+        ].map(tab => {
+          const isActive = statusFilter === tab.key;
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setStatusFilter(tab.key)}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-2 ${
+                isActive
+                  ? 'bg-[#0F4C2E] text-white shadow-xs'
+                  : 'text-[#5F6B63] hover:text-[#1B211D] bg-[#FAF8F5] border border-[#E7E2DA]'
+              }`}
+            >
+              <span>{tab.label}</span>
+              <span className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${
+                isActive
+                  ? 'bg-white/20 text-white'
+                  : tab.highlight
+                  ? 'bg-[#F2761B] text-white'
+                  : 'bg-black/5 text-[#5F6B63]'
+              }`}>
+                {tab.count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
       {loading ? (
-        <div className="py-12 text-center text-[#8A928B]">Lade Übernahme-Anträge...</div>
-      ) : claims.length === 0 ? (
+        <div className="py-12 text-center text-[#8A928B]">Lade Freigabe-Anträge...</div>
+      ) : displayedClaims.length === 0 ? (
         <div className="border border-dashed border-[#D8D2C8] rounded-xl p-10 text-center text-[#8A928B]">
-          Bisher liegen keine offenen oder bearbeiteten Übernahme-Anfragen vor.
+          {statusFilter === 'pending'
+            ? 'Aktuell liegen keine offenen Freigabe-Anfragen vor.'
+            : statusFilter === 'approved'
+            ? 'Bisher wurden keine Freigaben erteilt.'
+            : statusFilter === 'rejected'
+            ? 'Keine abgelehnten Anfragen vorhanden.'
+            : 'Bisher liegen keine Übernahme-Anfragen vor.'}
         </div>
       ) : (
         <div className="space-y-4">
-          {claims.map(claim => (
+          {displayedClaims.map(claim => (
             <div
               key={claim.id}
               className={`border rounded-xl p-5 transition-all ${

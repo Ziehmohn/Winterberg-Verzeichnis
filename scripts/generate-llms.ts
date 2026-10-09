@@ -155,3 +155,4 @@ if (FAQ_DATA && FAQ_DATA.length > 0) {
 
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), fullTxt.trim() + '\n', 'utf8');
 console.log('✅ Generated public/llms-full.txt');
+process.exit(0);

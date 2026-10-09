@@ -221,3 +221,4 @@ if (!fs.existsSync(publicDir)) {
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapContent);
 console.log(`Sitemap successfully generated with ${entries.length * 2} URLs at public/sitemap.xml`);
+process.exit(0);

@@ -300,6 +300,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       customCta: base.customCta || { text: '', url: '', type: 'custom' },
       extendedDescription: base.extendedDescription || '',
       ownerId: base.ownerId || '',
+      ownerEmail: base.ownerEmail || '',
       status: base.status || 'approved',
       translations: base.translations || {},
       description_nl: base.translations?.nl?.description || base.description_nl || '',
@@ -576,7 +577,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
         }
       }
     } else {
-      if (currentUser && !dataToSubmit.ownerId && dataToSubmit.ownerEmail === currentUser.email) {
+      dataToSubmit.ownerEmail = formData.ownerEmail ? formData.ownerEmail.trim().toLowerCase() : (businessToEdit?.ownerEmail || '');
+      dataToSubmit.ownerId = formData.ownerId ? formData.ownerId.trim() : (businessToEdit?.ownerId || '');
+      if (currentUser && !dataToSubmit.ownerId && dataToSubmit.ownerEmail === currentUser.email?.toLowerCase().trim()) {
         dataToSubmit.ownerId = currentUser.uid;
       }
     }
@@ -1379,17 +1382,35 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
         {isAdmin && (
           <div className="mt-4 pt-4 border-t border-black/10">
-            <label className={labelClass}>Besitzer Benutzer-ID (UID)</label>
-            <input 
-              type="text" 
-              value={formData.ownerId || ''} 
-              onChange={e => setFormData({...formData, ownerId: e.target.value})} 
-              className={inputClass} 
-              placeholder="z.B. jUa98zK..." 
-            />
-            <p className="text-xs mt-1.5 opacity-70">
-              Wenn Sie hier die UID eines Benutzers eintragen, sieht dieser das Unternehmen nach dem Login in seinem Dashboard.
-            </p>
+            <h4 className="font-bold text-sm text-[#1B211D] mb-2">Inhaber-Zuordnung (Admin)</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass}>Besitzer E-Mail-Adresse (ownerEmail)</label>
+                <input 
+                  type="email" 
+                  value={formData.ownerEmail || ''} 
+                  onChange={e => setFormData({...formData, ownerEmail: e.target.value})} 
+                  className={inputClass} 
+                  placeholder="z.B. inhaber@winterberg-immobilien.de" 
+                />
+                <p className="text-xs mt-1.5 opacity-70">
+                  Sobald sich der Inhaber mit dieser E-Mail registriert oder einloggt, wird dieser Eintrag seinem Dashboard zugeordnet.
+                </p>
+              </div>
+              <div>
+                <label className={labelClass}>Besitzer Benutzer-ID (UID)</label>
+                <input 
+                  type="text" 
+                  value={formData.ownerId || ''} 
+                  onChange={e => setFormData({...formData, ownerId: e.target.value})} 
+                  className={inputClass} 
+                  placeholder="z.B. jUa98zK..." 
+                />
+                <p className="text-xs mt-1.5 opacity-70">
+                  Optionale direkte Verknüpfung über die Firebase UID.
+                </p>
+              </div>
+            </div>
           </div>
         )}
 

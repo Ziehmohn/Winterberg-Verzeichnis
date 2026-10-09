@@ -993,3 +993,4 @@ const publicRedirectsFilePath = path.resolve(process.cwd(), 'public/_redirects')
 fs.writeFileSync(publicRedirectsFilePath, updatedRedirects, 'utf8');
 
 console.log(`✅ Generated ${redirectCount} static 301 redirect pages and updated _redirects!`);
+process.exit(0);
