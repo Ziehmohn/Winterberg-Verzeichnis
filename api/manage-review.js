@@ -19,20 +19,9 @@ if (!getApps().length) {
 }
 
 export default async function handler(req, res) {
-  if (req.query.test === 'true') {
-    try {
-      const db = getFirestore('ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
-      const qs = await db.collection('users').get();
-      const users = qs.docs.map(d => d.data());
-      return res.status(200).json({ count: users.length, users });
-    } catch (err) {
-      return res.status(500).json({ error: err.message });
-    }
-  }
-
   if (req.query.sync === 'true') {
     try {
-      const db = getFirestore('ai-studio-winterberguntern-dcab9b4d-c8de-4204-84d9-91f84061f319');
+      const db = getFirestore();
       const auth = getAuth();
       let synced = 0;
       let pageToken;

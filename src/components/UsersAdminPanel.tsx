@@ -18,8 +18,11 @@ export default function UsersAdminPanel({ businesses }: { businesses: Business[]
     loadUsers();
   }, []);
 
+  const [fetchError, setFetchError] = useState('');
+
   const loadUsers = async () => {
     setLoading(true);
+    setFetchError('');
     try {
       const qs = await getDocs(collection(db, 'users'));
       const data = qs.docs.map(d => d.data() as UserProfile);
@@ -29,8 +32,9 @@ export default function UsersAdminPanel({ businesses }: { businesses: Business[]
         return timeB - timeA;
       });
       setUsers(data);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
+      setFetchError(e.message || 'Error fetching users');
     } finally {
       setLoading(false);
     }
@@ -114,6 +118,13 @@ export default function UsersAdminPanel({ businesses }: { businesses: Business[]
           />
         </div>
       </div>
+
+      {fetchError && (
+        <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+          <p className="text-red-700 text-sm font-bold">Fehler beim Laden:</p>
+          <p className="text-red-600 text-sm">{fetchError}</p>
+        </div>
+      )}
 
       {loading ? (
         <p className="text-[#8A928B] text-sm">Lade Mitglieder...</p>
