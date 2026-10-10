@@ -68,7 +68,7 @@ export async function notifyBusinessNewReview(
   const targetEmail = targetBusiness.ownerEmail || targetBusiness.email || targetBusiness.contactPerson?.email;
   const isOwnerKnown = !!targetEmail;
   const destinationEmail = targetEmail || 'info@sichtbar-online.com';
-  const isClaimed = !!(targetBusiness.ownerId || targetBusiness.ownerEmail);
+  const isClaimed = !!(targetBusiness.isPremium || targetBusiness.ownerId || targetBusiness.ownerEmail);
   const isNl = lang === 'nl';
 
   const businessSlug = getBusinessPath(targetBusiness, lang).replace(/^\//, '');

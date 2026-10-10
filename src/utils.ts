@@ -191,4 +191,17 @@ export function getSundayHoursText(openingHours?: OpeningHours | null): string {
   return openingHours!.sunday!.trim();
 }
 
+/**
+ * Checks whether a business profile has already been claimed by an owner or is a Premium account.
+ */
+export function isBusinessClaimed(business?: { isPremium?: boolean; ownerId?: string; ownerEmail?: string } | null): boolean {
+  if (!business) return false;
+  return Boolean(
+    business.isPremium ||
+    (business.ownerId && String(business.ownerId).trim() !== '') ||
+    (business.ownerEmail && String(business.ownerEmail).trim() !== '')
+  );
+}
+
+
 

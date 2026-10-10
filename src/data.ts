@@ -3491,6 +3491,9 @@ export const businesses: Business[] = [
   },
   {
     id: 'winterberg-immobilien',
+    email: 'info@winterberg-immobilien.com',
+    ownerEmail: 'info@winterberg-immobilien.com',
+    isVerified: true,
     name: 'WINTERBERG IMMOBILIEN',
     category: 'Dienstleistungen',
     subcategory: 'Immobilienmakler',

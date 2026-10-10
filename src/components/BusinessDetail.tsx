@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, Calendar, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag, Heart } from 'lucide-react';
 import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta, DesignSettings } from '../types';
 import HeaderShapeDivider, { getEffectiveDivider } from './HeaderShapeDivider';
-import { isOpenNow, canDisplayOpeningHours, formatBusinessAddress, parseBusinessAddress } from '../utils';
+import { isOpenNow, canDisplayOpeningHours, formatBusinessAddress, parseBusinessAddress, isBusinessClaimed } from '../utils';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { useFavorites } from '../utils/favorites';
@@ -50,15 +50,23 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   const [showWidgetModal, setShowWidgetModal] = useState(false);
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
 
+  const isClaimed = isBusinessClaimed(business);
+  const isCurrentUserOwner = Boolean(
+    user && (
+      (business.ownerId && business.ownerId === user.uid) ||
+      (business.ownerEmail && user.email && business.ownerEmail.toLowerCase().trim() === user.email.toLowerCase().trim())
+    )
+  );
+
   // Auto-open claim modal if visitor arrives via ?claim=true link and business is unclaimed
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const searchParams = new URLSearchParams(window.location.search);
-      if (searchParams.get('claim') === 'true' && !business.ownerId && !business.ownerEmail) {
+      if (searchParams.get('claim') === 'true' && !isClaimed) {
         setShowClaimScreen(true);
       }
     }
-  }, [business.id, business.ownerId, business.ownerEmail]);
+  }, [business.id, isClaimed]);
   
   const [isReportingError, setIsReportingError] = useState(false);
   const [errorReportText, setErrorReportText] = useState('');
@@ -274,7 +282,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <span>{isFav ? (lang === 'nl' ? 'Opgeslagen' : 'Gemerkt') : (lang === 'nl' ? 'Merken' : 'Merken')}</span>
             </button>
             
-            {!business.isPremium && (
+            {!business.isPremium && (!isClaimed || isCurrentUserOwner) && (
               <button 
                 type="button"
                 onClick={() => {
@@ -298,6 +306,12 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             )}
             {business.isPremium && (
               <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
+            )}
+            {!business.isPremium && isClaimed && (
+              <span className="bg-emerald-500/20 border border-emerald-300/35 text-emerald-50 rounded px-2.5 py-1 text-[13px] font-semibold inline-flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
+                <span>{lang === 'nl' ? 'Door eigenaar geclaimd' : 'Vom Inhaber beansprucht'}</span>
+              </span>
             )}
 
             {/* Official Top 10 / Top 5 / Top 3 / Top 1 Ranking Badges for Premium */}
@@ -1190,7 +1204,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             <span>{lang === 'nl' ? 'Zegel voor eigen website' : 'Siegel für eigene Website'}</span>
           </button>
 
-          {!business.isPremium && !business.ownerId && (
+          {!isClaimed ? (
             <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
               <div className="font-semibold text-[15px] mb-1">{t("isThisYourBusiness")}</div>
               <p className="text-[13px] text-[#5F6B63] mb-3">{t("claimProfileDesc")}</p>
@@ -1208,7 +1222,23 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 {lang === 'nl' ? 'Profiel gratis claimen' : 'Profil kostenlos übernehmen'}
               </button>
             </div>
-          )}
+          ) : !business.isPremium ? (
+            <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
+              <div className="bg-[#F4F9F5] border border-[#C5DFCE] rounded-lg p-3.5 flex items-start gap-2.5">
+                <ShieldCheck className="w-5 h-5 text-[#0F4C2E] shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-[13.5px] text-[#0F4C2E] leading-snug">
+                    {lang === 'nl' ? 'Door eigenaar geclaimd' : 'Vom Inhaber beansprucht'}
+                  </div>
+                  <p className="text-[12px] text-[#4A544D] mt-1 mb-0 leading-relaxed">
+                    {lang === 'nl'
+                      ? 'Dit bedrijfsprofiel is al overgenomen en wordt beheerd door de eigenaar.'
+                      : 'Dieses Unternehmensprofil wurde bereits übernommen und wird vom Inhaber verwaltet.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : null}
 
           <div className="mt-4 pt-4 border-t border-[#EDE8E0]">
             {!isReportingError && !reportSuccess && (

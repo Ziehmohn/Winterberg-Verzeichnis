@@ -66,7 +66,14 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
   // Determine if current user is owner or admin
   const isBusinessOwner = useMemo(() => {
     if (!currentUser || !business) return false;
-    return business.ownerId === currentUser.uid || (userProfile?.ownedBusinessId === business.id);
+    const normEmail = currentUser.email ? currentUser.email.toLowerCase().trim() : '';
+    const busOwnerEmail = business.ownerEmail ? business.ownerEmail.toLowerCase().trim() : '';
+    return (
+      business.ownerId === currentUser.uid ||
+      userProfile?.ownedBusinessId === business.id ||
+      userProfile?.businessId === business.id ||
+      Boolean(normEmail && busOwnerEmail && normEmail === busOwnerEmail)
+    );
   }, [currentUser, business, userProfile]);
 
   const isAdmin = useMemo(() => {
@@ -108,7 +115,7 @@ export default function CommunityQA({ type, business, title, subtitle }: Communi
     try {
       const businessSlug = business ? getBusinessPath(business, lang).replace(/^\//, '') : undefined;
       const targetBusinessEmail = business?.ownerEmail || business?.email;
-      const isClaimed = !!(business?.ownerId || business?.ownerEmail);
+      const isClaimed = !!(business?.isPremium || business?.ownerId || business?.ownerEmail);
       const newQ = await createQuestion({
         type,
         businessId: business?.id,

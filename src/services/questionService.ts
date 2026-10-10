@@ -188,7 +188,7 @@ export async function createQuestion(params: {
         if (freshEmail) {
           targetBusinessEmail = freshEmail;
         }
-        if (bData.ownerId || bData.ownerEmail) {
+        if (bData.isPremium || bData.ownerId || bData.ownerEmail) {
           isClaimed = true;
         }
       }
@@ -204,7 +204,7 @@ export async function createQuestion(params: {
           isOptedOut = true;
         }
         targetBusinessEmail = staticMatch.ownerEmail || staticMatch.email || staticMatch.contactPerson?.email;
-        if (staticMatch.ownerId) isClaimed = true;
+        if (staticMatch.isPremium || staticMatch.ownerId || staticMatch.ownerEmail) isClaimed = true;
       }
     }
   }

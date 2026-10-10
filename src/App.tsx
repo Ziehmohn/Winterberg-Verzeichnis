@@ -16,7 +16,7 @@ import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
 import AdminDesignManager, { loadGoogleFont } from './components/AdminDesignManager';
 import HeaderShapeDivider, { getEffectiveDivider } from './components/HeaderShapeDivider';
-import { isOpenNow, canDisplayOpeningHours, isSundayOpen } from './utils';
+import { isOpenNow, canDisplayOpeningHours, isSundayOpen, isBusinessClaimed } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
 import { useAuth } from './AuthContext';
@@ -798,14 +798,17 @@ export default function App() {
   }, []);
   const [businesses, setBusinesses] = useState<Business[]>(() => {
     const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true);
+    const merged = [...initialBusinesses];
     if (cached && cached.length > 0) {
-      const merged = [...initialBusinesses];
       cached.forEach(fb => {
         const idx = merged.findIndex(b => b.id === fb.id);
         if (idx >= 0) {
           merged[idx] = { 
             ...merged[idx], 
             ...fb,
+            ownerEmail: fb.ownerEmail || merged[idx].ownerEmail,
+            ownerId: fb.ownerId || merged[idx].ownerId,
+            isVerified: fb.isVerified ?? merged[idx].isVerified,
             logoUrl: fb.logoUrl || merged[idx].logoUrl,
             gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : merged[idx].gallery,
             services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : merged[idx].services,
@@ -815,16 +818,33 @@ export default function App() {
           merged.push(fb);
         }
       });
-      const seen = new Set<string>();
-      return merged.filter(b => {
-        if (seen.has(b.id)) return false;
-        seen.add(b.id);
-        return true;
-      });
     }
 
+    try {
+      const claimsRaw = typeof window !== 'undefined' ? localStorage.getItem('wb_claims_cache') : null;
+      if (claimsRaw) {
+        const claimsList = JSON.parse(claimsRaw);
+        if (Array.isArray(claimsList)) {
+          claimsList.forEach((c: any) => {
+            if (c && c.status === 'approved' && c.businessId && c.applicantEmail) {
+              const idx = merged.findIndex(b => b.id === c.businessId);
+              if (idx >= 0) {
+                merged[idx] = {
+                  ...merged[idx],
+                  ownerEmail: merged[idx].ownerEmail || c.applicantEmail.trim().toLowerCase(),
+                  ownerId: merged[idx].ownerId || c.userId || undefined,
+                  isVerified: true,
+                  ...(c.type === 'premium' ? { isPremium: true } : {})
+                };
+              }
+            }
+          });
+        }
+      }
+    } catch (e) {}
+
     const seen = new Set<string>();
-    return initialBusinesses.filter(b => {
+    return merged.filter(b => {
       if (seen.has(b.id)) return false;
       seen.add(b.id);
       return true;
@@ -1254,6 +1274,9 @@ export default function App() {
         merged[idx] = { 
           ...existing, 
           ...fb,
+          ownerEmail: fb.ownerEmail || existing.ownerEmail,
+          ownerId: fb.ownerId || existing.ownerId,
+          isVerified: fb.isVerified ?? existing.isVerified,
           logoUrl: fb.logoUrl || existing.logoUrl,
           gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
           services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
@@ -1263,6 +1286,29 @@ export default function App() {
         merged.push(fb);
       }
     });
+
+    try {
+      const claimsRaw = typeof window !== 'undefined' ? localStorage.getItem('wb_claims_cache') : null;
+      if (claimsRaw) {
+        const claimsList = JSON.parse(claimsRaw);
+        if (Array.isArray(claimsList)) {
+          claimsList.forEach((c: any) => {
+            if (c && c.status === 'approved' && c.businessId && c.applicantEmail) {
+              const idx = merged.findIndex(b => b.id === c.businessId);
+              if (idx >= 0) {
+                merged[idx] = {
+                  ...merged[idx],
+                  ownerEmail: merged[idx].ownerEmail || c.applicantEmail.trim().toLowerCase(),
+                  ownerId: merged[idx].ownerId || c.userId || undefined,
+                  isVerified: true,
+                  ...(c.type === 'premium' ? { isPremium: true } : {})
+                };
+              }
+            }
+          });
+        }
+      }
+    } catch (e) {}
 
     // Strict deduplication by ID
     const uniqueMerged: Business[] = [];
@@ -5430,6 +5476,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       matchesCategory = bus.status === 'pending';
     } else if (activeAdminCategory === 'Aktiv') {
       matchesCategory = bus.status !== 'pending' && bus.isActive !== false;
+    } else if (activeAdminCategory === 'Beansprucht') {
+      matchesCategory = isBusinessClaimed(bus);
     } else if (activeAdminCategory === 'Deaktiviert') {
       matchesCategory = isBusinessDeactivated(bus);
     } else if (activeAdminCategory !== 'Alle') {
@@ -5444,7 +5492,8 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     const matchesSearch = !searchStr || 
                           bus.name.toLowerCase().includes(searchStr) || 
                           (bus.description && bus.description.toLowerCase().includes(searchStr)) ||
-                          (bus.email && bus.email.toLowerCase().includes(searchStr));
+                          (bus.email && bus.email.toLowerCase().includes(searchStr)) ||
+                          (bus.ownerEmail && bus.ownerEmail.toLowerCase().includes(searchStr));
                           
     return matchesCategory && matchesLocation && matchesSearch;
   }).sort((a, b) => a.name.localeCompare(b.name));
@@ -5733,7 +5782,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
               
               <div className="flex gap-2 flex-wrap mb-4 items-center">
                 <div className="flex gap-2 flex-wrap flex-1">
-                  {['Alle', 'Aktiv', 'Deaktiviert', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
+                  {['Alle', 'Aktiv', 'Beansprucht', 'Deaktiviert', 'In Prüfung', ...categories.map(c => c.name)].map(c => (
                     <button 
                       key={c}
                       onClick={() => setActiveAdminCategory(c)}
@@ -5789,6 +5838,15 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                       <div className="flex items-center gap-[9px] flex-wrap">
                         <span className="font-semibold text-[15.5px]">{bus.name}</span>
                         {bus.isPremium && <span className="bg-[#FFF1E4] text-[#D65F0C] rounded px-2 py-0.5 text-[11px] font-bold">PREMIUM</span>}
+                        {(bus.ownerEmail || bus.ownerId) && (
+                          <span
+                            className="bg-[#E8F1EB] text-[#0F4C2E] border border-[#C5DFCE] rounded px-2 py-0.5 text-[11px] font-bold inline-flex items-center gap-1"
+                            title={bus.ownerEmail ? `Beansprucht von: ${bus.ownerEmail}` : 'Vom Inhaber beansprucht'}
+                          >
+                            <ShieldCheck className="w-3 h-3 shrink-0" />
+                            <span>BEANSPRUCHT{bus.ownerEmail ? ` (${bus.ownerEmail})` : ''}</span>
+                          </span>
+                        )}
                         {isBusinessDeactivated(bus) ? (
                           <span className="bg-[#FBEAE7] text-[#C0392B] border border-[#FCD5CC] rounded px-2 py-0.5 text-[11px] font-bold inline-flex items-center gap-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500" />

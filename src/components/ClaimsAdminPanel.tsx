@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc, query, where, limit } from 'firebase/firestore';
-import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
+import { getCachedItem, setCachedItem, invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 import { Business } from '../types';
 import { ShieldCheck, Check, X, Building2, User, Mail, Phone, Calendar, Clock, RefreshCw, AlertCircle, Plus, Search } from 'lucide-react';
 
@@ -42,6 +42,35 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
   const [manualSendEmail, setManualSendEmail] = useState(true);
   const [manualSubmitting, setManualSubmitting] = useState(false);
 
+  const syncApprovedClaimsToBusinesses = (claimList: ClaimItem[]) => {
+    const approved = claimList.filter(c => c.status === 'approved' && c.businessId && c.applicantEmail);
+    if (approved.length === 0) return;
+
+    setBusinesses(prev => {
+      let changed = false;
+      const next = prev.map(b => {
+        const match = approved.find(c => c.businessId === b.id);
+        if (!match) return b;
+        const cleanMail = match.applicantEmail.trim().toLowerCase();
+        if (b.ownerEmail !== cleanMail || !b.isVerified) {
+          changed = true;
+          return {
+            ...b,
+            ownerEmail: b.ownerEmail || cleanMail,
+            ownerId: b.ownerId || match.userId || undefined,
+            isVerified: true,
+            ...(match.type === 'premium' ? { isPremium: true } : {})
+          };
+        }
+        return b;
+      });
+      if (changed) {
+        setCachedItem(CACHE_KEYS.BUSINESSES, next);
+      }
+      return changed ? next : prev;
+    });
+  };
+
   const fetchClaims = async () => {
     try {
       setLoading(true);
@@ -53,6 +82,7 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       });
       list.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
       setClaims(list);
+      syncApprovedClaimsToBusinesses(list);
       try {
         localStorage.setItem('wb_claims_cache', JSON.stringify(list));
       } catch (e) {}
@@ -68,7 +98,9 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
     try {
       const cached = localStorage.getItem('wb_claims_cache');
       if (cached) {
-        setClaims(JSON.parse(cached));
+        const parsed = JSON.parse(cached);
+        setClaims(parsed);
+        syncApprovedClaimsToBusinesses(parsed);
       }
     } catch (e) {}
     fetchClaims();
@@ -126,10 +158,17 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
       // 3. Update claim status
       await updateDoc(doc(db, 'claims', claim.id), { status: 'approved' });
 
-      // 4. Update local state
-      setClaims(prev => prev.map(c => c.id === claim.id ? { ...c, status: 'approved' } : c));
-      setBusinesses(prev => prev.map(b => b.id === claim.businessId ? { ...b, ...updates } : b));
-      invalidateCache(CACHE_KEYS.BUSINESSES);
+      // 4. Update local state & cache
+      const updatedClaimList = claims.map(c => c.id === claim.id ? { ...c, status: 'approved' as const } : c);
+      setClaims(updatedClaimList);
+      try {
+        localStorage.setItem('wb_claims_cache', JSON.stringify(updatedClaimList));
+      } catch (e) {}
+      setBusinesses(prev => {
+        const next = prev.map(b => b.id === claim.businessId ? { ...b, ...updates } : b);
+        setCachedItem(CACHE_KEYS.BUSINESSES, next);
+        return next;
+      });
       bumpRemoteBusinessesVersion(db);
 
       // 5. Notify applicant of approval
@@ -295,8 +334,12 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
         }
       }
 
-      // 4. Update local state
-      setBusinesses(prev => prev.map(b => b.id === targetBus.id ? { ...b, ...updates } : b));
+      // 4. Update local state & cache
+      setBusinesses(prev => {
+        const next = prev.map(b => b.id === targetBus.id ? { ...b, ...updates } : b);
+        setCachedItem(CACHE_KEYS.BUSINESSES, next);
+        return next;
+      });
       setClaims(prev => [newClaimItem, ...prev]);
       try {
         const cached = localStorage.getItem('wb_claims_cache');
@@ -304,7 +347,6 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
         localStorage.setItem('wb_claims_cache', JSON.stringify([newClaimItem, ...list]));
       } catch (e) {}
 
-      invalidateCache(CACHE_KEYS.BUSINESSES);
       bumpRemoteBusinessesVersion(db);
 
       alert(`Erfolgreich freigeschaltet! "${targetBus.name}" ist nun der E-Mail ${cleanEmail} zugeordnet.`);
@@ -597,7 +639,7 @@ export default function ClaimsAdminPanel({ businesses, setBusinesses }: ClaimsAd
                 >
                   {matchingBusinessesForManual.map(b => (
                     <option key={b.id} value={b.id}>
-                      {b.name} ({b.district || 'Winterberg'})
+                      {b.name} ({b.district || 'Winterberg'}){b.isPremium ? ' [★ Premium]' : (b.ownerEmail || b.ownerId) ? ` [✓ Beansprucht${b.ownerEmail ? `: ${b.ownerEmail}` : ''}]` : ''}
                     </option>
                   ))}
                 </select>

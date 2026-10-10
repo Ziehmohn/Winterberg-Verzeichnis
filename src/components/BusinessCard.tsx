@@ -1,12 +1,12 @@
 import React from 'react';
-import { MapPin, Heart } from 'lucide-react';
+import { MapPin, Heart, ShieldCheck } from 'lucide-react';
 import { Business } from '../types';
 import { useTranslation } from '../i18n';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import { useFavorites } from '../utils/favorites';
-import { formatBusinessAddress, isSundayOpen } from '../utils';
+import { formatBusinessAddress, isSundayOpen, isBusinessClaimed } from '../utils';
 import RankingBadge from './RankingBadge';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 
@@ -89,12 +89,18 @@ export default function BusinessCard({
           )}
         </div>
 
-        {/* Top Badges (Premium + Star Rating + Favorite Heart) */}
+        {/* Top Badges (Premium + Claimed + Star Rating + Favorite Heart) */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start z-10">
           <div className="flex items-center gap-1.5 flex-wrap pointer-events-none">
             {business.isPremium && (
               <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm backdrop-blur-xs">
                 Premium
+              </div>
+            )}
+            {!business.isPremium && isBusinessClaimed(business) && (
+              <div className="bg-[#E8F1EB]/95 text-[#0F4C2E] border border-[#C5DFCE] px-2.5 py-1 rounded-md text-[11.5px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C2E] shrink-0" />
+                <span>{lang === 'nl' ? 'Geclaimd' : 'Beansprucht'}</span>
               </div>
             )}
             {business.isPremium && business.hasShop && (
@@ -266,8 +272,8 @@ export default function BusinessCard({
           </span>
         </div>
 
-        {/* Subtle claim hint for unclaimed profiles */}
-        {!business.isPremium && !business.ownerId && (
+        {/* Subtle claim hint for unclaimed profiles, or claimed indicator for claimed Basic profiles */}
+        {!isBusinessClaimed(business) ? (
           <div className="mt-2 pt-2 border-t border-dashed border-[#EDE8E0] flex items-center justify-between text-[11.5px] text-[#0F4C2E]">
             <span className="font-semibold flex items-center gap-1 group-hover:underline">
               <span>{lang === 'nl' ? 'Uw bedrijf? Nu gratis claimen' : 'Ihr Betrieb? Jetzt kostenlos übernehmen'}</span>
@@ -277,7 +283,17 @@ export default function BusinessCard({
               0 €
             </span>
           </div>
-        )}
+        ) : !business.isPremium ? (
+          <div className="mt-2 pt-2 border-t border-dashed border-[#EDE8E0] flex items-center justify-between text-[11.5px] text-[#0F4C2E]">
+            <span className="font-semibold flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C2E] shrink-0" />
+              <span>{lang === 'nl' ? 'Door eigenaar geclaimd' : 'Vom Inhaber beansprucht'}</span>
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#E8F1EB] text-[#0F4C2E] border border-[#C5DFCE]">
+              {lang === 'nl' ? '✓ Geclaimd' : '✓ Beansprucht'}
+            </span>
+          </div>
+        ) : null}
       </div>
     </div>
   );
