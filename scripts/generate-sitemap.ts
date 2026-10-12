@@ -77,6 +77,7 @@ entries.push({
 // 3. Static Pages
 const staticPages = [
   'jobs', 
+  'events',
   'news', 
   'faq', 
   'submit', 

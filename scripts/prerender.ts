@@ -42,6 +42,7 @@ interface PageSEO {
   h1: string;
   h2?: string;
   ogType?: string;
+  ogImage?: string;
   jsonLd?: any;
 }
 
@@ -133,6 +134,17 @@ const staticPageConfigs: {
     h1Nl: 'Vacatures & Banen in Winterberg',
     h2De: 'Aktuelle Jobangebote und Karrieremöglichkeiten im Sauerland',
     h2Nl: 'Actuele banen en carrièremogelijkheden in het Sauerland'
+  },
+  {
+    key: 'events',
+    titleDe: 'Veranstaltungen & Events in Winterberg | Das Winterberg Verzeichnis',
+    titleNl: 'Evenementen & Agenda Winterberg | Het Winterberg Overzicht',
+    descDe: 'Aktuelle Veranstaltungen, Termine, Konzerte, Shows und Feste in Winterberg und Umgebung. Entdecken Sie den Veranstaltungskalender.',
+    descNl: 'Actuele evenementen, shows, concerten en uitgaansagenda in Winterberg en omgeving. Ontdek wat er te doen is in Winterberg.',
+    h1De: 'Veranstaltungen & Events in Winterberg',
+    h1Nl: 'Evenementen & Agenda Winterberg',
+    h2De: 'Der aktuelle Veranstaltungskalender für Winterberg und Umgebung',
+    h2Nl: 'De actuele evenementenkalender voor Winterberg en omgeving'
   },
   {
     key: 'news',
@@ -348,6 +360,8 @@ const staticPageConfigs: {
 staticPageConfigs.forEach(cfg => {
   const deSlug = STATIC_PAGE_SLUGS[cfg.key].de;
   const nlSlug = STATIC_PAGE_SLUGS[cfg.key].nl;
+  const ogImgDe = cfg.key === 'heimatkarte' ? `${baseUrl}/news-winterberg-heimatcard.jpg` : `${baseUrl}/og-image.jpg`;
+  const ogImgNl = cfg.key === 'heimatkarte' ? `${baseUrl}/news-winterberg-heimatcard.jpg` : `${baseUrl}/og-image-nl.jpg`;
 
   pagesToPrerender.push({
     path: deSlug,
@@ -359,8 +373,25 @@ staticPageConfigs.forEach(cfg => {
     alternateXDefault: `${baseUrl}/${deSlug}`,
     lang: 'de',
     h1: cfg.h1De,
-    h2: cfg.h2De
+    h2: cfg.h2De,
+    ogImage: ogImgDe
   });
+
+  if (cfg.key === 'events') {
+    pagesToPrerender.push({
+      path: 'events',
+      title: cfg.titleDe,
+      description: cfg.descDe,
+      canonicalUrl: `${baseUrl}/${deSlug}`,
+      alternateDe: `${baseUrl}/${deSlug}`,
+      alternateNl: `${baseUrl}/nl/${nlSlug}`,
+      alternateXDefault: `${baseUrl}/${deSlug}`,
+      lang: 'de',
+      h1: cfg.h1De,
+      h2: cfg.h2De,
+      ogImage: ogImgDe
+    });
+  }
 
   pagesToPrerender.push({
     path: `nl/${nlSlug}`,
@@ -372,7 +403,8 @@ staticPageConfigs.forEach(cfg => {
     alternateXDefault: `${baseUrl}/${deSlug}`,
     lang: 'nl',
     h1: cfg.h1Nl,
-    h2: cfg.h2Nl
+    h2: cfg.h2Nl,
+    ogImage: ogImgNl
   });
 });
 
@@ -585,6 +617,24 @@ businesses.forEach((b: any) => {
   const schemaJsonLdDe = generateLocalBusinessSchema(b as any, 'de');
   const schemaJsonLdNl = generateLocalBusinessSchema(b as any, 'nl');
 
+  const candidates = [
+    b.headerImage,
+    b.uploadedImage,
+    b.logoUrl,
+    ...(Array.isArray(b.gallery) ? b.gallery : [])
+  ];
+  let bImg: string | undefined = undefined;
+  for (const c of candidates) {
+    if (typeof c === 'string') {
+      const trimmed = c.trim();
+      if (trimmed.startsWith('data:')) continue;
+      if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('/') || /\.(jpg|jpeg|png|webp|avif|svg)(\?.*)?$/i.test(trimmed)) {
+        bImg = trimmed.startsWith('http') ? trimmed : `${baseUrl}${trimmed.startsWith('/') ? '' : '/'}${trimmed}`;
+        break;
+      }
+    }
+  }
+
   // DE Business Page (Canonical clean URL)
   pagesToPrerender.push({
     path: pathDe,
@@ -597,6 +647,8 @@ businesses.forEach((b: any) => {
     lang: 'de',
     h1: b.name,
     h2: `Über ${b.name} in ${city}`,
+    ogType: 'business.business',
+    ogImage: bImg,
     jsonLd: schemaJsonLdDe
   });
 
@@ -612,6 +664,8 @@ businesses.forEach((b: any) => {
     lang: 'nl',
     h1: b.name,
     h2: `Over ${b.name} in ${city}`,
+    ogType: 'business.business',
+    ogImage: bImg,
     jsonLd: schemaJsonLdNl
   });
 
@@ -631,6 +685,8 @@ businesses.forEach((b: any) => {
       lang: 'de',
       h1: b.name,
       h2: `Über ${b.name} in ${city}`,
+      ogType: 'business.business',
+      ogImage: bImg,
       jsonLd: schemaJsonLdDe
     });
 
@@ -645,6 +701,8 @@ businesses.forEach((b: any) => {
       lang: 'nl',
       h1: b.name,
       h2: `Over ${b.name} in ${city}`,
+      ogType: 'business.business',
+      ogImage: bImg,
       jsonLd: schemaJsonLdNl
     });
   }
@@ -775,6 +833,8 @@ Array.from(allNewsBySlug.values()).filter(n => n.status !== 'pending' && n.statu
     lang: 'de',
     h1: article.title,
     h2: 'News & Aktuelles aus Winterberg',
+    ogType: 'article',
+    ogImage: newsImg,
     jsonLd: schemaJsonLdDe
   });
 
@@ -790,6 +850,8 @@ Array.from(allNewsBySlug.values()).filter(n => n.status !== 'pending' && n.statu
     lang: 'nl',
     h1: titleNl,
     h2: 'Nieuws & Actualiteiten uit Winterberg',
+    ogType: 'article',
+    ogImage: newsImg,
     jsonLd: schemaJsonLdNl
   });
 });
@@ -816,14 +878,31 @@ pagesToPrerender.forEach(page => {
     html = html.replace('</head>', `  ${newMetaDesc}\n</head>`);
   }
 
-  // 4. Update OpenGraph Tags
-  const ogTitleTag = `<meta property="og:title" content="${escapeHtml(page.title)}" />`;
-  const ogDescTag = `<meta property="og:description" content="${escapeHtml(page.description)}" />`;
-  const ogUrlTag = `<meta property="og:url" content="${escapeHtml(page.canonicalUrl)}" />`;
-  const ogLocaleTag = `<meta property="og:locale" content="${page.lang === 'nl' ? 'nl_NL' : 'de_DE'}" />`;
+  // 4. Update OpenGraph & Twitter Tags
+  const defaultOgImg = page.lang === 'nl' ? `${baseUrl}/og-image-nl.jpg` : `${baseUrl}/og-image.jpg`;
+  const ogImgUrl = page.ogImage || defaultOgImg;
+  const ogType = page.ogType || 'website';
+  const siteName = page.lang === 'nl' ? 'Het Winterberg Overzicht' : 'Das Winterberg Verzeichnis';
+  const locale = page.lang === 'nl' ? 'nl_NL' : 'de_DE';
+  const localeAlt = page.lang === 'nl' ? 'de_DE' : 'nl_NL';
+  const imgType = ogImgUrl.endsWith('.webp') ? 'image/webp' : ogImgUrl.endsWith('.png') ? 'image/png' : 'image/jpeg';
 
-  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i, ogTitleTag);
-  html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i, ogDescTag);
+  html = html.replace(/<meta\s+property="og:site_name"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:site_name" content="${escapeHtml(siteName)}" />`);
+  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${escapeHtml(page.title)}" />`);
+  html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${escapeHtml(page.description)}" />`);
+  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${escapeHtml(page.canonicalUrl)}" />`);
+  html = html.replace(/<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="${escapeHtml(ogType)}" />`);
+  html = html.replace(/<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${escapeHtml(ogImgUrl)}" />`);
+  html = html.replace(/<meta\s+property="og:image:secure_url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:secure_url" content="${escapeHtml(ogImgUrl)}" />`);
+  html = html.replace(/<meta\s+property="og:image:type"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:type" content="${imgType}" />`);
+  html = html.replace(/<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:image:alt" content="${escapeHtml(page.title)}" />`);
+  html = html.replace(/<meta\s+property="og:locale"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:locale" content="${locale}" />`);
+  html = html.replace(/<meta\s+property="og:locale:alternate"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:locale:alternate" content="${localeAlt}" />`);
+
+  html = html.replace(/<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${escapeHtml(page.title)}" />`);
+  html = html.replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`);
+  html = html.replace(/<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${escapeHtml(ogImgUrl)}" />`);
+  html = html.replace(/<meta\s+name="twitter:image:alt"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image:alt" content="${escapeHtml(page.title)}" />`);
 
   // 5. Replace H1 & H2 & Description in Skeleton
   const h1Tag = `<h1 id="sk-h1">${escapeHtml(page.h1)}</h1>`;
@@ -842,8 +921,6 @@ pagesToPrerender.forEach(page => {
 
   // 6. Add Canonical & Hreflang Tags before </head>
   const seoHeadTags = `
-    ${ogUrlTag}
-    ${ogLocaleTag}
     <link rel="canonical" href="${escapeHtml(page.canonicalUrl)}" />
     <link rel="alternate" hreflang="de" href="${escapeHtml(page.alternateDe)}" />
     <link rel="alternate" hreflang="nl" href="${escapeHtml(page.alternateNl)}" />

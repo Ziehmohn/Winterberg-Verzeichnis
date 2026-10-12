@@ -20,7 +20,8 @@ import {
   Utensils,
   ChevronDown,
   ChevronUp,
-  Navigation
+  Navigation,
+  Ticket
 } from 'lucide-react';
 
 // Lazy load map components
@@ -42,6 +43,8 @@ const getCategoryMeta = (category: string) => {
   const cat = category.toLowerCase();
   if (cat.includes('sport') || cat.includes('weltcup') || cat.includes('cup'))
     return { Icon: Trophy, bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' };
+  if (cat.includes('comedy') || cat.includes('kabarett') || cat.includes('humor') || cat.includes('stand up') || cat.includes('stand-up'))
+    return { Icon: Sparkles, bg: 'bg-fuchsia-50', text: 'text-fuchsia-700', border: 'border-fuchsia-200' };
   if (cat.includes('konzert') || cat.includes('musik') || cat.includes('music'))
     return { Icon: Music, bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' };
   if (cat.includes('fest') || cat.includes('party') || cat.includes('feier'))
@@ -389,6 +392,12 @@ export default function EventsBoard({
                           <span className="flex items-center gap-1 font-medium text-[#0F4C2E]">
                             <MapPin className="w-3.5 h-3.5" />
                             {locationStr}
+                          </span>
+                        )}
+                        {event.price && (
+                          <span className="flex items-center gap-1 font-semibold text-[#1B211D] bg-[#F4F1EA] px-2 py-0.5 rounded text-xs border border-[#E7E2DA]">
+                            <Ticket className="w-3.5 h-3.5 text-[#7E22CE]" />
+                            {event.price}
                           </span>
                         )}
                       </div>

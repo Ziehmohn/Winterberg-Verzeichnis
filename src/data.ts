@@ -5888,6 +5888,40 @@ export const businesses: Business[] = [
     services: ['Wellness & Spa', 'Hallenbad & Außenpool', 'Saunalandschaft & Dampfbad', 'Feinschmecker-Restaurant & Bar', 'Tagungsräume & Stadthalle'],
     services_nl: ['Wellness & spa', 'Binnen- en buitenzwembad', 'Sauna\'s & stoombad', 'Gastronomisch restaurant & bar', 'Vergaderfaciliteiten & stadshal'],
     featured: true,
+    events: [
+      {
+        id: 'comedyflash-winterberg-2026-12-19',
+        title: 'Comedyflash - Winterberg',
+        title_nl: 'Comedyflash - Winterberg',
+        startDate: '2026-12-19',
+        endDate: '2026-12-19',
+        startTime: '19:00',
+        endTime: '21:00',
+        price: '29,90 €',
+        category: 'Comedy',
+        location: 'Oversum Vital Resort, Am Kurpark 6, 59955 Winterberg',
+        imageUrl: '/comedyflash-winterberg.webp',
+        description: 'LIVE Stand Up Comedy im Oversum Vital Resort! Wir zeigen euch einen Mix aus erfahrenen Profi-Comedians und den heißesten Newcomern der Berliner Comedy-Szene. Comedyflash – bekannt aus TikTok und Instagram, die junge authentische Comedy-Show nach amerikanischem Vorbild! Einlass ab ca. 18:30 Uhr.',
+        description_nl: 'LIVE Stand-up comedy in het Oversum Vital Resort! Een mix van ervaren professionele comedians en de populairste nieuwkomers uit de Berlijnse comedyscene. Comedyflash – bekend van TikTok en Instagram – brengt authentieke stand-up comedy naar Amerikaans voorbeeld live naar Winterberg!',
+        externalUrl: 'https://standup-republic.de/events/comedyflash-winterberg_9051'
+      },
+      {
+        id: 'comedyflash-winterberg-2027-02-27',
+        title: 'Comedyflash - Winterberg',
+        title_nl: 'Comedyflash - Winterberg',
+        startDate: '2027-02-27',
+        endDate: '2027-02-27',
+        startTime: '19:00',
+        endTime: '21:00',
+        price: '29,90 €',
+        category: 'Comedy',
+        location: 'Oversum Vital Resort, Am Kurpark 6, 59955 Winterberg',
+        imageUrl: '/comedyflash-winterberg.webp',
+        description: 'LIVE Stand Up Comedy im Oversum Vital Resort! Wir zeigen euch einen Mix aus erfahrenen Profi-Comedians und den heißesten Newcomern der Berliner Comedy-Szene. Comedyflash – bekannt aus TikTok und Instagram, die junge authentische Comedy-Show nach amerikanischem Vorbild! Einlass ab ca. 18:30 Uhr.',
+        description_nl: 'LIVE Stand-up comedy in het Oversum Vital Resort! Een mix van ervaren professionele comedians en de populairste nieuwkomers uit de Berlijnse comedyscene. Comedyflash – bekend van TikTok en Instagram – brengt authentieke stand-up comedy naar Amerikaans voorbeeld live naar Winterberg!',
+        externalUrl: 'https://standup-republic.de/events/comedyflash-winterberg_9051'
+      }
+    ],
     openingHours: {
       monday: '24 Stunden geöffnet',
       tuesday: '24 Stunden geöffnet',

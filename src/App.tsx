@@ -28,6 +28,7 @@ import AdminAdsManager from './components/AdminAdsManager';
 import ReviewWidget, { WidgetLayout, WidgetTheme } from './components/ReviewWidget';
 import WidgetGeneratorModal from './components/WidgetGeneratorModal';
 import UnsubscribeModal from './components/UnsubscribeModal';
+import ShareButton from './components/ShareButton';
 import { notifyBusinessNewReview } from './services/reviewNotificationService';
 import CookieConsent from './components/CookieConsent';
 import DynamicScriptLoader from './components/DynamicScriptLoader';
@@ -788,6 +789,8 @@ export default function App() {
           (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'winkelen-in-winterberg')
         ) {
           setIsShoppingThemeMode(true);
+        } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
+          setIsEventsMode(true);
         } else {
            window.location.reload();
         }
@@ -813,6 +816,16 @@ export default function App() {
             gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : merged[idx].gallery,
             services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : merged[idx].services,
             products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : merged[idx].products,
+            events: (() => {
+              const initEvs = merged[idx].events || [];
+              const fbEvs = (Array.isArray(fb.events) && fb.events.length > 0) ? fb.events : [];
+              if (initEvs.length === 0) return fbEvs;
+              if (fbEvs.length === 0) return initEvs;
+              const evMap = new Map();
+              initEvs.forEach((e: any) => evMap.set(e.id, e));
+              fbEvs.forEach((e: any) => evMap.set(e.id, e));
+              return Array.from(evMap.values());
+            })(),
           };
         } else {
           merged.push(fb);
@@ -1203,14 +1216,60 @@ export default function App() {
       head.appendChild(linkCanonical);
     }
 
-    // OpenGraph locale
-    let ogLocale = head.querySelector('meta[property="og:locale"]');
-    if (!ogLocale) {
-      ogLocale = document.createElement('meta');
-      ogLocale.setAttribute('property', 'og:locale');
-      head.appendChild(ogLocale);
+    // OpenGraph & Twitter tags synchronization
+    let currentOgImage = isNl ? `${domain}/og-image-nl.jpg` : `${domain}/og-image.jpg`;
+    let currentOgType = 'website';
+
+    if (matchedBusiness) {
+      currentOgType = 'business.business';
+      const candidates = [
+        matchedBusiness.headerImage,
+        matchedBusiness.uploadedImage,
+        matchedBusiness.logoUrl,
+        ...(Array.isArray(matchedBusiness.gallery) ? matchedBusiness.gallery : [])
+      ];
+      for (const c of candidates) {
+        if (typeof c === 'string') {
+          const trimmed = c.trim();
+          if (trimmed.startsWith('data:')) continue;
+          if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('/') || /\.(jpg|jpeg|png|webp|avif|svg)(\?.*)?$/i.test(trimmed)) {
+            currentOgImage = trimmed.startsWith('http') ? trimmed : `${domain}${trimmed.startsWith('/') ? '' : '/'}${trimmed}`;
+            break;
+          }
+        }
+      }
+    } else if (isNewsMode && newsId) {
+      currentOgType = 'article';
+      const foundArticle = initialNews.find(n => n.slug === newsId || n.id === newsId || n.slug_nl === newsId);
+      if (foundArticle?.imageUrl) {
+        currentOgImage = foundArticle.imageUrl.startsWith('http') ? foundArticle.imageUrl : `${domain}${foundArticle.imageUrl.startsWith('/') ? '' : '/'}${foundArticle.imageUrl}`;
+      }
     }
-    ogLocale.setAttribute('content', lang === 'nl' ? 'nl_NL' : 'de_DE');
+
+    const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
+      let el = head.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    setMeta('property', 'og:title', currentTitle);
+    setMeta('property', 'og:description', currentDesc);
+    setMeta('property', 'og:url', currentCanonicalUrl);
+    setMeta('property', 'og:type', currentOgType);
+    setMeta('property', 'og:image', currentOgImage);
+    setMeta('property', 'og:image:secure_url', currentOgImage);
+    setMeta('property', 'og:site_name', isNl ? 'Het Winterberg Overzicht' : 'Das Winterberg Verzeichnis');
+    setMeta('property', 'og:locale', isNl ? 'nl_NL' : 'de_DE');
+    setMeta('property', 'og:locale:alternate', isNl ? 'de_DE' : 'nl_NL');
+
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', currentTitle);
+    setMeta('name', 'twitter:description', currentDesc);
+    setMeta('name', 'twitter:image', currentOgImage);
   }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode]);
 
   const loadAds = async () => {
@@ -1281,6 +1340,16 @@ export default function App() {
           gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
           services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
           products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
+          events: (() => {
+            const initEvs = existing.events || [];
+            const fbEvs = (Array.isArray(fb.events) && fb.events.length > 0) ? fb.events : [];
+            if (initEvs.length === 0) return fbEvs;
+            if (fbEvs.length === 0) return initEvs;
+            const evMap = new Map();
+            initEvs.forEach((e: any) => evMap.set(e.id, e));
+            fbEvs.forEach((e: any) => evMap.set(e.id, e));
+            return Array.from(evMap.values());
+          })(),
         };
       } else {
         merged.push(fb);
@@ -1814,6 +1883,9 @@ export default function App() {
                 )}
               </button>
 
+              {/* Share Button (Desktop) */}
+              <ShareButton lang={lang} variant="header-desktop" />
+
               {/* Profile / Admin Login Icon */}
               <button 
                 onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
@@ -1864,8 +1936,8 @@ export default function App() {
               </div>
             </nav>
 
-            {/* Mobile Header: Favorites + App Button (nur Mobilgerät) + Language Switcher */}
-            <div className="md:hidden flex items-center gap-2 shrink-0">
+            {/* Mobile Header: Favorites + Share + App Button (nur Mobilgerät) + Language Switcher */}
+            <div className="md:hidden flex items-center gap-1.5 shrink-0">
               <button 
                 type="button"
                 onClick={() => setIsFavoritesOpen(true)}
@@ -1880,6 +1952,8 @@ export default function App() {
                   </span>
                 )}
               </button>
+
+              <ShareButton lang={lang} variant="header-mobile" />
 
               <button 
                 type="button" 

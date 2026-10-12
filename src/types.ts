@@ -136,6 +136,7 @@ export interface EventItem {
   imageUrl?: string;
   externalUrl?: string;
   isPremium?: boolean;
+  price?: string;
 }
 
 export interface Business {

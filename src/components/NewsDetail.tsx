@@ -9,6 +9,7 @@ import { getBusinessPath, slugify } from '../utils/routes';
 import { initialNews } from '../dataNews';
 import { businesses } from '../data';
 import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
+import ShareButton from './ShareButton';
 
 interface NewsDetailProps {
   newsId: string;
@@ -737,31 +738,42 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       )}
 
       {/* Clean Meta Info */}
-      <div className="flex items-center gap-[18px] text-[13.5px] font-medium text-[#7C8780] mb-[24px] flex-wrap pb-4 border-b border-[#EDE8E0]">
-        <div>
-          {new Date(article.date).toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
+      <div className="flex items-center gap-[18px] text-[13.5px] font-medium text-[#7C8780] mb-[24px] flex-wrap pb-4 border-b border-[#EDE8E0] justify-between">
+        <div className="flex items-center gap-[18px] flex-wrap">
+          <div>
+            {new Date(article.date).toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </div>
+          <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
+          <div>
+            {t('newsBy')} <span className="text-[#1B211D] font-bold">{article.author}</span>
+          </div>
+          {article.businessName && (
+            <>
+              <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
+              <div>
+                {businessProfileUrl ? (
+                  <a
+                    href={businessProfileUrl}
+                    className="text-[#0F4C2E] hover:text-[#186841] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all cursor-pointer"
+                  >
+                    {article.businessName}
+                  </a>
+                ) : (
+                  <span className="text-[#0F4C2E] font-semibold">{article.businessName}</span>
+                )}
+              </div>
+            </>
+          )}
         </div>
-        <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
-        <div>
-          {t('newsBy')} <span className="text-[#1B211D] font-bold">{article.author}</span>
+
+        <div className="shrink-0">
+          <ShareButton 
+            title={article.title}
+            text={article.title}
+            lang={lang} 
+            variant="badge-light" 
+          />
         </div>
-        {article.businessName && (
-          <>
-            <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
-            <div>
-              {businessProfileUrl ? (
-                <a
-                  href={businessProfileUrl}
-                  className="text-[#0F4C2E] hover:text-[#186841] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all cursor-pointer"
-                >
-                  {article.businessName}
-                </a>
-              ) : (
-                <span className="text-[#0F4C2E] font-semibold">{article.businessName}</span>
-              )}
-            </div>
-          </>
-        )}
       </div>
 
       {/* Main Title with Winterberg-Logo underline styling */}
@@ -772,6 +784,18 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {/* Main Article News Container */}
       <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 sm:p-8 md:p-10 shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
         <NewsContentRenderer content={mainContent} />
+
+        <div className="mt-8 pt-6 border-t border-[#EDE8E0] flex items-center justify-between flex-wrap gap-3">
+          <span className="text-xs text-[#7C8780] font-medium">
+            {lang === 'nl' ? 'Deel dit artikel met anderen:' : 'Diesen Beitrag teilen:'}
+          </span>
+          <ShareButton 
+            title={article.title}
+            text={article.title}
+            lang={lang} 
+            variant="button-subtle" 
+          />
+        </div>
       </div>
 
       {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}

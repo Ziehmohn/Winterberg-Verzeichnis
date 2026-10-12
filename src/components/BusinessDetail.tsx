@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 const BusinessMap = lazy(() => import('./BusinessMap'));
 import { useTranslation } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, Calendar, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag, Heart } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Image as ImageIcon, BadgeCheck, Clock, List as ListIcon, ShieldCheck, Briefcase, Star, Newspaper, ExternalLink, FileText, ChevronLeft, ChevronRight, X, FileDown, FileCheck, PhoneCall, CalendarDays, Calendar, UtensilsCrossed, Siren, Sparkles, Download, Tag, HelpCircle, User, Mail, ShoppingBag, Heart, Ticket } from 'lucide-react';
 import { Business, ThemeConfig, Review, BusinessNewsArticle, GalleryCategory, GalleryImage, BusinessDocument, CustomActionCta, DesignSettings } from '../types';
 import HeaderShapeDivider, { getEffectiveDivider } from './HeaderShapeDivider';
 import { isOpenNow, canDisplayOpeningHours, formatBusinessAddress, parseBusinessAddress, isBusinessClaimed } from '../utils';
@@ -22,6 +22,7 @@ import FuelPriceWidget from './FuelPriceWidget';
 import ClaimBusinessModal from './ClaimBusinessModal';
 import CommunityQA from './CommunityQA';
 import BusinessInquiryForm from './BusinessInquiryForm';
+import ShareButton from './ShareButton';
 
 interface BusinessDetailProps {
   business: Business;
@@ -281,6 +282,13 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <Heart className={`w-4 h-4 ${isFav ? 'fill-red-500 text-red-500' : ''}`} />
               <span>{isFav ? (lang === 'nl' ? 'Opgeslagen' : 'Gemerkt') : (lang === 'nl' ? 'Merken' : 'Merken')}</span>
             </button>
+
+            <ShareButton 
+              title={`${business.name} in ${business.district || 'Winterberg'}`}
+              text={lang === 'nl' ? `Bekijk ${business.name} in Winterberg:` : `Schau dir ${business.name} in Winterberg an:`}
+              lang={lang} 
+              variant="badge-dark" 
+            />
             
             {!business.isPremium && (!isClaimed || isCurrentUserOwner) && (
               <button 
@@ -760,6 +768,12 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                               <span className="flex items-center gap-1">
                                 <MapPin className="w-3 h-3 text-[#8A958E]" />
                                 {ev.location}
+                              </span>
+                            )}
+                            {ev.price && (
+                              <span className="flex items-center gap-1 font-semibold text-[#1B211D] bg-[#F0EDE7] px-2 py-0.5 rounded text-xs border border-[#E7E2DA]">
+                                <Ticket className="w-3 h-3 text-[#7E22CE]" />
+                                {ev.price}
                               </span>
                             )}
                           </div>
