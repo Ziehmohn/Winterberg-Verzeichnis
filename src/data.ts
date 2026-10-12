@@ -3194,6 +3194,37 @@ export const businesses: Business[] = [
     }
   },
   {
+    id: 'psychotherapie-lisa-veldhuis-winterberg',
+    name: 'Psychotherapeutische Praxis Lisa Veldhuis',
+    category: 'Gesundheit & Medizin',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Psychotherapeutische Fachpraxis für Erwachsene am Waltenberg in Winterberg. Die gebürtige Winterbergerin Lisa Veldhuis bietet evidenzbasierte Verhaltenstherapie für gesetzlich und privat versicherte Patientinnen und Patienten an. Behandlung von Depressionen, Angst- und Panikstörungen, Belastungsreaktionen, Burnout und psychosomatischen Beschwerden.',
+    description_nl: 'Psychotherapeutische praktijk voor volwassenen aan de Waltenberg in Winterberg. De in Winterberg geboren Lisa Veldhuis biedt wetenschappelijk onderbouwde cognitieve gedragstherapie voor volwassenen (zowel wettelijk als particulier verzekerd). Behandeling van onder meer depressie, angst- en paniekstoornissen, stressklachten, burn-out en psychosomatische aandoeningen.',
+    address: 'Am Waltenberg 46, 59955 Winterberg',
+    district: 'Winterberg',
+    image: '/news-psychotherapie-lisa-veldhuis-winterberg.png',
+    imageFallback: 'LV',
+    isPremium: false,
+    status: 'approved',
+    services: [
+      'Verhaltenstherapie für Erwachsene',
+      'Behandlung von Depressionen & Burnout',
+      'Therapie bei Angst- & Panikstörungen',
+      'Krisenintervention & Belastungsreaktionen',
+      'Halber Kassensitz (Gesetzlich & Privat)',
+      'Psychotherapeutische Diagnostik & Sprechstunde'
+    ],
+    services_nl: [
+      'Cognitieve gedragstherapie voor volwassenen',
+      'Behandeling van depressie & burn-out',
+      'Therapie bij angst- & paniekstoornissen',
+      'Crisisinterventie & stressklachten',
+      'Kassenzulating (Zorgverzekering & Particulier)',
+      'Psychotherapeutische diagnostiek & spreekuur'
+    ]
+  },
+
+  {
     id: 'dr-bojana-lukic-jablonka-winterberg',
     name: 'Hausarztpraxis Dr. Bojana Lukic-Jablonka',
     category: 'Gesundheit & Medizin',

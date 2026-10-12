@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-10
+# Stand: 2026-10-12
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (313 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (314 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2389,6 +2389,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Hausärztliche Praxis der Sauerlandpraxis an der Franziskusstraße in Winterberg. Kompetente hausärztliche Grundversorgung, Akutbehandlung, Vorsorgeuntersuchungen und chronische Patientenbetreuung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-dr-maja-jelicic
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/sauerlandpraxis-dr-maja-jelicic
+
+#### [Psychotherapeutische Praxis Lisa Veldhuis](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/psychotherapeutische-praxis-lisa-veldhuis)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 46, 59955 Winterberg
+- **Beschreibung (DE):** Psychotherapeutische Fachpraxis für Erwachsene am Waltenberg in Winterberg. Die gebürtige Winterbergerin Lisa Veldhuis bietet evidenzbasierte Verhaltenstherapie für gesetzlich und privat versicherte Patientinnen und Patienten an. Behandlung von Depressionen, Angst- und Panikstörungen, Belastungsreaktionen, Burnout und psychosomatischen Beschwerden.
+- **Beschreibung (NL):** Psychotherapeutische praktijk voor volwassenen aan de Waltenberg in Winterberg. De in Winterberg geboren Lisa Veldhuis biedt wetenschappelijk onderbouwde cognitieve gedragstherapie voor volwassenen (zowel wettelijk als particulier verzekerd). Behandeling van onder meer depressie, angst- en paniekstoornissen, stressklachten, burn-out en psychosomatische aandoeningen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/psychotherapeutische-praxis-lisa-veldhuis
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/psychotherapeutische-praxis-lisa-veldhuis
 
 #### [Hausarztpraxis Dr. Bojana Lukic-Jablonka](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/hausarztpraxis-dr-bojana-lukic-jablonka)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen

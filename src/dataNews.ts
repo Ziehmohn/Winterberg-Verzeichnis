@@ -2,6 +2,94 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'hoNi0lNzwAn7NuTRxiq5',
+    slug: 'psychotherapeutin-lisa-veldhuis-praxis-winterberg-eroeffnung',
+    slug_nl: 'psychotherapeute-lisa-veldhuis-praktijk-winterberg-opening',
+    title: 'Neue Praxis am Waltenberg: Psychotherapeutin Lisa Veldhuis eröffnet Praxis für Erwachsene in Winterberg',
+    title_nl: 'Nieuwe praktijk aan de Waltenberg: Psychotherapeute Lisa Veldhuis opent praktijk voor volwassenen in Winterberg',
+    author: 'Simon Kräling',
+    businessId: 'psychotherapie-lisa-veldhuis-winterberg',
+    businessName: 'Psychotherapeutische Praxis Lisa Veldhuis',
+    businessSlug: 'gesundheit-und-medizin/aerzte-und-praxen/psychotherapie-lisa-veldhuis-winterberg',
+    imageUrl: '/news-psychotherapie-lisa-veldhuis-winterberg.png',
+    imageCredit: 'Foto: Stadt Winterberg',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-12T08:30:00.000Z',
+    content: `Wichtiger Meilenstein für die ambulante Gesundheitsversorgung in Winterberg: Mit **Lisa Veldhuis** hat sich erstmals eine psychologische Psychotherapeutin mit eigenem Kassensitz für Erwachsene im Stadtgebiet niedergelassen. Die Praxis für Verhaltenstherapie befindet sich an zentraler Stelle Am Waltenberg 46 und schließt eine langjährige Versorgungslücke für Patientinnen und Patienten aus Winterberg und den umliegenden Dörfern.
+
+Die gebürtige Winterbergerin, die ihr Abitur am Geschwister-Scholl-Gymnasium absolvierte, kehrt damit beruflich in ihre Heimatstadt zurück. Zur offiziellen Eröffnung statteten Bürgermeister Michael Beckmann und Wirtschaftsförderin Christine Schulte der neuen Praxis einen Besuch ab und überreichten als Willkommensgruß Baumpatenschaften aus der städtischen Nachhaltigkeitsinitiative „Heute für morgen pflanzen“.
+
+## Erstes wohnortnahes Angebot für Erwachsene
+
+Bislang existierte im Winterberger Stadtgebiet kein eigenes kassenärztliches Psychotherapie-Angebot für erwachsene Patientinnen und Patienten. Betroffene mussten für notwendige Behandlungen oft weite Fahrtwege in andere Städte auf sich nehmen und sich mit monatelangen Wartezeiten auf einen Therapieplatz arrangieren. Seit Juli läuft der reguläre Behandlungsbetrieb in den hellen Praxisräumen Am Waltenberg 46 – und verbessert die wohnortnahe psychosoziale Versorgung im Sauerland spürbar.
+
+## Gezielte Förderung durch Rat und Wirtschaftsförderung
+
+Um die Niederlassung von Fachkräften im Gesundheitsbereich aktiv zu unterstützen, hatte der Rat der Stadt Winterberg Ende Mai seine Förderrichtlinie erweitert. Neben Ärztinnen und Ärzten können seither auch Psychotherapeutinnen und Psychotherapeuten gefördert werden, die einen Kassenarztsitz der Kassenärztlichen Vereinigung übernehmen:
+
+* **Zuschuss zum Kassensitz**
+  Die Stadt fördert die Übernahme eines vollen Kassensitzes mit 5.000 Euro. Da Lisa Veldhuis mit einem halben Kassensitz praktiziert, wird die Ansiedlung mit 2.500 Euro bezuschusst.
+
+* **Mietzuschuss & Anschaffungshilfe**
+  Über das städtische Leerstandsmanagement erhält die Praxis zudem vom 1. August bis zum 31. Dezember 2026 einen befristeten Mietkostenzuschuss sowie Unterstützung bei notwendigen Anschaffungen in Höhe von rund 4.000 Euro.
+
+„Psychische Gesundheit ist ein unverzichtbarer Baustein unserer Daseinsvorsorge. Wer Hilfe benötigt, sollte diese so wohnortnah wie möglich erhalten können. Lisa Veldhuis schließt mit ihrer Praxis eine echte Lücke in Winterberg“, betonte Bürgermeister Michael Beckmann beim Eröffnungsbesuch.
+
+* **Psychotherapeutische Praxis Lisa Veldhuis**
+  Fachpraxis für Verhaltenstherapie für Erwachsene an zentraler Lage Am Waltenberg.
+  * [Zum Praxisprofil im Verzeichnis](/gesundheit-und-medizin/aerzte-und-praxen/psychotherapie-lisa-veldhuis-winterberg)
+
+## Standort & Praxisdaten
+
+:::contact
+### Kontakt & Praxisdaten
+Psychotherapeutische Praxis für Erwachsene:
+
+* **Inhaberin:** Lisa Veldhuis (Psychologische Psychotherapeutin / Verhaltenstherapie)
+* **Standort:** Am Waltenberg 46, 59955 Winterberg
+* **Leistungsspektrum:** Verhaltenstherapie für Erwachsene (halber Kassensitz, gesetzlich & privat versichert)
+* **Offizielle Information:** [Zur Mitteilung der Stadt Winterberg](https://www.rathaus-winterberg.de/buerger-service/aktuelles/detail/psychotherapeutin-fur-erwachsene-eroffnet-praxis-in-winterberg/)
+* **Verzeichniseintrag:** [Praxisprofil im Stadtportal](/gesundheit-und-medizin/aerzte-und-praxen/psychotherapie-lisa-veldhuis-winterberg)
+:::`,
+    content_nl: `Belangrijke stap voor de eerstelijns gezondheidszorg in Winterberg: met **Lisa Veldhuis** heeft zich voor het eerst een gevestigde psychotherapeute met een eigen kantoor en erkenning voor volwassenen in Winterberg gevestigd. De praktijk voor cognitieve gedragstherapie is centraal gelegen aan de Am Waltenberg 46 en vult een langdurig tekort aan psychotherapeutische zorg in de regio op.
+
+De in Winterberg geboren therapeute, die haar middelbareschooldiploma behaalde aan het plaatselijke Geschwister-Scholl-Gymnasium, keert hiermee terug naar haar geboorteplaats. Ter gelegenheid van de opening brachten burgemeester Michael Beckmann en economisch adviseur Christine Schulte een felicitatiebezoek en overhandigden als welkomstgeschenk boomcertificaten uit het gemeentelijke project „Heute für morgen pflanzen“.
+
+## Eerste lokale psychotherapieaanbod voor volwassenen
+
+Tot nu toe ontbrak het in Winterberg aan een lokaal praktijkaanbod voor psychotherapie voor volwassenen. Patiënten waren vaak aangewezen op lange reistijden naar omliggende steden en kregen te maken met aanzienlijke wachttijden. Sinds juli worden de eerste patiënten behandeld in de nieuwe praktijkruimtes aan de Waltenberg, wat de zorginfrastructuur in het Sauerland aanzienlijk versterkt.
+
+## Gemeentelijke ondersteuning bij vestiging
+
+Om de vestiging van medische zorgverleners actief te bevorderen, heeft de gemeenteraad van Winterberg eind mei de subsidieregeling uitgebreid naar psychotherapeuten met een erkenning van de Kassenärztliche Vereinigung:
+
+* **Subsidie voor de praktijkzetel**
+  De gemeente ondersteunt een volledige praktijkzetel met 5.000 euro; voor de halve zetel van Lisa Veldhuis bedraagt de toewijzing 2.500 euro.
+
+* **Huur- en inrichtingssubsidie**
+  Via het gemeentelijke leegstandsbeheer ontvangt de praktijk bovendien een tijdelijke huursubsidie en bijdrage in de opstartkosten van in totaal circa 4.000 euro tot eind 2026.
+
+„Geestelijke gezondheid is een wezenlijk onderdeel van onze basisvoorzieningen. Wie professionele hulp nodig heeft, moet die dicht bij huis kunnen vinden. Met haar praktijk sluit Lisa Veldhuis een belangrijk gat in Winterberg“, benadrukte burgemeester Michael Beckmann.
+
+* **Psychotherapeutische Praxis Lisa Veldhuis**
+  Praktijk voor gedragstherapie voor volwassenen aan de boulevard Am Waltenberg.
+  * [Naar het praktijkprofiel in de gids](/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/psychotherapie-lisa-veldhuis-winterberg)
+
+## Locatie & Contact
+
+:::contact
+### Praktijkgegevens
+Psychotherapeutische praktijk voor volwassenen:
+
+* **Therapeute:** Lisa Veldhuis (Gedragstherapie voor volwassenen)
+* **Locatie:** Am Waltenberg 46, 59955 Winterberg
+* **Zorgvorm:** Cognitieve gedragstherapie voor volwassenen (zowel wettelijk verzekerd als particulier)
+* **Officiële mededeling:** [Bekijk het bericht van de gemeente Winterberg](https://www.rathaus-winterberg.de/buerger-service/aktuelles/detail/psychotherapeutin-fur-erwachsene-eroffnet-praxis-in-winterberg/)
+* **Gidsvermelding:** [Praktijkprofiel in het stadsportaal](/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/psychotherapie-lisa-veldhuis-winterberg)
+:::`,
+  },
+  {
     id: 'VrBTX4FCdOKW08Yy9eTM',
     slug: 'nowa-kebabhaus-winterberg-eroeffnung',
     slug_nl: 'nowa-kebabhaus-winterberg-opening',
