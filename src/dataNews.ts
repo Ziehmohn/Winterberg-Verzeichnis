@@ -34,7 +34,7 @@ Um die Niederlassung von Fachkräften im Gesundheitsbereich aktiv zu unterstütz
 * **Mietzuschuss & Anschaffungshilfe**
   Über das städtische Leerstandsmanagement erhält die Praxis zudem vom 1. August bis zum 31. Dezember 2026 einen befristeten Mietkostenzuschuss sowie Unterstützung bei notwendigen Anschaffungen in Höhe von rund 4.000 Euro.
 
-„Psychische Gesundheit ist ein unverzichtbarer Baustein unserer Daseinsvorsorge. Wer Hilfe benötigt, sollte diese so wohnortnah wie möglich erhalten können. Lisa Veldhuis schließt mit ihrer Praxis eine echte Lücke in Winterberg“, betonte Bürgermeister Michael Beckmann beim Eröffnungsbesuch.
+„Psychische Gesundheit ist ein wichtiger Teil unserer Gesundheitsversorgung. Wer Hilfe braucht, sollte möglichst wohnortnah Unterstützung finden können. Lisa Veldhuis schließt mit ihrer Praxis eine Lücke in Winterberg. Deshalb haben wir unsere Förderung auf Psychotherapeutinnen und Psychotherapeuten ausgeweitet und unterstützen sie beim Start. Ich freue mich, dass sie sich für Winterberg entschieden hat, und wünsche ihr einen guten Anfang und viel Erfolg“, betonte Bürgermeister Michael Beckmann beim Eröffnungsbesuch.
 
 * **Psychotherapeutische Praxis Lisa Veldhuis**
   Fachpraxis für Verhaltenstherapie für Erwachsene an zentraler Lage Am Waltenberg.
@@ -70,7 +70,7 @@ Om de vestiging van medische zorgverleners actief te bevorderen, heeft de gemeen
 * **Huur- en inrichtingssubsidie**
   Via het gemeentelijke leegstandsbeheer ontvangt de praktijk bovendien een tijdelijke huursubsidie en bijdrage in de opstartkosten van in totaal circa 4.000 euro tot eind 2026.
 
-„Geestelijke gezondheid is een wezenlijk onderdeel van onze basisvoorzieningen. Wie professionele hulp nodig heeft, moet die dicht bij huis kunnen vinden. Met haar praktijk sluit Lisa Veldhuis een belangrijk gat in Winterberg“, benadrukte burgemeester Michael Beckmann.
+„Geestelijke gezondheid is een belangrijk onderdeel van onze gezondheidszorg. Wie hulp nodig heeft, moet zo dicht mogelijk bij huis ondersteuning kunnen vinden. Lisa Veldhuis sluit met haar praktijk een leemte in Winterberg. Daarom hebben we onze subsidieregeling uitgebreid naar psychotherapeuten en ondersteunen we haar bij de start. Ik ben blij dat ze voor Winterberg heeft gekozen en wens haar een goed begin en veel succes“, benadrukte burgemeester Michael Beckmann bij zijn openingsbezoek.
 
 * **Psychotherapeutische Praxis Lisa Veldhuis**
   Praktijk voor gedragstherapie voor volwassenen aan de boulevard Am Waltenberg.
