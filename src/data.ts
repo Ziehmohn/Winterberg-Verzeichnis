@@ -1848,12 +1848,33 @@ export const businesses: Business[] = [
     name: 'Bei Möppi',
     category: 'Gastronomie',
     subcategory: 'Skihütten',
-    description: '',
+    description: 'Kultige Skihütte, Après-Ski-Location und Restaurant direkt an der Piste im Skiliftkarussell Winterberg (Büre Herrloh). Bekannt für legendäre Partys, Events und gemütliche Hüttenabende.',
+    description_nl: 'Iconische skihut, après-ski locatie en restaurant direct aan de piste in de Skiliftkarussell Winterberg (Büre Herrloh). Bekend om legendarische feesten, evenementen en gezellige sfeer.',
     address: 'In d. Büre 32, 59955 Winterberg',
     phone: '02981 1073',
+    email: 'anfrage@bei-moeppi.de',
+    website: 'https://www.bei-moeppi.de',
     district: 'Winterberg',
     isPremium: false,
-    status: 'approved'
+    status: 'approved',
+    events: [
+      {
+        id: 'moeppis-saison-opening-2026-harris-ford',
+        title: 'Möppis Saison Opening 2026 – mit Harris & Ford',
+        title_nl: 'Möppis Saison Opening 2026 – met Harris & Ford',
+        startDate: '2026-11-14',
+        endDate: '2026-11-14',
+        startTime: '18:00',
+        endTime: '',
+        price: 'Vorverkauf / Tickets',
+        category: 'Party',
+        location: 'Bei Möppi, In d. Büre 32, 59955 Winterberg',
+        imageUrl: '/moeppi-saison-opening-2026.png',
+        description: 'Das größte Saison Opening aller Zeiten bei Möppi! Zum Auftakt der Après-Ski-Saison holen wir die Stars aus Österreich – Harris & Ford – nach Winterberg, bekannt von den größten Festivalbühnen Deutschlands. Mit dabei sind außerdem Domy Berger und Jason Wats, die euch von der ersten Minute an auf Betriebstemperatur bringen. Streng limitierte Tickets im Vorverkauf (gestaffelte Preise). Einlass ab 18:00 Uhr.',
+        description_nl: 'Het grootste Saison Opening ooit bij Möppi! Om het après-ski seizoen af te trappen komen de sterren uit Oostenrijk – Harris & Ford – naar Winterberg, bekend van de grootste festivalpodia van Duitsland. Tevens met Domy Berger en Jason Wats. Strikt gelimiteerde tickets in de voorverkoop. Deuren open vanaf 18:00 uur.',
+        externalUrl: 'https://moeppi.ticket.io/vYzQx9XQ/?redirectFromEventInPast=1'
+      }
+    ]
   },
   {
     id: 'schirmbar-postwiese',

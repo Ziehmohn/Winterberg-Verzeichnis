@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (314 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (315 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1264,9 +1264,9 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Pizzeria Dani](https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzeria-dani)
 - **Kategorie:** Gastronomie > Pizzerien
 - **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 27, 59955 Winterberg
+- **Adresse:** Orkestraße 2, 59955 Winterberg
 - **Telefon:** 02981 908040
-- **Beschreibung (DE):** Die Pizzeria Dani in Winterberg bietet klassische italienische Küche in zentraler Lage am Waltenberg. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.
+- **Beschreibung (DE):** Die Pizzeria Dani in der Orkestraße in Winterberg bietet klassische italienische Küche in zentraler Lage. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzeria-dani
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/pizzerias/pizzeria-dani
 
@@ -1443,6 +1443,9 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** In d. Büre 32, 59955 Winterberg
 - **Telefon:** 02981 1073
+- **Webseite:** https://www.bei-moeppi.de
+- **Beschreibung (DE):** Kultige Skihütte, Après-Ski-Location und Restaurant direkt an der Piste im Skiliftkarussell Winterberg (Büre Herrloh). Bekannt für legendäre Partys, Events und gemütliche Hüttenabende.
+- **Beschreibung (NL):** Iconische skihut, après-ski locatie en restaurant direct aan de piste in de Skiliftkarussell Winterberg (Büre Herrloh). Bekend om legendarische feesten, evenementen en gezellige sfeer.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bei-moeppi
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/bei-moeppi
 
@@ -1619,6 +1622,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Traditionsreicher Party- und Kneipentreffpunkt in der Winterberger Altstadt mit Club-Bereichen, Cocktailbar und Tanzstimmung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-tenne-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/die-tenne-winterberg
+
+#### [Ceylon Imbiss](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/ceylon-imbiss)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Neue Mitte 3, 59955 Winterberg
+- **Telefon:** 02981 8999778
+- **Webseite:** https://ceylonimbiss-winterberg.de
+- **Beschreibung (DE):** Der Ceylon Imbiss in der Neuen Mitte in Winterberg bietet eine vielseitige Auswahl an frisch zubereiteten Drehspieß- und Dönergerichten, Shawarma, knuspriger Steinofenpizza, saftigen Burgern sowie gefüllten Pizzabrötchen und Imbiss-Klassikern. Alle Speisen sind sowohl zum Verzehr vor Ort als auch zum Mitnehmen und per Lieferservice erhältlich.
+- **Beschreibung (NL):** Ceylon Imbiss in de Neue Mitte in Winterberg biedt een veelzijdige keuze aan vers bereide döner- en shoarmagerechten, knapperige pizza's, sappige burgers, gevulde pizzabroodjes en snackbarklassiekers. Alle gerechten zijn zowel ter plaatse te nuttigen als beschikbaar voor afhaal en bezorging.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/ceylon-imbiss
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/ceylon-imbiss
 
 ### Kategorie: Dienstleistungen
 
