@@ -6216,6 +6216,48 @@ export const businesses: Business[] = [
       'Armbanduhren bekannter Marken',
       'Perlenschmuck'
     ]
+  },
+  {
+    id: 'ceylon-imbiss-winterberg',
+    name: 'Ceylon Imbiss',
+    category: 'Gastronomie',
+    subcategory: 'Imbisse',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Pizzerien' }
+    ],
+    description: 'Der Ceylon Imbiss in der Neuen Mitte in Winterberg bietet eine vielseitige Auswahl an frisch zubereiteten Drehspieß- und Dönergerichten, Shawarma, knuspriger Steinofenpizza, saftigen Burgern sowie gefüllten Pizzabrötchen und Imbiss-Klassikern. Alle Speisen sind sowohl zum Verzehr vor Ort als auch zum Mitnehmen und per Lieferservice erhältlich.',
+    description_nl: 'Ceylon Imbiss in de Neue Mitte in Winterberg biedt een veelzijdige keuze aan vers bereide döner- en shoarmagerechten, knapperige pizza\'s, sappige burgers, gevulde pizzabroodjes en snackbarklassiekers. Alle gerechten zijn zowel ter plaatse te nuttigen als beschikbaar voor afhaal en bezorging.',
+    address: 'Neue Mitte 3, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8999778',
+    website: 'https://ceylonimbiss-winterberg.de',
+    imageFallback: 'CI',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Döner & Shawarma Spezialitäten',
+      'Italienische Pizza & Pizzabrötchen',
+      'Burger & Grillgerichte',
+      'Snacks & Menüs',
+      'Zum Mitnehmen & Lieferservice'
+    ],
+    services_nl: [
+      'Döner & shoarma specialiteiten',
+      'Italiaanse pizza & pizzabroodjes',
+      'Burgers & grillgerechten',
+      'Snacks & menu\'s',
+      'Afhalen & bezorgservice'
+    ],
+    openingHours: {
+      monday: '11:00 - 21:00',
+      tuesday: '11:00 - 21:00',
+      wednesday: '11:00 - 21:00',
+      thursday: '11:00 - 21:00',
+      friday: '11:00 - 22:00',
+      saturday: '11:00 - 22:00',
+      sunday: '11:00 - 22:00'
+    }
   }
 ];
 
