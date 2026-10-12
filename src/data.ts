@@ -465,8 +465,9 @@ export const businesses: Business[] = [
   },
   {
     id: 'pizzeria-dani',
-    name: 'Pizzeria Dani',
-    description: 'Die Pizzeria Dani in der Orkestraße in Winterberg bietet klassische italienische Küche in zentraler Lage. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.',
+    name: 'Pizzeria Dani by Savino',
+    description: 'Pizzeria Dani by Savino an der Orkestraße 2 in Winterberg bietet traditionelle italienische Küche in gemütlichem, großzügigem Ambiente. Auf der Speisekarte stehen ofenfrische Pizzen mit krossem Rand, hausgemachte Pastagerichte, Lasagne sowie knackige Salate. Nach dem Umzug vom Waltenberg empfängt das Team seine Gäste im stilvoll renovierten Lokal mit viel Platz zum Genießen vor Ort oder zur bequemen Abholung außer Haus.',
+    description_nl: 'Pizzeria Dani by Savino aan de Orkestraße 2 in Winterberg biedt traditionele Italiaanse gerechten in een sfeervolle, ruime ambiance. Op het menu staan verse steenovenpizza\'s, huisgemaakte pasta, lasagne en frisse salades. Na de verhuizing vanaf de Waltenberg verwelkomt het team gasten in het vernieuwde restaurant met volop zitplaatsen of voor gemakkelijke afhaal.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
@@ -475,8 +476,26 @@ export const businesses: Business[] = [
     address: 'Orkestraße 2, 59955 Winterberg',
     phone: '02981 908040',
     district: 'Winterberg',
+    image: '/news-pizzeria-dani-winterberg-header.png',
+    imageFallback: 'PD',
     isPremium: false,
-    status: 'approved'
+    status: 'approved',
+    services: [
+      'Original italienische Steinofen-Pizza',
+      'Hausgemachte Pasta & Ofengerichte',
+      'Frische Salate & mediterrane Vorspeisen',
+      'Großzügiger Gastraum mit gemütlichem Ambiente',
+      'Abholservice außer Haus',
+      'Tischreservierungen per WhatsApp & Telefon'
+    ],
+    services_nl: [
+      'Originele Italiaanse steenovenpizza\'s',
+      'Huisgemaakte pasta & ovengerechten',
+      'Verse salades & mediterrane voorgerechten',
+      'Ruim restaurant met sfeervol interieur',
+      'Afhaalservice voor thuis',
+      'Tafelreserveringen via WhatsApp & telefoon'
+    ]
   },
   {
     id: 'colosseum',
@@ -6398,7 +6417,7 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },

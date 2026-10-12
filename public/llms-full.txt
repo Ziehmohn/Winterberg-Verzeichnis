@@ -1261,14 +1261,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzahaus-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/pizzerias/pizzahaus-winterberg
 
-#### [Pizzeria Dani](https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzeria-dani)
+#### [Pizzeria Dani by Savino](https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzeria-dani-by-savino)
 - **Kategorie:** Gastronomie > Pizzerien
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Orkestraße 2, 59955 Winterberg
 - **Telefon:** 02981 908040
-- **Beschreibung (DE):** Die Pizzeria Dani in der Orkestraße in Winterberg bietet klassische italienische Küche in zentraler Lage. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzeria-dani
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/pizzerias/pizzeria-dani
+- **Beschreibung (DE):** Pizzeria Dani by Savino an der Orkestraße 2 in Winterberg bietet traditionelle italienische Küche in gemütlichem, großzügigem Ambiente. Auf der Speisekarte stehen ofenfrische Pizzen mit krossem Rand, hausgemachte Pastagerichte, Lasagne sowie knackige Salate. Nach dem Umzug vom Waltenberg empfängt das Team seine Gäste im stilvoll renovierten Lokal mit viel Platz zum Genießen vor Ort oder zur bequemen Abholung außer Haus.
+- **Beschreibung (NL):** Pizzeria Dani by Savino aan de Orkestraße 2 in Winterberg biedt traditionele Italiaanse gerechten in een sfeervolle, ruime ambiance. Op het menu staan verse steenovenpizza's, huisgemaakte pasta, lasagne en frisse salades. Na de verhuizing vanaf de Waltenberg verwelkomt het team gasten in het vernieuwde restaurant met volop zitplaatsen of voor gemakkelijke afhaal.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/pizzeria-dani-by-savino
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/pizzerias/pizzeria-dani-by-savino
 
 #### [Restaurant Pizzeria Colosseum Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/pizzerien/restaurant-pizzeria-colosseum-winterberg)
 - **Kategorie:** Gastronomie > Pizzerien

@@ -2,6 +2,84 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: '0riKnXGd81e90HXDJmk7',
+    slug: 'pizzeria-dani-winterberg-umzug-orkestrasse',
+    slug_nl: 'pizzeria-dani-winterberg-verhuizing-orkestrasse',
+    title: 'Neuer Standort in der Orkestraße: Pizzeria Dani zieht um und empfängt Gäste im neuen Ambiente',
+    title_nl: 'Nieuwe locatie in de Orkestraße: Pizzeria Dani verhuisd en verwelkomt gasten in sfeervol nieuw pand',
+    author: 'Simon Kräling',
+    businessId: 'pizzeria-dani',
+    businessName: 'Pizzeria Dani by Savino',
+    businessSlug: 'gastronomie/pizzerien/pizzeria-dani',
+    imageUrl: '/news-pizzeria-dani-winterberg-header.png',
+    imageCredit: 'Pizzeria Dani by Savino',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-12T18:00:00.000Z',
+    content: `Wer in den vergangenen Tagen am Waltenberg unterwegs war, um sich bei der Pizzeria Dani eine ofenfrische Pizza zu holen, stand möglicherweise überrascht vor einer neuen Fassade: Am bisherigen Standort hat vor Kurzem das [Nowa Kebabhaus](/gastronomie/imbisse/nowa-kebabhaus-winterberg) eröffnet. Doch Pizza-Fans müssen sich keine Sorgen machen – die beliebte Pizzeria hat Winterberg keineswegs den Rücken gekehrt, sondern ist lediglich an einen neuen Standort umgezogen.
+
+Ab sofort begrüßt das Team von **Pizzeria Dani by Savino** seine Gäste in der **Orkestraße 2** (mitten im Winterberger Stadtkern).
+
+## Mehr Platz, schönes Ambiente und vertraute Qualität
+
+Nachdem sich die aufwendigen Renovierungsarbeiten im Vorfeld etwas verzögert hatten, öffneten sich die Türen am Freitag, den 9. Oktober 2026, ab 17:30 Uhr erstmals für Gäste. Der Umzug bringt spürbare Vorteile: Das neue Lokal in der Orkestraße bietet deutlich mehr Platz, eine gemütliche Gastraum-Atmosphäre und lädt zum entspannten Genießen vor Ort ein.
+
+Auf der Karte finden Gäste weiterhin die bewährten italienischen Spezialitäten:
+* **Steinofen-Pizzen** in vielen klassischen und kreativen Variationen mit krossem Rand und saftigem Belag
+* **Hausgemachte Pastagerichte**, ofengebackene Lasagne und mediterrane Aufläufe
+* **Knackige Salate**, italienische Vorspeisen und passende Weine
+
+Alle Gerichte gibt es sowohl frisch serviert an den Tischen im neuen Lokal als auch wie gewohnt zur bequemen Abholung außer Haus.
+
+* **Pizzeria Dani by Savino**
+  Traditionelle italienische Küche und Steinofen-Pizza jetzt in der Orkestraße 2.
+  * [Zum Restaurantprofil im Verzeichnis](/gastronomie/pizzerien/pizzeria-dani)
+
+## Adresse & Tischreservierung
+
+:::contact
+### Kontakt & Reservierungen
+Pizzeria Dani by Savino in Winterberg:
+
+* **Inhaber / Leitung:** Savino & Team
+* **Neue Adresse:** Orkestraße 2, 59955 Winterberg
+* **Telefon & WhatsApp:** [02981 / 908040](tel:02981908040)
+* **Verzehr:** Gemütlich vor Ort im neuen Lokal oder zur Abholung außer Haus
+* **Unternehmensprofil:** [Pizzeria Dani im Stadtportal](/gastronomie/pizzerien/pizzeria-dani)
+:::`,
+    content_nl: `Wie de afgelopen dagen aan de Waltenberg liep voor een verse pizza bij Pizzeria Dani, stond wellicht even raar te kijken: op het vertrouwde adres heeft onlangs [Nowa Kebabhaus](/nl/horeca/snackbar-en-fastfood/nowa-kebabhaus-winterberg) de deuren geopend. Liefhebbers van de Italiaanse keuken hoeven zich echter geen zorgen te maken – de populaire pizzeria is Winterberg zeker niet ontvlucht, maar simpelweg verhuisd naar een nieuw en ruimer pand.
+
+Vanaf heden verwelkomt het team van **Pizzeria Dani by Savino** zijn gasten aan de **Orkestraße 2**, midden in het centrum van Winterberg.
+
+## Meer ruimte, sfeervol interieur en vertrouwde kwaliteit
+
+Omdat de verbouwings- en renovatiewerkzaamheden vooraf wat vertraging opliepen, openden de deuren op vrijdag 9 oktober 2026 vanaf 17:30 uur officieel voor het publiek. De verhuizing levert een merkbare verbetering op: het nieuwe restaurant aan de Orkestraße biedt aanzienlijk meer zitplaatsen, een warme, moderne ambiance en volop ruimte om gezellig ter plaatse te dineren.
+
+Op het menu staan nog altijd de vertrouwde Italiaanse klassiekers:
+* **Traditionele pizza's** met krokante bodem en verse ingrediënten
+* **Huisgemaakte pasta's**, lasagne uit de oven en mediterrane ovengerechten
+* **Verse salades**, Italiaanse antipasti en geselecteerde wijnen
+
+Alle gerechten zijn zowel in het restaurant verkrijgbaar als gemakkelijk af te halen voor thuis.
+
+* **Pizzeria Dani by Savino**
+  Traditionele Italiaanse pizzeria nu gevestigd aan de Orkestraße 2.
+  * [Bekijk het restaurantprofiel in de gids](/nl/horeca/pizzerias/pizzeria-dani)
+
+## Adres & Reserveringen
+
+:::contact
+### Contact & Reserveringen
+Pizzeria Dani by Savino in Winterberg:
+
+* **Team:** Savino & medewerkers
+* **Nieuw adres:** Orkestraße 2, 59955 Winterberg
+* **Telefoon & WhatsApp:** [02981 / 908040](tel:02981908040)
+* **Mogelijkheden:** Gezellig tafelen in het nieuwe restaurant of afhalen voor thuis
+* **Bedrijfsprofiel:** [Pizzeria Dani in de stadsgids](/nl/horeca/pizzerias/pizzeria-dani)
+:::`,
+  },
+  {
     id: 'hoNi0lNzwAn7NuTRxiq5',
     slug: 'psychotherapeutin-lisa-veldhuis-praxis-winterberg-eroeffnung',
     slug_nl: 'psychotherapeute-lisa-veldhuis-praktijk-winterberg-opening',
