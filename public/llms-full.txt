@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (315 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (316 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -771,6 +771,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/leisse-und-soehne-gmbh-und-co-kg
 
 ### Kategorie: Einzelhandel
+
+#### [Wochenmarkt Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg)
+- **Kategorie:** Einzelhandel > Märkte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Untere Pforte, 59955 Winterberg
+- **Beschreibung (DE):** Jeden Samstag von 9 bis 14 Uhr treffen sich Markthändler, Einheimische sowie Touristen auf dem Wochenmarkt in Winterberg. Der Marktplatz an der Unteren Pforte lädt zum gemütlichen Bummeln mit der Familie und Freunden ein. Stöbern Sie nach Waren aller Art! Ob knackiges Obst und Gemüse, leckere Südfrüchte, frischer Fisch, Textilien und Lederwaren oder Holzartikel – hier bleiben wenig Wünsche offen! Verköstigt werden Sie am Imbiss mit feinen Suppen, Bratwürsten und anderen Leckereien. Besuchen Sie den Wochenmarkt in Winterberg und treffen Sie auf altbekannte und neue Gesichter!
+- **Status:** Verifizierter Premium-Eintrag
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/maerkte/wochenmarkt-winterberg
 
 #### [REWE](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/rewe)
 - **Kategorie:** Einzelhandel > Supermarkt

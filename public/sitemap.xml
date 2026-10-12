@@ -794,6 +794,18 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/die-besten/einzelhandel/maerkte</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/maerkte</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/die-besten/einzelhandel/gaststaettenbedarf</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1910,6 +1922,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/maerkte</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/maerkte</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/einzelhandel/gaststaettenbedarf</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2673,6 +2697,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/dienstleister/tourismus/winterberg-touristik-und-wirtschaft-gmbh</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/maerkte/wochenmarkt-winterberg</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
