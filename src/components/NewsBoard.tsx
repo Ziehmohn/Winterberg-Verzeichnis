@@ -144,6 +144,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
                         (e.target as HTMLElement).style.display = 'none';
                       }}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      style={{ objectPosition: item.imagePosition || 'center' }}
                     />
                     {item.isAiGenerated && (
                       <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white/95 text-[10px] font-medium px-2 py-0.5 rounded pointer-events-none tracking-wide">

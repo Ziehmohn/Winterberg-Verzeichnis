@@ -710,20 +710,27 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       </button>
 
       {article.imageUrl && (
-        <div className="relative w-full h-[320px] md:h-[440px] rounded-[24px] overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC]">
-          <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[460px] rounded-[24px] overflow-hidden mb-[36px] shadow-md border border-[#EAE5DC] bg-[#EAE5DC]">
+          <img 
+            src={article.imageUrl} 
+            alt={article.title} 
+            className="w-full h-full object-cover" 
+            style={{ objectPosition: article.imagePosition || 'center' }}
+          />
           
-          {(article.isAiGenerated || article.imageSource) && (
-            <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
+          {(article.isAiGenerated || article.imageSource || article.imageCredit) && (
+            <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
               {article.isAiGenerated && (
                 <span>{t('newsAiGenerated')}</span>
               )}
-              {article.isAiGenerated && article.imageSource && (
+              {article.isAiGenerated && (article.imageCredit || article.imageSource) && (
                 <span className="opacity-60">|</span>
               )}
-              {article.imageSource && (
+              {article.imageCredit ? (
+                <span>{article.imageCredit}</span>
+              ) : article.imageSource ? (
                 <span>{t('newsSource')}: {article.imageSource}</span>
-              )}
+              ) : null}
             </div>
           )}
         </div>

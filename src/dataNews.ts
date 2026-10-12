@@ -13,6 +13,7 @@ export const initialNews: NewsArticle[] = [
     businessSlug: 'gesundheit-und-medizin/aerzte-und-praxen/psychotherapie-lisa-veldhuis-winterberg',
     imageUrl: '/news-psychotherapie-lisa-veldhuis-winterberg.png',
     imageCredit: 'Foto: Stadt Winterberg',
+    imagePosition: '50% 18%',
     isAiGenerated: false,
     status: 'approved',
     date: '2026-10-12T08:30:00.000Z',
