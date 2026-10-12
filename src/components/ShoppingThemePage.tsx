@@ -220,8 +220,9 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
       const isOutdoor = sub.includes('sport') || sub.includes('outdoor') || name.includes('outdoor') || name.includes('liftstation');
       const isJewelry = sub.includes('juwel') || name.includes('juwelier') || name.includes('eiloff') || name.includes('uhren');
       const isPerfumery = sub.includes('parfüm') || sub.includes('parfuem') || sub.includes('droger') || name.includes('becker') || name.includes('dm-');
+      const isBookstore = sub.includes('buchhandlung') || name.includes('wortreich') || name.includes('buchhandlung');
 
-      return matchCat && (isFashion || isShoes || isOutdoor || isJewelry || isPerfumery);
+      return matchCat && (isFashion || isShoes || isOutdoor || isJewelry || isPerfumery || isBookstore);
     });
   }, [businesses]);
 
@@ -246,7 +247,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
         const isJewelry = sub.includes('juwel') || name.includes('juwelier') || name.includes('eiloff') || sub.includes('parfüm') || name.includes('becker') || sub.includes('droger');
         if (!isJewelry) return false;
       } else if (activeTab === 'outlet') {
-        const isOutlet = name.includes('bessmann') || name.includes('center') || b.id === '104' || b.id === 'dm-drogerie-markt-winterberg' || b.id === 'nkd';
+        const isOutlet = name.includes('bessmann') || name.includes('center') || name.includes('wortreich') || b.id === '104' || b.id === 'dm-drogerie-markt-winterberg' || b.id === 'nkd' || b.id === 'wortreich-winterberg';
         if (!isOutlet) return false;
       }
 

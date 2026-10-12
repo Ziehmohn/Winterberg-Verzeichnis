@@ -80,6 +80,7 @@ export const SUBCATEGORY_SLUGS: Record<string, RouteMapping> = {
   'Juweliere & Uhren': { de: 'juweliere-und-uhren', nl: 'juweliers-en-horloges' },
   'Parfümerie': { de: 'parfuemerie', nl: 'parfumerie' },
   'Schuhgeschäfte': { de: 'schuhgeschaefte', nl: 'schoenenwinkels' },
+  'Buchhandlungen': { de: 'buchhandlungen', nl: 'boekhandels' },
 };
 
 // Static Pages Slugs

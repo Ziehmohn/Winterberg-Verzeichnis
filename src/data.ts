@@ -6766,6 +6766,47 @@ export const businesses: Business[] = [
       saturday: '11:00 - 22:00',
       sunday: '11:00 - 22:00'
     }
+  },
+  {
+    id: 'wortreich-winterberg',
+    name: 'Buchhandlung WortReich Winterberg',
+    category: 'Einzelhandel',
+    subcategory: 'Buchhandlungen',
+    description: 'Die Buchhandlung WortReich im Einkaufszentrum Neue Mitte (Untere Pforte 4) in Winterberg bietet eine gut sortierte Auswahl an Belletristik, Kinder- und Jugendbüchern sowie Sachbüchern. Ergänzt wird das Sortiment durch zahlreiche Regionaltitel wie Rad- und Wanderkarten, englischsprachige Taschenbücher für internationale Gäste sowie ausgesuchte Geschenkartikel, Glückwunsch- und Postkarten. Zudem steht ein schneller Bestellservice vor Ort, telefonisch und online zur Verfügung.',
+    description_nl: 'Boekhandel WortReich in winkelcentrum Neue Mitte (Untere Pforte 4) in Winterberg biedt een ruim assortiment aan romans, kinder- en jeugdboeken en non-fictie. Daarnaast zijn er veel regionale uitgaven zoals fiets- en wandelkaarten, Engelstalige paperbacks, cadeaus en wens- en ansichtkaarten verkrijgbaar, inclusief een snelle bestelservice.',
+    address: 'Untere Pforte 4 (Neue Mitte), 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 9299840',
+    email: 'wortreich.winterberg@thalia.de',
+    website: 'https://www.wortreich-sauerland.de',
+    image: '/wortreich-winterberg.jpg',
+    imageFallback: 'WR',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Belletristik, Kinder-, Jugend- & Sachbücher',
+      'Regionaltitel sowie Rad- & Wanderkarten',
+      'Englischsprachige Taschenbücher',
+      'Ausgesuchte Geschenkartikel, Glückwunsch- & Postkarten',
+      'Bestellservice vor Ort, telefonisch & online'
+    ],
+    services_nl: [
+      'Romans, kinder-, jeugd- & informatieve boeken',
+      'Regionale boeken en fiets- & wandelkaarten',
+      'Engelstalige paperbacks',
+      'Cadeauartikelen, wens- & ansichtkaarten',
+      'Bestelservice in de winkel, telefonisch & online'
+    ],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen'
+    }
   }
 ];
 
@@ -6885,7 +6926,7 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
