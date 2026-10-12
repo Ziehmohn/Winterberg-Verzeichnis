@@ -466,13 +466,13 @@ export const businesses: Business[] = [
   {
     id: 'pizzeria-dani',
     name: 'Pizzeria Dani',
-    description: 'Die Pizzeria Dani in Winterberg bietet klassische italienische Küche in zentraler Lage am Waltenberg. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.',
+    description: 'Die Pizzeria Dani in der Orkestraße in Winterberg bietet klassische italienische Küche in zentraler Lage. Auf der Speisekarte stehen traditionelle Pizzavariationen, Pastagerichte, ofengebackene Lasagne sowie frische Salate. Alle Gerichte werden sowohl für den Verzehr vor Ort als auch zur Abholung außer Haus angeboten.',
     category: 'Gastronomie',
     subcategory: 'Pizzerien',
     additionalCategories: [
       { category: 'Gastronomie', subcategory: 'Restaurant' }
     ],
-    address: 'Am Waltenberg 27, 59955 Winterberg',
+    address: 'Orkestraße 2, 59955 Winterberg',
     phone: '02981 908040',
     district: 'Winterberg',
     isPremium: false,
