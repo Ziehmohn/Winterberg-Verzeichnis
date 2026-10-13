@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-12
+# Stand: 2026-10-13
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (316 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (317 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1155,6 +1155,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Juwelier Eiloff ist das traditionsreiche Fachgeschäft für exklusiven Schmuck, edle Uhren und Trauringe am Waltenberg in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/juweliere-und-uhren/juwelier-eiloff
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/juweliers-en-horloges/juwelier-eiloff
+
+#### [Buchhandlung WortReich Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/buchhandlungen/buchhandlung-wortreich-winterberg)
+- **Kategorie:** Einzelhandel > Buchhandlungen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Untere Pforte 4 (Neue Mitte), 59955 Winterberg
+- **Telefon:** 02981 9299840
+- **Webseite:** https://www.wortreich-sauerland.de
+- **Beschreibung (DE):** Die Buchhandlung WortReich im Einkaufszentrum Neue Mitte (Untere Pforte 4) in Winterberg bietet eine gut sortierte Auswahl an Belletristik, Kinder- und Jugendbüchern sowie Sachbüchern. Ergänzt wird das Sortiment durch zahlreiche Regionaltitel wie Rad- und Wanderkarten, englischsprachige Taschenbücher für internationale Gäste sowie ausgesuchte Geschenkartikel, Glückwunsch- und Postkarten. Zudem steht ein schneller Bestellservice vor Ort, telefonisch und online zur Verfügung.
+- **Beschreibung (NL):** Boekhandel WortReich in winkelcentrum Neue Mitte (Untere Pforte 4) in Winterberg biedt een ruim assortiment aan romans, kinder- en jeugdboeken en non-fictie. Daarnaast zijn er veel regionale uitgaven zoals fiets- en wandelkaarten, Engelstalige paperbacks, cadeaus en wens- en ansichtkaarten verkrijgbaar, inclusief een snelle bestelservice.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/buchhandlungen/buchhandlung-wortreich-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/boekhandels/buchhandlung-wortreich-winterberg
 
 ### Kategorie: Gastronomie
 

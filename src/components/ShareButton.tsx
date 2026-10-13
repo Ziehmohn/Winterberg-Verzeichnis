@@ -6,7 +6,7 @@ interface ShareButtonProps {
   text?: string;
   url?: string;
   lang?: 'de' | 'nl';
-  variant?: 'header-desktop' | 'header-mobile' | 'badge-light' | 'badge-dark' | 'button-subtle';
+  variant?: 'header-desktop' | 'header-mobile' | 'badge-light' | 'badge-dark' | 'button-subtle' | 'drawer-button';
   className?: string;
 }
 
@@ -165,8 +165,10 @@ export default function ShareButton({
     }
   ];
 
+  const isDrawer = variant === 'drawer-button';
+
   return (
-    <div className={`relative inline-block ${className}`} ref={popoverRef}>
+    <div className={`relative ${isDrawer ? 'w-full block' : 'inline-block'} ${className}`} ref={popoverRef}>
       {/* Trigger Button Variant 1: Header Desktop */}
       {variant === 'header-desktop' && (
         <button
@@ -231,10 +233,22 @@ export default function ShareButton({
         </button>
       )}
 
+      {/* Trigger Button Variant 6: Drawer button in mobile menu */}
+      {variant === 'drawer-button' && (
+        <button
+          type="button"
+          onClick={handleShareClick}
+          className="w-full py-3 px-4 font-bold text-sm text-center flex items-center justify-center gap-2 bg-[#FAF8F5] hover:bg-[#E8F1EB] text-[#0F4C2E] border border-[#EDE8E0] hover:border-[#0F4C2E] rounded-md transition-colors cursor-pointer select-none"
+        >
+          <Share2 className="w-4 h-4 text-[#F2761B]" />
+          <span>{lang === 'nl' ? 'Pagina / App delen' : 'Seite / Verzeichnis teilen'}</span>
+        </button>
+      )}
+
       {/* Floating Share Popover Modal */}
       {isOpen && (
         <div 
-          className="absolute right-0 top-full mt-2 w-[290px] sm:w-[310px] bg-white rounded-xl shadow-xl border border-[#EDE8E0] p-3.5 z-50 text-left animate-in fade-in zoom-in-95 duration-150"
+          className={`absolute ${isDrawer ? 'bottom-full mb-2 left-0 right-0' : 'right-0 top-full mt-2 w-[290px] sm:w-[310px]'} bg-white rounded-xl shadow-xl border border-[#EDE8E0] p-3.5 z-50 text-left animate-in fade-in zoom-in-95 duration-150`}
           style={{ boxShadow: '0 12px 35px -4px rgba(15, 76, 46, 0.18), 0 4px 12px rgba(0,0,0,0.06)' }}
         >
           {/* Header */}

@@ -1936,8 +1936,8 @@ export default function App() {
               </div>
             </nav>
 
-            {/* Mobile Header: Favorites + Share + App Button (nur Mobilgerät) + Language Switcher */}
-            <div className="md:hidden flex items-center gap-1.5 shrink-0">
+            {/* Mobile Header: Favorites + App Button (nur Mobilgerät) + Language Switcher */}
+            <div className="md:hidden flex items-center gap-2 shrink-0">
               <button 
                 type="button"
                 onClick={() => setIsFavoritesOpen(true)}
@@ -1952,8 +1952,6 @@ export default function App() {
                   </span>
                 )}
               </button>
-
-              <ShareButton lang={lang} variant="header-mobile" />
 
               <button 
                 type="button" 
@@ -3860,6 +3858,10 @@ export default function App() {
             >
               <Smartphone className="w-4 h-4 text-[#FCD34D]" /> {lang === 'nl' ? 'Winterberg App installeren' : 'Winterberg App installieren'}
             </button>
+            <ShareButton 
+              lang={lang} 
+              variant="drawer-button" 
+            />
             <button 
               type="button"
               onClick={() => {
