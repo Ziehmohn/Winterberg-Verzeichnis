@@ -51,12 +51,11 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
 
   useEffect(() => {
     const fetchNews = async () => {
-      // 1. If fresh cache exists, skip network read
+      // 1. Show cached news immediately, then revalidate in background
       const fresh = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS);
       if (fresh && fresh.length > 0) {
         setNews(fresh);
         setLoading(false);
-        return;
       }
 
       try {

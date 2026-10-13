@@ -471,7 +471,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       if (localMatch) {
         setRawArticle(localMatch);
         setLoading(false);
-        return;
+        // Do not return here: continue to fetch latest live document from Firestore
       }
 
       try {

@@ -18,7 +18,7 @@ export const initialNews: NewsArticle[] = [
     date: '2026-10-12T18:00:00.000Z',
     content: `Wer in den vergangenen Tagen am Waltenberg unterwegs war, um sich bei der Pizzeria Dani eine ofenfrische Pizza zu holen, stand möglicherweise überrascht vor einer neuen Fassade: Am bisherigen Standort hat vor Kurzem das [Nowa Kebabhaus](/gastronomie/imbisse/nowa-kebabhaus-winterberg) eröffnet. Doch Pizza-Fans müssen sich keine Sorgen machen – die beliebte Pizzeria hat Winterberg keineswegs den Rücken gekehrt, sondern ist lediglich an einen neuen Standort umgezogen.
 
-Ab sofort begrüßt das Team von **Pizzeria Dani by Savino** seine Gäste in der **Orkestraße 2** (mitten im Winterberger Stadtkern).
+Ab sofort begrüßt das Team von **Pizzeria Dani by Savino** seine Gäste in der **Orkestraße 2**.
 
 ## Mehr Platz, schönes Ambiente und vertraute Qualität
 
@@ -49,7 +49,7 @@ Pizzeria Dani by Savino in Winterberg:
 :::`,
     content_nl: `Wie de afgelopen dagen aan de Waltenberg liep voor een verse pizza bij Pizzeria Dani, stond wellicht even raar te kijken: op het vertrouwde adres heeft onlangs [Nowa Kebabhaus](/nl/horeca/snackbar-en-fastfood/nowa-kebabhaus-winterberg) de deuren geopend. Liefhebbers van de Italiaanse keuken hoeven zich echter geen zorgen te maken – de populaire pizzeria is Winterberg zeker niet ontvlucht, maar simpelweg verhuisd naar een nieuw en ruimer pand.
 
-Vanaf heden verwelkomt het team van **Pizzeria Dani by Savino** zijn gasten aan de **Orkestraße 2**, midden in het centrum van Winterberg.
+Vanaf heden verwelkomt het team van **Pizzeria Dani by Savino** zijn gasten aan de **Orkestraße 2**.
 
 ## Meer ruimte, sfeervol interieur en vertrouwde kwaliteit
 

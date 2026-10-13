@@ -4494,6 +4494,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
     try {
       await updateDoc(doc(db, 'news', id), { isAiGenerated: newVal });
       setNews(prev => prev.map(item => item.id === id ? { ...item, isAiGenerated: newVal } : item));
+      invalidateCache(CACHE_KEYS.NEWS);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Aktualisieren des KI-Status');
@@ -4504,6 +4505,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
     try {
       await updateDoc(doc(db, 'news', id), { imageSource: source.trim() });
       setNews(prev => prev.map(item => item.id === id ? { ...item, imageSource: source.trim() } : item));
+      invalidateCache(CACHE_KEYS.NEWS);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Aktualisieren der Bildquelle');
@@ -4515,6 +4517,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
     try {
       await updateDoc(doc(db, 'news', id), { status: nextStatus });
       setNews(prev => prev.map(item => item.id === id ? { ...item, status: nextStatus } : item));
+      invalidateCache(CACHE_KEYS.NEWS);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Aktualisieren des Status');
@@ -4526,6 +4529,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
     try {
       await deleteDoc(doc(db, 'news', id));
       setNews(prev => prev.filter(item => item.id !== id));
+      invalidateCache(CACHE_KEYS.NEWS);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Löschen');
@@ -4595,6 +4599,9 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
           createdAt: new Date().toISOString()
         });
       }
+
+      invalidateCache(CACHE_KEYS.NEWS);
+      bumpRemoteBusinessesVersion(db);
 
       setIsEditing(false);
       setEditingItem(null);
