@@ -700,7 +700,9 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
   // Extract contact box if present (:::contact ... :::)
   const contactMatch = article.content ? article.content.match(/:::contact([\s\S]*?):::/) : null;
   const contactContent = contactMatch ? contactMatch[1].trim() : null;
-  const mainContent = article.content ? article.content.replace(/:::contact[\s\S]*?:::/, '').trim() : '';
+  const mainContent = article.content 
+    ? article.content.replace(/:::contact[\s\S]*?:::/, '').trim().replace(/(?:^|\n)#{1,6}\s+[^\n]+\s*$/, '').trim() 
+    : '';
 
   // Build business profile URL properly for DE and NL
   const matchedBusiness = article.businessId

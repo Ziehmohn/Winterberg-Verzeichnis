@@ -143,6 +143,14 @@ Alle Gerichte gibt es sowohl frisch serviert an den Tischen im neuen Lokal als a
 
 ## Adresse & Tischreservierung
 
+Das neue Lokal von Pizzeria Dani empfängt seine Gäste zentral an der **Orkestraße 2**, verkehrsgünstig gelegen im Bereich gegenüber dem Winterberger Bahnhof. Hier stehen nun wesentlich mehr gemütliche Sitzplätze zur Verfügung, um original italienische Steinofen-Pizza und frische Pasta direkt vor Ort zu genießen.
+
+Da der Gastraum besonders an Wochenenden und zur Ferienzeit gut besucht ist, empfiehlt sich für Gruppen und Abendessen eine rechtzeitige Tischreservierung. Für alle, die ihre Gerichte lieber mitnehmen möchten, steht der bewährte Abholservice bereit:
+
+* **Tischreservierung & Vorbestellungen:** Telefonisch oder per WhatsApp unter [02981 / 908040](tel:02981908040)
+* **Gastraum & Abholservice:** Großzügiger Gastraum mit vielen Sitzplätzen oder schnelle Vorbestellung zur Abholung
+* **Standort:** Orkestraße 2, 59955 Winterberg (nahe Bahnhof)
+
 :::contact
 ### Kontakt & Reservierungen
 Pizzeria Dani by Savino in Winterberg:
@@ -173,6 +181,14 @@ Alle gerechten zijn zowel in het restaurant verkrijgbaar als gemakkelijk af te h
   * [Bekijk het restaurantprofiel in de gids](/nl/horeca/pizzerias/pizzeria-dani)
 
 ## Adres & Reserveringen
+
+Het nieuwe restaurant van Pizzeria Dani verwelkomt zijn gasten aan de **Orkestraße 2**, gunstig gelegen nabij het treinstation van Winterberg. Gasten genieten hier in een sfeervol en ruim ingericht interieur van authentieke Italiaanse steenovenpizza's en verse pastagerechten.
+
+Omdat het nieuwe restaurant zeker in het weekend en tijdens vakantieperiodes goed bezocht wordt, is het raadzaam vooraf een tafel te reserveren. Daarnaast blijft de vertrouwde afhaalservice gewoon beschikbaar voor wie de gerechten liever meeneemt:
+
+* **Tafelreservering & bestellingen:** Telefonisch of eenvoudig via WhatsApp op [02981 / 908040](tel:02981908040)
+* **Restaurant & afhaalservice:** Ruim aantal comfortabele zitplaatsen of vlotte afhaling voor thuis
+* **Locatie:** Orkestraße 2, 59955 Winterberg (nabij het station)
 
 :::contact
 ### Contact & Reserveringen
@@ -227,6 +243,8 @@ Um die Niederlassung von Fachkräften im Gesundheitsbereich aktiv zu unterstütz
 
 ## Standort & Praxisdaten
 
+Die neuen Praxisräume für Verhaltenstherapie befinden sich barrierearm erreichbar an der zentralen Flaniermeile **Am Waltenberg 46** in Winterberg. Behandlungen und Erstgespräche finden nach vorheriger Terminvereinbarung statt, um eine individuelle und vertrauliche Betreuung sicherzustellen. Das Angebot richtet sich an gesetzlich und privat versicherte Erwachsene aus Winterberg und der gesamten Region Hochsauerland.
+
 :::contact
 ### Kontakt & Praxisdaten
 Psychotherapeutische Praxis für Erwachsene:
@@ -262,6 +280,8 @@ Om de vestiging van medische zorgverleners actief te bevorderen, heeft de gemeen
   * [Naar het praktijkprofiel in de gids](/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/psychotherapie-lisa-veldhuis-winterberg)
 
 ## Locatie & Contact
+
+De nieuwe praktijkruimtes voor gedragstherapie zijn centraal en goed toegankelijk gevestigd aan de boulevard **Am Waltenberg 46** in Winterberg. Behandelingen en intakegesprekken vinden plaats op afspraak, zodat een persoonlijke en vertrouwelijke begeleiding gewaarborgd is. Het aanbod is toegankelijk voor zowel wettelijk als particulier verzekerde volwassenen uit Winterberg en de regio Hochsauerland.
 
 :::contact
 ### Praktijkgegevens
