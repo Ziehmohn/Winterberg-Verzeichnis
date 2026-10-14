@@ -6807,6 +6807,44 @@ export const businesses: Business[] = [
       saturday: '10:00 - 16:00',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'atas-doener-winterberg',
+    name: "Ata's Döner Winterberg",
+    category: 'Gastronomie',
+    subcategory: 'Imbisse',
+    description: "Ata's Döner – Beef Manufaktur am Waltenberg 13 in Winterberg bringt moderne Dönerkultur ins Sauerland. Das kulinarische Konzept setzt auf Premium-Qualität: vom saftigen Steak-Döner im ofenfrischen Natursauerteigbrot aus der Handwerksbäckerei über Rollos nach Bremer Art bis hin zu Hähnchen- und vegetarischen Falafel-Spezialitäten. Abgerundet wird das Angebot durch reichhaltige Dönerteller, knusprige Beilagen wie Kartoffelgitter und Buttermilk Chicken Tenders, hausgemachte Saucen sowie traditionelles Baklava.",
+    description_nl: "Ata's Döner – Beef Manufaktur aan de Waltenberg 13 in Winterberg brengt moderne dönercultuur naar het Sauerland. Het concept draait om topkwaliteit: van malse steakdöner in ambachtelijk zuurdesembrood en Bremer rollo's tot kip- en vegetarische falafelspecialiteiten, rijkgevulde schotels, knapperige bijgerechten en huisgemaakte sauzen.",
+    address: 'Am Waltenberg 13, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 929879',
+    email: 'info@atasdoener.de',
+    website: 'https://atasdoener.de',
+    image: '/atas-doener-winterberg.jpg',
+    imageFallback: 'AD',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Steak-Döner im Natursauerteigbrot',
+      'Rollo nach Bremer Art',
+      'Hähnchen- & vegetarischer Falafel-Döner',
+      'Dönerteller mit Pommes frites oder Reis',
+      'Pur Fleisch frisch vom Spieß',
+      'Hausgemachte Saucen (Tzatziki, Chipotle, Hot Diablo uvm.)',
+      'Kartoffelgitter & Buttermilk Chicken Tenders',
+      'Ofenfrisches Baklava'
+    ],
+    services_nl: [
+      'Steak döner in ambachtelijk zuurdesembrood',
+      "Rollo's op Bremer wijze",
+      'Kip- & vegetarische falafeldöner',
+      'Dönerschotels met friet of rijst',
+      'Puur vlees vers van het spit',
+      'Huisgemaakte sauzen',
+      'Aardappelwafel friet & buttermilk chicken tenders',
+      'Ovenverse baklava'
+    ]
   }
 ];
 
