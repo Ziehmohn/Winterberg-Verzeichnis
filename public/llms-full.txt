@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-13
+# Stand: 2026-10-14
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (317 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (318 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1654,6 +1654,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Ceylon Imbiss in de Neue Mitte in Winterberg biedt een veelzijdige keuze aan vers bereide döner- en shoarmagerechten, knapperige pizza's, sappige burgers, gevulde pizzabroodjes en snackbarklassiekers. Alle gerechten zijn zowel ter plaatse te nuttigen als beschikbaar voor afhaal en bezorging.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/ceylon-imbiss
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/ceylon-imbiss
+
+#### [Ata's Döner Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/ata-s-doener-winterberg)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 13, 59955 Winterberg
+- **Telefon:** 02981 929879
+- **Webseite:** https://atasdoener.de
+- **Beschreibung (DE):** Ata's Döner – Beef Manufaktur am Waltenberg 13 in Winterberg bringt moderne Dönerkultur ins Sauerland. Das kulinarische Konzept setzt auf Premium-Qualität: vom saftigen Steak-Döner im ofenfrischen Natursauerteigbrot aus der Handwerksbäckerei über Rollos nach Bremer Art bis hin zu Hähnchen- und vegetarischen Falafel-Spezialitäten. Abgerundet wird das Angebot durch reichhaltige Dönerteller, knusprige Beilagen wie Kartoffelgitter und Buttermilk Chicken Tenders, hausgemachte Saucen sowie traditionelles Baklava.
+- **Beschreibung (NL):** Ata's Döner – Beef Manufaktur aan de Waltenberg 13 in Winterberg brengt moderne dönercultuur naar het Sauerland. Het concept draait om topkwaliteit: van malse steakdöner in ambachtelijk zuurdesembrood en Bremer rollo's tot kip- en vegetarische falafelspecialiteiten, rijkgevulde schotels, knapperige bijgerechten en huisgemaakte sauzen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/ata-s-doener-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/ata-s-doener-winterberg
 
 ### Kategorie: Dienstleistungen
 

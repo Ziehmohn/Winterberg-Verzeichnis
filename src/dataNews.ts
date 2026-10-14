@@ -2,6 +2,92 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'D23c1X0qC4Rept5dmC5m',
+    slug: 'atas-doener-beef-manufaktur-winterberg-eroeffnung',
+    slug_nl: 'atas-doener-beef-manufaktur-winterberg-opening',
+    title: 'Eröffnung am 16. Oktober: Ata’s Döner bringt Steak-Döner und Beef-Manufaktur an den Waltenberg',
+    title_nl: 'Opening op 16 oktober: Ata’s Döner brengt ambachtelijke steakdöner naar de Waltenberg',
+    author: 'Simon Kräling',
+    businessId: 'atas-doener-winterberg',
+    businessName: "Ata's Döner Winterberg",
+    businessSlug: 'gastronomie/imbisse/atas-doener-winterberg',
+    imageUrl: '/news-atas-doener-winterberg-eroeffnung.jpg',
+    imageCredit: 'Foto: Simon Kräling',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-14T14:00:00.000Z',
+    content: `Am Waltenberg 13 in Winterberg tut sich was: Mit der **Beef Manufaktur von Ata’s Döner** eröffnet am **Freitag, den 16. Oktober 2026 um 12:00 Uhr**, ein neues kulinarisches Konzept für Streetfood-Liebhaber. Wer das neue Ladengeschäft mit der markanten, beleuchteten Fassade bereits im Vorbeigehen bemerkt hat, darf sich zum Start direkt über eine Willkommensaktion freuen: Zur Eröffnung gibt es zu jeder Steak-Döner-Bestellung einen **Softdrink gratis** dazu.
+
+## Steak-Fleisch aus Weidehaltung und Bio-Sauerteigbrot
+
+Ata’s Döner setzt auf ein handwerkliches Manufaktur-Konzept, das sich deutlich von herkömmlichen Imbissbetrieben abhebt. Das Herzstück des Angebots bildet der original **Steak-Döner**: feinstes, saftiges Rindfleisch aus 100 % Weidehaltung, schonend und frisch am Spieß gegrillt und zu 100 % Halal zertifiziert.
+
+Auch beim Brot setzt das Team auf Frische und Handwerk: Serviert wird das Fleisch in ofenfrischem **Bio-Sauerteigbrot**, das für den perfekten krossen Biss und vollen Geschmack sorgt.
+
+## Vielseitige Speisekarte von Bremer Rollo bis Falafel
+
+Neben dem klassischen Steak-Döner im Fladenbrot bietet die Karte eine breite Auswahl moderner Spezialitäten:
+* **Steak-Döner & Hähnchen-Döner** in verschiedenen Portionsgrößen
+* **Rollo nach Bremer Art** – frisch gewickelt und warm serviert
+* **Vegetarische Optionen** wie knusprige Falafel-Variationen
+* **Dönerteller** wahlweise mit Pommes frites oder aromatischem Reis
+* **Hausgemachte Saucen**, von cremigem Tzatziki über rauchige Chipotle bis hin zu pikantem Hot Diablo
+* **Knusprige Beilagen** wie Kartoffelgitter und Buttermilk Chicken Tenders sowie ofenfrisches Baklava zum Dessert
+
+* **Ata's Döner Winterberg – Beef Manufaktur**
+  Moderne Dönerkultur und Steak-Döner an zentraler Lage Am Waltenberg 13.
+  * [Zum vollständigen Unternehmensprofil im Verzeichnis](/gastronomie/imbisse/atas-doener-winterberg)
+
+## Eröffnungsangebot & Details
+
+:::contact
+### Eröffnung & Standortdaten
+Ata’s Döner – Beef Manufaktur in Winterberg:
+
+* **Eröffnungstermin:** Freitag, 16. Oktober 2026, ab 12:00 Uhr
+* **Eröffnungs-Special:** 1 Softdrink gratis pro Steak-Döner-Bestellung
+* **Standort:** Am Waltenberg 13, 59955 Winterberg
+* **Telefon:** [02981 929879](tel:02981929879)
+* **Website:** [atasdoener.de](https://atasdoener.de)
+* **Unternehmensprofil:** [Ata's Döner im Stadtportal](/gastronomie/imbisse/atas-doener-winterberg)
+:::`,
+    content_nl: `Aan de Waltenberg 13 in Winterberg staat iets lekkers te gebeuren: met de **Beef Manufaktur van Ata’s Döner** opent op **vrijdag 16 oktober 2026 om 12:00 uur** een gloednieuw streetfood-concept in het centrum van Winterberg. Wie het stijlvol verbouwde pand met de verlichte gevel al heeft zien glinsteren, kan direct profiteren van een aantrekkelijke openingsactie: ter gelegenheid van de start ontvangt elke gast bij aankoop van een steakdöner een **gratis frisdrank**.
+
+## Steakvlees van weiderunderen en biologisch zuurdesembrood
+
+Ata’s Döner introduceert een ambachtelijk kwaliteitsconcept dat zich nadrukkelijk onderscheidt van de traditionele snackbar. Centraal staat de authentieke **steakdöner**: puur, sappig rundvlees van 100 % weidegang, langzaam gegaard aan het spit en 100 % Halal-gecertificeerd.
+
+Voor het brood kiest Ata's Döner voor puur bakkersvakmanschap: het vlees wordt geserveerd in ovenvers, krokant **biologisch zuurdesembrood** voor de perfecte beet en volle smaakbeleving.
+
+## Gevarieerde menukaart van Bremer rollo's tot falafel
+
+Naast de befaamde steakdöner op ambachtelijk brood biedt de menukaart tal van eigentijdse varianten:
+* **Steakdöner & kipdöner** in diverse formaten en combinaties
+* **Bremer rollo's** – vers gerold en warm getoast naar Noord-Duits recept
+* **Vegetarische opties** waaronder huisgemaakte, knapperige falafel
+* **Dönerschotels** met keuze uit friet of gekruide rijst
+* **Huisgemaakte sauzen**, van zachte tzatziki tot pittige chipotle en hot diablo
+* **Knapperige sides** zoals aardappelwafel friet en buttermilk chicken tenders, met ovenverse baklava als dessert
+
+* **Ata's Döner Winterberg – Beef Manufaktur**
+  Premium dönerconcept en steakdöner aan de Waltenberg 13.
+  * [Bekijk het bedrijfsprofiel in de gids](/nl/horeca/snackbar-en-fastfood/atas-doener-winterberg)
+
+## Openingsactie & Contactgegevens
+
+:::contact
+### Opening & Locatiegegevens
+Ata’s Döner – Beef Manufaktur in Winterberg:
+
+* **Openingsdatum:** Vrijdag 16 oktober 2026, vanaf 12:00 uur
+* **Openingsactie:** 1 gratis frisdrank bij elke bestelling van een steakdöner
+* **Adres:** Am Waltenberg 13, 59955 Winterberg
+* **Telefoon:** [02981 929879](tel:02981929879)
+* **Website:** [atasdoener.de](https://atasdoener.de)
+* **Gidsvermelding:** [Ata's Döner in de stadsgids](/nl/horeca/snackbar-en-fastfood/atas-doener-winterberg)
+:::`,
+  },
+  {
     id: '0riKnXGd81e90HXDJmk7',
     slug: 'pizzeria-dani-winterberg-umzug-orkestrasse',
     slug_nl: 'pizzeria-dani-winterberg-verhuizing-orkestrasse',
