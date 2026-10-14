@@ -38,10 +38,20 @@ Neben dem klassischen Steak-Döner im Fladenbrot bietet die Karte eine breite Au
   Moderne Dönerkultur und Steak-Döner an zentraler Lage Am Waltenberg 13.
   * [Zum vollständigen Unternehmensprofil im Verzeichnis](/gastronomie/imbisse/atas-doener-winterberg)
 
-## Eröffnungsangebot & Details
+## Eröffnungsangebot zur Neueröffnung
+
+Zum Start am **Freitag, den 16. Oktober 2026 ab 12:00 Uhr**, hält Ata’s Döner ein besonderes Angebot für alle Streetfood-Liebhaber bereit:
+
+* **Softdrink gratis pro Bestellung**
+  Zu jedem bestellten Steak-Döner gibt es am Eröffnungstag ein Erfrischungsgetränk nach Wahl gratis dazu.
+
+* **100 % Weiderind & Bio-Sauerteigbrot**
+  Das Angebot gilt für die ofenfrischen Steak-Döner aus schonend gegrilltem Rindfleisch aus artgerechter Weidehaltung.
+
+![Offizielles Eröffnungsplakat von Ata's Döner – Beef Manufaktur Winterberg](/news-atas-doener-winterberg-plakat.png)
 
 :::contact
-### Eröffnung & Standortdaten
+### Kontakt & Standortdaten
 Ata’s Döner – Beef Manufaktur in Winterberg:
 
 * **Eröffnungstermin:** Freitag, 16. Oktober 2026, ab 12:00 Uhr
@@ -73,10 +83,20 @@ Naast de befaamde steakdöner op ambachtelijk brood biedt de menukaart tal van e
   Premium dönerconcept en steakdöner aan de Waltenberg 13.
   * [Bekijk het bedrijfsprofiel in de gids](/nl/horeca/snackbar-en-fastfood/atas-doener-winterberg)
 
-## Openingsactie & Contactgegevens
+## Openingsactie op 16 oktober
+
+Ter gelegenheid van de opening op **vrijdag 16 oktober 2026 vanaf 12:00 uur** pakt Ata’s Döner uit met een smakelijke kennismakingsactie:
+
+* **Gratis frisdrank bij elke bestelling**
+  Bij aankoop van elke steakdöner ontvangt u op de openingsdag een gratis gekoeld frisdrankje naar keuze.
+
+* **100 % weiderundvlees & biologisch zuurdesembrood**
+  De actie geldt voor de steakdönerspecialiteiten, bereid met puur rundvlees uit weidegang en geserveerd op ambachtelijk gebakken zuurdesembrood.
+
+![Officiële openingsposter van Ata's Döner – Beef Manufaktur Winterberg](/news-atas-doener-winterberg-plakat.png)
 
 :::contact
-### Opening & Locatiegegevens
+### Contact & Locatiegegevens
 Ata’s Döner – Beef Manufaktur in Winterberg:
 
 * **Openingsdatum:** Vrijdag 16 oktober 2026, vanaf 12:00 uur

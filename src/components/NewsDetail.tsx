@@ -205,6 +205,23 @@ export function NewsContentRenderer({ content }: { content: string }) {
         const trimmed = block.trim();
         if (!trimmed) return null;
 
+        // 0. Markdown Images (![alt](src))
+        const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+        if (imgMatch) {
+          const altText = imgMatch[1];
+          const src = imgMatch[2];
+          return (
+            <div key={index} className="my-8 rounded-2xl overflow-hidden border border-[#EDE8E0] shadow-md bg-[#FAF8F5] max-w-[440px] mx-auto text-center">
+              <img src={src} alt={altText} className="w-full h-auto object-contain mx-auto" />
+              {altText && (
+                <div className="text-center text-xs text-[#5F6B63] py-2 px-3 bg-[#F4F1EA] border-t border-[#EDE8E0]">
+                  {altText}
+                </div>
+              )}
+            </div>
+          );
+        }
+
         // 1. Heading 2 (## Title)
         if (trimmed.startsWith('## ')) {
           const headingText = trimmed.replace(/^##\s+/, '');
