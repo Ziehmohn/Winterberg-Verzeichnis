@@ -57,6 +57,14 @@ export const SEARCH_INTENTS: SearchIntent[] = [
     ]
   },
   {
+    id: 'doener',
+    label: 'Döner & Kebab',
+    triggers: ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'dueruem', 'lahmacun', 'drehspieß', 'drehspiess'],
+    targets: [
+      { keywords: ['döner*', 'doener*', 'kebab*', 'kebap*', 'shawarma*', 'dürüm*'], weight: 300 }
+    ]
+  },
+  {
     id: 'pizza',
     label: 'Pizzerien',
     triggers: ['pizza', 'pizzen', 'pizzas', 'pizzeria', 'pizzerien', 'pasta', 'spaghetti', 'lasagne', 'nudelgericht', 'italiener', 'italienisch', 'italienische', 'italiaans', 'calzone', 'ristorante'],
@@ -187,7 +195,7 @@ export const SEARCH_INTENTS: SearchIntent[] = [
     triggers: ['sport', 'sportgeschäft', 'sportgeschaeft', 'sportladen', 'sportartikel', 'sportbekleidung', 'sportkleidung', 'sportmode', 'sportschuh', 'sportschuhe', 'laufschuh', 'laufschuhe', 'turnschuh', 'turnschuhe', 'hallenschuh', 'hallenschuhe', 'wanderschuh', 'wanderschuhe', 'wanderstiefel', 'trekkingschuh', 'trekkingschuhe', 'funktionskleidung', 'funktionsjacke', 'outdoor', 'outdoorjacke', 'outdoorbekleidung', 'regenjacke', 'softshell', 'softshelljacke', 'fleecejacke', 'trainingsanzug', 'jogginghose', 'rucksack', 'rucksäcke', 'wanderrucksack', 'wanderausrüstung', 'skihose', 'skijacke', 'skianzug', 'skibrille', 'skihelm', 'skihandschuh', 'skihandschuhe', 'skiunterwäsche', 'skisocken', 'snowboardjacke', 'helm', 'skateboard', 'longboard', 'zelt', 'schlafsack', 'stöcke', 'nordic', 'wanderstöcke', 'sportwinkel', 'sportschoenen', 'wandelschoenen'],
     targets: [
       { subcategories: ['Sport & Outdoor'], weight: 300 },
-      { keywords: ['sport', 'outdoor*', 'sportmode', 'sportartikel'], weight: 280 }
+      { keywords: ['sportgeschäft*', 'sportladen', 'sportmode', 'sportartikel', 'sportbekleidung', 'intersport'], weight: 280 }
     ]
   },
   {

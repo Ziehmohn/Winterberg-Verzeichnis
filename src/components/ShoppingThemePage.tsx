@@ -380,9 +380,9 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
       </nav>
 
       {/* Hero Banner Section */}
-      <section className="relative rounded-3xl overflow-hidden shadow-xl mb-10 text-white bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] border border-emerald-900/30 grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-        {/* Hero Image (oben auf Mobile, rechts auf Desktop) */}
-        <figure className="relative order-first lg:order-last m-0 h-56 sm:h-72 lg:h-auto">
+      <section className="relative rounded-3xl overflow-hidden shadow-xl mb-10 text-white bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] border border-emerald-900/30">
+        {/* Hero Image (Desktop: absolut rechts mit weichem Mask-Fade, Mobile: oben im Banner) */}
+        <figure className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-[48%] xl:w-[46%] m-0 h-64 sm:h-80 lg:h-full z-0 overflow-hidden">
           <img
             src="/shoppen-in-winterberg-header.jpg"
             alt={isNl
@@ -392,17 +392,14 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
             height={1067}
             fetchPriority="high"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-cover object-[55%_center]"
+            className="w-full h-full object-cover object-[55%_center] hero-shopping-mask"
           />
-          {/* Weicher Übergang ins Grün */}
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0F4C2E] via-[#0F4C2E]/10 to-transparent lg:hidden" />
-          <div className="absolute inset-y-0 left-0 w-2/5 pointer-events-none hidden lg:block bg-gradient-to-r from-[#0F4C2E] via-[#0F4C2E]/20 to-transparent" />
-          <figcaption className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 text-[10px] leading-none text-white/85 bg-black/45 backdrop-blur-sm px-2 py-1 rounded-md">
+          <figcaption className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 text-[10px] leading-none text-white/85 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-md z-10 pointer-events-none">
             © Ferienwelt Winterberg / Stephan Peters
           </figcaption>
         </figure>
 
-        <div className="relative z-10 p-6 sm:p-10 lg:p-12">
+        <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-2xl xl:max-w-3xl">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-amber-300 mb-4 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{isNl ? 'Shopping Gids Sauerland' : 'Shopping Guide · Winterberg Sauerland'}</span>
