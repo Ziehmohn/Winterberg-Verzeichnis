@@ -25,15 +25,14 @@ Den Auftakt macht am **Freitag, den 23. Oktober 2026 ab 14:00 Uhr**, ein erlebni
 Doch das ist längst nicht alles: Vor der Hütte lodert die Feuerschale, an der gemeinsam knuspriges Stockbrot gebacken und süße Marshmallows geröstet werden.
 
 ### Das Wichtigste auf einen Blick:
+
 * **Datum & Beginn:** Freitag, 23. Oktober 2026, ab 14:00 Uhr
-* **Staffelung:** Um allen Kindern beste Betreuung und genügend Freiraum zu bieten, wird in zwei Zeitfenstern geschnitzt:
-  * 1. Gruppe: 14:00 bis 16:00 Uhr
-  * 2. Gruppe: 16:00 bis 18:00 Uhr
+* **Zwei Zeitfenster:** Geschnitzt wird in zwei Etappen von 14:00 bis 16:00 Uhr sowie von 16:00 bis 18:00 Uhr
 * **Kostenbeitrag:** 8,00 € pro Kind (inklusive Kürbis, Schnitzwerkzeug und Leckereien an der Feuerschale)
 * **Kulinarisches:** Warme Speisen, Hüttenspezialitäten und Erfrischungen für Groß und Klein
 * **Wichtig – Voranmeldung:** Da die Plätze und Kürbisse limitiert sind, ist eine rechtzeitige Reservierung erforderlich – telefonisch unter **02981 8996399** oder per E-Mail an **info@nordhangjause.de**.
 
-![Kürbisschnitzen für Kids an der Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
+![Kürbisschnitzen für Kids an der Nordhang Jause](/events-nordhang-kuerbisschnitzen.png)
 
 ## Romantischer Lichterzauber am Nordhang: Samstag, 7. November
 
@@ -48,7 +47,7 @@ Der **Lichterzauber am Nordhang** bietet einen stimmungsvollen Abend für alle S
 
 Ob als wärmender Abschluss nach einer herbstlichen Wandertour oder als Ausflugsziel mit Familie und Freunden: Jacke anziehen, die frische Bergluft einatmen und den Zauber der Lichter genießen!
 
-![Lichterzauber am Nordhang in Winterberg](/events-nordhang-lichterzauber.jpg)
+![Lichterzauber am Nordhang in Winterberg](/events-nordhang-lichterzauber.png)
 
 :::contact
 ### Nordhang Jause Winterberg
@@ -70,15 +69,14 @@ Op **vrijdag 23 oktober 2026 vanaf 14:00 uur** kunnen jonge bezoekers hun creati
 Buiten brandt de vuurschaal, waar samen knapperig stokbrood wordt gebakken en zoete marshmallows worden geroosterd.
 
 ### Belangrijke informatie op een rij:
+
 * **Datum & aanvang:** Vrijdag 23 oktober 2026, vanaf 14:00 uur
-* **Twee rondes:** Om ieder kind voldoende ruimte en aandacht te geven, zijn er twee tijdsloten:
-  * 1e ronde: 14:00 tot 16:00 uur
-  * 2e ronde: 16:00 tot 18:00 uur
+* **Twee tijdsloten:** Gesneden wordt in twee etappes van 14:00 tot 16:00 uur en van 16:00 tot 18:00 uur
 * **Kosten:** € 8,00 per kind (inclusief pompoen, snijmateriaal en lekkers bij het kampvuur)
 * **Culinair:** Warme gerechten, streekgerechten en drankjes voor de hele familie
 * **Aanmelden verplicht:** Het aantal plaatsen is beperkt; tijdige reservatie is vereist via **02981 8996399** of via **info@nordhangjause.de**.
 
-![Pompoen snijden voor kinderen bij Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
+![Pompoen snijden voor kinderen bij Nordhang Jause](/events-nordhang-kuerbisschnitzen.png)
 
 ## Betoverende Lichtjesmagie aan de Nordhang: Zaterdag 7 november
 
@@ -93,7 +91,7 @@ De **Lichtjesmagie aan de Nordhang** is een feest voor alle zintuigen:
 
 Ideaal als feestelijke afsluiting van een frisse herfstwandeling of voor een gezellige avond met familie en vrienden rond het vuur!
 
-![Lichtjesmagie aan de Nordhang](/events-nordhang-lichterzauber.jpg)
+![Lichtjesmagie aan de Nordhang](/events-nordhang-lichterzauber.png)
 
 :::contact
 ### Nordhang Jause Winterberg
@@ -126,7 +124,7 @@ async function run() {
   try {
     const docRef = doc(db, 'news', 'B99nqQbUNBZVpUXNNgNj');
     await setDoc(docRef, newsData, { merge: true });
-    console.log("SUCCESS! Updated Nordhang Jause news document B99nqQbUNBZVpUXNNgNj in Firestore with new custom text!");
+    console.log("SUCCESS! Updated Firestore news doc with clean formatting and PNG links!");
   } catch (err) {
     console.error("ERROR updating news in Firestore:", err);
   }

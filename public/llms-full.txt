@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (318 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (319 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1166,6 +1166,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Boekhandel WortReich in winkelcentrum Neue Mitte (Untere Pforte 4) in Winterberg biedt een ruim assortiment aan romans, kinder- en jeugdboeken en non-fictie. Daarnaast zijn er veel regionale uitgaven zoals fiets- en wandelkaarten, Engelstalige paperbacks, cadeaus en wens- en ansichtkaarten verkrijgbaar, inclusief een snelle bestelservice.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/buchhandlungen/buchhandlung-wortreich-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/boekhandels/buchhandlung-wortreich-winterberg
+
+#### [Tischlein deck dich](https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/tischlein-deck-dich)
+- **Kategorie:** Einzelhandel > Haushaltswaren & Deko
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 40, 59955 Winterberg
+- **Telefon:** 02981 8999894
+- **Webseite:** https://www.tischlein-deck-dich-winterberg.de
+- **Beschreibung (DE):** Tischlein deck dich am Waltenberg 40 in Winterberg ist ein liebevoll geführtes Fachgeschäft für stilvolle Haushaltswaren, Dekoartikel und Wohnaccessoires. Das Sortiment umfasst hochwertige Küchenhelfer, Kochgeschirr, feines Designergeschirr, Gläser und edle Tischwäsche für ein schönes Zuhause. Ergänzt wird die Auswahl durch geschmackvolle Geschenkideen sowie feine regionale Spezialitäten und Sauerländer Spirituosen.
+- **Beschreibung (NL):** Tischlein deck dich aan de Waltenberg 40 in Winterberg is een sfeervolle speciaalzaak voor huishoudelijke artikelen, kookgerei, woonaccessoires en decoratie. Het aanbod varieert van kwalitatief kookgerei, servies en tafellinnen tot originele cadeau-ideeën en ambachtelijke Sauerlandse delicatessen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/tischlein-deck-dich
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/tischlein-deck-dich
 
 ### Kategorie: Gastronomie
 

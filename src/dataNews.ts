@@ -2,6 +2,108 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'wanderveranstaltungen-winterberg-oktober-2026',
+    slug: 'im-oktober-wird-im-winterberg-gewandert',
+    slug_nl: 'in-oktober-wordt-er-gewandeld-in-winterberg',
+    title: 'Im Oktober wird im Winterberg gewandert',
+    title_nl: 'In oktober wordt er in Winterberg gewandeld',
+    author: 'Simon Kräling',
+    businessId: 'winterberg-touristik',
+    businessName: 'Winterberg Touristik und Wirtschaft GmbH',
+    businessSlug: 'winterberg-touristik',
+    imageUrl: '/wanderveranstaltungen-oktober-winterberg.jpg',
+    imageCredit: 'Tourist Information Winterberg',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-15T18:30:00.000Z',
+    content: `Goldene Sonnenstrahlen, farbenprächtige Laubwälder und glasklare Bergluft: Die zweite Oktoberhälfte lädt im Sauerland zu den schönsten Wandertagen des Jahres ein. Unter dem Motto **„Wanderveranstaltungen 16. bis 29. Oktober“** hat die Winterberg Touristik und Wirtschaft GmbH ein abwechslungsreiches Programm an geführten Touren, Erlebnissen und Rundgängen zusammengestellt.
+
+Ob sportliche Höhenmeter, genussvolle Wanderungen mit kulinarischen Zwischenstopps, Einblicke in weltbekannte Sportstätten oder geheimnisvolle Rundgänge im Laternenlicht – in den kommenden beiden Wochen gibt es für Naturfreunde, Familien und Entdecker in Winterberg jede Menge zu erleben.
+
+## Die Höhepunkte im Überblick
+
+### 1. Natur pur & Höhenerlebnisse
+* **Wanderwoche 2026: Höhenpunktroute (Fr., 16. Oktober, 10:00 – 17:00 Uhr):** Eine geführte Ganztagstour für ambitionierte Wanderer mit spektakulären Panoramablicken über das Land der 1000 Berge.
+* **Geführte Überraschungswanderungen (Di., 20.10., Do., 22.10., Di., 27.10. und Do., 29.10., jeweils 10:00 – 14:00 Uhr):** Die erfahrenen Wanderführer wählen die Route spontan passend zur Witterung aus – vorbei an stillen Tälern, sonnigen Hochebenen und bunten Wäldern rund um Winterberg.
+
+### 2. Gaumenfreuden: Entdeckertour mit Biss & Genuss
+* **Samstag, 17. Oktober & Samstag, 24. Oktober (jeweils 10:00 – 14:00 Uhr):** Wandern und Schlemmen im Einklang! Bei dieser geführten Genusswanderung verbinden sich Bewegung an der frischen Bergluft und schmackhafte Kostproben aus der regionalen Sauerländer Küche.
+
+### 3. Nachhaltigkeit: Klima-Erlebniswanderung & Baumpflanzung
+* **„Heute für morgen pflanzen“ (Mi., 21.10. ab 14:30 Uhr, Sa., 24.10. ab 10:30 Uhr und Mi., 28.10. ab 14:30 Uhr):** Ein echtes Mitmach-Erlebnis für Groß und Klein. Erfahren Sie bei dieser 3-stündigen Tour spannende Hintergründe zum Wald im Klimawandel und pflanzen Sie aktiv Ihren eigenen Zukunftbaum für die Wälder rund um Winterberg.
+
+### 4. Hinter den Kulissen des Hochleistungssports
+* **Bobbahnführungen in der VELTINS-EisArena:** Entdecken Sie eine der schnellsten und modernsten Kunsteisbahnen der Welt hautnah. Führungen finden am 17.10., 20.10., 24.10. und 27.10. (jeweils 14:00 – 16:30 Uhr) statt.
+* **Panorama-Tour zur und durch die VELTINS-EisArena:** Mittwoch, 21. Oktober und Mittwoch, 28. Oktober (jeweils 14:00 – 17:30 Uhr).
+* **Schanzenführung an der St. Georg Sprungschanze:** Sonntag, 18. Oktober und Sonntag, 25. Oktober (jeweils 10:00 – 12:30 Uhr) mit faszinierendem Weitblick vom Schanzenturm am Herrloh.
+* **Führung durch die Wettkampfstätten:** Samstag, 24. Oktober (10:30 – 13:30 Uhr) zu den Trainings- und Wettkampfstätten internationaler Olympiasieger und Weltmeister.
+
+### 5. Kultur, Altstadt & Nachtwächter
+* **Winterberg im Mittelalter – Nachtwächter-Führung:** Freitag, 16. Oktober und Freitag, 23. Oktober (jeweils 20:30 – 22:30 Uhr). Mit Laterne und Hellebarde durch die abendliche Altstadt.
+* **Altstadtführung durch Winterberg:** Samstag, 24. Oktober (14:00 – 15:30 Uhr) mit vielen Anekdoten zur bewegten Geschichte der Bergstadt.
+* **Nachtwächterrundgang für Kinder und Familien:** Samstag, 24. Oktober (18:30 – 20:00 Uhr). Ein geheimnisvolles, kindgerechtes Abenteuer in der Dämmerung.
+
+![Wanderveranstaltungen im Oktober in Winterberg](/wanderveranstaltungen-oktober-winterberg.jpg)
+
+:::tip
+### Alle Termine im Überblick
+Alle geführten Touren und Termine finden Sie ab sofort auch in unserem Veranstaltungskalender unter der Kategorie **Wandern**:
+👉 [Zu den Wanderveranstaltungen im Eventkalender](/events?category=Wandern)
+:::
+
+:::contact
+### Tourist Information Winterberg
+* **Adresse:** Am Kurpark 4, 59955 Winterberg
+* **Telefon:** 02981 92500
+* **E-Mail:** info@winterberg.de
+* **Online-Buchung & Tickets:** [winterberg.de/erlebnis-buchen](https://www.winterberg.de/aktivitaeten-wohlfuehlen/erlebnis-buchen/#)
+* **Hinweis:** Alle Angaben ohne Gewähr. Eine vorherige Anmeldung wird empfohlen.
+:::`,
+    content_nl: `Gouden zonnestralen, kleurrijke herfstbossen en zuivere berglucht: de tweede helft van oktober is dé periode om te wandelen in het Sauerland. Onder de noemer **„Wandelactiviteiten 16 tot en met 29 oktober“** biedt Winterberg Touristik und Wirtschaft GmbH een veelzijdig programma met begeleide tochten, belevenissen en rondleidingen.
+
+Of u nu kiest voor sportieve hoogtemeters, een smaakvolle culinaire wandeling, een exclusief kijkje achter de schermen van beroemde sportlocaties of een sfeervolle tocht met de nachtwaker in het lantaarnlicht – in de komende twee weken is er volop te beleven voor natuurliefhebbers en gezinnen in Winterberg.
+
+## De hoogtepunten op een rij
+
+### 1. Pure natuur & panoramische hoogtes
+* **Wandelweek 2026: Hoogtepuntenroute (vr. 16 oktober, 10:00 – 17:00 uur):** Een begeleide dagwandeling met prachtige vergezichten over het Land van de 1000 Bergen.
+* **Begeleide verrassingswandelingen (di. 20.10., do. 22.10., di. 27.10. en do. 29.10., telkens van 10:00 – 14:00 uur):** Ervaren gidsen kiezen de route op basis van het weer van de dag langs schilderachtige valleien en bossen.
+
+### 2. Gastronomisch genieten: Ontdekkingstocht met smaak & beleving
+* **Zaterdag 17 oktober & zaterdag 24 oktober (10:00 – 14:00 uur):** Wandelen en proeven gecombineerd! Onderweg geniet u van smaakvolle streekgerechten en Sauerlandse gastvrijheid.
+
+### 3. Duurzaamheid: Klimaatwandeling & bomen planten
+* **„Vandaag voor morgen planten“ (wo. 21.10. vanaf 14:30 uur, za. 24.10. vanaf 10:30 uur en wo. 28.10. vanaf 14:30 uur):** Een bijzondere doe-activiteit voor jong en oud. Leer over het bos en klimaatverandering en plant uw eigen boom in de bossen van Winterberg.
+
+### 4. Achter de schermen van de topsport
+* **Rondleidingen bobsleebaan in de VELTINS-EisArena:** Ervaar een van de snelste ijsbanen ter wereld van dichtbij op 17.10., 20.10., 24.10. en 27.10. (telkens 14:00 – 16:30 uur).
+* **Panoramatour naar en door de VELTINS-EisArena:** Woensdag 21 en woensdag 28 oktober (14:00 – 17:30 uur).
+* **Schansrondleiding bij de St. Georg skischans:** Zondag 18 en zondag 25 oktober (10:00 – 12:30 uur) met uitzicht vanaf de markante toren.
+* **Rondleiding sportlocaties:** Zaterdag 24 oktober (10:30 – 13:30 uur) langs de trainings- en wedstrijdlocaties van olympische kampioenen.
+
+### 5. Cultuur, historie & de nachtwaker
+* **Winterberg in de middeleeuwen – Nachtwaker-rondleiding:** Vrijdag 16 en vrijdag 23 oktober (20:30 – 22:30 uur) met lantaarn en hellebaard door de historische steegjes.
+* **Historische stadswandeling door Winterberg:** Zaterdag 24 oktober (14:00 – 15:30 uur) langs historische vakwerkhuizen en stadsverhalen.
+* **Nachtwaker-rondleiding voor kinderen en gezinnen:** Zaterdag 24 oktober (18:30 – 20:00 uur), een spannend avontuur in de schemering.
+
+![Wandelactiviteiten in oktober in Winterberg](/wanderveranstaltungen-oktober-winterberg.jpg)
+
+:::tip
+### Alle data in de evenementenkalender
+Alle begeleide wandelingen en rondleidingen vindt u vanaf nu overzichtelijk in onze evenementenkalender onder de categorie **Wandelen**:
+👉 [Bekijk alle wandelactiviteiten in de kalender](/evenementen?category=Wandern)
+:::
+
+:::contact
+### Tourist Information Winterberg
+* **Adres:** Am Kurpark 4, 59955 Winterberg
+* **Telefoon:** +49 2981 92500
+* **E-mail:** info@winterberg.de
+* **Online reserveren & tickets:** [winterberg.de/erlebnis-buchen](https://www.winterberg.de/aktivitaeten-wohlfuehlen/erlebnis-buchen/#)
+* **Opmerking:** Alle gegevens onder voorbehoud. Vooraf aanmelden wordt aanbevolen.
+:::`,
+  },
+  {
     id: 'B99nqQbUNBZVpUXNNgNj',
     slug: 'herbstzeit-nordhang-jause-kuerbisschnitzen-lichterzauber',
     slug_nl: 'herfst-nordhang-jause-pompoensnijden-lichtjesmagie',
@@ -27,15 +129,14 @@ Den Auftakt macht am **Freitag, den 23. Oktober 2026 ab 14:00 Uhr**, ein erlebni
 Doch das ist längst nicht alles: Vor der Hütte lodert die Feuerschale, an der gemeinsam knuspriges Stockbrot gebacken und süße Marshmallows geröstet werden.
 
 ### Das Wichtigste auf einen Blick:
+
 * **Datum & Beginn:** Freitag, 23. Oktober 2026, ab 14:00 Uhr
-* **Staffelung:** Um allen Kindern beste Betreuung und genügend Freiraum zu bieten, wird in zwei Zeitfenstern geschnitzt:
-  * 1. Gruppe: 14:00 bis 16:00 Uhr
-  * 2. Gruppe: 16:00 bis 18:00 Uhr
+* **Zwei Zeitfenster:** Geschnitzt wird in zwei Etappen von 14:00 bis 16:00 Uhr sowie von 16:00 bis 18:00 Uhr
 * **Kostenbeitrag:** 8,00 € pro Kind (inklusive Kürbis, Schnitzwerkzeug und Leckereien an der Feuerschale)
 * **Kulinarisches:** Warme Speisen, Hüttenspezialitäten und Erfrischungen für Groß und Klein
 * **Wichtig – Voranmeldung:** Da die Plätze und Kürbisse limitiert sind, ist eine rechtzeitige Reservierung erforderlich – telefonisch unter **02981 8996399** oder per E-Mail an **info@nordhangjause.de**.
 
-![Kürbisschnitzen für Kids an der Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
+![Kürbisschnitzen für Kids an der Nordhang Jause](/events-nordhang-kuerbisschnitzen.png)
 
 ## Romantischer Lichterzauber am Nordhang: Samstag, 7. November
 
@@ -50,7 +151,7 @@ Der **Lichterzauber am Nordhang** bietet einen stimmungsvollen Abend für alle S
 
 Ob als wärmender Abschluss nach einer herbstlichen Wandertour oder als Ausflugsziel mit Familie und Freunden: Jacke anziehen, die frische Bergluft einatmen und den Zauber der Lichter genießen!
 
-![Lichterzauber am Nordhang in Winterberg](/events-nordhang-lichterzauber.jpg)
+![Lichterzauber am Nordhang in Winterberg](/events-nordhang-lichterzauber.png)
 
 :::contact
 ### Nordhang Jause Winterberg
@@ -71,15 +172,14 @@ Op **vrijdag 23 oktober 2026 vanaf 14:00 uur** kunnen jonge bezoekers hun creati
 Buiten brandt de vuurschaal, waar samen knapperig stokbrood wordt gebakken en zoete marshmallows worden geroosterd.
 
 ### Belangrijke informatie op een rij:
+
 * **Datum & aanvang:** Vrijdag 23 oktober 2026, vanaf 14:00 uur
-* **Twee rondes:** Om ieder kind voldoende ruimte en aandacht te geven, zijn er twee tijdsloten:
-  * 1e ronde: 14:00 tot 16:00 uur
-  * 2e ronde: 16:00 tot 18:00 uur
+* **Twee tijdsloten:** Gesneden wordt in twee etappes van 14:00 tot 16:00 uur en van 16:00 tot 18:00 uur
 * **Kosten:** € 8,00 per kind (inclusief pompoen, snijmateriaal en lekkers bij het kampvuur)
 * **Culinair:** Warme gerechten, streekgerechten en drankjes voor de hele familie
 * **Aanmelden verplicht:** Het aantal plaatsen is beperkt; tijdige reservatie is vereist via **02981 8996399** of via **info@nordhangjause.de**.
 
-![Pompoen snijden voor kinderen bij Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
+![Pompoen snijden voor kinderen bij Nordhang Jause](/events-nordhang-kuerbisschnitzen.png)
 
 ## Betoverende Lichtjesmagie aan de Nordhang: Zaterdag 7 november
 
@@ -94,7 +194,7 @@ De **Lichtjesmagie aan de Nordhang** is een feest voor alle zintuigen:
 
 Ideaal als feestelijke afsluiting van een frisse herfstwandeling of voor een gezellige avond met familie en vrienden rond het vuur!
 
-![Lichtjesmagie aan de Nordhang](/events-nordhang-lichterzauber.jpg)
+![Lichtjesmagie aan de Nordhang](/events-nordhang-lichterzauber.png)
 
 :::contact
 ### Nordhang Jause Winterberg

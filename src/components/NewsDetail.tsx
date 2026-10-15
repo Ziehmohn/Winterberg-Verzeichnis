@@ -196,8 +196,13 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
 export function NewsContentRenderer({ content }: { content: string }) {
   if (!content) return null;
 
+  // Pre-process content so headings and lists always have clean block breaks
+  const normalizedContent = content
+    .replace(/^([#-]{1,6}\s+[^\n]+)\n([^\n#-])/gm, '$1\n\n$2')
+    .replace(/([^\n])\n(\s*[-*•]\s+)/g, '$1\n\n$2');
+
   // Split content by paragraphs/blocks
-  const blocks = content.split(/\n{2,}/);
+  const blocks = normalizedContent.split(/\n{2,}/);
 
   return (
     <div className="space-y-6">
@@ -224,21 +229,31 @@ export function NewsContentRenderer({ content }: { content: string }) {
 
         // 1. Heading 2 (## Title)
         if (trimmed.startsWith('## ')) {
-          const headingText = trimmed.replace(/^##\s+/, '');
+          const firstLineBreak = trimmed.indexOf('\n');
+          const headingText = (firstLineBreak > 0 ? trimmed.substring(0, firstLineBreak) : trimmed).replace(/^##\s+/, '').trim();
+          const remainder = firstLineBreak > 0 ? trimmed.substring(firstLineBreak).trim() : null;
           return (
-            <div key={index} className="pt-6 pb-2">
-              <UnderlinedHeading text={headingText} as="h2" />
-            </div>
+            <React.Fragment key={index}>
+              <div className="pt-6 pb-2">
+                <UnderlinedHeading text={headingText} as="h2" />
+              </div>
+              {remainder && <NewsContentRenderer content={remainder} />}
+            </React.Fragment>
           );
         }
 
         // 2. Heading 3 (### Title)
         if (trimmed.startsWith('### ')) {
-          const headingText = trimmed.replace(/^###\s+/, '');
+          const firstLineBreak = trimmed.indexOf('\n');
+          const headingText = (firstLineBreak > 0 ? trimmed.substring(0, firstLineBreak) : trimmed).replace(/^###\s+/, '').trim();
+          const remainder = firstLineBreak > 0 ? trimmed.substring(firstLineBreak).trim() : null;
           return (
-            <div key={index} className="pt-4 pb-1">
-              <UnderlinedHeading text={headingText} as="h3" />
-            </div>
+            <React.Fragment key={index}>
+              <div className="pt-4 pb-1">
+                <UnderlinedHeading text={headingText} as="h3" />
+              </div>
+              {remainder && <NewsContentRenderer content={remainder} />}
+            </React.Fragment>
           );
         }
 

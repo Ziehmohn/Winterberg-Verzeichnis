@@ -21,13 +21,14 @@ import {
   ChevronDown,
   ChevronUp,
   Navigation,
-  Ticket
+  Ticket,
+  Compass
 } from 'lucide-react';
 
-// Lazy load map components
-const MapContainer = lazy(() => import('react-leaflet').then(m => ({ default: m.MapContainer })));
-const TileLayer = lazy(() => import('react-leaflet').then(m => ({ default: m.TileLayer })));
-const Marker = lazy(() => import('react-leaflet').then(m => ({ default: m.Marker })));
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import { DISTRICT_COORDINATES } from './BusinessMap';
 
 interface EventsBoardProps {
   businesses: Business[];
@@ -38,12 +39,15 @@ interface EventsBoardProps {
   onNavigatePricing?: () => void;
 }
 
-// Category normalization helper: combine Fest and Party
+// Category normalization helper: combine Fest and Party, support Wandern
 export const normalizeEventCategory = (category: string = ''): string => {
   const cat = category.trim();
   const lower = cat.toLowerCase();
   if (lower === 'fest' || lower === 'party' || lower.includes('fest & party') || lower.includes('party & fest') || lower === 'feste' || lower === 'partys') {
     return 'Fest & Party';
+  }
+  if (lower === 'wandern' || lower === 'wanderung' || lower === 'wandelen' || lower.includes('wander')) {
+    return 'Wandern';
   }
   return cat;
 };
@@ -51,6 +55,8 @@ export const normalizeEventCategory = (category: string = ''): string => {
 // Category icon & color helper
 const getCategoryMeta = (category: string) => {
   const cat = category.toLowerCase();
+  if (cat.includes('wander') || cat.includes('outdoor') || cat.includes('tour') || cat.includes('führung'))
+    return { Icon: Compass, bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' };
   if (cat.includes('sport') || cat.includes('weltcup') || cat.includes('cup'))
     return { Icon: Trophy, bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' };
   if (cat.includes('comedy') || cat.includes('kabarett') || cat.includes('humor') || cat.includes('stand up') || cat.includes('stand-up'))
@@ -99,92 +105,189 @@ function CalendarCard({ startDate, endDate }: { startDate: string; endDate?: str
   );
 }
 
+// Fix Leaflet default icon path issues in React
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
+
+// Custom violet icon for events
+const violetEventIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+// Helper component to auto-pan and fit size when coordinates are set
+function SetViewOnPosition({ position }: { position: [number, number] }) {
+  const map = useMap();
+  useEffect(() => {
+    map.invalidateSize();
+    map.setView(position, 15);
+  }, [position, map]);
+  return null;
+}
+
+// Known event venues in Winterberg with exact coordinates
+const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
+  // EisArena / Bob & Rodel
+  'eisarena': [51.18349, 8.50882],
+  'veltins': [51.18349, 8.50882],
+  'bobbahn': [51.18349, 8.50882],
+  // Poppenberg / Skiliftkarussell
+  'poppenberg': [51.19259, 8.50898],
+  'skiliftkarussell': [51.19259, 8.50898],
+  // Oversum / Kurpark / Stadthalle
+  'oversum': [51.19667, 8.53886],
+  'am kurpark': [51.19667, 8.53886],
+  'kurpark': [51.19667, 8.53886],
+  // Schützenhalle Niedersfeld
+  'schützenhalle niedersfeld': [51.2588, 8.5297],
+  'niedersfeld': [51.2588, 8.5297],
+  // Untere Pforte Marktplatz
+  'untere pforte': [51.19449, 8.53251],
+  'marktplatz': [51.19449, 8.53251],
+  // Bei Möppi / In der Büre
+  'möppi': [51.19726, 8.51181],
+  'büre': [51.19726, 8.51181],
+  // Nordhang Jause
+  'nordhang': [51.18492, 8.48927],
+  'renau': [51.18492, 8.48927],
+};
+
+function getKnownOrDistrictCoordinates(location: string): [number, number] {
+  if (!location) return [51.1956, 8.5338];
+  const lower = location.toLowerCase();
+
+  // 1. Direct match with known venues
+  for (const [key, coords] of Object.entries(KNOWN_EVENT_VENUES)) {
+    if (lower.includes(key)) {
+      return coords;
+    }
+  }
+
+  // 2. District coordinate match
+  for (const [district, coords] of Object.entries(DISTRICT_COORDINATES)) {
+    if (lower.includes(district.toLowerCase())) {
+      return coords;
+    }
+  }
+
+  // 3. Fallback to Winterberg center
+  return [51.1956, 8.5338];
+}
+
 // Geocode cache
 const geocodeCache: Record<string, [number, number]> = {};
 
 // Inline event map
 function EventMap({ location, lang }: { location: string; lang: string }) {
-  const [position, setPosition] = useState<[number, number] | null>(null);
-  const [loading, setLoading] = useState(true);
+  const defaultPos = useMemo(() => getKnownOrDistrictCoordinates(location), [location]);
+  const [position, setPosition] = useState<[number, number]>(() => geocodeCache[location] || defaultPos);
 
   useEffect(() => {
-    const query = `${location}, Winterberg, Deutschland`;
-    if (geocodeCache[query]) {
-      setPosition(geocodeCache[query]);
-      setLoading(false);
+    if (geocodeCache[location]) {
+      setPosition(geocodeCache[location]);
       return;
     }
 
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`)
-      .then(r => r.json())
-      .then(data => {
-        if (data?.length > 0) {
-          const coords: [number, number] = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
-          geocodeCache[query] = coords;
-          setPosition(coords);
+    const knownPos = getKnownOrDistrictCoordinates(location);
+    setPosition(knownPos);
+    geocodeCache[location] = knownPos;
+
+    // Clean address query for extra geocoding precision if needed
+    const cleanAddress = location
+      .replace(/\bIn d\.\s*/gi, 'In der ')
+      .replace(/\bBgm\.-/gi, 'Bürgermeister-')
+      .replace(/\bDr\.-/gi, 'Doktor-')
+      .replace(/(\d+)\/\d+/g, '$1')
+      .replace(/,?\s*(Winterberg|Deutschland)\b/gi, '')
+      .trim();
+
+    const query = `${cleanAddress}, Winterberg`;
+
+    const fetchGeocode = async () => {
+      try {
+        // 1. Photon API (fast, handles fuzzy queries & abbreviations, CORS friendly)
+        try {
+          const photonRes = await fetch(
+            `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=1`
+          );
+          if (photonRes.ok) {
+            const data = await photonRes.json();
+            const feat = data.features?.[0];
+            if (feat?.geometry?.coordinates && Array.isArray(feat.geometry.coordinates)) {
+              const coords: [number, number] = [feat.geometry.coordinates[1], feat.geometry.coordinates[0]];
+              geocodeCache[location] = coords;
+              setPosition(coords);
+              return;
+            }
+          }
+        } catch {
+          // Fall through to Nominatim
         }
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, [location]);
+
+        // 2. Nominatim fallback with proper headers
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Deutschland')}&limit=1`,
+            {
+              headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'WinterbergVerzeichnis/1.0 (info@winterberg-verzeichnis.de)'
+              }
+            }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0 && data[0].lat && data[0].lon) {
+              const coords: [number, number] = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+              geocodeCache[location] = coords;
+              setPosition(coords);
+              return;
+            }
+          }
+        } catch {
+          // Keep knownPos
+        }
+      } catch {
+        // Keep knownPos
+      }
+    };
+
+    fetchGeocode();
+  }, [location, defaultPos]);
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location + ', Winterberg')}`;
 
-  if (loading) {
-    return (
-      <div className="w-full h-[180px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse mt-3">
-        <MapPin className="w-5 h-5 text-[#C5BFAF]" />
-      </div>
-    );
-  }
-
-  if (!position) {
-    return (
-      <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#EDE8E0] rounded-lg text-xs text-[#5F6B63] flex items-center justify-between">
-        <span>Standort konnte nicht auf der Karte gefunden werden.</span>
-        <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="text-[#0F4C2E] font-semibold hover:underline flex items-center gap-1">
-          <Navigation className="w-3 h-3" />
-          Google Maps
-        </a>
-      </div>
-    );
-  }
-
-  // Dynamically import leaflet for the icon
-  const L = require('leaflet');
-  const brandIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
-
   return (
     <div className="mt-3 w-full overflow-hidden rounded-lg border border-[#EDE8E0] shadow-sm relative">
-      <Suspense fallback={<div className="w-full h-[180px] bg-[#F0EDE7] animate-pulse" />}>
-        <div style={{ height: '180px' }}>
-          <MapContainer
-            center={position}
-            zoom={14}
-            style={{ height: '100%', width: '100%' }}
-            zoomControl={false}
-            scrollWheelZoom={false}
-            dragging={true}
-            doubleClickZoom={false}
-            attributionControl={false}
-          >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={position} icon={brandIcon} />
-          </MapContainer>
-        </div>
-      </Suspense>
+      <div style={{ height: '180px' }}>
+        <MapContainer
+          center={position}
+          zoom={14}
+          style={{ height: '100%', width: '100%' }}
+          zoomControl={false}
+          scrollWheelZoom={false}
+          dragging={true}
+          doubleClickZoom={false}
+          attributionControl={false}
+        >
+          <SetViewOnPosition position={position} />
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={position} icon={violetEventIcon} />
+        </MapContainer>
+      </div>
       <a
         href={googleMapsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute bottom-2 right-2 z-[400] flex items-center gap-1.5 bg-white text-[#0F4C2E] text-[11px] font-semibold px-2.5 py-1.5 rounded-md shadow-md border border-[#EDE8E0] hover:bg-[#0F4C2E] hover:text-white transition-colors"
+        className="absolute bottom-2 right-2 z-[400] flex items-center gap-1.5 bg-white text-[#7E22CE] text-[11px] font-semibold px-2.5 py-1.5 rounded-md shadow-md border border-[#EDE8E0] hover:bg-[#7E22CE] hover:text-white transition-colors"
       >
         <Navigation className="w-3 h-3" />
         {lang === 'nl' ? 'Route plannen' : 'Route planen'}
@@ -204,7 +307,17 @@ export default function EventsBoard({
   const { t, lang } = useTranslation();
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('Alle');
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category') || params.get('kategorie');
+      if (cat) {
+        if (cat.toLowerCase() === 'wandern' || cat.toLowerCase() === 'wandelen') return 'Wandern';
+        return cat;
+      }
+    }
+    return 'Alle';
+  });
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
   const [expandedMap, setExpandedMap] = useState<string | null>(null);
 
@@ -310,7 +423,7 @@ export default function EventsBoard({
               const CatIcon = meta?.Icon;
               const label = type === 'Alle' 
                 ? 'Alle' 
-                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : type));
+                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : (lang === 'nl' && type === 'Wandern' ? 'Wandelen' : type)));
               return (
                 <button
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
@@ -386,7 +499,7 @@ export default function EventsBoard({
                       <div className="flex items-center gap-2 flex-wrap mb-2">
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${meta.bg} ${meta.text} ${meta.border}`}>
                           <CatIcon className="w-3 h-3" />
-                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : displayCategory)}
+                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : (lang === 'nl' && displayCategory === 'Wandern' ? 'Wandelen' : displayCategory))}
                         </span>
                         <span className="text-[11.5px] text-[#5F6B63] font-medium">
                           {formatEventDateLong(event.startDate)}

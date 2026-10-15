@@ -14,6 +14,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/news/im-oktober-wird-im-winterberg-gewandert</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/in-oktober-wordt-er-gewandeld-in-winterberg</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/news/herbstzeit-nordhang-jause-kuerbisschnitzen-lichterzauber</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -813,6 +825,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/boekhandels</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/die-besten/einzelhandel/haushaltswaren-und-deko</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/huishoudelijke-artikelen-en-decoratie</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1953,6 +1977,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/boekhandels</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -6549,6 +6585,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/ata-s-doener-winterberg</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/tischlein-deck-dich</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/tischlein-deck-dich</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
