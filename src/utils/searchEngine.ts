@@ -3,8 +3,8 @@ import { Business } from '../types';
 export interface ParsedSearchQuery {
   raw: string;
   normalized: string;
-  coreTokens: string[];
-  semanticKeywords: string[];
+  subjectTokens: string[];
+  actionTokens: string[];
   isNaturalLanguage: boolean;
   wantsSundayOpen: boolean;
   wantsJobs: boolean;
@@ -20,22 +20,22 @@ export interface SearchMatchResult {
   };
 }
 
-// Common German and Dutch conversational stop words & fillers
+// Conversational stop words & fillers (German & Dutch)
 const STOP_WORDS = new Set([
   // German
-  'wo', 'kann', 'ich', 'wir', 'man', 'du', 'ihr', 'sie',
-  'gibt', 'es', 'hier', 'in', 'im', 'am', 'an', 'auf', 'aus', 'bei', 'mit', 'nach', 'von', 'zu', 'zum', 'zur',
+  'wo', 'kann', 'könnte', 'koennte', 'ich', 'wir', 'man', 'du', 'ihr', 'sie',
+  'gibt', 'es', 'hier', 'in', 'im', 'am', 'an', 'auf', 'aus', 'bei', 'nach', 'von', 'zu', 'zum', 'zur',
   'winterberg', 'sauerland',
   'ein', 'eine', 'einer', 'eines', 'einem', 'einen',
   'der', 'die', 'das', 'den', 'dem', 'des',
   'wer', 'wie', 'was', 'welcher', 'welche', 'welches', 'welchem', 'welchen',
-  'bietet', 'macht', 'baut', 'hat', 'haben', 'finde', 'finden', 'sucht', 'suche', 'suchen', 'gesucht',
-  'brauche', 'brauchen', 'benötige', 'benoetige', 'möchte', 'moechte', 'will', 'wollte', 'könnte', 'koennte',
-  'und', 'oder', 'aber', 'denn',
+  'möchte', 'moechte', 'will', 'wollte', 'brauche', 'brauchen', 'benötige', 'benoetige',
+  'suche', 'suchen', 'gesucht', 'finde', 'finden', 'bietet', 'hat', 'haben',
+  'und', 'oder', 'aber', 'denn', 'mit', 'für', 'fuer',
   'sehr', 'gut', 'gute', 'guten', 'gutes', 'bester', 'beste', 'bestes', 'besten',
   'lecker', 'leckere', 'leckeren', 'leckeres', 'frisch', 'frische', 'frischen',
   'günstig', 'guenstig', 'billig', 'preiswert', 'schnell', 'einfach',
-  'bitte', 'mal', 'gerne', 'irgendwo', 'jemand', 'etwas', 'lassen',
+  'bitte', 'mal', 'gerne', 'irgendwo', 'jemand', 'etwas', 'lassen', 'zeigen',
   // Dutch
   'waar', 'kan', 'ik', 'je', 'we', 'men', 'jullie',
   'is', 'er', 'hier', 'een', 'de', 'het',
@@ -45,136 +45,174 @@ const STOP_WORDS = new Set([
   'bij', 'voor', 'van', 'en', 'of', 'alsjeblieft', 'eens', 'ergens'
 ]);
 
-// Semantic domains & synonyms for Natural Language queries
-const SEMANTIC_SYNONYMS: Record<string, string[]> = {
-  // Döner / Kebab / Türkisch / Imbiss
-  'döner': ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'dueruem', 'lahmacun', 'drehspieß', 'drehspiess', 'türkisch', 'imbiss', 'atas döner', 'nowa kebabhaus', 'ceylon'],
-  'doener': ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'dueruem', 'lahmacun', 'drehspieß', 'imbiss'],
-  'kebab': ['döner', 'kebab', 'kebap', 'shawarma', 'dürüm', 'drehspieß', 'imbiss'],
-  'kebap': ['döner', 'kebab', 'kebap', 'shawarma', 'dürüm', 'drehspieß', 'imbiss'],
-  'shawarma': ['shawarma', 'döner', 'kebab', 'ceylon'],
-  'lahmacun': ['lahmacun', 'döner', 'türkisch', 'kebab'],
+// Generic Action Verbs: describe an action, NOT a specific product/entity
+const ACTION_VERBS = new Set([
+  'kaufen', 'kaufe', 'gekauft', 'kauf', 'einkaufen', 'shoppen', 'besorgen', 'holen', 'bekommen', 'kriegen', 'kopen',
+  'essen', 'speisen', 'gegessen', 'frühstücken', 'snacken', 'eten',
+  'trinken', 'getrunken', 'drinken',
+  'leihen', 'ausleihen', 'mieten', 'geliehen', 'gemietet', 'verleih', 'huren',
+  'reparieren', 'repariert', 'reparatur', 'instandsetzen',
+  'übernachten', 'uebernachten', 'schlafen', 'wohnen', 'overnachten', 'slapen'
+]);
 
-  // Gastronomie & Essen
-  'essen': ['restaurant', 'gastronomie', 'speisekarte', 'imbiss', 'gasthof', 'küche', 'speisen', 'gerichte', 'mittagstisch', 'abendessen', 'lecker'],
-  'trinken': ['bar', 'kneipe', 'pub', 'biergarten', 'café', 'getränke', 'cocktails', 'weinstube'],
-  'bier': ['kneipe', 'pub', 'biergarten', 'brauhaus', 'bar', 'bier'],
+/**
+ * Word stemmer for common German & Dutch plurals / inflections
+ */
+export function stemWord(w: string): string {
+  const norm = w.toLowerCase().trim();
+  if (norm === 'skier' || norm === 'skiern') return 'ski';
+  if (norm === 'brillen') return 'brille';
+  if (norm === 'bücher' || norm === 'buecher') return 'buch';
+  if (norm === 'schuhe' || norm === 'schoenen') return 'schuh';
+  if (norm === 'blumen') return 'blume';
+  if (norm === 'autos') return 'auto';
+  if (norm === 'hotels') return 'hotel';
+  if (norm === 'pizzen') return 'pizza';
+  if (norm === 'bäcker' || norm === 'bäckereien') return 'bäckerei';
+  if (norm.endsWith('en') && norm.length > 5) return norm.slice(0, -2);
+  if (norm.endsWith('e') && norm.length > 4) return norm.slice(0, -1);
+  if (norm.endsWith('s') && norm.length > 4) return norm.slice(0, -1);
+  return norm;
+}
+
+// Specific domain synonyms for Subjects & Entities
+const DOMAIN_SYNONYMS: Record<string, string[]> = {
+  // Optik / Brillen
+  'brille': ['brille', 'brillen', 'optik', 'optiker', 'augenoptik', 'augenoptiker', 'sehhilfe', 'brillengläser', 'sonnenbrille', 'kontaktlinsen', 'brillenschmiede'],
+  'optiker': ['optiker', 'augenoptiker', 'brille', 'brillen', 'sehhilfe', 'sehtest', 'augenoptik', 'brillenschmiede', 'optik'],
+  'optik': ['optik', 'optiker', 'augenoptik', 'augenoptiker', 'brille', 'brillen', 'brillenschmiede'],
+
+  // Döner / Kebab
+  'döner': ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'dueruem', 'lahmacun', 'drehspieß', 'drehspiess', 'türkisch'],
+  'doener': ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'dueruem', 'lahmacun', 'drehspieß', 'drehspiess', 'türkisch'],
+  'kebab': ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'drehspieß'],
+  'kebap': ['döner', 'doener', 'kebab', 'kebap', 'shawarma', 'dürüm', 'drehspieß'],
+  'shawarma': ['shawarma', 'döner', 'kebab', 'ceylon'],
+  'dürüm': ['dürüm', 'dueruem', 'döner', 'kebab', 'rollo'],
+  'dueruem': ['dürüm', 'dueruem', 'döner', 'kebab', 'rollo'],
+
+  // Bücher
+  'buch': ['buch', 'bücher', 'buecher', 'buchhandlung', 'buchladen', 'lesen', 'taschenbuch', 'wortreich'],
+  'buchhandlung': ['buchhandlung', 'buchladen', 'buch', 'bücher', 'buecher', 'wortreich'],
+
+  // Blumen / Floristik
+  'blume': ['blumen', 'blume', 'floristik', 'blumengeschäft', 'blumenladen', 'gärtnerei', 'pflanzen', 'schnittblumen'],
+  'floristik': ['floristik', 'blumen', 'blumengeschäft', 'pflanzen', 'gärtnerei'],
+
+  // Schuhe
+  'schuh': ['schuhe', 'schuh', 'schuhgeschäft', 'schuhhaus', 'stiefel', 'sneaker', 'wanderschuhe', 'winterschuhe', 'schoenen'],
+  'schoenen': ['schuhe', 'schoenen', 'stiefel', 'schuhhaus'],
+
+  // Kleidung / Mode
+  'kleidung': ['kleidung', 'mode', 'bekleidung', 'fashion', 'boutique', 'textilien', 'damenmode', 'herrenmode', 'kleding'],
+  'mode': ['mode', 'bekleidung', 'kleidung', 'fashion', 'boutique', 'textilien', 'damenmode', 'herrenmode'],
+  'kleding': ['mode', 'bekleidung', 'kleding', 'kleidung', 'fashion'],
+
+  // Pizza / Pasta
   'pizza': ['pizza', 'pizzeria', 'steinofenpizza', 'pasta', 'italienisch', 'ristorante'],
-  'pasta': ['pasta', 'italienisch', 'spaghetti', 'pizza', 'pizzeria'],
+  'pizzeria': ['pizzeria', 'pizza', 'italienisch', 'pasta', 'ristorante'],
+  'pasta': ['pasta', 'spaghetti', 'italienisch', 'pizza', 'pizzeria'],
+
+  // Burger / Fast Food
   'burger': ['burger', 'hamburger', 'cheeseburger', 'pommes', 'fast food', 'imbiss'],
-  'pommes': ['pommes', 'currywurst', 'imbiss', 'fast food', 'snack'],
-  'currywurst': ['currywurst', 'pommes', 'imbiss', 'bratwurst'],
+  'pommes': ['pommes', 'currywurst', 'imbiss', 'fast food'],
+  'currywurst': ['currywurst', 'pommes', 'bratwurst', 'imbiss'],
   'schnitzel': ['schnitzel', 'restaurant', 'gasthof', 'deutsche küche'],
   'steak': ['steak', 'steakhouse', 'fleisch', 'grill', 'restaurant'],
   'fondue': ['fondue', 'käsefondue', 'fleischfondue', 'kurparkstuben'],
-  'brötchen': ['bäckerei', 'baeckerei', 'brötchen', 'broetchen', 'brot', 'frühstück', 'café'],
-  'broetchen': ['bäckerei', 'baeckerei', 'brötchen', 'brot', 'frühstück'],
-  'frühstück': ['frühstück', 'fruehstueck', 'café', 'cafe', 'bäckerei', 'buffet', 'brunch'],
+
+  // Bäcker / Frühstück
+  'brötchen': ['bäckerei', 'baeckerei', 'brötchen', 'broetchen', 'brot', 'frühstück', 'café', 'konditorei', 'backwaren'],
+  'broetchen': ['bäckerei', 'baeckerei', 'brötchen', 'brot', 'frühstück', 'bäckerei'],
+  'brot': ['brot', 'bäckerei', 'baeckerei', 'brötchen', 'backwaren'],
+  'frühstück': ['frühstück', 'fruehstueck', 'café', 'cafe', 'bäckerei', 'buffet', 'brunch', 'ontbijt'],
   'fruehstueck': ['frühstück', 'café', 'cafe', 'bäckerei', 'brunch'],
-  'kaffee': ['café', 'cafe', 'kaffee', 'kuchen', 'torte', 'konditorei', 'bäckerei'],
+  'kaffee': ['café', 'cafe', 'kaffee', 'kuchen', 'torte', 'konditorei', 'bäckerei', 'koffie'],
   'kuchen': ['kuchen', 'torte', 'café', 'cafe', 'konditorei', 'bäckerei'],
-  'eis': ['eisdiele', 'eiscafe', 'eisspezialitäten', 'kugeln'],
+  'bäcker': ['bäckerei', 'baeckerei', 'brot', 'brötchen', 'konditorei', 'backwaren', 'bakker'],
+  'baeckerei': ['bäckerei', 'brot', 'brötchen', 'konditorei', 'backwaren'],
+  'bakker': ['bäckerei', 'bakker', 'brood', 'ontbijt'],
 
   // Hotel / Übernachten
-  'hotel': ['hotel', 'hotels & unterkünfte', 'übernachtung', 'pension', 'zimmer', 'garni', 'resort'],
-  'übernachten': ['hotel', 'ferienwohnung', 'pension', 'unterkunft', 'zimmer', 'gasthof'],
-  'uebernachten': ['hotel', 'ferienwohnung', 'pension', 'unterkunft', 'zimmer'],
-  'schlafen': ['hotel', 'unterkunft', 'ferienwohnung', 'pension'],
-  'unterkunft': ['unterkunft', 'hotel', 'ferienwohnung', 'fewo', 'pension', 'gästehaus'],
-  'ferienwohnung': ['ferienwohnung', 'fewo', 'apartments', 'unterkunft'],
-  'fewo': ['ferienwohnung', 'fewo', 'unterkunft', 'apartments'],
-  'wellness': ['wellness', 'sauna', 'spa', 'massage', 'schwimmbad', 'badelandschaft', 'erholung'],
-  'sauna': ['sauna', 'wellness', 'spa', 'bad', 'schwimmbad'],
-  'schwimmen': ['schwimmbad', 'pool', 'badelandschaft', 'hallenbad', 'freibad'],
+  'hotel': ['hotel', 'hotels & unterkünfte', 'resort', 'pension', 'zimmer', 'garni'],
+  'ferienwohnung': ['ferienwohnung', 'fewo', 'apartments', 'unterkunft', 'ferienhaus'],
+  'fewo': ['ferienwohnung', 'fewo', 'apartments', 'unterkunft'],
+  'unterkunft': ['unterkunft', 'hotel', 'ferienwohnung', 'pension', 'gästehaus', 'zimmer'],
+  'pension': ['pension', 'gasthof', 'garni', 'zimmer', 'unterkunft', 'hotel'],
 
-  // Auto / KFZ / Mobilität
-  'auto': ['kfz', 'werkstatt', 'auto', 'reparatur', 'reifen', 'tüv', 'inspektion', 'autowerkstatt'],
+  // Wellness / Sauna
+  'sauna': ['sauna', 'wellness', 'spa', 'bad', 'schwimmbad', 'badelandschaft'],
+  'wellness': ['wellness', 'sauna', 'spa', 'massage', 'schwimmbad', 'erholung'],
+  'massage': ['massage', 'wellness', 'physiotherapie', 'entspannung'],
+  'schwimmbad': ['schwimmbad', 'pool', 'badelandschaft', 'hallenbad', 'freibad'],
+
+  // Auto / KFZ
+  'auto': ['kfz', 'werkstatt', 'auto', 'reparatur', 'reifen', 'tüv', 'inspektion', 'autowerkstatt', 'autohaus', 'kraftfahrzeug'],
   'kfz': ['kfz', 'auto', 'werkstatt', 'reparatur', 'tüv', 'reifen', 'kfz-werkstätten'],
-  'werkstatt': ['werkstatt', 'kfz', 'reparatur', 'handwerk', 'inspektion'],
-  'reparieren': ['reparatur', 'werkstatt', 'instandsetzung', 'service'],
-  'reparatur': ['reparatur', 'werkstatt', 'reparieren', 'instandsetzung'],
-  'tanken': ['tankstelle', 'benzin', 'diesel', 'kraftstoff', 'e-laden'],
-  'tankstelle': ['tankstelle', 'kraftstoff', 'benzin', 'diesel', 'shop'],
+  'werkstatt': ['werkstatt', 'kfz', 'reparatur', 'handwerk', 'inspektion', 'autowerkstatt'],
+  'tüv': ['tüv', 'hauptuntersuchung', 'inspektion', 'kfz', 'werkstatt'],
   'reifen': ['reifen', 'räder', 'kfz', 'werkstatt', 'reifenwechsel'],
+  'tankstelle': ['tankstelle', 'kraftstoff', 'benzin', 'diesel', 'tanken'],
 
   // Fahrrad / Bike
-  'fahrrad': ['fahrrad', 'bike', 'e-bike', 'mountainbike', 'radsport', 'verleih', 'fahrradverleih'],
+  'fahrrad': ['fahrrad', 'bike', 'e-bike', 'mountainbike', 'radsport', 'fahrradverleih', 'bikeverleih', 'fiets'],
   'bike': ['bike', 'mountainbike', 'e-bike', 'fahrrad', 'bikepark', 'radsport'],
-  'mountainbike': ['mountainbike', 'bike', 'bikepark', 'trail', 'fahrrad'],
   'ebike': ['e-bike', 'ebike', 'fahrrad', 'bike', 'verleih'],
+  'mountainbike': ['mountainbike', 'bike', 'bikepark', 'trail', 'fahrrad'],
+  'fiets': ['fahrrad', 'fiets', 'bike', 'e-bike', 'fietsverhuur'],
 
-  // Wintersport / Ski
-  'ski': ['ski', 'skiverleih', 'skischule', 'skilift', 'karussell', 'wintersport', 'piste', 'schnee'],
-  'skiverleih': ['skiverleih', 'ski', 'snowboard', 'verleih', 'ausrüstung', 'helme'],
-  'skischule': ['skischule', 'skikurs', 'snowboardkurs', 'skilehrer'],
+  // Ski / Wintersport
+  'ski': ['ski', 'skier', 'skilift', 'skiverleih', 'skischule', 'wintersport', 'piste', 'schnee', 'skiverhuur'],
+  'skiverleih': ['skiverleih', 'ski', 'snowboard', 'ausrüstung', 'helme', 'skiverhuur'],
+  'skischule': ['skischule', 'skikurs', 'snowboardkurs', 'skilehrer', 'skischool'],
   'snowboard': ['snowboard', 'ski', 'wintersport', 'skiverleih'],
-  'rodel': ['rodel', 'schlitten', 'rodelbahn', 'bobbahn', 'eisarena'],
   'schlitten': ['schlitten', 'rodel', 'rodelbahn'],
 
-  // Gesundheit & Medizin
-  'arzt': ['arzt', 'ärzte & praxen', 'praxis', 'hausarzt', 'medizin', 'facharzt'],
-  'zahnarzt': ['zahnarzt', 'zahn', 'zähne', 'prophylaxe', 'dental'],
-  'apotheke': ['apotheke', 'medikamente', 'arzneimittel', 'notdienst'],
-  'physio': ['physiotherapie', 'krankengymnastik', 'massage', 'therapie'],
-  'physiotherapie': ['physiotherapie', 'massage', 'krankengymnastik', 'reha'],
+  // Ärzte & Gesundheit
+  'arzt': ['arzt', 'ärzte & praxen', 'praxis', 'hausarzt', 'facharzt', 'medizin', 'dokter'],
+  'hausarzt': ['hausarzt', 'arzt', 'ärzte & praxen', 'praxis', 'allgemeinmedizin'],
+  'zahnarzt': ['zahnarzt', 'zahn', 'zähne', 'prophylaxe', 'dental', 'tandarts'],
+  'apotheke': ['apotheke', 'medikamente', 'arzneimittel', 'notdienst', 'apotheek'],
+  'physiotherapie': ['physiotherapie', 'krankengymnastik', 'massage', 'therapie'],
   'tierarzt': ['tierarzt', 'tierarztpraxis', 'tiere', 'hund', 'katze'],
 
-  // Einkaufen & Mode & Handwerk
-  'einkaufen': ['einzelhandel', 'supermarkt', 'geschäft', 'mode', 'lebensmittel', 'shopping'],
-  'supermarkt': ['supermarkt', 'lebensmittel', 'discounter', 'markt', 'einkauf'],
-  'lebensmittel': ['lebensmittel', 'supermarkt', 'feinkost', 'bäcker', 'metzger'],
-  'mode': ['mode', 'bekleidung', 'kleidung', 'fashion', 'boutique', 'textilien'],
-  'kleidung': ['mode', 'bekleidung', 'kleidung', 'textilien', 'fashion'],
-  'schuhe': ['schuhe', 'schuhhaus', 'stiefel', 'sneaker'],
-  'handwerk': ['handwerk', 'bau', 'renovierung', 'meisterbetrieb'],
-  'dach': ['dachdecker', 'bedachung', 'dacharbeiten'],
+  // Handwerk
   'dachdecker': ['dachdecker', 'bedachung', 'dach', 'zimmerei'],
   'schreiner': ['schreiner', 'tischler', 'möbel', 'innenausbau', 'holz'],
   'tischler': ['tischler', 'schreiner', 'holz', 'möbel'],
-  'elektro': ['elektro', 'elektriker', 'elektrotechnik', 'strom', 'installation'],
   'elektriker': ['elektro', 'elektriker', 'strom', 'installation', 'beleuchtung'],
+  'photovoltaik': ['photovoltaik', 'solar', 'pv-anlage', 'solaranlagen', 'energie'],
   'solar': ['photovoltaik', 'solar', 'pv-anlage', 'solaranlagen', 'energie'],
-  'photovoltaik': ['photovoltaik', 'solar', 'pv-anlage', 'solaranlagen', 'erneuerbare energien'],
   'wärmepumpe': ['wärmepumpe', 'heizung', 'sanitär', 'energieberatung'],
-  'sanitär': ['sanitär', 'bad', 'badezimmer', 'heizung', 'klempner'],
-  'heizung': ['heizung', 'sanitär', 'wärmepumpe', 'klima', 'lüftung'],
   'maler': ['maler', 'lackierer', 'anstrich', 'tapeten', 'fassade'],
 
-  // Finanzen, Recht, Werbung
-  'versicherung': ['versicherung', 'versicherungsagenturen', 'vorsorge', 'absicherung'],
-  'bank': ['bank', 'volksbank', 'sparkasse', 'geldautomat', 'finanzen', 'kredit'],
-  'geld': ['bank', 'geldautomat', 'finanzen', 'sparkasse', 'volksbank'],
-  'steuer': ['steuerberater', 'steuern', 'steuerberatung', 'finanzamt'],
+  // Finanzen / Recht / Beratung / Coworking
   'steuerberater': ['steuerberater', 'steuerberatung', 'steuern', 'buchhaltung'],
-  'anwalt': ['rechtsanwalt', 'anwalt', 'notar', 'kanzlei', 'jurist'],
   'rechtsanwalt': ['rechtsanwalt', 'anwalt', 'kanzlei', 'recht', 'notar'],
+  'anwalt': ['rechtsanwalt', 'anwalt', 'kanzlei', 'recht'],
+  'versicherung': ['versicherung', 'versicherungsagenturen', 'vorsorge', 'absicherung'],
+  'bank': ['bank', 'volksbank', 'sparkasse', 'geldautomat', 'finanzen'],
   'marketing': ['werbeagentur', 'marketing', 'marketingdienstleistungen', 'webdesign', 'werbung', 'seo'],
-  'werbung': ['werbeagentur', 'marketing', 'grafikdesign', 'werbung', 'print', 'digital'],
-  'webdesign': ['webdesign', 'website', 'homepage', 'internetagentur', 'marketing'],
+  'coworking': ['coworking', 'coworking space', 'arbeitsplatz', 'schreibtisch', 'meetingraum', 'cowolo']
+};
 
-  // Coworking & Office / Workation
-  'coworking': ['coworking', 'cowolo', 'arbeitsplatz', 'schreibtisch', 'desk', 'büro', 'workation', 'meetingraum', 'konferenzraum'],
-  'büro': ['büro', 'coworking', 'cowolo', 'arbeitsplatz', 'schreibtisch', 'desk', 'office'],
-  'office': ['office', 'büro', 'coworking', 'cowolo', 'arbeitsplatz', 'desk'],
-  'workation': ['workation', 'coworking', 'cowolo', 'arbeitsplatz', 'urlaub', 'arbeiten'],
-  'arbeitsplatz': ['arbeitsplatz', 'coworking', 'cowolo', 'schreibtisch', 'desk', 'büro'],
-  'meetingraum': ['meetingraum', 'konferenzraum', 'tagung', 'coworking', 'cowolo'],
-  'konferenzraum': ['konferenzraum', 'meetingraum', 'tagung', 'coworking', 'cowolo'],
-
-  // Dutch synonyms
-  'eten': ['restaurant', 'gastronomie', 'essen', 'imbiss', 'snack', 'gerechten', 'lunch', 'diner'],
-  'drinken': ['bar', 'café', 'pub', 'bier', 'biergarten', 'drankjes'],
-  'overnachten': ['hotel', 'hotels & unterkünfte', 'vakantie', 'slapen', 'overnachting', 'pension', 'vakantiehuis', 'appartement'],
-  'slapen': ['hotel', 'vakantiehuis', 'appartement', 'pension', 'overnachten'],
-  'fiets': ['fahrrad', 'fiets', 'bike', 'e-bike', 'mountainbike', 'verleih', 'fietsverhuur'],
-  'huren': ['verleih', 'verhuur', 'mieten', 'fietsverhuur', 'skiverhuur'],
-  'skien': ['ski', 'skiverleih', 'skischool', 'wintersport', 'piste'],
-  'winkelen': ['einkaufen', 'shopping', 'supermarkt', 'mode', 'kleding'],
-  'kleding': ['mode', 'bekleidung', 'kleding', 'schoenen'],
-  'schoenen': ['schuhe', 'schoenen', 'stiefel'],
-  'dokter': ['arzt', 'dokter', 'huisarts', 'praktijk', 'medisch'],
-  'tandarts': ['zahnarzt', 'tandarts', 'tanden'],
-  'bakker': ['bäckerei', 'bakker', 'brood', 'ontbijt', 'café']
+// Fallback category domains when ONLY an action verb is queried without any subject
+const ACTION_VERB_DEFAULT_DOMAINS: Record<string, string[]> = {
+  'kaufen': ['einzelhandel', 'supermarkt', 'geschäft', 'einkaufen', 'shopping'],
+  'einkaufen': ['einzelhandel', 'supermarkt', 'geschäft', 'einkaufen', 'shopping'],
+  'shoppen': ['einzelhandel', 'mode', 'geschäft', 'einkaufen', 'shopping'],
+  'kopen': ['einzelhandel', 'supermarkt', 'geschäft', 'einkaufen', 'shopping'],
+  'essen': ['restaurant', 'gastronomie', 'speisen', 'imbiss', 'gasthof', 'küche'],
+  'eten': ['restaurant', 'gastronomie', 'speisen', 'imbiss', 'gasthof'],
+  'trinken': ['kneipe', 'bar', 'pub', 'biergarten', 'gaststätte'],
+  'drinken': ['kneipe', 'bar', 'pub', 'biergarten'],
+  'übernachten': ['hotel', 'unterkunft', 'ferienwohnung', 'pension'],
+  'uebernachten': ['hotel', 'unterkunft', 'ferienwohnung', 'pension'],
+  'schlafen': ['hotel', 'unterkunft', 'ferienwohnung', 'pension'],
+  'overnachten': ['hotel', 'unterkunft', 'ferienwohnung', 'pension'],
+  'leihen': ['verleih', 'skiverleih', 'fahrradverleih', 'mieten'],
+  'mieten': ['verleih', 'skiverleih', 'fahrradverleih', 'mieten'],
+  'reparieren': ['werkstatt', 'reparatur', 'kfz', 'handwerk']
 };
 
 /**
@@ -190,16 +228,84 @@ export function normalizeSearchString(str: string): string {
 }
 
 /**
- * Parses user input into search tokens, recognizing natural language queries
+ * Checks if a haystack contains a term using word boundaries and domain-safe compound rules.
+ * Avoids false substring matches (e.g. 'auto' in 'autorenlesung', 'buch' in 'terminbuchung').
+ */
+export function matchesKeyword(haystack: string, term: string): boolean {
+  if (!haystack || !term) return false;
+  const lowerH = haystack.toLowerCase();
+  const lowerT = term.toLowerCase().trim();
+
+  // 1. Direct word boundary match
+  const wordBoundaryRegex = new RegExp(`(^|[^a-zA-Z0-9äöüÄÖÜß])${lowerT}([^a-zA-Z0-9äöüÄÖÜß]|$)`, 'i');
+  if (wordBoundaryRegex.test(lowerH)) {
+    return true;
+  }
+
+  // 2. Specific domain compounds & safety rules
+  if (lowerT === 'buch') {
+    return /\b(buch|bücher|buecher|buchhandlung|buchladen|taschenbuch|fachbuch|lesebuch|bilderbuch)\b/i.test(lowerH);
+  }
+  if (lowerT === 'auto') {
+    return /\b(auto|autos|autohaus|autowerkstatt|autoreparatur|autohandel|autopflege|kfz)\b/i.test(lowerH);
+  }
+  if (lowerT === 'ski') {
+    return /\b(ski|skier|skiern|skiverleih|skischule|skilift|skigebiet|skipiste|skiverhuur)\b/i.test(lowerH);
+  }
+  if (lowerT === 'brille') {
+    return /\b(brille|brillen|brillenschmiede|sonnenbrille|lesebrille|gleitsichtbrille|brillengläser|sehhilfe|optik|optiker)\b/i.test(lowerH);
+  }
+  if (lowerT === 'blume' || lowerT === 'blumen') {
+    return /\b(blume|blumen|blumengeschäft|blumenladen|floristik|schnittblumen|blumenstrauß|blumenstrauss)\b/i.test(lowerH);
+  }
+  if (lowerT === 'schuh' || lowerT === 'schuhe') {
+    return /\b(schuh|schuhe|schuhgeschäft|schuhhaus|wanderschuhe|winterschuhe|sportschuhe|stiefel|sneaker|schoenen)\b/i.test(lowerH);
+  }
+  if (lowerT === 'döner' || lowerT === 'doener') {
+    return /\b(döner|doener|dönerladen|kebab|kebap|shawarma|dürüm|dueruem|drehspieß)\b/i.test(lowerH);
+  }
+  if (lowerT === 'sauna') {
+    return /\b(sauna|saunabereich|saunalandschaft|biosauna|finnische sauna|dampfbad)\b/i.test(lowerH);
+  }
+
+  // 3. Fallback for longer terms (>= 5 chars): match if starting at word boundary
+  if (lowerT.length >= 5) {
+    const startBoundaryRegex = new RegExp(`(^|[^a-zA-Z0-9äöüÄÖÜß])${lowerT}`, 'i');
+    if (startBoundaryRegex.test(lowerH)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Resolves all search variants and synonyms for a given subject token
+ */
+export function getDomainSynonyms(token: string): string[] {
+  const norm = token.toLowerCase();
+  const stemmed = stemWord(norm);
+  const set = new Set<string>([norm, stemmed]);
+
+  if (DOMAIN_SYNONYMS[norm]) {
+    DOMAIN_SYNONYMS[norm].forEach(s => set.add(s.toLowerCase()));
+  }
+  if (DOMAIN_SYNONYMS[stemmed]) {
+    DOMAIN_SYNONYMS[stemmed].forEach(s => set.add(s.toLowerCase()));
+  }
+
+  return Array.from(set);
+}
+
+/**
+ * Parses user input into search tokens, distinguishing Subjects and Action Verbs
  */
 export function parseSearchQuery(query: string): ParsedSearchQuery {
   const raw = query.trim();
   const normalized = normalizeSearchString(raw);
 
-  // Split into raw words
   const words = normalized.split(' ').filter(w => w.length > 0);
 
-  // Check if it looks like a natural language question
   const isQuestion = raw.includes('?') ||
     /^(wo|wer|wie|was|kann|gibt|haben|suche|brauche|waar|kan|wie|wat|is er)\b/i.test(raw);
 
@@ -207,34 +313,31 @@ export function parseSearchQuery(query: string): ParsedSearchQuery {
   const wantsJobs = /\b(job|jobs|arbeit|stelle|stellen|karriere|ausbildung|vacature|vacatures)\b/i.test(normalized);
   const wantsEvents = /\b(event|events|veranstaltung|veranstaltungen|konzert|fest|party|evenement|evenementen)\b/i.test(normalized);
 
-  // Filter stop words to find core intent tokens
-  let coreTokens = words.filter(w => !STOP_WORDS.has(w) && w.length > 1);
+  const nonStopWords = words.filter(w => !STOP_WORDS.has(w) && w.length > 1);
 
-  // If all words were stop words (e.g. user just typed "wo ist"), keep the words
-  if (coreTokens.length === 0 && words.length > 0) {
-    coreTokens = words.filter(w => w.length > 1);
+  // Distinguish Subject Nouns from Action Verbs
+  const subjectTokens: string[] = [];
+  const actionTokens: string[] = [];
+
+  for (const w of nonStopWords) {
+    if (ACTION_VERBS.has(w)) {
+      actionTokens.push(w);
+    } else {
+      subjectTokens.push(w);
+    }
   }
 
-  // Gather semantic synonyms for core tokens
-  const semanticSet = new Set<string>();
-  for (const token of coreTokens) {
-    if (SEMANTIC_SYNONYMS[token]) {
-      SEMANTIC_SYNONYMS[token].forEach(syn => semanticSet.add(syn.toLowerCase()));
-    }
-    // Also check partial word stems (e.g. "döneressen" -> döner)
-    for (const [key, synList] of Object.entries(SEMANTIC_SYNONYMS)) {
-      if (token.includes(key) || key.includes(token)) {
-        synList.forEach(syn => semanticSet.add(syn.toLowerCase()));
-      }
-    }
+  // If user only typed stop words, keep the longest word as fallback
+  if (subjectTokens.length === 0 && actionTokens.length === 0 && words.length > 0) {
+    subjectTokens.push(words[words.length - 1]);
   }
 
   return {
     raw,
     normalized,
-    coreTokens,
-    semanticKeywords: Array.from(semanticSet),
-    isNaturalLanguage: isQuestion || coreTokens.length !== words.length,
+    subjectTokens,
+    actionTokens,
+    isNaturalLanguage: isQuestion || nonStopWords.length !== words.length,
     wantsSundayOpen,
     wantsJobs,
     wantsEvents
@@ -280,204 +383,212 @@ export function buildBusinessFulltextCorpus(bus: Business): {
  * Scores a business profile against a parsed search query
  */
 export function scoreBusinessMatch(bus: Business, parsed: ParsedSearchQuery): SearchMatchResult {
-  const { normalized, coreTokens, semanticKeywords, wantsSundayOpen, wantsJobs, wantsEvents } = parsed;
+  const { normalized, subjectTokens, actionTokens, wantsJobs, wantsEvents } = parsed;
 
   if (!normalized) {
     return { business: bus, score: 0 };
   }
 
-  const normName = normalizeSearchString(bus.name);
-  const normCat = normalizeSearchString(bus.category);
-  const normSubcat = normalizeSearchString(bus.subcategory || '');
-  const allServices = (bus.services || []).concat(bus.services_nl || []);
-  const allProducts = (bus.products || []).concat(bus.products_nl || []);
-  const normServices = normalizeSearchString(allServices.join(' '));
-  const normProducts = normalizeSearchString(allProducts.join(' '));
-  const normDesc = normalizeSearchString(`${bus.description || ''} ${bus.description_nl || ''} ${bus.extendedDescription || ''} ${bus.extendedDescription_nl || ''}`);
-  const normDistrict = normalizeSearchString(`${bus.district || ''} ${bus.address || ''}`);
-
-  let score = 0;
-  let matchedReason: SearchMatchResult['matchedReason'] = undefined;
-
-  // 1. Direct exact or prefix match on name
-  if (normName === normalized) {
-    score += 300;
-    matchedReason = { type: 'name', text: bus.name };
-  } else if (normName.startsWith(normalized)) {
-    score += 200;
-    matchedReason = { type: 'name', text: bus.name };
-  } else if (normName.includes(normalized)) {
-    score += 150;
-    matchedReason = { type: 'name', text: bus.name };
-  }
-
-  // 2. Direct exact or prefix match on category / subcategory
-  if (normSubcat && (normSubcat === normalized || normSubcat.includes(normalized))) {
-    score += 120;
-    if (!matchedReason) matchedReason = { type: 'category', text: bus.subcategory! };
-  } else if (normCat === normalized || normCat.includes(normalized)) {
-    score += 90;
-    if (!matchedReason) matchedReason = { type: 'category', text: bus.category };
-  }
-
-  // 3. Direct match on services or products
-  const matchingService = allServices.find(s => normalizeSearchString(s).includes(normalized));
-  if (matchingService) {
-    score += 130;
-    if (!matchedReason) matchedReason = { type: 'service', text: matchingService };
-  }
-
-  const matchingProduct = allProducts.find(p => normalizeSearchString(p).includes(normalized));
-  if (matchingProduct) {
-    score += 130;
-    if (!matchedReason) matchedReason = { type: 'product', text: matchingProduct };
-  }
-
-  // 4. Token & Fulltext Holistic Matching
   const { primaryText, secondaryText, deepText } = buildBusinessFulltextCorpus(bus);
   const combinedAllText = `${primaryText} ${secondaryText} ${deepText}`;
 
-  let matchedTokensCount = 0;
-  for (const token of coreTokens) {
-    let tokenFound = false;
-
-    // Name match
-    if (normName.includes(token)) {
-      score += 70;
-      tokenFound = true;
-      if (!matchedReason) matchedReason = { type: 'name', text: bus.name };
-    }
-
-    // Services & Products
-    const tokenService = allServices.find(s => normalizeSearchString(s).includes(token));
-    if (tokenService) {
-      score += 55;
-      tokenFound = true;
-      if (!matchedReason) matchedReason = { type: 'service', text: tokenService };
-    }
-
-    const tokenProduct = allProducts.find(p => normalizeSearchString(p).includes(token));
-    if (tokenProduct) {
-      score += 55;
-      tokenFound = true;
-      if (!matchedReason) matchedReason = { type: 'product', text: tokenProduct };
-    }
-
-    // Category / Subcategory
-    if (normSubcat.includes(token) || normCat.includes(token)) {
-      score += 45;
-      tokenFound = true;
-      if (!matchedReason) matchedReason = { type: 'category', text: bus.subcategory || bus.category };
-    }
-
-    // Description & Extended
-    if (normDesc.includes(token)) {
-      score += 35;
-      tokenFound = true;
-      if (!matchedReason) {
-        // Extract a clean snippet
-        const idx = normDesc.indexOf(token);
-        const start = Math.max(0, idx - 20);
-        const end = Math.min(normDesc.length, idx + token.length + 40);
-        matchedReason = { type: 'description', text: `...${normDesc.slice(start, end).trim()}...` };
-      }
-    }
-
-    // District / Address
-    if (normDistrict.includes(token)) {
-      score += 25;
-      tokenFound = true;
-    }
-
-    // Documents (e.g. Speisekarte / Menü)
-    const matchingDoc = (bus.documents || []).find(d => normalizeSearchString(`${d.title} ${d.type}`).includes(token));
-    if (matchingDoc) {
-      score += 35;
-      tokenFound = true;
-      if (!matchedReason) matchedReason = { type: 'document', text: matchingDoc.title };
-    }
-
-    // Reviews (e.g. customer praised "bester Döner")
-    const matchingReview = (bus.reviews || []).find(r => normalizeSearchString(r.text || '').includes(token));
-    if (matchingReview) {
-      score += 30;
-      tokenFound = true;
-      if (!matchedReason) {
-        const text = matchingReview.text;
-        const idx = text.toLowerCase().indexOf(token);
-        const start = Math.max(0, idx - 15);
-        const end = Math.min(text.length, idx + token.length + 35);
-        matchedReason = { type: 'review', text: `"${text.slice(start, end).trim()}..."` };
-      }
-    }
-
-    // Events & Jobs
-    if (wantsEvents && Array.isArray(bus.events) && bus.events.some(e => normalizeSearchString(`${e.title} ${e.description}`).includes(token))) {
-      score += 40;
-      tokenFound = true;
-      const ev = bus.events.find(e => normalizeSearchString(`${e.title} ${e.description}`).includes(token));
-      if (!matchedReason && ev) matchedReason = { type: 'event', text: ev.title };
-    }
-
-    if (wantsJobs && Array.isArray(bus.jobs) && bus.jobs.some(j => normalizeSearchString(`${j.title} ${j.description}`).includes(token))) {
-      score += 40;
-      tokenFound = true;
-      const jb = bus.jobs.find(j => normalizeSearchString(`${j.title} ${j.description}`).includes(token));
-      if (!matchedReason && jb) matchedReason = { type: 'job', text: jb.title };
-    }
-
-    // Deep text fallback
-    if (!tokenFound && deepText.includes(token)) {
-      score += 20;
-      tokenFound = true;
-    }
-
-    if (tokenFound) {
-      matchedTokensCount++;
-    }
+  // Direct exact name match always gets top priority
+  const normName = normalizeSearchString(bus.name);
+  if (normName === normalized) {
+    return { business: bus, score: 500, matchedReason: { type: 'name', text: bus.name } };
   }
 
-  // 5. Semantic synonyms matching (e.g. "Döner" -> Imbiss, Kebab, Drehspieß)
-  if (semanticKeywords.length > 0) {
-    let semanticMatches = 0;
-    for (const syn of semanticKeywords) {
-      if (combinedAllText.includes(syn)) {
-        semanticMatches++;
-        score += 25;
-        if (!matchedReason) {
-          matchedReason = { type: 'semantic', text: syn };
+  // --------------------------------------------------------------------------
+  // CASE A: The query contains one or more Subject / Entity tokens (e.g. "Brille", "Döner", "Auto")
+  // RULE: Every subject MUST be matched by the business (or its domain synonyms).
+  // Generic action verbs (like "kaufen") do NOT qualify a business that doesn't sell the subject!
+  // --------------------------------------------------------------------------
+  if (subjectTokens.length > 0) {
+    let allSubjectsMatched = true;
+    let matchedReason: SearchMatchResult['matchedReason'] = undefined;
+    let subjectScore = 0;
+
+    for (const subject of subjectTokens) {
+      const allowedVariants = getDomainSynonyms(subject);
+      let subjectFound = false;
+
+      // 1. Direct name match
+      for (const variant of allowedVariants) {
+        if (matchesKeyword(bus.name, variant)) {
+          subjectScore += 260;
+          subjectFound = true;
+          if (!matchedReason) matchedReason = { type: 'name', text: bus.name };
+          break;
+        }
+      }
+
+      // 2. Services / Products
+      if (!subjectFound) {
+        const allServices = (bus.services || []).concat(bus.services_nl || []);
+        for (const variant of allowedVariants) {
+          const s = allServices.find(srv => matchesKeyword(srv, variant));
+          if (s) {
+            subjectScore += 220;
+            subjectFound = true;
+            if (!matchedReason) matchedReason = { type: 'service', text: s };
+            break;
+          }
+        }
+      }
+
+      if (!subjectFound) {
+        const allProducts = (bus.products || []).concat(bus.products_nl || []);
+        for (const variant of allowedVariants) {
+          const p = allProducts.find(prd => matchesKeyword(prd, variant));
+          if (p) {
+            subjectScore += 220;
+            subjectFound = true;
+            if (!matchedReason) matchedReason = { type: 'product', text: p };
+            break;
+          }
+        }
+      }
+
+      // 3. Category / Subcategory
+      if (!subjectFound) {
+        for (const variant of allowedVariants) {
+          if (bus.subcategory && matchesKeyword(bus.subcategory, variant)) {
+            subjectScore += 200;
+            subjectFound = true;
+            if (!matchedReason) matchedReason = { type: 'category', text: bus.subcategory };
+            break;
+          }
+          if (matchesKeyword(bus.category, variant)) {
+            subjectScore += 160;
+            subjectFound = true;
+            if (!matchedReason) matchedReason = { type: 'category', text: bus.category };
+            break;
+          }
+        }
+      }
+
+      // 4. Description & Extended Description
+      if (!subjectFound) {
+        const fullDesc = `${bus.description || ''} ${bus.description_nl || ''} ${bus.extendedDescription || ''} ${bus.extendedDescription_nl || ''}`;
+        for (const variant of allowedVariants) {
+          if (matchesKeyword(fullDesc, variant)) {
+            subjectScore += 120;
+            subjectFound = true;
+            if (!matchedReason) {
+              const idx = fullDesc.toLowerCase().indexOf(variant);
+              const start = Math.max(0, idx - 15);
+              const end = Math.min(fullDesc.length, idx + variant.length + 35);
+              matchedReason = { type: 'description', text: `...${fullDesc.slice(start, end).trim()}...` };
+            }
+            break;
+          }
+        }
+      }
+
+      // 5. Deep Text (Documents/Menu, Reviews, Events, Jobs)
+      if (!subjectFound) {
+        for (const variant of allowedVariants) {
+          const doc = (bus.documents || []).find(d => matchesKeyword(`${d.title} ${d.type}`, variant));
+          if (doc) {
+            subjectScore += 100;
+            subjectFound = true;
+            if (!matchedReason) matchedReason = { type: 'document', text: doc.title };
+            break;
+          }
+          const rev = (bus.reviews || []).find(r => matchesKeyword(r.text || '', variant));
+          if (rev) {
+            subjectScore += 90;
+            subjectFound = true;
+            if (!matchedReason) {
+              const text = rev.text;
+              const idx = text.toLowerCase().indexOf(variant);
+              const start = Math.max(0, idx - 15);
+              const end = Math.min(text.length, idx + variant.length + 35);
+              matchedReason = { type: 'review', text: `"${text.slice(start, end).trim()}..."` };
+            }
+            break;
+          }
+          if (wantsEvents && (bus.events || []).some(e => matchesKeyword(`${e.title} ${e.description}`, variant))) {
+            subjectScore += 80;
+            subjectFound = true;
+            const ev = bus.events?.find(e => matchesKeyword(`${e.title} ${e.description}`, variant));
+            if (!matchedReason && ev) matchedReason = { type: 'event', text: ev.title };
+            break;
+          }
+          if (wantsJobs && (bus.jobs || []).some(j => matchesKeyword(`${j.title} ${j.description}`, variant))) {
+            subjectScore += 80;
+            subjectFound = true;
+            const jb = bus.jobs?.find(j => matchesKeyword(`${j.title} ${j.description}`, variant));
+            if (!matchedReason && jb) matchedReason = { type: 'job', text: jb.title };
+            break;
+          }
+          if (matchesKeyword(deepText, variant)) {
+            subjectScore += 40;
+            subjectFound = true;
+            if (!matchedReason) matchedReason = { type: 'semantic', text: variant };
+            break;
+          }
+        }
+      }
+
+      if (!subjectFound) {
+        allSubjectsMatched = false;
+        break;
+      }
+    }
+
+    // If ANY required subject noun was not matched by this business, it is EXCLUDED!
+    if (!allSubjectsMatched) {
+      return { business: bus, score: 0 };
+    }
+
+    // Action verb bonus if matched
+    if (actionTokens.length > 0) {
+      subjectScore += 20;
+    }
+
+    if (bus.isPremium) {
+      subjectScore += 10;
+    }
+
+    return { business: bus, score: subjectScore, matchedReason };
+  }
+
+  // --------------------------------------------------------------------------
+  // CASE B: The query contains ONLY Action Verbs (e.g. user typed "kaufen", "essen", "übernachten")
+  // In this case, we match businesses in the corresponding broad category
+  // --------------------------------------------------------------------------
+  if (actionTokens.length > 0) {
+    let actionScore = 0;
+    let matchedReason: SearchMatchResult['matchedReason'] = undefined;
+
+    for (const act of actionTokens) {
+      const domains = ACTION_VERB_DEFAULT_DOMAINS[act] || [];
+      for (const d of domains) {
+        if (matchesKeyword(primaryText, d)) {
+          actionScore += 80;
+          if (!matchedReason) matchedReason = { type: 'category', text: bus.category };
+          break;
+        } else if (matchesKeyword(secondaryText, d)) {
+          actionScore += 40;
+          if (!matchedReason) matchedReason = { type: 'semantic', text: d };
+          break;
         }
       }
     }
-    if (semanticMatches > 0) {
-      score += 20;
+
+    if (actionScore > 0) {
+      if (bus.isPremium) actionScore += 5;
+      return { business: bus, score: actionScore, matchedReason };
     }
   }
 
-  // 6. Natural Language Question Bonus
-  // If user asked a question and at least one core token was found
-  if (parsed.isNaturalLanguage && (matchedTokensCount > 0 || score > 40)) {
-    // If every core token was matched, give high bonus
-    if (coreTokens.length > 0 && matchedTokensCount === coreTokens.length) {
-      score += 100;
-    }
+  // Fallback: literal keyword match in combinedAllText
+  if (matchesKeyword(combinedAllText, normalized)) {
+    return { business: bus, score: 50, matchedReason: { type: 'description', text: bus.name } };
   }
 
-  // 7. Premium slight boost for tie-breaking
-  if (bus.isPremium && score > 0) {
-    score += 5;
-  }
-
-  // Verification: if core tokens exist, we require that at least one token matched OR direct phrase matched
-  if (coreTokens.length > 0 && matchedTokensCount === 0 && !combinedAllText.includes(normalized)) {
-    // Check if semantic concept matched strongly
-    const hasStrongSemantic = semanticKeywords.some(syn => primaryText.includes(syn) || secondaryText.includes(syn));
-    if (!hasStrongSemantic) {
-      score = 0;
-    }
-  }
-
-  return { business: bus, score, matchedReason };
+  return { business: bus, score: 0 };
 }
 
 /**

@@ -7253,6 +7253,25 @@ export const businesses: Business[] = [
       'Huisgemaakte sauzen',
       'Aardappelwafel friet & buttermilk chicken tenders',
       'Ovenverse baklava'
+    ],
+    coordinates: { lat: 51.1945, lng: 8.5323 },
+    events: [
+      {
+        id: 'atas-doener-beef-manufaktur-eroeffnung-2026-10-16',
+        title: "Große Neueröffnung: Ata's Döner – Beef Manufaktur",
+        title_nl: "Feestelijke opening: Ata's Döner – Beef Manufaktur",
+        startDate: '2026-10-16',
+        endDate: '2026-10-16',
+        startTime: '12:00',
+        endTime: '',
+        price: 'Eröffnungs-Special: Gratis Softdrink',
+        category: 'Neueröffnungen',
+        location: 'Am Waltenberg 13, 59955 Winterberg',
+        imageUrl: '/news-atas-doener-winterberg-eroeffnung.jpg',
+        externalUrl: '/nachrichten/atas-doener-beef-manufaktur-winterberg-eroeffnung',
+        description: "Große Neueröffnung am Waltenberg 13: Mit Ata's Döner eröffnet am Freitag, den 16. Oktober 2026 ab 12:00 Uhr, eine moderne Beef Manufaktur für Premium-Streetfood im Herzen von Winterberg. Serviert werden saftiger Steak-Döner aus 100 % Weiderind im ofenfrischen Natursauerteigbrot aus Meisterbäckerhand, Rollos nach Bremer Art, Hähnchen- und Falafel-Spezialitäten sowie knusprige Sides und traditionelles Baklava. Willkommens-Special zur Eröffnung: Zu jedem Steak-Döner gibt es einen Softdrink gratis dazu!",
+        description_nl: "Grote opening aan de Waltenberg 13: op vrijdag 16 oktober 2026 vanaf 12:00 uur opent Ata's Döner een moderne Beef Manufaktur in het hart van Winterberg. Geniet van malse steakdöner van 100% weiderunderen op ambachtelijk zuurdesembrood, Bremer rollo's, knapperige bijgerechten en huisgemaakte sauzen. Openingsactie: bij aankoop van elke steakdöner ontvangt u een gratis frisdrank!"
+      }
     ]
   },
   {
@@ -7392,7 +7411,7 @@ export const businesses: Business[] = [
         imageUrl: '/event-wuthe-und-faust-header.jpg',
         description: 'Beatlesker Harmoniegesang mit markanten Stimmen, authentisches Storytelling, prägnante Gitarrenbegleitung und musikalische Extrakte aus Folk, Blues, Rootsrock und Country: Das Akustik-Duo Wuthe & Faust gastiert live in der historischen Borgs Scheune in Winterberg-Züschen. Einlass ab 19:00 Uhr, Beginn 19:30 Uhr. Freie Sitzplatzwahl, Parkplätze an der Kirche. Veranstaltet vom Förderverein für Kultur-, Denkmalpflege und Naturschutz in der Gemeinde Züschen e.V. (KuKuK! Kunst · Kultur · Kontakte seit 1988). Online-Tickets sind im Vorverkauf über die Winterberg Touristik erhältlich.',
         description_nl: 'Beatles-achtige meerstemmige samenzang, authentieke storytelling, virtuoos gitaarspel en muzikale invloeden uit folk, blues, rootsrock en country: het akoestische duo Wuthe & Faust treedt live op in de historische Borgs Scheune in Winterberg-Züschen. Zaal open vanaf 19:00 uur, aanvang 19:30 uur. Vrije zitplaatskeuze, parkeren bij de kerk. Georganiseerd door cultuurvereniging Züschen e.V. (KuKuK!). Tickets online verkrijgbaar via Winterberg Touristik.',
-        externalUrl: 'https://www.winterberg.de/deinerlebnismoment'
+        externalUrl: 'https://www.winterberg.de/aktivitaeten-erlebnisse/erlebnisse-fuehrungen/#/experience/GER00020064410504663'
       }
     ]
   },

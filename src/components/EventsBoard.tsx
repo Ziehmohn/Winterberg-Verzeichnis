@@ -22,7 +22,8 @@ import {
   ChevronUp,
   Navigation,
   Ticket,
-  Compass
+  Compass,
+  Store
 } from 'lucide-react';
 
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
@@ -39,7 +40,7 @@ interface EventsBoardProps {
   onNavigatePricing?: () => void;
 }
 
-// Category normalization helper: combine Fest and Party, support Wandern
+// Category normalization helper: combine Fest and Party, support Wandern & Neueröffnungen
 export const normalizeEventCategory = (category: string = ''): string => {
   const cat = category.trim();
   const lower = cat.toLowerCase();
@@ -49,12 +50,17 @@ export const normalizeEventCategory = (category: string = ''): string => {
   if (lower === 'wandern' || lower === 'wanderung' || lower === 'wandelen' || lower.includes('wander')) {
     return 'Wandern';
   }
+  if (lower === 'neueröffnung' || lower === 'neueröffnungen' || lower === 'eröffnung' || lower === 'opening' || lower === 'grand opening') {
+    return 'Neueröffnungen';
+  }
   return cat;
 };
 
 // Category icon & color helper
 const getCategoryMeta = (category: string) => {
   const cat = category.toLowerCase();
+  if (cat.includes('neueröffnung') || cat.includes('eröffnung') || cat.includes('opening'))
+    return { Icon: Store, bg: 'bg-teal-50', text: 'text-teal-800', border: 'border-teal-200' };
   if (cat.includes('wander') || cat.includes('outdoor') || cat.includes('tour') || cat.includes('führung'))
     return { Icon: Compass, bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' };
   if (cat.includes('sport') || cat.includes('weltcup') || cat.includes('cup'))
@@ -320,6 +326,11 @@ export default function EventsBoard({
   });
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
   const [expandedMap, setExpandedMap] = useState<string | null>(null);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
+
+  const toggleDescription = (key: string) => {
+    setExpandedDescriptions(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const allEvents = useMemo(() => {
     const list: Array<{ event: EventItem; business: Business }> = [];
@@ -423,7 +434,7 @@ export default function EventsBoard({
               const CatIcon = meta?.Icon;
               const label = type === 'Alle' 
                 ? 'Alle' 
-                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : (lang === 'nl' && type === 'Wandern' ? 'Wandelen' : (lang === 'nl' && (type === 'Workshop & Kurse' || type === 'Workshop') ? 'Workshop & Cursus' : type))));
+                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : (lang === 'nl' && type === 'Wandern' ? 'Wandelen' : (lang === 'nl' && (type === 'Workshop & Kurse' || type === 'Workshop') ? 'Workshop & Cursus' : (lang === 'nl' && (type === 'Neueröffnungen' || type === 'Neueröffnung') ? 'Nieuwe openingen' : type)))));
               return (
                 <button
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
