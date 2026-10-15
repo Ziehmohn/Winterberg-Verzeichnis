@@ -71,7 +71,7 @@ export const businesses: Business[] = [
         endDate: '2026-10-02',
         startTime: '19:00',
         endTime: '',
-        category: 'Fest',
+        category: 'Fest & Party',
         location: 'Schützenhalle Niedersfeld',
         description: 'Gemeinsames Fest von Blasmusik und Löschzug Niedersfeld mit zünftiger Musik und DJ. Es werden bayerische Spezialitäten und Starnberger Hell angeboten.',
         externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/oktoberfest-in-niedersfeld/6a8d704128d31c1c7c59f821/'
@@ -2276,7 +2276,7 @@ export const businesses: Business[] = [
       {
         id: 'kuerbisschnitzen-fuer-kids-nordhang-jause-2026',
         title: 'Kürbisschnitzen für Kids an der Nordhang Jause',
-        title_nl: 'Pompoen snijden voor kinderen bij Nordhang Jause',
+        title_nl: 'Pompoen snijden voor kids bij Nordhang Jause',
         startDate: '2026-10-23',
         endDate: '2026-10-23',
         startTime: '14:00',
@@ -2285,24 +2285,24 @@ export const businesses: Business[] = [
         category: 'Familie',
         location: 'Nordhang Jause, In d. Renau 10/11, 59955 Winterberg',
         imageUrl: '/events-nordhang-kuerbisschnitzen.jpg',
-        description: 'Kürbisse schnitzen, Stockbrot und Marshmallows am Lagerfeuer und leuchtende Kinderaugen: Beim Kürbisschnitzen an der Nordhang Jause dürfen Kids kreativ werden und ihren eigenen Halloween-Kürbis gestalten. Geschnitzt wird in zwei Zeitfenstern: 14:00 bis 16:00 Uhr sowie 16:00 bis 18:00 Uhr. Unkostenbeitrag: 8,00 € pro Kind/Kürbis. Vorherige Anmeldung unbedingt erforderlich unter Tel. 02981 / 8996399 oder info@nordhangjause.de (Plätze begrenzt). Hütte und Küche für jedermann regulär geöffnet!',
-        description_nl: 'Pompoen snijden, marshmallows en broodjes bakken bij het kampvuur en stralende kinderogen: kinderen kunnen hun eigen Halloween-pompoen vormgeven bij Nordhang Jause. Twee tijdsloten: 14:00–16:00 uur en 16:00–18:00 uur. Kosten: € 8,00 per kind/pompoen. Vooraf aanmelden verplicht via 02981 / 8996399 of info@nordhangjause.de. De hut en keuken zijn regulier geopend voor iedereen!',
+        description: 'Ein farbenfroher Erlebnistag für die ganze Familie: Unter gemütlicher Hüttenatmosphäre können kleine Künstler ihre eigenen Halloween-Kürbisse gestalten. Anschließend knistert die Feuerschale für frisches Stockbrot und geröstete Marshmallows. Für Stärkung sorgt die Hüttenküche mit warmen Speisen und Getränken. Geschnitzt wird in zwei Staffeln (14:00–16:00 Uhr und 16:00–18:00 Uhr; Unkostenbeitrag: 8,00 € inkl. Kürbis). Wegen begrenzter Plätze bitte vorab anmelden unter Tel. 02981 / 8996399 oder info@nordhangjause.de. Die Hütte hat regulär geöffnet.',
+        description_nl: 'Een gezellige herfstmiddag voor het hele gezin midden in de natuur: bij de Nordhang Jause kunnen jonge creatievelingen hun eigen Halloween-pompoen uitsnijden. Bij de vuurschaal roosteren we vers stokbrood en marshmallows, terwijl de hut zorgt voor warme gerechten en drankjes. Twee rondes (14:00–16:00 uur en 16:00–18:00 uur; € 8,00 per kind incl. pompoen). Vooraf aanmelden verplicht via 02981 / 8996399 of info@nordhangjause.de. Het restaurant is regulier geopend.',
         externalUrl: 'https://www.nordhangjause.de'
       },
       {
         id: 'lichterzauber-am-nordhang-2026',
-        title: 'Lichterzauber am Nordhang – Wenn der Nordhang zu leuchten beginnt',
-        title_nl: 'Lichtjesmagie aan de Nordhang – Als de Nordhang begint te stralen',
+        title: 'Lichterzauber am Nordhang – Musik, Feuer & Herbstzauber',
+        title_nl: 'Lichtjesmagie aan de Nordhang – Muziek, vuur & herfstbetovering',
         startDate: '2026-11-07',
         endDate: '2026-11-07',
         startTime: '15:00',
         endTime: '22:00',
         price: 'Freier Eintritt',
-        category: 'Fest',
+        category: 'Fest & Party',
         location: 'Nordhang Jause, In d. Renau 10/11, 59955 Winterberg',
         imageUrl: '/events-nordhang-lichterzauber.jpg',
-        description: 'Wenn es draußen langsam dunkel wird, verwandeln zahlreiche Lichter das Gelände rund um die Nordhang Jause in eine besondere Herbstkulisse. Mit Live-Musik von „Hörgerätchen“ aus Siegen, frischem Flammlachs, traditionellem Sauerländer Kartoffelbraten, Getränkestand und heißem Glühwein vom offenen Buchenholzfeuer. Die Kugelbahn wird stimmungsvoll beleuchtet und als kleines Andenken bekommt jedes Kind ein eigenes Licht geschenkt. Eintritt frei! Bei allen Live-Events gelten die regulären Öffnungszeiten – Hütte und Küche sind für jedermann geöffnet!',
-        description_nl: 'Talloze lichtjes toveren het terrein rondom de Nordhang Jause om in een magisch herfstdecor! Met livemuziek van „Hörgerätchen“ uit Siegen, verse vlamzalm, traditioneel aardappelbraden, drankstand en glühwein van het beukenhoutvuur. De knikkerbaan is verlicht en ieder kind krijgt een eigen lichtje cadeau. Gratis toegang! Hut en keuken zijn voor iedereen geopend.',
+        description: 'Sobald es dämmert, tauchen Lichterketten und Strahler das Waldgelände der Nordhang Jause in eine märchenhafte Kulisse. Ein Wohlfühlabend unter den Sternen mit handgemachter Live-Musik von „Hörgerätchen“ aus Siegen, zartem Flammlachs am Buchenholzfeuer, herzhaftem Kartoffelbraten und duftendem Glühwein. Kleine Besucher dürfen sich über eine beleuchtete Holzkugelbahn sowie ein persönliches Lichtgeschenk freuen. Der Eintritt ist frei, die Hüttengastronomie ist durchgehend für alle Gäste geöffnet.',
+        description_nl: 'Zodra de schemering valt, toveren talloze lichtjes het terrein van de Nordhang Jause om in een sprookjesachtige bergambiance. Geniet van akoestische livemuziek van de band „Hörgerätchen“ uit Siegen, verse vlamzalm op beukenhoutvuur, traditioneel aardappelbraden en warme glühwein. Voor kinderen is er een verlichte houten knikkerbaan en ieder kind krijgt een eigen lichtje cadeau. Gratis toegang, hut en keuken doorlopend geopend.',
         externalUrl: 'https://www.nordhangjause.de'
       }
     ]
@@ -2391,7 +2391,7 @@ export const businesses: Business[] = [
         startTime: '18:00',
         endTime: '',
         price: 'Vorverkauf / Tickets',
-        category: 'Party',
+        category: 'Fest & Party',
         location: 'Bei Möppi, In d. Büre 32, 59955 Winterberg',
         imageUrl: '/moeppi-saison-opening-2026.png',
         description: 'Das größte Saison Opening aller Zeiten bei Möppi! Zum Auftakt der Après-Ski-Saison holen wir die Stars aus Österreich – Harris & Ford – nach Winterberg, bekannt von den größten Festivalbühnen Deutschlands. Mit dabei sind außerdem Domy Berger und Jason Wats, die euch von der ersten Minute an auf Betriebstemperatur bringen. Streng limitierte Tickets im Vorverkauf (gestaffelte Preise). Einlass ab 18:00 Uhr.',

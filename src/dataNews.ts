@@ -5,8 +5,8 @@ export const initialNews: NewsArticle[] = [
     id: 'B99nqQbUNBZVpUXNNgNj',
     slug: 'herbstzeit-nordhang-jause-kuerbisschnitzen-lichterzauber',
     slug_nl: 'herfst-nordhang-jause-pompoensnijden-lichtjesmagie',
-    title: 'Herbstzeit an der Nordhang Jause: Kürbisschnitzen für Kids & stimmungsvoller Lichterzauber',
-    title_nl: 'Herfst bij Nordhang Jause: Pompoen snijden voor kinderen & sfeervolle Lichtjesmagie',
+    title: 'Goldener Oktober & leuchtende Novemberabende: Die Herbst-Highlights an der Nordhang Jause',
+    title_nl: 'Gouden herfst & fonkelende avonden: De najaarshoogtepunten bij Nordhang Jause',
     author: 'Simon Kräling',
     businessId: 'nordhang-jause',
     businessName: 'Nordhang Jause Winterberg',
@@ -16,36 +16,41 @@ export const initialNews: NewsArticle[] = [
     isAiGenerated: false,
     status: 'approved',
     date: '2026-10-15T16:30:00.000Z',
-    content: `Wenn die Tage kürzer werden und sich der Herbst im Hochsauerland von seiner schönsten Seite zeigt, wird es auch an der Winterberger Nordhang Jause wieder besonders urig und gemütlich. Mit zwei besonderen Veranstaltungen lädt das Team Groß und Klein dazu ein, gemeinsam unvergessliche Herbststunden an der frischen Bergluft und am wärmenden Feuer zu verbringen.
+    content: `Bunte Laubwälder, klare Bergluft und der verlockende Duft von knisterndem Buchenholz: Der Herbst hält Einzug im Hochsauerland und verwandelt die Bergkulisse rund um den Kahlen Asten in ein farbenfrohes Naturparadies. An der beliebten **Nordhang Jause in Winterberg** beginnt damit die gemütlichste Zeit des Jahres. Hüttenwirt und Team laden Einheimische, Wanderer und Urlaubsgäste im Oktober und November zu zwei stimmungsvollen Veranstaltungshöhepunkten ein, die herbstliches Naturerlebnis, Geselligkeit und Gaumenfreuden miteinander verbinden.
 
-Bei allen Live-Events gilt: Es gelten die regulären Öffnungszeiten – Hütte und Küche sind durchgehend für jedermann geöffnet!
+Ein großes Plus für alle Ausflügler: An beiden Eventtagen gelten die regulären Öffnungszeiten – Hütte und Küche stehen somit durchgehend allen Gästen offen!
 
-## 1. Kürbisschnitzen für Kids – Freitag, 23. Oktober 2026
+## Kreativzeit für kleine Hände: Kürbisschnitzen am 23. Oktober
 
-Kürbisse schnitzen, Stockbrot und Marshmallows am knisternden Lagerfeuer rösten und einfach eine schöne Familienzeit zusammen verbringen: Beim Kürbisschnitzen dürfen die Kids kreativ werden und ihren ganz persönlichen Halloween-Kürbis gestalten.
+Den Auftakt macht am **Freitag, den 23. Oktober 2026 ab 14:00 Uhr**, ein erlebnisreicher Nachmittag für Familien. Unter gemütlicher Hüttenatmosphäre können junge Besucher ihrer Fantasie freien Lauf lassen und eigene gruselige oder lustige Halloween-Kürbisse schnitzen. 
 
-* **Termin:** Freitag, 23. Oktober 2026, ab 14:00 Uhr
-* **Zwei Zeitfenster:** Geschnitzt wird von 14:00 bis 16:00 Uhr sowie von 16:00 bis 18:00 Uhr
-* **Unkostenbeitrag:** 8,00 € pro Kind/Kürbis
-* **Highlights:** Stockbrot & Marshmallows vom Lagerfeuer, Speisen & Getränke für Groß und Klein
-* **Wichtig – Vorherige Anmeldung erforderlich:** Damit für jedes Kind ein Kürbis und ein Arbeitsplatz vorbereitet werden können, ist eine Anmeldung unbedingt erforderlich (telefonisch unter 02981 / 8996399 oder per E-Mail an info@nordhangjause.de). Die Plätze sind begrenzt!
+Doch das ist längst nicht alles: Vor der Hütte lodert die Feuerschale, an der gemeinsam knuspriges Stockbrot gebacken und süße Marshmallows geröstet werden.
+
+### Das Wichtigste auf einen Blick:
+* **Datum & Beginn:** Freitag, 23. Oktober 2026, ab 14:00 Uhr
+* **Staffelung:** Um allen Kindern beste Betreuung und genügend Freiraum zu bieten, wird in zwei Zeitfenstern geschnitzt:
+  * 1. Gruppe: 14:00 bis 16:00 Uhr
+  * 2. Gruppe: 16:00 bis 18:00 Uhr
+* **Kostenbeitrag:** 8,00 € pro Kind (inklusive Kürbis, Schnitzwerkzeug und Leckereien an der Feuerschale)
+* **Kulinarisches:** Warme Speisen, Hüttenspezialitäten und Erfrischungen für Groß und Klein
+* **Wichtig – Voranmeldung:** Da die Plätze und Kürbisse limitiert sind, ist eine rechtzeitige Reservierung erforderlich – telefonisch unter **02981 8996399** oder per E-Mail an **info@nordhangjause.de**.
 
 ![Kürbisschnitzen für Kids an der Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
 
-## 2. Lichterzauber am Nordhang – Samstag, 7. November 2026
+## Romantischer Lichterzauber am Nordhang: Samstag, 7. November
 
-Wenn es draußen langsam dunkel wird, beginnt der Nordhang zu leuchten! Beim Lichterzauber verwandeln zahlreiche Lichter und Strahler das Gelände rund um die Nordhang Jause in eine zauberhafte Kulisse für die ganze Familie.
+Wenn der Herbst seinem Ausklang entgegengeht, setzt die Nordhang Jause am **Samstag, den 7. November 2026 von 15:00 bis 22:00 Uhr**, ein strahlendes Glanzlicht. Sobald die Dämmerung hereinbricht, hüllt ein Meer aus Lichterketten, Laternen und bunten Strahlern das gesamte Waldareal in eine märchenhafte Szenerie.
 
-* **Termin:** Samstag, 7. November 2026, von 15:00 bis 22:00 Uhr
-* **Eintritt frei!**
-* **Live-Musik:** Musikalische Unterhaltung mit der Band „Hörgerätchen“ aus Siegen
-* **Kulinarik am Buchenholzfeuer:** Frischer Flammlachs, traditioneller Kartoffelbraten, Getränkestand & heißer Glühwein vom offenen Feuer
-* **Illuminierter Lichterwald & Kugelbahn:** Auch die beliebte Holzkugelbahn wird stimmungsvoll in Szene gesetzt und kann von den kleinen Besuchern bespielt werden
-* **Ein Licht für jedes Kind:** Als Erinnerung erhält jedes Kind ein eigenes kleines Licht geschenkt
+Der **Lichterzauber am Nordhang** bietet einen stimmungsvollen Abend für alle Sinne:
 
-Ob beim herbstlichen Familiennachmittag oder beim stimmungsvollen Lichterzauber mit Musik, Feuer und gutem Essen: Jacke an, raus an die frische Luft und gemeinsam den Herbst am Nordhang genießen!
+* **Handgemachte Live-Musik:** Die beliebte Akustik-Band **„Hörgerätchen“** aus Siegen sorgt für mitreißende Live-Rhythmen und eine unvergleichliche Hüttenstimmung.
+* **Spezialitäten vom Buchenholzfeuer:** Auf den Rosten brutzeln aromatischer Flammlachs am Holzbrett und traditioneller Sauerländer Kartoffelbraten. Dazu wird würziger Glühwein über offenem Holzfeuer serviert.
+* **Highlights für die Kleinen:** Die beliebte Holzkugelbahn der Nordhang Jause wird farbenfroh illuminiert und lädt zum Spielen ein. Als bleibende Erinnerung erhält jedes Kind ein eigenes kleines Licht geschenkt.
+* **Eintritt frei:** Der Zugang zum Veranstaltungsgelände ist für alle Besucher kostenlos.
 
-![Lichterzauber am Nordhang](/events-nordhang-lichterzauber.jpg)
+Ob als wärmender Abschluss nach einer herbstlichen Wandertour oder als Ausflugsziel mit Familie und Freunden: Jacke anziehen, die frische Bergluft einatmen und den Zauber der Lichter genießen!
+
+![Lichterzauber am Nordhang in Winterberg](/events-nordhang-lichterzauber.jpg)
 
 :::contact
 ### Nordhang Jause Winterberg
@@ -55,34 +60,39 @@ Ob beim herbstlichen Familiennachmittag oder beim stimmungsvollen Lichterzauber 
 * **Website:** https://www.nordhangjause.de
 * **Unternehmensprofil im Verzeichnis:** [Zum Profil der Nordhang Jause Winterberg](/gastronomie/restaurant/nordhang-jause-winterberg)
 :::`,
-    content_nl: `Wanneer de dagen korter worden en de herfst in het Hochsauerland op zijn mooist is, wordt het ook bij de Winterbergse Nordhang Jause weer bijzonder gezellig. Met twee speciale evenementen nodigt het team jong en oud uit om samen te genieten van de frisse berglucht en het kampvuur.
+    content_nl: `Kleurrijke herfstbossen, frisse berglucht en de geur van knisperend beukenhout: het najaar in het Hochsauerland is in volle gang en tovert de heuvels rondom de Kahler Asten om in een sfeervol landschap. Bij de geliefde **Nordhang Jause in Winterberg** markeert dit het begin van het gezelligste seizoen van het jaar. Het team nodigt inwoners en vakantiegangers in oktober en november uit voor twee bijzondere evenementen waarin natuur, gezelligheid en culinaire traktaties centraal staan.
 
-Voor alle live-evenementen geldt: De normale openingstijden zijn van kracht – hut en keuken zijn doorlopend voor iedereen geopend!
+Fijn voor wandelaars en bezoekers: op beide dagen gelden de normale openingstijden, waardoor de berghut en keuken doorlopend voor iedereen geopend zijn!
 
-## 1. Pompoen snijden voor kinderen – Vrijdag 23 oktober 2026
+## Creatieve herfstmiddag: Pompoen snijden op 23 oktober
 
-Pompoenen uitsnijden, marshmallows en brooddeeg roosteren boven het knisperende kampvuur en genieten van een gezellige herfstmiddag: tijdens het pompoensnijden kunnen kinderen hun creativiteit de vrije loop laten en hun eigen Halloween-pompoen maken.
+Op **vrijdag 23 oktober 2026 vanaf 14:00 uur** kunnen jonge bezoekers hun creativiteit botvieren. In de warme berghut kunnen kinderen onder begeleiding prachtige Halloween-figuren en herfstmotieven in grote pompoenen kerven.
 
-* **Datum & tijd:** Vrijdag 23 oktober 2026, vanaf 14:00 uur
-* **Twee tijdsloten:** Er wordt gesneden van 14:00 tot 16:00 uur en van 16:00 tot 18:00 uur
-* **Kosten:** € 8,00 per kind/pompoen
-* **Highlights:** Marshmallows & broodjes van het kampvuur, eten & drinken voor jong en oud
-* **Belangrijk – Vooraf aanmelden verplicht:** Om voor ieder kind een pompoen en een plek klaar te zetten, is vooraf reserveren noodzakelijk (telefonisch via 02981 / 8996399 of per e-mail via info@nordhangjause.de). Het aantal plaatsen is beperkt!
+Buiten brandt de vuurschaal, waar samen knapperig stokbrood wordt gebakken en zoete marshmallows worden geroosterd.
+
+### Belangrijke informatie op een rij:
+* **Datum & aanvang:** Vrijdag 23 oktober 2026, vanaf 14:00 uur
+* **Twee rondes:** Om ieder kind voldoende ruimte en aandacht te geven, zijn er twee tijdsloten:
+  * 1e ronde: 14:00 tot 16:00 uur
+  * 2e ronde: 16:00 tot 18:00 uur
+* **Kosten:** € 8,00 per kind (inclusief pompoen, snijmateriaal en lekkers bij het kampvuur)
+* **Culinair:** Warme gerechten, streekgerechten en drankjes voor de hele familie
+* **Aanmelden verplicht:** Het aantal plaatsen is beperkt; tijdige reservatie is vereist via **02981 8996399** of via **info@nordhangjause.de**.
 
 ![Pompoen snijden voor kinderen bij Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
 
-## 2. Lichtjesmagie aan de Nordhang – Zaterdag 7 november 2026
+## Betoverende Lichtjesmagie aan de Nordhang: Zaterdag 7 november
 
-Wanneer het buiten langzaam donker wordt, begint de Nordhang te stralen! Talloze lichtjes toveren het terrein rondom de Nordhang Jause om in een sprookjesachtig decor.
+Als het herfstseizoen zijn einde nadert, pakt de Nordhang Jause op **zaterdag 7 november 2026 van 15:00 tot 22:00 uur** groots uit. Zodra de schemering valt, hullen ontelbare lampjes, lantaarns en verlichte bomen het bosperceel in een sprookjesachtige sfeer.
 
-* **Datum & tijd:** Zaterdag 7 november 2026, van 15:00 tot 22:00 uur
-* **Toegang gratis!**
-* **Livemuziek:** Muzikaal genieten met de band „Hörgerätchen“ uit Siegen
-* **Culinair bij het beukenhoutvuur:** Verse vlamzalm, traditioneel Sauerlands aardappelbraden, drankstand & warme glühwein van het open vuur
-* **Verlicht bos & knikkerbaan:** Ook de populaire houten knikkerbaan wordt sfeervol uitgelicht en kan door de kinderen worden gebruikt
-* **Een lichtje voor ieder kind:** Ieder kind krijgt een eigen klein lichtje cadeau als herinnering
+De **Lichtjesmagie aan de Nordhang** is een feest voor alle zintuigen:
 
-Trek een warme jas aan, naar buiten in de frisse berglucht en samen de herfst beleven aan de Nordhang!
+* **Livemuziek:** De band **„Hörgerätchen“** uit Siegen zorgt voor akoestische live-klanken en een geweldige stemming rondom de hut.
+* **Culinair bij het beukenhoutvuur:** Vers gegrilde vlamzalm op houtplanken, traditioneel Sauerlands aardappelbraden en dampende glühwein direct van het vuur.
+* **Beleving voor de kleintjes:** De grote houten knikkerbaan wordt magisch uitgelicht en ieder kind krijgt een eigen lichtje cadeau om mee naar huis te nemen.
+* **Gratis toegang:** De toegang tot het festivalterrein is voor iedereen gratis.
+
+Ideaal als feestelijke afsluiting van een frisse herfstwandeling of voor een gezellige avond met familie en vrienden rond het vuur!
 
 ![Lichtjesmagie aan de Nordhang](/events-nordhang-lichterzauber.jpg)
 

@@ -38,6 +38,16 @@ interface EventsBoardProps {
   onNavigatePricing?: () => void;
 }
 
+// Category normalization helper: combine Fest and Party
+export const normalizeEventCategory = (category: string = ''): string => {
+  const cat = category.trim();
+  const lower = cat.toLowerCase();
+  if (lower === 'fest' || lower === 'party' || lower.includes('fest & party') || lower.includes('party & fest') || lower === 'feste' || lower === 'partys') {
+    return 'Fest & Party';
+  }
+  return cat;
+};
+
 // Category icon & color helper
 const getCategoryMeta = (category: string) => {
   const cat = category.toLowerCase();
@@ -213,7 +223,7 @@ export default function EventsBoard({
   const filteredEvents = useMemo(() => {
     let list = [...allEvents];
     if (selectedCategory !== 'Alle') {
-      list = list.filter(item => item.event.category === selectedCategory);
+      list = list.filter(item => normalizeEventCategory(item.event.category) === selectedCategory);
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
@@ -231,9 +241,11 @@ export default function EventsBoard({
   const uniqueCategories = useMemo(() => {
     const cats = new Set<string>();
     allEvents.forEach(item => {
-      if (item.event.category) cats.add(item.event.category);
+      const normalized = normalizeEventCategory(item.event.category);
+      if (normalized) cats.add(normalized);
     });
-    return ['Alle', ...Array.from(cats)].sort();
+    const sorted = Array.from(cats).sort((a, b) => a.localeCompare(b, 'de'));
+    return ['Alle', ...sorted];
   }, [allEvents]);
 
   const formatEventDateLong = (dateStr: string) => {
@@ -296,6 +308,9 @@ export default function EventsBoard({
               const isActive = selectedCategory === type;
               const meta = type !== 'Alle' ? getCategoryMeta(type) : null;
               const CatIcon = meta?.Icon;
+              const label = type === 'Alle' 
+                ? 'Alle' 
+                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : type));
               return (
                 <button
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
@@ -304,7 +319,7 @@ export default function EventsBoard({
                   }`}
                 >
                   {CatIcon && <CatIcon className="w-3.5 h-3.5" />}
-                  {type}
+                  {label}
                 </button>
               );
             })}
@@ -340,7 +355,8 @@ export default function EventsBoard({
           filteredEvents.map(({ event, business }) => {
             const title = (lang === 'nl' && event.title_nl) ? event.title_nl : event.title;
             const description = (lang === 'nl' && event.description_nl) ? event.description_nl : event.description;
-            const meta = getCategoryMeta(event.category);
+            const displayCategory = normalizeEventCategory(event.category);
+            const meta = getCategoryMeta(displayCategory);
             const CatIcon = meta.Icon;
             const locationStr = event.location || business.district || business.name;
             const eventKey = `${business.id}-${event.id}`;
@@ -370,7 +386,7 @@ export default function EventsBoard({
                       <div className="flex items-center gap-2 flex-wrap mb-2">
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${meta.bg} ${meta.text} ${meta.border}`}>
                           <CatIcon className="w-3 h-3" />
-                          {event.category}
+                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : displayCategory)}
                         </span>
                         <span className="text-[11.5px] text-[#5F6B63] font-medium">
                           {formatEventDateLong(event.startDate)}
