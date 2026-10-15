@@ -2103,6 +2103,7 @@ export const businesses: Business[] = [
     description: 'Das Restaurant Rot & Kehlchen in der Winterberger Hellenstraße begeistert mit einem modernen und unkomplizierten Gastronomiekonzept unter dem Motto „Stullen, Fritten und viel mehr“. Neben reichhaltig belegten Landbrot-Stullen und hausgemachten Frittenkreationen mit raffinierten Toppings stehen frische Tellergerichte, Salate sowie Kaffeespezialitäten und Fassbiere auf der Karte. Das lebendige Lokal mit Außensitzplätzen bietet einen stilvollen Treffpunkt für entspannte Pausen und gesellige Abende.',
     address: 'Hellenstraße 2, 59955 Winterberg',
     district: 'Winterberg',
+    image: '/rot-und-kehlchen-winterberg.jpg',
     imageFallback: 'RK',
   },
   {
@@ -4756,10 +4757,12 @@ export const businesses: Business[] = [
     category: 'Ski, Bike & Sport',
     subcategory: 'Sport & Outdoor',
     additionalCategories: [{ category: 'Einzelhandel', subcategory: 'Bekleidung' }],
-    description: 'Outdoor-Sportgeschäft in Winterberg. Entdecken Sie hochwertige Funktionsbekleidung für Ihr nächstes Abenteuer.',
+    description: 'Outdoorfashion Winterberg am Waltenberg 2 ist ein Fachgeschäft für hochwertige Outdoor-, Wander- und Wintersportbekleidung. Das Sortiment umfasst funktionelle Jacken, Fleece, Wanderhosen, Wanderschuhe und Accessoires führender Marken wie Schöffel, Icepeak, Columbia und Lowa.',
+    description_nl: 'Outdoorfashion Winterberg aan de Waltenberg 2 is een speciaalzaak voor kwalitatieve outdoor-, wandel- en wintersportkleding. Het assortiment bevat weerbestendige functionele jassen, wandelschoenen en accessoires van merken zoals Schöffel, Icepeak, Columbia en Lowa.',
     address: 'Am Waltenberg 2, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 820668',
+    image: '/outdoorfashion-winterberg.jpg',
     imageFallback: 'OW',
     isPremium: false,
     status: 'approved',
@@ -6901,12 +6904,38 @@ export const businesses: Business[] = [
     name: 'Amplifon Hörgeräte Winterberg',
     category: 'Gesundheit & Medizin',
     subcategory: 'Hörgeräteakustiker',
-    description: 'Hörgeräteakustiker in Winterberg.',
+    description: 'Amplifon Hörgeräte am Waltenberg 10 in Winterberg ist das Fachzentrum für gutes Hören und moderne Hörakustik. Das Team bietet kostenlose professionelle Hörtests, unverbindliches Probetragen modernster Hörgeräte führender Markenhersteller, maßgefertigten Gehörschutz sowie umfassende Beratung zu Zubehör und Kassenleistungen. Ergänzt wird der Service durch regelmäßige Reinigung, Wartung und Reparaturen.',
+    description_nl: 'Amplifon Hörgeräte aan de Waltenberg 10 in Winterberg is hét expertisecentrum voor beter horen en moderne audiologie. De vestiging biedt gratis gehoortesten, proefperiodes voor innovatieve hoortoestellen, gehoorbescherming op maat en deskundig onderhoud.',
     address: 'Am Waltenberg 10, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 929999',
+    website: 'https://www.amplifon.com/de',
+    image: '/amplifon-winterberg.jpg',
+    imageFallback: 'AH',
+    services: [
+      'Kostenloser Hörtest & Gehöranalyse',
+      'Kostenloses Probetragen von Hörgeräten',
+      'Große Auswahl an Marken-Hörgeräten',
+      'Maßgefertigter Gehörschutz',
+      'Hörgeräte-Wartung, Reinigung & Reparatur',
+      'Beratung zu Zubehör & Krankenkassen-Zuschuss'
+    ],
+    services_nl: [
+      'Gratis hoortest & advies',
+      'Gratis proefperiode hoortoestellen',
+      'Ruim assortiment merkhoortoestellen',
+      'Gehoorbescherming op maat',
+      'Onderhoud, reiniging & reparaties',
+      'Accessoires & vergoedingen'
+    ],
     openingHours: {
-      monday: '08:00 - 18:00'
+      monday: '08:30 - 13:00, 14:00 - 18:00',
+      tuesday: '08:30 - 13:00, 14:00 - 18:00',
+      wednesday: '08:30 - 13:00, 14:00 - 18:00',
+      thursday: '08:30 - 13:00, 14:00 - 18:00',
+      friday: '08:30 - 13:00, 14:00 - 18:00',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
     }
   },
   {
@@ -7365,6 +7394,48 @@ export const businesses: Business[] = [
         externalUrl: 'https://www.winterberg.de/deinerlebnismoment'
       }
     ]
+  },
+  {
+    id: 'bonita-winterberg',
+    name: 'Bonita',
+    category: 'Einzelhandel',
+    subcategory: 'Bekleidung',
+    description: 'Das Modegeschäft Bonita am Waltenberg 4 im Herzen von Winterberg bietet stilsichere und vielseitig kombinierbare Damenmode für qualitätsbewusste Frauen. Das Sortiment zeichnet sich durch erstklassige Passformen, angenehme Tragequalitäten und harmonische Farbwelten aus. Kundinnen profitieren von herzlicher und typgerechter Beratung bei der Auswahl von Hosen, Strick, Blusen, Outdoorjacken sowie modischen Accessoires.',
+    description_nl: 'Damesmodewinkel Bonita aan de Waltenberg 4 in Winterberg staat voor stijlvolle, comfortabele dameskleding met een perfecte pasvorm. De collecties combineren hoogwaardige materialen met harmonieuze kleuren, ondersteund door persoonlijk en deskundig stijladvies.',
+    address: 'Am Waltenberg 4, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 81086',
+    website: 'https://www.bonita.de',
+    image: '/bonita-winterberg.jpg',
+    imageFallback: 'BO',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Damenmode & Saisonkollektionen',
+      'Hosen, Shirts, Blusen & Strickmode',
+      'Jacken, Mäntel & Outdoorbekleidung',
+      'Persönliche Typ- & Passformberatung',
+      'Modische Accessoires, Tücher & Gürtel',
+      'Verkaufsoffene Sonntage'
+    ],
+    services_nl: [
+      'Damesmode & seizoenscollecties',
+      'Broeken, shirts, blouses & breimode',
+      'Jassen & outdoor vesten',
+      'Persoonlijk stijladvies',
+      'Accessoires, sjaals & riemen',
+      'Koopzondagen'
+    ],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen (an verkaufsoffenen Sonntagen geöffnet)'
+    }
   }
 ];
 
