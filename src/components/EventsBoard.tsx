@@ -526,7 +526,7 @@ export default function EventsBoard({
                       <div className="flex items-center gap-2 flex-wrap mb-2">
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${meta.bg} ${meta.text} ${meta.border}`}>
                           <CatIcon className="w-3 h-3" />
-                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : (lang === 'nl' && displayCategory === 'Wandern' ? 'Wandelen' : (lang === 'nl' && (displayCategory === 'Workshop & Kurse' || displayCategory === 'Workshop') ? 'Workshop & Cursus' : displayCategory)))}
+                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : (lang === 'nl' && displayCategory === 'Wandern' ? 'Wandelen' : (lang === 'nl' && (displayCategory === 'Workshop & Kurse' || displayCategory === 'Workshop') ? 'Workshop & Cursus' : (lang === 'nl' && (displayCategory === 'Neueröffnungen' || displayCategory === 'Neueröffnung') ? 'Nieuwe opening' : displayCategory))))}
                         </span>
                         <span className="text-[11.5px] text-[#5F6B63] font-medium">
                           {formatEventDateLong(event.startDate)}
@@ -559,7 +559,33 @@ export default function EventsBoard({
                       </div>
 
                       {description && (
-                        <p className={`text-[13.5px] text-[#717E75] leading-relaxed mb-4 ${viewMode === 'grid' ? 'line-clamp-3' : 'line-clamp-2'}`}>{description}</p>
+                        <div className="mb-4">
+                          <p className={`text-[13.5px] text-[#717E75] leading-relaxed transition-all ${
+                            expandedDescriptions[eventKey]
+                              ? ''
+                              : (viewMode === 'grid' ? 'line-clamp-3' : 'line-clamp-2')
+                          }`}>
+                            {description}
+                          </p>
+                          {description.length > 140 && (
+                            <button
+                              type="button"
+                              onClick={() => toggleDescription(eventKey)}
+                              className="mt-1.5 text-xs font-bold text-[#7E22CE] hover:text-[#6B21A8] hover:underline cursor-pointer inline-flex items-center gap-1 focus:outline-none"
+                            >
+                              <span>
+                                {expandedDescriptions[eventKey]
+                                  ? (lang === 'nl' ? 'Minder weergeven' : 'Weniger anzeigen')
+                                  : (lang === 'nl' ? 'Alles anzeigen' : 'Alles anzeigen')}
+                              </span>
+                              {expandedDescriptions[eventKey] ? (
+                                <ChevronUp className="w-3.5 h-3.5" />
+                              ) : (
+                                <ChevronDown className="w-3.5 h-3.5" />
+                              )}
+                            </button>
+                          )}
+                        </div>
                       )}
                     </div>
 
@@ -589,7 +615,10 @@ export default function EventsBoard({
                         )}
 
                         {event.externalUrl && (
-                          <a href={event.externalUrl} target={event.externalUrl.startsWith('mailto:') ? undefined : "_blank"} rel={event.externalUrl.startsWith('mailto:') ? undefined : "noopener noreferrer"}
+                          <a
+                            href={event.externalUrl}
+                            target={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : "_blank"}
+                            rel={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : "noopener noreferrer"}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold transition-colors"
                           >
                             <span>{event.externalUrl.startsWith('mailto:') ? (lang === 'nl' ? 'Aanmelden' : 'Anmelden') : (lang === 'nl' ? 'Meer info' : 'Mehr erfahren')}</span>
