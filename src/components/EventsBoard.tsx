@@ -415,15 +415,15 @@ export default function EventsBoard({
             </button>
           )}
         </div>
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1 border-t border-[#F0EBE1]">
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-3 border-t border-[#F0EBE1]">
+          <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0">
             {uniqueCategories.map((type) => {
               const isActive = selectedCategory === type;
               const meta = type !== 'Alle' ? getCategoryMeta(type) : null;
               const CatIcon = meta?.Icon;
               const label = type === 'Alle' 
                 ? 'Alle' 
-                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : (lang === 'nl' && type === 'Wandern' ? 'Wandelen' : type)));
+                : (lang === 'nl' && type === 'Fest & Party' ? 'Feest & Party' : (lang === 'nl' && type === 'Konzert' ? 'Concert' : (lang === 'nl' && type === 'Wandern' ? 'Wandelen' : (lang === 'nl' && (type === 'Workshop & Kurse' || type === 'Workshop') ? 'Workshop & Cursus' : type))));
               return (
                 <button
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
@@ -437,9 +437,25 @@ export default function EventsBoard({
               );
             })}
           </div>
-          <div className="flex items-center gap-2">
-            <button onClick={() => setViewMode('list')} className={`px-3 py-1.5 rounded-md text-xs font-semibold ${viewMode === 'list' ? 'bg-[#7E22CE] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>Liste</button>
-            <button onClick={() => setViewMode('grid')} className={`px-3 py-1.5 rounded-md text-xs font-semibold ${viewMode === 'grid' ? 'bg-[#7E22CE] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>Raster</button>
+          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-[#F4F1EA] p-1 rounded-lg border border-[#E7E2DA]">
+            <button
+              type="button"
+              onClick={() => setViewMode('list')}
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                viewMode === 'list' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'
+              }`}
+            >
+              {lang === 'nl' ? 'Lijst' : 'Liste'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('grid')}
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                viewMode === 'grid' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'
+              }`}
+            >
+              {lang === 'nl' ? 'Raster' : 'Raster'}
+            </button>
           </div>
         </div>
       </div>
@@ -480,7 +496,7 @@ export default function EventsBoard({
                 {/* Image for grid view */}
                 {viewMode === 'grid' && event.imageUrl && (
                   <div className="w-full h-44 shrink-0 relative bg-gray-100">
-                    <img src={event.imageUrl} alt={title} className="w-full h-full object-cover" />
+                    <img src={event.imageUrl} alt={title} className="w-full h-full object-cover object-top" />
                     <div className="absolute top-3 left-3">
                       <CalendarCard startDate={event.startDate} endDate={event.endDate} />
                     </div>
@@ -499,7 +515,7 @@ export default function EventsBoard({
                       <div className="flex items-center gap-2 flex-wrap mb-2">
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${meta.bg} ${meta.text} ${meta.border}`}>
                           <CatIcon className="w-3 h-3" />
-                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : (lang === 'nl' && displayCategory === 'Wandern' ? 'Wandelen' : displayCategory))}
+                          {(lang === 'nl' && displayCategory === 'Fest & Party') ? 'Feest & Party' : (lang === 'nl' && displayCategory === 'Konzert' ? 'Concert' : (lang === 'nl' && displayCategory === 'Wandern' ? 'Wandelen' : (lang === 'nl' && (displayCategory === 'Workshop & Kurse' || displayCategory === 'Workshop') ? 'Workshop & Cursus' : displayCategory)))}
                         </span>
                         <span className="text-[11.5px] text-[#5F6B63] font-medium">
                           {formatEventDateLong(event.startDate)}
@@ -562,10 +578,10 @@ export default function EventsBoard({
                         )}
 
                         {event.externalUrl && (
-                          <a href={event.externalUrl} target="_blank" rel="noopener noreferrer"
+                          <a href={event.externalUrl} target={event.externalUrl.startsWith('mailto:') ? undefined : "_blank"} rel={event.externalUrl.startsWith('mailto:') ? undefined : "noopener noreferrer"}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold transition-colors"
                           >
-                            <span>{lang === 'nl' ? 'Meer info' : 'Mehr erfahren'}</span>
+                            <span>{event.externalUrl.startsWith('mailto:') ? (lang === 'nl' ? 'Aanmelden' : 'Anmelden') : (lang === 'nl' ? 'Meer info' : 'Mehr erfahren')}</span>
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         )}

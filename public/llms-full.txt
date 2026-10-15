@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (319 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (323 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1178,6 +1178,27 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/tischlein-deck-dich
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/tischlein-deck-dich
 
+#### [Bonita](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/bonita)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 4, 59955 Winterberg
+- **Telefon:** 02981 81086
+- **Webseite:** https://www.bonita.de
+- **Beschreibung (DE):** Das Modegeschäft Bonita am Waltenberg 4 im Herzen von Winterberg bietet stilsichere und vielseitig kombinierbare Damenmode für qualitätsbewusste Frauen. Das Sortiment zeichnet sich durch erstklassige Passformen, angenehme Tragequalitäten und harmonische Farbwelten aus. Kundinnen profitieren von herzlicher und typgerechter Beratung bei der Auswahl von Hosen, Strick, Blusen, Outdoorjacken sowie modischen Accessoires.
+- **Beschreibung (NL):** Damesmodewinkel Bonita aan de Waltenberg 4 in Winterberg staat voor stijlvolle, comfortabele dameskleding met een perfecte pasvorm. De collecties combineren hoogwaardige materialen met harmonieuze kleuren, ondersteund door persoonlijk en deskundig stijladvies.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/bonita
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/bonita
+
+#### [Modehaus Schnurbusch](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modehaus-schnurbusch)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 1, 59955 Winterberg
+- **Telefon:** 02981 2248
+- **Beschreibung (DE):** Das Modehaus Schnurbusch (Inh. Luzia Sauerwald) an der Hauptstraße 1 im Herzen von Winterberg ist ein traditionsreiches Fachgeschäft für anspruchsvolle Damenmode. Das Sortiment umfasst stilsichere Kollektionen, Hosen, Strick, Blusen und modische Accessoires renommierter Marken. Kundinnen schätzen die persönliche, typgerechte Beratung in familiärer Atmosphäre direkt in der Winterberger Fußgängerzone.
+- **Beschreibung (NL):** Modehuis Schnurbusch (Luzia Sauerwald) aan de Hauptstraße 1 in het centrum van Winterberg is een gevestigde speciaalzaak voor stijlvolle damesmode. Het assortiment bestaat uit hoogwaardige collecties, broeken, breimode en accessoires met persoonlijk stijladvies.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modehaus-schnurbusch
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/modehaus-schnurbusch
+
 ### Kategorie: Gastronomie
 
 #### [Hessenkeller Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/hessenkeller-winterberg)
@@ -1677,6 +1698,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Ata's Döner – Beef Manufaktur aan de Waltenberg 13 in Winterberg brengt moderne dönercultuur naar het Sauerland. Het concept draait om topkwaliteit: van malse steakdöner in ambachtelijk zuurdesembrood en Bremer rollo's tot kip- en vegetarische falafelspecialiteiten, rijkgevulde schotels, knapperige bijgerechten en huisgemaakte sauzen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/ata-s-doener-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/ata-s-doener-winterberg
+
+#### [Korn Kurparkstuben Restaurant & Fondue](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/korn-kurparkstuben-restaurant-und-fondue)
+- **Kategorie:** Gastronomie > Restaurant
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Kurpark 2, 59955 Winterberg
+- **Telefon:** 02981 6025
+- **Webseite:** https://www.kurparkstuben-winterberg.de
+- **Beschreibung (DE):** Das Restaurant und die Fonduestube Korn Kurparkstuben liegt idyllisch mitten im Kurpark Winterberg und verbindet Kulinarik und Wein mit alpinem Lebensgefühl. Bekannt ist der traditionsreiche Familienbetrieb insbesondere für seine geselligen Fondue-Abende (Käse-, Fleisch- und Schokoladenfondue), den original Winterberger Köhlerschinken sowie feine saisonale À-la-carte-Gerichte. Gäste genießen das gemütliche Ambiente der alpinen Kaminstube, eine gut sortierte Weinbar sowie die sonnige Panoramaterrasse direkt am Park.
+- **Beschreibung (NL):** Restaurant & Fonduestube Korn Kurparkstuben ligt idyllisch in het Kurpark van Winterberg en combineert culinair genieten met een alpiene sfeer. Het familiebedrijf staat bekend om gezellige fondue-avonden (kaas-, vlees- en chocoladefondue), traditionele gerechten en een sfeervolle wijnbar met een groot zonneterras.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/korn-kurparkstuben-restaurant-und-fondue
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/korn-kurparkstuben-restaurant-und-fondue
 
 ### Kategorie: Dienstleistungen
 
@@ -2350,7 +2382,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 2, 59955 Winterberg
 - **Telefon:** 02981 820668
-- **Beschreibung (DE):** Outdoor-Sportgeschäft in Winterberg. Entdecken Sie hochwertige Funktionsbekleidung für Ihr nächstes Abenteuer.
+- **Beschreibung (DE):** Outdoorfashion Winterberg am Waltenberg 2 ist ein Fachgeschäft für hochwertige Outdoor-, Wander- und Wintersportbekleidung. Das Sortiment umfasst funktionelle Jacken, Fleece, Wanderhosen, Wanderschuhe und Accessoires führender Marken wie Schöffel, Icepeak, Columbia und Lowa.
+- **Beschreibung (NL):** Outdoorfashion Winterberg aan de Waltenberg 2 is een speciaalzaak voor kwalitatieve outdoor-, wandel- en wintersportkleding. Het assortiment bevat weerbestendige functionele jassen, wandelschoenen en accessoires van merken zoals Schöffel, Icepeak, Columbia en Lowa.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoorfashion-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/outdoorfashion-winterberg
 
@@ -2654,7 +2687,9 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 10, 59955 Winterberg
 - **Telefon:** 02981 929999
-- **Beschreibung (DE):** Hörgeräteakustiker in Winterberg.
+- **Webseite:** https://www.amplifon.com/de
+- **Beschreibung (DE):** Amplifon Hörgeräte am Waltenberg 10 in Winterberg ist das Fachzentrum für gutes Hören und moderne Hörakustik. Das Team bietet kostenlose professionelle Hörtests, unverbindliches Probetragen modernster Hörgeräte führender Markenhersteller, maßgefertigten Gehörschutz sowie umfassende Beratung zu Zubehör und Kassenleistungen. Ergänzt wird der Service durch regelmäßige Reinigung, Wartung und Reparaturen.
+- **Beschreibung (NL):** Amplifon Hörgeräte aan de Waltenberg 10 in Winterberg is hét expertisecentrum voor beter horen en moderne audiologie. De vestiging biedt gratis gehoortesten, proefperiodes voor innovatieve hoortoestellen, gehoorbescherming op maat en deskundig onderhoud.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/hoergeraeteakustiker/amplifon-hoergeraete-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/hoergeraeteakustiker/amplifon-hoergeraete-winterberg
 
@@ -3086,6 +3121,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Eine der modernsten Kunsteisbahnen weltweit für Bob, Rodel und Skeleton sowie Austragungsort internationaler Weltcups und Führungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/veltins-eisarena
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/veltins-eisarena
+
+#### [Borgs Scheune Züschen](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/borgs-scheune-zueschen)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Mollseifener Straße 17, 59955 Winterberg-Züschen
+- **Telefon:** 02981 800121
+- **Webseite:** https://www.borgs-scheune.de
+- **Beschreibung (DE):** Borgs Scheune in Züschen ist ein denkmalgeschütztes historisches Fachwerkgebäude und lebendiges Kulturzentrum der Ferienregion Winterberg. Getragen vom Förderverein für Kultur-, Denkmalpflege und Naturschutz in der Gemeinde Züschen e.V. (KuKuK! Kunst · Kultur · Kontakte seit 1988), finden hier regelmäßig Konzerte, Kabarettabende, Theateraufführungen, Autorenlesungen und Kunstausstellungen in intimer Scheunenatmosphäre statt.
+- **Beschreibung (NL):** Borgs Scheune in Züschen is een historisch monumentaal vakwerkpand en een sfeervol cultureel centrum in Winterberg. Gedragen door cultuurvereniging KuKuK! (Kunst · Kultur · Kontakte) vinden hier regelmatig concerten, cabaret, theatervoorstellingen, lezingen en exposities plaats in een unieke, intieme ambiance.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/borgs-scheune-zueschen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/borgs-scheune-zueschen
 
 ---
 

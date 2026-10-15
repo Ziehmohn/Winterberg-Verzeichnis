@@ -5263,6 +5263,7 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '02981 2607',
     website: 'https://www.parfuemerie-becker.de',
+    image: '/parfuemerie-becker-winterberg.jpg',
     imageFallback: 'PB',
     isPremium: false,
     status: 'approved',
@@ -7425,6 +7426,45 @@ export const businesses: Business[] = [
       'Jassen & outdoor vesten',
       'Persoonlijk stijladvies',
       'Accessoires, sjaals & riemen',
+      'Koopzondagen'
+    ],
+    openingHours: {
+      monday: '10:00 - 18:00',
+      tuesday: '10:00 - 18:00',
+      wednesday: '10:00 - 18:00',
+      thursday: '10:00 - 18:00',
+      friday: '10:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen (an verkaufsoffenen Sonntagen geöffnet)'
+    }
+  },
+  {
+    id: 'modehaus-schnurbusch-winterberg',
+    name: 'Modehaus Schnurbusch',
+    category: 'Einzelhandel',
+    subcategory: 'Bekleidung',
+    description: 'Das Modehaus Schnurbusch (Inh. Luzia Sauerwald) an der Hauptstraße 1 im Herzen von Winterberg ist ein traditionsreiches Fachgeschäft für anspruchsvolle Damenmode. Das Sortiment umfasst stilsichere Kollektionen, Hosen, Strick, Blusen und modische Accessoires renommierter Marken. Kundinnen schätzen die persönliche, typgerechte Beratung in familiärer Atmosphäre direkt in der Winterberger Fußgängerzone.',
+    description_nl: 'Modehuis Schnurbusch (Luzia Sauerwald) aan de Hauptstraße 1 in het centrum van Winterberg is een gevestigde speciaalzaak voor stijlvolle damesmode. Het assortiment bestaat uit hoogwaardige collecties, broeken, breimode en accessoires met persoonlijk stijladvies.',
+    address: 'Hauptstraße 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2248',
+    image: '/modehaus-schnurbusch-winterberg.jpg',
+    imageFallback: 'MS',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Damenmode & Trendkollektionen',
+      'Hosen, Blusen, Shirts & Strick',
+      'Individuelle Typ- & Stilberatung',
+      'Modische Accessoires & Tücher',
+      'Verkaufsoffene Sonntage'
+    ],
+    services_nl: [
+      'Damesmode & trendcollecties',
+      'Broeken, blouses & breimode',
+      'Persoonlijk kledingadvies',
+      'Modieuze accessoires',
       'Koopzondagen'
     ],
     openingHours: {

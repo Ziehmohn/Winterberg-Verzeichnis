@@ -11,8 +11,8 @@ export const initialNews: NewsArticle[] = [
     businessId: 'winterberg-touristik',
     businessName: 'Winterberg Touristik und Wirtschaft GmbH',
     businessSlug: 'winterberg-touristik',
-    imageUrl: '/wanderveranstaltungen-oktober-winterberg.jpg',
-    imageCredit: 'Tourist Information Winterberg',
+    imageUrl: 'https://www.winterberg.de/fileadmin/user_upload/Winterberg/Tourismus/Service___Kontakt/Presse___Newsroom/Bilddatenbank/Sommer/Winterberg_Sommer_Familie_Frauen_Wandern_Berge_Aussicht_Stephanpetersdesign.de.jpg',
+    imageCredit: 'Ferienwelt Winterberg / Stephan Peters',
     isAiGenerated: false,
     status: 'approved',
     date: '2026-10-15T18:30:00.000Z',
@@ -43,7 +43,7 @@ Ob sportliche Höhenmeter, genussvolle Wanderungen mit kulinarischen Zwischensto
 * **Altstadtführung durch Winterberg:** Samstag, 24. Oktober (14:00 – 15:30 Uhr) mit vielen Anekdoten zur bewegten Geschichte der Bergstadt.
 * **Nachtwächterrundgang für Kinder und Familien:** Samstag, 24. Oktober (18:30 – 20:00 Uhr). Ein geheimnisvolles, kindgerechtes Abenteuer in der Dämmerung.
 
-![Wanderveranstaltungen im Oktober in Winterberg](/wanderveranstaltungen-oktober-winterberg.jpg)
+![Wandern im goldenen Herbst in Winterberg](https://www.winterberg.de/fileadmin/user_upload/Winterberg/Tourismus/Service___Kontakt/Presse___Newsroom/Bilddatenbank/Sommer/Winterberg_Sommer_Familie_Frauen_Wandern_Berge_Aussicht_Stephanpetersdesign.de.jpg)
 
 :::tip
 ### Alle Termine im Überblick
@@ -86,7 +86,7 @@ Of u nu kiest voor sportieve hoogtemeters, een smaakvolle culinaire wandeling, e
 * **Historische stadswandeling door Winterberg:** Zaterdag 24 oktober (14:00 – 15:30 uur) langs historische vakwerkhuizen en stadsverhalen.
 * **Nachtwaker-rondleiding voor kinderen en gezinnen:** Zaterdag 24 oktober (18:30 – 20:00 uur), een spannend avontuur in de schemering.
 
-![Wandelactiviteiten in oktober in Winterberg](/wanderveranstaltungen-oktober-winterberg.jpg)
+![Wandelen in de gouden herfst in Winterberg](https://www.winterberg.de/fileadmin/user_upload/Winterberg/Tourismus/Service___Kontakt/Presse___Newsroom/Bilddatenbank/Sommer/Winterberg_Sommer_Familie_Frauen_Wandern_Berge_Aussicht_Stephanpetersdesign.de.jpg)
 
 :::tip
 ### Alle data in de evenementenkalender
@@ -98,7 +98,7 @@ Alle begeleide wandelingen en rondleidingen vindt u vanaf nu overzichtelijk in o
 ### Tourist Information Winterberg
 * **Adres:** Am Kurpark 4, 59955 Winterberg
 * **Telefoon:** +49 2981 92500
-* **E-mail:** info@winterberg.de
+* **E-Mail:** info@winterberg.de
 * **Online reserveren & tickets:** [winterberg.de/erlebnis-buchen](https://www.winterberg.de/aktivitaeten-wohlfuehlen/erlebnis-buchen/#)
 * **Opmerking:** Alle gegevens onder voorbehoud. Vooraf aanmelden wordt aanbevolen.
 :::`,
