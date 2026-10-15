@@ -4495,7 +4495,26 @@ export const businesses: Business[] = [
       friday: '08:00 - 18:30',
       saturday: '08:00 - 13:00',
       sunday: 'Geschlossen'
-    }
+    },
+    coordinates: { lat: 51.1963, lng: 8.5342 },
+    events: [
+      {
+        id: 'digitaltreff-senioren-winterberg-2026-11-02',
+        title: 'Digitaltreff für Senioren: Passwörter & Smartphone-Sicherheit',
+        title_nl: 'Digitaal café voor senioren: Wachtwoorden & Smartphone-veiligheid',
+        startDate: '2026-11-02',
+        endDate: '2026-11-02',
+        startTime: '15:00',
+        endTime: '17:00',
+        price: 'Kostenfrei (Anmeldung erbeten)',
+        category: 'Workshop & Kurse',
+        location: 'Multifunktionsraum der Franziskus-Apotheke, Poststraße 6, 59955 Winterberg',
+        imageUrl: '/event-digitaltreff-senioren-winterberg.jpg',
+        description: 'Beim nächsten Digitaltreff für Senioren und Seniorinnen am Montag, den 2. November, dreht sich alles um das Thema "Passwörter sicher verwalten und für den Verlust des Smartphones vorbereitet sein". Digitalisierungsbeauftragter Hassan Abou-El-Ella zeigt in ruhiger und verständlicher Form, wie sich ein Passwortmanager praktisch auf dem eigenen Smartphone einrichten lässt und welche Maßnahmen helfen, falls das Gerät verloren geht oder gestohlen wird (z. B. Orten und Sperren). Im Mittelpunkt steht das praktische Ausprobieren mit individueller Betreuung und viel Raum für persönliche Fragen. Mitzubringen ist lediglich das eigene Smartphone oder Tablet; Vorkenntnisse sind nicht erforderlich. Die Teilnahme ist kostenfrei. Um verbindliche Voranmeldung wird gebeten bei Herrn Hassan Abou-El-Ella unter Tel. 02981 800131 oder per E-Mail an digitaltreff@winterberg.de.',
+        description_nl: 'Tijdens het komende digitale café voor senioren op maandag 2 november staat het thema "Veilig wachtwoorden beheren en voorbereid zijn op verlies van je smartphone" centraal. Digitaliseringsfunctionaris Hassan Abou-El-Ella legt op rustige en begrijpelijke wijze uit hoe u een wachtwoordmanager instelt en wat u kunt doen als uw toestel kwijtraakt of gestolen wordt (opsporen en vergrendelen). Naast duidelijke uitleg is er volop gelegenheid om zelf te oefenen en vragen te stellen. Breng uw eigen smartphone of tablet mee; voorkennis is niet nodig. Deelname is gratis. Aanmelden verplicht via tel. 02981 800131 of per e-mail via digitaltreff@winterberg.de.',
+        externalUrl: 'mailto:digitaltreff@winterberg.de'
+      }
+    ]
   },
   {
     id: 'dm-drogerie-markt-winterberg',
@@ -5455,6 +5474,7 @@ export const businesses: Business[] = [
     phone: '02981 2222',
     email: 'info@sport-menke.de',
     website: 'https://www.sport-menke.de',
+    image: '/mode-menke-winterberg.jpg',
     imageFallback: 'SM',
     isPremium: false,
     status: 'approved',
@@ -7295,6 +7315,56 @@ export const businesses: Business[] = [
       saturday: '10:00 - 24:00',
       sunday: '10:00 - 22:00'
     }
+  },
+  {
+    id: 'borgs-scheune-zueschen',
+    name: 'Borgs Scheune Züschen',
+    category: 'Freizeit',
+    subcategory: 'Outdoor-Freizeitgebiet',
+    description: 'Borgs Scheune in Züschen ist ein denkmalgeschütztes historisches Fachwerkgebäude und lebendiges Kulturzentrum der Ferienregion Winterberg. Getragen vom Förderverein für Kultur-, Denkmalpflege und Naturschutz in der Gemeinde Züschen e.V. (KuKuK! Kunst · Kultur · Kontakte seit 1988), finden hier regelmäßig Konzerte, Kabarettabende, Theateraufführungen, Autorenlesungen und Kunstausstellungen in intimer Scheunenatmosphäre statt.',
+    description_nl: 'Borgs Scheune in Züschen is een historisch monumentaal vakwerkpand en een sfeervol cultureel centrum in Winterberg. Gedragen door cultuurvereniging KuKuK! (Kunst · Kultur · Kontakte) vinden hier regelmatig concerten, cabaret, theatervoorstellingen, lezingen en exposities plaats in een unieke, intieme ambiance.',
+    address: 'Mollseifener Straße 17, 59955 Winterberg-Züschen',
+    district: 'Züschen',
+    coordinates: { lat: 51.1526, lng: 8.5619 },
+    phone: '02981 800121',
+    email: 'info@borgs-scheune.de',
+    website: 'https://www.borgs-scheune.de',
+    image: '/event-wuthe-und-faust-header.jpg',
+    imageFallback: 'BS',
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Konzerte, Kleinkunst & Kabarett',
+      'Heimatmuseum & historische Ausstellungen',
+      'Lesungen & Vortragsabende',
+      'Freie Sitzplatzwahl & urige Scheunenatmosphäre',
+      'Parkplätze direkt an der Pfarrkirche'
+    ],
+    services_nl: [
+      'Concerten, cabaret & kleinkunst',
+      'Streekmuseum & historische exposities',
+      'Lezingen & voordrachten',
+      'Vrije zitplaatskeuze & authentieke schuursfeer',
+      'Parkeergelegenheid bij de parochiekerk'
+    ],
+    events: [
+      {
+        id: 'wuthe-und-faust-borgs-scheune-zueschen-2026-10-31',
+        title: 'Wuthe & Faust – Konzert in Borgs Scheune Züschen',
+        title_nl: 'Wuthe & Faust – Concert in Borgs Scheune Züschen',
+        startDate: '2026-10-31',
+        endDate: '2026-10-31',
+        startTime: '19:30',
+        endTime: '',
+        price: 'VVK 17 € / AK 19 €',
+        category: 'Konzert',
+        location: 'Borgs Scheune, Mollseifener Str. 17, 59955 Winterberg-Züschen',
+        imageUrl: '/event-wuthe-und-faust-header.jpg',
+        description: 'Beatlesker Harmoniegesang mit markanten Stimmen, authentisches Storytelling, prägnante Gitarrenbegleitung und musikalische Extrakte aus Folk, Blues, Rootsrock und Country: Das Akustik-Duo Wuthe & Faust gastiert live in der historischen Borgs Scheune in Winterberg-Züschen. Einlass ab 19:00 Uhr, Beginn 19:30 Uhr. Freie Sitzplatzwahl, Parkplätze an der Kirche. Veranstaltet vom Förderverein für Kultur-, Denkmalpflege und Naturschutz in der Gemeinde Züschen e.V. (KuKuK! Kunst · Kultur · Kontakte seit 1988). Online-Tickets sind im Vorverkauf über die Winterberg Touristik erhältlich.',
+        description_nl: 'Beatles-achtige meerstemmige samenzang, authentieke storytelling, virtuoos gitaarspel en muzikale invloeden uit folk, blues, rootsrock en country: het akoestische duo Wuthe & Faust treedt live op in de historische Borgs Scheune in Winterberg-Züschen. Zaal open vanaf 19:00 uur, aanvang 19:30 uur. Vrije zitplaatskeuze, parkeren bij de kerk. Georganiseerd door cultuurvereniging Züschen e.V. (KuKuK!). Tickets online verkrijgbaar via Winterberg Touristik.',
+        externalUrl: 'https://www.winterberg.de/deinerlebnismoment'
+      }
+    ]
   }
 ];
 
