@@ -27,6 +27,31 @@ const brandIcon = new L.Icon({
 // Simple geocode cache
 const geocodeCache: Record<string, [number, number]> = {};
 
+// Coordinates for all 14 districts of Winterberg + Kernstadt
+export const DISTRICT_COORDINATES: Record<string, [number, number]> = {
+  'Winterberg': [51.1956, 8.5338],
+  'Altastenberg': [51.1873, 8.4687],
+  'Neuastenberg': [51.1627, 8.4908],
+  'Züschen': [51.1578, 8.5663],
+  'Niedersfeld': [51.2588, 8.5297],
+  'Siedlinghausen': [51.2505, 8.4901],
+  'Silbach': [51.2263, 8.4727],
+  'Elkeringhausen': [51.2155, 8.5714],
+  'Grönebach': [51.2359, 8.5583],
+  'Hildfeld': [51.2536, 8.5667],
+  'Mollseifen': [51.1491, 8.4878],
+  'Lenneplätze': [51.1642, 8.4746],
+  'Langewiese': [51.1539, 8.4552],
+  'Hoheleye': [51.1444, 8.4419]
+};
+
+export function getDistrictFallbackCoordinates(district?: string): [number, number] {
+  if (district && DISTRICT_COORDINATES[district]) {
+    return DISTRICT_COORDINATES[district];
+  }
+  return DISTRICT_COORDINATES['Winterberg'];
+}
+
 // Component to set map center when position is found
 function SetViewOnPosition({ position }: { position: [number, number] }) {
   const map = useMap();
@@ -42,66 +67,107 @@ interface BusinessMapProps {
 }
 
 export default function BusinessMap({ business, lang }: BusinessMapProps) {
-  const [position, setPosition] = useState<[number, number] | null>(
-    business.coordinates ? [business.coordinates.lat, business.coordinates.lng] : null
+  const fallbackPosition = getDistrictFallbackCoordinates(business.district);
+
+  const [position, setPosition] = useState<[number, number]>(
+    business.coordinates
+      ? [business.coordinates.lat, business.coordinates.lng]
+      : (geocodeCache[formatBusinessAddress(business.address, business.district)] || fallbackPosition)
   );
-  const [isLoading, setIsLoading] = useState(!business.coordinates);
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(!business.coordinates && !geocodeCache[formatBusinessAddress(business.address, business.district)]);
 
   useEffect(() => {
-    if (position) return;
+    if (business.coordinates) {
+      setPosition([business.coordinates.lat, business.coordinates.lng]);
+      setIsLoading(false);
+      return;
+    }
 
-    const queryAddress = formatBusinessAddress(business.address, business.district) || 'Winterberg';
-    const cacheKey = `${queryAddress}, Deutschland`;
+    const rawAddress = formatBusinessAddress(business.address, business.district) || 'Winterberg';
+    const cacheKey = rawAddress;
     if (geocodeCache[cacheKey]) {
       setPosition(geocodeCache[cacheKey]);
       setIsLoading(false);
       return;
     }
 
+    // Clean common abbreviations (e.g. "In d. Renau 10/11" -> "In der Renau 10")
+    const cleanAddress = rawAddress
+      .replace(/\bIn d\.\s*/gi, 'In der ')
+      .replace(/\bBgm\.-/gi, 'Bürgermeister-')
+      .replace(/\bDr\.-/gi, 'Doktor-')
+      .replace(/(\d+)\/\d+/g, '$1'); // "10/11" -> "10"
+
     const fetchGeocode = async () => {
       try {
-        const res = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(queryAddress + ', Deutschland')}&limit=1`
-        );
-        const data = await res.json();
-        if (data && data.length > 0) {
-          const coords: [number, number] = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
-          geocodeCache[cacheKey] = coords;
-          setPosition(coords);
-        } else {
-          setError(true);
+        // 1. Try Photon (fast, handles fuzzy search & abbreviations, no CORS blocks)
+        try {
+          const photonRes = await fetch(
+            `https://photon.komoot.io/api/?q=${encodeURIComponent(cleanAddress + ', Winterberg')}&limit=1`
+          );
+          if (photonRes.ok) {
+            const photonData = await photonRes.json();
+            const feat = photonData.features?.[0];
+            if (feat && feat.geometry && Array.isArray(feat.geometry.coordinates)) {
+              const coords: [number, number] = [feat.geometry.coordinates[1], feat.geometry.coordinates[0]];
+              geocodeCache[cacheKey] = coords;
+              setPosition(coords);
+              setIsLoading(false);
+              return;
+            }
+          }
+        } catch {
+          // Continue to fallback
         }
+
+        // 2. Nominatim fallback with proper headers
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cleanAddress + ', Deutschland')}&limit=1`,
+            {
+              headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'WinterbergVerzeichnis/1.0 (info@winterberg-verzeichnis.de)'
+              }
+            }
+          );
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0 && data[0].lat && data[0].lon) {
+              const coords: [number, number] = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+              geocodeCache[cacheKey] = coords;
+              setPosition(coords);
+              setIsLoading(false);
+              return;
+            }
+          }
+        } catch {
+          // Continue to fallback
+        }
+
+        // 3. Fallback to district center
+        geocodeCache[cacheKey] = fallbackPosition;
+        setPosition(fallbackPosition);
       } catch (err) {
-        console.warn('Geocoding error:', err);
-        setError(true);
+        console.warn('Geocoding error, falling back to district center:', err);
+        setPosition(fallbackPosition);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchGeocode();
-  }, [business.address, business.district, position]);
+  }, [business.address, business.district, business.coordinates, fallbackPosition]);
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(formatBusinessAddress(business.address, business.district) || 'Winterberg')}`;
 
-  if (isLoading) {
-    return (
-      <div className="w-full h-[200px] bg-[#F0EDE7] rounded-lg flex items-center justify-center border border-[#EDE8E0] animate-pulse">
-        <MapPin className="w-6 h-6 text-[#C5BFAF]" />
-      </div>
-    );
-  }
-
-  if (!position) {
-    return null;
-  }
+  const currentPosition = position || fallbackPosition;
 
   return (
     <div className="w-full overflow-hidden rounded-lg border border-[#EDE8E0] shadow-sm">
       <div className="relative" style={{ height: '200px' }}>
         <MapContainer
-          center={position}
+          center={currentPosition}
           zoom={15}
           style={{ height: '100%', width: '100%' }}
           zoomControl={false}
@@ -114,8 +180,8 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           />
-          <SetViewOnPosition position={position} />
-          <Marker position={position} icon={brandIcon} />
+          <SetViewOnPosition position={currentPosition} />
+          <Marker position={currentPosition} icon={brandIcon} />
         </MapContainer>
 
         {/* Overlay: clickable to open Google Maps */}

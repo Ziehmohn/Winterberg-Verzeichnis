@@ -2,6 +2,100 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'B99nqQbUNBZVpUXNNgNj',
+    slug: 'herbstzeit-nordhang-jause-kuerbisschnitzen-lichterzauber',
+    slug_nl: 'herfst-nordhang-jause-pompoensnijden-lichtjesmagie',
+    title: 'Herbstzeit an der Nordhang Jause: Kürbisschnitzen für Kids & stimmungsvoller Lichterzauber',
+    title_nl: 'Herfst bij Nordhang Jause: Pompoen snijden voor kinderen & sfeervolle Lichtjesmagie',
+    author: 'Simon Kräling',
+    businessId: 'nordhang-jause',
+    businessName: 'Nordhang Jause Winterberg',
+    businessSlug: 'gastronomie/restaurant/nordhang-jause-winterberg',
+    imageUrl: '/news-nordhang-jause-herbstevents.jpg',
+    imageCredit: 'Flyer / Fotos: Nordhang Jause Winterberg',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-15T16:30:00.000Z',
+    content: `Wenn die Tage kürzer werden und sich der Herbst im Hochsauerland von seiner schönsten Seite zeigt, wird es auch an der Winterberger Nordhang Jause wieder besonders urig und gemütlich. Mit zwei besonderen Veranstaltungen lädt das Team Groß und Klein dazu ein, gemeinsam unvergessliche Herbststunden an der frischen Bergluft und am wärmenden Feuer zu verbringen.
+
+Bei allen Live-Events gilt: Es gelten die regulären Öffnungszeiten – Hütte und Küche sind durchgehend für jedermann geöffnet!
+
+## 1. Kürbisschnitzen für Kids – Freitag, 23. Oktober 2026
+
+Kürbisse schnitzen, Stockbrot und Marshmallows am knisternden Lagerfeuer rösten und einfach eine schöne Familienzeit zusammen verbringen: Beim Kürbisschnitzen dürfen die Kids kreativ werden und ihren ganz persönlichen Halloween-Kürbis gestalten.
+
+* **Termin:** Freitag, 23. Oktober 2026, ab 14:00 Uhr
+* **Zwei Zeitfenster:** Geschnitzt wird von 14:00 bis 16:00 Uhr sowie von 16:00 bis 18:00 Uhr
+* **Unkostenbeitrag:** 8,00 € pro Kind/Kürbis
+* **Highlights:** Stockbrot & Marshmallows vom Lagerfeuer, Speisen & Getränke für Groß und Klein
+* **Wichtig – Vorherige Anmeldung erforderlich:** Damit für jedes Kind ein Kürbis und ein Arbeitsplatz vorbereitet werden können, ist eine Anmeldung unbedingt erforderlich (telefonisch unter 02981 / 8996399 oder per E-Mail an info@nordhangjause.de). Die Plätze sind begrenzt!
+
+![Kürbisschnitzen für Kids an der Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
+
+## 2. Lichterzauber am Nordhang – Samstag, 7. November 2026
+
+Wenn es draußen langsam dunkel wird, beginnt der Nordhang zu leuchten! Beim Lichterzauber verwandeln zahlreiche Lichter und Strahler das Gelände rund um die Nordhang Jause in eine zauberhafte Kulisse für die ganze Familie.
+
+* **Termin:** Samstag, 7. November 2026, von 15:00 bis 22:00 Uhr
+* **Eintritt frei!**
+* **Live-Musik:** Musikalische Unterhaltung mit der Band „Hörgerätchen“ aus Siegen
+* **Kulinarik am Buchenholzfeuer:** Frischer Flammlachs, traditioneller Kartoffelbraten, Getränkestand & heißer Glühwein vom offenen Feuer
+* **Illuminierter Lichterwald & Kugelbahn:** Auch die beliebte Holzkugelbahn wird stimmungsvoll in Szene gesetzt und kann von den kleinen Besuchern bespielt werden
+* **Ein Licht für jedes Kind:** Als Erinnerung erhält jedes Kind ein eigenes kleines Licht geschenkt
+
+Ob beim herbstlichen Familiennachmittag oder beim stimmungsvollen Lichterzauber mit Musik, Feuer und gutem Essen: Jacke an, raus an die frische Luft und gemeinsam den Herbst am Nordhang genießen!
+
+![Lichterzauber am Nordhang](/events-nordhang-lichterzauber.jpg)
+
+:::contact
+### Nordhang Jause Winterberg
+* **Standort:** In der Renau 10/11, 59955 Winterberg
+* **Telefon:** 02981 8996399
+* **E-Mail:** info@nordhangjause.de
+* **Website:** https://www.nordhangjause.de
+* **Unternehmensprofil im Verzeichnis:** [Zum Profil der Nordhang Jause Winterberg](/gastronomie/restaurant/nordhang-jause-winterberg)
+:::`,
+    content_nl: `Wanneer de dagen korter worden en de herfst in het Hochsauerland op zijn mooist is, wordt het ook bij de Winterbergse Nordhang Jause weer bijzonder gezellig. Met twee speciale evenementen nodigt het team jong en oud uit om samen te genieten van de frisse berglucht en het kampvuur.
+
+Voor alle live-evenementen geldt: De normale openingstijden zijn van kracht – hut en keuken zijn doorlopend voor iedereen geopend!
+
+## 1. Pompoen snijden voor kinderen – Vrijdag 23 oktober 2026
+
+Pompoenen uitsnijden, marshmallows en brooddeeg roosteren boven het knisperende kampvuur en genieten van een gezellige herfstmiddag: tijdens het pompoensnijden kunnen kinderen hun creativiteit de vrije loop laten en hun eigen Halloween-pompoen maken.
+
+* **Datum & tijd:** Vrijdag 23 oktober 2026, vanaf 14:00 uur
+* **Twee tijdsloten:** Er wordt gesneden van 14:00 tot 16:00 uur en van 16:00 tot 18:00 uur
+* **Kosten:** € 8,00 per kind/pompoen
+* **Highlights:** Marshmallows & broodjes van het kampvuur, eten & drinken voor jong en oud
+* **Belangrijk – Vooraf aanmelden verplicht:** Om voor ieder kind een pompoen en een plek klaar te zetten, is vooraf reserveren noodzakelijk (telefonisch via 02981 / 8996399 of per e-mail via info@nordhangjause.de). Het aantal plaatsen is beperkt!
+
+![Pompoen snijden voor kinderen bij Nordhang Jause](/events-nordhang-kuerbisschnitzen.jpg)
+
+## 2. Lichtjesmagie aan de Nordhang – Zaterdag 7 november 2026
+
+Wanneer het buiten langzaam donker wordt, begint de Nordhang te stralen! Talloze lichtjes toveren het terrein rondom de Nordhang Jause om in een sprookjesachtig decor.
+
+* **Datum & tijd:** Zaterdag 7 november 2026, van 15:00 tot 22:00 uur
+* **Toegang gratis!**
+* **Livemuziek:** Muzikaal genieten met de band „Hörgerätchen“ uit Siegen
+* **Culinair bij het beukenhoutvuur:** Verse vlamzalm, traditioneel Sauerlands aardappelbraden, drankstand & warme glühwein van het open vuur
+* **Verlicht bos & knikkerbaan:** Ook de populaire houten knikkerbaan wordt sfeervol uitgelicht en kan door de kinderen worden gebruikt
+* **Een lichtje voor ieder kind:** Ieder kind krijgt een eigen klein lichtje cadeau als herinnering
+
+Trek een warme jas aan, naar buiten in de frisse berglucht en samen de herfst beleven aan de Nordhang!
+
+![Lichtjesmagie aan de Nordhang](/events-nordhang-lichterzauber.jpg)
+
+:::contact
+### Nordhang Jause Winterberg
+* **Locatie:** In der Renau 10/11, 59955 Winterberg
+* **Telefoon:** 02981 8996399
+* **E-mail:** info@nordhangjause.de
+* **Website:** https://www.nordhangjause.de
+* **Bedrijfsprofiel in het overzicht:** [Naar het profiel van Nordhang Jause Winterberg](/nl/horeca/restaurants/nordhang-jause-winterberg)
+:::`
+  },
+  {
     id: 'D23c1X0qC4Rept5dmC5m',
     slug: 'atas-doener-beef-manufaktur-winterberg-eroeffnung',
     slug_nl: 'atas-doener-beef-manufaktur-winterberg-opening',

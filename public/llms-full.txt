@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-14
+# Stand: 2026-10-15
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -1418,9 +1418,10 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Nordhang Jause Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/nordhang-jause-winterberg)
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Winterberg
-- **Adresse:** In d. Renau 11, 59955 Winterberg
+- **Adresse:** In d. Renau 10/11, 59955 Winterberg
 - **Telefon:** 02981 8996399
-- **Beschreibung (DE):** Urige Hütte in Wintersportgebiet direkt am Skilift mit gutbürgerlicher deutscher Küche und Sonnenterrasse.
+- **Webseite:** https://www.nordhangjause.de
+- **Beschreibung (DE):** Urige Hütte im Wintersport- und Wandergebiet direkt am Skilift mit gutbürgerlicher Küche, Sonnenterrasse und stimmungsvollen Veranstaltungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/nordhang-jause-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/nordhang-jause-winterberg
 

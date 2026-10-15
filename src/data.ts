@@ -2263,12 +2263,49 @@ export const businesses: Business[] = [
     category: 'Gastronomie',
     subcategory: 'Restaurant',
     additionalCategories: [{ category: 'Gastronomie', subcategory: 'Skihütten' }],
-    description: 'Urige Hütte in Wintersportgebiet direkt am Skilift mit gutbürgerlicher deutscher Küche und Sonnenterrasse.',
-    address: 'In d. Renau 11, 59955 Winterberg',
+    description: 'Urige Hütte im Wintersport- und Wandergebiet direkt am Skilift mit gutbürgerlicher Küche, Sonnenterrasse und stimmungsvollen Veranstaltungen.',
+    address: 'In d. Renau 10/11, 59955 Winterberg',
     phone: '02981 8996399',
+    email: 'info@nordhangjause.de',
+    website: 'https://www.nordhangjause.de',
     district: 'Winterberg',
+    coordinates: { lat: 51.18505, lng: 8.48940 },
     isPremium: false,
-    status: 'approved'
+    status: 'approved',
+    events: [
+      {
+        id: 'kuerbisschnitzen-fuer-kids-nordhang-jause-2026',
+        title: 'Kürbisschnitzen für Kids an der Nordhang Jause',
+        title_nl: 'Pompoen snijden voor kinderen bij Nordhang Jause',
+        startDate: '2026-10-23',
+        endDate: '2026-10-23',
+        startTime: '14:00',
+        endTime: '18:00',
+        price: '8,00 € pro Kind/Kürbis',
+        category: 'Familie',
+        location: 'Nordhang Jause, In d. Renau 10/11, 59955 Winterberg',
+        imageUrl: '/events-nordhang-kuerbisschnitzen.jpg',
+        description: 'Kürbisse schnitzen, Stockbrot und Marshmallows am Lagerfeuer und leuchtende Kinderaugen: Beim Kürbisschnitzen an der Nordhang Jause dürfen Kids kreativ werden und ihren eigenen Halloween-Kürbis gestalten. Geschnitzt wird in zwei Zeitfenstern: 14:00 bis 16:00 Uhr sowie 16:00 bis 18:00 Uhr. Unkostenbeitrag: 8,00 € pro Kind/Kürbis. Vorherige Anmeldung unbedingt erforderlich unter Tel. 02981 / 8996399 oder info@nordhangjause.de (Plätze begrenzt). Hütte und Küche für jedermann regulär geöffnet!',
+        description_nl: 'Pompoen snijden, marshmallows en broodjes bakken bij het kampvuur en stralende kinderogen: kinderen kunnen hun eigen Halloween-pompoen vormgeven bij Nordhang Jause. Twee tijdsloten: 14:00–16:00 uur en 16:00–18:00 uur. Kosten: € 8,00 per kind/pompoen. Vooraf aanmelden verplicht via 02981 / 8996399 of info@nordhangjause.de. De hut en keuken zijn regulier geopend voor iedereen!',
+        externalUrl: 'https://www.nordhangjause.de'
+      },
+      {
+        id: 'lichterzauber-am-nordhang-2026',
+        title: 'Lichterzauber am Nordhang – Wenn der Nordhang zu leuchten beginnt',
+        title_nl: 'Lichtjesmagie aan de Nordhang – Als de Nordhang begint te stralen',
+        startDate: '2026-11-07',
+        endDate: '2026-11-07',
+        startTime: '15:00',
+        endTime: '22:00',
+        price: 'Freier Eintritt',
+        category: 'Fest',
+        location: 'Nordhang Jause, In d. Renau 10/11, 59955 Winterberg',
+        imageUrl: '/events-nordhang-lichterzauber.jpg',
+        description: 'Wenn es draußen langsam dunkel wird, verwandeln zahlreiche Lichter das Gelände rund um die Nordhang Jause in eine besondere Herbstkulisse. Mit Live-Musik von „Hörgerätchen“ aus Siegen, frischem Flammlachs, traditionellem Sauerländer Kartoffelbraten, Getränkestand und heißem Glühwein vom offenen Buchenholzfeuer. Die Kugelbahn wird stimmungsvoll beleuchtet und als kleines Andenken bekommt jedes Kind ein eigenes Licht geschenkt. Eintritt frei! Bei allen Live-Events gelten die regulären Öffnungszeiten – Hütte und Küche sind für jedermann geöffnet!',
+        description_nl: 'Talloze lichtjes toveren het terrein rondom de Nordhang Jause om in een magisch herfstdecor! Met livemuziek van „Hörgerätchen“ uit Siegen, verse vlamzalm, traditioneel aardappelbraden, drankstand en glühwein van het beukenhoutvuur. De knikkerbaan is verlicht en ieder kind krijgt een eigen lichtje cadeau. Gratis toegang! Hut en keuken zijn voor iedereen geopend.',
+        externalUrl: 'https://www.nordhangjause.de'
+      }
+    ]
   },
   {
     id: 'hotel-altastenberg',
