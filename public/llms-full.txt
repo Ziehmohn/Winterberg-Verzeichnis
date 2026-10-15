@@ -217,16 +217,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/chalets-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/chalets-winterberg
 
-#### [Hotel Oversum Ski & Vital Resort Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotel-oversum-ski-und-vital-resort-winterberg)
-- **Kategorie:** Hotels und Unterkünfte
+#### [Hotel Oversum Ski & Vital Resort Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-oversum-ski-und-vital-resort-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Kurpark 6, 59955 Winterberg
 - **Telefon:** 02981 929550
 - **Webseite:** https://www.oversum-vitalresort.de
 - **Beschreibung (DE):** Spektakuläres 4-Sterne-Superior Wellnesshotel im markanten "Ei" direkt am Kurpark Winterberg. Beheimatet neben dem weitläufigen Wellness- & Spa-Bereich auch die Stadthalle Winterberg für Konzerte, Tagungen und Kultur-Events.
 - **Beschreibung (NL):** Spectaculair 4-sterren superior wellnesshotel in de opvallende koepelarchitectuur aan het kuurpark in Winterberg. Bevat naast uitgebreide wellnessfaciliteiten tevens de Stadthalle Winterberg voor evenementen en congressen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotel-oversum-ski-und-vital-resort-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotel-oversum-ski-und-vital-resort-winterberg
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-oversum-ski-und-vital-resort-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-oversum-ski-und-vital-resort-winterberg
 
 #### [Landal Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienparks/landal-winterberg)
 - **Kategorie:** Hotels und Unterkünfte > Ferienparks
@@ -1124,27 +1124,27 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/telemax-datentechnik-und-telekommunikation
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/telemax-datentechnik-und-telekommunikation
 
-#### [hagebau kompakt - Müllenhoff Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/hagebau-kompakt-muellenhoff-winterberg)
-- **Kategorie:** Einzelhandel
+#### [hagebau kompakt - Müllenhoff Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg)
+- **Kategorie:** Einzelhandel > Baumärkte
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Remmeswiese 23, 59955 Winterberg
 - **Telefon:** 02981 90210
-- **Webseite:** https://www.muellenhoff.de
-- **Beschreibung (DE):** hagebau kompakt Müllenhoff in Winterberg – Ihr kompetenter Fachmarkt für Bauen, Renovieren, Garten und Heimwerken. Großes Sortiment an Werkzeugen, Farben, Baustoffen, Eisenwaren und Gartenbedarf mit persönlicher Fachberatung und Abholservice.
-- **Beschreibung (NL):** hagebau kompakt Müllenhoff in Winterberg – uw bouwmarkt en tuincentrum voor doe-het-zelf, verbouwen, gereedschap, verf, bouwmaterialen en tuinbenodigdheden.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/hagebau-kompakt-muellenhoff-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/hagebau-kompakt-muellenhoff-winterberg
+- **Webseite:** https://www.muellenhoff.com
+- **Beschreibung (DE):** Der hagebau kompakt Markt Müllenhoff an der Remmeswiese 23 in Winterberg ist als höchstgelegener Baumarkt Nordrhein-Westfalens die erste Adresse für Heimwerker, Gärtner und Handwerker in der Ferienregion. Auf moderner Verkaufsfläche bietet das Fachzentrum ein breites Sortiment an Qualitätswerkzeugen, Eisenwaren, Elektro- und Sanitärinstallation, Farben samt individuellem Farbmischservice sowie Baustoffen und Holz mit Holzzuschnitt. Ergänzt wird das Portfolio durch Gartenbedarf, Pflanzenschutz, Schärf- und Schlüsseldienst, Mietgeräteverleih sowie einen bequemen Abhol- und Lieferservice.
+- **Beschreibung (NL):** hagebau kompakt Müllenhoff aan de Remmeswiese 23 in Winterberg is de hoogstgelegen bouwmarkt van Noordrijn-Westfalen en hét adres voor doe-het-zelvers, tuiniers en vaklieden. Het assortiment omvat professioneel gereedschap, ijzerwaren, sanitair, elektra, verf met mengservice, bouwmaterialen en houtzagerij. Daarnaast biedt de vestiging deskundig advies, machineverhuur, sleutelservice en een betrouwbare afhaal- en bezorgdienst.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg
 
-#### [Insider Fashion Store (Precious)](https://www.winterberg-verzeichnis.de/einzelhandel/insider-fashion-store-precious)
-- **Kategorie:** Einzelhandel
+#### [Insider Fashion Store (Precious)](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/insider-fashion-store-precious)
+- **Kategorie:** Einzelhandel > Bekleidung
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 15, 59955 Winterberg
 - **Telefon:** 02981 9288820
 - **Webseite:** https://preciouswinterberg.de
-- **Beschreibung (DE):** Trendbewusster Fashion Store im Herzen von Winterberg mit ausgewählten Kollektionen angesagter Modemarken für Damen und Herren, stilvollen Accessoires und persönlicher Beratung sowie eigenem Onlineshop.
-- **Beschreibung (NL):** Modieuze kledingboetiek in het centrum van Winterberg met geselecteerde collecties dames- en herenmode, stijlvolle accessoires en een eigen webshop.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/insider-fashion-store-precious
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/insider-fashion-store-precious
+- **Beschreibung (DE):** Der Insider Fashion Store (Precious) am Waltenberg 15 im Zentrum von Winterberg präsentiert eine moderne Auswahl an Damen- und Herrenmode renommierter Trendmarken, Streetwear und stilvollen Mode-Accessoires. Ergänzt wird die persönliche Beratung vor Ort durch einen hauseigenen Onlineshop.
+- **Beschreibung (NL):** Insider Fashion Store (Precious) aan de Waltenberg 15 in het centrum van Winterberg biedt een eigentijdse collectie dames- en herenmode, streetwear en stijlvolle accessoires met persoonlijk advies en een eigen webshop.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/insider-fashion-store-precious
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/insider-fashion-store-precious
 
 #### [Juwelier Eiloff](https://www.winterberg-verzeichnis.de/einzelhandel/juweliere-und-uhren/juwelier-eiloff)
 - **Kategorie:** Einzelhandel > Juweliere & Uhren
@@ -2145,16 +2145,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/haus-sonnenhang-sozialwerk-st-georg-sozialwerk-sauerland
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/haus-sonnenhang-sozialwerk-st-georg-sozialwerk-sauerland
 
-#### [Stadthalle Oversum](https://www.winterberg-verzeichnis.de/dienstleistungen/stadthalle-oversum)
-- **Kategorie:** Dienstleistungen
+#### [Stadthalle Oversum](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/stadthalle-oversum)
+- **Kategorie:** Dienstleistungen > Tagungszentren
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Kurpark 6, 59955 Winterberg
 - **Telefon:** 02981 929550
 - **Webseite:** https://www.oversum-vitalresort.de
 - **Beschreibung (DE):** Die Stadthalle Oversum ist das zentrale Veranstaltungs- und Kongresszentrum der Stadt Winterberg im architektonisch einzigartigen Gebäudeensemble am Kurpark. Austragungsort für Konzerte, Tagungen, Theater, Messen und gesellschaftliche Events mit modernster Veranstaltungstechnik.
 - **Beschreibung (NL):** De Stadthalle Oversum is het centrale evenementen- en congrescentrum van Winterberg, gelegen in het markante gebouw aan het kuurpark. Locatie voor concerten, congressen, beurzen en culturele bijeenkomsten.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/stadthalle-oversum
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/stadthalle-oversum
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/stadthalle-oversum
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/tagungszentren/stadthalle-oversum
 
 #### [Cowolo](https://www.winterberg-verzeichnis.de/dienstleistungen/coworking-space/cowolo)
 - **Kategorie:** Dienstleistungen > Coworking Space
