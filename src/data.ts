@@ -7476,6 +7476,51 @@ export const businesses: Business[] = [
       saturday: '10:00 - 16:00',
       sunday: 'Geschlossen (an verkaufsoffenen Sonntagen geöffnet)'
     }
+  },
+  {
+    id: 'cowolo-winterberg',
+    name: 'Cowolo',
+    category: 'Dienstleistungen',
+    subcategory: 'Coworking Space',
+    description: 'Das Cowolo an der Wernsdorfer Straße 1 in Winterberg ist der erste moderne Coworking Space im Hochsauerland. Direkt im Stadtzentrum gelegen, bietet das Cowolo flexible Arbeitsplätze (Daily Tickets und Weekly Tickets), feste Schreibtische (Fix Desks) sowie vollausgestattete Private Offices mit 24/7-Zugang. Für Kundentermine, Teamevents und Workshops stehen professionelle Konferenz- und Tagungsräume für bis zu 18 Personen mit moderner Präsentationstechnik (Flatscreens, Whiteboards, Flipcharts) bereit. Highspeed-WLAN, Kaffee, Tee und Wasser sind inklusive.',
+    description_nl: 'Cowolo aan de Wernsdorfer Straße 1 in het centrum van Winterberg is de eerste moderne coworking space in het Hochsauerland. De locatie biedt flexibele werkplekken (dag- en weekpassen), vaste bureaus (Fix Desks) en afsluitbare privékantoren met 24/7 toegang. Voor vergaderingen, workshops en presentaties zijn professionele conferentieruimtes beschikbaar voor maximaal 18 personen met moderne apparatuur. Snelle wifi, koffie, thee en water zijn inbegrepen.',
+    address: 'Wernsdorfer Str. 1, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 92875860',
+    email: 'info@cowolo.de',
+    website: 'https://www.cowolo.de',
+    image: '/cowolo-winterberg.jpg',
+    imageFallback: 'CW',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Flex Desks & Fix Desks',
+      'Daily & Weekly Tickets',
+      'Private Offices (abschließbare Büros)',
+      'Konferenzräume (bis 18 Personen)',
+      'Highspeed-WLAN & Präsentationstechnik',
+      'Kaffee, Tee & Wasser inklusive',
+      '24/7-Zugang für Monatsmitglieder'
+    ],
+    services_nl: [
+      'Flex desks & vaste werkplekken',
+      'Dagpassen & weekpassen',
+      'Private offices (afsluitbare kantoren)',
+      'Vergaderruimtes (tot 18 personen)',
+      'Highspeed-wifi & presentatietechniek',
+      'Koffie, thee & water inbegrepen',
+      '24/7 toegang voor maandleden'
+    ],
+    openingHours: {
+      monday: '08:00 - 17:00',
+      tuesday: '08:00 - 17:00',
+      wednesday: '08:00 - 17:00',
+      thursday: '08:00 - 17:00',
+      friday: '08:00 - 17:00',
+      saturday: 'Geschlossen (24/7 für Mitglieder mit Schlüsselkarte)',
+      sunday: 'Geschlossen (24/7 für Mitglieder mit Schlüsselkarte)'
+    }
   }
 ];
 
@@ -7597,7 +7642,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Haushaltswaren & Deko', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Coworking Space', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
   { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser', 'Hörgeräteakustiker', 'Optiker'] },
   { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },

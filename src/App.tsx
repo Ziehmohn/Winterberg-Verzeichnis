@@ -53,6 +53,7 @@ import {
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
 import { detectTargetLanguage, setUserPreferredLanguage } from './services/geoService';
+import { searchBusinesses, parseSearchQuery, SearchMatchResult } from './utils/searchEngine';
 import { 
   getCachedItem, 
   setCachedItem, 
@@ -1527,20 +1528,15 @@ export default function App() {
 
   const availableLocations = Array.from(new Set(businesses.map(b => extractLocation(b)))).sort();
 
-  const homeSuggestions = homeSearchInput.length > 1 ? businesses.filter(b => {
-    if (b.status === 'pending' || isBusinessDeactivated(b)) return false;
-    const lowerInput = homeSearchInput.toLowerCase().trim();
-    const matchesServices = Array.isArray(b.services) && b.services.some(s => s.toLowerCase().includes(lowerInput));
-    const matchesProducts = Array.isArray(b.products) && b.products.some(p => p.toLowerCase().includes(lowerInput));
-    const matchesExtended = !!(b.extendedDescription && b.extendedDescription.toLowerCase().includes(lowerInput));
-    return b.name.toLowerCase().includes(lowerInput) || 
-           (b.description && b.description.toLowerCase().includes(lowerInput)) ||
-           b.category.toLowerCase().includes(lowerInput) || 
-           (b.subcategory && b.subcategory.toLowerCase().includes(lowerInput)) ||
-           matchesServices ||
-           matchesProducts ||
-           matchesExtended;
-  }).slice(0, 8) : [];
+  const homeSuggestionsMatches: SearchMatchResult[] = useMemo(() => {
+    if (homeSearchInput.trim().length <= 1) return [];
+    return searchBusinesses(businesses, homeSearchInput, {
+      location: activeLocation,
+      limit: 15
+    });
+  }, [businesses, homeSearchInput, activeLocation]);
+
+  const homeSuggestions = useMemo(() => homeSuggestionsMatches.map(m => m.business), [homeSuggestionsMatches]);
 
   const getBusinessRatingStats = (b: Business) => {
     const approved = Array.isArray(b.reviews) ? b.reviews.filter(r => !r.status || r.status === 'approved') : [];
@@ -1549,97 +1545,89 @@ export default function App() {
     return { avg, count };
   };
 
-  const filteredBusinesses = businesses.filter((bus) => {
-    if (bus.status === 'pending' || isBusinessDeactivated(bus)) return false;
-    const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
-    const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
-    
-    const lowerSearch = searchQuery.toLowerCase().trim();
-    const allServices = (bus.services || []).concat(bus.services_nl || []);
-    const matchesServices = !!lowerSearch && allServices.some(s => s.toLowerCase().includes(lowerSearch));
+  const filteredBusinesses = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return businesses.filter((bus) => {
+        if (bus.status === 'pending' || isBusinessDeactivated(bus)) return false;
+        const inAdditional = bus.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
+        const matchesCategory = activeCategory === 'Alle' || bus.category === activeCategory || bus.subcategory === activeCategory || inAdditional;
+        const busLocation = extractLocation(bus);
+        const matchesLocation = activeLocation === 'Alle' || busLocation === activeLocation;
+        const matchesSunday = !onlySundayOpenFilter || isSundayOpen(bus.openingHours);
+        return matchesCategory && matchesLocation && matchesSunday;
+      }).sort((a, b) => {
+        if (sortBy === 'rating') {
+          const aStats = getBusinessRatingStats(a);
+          const bStats = getBusinessRatingStats(b);
+          if (bStats.avg !== aStats.avg) return bStats.avg - aStats.avg;
+          if (bStats.count !== aStats.count) return bStats.count - aStats.count;
+          return a.name.localeCompare(b.name);
+        }
+        if (sortBy === 'reviews_count') {
+          const aStats = getBusinessRatingStats(a);
+          const bStats = getBusinessRatingStats(b);
+          if (bStats.count !== aStats.count) return bStats.count - aStats.count;
+          if (bStats.avg !== aStats.avg) return bStats.avg - aStats.avg;
+          return a.name.localeCompare(b.name);
+        }
+        if (sortBy === 'name_asc') {
+          return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+        }
+        if (sortBy === 'name_desc') {
+          return b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: 'base' });
+        }
+        // Default / 'featured': Premium entries first, then alphabetical
+        if (a.isPremium && !b.isPremium) return -1;
+        if (!a.isPremium && b.isPremium) return 1;
+        return a.name.localeCompare(b.name);
+      });
+    }
 
-    const allProducts = (bus.products || []).concat(bus.products_nl || []);
-    const matchesProducts = !!lowerSearch && allProducts.some(p => p.toLowerCase().includes(lowerSearch));
+    // Natural Language & Holistic Full-Text Search
+    const searchMatches = searchBusinesses(businesses, searchQuery, {
+      category: activeCategory,
+      location: activeLocation,
+      onlySundayOpen: onlySundayOpenFilter,
+      isSundayOpenFn: isSundayOpen
+    });
 
-    const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
-                            !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
-    
-    const matchesSearch = !lowerSearch ||
-                          bus.name.toLowerCase().includes(lowerSearch) || 
-                          (bus.description && bus.description.toLowerCase().includes(lowerSearch)) ||
-                          (bus.description_nl && bus.description_nl.toLowerCase().includes(lowerSearch)) ||
-                          bus.category.toLowerCase().includes(lowerSearch) ||
-                          (bus.subcategory && bus.subcategory.toLowerCase().includes(lowerSearch)) ||
-                          matchesServices ||
-                          matchesProducts ||
-                          matchesExtended;
-
-    const busLocation = extractLocation(bus);
-    const matchesLocation = activeLocation === 'Alle' || busLocation === activeLocation;
-    const matchesSunday = !onlySundayOpenFilter || isSundayOpen(bus.openingHours);
-    return matchesCategory && matchesSearch && matchesLocation && matchesSunday;
-  }).sort((a, b) => {
     if (sortBy === 'rating') {
-      const aStats = getBusinessRatingStats(a);
-      const bStats = getBusinessRatingStats(b);
-      if (bStats.avg !== aStats.avg) {
-        return bStats.avg - aStats.avg;
-      }
-      if (bStats.count !== aStats.count) {
-        return bStats.count - aStats.count;
-      }
-      return a.name.localeCompare(b.name);
+      return [...searchMatches].sort((a, b) => {
+        const aStats = getBusinessRatingStats(a.business);
+        const bStats = getBusinessRatingStats(b.business);
+        if (bStats.avg !== aStats.avg) return bStats.avg - aStats.avg;
+        if (bStats.count !== aStats.count) return bStats.count - aStats.count;
+        return b.score - a.score;
+      }).map(m => m.business);
     }
     if (sortBy === 'reviews_count') {
-      const aStats = getBusinessRatingStats(a);
-      const bStats = getBusinessRatingStats(b);
-      if (bStats.count !== aStats.count) {
-        return bStats.count - aStats.count;
-      }
-      if (bStats.avg !== aStats.avg) {
-        return bStats.avg - aStats.avg;
-      }
-      return a.name.localeCompare(b.name);
+      return [...searchMatches].sort((a, b) => {
+        const aStats = getBusinessRatingStats(a.business);
+        const bStats = getBusinessRatingStats(b.business);
+        if (bStats.count !== aStats.count) return bStats.count - aStats.count;
+        if (bStats.avg !== aStats.avg) return bStats.avg - aStats.avg;
+        return b.score - a.score;
+      }).map(m => m.business);
     }
     if (sortBy === 'name_asc') {
-      return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+      return [...searchMatches].sort((a, b) => a.business.name.localeCompare(b.business.name, undefined, { numeric: true, sensitivity: 'base' })).map(m => m.business);
     }
     if (sortBy === 'name_desc') {
-      return b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: 'base' });
+      return [...searchMatches].sort((a, b) => b.business.name.localeCompare(a.business.name, undefined, { numeric: true, sensitivity: 'base' })).map(m => m.business);
     }
-    // Default / 'featured': Premium entries first, then alphabetical
-    if (a.isPremium && !b.isPremium) return -1;
-    if (!a.isPremium && b.isPremium) return 1;
-    return a.name.localeCompare(b.name);
-  });
+
+    // Default: Sorted by Search Relevance Score descending (already sorted by searchBusinesses)
+    return searchMatches.map(m => m.business);
+  }, [businesses, searchQuery, activeCategory, activeLocation, onlySundayOpenFilter, sortBy]);
 
   const globalMatchesCount = useMemo(() => {
     if (!searchQuery.trim() || activeCategory === 'Alle') return 0;
-    const lowerSearch = searchQuery.toLowerCase().trim();
-    return businesses.filter(bus => {
-      if (bus.status === 'pending' || isBusinessDeactivated(bus)) return false;
-      const busLocation = extractLocation(bus);
-      const matchesLocation = activeLocation === 'Alle' || busLocation === activeLocation;
-      if (!matchesLocation) return false;
-      
-      const allServices = (bus.services || []).concat(bus.services_nl || []);
-      const matchesServices = allServices.some(s => s.toLowerCase().includes(lowerSearch));
-      const allProducts = (bus.products || []).concat(bus.products_nl || []);
-      const matchesProducts = allProducts.some(p => p.toLowerCase().includes(lowerSearch));
-      const matchesExtended = !!(bus.extendedDescription && bus.extendedDescription.toLowerCase().includes(lowerSearch)) ||
-                              !!(bus.extendedDescription_nl && bus.extendedDescription_nl.toLowerCase().includes(lowerSearch));
-      return (
-        bus.name.toLowerCase().includes(lowerSearch) ||
-        (bus.description && bus.description.toLowerCase().includes(lowerSearch)) ||
-        (bus.description_nl && bus.description_nl.toLowerCase().includes(lowerSearch)) ||
-        bus.category.toLowerCase().includes(lowerSearch) ||
-        (bus.subcategory && bus.subcategory.toLowerCase().includes(lowerSearch)) ||
-        matchesServices ||
-        matchesProducts ||
-        matchesExtended
-      );
+    return searchBusinesses(businesses, searchQuery, {
+      location: activeLocation,
+      onlySundayOpen: onlySundayOpenFilter,
+      isSundayOpenFn: isSundayOpen
     }).length;
-  }, [businesses, searchQuery, activeCategory, activeLocation]);
+  }, [businesses, searchQuery, activeCategory, activeLocation, onlySundayOpenFilter]);
 
   // Dynamic Schema.org JSON-LD (LocalBusiness, CollectionPage, ItemList, WebSite)
   useEffect(() => {
@@ -2460,9 +2448,9 @@ export default function App() {
           <>
             {/* Conditional Claude Home View */}
             {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode ? (
-              <div className="w-full flex flex-col mb-8">
-                <section className="relative text-white w-full overflow-hidden" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
-                  <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px]">
+              <div className="w-full flex flex-col mb-8 relative z-30">
+                <section className="relative text-white w-full z-30" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
+                  <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px] relative z-30">
                     <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-md px-3.5 py-1.5 text-sm font-medium tracking-wide">
                       <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
                       {t("heroAllDistricts")}
@@ -2478,7 +2466,7 @@ export default function App() {
                     <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-4 leading-relaxed">{t("heroText1")}</p>
                     <p className="text-sm md:text-base text-white/70 max-w-3xl mb-8 leading-relaxed">{t("heroText2")}</p>
 
-                    <div className="bg-white rounded-lg p-2.5 flex flex-col md:flex-row gap-2.5 items-center max-w-4xl shadow-2xl">
+                    <div className="bg-white rounded-lg p-2.5 flex flex-col md:flex-row gap-2.5 items-center max-w-4xl shadow-2xl relative z-40">
                       <div className="flex items-center gap-3 w-full flex-1 min-w-0 px-3 relative">
                         <Search className="w-5 h-5 text-gray-400 shrink-0" />
                         <input 
@@ -2523,66 +2511,141 @@ export default function App() {
                             <X className="w-4 h-4" />
                           </button>
                         )}
-                        {showHomeSuggestions && homeSuggestions.length > 0 && (
-                          <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-md shadow-2xl border border-gray-100 overflow-hidden z-[100] text-left">
-                            {homeSuggestions.map(s => {
-                              const lowerInput = homeSearchInput.toLowerCase().trim();
-                              const matchingServices = (s.services || []).filter(srv => 
-                                srv.toLowerCase().includes(lowerInput)
-                              );
-                              const matchingProducts = (s.products || []).filter(prd => 
-                                prd.toLowerCase().includes(lowerInput)
-                              );
-                              return (
-                                <a 
-                                  key={s.id} 
-                                  href={getPath(getBusinessPath(s, lang))}
-                                  className="px-4 py-3 hover:bg-[#F9F7F4] cursor-pointer flex items-center justify-between transition-colors border-b border-gray-100 last:border-0 no-underline text-inherit block group"
-                                  onMouseDown={(e) => {
-                                    // Prevent input blur before click event
-                                    e.preventDefault();
-                                  }}
-                                  onClick={(e) => {
-                                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
-                                      e.preventDefault();
-                                      setSelectedBusiness(s);
-                                      const url = getPath(getBusinessPath(s, lang));
-                                      window.history.pushState(null, '', url);
-                                      setShowHomeSuggestions(false);
-                                      setHomeSearchInput('');
-                                      setSearchQuery('');
-                                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                                    }
-                                  }}
-                                >
-                                  <div className="flex items-center gap-3 overflow-hidden">
-                                    <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#E8F1EB] transition-colors">
-                                      <Search className="w-4 h-4 text-gray-400 group-hover:text-[#0F4C2E] transition-colors" />
-                                    </div>
-                                    <div className="flex flex-col overflow-hidden text-left">
-                                      <span className="text-gray-900 font-medium truncate group-hover:text-[#0F4C2E] transition-colors">{s.name}</span>
-                                      <div className="flex items-center gap-1.5 flex-wrap">
-                                        <span className="text-gray-500 text-xs truncate">{t(s.category)}{s.subcategory ? ` > ${t(s.subcategory)}` : ''}</span>
-                                        {matchingServices.length > 0 && (
-                                          <span className="text-[#0F4C2E] bg-[#E8F1EB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
-                                            🏷️ {t("foundService")}: {matchingServices.join(', ')}
-                                          </span>
-                                        )}
-                                        {matchingProducts.length > 0 && (
-                                          <span className="text-[#D65F0C] bg-[#FFF8F1] border border-[#FBD9BC] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
-                                            📦 Produkt: {matchingProducts.join(', ')}
-                                          </span>
-                                        )}
+                        {showHomeSuggestions && homeSearchInput.trim().length > 1 && (
+                          <div className="absolute top-full left-0 right-0 mt-2.5 bg-white rounded-xl shadow-[0_25px_60px_-10px_rgba(0,0,0,0.35)] border border-gray-200 overflow-y-auto max-h-[min(500px,65vh)] z-[99999] text-left divide-y divide-gray-100 scrollbar-thin">
+                            {parseSearchQuery(homeSearchInput).isNaturalLanguage && (
+                              <div className="px-4 py-2 bg-gradient-to-r from-[#E8F1EB] to-[#F3F8F5] text-[#0F4C2E] text-xs font-semibold flex items-center justify-between sticky top-0 z-10 border-b border-[#D2E4D8] backdrop-blur-xs">
+                                <span className="flex items-center gap-1.5">
+                                  <Sparkles className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                                  <span>{lang === 'nl' ? 'Smarte KI-zoekopdracht:' : 'Smarte KI-Suche:'} <em>„{homeSearchInput}“</em></span>
+                                </span>
+                                <span className="text-[11px] font-normal text-[#5F6B63]">
+                                  {homeSuggestionsMatches.length} {lang === 'nl' ? 'treffers' : 'Treffer'}
+                                </span>
+                              </div>
+                            )}
+
+                            {homeSuggestionsMatches.length === 0 ? (
+                              <div className="p-4 text-sm text-[#5F6B63]">
+                                <div className="flex items-center gap-2 text-gray-700 font-medium mb-1">
+                                  <Search className="w-4 h-4 text-gray-400" />
+                                  <span>{lang === 'nl' ? 'Geen directe treffers voor' : 'Keine direkten Treffer für'} „{homeSearchInput}“</span>
+                                </div>
+                                <p className="text-xs text-[#8A958E] m-0">
+                                  {lang === 'nl'
+                                    ? 'Druk op Enter of klik op Zoeken om in alle bedrijfsprofielen te zoeken.'
+                                    : 'Drücke Enter oder klicke auf Suchen, um alle Unternehmensprofile ganzheitlich zu durchsuchen.'}
+                                </p>
+                              </div>
+                            ) : (
+                              <>
+                                {homeSuggestionsMatches.map(match => {
+                                  const s = match.business;
+                                  const reason = match.matchedReason;
+                                  return (
+                                    <a 
+                                      key={s.id} 
+                                      href={getPath(getBusinessPath(s, lang))}
+                                      className="px-4 py-3 hover:bg-[#F9F7F4] cursor-pointer flex items-center justify-between transition-colors border-b border-gray-100 last:border-0 no-underline text-inherit block group"
+                                      onMouseDown={(e) => {
+                                        e.preventDefault();
+                                      }}
+                                      onClick={(e) => {
+                                        if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                                          e.preventDefault();
+                                          setSelectedBusiness(s);
+                                          const url = getPath(getBusinessPath(s, lang));
+                                          window.history.pushState(null, '', url);
+                                          setShowHomeSuggestions(false);
+                                          setHomeSearchInput('');
+                                          setSearchQuery('');
+                                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }
+                                      }}
+                                    >
+                                      <div className="flex items-center gap-3 overflow-hidden">
+                                        <div className="w-8 h-8 rounded-md bg-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#E8F1EB] transition-colors">
+                                          <Search className="w-4 h-4 text-gray-400 group-hover:text-[#0F4C2E] transition-colors" />
+                                        </div>
+                                        <div className="flex flex-col overflow-hidden text-left min-w-0">
+                                          <span className="text-gray-900 font-medium truncate group-hover:text-[#0F4C2E] transition-colors">{s.name}</span>
+                                          <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
+                                            <span className="text-gray-500 text-xs truncate">{t(s.category)}{s.subcategory ? ` > ${t(s.subcategory)}` : ''}</span>
+                                            {s.district && (
+                                              <span className="text-gray-400 text-xs truncate">· {s.district}</span>
+                                            )}
+                                            {reason?.type === 'service' && (
+                                              <span className="text-[#0F4C2E] bg-[#E8F1EB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                🏷️ {reason.text}
+                                              </span>
+                                            )}
+                                            {reason?.type === 'product' && (
+                                              <span className="text-[#D65F0C] bg-[#FFF8F1] border border-[#FBD9BC] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                📦 {reason.text}
+                                              </span>
+                                            )}
+                                            {reason?.type === 'document' && (
+                                              <span className="text-[#146C82] bg-[#EAF5F8] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                📋 {reason.text}
+                                              </span>
+                                            )}
+                                            {reason?.type === 'review' && (
+                                              <span className="text-[#7E22CE] bg-[#F5EFFB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                ⭐ {reason.text}
+                                              </span>
+                                            )}
+                                            {reason?.type === 'semantic' && (
+                                              <span className="text-[#0F4C2E] bg-[#E8F1EB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                💡 {reason.text}
+                                              </span>
+                                            )}
+                                            {reason?.type === 'event' && (
+                                              <span className="text-[#7E22CE] bg-[#F5EFFB] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                📅 {reason.text}
+                                              </span>
+                                            )}
+                                            {reason?.type === 'job' && (
+                                              <span className="text-[#D65F0C] bg-[#FFF8F1] text-[11px] font-semibold px-1.5 py-0.5 rounded truncate">
+                                                💼 {reason.text}
+                                              </span>
+                                            )}
+                                          </div>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </div>
-                                  <div className="hidden sm:flex items-center text-xs text-[#0F4C2E] font-medium shrink-0 ml-3 gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                                    <span>{lang === 'nl' ? 'Profiel' : 'Profil'}</span>
-                                    <ChevronRight className="w-3.5 h-3.5" />
-                                  </div>
-                                </a>
-                              );
-                            })}
+                                      <div className="hidden sm:flex items-center text-xs text-[#0F4C2E] font-medium shrink-0 ml-3 gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                                        <span>{lang === 'nl' ? 'Profiel' : 'Profil'}</span>
+                                        <ChevronRight className="w-3.5 h-3.5" />
+                                      </div>
+                                    </a>
+                                  );
+                                })}
+
+                                {/* Footer with link to full results */}
+                                <div className="p-2.5 bg-[#FAF8F5] border-t border-gray-100 flex items-center justify-between sticky bottom-0 z-10">
+                                  <span className="text-xs text-[#5F6B63]">
+                                    {homeSuggestionsMatches.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onMouseDown={(e) => e.preventDefault()}
+                                    onClick={() => {
+                                      setSearchQuery(homeSearchInput.trim());
+                                      setIsAllMode(true);
+                                      const targetUrl = activeLocation !== 'Alle' 
+                                        ? `${getPath('/alle-unternehmen')}?ort=${encodeURIComponent(activeLocation)}` 
+                                        : getPath('/alle-unternehmen');
+                                      window.history.pushState(null, '', targetUrl);
+                                      setShowHomeSuggestions(false);
+                                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                    className="text-xs font-semibold text-[#0F4C2E] hover:text-[#06301C] flex items-center gap-1 cursor-pointer bg-white px-2.5 py-1.5 rounded-md border border-[#E7E2DA] shadow-xs hover:border-[#0F4C2E] transition-colors"
+                                  >
+                                    <span>{lang === 'nl' ? 'Alle resultaten bekijken' : 'Alle Ergebnisse anzeigen'}</span>
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
@@ -3245,11 +3308,12 @@ export default function App() {
                 {searchQuery && (
                   <div className="mb-4 bg-[#E8F1EB] border border-[#C5DCCE] rounded-lg p-3.5 flex items-center justify-between gap-3 text-[14px]">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-[#0F4C2E] font-semibold">
+                      <span className="text-[#0F4C2E] font-semibold flex items-center gap-1.5">
+                        {parseSearchQuery(searchQuery).isNaturalLanguage && <Sparkles className="w-4 h-4 text-[#F2761B] shrink-0" />}
                         {t("searchResultsFor")}: <strong>„{searchQuery}“</strong>
                       </span>
                       <span className="text-[#5F6B63] text-xs">
-                        ({filteredBusinesses.length} {filteredBusinesses.length === 1 ? (lang === 'nl' ? 'bedrijf' : 'Unternehmen') : (lang === 'nl' ? 'bedrijven' : 'Unternehmen')} {t("foundInServices")})
+                        ({filteredBusinesses.length} {filteredBusinesses.length === 1 ? (lang === 'nl' ? 'bedrijf' : 'Unternehmen') : (lang === 'nl' ? 'bedrijven' : 'Unternehmen')} {lang === 'nl' ? 'gevonden via AI- en profielzoekopdracht' : 'in Volltext- und KI-Suche gefunden'})
                       </span>
                     </div>
                     <button
