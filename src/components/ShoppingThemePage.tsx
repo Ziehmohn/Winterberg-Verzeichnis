@@ -221,8 +221,9 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
       const isJewelry = sub.includes('juwel') || name.includes('juwelier') || name.includes('eiloff') || name.includes('uhren');
       const isPerfumery = sub.includes('parfüm') || sub.includes('parfuem') || sub.includes('droger') || name.includes('becker') || name.includes('dm-');
       const isBookstore = sub.includes('buchhandlung') || name.includes('wortreich') || name.includes('buchhandlung');
+      const isHome = sub.includes('haushalt') || sub.includes('deko') || name.includes('tischlein');
 
-      return matchCat && (isFashion || isShoes || isOutdoor || isJewelry || isPerfumery || isBookstore);
+      return matchCat && (isFashion || isShoes || isOutdoor || isJewelry || isPerfumery || isBookstore || isHome);
     });
   }, [businesses]);
 
@@ -701,6 +702,11 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                     {b.id === 'parfuemerie-becker-winterberg' && (
                       <span className="text-[10.5px] bg-pink-50 text-pink-700 border border-pink-200/50 px-2 py-0.5 rounded-full font-medium">
                         Düfte & Kosmetik
+                      </span>
+                    )}
+                    {b.id === 'tischlein-deck-dich-winterberg' && (
+                      <span className="text-[10.5px] bg-rose-50 text-rose-700 border border-rose-200/50 px-2 py-0.5 rounded-full font-medium">
+                        Haushaltswaren & Deko
                       </span>
                     )}
                   </div>

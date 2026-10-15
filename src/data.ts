@@ -2284,7 +2284,7 @@ export const businesses: Business[] = [
         price: '8,00 € pro Kind/Kürbis',
         category: 'Familie',
         location: 'Nordhang Jause, In d. Renau 10/11, 59955 Winterberg',
-        imageUrl: '/events-nordhang-kuerbisschnitzen.jpg',
+        imageUrl: '/events-nordhang-kuerbisschnitzen.png',
         description: 'Ein farbenfroher Erlebnistag für die ganze Familie: Unter gemütlicher Hüttenatmosphäre können kleine Künstler ihre eigenen Halloween-Kürbisse gestalten. Anschließend knistert die Feuerschale für frisches Stockbrot und geröstete Marshmallows. Für Stärkung sorgt die Hüttenküche mit warmen Speisen und Getränken. Geschnitzt wird in zwei Staffeln (14:00–16:00 Uhr und 16:00–18:00 Uhr; Unkostenbeitrag: 8,00 € inkl. Kürbis). Wegen begrenzter Plätze bitte vorab anmelden unter Tel. 02981 / 8996399 oder info@nordhangjause.de. Die Hütte hat regulär geöffnet.',
         description_nl: 'Een gezellige herfstmiddag voor het hele gezin midden in de natuur: bij de Nordhang Jause kunnen jonge creatievelingen hun eigen Halloween-pompoen uitsnijden. Bij de vuurschaal roosteren we vers stokbrood en marshmallows, terwijl de hut zorgt voor warme gerechten en drankjes. Twee rondes (14:00–16:00 uur en 16:00–18:00 uur; € 8,00 per kind incl. pompoen). Vooraf aanmelden verplicht via 02981 / 8996399 of info@nordhangjause.de. Het restaurant is regulier geopend.',
         externalUrl: 'https://www.nordhangjause.de'
@@ -2300,7 +2300,7 @@ export const businesses: Business[] = [
         price: 'Freier Eintritt',
         category: 'Fest & Party',
         location: 'Nordhang Jause, In d. Renau 10/11, 59955 Winterberg',
-        imageUrl: '/events-nordhang-lichterzauber.jpg',
+        imageUrl: '/events-nordhang-lichterzauber.png',
         description: 'Sobald es dämmert, tauchen Lichterketten und Strahler das Waldgelände der Nordhang Jause in eine märchenhafte Kulisse. Ein Wohlfühlabend unter den Sternen mit handgemachter Live-Musik von „Hörgerätchen“ aus Siegen, zartem Flammlachs am Buchenholzfeuer, herzhaftem Kartoffelbraten und duftendem Glühwein. Kleine Besucher dürfen sich über eine beleuchtete Holzkugelbahn sowie ein persönliches Lichtgeschenk freuen. Der Eintritt ist frei, die Hüttengastronomie ist durchgehend für alle Gäste geöffnet.',
         description_nl: 'Zodra de schemering valt, toveren talloze lichtjes het terrein van de Nordhang Jause om in een sprookjesachtige bergambiance. Geniet van akoestische livemuziek van de band „Hörgerätchen“ uit Siegen, verse vlamzalm op beukenhoutvuur, traditioneel aardappelbraden en warme glühwein. Voor kinderen is er een verlichte houten knikkerbaan en ieder kind krijgt een eigen lichtje cadeau. Gratis toegang, hut en keuken doorlopend geopend.',
         externalUrl: 'https://www.nordhangjause.de'
@@ -6882,6 +6882,50 @@ export const businesses: Business[] = [
       'Aardappelwafel friet & buttermilk chicken tenders',
       'Ovenverse baklava'
     ]
+  },
+  {
+    id: 'tischlein-deck-dich-winterberg',
+    name: 'Tischlein deck dich',
+    category: 'Einzelhandel',
+    subcategory: 'Haushaltswaren & Deko',
+    additionalCategories: [
+      { category: 'Einzelhandel', subcategory: 'Feinkost & Lebensmittel' }
+    ],
+    description: 'Tischlein deck dich am Waltenberg 40 in Winterberg ist ein liebevoll geführtes Fachgeschäft für stilvolle Haushaltswaren, Dekoartikel und Wohnaccessoires. Das Sortiment umfasst hochwertige Küchenhelfer, Kochgeschirr, feines Designergeschirr, Gläser und edle Tischwäsche für ein schönes Zuhause. Ergänzt wird die Auswahl durch geschmackvolle Geschenkideen sowie feine regionale Spezialitäten und Sauerländer Spirituosen.',
+    description_nl: 'Tischlein deck dich aan de Waltenberg 40 in Winterberg is een sfeervolle speciaalzaak voor huishoudelijke artikelen, kookgerei, woonaccessoires en decoratie. Het aanbod varieert van kwalitatief kookgerei, servies en tafellinnen tot originele cadeau-ideeën en ambachtelijke Sauerlandse delicatessen.',
+    address: 'Am Waltenberg 40, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 8999894',
+    email: 'info@tischlein-deck-dich-winterberg.de',
+    website: 'https://www.tischlein-deck-dich-winterberg.de',
+    image: '/tischlein-deck-dich-winterberg.png',
+    imageFallback: 'TD',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    services: [
+      'Haushaltswaren, Töpfe & Küchenhelfer',
+      'Designergeschirr, Gläser & Besteck',
+      'Dekoartikel, Wohnaccessoires & Tischwäsche',
+      'Regionale Feinkost, Spezialitäten & Spirituosen',
+      'Geschenkideen & liebevolle Präsente'
+    ],
+    services_nl: [
+      'Huishoudelijke artikelen, pannen & keukengerei',
+      'Designservies, glazen & bestek',
+      'Decoratie, woonaccessoires & tafellinnen',
+      'Regionale delicatessen & likeuren',
+      'Cadeau-ideeën & geschenken'
+    ],
+    openingHours: {
+      monday: '10:00 - 13:00, 14:00 - 18:00',
+      tuesday: '10:00 - 13:00, 14:00 - 18:00',
+      wednesday: 'Geschlossen',
+      thursday: '10:00 - 13:00, 14:00 - 18:00',
+      friday: '10:00 - 13:00, 14:00 - 18:00',
+      saturday: '10:00 - 16:00',
+      sunday: 'Geschlossen (an verkaufsoffenen Sonntagen 12:00 - 16:00)'
+    }
   }
 ];
 
@@ -7001,7 +7045,7 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
+  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Haushaltswaren & Deko', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },

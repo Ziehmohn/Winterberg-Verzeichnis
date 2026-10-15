@@ -239,6 +239,9 @@ export function getCategoryStyle(category = '', subcategory = '', name = '', isP
   if (matchSubOrName('feinkost')) {
     return { icon: UtensilsCrossed, bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' };
   }
+  if (matchSubOrName('haushalt', 'haushaltswaren', 'deko', 'dekoration', 'wohnaccessoires', 'tischlein')) {
+    return { icon: Store, bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' };
+  }
   if (matchSubOrName('bürobedarf', 'buch', 'schreibwaren', 'papier')) {
     return { icon: BookOpen, bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-300' };
   }
