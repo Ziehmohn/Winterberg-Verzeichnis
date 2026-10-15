@@ -1,4 +1,5 @@
 import { Business } from '../types';
+import { resolveTokenIntent, scoreBusinessForIntent } from './searchIntents';
 
 export interface ParsedSearchQuery {
   raw: string;
@@ -61,7 +62,12 @@ const ACTION_VERBS = new Set([
 export function stemWord(w: string): string {
   const norm = w.toLowerCase().trim();
   if (norm === 'skier' || norm === 'skiern') return 'ski';
-  if (norm === 'brillen') return 'brille';
+  if (norm === 'brille' || norm === 'brillen') return 'brille';
+  if (norm === 'hose' || norm === 'hosen') return 'hose';
+  if (norm === 'schraube' || norm === 'schrauben') return 'schraube';
+  if (norm === 'nagel' || norm === 'nägel' || norm === 'naegel') return 'nagel';
+  if (norm === 'apotheke' || norm === 'apotheken') return 'apotheke';
+  if (norm === 'küche' || norm === 'küchen') return 'küche';
   if (norm === 'bücher' || norm === 'buecher') return 'buch';
   if (norm === 'schuhe' || norm === 'schoenen') return 'schuh';
   if (norm === 'blumen') return 'blume';
@@ -268,8 +274,8 @@ export function matchesKeyword(haystack: string, term: string): boolean {
     return /\b(sauna|saunabereich|saunalandschaft|biosauna|finnische sauna|dampfbad)\b/i.test(lowerH);
   }
 
-  // 3. Fallback for longer terms (>= 5 chars): match if starting at word boundary
-  if (lowerT.length >= 5) {
+  // 3. Fallback for longer terms (>= 6 chars): match if starting at word boundary
+  if (lowerT.length >= 6) {
     const startBoundaryRegex = new RegExp(`(^|[^a-zA-Z0-9äöüÄÖÜß])${lowerT}`, 'i');
     if (startBoundaryRegex.test(lowerH)) {
       return true;
@@ -409,47 +415,61 @@ export function scoreBusinessMatch(bus: Business, parsed: ParsedSearchQuery): Se
     let subjectScore = 0;
 
     for (const subject of subjectTokens) {
-      const allowedVariants = getDomainSynonyms(subject);
       let subjectFound = false;
 
-      // 1. Direct name match
+      // 1. Intent Recognition layer (e.g. "Hose" -> Bekleidungsgeschäfte, "Sportschuhe" -> Sportgeschäfte, "Nägel/Schrauben" -> Baumarkt, "Imbiss" -> Imbisse)
+      const intent = resolveTokenIntent(subject);
+      if (intent) {
+        const intentResult = scoreBusinessForIntent(bus, intent);
+        if (intentResult.weight > 0) {
+          subjectScore += intentResult.weight;
+          subjectFound = true;
+          if (!matchedReason) {
+            matchedReason = { type: 'category', text: intentResult.label || intent.label };
+          }
+        }
+      }
+
+      const allowedVariants = getDomainSynonyms(subject);
+
+      // 2. Direct name match bonus
       for (const variant of allowedVariants) {
         if (matchesKeyword(bus.name, variant)) {
-          subjectScore += 260;
+          subjectScore += subjectFound ? 60 : 260;
           subjectFound = true;
-          if (!matchedReason) matchedReason = { type: 'name', text: bus.name };
+          matchedReason = { type: 'name', text: bus.name };
           break;
         }
       }
 
-      // 2. Services / Products
-      if (!subjectFound) {
-        const allServices = (bus.services || []).concat(bus.services_nl || []);
-        for (const variant of allowedVariants) {
-          const s = allServices.find(srv => matchesKeyword(srv, variant));
-          if (s) {
-            subjectScore += 220;
-            subjectFound = true;
-            if (!matchedReason) matchedReason = { type: 'service', text: s };
-            break;
+      // 3. Services / Products match bonus
+      const allServices = (bus.services || []).concat(bus.services_nl || []);
+      for (const variant of allowedVariants) {
+        const s = allServices.find(srv => matchesKeyword(srv, variant));
+        if (s) {
+          subjectScore += subjectFound ? 40 : 220;
+          subjectFound = true;
+          if (!matchedReason || matchedReason.type === 'category') {
+            matchedReason = { type: 'service', text: s };
           }
+          break;
         }
       }
 
-      if (!subjectFound) {
-        const allProducts = (bus.products || []).concat(bus.products_nl || []);
-        for (const variant of allowedVariants) {
-          const p = allProducts.find(prd => matchesKeyword(prd, variant));
-          if (p) {
-            subjectScore += 220;
-            subjectFound = true;
-            if (!matchedReason) matchedReason = { type: 'product', text: p };
-            break;
+      const allProducts = (bus.products || []).concat(bus.products_nl || []);
+      for (const variant of allowedVariants) {
+        const p = allProducts.find(prd => matchesKeyword(prd, variant));
+        if (p) {
+          subjectScore += subjectFound ? 40 : 220;
+          subjectFound = true;
+          if (!matchedReason || matchedReason.type === 'category') {
+            matchedReason = { type: 'product', text: p };
           }
+          break;
         }
       }
 
-      // 3. Category / Subcategory
+      // 4. Category / Subcategory match
       if (!subjectFound) {
         for (const variant of allowedVariants) {
           if (bus.subcategory && matchesKeyword(bus.subcategory, variant)) {
@@ -467,7 +487,7 @@ export function scoreBusinessMatch(bus: Business, parsed: ParsedSearchQuery): Se
         }
       }
 
-      // 4. Description & Extended Description
+      // 5. Description & Extended Description
       if (!subjectFound) {
         const fullDesc = `${bus.description || ''} ${bus.description_nl || ''} ${bus.extendedDescription || ''} ${bus.extendedDescription_nl || ''}`;
         for (const variant of allowedVariants) {
@@ -485,7 +505,7 @@ export function scoreBusinessMatch(bus: Business, parsed: ParsedSearchQuery): Se
         }
       }
 
-      // 5. Deep Text (Documents/Menu, Reviews, Events, Jobs)
+      // 6. Deep Text (Documents/Menu, Reviews, Events, Jobs)
       if (!subjectFound) {
         for (const variant of allowedVariants) {
           const doc = (bus.documents || []).find(d => matchesKeyword(`${d.title} ${d.type}`, variant));
