@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (324 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (348 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -139,8 +139,273 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 92660
 - **Webseite:** https://grimmeblick.de
 - **Beschreibung (DE):** Märchenhaftes 4-Sterne-Erlebnishotel und Wellnesshotel in Winterberg-Elkeringhausen mit einzigartigen Themenzimmern, weitläufiger Spa-Landschaft, Saunadorf, Außenpool, regionaler Gourmetküche und idyllischer Lage am Kurpark.
+- **Beschreibung (NL):** Sprookjesachtig 4-sterren belevings- en wellnesshotel in Winterberg-Elkeringhausen met unieke themakamers, een uitgestrekt wellnesslandschap, saunadorp, buitenzwembad, regionale gastronomische keuken en een idyllische ligging direct aan het kuurpark.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-grimmeblick
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landhotel-grimmeblick
+
+#### [Hotel Hessenhof](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-hessenhof)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 1, 59955 Winterberg
+- **Telefon:** 02981 9300
+- **Webseite:** https://www.hotel-hessenhof.de
+- **Beschreibung (DE):** Das 4-Sterne-Wellnesshotel Hessenhof liegt zentral in der verkehrsberuhigten Fußgängerzone von Winterberg am Waltenberg. Das Haus bietet komfortable Einzel- und Doppelzimmer sowie geräumige Suiten im modernen Landhausstil. Gäste profitieren von einem großzügigen Wellnessbereich mit Hallenbad, verschiedenen Saunen, Dampfbad und Ruhezonen sowie Massage- und Kosmetikbehandlungen. Ein hauseigenes Restaurant mit regionaler und saisonaler Küche sowie eine Sommerterrasse mit Blick auf die Flanierzone runden das Angebot ab.
+- **Beschreibung (NL):** Het 4-sterren wellnesshotel Hessenhof ligt centraal in het voetgangersgebied van Winterberg aan de Waltenberg. Het hotel beschikt over comfortabele kamers en suites in moderne landhuisstijl. Gasten genieten van een uitgebreide wellnessruimte met binnenzwembad, sauna's, stoombad en ontspanningsruimtes, aangevuld met massages en schoonheidsbehandelingen. Het eigen restaurant serveert regionale en seizoensgebonden gerechten en heeft een gezellig terras aan de wandelpromenade.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-hessenhof
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-hessenhof
+
+#### [Hotel Niedersfeld](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-niedersfeld)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 50, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 979220
+- **Webseite:** https://hotel-niedersfeld.de
+- **Beschreibung (DE):** Das Hotel Niedersfeld liegt im heilklimatischen Ortsteil Niedersfeld, rund zehn Autominuten nördlich des Winterberger Stadtzentrums. Umgeben von waldreicher Mittelgebirgslandschaft und nahe dem Hillebachsee bietet das Haus gemütliche Zimmer, ein Hallenbad mit Sauna und Ruhebereich sowie ein Restaurant mit frischer deutscher und sauerländischer Küche. Durch die Lage direkt an zahlreichen Wanderwegen und Loipen eignet sich das Hotel besonders für Wanderer, Naturfreunde und Familien.
+- **Beschreibung (NL):** Hotel Niedersfeld ligt in het rustige dorp Niedersfeld, op circa tien autominuten ten noorden van het centrum van Winterberg. Omgeven door bossen en nabij het stuwmeer Hillebachsee biedt het hotel gezellige kamers, een binnenzwembad met sauna en een restaurant met Duitse en streekgerechten. Dankzij de ligging aan diverse wandelpaden en langlaufloipes is het een ideaal verblijf voor wandelaars en natuurliefhebbers.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-niedersfeld
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-niedersfeld
+
+#### [Hotel Liebesglück - Adults Only](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-liebesglueck-adults-only)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Nuhnestraße 5, 59955 Winterberg
+- **Telefon:** 02981 92230
+- **Webseite:** https://hotel-liebesglueck.de
+- **Beschreibung (DE):** Das Hotel Liebesglück ist ein spezialisiertes 4-Sterne-Adults-Only-Boutiquehotel im Zentrum von Winterberg. Das Haus richtet sich exklusiv an Paare und Ruhesuchende ab 16 Jahren und bietet individuell gestaltete Romantikzimmer und Themensuiten mit Whirlpool oder privater Sauna. Kulinarisch überzeugt das Restaurant AstenRose unter Leitung von Spitzenkoch Dirk Engemann mit anspruchsvoller Gourmetküche und feiner Weinauswahl. Ein stimmungsvoller Wellnessbereich mit Hallenbad und Saunen sorgt für entspannte Auszeiten.
+- **Beschreibung (NL):** Hotel Liebesglück is een 4-sterren Adults Only boetiekhotel in het centrum van Winterberg, speciaal gericht op koppels en rustzoekers vanaf 16 jaar. Het hotel beschikt over sfeervolle romantische kamers en suites met bubbelbad of privésauna. In het eigen restaurant AstenRose serveert topchef Dirk Engemann verfijnde gastronomische gerechten. Een intieme wellnessruimte met binnenzwembad en sauna's completeert het verblijf voor stellen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-liebesglueck-adults-only
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-liebesglueck-adults-only
+
+#### [Landhotel Mühlengrund](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-muehlengrund)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Nuhnetalstraße 114, 59955 Winterberg-Züschen
+- **Telefon:** 02981 584
+- **Webseite:** https://hotel-muehlengrund.de
+- **Beschreibung (DE):** Das in dritter Generation geführte 3-Sterne-Superior Landhotel Mühlengrund liegt idyllisch am Flusslauf der Nuhne im Fachwerkdorf Züschen bei Winterberg. Das komplett im gemütlichen Landhausstil renovierte Hotel bietet komfortable Zimmer mit Balkon, ein gepflegtes Schwimmbad mit Sauna und Infrarotkabine sowie ein behagliches Restaurant mit regionaler Frischeküche. Naturfreunde schätzen die Lage nahe den Züschener Wanderrouten und dem Skigebiet Mein Homberg.
+- **Beschreibung (NL):** Het door een familie gerunde 3-sterren superior Landhotel Mühlengrund ligt idyllisch aan het riviertje de Nuhne in het vakwerkdorp Züschen bij Winterberg. De in landhuisstijl ingerichte kamers beschikken veelal over een balkon. Gasten kunnen gebruikmaken van een zwembad, sauna en infraroodcabine, evenals een sfeervol restaurant met streekgerechten. De ligging is ideaal voor wandelaars en wintersporters bij skigebied Mein Homberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-muehlengrund
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landhotel-muehlengrund
+
+#### [Hotel Engemann Kurve](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-engemann-kurve)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Haarfelder Straße 10, 59955 Winterberg
+- **Telefon:** 02981 92940
+- **Webseite:** https://www.engemann-kurve.de
+- **Beschreibung (DE):** Das traditionsreiche 4-Sterne-Hotel Engemann Kurve blickt auf über 50 Jahre familiäre Gastlichkeit im Winterberger Ortskern zurück. Das Haus verfügt über moderne, komfortable Zimmer und Suiten sowie den 400 m² großen Wellnessbereich „Engemann Spa“ mit Hallenbad, finnischer Sauna, Bio-Sauna, Dampfbad und Ruhezone. Das hauseigene Restaurant „Kupferpfanne“ verwöhnt Gäste mit gehobener sauerländischer Küche, saisonalen Spezialitäten und erlesenen Weinen.
+- **Beschreibung (NL):** Het traditionele 4-sterrenhotel Engemann Kurve combineert meer dan 50 jaar gastvrijheid met modern comfort in het centrum van Winterberg. Het hotel biedt stijlvolle kamers en suites en de 400 m² grote 'Engemann Spa' met binnenzwembad, Finse sauna, biosauna, stoombad en rustruimte. In het restaurant 'Kupferpfanne' kunnen gasten genieten van hoogwaardige streekgerechten en seizoensspecialiteiten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-engemann-kurve
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-engemann-kurve
+
+#### [Hotel Winterberg Resort](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-winterberg-resort)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** In der Renau 1, 59955 Winterberg
+- **Telefon:** 02981 9190
+- **Webseite:** https://www.winterberg-resort.de
+- **Beschreibung (DE):** Das Hotel Winterberg Resort befindet sich in privilegierter Lage direkt am Fuße des Kahlen Asten, unmittelbar am Rothaarsteig und mit direktem Zugang zum Skiliftkarussell Winterberg. Die über 100 behaglich eingerichteten Zimmer bieten teils herrliche Aussichten auf die Sauerländer Berglandschaft. Das Haus verfügt über ein Hallenbad, Saunabereich, ein Restaurant mit reichhaltigem Buffetangebot, eine gemütliche Hotelbar sowie Tagungsräume.
+- **Beschreibung (NL):** Hotel Winterberg Resort bevindt zich op een uitstekende locatie aan de voet van de Kahler Asten, direct aan de wandelroute Rothaarsteig en met directe toegang tot het skigebied Skiliftkarussell Winterberg. Het hotel beschikt over meer dan 100 comfortabele kamers, een binnenzwembad, een saunalandschap, een buffetrestaurant en een gezellige bar.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-winterberg-resort
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-winterberg-resort
+
+#### [Hotel Nuhnetal](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-nuhnetal)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Nuhnestraße 12, 59955 Winterberg
+- **Telefon:** 02981 92290
+- **Webseite:** https://www.hotel-nuhnetal.de
+- **Beschreibung (DE):** Das 3-Sterne-Superior-Hotel Nuhnetal liegt ruhig und dennoch zentral in einer Seitenstraße des Winterberger Zentrums, nur wenige Gehminuten von Marktplatz und Fußgängerzone entfernt. Die 29 modernen Zimmer und Suiten sind geschmackvoll gestaltet. Zu den Highlights zählen das neu renovierte Hallenbad mit Gegenstromanlage, die finnische Sauna, die Infrarotkabine sowie eine einladende Kaminecke mit Barbetrieb und regionalem Fassbier.
+- **Beschreibung (NL):** Het 3-sterren superior Hotel Nuhnetal ligt rustig en toch centraal in een zijstraat van het centrum van Winterberg, op loopafstand van het marktplein. Het hotel telt 29 modern ingerichte kamers en suites. Tot de faciliteiten behoren een gerenoveerd binnenzwembad met tegenstroominstallatie, een Finse sauna, infraroodcabine en een gezellige haardhoek met bar.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-nuhnetal
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-nuhnetal
+
+#### [AVITAL Resort Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/avital-resort-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Auf der Wallme 5, 59955 Winterberg
+- **Telefon:** 02981 9330
+- **Webseite:** https://avital-resort.de
+- **Beschreibung (DE):** Das AVITAL Resort Winterberg ist ein elegantes 4-Sterne-Resort in sonniger Südhanglage, nur wenige Gehminuten vom Stadtzentrum entfernt. Das Hotel bietet moderne Zimmer, Juniorsuiten und geräumige Ferienappartements. Auf 360 m² erstreckt sich der Wellnessbereich „SpaVital“ mit Schwimmbad, finnischer Sauna, Sanarium und Behandlungsräumen für Massagen und Ayurveda. Das Restaurant „KaminStube“ serviert regionale und mediterrane Spezialitäten.
+- **Beschreibung (NL):** AVITAL Resort Winterberg is een elegant 4-sterrenresort op een zonnige zuidhelling, op enkele minuten lopen van het stadscentrum. Het complex biedt moderne hotelkamers, juniorsuites en ruime vakantieappartementen. De 360 m² grote wellnessruimte 'SpaVital' beschikt over een zwembad, Finse sauna, sanarium en massage- en Ayurvedabehandelingen. In het restaurant 'KaminStube' genieten gasten van regionale en mediterrane gerechten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/avital-resort-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/avital-resort-winterberg
+
+#### [Hotel zum Kreuzberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-zum-kreuzberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Kapellenstraße 4, 59955 Winterberg
+- **Telefon:** 02981 1726
+- **Webseite:** https://www.zum-kreuzberg.de
+- **Beschreibung (DE):** Das Hotel zum Kreuzberg ist ein privat und familiär geführtes 3-Sterne-Hotel in ruhiger Lage am Kreuzberg, nur rund fünf Gehminuten vom Winterberger Marktplatz entfernt. Das Haus bietet helle, gemütlich eingerichtete Zimmer mit Dusche/WC, Kabel-TV und teilweise Balkon. Ein abwechslungsreiches Sauerländer Frühstücksbuffet, ein gemütlicher Aufenthaltsraum sowie eine Sonnenterrasse sorgen für einen erholsamen Aufenthalt.
+- **Beschreibung (NL):** Hotel zum Kreuzberg is een gastvrij, door een familie gerund 3-sterrenhotel op een rustige heuvelrug, op slechts vijf minuten lopen van het marktplein van Winterberg. Het hotel beschikt over lichte, comfortabele kamers met eigen sanitair en veelal een balkon. Een uitgebreid Sauerlands ontbijtbuffet, een lounge en een zonneterras maken het verblijf compleet.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-zum-kreuzberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-zum-kreuzberg
+
+#### [Boutique-Hotel Weigels Bergfreiheit](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/boutique-hotel-weigels-bergfreiheit)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Silbach
+- **Adresse:** Bergfreiheit 56, 59955 Winterberg-Silbach
+- **Telefon:** 02983 4059973
+- **Webseite:** https://www.weigels-bergfreiheit.de
+- **Beschreibung (DE):** Das Boutique-Hotel Weigels Bergfreiheit liegt im idyllischen Bergdorf Silbach, etwa fünf Autominuten von Winterberg entfernt. Das liebevoll gestaltete Haus verbindet historischen Charme mit individuellem Boutique-Design. Gäste entspannen im Wellnessbereich mit Hallenbad, finnischer Sauna und Ruheraum. Das Hotelrestaurant verwöhnt mit frischer Gourmetküche, und die ruhige Lage im Tal bietet einen direkten Einstieg in die Wanderwege rund um den Silberberg.
+- **Beschreibung (NL):** Boutique-Hotel Weigels Bergfreiheit ligt in het rustige bergdorp Silbach, op ongeveer vijf minuten rijden van Winterberg. Dit stijlvolle boetiekhotel combineert historische charme met een modern interieur. Tot de faciliteiten behoren een wellnessruimte met binnenzwembad, Finse sauna en relaxruimte. Het restaurant serveert seizoensgebonden gerechten en de ligging is ideaal voor wandelaars.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/boutique-hotel-weigels-bergfreiheit
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/boutique-hotel-weigels-bergfreiheit
+
+#### [Hotel Haus Andrea](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-haus-andrea)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Schanzenstraße 2, 59955 Winterberg
+- **Telefon:** 02981 2131
+- **Webseite:** https://www.hotel-haus-andrea.de
+- **Beschreibung (DE):** Das Hotel Haus Andrea ist ein seit über fünf Jahrzehnten familiär geführtes 3-Sterne-Superior-Hotel in zentraler und ruhiger Lage von Winterberg. Das Haus verfügt über moderne, komfortable Zimmer, ein Hallenschwimmbad mit Massagedüsen, eine finnische Sauna und eine Infrarotkabine. Morgens erwartet die Gäste ein vielseitiges Schlemmer-Frühstücksbuffet. Wanderwege, Skilifte und die Fußgängerzone sind bequem zu Fuß erreichbar.
+- **Beschreibung (NL):** Hotel Haus Andrea is een gastvrij familiehotel (3-sterren superior) op een rustige maar centrale locatie in Winterberg. Het hotel beschikt over moderne, comfortabele kamers, een overdekt zwembad met massagestralen, een Finse sauna en een infraroodcabine. 's Ochtends wordt een uitgebreid ontbijtbuffet geserveerd. Wandelpaden, skiliften en winkels liggen op loopafstand.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-haus-andrea
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-haus-andrea
+
+#### [Appart-Hotel Harmonie](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/appart-hotel-harmonie)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Buchenweg 16, 59955 Winterberg
+- **Telefon:** 02981 8997794
+- **Webseite:** https://www.hotel-harmonie-winterberg.de
+- **Beschreibung (DE):** Das Appart-Hotel Harmonie befindet sich auf einem 2.000 m² großen Areal in einer ruhigen Seitenstraße von Winterberg, nur ca. 350 Meter vom Skiliftkarussell und dem Erlebnisberg Kappe entfernt. Das moderne Haus kombiniert Hotelkomfort mit der Unabhängigkeit großzügiger Appartements und Suiten, ausgestattet mit voll eingerichteten Küchenzeilen, Balkonen oder Terrassen. Ein täglicher Frühstücksservice und kostenfreie Parkplätze runden das Angebot ab.
+- **Beschreibung (NL):** Appart-Hotel Harmonie bevindt zich op een rustig perceel van 2.000 m² in Winterberg, op slechts 350 meter van het skigebied en de belevingsberg Kappe. Het complex biedt ruime appartementen en suites met een volledig uitgeruste kitchenette en balkon of terras. Gasten kunnen gebruikmaken van een ontbijtservice en gratis parkeergelegenheid direct bij het pand.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/appart-hotel-harmonie
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/appart-hotel-harmonie
+
+#### [Hotel Clemens](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-clemens)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Renauweg 48, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 92410
+- **Webseite:** https://www.hotel-clemens.de
+- **Beschreibung (DE):** Das Hotel Clemens liegt in ruhiger Höhenlage am Fuße des Kahlen Asten im Wintersportdorf Altastenberg, direkt am Fernwanderweg Sauerland-Höhenflug und am Altastenberger Skigebiet. Das familiengeführte Hotel bietet gemütliche Zimmer im Landhausstil, ein beheiztes Hallenbad mit Saunabereich und Solarium sowie ein Panoramarestaurant mit regionaler Frischeküche. Für Skifahrer und Biker stehen eigene Trocken- und Einstellräume bereit.
+- **Beschreibung (NL):** Hotel Clemens ligt op een rustige hoogte aan de voet van de Kahler Asten in het wintersportdorp Altastenberg, direct aan de langeafstandswandelroute Sauerland-Höhenflug en de skipistes. Het door een familie beheerde hotel beschikt over comfortabele kamers, een verwarmd binnenzwembad, een sauna en een panoramarestaurant met regionale specialiteiten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-clemens
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-clemens
+
+#### [Hotel Schneider](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 58, 59955 Winterberg
+- **Telefon:** 02981 899738
+- **Webseite:** https://www.hotel-schneider.de
+- **Beschreibung (DE):** Das Hotel Schneider liegt in Top-Lage am oberen Waltenberg in Winterberg, direkt an der Talstation mehrerer Skilifte und nur wenige Gehminuten vom Bikepark und Stadtzentrum entfernt. Das inhabergeführte Hotel verfügt über geschmackvoll eingerichtete Einzel-, Doppel- und Familienzimmer sowie moderne Studios. Ein reichhaltiges Frühstücksbuffet und das beliebte Restaurant servieren kulinarische Köstlichkeiten in alpinem Ambiente.
+- **Beschreibung (NL):** Hotel Schneider ligt op een toplocatie aan de bovenste Waltenberg in Winterberg, direct bij de dalstations van het skigebied en op loopafstand van het bikepark en het stadscentrum. Het gastvrije hotel beschikt over moderne kamers en familiekamers, een gevarieerd ontbijtbuffet en een gezellig restaurant in alpine stijl.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-schneider
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-schneider
+
+#### [Hotel Gasthof Müller](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-gasthof-mueller)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Elkeringhausen
+- **Adresse:** Im Orketal 23, 59955 Winterberg-Elkeringhausen
+- **Telefon:** 02981 7357
+- **Webseite:** https://www.gasthof-mueller.de
+- **Beschreibung (DE):** Der traditionsreiche Gasthof Müller liegt im malerischen Orketal im heilklimatischen Kurort Winterberg-Elkeringhausen. Das familiär geführte Hotel bietet behagliche Gästezimmer im rustikalen Sauerländer Landhausstil, ein Café mit hausgebackenen Kuchen und Torten sowie ein Restaurant mit herzhafter regionaler Frischeküche. Die idyllische Lage am Bachlauf und direkt am Wanderwegenetz macht das Haus zu einem beliebten Ziel für Erholungssuchende und Naturbegeisterte.
+- **Beschreibung (NL):** De traditionele Gasthof Müller ligt in het schilderachtige Orkedal in het kuuroord Elkeringhausen bij Winterberg. Het familiehotel biedt gezellige kamers in landelijke stijl, een café met huisgemaakt gebak en een restaurant met stevige Sauerlandse specialiteiten. De rustige ligging aan het beekje en direct aan wandelpaden trekt vele natuurliefhebbers.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-gasthof-mueller
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-gasthof-mueller
+
+#### [Panorama Hotel Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/panorama-hotel-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Am Kreuzsteinchen 1, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 3250600
+- **Webseite:** https://panoramahotelwinterberg.de
+- **Beschreibung (DE):** Das Panorama Hotel Winterberg thront auf einer sonnigen Anhöhe oberhalb von Niedersfeld und bietet einen weiten Panoramablick über das Ruhrtal und die Sauerländer Bergwelt. Das Hotel verfügt über komfortable Gästezimmer, ein Hallenbad mit Saunabereich, moderne Seminarräume sowie ein Restaurant mit großem Panorama-Fensterbereich. Der nahegelegene Hillebachsee und ausgedehnte Höhenwanderwege bieten ganzjährig vielseitige Freizeitmöglichkeiten.
+- **Beschreibung (NL):** Het Panorama Hotel Winterberg ligt op een zonnige heuvel boven Niedersfeld en biedt een weids uitzicht over het Ruhrdal en de bergen van het Sauerland. Het hotel beschikt over comfortabele kamers, een binnenzwembad met sauna, vergaderruimtes en een restaurant met panoramisch uitzicht. De nabijgelegen Hillebachsee biedt zomers watersport en ontspanning.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/panorama-hotel-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/panorama-hotel-winterberg
+
+#### [Central Hotel Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/central-hotel-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 29, 59955 Winterberg
+- **Telefon:** 02981 92450
+- **Webseite:** https://www.central-hotel-winterberg.de
+- **Beschreibung (DE):** Das Central Hotel Winterberg befindet sich mitten im Herzen der Stadt am Waltenberg. Durch die direkte Zentrumslage erreichen Gäste Fußgängerzone, Boutiquen, Cafés und den Kurpark in wenigen Schritten. Das Hotel verfügt über freundlich eingerichtete Zimmer, ein reichhaltiges Vital-Frühstücksbuffet, die traditionelle Gaststube „Winterberger Bierstube“ mit regionalen Gerichten sowie sichere Unterstellmöglichkeiten für Fahrräder und Skier.
+- **Beschreibung (NL):** Het Central Hotel Winterberg bevindt zich in het hart van de stad aan de Waltenberg. Dankzij de centrale ligging zijn het voetgangersgebied, boetieks en cafés op steenworp afstand bereikbaar. Het hotel biedt lichte kamers, een gevarieerd ontbijtbuffet en de traditionele 'Winterberger Bierstube' met streekgerechten, evenals een veilige berging voor fietsen en ski's.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/central-hotel-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/central-hotel-winterberg
+
+#### [Heidehotel Hildfeld](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/heidehotel-hildfeld)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Hildfeld
+- **Adresse:** Am Ufer 13, 59955 Winterberg-Hildfeld
+- **Telefon:** 02985 8030
+- **Webseite:** https://heide-hotel-hildfeld.de
+- **Beschreibung (DE):** Das Heidehotel Hildfeld liegt auf 620 Metern Höhenlage im ruhigen Ortsteil Hildfeld nahe der Hochheide Neuer Hagen und dem Naturschutzgebiet Hilletal. Das gemütliche Wohlfühlhotel bietet modern ausgestattete Zimmer mit Bergblick, einen Wellnessbereich mit Hallenbad, Sauna und Ruheoase sowie ein Restaurant mit frischer, regionaler Küche. Wanderer, Mountainbiker und Naturliebhaber starten direkt vor der Haustür in das verzweigte Wegenetz.
+- **Beschreibung (NL):** Heidehotel Hildfeld ligt op 620 meter hoogte in het rustige dorp Hildfeld, dichtbij het beschermde natuurgebied van de Neuer Hagen hoogheide. Het gastvrije hotel beschikt over modern ingerichte kamers met uitzicht op de bergen, een wellnessruimte met binnenzwembad en sauna, en een restaurant met regionale seizoensgerechten. Wandel- en mountainbikeroutes starten direct voor de deur.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/heidehotel-hildfeld
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/heidehotel-hildfeld
+
+#### [Hotel Sonneneck](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-sonneneck)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Schützenstraße 3, 59955 Winterberg-Züschen
+- **Telefon:** 02981 557
+- **Webseite:** https://sonneneck-zueschen.de
+- **Beschreibung (DE):** Das Hotel Sonneneck liegt sonnig und ruhig im staatlich anerkannten Luftkurort Züschen, am Südhang des Rothaargebirges rund sieben Kilometer südlich von Winterberg. Das Hotel bietet behagliche Gästezimmer, teilweise mit Südbalkon, eine sonnige Aussichtsterrasse, ein Restaurant mit gutbürgerlicher Küche sowie eine gesellige Gaststube. Wanderwege und das Züschener Familienskigebiet Homberg sind in wenigen Minuten erreichbar.
+- **Beschreibung (NL):** Hotel Sonneneck ligt rustig en zonnig in het luchtkuuroord Züschen, op de zuidhelling van het Rothaargebergte op circa zeven kilometer ten zuiden van Winterberg. Het hotel beschikt over comfortabele kamers, deels met balkon op het zuiden, een zonnig panoramaterras en een restaurant met traditionele Duitse gerechten. Skigebied Mein Homberg en wandelroutes liggen vlakbij.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-sonneneck
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-sonneneck
+
+#### [Familien Resort Der Schöne Asten](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/familien-resort-der-schoene-asten)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Renauweg 54, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 8050
+- **Webseite:** https://www.resort-winterberg.de
+- **Beschreibung (DE):** Das Resort „Der Schöne Asten“ liegt auf rund 800 Metern Höhe im heilklimatischen Ort Altastenberg nahe dem Kahlen Asten. Die weitläufige Ferienanlage umfasst komfortable Hotelzimmer und familienfreundliche Appartements. Zu den umfangreichen Freizeiteinrichtungen gehören ein großes Hallenschwimmbad, ein Saunabereich mit mehreren Saunen, Fitnessraum, Tennisplätze, Kinderspielzimmer sowie ein Buffet- und À-la-carte-Restaurant mit Bierstube.
+- **Beschreibung (NL):** Resort 'Der Schöne Asten' ligt op circa 800 meter hoogte in het kuuroord Altastenberg nabij de Kahler Asten. Het uitgestrekte vakantieresort biedt hotelkamers en familievriendelijke appartementen. Tot de faciliteiten behoren een groot overdekt zwembad, een saunalandschap, fitnessruimte, tennisbanen, een kinderspeelkamer en restaurants met regionale specialiteiten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/familien-resort-der-schoene-asten
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/familien-resort-der-schoene-asten
+
+#### [Dorint Resort Winterberg Sauerland](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/dorint-resort-winterberg-sauerland)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Neuastenberg
+- **Adresse:** Dorfstraße 1, 59955 Winterberg-Neuastenberg
+- **Telefon:** 02981 8970
+- **Webseite:** https://hotel-sauerland-winterberg.dorint.com
+- **Beschreibung (DE):** Das Dorint Resort Winterberg liegt im Fachwerkdorf Neuastenberg am Südhang des Kahlen Asten, direkt am Skigebiet Postwiese und an zahlreichen Wanderwegen. Das 4-Sterne-Sport- und Wellnessresort verfügt über geräumige Zimmer und Ferienwohnungen im Landhausstil, eine großzügige Badelandschaft mit Innenpool, Whirlpool, Saunen und Wellnessangeboten. Zwei Restaurants, die gemütliche „Dorfschänke“ und eine Kartbahn in der Nähe bieten abwechslungsreiche Erholung für Paare und Familien.
+- **Beschreibung (NL):** Het Dorint Resort Winterberg ligt in het pittoreske dorp Neuastenberg aan de voet van de Kahler Asten, direct aan het skigebied Postwiese en diverse wandelpaden. Dit 4-sterrenresort biedt ruime kamers en appartementen in vakwerkstijl, een zwemparadijs met binnenzwembad, bubbelbad en sauna's. Met twee restaurants en de traditionele 'Dorfschänke' is het een ideale bestemming voor actieve vakantiegangers.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/dorint-resort-winterberg-sauerland
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/dorint-resort-winterberg-sauerland
+
+#### [Landhaus Silberberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhaus-silberberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Silbach
+- **Adresse:** Bergfreiheit 60, 59955 Winterberg-Silbach
+- **Telefon:** 02983 97470
+- **Webseite:** https://www.landhaus-silberberg.de
+- **Beschreibung (DE):** Das Landhaus Silberberg (Privathotel Löffler) liegt im ruhigen und grünen Tal des Ortsteils Silbach, umgeben von dichten Sauerländer Wäldern. Das familiengeführte Haus bietet behaglich und individuell eingerichtete Hotelzimmer mit Balkon oder Terrasse, ein Hallenschwimmbad mit Sauna und Infrarotkabine sowie eine große Liegewiese am Gebirgsbach. Ein reichhaltiges Frühstücksbuffet sorgt für einen perfekten Start in erlebnisreiche Wandertage.
+- **Beschreibung (NL):** Landhaus Silberberg (Privathotel Löffler) ligt in het rustige en bosrijke dal van Silbach nabij Winterberg. Het door een familie gerunde hotel biedt comfortabele kamers met balkon of terras, een binnenzwembad met sauna en infraroodcabine en een grote ligweide aan een kabbelende beek. Het ontbijtbuffet vormt de ideale start voor een dag in de natuur.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhaus-silberberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landhaus-silberberg
+
+#### [Hotel Forsthaus](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-forsthaus)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Orkestraße 14, 59955 Winterberg
+- **Telefon:** 02981 1023
+- **Webseite:** https://hotel-forsthaus-winterberg.de
+- **Beschreibung (DE):** Das Hotel und Gästehaus Forsthaus liegt in einer ruhigen Wohnstraße unweit des Stadtzentrums von Winterberg. Das mit Liebe zum Detail geführte Haus bietet modern und gemütlich renovierte Zimmer, ein ausgewogenes Frühstücksbuffet mit regionalen Produkten sowie eine idyllische Gartenanlage zum Entspannen. Der nahe Kurpark, Wanderwege und die Einkaufsmöglichkeiten der Innenstadt sind in wenigen Gehminuten erreichbar.
+- **Beschreibung (NL):** Hotel en pension Forsthaus ligt in een rustige straat op korte afstand van het centrum van Winterberg. Het zorgvuldig gerunde hotel beschikt over modern gerenoveerde kamers, een gevarieerd ontbijtbuffet met regionale producten en een fraaie tuin om in te ontspannen. Het kuurpark, wandelroutes en winkels liggen op loopafstand.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-forsthaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-forsthaus
+
+#### [Lodge Hotel Winterberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/lodge-hotel-winterberg)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 33, 59955 Winterberg
+- **Telefon:** 02981 9296970
+- **Webseite:** https://www.goebel-hotels.com/winterberg/lodge-hotel-winterberg/
+- **Beschreibung (DE):** Das Lodge Hotel Winterberg (Teil der Göbel Hotels) empfängt Gäste in erstklassiger Lage am Waltenberg im pulsierenden Zentrum von Winterberg. Das Hotel verbindet alpinen Lifestyle mit modernem Komfort und bietet stilvoll eingerichtete Zimmer und Suiten im rustikal-modernen Hüttenlook. Direkt an das Hotel angeschlossen ist die beliebte Erlebnisgastronomie „Dorf Alm Winterberg“, in der Gäste herzhafte Hüttengerichte, Steaks und frisch gezapftes Bier in uriger Atmosphäre genießen.
+- **Beschreibung (NL):** Lodge Hotel Winterberg (onderdeel van Göbel Hotels) ligt op een toplocatie aan de Waltenberg in het centrum van Winterberg. Het hotel combineert alpine sfeer met modern comfort en beschikt over smaakvol ingerichte kamers in eigentijdse huttengalerijstijl. Direct aan het hotel grenst het populaire belevingsrestaurant 'Dorf Alm Winterberg', waar gasten genieten van authentieke streekgerechten en gezelligheid.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/lodge-hotel-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/lodge-hotel-winterberg
 
 #### [Landgasthof Wüllner](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landgasthof-wuellner)
 - **Kategorie:** Hotels und Unterkünfte > Hotels

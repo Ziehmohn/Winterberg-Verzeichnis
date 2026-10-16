@@ -120,7 +120,10 @@ const DOMAIN_SYNONYMS: Record<string, string[]> = {
   'pasta': ['pasta', 'spaghetti', 'italienisch', 'pizza', 'pizzeria'],
 
   // Burger / Fast Food
-  'burger': ['burger', 'hamburger', 'cheeseburger', 'pommes', 'fast food', 'imbiss'],
+  'burger': ['burger', 'hamburger', 'cheeseburger', 'pommes', 'fast food', 'imbiss', 'mcdonalds'],
+  'mcdonalds': ['mcdonalds', "mcdonald's", 'burger', 'fast food', 'mcdrive', 'mccafe', 'imbiss'],
+  'fastfood': ['fast food', 'fastfood', 'burger', 'mcdonalds', 'pommes', 'imbiss'],
+  'mcdrive': ['mcdrive', 'mcdonalds', 'burger', 'fast food'],
   'pommes': ['pommes', 'currywurst', 'imbiss', 'fast food'],
   'currywurst': ['currywurst', 'pommes', 'bratwurst', 'imbiss'],
   'schnitzel': ['schnitzel', 'restaurant', 'gasthof', 'deutsche küche'],
