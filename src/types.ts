@@ -33,6 +33,12 @@ export type HeaderDividerStyle =
   | 'peaks-gentle'
   | (string & {});
 
+export interface CustomDividerLayer {
+  pathData: string;
+  opacity: number;
+  color?: string;
+}
+
 export interface CustomDivider {
   id: string;
   name: string;
@@ -41,6 +47,10 @@ export interface CustomDivider {
   pathData: string;
   viewBox?: string;
   color?: string;
+  opacity?: number;
+  isMask?: boolean; // True transparency via CSS mask (cuts image without solid color)
+  shadow?: 'none' | 'soft' | 'medium' | 'strong'; // Realistic drop shadow
+  layers?: CustomDividerLayer[]; // Multi-layer shapes with depth
   flipHorizontal?: boolean;
   invert?: boolean;
   position?: 'bottom' | 'top';

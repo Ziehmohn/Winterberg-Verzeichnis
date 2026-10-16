@@ -978,8 +978,13 @@ export default function AdminDesignManager({
 
               {/* Realistic Mockup of the Category Banner from the screenshot */}
               <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg">
-                {/* Green Header Area */}
-                <div className="w-full bg-[#0F4C2E] text-white relative overflow-hidden">
+                {/* Header Area with Photo & Gradient */}
+                <div 
+                  className="w-full text-white relative overflow-hidden transition-all duration-300"
+                  style={{
+                    background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat'
+                  }}
+                >
                   <div className="max-w-[900px] mx-auto px-6 py-8 pb-6">
                     <div className="text-xs text-white/70 mb-2">
                       Start / {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen' : 'Verzeichnis Winterberg'}
