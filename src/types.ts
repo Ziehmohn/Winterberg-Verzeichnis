@@ -26,10 +26,28 @@ export type HeaderDividerStyle =
   | 'mountains'
   | 'wave-smooth'
   | 'wave-asymmetric'
+  | 'wave-flow'
   | 'slant-right'
   | 'slant-left'
   | 'curve'
-  | 'peaks-gentle';
+  | 'peaks-gentle'
+  | (string & {});
+
+export interface CustomDivider {
+  id: string;
+  name: string;
+  description?: string;
+  badge?: string;
+  pathData: string;
+  viewBox?: string;
+  color?: string;
+  flipHorizontal?: boolean;
+  invert?: boolean;
+  position?: 'bottom' | 'top';
+  heightPx?: number;
+  widthPercent?: number;
+  createdAt?: number;
+}
 
 export interface HeaderDividerPageConfig {
   global?: HeaderDividerStyle;
@@ -50,6 +68,7 @@ export interface DesignSettings {
   headlineLetterSpacing: 'tight' | 'normal' | 'wide';
   presetId?: string;
   headerDividers?: HeaderDividerPageConfig;
+  customDividers?: CustomDivider[];
 }
 
 export interface Review {

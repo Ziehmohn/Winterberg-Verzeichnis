@@ -17,10 +17,13 @@ import {
   Search,
   ExternalLink,
   Info,
-  Waves
+  Waves,
+  Plus,
+  Trash2
 } from 'lucide-react';
-import { DesignSettings, ThemeConfig, HeaderDividerStyle, HeaderDividerPageConfig } from '../types';
-import HeaderShapeDivider, { DIVIDER_OPTIONS, getEffectiveDivider } from './HeaderShapeDivider';
+import { DesignSettings, ThemeConfig, HeaderDividerStyle, HeaderDividerPageConfig, CustomDivider } from '../types';
+import HeaderShapeDivider, { DIVIDER_OPTIONS, getAllDividerOptions, getEffectiveDivider } from './HeaderShapeDivider';
+import CustomDividerCreatorModal from './CustomDividerCreatorModal';
 import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 
@@ -257,6 +260,8 @@ export default function AdminDesignManager({
   const [activeTab, setActiveTab] = useState<'presets' | 'custom' | 'divider'>('presets');
   const [selectedDividerPage, setSelectedDividerPage] = useState<keyof HeaderDividerPageConfig>('category');
   const [dividerAppliedAllMsg, setDividerAppliedAllMsg] = useState(false);
+  const [isCreatorModalOpen, setIsCreatorModalOpen] = useState(false);
+  const [customDividerSuccessMsg, setCustomDividerSuccessMsg] = useState<string | null>(null);
 
   // Load Google Fonts on mount and whenever font changes
   useEffect(() => {
@@ -346,6 +351,56 @@ export default function AdminDesignManager({
     }));
     setDividerAppliedAllMsg(true);
     setTimeout(() => setDividerAppliedAllMsg(false), 3000);
+  };
+
+  const handleSaveCustomDivider = async (newDivider: CustomDivider) => {
+    const updatedCustomDividers = [...(formData.customDividers || []), newDivider];
+    const updatedFormData: DesignSettings = {
+      ...formData,
+      customDividers: updatedCustomDividers,
+      headerDividers: {
+        ...(formData.headerDividers || {}),
+        [selectedDividerPage]: newDivider.id
+      }
+    };
+    setFormData(updatedFormData);
+    setDesignSettings(updatedFormData);
+    localStorage.setItem('siteDesignSettings', JSON.stringify(updatedFormData));
+    setCustomDividerSuccessMsg(`Divider „${newDivider.name}“ erfolgreich angelegt und aktiviert!`);
+    setTimeout(() => setCustomDividerSuccessMsg(null), 4000);
+    try {
+      await setDoc(doc(db, 'settings', 'design'), updatedFormData, { merge: true });
+    } catch (e) {
+      console.error('Error saving custom divider to Firestore:', e);
+    }
+  };
+
+  const handleDeleteCustomDivider = async (dividerId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!window.confirm('Möchten Sie diesen selbst erstellten Divider wirklich löschen?')) return;
+    const updatedCustomDividers = (formData.customDividers || []).filter(d => d.id !== dividerId);
+    
+    // Fallback if deleted divider was selected on any page
+    const updatedHeaderDividers = { ...(formData.headerDividers || {}) };
+    (Object.keys(updatedHeaderDividers) as (keyof HeaderDividerPageConfig)[]).forEach(k => {
+      if (updatedHeaderDividers[k] === dividerId) {
+        updatedHeaderDividers[k] = 'none';
+      }
+    });
+
+    const updatedFormData: DesignSettings = {
+      ...formData,
+      customDividers: updatedCustomDividers,
+      headerDividers: updatedHeaderDividers
+    };
+    setFormData(updatedFormData);
+    setDesignSettings(updatedFormData);
+    localStorage.setItem('siteDesignSettings', JSON.stringify(updatedFormData));
+    try {
+      await setDoc(doc(db, 'settings', 'design'), updatedFormData, { merge: true });
+    } catch (e) {
+      console.error('Error deleting custom divider in Firestore:', e);
+    }
   };
 
   const handleReset = () => {
@@ -446,7 +501,7 @@ export default function AdminDesignManager({
             <div className="h-4 w-px bg-[#D8D2C8] hidden md:block"></div>
             <div className="text-xs text-[#5F6B63] flex items-center gap-1">
               <Waves className="w-3.5 h-3.5 text-[#F2761B]" />
-              Kategorien Divider: <strong className="text-[#0F4C2E] text-xs ml-1 font-bold">{DIVIDER_OPTIONS.find(d => d.id === (formData.headerDividers?.category || formData.headerDividers?.global || 'none'))?.label || 'Kein Divider'}</strong>
+              Kategorien Divider: <strong className="text-[#0F4C2E] text-xs ml-1 font-bold">{getAllDividerOptions(formData.customDividers).find(d => d.id === (formData.headerDividers?.category || formData.headerDividers?.global || 'none'))?.label || 'Kein Divider'}</strong>
             </div>
           </div>
 
@@ -755,7 +810,7 @@ export default function AdminDesignManager({
                 {DIVIDER_PAGES.map(page => {
                   const isPageSelected = selectedDividerPage === page.key;
                   const currentStyle = getEffectiveDivider(page.key, formData);
-                  const styleLabel = DIVIDER_OPTIONS.find(d => d.id === currentStyle)?.label || 'Kein Divider';
+                  const styleLabel = getAllDividerOptions(formData.customDividers).find(d => d.id === currentStyle)?.label || 'Kein Divider';
 
                   return (
                     <button
@@ -797,17 +852,35 @@ export default function AdminDesignManager({
 
             {/* Step 2: Divider Style Selection Grid */}
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider block">
-                  2. Divider-Stil für „{DIVIDER_PAGES.find(p => p.key === selectedDividerPage)?.label}“ wählen:
-                </label>
-                <span className="text-xs text-[#5F6B63]">
-                  Klicken zum Auswählen &bull; Sofortige Live-Vorschau unten
-                </span>
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <div>
+                  <label className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider block">
+                    2. Divider-Stil für „{DIVIDER_PAGES.find(p => p.key === selectedDividerPage)?.label}“ wählen:
+                  </label>
+                  <span className="text-xs text-[#5F6B63]">
+                    Klicken zum Auswählen &bull; Sofortige Live-Vorschau unten
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsCreatorModalOpen(true)}
+                  className="bg-[#0F4C2E] hover:bg-[#06301C] text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-sm hover:shadow"
+                >
+                  <Plus className="w-3.5 h-3.5 text-[#F2761B]" />
+                  <span>+ Divider selbst erstellen</span>
+                </button>
               </div>
 
+              {customDividerSuccessMsg && (
+                <div className="mb-3 p-3 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-lg text-xs font-bold flex items-center gap-2 animate-in fade-in">
+                  <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{customDividerSuccessMsg}</span>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-                {DIVIDER_OPTIONS.map((opt) => {
+                {getAllDividerOptions(formData.customDividers).map((opt) => {
                   const currentSelectedStyle = getEffectiveDivider(selectedDividerPage, formData);
                   const isChosen = currentSelectedStyle === opt.id;
 
@@ -822,19 +895,33 @@ export default function AdminDesignManager({
                       }`}
                     >
                       <div>
-                        {/* Title & Badge */}
+                        {/* Title & Badge & Delete */}
                         <div className="flex items-center justify-between gap-1 mb-1.5">
-                          <span className="font-bold text-xs text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors">
+                          <span className="font-bold text-xs text-[#1B211D] group-hover:text-[#0F4C2E] transition-colors truncate">
                             {opt.label}
                           </span>
-                          {opt.badge && (
-                            <span className="bg-[#FFF1E4] text-[#D65F0C] text-[10px] font-bold px-1.5 py-0.5 rounded">
-                              {opt.badge}
-                            </span>
-                          )}
-                          {isChosen && !opt.badge && (
-                            <CheckCircle2 className="w-4 h-4 text-[#0F4C2E] shrink-0" />
-                          )}
+                          <div className="flex items-center gap-1 shrink-0">
+                            {opt.badge && (
+                              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                                opt.isCustom ? 'bg-[#E8F1EB] text-[#0F4C2E]' : 'bg-[#FFF1E4] text-[#D65F0C]'
+                              }`}>
+                                {opt.badge}
+                              </span>
+                            )}
+                            {opt.isCustom && (
+                              <button
+                                type="button"
+                                onClick={(e) => handleDeleteCustomDivider(opt.id, e)}
+                                className="text-gray-400 hover:text-red-600 p-0.5 rounded hover:bg-red-50 transition-colors"
+                                title="Diesen erstellten Divider löschen"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            )}
+                            {isChosen && !opt.badge && (
+                              <CheckCircle2 className="w-4 h-4 text-[#0F4C2E] shrink-0" />
+                            )}
+                          </div>
                         </div>
 
                         {/* Miniature Visual SVG Preview Box */}
@@ -847,12 +934,13 @@ export default function AdminDesignManager({
                             <HeaderShapeDivider
                               style={opt.id}
                               color="#FAF8F5"
+                              customDividers={formData.customDividers}
                               heightClass="h-[30px]"
                             />
                           )}
                         </div>
 
-                        <p className="text-[11px] text-[#5F6B63] m-0 leading-relaxed">
+                        <p className="text-[11px] text-[#5F6B63] m-0 leading-relaxed line-clamp-2">
                           {opt.description}
                         </p>
                       </div>
@@ -929,6 +1017,7 @@ export default function AdminDesignManager({
                   <HeaderShapeDivider
                     style={getEffectiveDivider(selectedDividerPage, formData)}
                     color="#FAF8F5"
+                    customDividers={formData.customDividers}
                     heightClass="h-[42px] sm:h-[54px] md:h-[68px]"
                   />
                 </div>
@@ -1224,6 +1313,13 @@ export default function AdminDesignManager({
           </article>
         </div>
       </section>
+
+      {/* Interactive Custom Divider Creator Modal */}
+      <CustomDividerCreatorModal
+        isOpen={isCreatorModalOpen}
+        onClose={() => setIsCreatorModalOpen(false)}
+        onSave={handleSaveCustomDivider}
+      />
     </div>
   );
 }
