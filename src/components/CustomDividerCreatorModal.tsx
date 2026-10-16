@@ -14,8 +14,6 @@ export default function CustomDividerCreatorModal({
   onClose,
   onSave
 }: CustomDividerCreatorModalProps) {
-  if (!isOpen) return null;
-
   // Selected base shape or custom mode
   const [selectedShapeId, setSelectedShapeId] = useState<string>('wave-flow');
   const [rawSvgInput, setRawSvgInput] = useState<string>('');
@@ -181,6 +179,8 @@ export default function CustomDividerCreatorModal({
     WebkitMaskRepeat: 'no-repeat',
     maskRepeat: 'no-repeat',
   } : {};
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[99999] bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 overflow-y-auto">

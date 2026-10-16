@@ -323,13 +323,11 @@ export default function HeaderShapeDivider({
 }: HeaderShapeDividerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!style || style === 'none') {
-    return null;
-  }
+  const isEnabled = Boolean(style && style !== 'none');
 
   // 1. Resolve custom divider if applicable
-  let resolvedCustom: CustomDivider | undefined = customDividers?.find(d => d.id === style);
-  if (!resolvedCustom && typeof window !== 'undefined' && style && typeof style === 'string' && style.startsWith('custom-')) {
+  let resolvedCustom: CustomDivider | undefined = isEnabled ? customDividers?.find(d => d.id === style) : undefined;
+  if (isEnabled && !resolvedCustom && typeof window !== 'undefined' && style && typeof style === 'string' && style.startsWith('custom-')) {
     try {
       const saved = localStorage.getItem('siteDesignSettings');
       if (saved) {
@@ -340,20 +338,21 @@ export default function HeaderShapeDivider({
   }
 
   // Check matching base shape
-  const baseDef = BASE_DIVIDER_SHAPES.find(s => s.id === style);
+  const baseDef = isEnabled ? BASE_DIVIDER_SHAPES.find(s => s.id === style) : undefined;
 
   // Check if true transparency / mask is requested
-  const isTransparent = 
+  const isTransparent = isEnabled && Boolean(
     resolvedCustom?.isMask || 
     resolvedCustom?.color === 'transparent' || 
     color === 'transparent' ||
-    (resolvedCustom?.opacity !== undefined && resolvedCustom.opacity === 0);
+    (resolvedCustom?.opacity !== undefined && resolvedCustom.opacity === 0)
+  );
 
   const effectiveColor = isTransparent 
     ? 'transparent' 
     : (resolvedCustom?.color || color);
 
-  const mainPath = resolvedCustom?.pathData || baseDef?.pathData || BASE_DIVIDER_SHAPES[0].pathData;
+  const mainPath = resolvedCustom?.pathData || baseDef?.pathData || BASE_DIVIDER_SHAPES[0]?.pathData || '';
   const viewBox = resolvedCustom?.viewBox || baseDef?.viewBox || '0 0 1200 120';
   const heightPx = resolvedCustom?.heightPx || 64;
 
@@ -362,7 +361,7 @@ export default function HeaderShapeDivider({
     const parent = containerRef.current?.parentElement;
     if (!parent) return;
 
-    if (isTransparent && mainPath) {
+    if (isEnabled && isTransparent && mainPath) {
       const maskDataUri = getMaskSvgDataUri(mainPath, viewBox);
       
       // Apply CSS mask: top area of header is 100% visible, bottom heightPx is masked by the wave
@@ -390,9 +389,19 @@ export default function HeaderShapeDivider({
       if (parent) {
         parent.style.webkitMaskImage = '';
         parent.style.maskImage = '';
+        parent.style.webkitMaskPosition = '';
+        parent.style.maskPosition = '';
+        parent.style.webkitMaskSize = '';
+        parent.style.maskSize = '';
+        parent.style.webkitMaskRepeat = '';
+        parent.style.maskRepeat = '';
       }
     };
-  }, [isTransparent, mainPath, viewBox, heightPx]);
+  }, [isEnabled, isTransparent, mainPath, viewBox, heightPx]);
+
+  if (!isEnabled) {
+    return <div ref={containerRef} className="hidden" aria-hidden="true" />;
+  }
 
   // Build transformation styles for SVG
   const transforms: string[] = ['translateY(1px)'];
