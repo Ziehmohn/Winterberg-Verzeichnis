@@ -6973,4 +6973,16 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/gastronomie/imbisse/mcdonald-s-winterberg</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/mcdonald-s-winterberg</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

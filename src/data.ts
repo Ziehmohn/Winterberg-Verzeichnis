@@ -8098,6 +8098,53 @@ export const businesses: Business[] = [
       saturday: 'Geschlossen (24/7 für Mitglieder mit Schlüsselkarte)',
       sunday: 'Geschlossen (24/7 für Mitglieder mit Schlüsselkarte)'
     }
+  },
+  {
+    id: 'mcdonalds-winterberg',
+    name: "McDonald's Winterberg",
+    category: 'Gastronomie',
+    subcategory: 'Imbisse',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Restaurant' }
+    ],
+    address: 'Am Hagenblech 58, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2412',
+    website: 'https://www.mcdonalds.de',
+    image: '/mcdonalds-winterberg.jpg',
+    imageFallback: 'MD',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    description: "Das McDonald's Restaurant in Winterberg liegt verkehrsgünstig direkt an der B480 (Am Hagenblech 58) und ist sowohl für Urlauber und Wintersportler als auch für Einheimische aus den umliegenden Ortsteilen optimal erreichbar. Neben den beliebten Burger-Klassikern und Menüs bietet die moderne Filiale ein integriertes McCafé für Kaffeespezialitäten und Kuchen, einen schnellen McDrive für die bequeme Mitnahme sowie eine EWE Go Schnellladesäule für Elektrofahrzeuge. Im Innenbereich stehen rund 97 Sitzplätze zur Verfügung, ergänzt durch ca. 25 Außenplätze auf der Terrasse. Bestellungen können am Counter, an den digitalen Terminals oder vorab via McDonald's App mit Tischservice oder Abholung aufgegeben werden.",
+    description_nl: "Het McDonald's restaurant in Winterberg ligt direct aan de B480 (Am Hagenblech 58) en is uitstekend bereikbaar voor zowel vakantiegangers als lokale bewoners. Naast de bekende burgers en menu's beschikt de vestiging over een sfeervol McCafé met koffie en gebak, een McDrive, gratis wifi, circa 97 zitplaatsen binnen en 25 terrasplaatsen buiten. Tevens is er een EWE Go snellaadpaal voor elektrische voertuigen aanwezig. Bestellingen kunnen aan de balie, via digitale bestelzuilen of via de McDonald's app worden geplaatst.",
+    services: [
+      'Burger, Menüs & Fast Food',
+      'McCafé & Kaffeespezialitäten',
+      'McDrive für Autofahrer',
+      'Frühstück (täglich 08:00 – 10:30 Uhr)',
+      'Digitale Bestellterminals & Tischservice',
+      'EWE Go Schnellladesäule',
+      'Kostenloses WLAN & Kundenparkplätze'
+    ],
+    services_nl: [
+      'Burgers, menu\'s & fastfood',
+      'McCafé & koffiespecialiteiten',
+      'McDrive voor automobilisten',
+      'Ontbijt (dagelijks 08:00 – 10:30 uur)',
+      'Digitale bestelzuilen & tafelservice',
+      'Snellaadpaal (EWE Go)',
+      'Gratis wifi & parkeren'
+    ],
+    openingHours: {
+      monday: '08:00 - 01:00',
+      tuesday: '08:00 - 01:00',
+      wednesday: '08:00 - 01:00',
+      thursday: '08:00 - 01:00',
+      friday: '08:00 - 03:00',
+      saturday: '08:00 - 03:00',
+      sunday: '08:00 - 01:00'
+    }
   }
 ];
 

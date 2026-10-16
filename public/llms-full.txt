@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (348 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (349 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1974,6 +1974,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Restaurant & Fonduestube Korn Kurparkstuben ligt idyllisch in het Kurpark van Winterberg en combineert culinair genieten met een alpiene sfeer. Het familiebedrijf staat bekend om gezellige fondue-avonden (kaas-, vlees- en chocoladefondue), traditionele gerechten en een sfeervolle wijnbar met een groot zonneterras.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/korn-kurparkstuben-restaurant-und-fondue
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/korn-kurparkstuben-restaurant-und-fondue
+
+#### [McDonald's Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/mcdonald-s-winterberg)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Hagenblech 58, 59955 Winterberg
+- **Telefon:** 02981 2412
+- **Webseite:** https://www.mcdonalds.de
+- **Beschreibung (DE):** Das McDonald's Restaurant in Winterberg liegt verkehrsgünstig direkt an der B480 (Am Hagenblech 58) und ist sowohl für Urlauber und Wintersportler als auch für Einheimische aus den umliegenden Ortsteilen optimal erreichbar. Neben den beliebten Burger-Klassikern und Menüs bietet die moderne Filiale ein integriertes McCafé für Kaffeespezialitäten und Kuchen, einen schnellen McDrive für die bequeme Mitnahme sowie eine EWE Go Schnellladesäule für Elektrofahrzeuge. Im Innenbereich stehen rund 97 Sitzplätze zur Verfügung, ergänzt durch ca. 25 Außenplätze auf der Terrasse. Bestellungen können am Counter, an den digitalen Terminals oder vorab via McDonald's App mit Tischservice oder Abholung aufgegeben werden.
+- **Beschreibung (NL):** Het McDonald's restaurant in Winterberg ligt direct aan de B480 (Am Hagenblech 58) en is uitstekend bereikbaar voor zowel vakantiegangers als lokale bewoners. Naast de bekende burgers en menu's beschikt de vestiging over een sfeervol McCafé met koffie en gebak, een McDrive, gratis wifi, circa 97 zitplaatsen binnen en 25 terrasplaatsen buiten. Tevens is er een EWE Go snellaadpaal voor elektrische voertuigen aanwezig. Bestellingen kunnen aan de balie, via digitale bestelzuilen of via de McDonald's app worden geplaatst.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/mcdonald-s-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/mcdonald-s-winterberg
 
 ### Kategorie: Dienstleistungen
 
