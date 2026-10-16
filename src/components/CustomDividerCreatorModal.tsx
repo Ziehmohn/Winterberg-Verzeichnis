@@ -144,6 +144,8 @@ export default function CustomDividerCreatorModal({
     shadowFilter = 'drop-shadow(0 -8px 20px rgba(0,0,0,0.30))';
   }
 
+  const isTop = position === 'top';
+
   const svgPreviewStyle: React.CSSProperties = {
     transform: transforms.join(' '),
     transformOrigin: 'center center',
@@ -151,13 +153,12 @@ export default function CustomDividerCreatorModal({
     filter: shadowFilter || undefined
   };
 
-  if (widthPercent > 100) {
+  if (widthPercent && widthPercent !== 100) {
     svgPreviewStyle.width = `${widthPercent}%`;
-    svgPreviewStyle.minWidth = '100%';
+    svgPreviewStyle.minWidth = `${widthPercent}%`;
     svgPreviewStyle.position = 'relative';
     svgPreviewStyle.left = '50%';
-    transforms.unshift('translateX(-50%)');
-    svgPreviewStyle.transform = transforms.join(' ');
+    svgPreviewStyle.marginLeft = `-${widthPercent / 2}%`;
   }
 
   // Layers for preview
@@ -168,16 +169,25 @@ export default function CustomDividerCreatorModal({
   const isTransparentActive = isMask || color === 'transparent';
 
   // Live CSS mask style for preview container when true transparency is active
-  const maskDataUri = isTransparentActive ? getMaskSvgDataUri(detectedPath, detectedViewBox, flipHorizontal, invert) : '';
+  const maskDataUri = isTransparentActive ? getMaskSvgDataUri(detectedPath, detectedViewBox, flipHorizontal, invert, isTop) : '';
+  const overlap = 1;
+  const actualH = heightPx;
+  const linearGrad = isTop
+    ? `linear-gradient(to bottom, transparent 0%, transparent ${actualH}px, #000 ${actualH}px, #000 100%)`
+    : `linear-gradient(to bottom, #000 0%, #000 calc(100% - ${actualH}px), transparent calc(100% - ${actualH}px))`;
+
+  const maskPos = isTop ? 'center top, top' : 'center bottom, top';
+  const maskRep = widthPercent < 100 ? 'repeat-x, no-repeat' : 'no-repeat, no-repeat';
+
   const previewHeaderMaskStyle: React.CSSProperties = isTransparentActive ? {
-    WebkitMaskImage: `${maskDataUri}, linear-gradient(to bottom, #000 0%, #000 calc(100% - ${heightPx}px), transparent calc(100% - ${heightPx}px))`,
-    maskImage: `${maskDataUri}, linear-gradient(to bottom, #000 0%, #000 calc(100% - ${heightPx}px), transparent calc(100% - ${heightPx}px))`,
-    WebkitMaskPosition: 'bottom, top',
-    maskPosition: 'bottom, top',
-    WebkitMaskSize: `100% ${heightPx}px, 100% 100%`,
-    maskSize: `100% ${heightPx}px, 100% 100%`,
-    WebkitMaskRepeat: 'no-repeat',
-    maskRepeat: 'no-repeat',
+    WebkitMaskImage: `${maskDataUri}, ${linearGrad}`,
+    maskImage: `${maskDataUri}, ${linearGrad}`,
+    WebkitMaskPosition: maskPos,
+    maskPosition: maskPos,
+    WebkitMaskSize: `${widthPercent}% ${actualH + overlap}px, 100% 100%`,
+    maskSize: `${widthPercent}% ${actualH + overlap}px, 100% 100%`,
+    WebkitMaskRepeat: maskRep,
+    maskRepeat: maskRep,
   } : {};
 
   if (!isOpen) return null;
@@ -543,17 +553,17 @@ export default function CustomDividerCreatorModal({
                   </div>
                 </div>
 
-                {/* Width */}
+                {/* Width / Zackenweite */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="font-display font-bold text-xs text-[#1B211D]">
-                      Width: <span className="text-[#F2761B]">{widthPercent}%</span>
+                      Breite &amp; Zackenweite: <span className="text-[#F2761B]">{widthPercent}%</span>
                     </label>
-                    <span className="text-[11px] text-[#5F6B63]">100% - 300%</span>
+                    <span className="text-[11px] text-[#5F6B63]">40% - 300%</span>
                   </div>
                   <input
                     type="range"
-                    min="100"
+                    min="40"
                     max="300"
                     step="5"
                     value={widthPercent}
@@ -561,9 +571,10 @@ export default function CustomDividerCreatorModal({
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#F2761B]"
                   />
                   <div className="flex justify-between text-[10px] text-gray-400 mt-1">
-                    <span>100% (Passend)</span>
-                    <span>200% (Gestreckt)</span>
-                    <span>300% (Weit)</span>
+                    <span>40% (Sehr dicht)</span>
+                    <span>100% (Standard)</span>
+                    <span>200% (Weit)</span>
+                    <span>300% (Sehr weit)</span>
                   </div>
                 </div>
               </div>
@@ -723,7 +734,7 @@ export default function CustomDividerCreatorModal({
             >
               {/* The Header Box being masked */}
               <div
-                className="relative text-white overflow-hidden transition-all duration-300 rounded-t-xl"
+                className={`relative text-white overflow-hidden transition-all duration-300 rounded-xl flex flex-col ${isTop ? 'justify-start' : 'justify-end'}`}
                 style={{
                   ...previewHeaderMaskStyle,
                   background: previewBgType === 'solid'
@@ -731,22 +742,8 @@ export default function CustomDividerCreatorModal({
                     : 'linear-gradient(105deg, rgba(6,48,28,0.92) 0%, rgba(15,76,46,0.85) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat'
                 }}
               >
-                <div className="px-6 pt-8 pb-4 text-center">
-                  <span className="inline-block bg-white/15 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full mb-2">
-                    Winterberg Header Bereich
-                  </span>
-                  <h4 className="font-display text-xl font-bold m-0 text-white">
-                    {name || 'Ihr neuer Divider'}
-                  </h4>
-                  <p className="text-xs text-white/80 max-w-md mx-auto mt-1 mb-2">
-                    {isTransparentActive 
-                      ? 'Der Bereich unterhalb der Welle ist 100% transparent abgeschnitten. Keine Kanten, kein Kantenbruch!'
-                      : `Die Welle schließt bündig mit der gewählten Farbe (${color}) ab.`}
-                  </p>
-                </div>
-
                 {/* The Live Divider itself (renders layered waves + shadow) */}
-                <div className="w-full overflow-hidden leading-none select-none pointer-events-none -mb-[1px] relative z-10">
+                <div className={`w-full overflow-hidden leading-none select-none pointer-events-none ${isTop ? '-mt-[1px] order-first' : '-mb-[1px] order-last'} relative z-10`}>
                   <svg
                     viewBox={detectedViewBox}
                     preserveAspectRatio="none"
@@ -772,6 +769,20 @@ export default function CustomDividerCreatorModal({
                       />
                     )}
                   </svg>
+                </div>
+
+                <div className={`px-6 ${isTop ? 'pt-4 pb-8' : 'pt-8 pb-4'} text-center`}>
+                  <span className="inline-block bg-white/15 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full mb-2">
+                    {isTop ? 'Footer Bereich (Abschluss oben)' : 'Header Bereich (Abschluss unten)'}
+                  </span>
+                  <h4 className="font-display text-xl font-bold m-0 text-white">
+                    {name || 'Ihr neuer Divider'}
+                  </h4>
+                  <p className="text-xs text-white/80 max-w-md mx-auto mt-1 mb-2">
+                    {isTransparentActive 
+                      ? `Der Bereich ${isTop ? 'oberhalb' : 'unterhalb'} der Welle ist 100% transparent abgeschnitten. Keine Kanten, kein Kantenbruch!`
+                      : `Die Welle schließt bündig mit der gewählten Farbe (${color}) ab.`}
+                  </p>
                 </div>
               </div>
 

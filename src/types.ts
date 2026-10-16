@@ -69,6 +69,7 @@ export interface HeaderDividerPageConfig {
   news?: HeaderDividerStyle;
   faq?: HeaderDividerStyle;
   subpages?: HeaderDividerStyle;
+  footer?: HeaderDividerStyle;
 }
 
 export interface DesignSettings {

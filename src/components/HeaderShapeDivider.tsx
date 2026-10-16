@@ -7,6 +7,7 @@ export interface HeaderShapeDividerProps {
   className?: string;
   heightClass?: string;
   customDividers?: CustomDivider[];
+  position?: 'bottom' | 'top';
 }
 
 export interface DividerOption {
@@ -357,12 +358,13 @@ export function parseSvgOrPath(input: string): { pathData: string; viewBox?: str
   return null;
 }
 
-// Generate an SVG mask data-uri that masks out the bottom of a container with 100% alpha transparency
+// Generate an SVG mask data-uri that masks out the edge of a container with 100% alpha transparency
 export function getMaskSvgDataUri(
   pathData: string, 
   viewBox: string = '0 0 1200 120',
   flipHorizontal: boolean = false,
-  invert: boolean = false
+  invert: boolean = false,
+  isTop: boolean = false
 ): string {
   if (!pathData) return '';
   const vbParts = viewBox.trim().split(/\s+/).map(Number);
@@ -378,12 +380,21 @@ export function getMaskSvgDataUri(
     transformAttr = `transform="translate(0, ${h}) scale(1, -1)"`;
   }
 
-  // Pure SVG alpha mask using fill-rule="evenodd":
-  // The outer rectangle is filled (opaque = black), and the divider path is cut out (transparent = empty).
-  // This produces 100% true alpha transparency on all modern browsers without relying on data-URI mask tags.
-  const pathContent = transformAttr 
-    ? `<g ${transformAttr}><path fill="black" fill-rule="evenodd" d="M0,0 H${w} V${h} H0 Z ${pathData}"/></g>`
-    : `<path fill="black" fill-rule="evenodd" d="M0,0 H${w} V${h} H0 Z ${pathData}"/>`;
+  let pathContent = '';
+  if (isTop) {
+    // For top divider (e.g. Footer top edge):
+    // pathData covers from curve down to h (120).
+    // The top area above curve is transparent (empty), and the area below curve is solid black (alpha=1).
+    pathContent = transformAttr
+      ? `<g ${transformAttr}><path fill="black" d="${pathData}"/></g>`
+      : `<path fill="black" d="${pathData}"/>`;
+  } else {
+    // For bottom divider (e.g. Header bottom edge):
+    // Outer rectangle minus pathData leaves top solid black (alpha=1) and bottom curve cut-out transparent.
+    pathContent = transformAttr 
+      ? `<g ${transformAttr}><path fill="black" fill-rule="evenodd" d="M0,0 H${w} V${h} H0 Z ${pathData}"/></g>`
+      : `<path fill="black" fill-rule="evenodd" d="M0,0 H${w} V${h} H0 Z ${pathData}"/>`;
+  }
 
   const maskSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" preserveAspectRatio="none">${pathContent}</svg>`;
   return `url("data:image/svg+xml;utf8,${encodeURIComponent(maskSvg)}")`;
@@ -406,7 +417,8 @@ export default function HeaderShapeDivider({
   color = '#FAF8F5',
   className = '',
   heightClass = 'h-[36px] sm:h-[50px] md:h-[64px]',
-  customDividers
+  customDividers,
+  position = 'bottom'
 }: HeaderShapeDividerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -444,11 +456,13 @@ export default function HeaderShapeDivider({
   const mainPath = resolvedCustom?.pathData || baseDef?.pathData || BASE_DIVIDER_SHAPES[0]?.pathData || '';
   const viewBox = resolvedCustom?.viewBox || baseDef?.viewBox || '0 0 1200 120';
   const heightPx = resolvedCustom?.heightPx || 64;
+  const widthPct = resolvedCustom?.widthPercent || 100;
 
+  const isTop = Boolean(position === 'top' || resolvedCustom?.position === 'top');
   const flipH = Boolean(resolvedCustom?.flipHorizontal);
-  const inv = Boolean(resolvedCustom?.invert || resolvedCustom?.position === 'top');
+  const inv = Boolean(resolvedCustom?.invert);
 
-  // Apply CSS Mask technique to parent header container if transparent
+  // Apply CSS Mask technique to parent header or footer container if transparent
   useEffect(() => {
     const el = containerRef.current;
     const parent = el?.parentElement;
@@ -456,23 +470,30 @@ export default function HeaderShapeDivider({
 
     const applyMask = () => {
       if (isEnabled && isTransparent && mainPath) {
-        const maskDataUri = getMaskSvgDataUri(mainPath, viewBox, flipH, inv);
+        const maskDataUri = getMaskSvgDataUri(mainPath, viewBox, flipH, inv, isTop);
         const measuredH = el?.offsetHeight || 0;
         const actualH = resolvedCustom?.heightPx || (measuredH > 0 ? measuredH : heightPx);
         const overlap = 1;
         const actualHeightWithOverlap = actualH + overlap;
         
-        // Apply CSS mask: top area of header is 100% visible, bottom actualH is masked by the divider shape
-        const linearGrad = `linear-gradient(to bottom, #000 0%, #000 calc(100% - ${actualH}px), transparent calc(100% - ${actualH}px))`;
+        // Linear gradient:
+        // For bottom divider: solid from top to (100% - actualH), transparent at bottom actualH
+        // For top divider (Footer): transparent at top actualH, solid from actualH down to bottom 100%
+        const linearGrad = isTop
+          ? `linear-gradient(to bottom, transparent 0%, transparent ${actualH}px, #000 ${actualH}px, #000 100%)`
+          : `linear-gradient(to bottom, #000 0%, #000 calc(100% - ${actualH}px), transparent calc(100% - ${actualH}px))`;
         
+        const maskPos = isTop ? 'center top, top' : 'center bottom, top';
+        const maskRep = widthPct < 100 ? 'repeat-x, no-repeat' : 'no-repeat, no-repeat';
+
         parent.style.webkitMaskImage = `${maskDataUri}, ${linearGrad}`;
         parent.style.maskImage = `${maskDataUri}, ${linearGrad}`;
-        parent.style.webkitMaskPosition = 'bottom, top';
-        parent.style.maskPosition = 'bottom, top';
-        parent.style.webkitMaskSize = `100% ${actualHeightWithOverlap}px, 100% 100%`;
-        parent.style.maskSize = `100% ${actualHeightWithOverlap}px, 100% 100%`;
-        parent.style.webkitMaskRepeat = 'no-repeat';
-        parent.style.maskRepeat = 'no-repeat';
+        parent.style.webkitMaskPosition = maskPos;
+        parent.style.maskPosition = maskPos;
+        parent.style.webkitMaskSize = `${widthPct}% ${actualHeightWithOverlap}px, 100% 100%`;
+        parent.style.maskSize = `${widthPct}% ${actualHeightWithOverlap}px, 100% 100%`;
+        parent.style.webkitMaskRepeat = maskRep;
+        parent.style.maskRepeat = maskRep;
       } else {
         // Clear mask
         parent.style.webkitMaskImage = '';
@@ -510,29 +531,29 @@ export default function HeaderShapeDivider({
         parent.style.maskRepeat = '';
       }
     };
-  }, [isEnabled, isTransparent, mainPath, viewBox, heightPx, flipH, inv, resolvedCustom?.heightPx]);
+  }, [isEnabled, isTransparent, mainPath, viewBox, heightPx, widthPct, flipH, inv, isTop, resolvedCustom?.heightPx]);
 
   if (!isEnabled) {
     return <div ref={containerRef} className="hidden" aria-hidden="true" />;
   }
 
   // Build transformation styles for SVG
-  const transforms: string[] = ['translateY(1px)'];
-  if (resolvedCustom?.flipHorizontal) {
+  const transforms: string[] = [isTop ? 'translateY(-1px)' : 'translateY(1px)'];
+  if (flipH) {
     transforms.push('scaleX(-1)');
   }
-  if (resolvedCustom?.invert || resolvedCustom?.position === 'top') {
+  if (inv) {
     transforms.push('scaleY(-1)');
   }
 
   // Shadow filters
   let shadowFilter = '';
   if (resolvedCustom?.shadow === 'soft') {
-    shadowFilter = 'drop-shadow(0 -4px 6px rgba(0,0,0,0.10))';
+    shadowFilter = isTop ? 'drop-shadow(0 4px 6px rgba(0,0,0,0.10))' : 'drop-shadow(0 -4px 6px rgba(0,0,0,0.10))';
   } else if (resolvedCustom?.shadow === 'medium') {
-    shadowFilter = 'drop-shadow(0 -6px 12px rgba(0,0,0,0.18))';
+    shadowFilter = isTop ? 'drop-shadow(0 6px 12px rgba(0,0,0,0.18))' : 'drop-shadow(0 -6px 12px rgba(0,0,0,0.18))';
   } else if (resolvedCustom?.shadow === 'strong') {
-    shadowFilter = 'drop-shadow(0 -8px 20px rgba(0,0,0,0.28))';
+    shadowFilter = isTop ? 'drop-shadow(0 8px 20px rgba(0,0,0,0.28))' : 'drop-shadow(0 -8px 20px rgba(0,0,0,0.28))';
   }
 
   const svgStyle: React.CSSProperties = {
@@ -545,13 +566,13 @@ export default function HeaderShapeDivider({
     svgStyle.height = `${resolvedCustom.heightPx}px`;
   }
 
-  if (resolvedCustom?.widthPercent && resolvedCustom.widthPercent > 100) {
-    svgStyle.width = `${resolvedCustom.widthPercent}%`;
-    svgStyle.minWidth = '100%';
+  // Center and scale SVG width in perfect sync with the CSS mask (controls Zacken/Wave width)
+  if (widthPct && widthPct !== 100) {
+    svgStyle.width = `${widthPct}%`;
+    svgStyle.minWidth = `${widthPct}%`;
     svgStyle.position = 'relative';
     svgStyle.left = '50%';
-    transforms.unshift('translateX(-50%)');
-    svgStyle.transform = transforms.join(' ');
+    svgStyle.marginLeft = `-${widthPct / 2}%`;
   }
 
   // Layers to render (multi-layer opacity shapes like Screenshot 1, 3, 4, 5)
@@ -560,7 +581,7 @@ export default function HeaderShapeDivider({
   return (
     <div
       ref={containerRef}
-      className={`w-full overflow-hidden leading-none select-none pointer-events-none -mb-[1px] relative z-10 ${className}`}
+      className={`w-full overflow-hidden leading-none select-none pointer-events-none ${isTop ? '-mt-[1px]' : '-mb-[1px]'} relative z-10 ${className}`}
       aria-hidden="true"
     >
       <svg

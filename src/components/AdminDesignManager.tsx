@@ -243,6 +243,7 @@ export const DIVIDER_PAGES: { key: keyof HeaderDividerPageConfig; label: string;
   { key: 'allCompanies', label: 'Alle Unternehmen', badge: 'Übersicht', description: 'Die Gesamtliste aller Winterberger Unternehmen' },
   { key: 'home', label: 'Startseite (Hero)', badge: 'Startseite', description: 'Der obere Willkommens- und Suchbereich auf der Startseite' },
   { key: 'businessDetail', label: 'Unternehmensprofile', badge: 'Detailseiten', description: 'Der Kopfbereich auf den einzelnen Firmen-Profilseiten' },
+  { key: 'footer', label: 'Website-Footer', badge: 'Footer', description: 'Der obere geschwungene Kanten-Abschluss des Footers auf allen Seiten' },
   { key: 'global', label: 'Globaler Standard', badge: 'Fallback', description: 'Standard-Divider für alle Seiten, sofern nicht individuell überschrieben' }
 ];
 
@@ -978,97 +979,155 @@ export default function AdminDesignManager({
                 </div>
               </div>
 
-              {/* Realistic Mockup of the Category Banner from the screenshot */}
-              <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg bg-[#FAF8F5]">
-                {/* Header Area with Photo & Gradient */}
-                <div 
-                  className="w-full text-white relative overflow-hidden transition-all duration-300"
-                  style={{
-                    background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat'
-                  }}
-                >
-                  <div className="max-w-[900px] mx-auto px-6 py-8 pb-6">
-                    <div className="text-xs text-white/70 mb-2">
-                      Start / {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen' : 'Verzeichnis Winterberg'}
-                    </div>
-                    <h2 className="font-display text-2xl sm:text-3xl font-bold m-0 mb-3 text-white" style={previewHeadlineStyle}>
-                      {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen in Winterberg' : 'Winterberg Verzeichnis'}
-                    </h2>
-
-                    {/* Search bar inside mockup */}
-                    <div className="bg-white rounded-lg p-2 flex flex-col sm:flex-row gap-2 items-stretch sm:items-center shadow-md my-3 text-[#1B211D]">
-                      <div className="flex items-center gap-2 flex-1 px-2.5">
-                        <Search className="w-4 h-4 text-gray-400 shrink-0" />
-                        <span className="text-xs text-gray-400 truncate">
-                          In „Kneipen und Bars" nach Namen oder Produkten suchen...
+              {/* Realistic Mockup of the Category Banner or Footer */}
+              {selectedDividerPage === 'footer' ? (
+                <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg bg-[#FAF8F5]">
+                  {/* Light Content Area above the footer */}
+                  <div className="bg-[#FAF8F5] p-6 sm:p-8">
+                    <div className="max-w-[900px] mx-auto">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">
+                          Seiteninhalt oberhalb des Footers
+                        </span>
+                        <span className="text-xs text-[#0F4C2E] font-semibold flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                          Top-Kanten-Transparenz (Echter Mask-Cutout)
                         </span>
                       </div>
-                      <div className="bg-[#EDE9E1] px-3 py-1.5 rounded text-xs font-medium text-[#1B211D] shrink-0">
-                        Alle Orte
-                      </div>
-                      <button type="button" className="bg-[#F2761B] text-white rounded px-4 py-1.5 text-xs font-bold shrink-0 cursor-default">
-                        Suchen
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between flex-wrap gap-2 mt-3 text-xs text-white/80">
-                      <span>1 Unternehmen gefunden</span>
-                      <div className="flex bg-white/10 rounded p-0.5 text-[11px]">
-                        <span className="bg-white text-[#1B211D] px-2 py-0.5 rounded font-semibold">Liste</span>
-                        <span className="px-2 py-0.5 text-white/70">Karte</span>
+                      <div className="bg-white border border-[#EDE8E0] rounded-lg p-5 shadow-xs">
+                        <h4 className="font-display font-bold text-sm text-[#1B211D] m-0 mb-1" style={previewHeadlineStyle}>
+                          Das Winterberg Branchenverzeichnis
+                        </h4>
+                        <p className="text-xs text-[#5F6B63] m-0">
+                          Der obere Divider schneidet den dunkelgrünen Footer formvollendet ein. Der helle Seitenhintergrund bleibt durch die Zacken/Wellen 100% transparent sichtbar.
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* The Live Header Shape Divider */}
-                  <HeaderShapeDivider
-                    style={getEffectiveDivider(selectedDividerPage, formData)}
-                    color="transparent"
-                    customDividers={formData.customDividers}
-                    heightClass="h-[42px] sm:h-[54px] md:h-[68px]"
-                  />
-                </div>
-
-                {/* Light Content Area directly below the divider */}
-                <div className="bg-[#FAF8F5] p-6 sm:p-8">
-                  <div className="max-w-[900px] mx-auto">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">
-                        Ergebnis-Vorschau (Echte Transparenz / Mask-Cutout)
-                      </span>
-                      <span className="text-xs text-[#0F4C2E] font-semibold flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                        100% Transparenz bei allen Versionen
-                      </span>
-                    </div>
-
-                    {/* Mock Result Card */}
-                    <div className="bg-white border border-[#EDE8E0] rounded-lg p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                      <div className="flex items-center gap-3.5">
-                        <div className="w-12 h-12 bg-[#0F4C2E]/10 text-[#0F4C2E] rounded-lg flex items-center justify-center font-display font-bold text-lg shrink-0">
-                          B
-                        </div>
+                  {/* Dark Footer with Top Divider */}
+                  <div 
+                    className="w-full text-white relative overflow-hidden transition-all duration-300"
+                    style={{ background: '#06301C' }}
+                  >
+                    <HeaderShapeDivider
+                      style={getEffectiveDivider('footer', formData)}
+                      color="transparent"
+                      customDividers={formData.customDividers}
+                      position="top"
+                      heightClass="h-[42px] sm:h-[54px] md:h-[68px]"
+                    />
+                    <div className="max-w-[900px] mx-auto px-6 py-8 relative z-10">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-display font-bold text-sm text-[#1B211D] m-0" style={previewHeadlineStyle}>
-                              Gasthof Bergpanorama &amp; Bar
-                            </h4>
-                            <span className="bg-[#FFF1E4] text-[#D65F0C] text-[10px] font-bold px-2 py-0.5 rounded">
-                              Premium
-                            </span>
-                          </div>
-                          <p className="text-xs text-[#5F6B63] m-0 mt-0.5">
-                            Kneipen und Bars &bull; Am Waltenberg 14, 59955 Winterberg
+                          <span className="font-display text-[11px] font-medium text-white/70">Das</span>
+                          <span className="font-display text-lg font-extrabold tracking-widest text-white block leading-tight">WINTERBERG</span>
+                          <span className="font-display text-[10px] font-semibold tracking-[0.3em] text-white/90 block mt-0.5">VERZEICHNIS</span>
+                          <p className="text-xs text-white/70 mt-2 max-w-[40ch] leading-relaxed">
+                            Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg.
                           </p>
                         </div>
+                        <div className="text-xs text-white/60 space-y-1 sm:text-right">
+                          <div className="text-white font-semibold">Footer-Abschluss</div>
+                          <div>&copy; 2026 Winterberg Verzeichnis</div>
+                          <div>Alle Rechte vorbehalten.</div>
+                        </div>
                       </div>
-                      <span className="bg-[#E8F1EB] text-[#0F4C2E] text-xs font-bold px-3 py-1 rounded">
-                        Jetzt geöffnet
-                      </span>
                     </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg bg-[#FAF8F5]">
+                  {/* Header Area with Photo & Gradient */}
+                  <div 
+                    className="w-full text-white relative overflow-hidden transition-all duration-300"
+                    style={{
+                      background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat'
+                    }}
+                  >
+                    <div className="max-w-[900px] mx-auto px-6 py-8 pb-6">
+                      <div className="text-xs text-white/70 mb-2">
+                        Start / {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen' : 'Verzeichnis Winterberg'}
+                      </div>
+                      <h2 className="font-display text-2xl sm:text-3xl font-bold m-0 mb-3 text-white" style={previewHeadlineStyle}>
+                        {selectedDividerPage === 'category' ? 'Kneipen und Bars' : selectedDividerPage === 'allCompanies' ? 'Alle Unternehmen in Winterberg' : 'Winterberg Verzeichnis'}
+                      </h2>
+
+                      {/* Search bar inside mockup */}
+                      <div className="bg-white rounded-lg p-2 flex flex-col sm:flex-row gap-2 items-stretch sm:items-center shadow-md my-3 text-[#1B211D]">
+                        <div className="flex items-center gap-2 flex-1 px-2.5">
+                          <Search className="w-4 h-4 text-gray-400 shrink-0" />
+                          <span className="text-xs text-gray-400 truncate">
+                            In „Kneipen und Bars" nach Namen oder Produkten suchen...
+                          </span>
+                        </div>
+                        <div className="bg-[#EDE9E1] px-3 py-1.5 rounded text-xs font-medium text-[#1B211D] shrink-0">
+                          Alle Orte
+                        </div>
+                        <button type="button" className="bg-[#F2761B] text-white rounded px-4 py-1.5 text-xs font-bold shrink-0 cursor-default">
+                          Suchen
+                        </button>
+                      </div>
+
+                      <div className="flex items-center justify-between flex-wrap gap-2 mt-3 text-xs text-white/80">
+                        <span>1 Unternehmen gefunden</span>
+                        <div className="flex bg-white/10 rounded p-0.5 text-[11px]">
+                          <span className="bg-white text-[#1B211D] px-2 py-0.5 rounded font-semibold">Liste</span>
+                          <span className="px-2 py-0.5 text-white/70">Karte</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* The Live Header Shape Divider */}
+                    <HeaderShapeDivider
+                      style={getEffectiveDivider(selectedDividerPage, formData)}
+                      color="transparent"
+                      customDividers={formData.customDividers}
+                      heightClass="h-[42px] sm:h-[54px] md:h-[68px]"
+                    />
+                  </div>
+
+                  {/* Light Content Area directly below the divider */}
+                  <div className="bg-[#FAF8F5] p-6 sm:p-8">
+                    <div className="max-w-[900px] mx-auto">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">
+                          Ergebnis-Vorschau (Echte Transparenz / Mask-Cutout)
+                        </span>
+                        <span className="text-xs text-[#0F4C2E] font-semibold flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                          100% Transparenz bei allen Versionen
+                        </span>
+                      </div>
+
+                      {/* Mock Result Card */}
+                      <div className="bg-white border border-[#EDE8E0] rounded-lg p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-3.5">
+                          <div className="w-12 h-12 bg-[#0F4C2E]/10 text-[#0F4C2E] rounded-lg flex items-center justify-center font-display font-bold text-lg shrink-0">
+                            B
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-display font-bold text-sm text-[#1B211D] m-0" style={previewHeadlineStyle}>
+                                Gasthof Bergpanorama &amp; Bar
+                              </h4>
+                              <span className="bg-[#FFF1E4] text-[#D65F0C] text-[10px] font-bold px-2 py-0.5 rounded">
+                                Premium
+                              </span>
+                            </div>
+                            <p className="text-xs text-[#5F6B63] m-0 mt-0.5">
+                              Kneipen und Bars &bull; Am Waltenberg 14, 59955 Winterberg
+                            </p>
+                          </div>
+                        </div>
+                        <span className="bg-[#E8F1EB] text-[#0F4C2E] text-xs font-bold px-3 py-1 rounded">
+                          Jetzt geöffnet
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

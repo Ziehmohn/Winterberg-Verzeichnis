@@ -3956,8 +3956,17 @@ export default function App() {
         </div>
       )}
 
-      <footer style={{ background: '#06301C', color: 'rgba(255,255,255,0.78)', marginTop: 'auto' }}>
-        <div className="max-w-[1180px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
+      <footer 
+        className="relative overflow-hidden" 
+        style={{ background: '#06301C', color: 'rgba(255,255,255,0.78)', marginTop: 'auto' }}
+      >
+        <HeaderShapeDivider
+          style={getEffectiveDivider('footer', designSettings)}
+          color="transparent"
+          customDividers={designSettings.customDividers}
+          position="top"
+        />
+        <div className="max-w-[1180px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 relative z-10">
           <div className="md:col-span-2">
             <div 
               className="inline-block cursor-pointer" 
