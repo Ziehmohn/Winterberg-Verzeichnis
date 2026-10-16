@@ -46,12 +46,12 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
 
   React.useEffect(() => {
     const title = activeTab === 'webcams'
-      ? (isNl ? 'Live Webcams Winterberg | Kahler Asten, Bobbaan & Pistes' : 'Live Webcams Winterberg | Marktplatz, Kahler Asten, Bobbahn & Pisten')
+      ? (isNl ? 'Live Webcams Winterberg | Kahler Asten, Bobbaan, Schans & Pistes' : 'Live Webcams Winterberg | Kahler Asten, Bobbahn, Schanze & Pisten')
       : (isNl ? 'Sneeuwhoogte & Pistebericht Winterberg | Skiliftkarussell' : 'Schneebericht & Pistenbericht Winterberg | Skiliftkarussell Live');
     document.title = title;
 
     const desc = isNl
-      ? 'Actueel sneeuwbericht, geopende skiliften, avondskiën en live HD webcams voor Winterberg, Altastenberg, Neuastenberg en Züschen.'
+      ? 'Actueel sneeuwbericht, geopende skiliften, avondskiën en live HD webcams voor Winterberg, Altastenberg, Neuastenberg en Sahnehang.'
       : 'Aktueller Schneebericht, geöffnete Lifte, Pistenkilometer, Flutlicht-Status und Live-Webcams aus Winterberg, Altastenberg und Neuastenberg.';
     
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -405,27 +405,49 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
                 className="bg-white dark:bg-[#1E2621] rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all flex flex-col group"
               >
                 {/* Image Container with Live Badge */}
-                <div className="relative aspect-video overflow-hidden bg-gray-900">
+                <a
+                  href={cam.liveStreamUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-video overflow-hidden bg-gray-900 block cursor-pointer group-hover:opacity-95 transition-opacity"
+                  title={isNl ? 'Klik om live webcam te bekijken' : 'Klicken für Live-Webcam'}
+                >
                   <img
                     src={cam.previewImageUrl}
                     alt={isNl ? (cam.title_nl || cam.title) : cam.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = '/webcams/skiliftkarussell-bremberg.jpg';
+                    }}
                   />
-                  <div className="absolute top-3 left-3 bg-red-600 text-white px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                  <div className="absolute top-3 left-3 bg-red-600 text-white px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md pointer-events-none">
                     <span className="w-2 h-2 rounded-full bg-white animate-ping"></span>
                     LIVE
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[11px] font-medium">
+                  <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[11px] font-medium pointer-events-none">
                     {cam.altitudeMeters} m ü. NHN
                   </div>
-                </div>
+                </a>
 
                 {/* Content */}
                 <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
+                    {cam.statusText && (
+                      <div className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 mb-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span>{isNl ? (cam.statusText_nl || cam.statusText) : cam.statusText}</span>
+                      </div>
+                    )}
                     <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">
-                      {isNl ? (cam.title_nl || cam.title) : cam.title}
+                      <a
+                        href={cam.liveStreamUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#0F4C2E] dark:hover:text-emerald-400 transition-colors"
+                      >
+                        {isNl ? (cam.title_nl || cam.title) : cam.title}
+                      </a>
                     </h3>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                       {cam.location} • <span className="italic">{cam.operator}</span>
