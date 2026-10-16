@@ -433,7 +433,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
         <HeaderShapeDivider
           style={getEffectiveDivider('businessDetail', designSettings)}
-          color="#FAF8F5"
+          color="transparent"
           customDividers={designSettings?.customDividers}
         />
       </div>

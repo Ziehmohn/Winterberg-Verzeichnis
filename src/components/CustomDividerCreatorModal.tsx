@@ -168,7 +168,7 @@ export default function CustomDividerCreatorModal({
   const isTransparentActive = isMask || color === 'transparent';
 
   // Live CSS mask style for preview container when true transparency is active
-  const maskDataUri = isTransparentActive ? getMaskSvgDataUri(detectedPath, detectedViewBox) : '';
+  const maskDataUri = isTransparentActive ? getMaskSvgDataUri(detectedPath, detectedViewBox, flipHorizontal, invert) : '';
   const previewHeaderMaskStyle: React.CSSProperties = isTransparentActive ? {
     WebkitMaskImage: `${maskDataUri}, linear-gradient(to bottom, #000 0%, #000 calc(100% - ${heightPx}px), transparent calc(100% - ${heightPx}px))`,
     maskImage: `${maskDataUri}, linear-gradient(to bottom, #000 0%, #000 calc(100% - ${heightPx}px), transparent calc(100% - ${heightPx}px))`,

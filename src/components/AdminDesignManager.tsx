@@ -924,20 +924,22 @@ export default function AdminDesignManager({
                           </div>
                         </div>
 
-                        {/* Miniature Visual SVG Preview Box */}
-                        <div className="w-full h-14 bg-[#0F4C2E] rounded-md relative overflow-hidden flex flex-col justify-end border border-[#0A3821] shadow-inner mb-2.5">
-                          {opt.id === 'none' ? (
-                            <div className="w-full h-full flex items-center justify-center text-[11px] text-white/70 font-medium">
-                              — Gerade Kante —
-                            </div>
-                          ) : (
-                            <HeaderShapeDivider
-                              style={opt.id}
-                              color="#FAF8F5"
-                              customDividers={formData.customDividers}
-                              heightClass="h-[30px]"
-                            />
-                          )}
+                        {/* Miniature Visual SVG Preview Box with transparency checkerboard */}
+                        <div className="w-full h-14 rounded-md relative overflow-hidden flex flex-col justify-end border border-[#D1DDD5] shadow-xs mb-2.5 [background-image:linear-gradient(45deg,#e5eae6_25%,transparent_25%),linear-gradient(-45deg,#e5eae6_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#e5eae6_75%),linear-gradient(-45deg,transparent_75%,#e5eae6_75%)] [background-size:10px_10px] [background-position:0_0,0_5px,5px_-5px,-5px_0px] bg-white">
+                          <div className="w-full h-full bg-[#0F4C2E] flex flex-col justify-end relative">
+                            {opt.id === 'none' ? (
+                              <div className="w-full h-full flex items-center justify-center text-[11px] text-white/70 font-medium">
+                                — Gerade Kante —
+                              </div>
+                            ) : (
+                              <HeaderShapeDivider
+                                style={opt.id}
+                                color="transparent"
+                                customDividers={formData.customDividers}
+                                heightClass="h-[30px]"
+                              />
+                            )}
+                          </div>
                         </div>
 
                         <p className="text-[11px] text-[#5F6B63] m-0 leading-relaxed line-clamp-2">
@@ -977,7 +979,7 @@ export default function AdminDesignManager({
               </div>
 
               {/* Realistic Mockup of the Category Banner from the screenshot */}
-              <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg">
+              <div className="rounded-xl border border-[#EDE8E0] overflow-hidden shadow-lg bg-[#FAF8F5]">
                 {/* Header Area with Photo & Gradient */}
                 <div 
                   className="w-full text-white relative overflow-hidden transition-all duration-300"
@@ -1021,7 +1023,7 @@ export default function AdminDesignManager({
                   {/* The Live Header Shape Divider */}
                   <HeaderShapeDivider
                     style={getEffectiveDivider(selectedDividerPage, formData)}
-                    color="#FAF8F5"
+                    color="transparent"
                     customDividers={formData.customDividers}
                     heightClass="h-[42px] sm:h-[54px] md:h-[68px]"
                   />
@@ -1032,10 +1034,11 @@ export default function AdminDesignManager({
                   <div className="max-w-[900px] mx-auto">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-xs font-bold text-[#5F6B63] uppercase tracking-wider">
-                        Ergebnis-Vorschau (Hintergrundfarbe: #FAF8F5)
+                        Ergebnis-Vorschau (Echte Transparenz / Mask-Cutout)
                       </span>
-                      <span className="text-xs text-[#0F4C2E] font-semibold">
-                        Fließender Übergang ohne Kantenbruch
+                      <span className="text-xs text-[#0F4C2E] font-semibold flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                        100% Transparenz bei allen Versionen
                       </span>
                     </div>
 

@@ -35,8 +35,8 @@ export const DIVIDER_OPTIONS: DividerOption[] = [
   {
     id: 'wave-flow',
     label: 'Geschwungener Wellenfluss',
-    description: 'Elegante, organisch geschwungene Wellenkontur mit weichen Übergängen.',
-    badge: 'Neu'
+    description: 'Elegante, organisch geschwungene Wellenkontur mit 100% Transparenz.',
+    badge: 'Standard'
   },
   {
     id: 'fan-opacity',
@@ -55,6 +55,11 @@ export const DIVIDER_OPTIONS: DividerOption[] = [
     label: 'Moderne Doppelwelle',
     description: 'Zweistufige Welle mit weicher Hintergrund-Silhouette.',
     badge: 'Modern'
+  },
+  {
+    id: 'wave-brush',
+    label: 'Organische Pinselwelle',
+    description: 'Künstlerischer Schwungverlauf mit dynamischer Tiefe.'
   },
   {
     id: 'tilt-opacity',
@@ -77,14 +82,49 @@ export const DIVIDER_OPTIONS: DividerOption[] = [
     description: 'Harmonische, dezente Wölbung für ein ruhiges Gesamtbild.'
   },
   {
+    id: 'curve-asymmetric',
+    label: 'Schwungbogen (Asymmetrisch)',
+    description: 'Schwungvoller asymmetrischer Bogen mit weichem Auslauf.'
+  },
+  {
     id: 'pyramids',
     label: 'Geometrische Spitzen',
     description: 'Kantige architektonische Dreiecks-Struktur.'
   },
   {
+    id: 'triangle',
+    label: 'Zentriertes Dreieck',
+    description: 'Geometrische Dreiecks-Notch mit prägnantem Mittelpunkt.'
+  },
+  {
+    id: 'triangle-asymmetric',
+    label: 'Asymmetrisches Dreieck',
+    description: 'Spitzer dynamischer Versatz für modernen Tech-Look.'
+  },
+  {
+    id: 'tilt',
+    label: 'Klare Schräge',
+    description: 'Klar geschnittene Schräglinie von links nach rechts.'
+  },
+  {
+    id: 'split',
+    label: 'Zentrierter Pfeil / Notch',
+    description: 'Diskreter Zeiger-Cutout im Zentrum des Headers.'
+  },
+  {
+    id: 'book',
+    label: 'Buch-Schwung',
+    description: 'Doppelt geschwungene Silhouette wie aufgeschlagene Buchseiten.'
+  },
+  {
     id: 'zigzag',
     label: 'Zickzack-Kante',
     description: 'Prägnante Sägezahn-Kontur für markanten Rhythmus.'
+  },
+  {
+    id: 'waves-pattern',
+    label: 'Gleichmäßiges Wellenmuster',
+    description: 'Rhythmisches Wellenmuster über die gesamte Seitenbreite.'
   },
   {
     id: 'wave-smooth',
@@ -245,6 +285,27 @@ export const BASE_DIVIDER_SHAPES: BaseShapeDef[] = [
     category: 'Wellen',
     pathData: 'M0,120 L0,80 Q75,55 150,80 T300,80 T450,80 T600,80 T750,80 T900,80 T1050,80 T1200,80 L1200,120 Z',
     viewBox: '0 0 1200 120'
+  },
+  {
+    id: 'wave-smooth',
+    name: 'Sanfte Welle',
+    category: 'Wellen',
+    pathData: 'M0,120 L0,70 C300,110 500,20 750,70 C1000,120 1120,40 1200,60 L1200,120 Z',
+    viewBox: '0 0 1200 120'
+  },
+  {
+    id: 'slant-right',
+    name: 'Diagonale Rechts',
+    category: 'Schrägen',
+    pathData: 'M0,120 L1200,18 L1200,120 Z',
+    viewBox: '0 0 1200 120'
+  },
+  {
+    id: 'mountains',
+    name: 'Sauerland Berge',
+    category: 'Berge & Natur',
+    pathData: 'M0,92 Q140,58 290,32 Q380,48 480,24 Q570,38 680,18 Q820,38 970,24 Q1090,44 1200,34 L1200,120 L0,120 Z',
+    viewBox: '0 0 1200 120'
   }
 ];
 
@@ -296,9 +357,35 @@ export function parseSvgOrPath(input: string): { pathData: string; viewBox?: str
   return null;
 }
 
-// Generate an SVG mask data-uri that masks out the bottom of a container
-export function getMaskSvgDataUri(pathData: string, viewBox: string = '0 0 1200 120'): string {
-  const maskSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" preserveAspectRatio="none"><mask id="cutout"><rect width="1200" height="120" fill="white"/><path d="${pathData}" fill="black"/></mask><rect width="1200" height="120" fill="black" mask="url(#cutout)"/></svg>`;
+// Generate an SVG mask data-uri that masks out the bottom of a container with 100% alpha transparency
+export function getMaskSvgDataUri(
+  pathData: string, 
+  viewBox: string = '0 0 1200 120',
+  flipHorizontal: boolean = false,
+  invert: boolean = false
+): string {
+  if (!pathData) return '';
+  const vbParts = viewBox.trim().split(/\s+/).map(Number);
+  const w = (vbParts.length === 4 && vbParts[2]) ? vbParts[2] : 1200;
+  const h = (vbParts.length === 4 && vbParts[3]) ? vbParts[3] : 120;
+
+  let transformAttr = '';
+  if (flipHorizontal && invert) {
+    transformAttr = `transform="translate(${w}, ${h}) scale(-1, -1)"`;
+  } else if (flipHorizontal) {
+    transformAttr = `transform="translate(${w}, 0) scale(-1, 1)"`;
+  } else if (invert) {
+    transformAttr = `transform="translate(0, ${h}) scale(1, -1)"`;
+  }
+
+  // Pure SVG alpha mask using fill-rule="evenodd":
+  // The outer rectangle is filled (opaque = black), and the divider path is cut out (transparent = empty).
+  // This produces 100% true alpha transparency on all modern browsers without relying on data-URI mask tags.
+  const pathContent = transformAttr 
+    ? `<g ${transformAttr}><path fill="black" fill-rule="evenodd" d="M0,0 H${w} V${h} H0 Z ${pathData}"/></g>`
+    : `<path fill="black" fill-rule="evenodd" d="M0,0 H${w} V${h} H0 Z ${pathData}"/>`;
+
+  const maskSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" preserveAspectRatio="none">${pathContent}</svg>`;
   return `url("data:image/svg+xml;utf8,${encodeURIComponent(maskSvg)}")`;
 }
 
@@ -337,55 +424,81 @@ export default function HeaderShapeDivider({
     } catch (e) {}
   }
 
-  // Check matching base shape
-  const baseDef = isEnabled ? BASE_DIVIDER_SHAPES.find(s => s.id === style) : undefined;
+  // Check matching base shape (with fallback aliases)
+  const baseDef = isEnabled ? (
+    BASE_DIVIDER_SHAPES.find(s => s.id === style) ||
+    (style === 'mountains' ? BASE_DIVIDER_SHAPES.find(s => s.id === 'mountains-layered') : undefined) ||
+    (style === 'slant-right' ? BASE_DIVIDER_SHAPES.find(s => s.id === 'tilt') : undefined) ||
+    (style === 'wave-smooth' ? BASE_DIVIDER_SHAPES.find(s => s.id === 'wave-brush') : undefined) ||
+    BASE_DIVIDER_SHAPES[0]
+  ) : undefined;
 
-  // Check if true transparency / mask is requested
-  const isTransparent = isEnabled && Boolean(
-    resolvedCustom?.isMask || 
-    resolvedCustom?.color === 'transparent' || 
-    color === 'transparent' ||
-    (resolvedCustom?.opacity !== undefined && resolvedCustom.opacity === 0)
-  );
+  // IMPORTANT: Transparency MUST ALWAYS be active for all versions (presets & custom)!
+  // User requirement: "Grundsätzlich muss die Transparenz immer da sein, bei jeder Version, immer."
+  const isTransparent = isEnabled && (resolvedCustom?.isMask !== false);
 
   const effectiveColor = isTransparent 
     ? 'transparent' 
-    : (resolvedCustom?.color || color);
+    : (resolvedCustom?.color || color || 'transparent');
 
   const mainPath = resolvedCustom?.pathData || baseDef?.pathData || BASE_DIVIDER_SHAPES[0]?.pathData || '';
   const viewBox = resolvedCustom?.viewBox || baseDef?.viewBox || '0 0 1200 120';
   const heightPx = resolvedCustom?.heightPx || 64;
 
-  // Apply Andrew Walpole's CSS Mask technique to parent header container if transparent
+  const flipH = Boolean(resolvedCustom?.flipHorizontal);
+  const inv = Boolean(resolvedCustom?.invert || resolvedCustom?.position === 'top');
+
+  // Apply CSS Mask technique to parent header container if transparent
   useEffect(() => {
-    const parent = containerRef.current?.parentElement;
+    const el = containerRef.current;
+    const parent = el?.parentElement;
     if (!parent) return;
 
-    if (isEnabled && isTransparent && mainPath) {
-      const maskDataUri = getMaskSvgDataUri(mainPath, viewBox);
-      
-      // Apply CSS mask: top area of header is 100% visible, bottom heightPx is masked by the wave
-      parent.style.webkitMaskImage = `${maskDataUri}, linear-gradient(to bottom, #000 0%, #000 calc(100% - ${heightPx}px), transparent calc(100% - ${heightPx}px))`;
-      parent.style.maskImage = `${maskDataUri}, linear-gradient(to bottom, #000 0%, #000 calc(100% - ${heightPx}px), transparent calc(100% - ${heightPx}px))`;
-      parent.style.webkitMaskPosition = 'bottom, top';
-      parent.style.maskPosition = 'bottom, top';
-      parent.style.webkitMaskSize = `100% ${heightPx}px, 100% 100%`;
-      parent.style.maskSize = `100% ${heightPx}px, 100% 100%`;
-      parent.style.webkitMaskRepeat = 'no-repeat';
-      parent.style.maskRepeat = 'no-repeat';
-    } else {
-      // Clear mask
-      parent.style.webkitMaskImage = '';
-      parent.style.maskImage = '';
-      parent.style.webkitMaskPosition = '';
-      parent.style.maskPosition = '';
-      parent.style.webkitMaskSize = '';
-      parent.style.maskSize = '';
-      parent.style.webkitMaskRepeat = '';
-      parent.style.maskRepeat = '';
+    const applyMask = () => {
+      if (isEnabled && isTransparent && mainPath) {
+        const maskDataUri = getMaskSvgDataUri(mainPath, viewBox, flipH, inv);
+        const measuredH = el?.offsetHeight || 0;
+        const actualH = resolvedCustom?.heightPx || (measuredH > 0 ? measuredH : heightPx);
+        const overlap = 1;
+        const actualHeightWithOverlap = actualH + overlap;
+        
+        // Apply CSS mask: top area of header is 100% visible, bottom actualH is masked by the divider shape
+        const linearGrad = `linear-gradient(to bottom, #000 0%, #000 calc(100% - ${actualH}px), transparent calc(100% - ${actualH}px))`;
+        
+        parent.style.webkitMaskImage = `${maskDataUri}, ${linearGrad}`;
+        parent.style.maskImage = `${maskDataUri}, ${linearGrad}`;
+        parent.style.webkitMaskPosition = 'bottom, top';
+        parent.style.maskPosition = 'bottom, top';
+        parent.style.webkitMaskSize = `100% ${actualHeightWithOverlap}px, 100% 100%`;
+        parent.style.maskSize = `100% ${actualHeightWithOverlap}px, 100% 100%`;
+        parent.style.webkitMaskRepeat = 'no-repeat';
+        parent.style.maskRepeat = 'no-repeat';
+      } else {
+        // Clear mask
+        parent.style.webkitMaskImage = '';
+        parent.style.maskImage = '';
+        parent.style.webkitMaskPosition = '';
+        parent.style.maskPosition = '';
+        parent.style.webkitMaskSize = '';
+        parent.style.maskSize = '';
+        parent.style.webkitMaskRepeat = '';
+        parent.style.maskRepeat = '';
+      }
+    };
+
+    applyMask();
+
+    // Re-apply dynamically when element resizes (e.g. mobile 36px vs desktop 64px)
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && el) {
+      ro = new ResizeObserver(() => {
+        applyMask();
+      });
+      ro.observe(el);
     }
 
     return () => {
+      if (ro) ro.disconnect();
       if (parent) {
         parent.style.webkitMaskImage = '';
         parent.style.maskImage = '';
@@ -397,7 +510,7 @@ export default function HeaderShapeDivider({
         parent.style.maskRepeat = '';
       }
     };
-  }, [isEnabled, isTransparent, mainPath, viewBox, heightPx]);
+  }, [isEnabled, isTransparent, mainPath, viewBox, heightPx, flipH, inv, resolvedCustom?.heightPx]);
 
   if (!isEnabled) {
     return <div ref={containerRef} className="hidden" aria-hidden="true" />;

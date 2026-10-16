@@ -2716,7 +2716,7 @@ export default function App() {
                   </div>
                   <HeaderShapeDivider
                     style={getEffectiveDivider('home', designSettings)}
-                    color="#FAF8F5"
+                    color="transparent"
                     customDividers={designSettings.customDividers}
                   />
                 </section>
@@ -2982,7 +2982,7 @@ export default function App() {
                 </div>
                 <HeaderShapeDivider
                   style={getEffectiveDivider(activeCategory === 'Alle' ? 'allCompanies' : 'category', designSettings)}
-                  color="#FAF8F5"
+                  color="transparent"
                   customDividers={designSettings.customDividers}
                 />
               </div>
