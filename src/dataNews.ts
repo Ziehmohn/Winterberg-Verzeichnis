@@ -20,11 +20,10 @@ export const initialNews: NewsArticle[] = [
 
 Das Besondere am Winterberger Winterdorf: Es ist kein gewöhnlicher Weihnachtsmarkt, der bereits an Heiligabend seine Pforten schließt. Als traditionsreicher winterlicher Dorfplatz bleibt das Winterdorf über die gesamten Weihnachtsfeiertage, die Zeit „zwischen den Jahren“ und bis ins neue Jahr hinein geöffnet.
 
-## Romantische Holzhütten, zentrale Eisbahn & Silvesterparty
+## Romantische Holzhütten, Winterstimmung & Silvesterparty
 
 Zum 10. Geburtstag dürfen sich Besucherinnen und Besucher auf ein besonders vielfältiges Winterprogramm und liebevoll dekorierte Stände freuen:
 
-* **Zentrale Eisbahn:** Schlittschuhspaß für Groß und Klein inmitten des Marktplatzes mit Schlittschuhverleih direkt vor Ort.
 * **Winterliche Genüsse:** Dampfender Glühwein, Winzerpunsch, heiße Waffeln, herzhafte Sauerländer Spezialitäten und süße Köstlichkeiten in gemütlichen Holzhütten.
 * **Historisches Kinderkarussell & Tannenbaumzauber:** Romantische Lichterketten, duftende Nadelbäume und nostalgische Fahrgeschäfte für die Kleinsten.
 * **Besuch vom Maskottchen:** Auch das beliebte Winterberger Maskottchen schaut regelmäßig im Winterdorf vorbei und sorgt für leuchtende Kinderaugen.
@@ -41,8 +40,6 @@ Vom 11. Dezember 2026 bis zum 4. Januar 2027 hat das Winterdorf täglich geöffn
 * **Heiligabend (24. Dezember):** 12:00 – 17:00 Uhr (gemütlicher Ausklang vor der Bescherung)
 * **Silvester (31. Dezember):** geöffnet bis 01:00 Uhr (mit Silvesterparty und Live-Musik)
 
-![Offizielles Save the Date Plakat zum 10-jährigen Jubiläum des Winterberger Winterdorfs](/news-winterberger-winterdorf-save-the-date.png?v=2026)
-
 :::contact
 ### Wichtige Daten zum Winterdorf 2026/2027
 Alle Kernfakten zum 10-jährigen Jubiläum:
@@ -50,7 +47,7 @@ Alle Kernfakten zum 10-jährigen Jubiläum:
 * **Veranstaltung:** 10 Jahre Winterberger Winterdorf
 * **Zeitraum:** 11. Dezember 2026 bis 04. Januar 2027
 * **Standort:** Marktplatz / Untere Pforte, 59955 Winterberg
-* **Eintritt:** Frei (Eisbahn gegen Gebühr / Schlittschuhverleih vor Ort)
+* **Eintritt:** Frei
 * **Offizieller Kanal:** [Instagram @winterberger_winterdorf](https://www.instagram.com/winterberger_winterdorf/?hl=de)
 * **Tourist-Info:** [Winterberg Touristik und Wirtschaft GmbH](/winterberg-touristik)
 :::`,
@@ -58,11 +55,10 @@ Alle Kernfakten zum 10-jährigen Jubiläum:
 
 Het unieke aan het Winterberger Winterdorf: het is geen klassieke kerstmarkt die na kerstavond de deuren sluit. Als gezellig winterdorp blijft het geopend tijdens de gehele kerstvakantie, de feestdagen en tot ver in het nieuwe jaar.
 
-## Sfeervolle houten chalets, een centrale schaatsbaan & oudejaarsfeest
+## Sfeervolle houten chalets, winterse sfeer & oudejaarsfeest
 
 Voor de tiende verjaardag kunnen bezoekers uitkijken naar een veelzijdig winterprogramma en prachtig gedecoreerde kramen:
 
-* **Centrale schaatsbaan:** Schaatsplezier voor jong en oud midden op het marktplein, inclusief schaatsverhuur ter plaatse.
 * **Winterse lekkernijen:** Warme glühwein, punch, verse wafels, hartige specialiteiten uit het Sauerland en zoete verleidingen in knusse houten chalets.
 * **Nostalgische draaimolen & kerstbomensfeer:** Duizenden fonkelende lichtjes, geurende kerstbomen en een nostalgische kindercarrousel.
 * **Ontmoet de Winterberg-mascotte:** De vriendelijke mascotte brengt regelmatig een bezoek aan het Winterdorf voor een fotomoment met de kinderen.
@@ -79,8 +75,6 @@ Van 11 december 2026 tot en met 4 januari 2027 is het Winterdorf dagelijks geope
 * **Kerstavond (24 december):** 12:00 – 17:00 uur
 * **Oudejaarsavond (31 december):** geopend tot 01:00 uur (met oudejaarsfeest en muziek)
 
-![Officiële Save the Date poster voor het 10-jarig jubileum van het Winterberger Winterdorf](/news-winterberger-winterdorf-save-the-date.png?v=2026)
-
 :::contact
 ### Belangrijke informatie Winterdorf 2026/2027
 Alle kerngegevens over het 10-jarig jubileum op een rij:
@@ -88,7 +82,7 @@ Alle kerngegevens over het 10-jarig jubileum op een rij:
 * **Evenement:** 10 jaar Winterberger Winterdorf
 * **Periode:** 11 december 2026 t/m 04 januari 2027
 * **Locatie:** Marktplatz / Untere Pforte, 59955 Winterberg
-* **Toegang:** Gratis (schaatsbaan tegen kleine vergoeding / schaatsverhuur ter plaatse)
+* **Toegang:** Gratis
 * **Officieel kanaal:** [Instagram @winterberger_winterdorf](https://www.instagram.com/winterberger_winterdorf/?hl=de)
 * **Toeristeninformatie:** [Winterberg Touristik und Wirtschaft GmbH](/nl/winterberg-touristik)
 :::`,
