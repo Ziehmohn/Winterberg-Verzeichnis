@@ -11,7 +11,7 @@ export const initialNews: NewsArticle[] = [
     businessId: 'skiliftkarussell-winterberg',
     businessName: 'Skiliftkarussell Winterberg',
     businessSlug: 'pistenbericht',
-    imageUrl: '/news-skisaison-winterberg-eroeffnung.jpg',
+    imageUrl: '/news-skisaison-winterberg-eroeffnung-2026.jpg',
     imageCredit: 'Foto: Tuxyso / Wikimedia Commons (CC BY-SA 4.0)',
     isAiGenerated: false,
     status: 'approved',
@@ -27,6 +27,8 @@ Die technische Grundlage für den geplanten Auftakt bilden moderne, wetterunabh�
 Ob und wie zügig in den darauffolgenden Wochen weitere Pisten und Lifte hinzukommen, entscheidet die Witterung:
 * **Voraussetzung für die Piste:** Für die professionelle Präparierung einer gut befahrbaren Abfahrt werden nach offiziellen Angaben der Wintersport-Arena rund **30 Zentimeter kompakter Schnee** benötigt.
 * **Wetterabhängige Erweiterung:** Sobald dauerhafte Frostperioden eintreffen, kommen die klassischen Beschneiungsanlagen im gesamten Skigebiet zum Einsatz, um das Pistennetz sukzessive auf das volle Angebot von 27,5 Kilometern zu erweitern.
+
+![Skiliftkarussell Winterberg – Vorfreude auf die ersten Schwünge der Skisaison](/news-skisaison-winterberg-eroeffnung-2026.jpg)
 
 ## Aktuelle Schneehöhen, geöffnete Lifte & Webcams
 
@@ -61,6 +63,8 @@ Het fundament onder deze vroege start wordt gevormd door moderne, weerbestendige
 Hoe snel er na 27 november meer afdalingen en skiliften worden geopend, hangt af van het weer:
 * **Vereiste sneeuwdikte:** Voor het prepareren van een kwalitatieve piste is volgens opgave van de Wintersport-Arena circa **30 centimeter compacte sneeuw** noodzakelijk.
 * **Weersafhankelijke uitbreiding:** Zodra aanhoudende vorst zijn intrede doet, schakelen de traditionele sneeuwkanonnen in het gehele skigebied bij om het netwerk stapsgewijs uit te breiden naar het volledige aanbod van 27,5 kilometer aan pistes.
+
+![Skiliftkarussell Winterberg – Voorpret op de eerste afdalingen van het nieuwe skiseizoen](/news-skisaison-winterberg-eroeffnung-2026.jpg)
 
 ## Actuele sneeuwhoogtes, geopende liften & live webcams
 
