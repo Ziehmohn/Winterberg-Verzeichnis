@@ -11,7 +11,7 @@ export const initialNews: NewsArticle[] = [
     businessId: 'winterberg-touristik',
     businessName: 'Winterberger Winterdorf',
     businessSlug: 'winterberg-touristik',
-    imageUrl: '/news-winterberger-winterdorf-jubilaeum-header.jpg',
+    imageUrl: '/news-winterberger-winterdorf-jubilaeum-header.jpg?v=2026',
     imageCredit: 'Foto: Winterberger Winterdorf / Instagram @winterberger_winterdorf',
     isAiGenerated: false,
     status: 'approved',
@@ -30,7 +30,7 @@ Zum 10. Geburtstag dürfen sich Besucherinnen und Besucher auf ein besonders vie
 * **Besuch vom Maskottchen:** Auch das beliebte Winterberger Maskottchen schaut regelmäßig im Winterdorf vorbei und sorgt für leuchtende Kinderaugen.
 * **Silvester auf dem Marktplatz:** Am 31. Dezember lädt das Winterdorf zur großen Silvesterparty mit Musik bis 01:00 Uhr nachts ein – der perfekte Ort, um das neue Jahr unter freiem Himmel zu begrüßen.
 
-![Das Winterberger Maskottchen sorgt im Winterdorf für festliche Stimmung](/news-winterberger-winterdorf-maskottchen.jpg)
+![Das Winterberger Maskottchen sorgt im Winterdorf für festliche Stimmung](/news-winterberger-winterdorf-maskottchen.jpg?v=2026)
 
 ## Öffnungszeiten & Programm zur Jubiläumssaison
 
@@ -41,7 +41,7 @@ Vom 11. Dezember 2026 bis zum 4. Januar 2027 hat das Winterdorf täglich geöffn
 * **Heiligabend (24. Dezember):** 12:00 – 17:00 Uhr (gemütlicher Ausklang vor der Bescherung)
 * **Silvester (31. Dezember):** geöffnet bis 01:00 Uhr (mit Silvesterparty und Live-Musik)
 
-![Offizielles Save the Date Plakat zum 10-jährigen Jubiläum des Winterberger Winterdorfs](/news-winterberger-winterdorf-save-the-date.png)
+![Offizielles Save the Date Plakat zum 10-jährigen Jubiläum des Winterberger Winterdorfs](/news-winterberger-winterdorf-save-the-date.png?v=2026)
 
 :::contact
 ### Wichtige Daten zum Winterdorf 2026/2027
@@ -68,7 +68,7 @@ Voor de tiende verjaardag kunnen bezoekers uitkijken naar een veelzijdig winterp
 * **Ontmoet de Winterberg-mascotte:** De vriendelijke mascotte brengt regelmatig een bezoek aan het Winterdorf voor een fotomoment met de kinderen.
 * **Oud & Nieuw op het marktplein:** Op 31 december organiseert het Winterdorf een spetterende oudejaarsparty met muziek tot 01:00 uur 's nachts – de ideale plek om het nieuwe jaar in de openlucht in te luiden.
 
-![De Winterberg-mascotte zorgt voor feestelijke gezelligheid in het Winterdorf](/news-winterberger-winterdorf-maskottchen.jpg)
+![De Winterberg-mascotte zorgt voor feestelijke gezelligheid in het Winterdorf](/news-winterberger-winterdorf-maskottchen.jpg?v=2026)
 
 ## Openingstijden & programma tijdens het jubileumseizoen
 
@@ -79,7 +79,7 @@ Van 11 december 2026 tot en met 4 januari 2027 is het Winterdorf dagelijks geope
 * **Kerstavond (24 december):** 12:00 – 17:00 uur
 * **Oudejaarsavond (31 december):** geopend tot 01:00 uur (met oudejaarsfeest en muziek)
 
-![Officiële Save the Date poster voor het 10-jarig jubileum van het Winterberger Winterdorf](/news-winterberger-winterdorf-save-the-date.png)
+![Officiële Save the Date poster voor het 10-jarig jubileum van het Winterberger Winterdorf](/news-winterberger-winterdorf-save-the-date.png?v=2026)
 
 :::contact
 ### Belangrijke informatie Winterdorf 2026/2027
