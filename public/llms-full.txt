@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (350 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (351 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2453,6 +2453,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** EXOROCK is een in augustus 2024 opgericht technologiebedrijf voor openbare veiligheid en defensie, gevestigd in Winterberg. Het bedrijf ontwikkelt geavanceerde systemen voor vroege dronedetectie en gecoördineerde commandovoering voor defensie, politie, overheden en exploitanten van vitale infrastructuur (KRITIS). Zowel hardware als software worden in eigen beheer ontwikkeld: het mobiele handapparaat 'EXODECK' stelt operationele eenheden in het veld in staat drones passief te detecteren via meerdere frequenties en detectiemethoden (wifi, BLE, SDR, ADS-B en akoestiek). Het commandoplatform 'CITADEL COMMAND' integreert sensorsignalen, radar, radio en live videostreams tot een overzichtelijk realtime situatiebeeld voor meldkamers en commandoposten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/exorock
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/exorock
+
+#### [Great Oak IT-Services](https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/great-oak-it-services)
+- **Kategorie:** Dienstleistungen > IT & Software
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 16, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 9779790
+- **Webseite:** https://systemhaus-winterberg.de
+- **Beschreibung (DE):** Die Great Oak IT-Services GmbH & Co. KG ist ein seit 2007 etabliertes IT-Systemhaus mit Sitz in Winterberg-Niedersfeld. Das Unternehmen betreut mittelständische Unternehmen, Handwerksbetriebe, Kanzleien sowie Einrichtungen des Gesundheitswesens rund um die gesamte Informations- und Kommunikationstechnik. Das Leistungsspektrum reicht von der zuverlässigen IT-Grundversorgung (Arbeitsplätze, Server, Cloud-Lösungen und proaktive Wartung) über zukunftssichere Netzwerktechnik und Firewall-Lösungen bis hin zu umfassenden Datensicherheits- und Backup-Konzepten. Als spezialisierter Partner unterstützt das Systemhaus Kanzleien im DATEV-Umfeld, berät Unternehmen bei der Umsetzung der europäischen NIS-2-Richtlinie und ist nach § 390 SGB V zertifizierter IT-Dienstleister für Arztpraxen, Medizinische Versorgungszentren (MVZ) und Kliniken.
+- **Beschreibung (NL):** Great Oak IT-Services GmbH & Co. KG is een sinds 2007 gevestigd IT-systeemhuis en managed service provider in Winterberg-Niedersfeld. Het bedrijf ondersteunt het mkb, ambachtelijke ondernemingen, advocaten- en belastingkantoren en instellingen in de gezondheidszorg bij hun complete IT- en netwerkinfrastructuur. Het dienstenaanbod omvat betrouwbaar IT-beheer (werkplekken, servers, cloudoplossingen en proactief onderhoud), netwerktechniek, databeveiliging en noodherstelsystemen. Daarnaast is het bedrijf gespecialiseerd in DATEV-kantoorsoftware, NIS-2-cybersecurityrichtlijnen en gecertificeerde IT-dienstverlening conform § 390 SGB V voor artsenpraktijken en klinieken.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/great-oak-it-services
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/great-oak-it-services
 
 ### Kategorie: Ski, Bike & Sport
 

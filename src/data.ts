@@ -8193,6 +8193,53 @@ export const businesses: Business[] = [
       saturday: 'Geschlossen (Termine nach Vereinbarung)',
       sunday: 'Geschlossen'
     }
+  },
+  {
+    id: 'great-oak-it-services-winterberg',
+    name: 'Great Oak IT-Services',
+    category: 'Dienstleistungen',
+    subcategory: 'IT & Software',
+    address: 'Ruhrstraße 16, 59955 Winterberg-Niedersfeld',
+    district: 'Niedersfeld',
+    phone: '02985 9779790',
+    email: 'info@systemhaus-winterberg.de',
+    website: 'https://systemhaus-winterberg.de',
+    image: '/great-oak-it-services-winterberg.jpg',
+    imageFallback: 'GO',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    description: 'Die Great Oak IT-Services GmbH & Co. KG ist ein seit 2007 etabliertes IT-Systemhaus mit Sitz in Winterberg-Niedersfeld. Das Unternehmen betreut mittelständische Unternehmen, Handwerksbetriebe, Kanzleien sowie Einrichtungen des Gesundheitswesens rund um die gesamte Informations- und Kommunikationstechnik. Das Leistungsspektrum reicht von der zuverlässigen IT-Grundversorgung (Arbeitsplätze, Server, Cloud-Lösungen und proaktive Wartung) über zukunftssichere Netzwerktechnik und Firewall-Lösungen bis hin zu umfassenden Datensicherheits- und Backup-Konzepten. Als spezialisierter Partner unterstützt das Systemhaus Kanzleien im DATEV-Umfeld, berät Unternehmen bei der Umsetzung der europäischen NIS-2-Richtlinie und ist nach § 390 SGB V zertifizierter IT-Dienstleister für Arztpraxen, Medizinische Versorgungszentren (MVZ) und Kliniken.',
+    description_nl: 'Great Oak IT-Services GmbH & Co. KG is een sinds 2007 gevestigd IT-systeemhuis en managed service provider in Winterberg-Niedersfeld. Het bedrijf ondersteunt het mkb, ambachtelijke ondernemingen, advocaten- en belastingkantoren en instellingen in de gezondheidszorg bij hun complete IT- en netwerkinfrastructuur. Het dienstenaanbod omvat betrouwbaar IT-beheer (werkplekken, servers, cloudoplossingen en proactief onderhoud), netwerktechniek, databeveiliging en noodherstelsystemen. Daarnaast is het bedrijf gespecialiseerd in DATEV-kantoorsoftware, NIS-2-cybersecurityrichtlijnen en gecertificeerde IT-dienstverlening conform § 390 SGB V voor artsenpraktijken en klinieken.',
+    services: [
+      'IT-Grundversorgung & Systemhaus-Betreuung',
+      'Netzwerktechnik, WLAN & Firewalls',
+      'Datensicherheit & Backup-Lösungen',
+      'Informationssicherheit & IT-Sicherheitsberatung',
+      'NIS-2 & KRITIS-Beratung',
+      'DATEV-Betreuung für Kanzleien & Unternehmen',
+      'IT für das Gesundheitswesen (§ 390 SGB V)',
+      'Managed Services & schnelle Fernwartung'
+    ],
+    services_nl: [
+      'IT-beheer & systeemhuisdienstverlening',
+      'Netwerktechniek, wifi & firewalls',
+      'Databeveiliging & back-upconcepten',
+      'Informatiebeveiliging & cybersecurity-advies',
+      'NIS-2 & KRITIS-begeleiding',
+      'DATEV-ondersteuning voor kantoren',
+      'IT voor de zorgsector (§ 390 SGB V)',
+      'Managed services & snelle hulp op afstand'
+    ],
+    openingHours: {
+      monday: '08:30 - 17:00',
+      tuesday: '08:30 - 17:00',
+      wednesday: '08:30 - 17:00',
+      thursday: '08:30 - 17:00',
+      friday: '08:30 - 17:00',
+      saturday: 'Geschlossen (Notdienst für Vertragskunden)',
+      sunday: 'Geschlossen'
+    }
   }
 ];
 

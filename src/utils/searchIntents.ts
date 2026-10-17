@@ -592,6 +592,15 @@ export const SEARCH_INTENTS: SearchIntent[] = [
     ]
   },
   {
+    id: 'it-systemhaus',
+    label: 'IT-Systemhaus & IT-Dienstleistungen',
+    triggers: ['it', 'systemhaus', 'edv', 'computer', 'netzwerk', 'great oak', 'server', 'datev', 'firewall', 'it-service', 'backup', 'datenrettung', 'it-sicherheit'],
+    targets: [
+      { subcategories: ['IT & Software'], weight: 300 },
+      { keywords: ['systemhaus*', 'great oak*', 'it-service*', 'datev*'], weight: 300 }
+    ]
+  },
+  {
     id: 'reinigung',
     label: 'Reinigungen & Wäschereien',
     triggers: ['reinigung', 'textilreinigung', 'wäscherei', 'waescherei', 'chemische', 'wäsche', 'hemdenservice', 'bettwäsche', 'stomerij', 'wasserette'],

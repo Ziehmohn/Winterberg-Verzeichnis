@@ -210,7 +210,13 @@ const DOMAIN_SYNONYMS: Record<string, string[]> = {
   'drohnen': ['drohne', 'drohnen', 'drohnenabwehr', 'drohnendetektion', 'exorock', 'exodeck', 'citadel', 'luftraumüberwachung', 'uav'],
   'drohnenabwehr': ['drohnenabwehr', 'drohnendetektion', 'exorock', 'exodeck', 'citadel', 'drohne', 'sicherheitstechnik'],
   'sicherheit': ['sicherheit', 'sicherheitstechnik', 'drohnenabwehr', 'exorock', 'kritis', 'überwachung'],
-  'software': ['software', 'it', 'softwareentwicklung', 'exorock', 'app', 'systeme']
+  'software': ['software', 'it', 'softwareentwicklung', 'exorock', 'app', 'systeme'],
+  'systemhaus': ['systemhaus', 'great oak', 'it-service', 'it', 'computer', 'netzwerk', 'server', 'datev'],
+  'great oak': ['great oak', 'greatoak', 'systemhaus', 'it-service', 'edv', 'netzwerk', 'datev', 'niedersfeld'],
+  'it-service': ['it-service', 'it service', 'systemhaus', 'great oak', 'edv', 'netzwerk', 'computer'],
+  'datev': ['datev', 'kanzlei', 'steuerberater', 'great oak', 'systemhaus', 'software'],
+  'netzwerk': ['netzwerk', 'netzwerktechnik', 'wlan', 'firewall', 'great oak', 'systemhaus', 'it'],
+  'edv': ['edv', 'it', 'systemhaus', 'computer', 'great oak', 'netzwerk']
 };
 
 // Fallback category domains when ONLY an action verb is queried without any subject
