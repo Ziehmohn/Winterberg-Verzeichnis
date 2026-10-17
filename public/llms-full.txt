@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (349 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (350 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2442,6 +2442,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Cowolo aan de Wernsdorfer Straße 1 in het centrum van Winterberg is de eerste moderne coworking space in het Hochsauerland. De locatie biedt flexibele werkplekken (dag- en weekpassen), vaste bureaus (Fix Desks) en afsluitbare privékantoren met 24/7 toegang. Voor vergaderingen, workshops en presentaties zijn professionele conferentieruimtes beschikbaar voor maximaal 18 personen met moderne apparatuur. Snelle wifi, koffie, thee en water zijn inbegrepen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/coworking-space/cowolo
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/coworking-space/cowolo
+
+#### [EXOROCK](https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/exorock)
+- **Kategorie:** Dienstleistungen > IT & Software
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Lamfert 7, 59955 Winterberg
+- **Telefon:** 0170 9414098
+- **Webseite:** https://exorock.de
+- **Beschreibung (DE):** EXOROCK ist ein im August 2024 gegründetes Technologieunternehmen für die innere Sicherheit mit Sitz in Winterberg. Das Unternehmen entwickelt ganzheitliche Systeme zur frühzeitigen Drohnenerkennung und koordinierten Lageführung für Bundeswehr, Polizei, Behörden und Betreiber kritischer Infrastrukturen (KRITIS). Hard- und Software entstehen vollständig im eigenen Haus: Das mobile Handgerät „EXODECK“ ermöglicht Einsatzkräften im Feld eine passive Breitband-Drohnendetektion über mehrere Frequenzbänder (70 MHz bis 6 GHz) und Erkennungswege (WLAN, BLE, SDR, ADS-B, Akustik). Das modulare Lagedarstellungssystem „CITADEL COMMAND“ bündelt Sensordaten, Radar, Funk und Live-Videostreams zu einem echtzeitfähigen Lagebild für Führungsstellen, das autark auf eigenen Servern betrieben werden kann.
+- **Beschreibung (NL):** EXOROCK is een in augustus 2024 opgericht technologiebedrijf voor openbare veiligheid en defensie, gevestigd in Winterberg. Het bedrijf ontwikkelt geavanceerde systemen voor vroege dronedetectie en gecoördineerde commandovoering voor defensie, politie, overheden en exploitanten van vitale infrastructuur (KRITIS). Zowel hardware als software worden in eigen beheer ontwikkeld: het mobiele handapparaat 'EXODECK' stelt operationele eenheden in het veld in staat drones passief te detecteren via meerdere frequenties en detectiemethoden (wifi, BLE, SDR, ADS-B en akoestiek). Het commandoplatform 'CITADEL COMMAND' integreert sensorsignalen, radar, radio en live videostreams tot een overzichtelijk realtime situatiebeeld voor meldkamers en commandoposten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/exorock
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/exorock
 
 ### Kategorie: Ski, Bike & Sport
 

@@ -1190,6 +1190,18 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/die-besten/dienstleistungen/it-software</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/it-en-software</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/die-besten/dienstleistungen/kindergaerten-und-kitas</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -2349,6 +2361,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/coworking-space</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/it-software</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -6993,6 +7017,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/mcdonald-s-winterberg</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/exorock</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/exorock</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

@@ -8145,6 +8145,54 @@ export const businesses: Business[] = [
       saturday: '08:00 - 03:00',
       sunday: '08:00 - 01:00'
     }
+  },
+  {
+    id: 'exorock-winterberg',
+    name: 'EXOROCK',
+    category: 'Dienstleistungen',
+    subcategory: 'IT & Software',
+    additionalCategories: [
+      { category: 'Handwerk', subcategory: 'Maschinenbau' }
+    ],
+    address: 'Lamfert 7, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '0170 9414098',
+    email: 'info@exorock.de',
+    website: 'https://exorock.de',
+    image: '/exorock-winterberg.jpg',
+    imageFallback: 'EX',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    description: 'EXOROCK ist ein im August 2024 gegründetes Technologieunternehmen für die innere Sicherheit mit Sitz in Winterberg. Das Unternehmen entwickelt ganzheitliche Systeme zur frühzeitigen Drohnenerkennung und koordinierten Lageführung für Bundeswehr, Polizei, Behörden und Betreiber kritischer Infrastrukturen (KRITIS). Hard- und Software entstehen vollständig im eigenen Haus: Das mobile Handgerät „EXODECK“ ermöglicht Einsatzkräften im Feld eine passive Breitband-Drohnendetektion über mehrere Frequenzbänder (70 MHz bis 6 GHz) und Erkennungswege (WLAN, BLE, SDR, ADS-B, Akustik). Das modulare Lagedarstellungssystem „CITADEL COMMAND“ bündelt Sensordaten, Radar, Funk und Live-Videostreams zu einem echtzeitfähigen Lagebild für Führungsstellen, das autark auf eigenen Servern betrieben werden kann.',
+    description_nl: 'EXOROCK is een in augustus 2024 opgericht technologiebedrijf voor openbare veiligheid en defensie, gevestigd in Winterberg. Het bedrijf ontwikkelt geavanceerde systemen voor vroege dronedetectie en gecoördineerde commandovoering voor defensie, politie, overheden en exploitanten van vitale infrastructuur (KRITIS). Zowel hardware als software worden in eigen beheer ontwikkeld: het mobiele handapparaat \'EXODECK\' stelt operationele eenheden in het veld in staat drones passief te detecteren via meerdere frequenties en detectiemethoden (wifi, BLE, SDR, ADS-B en akoestiek). Het commandoplatform \'CITADEL COMMAND\' integreert sensorsignalen, radar, radio en live videostreams tot een overzichtelijk realtime situatiebeeld voor meldkamers en commandoposten.',
+    services: [
+      'Drohnenerkennung & Luftraumüberwachung',
+      'EXODECK Mobile Mission Console (Handgerät)',
+      'EXODECK SENSE (Stationäre Sensorknoten)',
+      'CITADEL COMMAND (Lagedarstellung & Führung)',
+      'Sensordaten-Fusion (Radar, Funk, ADS-B, Video)',
+      'Schutz kritischer Infrastruktur (KRITIS)',
+      'Sicherheitstechnologie & Systementwicklung'
+    ],
+    services_nl: [
+      'Dronedetectie & luchtruimbewaking',
+      'EXODECK Mobile Mission Console (handapparaat)',
+      'EXODECK SENSE (stationaire sensoren)',
+      'CITADEL COMMAND (situatiebeeld & bevelvoering)',
+      'Sensordata-fusie (radar, radio, ADS-B, video)',
+      'Beveiliging van vitale infrastructuur',
+      'Veiligheidstechnologie & systeemontwikkeling'
+    ],
+    openingHours: {
+      monday: '09:00 - 17:00',
+      tuesday: '09:00 - 17:00',
+      wednesday: '09:00 - 17:00',
+      thursday: '09:00 - 17:00',
+      friday: '09:00 - 17:00',
+      saturday: 'Geschlossen (Termine nach Vereinbarung)',
+      sunday: 'Geschlossen'
+    }
   }
 ];
 
@@ -8266,7 +8314,7 @@ export const categories: CategoryGroup[] = [
   { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Haushaltswaren & Deko', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Coworking Space', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
+  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Coworking Space', 'IT & Software', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
   { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser', 'Hörgeräteakustiker', 'Optiker'] },
   { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },

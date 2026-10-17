@@ -583,6 +583,15 @@ export const SEARCH_INTENTS: SearchIntent[] = [
     ]
   },
   {
+    id: 'drohnen-sicherheit',
+    label: 'Drohnenabwehr & Sicherheitstechnik',
+    triggers: ['drohne', 'drohnen', 'drohnenabwehr', 'drohnendetektion', 'exorock', 'exodeck', 'citadel', 'luftraumüberwachung', 'kritis', 'sicherheitstechnik'],
+    targets: [
+      { subcategories: ['IT & Software'], weight: 300 },
+      { keywords: ['drohn*', 'exorock', 'luftraum*'], weight: 300 }
+    ]
+  },
+  {
     id: 'reinigung',
     label: 'Reinigungen & Wäschereien',
     triggers: ['reinigung', 'textilreinigung', 'wäscherei', 'waescherei', 'chemische', 'wäsche', 'hemdenservice', 'bettwäsche', 'stomerij', 'wasserette'],

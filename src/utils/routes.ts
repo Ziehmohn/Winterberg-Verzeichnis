@@ -83,6 +83,7 @@ export const SUBCATEGORY_SLUGS: Record<string, RouteMapping> = {
   'Buchhandlungen': { de: 'buchhandlungen', nl: 'boekhandels' },
   'Haushaltswaren & Deko': { de: 'haushaltswaren-und-deko', nl: 'huishoudelijke-artikelen-en-decoratie' },
   'Coworking Space': { de: 'coworking-space', nl: 'coworking-space' },
+  'IT & Software': { de: 'it-software', nl: 'it-en-software' },
 };
 
 // Static Pages Slugs

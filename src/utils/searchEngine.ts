@@ -202,7 +202,15 @@ const DOMAIN_SYNONYMS: Record<string, string[]> = {
   'versicherung': ['versicherung', 'versicherungsagenturen', 'vorsorge', 'absicherung'],
   'bank': ['bank', 'volksbank', 'sparkasse', 'geldautomat', 'finanzen'],
   'marketing': ['werbeagentur', 'marketing', 'marketingdienstleistungen', 'webdesign', 'werbung', 'seo'],
-  'coworking': ['coworking', 'coworking space', 'arbeitsplatz', 'schreibtisch', 'meetingraum', 'cowolo']
+  'coworking': ['coworking', 'coworking space', 'arbeitsplatz', 'schreibtisch', 'meetingraum', 'cowolo'],
+
+  // Technologie / Sicherheit / Drohnen
+  'exorock': ['exorock', 'drohnenabwehr', 'drohnendetektion', 'drohne', 'drohnen', 'exodeck', 'citadel', 'sicherheitstechnik', 'luftraum'],
+  'drohne': ['drohne', 'drohnen', 'drohnenabwehr', 'drohnendetektion', 'exorock', 'exodeck', 'citadel', 'luftraumüberwachung', 'uav'],
+  'drohnen': ['drohne', 'drohnen', 'drohnenabwehr', 'drohnendetektion', 'exorock', 'exodeck', 'citadel', 'luftraumüberwachung', 'uav'],
+  'drohnenabwehr': ['drohnenabwehr', 'drohnendetektion', 'exorock', 'exodeck', 'citadel', 'drohne', 'sicherheitstechnik'],
+  'sicherheit': ['sicherheit', 'sicherheitstechnik', 'drohnenabwehr', 'exorock', 'kritis', 'überwachung'],
+  'software': ['software', 'it', 'softwareentwicklung', 'exorock', 'app', 'systeme']
 };
 
 // Fallback category domains when ONLY an action verb is queried without any subject
