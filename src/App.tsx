@@ -97,6 +97,7 @@ import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc,
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useTranslation } from './i18n';
 import { getSeoContent } from './utils/seoContent';
+import { getCategoryHeader } from './utils/categoryHeaders';
 import { signOut } from 'firebase/auth';
 import { RankingBadge } from './components/RankingBadge';
 import { getBusinessRankingBadge } from './utils/bestOfRankingBadges';
@@ -2831,151 +2832,214 @@ export default function App() {
             ) : null}
 
             {/* List View Header */}
-            {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (
-              <div className="w-full bg-[#0F4C2E] text-white relative overflow-hidden">
-                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-[32px] sm:py-[38px] pb-[36px] sm:pb-[42px]">
-                  <div className="text-[14px] text-white/70 mb-2.5 flex items-center gap-1.5 flex-wrap">
-                    <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a>
-                    <span>/</span>
-                    {activeCategory !== 'Alle' && (
-                      <>
-                        <a 
-                          href={getPath('/alle-unternehmen')} 
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            handleCategoryChange('Alle');
-                            setSearchQuery('');
-                          }} 
-                          className="text-white/80 hover:text-white transition-colors"
-                        >
-                          {t("allCompanies")}
-                        </a>
-                        <span>/</span>
-                      </>
-                    )}
-                    <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
-                  </div>
-                  <h1 className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-bold m-0 mb-3 leading-tight">
-                    {activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}
-                  </h1>
+            {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (() => {
+              const activeGroup = categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory));
+              const categoryHeader = getCategoryHeader(activeCategory, activeGroup?.name);
 
-                  {/* Prominent Search Bar on Category Banner */}
-                  <div className="bg-white rounded-lg p-2 sm:p-2.5 flex flex-col md:flex-row gap-2 sm:gap-2.5 items-stretch md:items-center max-w-4xl shadow-2xl my-3 sm:my-4 text-[#1B211D]">
-                    <div className="flex items-center gap-2.5 sm:gap-3 w-full flex-1 min-w-0 px-3 relative">
-                      <Search className="w-5 h-5 text-gray-400 shrink-0" />
-                      <input 
-                        placeholder={
-                          activeCategory === 'Alle'
-                            ? (lang === 'nl' ? 'Bedrijf, product of dienst zoeken (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Leistungen suchen (z. B. Schuhe, Bäcker, Ski)...')
-                            : (lang === 'nl' ? `In „${t(activeCategory)}" suchen (oder Kategorie wählen)...` : `In „${activeCategory}" suchen (oder Kategorie wählen)...`)
-                        }
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="border-none outline-none text-[15px] sm:text-base w-full py-2 text-gray-900 bg-transparent placeholder:text-gray-400"
+              return (
+              <div className="w-full bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] text-white relative overflow-hidden">
+                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-[32px] sm:py-[38px] pb-[36px] sm:pb-[42px] relative">
+                  {/* Hero Image (Desktop: absolut rechts mit weichem horizontalem Mask-Fade, Mobile: oben im Banner mit weichem Verlauf nach unten) */}
+                  {categoryHeader && (
+                    <figure className="relative -mx-4 sm:-mx-6 -mt-[32px] sm:-mt-[38px] mb-6 lg:m-0 lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-[48%] xl:w-[46%] h-52 sm:h-64 lg:h-full z-0 overflow-hidden pointer-events-none">
+                      <img
+                        src={categoryHeader.image}
+                        alt={lang === 'nl' ? categoryHeader.imageAltNl : categoryHeader.imageAltDe}
+                        width={1600}
+                        height={1067}
+                        fetchPriority="high"
+                        decoding="async"
+                        className="w-full h-full object-cover hero-category-mask"
+                        style={{ objectPosition: categoryHeader.objectPosition || 'center' }}
                       />
-                      {searchQuery && (
-                        <button
-                          type="button"
-                          onClick={() => setSearchQuery('')}
-                          className="text-gray-400 hover:text-gray-600 p-1 shrink-0 cursor-pointer"
-                          title={lang === 'nl' ? 'Wissen' : 'Löschen'}
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
+                      {categoryHeader.credit && (
+                        <figcaption className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 text-[10px] leading-none text-white/85 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-md z-10 pointer-events-none">
+                          {categoryHeader.credit}
+                        </figcaption>
                       )}
-                    </div>
+                    </figure>
+                  )}
 
-                    {/* Category Selector Dropdown */}
-                    <select
-                      value={activeCategory}
-                      onChange={(e) => handleCategoryChange(e.target.value)}
-                      className="w-full md:w-auto md:w-[190px] shrink-0 border border-[#D5D0C5] rounded-md px-3 py-2.5 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
-                      title={lang === 'nl' ? 'Categorie kiezen' : 'Kategorie wählen'}
-                    >
-                      <option value="Alle">{lang === 'nl' ? '🌐 Alle categorieën' : '🌐 Alle Kategorien'}</option>
-                      {categories.map(c => (
-                        <optgroup key={c.name} label={t(c.name)}>
-                          <option value={c.name}>{lang === 'nl' ? `Alle in ${t(c.name)}` : `Alle in ${t(c.name)}`}</option>
-                          {c.subcategories.map(sub => (
-                            <option key={sub} value={sub}>&nbsp;&nbsp;{t(sub)}</option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </select>
-
-                    {/* Location Selector Dropdown */}
-                    <select
-                      value={activeLocation}
-                      onChange={(e) => {
-                        const loc = e.target.value;
-                        setActiveLocation(loc);
-                        const basePath = activeCategory !== 'Alle' 
-                          ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
-                          : '/alle-unternehmen';
-                        const url = getPath(basePath);
-                        window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
-                      }}
-                      className="w-full md:w-auto md:w-[160px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
-                    >
-                      <option value="Alle">{t("allTowns")}</option>
-                      {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
-                        <option key={d} value={d}>{d}</option>
-                      ))}
-                    </select>
-
-                    {/* Search Button */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const resultsEl = document.getElementById('company-results-section');
-                        if (resultsEl) resultsEl.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="w-full md:w-auto shrink-0 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-6 py-2.5 font-bold transition-colors cursor-pointer shadow-sm text-[14.5px]"
-                    >
-                      {lang === 'nl' ? 'Zoeken' : 'Suchen'}
-                    </button>
-                  </div>
-
-                  <div className="flex items-center justify-between flex-wrap gap-3 mt-3">
-                    <div className="flex items-center gap-2.5 flex-wrap">
-                      <p className="m-0 text-[15px] sm:text-[16px] text-white/80">
-                        {filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}
-                        {activeCategory !== 'Alle' && <span className="text-white/60"> {lang === 'nl' ? `in ${t(activeCategory)}` : `in ${t(activeCategory)}`}</span>}
-                      </p>
+                  <div className={`relative z-10 ${categoryHeader ? 'max-w-2xl xl:max-w-3xl' : ''}`}>
+                    <div className="text-[14px] text-white/70 mb-2.5 flex items-center gap-1.5 flex-wrap">
+                      <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a>
+                      <span>/</span>
                       {activeCategory !== 'Alle' && (
-                        <button
-                          type="button"
-                          onClick={() => handleCategoryChange('Alle')}
-                          className="inline-flex items-center gap-1.5 text-[12.5px] bg-white/15 hover:bg-white/25 text-white px-3 py-1 rounded-full backdrop-blur-xs transition-colors cursor-pointer border border-white/20"
-                        >
-                          <Building2 className="w-3 h-3 opacity-80" />
-                          <span>
-                            {searchQuery.trim() && globalMatchesCount > filteredBusinesses.length
-                              ? (lang === 'nl' ? `In alle categorieën zoeken (${globalMatchesCount})` : `In allen Kategorien suchen (${globalMatchesCount} Treffer)`)
-                              : (lang === 'nl' ? 'Alle categorieën bekijken' : 'Alle Kategorien anzeigen')}
-                          </span>
-                          <ArrowRight className="w-3 h-3 opacity-70" />
-                        </button>
+                        <>
+                          <a 
+                            href={getPath('/alle-unternehmen')} 
+                            onClick={(e) => { 
+                              e.preventDefault(); 
+                              handleCategoryChange('Alle');
+                              setSearchQuery('');
+                            }} 
+                            className="text-white/80 hover:text-white transition-colors"
+                          >
+                            {t("allCompanies")}
+                          </a>
+                          <span>/</span>
+                        </>
                       )}
+                      {activeGroup && activeGroup.name !== activeCategory && (
+                        <>
+                          <a 
+                            href={getPath(`/${encodeURIComponent(activeGroup.name)}`)} 
+                            onClick={(e) => { 
+                              e.preventDefault(); 
+                              handleCategoryChange(activeGroup.name);
+                              setSearchQuery('');
+                            }} 
+                            className="text-white/80 hover:text-white transition-colors"
+                          >
+                            {t(activeGroup.name)}
+                          </a>
+                          <span>/</span>
+                        </>
+                      )}
+                      <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
                     </div>
-                    <div className="flex items-center gap-2">
+
+                    {/* Sparkles Badge */}
+                    {categoryHeader && (
+                      <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-amber-300 mb-3 shadow-sm">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>{lang === 'nl' ? categoryHeader.badgeNl : categoryHeader.badgeDe}</span>
+                      </div>
+                    )}
+
+                    <h1 className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-bold m-0 mb-2 leading-tight">
+                      {activeCategory === 'Alle' 
+                        ? t("allCompanies") 
+                        : (categoryHeader && activeCategory === activeGroup?.name
+                            ? (lang === 'nl' ? (categoryHeader.titleNl || t(activeCategory)) : (categoryHeader.titleDe || t(activeCategory)))
+                            : t(activeCategory))}
+                    </h1>
+
+                    {/* Subtitle / Description */}
+                    {categoryHeader && (
+                      <p className="text-sm sm:text-base text-white/90 leading-relaxed mb-4">
+                        {lang === 'nl' ? categoryHeader.subtitleNl : categoryHeader.subtitleDe}
+                      </p>
+                    )}
+
+                    {/* Prominent Search Bar on Category Banner */}
+                    <div className="bg-white rounded-lg p-2 sm:p-2.5 flex flex-col md:flex-row gap-2 sm:gap-2.5 items-stretch md:items-center max-w-4xl shadow-2xl my-3 sm:my-4 text-[#1B211D]">
+                      <div className="flex items-center gap-2.5 sm:gap-3 w-full flex-1 min-w-0 px-3 relative">
+                        <Search className="w-5 h-5 text-gray-400 shrink-0" />
+                        <input 
+                          placeholder={
+                            activeCategory === 'Alle'
+                              ? (lang === 'nl' ? 'Bedrijf, product of dienst zoeken (bijv. schoenen, bakker, ski)...' : 'Unternehmen, Produkte oder Leistungen suchen (z. B. Schuhe, Bäcker, Ski)...')
+                              : (lang === 'nl' ? `In „${t(activeCategory)}" suchen (oder Kategorie wählen)...` : `In „${activeCategory}" suchen (oder Kategorie wählen)...`)
+                          }
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="border-none outline-none text-[15px] sm:text-base w-full py-2 text-gray-900 bg-transparent placeholder:text-gray-400"
+                        />
+                        {searchQuery && (
+                          <button
+                            type="button"
+                            onClick={() => setSearchQuery('')}
+                            className="text-gray-400 hover:text-gray-600 p-1 shrink-0 cursor-pointer"
+                            title={lang === 'nl' ? 'Wissen' : 'Löschen'}
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Category Selector Dropdown */}
+                      <select
+                        value={activeCategory}
+                        onChange={(e) => handleCategoryChange(e.target.value)}
+                        className="w-full md:w-auto md:w-[190px] shrink-0 border border-[#D5D0C5] rounded-md px-3 py-2.5 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
+                        title={lang === 'nl' ? 'Categorie kiezen' : 'Kategorie wählen'}
+                      >
+                        <option value="Alle">{lang === 'nl' ? '🌐 Alle categorieën' : '🌐 Alle Kategorien'}</option>
+                        {categories.map(c => (
+                          <optgroup key={c.name} label={t(c.name)}>
+                            <option value={c.name}>{lang === 'nl' ? `Alle in ${t(c.name)}` : `Alle in ${t(c.name)}`}</option>
+                            {c.subcategories.map(sub => (
+                              <option key={sub} value={sub}>&nbsp;&nbsp;{t(sub)}</option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </select>
+
+                      {/* Location Selector Dropdown */}
+                      <select
+                        value={activeLocation}
+                        onChange={(e) => {
+                          const loc = e.target.value;
+                          setActiveLocation(loc);
+                          const basePath = activeCategory !== 'Alle' 
+                            ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
+                            : '/alle-unternehmen';
+                          const url = getPath(basePath);
+                          window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
+                        }}
+                        className="w-full md:w-auto md:w-[160px] shrink-0 border border-[#D5D0C5] rounded-md px-3.5 py-2.5 text-[14px] font-medium text-[#1B211D] bg-[#EDE9E1] hover:bg-[#E5E0D6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer"
+                      >
+                        <option value="Alle">{t("allTowns")}</option>
+                        {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
+                          <option key={d} value={d}>{d}</option>
+                        ))}
+                      </select>
+
+                      {/* Search Button */}
                       <button
                         type="button"
-                        onClick={() => setOnlySundayOpenFilter(!onlySundayOpenFilter)}
-                        className={`inline-flex items-center gap-1.5 text-[12.5px] px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer border ${
-                          onlySundayOpenFilter 
-                            ? 'bg-amber-400 text-amber-950 border-amber-300 shadow-sm' 
-                            : 'bg-white/15 hover:bg-white/25 text-white border-white/20'
-                        }`}
-                        title={lang === 'nl' ? 'Toon alleen bedrijven die op zondag geopend zijn' : 'Nur Unternehmen anzeigen, die sonntags geöffnet haben'}
+                        onClick={() => {
+                          const resultsEl = document.getElementById('company-results-section');
+                          if (resultsEl) resultsEl.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="w-full md:w-auto shrink-0 bg-[#F2761B] hover:bg-[#D65F0C] text-white rounded-md px-6 py-2.5 font-bold transition-colors cursor-pointer shadow-sm text-[14.5px]"
                       >
-                        <Sun className="w-3.5 h-3.5" />
-                        <span>{lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}</span>
+                        {lang === 'nl' ? 'Zoeken' : 'Suchen'}
                       </button>
+                    </div>
 
-                      <div className="flex bg-white/12 rounded-md p-1">
-                        <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
-                        <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
+                    <div className="flex items-center justify-between flex-wrap gap-3 mt-3">
+                      <div className="flex items-center gap-2.5 flex-wrap">
+                        <p className="m-0 text-[15px] sm:text-[16px] text-white/80">
+                          {filteredBusinesses.length} {lang === 'nl' ? 'bedrijven gevonden' : 'Unternehmen gefunden'}
+                          {activeCategory !== 'Alle' && <span className="text-white/60"> {lang === 'nl' ? `in ${t(activeCategory)}` : `in ${t(activeCategory)}`}</span>}
+                        </p>
+                        {activeCategory !== 'Alle' && (
+                          <button
+                            type="button"
+                            onClick={() => handleCategoryChange('Alle')}
+                            className="inline-flex items-center gap-1.5 text-[12.5px] bg-white/15 hover:bg-white/25 text-white px-3 py-1 rounded-full backdrop-blur-xs transition-colors cursor-pointer border border-white/20"
+                          >
+                            <Building2 className="w-3 h-3 opacity-80" />
+                            <span>
+                              {searchQuery.trim() && globalMatchesCount > filteredBusinesses.length
+                                ? (lang === 'nl' ? `In alle categorieën zoeken (${globalMatchesCount})` : `In allen Kategorien suchen (${globalMatchesCount} Treffer)`)
+                                : (lang === 'nl' ? 'Alle categorieën bekijken' : 'Alle Kategorien anzeigen')}
+                            </span>
+                            <ArrowRight className="w-3 h-3 opacity-70" />
+                          </button>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setOnlySundayOpenFilter(!onlySundayOpenFilter)}
+                          className={`inline-flex items-center gap-1.5 text-[12.5px] px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer border ${
+                            onlySundayOpenFilter 
+                              ? 'bg-amber-400 text-amber-950 border-amber-300 shadow-sm' 
+                              : 'bg-white/15 hover:bg-white/25 text-white border-white/20'
+                          }`}
+                          title={lang === 'nl' ? 'Toon alleen bedrijven die op zondag geopend zijn' : 'Nur Unternehmen anzeigen, die sonntags geöffnet haben'}
+                        >
+                          <Sun className="w-3.5 h-3.5" />
+                          <span>{lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}</span>
+                        </button>
+
+                        <div className="flex bg-white/12 rounded-md p-1">
+                          <button type="button" onClick={() => setViewMode('list')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'list' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewList")}</button>
+                          <button type="button" onClick={() => setViewMode('map')} className={`border-none rounded px-3 py-1.5 text-[13px] font-semibold cursor-pointer ${viewMode === 'map' ? 'bg-white text-[#1B211D]' : 'bg-transparent text-white hover:bg-white/10'}`}>{t("viewMap")}</button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2986,7 +3050,8 @@ export default function App() {
                   customDividers={designSettings.customDividers}
                 />
               </div>
-            )}
+              );
+            })()}
 
             <div className={`w-full max-w-[1400px] mx-auto px-4 md:px-6 pt-[28px] pb-[80px] flex flex-col lg:flex-row gap-[24px] xl:gap-[30px] items-start ${(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode) ? 'hidden' : ''}`}>
             {/* Sidebar (Categories) */}

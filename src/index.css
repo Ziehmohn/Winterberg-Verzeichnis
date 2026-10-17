@@ -25,13 +25,15 @@
   animation: lock-shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
 }
 
-/* Weicher, nahtloser Verlauf für das Header-Bild ohne sichtbare Kanten */
+/* Weicher, nahtloser Verlauf für Header-Bilder ohne sichtbare Kanten */
+.hero-category-mask,
 .hero-shopping-mask {
   mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.4) 85%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.4) 85%, transparent 100%);
 }
 
 @media (min-width: 1024px) {
+  .hero-category-mask,
   .hero-shopping-mask {
     mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.15) 15%, rgba(0, 0, 0, 0.6) 35%, #000 65%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.15) 15%, rgba(0, 0, 0, 0.6) 35%, #000 65%);
