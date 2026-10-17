@@ -560,7 +560,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/hotels-en-accommodaties/campingplaetze</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/hotels-en-accommodaties/campings</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -692,7 +692,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/fleischerei</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/slagerijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -704,7 +704,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/baederstudios</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/badkamerstudios</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -716,7 +716,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/baumschulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/boomkwekerijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -740,7 +740,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/druckereien</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/drukkerijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -752,7 +752,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/maschinenbau</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/machinebouw</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -800,7 +800,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/drogerien</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/drogisterijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -812,7 +812,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/baumaerkte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/bouwmarkten</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -824,7 +824,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/blumengeschaefte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/bloemenwinkels</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -872,7 +872,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/feinkost-und-lebensmittel</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/delicatessen-en-levensmiddelen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -884,7 +884,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/maerkte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/markten</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -896,7 +896,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/gaststaettenbedarf</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/horecabenodigdheden</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -908,7 +908,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/baustoffe</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/bouwmaterialen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -932,7 +932,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/spielwaren</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/speelgoed</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -956,7 +956,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/kioske</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/kiosken</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -968,7 +968,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/telekommunikation</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/detailhandel/telecommunicatie</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1220,7 +1220,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/kindergaerten-und-kitas</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/kinderdagverblijven</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1232,7 +1232,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/schulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/scholen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1244,7 +1244,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/tagungszentren</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/conferentiecentra</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1256,7 +1256,19 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/soziale-dienste</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/sociale-diensten</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/die-besten/dienstleistungen/tourismus</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/dienstverlening/toerisme</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1496,7 +1508,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/gezondheid-en-geneeskunde/sanitaetshaeuser</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/gezondheid-en-geneeskunde/thuiszorgwinkels</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1508,7 +1520,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/gezondheid-en-geneeskunde/hoergeraeteakustiker</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/gezondheid-en-geneeskunde/audiciens</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1520,7 +1532,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/gezondheid-en-geneeskunde/optiker</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/gezondheid-en-geneeskunde/opticiens</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1580,7 +1592,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/mobiliteit-en-autos/fahrschulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/mobiliteit-en-autos/rijscholen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1664,7 +1676,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/vrije-tijd/sommerrodelbahnen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/vrije-tijd/rodelbanen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1736,7 +1748,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/campingplaetze</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/campings</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1868,7 +1880,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/fleischerei</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/slagerijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1880,7 +1892,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/baederstudios</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/badkamerstudios</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1892,7 +1904,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/baumschulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/boomkwekerijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1916,7 +1928,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/druckereien</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/drukkerijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1928,7 +1940,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/maschinenbau</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/machinebouw</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1976,7 +1988,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/drogerien</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/drogisterijen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1988,7 +2000,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/baumaerkte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmarkten</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2000,7 +2012,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/blumengeschaefte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bloemenwinkels</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2048,7 +2060,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/feinkost-und-lebensmittel</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/delicatessen-en-levensmiddelen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2060,7 +2072,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/maerkte</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/markten</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2072,7 +2084,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/gaststaettenbedarf</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/horecabenodigdheden</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2084,7 +2096,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/baustoffe</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmaterialen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2108,7 +2120,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/spielwaren</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/speelgoed</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2132,7 +2144,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/kioske</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/kiosken</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2144,7 +2156,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/telekommunikation</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/telecommunicatie</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2396,7 +2408,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/kindergaerten-und-kitas</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/kinderdagverblijven</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2408,7 +2420,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/schulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/scholen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2420,7 +2432,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/tagungszentren</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2432,7 +2444,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/soziale-dienste</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/sociale-diensten</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/toerisme</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2672,7 +2696,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/sanitaetshaeuser</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/thuiszorgwinkels</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2684,7 +2708,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/hoergeraeteakustiker</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/audiciens</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2696,7 +2720,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/opticiens</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2756,7 +2780,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/fahrschulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/rijscholen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2840,19 +2864,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/sommerrodelbahnen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/rodelbanen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/dienstleister/tourismus/winterberg-touristik-und-wirtschaft-gmbh</loc>
+    <loc>https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/dienstleister/tourismus/winterberg-touristik-und-wirtschaft-gmbh</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -2864,7 +2888,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/maerkte/wochenmarkt-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/markten/wochenmarkt-winterberg</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -5456,7 +5480,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/fleischerei/fleischerei-heinz-thomas-knieb</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/slagerijen/fleischerei-heinz-thomas-knieb</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5816,7 +5840,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/drogerien/dm-drogerie-markt</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/drogisterijen/dm-drogerie-markt</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5828,7 +5852,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/baumaerkte/luetteken-beschlaege-eisenwaren-gmbh</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmarkten/luetteken-beschlaege-eisenwaren-gmbh</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5840,7 +5864,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/baederstudios/pieper-bad</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/badkamerstudios/pieper-bad</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5852,7 +5876,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/blumengeschaefte/blatt-und-bluete</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bloemenwinkels/blatt-und-bluete</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5864,7 +5888,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/blumengeschaefte/blumenhandel-kleinsorge</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bloemenwinkels/blumenhandel-kleinsorge</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5876,7 +5900,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/baumschulen/kiessler-baumschulen</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/boomkwekerijen/kiessler-baumschulen</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5888,7 +5912,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/gaststaettenbedarf/steinruecke-felsengrund-inh-alexander-theine</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/horecabenodigdheden/steinruecke-felsengrund-inh-alexander-theine</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -5900,7 +5924,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/baustoffe/happe-bauzentrum-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmaterialen/happe-bauzentrum-winterberg</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6128,7 +6152,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/feinkost-und-lebensmittel/viertmann-s-obst-und-gemuesescheune</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/delicatessen-en-levensmiddelen/viertmann-s-obst-und-gemuesescheune</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6176,7 +6200,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/spielwaren/pfiffikus-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/speelgoed/pfiffikus-winterberg</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6716,7 +6740,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/tagungszentren/stadthalle-oversum</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/stadthalle-oversum</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6728,7 +6752,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmarkten/hagebau-kompakt-muellenhoff-winterberg</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6752,7 +6776,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/hoergeraeteakustiker/amplifon-hoergeraete-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/audiciens/amplifon-hoergeraete-winterberg</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6764,7 +6788,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker/see-you-by-vundk-optik-kuhnert-winterberg</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/opticiens/see-you-by-vundk-optik-kuhnert-winterberg</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -6776,7 +6800,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker/lu-brillenschmiede</loc>
+    <loc>https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/opticiens/lu-brillenschmiede</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

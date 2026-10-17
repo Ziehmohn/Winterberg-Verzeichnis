@@ -228,7 +228,7 @@ export default function App() {
             initialBestOfCategory = catName;
             if (pathParts[2]) {
               const decodedPart3 = decodeURIComponent(pathParts[2]);
-              const subName = findSubcategoryFromSlug(decodedPart3) || categories.find(c => c.name === catName)?.subcategories.find(s => s.toLowerCase() === decodedPart3.toLowerCase());
+              const subName = findSubcategoryFromSlug(decodedPart3) || categories.find(c => c.name === catName)?.subcategories.find(s => s.toLowerCase() === decodedPart3.toLowerCase() || slugify(s) === decodedPart3.toLowerCase());
               if (subName) {
                 initialBestOfSubcategory = subName;
               }
@@ -299,7 +299,7 @@ export default function App() {
           
           if (pathParts[1]) {
             const decodedPart2 = decodeURIComponent(pathParts[1]);
-            const subName = findSubcategoryFromSlug(decodedPart2) || catGroup?.subcategories.find(s => s.toLowerCase() === decodedPart2.toLowerCase());
+            const subName = findSubcategoryFromSlug(decodedPart2) || catGroup?.subcategories.find(s => s.toLowerCase() === decodedPart2.toLowerCase() || slugify(s) === decodedPart2.toLowerCase());
             
             if (subName) {
               defaultCategory = subName;

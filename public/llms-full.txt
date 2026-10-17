@@ -90,6 +90,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Hotels und Unterkünfte > Hotels
 - **Ort / Ortsteil:** Altastenberg
 - **Adresse:** Astenstraße 5, 59955 Winterberg-Altastenberg
+- **Beschreibung (DE):** Das Hotel Altastenberg im höchstgelegenen Höhendorf des Sauerlands bietet gemütliche Zimmer und familiäre Gastfreundschaft. Mit direkter Nähe zu Wanderwegen, Loipen und dem Skikarussell Altastenberg ist es eine ideale Unterkunft für Erholungssuchende und Aktivurlauber.
+- **Beschreibung (NL):** Hotel Altastenberg in het hoogstgelegen bergdorp van het Sauerland biedt comfortabele kamers en een gastvrije sfeer, ideaal voor wandelaars en wintersporters vlak bij het skigebied.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-altastenberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-altastenberg
 
@@ -982,7 +984,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 1636
 - **Beschreibung (DE):** Traditionelle Handwerksfleischerei in Winterberg-Siedlinghausen mit meisterhaften Fleisch- und Wurstwaren aus eigener Herstellung, hausgemachten Spezialitäten sowie 24/7 Grillfleisch- & Wurstautomat vor dem Geschäft.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-heinz-thomas-knieb
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/fleischerei/fleischerei-heinz-thomas-knieb
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/slagerijen/fleischerei-heinz-thomas-knieb
 
 #### [Pieper Bad](https://www.winterberg-verzeichnis.de/handwerk/baederstudios/pieper-bad)
 - **Kategorie:** Handwerk > Bäderstudios
@@ -991,7 +993,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 606
 - **Beschreibung (DE):** Ihr professionelles Bäderstudio in Winterberg-Siedlinghausen für moderne Badgestaltung, Planung und Installation.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/baederstudios/pieper-bad
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/baederstudios/pieper-bad
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/badkamerstudios/pieper-bad
 
 #### [Kießler Baumschulen](https://www.winterberg-verzeichnis.de/handwerk/baumschulen/kiessler-baumschulen)
 - **Kategorie:** Handwerk > Baumschulen
@@ -1000,7 +1002,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02985 97580
 - **Beschreibung (DE):** Baumschule Kießler in Winterberg. Umfangreiches Sortiment an Gehölzen, Heckenpflanzen und Stauden für Ihre Gartengestaltung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/baumschulen/kiessler-baumschulen
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/baumschulen/kiessler-baumschulen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/boomkwekerijen/kiessler-baumschulen
 
 #### [Borgschulte Friseur by W & O Schmidt](https://www.winterberg-verzeichnis.de/handwerk/friseur/borgschulte-friseur-by-w-und-o-schmidt)
 - **Kategorie:** Handwerk > Friseur
@@ -1044,7 +1046,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Jeden Samstag von 9 bis 14 Uhr treffen sich Markthändler, Einheimische sowie Touristen auf dem Wochenmarkt in Winterberg. Der Marktplatz an der Unteren Pforte lädt zum gemütlichen Bummeln mit der Familie und Freunden ein. Stöbern Sie nach Waren aller Art! Ob knackiges Obst und Gemüse, leckere Südfrüchte, frischer Fisch, Textilien und Lederwaren oder Holzartikel – hier bleiben wenig Wünsche offen! Verköstigt werden Sie am Imbiss mit feinen Suppen, Bratwürsten und anderen Leckereien. Besuchen Sie den Wochenmarkt in Winterberg und treffen Sie auf altbekannte und neue Gesichter!
 - **Status:** Verifizierter Premium-Eintrag
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/maerkte/wochenmarkt-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/markten/wochenmarkt-winterberg
 
 #### [REWE](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/rewe)
 - **Kategorie:** Einzelhandel > Supermarkt
@@ -1210,7 +1212,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://dm.de
 - **Beschreibung (DE):** Dein dm-drogerie markt in Winterberg bietet ein umfangreiches Sortiment an Kosmetik, Pflegeprodukten, Bio-Lebensmitteln und Haushaltswaren.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/drogerien/dm-drogerie-markt
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/drogerien/dm-drogerie-markt
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/drogisterijen/dm-drogerie-markt
 
 #### [LÜTTEKEN Beschläge + Eisenwaren GmbH](https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/luetteken-beschlaege-eisenwaren-gmbh)
 - **Kategorie:** Einzelhandel > Baumärkte
@@ -1220,7 +1222,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Webseite:** https://www.luetteken.de
 - **Beschreibung (DE):** Ihr zuverlässiger Baumarkt und Fachhandel für Beschläge, Eisenwaren, Werkzeuge und Maschinen in Winterberg-Siedlinghausen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/luetteken-beschlaege-eisenwaren-gmbh
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/baumaerkte/luetteken-beschlaege-eisenwaren-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmarkten/luetteken-beschlaege-eisenwaren-gmbh
 
 #### [Blatt & Blüte](https://www.winterberg-verzeichnis.de/einzelhandel/blumengeschaefte/blatt-und-bluete)
 - **Kategorie:** Einzelhandel > Blumengeschäfte
@@ -1229,7 +1231,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 6889777
 - **Beschreibung (DE):** Blumengeschäft in Winterberg mit frischen Schnittblumen, kreativer Floristik für jeden Anlass und liebevoll gestalteten Arrangements.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/blumengeschaefte/blatt-und-bluete
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/blumengeschaefte/blatt-und-bluete
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bloemenwinkels/blatt-und-bluete
 
 #### [Blumenhandel Kleinsorge](https://www.winterberg-verzeichnis.de/einzelhandel/blumengeschaefte/blumenhandel-kleinsorge)
 - **Kategorie:** Einzelhandel > Blumengeschäfte
@@ -1238,7 +1240,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 9699818
 - **Beschreibung (DE):** Blumenhandel Kleinsorge – Ihr Floristikfachgeschäft in Winterberg für Blumen, Pflanzen und Dekoration.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/blumengeschaefte/blumenhandel-kleinsorge
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/blumengeschaefte/blumenhandel-kleinsorge
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bloemenwinkels/blumenhandel-kleinsorge
 
 #### [Steinrücke Felsengrund - Inh. Alexander Theine](https://www.winterberg-verzeichnis.de/einzelhandel/gaststaettenbedarf/steinruecke-felsengrund-inh-alexander-theine)
 - **Kategorie:** Einzelhandel > Gaststättenbedarf
@@ -1247,7 +1249,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 97020
 - **Beschreibung (DE):** Groß- und Einzelhandel für Gaststättenbedarf in Winterberg. Alles für Hotel, Gastronomie und Catering.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/gaststaettenbedarf/steinruecke-felsengrund-inh-alexander-theine
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/gaststaettenbedarf/steinruecke-felsengrund-inh-alexander-theine
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/horecabenodigdheden/steinruecke-felsengrund-inh-alexander-theine
 
 #### [HAPPE Bauzentrum Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/baustoffe/happe-bauzentrum-winterberg)
 - **Kategorie:** Einzelhandel > Baustoffe
@@ -1256,7 +1258,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02983 97030
 - **Beschreibung (DE):** Baustoffhandel in Winterberg-Siedlinghausen. Alles für Bau, Renovierung und Gartengestaltung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/baustoffe/happe-bauzentrum-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/baustoffe/happe-bauzentrum-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmaterialen/happe-bauzentrum-winterberg
 
 #### [Herrenausstatter Christian Leisse](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/herrenausstatter-christian-leisse)
 - **Kategorie:** Einzelhandel > Bekleidung
@@ -1311,7 +1313,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02985 908676
 - **Beschreibung (DE):** Obst- und Gemüsehandel in Niedersfeld mit frischen und regionalen Produkten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/feinkost-und-lebensmittel/viertmann-s-obst-und-gemuesescheune
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/feinkost-und-lebensmittel/viertmann-s-obst-und-gemuesescheune
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/delicatessen-en-levensmiddelen/viertmann-s-obst-und-gemuesescheune
 
 #### [Pfiffikus Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/spielwaren/pfiffikus-winterberg)
 - **Kategorie:** Einzelhandel > Spielwaren
@@ -1322,7 +1324,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Beliebtes Fachgeschäft für Spielwaren, Kinderspiele und Geschenke im Herzen von Winterberg. Großes Sortiment an LEGO, Playmobil, Holzspielzeug, Puzzles, Büchern und Gesellschaftsspielen mit persönlicher Beratung.
 - **Beschreibung (NL):** Populaire speciaalzaak voor speelgoed, kinderspellen en cadeaus in het hart van Winterberg. Ruim assortiment LEGO, Playmobil, houten speelgoed, puzzels en gezelschapsspellen met deskundig advies.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/spielwaren/pfiffikus-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/spielwaren/pfiffikus-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/speelgoed/pfiffikus-winterberg
 
 #### [Parfümerie Becker GmbH](https://www.winterberg-verzeichnis.de/einzelhandel/parfuemerie/parfuemerie-becker-gmbh)
 - **Kategorie:** Einzelhandel > Parfümerie
@@ -1398,7 +1400,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Der hagebau kompakt Markt Müllenhoff an der Remmeswiese 23 in Winterberg ist als höchstgelegener Baumarkt Nordrhein-Westfalens die erste Adresse für Heimwerker, Gärtner und Handwerker in der Ferienregion. Auf moderner Verkaufsfläche bietet das Fachzentrum ein breites Sortiment an Qualitätswerkzeugen, Eisenwaren, Elektro- und Sanitärinstallation, Farben samt individuellem Farbmischservice sowie Baustoffen und Holz mit Holzzuschnitt. Ergänzt wird das Portfolio durch Gartenbedarf, Pflanzenschutz, Schärf- und Schlüsseldienst, Mietgeräteverleih sowie einen bequemen Abhol- und Lieferservice.
 - **Beschreibung (NL):** hagebau kompakt Müllenhoff aan de Remmeswiese 23 in Winterberg is de hoogstgelegen bouwmarkt van Noordrijn-Westfalen en hét adres voor doe-het-zelvers, tuiniers en vaklieden. Het assortiment omvat professioneel gereedschap, ijzerwaren, sanitair, elektra, verf met mengservice, bouwmaterialen en houtzagerij. Daarnaast biedt de vestiging deskundig advies, machineverhuur, sleutelservice en een betrouwbare afhaal- en bezorgdienst.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmarkten/hagebau-kompakt-muellenhoff-winterberg
 
 #### [Insider Fashion Store (Precious)](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/insider-fashion-store-precious)
 - **Kategorie:** Einzelhandel > Bekleidung
@@ -1685,6 +1687,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Hauptstraße 32, 59955 Winterberg
 - **Telefon:** 0171 9059652
+- **Beschreibung (DE):** Das Pfälzer Weinlädchen an der Hauptstraße in Winterberg lädt Weinliebhaber zu erlesenen Weinen direkt von traditionsreichen Pfälzer Winzern ein. In gemütlicher Weinstuben-Atmosphäre werden fachkundige Beratung, Weinproben und ein vielfältiges Sortiment für Genießer geboten.
+- **Beschreibung (NL):** Pfälzer Weinlädchen aan de Hauptstraße in Winterberg verwelkomt wijnliefhebbers met kwaliteitswijnen rechtstreeks van traditionele wijnboeren uit de Pfalz. In een sfeervol wijnlokaal worden deskundig advies en wijnproeverijen aangeboden.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/weinstuben/weinlaedchen-pfaelzer
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/wijnlokalen/weinlaedchen-pfaelzer
 
@@ -1693,6 +1697,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 16, 59955 Winterberg
 - **Telefon:** 02981 5089640
+- **Beschreibung (DE):** Wineland am Waltenberg in Winterberg verbindet eine stilvolle Weinbar mit einem ausgewählten Weinfachhandel. Gäste genießen internationale und deutsche Weine, feine Spirituosen und kleine kulinarische Köstlichkeiten im Herzen von Winterberg.
+- **Beschreibung (NL):** Wineland aan de Waltenberg in Winterberg combineert een stijlvolle wijnbar met een geselecteerde wijnwinkel. Bezoekers genieten van internationale en Duitse wijnen, fijne likeuren en culinaire hapjes in het hart van Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/weinstuben/wineland
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/wijnlokalen/wineland
 
@@ -1700,6 +1706,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Neuastenberg
 - **Adresse:** Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg
+- **Beschreibung (DE):** Der traditionsreiche Hotel Gasthof zur Post in Neuastenberg serviert bodenständige Sauerländer Spezialitäten und saisonale Gerichte in gemütlich-rustikalem Ambiente. Nahe dem Skigebiet Postwiese ist der Gasthof ein beliebter Einkehrort für Urlauber, Wintersportler und Wanderer.
+- **Beschreibung (NL):** Hotel Gasthof zur Post in Neuastenberg serveert traditionele Sauerlandse specialiteiten en seizoensgebonden gerechten in een sfeervolle, rustieke ambiance. Gelegen bij het skigebied Postwiese is het gasthof een populair adres voor wandelaars en wintersporters.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/hotel-gasthof-zur-post-neuastenberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/hotel-gasthof-zur-post-neuastenberg
 
@@ -1709,6 +1717,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Adresse:** Renauweg 48, 59955 Winterberg-Altastenberg
 - **Telefon:** 02981 92410
 - **Webseite:** https://hotel-clemens.de
+- **Beschreibung (DE):** Das Restaurant Clemens im Höhenluftkurort Altastenberg verwöhnt seine Gäste mit feiner regionaler Küche, herzhaften Klassikern und hausgemachten Sauerländer Spezialitäten. Die einladende Gaststube und die persönliche Gastfreundschaft machen jeden Besuch zu einem genussvollen Erlebnis.
+- **Beschreibung (NL):** Restaurant Clemens in het bergdorp Altastenberg verwent gasten met fijne regionale gerechten, klassiekers en huisgemaakte Sauerlandse specialiteiten in een gastvrije en gezellige bergsfeer.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-clemens-altastenberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/restaurant-clemens-altastenberg
 
@@ -1727,6 +1737,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Remmeswiese 10, 59955 Winterberg
 - **Webseite:** https://wiesenwirt.de
+- **Beschreibung (DE):** Die Skihütte und Schirmbar Alm Salettl an der Remmeswiese in Winterberg ist ein beliebter Treffpunkt direkt an den Skipisten des Skiliftkarussells. Wintersportler und Ausflügler genießen deftige Hüttengerichte, heiße Getränke und mitreißende Après-Ski-Stimmung.
+- **Beschreibung (NL):** Skihütte und Schirmbar Alm Salettl aan de Remmeswiese in Winterberg is een populaire ontmoetingsplek direct aan de pistes van de Skiliftkarussell met warme maaltijden, drankjes en gezellige après-ski.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/skihuette-und-schirmbar-alm-salettl
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/skihuette-und-schirmbar-alm-salettl
 
@@ -1735,6 +1747,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 69, 59955 Winterberg
 - **Telefon:** 02981 9320
+- **Beschreibung (DE):** Die Skihütte Der Brabander liegt direkt am Fuße der Pisten am Herrloh in Winterberg. Mit großzügiger Sonnenterrasse, holländischen und sauerländischen Spezialitäten sowie bester Après-Ski-Atmosphäre gehört sie zu den bekanntesten Einkehrstationen der Region.
+- **Beschreibung (NL):** Skihütte Der Brabander ligt direct aan de voet van de pistes bij de Herrloh in Winterberg. Met een groot zonneterras, Nederlandse en Sauerlandse gerechten en levendige après-ski is dit een van de bekendste trekpleisters.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/skihuette-der-brabander
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/skihuette-der-brabander
 
@@ -1772,6 +1786,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Skihütten
 - **Ort / Ortsteil:** Neuastenberg
 - **Adresse:** Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg
+- **Beschreibung (DE):** Die Schirmbar Postwiese in Neuastenberg ist der zentrale Treffpunkt für Skifahrer, Snowboarder und Rodelfans im Skigebiet Postwiese. Bei heißem Glühwein, kühlen Drinks und bester Stimmung lädt die Schirmbar zum perfekten Einkehrschwung und Après-Ski ein.
+- **Beschreibung (NL):** Schirmbar Postwiese in Neuastenberg is het centrale ontmoetingspunt voor skiërs, snowboarders en rodelplezier in het skigebied Postwiese. Met warme glühwein, drankjes en levendige après-ski is dit het ideale adres na een dag op de piste.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schirmbar-postwiese
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/schirmbar-postwiese
 
@@ -1987,6 +2003,18 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/mcdonald-s-winterberg
 
 ### Kategorie: Dienstleistungen
+
+#### [Winterberg Touristik und Wirtschaft GmbH](https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh)
+- **Kategorie:** Dienstleistungen > Tourismus
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Kurpark 4, 59955 Winterberg
+- **Telefon:** 02981 92500
+- **Webseite:** https://www.winterberg.de
+- **Beschreibung (DE):** Die Winterberg Touristik und Wirtschaft GmbH ist die offizielle Anlaufstelle für Gäste und Einheimische in der Ferienwelt Winterberg. Als Tochterunternehmen der Stadt bündelt sie die Förderung von Tourismus, lokaler Wirtschaft, Sport und Kultur.
+- **Beschreibung (NL):** Winterberg Touristik und Wirtschaft GmbH is het officiële aanspreekpunt voor bezoekers en inwoners in Winterberg. Als dochteronderneming van de gemeente bevordert zij toerisme, lokale economie, sport en cultuur.
+- **Status:** Verifizierter Premium-Eintrag
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh
 
 #### [CEB-Steuerberater](https://www.winterberg-verzeichnis.de/dienstleistungen/steuerberater/ceb-steuerberater)
 - **Kategorie:** Dienstleistungen > Steuerberater
@@ -2430,7 +2458,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Die Stadthalle Oversum ist das zentrale Veranstaltungs- und Kongresszentrum der Stadt Winterberg im architektonisch einzigartigen Gebäudeensemble am Kurpark. Austragungsort für Konzerte, Tagungen, Theater, Messen und gesellschaftliche Events mit modernster Veranstaltungstechnik.
 - **Beschreibung (NL):** De Stadthalle Oversum is het centrale evenementen- en congrescentrum van Winterberg, gelegen in het markante gebouw aan het kuurpark. Locatie voor concerten, congressen, beurzen en culturele bijeenkomsten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/stadthalle-oversum
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/tagungszentren/stadthalle-oversum
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/stadthalle-oversum
 
 #### [Cowolo](https://www.winterberg-verzeichnis.de/dienstleistungen/coworking-space/cowolo)
 - **Kategorie:** Dienstleistungen > Coworking Space
@@ -3000,7 +3028,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Amplifon Hörgeräte am Waltenberg 10 in Winterberg ist das Fachzentrum für gutes Hören und moderne Hörakustik. Das Team bietet kostenlose professionelle Hörtests, unverbindliches Probetragen modernster Hörgeräte führender Markenhersteller, maßgefertigten Gehörschutz sowie umfassende Beratung zu Zubehör und Kassenleistungen. Ergänzt wird der Service durch regelmäßige Reinigung, Wartung und Reparaturen.
 - **Beschreibung (NL):** Amplifon Hörgeräte aan de Waltenberg 10 in Winterberg is hét expertisecentrum voor beter horen en moderne audiologie. De vestiging biedt gratis gehoortesten, proefperiodes voor innovatieve hoortoestellen, gehoorbescherming op maat en deskundig onderhoud.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/hoergeraeteakustiker/amplifon-hoergeraete-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/hoergeraeteakustiker/amplifon-hoergeraete-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/audiciens/amplifon-hoergeraete-winterberg
 
 #### [See you by V&K Optik Kuhnert Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg)
 - **Kategorie:** Gesundheit & Medizin > Optiker
@@ -3009,7 +3037,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 929986
 - **Beschreibung (DE):** Augenoptikergeschäft in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker/see-you-by-vundk-optik-kuhnert-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/opticiens/see-you-by-vundk-optik-kuhnert-winterberg
 
 #### [Lu Brillenschmiede](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/lu-brillenschmiede)
 - **Kategorie:** Gesundheit & Medizin > Optiker
@@ -3018,7 +3046,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Telefon:** 02981 908666
 - **Beschreibung (DE):** Augenoptikergeschäft in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/lu-brillenschmiede
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/optiker/lu-brillenschmiede
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/opticiens/lu-brillenschmiede
 
 ### Kategorie: Mobilität & KFZ
 

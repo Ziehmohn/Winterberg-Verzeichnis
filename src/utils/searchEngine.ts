@@ -216,7 +216,19 @@ const DOMAIN_SYNONYMS: Record<string, string[]> = {
   'it-service': ['it-service', 'it service', 'systemhaus', 'great oak', 'edv', 'netzwerk', 'computer'],
   'datev': ['datev', 'kanzlei', 'steuerberater', 'great oak', 'systemhaus', 'software'],
   'netzwerk': ['netzwerk', 'netzwerktechnik', 'wlan', 'firewall', 'great oak', 'systemhaus', 'it'],
-  'edv': ['edv', 'it', 'systemhaus', 'computer', 'great oak', 'netzwerk']
+  'edv': ['edv', 'it', 'systemhaus', 'computer', 'great oak', 'netzwerk'],
+
+  // Baumarkt / Heimwerker / Baustoffe
+  'baumarkt': ['baumarkt', 'baumärkte', 'hagebau', 'hagebaumarkt', 'müllenhoff', 'eisenwaren', 'werkzeug', 'baustoffe', 'heimwerker', 'gartencenter', 'bouwmarkt', 'bouwmarkten'],
+  'hagebau': ['hagebau', 'hagebaumarkt', 'baumarkt', 'baumärkte', 'müllenhoff', 'heimwerker', 'werkzeug', 'baustoffe', 'gartencenter', 'farben', 'bouwmarkt'],
+  'hagebaumarkt': ['hagebau', 'hagebaumarkt', 'baumarkt', 'baumärkte', 'müllenhoff', 'heimwerker', 'werkzeug', 'baustoffe', 'gartencenter', 'bouwmarkt'],
+  'müllenhoff': ['müllenhoff', 'muellenhoff', 'hagebau', 'baumarkt', 'dachdecker', 'bedachung'],
+  'muellenhoff': ['müllenhoff', 'muellenhoff', 'hagebau', 'baumarkt', 'dachdecker', 'bedachung'],
+  'werkzeug': ['werkzeug', 'werkzeuge', 'baumarkt', 'hagebau', 'eisenwaren', 'heimwerker', 'lütteken', 'gereedschap'],
+  'baustoffe': ['baustoffe', 'baustoff', 'baumaterial', 'baumarkt', 'happe', 'bauzentrum', 'hagebau'],
+  'eisenwaren': ['eisenwaren', 'beschläge', 'werkzeug', 'schrauben', 'nägel', 'lütteken', 'hagebau', 'baumarkt'],
+  'drogerie': ['drogerie', 'drogeriemarkt', 'dm', 'rossmann', 'parfümerie', 'kosmetik', 'pflege', 'drogisterij'],
+  'tourismus': ['tourismus', 'tourist-information', 'touristik', 'wirtschaft', 'winterberg touristik', 'kurpark', 'gästeberatung', 'urlaub']
 };
 
 // Fallback category domains when ONLY an action verb is queried without any subject
