@@ -3,8 +3,8 @@ export interface CategoryHeaderData {
   imageAltDe: string;
   imageAltNl: string;
   credit?: string;
-  badgeDe: string;
-  badgeNl: string;
+  badgeDe?: string;
+  badgeNl?: string;
   titleDe?: string;
   titleNl?: string;
   subtitleDe: string;

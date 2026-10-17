@@ -2838,30 +2838,30 @@ export default function App() {
 
               return (
               <div className="w-full bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] text-white relative overflow-hidden">
-                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 py-[32px] sm:py-[38px] pb-[36px] sm:pb-[42px] relative">
-                  {/* Hero Image (Desktop: absolut rechts mit weichem horizontalem Mask-Fade, Mobile: oben im Banner mit weichem Verlauf nach unten) */}
-                  {categoryHeader && (
-                    <figure className="relative -mx-4 sm:-mx-6 -mt-[32px] sm:-mt-[38px] mb-6 lg:m-0 lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-[48%] xl:w-[46%] h-52 sm:h-64 lg:h-full z-0 overflow-hidden pointer-events-none">
-                      <img
-                        src={categoryHeader.image}
-                        alt={lang === 'nl' ? categoryHeader.imageAltNl : categoryHeader.imageAltDe}
-                        width={1600}
-                        height={1067}
-                        fetchPriority="high"
-                        decoding="async"
-                        className="w-full h-full object-cover hero-category-mask"
-                        style={{ objectPosition: categoryHeader.objectPosition || 'center' }}
-                      />
-                      {categoryHeader.credit && (
-                        <figcaption className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 text-[10px] leading-none text-white/85 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-md z-10 pointer-events-none">
-                          {categoryHeader.credit}
-                        </figcaption>
-                      )}
-                    </figure>
-                  )}
+                {/* Hero Image (Geht bis an den rechten Rand und über die volle Höhe durch, damit der ShapeDivider das Bild am unteren Rand sauber abschrägt) */}
+                {categoryHeader && (
+                  <figure className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 w-full lg:w-[50%] xl:w-[47%] 2xl:w-[44%] h-64 sm:h-80 lg:h-full m-0 z-0 overflow-hidden pointer-events-none">
+                    <img
+                      src={categoryHeader.image}
+                      alt={lang === 'nl' ? categoryHeader.imageAltNl : categoryHeader.imageAltDe}
+                      width={1600}
+                      height={1067}
+                      fetchPriority="high"
+                      decoding="async"
+                      className="w-full h-full object-cover hero-category-mask"
+                      style={{ objectPosition: categoryHeader.objectPosition || 'center' }}
+                    />
+                    {categoryHeader.credit && (
+                      <figcaption className="absolute top-3 right-3 lg:top-4 lg:right-6 text-[10px] leading-none text-white/85 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-md z-10 pointer-events-none">
+                        {categoryHeader.credit}
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
 
-                  <div className={`relative z-10 ${categoryHeader ? 'max-w-2xl xl:max-w-3xl' : ''}`}>
-                    <div className="text-[14px] text-white/70 mb-2.5 flex items-center gap-1.5 flex-wrap">
+                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 lg:pt-16 pb-20 sm:pb-24 lg:pb-28 relative z-10">
+                  <div className={`relative ${categoryHeader ? 'max-w-2xl xl:max-w-3xl' : ''}`}>
+                    <div className="text-[13.5px] text-white/75 mb-3 flex items-center gap-1.5 flex-wrap">
                       <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a>
                       <span>/</span>
                       {activeCategory !== 'Alle' && (
@@ -2899,15 +2899,7 @@ export default function App() {
                       <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
                     </div>
 
-                    {/* Sparkles Badge */}
-                    {categoryHeader && (
-                      <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-amber-300 mb-3 shadow-sm">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>{lang === 'nl' ? categoryHeader.badgeNl : categoryHeader.badgeDe}</span>
-                      </div>
-                    )}
-
-                    <h1 className="font-display text-[28px] sm:text-[36px] md:text-[44px] font-bold m-0 mb-2 leading-tight">
+                    <h1 className="font-display text-[30px] sm:text-[40px] md:text-[48px] font-bold m-0 mb-3 leading-tight tracking-tight">
                       {activeCategory === 'Alle' 
                         ? t("allCompanies") 
                         : (categoryHeader && activeCategory === activeGroup?.name
@@ -2917,7 +2909,7 @@ export default function App() {
 
                     {/* Subtitle / Description */}
                     {categoryHeader && (
-                      <p className="text-sm sm:text-base text-white/90 leading-relaxed mb-4">
+                      <p className="text-sm sm:text-base md:text-[16.5px] text-white/90 leading-relaxed mb-6 max-w-2xl">
                         {lang === 'nl' ? categoryHeader.subtitleNl : categoryHeader.subtitleDe}
                       </p>
                     )}
