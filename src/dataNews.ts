@@ -2,6 +2,90 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: 'skisaison-winterberg-start-27-november-2026',
+    slug: 'skisaison-winterberg-start-27-november-2026',
+    slug_nl: 'skiseizoen-winterberg-opening-27-november-2026',
+    title: 'Früher Start in den Winter: Erste Lifte in Winterberg sollen bereits am 27. November öffnen',
+    title_nl: 'Vroege start van de winter: Eerste skiliften in Winterberg gaan al op 27 november open',
+    author: 'Simon Kräling',
+    businessId: 'skiliftkarussell-winterberg',
+    businessName: 'Skiliftkarussell Winterberg',
+    businessSlug: 'pistenbericht',
+    imageUrl: '/news-skisaison-winterberg-eroeffnung.jpg',
+    imageCredit: 'Foto: Tuxyso / Wikimedia Commons (CC BY-SA 4.0)',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-17T08:00:00.000Z',
+    content: `Wintersportfreunde dürfen sich den Termin im Kalender rot anstreichen: Im Skiliftkarussell Winterberg sollen die ersten Liftanlagen bereits am **Freitag, den 27. November 2026**, ihren Betrieb aufnehmen. Damit startet die beliebte Wintersport-Destination im Sauerland wieder mit einem besonders frühen Saisonauftakt in den Winter.
+
+Für diesen frühen Start planen die Liftbetreiber zunächst mit einem kompakten Angebot von **bis zu sechs Pistenkilometern**. Wintersportler können sich somit schon Ende November auf die ersten Schwünge der neuen Saison freuen.
+
+## Allwetter-Schneeerzeuger machen frühen Auftakt möglich
+
+Die technische Grundlage für den geplanten Auftakt bilden moderne, wetterunabhängige **Allwetter-Schneeerzeuger**. Im Gegensatz zu klassischen Schneekanonen, die zwingend Minustemperaturen benötigen, können diese geschlossenen Kühlsysteme bereits bei Plustemperaturen hochwertigen Maschinenschnee erzeugen und ein stabiles Schneeband auf den Hauptpisten vorbereiten.
+
+Ob und wie zügig in den darauffolgenden Wochen weitere Pisten und Lifte hinzukommen, entscheidet die Witterung:
+* **Voraussetzung für die Piste:** Für die professionelle Präparierung einer gut befahrbaren Abfahrt werden nach offiziellen Angaben der Wintersport-Arena rund **30 Zentimeter kompakter Schnee** benötigt.
+* **Wetterabhängige Erweiterung:** Sobald dauerhafte Frostperioden eintreffen, kommen die klassischen Beschneiungsanlagen im gesamten Skigebiet zum Einsatz, um das Pistennetz sukzessive auf das volle Angebot von 27,5 Kilometern zu erweitern.
+
+## Aktuelle Schneehöhen, geöffnete Lifte & Webcams
+
+Damit Skifahrer und Snowboarder vor der Anreise stets bestens informiert sind, bietet unser Verzeichnis einen täglich gepflegten Überblick über alle Skigebiete rund um Winterberg:
+
+* **Lift- & Pistenstatus:** Geöffnete Sesselbahnen, Schlepplifte und befahrbare Pistenkilometer
+* **Schneehöhen:** Aktuelle Messwerte von Berg und Tal sowie Schnee-Beschaffenheit
+* **Flutlicht & Abendfahren:** Termine und Zeiten für das beliebte Flutlicht-Skifahren
+* **Live-Webcams:** 360°-Panoramen und HD-Cams vom Poppenberg, Bremberg, Kappe und Kahlen Asten
+
+* **Skiliftkarussell Winterberg**
+  Größtes zusammenhängendes Skigebiet der Wintersport-Arena Sauerland.
+  * [Live-Pistenbericht & Schneebericht im Verzeichnis aufrufen](/pistenbericht)
+
+:::tip
+### Pisteninfo & Saisonvorbereitung
+Planen Sie Ihren Skitag in Winterberg bequem vorab:
+
+* **Saisonstart:** Geplant ab Freitag, 27. November 2026 (zunächst bis zu 6 Pistenkilometer)
+* **Live-Pistendaten:** Aktueller Lift- und Schneestatus unter [Pistenbericht & Webcams](/pistenbericht)
+* **Tickets & Skipässe:** Online im Vorverkauf über [skiliftkarussell.de](https://www.skiliftkarussell.de) erhältlich
+* **Webcam-Check:** Prüfen Sie die Pistenverhältnisse vor der Abfahrt live in unserem [Webcam-Portal](/pistenbericht#webcams)
+:::`,
+    content_nl: `Wintersportliefhebbers kunnen alvast een datum in hun agenda noteren: in de Skiliftkarussell Winterberg gaan de eerste skiliften naar verwachting al op **vrijdag 27 november 2026** draaien. Daarmee maakt de populairste wintersportbestemming van het Sauerland zich op voor een bijzonder vroege start van het nieuwe skiseizoen.
+
+Voor deze vroege opening rekenen de pistebeheerders in eerste instantie op een compact aanbod van **maximaal zes pistekilometers**. Skiërs en snowboarders kunnen zo eind november al hun eerste bochten van de winter maken.
+
+## Allwetter-sneeuwmachines maken vroege seizoensstart mogelijk
+
+Het fundament onder deze vroege start wordt gevormd door moderne, weerbestendige **allwetter-sneeuwkanonnen**. In tegenstelling tot klassieke sneeuwkanonnen die temperaturen onder het vriespunt vereisen, kunnen deze geavanceerde koelsystemen ook bij temperaturen boven nul betrouwbaar sneeuw produceren en een solide basislaag op de hoofdpistes leggen.
+
+Hoe snel er na 27 november meer afdalingen en skiliften worden geopend, hangt af van het weer:
+* **Vereiste sneeuwdikte:** Voor het prepareren van een kwalitatieve piste is volgens opgave van de Wintersport-Arena circa **30 centimeter compacte sneeuw** noodzakelijk.
+* **Weersafhankelijke uitbreiding:** Zodra aanhoudende vorst zijn intrede doet, schakelen de traditionele sneeuwkanonnen in het gehele skigebied bij om het netwerk stapsgewijs uit te breiden naar het volledige aanbod van 27,5 kilometer aan pistes.
+
+## Actuele sneeuwhoogtes, geopende liften & live webcams
+
+Om goed voorbereid op pad te gaan, biedt onze bedrijvengids een dagelijks actueel overzicht van de skicondities in en rond Winterberg:
+
+* **Piste- en liftstatus:** Overzicht van geopende stoeltjesliften, sleepliften en pistekilometers
+* **Sneeuwhoogtes:** Actuele meetgegevens op de berg en in het dal
+* **Avondskiën:** Dagen en openingstijden voor skiën onder kunstlicht
+* **Live webcams:** 360°-panoramacams en HD-livestreams vanaf de Poppenberg, Bremberg, Kappe en Kahler Asten
+
+* **Skiliftkarussell Winterberg**
+  Het grootste aaneengesloten skigebied van de Wintersport-Arena Sauerland.
+  * [Bekijk het live pistebericht en de sneeuwhoogtes in de gids](/nl/skigebied-piste)
+
+:::tip
+### Piste-info & voorbereiding voor het skiseizoen
+Bereid uw wintersportdag in Winterberg eenvoudig voor:
+
+* **Startdatum:** Gepland vanaf vrijdag 27 november 2026 (eerst tot 6 km piste)
+* **Live pistebericht:** Actuele status van liften en sneeuw via ons [Pistebericht & Webcams](/nl/skigebied-piste)
+* **Skipassen:** Online vooraf te bestellen via [skiliftkarussell.de](https://www.skiliftkarussell.de)
+* **Webcam-check:** Bekijk de actuele pistecondities live via onze [Webcam-pagina](/nl/skigebied-piste#webcams)
+:::`,
+  },
+  {
     id: 'wanderveranstaltungen-winterberg-oktober-2026',
     slug: 'im-oktober-wird-im-winterberg-gewandert',
     slug_nl: 'in-oktober-wordt-er-gewandeld-in-winterberg',
