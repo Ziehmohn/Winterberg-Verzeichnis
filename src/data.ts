@@ -907,7 +907,6 @@ export const businesses: Business[] = [
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
     description: 'Der Hessenkeller ist eine urige Bierstube und ein gemütliches Restaurant, das zum familiengeführten 4-Sterne-Wellnesshotel Hessenhof gehört. In rustikaler Atmosphäre direkt am Waltenberg werden kühle Getränke, frisch gezapftes Bier sowie regionale und internationale Speisen serviert.',
-    extendedDescription: 'Der Hessenkeller ist eine urige Bierstube und ein gemütliches Restaurant, das unmittelbar zum familiengeführten 4-Sterne-Wellnesshotel Hessenhof gehört. In einer rustikalen Atmosphäre direkt am Waltenberg gelegen, lädt das Lokal sowohl Einheimische als auch Urlauber zum Verweilen ein. Serviert werden kühle Getränke, frisch gezapftes Bier sowie eine Auswahl an regionalen und internationalen Speisen. Durch die zentrale Lage im Herzen von Winterberg ist der Hessenkeller ein beliebter Treffpunkt für gesellige Runden nach einem aktiven Tag in der Natur.',
     address: 'Am Waltenberg 1, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 930111',
@@ -923,7 +922,6 @@ export const businesses: Business[] = [
       { category: 'Gastronomie', subcategory: 'Restaurant' }
     ],
     description: 'Lingenauber ist eine traditionsreiche Gaststätte in Winterberg-Siedlinghausen, die seit 1883 fest im Dorfleben verankert ist. Nach einer umfassenden Renovierung präsentiert sich das Lokal als gelungene Mischung aus Dorfkneipe und modernen Einflüssen mit Speisekarte und Biergarten.',
-    extendedDescription: 'Lingenauber ist eine traditionsreiche Gaststätte in Winterberg-Siedlinghausen, die bereits seit 1883 fest im Dorfleben verankert ist. Nach einer umfassenden Renovierung im Jahr 2025 präsentiert sich das Lokal als gelungene Mischung aus traditioneller Dorfkneipe und modernen Einflüssen. Neben dem klassischen Schankbetrieb bietet das Restaurant eine ausgewogene Speisekarte für hungrige Gäste und einen idyllischen Biergarten für die wärmeren Monate. Als Treffpunkt für Jung und Alt verbindet Lingenauber historische Wurzeln mit zeitgemäßer Gastlichkeit.',
     address: 'Hochsauerlandstraße 15, 59955 Winterberg-Siedlinghausen',
     district: 'Siedlinghausen',
     phone: '02983 8231',
@@ -936,7 +934,6 @@ export const businesses: Business[] = [
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
     description: 'Der Blackwater Irish Pub bringt seit 2006 authentisches irisches Flair nach Winterberg. Neben frisch gezapftem Guinness, irischen Whiskys und klassischen Pub-Gerichten sorgen Live-Musik und Sportübertragungen regelmäßig für gute Unterhaltung.',
-    extendedDescription: 'Der Blackwater Irish Pub in der Nuhnestraße bringt seit 2006 authentisches irisches Flair direkt nach Winterberg. Mit seiner gemütlichen Einrichtung aus Holz und einer einladenden Außenterrasse ist das Lokal ein beliebter Treffpunkt für entspannte Abende. Neben frisch gezapftem Guinness, einer großen Auswahl an irischen Whiskys und Cocktails bietet die Speisekarte klassische Pub-Gerichte wie Fish & Chips, Beef & Guinness Stew sowie heiß begehrte Steaks vom heißen Stein. Live-Musik und Sportübertragungen sorgen zudem regelmäßig für beste Unterhaltung in geselliger Runde.',
     address: 'Nuhnestraße 2, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 899539',
@@ -961,12 +958,10 @@ export const businesses: Business[] = [
     category: 'Mobilität & KFZ',
     subcategory: 'KFZ-Werkstätten',
     description: 'Die Car-Point Winterberg GmbH ist eine zuverlässige Kfz-Meisterwerkstatt in Winterberg. Das erfahrene Team bietet ein breites Spektrum an Reparatur- und Wartungsdienstleistungen für Fahrzeuge aller Art mit transparenter Preisgestaltung und fairen Konditionen.',
-    extendedDescription: 'Die Car-Point Winterberg GmbH ist eine zuverlässige und professionelle Kfz-Meisterwerkstatt in der Lamfert 2 in Winterberg. Das erfahrene Team bietet ein breites Spektrum an Reparatur- und Werkstatt-Dienstleistungen für Fahrzeuge aller Art. Bei Kunden punktet der Betrieb durch eine transparente Preisgestaltung, faire Konditionen und schnelle, kompetente Reparaturen. Ob Inspektion, Wartung oder komplexe Fehlerbehebungen – Car-Point ist eine etablierte Adresse für fachgerechten und verlässlichen Autoservice vor Ort.',
     address: 'Remmeswiese 30a, 59955 Winterberg',
     district: 'Winterberg',
     website: 'https://car-point-winterberg.de/',
     imageFallback: 'CP',
-    isVerified: true
   },
   {
     id: '2',
@@ -989,7 +984,6 @@ export const businesses: Business[] = [
     district: 'Siedlinghausen',
     phone: '02983 7 61',
     imageFallback: 'NUA',
-    isVerified: true
   },
   {
     id: '3',
@@ -4951,7 +4945,6 @@ export const businesses: Business[] = [
     id: 'winterberg-immobilien',
     email: 'info@winterberg-immobilien.com',
     ownerEmail: 'info@winterberg-immobilien.com',
-    isVerified: true,
     name: 'WINTERBERG IMMOBILIEN',
     category: 'Dienstleistungen',
     subcategory: 'Immobilienmakler',
@@ -7714,7 +7707,6 @@ export const businesses: Business[] = [
     category: 'Einzelhandel',
     subcategory: 'Juweliere & Uhren',
     description: 'Juwelier Eiloff ist das traditionsreiche Fachgeschäft für exklusiven Schmuck, edle Uhren und Trauringe am Waltenberg in Winterberg.',
-    extendedDescription: 'Juwelier Eiloff am Waltenberg 9 im Herzen von Winterberg ist seit vielen Jahren die führende Adresse für hochwertigen Schmuck, edle Uhrenmarken und liebevoll ausgewählte Trauringe im Sauerland. Ob Sie auf der Suche nach einem besonderen Geschenk, einer Reparatur Ihrer Armbanduhr oder einer kompetenten Beratung für Verlobungs- und Eheringe sind – Juwelier Eiloff überzeugt durch Fachkompetenz, exzellenten Service und eine stilvolle Atmosphäre.',
     address: 'Am Waltenberg 9, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 928466',

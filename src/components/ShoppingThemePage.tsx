@@ -215,7 +215,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
       const desc = ((b.description || '') + ' ' + (b.extendedDescription || '')).toLowerCase();
 
       // Specifically filter to shopping & retail businesses
-      const isFashion = sub.includes('bekleidung') || name.includes('mode') || desc.includes('modehaus') || name.includes('insider') || name.includes('street point') || name.includes('bessmann') || name.includes('leisse') || name.includes('orth');
+      const isFashion = sub.includes('bekleidung') || name.includes('mode') || desc.includes('modehaus') || name.includes('insider') || name.includes('street point') || name.includes('bessmann') || name.includes('zeitlos') || name.includes('fritz') || name.includes('orth');
       const isShoes = sub.includes('schuh') || name.includes('schuh') || name.includes('faupel');
       const isOutdoor = sub.includes('sport') || sub.includes('outdoor') || name.includes('outdoor') || name.includes('liftstation');
       const isJewelry = sub.includes('juwel') || name.includes('juwelier') || name.includes('eiloff') || name.includes('uhren');
@@ -236,7 +236,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
 
       // Category tab
       if (activeTab === 'fashion') {
-        const isFashion = sub.includes('bekleidung') || name.includes('mode') || name.includes('insider') || name.includes('street point') || name.includes('bessmann') || name.includes('leisse') || name.includes('zeitlos') || name.includes('fritz');
+        const isFashion = sub.includes('bekleidung') || name.includes('mode') || name.includes('insider') || name.includes('street point') || name.includes('bessmann') || name.includes('zeitlos') || name.includes('fritz');
         if (!isFashion) return false;
       } else if (activeTab === 'shoes') {
         const isShoes = sub.includes('schuh') || name.includes('schuh') || name.includes('faupel');
@@ -248,7 +248,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
         const isJewelry = sub.includes('juwel') || name.includes('juwelier') || name.includes('eiloff') || sub.includes('parfüm') || name.includes('becker') || sub.includes('droger');
         if (!isJewelry) return false;
       } else if (activeTab === 'outlet') {
-        const isOutlet = name.includes('bessmann') || name.includes('center') || name.includes('wortreich') || b.id === '104' || b.id === 'dm-drogerie-markt-winterberg' || b.id === 'nkd' || b.id === 'wortreich-winterberg';
+        const isOutlet = name.includes('outlet') || sub.includes('outlet') || desc.includes('outlet') || name.includes('bessmann');
         if (!isOutlet) return false;
       }
 
