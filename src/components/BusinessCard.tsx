@@ -100,7 +100,7 @@ export default function BusinessCard({
             {!business.isPremium && isBusinessClaimed(business) && (
               <div className="bg-[#E8F1EB]/95 text-[#0F4C2E] border border-[#C5DFCE] px-2.5 py-1 rounded-md text-[11.5px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C2E] shrink-0" />
-                <span>{lang === 'nl' ? 'Geclaimd' : 'Beansprucht'}</span>
+                <span>{lang === 'nl' ? 'Geverifieerd' : 'Verifiziert'}</span>
               </div>
             )}
             {business.isPremium && business.hasShop && (
@@ -287,10 +287,10 @@ export default function BusinessCard({
           <div className="mt-2 pt-2 border-t border-dashed border-[#EDE8E0] flex items-center justify-between text-[11.5px] text-[#0F4C2E]">
             <span className="font-semibold flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C2E] shrink-0" />
-              <span>{lang === 'nl' ? 'Door eigenaar geclaimd' : 'Vom Inhaber beansprucht'}</span>
+              <span>{lang === 'nl' ? 'Door eigenaar geverifieerd' : 'Vom Inhaber verifiziert'}</span>
             </span>
             <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#E8F1EB] text-[#0F4C2E] border border-[#C5DFCE]">
-              {lang === 'nl' ? '✓ Geclaimd' : '✓ Beansprucht'}
+              {lang === 'nl' ? '✓ Geverifieerd' : '✓ Verifiziert'}
             </span>
           </div>
         ) : null}

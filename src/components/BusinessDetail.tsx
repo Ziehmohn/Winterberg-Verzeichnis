@@ -318,7 +318,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             {!business.isPremium && isClaimed && (
               <span className="bg-emerald-500/20 border border-emerald-300/35 text-emerald-50 rounded px-2.5 py-1 text-[13px] font-semibold inline-flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
-                <span>{lang === 'nl' ? 'Door eigenaar geclaimd' : 'Vom Inhaber beansprucht'}</span>
+                <span>{lang === 'nl' ? 'Door eigenaar geverifieerd' : 'Vom Inhaber verifiziert'}</span>
               </span>
             )}
 

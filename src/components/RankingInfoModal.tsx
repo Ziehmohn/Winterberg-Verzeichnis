@@ -225,12 +225,12 @@ export const RankingInfoModal: React.FC<RankingInfoModalProps> = ({
                       </div>
                       <div>
                         <span className="font-bold text-xs text-[#1B211D] block mb-0.5">
-                          {isNl ? 'Geverifieerde bedrijfsgegevens' : 'Geprüfte Unternehmensdaten'}
+                          {isNl ? 'Geverifieerd eigenaarschap' : 'Geprüfte Inhaberschaft (Übernommen)'}
                         </span>
                         <p className="text-xs text-[#5F6B63]">
                           {isNl
-                            ? 'Het bedrijf is een reëel bestaande onderneming met fysiek adres in Winterberg of de dorpen.'
-                            : 'Das Unternehmen ist ein real existierender Gewerbebetrieb mit Sitz oder Einsatzgebiet in Winterberg und den Ortsteilen.'}
+                            ? 'Het bedrijfsprofiel is officieel door de eigenaar geclaimd en geverifieerd. De bedrijfsgegevens worden rechtstreeks door de onderneming beheerd.'
+                            : 'Das Unternehmensprofil wurde offiziell vom Inhaber übernommen und verifiziert. Kontaktdaten und Unternehmensangaben werden direkt von der Geschäftsführung gepflegt.'}
                         </p>
                       </div>
                     </div>
@@ -241,12 +241,12 @@ export const RankingInfoModal: React.FC<RankingInfoModalProps> = ({
                       </div>
                       <div>
                         <span className="font-bold text-xs text-[#1B211D] block mb-0.5">
-                          {isNl ? 'Recht op wederhoor voor ondernemers' : 'Recht auf Stellungnahme'}
+                          {isNl ? 'Recht op wederhoor & dialoog' : 'Recht auf Stellungnahme & Inhaber-Antworten'}
                         </span>
                         <p className="text-xs text-[#5F6B63]">
                           {isNl
-                            ? 'Ondernemers kunnen reageren op feedback om een transparante dialoog te waarborgen.'
-                            : 'Inhaber können auf Kundenbewertungen öffentlich antworten, um Sachverhalte transparent aufzuklären.'}
+                            ? 'Verifieerde ondernemers kunnen rechtstreeks reageren op recensies om feedback transparant toe te lichten.'
+                            : 'Verifizierte Inhaber können direkt und öffentlich auf Bewertungen antworten, um Kundenfeedback transparent aufzuklären.'}
                         </p>
                       </div>
                     </div>
