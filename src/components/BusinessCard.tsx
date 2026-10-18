@@ -146,8 +146,8 @@ export default function BusinessCard({
           </div>
         </div>
 
-        {/* Logo overlayed at bottom-left of image - Top level Z-Index, not clipped! */}
-        {business.logoUrl && (
+        {/* Logo overlayed at bottom-left of image - Top level Z-Index, not clipped! (Premium only) */}
+        {business.isPremium && business.logoUrl && (
           <div className="absolute -bottom-6 left-5 z-30 pointer-events-none">
             <div 
               className="w-[60px] h-[60px] bg-white rounded-xl shadow-lg border border-[#E7E2DA] flex items-center justify-center overflow-hidden p-1.5"
@@ -164,7 +164,7 @@ export default function BusinessCard({
       </div>
 
       {/* Content Area */}
-      <div className={`px-5 ${business.logoUrl ? 'pt-9' : 'pt-5'} pb-5 flex flex-col flex-1 relative z-10 bg-white rounded-b-2xl`}>
+      <div className={`px-5 ${(business.isPremium && business.logoUrl) ? 'pt-9' : 'pt-5'} pb-5 flex flex-col flex-1 relative z-10 bg-white rounded-b-2xl`}>
         {/* Category */}
         <div className="text-[11px] font-bold text-[#F2761B] tracking-wider uppercase mb-1.5 line-clamp-1">
           {t(business.category)}{business.subcategory ? ` · ${t(business.subcategory)}` : ''}

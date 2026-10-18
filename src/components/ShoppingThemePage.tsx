@@ -665,7 +665,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
                       </h3>
                     </div>
 
-                    {b.logoUrl ? (
+                    {(b.isPremium && b.logoUrl) ? (
                       <img
                         src={b.logoUrl}
                         alt={b.name}

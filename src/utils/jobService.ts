@@ -203,7 +203,7 @@ export function normalizeArbeitsagenturJob(
       id: matched.id,
       name: matched.name,
       businessPath: getBusinessPath(matched, lang),
-      logoUrl: matched.logoUrl,
+      logoUrl: matched.isPremium ? matched.logoUrl : undefined,
       isPremium: matched.isPremium,
       category: matched.category
     } : undefined

@@ -9,7 +9,7 @@ import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { invalidateCache, bumpRemoteBusinessesVersion, CACHE_KEYS } from '../utils/dbCache';
 import { getBusinessPath } from '../utils/routes';
-import { formatBusinessAddress } from '../utils';
+import { formatBusinessAddress, sanitizeBusinessPremiumFields } from '../utils';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -250,7 +250,8 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
   const { t } = useTranslation();
   const [formData, setFormData] = useState<Business>(() => {
-    const base = businessToEdit || {};
+    const rawBase = businessToEdit || {};
+    const base = rawBase.isPremium ? rawBase : sanitizeBusinessPremiumFields(rawBase);
     return {
       id: base.id || '',
       name: base.name || '',
@@ -510,7 +511,7 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
 
     const newId = formData.id || 'b_' + Date.now().toString(36);
     const normalizedAddress = formatBusinessAddress(formData.address, formData.district);
-    const dataToSubmit: Business = {
+    let dataToSubmit: Business = {
       ...formData,
       address: normalizedAddress || formData.address || '',
       logoUrl: formData.logoUrl || '',
@@ -567,21 +568,17 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       dataToSubmit.deactivationReason = businessToEdit?.deactivationReason || null;
       dataToSubmit.deactivatedAt = businessToEdit?.deactivatedAt || null;
 
-      // Cap services and products to 3 if not premium
-      if (!dataToSubmit.isPremium) {
-        if (dataToSubmit.services && dataToSubmit.services.length > 3) {
-          dataToSubmit.services = dataToSubmit.services.slice(0, 3);
-        }
-        if (dataToSubmit.products && dataToSubmit.products.length > 3) {
-          dataToSubmit.products = dataToSubmit.products.slice(0, 3);
-        }
-      }
     } else {
       dataToSubmit.ownerEmail = formData.ownerEmail ? formData.ownerEmail.trim().toLowerCase() : (businessToEdit?.ownerEmail || '');
       dataToSubmit.ownerId = formData.ownerId ? formData.ownerId.trim() : (businessToEdit?.ownerId || '');
       if (currentUser && !dataToSubmit.ownerId && dataToSubmit.ownerEmail === currentUser.email?.toLowerCase().trim()) {
         dataToSubmit.ownerId = currentUser.uid;
       }
+    }
+
+    // Strictly enforce non-premium sanitation across the board (both admin and portal users)
+    if (!dataToSubmit.isPremium) {
+      dataToSubmit = sanitizeBusinessPremiumFields(dataToSubmit);
     }
     
     try {
@@ -1642,7 +1639,14 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
                 id="isPremium" 
                 checked={!!formData.isPremium} 
                 onChange={e => {
-                  if (isAdmin) setFormData({...formData, isPremium: e.target.checked});
+                  if (isAdmin) {
+                    const checked = e.target.checked;
+                    if (!checked) {
+                      setFormData(prev => sanitizeBusinessPremiumFields({ ...prev, isPremium: false }));
+                    } else {
+                      setFormData(prev => ({ ...prev, isPremium: true }));
+                    }
+                  }
                 }} 
                 className={`w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500 ${isAdmin ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}`}
                 disabled={!isAdmin}

@@ -16,7 +16,7 @@ import BusinessDetail from './components/BusinessDetail';
 import BusinessCategoryIcon from './components/BusinessCategoryIcon';
 import AdminDesignManager, { loadGoogleFont } from './components/AdminDesignManager';
 import HeaderShapeDivider, { getEffectiveDivider } from './components/HeaderShapeDivider';
-import { isOpenNow, canDisplayOpeningHours, isSundayOpen, isBusinessClaimed } from './utils';
+import { isOpenNow, canDisplayOpeningHours, isSundayOpen, isBusinessClaimed, sanitizeBusinessPremiumFields } from './utils';
 import ReviewForm from './components/ReviewForm';
 import { Review } from './types';
 import { useAuth } from './AuthContext';
@@ -803,23 +803,24 @@ export default function App() {
   }, []);
   const [businesses, setBusinesses] = useState<Business[]>(() => {
     const cached = getCachedItem<Business[]>(CACHE_KEYS.BUSINESSES, CACHE_TTLS.BUSINESSES, true);
-    const merged = [...initialBusinesses];
+    const merged = initialBusinesses.map(b => sanitizeBusinessPremiumFields(b));
     if (cached && cached.length > 0) {
       cached.forEach(fb => {
         const idx = merged.findIndex(b => b.id === fb.id);
         if (idx >= 0) {
-          merged[idx] = { 
-            ...merged[idx], 
+          const existing = merged[idx];
+          merged[idx] = sanitizeBusinessPremiumFields({ 
+            ...existing, 
             ...fb,
-            ownerEmail: fb.ownerEmail || merged[idx].ownerEmail,
-            ownerId: fb.ownerId || merged[idx].ownerId,
-            isVerified: fb.isVerified ?? merged[idx].isVerified,
-            logoUrl: fb.logoUrl || merged[idx].logoUrl,
-            gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : merged[idx].gallery,
-            services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : merged[idx].services,
-            products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : merged[idx].products,
+            ownerEmail: fb.ownerEmail || existing.ownerEmail,
+            ownerId: fb.ownerId || existing.ownerId,
+            isVerified: fb.isVerified ?? existing.isVerified,
+            logoUrl: fb.logoUrl !== undefined ? fb.logoUrl : existing.logoUrl,
+            gallery: Array.isArray(fb.gallery) ? fb.gallery : existing.gallery,
+            services: Array.isArray(fb.services) ? fb.services : existing.services,
+            products: Array.isArray(fb.products) ? fb.products : existing.products,
             events: (() => {
-              const initEvs = merged[idx].events || [];
+              const initEvs = existing.events || [];
               const fbEvs = (Array.isArray(fb.events) && fb.events.length > 0) ? fb.events : [];
               if (initEvs.length === 0) return fbEvs;
               if (fbEvs.length === 0) return initEvs;
@@ -828,9 +829,9 @@ export default function App() {
               fbEvs.forEach((e: any) => evMap.set(e.id, e));
               return Array.from(evMap.values());
             })(),
-          };
+          });
         } else {
-          merged.push(fb);
+          merged.push(sanitizeBusinessPremiumFields(fb));
         }
       });
     }
@@ -1327,21 +1328,21 @@ export default function App() {
 
   const applyBusinessesMerge = (loadedBusinesses: Business[]) => {
     if (!loadedBusinesses || loadedBusinesses.length === 0) return;
-    const merged = [...initialBusinesses];
+    const merged = initialBusinesses.map(b => sanitizeBusinessPremiumFields(b));
     loadedBusinesses.forEach(fb => {
       const idx = merged.findIndex(b => b.id === fb.id);
       if (idx >= 0) {
         const existing = merged[idx];
-        merged[idx] = { 
+        merged[idx] = sanitizeBusinessPremiumFields({ 
           ...existing, 
           ...fb,
           ownerEmail: fb.ownerEmail || existing.ownerEmail,
           ownerId: fb.ownerId || existing.ownerId,
           isVerified: fb.isVerified ?? existing.isVerified,
-          logoUrl: fb.logoUrl || existing.logoUrl,
-          gallery: (Array.isArray(fb.gallery) && fb.gallery.length > 0) ? fb.gallery : existing.gallery,
-          services: (Array.isArray(fb.services) && fb.services.length > 0) ? fb.services : existing.services,
-          products: (Array.isArray(fb.products) && fb.products.length > 0) ? fb.products : existing.products,
+          logoUrl: fb.logoUrl !== undefined ? fb.logoUrl : existing.logoUrl,
+          gallery: Array.isArray(fb.gallery) ? fb.gallery : existing.gallery,
+          services: Array.isArray(fb.services) ? fb.services : existing.services,
+          products: Array.isArray(fb.products) ? fb.products : existing.products,
           events: (() => {
             const initEvs = existing.events || [];
             const fbEvs = (Array.isArray(fb.events) && fb.events.length > 0) ? fb.events : [];
@@ -1352,9 +1353,9 @@ export default function App() {
             fbEvs.forEach((e: any) => evMap.set(e.id, e));
             return Array.from(evMap.values());
           })(),
-        };
+        });
       } else {
-        merged.push(fb);
+        merged.push(sanitizeBusinessPremiumFields(fb));
       }
     });
 

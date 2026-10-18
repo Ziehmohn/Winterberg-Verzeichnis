@@ -1,7 +1,7 @@
 import { Business, Job, Review } from '../types';
 import { getBusinessPath, getCategorySlug, getSubcategorySlug } from './routes';
 import { getLocalizedBusiness } from './translator';
-import { formatBusinessAddress } from '../utils';
+import { formatBusinessAddress, canDisplayOpeningHours } from '../utils';
 
 const BASE_URL = 'https://winterberg-verzeichnis.de';
 
@@ -111,7 +111,7 @@ export function generateLocalBusinessSchema(business: Business, lang: 'de' | 'nl
     }
   };
 
-  if (business.logoUrl) {
+  if (business.isPremium && business.logoUrl) {
     schema.logo = business.logoUrl.startsWith('http') ? business.logoUrl : `${BASE_URL}${business.logoUrl}`;
   }
 
@@ -123,9 +123,11 @@ export function generateLocalBusinessSchema(business: Business, lang: 'de' | 'nl
     };
   }
 
-  const openingHoursSpecs = parseOpeningHours(business.openingHours);
-  if (openingHoursSpecs.length > 0) {
-    schema.openingHoursSpecification = openingHoursSpecs;
+  if (canDisplayOpeningHours(business)) {
+    const openingHoursSpecs = parseOpeningHours(business.openingHours);
+    if (openingHoursSpecs.length > 0) {
+      schema.openingHoursSpecification = openingHoursSpecs;
+    }
   }
 
   // AggregateRating

@@ -439,8 +439,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       </div>
 
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 py-[24px] sm:py-[40px] grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[20px] sm:gap-[26px] items-start">
-        {/* Mobile Logo: Directly under header, above text section */}
-        {business.logoUrl && (
+        {/* Mobile Logo: Directly under header, above text section (Premium only) */}
+        {business.isPremium && business.logoUrl && (
           <div className="block lg:hidden w-full">
             <div 
               className="bg-white border border-[#EDE8E0] rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(27,33,29,0.06)] h-32 sm:h-40 w-full flex items-center justify-center p-4 transition-colors"
@@ -459,7 +459,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           <h2 className="font-display text-[22px] font-semibold mb-3">{lang === 'nl' ? 'Over het bedrijf' : 'Über das Unternehmen'}</h2>
           <p className="text-[16.5px] leading-[1.7] text-[#4A544D] mb-6 whitespace-pre-wrap">{localized.description}</p>
           
-          {localized.extendedDescription && (
+          {business.isPremium && localized.extendedDescription && (
             <div 
               className="text-[16px] leading-[1.7] text-[#4A544D] mb-[26px] prose prose-sm md:prose-base max-w-none"
               dangerouslySetInnerHTML={{ __html: localized.extendedDescription }}
@@ -728,7 +728,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-                    {Array.isArray(business.events) && business.events.length > 0 && (
+          {business.isPremium && Array.isArray(business.events) && business.events.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5 mt-8">{lang === 'nl' ? 'Evenementen & Termijnen' : 'Veranstaltungen & Termine'}</h2>
               <div className="grid gap-3 mb-[30px]">
@@ -807,7 +807,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-{Array.isArray(business.jobs) && business.jobs.length > 0 && (
+          {business.isPremium && Array.isArray(business.jobs) && business.jobs.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Vacatures' : 'Offene Stellen'}</h2>
               <div className="grid gap-3 mb-[30px]">
@@ -1006,8 +1006,8 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
         </div>
 
         <aside className="sticky top-[116px] flex flex-col gap-4">
-          {/* Dedicated Logo Card (Desktop only, as mobile displays it above text) */}
-          {business.logoUrl && (
+          {/* Dedicated Logo Card (Desktop only, as mobile displays it above text - Premium only) */}
+          {business.isPremium && business.logoUrl && (
             <div 
               className="hidden lg:flex border border-[#EDE8E0] rounded-lg overflow-hidden shadow-[0_10px_30px_rgba(27,33,29,0.06)] h-36 sm:h-44 w-full items-center justify-center p-3 sm:p-4 transition-colors"
               style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
@@ -1323,7 +1323,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                 }} className="bg-white border border-[#EDE8E0] rounded-lg p-5 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-[12px] min-w-0">
-                      {b.logoUrl ? (
+                      {(b.isPremium && b.logoUrl) ? (
                         <img src={b.logoUrl} alt={b.name} className="w-[42px] h-[42px] rounded-md object-cover shrink-0 border border-[#EDE8E0]" />
                       ) : (
                         <BusinessCategoryIcon 
@@ -1369,7 +1369,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": business.name,
-            "image": business.gallery && business.gallery.length > 0 ? business.gallery : (business.uploadedImage || business.imageLink || undefined),
+            "image": (business.isPremium && business.gallery && business.gallery.length > 0) ? business.gallery : (business.uploadedImage || business.imageLink || undefined),
             "url": webHref || undefined,
             "telephone": business.phone || undefined,
             "address": {
