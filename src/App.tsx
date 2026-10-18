@@ -2455,11 +2455,7 @@ export default function App() {
               <div className="w-full flex flex-col mb-8 relative z-30">
                 <section className="relative text-white w-full z-30" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
                   <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px] relative z-30">
-                    <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-md px-3.5 py-1.5 text-sm font-medium tracking-wide">
-                      <span className="w-2 h-2 rounded-full bg-[#F2761B]"></span>
-                      {t("heroAllDistricts")}
-                    </div>
-                    <h1 className="font-display text-4xl md:text-6xl font-medium mt-6 mb-4 leading-tight">
+                    <h1 className="font-display text-4xl md:text-6xl font-medium mb-4 leading-tight">
                       {lang === 'nl' ? 'De ' : 'Das '} <br className="md:hidden"/>
                       <span className="inline-block relative">
                         <span className="font-extrabold tracking-wide">WINTERBERG</span>
