@@ -2531,7 +2531,19 @@ export default function App() {
             {/* Conditional Claude Home View */}
             {!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode ? (
               <div className="w-full flex flex-col mb-8 relative z-30">
-                <section className="relative text-white w-full z-30" style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}>
+                <section className="relative text-white w-full z-30">
+                  {/* Masked Background Layer (Isolated so CSS mask never clips search dropdown / autocomplete) */}
+                  <div 
+                    className="absolute inset-0 w-full h-full -z-10 pointer-events-none flex flex-col justify-end overflow-hidden"
+                    style={{ background: 'linear-gradient(105deg, rgba(6,48,28,0.94) 0%, rgba(15,76,46,0.86) 55%, rgba(15,76,46,0.55) 100%), url(/winterberg-header.webp) center/cover no-repeat' }}
+                  >
+                    <HeaderShapeDivider
+                      style={getEffectiveDivider('home', designSettings)}
+                      color="transparent"
+                      customDividers={designSettings.customDividers}
+                    />
+                  </div>
+
                   <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px] relative z-30">
                     <h1 className="font-display text-4xl md:text-6xl font-medium mb-4 leading-tight">
                       {lang === 'nl' ? 'De ' : 'Das '} <br className="md:hidden"/>
@@ -2792,11 +2804,6 @@ export default function App() {
                       <div><div className="font-display text-4xl font-bold">14</div><div className="text-sm text-white/70 mt-1">{lang === 'nl' ? 'Dorpen & Wijken' : 'Ortsteile'}</div></div>
                     </div>
                   </div>
-                  <HeaderShapeDivider
-                    style={getEffectiveDivider('home', designSettings)}
-                    color="transparent"
-                    customDividers={designSettings.customDividers}
-                  />
                 </section>
                 
                 {/* Claude Home Sections */}
