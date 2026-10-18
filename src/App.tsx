@@ -2834,7 +2834,7 @@ export default function App() {
             {/* List View Header */}
             {(!(!searchQuery && activeCategory === 'Alle' && activeLocation === 'Alle' && viewMode === 'list' && !isAllMode)) && (() => {
               const activeGroup = categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory));
-              const categoryHeader = getCategoryHeader(activeCategory, activeGroup?.name);
+              const categoryHeader = getCategoryHeader(activeCategory, activeGroup?.name, designSettings?.categoryHeaders);
 
               return (
               <div className="w-full bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] text-white relative overflow-hidden">
@@ -2851,11 +2851,19 @@ export default function App() {
                       className="w-full h-full object-cover hero-category-mask"
                       style={{ objectPosition: categoryHeader.objectPosition || 'center' }}
                     />
-                    {categoryHeader.credit && (
-                      <figcaption className="absolute top-3 right-3 lg:top-4 lg:right-6 text-[10px] leading-none text-white/85 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-md z-10 pointer-events-none">
-                        {categoryHeader.credit}
-                      </figcaption>
-                    )}
+                    <div className="absolute top-3 right-3 lg:top-4 lg:right-6 flex items-center gap-1.5 z-10 pointer-events-none flex-wrap justify-end">
+                      {categoryHeader.isAiGenerated && (
+                        <span className="text-[10px] leading-none font-semibold text-white/90 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-md border border-white/10 flex items-center gap-1 shadow-xs">
+                          <Sparkles className="w-2.5 h-2.5 text-[#F2761B]" />
+                          {lang === 'nl' ? 'Afbeelding AI-gegenereerd' : 'Bild KI-generiert'}
+                        </span>
+                      )}
+                      {categoryHeader.credit && (
+                        <figcaption className="text-[10px] leading-none text-white/85 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-md shadow-xs">
+                          {categoryHeader.credit}
+                        </figcaption>
+                      )}
+                    </div>
                   </figure>
                 )}
 

@@ -19,13 +19,18 @@ import {
   Info,
   Waves,
   Plus,
-  Trash2
+  Trash2,
+  Image as ImageIcon,
+  Upload,
+  CheckCircle
 } from 'lucide-react';
 import { DesignSettings, ThemeConfig, HeaderDividerStyle, HeaderDividerPageConfig, CustomDivider } from '../types';
 import HeaderShapeDivider, { DIVIDER_OPTIONS, getAllDividerOptions, getEffectiveDivider } from './HeaderShapeDivider';
 import CustomDividerCreatorModal from './CustomDividerCreatorModal';
 import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import { categories } from '../data';
+import { CATEGORY_HEADERS, CategoryHeaderData } from '../utils/categoryHeaders';
 
 interface AdminDesignManagerProps {
   designSettings: DesignSettings;
@@ -258,11 +263,15 @@ export default function AdminDesignManager({
   const [customBodyFont, setCustomBodyFont] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [activeTab, setActiveTab] = useState<'presets' | 'custom' | 'divider'>('presets');
+  const [activeTab, setActiveTab] = useState<'presets' | 'custom' | 'divider' | 'headers'>('presets');
   const [selectedDividerPage, setSelectedDividerPage] = useState<keyof HeaderDividerPageConfig>('category');
   const [dividerAppliedAllMsg, setDividerAppliedAllMsg] = useState(false);
   const [isCreatorModalOpen, setIsCreatorModalOpen] = useState(false);
   const [customDividerSuccessMsg, setCustomDividerSuccessMsg] = useState<string | null>(null);
+  
+  // Category Headers tab state
+  const [categorySearch, setCategorySearch] = useState('');
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState<string>('Handwerk');
 
   // Load Google Fonts on mount and whenever font changes
   useEffect(() => {
@@ -535,6 +544,16 @@ export default function AdminDesignManager({
             >
               <Waves className="w-3.5 h-3.5 text-[#F2761B]" />
               Header-Divider (Trenner)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('headers')}
+              className={`px-3 py-1.5 rounded text-xs font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5 ${
+                activeTab === 'headers' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-black'
+              }`}
+            >
+              <ImageIcon className="w-3.5 h-3.5 text-[#F2761B]" />
+              Hero-Bilder (Kategorien)
             </button>
           </div>
         </div>

@@ -72,6 +72,19 @@ export interface HeaderDividerPageConfig {
   footer?: HeaderDividerStyle;
 }
 
+export interface CategoryHeaderConfig {
+  image: string;
+  imageAltDe?: string;
+  imageAltNl?: string;
+  credit?: string;
+  isAiGenerated?: boolean;
+  titleDe?: string;
+  titleNl?: string;
+  subtitleDe?: string;
+  subtitleNl?: string;
+  objectPosition?: string;
+}
+
 export interface DesignSettings {
   headlineFont: string;
   bodyFont: string;
@@ -80,6 +93,7 @@ export interface DesignSettings {
   presetId?: string;
   headerDividers?: HeaderDividerPageConfig;
   customDividers?: CustomDivider[];
+  categoryHeaders?: Record<string, CategoryHeaderConfig>;
 }
 
 export interface Review {

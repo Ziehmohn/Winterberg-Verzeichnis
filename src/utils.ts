@@ -27,6 +27,36 @@ export function canDisplayOpeningHours(business?: { isPremium?: boolean; name?: 
   return Boolean(business.isPremium || isMajorSupermarket(business));
 }
 
+/**
+ * Strips all premium-only features and caps services/products for non-premium businesses.
+ * Guarantees that free entries never display or retain premium functions across the entire setup.
+ */
+export function sanitizeBusinessPremiumFields<T extends Partial<Business>>(business: T): T {
+  if (!business || business.isPremium) return business;
+
+  return {
+    ...business,
+    logoUrl: '',
+    gallery: [],
+    galleryCategories: [],
+    headerImage: '',
+    contactPerson: undefined,
+    customCta: undefined,
+    hasShop: false,
+    shopUrl: '',
+    extendedDescription: '',
+    extendedDescription_nl: '',
+    documents: [],
+    businessNews: [],
+    events: [],
+    jobs: [],
+    services: (business.services || []).slice(0, 3),
+    services_nl: (business.services_nl || []).slice(0, 3),
+    products: (business.products || []).slice(0, 3),
+    products_nl: (business.products_nl || []).slice(0, 3),
+  };
+}
+
 export function isOpenNow(openingHours: OpeningHours | undefined, t: (key: string) => string): { isOpen: boolean; text: string } {
   if (!openingHours) return { isOpen: false, text: 'Keine Angaben' };
 
