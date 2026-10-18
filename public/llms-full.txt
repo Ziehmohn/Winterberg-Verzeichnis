@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (384 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (403 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -549,16 +549,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaeuser-feldlerche-und-waldkauz
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/ferienhaeuser-feldlerche-und-waldkauz
 
-#### [Pension & Ferienwohnung Haus Astenblick](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/pension-und-ferienwohnung-haus-astenblick)
+#### [Haus Astenblick ****](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-astenblick)
 - **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
 - **Ort / Ortsteil:** Altastenberg
 - **Adresse:** Astenstraße 11, 59955 Winterberg-Altastenberg
-- **Telefon:** 0172 3206515
-- **Webseite:** http://www.haus-astenblick.de
+- **Telefon:** 02981 7185
+- **Webseite:** https://www.haus-astenblick.de
 - **Beschreibung (DE):** Die Pension und Ferienwohnung Haus Astenblick liegt in bester Höhenlage von Winterberg-Altastenberg, unmittelbar an den Einstiegen zu den Skipisten des Skikarussells Altastenberg und zum Rothaarsteig. Die mit 4 Sternen (DTV) klassifizierten Ferienwohnungen und Zimmer bieten gemütliche Atmosphäre, Balkone mit Südblick, reichhaltiges Frühstück auf Wunsch und direkten Zugang zur Natur.
 - **Beschreibung (NL):** Pension en vakantiewoningen Haus Astenblick in Altastenberg ligt direct aan de skipistes van het skigebied Altastenberg en de wandelpaden van de Rothaarsteig. DTV-gecertificeerde accommodaties met balkon, ontbijtmogelijkheid en uitzicht op de bergen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/pension-und-ferienwohnung-haus-astenblick
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/pension-und-ferienwohnung-haus-astenblick
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-astenblick
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-astenblick
 
 #### [Ferienwohnung Haus Kloosterman](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-haus-kloosterman)
 - **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
@@ -805,6 +805,199 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Ferienhaus zur Glocke in Winterberg-Lenneplätze biedt zelfstandig vakantiecomfort voor families, groepen en natuurliefhebbers in de hoogste regionen van het Sauerland. Dit stijlvol en compleet ingerichte vakantiehuis beschikt over aparte slaapkamers, een gezellige woonkamer, een moderne keuken en nette badkamers. De rustige ligging aan de rand van het bos is een ideale uitvalsbasis voor wandeltochten over de Rothaarsteig, fietstochten of wintersport op de nabijgelegen pistes van de Postwiese.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-zur-glocke
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/ferienhaus-zur-glocke
+
+#### [Astenrefugio](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/astenrefugio)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Lenneblick 2, 59955 Winterberg-Altastenberg
+- **Webseite:** https://www.astenrefugio.de
+- **Beschreibung (DE):** Das Astenrefugio in Winterberg-Altastenberg bietet moderne, stilvolle Ferienwohnungen in herrlicher Aussichtslage an der Straße Lenneblick. Gäste genießen von den großzügigen Balkonen einen weiten Panoramablick über die bewaldeten Sauerländer Höhenzüge. Die hochwertig ausgestatteten Wohneinheiten verfügen über moderne Küchenzeilen, gemütliche Schlaf- und Wohnräume sowie schnelles WLAN. Dank der Nähe zum Skikarussell Altastenberg und zum Rothaarsteig ist die Unterkunft zu jeder Jahreszeit ein idealer Ausgangspunkt für aktive Urlaubstage.
+- **Beschreibung (NL):** Astenrefugio in Winterberg-Altastenberg biedt moderne, stijlvolle vakantieappartementen met een prachtig panoramisch uitzicht over de Sauerlandse bergen. Voorzien van royale balkons, complete keukens en een comfortabele inrichting nabij de skipistes en de Rothaarsteig.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/astenrefugio
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/astenrefugio
+
+#### [Winterberger Perlen](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/winterberger-perlen)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Platz 4, 59955 Winterberg-Altastenberg
+- **Telefon:** 02309 77365
+- **Webseite:** https://www.winterberger-perlen.de
+- **Beschreibung (DE):** Die Winterberger Perlen in Altastenberg bieten geschmackvoll und hochwertig eingerichtete Ferienwohnungen im Herzen des Höhendorfs Am Platz 4. Die komfortablen Apartments zeichnen sich durch ein lichtdurchflutetes Wohnambiente, voll ausgestattete moderne Einbauküchen und behagliche Schlafzimmer aus. Paare und Familien finden hier eine Oase der Ruhe mit unmittelbarem Zugang zur örtlichen Gastronomie, Skischulen und abwechslungsreichen Wanderrouten.
+- **Beschreibung (NL):** Winterberger Perlen in Altastenberg biedt smaakvol en hoogwaardig ingerichte vakantieappartementen in het centrum van het bergdorp. Met lichte woonruimtes, moderne keukens en veel comfort op loopafstand van skipistes, restaurants en wandelroutes.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/winterberger-perlen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/winterberger-perlen
+
+#### [Ferienhaus König](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-koenig)
+- **Kategorie:** Hotels und Unterkünfte > Ferienhäuser
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Kamp 1, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 3374
+- **Webseite:** http://www.ferienhaus-koenig.info
+- **Beschreibung (DE):** Das Ferienhaus König in Winterberg-Altastenberg bietet großzügige Ferienunterkünfte in einem traditionellen Sauerländer Schieferhaus an der ruhigen Straße Am Kamp. Die geräumigen Wohnungen bieten Platz für Familien und kleine Gruppen und überzeugen durch Gemütlichkeit, gepflegte Ausstattung, separate Schlafzimmer und einen schönen Garten mit Sitzecke. Die Lage am Fuße des Kahlen Astens garantiert kurze Wege zu Skipisten, Langlaufloipen und beliebten Wanderpfaden.
+- **Beschreibung (NL):** Ferienhaus König in Winterberg-Altastenberg biedt royale vakantiewoningen in een traditioneel Sauerlands leisteenhuis aan de rustige straat Am Kamp. Ruime appartementen met aparte slaapkamers, gezellige woonkamers en een fijne tuin nabij de skipistes en wandelpaden.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-koenig
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/ferienhaus-koenig
+
+#### [Ferienhaus Schütte](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienhaus-schuette)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Lichtenscheid 5, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 6954
+- **Webseite:** https://www.fewoschuette.de
+- **Beschreibung (DE):** Das Ferienhaus Schütte in Winterberg-Altastenberg liegt an einem sonnigen Südhang in ruhiger Waldrandnähe am Lichtenscheid. Die liebevoll gepflegten Ferienwohnungen verfügen über Balkon oder Terrasse mit herrlichem Fernblick auf das Lennetal und die umliegenden Berge. Ausgestattet mit moderner Küche, gemütlichem Wohnzimmer und bequemen Betten ist das Haus ein wunderbarer Rückzugsort für Erholungssuchende und Aktivurlauber.
+- **Beschreibung (NL):** Ferienhaus Schütte in Winterberg-Altastenberg ligt op een zonnige zuidhelling aan de bosrand van de Lichtenscheid. Sfeervolle vakantiewoningen met balkon of terras en een schitterend uitzicht over het Lennedal en de Sauerlandse bergen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienhaus-schuette
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/ferienhaus-schuette
+
+#### [Erholung in Altastenberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/erholung-in-altastenberg)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Lenneblick 1, 59955 Winterberg-Altastenberg
+- **Telefon:** 0179 2268661
+- **Webseite:** https://www.erholung-in-altastenberg.de
+- **Beschreibung (DE):** Die Ferienwohnung Erholung in Altastenberg am Lenneblick 1 hält genau das, was ihr Name verspricht. Die modern und behaglich eingerichtete Ferienunterkunft bietet ein warmes Ambiente mit Holzböden, bequemen Polstermöbeln, separatem Essplatz und voll ausgestatteter Küche. Nach einem erlebnisreichen Tag auf den Skipisten des Skikarussells oder auf dem Rothaarsteig lädt die ruhige Höhenlage zur perfekten Entspannung ein.
+- **Beschreibung (NL):** Vakantiewoning Erholung in Altastenberg aan Lenneblick 1 biedt rust en ontspanning in een modern en sfeervol ingericht appartement. Voorzien van houten vloeren, complete keuken en gezellige zithoek nabij de skipistes en de wandelroutes van Altastenberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/erholung-in-altastenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/erholung-in-altastenberg
+
+#### [Lua's Apartment](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/lua-s-apartment)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Astenstraße 14, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 1408
+- **Webseite:** https://www.luas-skiverleih.de
+- **Beschreibung (DE):** Lua's Apartment in Winterberg-Altastenberg liegt direkt an der zentralen Astenstraße unweit der Skilifte. Die gemütliche Dachgeschoss-Ferienwohnung besticht durch ihr charmantes alpines Ambiente, komfortable Doppelbetten und eine funktionale Ausstattung für Wintersportler und Sommergäste. Verbunden mit dem hauseigenen Skiverleih profitieren Gäste von bequemen Serviceangeboten direkt vor Ort.
+- **Beschreibung (NL):** Lua's Apartment in Winterberg-Altastenberg ligt aan de centrale Astenstraße op korte afstand van de skiliften. Dit gezellige appartement met alpine sfeer biedt comfortabele slaapkamers en een praktische inrichting voor wintersporters en wandelaars.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/lua-s-apartment
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/lua-s-apartment
+
+#### [Ferienwohnung Hermesmeyer](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-hermesmeyer)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Lichtenscheid 1, 59955 Winterberg-Altastenberg
+- **Telefon:** 05251 691600
+- **Webseite:** https://www.ferienwohnung-altastenberg.de
+- **Beschreibung (DE):** Die Ferienwohnung Hermesmeyer in Altastenberg empfängt ihre Gäste in sonniger Hanglage am Lichtenscheid 1. Das geräumige Feriendomizil im gepflegten Wohnhaus bietet helle Wohnräume, eine komplett eingerichtete Küche, separate Schlafräume und einen Balkon mit weitem Panoramablick ins Grüne. Durch die ruhige Sackgassenlage genießen Gäste ungestörte Erholung bei gleichzeitig kurzen Wegen zu den Skiliften und Wanderwegen.
+- **Beschreibung (NL):** Ferienwohnung Hermesmeyer in Altastenberg ligt op een zonnige helling aan de Lichtenscheid 1. Een ruim vakantieappartement met lichte kamers, complete keuken, aparte slaapkamers en balkon met weids panoramisch uitzicht in een rustige straat.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-hermesmeyer
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/ferienwohnung-hermesmeyer
+
+#### [Ferienwohnung Im Schieferhaus](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-im-schieferhaus)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Lenneblick 2, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 5198789
+- **Webseite:** https://www.fewo-schieferhaus.de
+- **Beschreibung (DE):** Die Ferienwohnung Im Schieferhaus in Altastenberg verbindet traditionelle Sauerländer Schieferarchitektur mit zeitgemäßem Urlaubskomfort. Gelegen an der Panoramastraße Lenneblick, bietet die Unterkunft stilvoll eingerichtete Wohnräume, eine moderne Küche und bequeme Rückzugsorte für Familien oder Paare. Die sonnige Hanglage garantiert einen fantastischen Ausblick auf die Sauerländer Bergwelt und einen schnellen Einstieg in das Skigebiet Altastenberg.
+- **Beschreibung (NL):** Ferienwohnung Im Schieferhaus in Altastenberg combineert traditionele Sauerlandse leisteenarchitectuur met modern vakantiecomfort. Gelegen aan de panoramaweg Lenneblick met stijlvolle kamers, moderne keuken en een geweldig uitzicht over de bergen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-im-schieferhaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/ferienwohnung-im-schieferhaus
+
+#### [Ferienwohnung Waldblick](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-waldblick)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Lichtenscheid 6, 59955 Winterberg-Altastenberg
+- **Beschreibung (DE):** Die Ferienwohnung Waldblick in Winterberg-Altastenberg liegt idyllisch am oberen Ende der Straße Am Lichtenscheid, unmittelbar am Waldsaum. Die gemütliche Ferienwohnung bietet Ruhe und Natur pur mit direktem Blick auf die umliegenden Nadel- und Mischwälder. Mit praktischer Ausstattung, einladendem Wohnbereich und bequemen Schlafmöglichkeiten eignet sich das Haus ideal für Naturfreunde, Wanderer und Erholungssuchende.
+- **Beschreibung (NL):** Ferienwohnung Waldblick in Winterberg-Altastenberg ligt idyllisch aan de rand van het bos aan Am Lichtenscheid 6. Een gezellige en rustige vakantiewoning met uitzicht op het groen, ideaal voor natuurliefhebbers en wandelaars.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-waldblick
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/ferienwohnung-waldblick
+
+#### [Zum großen Bildchen](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/zum-grossen-bildchen)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Bildchenweg 13, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 908555
+- **Webseite:** http://www.ferienwohnungen-zumgrossenbildchen.de
+- **Beschreibung (DE):** Das Haus Zum großen Bildchen in Altastenberg bietet gepflegte und behagliche Ferienwohnungen in ruhiger Ortsrandlage am Bildchenweg. Das traditionelle Schiefer- und Fachwerkhaus verfügt über mehrere unterschiedlich große Wohneinheiten mit komplett ausgestatteten Küchen, gemütlichen Wohnzimmern und gepflegten Bädern. Durch die unmittelbare Nähe zum Skikarussell Altastenberg und zum Rothaarsteig-Wegenetz ist das Haus ganzjährig ein gefragtes Feriendomizil.
+- **Beschreibung (NL):** Zum großen Bildchen in Altastenberg biedt comfortabele en verzorgde vakantieappartementen aan de rustige rand van het dorp aan de Bildchenweg. Een traditioneel vakwerkhuis met meerdere appartementen, complete keukens en een uitstekende ligging voor wintersport en wandelen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/zum-grossen-bildchen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/zum-grossen-bildchen
+
+#### [Haus am Berg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-am-berg)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Auf der Weide 14, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 802835
+- **Webseite:** https://www.gaestehausamberg.de
+- **Beschreibung (DE):** Das Gästehaus Haus am Berg in Altastenberg liegt sonnig und ruhig an der Straße Auf der Weide in unmittelbarer Nähe zum Skilift. Die modernen, geschmackvollen Ferienwohnungen bieten viel Raum für Erholung mit separaten Schlafzimmern, offenen Wohnküchen und sonnigen Balkonen oder Terrassen. Als qualitätsgeprüfter Partnerbetrieb bietet das Haus beste Voraussetzungen für einen unbeschwerten Aktivurlaub im Hochsauerland.
+- **Beschreibung (NL):** Haus am Berg in Altastenberg ligt zonnig en rustig aan de straat Auf der Weide, direct nabij de skilift. Moderne, smaakvol ingerichte appartementen met aparte slaapkamers, complete keukens en zonnige balkons met uitzicht over het berglandschap.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-am-berg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-am-berg
+
+#### [Astrid's Pension & Appartements](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/astrid-s-pension-und-appartements)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Astenstraße 2, 59955 Winterberg-Altastenberg
+- **Telefon:** 0151 70554529
+- **Webseite:** https://www.astrids-pension.de
+- **Beschreibung (DE):** Astrid's Pension & Appartements in Winterberg-Altastenberg bietet gemütliche Gästezimmer mit Frühstück sowie komplett ausgestattete Ferienwohnungen an der Astenstraße 2. Das einladende Haus besticht durch familiäre Atmosphäre, liebevolle Einrichtung und sonnige Balkone mit Blumenpracht und Bergblick. Direkt am Skikarussell und den Wanderwegen gelegen, ist die Pension ein idealer Ausgangspunkt für Genießer und Aktivurlauber.
+- **Beschreibung (NL):** Astrid's Pension & Appartements in Winterberg-Altastenberg biedt gezellige kamers met ontbijt en compleet ingerichte vakantieappartementen aan de Astenstraße. Een gastvrij familieverblijf met balkons, bergzicht en directe toegang tot skiliften en wandelroutes.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/astrid-s-pension-und-appartements
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/astrid-s-pension-und-appartements
+
+#### [Haus Linden](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-linden)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Renauweg 2, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 2094
+- **Webseite:** https://www.pension-hauslinden.de
+- **Beschreibung (DE):** Das Haus Linden in Altastenberg bietet behagliche Ferienwohnungen und komfortable Pensionszimmer am ruhigen Renauweg. Umgeben von Wiesen und Wäldern genießen Gäste hier pure Ruhe und eine herrliche Aussicht auf die Sauerländer Natur. Mit gemütlichen Betten, modernisierten Bädern, reichhaltigem Frühstück auf Wunsch und unmittelbarer Anbindung an Wander- und Loipennetze ist das Haus ein beliebtes Urlaubsziel.
+- **Beschreibung (NL):** Haus Linden in Altastenberg biedt comfortabele vakantieappartementen en pensionkamers aan de rustige Renauweg. Omgeven door bossen en weiden biedt deze accommodatie volop rust, een prachtig uitzicht en directe aansluiting op wandel- en langlaufpaden.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-linden
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-linden
+
+#### [Haus Pfennig](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-pfennig)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Astenstraße 20, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 2997
+- **Beschreibung (DE):** Das traditionsreiche Haus Pfennig in Winterberg-Altastenberg bietet gemütliche Ferienwohnungen und Gästezimmer an der zentralen Astenstraße 20. Das typische Sauerländer Schieferhaus überzeugt durch familiäre Gastlichkeit, gepflegte Unterkünfte mit Holzakzenten und bequemen Sitzecken. Die erstklassige Lage im Ortskern ermöglicht es Gästen, Bäckerei, Gastronomie und Skilifte in wenigen Schritten zu Fuß zu erreichen.
+- **Beschreibung (NL):** Haus Pfennig in Winterberg-Altastenberg biedt gezellige vakantiewoningen en kamers aan de centrale Astenstraße 20. Een traditioneel Sauerlands leisteenhuis met gastvrije sfeer, op loopafstand van bakkerij, restaurants en de skiliften.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-pfennig
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-pfennig
+
+#### [Villa Margarete](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/villa-margarete)
+- **Kategorie:** Hotels und Unterkünfte > Ferienhäuser
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Auf der Weide 5, 59955 Winterberg-Altastenberg
+- **Telefon:** +31 643047 066
+- **Webseite:** https://www.villamargarete.nl
+- **Beschreibung (DE):** Die Villa Margarete in Winterberg-Altastenberg ist ein freistehendes, exklusives Fachwerk-Ferienhaus in ruhiger Sonnenlage an der Straße Auf der Weide. Das liebevoll restaurierte Haus vereint historischen Fachwerkcharme mit moderner Luxusausstattung für größere Familien und Gruppen. Großzügige Wohnräume, mehrere Schlafzimmer, eine hochwertige Küche sowie ein privater Garten mit Terrasse bieten höchsten Komfort für einen entspannten Sauerlandurlaub.
+- **Beschreibung (NL):** Villa Margarete in Winterberg-Altastenberg is een vrijstaand, exclusief vakwerkhuis op een rustige en zonnige locatie aan Auf der Weide. Het stijlvol gerenoveerde vakantiehuis combineert historische charme met moderne luxe voor families en groepen, met royale slaapkamers, luxe keuken en een privétuin.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/villa-margarete
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/villa-margarete
+
+#### [(H)auszeit Pape](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/h-auszeit-pape)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Auf der Weide 12, 59955 Winterberg-Altastenberg
+- **Telefon:** 0173 2971830
+- **Webseite:** https://www.hauszeit-pape.de
+- **Beschreibung (DE):** Die mit 4 Sternen (DTV) ausgezeichnete Ferienunterkunft (H)auszeit Pape in Altastenberg bietet erstklassigen Urlaubskomfort in ruhiger Höhenlage Auf der Weide 12. Die modernen, barrierearm gestalteten Ferienwohnungen zeichnen sich durch geschmackvolle Möblierung, voll ausgestattete Küchen mit Geschirrspüler, hochwertige Bäder und sonnige Terrassen aus. Ein wunderbarer Ort für eine erholsame Auszeit inmitten der Hochsauerländer Bergwelt.
+- **Beschreibung (NL):** De met 4 DTV-sterren bekroonde vakantiewoning (H)auszeit Pape in Altastenberg biedt eersteklas comfort op een rustige locatie aan Auf der Weide. Moderne, drempelvrije appartementen met stijlvolle inrichting, complete keuken, luxe badkamer en zonneterras.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/h-auszeit-pape
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/h-auszeit-pape
+
+#### [Haus Brieden](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-brieden)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Astenstraße 17, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 491
+- **Beschreibung (DE):** Das Haus Brieden in Winterberg-Altastenberg bietet gemütliche Ferienwohnungen und Pensionszimmer in einem charmanten, traditionellen Sauerländer Fachwerkhaus an der Astenstraße 17. Gäste schätzen die herzliche, persönliche Betreuung, die sauberen und komfortabel ausgestatteten Wohneinheiten sowie die ideale Ausgangslage direkt gegenüber den Skiliften und Wanderwegen des Skikarussells Altastenberg.
+- **Beschreibung (NL):** Haus Brieden in Winterberg-Altastenberg biedt gezellige vakantieappartementen en pensionkamers in een charmant vakwerkhuis aan de Astenstraße. Een gastvrij verblijf direct tegenover de skiliften en wandelpaden van Altastenberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-brieden
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-brieden
+
+#### [Haus Elisabeth](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-elisabeth)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Renauweg 30, 59955 Winterberg-Altastenberg
+- **Telefon:** 02975 9639281
+- **Webseite:** https://www.ferienwohnung-haus-elisabeth.de
+- **Beschreibung (DE):** Die Ferienwohnung Haus Elisabeth in Altastenberg liegt ruhig und naturnah am Renauweg 30 am Ortsrand. Das gepflegte Schieferhaus bietet eine behagliche, komplett eingerichtete Ferienwohnung mit separaten Schlafzimmern, gemütlichem Wohnzimmer und sonniger Terrasse mit Gartenblick. Ideal für Familien und Wanderer, die erholsame Ferientage abseits des Trubels suchen und direkt von der Haustür in das Wanderwegenetz rund um den Kahlen Asten starten möchten.
+- **Beschreibung (NL):** Ferienwohnung Haus Elisabeth in Altastenberg ligt rustig en midden in de natuur aan de Renauweg 30. Dit verzorgde leisteenhuis biedt een gezellig vakantieappartement met aparte slaapkamers, complete keuken en een zonneterras met tuin.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-elisabeth
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-elisabeth
 
 ### Kategorie: Handwerk
 
@@ -3828,6 +4021,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Borgs Scheune in Züschen is een historisch monumentaal vakwerkpand en een sfeervol cultureel centrum in Winterberg. Gedragen door cultuurvereniging KuKuK! (Kunst · Kultur · Kontakte) vinden hier regelmatig concerten, cabaret, theatervoorstellingen, lezingen en exposities plaats in een unieke, intieme ambiance.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/borgs-scheune-zueschen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/borgs-scheune-zueschen
+
+#### [Disc Golf Park Altastenberg](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/disc-golf-park-altastenberg)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Renauweg 23, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 1241
+- **Webseite:** https://www.altastenberg.de/disc-golf-park/
+- **Beschreibung (DE):** Der Disc Golf Park Altastenberg ist eine spannende Funsport- und Freizeitattraktion für Familien, Gruppen und Freizeitsportler im höchstgelegenen Höhendorf des Sauerlands. Auf einem abwechslungsreichen 18-Bahnen-Parcours am Fuße des Kahlen Astens gilt es, Wurfscheiben (Frisbees) mit möglichst wenigen Würfen in speziell installierte Metallkörbe mit Auffangketten zu spielen. Die Nutzung des naturnahen Parcours ist kostenfrei. Leihscheiben und Scorekarten sind an mehreren Verleihstationen im Ort gegen eine geringe Gebühr und Pfand erhältlich (u. a. im Haus des Gastes, Sport + Mode Wemhoff, Hotel Astenkrone und Resort Der Schöne Asten).
+- **Beschreibung (NL):** Disc Golf Park Altastenberg is een sportieve en leuke buitenactiviteit voor families, vriendengroepen en actieve vakantiegangers in het hoogstgelegen bergdorp van het Sauerland. Op een gevarieerd 18-holes parcours aan de voet van de Kahler Asten proberen spelers frisbees met zo min mogelijk worpen in speciale stalen vangmanden te werpen. Het gebruik van het parcours is gratis. Discs en scorekaarten zijn tegen een kleine vergoeding te leen bij diverse punten in het dorp.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/disc-golf-park-altastenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/disc-golf-park-altastenberg
 
 ---
 
