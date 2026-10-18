@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (379 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (384 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -772,6 +772,39 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Dorfschule Mollseifen is een royale en karaktervolle vakantiewoning in het historische gebouw van de voormalige dorpsschool van Mollseifen. Met circa 80 m² woonoppervlak biedt het appartement veel ruimte voor gezinnen of koppels, inclusief een compleet uitgeruste keuken, meerdere slaapkamers, een lichte woonkamer en een zonneterras met uitzicht op de tuin.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/dorfschule-mollseifen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/dorfschule-mollseifen
+
+#### [Enjoy Berghotel Hochsauerland](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/enjoy-berghotel-hochsauerland)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Hoheleye
+- **Adresse:** Hoheleye 12, 59955 Winterberg
+- **Telefon:** 02981 8010
+- **Webseite:** https://enjoyhotels.com/de/hotelinformation-enjoy-berghotel-hochsauerland
+- **Beschreibung (DE):** Das Enjoy Berghotel Hochsauerland (ehemals Clubhotel Hochsauerland) liegt in herrlicher Alleinlage auf den waldreichen Höhen von Winterberg-Hoheleye. Das Hotel verfügt über 89 komfortable Zimmer mit eigenem Bad, TV und überwiegend Balkon oder Terrasse, die alle bequem per Aufzug erreichbar sind. Ein großzügiges Hallenbad, eine Saunalandschaft sowie ein hauseigenes Restaurant mit Bar und Sonnenterrasse bieten perfekte Erholung nach einem aktiven Tag in der Natur. Durch das beliebte All-Inclusive-Konzept von Enjoyhotels genießen Gäste eine rundum sorglose Urlaubsverpflegung mit reichhaltigen Buffets, Kaffee und Kuchen sowie kostenfreien Getränken am Abend.
+- **Beschreibung (NL):** Enjoy Berghotel Hochsauerland ligt op een rustige heuvelrug in Winterberg-Hoheleye, omringd door de prachtige Sauerlandse natuur. Het hotel beschikt over 89 comfortabele kamers met eigen badkamer, tv en veelal balkon of terras, bereikbaar per lift. Een binnenzwembad, saunaruimte en restaurant met bar en panoramaterras zorgen voor ontspanning na een actieve dag in de buitenlucht. Dankzij het all-inclusive concept genieten gasten van een compleet verzorgde vakantie inclusief ontbijt, diner, dranken en gezellig entertainment.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/enjoy-berghotel-hochsauerland
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/enjoy-berghotel-hochsauerland
+
+#### [Berghotel Lenneplätze B&B](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/berghotel-lenneplaetze-bundb)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Lenneplätze
+- **Adresse:** Lenneplätze 3, 59955 Winterberg
+- **Telefon:** 02981 7346
+- **Webseite:** https://www.gasthof-zur-glocke.de
+- **Beschreibung (DE):** Das Berghotel Lenneplätze B&B liegt ruhig und sonnig auf über 760 Höhenmetern im Winterberger Bergdorf Lenneplätze, nur wenige Schritte vom Kahlen Asten und dem Rothaarsteig entfernt. Das gemütliche Bed & Breakfast bietet geschmackvoll eingerichtete Hotelzimmer mit modernem Bad, Flachbild-TV und traumhaftem Blick über die Sauerländer Berglandschaft. Morgens stärken sich Gäste an einem reichhaltigen Frühstücksbuffet, während das benachbarte Restaurant im Gasthof zur Glocke (nur 100 m entfernt) abends mit feiner regionaler Küche für das leibliche Wohl sorgt.
+- **Beschreibung (NL):** Berghotel Lenneplätze B&B ligt rustig en zonnig op ruim 760 meter hoogte in het bergdorp Lenneplätze, vlak bij de Kahler Asten en de Rothaarsteig. Dit sfeervolle Bed & Breakfast biedt stijlvol ingerichte kamers met moderne badkamers, flatscreen-tv en een prachtig uitzicht over het berglandschap. Gasten genieten van een uitgebreid ontbijtbuffet, terwijl het direct ernaast gelegen zusterrestaurant Berggasthof zur Glocke (op 100 m) 's avonds traditionele gerechten serveert.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/berghotel-lenneplaetze-bundb
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/berghotel-lenneplaetze-bundb
+
+#### [Ferienhaus zur Glocke](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-zur-glocke)
+- **Kategorie:** Hotels und Unterkünfte > Ferienhäuser
+- **Ort / Ortsteil:** Lenneplätze
+- **Adresse:** Lenneplätze 22, 59955 Winterberg
+- **Telefon:** 0151 15476226
+- **Webseite:** https://www.gasthof-zur-glocke.de
+- **Beschreibung (DE):** Das Ferienhaus zur Glocke in Winterberg-Lenneplätze bietet unabhängigen Wohnkomfort für Familien, Gruppen und Naturbegeisterte in bester Höhenlage des Sauerlands. Das geschmackvoll und voll ausgestattete Ferienhaus verfügt über separate Schlafzimmer, gemütliche Wohnbereiche mit Sitzecke, eine komplett eingerichtete Küche sowie moderne Badezimmer. Die ruhige Dorflage am Waldrand eignet sich ideal als Ausgangspunkt für ausgedehnte Wanderungen über den Rothaarsteig, Biketouren oder Wintersporttage im Skigebiet Postwiese Neuastenberg.
+- **Beschreibung (NL):** Ferienhaus zur Glocke in Winterberg-Lenneplätze biedt zelfstandig vakantiecomfort voor families, groepen en natuurliefhebbers in de hoogste regionen van het Sauerland. Dit stijlvol en compleet ingerichte vakantiehuis beschikt over aparte slaapkamers, een gezellige woonkamer, een moderne keuken en nette badkamers. De rustige ligging aan de rand van het bos is een ideale uitvalsbasis voor wandeltochten over de Rothaarsteig, fietstochten of wintersport op de nabijgelegen pistes van de Postwiese.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-zur-glocke
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/ferienhaus-zur-glocke
 
 ### Kategorie: Handwerk
 
@@ -2305,6 +2338,28 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Het McDonald's restaurant in Winterberg ligt direct aan de B480 (Am Hagenblech 58) en is uitstekend bereikbaar voor zowel vakantiegangers als lokale bewoners. Naast de bekende burgers en menu's beschikt de vestiging over een sfeervol McCafé met koffie en gebak, een McDrive, gratis wifi, circa 97 zitplaatsen binnen en 25 terrasplaatsen buiten. Tevens is er een EWE Go snellaadpaal voor elektrische voertuigen aanwezig. Bestellingen kunnen aan de balie, via digitale bestelzuilen of via de McDonald's app worden geplaatst.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/mcdonald-s-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/mcdonald-s-winterberg
+
+#### [Hoheleyer Hütte](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hoheleyer-huette)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Hoheleye
+- **Adresse:** Hoheleye 17, 59955 Winterberg
+- **Telefon:** 02758 2019866
+- **Webseite:** https://www.hoheleyer-huette.de/
+- **Beschreibung (DE):** Die Hoheleyer Hütte in Winterberg-Hoheleye ist eine urige und traditionsreiche Einkehrhütte auf 715 Metern Höhe, malerisch gelegen unmittelbar am bekannten Fernwanderweg Rothaarsteig. Unter der Leitung von Volker Müller bietet die Hütte Wanderern, Mountainbikern, Motorradfahrern und Wintersportlern herzliche Gastlichkeit und deftige Sauerländer Hausmannskost. Neben durchgehend warmer Küche mit Hüttenklassikern, Schnitzeln, herzhaften Brotzeiten und Eintöpfen schätzen Gäste vor allem die hausgemachten Kuchen, Waffeln und Kaffeespezialitäten. Die großzügige Panorama-Sonnenterrasse eröffnet einen weiten Fernblick über die Bergwelt des Rothaargebirges.
+- **Beschreibung (NL):** De Hoheleyer Hütte in Winterberg-Hoheleye is een sfeervolle, authentieke berghut op 715 meter hoogte, schilderachtig gelegen direct aan de beroemde wandelroute Rothaarsteig. Onder leiding van Volker Müller worden wandelaars, fietsers en wintersporters verwelkomd met gastvrijheid en stevige Sauerlandse streekgerechten. Naast een doorlopend warme keuken met klassieke schnitzels, soepen en boerenbroodmaaltijden kunnen bezoekers genieten van vers huisgemaakt gebak en wafels op het ruime panoramische zonneterras met weids uitzicht over de bergen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hoheleyer-huette
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/hoheleyer-huette
+
+#### [Berggasthof zur Glocke](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/berggasthof-zur-glocke)
+- **Kategorie:** Gastronomie > Restaurant
+- **Ort / Ortsteil:** Lenneplätze
+- **Adresse:** Lenneplätze 5, 59955 Winterberg
+- **Telefon:** 02981 7346
+- **Webseite:** https://www.gasthof-zur-glocke.de
+- **Beschreibung (DE):** Der Berggasthof zur Glocke in Winterberg-Lenneplätze ist ein traditionsreicher, uriger Gasthof mit Restaurant und Gästezimmern im höchstgelegenen Bergdorf von Winterberg nahe dem Kahlen Asten. Das Restaurant verwöhnt Hausgäste und Wanderer mit ehrlicher, gutbürgerlicher Sauerländer Küche, darunter das beliebte „Glockenpfännchen“, zarte Wildgerichte aus heimischer Jagd, fangfrische Forellen und knusprige Schnitzel. Neben dem gemütlichen Gastraum mit Kaminfeuer stehen komfortable Gästezimmer für erholsame Urlaubstage direkt am Rothaarsteig und dem Loipennetz zur Verfügung.
+- **Beschreibung (NL):** Berggasthof zur Glocke in Winterberg-Lenneplätze is een sfeervolle, traditionele herberg met restaurant en gastenkamers in het hoogstgelegen bergdorp van Winterberg nabij de Kahler Asten. Het restaurant serveert eerlijke Sauerlandse streekgerechten, zoals het befaamde „Glockenpfännchen“, wildspecialiteiten uit de lokale bossen, verse beekforel en schnitzels. Gelegen direct aan de Rothaarsteig en het loipenetwerk is het een ideale uitvalsbasis voor wandelaars en wintersporters.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/berggasthof-zur-glocke
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/berggasthof-zur-glocke
 
 ### Kategorie: Dienstleistungen
 
