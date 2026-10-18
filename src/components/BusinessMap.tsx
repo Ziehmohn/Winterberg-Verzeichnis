@@ -31,6 +31,7 @@ const geocodeCache: Record<string, [number, number]> = {};
 export const DISTRICT_COORDINATES: Record<string, [number, number]> = {
   'Winterberg': [51.1956, 8.5338],
   'Altastenberg': [51.1873, 8.4687],
+  'Altenfeld': [51.2612, 8.4468],
   'Neuastenberg': [51.1627, 8.4908],
   'Züschen': [51.1578, 8.5663],
   'Niedersfeld': [51.2588, 8.5297],

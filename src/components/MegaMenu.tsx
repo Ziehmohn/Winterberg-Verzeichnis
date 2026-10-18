@@ -32,6 +32,24 @@ import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
 import { getBusinessPath } from '../utils/routes';
 
+export const ALL_DISTRICTS = [
+  'Winterberg',
+  'Altastenberg',
+  'Altenfeld',
+  'Elkeringhausen',
+  'Grönebach',
+  'Hildfeld',
+  'Hoheleye',
+  'Langewiese',
+  'Lenneplätze',
+  'Mollseifen',
+  'Neuastenberg',
+  'Niedersfeld',
+  'Siedlinghausen',
+  'Silbach',
+  'Züschen'
+];
+
 interface MegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -127,13 +145,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
     }).slice(0, 6);
   }, [businesses, searchInput]);
 
-  const availableDistricts = useMemo(() => {
-    return Array.from(
-      new Set(
-        businesses.map(b => b.district || b.address?.split(',')[1]?.trim()?.split(' ')[1] || 'Winterberg')
-      )
-    ).filter(Boolean).sort();
-  }, [businesses]);
+  const availableDistricts = ALL_DISTRICTS;
 
   const handleExecuteSearch = () => {
     setShowSuggestions(false);
@@ -210,18 +222,6 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
         };
     }
   };
-
-  // Top popular districts
-  const featuredDistricts = [
-    'Winterberg',
-    'Altastenberg',
-    'Neuastenberg',
-    'Niedersfeld',
-    'Züschen',
-    'Elkeringhausen',
-    'Siedlinghausen',
-    'Silbach'
-  ];
 
   return (
     <AnimatePresence>
@@ -739,10 +739,10 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                   <div>
                     <div className="font-display font-bold text-[11px] uppercase tracking-[0.1em] text-[#8A928B] mb-1.5 flex items-center gap-1.5">
                       <MapPin className="w-3 h-3 text-[#0F4C2E]" />
-                      <span>{lang === 'nl' ? 'Populaire dorpen & wijken' : 'Beliebte Ortsteile'}</span>
+                      <span>{lang === 'nl' ? 'Alle dorpen & wijken' : 'Alle Ortsteile'}</span>
                     </div>
                     <div className="flex flex-wrap gap-1">
-                      {featuredDistricts.map((district) => (
+                      {ALL_DISTRICTS.map((district) => (
                         <button
                           key={district}
                           type="button"

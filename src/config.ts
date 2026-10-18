@@ -55,7 +55,7 @@ export const SITE = {
   districts: [
     'Winterberg (Kernstadt)',
     'Altastenberg',
-    'Altenbüren',
+    'Altenfeld',
     'Elkeringhausen',
     'Grönebach',
     'Hildfeld',
