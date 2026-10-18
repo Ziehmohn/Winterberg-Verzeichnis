@@ -138,6 +138,9 @@ export const STATIC_PAGE_SLUGS = {
   chargingStations: { de: 'e-ladestationen', nl: 'laadpalen' },
   shoppingTheme: { de: 'themen/shoppen-in-winterberg', nl: 'themas/winkelen-in-winterberg' },
   shoppenWinterberg: { de: 'shoppen-in-winterberg', nl: 'winkelen-in-winterberg' },
+  skiTheme: { de: 'themen/skifahren-in-winterberg', nl: 'themas/skien-in-winterberg' },
+  skifahrenWinterberg: { de: 'skifahren-in-winterberg', nl: 'skien-in-winterberg' },
+  skifahren: { de: 'skifahren', nl: 'skien' },
 };
 
 export function slugify(str: string): string {
@@ -216,7 +219,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -352,6 +355,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'shopping-theme':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.shoppingTheme[targetLang]}`;
+
+    case 'ski-theme':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.skiTheme[targetLang]}`;
 
     default:
       return `${baseUrl}${prefix || '/'}`;

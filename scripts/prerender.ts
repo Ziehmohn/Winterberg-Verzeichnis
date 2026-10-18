@@ -345,6 +345,28 @@ const staticPageConfigs: {
     h2Nl: 'Boetieks, sportwinkels en koopzondagen'
   },
   {
+    key: 'skiTheme',
+    titleDe: 'Skifahren in Winterberg 2026/27 | Pisten, Hütten, Ticketpreise & Flutlicht',
+    titleNl: 'Skiën in Winterberg 2026/27 | Pistes, Skihutten, Skipasprijzen & Avondskiën',
+    descDe: 'Der umfassende Ski- und Winterguide für Winterberg: Alle 5 Skigebiete, offizielle Ticketpreise Saison 2026/27, die besten Skihütten, Flutlicht-Abende und Community-Umfragen.',
+    descNl: 'De complete wintergids voor Winterberg: alle 5 skigebieden, officiële skipasprijzen 2026/27, gezellige skihutten, avondskiën onder schijnwerpers, webcams en community-tips.',
+    h1De: 'Skifahren in Winterberg – Pisten, Hütten, Preise & Flutlicht',
+    h1Nl: 'Skiën in Winterberg – Pistes, Skihutten, Skipasprijzen & Avondskiën',
+    h2De: 'Offizielle Skipasspreise 2026/27, Skiliftkarussell, Hüttenguide & Flutlicht',
+    h2Nl: 'Officiële tarieven 2026/27, Skiliftkarussell, berghuttengids en avondskiën'
+  },
+  {
+    key: 'skifahrenWinterberg',
+    titleDe: 'Skifahren in Winterberg | Der große Pisten- & Hüttenguide',
+    titleNl: 'Skiën in Winterberg | De grote piste- & berghuttengids',
+    descDe: 'Alles über das Skifahren in Winterberg: Skiliftkarussell, Altastenberg, Neuastenberg, Skipass-Tarife 26/27, Flutlicht-Guide und Insider-Tipps.',
+    descNl: 'Alles over skiën in Winterberg: Skiliftkarussell, Altastenberg, Neuastenberg, skipasprijzen 26/27, avondskiën en tips van de community.',
+    h1De: 'Skifahren in Winterberg',
+    h1Nl: 'Skiën in Winterberg',
+    h2De: 'Skigebiete, Skipasspreise Saison 2026/27 & Einkehrschwung',
+    h2Nl: 'Skigebieden, skipasprijzen seizoen 2026/27 en après-ski'
+  },
+  {
     key: 'heimatkarte',
     titleDe: 'Winterberg HeimatCard | Vorteile, Guthaben & Partner | Das Winterberg Verzeichnis',
     titleNl: 'Winterberg HeimatCard | Voordelen & Partners | Het Winterberg Overzicht',

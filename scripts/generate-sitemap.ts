@@ -95,7 +95,9 @@ const staticPages = [
   'wasteCalendar',
   'chargingStations',
   'shoppingTheme',
-  'shoppenWinterberg'
+  'shoppenWinterberg',
+  'skiTheme',
+  'skifahrenWinterberg'
 ] as const;
 staticPages.forEach(p => {
   entries.push({

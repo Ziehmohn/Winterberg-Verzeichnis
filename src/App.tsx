@@ -92,6 +92,7 @@ const SkiReportPage = React.lazy(() => import('./components/SkiReportPage'));
 const WasteCalendarPage = React.lazy(() => import('./components/WasteCalendarPage'));
 const ChargingStationsPage = React.lazy(() => import('./components/ChargingStationsPage'));
 const ShoppingThemePage = React.lazy(() => import('./components/ShoppingThemePage'));
+const SkiThemePage = React.lazy(() => import('./components/SkiThemePage'));
 import { db, auth, storage } from './firebase';
 import { collection, getDocs, getDoc, doc, setDoc, updateDoc, deleteDoc, addDoc, query, where, onSnapshot } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -185,6 +186,7 @@ export default function App() {
   let initialWasteCalendarMode = false;
   let initialChargingStationsMode = false;
   let initialShoppingThemeMode = false;
+  let initialSkiThemeMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
   let initialEmbedLayout: WidgetLayout = 'badge';
@@ -289,6 +291,15 @@ export default function App() {
         (decodedPart1 === 'themas' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'winkelen-in-winterberg')
       ) {
         initialShoppingThemeMode = true;
+      } else if (
+        decodedPart1 === 'skifahren-in-winterberg' || 
+        decodedPart1 === 'skien-in-winterberg' || 
+        decodedPart1 === 'skifahren' || 
+        decodedPart1 === 'skien' || 
+        (decodedPart1 === 'themen' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'skifahren-in-winterberg') ||
+        (decodedPart1 === 'themas' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'skien-in-winterberg')
+      ) {
+        initialSkiThemeMode = true;
       } else if (decodedPart1 === 'abmelden' || decodedPart1 === 'uitschrijven') {
         // Will be handled by UnsubscribeModal
       } else {
@@ -516,6 +527,7 @@ export default function App() {
     if (isWasteCalendarMode) return { view: 'waste-calendar' };
     if (isChargingStationsMode) return { view: 'charging-stations' };
     if (isShoppingThemeMode) return { view: 'shopping-theme' };
+    if (isSkiThemeMode) return { view: 'ski-theme' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
       const parentCat = categories.find(c => c.subcategories.includes(activeCategory));
@@ -603,6 +615,7 @@ export default function App() {
     if (p === '/abfallkalender' || p === '/afvalkalender') return buildLocalizedUrl({ view: 'waste-calendar' }, lang);
     if (p === '/e-ladestationen' || p === '/laadpalen' || p === '/ladestationen') return buildLocalizedUrl({ view: 'charging-stations' }, lang);
     if (p === '/shoppen-in-winterberg' || p === '/winkelen-in-winterberg' || p === '/themen/shoppen-in-winterberg' || p === '/themas/winkelen-in-winterberg') return buildLocalizedUrl({ view: 'shopping-theme' }, lang);
+    if (p === '/skifahren-in-winterberg' || p === '/skien-in-winterberg' || p === '/skifahren' || p === '/skien' || p === '/themen/skifahren-in-winterberg' || p === '/themas/skien-in-winterberg') return buildLocalizedUrl({ view: 'ski-theme' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
     const parts = clean.split('/').filter(Boolean);
@@ -654,6 +667,7 @@ export default function App() {
     setIsWasteCalendarMode(false);
     setIsChargingStationsMode(false);
     setIsShoppingThemeMode(false);
+    setIsSkiThemeMode(false);
   };
 
   const handleCategoryChange = (catName: string) => {
@@ -791,6 +805,15 @@ export default function App() {
           (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'winkelen-in-winterberg')
         ) {
           setIsShoppingThemeMode(true);
+        } else if (
+          p1 === 'skifahren-in-winterberg' || 
+          p1 === 'skien-in-winterberg' || 
+          p1 === 'skifahren' || 
+          p1 === 'skien' || 
+          (p1 === 'themen' && pathParts[1] && pathParts[1].toLowerCase() === 'skifahren-in-winterberg') ||
+          (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'skien-in-winterberg')
+        ) {
+          setIsSkiThemeMode(true);
         } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
           setIsEventsMode(true);
         } else {
@@ -968,6 +991,7 @@ export default function App() {
   const [isWasteCalendarMode, setIsWasteCalendarMode] = useState(initialWasteCalendarMode);
   const [isChargingStationsMode, setIsChargingStationsMode] = useState(initialChargingStationsMode);
   const [isShoppingThemeMode, setIsShoppingThemeMode] = useState(initialShoppingThemeMode);
+  const [isSkiThemeMode, setIsSkiThemeMode] = useState(initialSkiThemeMode);
   const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
   const [embedBusinessId] = useState(initialEmbedBusinessId);
@@ -1840,7 +1864,20 @@ export default function App() {
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
               <a href={getPath(lang === 'nl' ? '/evenementen' : '/events')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Evenementen' : 'Events'}</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
-              <a href={getPath('/faq')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/faq')); resetToDirectory(); setIsFaqMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">FAQs</a>
+              <a 
+                href={getPath('/themen/skifahren-in-winterberg')} 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  window.history.pushState(null, '', getPath('/themen/skifahren-in-winterberg')); 
+                  resetToDirectory(); 
+                  setIsSkiThemeMode(true); 
+                }} 
+                style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 600 }} 
+                className="hover:text-orange-500 transition-colors flex items-center gap-1.5"
+              >
+                <span>🎿</span>
+                <span>{lang === 'nl' ? 'Skiën' : 'Skifahren'}</span>
+              </a>
               
               <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5"></div>
 
@@ -2416,6 +2453,41 @@ export default function App() {
             }}
             onBack={() => {
               setIsShoppingThemeMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isSkiThemeMode ? (
+          <SkiThemePage
+            businesses={businesses}
+            theme={theme}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsSkiThemeMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectNewsArticle={(slug) => {
+              setIsSkiThemeMode(false);
+              const targetUrl = buildLocalizedUrl({ view: 'news-detail', newsSlug: slug }, lang);
+              window.history.pushState(null, '', targetUrl);
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateCategory={(cat, sub) => {
+              resetToDirectory();
+              setActiveCategory(sub || cat);
+              window.history.pushState(null, '', getPath(`/${encodeURIComponent(cat)}${sub ? `/${encodeURIComponent(sub)}` : ''}`));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateSkiReport={() => {
+              setIsSkiThemeMode(false);
+              setIsSkiReportMode(true);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/skigebied-piste' : '/pistenbericht'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsSkiThemeMode(false);
               window.history.pushState(null, '', getPath('/'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
@@ -3852,21 +3924,21 @@ export default function App() {
               </a>
 
               <a
-                href={getPath("/faq")}
+                href={getPath('/themen/skifahren-in-winterberg')}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.history.pushState(null, '', getPath('/faq'));
+                  window.history.pushState(null, '', getPath('/themen/skifahren-in-winterberg'));
                   resetToDirectory();
-                  setIsFaqMode(true);
+                  setIsSkiThemeMode(true);
                   setIsMobileNavOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#1B211D] hover:border-[#0F4C2E] transition-all shadow-xs"
               >
-                <div className="w-8 h-8 rounded-md bg-orange-50 text-[#F2761B] flex items-center justify-center shrink-0">
-                  <Sparkles className="w-4 h-4" />
+                <div className="w-8 h-8 rounded-md bg-cyan-50 text-cyan-700 flex items-center justify-center shrink-0">
+                  <Snowflake className="w-4 h-4 text-cyan-600" />
                 </div>
-                <span>FAQs</span>
+                <span>{lang === 'nl' ? 'Skiën in Winterberg' : 'Skifahren in Winterberg'}</span>
               </a>
 
               <a
@@ -4330,6 +4402,19 @@ export default function App() {
 
             {/* Themenseiten */}
             <div className="text-white font-semibold mt-3 mb-0.5">{lang === 'nl' ? 'Themapagina\'s' : 'Themenseiten'}</div>
+            <a 
+              href={getPath('/themen/skifahren-in-winterberg')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/themen/skifahren-in-winterberg')); 
+                resetToDirectory(); 
+                setIsSkiThemeMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Skiën in Winterberg' : 'Skifahren in Winterberg'}
+            </a>
             <a 
               href={getPath('/themen/shoppen-in-winterberg')} 
               onClick={(e) => { 
