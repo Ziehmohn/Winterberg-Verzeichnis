@@ -5,11 +5,12 @@ import { NewsArticle, ThemeConfig } from '../types';
 import { ArrowLeft, ExternalLink, Store, ShoppingBag, ArrowUpRight, Lightbulb } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
-import { getBusinessPath, slugify } from '../utils/routes';
+import { getBusinessPath, slugify, getBusinessSlug } from '../utils/routes';
 import { initialNews } from '../dataNews';
 import { businesses } from '../data';
 import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 import ShareButton from './ShareButton';
+import NewsReviewPrompt from './NewsReviewPrompt';
 
 interface NewsDetailProps {
   newsId: string;
@@ -787,9 +788,10 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
     : '';
 
   // Build business profile URL properly for DE and NL
-  const matchedBusiness = article.businessId
-    ? businesses.find(b => b.id === article.businessId)
-    : businesses.find(b => b.name === article.businessName);
+  const matchedBusiness = (article.businessId && businesses.find(b => b.id === article.businessId))
+    || (article.businessName && businesses.find(b => b.name.toLowerCase() === article.businessName?.toLowerCase()))
+    || (article.businessSlug && businesses.find(b => b.id === article.businessSlug || getBusinessSlug(b.name) === article.businessSlug.split('/').pop()))
+    || null;
 
   const businessProfileUrl = matchedBusiness
     ? getBusinessPath(matchedBusiness, lang)
@@ -798,6 +800,10 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             ? `/nl/${article.businessSlug.replace(/^gastronomie\//, 'horeca/').replace(/\/imbisse\//, '/snackbar-en-fastfood/')}`
             : `/${article.businessSlug}`)
         : null);
+
+  const targetBusinessName = matchedBusiness?.name || article.businessName || '';
+  const targetBusinessImage = matchedBusiness?.image || article.imageUrl || '';
+  const targetBusinessId = matchedBusiness?.id || article.businessId || '';
 
   return (
     <article className="max-w-[850px] mx-auto py-[40px] px-[20px]">
@@ -902,6 +908,18 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}
       {contactContent && (
         <StandaloneContactBox rawContact={contactContent} heading={t('newsContactHeading')} />
+      )}
+
+      {/* Interactive Review Prompt Popup for related Business */}
+      {businessProfileUrl && targetBusinessName && (
+        <NewsReviewPrompt
+          businessName={targetBusinessName}
+          businessProfileUrl={businessProfileUrl}
+          businessId={targetBusinessId}
+          newsId={rawArticle?.id || article.id || newsId}
+          businessImage={targetBusinessImage}
+          lang={lang}
+        />
       )}
     </article>
   );

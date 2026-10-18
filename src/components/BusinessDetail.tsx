@@ -68,6 +68,19 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
       }
     }
   }, [business.id, isClaimed]);
+
+  // Auto-scroll to reviews section if visitor arrives with #bewertungen or #bewerten
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window.location.hash === '#bewertungen' || window.location.hash === '#bewerten')) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('bewertungen');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [business.id]);
   
   const [isReportingError, setIsReportingError] = useState(false);
   const [errorReportText, setErrorReportText] = useState('');
@@ -847,7 +860,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          <h2 className="font-display text-[22px] font-semibold mb-3.5">{lang === 'nl' ? 'Beoordelingen' : 'Bewertungen'}</h2>
+          <h2 id="bewertungen" className="font-display text-[22px] font-semibold mb-3.5 scroll-mt-24">{lang === 'nl' ? 'Beoordelingen' : 'Bewertungen'}</h2>
           <div className="grid gap-3 mb-5">
             {Array.isArray(business.reviews) && business.reviews.filter(r => !r.status || r.status === 'approved').length > 0 ? (
               business.reviews.filter(r => !r.status || r.status === 'approved').map(r => {

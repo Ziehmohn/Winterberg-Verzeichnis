@@ -1872,11 +1872,20 @@ export default function App() {
                   resetToDirectory(); 
                   setIsSkiThemeMode(true); 
                 }} 
-                style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 600 }} 
-                className="hover:text-orange-500 transition-colors flex items-center gap-1.5"
+                style={{ 
+                  color: '#0284C7', 
+                  backgroundColor: '#F0F9FF', 
+                  border: '1px solid #BAE6FD', 
+                  borderRadius: '6px', 
+                  padding: '3px 9px', 
+                  fontSize: '13.5px', 
+                  fontWeight: 600, 
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap'
+                }} 
+                className="hover:bg-sky-100 hover:text-sky-800 hover:border-sky-300 transition-all cursor-pointer"
               >
-                <span>🎿</span>
-                <span>{lang === 'nl' ? 'Skiën' : 'Skifahren'}</span>
+                {lang === 'nl' ? 'Skiën' : 'Skifahren'}
               </a>
               
               <div className="w-[1px] h-[18px] bg-[#E7E2DA] mx-0.5"></div>

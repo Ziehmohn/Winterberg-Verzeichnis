@@ -744,10 +744,10 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
               ☕ {isNl ? 'Skihutten' : 'Skihütten'}
             </a>
             <a href="#umfragen" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              🗳️ {isNl ? 'Stemmen & Polls' : 'Umfragen'}
+              🗳️ {isNl ? 'Piste-Poll' : 'Pisten-Umfrage'}
             </a>
             <a href="#community-ugc" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              📸 {isNl ? 'Foto\'s & Reviews' : 'Community & Fotos'}
+              💬 {isNl ? 'Reviews & Foto\'s' : 'Bewertungen & Fotos'}
             </a>
             <a href="#ski-news" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
               📰 News
@@ -1128,178 +1128,152 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 5: INTERAKTIVE UMFRAGEN (UGC POLLS) */}
+      {/* SECTION 5: INTERAKTIVE UMFRAGE: LIEBLINGSPISTE */}
       <section id="umfragen" className="mb-14 scroll-mt-20">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#F2761B] mb-2">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0284C7] dark:text-sky-400 mb-2">
             <Vote className="w-4 h-4" />
-            <span>{isNl ? 'Jouw Stem Telt' : 'Interaktive Pisten-Umfragen'}</span>
+            <span>{isNl ? 'Community Poll' : 'Winterberg Pisten-Umfrage'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
-            {isNl ? 'Community Polls: Wat is jouw favoriet in Winterberg?' : 'Winterberg Umfragen: Was ist deine Lieblingspiste & Lieblingshütte?'}
+            {isNl ? 'Welke piste is jouw absolute favoriet in Winterberg?' : 'Welches ist deine liebste Piste in Winterberg?'}
           </h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
             {isNl
-              ? 'Stem direct mee en bekijk live wat duizenden andere wintersporters in Winterberg het mooist vinden.'
-              : 'Stimmen Sie direkt mit ab und sehen Sie in Echtzeit, welche Abfahrten und Skihütten bei den Wintersportlern im Sauerland ganz oben stehen.'}
+              ? 'Kies links jouw favoriete afdaling. Aan de rechterkant zie je direct het live balkendiagram met de actuele tussenstand van de community.'
+              : 'Wähle links deine persönliche Lieblingsabfahrt. Auf der rechten Seite siehst du in Echtzeit das Balkendiagramm mit den aktuellen Stimmen.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* POLL 1: LIEBLINGSPISTE */}
-          <div className="bg-white dark:bg-[#1E2621] rounded-3xl p-6 sm:p-7 border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 font-bold text-xs rounded-full">
-                  🎿 {isNl ? 'Piste-Verkiezing' : 'Pisten-Voting'}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+          {/* LINKSPARTE: PISTE AUSWÄHLEN */}
+          <div className="lg:col-span-6 bg-white dark:bg-[#1E2621] rounded-3xl p-5 sm:p-7 border border-black/5 dark:border-white/10 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <span className="px-3 py-1 bg-sky-100 dark:bg-sky-950/70 text-sky-800 dark:text-sky-300 font-bold text-xs rounded-full">
+                🎿 {isNl ? '1. Kies jouw favoriet' : '1. Piste auswählen'}
+              </span>
+              {userVotedPiste && (
+                <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  {isNl ? 'Stem geregistreerd' : 'Abgestimmt'}
                 </span>
-                <span className="text-xs text-gray-400">
-                  {totalPisteVotes} {isNl ? 'stemmen' : 'Stimmen abgegeben'}
-                </span>
-              </div>
-
-              <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2 leading-tight">
-                {isNl ? 'Welke piste is jouw absolute favoriet in Winterberg?' : 'Welches ist deine liebste Piste in Winterberg?'}
-              </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
-                {userVotedPiste 
-                  ? (isNl ? '✓ Bedankt voor je stem! Hier zijn de actuele resultaten:' : '✓ Danke für deine Stimme! Hier ist das aktuelle Zwischenergebnis:')
-                  : (isNl ? 'Kies jouw favoriete afdaling om het resultaat te zien:' : 'Wähle deinen persönlichen Favoriten per Klick:')}
-              </p>
-
-              <div className="space-y-3">
-                {pistePoll.map((opt) => {
-                  const pct = totalPisteVotes > 0 ? Math.round((opt.votes / totalPisteVotes) * 100) : 0;
-                  const isUserChoice = userVotedPiste === opt.id;
-
-                  return (
-                    <div
-                      key={opt.id}
-                      onClick={() => !userVotedPiste && handleVotePiste(opt.id)}
-                      className={`relative rounded-xl border p-3.5 transition-all overflow-hidden ${
-                        !userVotedPiste 
-                          ? 'cursor-pointer hover:border-[#0F4C2E] hover:bg-gray-50 dark:hover:bg-[#151B17] border-gray-200 dark:border-gray-800'
-                          : isUserChoice
-                            ? 'border-[#0F4C2E] dark:border-emerald-500 bg-[#0F4C2E]/5 dark:bg-emerald-950/30'
-                            : 'border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-transparent'
-                      }`}
-                    >
-                      {/* Animated Result Progress Bar */}
-                      {userVotedPiste && (
-                        <div
-                          className={`absolute top-0 bottom-0 left-0 transition-all duration-700 ease-out opacity-20 ${
-                            isUserChoice ? 'bg-[#0F4C2E] dark:bg-emerald-500' : 'bg-gray-400'
-                          }`}
-                          style={{ width: `${pct}%` }}
-                        />
-                      )}
-
-                      <div className="relative z-10 flex items-center justify-between gap-3">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-sm text-gray-900 dark:text-white">
-                              {isNl ? opt.name_nl : opt.name}
-                            </span>
-                            {isUserChoice && (
-                              <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-[#0F4C2E] text-white px-2 py-0.5 rounded-full">
-                                ✓ {isNl ? 'Jouw stem' : 'Deine Wahl'}
-                              </span>
-                            )}
-                          </div>
-                          <span className="text-xs text-gray-500 dark:text-gray-400 block mt-0.5">
-                            {isNl ? opt.description_nl : opt.description}
-                          </span>
-                        </div>
-
-                        {userVotedPiste && (
-                          <div className="text-right shrink-0">
-                            <span className="font-black text-sm text-gray-900 dark:text-white block">{pct}%</span>
-                            <span className="text-[11px] text-gray-400">{opt.votes}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              )}
             </div>
 
-            <div className="mt-5 text-[11px] text-gray-400 text-center">
-              🔒 {isNl ? 'Live-uitslag wordt direct opgeslagen.' : 'Live-Voting: Ihre Stimme wird anonymisiert erfasst.'}
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+              {userVotedPiste 
+                ? (isNl ? 'Jouw stem telt mee in het diagram. Je kunt je keuze hieronder aanpassen:' : 'Deine Stimme zählt im Diagramm. Du kannst deinen Favoriten hier anklicken:')
+                : (isNl ? 'Klik op jouw favoriete piste om direct je stem uit te brengen:' : 'Klicke auf deine Lieblingspiste, um direkt abzustimmen:')}
+            </p>
+
+            <div className="space-y-2.5">
+              {pistePoll.map((opt) => {
+                const isSelected = userVotedPiste === opt.id;
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => handleVotePiste(opt.id)}
+                    className={`w-full text-left rounded-2xl p-3.5 transition-all cursor-pointer border flex items-start gap-3 ${
+                      isSelected
+                        ? 'border-[#0284C7] bg-sky-50/70 dark:bg-sky-950/30 ring-2 ring-[#0284C7]/20 shadow-xs'
+                        : 'border-gray-200 dark:border-gray-800 hover:border-[#0284C7] hover:bg-gray-50 dark:hover:bg-[#151B17] bg-white dark:bg-transparent'
+                    }`}
+                  >
+                    {/* Radio indicator */}
+                    <div className={`w-5 h-5 rounded-full shrink-0 mt-0.5 border flex items-center justify-center transition-colors ${
+                      isSelected 
+                        ? 'border-[#0284C7] bg-[#0284C7] text-white' 
+                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
+                    }`}>
+                      {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className={`font-bold text-sm ${isSelected ? 'text-[#0284C7] dark:text-sky-400' : 'text-gray-900 dark:text-white'}`}>
+                          {isNl ? opt.name_nl : opt.name}
+                        </span>
+                        {isSelected && (
+                          <span className="text-[10px] font-bold bg-[#0284C7] text-white px-2 py-0.5 rounded-full shrink-0">
+                            ✓ {isNl ? 'Jouw keuze' : 'Deine Wahl'}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2">
+                        {isNl ? opt.description_nl : opt.description}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800/80 text-[11px] text-gray-400 flex items-center justify-between">
+              <span>🔒 {isNl ? 'Echte stemmen zonder manipulatie' : 'Echte Stimmen ohne Manipulation'}</span>
+              <span>1 {isNl ? 'stem per bezoeker' : 'Stimme pro Besucher'}</span>
             </div>
           </div>
 
-          {/* POLL 2: LIEBLINGSHÜTTE */}
-          <div className="bg-white dark:bg-[#1E2621] rounded-3xl p-6 sm:p-7 border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-between">
+          {/* RECHTSPARTE: BALKENDIAGRAMM (NACH RECHTS GEHEND) */}
+          <div className="lg:col-span-6 bg-white dark:bg-[#1E2621] rounded-3xl p-5 sm:p-7 border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="px-3 py-1 bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 font-bold text-xs rounded-full">
-                  ☕ {isNl ? 'Skihut-Verkiezing' : 'Hütten-Voting'}
+                <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 font-bold text-xs rounded-full">
+                  📊 {isNl ? '2. Live Balkendiagram' : '2. Balkendiagramm'}
                 </span>
-                <span className="text-xs text-gray-400">
-                  {totalHutVotes} {isNl ? 'stemmen' : 'Stimmen abgegeben'}
+                <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+                  {totalPisteVotes} {totalPisteVotes === 1 ? (isNl ? 'Stem' : 'Stimme') : (isNl ? 'Stimmen abgegeben' : 'Stimmen abgegeben')}
                 </span>
               </div>
 
-              <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2 leading-tight">
-                {isNl ? 'Beste einkehr: Welke skihut is jouw nummer 1?' : 'Bester Einkehrschwung: Welche Hütte ist dein Favorit?'}
+              <h3 className="text-xl font-black text-gray-900 dark:text-white mb-1.5">
+                {isNl ? 'Huidige Tussenstand' : 'Aktuelles Abstimmungsergebnis'}
               </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
-                {userVotedHut 
-                  ? (isNl ? '✓ Bedankt voor je stem! Dit is de tussenstand:' : '✓ Danke für deine Stimme! Hier ist das aktuelle Zwischenergebnis:')
-                  : (isNl ? 'Kies de berghut met de beste sfeer of lekkerste gerechten:' : 'Wo schmeckt der Einkehrschwung am besten? Stimme ab:')}
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-5">
+                {totalPisteVotes === 0
+                  ? (isNl ? 'Nog geen stemmen. Kies links jouw favoriet om de eerste balk te vullen!' : 'Bisher noch keine Stimmen abgegeben. Wähle links deinen Favoriten, um den ersten Balken zu füllen!')
+                  : (isNl ? 'Balken tonen het percentage van alle uitgebrachte stemmen:' : 'Die horizontalen Balken zeigen den prozentualen Anteil der Stimmen:')}
               </p>
 
-              <div className="space-y-3">
-                {hutPoll.map((opt) => {
-                  const pct = totalHutVotes > 0 ? Math.round((opt.votes / totalHutVotes) * 100) : 0;
-                  const isUserChoice = userVotedHut === opt.id;
+              {/* HORIZONTALES BALKENDIAGRAMM (Bars extending to the right) */}
+              <div className="space-y-4">
+                {pistePoll.map((opt) => {
+                  const pct = totalPisteVotes > 0 ? Math.round((opt.votes / totalPisteVotes) * 100) : 0;
+                  const isSelected = userVotedPiste === opt.id;
 
                   return (
-                    <div
-                      key={opt.id}
-                      onClick={() => !userVotedHut && handleVoteHut(opt.id)}
-                      className={`relative rounded-xl border p-3.5 transition-all overflow-hidden ${
-                        !userVotedHut 
-                          ? 'cursor-pointer hover:border-[#F2761B] hover:bg-gray-50 dark:hover:bg-[#151B17] border-gray-200 dark:border-gray-800'
-                          : isUserChoice
-                            ? 'border-[#F2761B] bg-[#F2761B]/5 dark:bg-orange-950/30'
-                            : 'border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-transparent'
-                      }`}
-                    >
-                      {/* Animated Result Progress Bar */}
-                      {userVotedHut && (
-                        <div
-                          className={`absolute top-0 bottom-0 left-0 transition-all duration-700 ease-out opacity-20 ${
-                            isUserChoice ? 'bg-[#F2761B]' : 'bg-gray-400'
-                          }`}
-                          style={{ width: `${pct}%` }}
-                        />
-                      )}
-
-                      <div className="relative z-10 flex items-center justify-between gap-3">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-sm text-gray-900 dark:text-white">
-                              {isNl ? opt.name_nl : opt.name}
-                            </span>
-                            {isUserChoice && (
-                              <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-[#F2761B] text-white px-2 py-0.5 rounded-full">
-                                ✓ {isNl ? 'Jouw keuze' : 'Deine Wahl'}
-                              </span>
-                            )}
-                          </div>
-                          <span className="text-xs text-gray-500 dark:text-gray-400 block mt-0.5">
-                            {isNl ? opt.description_nl : opt.description}
+                    <div key={opt.id} className="space-y-1.5">
+                      {/* Label row above bar */}
+                      <div className="flex items-center justify-between text-xs gap-2">
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <span className={`font-bold truncate ${isSelected ? 'text-[#0284C7] dark:text-sky-400' : 'text-gray-800 dark:text-gray-200'}`}>
+                            {isNl ? opt.name_nl : opt.name}
                           </span>
+                          {isSelected && (
+                            <span className="text-[10px] font-bold text-[#0284C7] dark:text-sky-400 shrink-0">
+                              ({isNl ? 'Jouw keuze' : 'Deine Wahl'})
+                            </span>
+                          )}
                         </div>
+                        <div className="shrink-0 text-right font-semibold text-gray-600 dark:text-gray-400">
+                          <span className="font-extrabold text-gray-900 dark:text-white">{pct}%</span>
+                          <span className="text-[11px] text-gray-400 ml-1.5">({opt.votes} {opt.votes === 1 ? (isNl ? 'stem' : 'Stimme') : (isNl ? 'stemmen' : 'Stimmen')})</span>
+                        </div>
+                      </div>
 
-                        {userVotedHut && (
-                          <div className="text-right shrink-0">
-                            <span className="font-black text-sm text-gray-900 dark:text-white block">{pct}%</span>
-                            <span className="text-[11px] text-gray-400">{opt.votes}</span>
-                          </div>
-                        )}
+                      {/* Horizontal Bar Track */}
+                      <div className="w-full h-3.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden p-0.5 relative">
+                        <div
+                          className={`h-full rounded-full transition-all duration-700 ease-out ${
+                            isSelected
+                              ? 'bg-gradient-to-r from-sky-500 to-[#0284C7] shadow-xs'
+                              : pct > 0
+                                ? 'bg-gradient-to-r from-emerald-500 to-[#0F4C2E]'
+                                : 'bg-transparent'
+                          }`}
+                          style={{ width: `${pct}%`, minWidth: pct > 0 ? '8px' : '0%' }}
+                        />
                       </div>
                     </div>
                   );
@@ -1307,8 +1281,8 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
               </div>
             </div>
 
-            <div className="mt-5 text-[11px] text-gray-400 text-center">
-              🏆 {isNl ? 'De officiële publieksprijs voor beste skihut van Winterberg' : 'Das Voting der Winterberg-Community für die Skisaison 2026/27'}
+            <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800 text-[11px] text-gray-400 text-center">
+              💡 {isNl ? 'Het diagram wordt direct en in realtime bijgewerkt na elke stem.' : 'Das Balkendiagramm aktualisiert sich nach jedem Klick sofort in Echtzeit.'}
             </div>
           </div>
         </div>
@@ -1327,8 +1301,8 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
               {isNl
-                ? 'Echte reviews, geheime tips voor rustige uurtjes op de piste en aanbevelingen van locals en vaste gasten.'
-                : 'Echte Erfahrungsberichte, Pisten-Empfehlungen und Insidertipps von Einheimischen und erfahrenen Winterurlaubern.'}
+                ? 'Echte reviews en aanbevelingen van gasten. Geen verzonnen verhalen, maar authentieke community-tips.'
+                : 'Echte Erfahrungsberichte und Pisten-Empfehlungen von Besuchern. Keine erfundenen Bewertungen, sondern authentische Community-Tipps.'}
             </p>
           </div>
 
@@ -1342,67 +1316,91 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
           </button>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {reviews.map((rev) => (
-            <div
-              key={rev.id}
-              className="bg-white dark:bg-[#1E2621] rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-1 text-amber-400">
-                    {[...Array(5)].map((_, idx) => (
-                      <Star
-                        key={idx}
-                        className={`w-4 h-4 ${idx < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-[11px] font-semibold text-gray-400">
-                    {rev.date}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-bold text-sm text-gray-900 dark:text-white">
-                    {rev.name}
-                  </span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                    {rev.tag}
-                  </span>
-                </div>
-
-                <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-[#0F4C2E] dark:text-emerald-400" />
-                  <span>{rev.locationOrPiste}</span>
-                </div>
-
-                <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed italic mb-4">
-                  "{rev.text}"
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
-                <span className="text-[11px] text-gray-400">
-                  {rev.helpfulCount} {isNl ? 'mensen vonden dit nuttig' : 'Personen fanden diesen Tipp hilfreich'}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => handleHelpfulReview(rev.id)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                    rev.userVotedHelpful
-                      ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300'
-                      : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300'
-                  }`}
-                >
-                  <ThumbsUp className="w-3.5 h-3.5" />
-                  <span>{rev.userVotedHelpful ? (isNl ? 'Bedankt!' : 'Hilfreich ✓') : (isNl ? 'Nuttig' : 'Hilfreich')}</span>
-                </button>
-              </div>
+        {/* Reviews Grid or Empty State */}
+        {reviews.length === 0 ? (
+          <div className="bg-white dark:bg-[#1E2621] rounded-3xl p-8 sm:p-12 border border-dashed border-gray-200 dark:border-gray-800 text-center max-w-2xl mx-auto shadow-xs">
+            <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-[#0284C7] flex items-center justify-center mx-auto mb-4 border border-sky-100 dark:border-sky-900">
+              <MessageSquare className="w-7 h-7" />
             </div>
-          ))}
-        </div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              {isNl ? 'Nog geen beoordelingen aanwezig' : 'Noch keine Bewertungen vorhanden'}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed max-w-md mx-auto">
+              {isNl 
+                ? 'We tonen uitsluitend echte inzendingen en verzinnen geen reviews. Heb je al ervaring op de pistes van Winterberg? Deel als eerste jouw echte indruk of insider-tip!'
+                : 'Wir erfinden keine Bewertungen. Warst du schon auf den Pisten in Winterberg unterwegs? Teile als Erster deine echten Erfahrungen, Pisten-Empfehlungen oder Hütten-Tipps mit der Community!'}
+            </p>
+            <button
+              type="button"
+              onClick={() => setIsReviewModalOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0F4C2E] hover:bg-[#14532D] text-white font-bold text-sm shadow-md transition-all cursor-pointer hover:-translate-y-0.5"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>{isNl ? 'Eerste beoordeling schrijven' : 'Erste Bewertung schreiben'}</span>
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {reviews.map((rev) => (
+              <div
+                key={rev.id}
+                className="bg-white dark:bg-[#1E2621] rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-1 text-amber-400">
+                      {[...Array(5)].map((_, idx) => (
+                        <Star
+                          key={idx}
+                          className={`w-4 h-4 ${idx < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[11px] font-semibold text-gray-400">
+                      {rev.date}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-bold text-sm text-gray-900 dark:text-white">
+                      {rev.name}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                      {rev.tag}
+                    </span>
+                  </div>
+
+                  <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-[#0F4C2E] dark:text-emerald-400" />
+                    <span>{rev.locationOrPiste}</span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed italic mb-4">
+                    "{rev.text}"
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                  <span className="text-[11px] text-gray-400">
+                    {rev.helpfulCount} {isNl ? 'mensen vonden dit nuttig' : 'Personen fanden diesen Tipp hilfreich'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleHelpfulReview(rev.id)}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                      rev.userVotedHelpful
+                        ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300'
+                        : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300'
+                    }`}
+                  >
+                    <ThumbsUp className="w-3.5 h-3.5" />
+                    <span>{rev.userVotedHelpful ? (isNl ? 'Bedankt!' : 'Hilfreich ✓') : (isNl ? 'Nuttig' : 'Hilfreich')}</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* SECTION 7: UGC - COMMUNITY-FOTOS & BILDER-UPLOAD */}
