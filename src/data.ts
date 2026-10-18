@@ -2743,6 +2743,58 @@ export const businesses: Business[] = [
     ]
   },
   {
+    id: 'bobhaus-winterberg',
+    name: 'Bobhaus Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: 'Geschichtsträchtiges Panoramarestaurant und Bergstation auf dem Gipfel der Kappe (776 m). Atemberaubender Weitblick über das Sauerland, gehobene regionale Küche, Kaminzimmer und große Sonnenterrasse direkt am Steilhang (Piste 14) und der VELTINS-EisArena.',
+    description_nl: 'Historisch panoramarestaurant op de top van de Erlebnisberg Kappe (776 m). Adembenemend uitzicht over het Sauerland, regionale keuken, open haard en groot terras direct aan Piste 14.',
+    address: 'Kappe 2, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2177',
+    website: 'https://www.bobhaus.de',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'koehlerhuette-am-sahnehang',
+    name: 'Köhlerhütte am Sahnehang',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: 'Urigste Berghütte am schneesichersten Hang im Sauerland. Direkt am Familienskigebiet Sahnehang und der Rodelbahn auf über 830 Metern Höhe am Kahlen Asten. Bekannt für deftigen Gulasch, heißen Kakao und authentische Hütten-Atmosphäre.',
+    description_nl: 'Meest authentieke berghut op de meest sneeuwzekere helling van het Sauerland direct aan het skigebied Sahnehang (836 m). Bekend om stevige soepen, warme chocolademelk en gezelligheid.',
+    address: 'Astenstraße 10, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '02981 2897',
+    website: 'https://www.sahnehang.de',
+    isPremium: false,
+    status: 'approved'
+  },
+  {
+    id: 'bremberg-klause',
+    name: 'Bremberg Klause',
+    category: 'Gastronomie',
+    subcategory: 'Skihütten',
+    description: 'Beliebte Skihütte, Restaurant und Eventlocation direkt im Skiliftkarussell an den Bremberg-Pisten 10 & 11. Urige Gemütlichkeit, hausgemachte Speisen, heiße Getränke und Sonnenterrasse. Freitags auch bei Flutlicht geöffnet.',
+    description_nl: 'Gezellige skihut, restaurant en eventlocatie direct aan de Bremberg-pistes (10 & 11). Warme gerechten, drankjes en zonneterras. Vrijdags tevens geopend tijdens het avondskiën.',
+    address: 'Am Waltenberg 99, 59955 Winterberg',
+    district: 'Winterberg',
+    phone: '0171 9313600',
+    email: 'info@bremberg-klause.de',
+    website: 'https://www.bremberg-klause.de',
+    openingHours: {
+      monday: '09:00 - 17:00',
+      tuesday: '09:00 - 17:00',
+      wednesday: '09:00 - 17:00',
+      thursday: '09:00 - 17:00',
+      friday: '09:00 - 17:00 (Flutlicht bis 22:30)',
+      saturday: '09:00 - 17:00',
+      sunday: '09:00 - 17:00'
+    },
+    isPremium: false,
+    status: 'approved'
+  },
+  {
     id: 'schirmbar-postwiese',
     name: 'Schirmbar Postwiese',
     category: 'Gastronomie',

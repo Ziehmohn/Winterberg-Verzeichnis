@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (372 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (375 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2009,6 +2009,39 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Iconische skihut, après-ski locatie en restaurant direct aan de piste in de Skiliftkarussell Winterberg (Büre Herrloh). Bekend om legendarische feesten, evenementen en gezellige sfeer.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bei-moeppi
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/bei-moeppi
+
+#### [Bobhaus Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bobhaus-winterberg)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Kappe 2, 59955 Winterberg
+- **Telefon:** 02981 2177
+- **Webseite:** https://www.bobhaus.de
+- **Beschreibung (DE):** Geschichtsträchtiges Panoramarestaurant und Bergstation auf dem Gipfel der Kappe (776 m). Atemberaubender Weitblick über das Sauerland, gehobene regionale Küche, Kaminzimmer und große Sonnenterrasse direkt am Steilhang (Piste 14) und der VELTINS-EisArena.
+- **Beschreibung (NL):** Historisch panoramarestaurant op de top van de Erlebnisberg Kappe (776 m). Adembenemend uitzicht over het Sauerland, regionale keuken, open haard en groot terras direct aan Piste 14.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bobhaus-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/bobhaus-winterberg
+
+#### [Köhlerhütte am Sahnehang](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/koehlerhuette-am-sahnehang)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Astenstraße 10, 59955 Winterberg
+- **Telefon:** 02981 2897
+- **Webseite:** https://www.sahnehang.de
+- **Beschreibung (DE):** Urigste Berghütte am schneesichersten Hang im Sauerland. Direkt am Familienskigebiet Sahnehang und der Rodelbahn auf über 830 Metern Höhe am Kahlen Asten. Bekannt für deftigen Gulasch, heißen Kakao und authentische Hütten-Atmosphäre.
+- **Beschreibung (NL):** Meest authentieke berghut op de meest sneeuwzekere helling van het Sauerland direct aan het skigebied Sahnehang (836 m). Bekend om stevige soepen, warme chocolademelk en gezelligheid.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/koehlerhuette-am-sahnehang
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/koehlerhuette-am-sahnehang
+
+#### [Bremberg Klause](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bremberg-klause)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 99, 59955 Winterberg
+- **Telefon:** 0171 9313600
+- **Webseite:** https://www.bremberg-klause.de
+- **Beschreibung (DE):** Beliebte Skihütte, Restaurant und Eventlocation direkt im Skiliftkarussell an den Bremberg-Pisten 10 & 11. Urige Gemütlichkeit, hausgemachte Speisen, heiße Getränke und Sonnenterrasse. Freitags auch bei Flutlicht geöffnet.
+- **Beschreibung (NL):** Gezellige skihut, restaurant en eventlocatie direct aan de Bremberg-pistes (10 & 11). Warme gerechten, drankjes en zonneterras. Vrijdags tevens geopend tijdens het avondskiën.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bremberg-klause
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/bremberg-klause
 
 #### [Schirmbar Postwiese](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schirmbar-postwiese)
 - **Kategorie:** Gastronomie > Skihütten

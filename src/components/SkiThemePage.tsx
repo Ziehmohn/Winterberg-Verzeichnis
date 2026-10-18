@@ -15,14 +15,12 @@ import {
   Users,
   Calendar,
   Vote,
-  Camera,
   MessageSquare,
   Star,
   ThumbsUp,
   MapPin,
   Flame,
   ChevronDown,
-  Upload,
   Info,
   Check,
   Award,
@@ -233,7 +231,7 @@ const SKI_HUTS_DATA: SkiHutInfo[] = [
     description: 'Geschichtsträchtiges Berggasthaus oberhalb des Kappe-Steilhangs und der Bobbahn. Erstklassige Aussicht von der Terrasse über die Sauerländer Bergwelt.',
     description_nl: 'Historisch bergrestaurant boven de steile Kappe-piste en de bobsleebaan. Schitterend uitzicht vanaf het panoramaterras.',
     tags: ['Gipfelblick', 'Kappe', 'Gehobene Küche', 'Aussicht'],
-    businessNameMatch: 'Bobhaus',
+    businessNameMatch: 'Bobhaus Winterberg',
   },
   {
     id: 'koehlerhuette-sahnehang',
@@ -246,6 +244,21 @@ const SKI_HUTS_DATA: SkiHutInfo[] = [
     description: 'Die historische Köhlerhütte empfängt Wintersportler direkt am Hang des Sahnehangs. Ein heißer Kakao oder deftiger Gulasch schmecken hier im Schnee doppelt so gut.',
     description_nl: 'De historische Köhlerhütte verwelkomt skiërs en rodelaars direct aan de Sahnehang. Huiselijke sfeer met warme chocolademelk en soepen.',
     tags: ['Schneesicher', 'Historisch', 'Rodeln & Ski', 'Gemütlich'],
+    businessNameMatch: 'Köhlerhütte am Sahnehang',
+  },
+  {
+    id: 'bremberg-klause',
+    name: 'Bremberg Klause',
+    location: 'Bremberg / Piste 10 & 11',
+    location_nl: 'Bremberg / Piste 10 & 11',
+    piste: 'Piste 10 (Bremberg) & Piste 11',
+    highlight: 'Beliebter Einkehrschwung & Restaurant direkt an den Bremberg-Abfahrten bei Tag & Flutlicht',
+    highlight_nl: 'Gezellige skihut & restaurant direct aan de Bremberg-afdalingen en avondskiën',
+    description: 'Direkt an den Pisten des Brembergs: Urige Gemütlichkeit, hausgemachte Speisen, heiße Getränke und Sonnenterrasse. Freitags auch bei Flutlicht bis 22:30 Uhr geöffnet.',
+    description_nl: 'Direct aan de pistes van de Bremberg: gezellige sfeer, warme maaltijden, drankjes en zonneterras. Vrijdags ook geopend tijdens avondskiën.',
+    tags: ['Bremberg', 'Sonnenterrasse', 'Flutlicht-Abend', 'Gemütlich'],
+    businessNameMatch: 'Bremberg Klause',
+    hasFloodlightOpen: true,
   },
   {
     id: 'schirmbar-postwiese',
@@ -274,24 +287,15 @@ interface PollOption {
 }
 
 const INITIAL_PISTE_POLL: PollOption[] = [
-  { id: 'quickjet', name: 'Quick Jet / Poppenberg (Piste 5)', name_nl: 'Quick Jet / Poppenberg (Piste 5)', description: 'Breiter Carving-Hang & legendäre Flutlichtpiste', description_nl: 'Brede carvinghelling en legendarische avondpiste', votes: 142 },
-  { id: 'kappe', name: 'Kappe Steilhang (Piste 14)', name_nl: 'Kappe Steilhang (Piste 14)', description: 'Die steilste Herausforderung nördlich der Alpen (bis 50% Gefälle)', description_nl: 'De steilste afdaling ten noorden van de Alpen (tot 50%)', votes: 118 },
-  { id: 'herrloh', name: 'Slalomhang Herrloh & St. Georg Schanze', name_nl: 'Slalomhang Herrloh & St. Georg Schans', description: 'Der beliebte Traditions-Klassiker mitten im Karussell', description_nl: 'De populaire klassieker in het hart van het skigebied', votes: 89 },
-  { id: 'schneewittchen', name: 'Schneewittchenhang (Piste 25)', name_nl: 'Schneewittchenhang (Piste 25)', description: 'Herrlich weitläufig, modern erschlossen & familienfreundlich', description_nl: 'Heerlijk breed, modern en ideaal voor gezinnen', votes: 104 },
-  { id: 'bremberg', name: 'Bremberg Waldabfahrt (Piste 10 & 11)', name_nl: 'Bremberg Bosafdaling (Piste 10 & 11)', description: 'Entspanntes Gleiten durch verschneite Fichtenwälder', description_nl: 'Ontspannen afdalen tussen de besneeuwde dennenbomen', votes: 76 },
-  { id: 'altastenberg', name: 'Westfalenhang I (Skikarussell Altastenberg)', name_nl: 'Westfalenhang I (Altastenberg)', description: 'Einzige offizielle FIS-Weltcup-Slalomstrecke im Sauerland', description_nl: 'Enige officiële FIS-wereldbeker slalompiste in de regio', votes: 63 },
+  { id: 'quickjet', name: 'Quick Jet / Poppenberg (Piste 5)', name_nl: 'Quick Jet / Poppenberg (Piste 5)', description: 'Breiter Carving-Hang & legendäre Flutlichtpiste', description_nl: 'Brede carvinghelling en legendarische avondpiste', votes: 0 },
+  { id: 'kappe', name: 'Kappe Steilhang (Piste 14)', name_nl: 'Kappe Steilhang (Piste 14)', description: 'Die steilste Herausforderung nördlich der Alpen (bis 50% Gefälle)', description_nl: 'De steilste afdaling ten noorden van de Alpen (tot 50%)', votes: 0 },
+  { id: 'herrloh', name: 'Slalomhang Herrloh & St. Georg Schanze', name_nl: 'Slalomhang Herrloh & St. Georg Schans', description: 'Der beliebte Traditions-Klassiker mitten im Karussell', description_nl: 'De populaire klassieker in het hart van het skigebied', votes: 0 },
+  { id: 'schneewittchen', name: 'Schneewittchenhang (Piste 25)', name_nl: 'Schneewittchenhang (Piste 25)', description: 'Herrlich weitläufig, modern erschlossen & familienfreundlich', description_nl: 'Heerlijk breed, modern en ideaal voor gezinnen', votes: 0 },
+  { id: 'bremberg', name: 'Bremberg Waldabfahrt (Piste 10 & 11)', name_nl: 'Bremberg Bosafdaling (Piste 10 & 11)', description: 'Entspanntes Gleiten durch verschneite Fichtenwälder', description_nl: 'Ontspannen afdalen tussen de besneeuwde dennenbomen', votes: 0 },
+  { id: 'altastenberg', name: 'Westfalenhang I (Skikarussell Altastenberg)', name_nl: 'Westfalenhang I (Altastenberg)', description: 'Einzige offizielle FIS-Weltcup-Slalomstrecke im Sauerland', description_nl: 'Enige officiële FIS-wereldbeker slalompiste in de regio', votes: 0 },
 ];
 
-// UGC Poll 2: Favorite Hut
-const INITIAL_HUT_POLL: PollOption[] = [
-  { id: 'moeppis', name: 'Bei Möppi (Poppenberg)', name_nl: 'Bij Möppi (Poppenberg)', description: 'Kultige Stimmung & Après-Ski Highlight', description_nl: 'Iconische sfeer en après-ski hotspot', votes: 184 },
-  { id: 'rauher-busch', name: 'Skihütte Rauher Busch', name_nl: 'Skihütte Rauher Busch', description: 'Kaminfeuer, Gemütlichkeit & hausgemachte Suppen', description_nl: 'Haardvuur, gezelligheid en verse soepen', votes: 129 },
-  { id: 'schneewittchenhaus', name: 'Schneewittchenhaus', name_nl: 'Schneewittchenhaus', description: 'Panoramablick, Alpen-Chic & Sonnenbalkon', description_nl: 'Panoramisch uitzicht, alpen-chic en zonneterras', votes: 112 },
-  { id: 'brabander', name: 'Skihütte Der Brabander', name_nl: 'Skihütte Der Brabander', description: 'Gute Laune, zentrale Lage & Sonnenterrasse', description_nl: 'Gezelligheid, centrale ligging en groot terras', votes: 95 },
-  { id: 'nordhang', name: 'Nordhang Jause (Kahler Asten)', name_nl: 'Nordhang Jause (Kahler Asten)', description: 'Urige Bergruhe & beste Jausenplatten', description_nl: 'Rustige sfeer en heerlijke streekgerechten', votes: 82 },
-];
-
-// UGC Community Reviews Interface & Initial Data
+// UGC Community Reviews Interface & Initial Data (keine erfundenen Test-Einträge)
 export interface SkiUserReview {
   id: string;
   name: string;
@@ -304,99 +308,7 @@ export interface SkiUserReview {
   userVotedHelpful?: boolean;
 }
 
-const INITIAL_COMMUNITY_REVIEWS: SkiUserReview[] = [
-  {
-    id: 'rev-1',
-    name: 'Markus T. aus Dortmund',
-    locationOrPiste: 'Kappe Steilhang & Poppenberg',
-    rating: 5,
-    tag: 'Flutlicht-Fan',
-    text: 'Wer mittwochs oder freitags Zeit hat: Unbedingt zum Flutlicht! Um 18:30 Uhr sind die Pisten frisch gewalzt, das Flutlicht gibt ein ganz besonderes Feeling und am Poppenberg ist der Übergang zu Möppis Heißgetränken der perfekte Winterabend.',
-    date: 'Vor 2 Tagen',
-    helpfulCount: 28,
-  },
-  {
-    id: 'rev-2',
-    name: 'Sandra & Familie aus Utrecht',
-    locationOrPiste: 'Schneewittchenhang & Bremberg',
-    rating: 5,
-    tag: 'Familientipp',
-    text: 'Für Kinder und Anfänger ist der Schneewittchenhang absolut genial. Sehr breite Piste, moderner 6er-Sessellift ohne Stress beim Einsteigen und das Schneewittchenhaus bietet genügend Platz zum Aufwärmen.',
-    date: 'Vor 4 Tagen',
-    helpfulCount: 19,
-  },
-  {
-    id: 'rev-3',
-    name: 'Julian B. aus Köln',
-    locationOrPiste: 'Skikarussell Altastenberg (Westfalenhang)',
-    rating: 5,
-    tag: 'Sportlich / Geheimtipp',
-    text: 'Wenn das Karussell am Wochenende voll wird, fahre ich rüber nach Altastenberg. Der Westfalenhang I ist eine echte FIS-Weltcuppiste mit ordentlich Zug. Keine Wartezeiten an den Liften und herrlich freie Pisten!',
-    date: 'Vor einer Woche',
-    helpfulCount: 34,
-  },
-  {
-    id: 'rev-4',
-    name: 'Elena K. aus Münster',
-    locationOrPiste: 'Rauher Busch & Herrloh',
-    rating: 5,
-    tag: 'Genießer & Einkehr',
-    text: 'Die Skihütte Rauher Busch hat den besten Kaminofen im ganzen Skigebiet. Nach 3 Stunden auf den Brettern dort eine heiße Waffel mit Kirschen und Sahne essen – purer Winterurlaub nur 1,5 Stunden von NRW entfernt.',
-    date: 'Vor 2 Wochen',
-    helpfulCount: 22,
-  }
-];
-
-// UGC Community Photos
-export interface SkiUserPhoto {
-  id: string;
-  imageUrl: string;
-  title: string;
-  userName: string;
-  spot: string;
-  likes: number;
-  date: string;
-  isUserUploaded?: boolean;
-}
-
-const INITIAL_COMMUNITY_PHOTOS: SkiUserPhoto[] = [
-  {
-    id: 'photo-1',
-    imageUrl: '/news-skisaison-winterberg-eroeffnung-2026.jpg',
-    title: 'Saisonstart im Skiliftkarussell Winterberg',
-    userName: 'Simon K. (Winterberg Guide)',
-    spot: 'Poppenberg & Herrloh',
-    likes: 84,
-    date: 'Winter-Highlight'
-  },
-  {
-    id: 'photo-2',
-    imageUrl: '/webcams/skiliftkarussell-bremberg.jpg',
-    title: 'Traumtag am Brembergkopf mit Neuschnee',
-    userName: 'Lukas M.',
-    spot: 'Bremberg Sesselbahn',
-    likes: 67,
-    date: 'Frisch verschneit'
-  },
-  {
-    id: 'photo-3',
-    imageUrl: '/webcams/skiliftkarussell-rauher-busch.jpg',
-    title: 'Rauher Busch im strahlenden Sonnenschein',
-    userName: 'Hannah S.',
-    spot: 'Piste 12 Rauher Busch',
-    likes: 52,
-    date: 'Sonnenskilauf'
-  },
-  {
-    id: 'photo-4',
-    imageUrl: '/webcams/erlebnisberg-kappe.jpg',
-    title: 'Panoramablick von der Kappe ins Tal',
-    userName: 'Dennis W.',
-    spot: 'Erlebnisberg Kappe / Bobhaus',
-    likes: 41,
-    date: 'Aussicht 776 m'
-  }
-];
+const INITIAL_COMMUNITY_REVIEWS: SkiUserReview[] = [];
 
 export const SkiThemePage: React.FC<SkiThemePageProps> = ({
   businesses,
@@ -416,7 +328,13 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
   // Poll 1 State
   const [pistePoll, setPistePoll] = useState<PollOption[]>(() => {
     try {
-      const saved = localStorage.getItem('wv_ski_piste_poll_data');
+      // Clear old mock poll storage keys so browser doesn't load fake 592 votes
+      localStorage.removeItem('wv_ski_piste_poll_data');
+      localStorage.removeItem('wv_ski_piste_poll_data_v2');
+      localStorage.removeItem('wv_ski_hut_poll_data');
+      localStorage.removeItem('wv_ski_user_voted_hut');
+
+      const saved = localStorage.getItem('wv_ski_piste_poll_v4');
       return saved ? JSON.parse(saved) : INITIAL_PISTE_POLL;
     } catch {
       return INITIAL_PISTE_POLL;
@@ -430,28 +348,24 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
     }
   });
 
-  // Poll 2 State
-  const [hutPoll, setHutPoll] = useState<PollOption[]>(() => {
-    try {
-      const saved = localStorage.getItem('wv_ski_hut_poll_data');
-      return saved ? JSON.parse(saved) : INITIAL_HUT_POLL;
-    } catch {
-      return INITIAL_HUT_POLL;
-    }
-  });
-  const [userVotedHut, setUserVotedHut] = useState<string | null>(() => {
-    try {
-      return localStorage.getItem('wv_ski_user_voted_hut');
-    } catch {
-      return null;
-    }
-  });
-
-  // Reviews State
+  // Reviews State: Ausschließlich echte Nutzer-Bewertungen (keine erfundenen Mock-Reviews)
   const [reviews, setReviews] = useState<SkiUserReview[]>(() => {
     try {
       const saved = localStorage.getItem('wv_ski_user_reviews');
-      return saved ? JSON.parse(saved) : INITIAL_COMMUNITY_REVIEWS;
+      if (saved) {
+        const parsed: SkiUserReview[] = JSON.parse(saved);
+        // Vorherige Test-Reviews (Markus T., Sandra, Julian, Elena bzw. ID rev-*) filtern
+        const realReviews = parsed.filter(r => 
+          !r.id.startsWith('rev-') && 
+          !r.name.includes('Markus T.') && 
+          !r.name.includes('Sandra') && 
+          !r.name.includes('Julian B.') && 
+          !r.name.includes('Elena K.')
+        );
+        localStorage.setItem('wv_ski_user_reviews', JSON.stringify(realReviews));
+        return realReviews;
+      }
+      return INITIAL_COMMUNITY_REVIEWS;
     } catch {
       return INITIAL_COMMUNITY_REVIEWS;
     }
@@ -466,26 +380,37 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
   const [reviewText, setReviewText] = useState('');
   const [reviewSuccess, setReviewSuccess] = useState(false);
 
-  // Photos State
-  const [photos, setPhotos] = useState<SkiUserPhoto[]>(() => {
-    try {
-      const saved = localStorage.getItem('wv_ski_user_photos');
-      return saved ? JSON.parse(saved) : INITIAL_COMMUNITY_PHOTOS;
-    } catch {
-      return INITIAL_COMMUNITY_PHOTOS;
-    }
-  });
-
-  // Photo Upload Modal
-  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
-  const [photoTitle, setPhotoTitle] = useState('');
-  const [photoUserName, setPhotoUserName] = useState('');
-  const [photoSpot, setPhotoSpot] = useState('');
-  const [photoDataUrl, setPhotoDataUrl] = useState<string | null>(null);
-  const [photoSuccess, setPhotoSuccess] = useState(false);
-
   // FAQ Accordion
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Client-side purge on mount to guarantee removal of cached mock entries from visitors' localStorage
+  useEffect(() => {
+    try {
+      localStorage.removeItem('wv_ski_piste_poll_data');
+      localStorage.removeItem('wv_ski_piste_poll_data_v2');
+      localStorage.removeItem('wv_ski_hut_poll_data');
+      localStorage.removeItem('wv_ski_user_voted_hut');
+      localStorage.removeItem('wv_ski_user_photos');
+
+      const savedReviews = localStorage.getItem('wv_ski_user_reviews');
+      if (savedReviews) {
+        const parsed: SkiUserReview[] = JSON.parse(savedReviews);
+        const filtered = parsed.filter(r => 
+          !r.id.startsWith('rev-') && 
+          !r.name.includes('Markus T.') && 
+          !r.name.includes('Sandra') && 
+          !r.name.includes('Julian B.') && 
+          !r.name.includes('Elena K.')
+        );
+        if (filtered.length !== parsed.length) {
+          localStorage.setItem('wv_ski_user_reviews', JSON.stringify(filtered));
+          setReviews(filtered);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   // SEO Page Title & Meta Description
   useEffect(() => {
@@ -504,26 +429,21 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
 
   // Vote Handlers
   const handleVotePiste = (optionId: string) => {
-    if (userVotedPiste) return;
-    const updated = pistePoll.map(item => item.id === optionId ? { ...item, votes: item.votes + 1 } : item);
+    if (userVotedPiste === optionId) return;
+    const updated = pistePoll.map(item => {
+      if (userVotedPiste && item.id === userVotedPiste) {
+        return { ...item, votes: Math.max(0, item.votes - 1) };
+      }
+      if (item.id === optionId) {
+        return { ...item, votes: item.votes + 1 };
+      }
+      return item;
+    });
     setPistePoll(updated);
     setUserVotedPiste(optionId);
     try {
-      localStorage.setItem('wv_ski_piste_poll_data', JSON.stringify(updated));
+      localStorage.setItem('wv_ski_piste_poll_v4', JSON.stringify(updated));
       localStorage.setItem('wv_ski_user_voted_piste', optionId);
-    } catch {
-      // ignore
-    }
-  };
-
-  const handleVoteHut = (optionId: string) => {
-    if (userVotedHut) return;
-    const updated = hutPoll.map(item => item.id === optionId ? { ...item, votes: item.votes + 1 } : item);
-    setHutPoll(updated);
-    setUserVotedHut(optionId);
-    try {
-      localStorage.setItem('wv_ski_hut_poll_data', JSON.stringify(updated));
-      localStorage.setItem('wv_ski_user_voted_hut', optionId);
     } catch {
       // ignore
     }
@@ -583,70 +503,8 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
     }
   };
 
-  // Photo Upload Handler
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert(isNl ? 'De afbeelding mag maximaal 5 MB groot zijn.' : 'Das Bild darf maximal 5 MB groß sein.');
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setPhotoDataUrl(event.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmitPhoto = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!photoDataUrl || !photoTitle.trim()) return;
-
-    const newPhoto: SkiUserPhoto = {
-      id: `photo-user-${Date.now()}`,
-      imageUrl: photoDataUrl,
-      title: photoTitle.trim(),
-      userName: photoUserName.trim() || (isNl ? 'Wintersportgast' : 'Winterberg-Gast'),
-      spot: photoSpot.trim() || (isNl ? 'Skiliftkarussell' : 'Skiliftkarussell Winterberg'),
-      likes: 1,
-      date: isNl ? 'Nieuw' : 'Neu eingereicht',
-      isUserUploaded: true,
-    };
-
-    const updated = [newPhoto, ...photos];
-    setPhotos(updated);
-    try {
-      localStorage.setItem('wv_ski_user_photos', JSON.stringify(updated));
-    } catch {
-      // ignore
-    }
-
-    setPhotoSuccess(true);
-    setTimeout(() => {
-      setPhotoSuccess(false);
-      setIsPhotoModalOpen(false);
-      setPhotoTitle('');
-      setPhotoUserName('');
-      setPhotoSpot('');
-      setPhotoDataUrl(null);
-    }, 1500);
-  };
-
-  // Like Photo
-  const handleLikePhoto = (id: string) => {
-    const updated = photos.map(p => p.id === id ? { ...p, likes: p.likes + 1 } : p);
-    setPhotos(updated);
-    try {
-      localStorage.setItem('wv_ski_user_photos', JSON.stringify(updated));
-    } catch {
-      // ignore
-    }
-  };
-
   // Calculate Poll Total Votes
   const totalPisteVotes = useMemo(() => pistePoll.reduce((a, b) => a + b.votes, 0), [pistePoll]);
-  const totalHutVotes = useMemo(() => hutPoll.reduce((a, b) => a + b.votes, 0), [hutPoll]);
 
   // Ski & Winter News from dataNews
   const skiNews = useMemo(() => {
@@ -747,7 +605,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
               🗳️ {isNl ? 'Piste-Poll' : 'Pisten-Umfrage'}
             </a>
             <a href="#community-ugc" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              💬 {isNl ? 'Reviews & Foto\'s' : 'Bewertungen & Fotos'}
+              💬 {isNl ? 'Reviews & Tips' : 'Bewertungen & Tipps'}
             </a>
             <a href="#ski-news" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
               📰 News
@@ -1403,87 +1261,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
         )}
       </section>
 
-      {/* SECTION 7: UGC - COMMUNITY-FOTOS & BILDER-UPLOAD */}
-      <section id="community-fotos" className="mb-14 scroll-mt-20">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#F2761B] mb-2">
-              <Camera className="w-4 h-4" />
-              <span>{isNl ? 'Piste-Impressies' : 'Community-Bilderwand'}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
-              {isNl ? 'Foto\'s uit de Skigebieden' : 'Winterberg im Bild: Deine schönsten Pisten-Momente'}
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
-              {isNl
-                ? 'Deel jouw mooiste foto van de afdaling, een zonovergoten panoramabeeld of een gezellige pauze in de hut.'
-                : 'Laden Sie Ihr persönliches Pistenfoto hoch und zeigen Sie der Community die schönsten Ecken im Schnee.'}
-            </p>
-          </div>
 
-          <button
-            type="button"
-            onClick={() => setIsPhotoModalOpen(true)}
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#F2761B] hover:bg-[#d96512] text-white font-bold text-sm shadow-sm transition-all cursor-pointer self-start sm:self-auto hover:-translate-y-0.5"
-          >
-            <Upload className="w-4 h-4" />
-            <span>{isNl ? 'Jouw foto uploaden' : 'Foto hochladen & teilen'}</span>
-          </button>
-        </div>
-
-        {/* Photos Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {photos.map((item) => (
-            <div
-              key={item.id}
-              className="group bg-white dark:bg-[#1E2621] rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div className="relative aspect-4/3 overflow-hidden bg-gray-900">
-                <img
-                  src={item.imageUrl}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[11px] font-medium">
-                  {item.spot}
-                </div>
-                {item.isUserUploaded && (
-                  <div className="absolute top-2.5 left-2.5 bg-[#F2761B] text-white px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider">
-                    {isNl ? 'Community' : 'Community Upload'}
-                  </div>
-                )}
-              </div>
-
-              <div className="p-4 flex flex-col justify-between flex-1">
-                <div>
-                  <h4 className="font-bold text-sm text-gray-900 dark:text-white leading-snug mb-1">
-                    {item.title}
-                  </h4>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mb-3 flex items-center justify-between">
-                    <span>{item.userName}</span>
-                    <span>{item.date}</span>
-                  </div>
-                </div>
-
-                <div className="pt-2.5 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    ❤️ {item.likes} {isNl ? 'likes' : 'Gefällt mir'}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleLikePhoto(item.id)}
-                    className="p-1.5 rounded-lg bg-gray-50 hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors cursor-pointer"
-                    title="Gefällt mir"
-                  >
-                    ❤️
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* SECTION 8: WINTERSPORT-NEWS (QUERVERLINKT) */}
       <section id="ski-news" className="mb-14 scroll-mt-20">
@@ -1789,117 +1567,6 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
           </div>
         </div>
       )}
-
-      {/* MODAL: FOTO HOCHLADEN */}
-      {isPhotoModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#1E2621] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gray-100 dark:border-gray-800 relative animate-in fade-in zoom-in-95 duration-200">
-            <button
-              type="button"
-              onClick={() => setIsPhotoModalOpen(false)}
-              className="absolute top-5 right-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl font-bold p-1 cursor-pointer"
-            >
-              ✕
-            </button>
-
-            <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">
-              {isNl ? 'Winterberg Skifoto uploaden' : 'Winterberg-Skifoto hochladen'}
-            </h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
-              {isNl
-                ? 'Laat de community meegenieten van jouw dag in de sneeuw in Winterberg.'
-                : 'Teilen Sie Ihren schönsten Wintermoment auf den Pisten mit der Community.'}
-            </p>
-
-            {photoSuccess ? (
-              <div className="p-6 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 rounded-2xl text-center border border-emerald-200 dark:border-emerald-800">
-                <CheckCircle2 className="w-10 h-10 mx-auto text-emerald-600 mb-2" />
-                <h4 className="font-bold text-base mb-1">{isNl ? 'Foto succesvol geüpload!' : 'Foto erfolgreich hochgeladen!'}</h4>
-                <p className="text-xs">{isNl ? 'Jouw foto is direct zichtbaar in de galerij.' : 'Ihr Bild ist ab sofort in der Community-Galerie zu sehen.'}</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmitPhoto} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                    {isNl ? 'Foto selecteren (JPEG, PNG, WebP tot 5 MB)' : 'Foto auswählen (JPG, PNG, WebP bis 5 MB)'} *
-                  </label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    required
-                    onChange={handleFileChange}
-                    className="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#F2761B] file:text-white hover:file:bg-[#d96512] cursor-pointer"
-                  />
-                  {photoDataUrl && (
-                    <div className="mt-3 aspect-video rounded-xl overflow-hidden bg-gray-100 max-h-40 border border-gray-200">
-                      <img src={photoDataUrl} alt="Vorschau" className="w-full h-full object-cover" />
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                    {isNl ? 'Titel van de foto' : 'Bildtitel / Motiv'} *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={photoTitle}
-                    onChange={(e) => setPhotoTitle(e.target.value)}
-                    placeholder={isNl ? 'Bijv. Zonsondergang aan de Bremberg' : 'Z. B. Sonnenuntergang am Brembergkopf'}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#151B17] text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#F2761B]"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                      {isNl ? 'Jouw Naam' : 'Dein Name / Fotograf'}
-                    </label>
-                    <input
-                      type="text"
-                      value={photoUserName}
-                      onChange={(e) => setPhotoUserName(e.target.value)}
-                      placeholder={isNl ? 'Bijv. Laura M.' : 'Z. B. Florian K.'}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#151B17] text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#F2761B]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                      {isNl ? 'Piste / Locatie' : 'Piste / Ort'}
-                    </label>
-                    <input
-                      type="text"
-                      value={photoSpot}
-                      onChange={(e) => setPhotoSpot(e.target.value)}
-                      placeholder={isNl ? 'Bijv. Poppenberg' : 'Z. B. Poppenberg P5'}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#151B17] text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#F2761B]"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex justify-end gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => setIsPhotoModalOpen(false)}
-                    className="px-4 py-2 text-xs font-bold text-gray-500 hover:text-gray-700 cursor-pointer"
-                  >
-                    {isNl ? 'Annuleren' : 'Abbrechen'}
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-6 py-2.5 bg-[#F2761B] hover:bg-[#d96512] text-white font-bold text-xs rounded-xl shadow-md transition-colors cursor-pointer"
-                  >
-                    {isNl ? 'Foto uploaden' : 'Foto hochladen'}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
-
     </main>
   );
 };

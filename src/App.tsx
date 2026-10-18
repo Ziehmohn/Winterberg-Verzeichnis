@@ -1921,9 +1921,6 @@ export default function App() {
                 )}
               </button>
 
-              {/* Share Button (Desktop) */}
-              <ShareButton lang={lang} variant="header-desktop" />
-
               {/* Profile / Admin Login Icon */}
               <button 
                 onClick={() => { resetToDirectory(); setIsAdminMode(true); window.scrollTo(0, 0); }}
