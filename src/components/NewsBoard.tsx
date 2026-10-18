@@ -16,7 +16,9 @@ interface NewsBoardProps {
 function stripMarkdown(text: string): string {
   if (!text) return '';
   return text
-    .replace(/:::contact[\s\S]*?:::/gi, '')
+    .replace(/:::[a-zA-Z0-9_-]+[\s\S]*?:::/gi, '')
+    .replace(/:::[a-zA-Z0-9_-]+/gi, '')
+    .replace(/:::/g, '')
     .replace(/##+\s+/g, '')
     .replace(/\*\*([^*]+)\*\*/g, '$1')
     .replace(/\*([^*]+)\*/g, '$1')

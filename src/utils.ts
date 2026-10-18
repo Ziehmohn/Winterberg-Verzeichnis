@@ -48,7 +48,6 @@ export function sanitizeBusinessPremiumFields<T extends Partial<Business>>(busin
     extendedDescription_nl: '',
     documents: [],
     businessNews: [],
-    events: [],
     jobs: [],
     services: (business.services || []).slice(0, 3),
     services_nl: (business.services_nl || []).slice(0, 3),

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { NewsArticle, ThemeConfig } from '../types';
-import { ArrowLeft, ExternalLink, Store, ShoppingBag, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Store, ShoppingBag, ArrowUpRight, Lightbulb } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { getLocalizedNewsArticle } from '../utils/translator';
 import { getBusinessPath, slugify } from '../utils/routes';
@@ -192,12 +192,77 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
   });
 }
 
+// Callout Box Component for :::tip, :::info, etc.
+export function CalloutTipBox({ type = 'tip', content }: { type?: string; content: string }) {
+  // Strip opening/closing ::: and extract optional title
+  let cleanContent = content.replace(/^:::[a-zA-Z0-9_-]*\s*/, '').replace(/:::\s*$/, '').trim();
+  let title = '';
+  
+  // Extract heading if first line is e.g. "### Heading" or "## Heading" or "**Heading**"
+  const titleMatch = cleanContent.match(/^(?:###|##|\*\*)\s*([^\n*#]+)(?:\*\*|\n|$)/);
+  if (titleMatch) {
+    title = titleMatch[1].trim();
+    cleanContent = cleanContent.substring(titleMatch[0].length).trim();
+  }
+
+  const isTip = type === 'tip';
+
+  return (
+    <div className={`my-8 p-5 sm:p-7 rounded-2xl border ${isTip ? 'bg-[#FFF8F2] border-[#FBD9BC]' : 'bg-[#F2F7F4] border-[#C5DFCE]'} shadow-[0_4px_20px_rgba(27,33,29,0.04)] relative overflow-hidden`}>
+      <div className="flex items-center gap-2.5 mb-3 text-[#D65F0C]">
+        <div className={`w-8 h-8 rounded-lg ${isTip ? 'bg-[#F2761B]/15 text-[#F2761B]' : 'bg-[#0F4C2E]/15 text-[#0F4C2E]'} flex items-center justify-center shrink-0`}>
+          <Lightbulb className="w-4 h-4" />
+        </div>
+        <h3 className="font-display font-bold text-[18px] sm:text-[20px] text-[#1B211D]">
+          {title || (isTip ? 'Tipp & Hinweis' : 'Information')}
+        </h3>
+      </div>
+      <div className="text-[15.5px] sm:text-[17px] text-[#3F4B42] leading-relaxed">
+        <NewsContentRenderer content={cleanContent} />
+      </div>
+    </div>
+  );
+}
+
 // Markdown and News Rich Text Renderer
 export function NewsContentRenderer({ content }: { content: string }) {
   if (!content) return null;
 
-  // Pre-process content so headings and lists always have clean block breaks
+  // 1. Extract callout containers (:::tip ... ::: or :::info ... :::) so they don't get broken apart by \n\n
+  const calloutRegex = /:::(tip|info|note|warning)([\s\S]*?)(?::::|$)/gi;
+  if (calloutRegex.test(content)) {
+    calloutRegex.lastIndex = 0;
+    const parts: React.ReactNode[] = [];
+    let lastIdx = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = calloutRegex.exec(content)) !== null) {
+      const textBefore = content.substring(lastIdx, match.index).trim();
+      if (textBefore) {
+        parts.push(<NewsContentRenderer key={`before-${match.index}`} content={textBefore} />);
+      }
+      parts.push(
+        <CalloutTipBox 
+          key={`callout-${match.index}`} 
+          type={match[1].toLowerCase()} 
+          content={match[2]} 
+        />
+      );
+      lastIdx = match.index + match[0].length;
+    }
+
+    const textAfter = content.substring(lastIdx).trim();
+    if (textAfter) {
+      parts.push(<NewsContentRenderer key={`after-${lastIdx}`} content={textAfter} />);
+    }
+
+    return <div className="space-y-6">{parts}</div>;
+  }
+
+  // Pre-process content: clean any stray container tags, and ensure headings/lists have clean block breaks
   const normalizedContent = content
+    .replace(/^:::[a-zA-Z0-9_-]*/gm, '')
+    .replace(/:::/g, '')
     .replace(/^([#-]{1,6}\s+[^\n]+)\n([^\n#-])/gm, '$1\n\n$2')
     .replace(/([^\n])\n(\s*[-*•]\s+)/g, '$1\n\n$2');
 
@@ -447,7 +512,9 @@ function StandaloneContactBox({ rawContact, heading }: { rawContact: string; hea
 function stripMarkdownAndHtml(text: string): string {
   if (!text) return '';
   return text
-    .replace(/:::contact[\s\S]*?:::/gi, '')
+    .replace(/:::[a-zA-Z0-9_-]+[\s\S]*?:::/gi, '')
+    .replace(/:::[a-zA-Z0-9_-]+/gi, '')
+    .replace(/:::/g, '')
     .replace(/!\[([^\]]*)\]\([^)]*\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     .replace(/#{1,6}\s+/g, '')

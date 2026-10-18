@@ -812,6 +812,7 @@ export default function App() {
           merged[idx] = sanitizeBusinessPremiumFields({ 
             ...existing, 
             ...fb,
+            isPremium: fb.isPremium !== undefined ? fb.isPremium : existing.isPremium,
             ownerEmail: fb.ownerEmail || existing.ownerEmail,
             ownerId: fb.ownerId || existing.ownerId,
             isVerified: fb.isVerified ?? existing.isVerified,
@@ -1336,6 +1337,7 @@ export default function App() {
         merged[idx] = sanitizeBusinessPremiumFields({ 
           ...existing, 
           ...fb,
+          isPremium: fb.isPremium !== undefined ? fb.isPremium : existing.isPremium,
           ownerEmail: fb.ownerEmail || existing.ownerEmail,
           ownerId: fb.ownerId || existing.ownerId,
           isVerified: fb.isVerified ?? existing.isVerified,

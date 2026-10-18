@@ -728,7 +728,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </>
           )}
 
-          {business.isPremium && Array.isArray(business.events) && business.events.length > 0 && (
+          {Array.isArray(business.events) && business.events.length > 0 && (
             <>
               <h2 className="font-display text-[22px] font-semibold mb-3.5 mt-8">{lang === 'nl' ? 'Evenementen & Termijnen' : 'Veranstaltungen & Termine'}</h2>
               <div className="grid gap-3 mb-[30px]">
