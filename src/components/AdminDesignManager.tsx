@@ -1150,6 +1150,333 @@ export default function AdminDesignManager({
             </div>
           </div>
         )}
+
+        {/* Tab 4: Category Hero Images */}
+        {activeTab === 'headers' && (() => {
+          // Flat list of all categories and subcategories
+          const allCategoryItems: { name: string; group: string; isSub: boolean }[] = [];
+          categories.forEach(group => {
+            allCategoryItems.push({ name: group.name, group: group.name, isSub: false });
+            group.subcategories.forEach(sub => {
+              allCategoryItems.push({ name: sub, group: group.name, isSub: true });
+            });
+          });
+
+          const filteredItems = allCategoryItems.filter(item => 
+            !categorySearch || 
+            item.name.toLowerCase().includes(categorySearch.toLowerCase()) ||
+            item.group.toLowerCase().includes(categorySearch.toLowerCase())
+          );
+
+          // Get active selection's current effective data
+          const currentConfig = (formData.categoryHeaders && formData.categoryHeaders[selectedCategoryKey]) || {};
+          const defaultHeader = CATEGORY_HEADERS[selectedCategoryKey] as CategoryHeaderData | undefined;
+          
+          const effectiveImage = currentConfig.image !== undefined ? currentConfig.image : (defaultHeader?.image || '');
+          const effectiveCredit = currentConfig.credit !== undefined ? currentConfig.credit : (defaultHeader?.credit || '');
+          const effectiveIsAi = currentConfig.isAiGenerated !== undefined ? currentConfig.isAiGenerated : (defaultHeader?.isAiGenerated ?? false);
+          const effectiveTitleDe = currentConfig.titleDe !== undefined ? currentConfig.titleDe : (defaultHeader?.titleDe || `${selectedCategoryKey} in Winterberg`);
+          const effectiveSubtitleDe = currentConfig.subtitleDe !== undefined ? currentConfig.subtitleDe : (defaultHeader?.subtitleDe || '');
+          const effectiveObjectPosition = currentConfig.objectPosition !== undefined ? currentConfig.objectPosition : (defaultHeader?.objectPosition || 'center center');
+
+          const updateCurrentCategoryHeader = (partial: Partial<CategoryHeaderData>) => {
+            const existing = formData.categoryHeaders?.[selectedCategoryKey] || {};
+            const updated = {
+              ...existing,
+              ...partial
+            };
+            const updatedHeaders = {
+              ...(formData.categoryHeaders || {}),
+              [selectedCategoryKey]: updated
+            };
+            setFormData(prev => ({
+              ...prev,
+              categoryHeaders: updatedHeaders
+            }));
+          };
+
+          const handleResetCategoryHeader = () => {
+            if (!formData.categoryHeaders?.[selectedCategoryKey]) return;
+            const updatedHeaders = { ...formData.categoryHeaders };
+            delete updatedHeaders[selectedCategoryKey];
+            setFormData(prev => ({
+              ...prev,
+              categoryHeaders: updatedHeaders
+            }));
+          };
+
+          return (
+            <div className="flex flex-col lg:flex-row gap-6">
+              {/* Left Column: Category List with Search */}
+              <div className="w-full lg:w-72 shrink-0 bg-[#FAF8F5] border border-[#E7E2DA] rounded-lg p-3 flex flex-col h-[620px]">
+                <div className="relative mb-2.5">
+                  <Search className="w-4 h-4 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder="Branche / Rubrik suchen..."
+                    value={categorySearch}
+                    onChange={(e) => setCategorySearch(e.target.value)}
+                    className="w-full bg-white border border-[#D5D0C5] rounded-md pl-8 pr-2.5 py-1.5 text-xs text-gray-900 focus:outline-none focus:border-[#0F4C2E]"
+                  />
+                </div>
+
+                <div className="text-[11px] font-bold text-[#8A928B] uppercase tracking-wider px-2 py-1 flex items-center justify-between">
+                  <span>Kategorien ({filteredItems.length})</span>
+                  <span className="text-[10px] lowercase font-normal">{allCategoryItems.length} gesamt</span>
+                </div>
+
+                <div className="flex-1 overflow-y-auto divide-y divide-gray-100 pr-1">
+                  {filteredItems.map(item => {
+                    const isSelected = selectedCategoryKey === item.name;
+                    const hasCustom = !!formData.categoryHeaders?.[item.name]?.image;
+                    const hasDefault = !!CATEGORY_HEADERS[item.name]?.image;
+                    const hasAnyImage = hasCustom || hasDefault;
+
+                    return (
+                      <button
+                        key={item.name}
+                        type="button"
+                        onClick={() => setSelectedCategoryKey(item.name)}
+                        className={`w-full text-left p-2 rounded-md transition-colors flex items-center justify-between gap-1.5 cursor-pointer text-xs ${
+                          isSelected 
+                            ? 'bg-[#0F4C2E] text-white font-semibold' 
+                            : 'hover:bg-white text-[#1B211D]'
+                        }`}
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className={`truncate ${item.isSub ? 'pl-2 text-[12px]' : 'font-bold text-[12.5px]'}`}>
+                            {item.isSub && <span className="opacity-40 mr-1.5">↳</span>}
+                            {item.name}
+                          </div>
+                          <div className={`text-[10px] truncate ${isSelected ? 'text-white/70' : 'text-[#8A928B]'} ${item.isSub ? 'pl-2' : ''}`}>
+                            {item.group}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1 shrink-0">
+                          {hasCustom && (
+                            <span className="w-2 h-2 rounded-full bg-[#F2761B]" title="Eigener Header hinterlegt"></span>
+                          )}
+                          {hasAnyImage && (
+                            <ImageIcon className={`w-3.5 h-3.5 ${isSelected ? 'text-white/80' : 'text-emerald-700'}`} />
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Editor for Selected Category Header */}
+              <div className="flex-1 bg-white border border-[#E7E2DA] rounded-lg p-5 flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#F3F0EA] mb-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-lg font-bold text-[#1B211D] m-0">
+                          Header für: <span className="text-[#0F4C2E]">{selectedCategoryKey}</span>
+                        </h3>
+                        {CATEGORY_HEADERS[selectedCategoryKey] && !formData.categoryHeaders?.[selectedCategoryKey] && (
+                          <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                            Vorkonfiguriert
+                          </span>
+                        )}
+                        {formData.categoryHeaders?.[selectedCategoryKey] && (
+                          <span className="bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                            Manuell angepasst
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-[#5F6B63] mt-0.5 m-0">
+                        Hier können Sie das Hintergrund-Hero-Bild, den Bildnachweis, die KI-Kennzeichnung und die Texte anpassen.
+                      </p>
+                    </div>
+
+                    {formData.categoryHeaders?.[selectedCategoryKey] && (
+                      <button
+                        type="button"
+                        onClick={handleResetCategoryHeader}
+                        className="text-xs text-red-600 hover:text-red-700 hover:underline flex items-center gap-1 cursor-pointer bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded border border-red-200"
+                        title="Auf Voreinstellung zurücksetzen"
+                      >
+                        <RotateCcw className="w-3 h-3" />
+                        Auf Standard zurücksetzen
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Form fields */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Image URL */}
+                    <div className="md:col-span-2">
+                      <label className="block text-xs font-bold text-[#1B211D] mb-1">
+                        Bild-URL (Pfad oder https://)
+                      </label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={effectiveImage}
+                          onChange={(e) => updateCurrentCategoryHeader({ image: e.target.value })}
+                          placeholder="/handwerk-winterberg-header.jpg oder https://..."
+                          className="flex-1 bg-white border border-[#D5D0C5] rounded-md px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#0F4C2E]"
+                        />
+                        {effectiveImage && (
+                          <button
+                            type="button"
+                            onClick={() => updateCurrentCategoryHeader({ image: '' })}
+                            className="text-xs px-2.5 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded border border-gray-300 cursor-pointer"
+                          >
+                            Entfernen
+                          </button>
+                        )}
+                      </div>
+                      <p className="text-[11px] text-[#8A928B] mt-1">
+                        Tipp: Lokale Bilder wie <code>/elektriker-winterberg-header.jpg</code> oder beliebige Unsplash/CDN-Bildlinks einfügen.
+                      </p>
+                    </div>
+
+                    {/* Image Credit / Quelle */}
+                    <div>
+                      <label className="block text-xs font-bold text-[#1B211D] mb-1">
+                        Bildnachweis / Quelle (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={effectiveCredit}
+                        onChange={(e) => updateCurrentCategoryHeader({ credit: e.target.value })}
+                        placeholder="z. B. Foto: Unsplash oder Foto: Betrieb Winterberg"
+                        className="w-full bg-white border border-[#D5D0C5] rounded-md px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#0F4C2E]"
+                      />
+                    </div>
+
+                    {/* Object Position */}
+                    <div>
+                      <label className="block text-xs font-bold text-[#1B211D] mb-1">
+                        Fokus / Bildausschnitt (CSS object-position)
+                      </label>
+                      <select
+                        value={effectiveObjectPosition}
+                        onChange={(e) => updateCurrentCategoryHeader({ objectPosition: e.target.value })}
+                        className="w-full bg-white border border-[#D5D0C5] rounded-md px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#0F4C2E]"
+                      >
+                        <option value="center center">Mitte (center center)</option>
+                        <option value="center top">Oben (center top)</option>
+                        <option value="center 30%">Oberes Drittel (center 30%)</option>
+                        <option value="center 40%">Leicht oberhalb (center 40%)</option>
+                        <option value="center 60%">Leicht unterhalb (center 60%)</option>
+                        <option value="center bottom">Unten (center bottom)</option>
+                        <option value="right center">Rechts fokussiert (right center)</option>
+                      </select>
+                    </div>
+
+                    {/* KI-Kennzeichnung Checkbox */}
+                    <div className="md:col-span-2 bg-[#FAF8F5] border border-[#E7E2DA] rounded-md p-3">
+                      <label className="flex items-center gap-2.5 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={effectiveIsAi}
+                          onChange={(e) => updateCurrentCategoryHeader({ isAiGenerated: e.target.checked })}
+                          className="w-4 h-4 accent-[#0F4C2E] rounded cursor-pointer"
+                        />
+                        <div>
+                          <span className="text-xs font-bold text-[#1B211D] flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
+                            Dieses Bild ist KI-generiert (Badge anzeigen)
+                          </span>
+                          <span className="text-[11px] text-[#5F6B63] block mt-0.5">
+                            Zeigt oben rechts auf dem Banner die transparente Kennzeichnung „Bild KI-generiert“ an.
+                          </span>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Title DE */}
+                    <div>
+                      <label className="block text-xs font-bold text-[#1B211D] mb-1">
+                        Überschrift Deutsch (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={effectiveTitleDe}
+                        onChange={(e) => updateCurrentCategoryHeader({ titleDe: e.target.value })}
+                        placeholder={`${selectedCategoryKey} in Winterberg`}
+                        className="w-full bg-white border border-[#D5D0C5] rounded-md px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#0F4C2E]"
+                      />
+                    </div>
+
+                    {/* Subtitle DE */}
+                    <div>
+                      <label className="block text-xs font-bold text-[#1B211D] mb-1">
+                        Untertitel Deutsch (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={effectiveSubtitleDe}
+                        onChange={(e) => updateCurrentCategoryHeader({ subtitleDe: e.target.value })}
+                        placeholder="Kurze Beschreibung der Betriebe in dieser Rubrik..."
+                        className="w-full bg-white border border-[#D5D0C5] rounded-md px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#0F4C2E]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Live Visual Preview of Header */}
+                  <div className="mt-5 pt-4 border-t border-[#F3F0EA]">
+                    <div className="text-xs font-bold text-[#1B211D] mb-2 flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5 text-[#0F4C2E]" />
+                      Banner-Vorschau für „{selectedCategoryKey}“
+                    </div>
+
+                    <div className="w-full bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] text-white rounded-lg overflow-hidden relative min-h-[160px] p-5 flex flex-col justify-center">
+                      {effectiveImage ? (
+                        <figure className="absolute right-0 top-0 bottom-0 w-[48%] h-full m-0 pointer-events-none overflow-hidden">
+                          <img
+                            src={effectiveImage}
+                            alt={selectedCategoryKey}
+                            className="w-full h-full object-cover hero-category-mask"
+                            style={{ objectPosition: effectiveObjectPosition }}
+                          />
+                          <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 z-10 pointer-events-none flex-wrap justify-end">
+                            {effectiveIsAi && (
+                              <span className="text-[9px] font-semibold text-white/90 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded border border-white/10 flex items-center gap-1">
+                                <Sparkles className="w-2.5 h-2.5 text-[#F2761B]" />
+                                Bild KI-generiert
+                              </span>
+                            )}
+                            {effectiveCredit && (
+                              <span className="text-[9px] text-white/80 bg-black/50 backdrop-blur-sm px-1.5 py-0.5 rounded">
+                                {effectiveCredit}
+                              </span>
+                            )}
+                          </div>
+                        </figure>
+                      ) : (
+                        <div className="absolute right-0 top-0 bottom-0 w-[45%] h-full flex items-center justify-center text-white/40 text-xs italic border-l border-white/10">
+                          Kein Bild hinterlegt
+                        </div>
+                      )}
+
+                      <div className="relative z-10 max-w-sm">
+                        <div className="text-[10px] text-white/60 mb-1">Start / Alle Unternehmen / {selectedCategoryKey}</div>
+                        <h4 className="font-display text-xl font-bold text-white m-0 leading-tight">
+                          {effectiveTitleDe || selectedCategoryKey}
+                        </h4>
+                        <p className="text-[11px] text-white/80 mt-1.5 leading-relaxed line-clamp-2">
+                          {effectiveSubtitleDe || `Entdecken Sie Unternehmen und Angebote im Bereich ${selectedCategoryKey} in Winterberg.`}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-[#F3F0EA] flex items-center justify-between">
+                  <span className="text-xs text-[#5F6B63]">
+                    Klicken Sie oben auf <strong>„Live-Design veröffentlichen“</strong>, um alle Bild- und Textänderungen direkt online freizuschalten.
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Live Preview Header Badge */}
