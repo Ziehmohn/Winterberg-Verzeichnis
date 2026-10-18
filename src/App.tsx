@@ -2544,7 +2544,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="max-w-[1180px] mx-auto px-6 pt-[80px] pb-[88px] relative z-30">
+                  <div className="max-w-[1180px] mx-auto px-6 pt-8 md:pt-[80px] pb-[88px] relative z-30">
                     <h1 className="font-display text-4xl md:text-6xl font-medium mb-4 leading-tight">
                       {lang === 'nl' ? 'De ' : 'Das '} <br className="md:hidden"/>
                       <span className="inline-block relative">
