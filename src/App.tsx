@@ -2924,7 +2924,7 @@ export default function App() {
               <div className="w-full bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] text-white relative overflow-hidden">
                 {/* Hero Image (Geht bis an den rechten Rand und über die volle Höhe durch, damit der ShapeDivider das Bild am unteren Rand sauber abschrägt) */}
                 {categoryHeader && (
-                  <figure className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 w-full lg:w-[50%] xl:w-[47%] 2xl:w-[44%] h-64 sm:h-80 lg:h-full m-0 z-0 overflow-hidden pointer-events-none">
+                  <figure className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 w-full lg:w-[50%] xl:w-[47%] 2xl:w-[44%] h-36 sm:h-48 md:h-56 lg:h-full m-0 z-0 overflow-hidden pointer-events-none">
                     <img
                       src={categoryHeader.image}
                       alt={lang === 'nl' ? categoryHeader.imageAltNl : categoryHeader.imageAltDe}
@@ -2951,9 +2951,9 @@ export default function App() {
                   </figure>
                 )}
 
-                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 lg:pt-16 pb-20 sm:pb-24 lg:pb-28 relative z-10">
+                <div className="max-w-[1180px] mx-auto px-4 sm:px-6 pt-4 sm:pt-8 lg:pt-16 pb-14 sm:pb-20 lg:pb-28 relative z-10">
                   <div className={`relative ${categoryHeader ? 'max-w-2xl xl:max-w-3xl' : ''}`}>
-                    <div className="text-[13.5px] text-white/75 mb-3 flex items-center gap-1.5 flex-wrap">
+                    <div className="text-[12px] sm:text-[13.5px] text-white/75 mb-1.5 sm:mb-3 flex items-center gap-1.5 flex-wrap">
                       <a href={getPath('/')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/')); resetToDirectory(); }} className="text-white/80 hover:text-white transition-colors">Start</a>
                       <span>/</span>
                       {activeCategory !== 'Alle' && (
@@ -2991,7 +2991,7 @@ export default function App() {
                       <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
                     </div>
 
-                    <h1 className="font-display text-[30px] sm:text-[40px] md:text-[48px] font-bold m-0 mb-3 leading-tight tracking-tight">
+                    <h1 className="font-display text-[26px] sm:text-[38px] md:text-[48px] font-bold m-0 mb-1.5 sm:mb-3 leading-tight tracking-tight">
                       {activeCategory === 'Alle' 
                         ? t("allCompanies") 
                         : (categoryHeader && activeCategory === activeGroup?.name
@@ -3001,13 +3001,13 @@ export default function App() {
 
                     {/* Subtitle / Description */}
                     {categoryHeader && (
-                      <p className="text-sm sm:text-base md:text-[16.5px] text-white/90 leading-relaxed mb-6 max-w-2xl">
+                      <p className="text-xs sm:text-base md:text-[16.5px] text-white/90 leading-snug sm:leading-relaxed mb-3 sm:mb-6 max-w-2xl">
                         {lang === 'nl' ? categoryHeader.subtitleNl : categoryHeader.subtitleDe}
                       </p>
                     )}
 
                     {/* Prominent Search Bar on Category Banner */}
-                    <div className="bg-white rounded-lg p-2 sm:p-2.5 flex flex-col md:flex-row gap-2 sm:gap-2.5 items-stretch md:items-center max-w-4xl shadow-2xl my-3 sm:my-4 text-[#1B211D]">
+                    <div className="bg-white rounded-lg p-2 sm:p-2.5 flex flex-col md:flex-row gap-2 sm:gap-2.5 items-stretch md:items-center max-w-4xl shadow-2xl my-2 sm:my-4 text-[#1B211D]">
                       <div className="flex items-center gap-2.5 sm:gap-3 w-full flex-1 min-w-0 px-3 relative">
                         <Search className="w-5 h-5 text-gray-400 shrink-0" />
                         <input 

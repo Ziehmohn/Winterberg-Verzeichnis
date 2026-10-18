@@ -19,9 +19,9 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // ==========================================
   'Hotels und Unterkünfte': {
     image: '/hotels-unterkuenfte-winterberg-header.jpg',
-    imageAltDe: 'Hotels und Unterkünfte in Winterberg: Gemütliche Hotels, Ferienwohnungen, Chalets und Campingplätze im Sauerland',
-    imageAltNl: 'Hotels en accommodaties in Winterberg: Gezellige hotels, vakantiewoningen, chalets en campings in het Sauerland',
-    credit: 'Foto: Avital Resort Winterberg',
+    imageAltDe: 'Hotels und Unterkünfte in Winterberg: Gemütliches Berghotel mit Balkonen und Blick auf die Sauerländer Bergwelt',
+    imageAltNl: 'Hotels en accommodaties in Winterberg: Gezellig berghotel met balkons en uitzicht op de bergen van het Sauerland',
+    credit: 'Foto: Unsplash',
     isAiGenerated: false,
     titleDe: 'Hotels & Unterkünfte in Winterberg',
     titleNl: 'Hotels & Accommodaties in Winterberg',
@@ -71,21 +71,21 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
 
   'Ferienparks': {
     image: '/ferienparks-winterberg-header.jpg',
-    imageAltDe: 'Ferienparks in Winterberg: Sauerländer Fachwerk-Feriendorf am sonnigen Hang von Winterberg-Neuastenberg',
-    imageAltNl: 'Vakantieparken in Winterberg: Vakantiedorp met vakwerkhuizen op de zonnige helling van Winterberg-Neuastenberg',
-    credit: 'Foto: Dorint Resort Winterberg',
+    imageAltDe: 'Ferienparks & Feriendörfer in Winterberg: Idyllische Holzchalets und Ferienhäuser am sonnigen Hang inmitten grüner Sauerländer Wälder',
+    imageAltNl: 'Vakantieparken & Bungalowparken in Winterberg: Idyllische houten chalets en vakantiehuizen op een zonnige berghelling',
+    credit: 'Foto: Shengzhan Jiao / Unsplash',
     isAiGenerated: false,
     titleDe: 'Ferienparks in Winterberg',
     titleNl: 'Vakantieparken in Winterberg',
     subtitleDe: 'Familienfreundliche Ferienparks und Feriendörfer mit umfassenden Freizeitangeboten, Spielplätzen, Schwimmbädern und komfortablen Unterkünften.',
     subtitleNl: 'Kindvriendelijke vakantieparken en bungalowparken met veel faciliteiten, speeltuinen, zwembaden en comfortabele accommodaties.',
-    objectPosition: 'center center'
+    objectPosition: 'center 45%'
   },
 
   'Campingplätze': {
     image: '/campingplaetze-winterberg-header.jpg',
-    imageAltDe: 'Campingplätze & Wohnmobilstellplätze in Winterberg: Campinggenuss in freier Natur mit Wohnwagen, Zelt und Sonnenuntergangsstimmung',
-    imageAltNl: 'Campings & Camperplaatsen in Winterberg: Kamperen in de natuur met caravan, tent en sfeervolle zonsondergang',
+    imageAltDe: 'Campingplätze & Naturcamping in Winterberg: Zelt am Ufer eines ruhigen Bergsees umgeben von Wäldern und Bergen',
+    imageAltNl: 'Campings & Natuurkamperen in Winterberg: Tent aan de oever van een rustig bergmeer omgeven door bossen en bergen',
     credit: 'Foto: Unsplash',
     isAiGenerated: false,
     titleDe: 'Campingplätze in Winterberg',
@@ -100,9 +100,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // ==========================================
   'Handwerk': {
     image: '/handwerk-winterberg-header.jpg',
-    imageAltDe: 'Handwerk in Winterberg: Schreinermeister bei der traditionellen Holzbearbeitung mit Hobel auf der Werkbank',
-    imageAltNl: 'Ambacht in Winterberg: Meestertimmerman bij traditionele houtbewerking met schaaf op de werkbank',
-    isAiGenerated: true,
+    imageAltDe: 'Handwerk & Meisterbetriebe in Winterberg: Traditionelle Meisterwerkstatt mit Handwerkzeugen, Hobeln, Sägen und Stechbeiteln',
+    imageAltNl: 'Ambacht in Winterberg: Traditionele meesterwerkplaats met handgereedschap, schaven en zagen',
+    credit: 'Foto: Barn Images / Unsplash',
+    isAiGenerated: false,
     titleDe: 'Handwerk in Winterberg',
     titleNl: 'Ambacht & Vakmensen in Winterberg',
     subtitleDe: 'Zuverlässige Meisterbetriebe, Werkstätten und Fachhandwerker in Winterberg und allen 14 Ortsteilen – von Dachdeckern, Elektrikern und Schreinereien bis hin zu Bauunternehmen und KFZ-Profis.',
@@ -113,9 +114,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 1. Elektriker
   'Elektriker': {
     image: '/elektriker-winterberg-header.jpg',
-    imageAltDe: 'Elektriker & Elektrotechnik in Winterberg: Fachhandwerker bei Elektroinstallation und Verteilerbau',
-    imageAltNl: 'Elektriciens in Winterberg: Vakman bij elektrische installatie en verdeelkast',
-    isAiGenerated: true,
+    imageAltDe: 'Elektriker & Elektrotechnik in Winterberg: Professioneller Verteilerkasten mit Leitungsschutzschaltern und Verkabelung',
+    imageAltNl: 'Elektriciens in Winterberg: Professionele verdeelkast met installatieautomaten en bedrading',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Elektriker in Winterberg',
     titleNl: 'Elektriciens in Winterberg',
     subtitleDe: 'Zertifizierte Elektro-Fachbetriebe für Hausinstallation, Smart Home, Photovoltaik, E-Mobilität und Störungsdienste in Winterberg und Umgebung.',
@@ -126,9 +128,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 2. Heizungstechnik
   'Heizungstechnik': {
     image: '/heizungstechnik-winterberg-header.jpg',
-    imageAltDe: 'Heizungstechnik & Sanitär in Winterberg: Heizungsbauer prüft moderne Wärmepumpen- und Heizungsanlage',
-    imageAltNl: 'Verwarmingstechniek in Winterberg: Verwarmingstechnicus controleert moderne warmtepomp- en verwarmingsinstallatie',
-    isAiGenerated: true,
+    imageAltDe: 'Heizungstechnik & Sanitär in Winterberg: Moderner Heizungskeller mit Rohrsystemen, Pumpen und Manometern',
+    imageAltNl: 'Verwarmingstechniek in Winterberg: Moderne stookruimte met leidingen, pompen en manometers',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Heizungstechnik in Winterberg',
     titleNl: 'Verwarmingstechniek in Winterberg',
     subtitleDe: 'Fachbetriebe für moderne Heizsysteme, Wärmepumpen, regenerative Energien, Sanitärinstallationen und Notdienste im Sauerland.',
@@ -139,35 +142,38 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 3. Dachdecker
   'Dachdecker': {
     image: '/dachdecker-winterberg-header.jpg',
-    imageAltDe: 'Dachdecker in Winterberg: Dachdeckermeister in Zunftkleidung bei Schiefer- und Ziegeleindeckung mit Sauerland-Panorama',
-    imageAltNl: 'Dakdekkers in Winterberg: Dakdekker bij leisteen- en pannenbedekking met uitzicht op het Sauerland',
-    isAiGenerated: true,
+    imageAltDe: 'Dachdecker in Winterberg: Traditionelle Sauerländer Schiefereindeckung im Detail',
+    imageAltNl: 'Dakdekkers in Winterberg: Traditionele leisteenbedekking uit het Sauerland',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Dachdecker in Winterberg',
     titleNl: 'Dakdekkers in Winterberg',
     subtitleDe: 'Meisterbetriebe für Schiefereindeckung, Flachdächer, Dachdämmung, Klempnerarbeiten und Sturmschaden-Reparaturen in Winterberg.',
     subtitleNl: 'Meesterbedrijven voor leisteen, platte daken, dakisolatie, zinkwerk en stormschadeherstel in Winterberg.',
-    objectPosition: 'center 35%'
+    objectPosition: 'center center'
   },
 
   // 4. Schreinereien
   'Schreinereien': {
     image: '/schreinereien-winterberg-header.jpg',
-    imageAltDe: 'Schreinereien & Tischlereien in Winterberg: Tischlermeister hobelt Eichenholz in der traditionellen Werkstatt',
-    imageAltNl: 'Timmerlieden & Meubelmakers in Winterberg: Timmerman schaaft eikenhout in traditionele werkplaats',
-    isAiGenerated: true,
+    imageAltDe: 'Schreinereien & Tischlereien in Winterberg: Hobelbank mit Holzhobel, Ziehmesser und frischen Holzspänen',
+    imageAltNl: 'Timmerlieden & Meubelmakers in Winterberg: Schaafbank met houtschaaf, haalmes en verse houtsnippers',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Schreinereien in Winterberg',
     titleNl: 'Timmerlieden & Meubelmakers in Winterberg',
     subtitleDe: 'Individueller Möbelbau, Maßanfertigungen, Fenster, Türen und hochwertiger Innenausbau aus Meisterhand für Winterberg und das Sauerland.',
     subtitleNl: 'Maatwerk meubelen, ramen, deuren en hoogwaardige interieurbouw van vakkundige meubelmakers in Winterberg en het Sauerland.',
-    objectPosition: 'center 40%'
+    objectPosition: 'center center'
   },
 
   // 5. Maler & Lackierer
   'Maler & Lackierer': {
     image: '/maler-winterberg-header.jpg',
-    imageAltDe: 'Maler & Lackierer in Winterberg: Malerprofi bei hochwertiger Wandgestaltung und Farbanstrich im Innenraum',
-    imageAltNl: 'Schilders in Winterberg: Professionele schilder bij wandafwerking en binnenschilderwerk',
-    isAiGenerated: true,
+    imageAltDe: 'Maler & Lackierer in Winterberg: Farben, Farbfächer und hochwertige Lackierwerkzeuge auf Ausstellungsregal',
+    imageAltNl: 'Schilders in Winterberg: Verfkleuren, kleurwaaiers en hoogwaardig schildersgereedschap',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Maler & Lackierer in Winterberg',
     titleNl: 'Schilders in Winterberg',
     subtitleDe: 'Kreative Wandgestaltung, Fassadenanstriche, Tapezierarbeiten, Lackierungen und Wärmedämmung von qualifizierten Malermeistern.',
@@ -178,9 +184,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 6. Bauunternehmen
   'Bauunternehmen': {
     image: '/bauunternehmen-winterberg-header.jpg',
-    imageAltDe: 'Bauunternehmen in Winterberg: Bauleiter mit Bauplänen auf moderner Baustelle mit Bagger und Kran',
-    imageAltNl: 'Bouwbedrijven in Winterberg: Uitvoerder met bouwtekeningen op moderne bouwplaats met kraan en graafmachine',
-    isAiGenerated: true,
+    imageAltDe: 'Bauunternehmen in Winterberg: Baustelle mit schwerem Bagger und Erdarbeiten im Hoch- und Tiefbau',
+    imageAltNl: 'Bouwbedrijven in Winterberg: Bouwplaats met graafmachine en grondverzet',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Bauunternehmen in Winterberg',
     titleNl: 'Bouwbedrijven in Winterberg',
     subtitleDe: 'Kompetente Partner für Hoch- und Tiefbau, Neubau, Umbau, Sanierung und Erdarbeiten in Winterberg und der Region Sauerland.',
@@ -191,9 +198,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 7. Gartenbauer (Garten- und Landschaftsbau)
   'Gartenbauer': {
     image: '/gartenbauer-winterberg-header.jpg',
-    imageAltDe: 'Garten- und Landschaftsbau in Winterberg: Landschaftsgärtner bei Naturstein-Pflasterarbeiten im gepflegten Garten',
-    imageAltNl: 'Tuin- en landschapsarchitectuur in Winterberg: Hovenier bij natuursteen bestrating in verzorgde tuin',
-    isAiGenerated: true,
+    imageAltDe: 'Garten- und Landschaftsbau in Winterberg: Naturstein-Terrasse mit gepflegten Hecken und Pflanzungen',
+    imageAltNl: 'Tuin- en landschapsarchitectuur in Winterberg: Terras van natuursteen met verzorgde hagen en beplanting',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Garten- & Landschaftsbau in Winterberg',
     titleNl: 'Tuin- & Landschapsarchitectuur in Winterberg',
     subtitleDe: 'Professionelle Gartengestaltung, Pflasterarbeiten, Terrassenbau, Bepflanzung, Baumpflege und ganzjährige Gartenpflege in Winterberg.',
@@ -204,9 +212,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 8. Friseur
   'Friseur': {
     image: '/friseur-winterberg-header.jpg',
-    imageAltDe: 'Friseure & Salons in Winterberg: Friseurmeisterin stylt Haare im modernen Wohlfühl-Salon',
-    imageAltNl: 'Kappers in Winterberg: Kapster stijlt haar in een moderne, stijlvolle kapsalon',
-    isAiGenerated: true,
+    imageAltDe: 'Friseure & Salons in Winterberg: Stilvoller Salon mit Friseursesseln, großen Spiegeln und warmem Ambiente',
+    imageAltNl: 'Kappers in Winterberg: Stijlvolle salon met kappersstoelen, grote spiegels en warme sfeer',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Friseure in Winterberg',
     titleNl: 'Kapsalons in Winterberg',
     subtitleDe: 'Top-Hairstyling, moderne Schnitte, Farb- und Strähnentechniken sowie Brautstylings in den Friseursalons von Winterberg.',
@@ -217,9 +226,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 9. Bäckerei
   'Bäckerei': {
     image: '/baeckerei-winterberg-header.jpg',
-    imageAltDe: 'Bäckereien & Konditoreien in Winterberg: Frisches knuspriges Sauerteigbrot aus dem Steinofen der Traditionsbäckerei',
-    imageAltNl: 'Bakkerijen in Winterberg: Vers knapperig zuurdesembrood uit de steenoven van de traditionele bakkerij',
-    isAiGenerated: true,
+    imageAltDe: 'Bäckereien & Konditoreien in Winterberg: Traditionell gebackenes Sauerteigbrot mit Getreideähren auf dunklem Holz',
+    imageAltNl: 'Bakkerijen in Winterberg: Traditioneel zuurdesembrood met graanhalmen op donker hout',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Bäckereien in Winterberg',
     titleNl: 'Bakkerijen in Winterberg',
     subtitleDe: 'Traditionelle Handwerksbäcker und Konditoreien mit täglich frischen Broten, Brötchen, Kuchen und Sauerländer Spezialitäten.',
@@ -230,9 +240,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 10. Fleischerei
   'Fleischerei': {
     image: '/fleischerei-winterberg-header.jpg',
-    imageAltDe: 'Fleischereien & Metzgereien in Winterberg: Metzgermeister präsentiert feine Fleisch- und Wurstspezialitäten',
-    imageAltNl: 'Slagerijen in Winterberg: Slager presenteert fijne vlees- en worstspecialiteiten in de toonbank',
-    isAiGenerated: true,
+    imageAltDe: 'Fleischereien & Metzgereien in Winterberg: Feine Fleisch- und Wurstspezialitäten mit Gewürzen auf rustikalem Hackblock',
+    imageAltNl: 'Slagerijen in Winterberg: Fijne vlees- en worstspecialiteiten met kruiden op ambachtelijk hakblok',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Fleischereien in Winterberg',
     titleNl: 'Slagerijen in Winterberg',
     subtitleDe: 'Meister-Fleischereien mit regionalem Qualitätsfleisch, hausgemachten Schinken- und Wurstspezialitäten und Partyservice.',
@@ -259,7 +270,8 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
     image: '/baumschulen-winterberg-header.jpg',
     imageAltDe: 'Baumschulen & Pflanzenzucht in Winterberg: Weitläufige Freiland-Baumschule mit gesunden Formgehölzen und Nadelbäumen',
     imageAltNl: 'Boomkwekerijen in Winterberg: Uitgestrekte boomkwekerij met gezonde bomen, struiken en coniferen',
-    isAiGenerated: true,
+    credit: 'Foto: Wikimedia Commons',
+    isAiGenerated: false,
     titleDe: 'Baumschulen in Winterberg',
     titleNl: 'Boomkwekerijen in Winterberg',
     subtitleDe: 'Regionale Pflanzen, winterharte Gehölze, Heckenpflanzen, Formbäume und fachkundige Beratung für Ihren Garten im Sauerland.',
@@ -270,9 +282,10 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 13. Wäschereien
   'Wäschereien': {
     image: '/waeschereien-winterberg-header.jpg',
-    imageAltDe: 'Wäschereien & Textilpflege in Winterberg: Moderne Großwäscherei mit Edelstahl-Maschinen und schrankfertiger Wäsche',
-    imageAltNl: 'Wasserijen in Winterberg: Moderne industriële wasserij met roestvrijstalen wasmachines en fris wasgoed',
-    isAiGenerated: true,
+    imageAltDe: 'Wäschereien & Textilpflege in Winterberg: Moderne Großwäscherei mit gewerblichen Waschmaschinen',
+    imageAltNl: 'Wasserijen in Winterberg: Moderne industriële wasserij met professionele wasmachines',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
     titleDe: 'Wäschereien in Winterberg',
     titleNl: 'Wasserijen & Textielverzorging in Winterberg',
     subtitleDe: 'Professionelle Textilreinigung, Hotel- und Gastronomiewäsche, Mietwäsche-Service und schonende Pflege für Privat und Gewerbe.',
@@ -297,9 +310,9 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // 15. Maschinenbau
   'Maschinenbau': {
     image: '/maschinenbau-winterberg-header.jpg',
-    imageAltDe: 'Maschinenbau in Winterberg: Moderne Industriefertigung, Fördertechnik und Anlagenbau im Sauerland',
-    imageAltNl: 'Machinebouw in Winterberg: Moderne industriële productie, transportsystemen en installatietechniek in het Sauerland',
-    credit: 'Foto: Leisse & Söhne Winterberg',
+    imageAltDe: 'Maschinenbau & Fertigungstechnik in Winterberg: Präzise CNC-Zahnradfräsung und Getriebekomponenten',
+    imageAltNl: 'Machinebouw in Winterberg: Nauwkeurige CNC-tandwielfrezen en transmissiecomponenten',
+    credit: 'Foto: Unsplash',
     isAiGenerated: false,
     titleDe: 'Maschinenbau in Winterberg',
     titleNl: 'Machinebouw in Winterberg',
