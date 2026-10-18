@@ -193,7 +193,7 @@ function renderInlineFormatted(text: string): React.ReactNode[] {
 }
 
 // Callout Box Component for :::tip, :::info, etc.
-export function CalloutTipBox({ type = 'tip', content }: { type?: string; content: string }) {
+export function CalloutTipBox({ type = 'tip', content }: { key?: React.Key; type?: string; content: string }) {
   // Strip opening/closing ::: and extract optional title
   let cleanContent = content.replace(/^:::[a-zA-Z0-9_-]*\s*/, '').replace(/:::\s*$/, '').trim();
   let title = '';
@@ -225,7 +225,7 @@ export function CalloutTipBox({ type = 'tip', content }: { type?: string; conten
 }
 
 // Markdown and News Rich Text Renderer
-export function NewsContentRenderer({ content }: { content: string }) {
+export function NewsContentRenderer({ content }: { key?: React.Key; content: string }) {
   if (!content) return null;
 
   // 1. Extract callout containers (:::tip ... ::: or :::info ... :::) so they don't get broken apart by \n\n
