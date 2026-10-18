@@ -223,6 +223,256 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
     subtitleDe: 'Präziser Sondermaschinenbau, Fördertechnik, Sägewerkstechnik und industrielle Fertigung mit jahrzehntelanger Sauerländer Ingenieurskunst.',
     subtitleNl: 'Precisie machinebouw, transporttechniek, zagerijtechnologie en industriële productie uit het Sauerland.',
     objectPosition: 'center 40%'
+  },
+
+  // ==========================================
+  // Einzelhandel & Shopping
+  // ==========================================
+  'Einzelhandel': {
+    image: '/shoppen-in-winterberg-header.jpg',
+    imageAltDe: 'Einzelhandel & Shopping in Winterberg: Geschäfte, Boutiquen und Fachhändler im heilklimatischen Sauerland-Zentrum',
+    imageAltNl: 'Winkels & Retail in Winterberg: Winkels, boetieks en speciaalzaken in het centrum van Winterberg',
+    credit: 'Foto: Winterberg Verzeichnis',
+    isAiGenerated: false,
+    titleDe: 'Einzelhandel in Winterberg',
+    titleNl: 'Winkels & Retail in Winterberg',
+    subtitleDe: 'Entdecken Sie die vielfältige Einkaufswelt in Winterberg: Von Modeboutiquen, Supermärkten und regionalen Spezialitäten bis hin zu Sportgeschäften, Schmuck und Geschenkartikeln.',
+    subtitleNl: 'Ontdek de veelzijdige winkelwereld in Winterberg: Van modeboetieks, supermarkten en regionale delicatessen tot sportwinkels, juweliers en cadeauartikelen.',
+    objectPosition: 'center 35%'
+  },
+
+  'Supermarkt': {
+    image: '/supermarkt-winterberg-header.jpg',
+    imageAltDe: 'Supermärkte in Winterberg: Frische Obst- und Gemüseabteilung im modernen Einkaufsmarkt',
+    imageAltNl: 'Supermarkten in Winterberg: Verse groente- en fruitafdeling in de moderne supermarkt',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Supermärkte in Winterberg',
+    titleNl: 'Supermarkten in Winterberg',
+    subtitleDe: 'Große Supermärkte, Discounter und Lebensmittelmärkte für den täglichen Einkauf von Einheimischen und Urlaubern in Winterberg und den Ortsteilen.',
+    subtitleNl: 'Grote supermarkten, discounters en levensmiddelenwinkels voor uw dagelijkse boodschappen in Winterberg en de dorpen.',
+    objectPosition: 'center center'
+  },
+
+  'Bekleidung': {
+    image: '/bekleidung-winterberg-header.jpg',
+    imageAltDe: 'Bekleidungsgeschäfte & Mode in Winterberg: Stilvolle Modekollektionen, Outdoorbekleidung und Accessoires im Modegeschäft',
+    imageAltNl: 'Kledingwinkels & Mode in Winterberg: Stijlvolle kledingcollecties, outdoor kleding en accessoires in de modewinkel',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Bekleidung in Winterberg',
+    titleNl: 'Kleding & Mode in Winterberg',
+    subtitleDe: 'Moderne Modehäuser, Boutiquen, Trachten-, Winter- und Outdoor-Bekleidung für Damen, Herren und Kinder in der Einkaufsstadt Winterberg.',
+    subtitleNl: 'Moderne kledingzaken, boetieks, winter- en outdoorkleding voor dames, heren en kinderen in winkelstad Winterberg.',
+    objectPosition: 'center 40%'
+  },
+
+  'Drogerien': {
+    image: '/drogerien-winterberg-header.jpg',
+    imageAltDe: 'Drogerien in Winterberg: Wohlfühl-Pflegeprodukte, Naturkosmetik und Gesundheitsprodukte im Drogeriemarkt',
+    imageAltNl: 'Drogisterijen in Winterberg: Verzorgingsproducten, natuurlijke cosmetica en gezondheidsproducten bij de drogist',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Drogerien in Winterberg',
+    titleNl: 'Drogisterijen in Winterberg',
+    subtitleDe: 'Umfangreiches Sortiment an Körperpflege, Kosmetik, Bio-Produkten, Babybedarf und Haushaltsartikeln in den Winterberger Drogeriemärkten.',
+    subtitleNl: 'Uitgebreid assortiment lichaamsverzorging, cosmetica, biologische voeding, babyartikelen en huishoudproducten in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Baumärkte': {
+    image: '/baumaerkte-winterberg-header.jpg',
+    imageAltDe: 'Baumärkte & Heimwerkerbedarf in Winterberg: Werkzeuge, Baumaterialien und Gartenbedarf im Baufachmarkt',
+    imageAltNl: 'Bouwmarkten in Winterberg: Gereedschap, bouwmaterialen en tuinartikelen in de bouwmarkt',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Baumärkte in Winterberg',
+    titleNl: 'Bouwmarkten in Winterberg',
+    subtitleDe: 'Alles für Renovierung, Handwerk, Haus und Garten: Werkzeuge, Maschinen, Holz, Eisenwaren und Gartenbaustoffe in Winterberg.',
+    subtitleNl: 'Alles voor verbouwen, klussen, huis en tuin: gereedschap, machines, hout, ijzerwaren en tuinmaterialen in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Blumengeschäfte': {
+    image: '/blumengeschaefte-winterberg-header.jpg',
+    imageAltDe: 'Blumengeschäfte & Floristik in Winterberg: Farbenfrohe Blumensträuße, Topfpflanzen und florale Dekorationen im Blumenladen',
+    imageAltNl: 'Bloemenwinkels in Winterberg: Kleurrijke boeketten, kamerplanten en bloemdecoraties bij de bloemist',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Blumengeschäfte in Winterberg',
+    titleNl: 'Bloemisten in Winterberg',
+    subtitleDe: 'Kreative Floristik, frische Schnittblumen, kunstvolle Sträuße, Hochzeits- und Trauerfloristik sowie geschmackvolle Wohnaccessoires.',
+    subtitleNl: 'Creatief bloemwerk, verse snijbloemen, feestelijke boeketten, bruidswerk en sfeervolle woonaccessoires in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Schuhgeschäfte': {
+    image: '/schuhgeschaefte-winterberg-header.jpg',
+    imageAltDe: 'Schuhgeschäfte in Winterberg: Modische Schuhe, Wanderschuhe und Winterschuhe im Schuhfachgeschäft',
+    imageAltNl: 'Schoenenwinkels in Winterberg: Modieuze schoenen, wandelschoenen en winterschoenen in de schoenenwinkel',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Schuhgeschäfte in Winterberg',
+    titleNl: 'Schoenenwinkels in Winterberg',
+    subtitleDe: 'Bequeme Schuhe für jeden Anlass: Modische Freizeitschuhe, robuste Wanderstiefel, Winterschuhe und Kinderschuhe mit Fachberatung.',
+    subtitleNl: 'Comfortabele schoenen voor elke gelegenheid: modieuze vrijetijdsschoenen, stevige wandelschoenen, winterschoenen en kinderschoenen.',
+    objectPosition: 'center center'
+  },
+
+  'Buchhandlungen': {
+    image: '/buchhandlungen-winterberg-header.jpg',
+    imageAltDe: 'Buchhandlungen in Winterberg: Gemütliche Buchhandlung mit Romanen, Bildbänden, Reiseliteratur und Sauerland-Krimis',
+    imageAltNl: 'Boekhandels in Winterberg: Gezellige boekhandel met romans, fotoboeken, reisgidsen en streekthrillers',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Buchhandlungen in Winterberg',
+    titleNl: 'Boekhandels in Winterberg',
+    subtitleDe: 'Aktuelle Bestseller, Reiseliteratur, Sauerland-Bücher, Kinder- und Jugendbücher sowie persönliche Leseempfehlungen vor Ort.',
+    subtitleNl: 'Actuele bestsellers, reisgidsen, regionale literatuur, kinderboeken en deskundig advies in Winterbergse boekhandels.',
+    objectPosition: 'center 45%'
+  },
+
+  'Haushaltswaren & Deko': {
+    image: '/haushaltswaren-winterberg-header.jpg',
+    imageAltDe: 'Haushaltswaren & Deko in Winterberg: Geschmackvolle Tischkultur, Wohnaccessoires und Küchenhelfer im Fachgeschäft',
+    imageAltNl: 'Huishoudartikelen & Decoratie in Winterberg: Sfeervolle woonaccessoires, servies en keukenbenodigdheden',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Haushaltswaren & Deko in Winterberg',
+    titleNl: 'Woondecoratie & Huishoudartikelen in Winterberg',
+    subtitleDe: 'Alles für ein schönes Zuhause: Hochwertiges Geschirr, Küchenzubehör, stilvolle Wohnaccessoires, Kerzen und Geschenkideen.',
+    subtitleNl: 'Alles voor een gezellig thuis: hoogwaardig servies, kookgerei, stijlvolle woondecoratie, kaarsen en cadeauartikelen in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Feinkost & Lebensmittel': {
+    image: '/feinkost-winterberg-header.jpg',
+    imageAltDe: 'Feinkost & Spezialitäten in Winterberg: Delikatessen, Sauerländer Schinken, erlesene Weine und Gourmet-Produkte',
+    imageAltNl: 'Delicatessen in Winterberg: Lokale specialiteiten, hammen, kwaliteitswijnen en gourmetproducten',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Feinkost & Spezialitäten in Winterberg',
+    titleNl: 'Delicatessen & Specialiteiten in Winterberg',
+    subtitleDe: 'Erlesene Gaumenfreuden, Sauerländer Wildspezialitäten, Bio-Käse, erlesene Weine, Essige, Öle und Geschenkkörbe für Genießer.',
+    subtitleNl: 'Fijne streekproducten, Sauerlandse wildspecialiteiten, boerenkaas, kwaliteitswijnen en geschenkmanden voor fijnproevers.',
+    objectPosition: 'center center'
+  },
+
+  'Märkte': {
+    image: '/maerkte-winterberg-header.jpg',
+    imageAltDe: 'Wochenmärkte & Frischemärkte in Winterberg: Frisches Obst, Gemüse und regionale Erzeugnisse direkt vom Erzeuger',
+    imageAltNl: 'Markten in Winterberg: Verse groenten, fruit en streekproducten op de gezellige weekmarkt',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Märkte in Winterberg',
+    titleNl: 'Markten in Winterberg',
+    subtitleDe: 'Der Winterberger Wochenmarkt und bunte Saisonmärkte: Frische Produkte von regionalen Landwirten, Blumen und traditionelles Marktflair.',
+    subtitleNl: 'De gezellige weekmarkt en seizoensmarkten in Winterberg: verse producten van boeren uit de streek, bloemen en lokale sfeer.',
+    objectPosition: 'center 45%'
+  },
+
+  'Gaststättenbedarf': {
+    image: '/gaststaettenbedarf-winterberg-header.jpg',
+    imageAltDe: 'Gaststättenbedarf & Großküchenausstattung in Winterberg: Professionelles Geschirr, Gläser und Küchentechnik für Hotellerie und Gastronomie',
+    imageAltNl: 'Horeca-benodigdheden in Winterberg: Professioneel servies, glaswerk en keukenapparatuur voor horeca en hotelwezen',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Gaststättenbedarf in Winterberg',
+    titleNl: 'Horeca-benodigdheden in Winterberg',
+    subtitleDe: 'Ausrüstung, Großküchentechnik, Gläser, Porzellan, Hygieneartikel und Zubehör für Hotellerie, Skihütten und Restaurants im Hochsauerland.',
+    subtitleNl: 'Grootkeukentechniek, porselein, glaswerk, hygiëne en horecabenodigdheden voor hotels, restaurants en skihutten in het Sauerland.',
+    objectPosition: 'center center'
+  },
+
+  'Baustoffe': {
+    image: '/baustoffe-winterberg-header.jpg',
+    imageAltDe: 'Baustoffhandel in Winterberg: Baustoff-Fachhandel für Hoch-, Tief- und Ausbau mit moderner Logistik',
+    imageAltNl: 'Bouwmaterialen in Winterberg: Bouwstoffengroothandel voor ruwbouw, afbouw en grondverzet',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Baustoffe in Winterberg',
+    titleNl: 'Bouwmaterialen in Winterberg',
+    subtitleDe: 'Zuverlässiger Baustoff-Fachhandel für Gewerbe und Privat: Zement, Schotter, Dämmstoffe, Holz, Steine und Dachbaustoffe im Sauerland.',
+    subtitleNl: 'Betrouwbare bouwstoffengroothandel voor bedrijven en particulieren: isolatie, hout, stenen, zand en dakmaterialen in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Bürobedarf': {
+    image: '/buerobedarf-winterberg-header.jpg',
+    imageAltDe: 'Bürobedarf & Schreibwaren in Winterberg: Hochwertige Schreibwaren, Papier, Ordner und Büroartikel im Fachhandel',
+    imageAltNl: 'Kantoorartikelen & Schrijfwaren in Winterberg: Schrijfwaren, papier, ordners en kantoorbenodigdheden',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Bürobedarf & Schreibwaren in Winterberg',
+    titleNl: 'Kantoorartikelen in Winterberg',
+    subtitleDe: 'Schreibwaren, Schulbedarf, Papier, Toner, Büromöbel und Organisationstalente für das Homeoffice und gewerbliche Büros in Winterberg.',
+    subtitleNl: 'Schrijfwaren, schoolartikelen, papier, inktpatronen en kantoormeubilair voor kantoor en thuiswerkplek in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Spielwaren': {
+    image: '/spielwaren-winterberg-header.jpg',
+    imageAltDe: 'Spielwarengeschäfte in Winterberg: Farbenfrohe Spielzeuge, Gesellschaftsspiele, Kuscheltiere und Holzspielzeug für Kinder',
+    imageAltNl: 'Speelgoedwinkels in Winterberg: Kleurrijk speelgoed, gezelschapsspellen, knuffels en houten speelgoed voor kinderen',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Spielwaren in Winterberg',
+    titleNl: 'Speelgoedwinkels in Winterberg',
+    subtitleDe: 'Große Auswahl an Spielwaren für jedes Alter: Gesellschaftsspiele, Puzzles, Outdoor-Spielzeug, Schlitten, Puppen und Modellbau.',
+    subtitleNl: 'Grote selectie speelgoed voor alle leeftijden: bordspellen, puzzels, buitenspeelgoed, sleeën, knuffels en modelbouw in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Parfümerie': {
+    image: '/parfuemerie-winterberg-header.jpg',
+    imageAltDe: 'Parfümerien & Kosmetik in Winterberg: Exklusive Düfte, edle Parfums und hochwertige Kosmetiklinien im Fachgeschäft',
+    imageAltNl: 'Parfumerieën in Winterberg: Exclusieve geuren, luxe parfums en hoogwaardige cosmeticalijnen',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Parfümerie & Kosmetik in Winterberg',
+    titleNl: 'Parfumerie & Cosmetica in Winterberg',
+    subtitleDe: 'Erlesene Duftkompositionen, Luxuskosmetik, Pflegeprodukte und kompetente Make-up-Beratung in den Fachparfümerien Winterbergs.',
+    subtitleNl: 'Exclusieve parfums, luxe huidverzorging, cosmetica en deskundig advies in de parfumerieën van Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Kioske': {
+    image: '/kioske-winterberg-header.jpg',
+    imageAltDe: 'Kioske & Zeitschriften in Winterberg: Frische Presse, Tageszeitungen, Magazine, Snacks und Erfrischungen',
+    imageAltNl: 'Kiosken in Winterberg: Kranten, tijdschriften, tabak, drankjes en snelle snacks',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Kioske in Winterberg',
+    titleNl: 'Kiosken & Tabak in Winterberg',
+    subtitleDe: 'Der schnelle Halt zwischendurch: Tageszeitungen, Magazine, Tabakwaren, kalte Getränke, Süßwaren und Reisebedarf in Winterberg.',
+    subtitleNl: 'Snelle service onderweg: dagbladen, tijdschriften, tabak, koude drankjes, zoetwaren en handige reisartikelen in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Telekommunikation': {
+    image: '/telekommunikation-winterberg-header.jpg',
+    imageAltDe: 'Telekommunikation & Mobilfunk in Winterberg: Moderne Smartphones, Tablets und Tarifberatung im Telekommunikations-Shop',
+    imageAltNl: 'Telecommunicatie in Winterberg: Moderne smartphones, tablets en mobiele abonnementen in de telefoonwinkel',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Telekommunikation & Mobilfunk in Winterberg',
+    titleNl: 'Telecommunicatie & Mobiel in Winterberg',
+    subtitleDe: 'Smartphones, Festnetz- und Internetanschlüsse, Mobilfunkverträge, Zubehör und kompetenter Reparaturservice vor Ort in Winterberg.',
+    subtitleNl: 'Smartphones, internet, vaste telefonie, mobiele abonnementen, accessoires en snelle reparatieservice in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Juweliere & Uhren': {
+    image: '/juweliere-winterberg-header.jpg',
+    imageAltDe: 'Juweliere & Uhrmacher in Winterberg: Edler Schmuck, Trauringe, Gold, Silber und hochwertige Armbanduhren in der Vitrine',
+    imageAltNl: 'Juweliers & Horlogemakers in Winterberg: Exclusieve sieraden, trouwringen, goud, zilver en luxe horloges in de vitrine',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Juweliere & Uhren in Winterberg',
+    titleNl: 'Juweliers & Horloges in Winterberg',
+    subtitleDe: 'Glänzende Schmuckstücke, Verlobungs- und Eheringe, exklusive Uhrenmarken, Gravuren und qualifizierter Uhrmacher- und Goldschmiedeservice.',
+    subtitleNl: 'Schitterende sieraden, verlovings- en trouwringen, exclusieve horlogemerken, graveringen en vakkundig juwelierswerk in Winterberg.',
+    objectPosition: 'center center'
   }
 };
 
