@@ -14,7 +14,90 @@ export interface CategoryHeaderData {
 }
 
 export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
-  // Hauptkategorie Handwerk
+  // ==========================================
+  // Hotels und Unterkünfte
+  // ==========================================
+  'Hotels und Unterkünfte': {
+    image: '/hotels-unterkuenfte-winterberg-header.jpg',
+    imageAltDe: 'Hotels und Unterkünfte in Winterberg: Gemütliche Hotels, Ferienwohnungen, Chalets und Campingplätze im Sauerland',
+    imageAltNl: 'Hotels en accommodaties in Winterberg: Gezellige hotels, vakantiewoningen, chalets en campings in het Sauerland',
+    credit: 'Foto: Avital Resort Winterberg',
+    isAiGenerated: false,
+    titleDe: 'Hotels & Unterkünfte in Winterberg',
+    titleNl: 'Hotels & Accommodaties in Winterberg',
+    subtitleDe: 'Finden Sie Ihre perfekte Unterkunft im heilklimatischen Urlaubsort Winterberg: Von erstklassigen Wellnesshotels und familienfreundlichen Ferienwohnungen bis hin zu gemütlichen Chalets und idyllischen Campingplätzen.',
+    subtitleNl: 'Vind uw ideale verblijf in vakantieplaats Winterberg: van luxe wellnesshotels en gezinsvriendelijke vakantiewoningen tot knusse chalets en idyllische campings.',
+    objectPosition: 'center center'
+  },
+
+  'Hotels': {
+    image: '/hotels-winterberg-header.jpg',
+    imageAltDe: 'Hotels in Winterberg: Stilvoll eingerichtetes Hotelzimmer mit gemütlichem Boxspringbett und warmer Beleuchtung',
+    imageAltNl: 'Hotels in Winterberg: Stijlvolle hotelkamer met comfortabel bed en sfeervolle verlichting',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Hotels in Winterberg',
+    titleNl: 'Hotels in Winterberg',
+    subtitleDe: 'Erstklassige Hotels für Ihren Urlaub im Sauerland: Wellnesshotels, Aktiv- und Sporthotels, gemütliche Landhotels und zentrumsnahe Stadthotels in Winterberg.',
+    subtitleNl: 'Eersteklas hotels voor uw vakantie in het Sauerland: wellnesshotels, sporthotels, gezellige landhotels en hotels in het centrum van Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Ferienwohnungen': {
+    image: '/ferienwohnungen-winterberg-header.jpg',
+    imageAltDe: 'Ferienwohnungen in Winterberg: Moderne, lichtdurchflutete Ferienwohnung mit Essbereich, Küche und gemütlichem Wohnzimmer',
+    imageAltNl: 'Vakantiewoningen in Winterberg: Modern, licht appartement met eethoek, keuken en gezellige woonkamer',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Ferienwohnungen in Winterberg',
+    titleNl: 'Vakantiewoningen in Winterberg',
+    subtitleDe: 'Gemütliche und modern ausgestattete Ferienwohnungen und Apartments für Paare, Familien und Gruppen – ideal gelegen für Wanderungen und Skitage.',
+    subtitleNl: 'Gezellige en modern ingerichte vakantiewoningen en appartementen voor stellen, gezinnen en groepen – ideaal gelegen voor wandel- en skivakanties.',
+    objectPosition: 'center center'
+  },
+
+  'Ferienhäuser': {
+    image: '/ferienhaeuser-winterberg-header.jpg',
+    imageAltDe: 'Ferienhäuser & Chalets in Winterberg: Romantisches Holzchalet am Berghang bei Sonnenuntergang inmitten der Sauerländer Natur',
+    imageAltNl: 'Vakantiehuizen & Chalets in Winterberg: Romantisch houten chalet op een berghelling bij zonsondergang',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Ferienhäuser in Winterberg',
+    titleNl: 'Vakantiehuizen in Winterberg',
+    subtitleDe: 'Exklusive Ferienhäuser, urige Blockhütten und moderne Chalets für ungestörte Urlaubstage mit Familie und Freunden in den Winterberger Bergen.',
+    subtitleNl: 'Exclusieve vakantiehuizen, knusse blokhutten en moderne chalets voor een onbezorgde vakantie met familie en vrienden in de bergen van Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Ferienparks': {
+    image: '/ferienparks-winterberg-header.jpg',
+    imageAltDe: 'Ferienparks in Winterberg: Sauerländer Fachwerk-Feriendorf am sonnigen Hang von Winterberg-Neuastenberg',
+    imageAltNl: 'Vakantieparken in Winterberg: Vakantiedorp met vakwerkhuizen op de zonnige helling van Winterberg-Neuastenberg',
+    credit: 'Foto: Dorint Resort Winterberg',
+    isAiGenerated: false,
+    titleDe: 'Ferienparks in Winterberg',
+    titleNl: 'Vakantieparken in Winterberg',
+    subtitleDe: 'Familienfreundliche Ferienparks und Feriendörfer mit umfassenden Freizeitangeboten, Spielplätzen, Schwimmbädern und komfortablen Unterkünften.',
+    subtitleNl: 'Kindvriendelijke vakantieparken en bungalowparken met veel faciliteiten, speeltuinen, zwembaden en comfortabele accommodaties.',
+    objectPosition: 'center center'
+  },
+
+  'Campingplätze': {
+    image: '/campingplaetze-winterberg-header.jpg',
+    imageAltDe: 'Campingplätze & Wohnmobilstellplätze in Winterberg: Campinggenuss in freier Natur mit Wohnwagen, Zelt und Sonnenuntergangsstimmung',
+    imageAltNl: 'Campings & Camperplaatsen in Winterberg: Kamperen in de natuur met caravan, tent en sfeervolle zonsondergang',
+    credit: 'Foto: Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Campingplätze in Winterberg',
+    titleNl: 'Campings in Winterberg',
+    subtitleDe: 'Natururlaub pur: Idyllisch gelegene Campingplätze und moderne Wohnmobilstellplätze für Sommer- und Wintercamping im Hochsauerland.',
+    subtitleNl: 'Puur natuur: idyllisch gelegen campings en moderne camperplaatsen voor zowel zomer- als winterkamperen in het Sauerland.',
+    objectPosition: 'center center'
+  },
+
+  // ==========================================
+  // Handwerk & Meisterbetriebe
+  // ==========================================
   'Handwerk': {
     image: '/handwerk-winterberg-header.jpg',
     imageAltDe: 'Handwerk in Winterberg: Schreinermeister bei der traditionellen Holzbearbeitung mit Hobel auf der Werkbank',
