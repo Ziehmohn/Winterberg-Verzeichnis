@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (375 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (379 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -522,7 +522,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Mollseifen
 - **Adresse:** Höhendorfstraße 5, 59955 Winterberg-Mollseifen
 - **Telefon:** +31 74 2777866
-- **Webseite:** http://www.toplokaties.de
+- **Webseite:** https://www.toplokaties.de/
 - **Beschreibung (DE):** TopLokatie Sauerland im idyllischen Höhendorf Mollseifen bietet hochwertige Ferienunterkünfte inmitten der malerischen Natur des Rothaargebirges. Die geschmackvoll ausgestatteten Wohnungen verfügen über moderne Bäder, komfortable Wohnbereiche und private Balkone oder Terrassen mit weitem Panoramablick ins Grüne. Ideal für Wanderer, Radfahrer und Ruhesuchende abseits des Trubels.
 - **Beschreibung (NL):** TopLokatie Sauerland in het schilderachtige bergdorp Mollseifen biedt hoogwaardige vakantiewoningen omgeven door de ongerepte natuur van het Rothaargebergte. Met luxe faciliteiten, privéterras en panoramisch uitzicht een perfect verblijf voor rustzoekers en natuurliefhebbers.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/toplokatie-sauerland
@@ -731,6 +731,47 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Status:** Verifizierter Premium-Eintrag
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/sauerland-lodge
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/sauerland-lodge
+
+#### [Naturfreundehaus Mollseifen](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/naturfreundehaus-mollseifen)
+- **Kategorie:** Hotels und Unterkünfte > Ferienhäuser
+- **Ort / Ortsteil:** Mollseifen
+- **Adresse:** In der Trift 2, 59955 Winterberg-Mollseifen
+- **Telefon:** 02981 7389
+- **Webseite:** https://www.naturfreundehaus-mollseifen.de
+- **Beschreibung (DE):** Das Naturfreundehaus Mollseifen ist eine naturnah gelegene Gruppen- und Wanderunterkunft im idyllischen Höhendorf Mollseifen auf rund 640 Höhenmetern. Das Haus verfügt über rund 65 Betten in 21 Zimmern, mehrere helle Tagungs- und Aufenthaltsräume sowie ein großes Außengelände mit Spiel- und Liegewiese, Grillplatz und Sportmöglichkeiten. Als zertifizierter Bett+Bike-Betrieb bietet das Haus optimale Bedingungen für Schulklassen, Jugendgruppen, Vereine, Familien und Wanderer.
+- **Beschreibung (NL):** Naturfreundehaus Mollseifen is een natuurrijke groeps- en wandelaccommodatie in het rustige bergdorp Mollseifen op circa 640 meter hoogte. Het huis beschikt over circa 65 bedden verdeeld over 21 kamers, meerdere recreatie- en seminarruimtes en een groot buitenterrein met speelweide, barbecueplek en sportvelden. Een gecertificeerde Bett+Bike-locatie, ideaal voor groepen, verenigingen, families en wandelaars.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/naturfreundehaus-mollseifen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/naturfreundehaus-mollseifen
+
+#### [Ferienwohnung Ohmeis](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-ohmeis)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Mollseifen
+- **Adresse:** Höhendorfstraße 1, 59955 Winterberg-Mollseifen
+- **Webseite:** https://www.booking.com/hotel/de/ferienwohnung-ohmeis.de.html
+- **Beschreibung (DE):** Die Ferienwohnung Ohmeis befindet sich in ruhiger Lage am Ortseingang des Höhendorfs Mollseifen. Die gemütlich eingerichtete Ferienunterkunft bietet Gästen eine voll ausgestattete Kochnische, einen einladenden Wohnbereich, kostenfreies WLAN und ein gepflegtes Badezimmer. Ein schöner Garten mit Grillmöglichkeiten und Liegewiese lädt nach erlebnisreichen Wander- oder Skitagen zum Entspannen ein.
+- **Beschreibung (NL):** Ferienwohnung Ohmeis bevindt zich op een rustige locatie aan het begin van het bergdorp Mollseifen. De sfeervol ingerichte vakantiewoning biedt een volledig uitgeruste kitchenette, gezellige zithoek, gratis wifi en een nette badkamer. De tuin met barbecue en ligweide biedt volop ontspanning na een actieve wandel- of wintersportdag.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/ferienwohnung-ohmeis
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/ferienwohnung-ohmeis
+
+#### [Ferienhaus am Ruhberg](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-am-ruhberg)
+- **Kategorie:** Hotels und Unterkünfte > Ferienhäuser
+- **Ort / Ortsteil:** Mollseifen
+- **Adresse:** Ruhbergstraße 3, 59955 Winterberg-Mollseifen
+- **Webseite:** https://www.booking.com/hotel/de/ferienhaus-am-ruhberg.de.html
+- **Beschreibung (DE):** Das Ferienhaus am Ruhberg ist ein freistehendes, behagliches Urlaubsdomizil in idyllischer Waldrandlage von Mollseifen. Das rund 50 m² große Holzhaus über zwei Etagen bietet Platz für bis zu vier Personen und verfügt über zwei separate Schlafzimmer, ein modernes Bad mit ebenerdiger Dusche sowie einen offenen Koch- und Essbereich. Auf dem eigenen Grundstück erwarten die Gäste eine überdachte Terrasse, ein privater Garten mit Grillplatz und Sonnenliegen.
+- **Beschreibung (NL):** Ferienhaus am Ruhberg is een vrijstaand, sfeervol vakantiehuis gelegen aan de bosrand in Mollseifen. De houten woning van circa 50 m² verdeeld over twee verdiepingen biedt plaats aan maximaal vier personen met twee aparte slaapkamers, een moderne badkamer met inloopdouche en een open keuken. Buiten beschikt het huis over een overdekt terras, een privétuin met barbecue en ligstoelen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaus-am-ruhberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/ferienhaus-am-ruhberg
+
+#### [Dorfschule Mollseifen](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/dorfschule-mollseifen)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Mollseifen
+- **Adresse:** Höhendorfstraße 12, 59955 Winterberg-Mollseifen
+- **Webseite:** https://www.booking.com/hotel/de/dorfschule-mollseifen.de.html
+- **Beschreibung (DE):** Die Dorfschule Mollseifen ist eine großzügige und charaktervolle Ferienunterkunft im geschichtsträchtigen Gebäude der ehemaligen Dorfschule von Mollseifen. Mit rund 80 m² Wohnfläche bietet die Wohnung viel Raum für Familien oder befreundete Paare. Eine komplett ausgestattete Küche, mehrere Schlafzimmer, ein lichtdurchflutetes Wohnzimmer sowie eine sonnige Terrasse mit Gartenblick verbinden den besonderen Charme historischer Mauern mit modernem Wohnkomfort inmitten der Sauerländer Bergwelt.
+- **Beschreibung (NL):** Dorfschule Mollseifen is een royale en karaktervolle vakantiewoning in het historische gebouw van de voormalige dorpsschool van Mollseifen. Met circa 80 m² woonoppervlak biedt het appartement veel ruimte voor gezinnen of koppels, inclusief een compleet uitgeruste keuken, meerdere slaapkamers, een lichte woonkamer en een zonneterras met uitzicht op de tuin.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/dorfschule-mollseifen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/dorfschule-mollseifen
 
 ### Kategorie: Handwerk
 
@@ -1735,14 +1776,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/bu-ket-bar-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/bu-ket-bar-winterberg
 
-#### [Mollseifer Hof Inh. Volker Geier](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/mollseifer-hof-inh-volker-geier)
+#### [Mollseifer Hof](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/mollseifer-hof)
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Mollseifen
-- **Adresse:** In d. Trift 1, 59955 Winterberg-Mollseifen
+- **Adresse:** In der Trift 1, 59955 Winterberg-Mollseifen
 - **Telefon:** 02981 2414
-- **Beschreibung (DE):** Der Mollseifer Hof in Winterberg-Mollseifen ist ein traditionsreicher, familiengeführter Gasthof mit Restaurant und Gästezimmern unter der Leitung von Volker Geier. Weithin bekannt ist das Haus insbesondere für seine Spezialität, frische Hähnchen vom Buchenholzgrill. Dank seiner idyllischen Lage im Sauerland dient der Betrieb Erholungssuchenden und Aktivurlaubern als idealer Ausgangspunkt für Wanderungen und Radtouren.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/mollseifer-hof-inh-volker-geier
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/mollseifer-hof-inh-volker-geier
+- **Webseite:** https://www.mollseiferhof.de
+- **Beschreibung (DE):** Der Mollseifer Hof in Winterberg-Mollseifen ist ein traditionsreicher, familiengeführter Gasthof und Pension mit Restaurant unter der Leitung der Familie Geier. Das Haus steht für ehrliche, gutbürgerliche Sauerländer Küche mit regionalen Hausspezialitäten wie pikantem Hirschkalbsgulasch mit Apfelkompott und Kroketten, Schweinefilet in Champignonrahmsoße, frischer Sauerländer Regenbogenforelle „Müllerin Art“, saftigen Rumpsteaks und den bekannten knusprigen Grillhähnchen vom Buchenholzfeuer. Für Urlauber und Aktivgäste bietet der Betrieb zudem gemütliche Gästezimmer für erholsame Aufenthalte inmitten der ruhigen Natur des Höhendorfs.
+- **Beschreibung (NL):** Mollseifer Hof in Winterberg-Mollseifen is een traditionele, door een familie gerunde herberg en pension met restaurant onder leiding van de familie Geier. Het gasthof staat bekend om zijn eerlijke, traditionele Sauerlandse keuken met specialiteiten zoals wildstoofpot van hertskalf, varkenshaas in champignonsaus, verse Sauerlandse beekforel, malse steaks en malse kip van de beukenhoutgrill. Daarnaast biedt het huis comfortabele gastenkamers voor wandelaars, fietsers en vakantiegangers in het rustige bergdorp.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/mollseifer-hof
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/mollseifer-hof
 
 #### [Restaurant Wanderlust](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/restaurant-wanderlust)
 - **Kategorie:** Gastronomie > Restaurant
