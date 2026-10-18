@@ -177,9 +177,9 @@ Bereid uw wintersportdag in Winterberg eenvoudig voor:
   },
   {
     id: 'wanderveranstaltungen-winterberg-oktober-2026',
-    slug: 'im-oktober-wird-im-winterberg-gewandert',
+    slug: 'im-oktober-wird-in-winterberg-gewandert',
     slug_nl: 'in-oktober-wordt-er-gewandeld-in-winterberg',
-    title: 'Im Oktober wird im Winterberg gewandert',
+    title: 'Im Oktober wird in Winterberg gewandert',
     title_nl: 'In oktober wordt er in Winterberg gewandeld',
     author: 'Simon Kräling',
     businessId: 'winterberg-touristik',

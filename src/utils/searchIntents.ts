@@ -712,6 +712,22 @@ export const SEARCH_INTENTS: SearchIntent[] = [
       { keywords: ['bauunternehm*', 'bau'], weight: 280 }
     ]
   },
+  {
+    id: 'maschinenbau',
+    label: 'Maschinenbau & Fördertechnik',
+    triggers: [
+      'maschinenbau', 'maschinenbauer', 'sondermaschinenbau', 'anlagenbau',
+      'fördertechnik', 'foerdertechnik', 'förderanlage', 'förderanlagen',
+      'sägewerkstechnik', 'saegewerkstechnik', 'leimholz', 'leimholzanlage',
+      'leimholzanlagen', 'kvh', 'bsh', 'clt', 'keilzinken', 'sortieranlage',
+      'transportanlagen', 'schaltschrankbau', 'sps', 'lohnfertigung',
+      'leiße', 'leisse', 'machinebouw'
+    ],
+    targets: [
+      { subcategories: ['Maschinenbau'], weight: 300 },
+      { keywords: ['maschinenbau*', 'anlagenbau*', 'fördertechnik*', 'sägewerkstechnik*', 'leiße*', 'leisse*'], weight: 290 }
+    ]
+  },
 
   // ---------------------------------------------------------------- FREIZEIT & SPORT
   {

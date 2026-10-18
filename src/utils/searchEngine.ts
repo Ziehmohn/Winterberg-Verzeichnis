@@ -228,7 +228,13 @@ const DOMAIN_SYNONYMS: Record<string, string[]> = {
   'baustoffe': ['baustoffe', 'baustoff', 'baumaterial', 'baumarkt', 'happe', 'bauzentrum', 'hagebau'],
   'eisenwaren': ['eisenwaren', 'beschläge', 'werkzeug', 'schrauben', 'nägel', 'lütteken', 'hagebau', 'baumarkt'],
   'drogerie': ['drogerie', 'drogeriemarkt', 'dm', 'rossmann', 'parfümerie', 'kosmetik', 'pflege', 'drogisterij'],
-  'tourismus': ['tourismus', 'tourist-information', 'touristik', 'wirtschaft', 'winterberg touristik', 'kurpark', 'gästeberatung', 'urlaub']
+  'tourismus': ['tourismus', 'tourist-information', 'touristik', 'wirtschaft', 'winterberg touristik', 'kurpark', 'gästeberatung', 'urlaub'],
+
+  // Maschinenbau / Industrie
+  'leisse': ['leisse', 'leiße', 'leiße & söhne', 'maschinenbau', 'fördertechnik', 'sägewerkstechnik', 'sondermaschinenbau'],
+  'leiße': ['leisse', 'leiße', 'leiße & söhne', 'maschinenbau', 'fördertechnik', 'sägewerkstechnik', 'sondermaschinenbau'],
+  'maschinenbau': ['maschinenbau', 'leiße', 'leisse', 'anlagenbau', 'sondermaschinenbau', 'fördertechnik', 'handwerk', 'machinebouw'],
+  'fördertechnik': ['fördertechnik', 'maschinenbau', 'leiße', 'leisse', 'transportanlagen', 'sägewerkstechnik']
 };
 
 // Fallback category domains when ONLY an action verb is queried without any subject

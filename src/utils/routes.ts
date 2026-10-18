@@ -439,7 +439,7 @@ export interface SystemRedirectEntry {
   source: string;
   target: string;
   isSystem: boolean;
-  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert';
+  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert' | 'News';
   lang: 'de' | 'nl';
   statusCode?: 301 | 302;
 }
@@ -550,6 +550,15 @@ export const BUSINESS_DEDUPLICATION_REDIRECTS: SystemRedirectEntry[] = [
     isSystem: true,
     type: 'Unternehmen',
     lang: 'nl',
+  },
+  // 7. News typo redirect
+  {
+    id: 'news-wandern-oktober-2026-de',
+    source: '/news/im-oktober-wird-im-winterberg-gewandert',
+    target: '/news/im-oktober-wird-in-winterberg-gewandert',
+    isSystem: true,
+    type: 'News',
+    lang: 'de',
   }
 ];
 
