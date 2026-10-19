@@ -689,6 +689,658 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
     subtitleDe: 'Schnell & lecker: Ob echte Sauerländer Currywurst, knusprige Pommes, Döner oder Gourmet-Burger – hier finden Sie die besten Snacks für den schnellen Hunger.',
     subtitleNl: 'Snel en lekker: van traditionele Currywurst en goudgele friet tot verse burgers en snelle maaltijden in Winterberg.',
     objectPosition: 'center 40%'
+  },
+
+  // ==========================================
+  // Dienstleistungen
+  // ==========================================
+  'Dienstleistungen': {
+    image: '/dienstleistungen-winterberg-header.jpg',
+    imageAltDe: 'Dienstleistungen in Winterberg: Moderne, stilvolle Empfangslounge und Beratungsbereich für professionelle Services',
+    imageAltNl: 'Dienstverlening in Winterberg: Moderne receptie en adviesruimte voor professionele dienstverlening',
+    credit: 'Foto: Aalo Lens / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Dienstleistungen in Winterberg',
+    titleNl: 'Dienstverlening in Winterberg',
+    subtitleDe: 'Kompetente Beratung, professionelle Services und zuverlässige Partner für Privat- und Geschäftskunden in Winterberg und Umgebung.',
+    subtitleNl: 'Deskundig advies, professionele diensten en betrouwbare partners voor particulieren en bedrijven in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Immobilienmakler': {
+    image: '/immobilienmakler-winterberg-header.jpg',
+    imageAltDe: 'Immobilienmakler in Winterberg: Architektonisches Holzhausmodell auf Tisch für Immobilienberatung',
+    imageAltNl: 'Makelaars in Winterberg: Houten modelwoning op tafel voor vastgoedadvies',
+    credit: 'Foto: Tierra Mallorca / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Immobilienmakler in Winterberg',
+    titleNl: 'Makelaars in Winterberg',
+    subtitleDe: 'Ihr Traumhaus im Sauerland: Professionelle Immobilienmakler für Kauf, Verkauf, Ferienimmobilien und Wertermittlung in Winterberg.',
+    subtitleNl: 'Uw droomhuis in het Sauerland: professionele makelaars voor koop, verkoop, vakantiewoningen en taxaties in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Steuerberater': {
+    image: '/steuerberater-winterberg-header.jpg',
+    imageAltDe: 'Steuerberater in Winterberg: Rechner, Stift und Finanzunterlagen auf Schreibtisch für Steuererklärung',
+    imageAltNl: 'Belastingadviseurs in Winterberg: Rekenmachine, pen en financiële documenten op bureau',
+    credit: 'Foto: Aaron Lefler / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Steuerberater & Wirtschaftsprüfer in Winterberg',
+    titleNl: 'Belastingadviseurs & Boekhouders in Winterberg',
+    subtitleDe: 'Präzise Steuerberatung, Finanzbuchhaltung, Lohnabrechnung und zukunftssichere betriebswirtschaftliche Beratung für Ihren Erfolg.',
+    subtitleNl: 'Nauwkeurig belastingadvies, financiële administratie, salarisadministratie en bedrijfseconomisch advies in Winterberg.',
+    objectPosition: 'center 40%'
+  },
+
+  'Rechtsanwälte': {
+    image: '/rechtsanwaelte-winterberg-header.jpg',
+    imageAltDe: 'Rechtsanwälte in Winterberg: Skulptur der Justitia mit Waage und Schwert als Symbol des Rechts',
+    imageAltNl: 'Advocaten in Winterberg: Standbeeld van Vrouwe Justitia met weegschaal en zwaard',
+    credit: 'Foto: Tingey Injury Law Firm / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Rechtsanwälte & Notare in Winterberg',
+    titleNl: 'Advocaten & Notarissen in Winterberg',
+    subtitleDe: 'Kompetenter Rechtsbeistand, fundierte juristische Beratung und zuverlässige Vertragsgestaltung in allen Rechtsbereichen.',
+    subtitleNl: 'Deskundige juridische bijstand, gedegen juridisch advies en betrouwbare contracten in Winterberg.',
+    objectPosition: 'center 35%'
+  },
+
+  'Banken': {
+    image: '/banken-winterberg-header.jpg',
+    imageAltDe: 'Banken in Winterberg: Klassische Bankenarchitektur mit stattlichen Säulen als Symbol für Stabilität',
+    imageAltNl: 'Banken in Winterberg: Statige bankarchitectuur met zuilen als symbool van stabiliteit',
+    credit: 'Foto: Etienne Martin / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Banken & Sparkassen in Winterberg',
+    titleNl: 'Banken & Geldautomaten in Winterberg',
+    subtitleDe: 'Finanzdienstleistungen vor Ort: Girokonten, Geldautomaten, Kredite, Vermögensaufbau und persönliche Beratung in Winterberg.',
+    subtitleNl: 'Financiële dienstverlening ter plaatse: bankrekeningen, geldautomaten, leningen en persoonlijk financieel advies.',
+    objectPosition: 'center center'
+  },
+
+  'Versicherungsagenturen': {
+    image: '/versicherungsagenturen-winterberg-header.jpg',
+    imageAltDe: 'Versicherungsagenturen in Winterberg: Lupe auf Versicherungspolice und Vertragsunterlagen',
+    imageAltNl: 'Verzekeringen in Winterberg: Vergrootglas op verzekeringspolis en contractdocumenten',
+    credit: 'Foto: Vlad Deep / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Versicherungsagenturen in Winterberg',
+    titleNl: 'Verzekeringsagenten in Winterberg',
+    subtitleDe: 'Rundum abgesichert: Maßgeschneiderter Versicherungsschutz für Gesundheit, Familie, Gebäude, Haftpflicht und Altersvorsorge.',
+    subtitleNl: 'Optimaal verzekerd: op maat gemaakte verzekeringen voor gezondheid, gezin, opstal, aansprakelijkheid en pensioen.',
+    objectPosition: 'center 45%'
+  },
+
+  'Marketingdienstleistungen': {
+    image: '/marketingdienstleistungen-winterberg-header.jpg',
+    imageAltDe: 'Marketingdienstleistungen in Winterberg: Kreativer Agentur-Arbeitsplatz mit Farbfächern und Tastatur',
+    imageAltNl: 'Marketing in Winterberg: Creatieve werkplek met kleurstalen en toetsenbord',
+    credit: 'Foto: Andy Brown / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Marketing- & Werbeagenturen in Winterberg',
+    titleNl: 'Marketing- & Reclamebureaus in Winterberg',
+    subtitleDe: 'Kreative Markenentwicklung, Webdesign, Social Media, Fotografie und strategische Werbung für Ihren erfolgreichen Unternehmensauftritt.',
+    subtitleNl: 'Creatieve merkontwikkeling, webdesign, social media, fotografie en effectieve reclame in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Finanzberatung': {
+    image: '/finanzberatung-winterberg-header.jpg',
+    imageAltDe: 'Finanzberatung in Winterberg: Professionelle Börsen- und Kurscharts für fundierte Kapitalanlagen',
+    imageAltNl: 'Financieel advies in Winterberg: Koersgrafieken en analyses voor beleggingen',
+    credit: 'Foto: Maxim Hopman / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Finanzberatung & Vermögensplanung in Winterberg',
+    titleNl: 'Financieel Advies & Vermogensbeheer in Winterberg',
+    subtitleDe: 'Unabhängige Finanzberatung, Ruhestandsplanung, Kapitalanlagen und zukunftsorientierte Vermögensstrategien im Hochsauerland.',
+    subtitleNl: 'Onafhankelijk financieel advies, pensioenplanning, beleggingen en vermogensopbouw in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Coworking Space': {
+    image: '/coworking-space-winterberg-header.jpg',
+    imageAltDe: 'Coworking Space in Winterberg: Moderner offener Büroraum mit Schreibtischen und ergonomischen Stühlen',
+    imageAltNl: 'Coworking Space in Winterberg: Moderne open kantoorruimte met bureaus en comfortabele stoelen',
+    credit: 'Foto: Exospace Bbsr / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Coworking Spaces & Workation in Winterberg',
+    titleNl: 'Coworking Spaces & Workation in Winterberg',
+    subtitleDe: 'Flexibles Arbeiten in den Sauerländer Bergen: Moderne Arbeitsplätze, Highspeed-Internet, Meetingräume und kreative Community.',
+    subtitleNl: 'Flexibel werken in het Sauerland: moderne werkplekken, snel internet, vergaderruimtes en inspirerende sfeer.',
+    objectPosition: 'center 45%'
+  },
+
+  'IT & Software': {
+    image: '/it-software-winterberg-header.jpg',
+    imageAltDe: 'IT & Software in Winterberg: Quellcode auf dunklem Bildschirm für moderne Software- und Webentwicklung',
+    imageAltNl: 'IT & Software in Winterberg: Broncode op donker scherm voor softwareontwikkeling',
+    credit: 'Foto: Markus Spiske / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'IT-Dienstleister & Softwareentwicklung in Winterberg',
+    titleNl: 'IT-Diensten & Softwareontwikkeling in Winterberg',
+    subtitleDe: 'Zuverlässige IT-Infrastruktur, Cloud-Lösungen, Cyber-Security, individuelle Softwareentwicklung und professioneller IT-Support.',
+    subtitleNl: 'Betrouwbare IT-infrastructuur, cloudoplossingen, cybersecurity, softwareontwikkeling en IT-support in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Kindergärten & Kitas': {
+    image: '/kindergaerten-kitas-winterberg-header.jpg',
+    imageAltDe: 'Kindergärten & Kitas in Winterberg: Freundlicher Gruppenraum mit Kindertischen und Holzspielzeug',
+    imageAltNl: 'Kinderdagverblijven in Winterberg: Vriendelijke groepsruimte met houten speelgoed',
+    credit: 'Foto: Camila Mofsovich / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Kindergärten & Kindertagesstätten in Winterberg',
+    titleNl: 'Kinderdagverblijven & Peuterspeelzalen in Winterberg',
+    subtitleDe: 'Liebevolle Betreuung, frühkindliche Bildung und naturnahe Erlebnisräume für die Kleinsten in den Kitas von Winterberg und den Ortsteilen.',
+    subtitleNl: 'Liefdevolle kinderopvang, spelenderwijs leren en veilige ontwikkelingsruimtes voor de allerkleinsten in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Schulen': {
+    image: '/schulen-winterberg-header.jpg',
+    imageAltDe: 'Schulen in Winterberg: Helles Klassenzimmer mit Holztischen und traditioneller Schultafel',
+    imageAltNl: 'Scholen in Winterberg: Licht klaslokaal met houten schoolbanken en krijtbord',
+    credit: 'Foto: Ivan Aleksic / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Schulen & Bildungseinrichtungen in Winterberg',
+    titleNl: 'Scholen & Onderwijsinstellingen in Winterberg',
+    subtitleDe: 'Grundschulen, weiterführende Schulen und Bildungsangebote: Beste Voraussetzungen für das Lernen und Heranwachsen in Winterberg.',
+    subtitleNl: 'Basisscholen, voortgezet onderwijs en leertrajecten: uitstekende onderwijsvoorzieningen in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Tagungszentren': {
+    image: '/tagungszentren-winterberg-header.jpg',
+    imageAltDe: 'Tagungszentren in Winterberg: Eleganter Konferenztisch mit bequemen Ledersesseln für geschäftliche Meetings',
+    imageAltNl: 'Conferentiecentra in Winterberg: Elegante vergadertafel met lederen stoelen voor zakelijke bijeenkomsten',
+    credit: 'Foto: Dane Deaner / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Tagungszentren & Kongresse in Winterberg',
+    titleNl: 'Conferentiecentra & Vergaderlocaties in Winterberg',
+    subtitleDe: 'Konferenzen, Seminare und Events mit Weitblick: Hochwertige Tagungsräume mit moderner Medientechnik im Sauerland.',
+    subtitleNl: 'Conferenties, seminars en zakelijke evenementen: hoogwaardige vergaderlocaties met moderne audiovisuele techniek.',
+    objectPosition: 'center center'
+  },
+
+  'Soziale Dienste': {
+    image: '/soziale-dienste-winterberg-header.jpg',
+    imageAltDe: 'Soziale Dienste in Winterberg: Warme Holzbuchstaben mit dem Schriftzug Care auf Holztisch als Symbol für Fürsorge',
+    imageAltNl: 'Sociale diensten in Winterberg: Houten letters met het woord Care als symbool voor zorg en aandacht',
+    credit: 'Foto: Markus Winkler / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Soziale Dienste & Hilfsorganisationen in Winterberg',
+    titleNl: 'Sociale Diensten & Hulpverlening in Winterberg',
+    subtitleDe: 'Menschlichkeit & Unterstützung: Beratung, soziale Hilfsangebote, Nachbarschaftshilfe und Beratungsstellen für alle Lebenslagen.',
+    subtitleNl: 'Hulp & maatschappelijke ondersteuning: advies, welzijnsorganisaties en steunpunten voor iedereen in Winterberg.',
+    objectPosition: 'center 40%'
+  },
+
+  'Tourismus': {
+    image: '/tourismus-winterberg-header.jpg',
+    imageAltDe: 'Tourismus in Winterberg: Klassischer Kompass auf topografischer Wanderkarte für Bergtouren im Sauerland',
+    imageAltNl: 'Toerisme in Winterberg: Klassiek kompas op topografische wandelkaart voor bergtochten',
+    credit: 'Foto: Alexander Andrews / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Tourismus & Tourist-Informationen in Winterberg',
+    titleNl: 'Toerisme & Toeristeninformatie in Winterberg',
+    subtitleDe: 'Ihr Urlaub im Hochsauerland: Wanderkarten, Ausflugstipps, Gästekarten, geführte Touren und Prospektmaterial für Winterberg.',
+    subtitleNl: 'Uw vakantie in het Sauerland: wandelkaarten, tips voor uitstapjes, gastenkaarten en rondleidingen in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  // ==========================================
+  // Ski, Bike & Sport
+  // ==========================================
+  'Ski, Bike & Sport': {
+    image: '/ski-bike-sport-winterberg-header.jpg',
+    imageAltDe: 'Ski, Bike & Sport in Winterberg: Verschneite Sauerländer Berglandschaft unter klarem blauem Winterhimmel',
+    imageAltNl: 'Ski, Bike & Sport in Winterberg: Besneeuwd berglandschap van het Sauerland onder een strakblauwe winterhemel',
+    credit: 'Foto: Julien Riedel / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Ski, Bike & Sport in Winterberg',
+    titleNl: 'Ski, Bike & Sport in Winterberg',
+    subtitleDe: 'Deutschlands Wintersport- & Bike-Mekka: Erstklassige Skigebiete, Bikepark, Wanderwege, Sportfachgeschäfte und Outdoor-Abenteuer.',
+    subtitleNl: 'Hét wintersport- en fietsmekka van Duitsland: topskigebieden, het beroemde Bikepark, wandelpaden en outdoor-avonturen.',
+    objectPosition: 'center 40%'
+  },
+
+  'Skiverleih': {
+    image: '/skiverleih-winterberg-header.jpg',
+    imageAltDe: 'Skiverleih in Winterberg: Hochwertige Carvingskis und Wintersportausrüstung im Schnee',
+    imageAltNl: 'Skiverhuur in Winterberg: Moderne carveski\'s en wintersportuitrusting in de sneeuw',
+    credit: 'Foto: Karsten Winegeart / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Skiverleih in Winterberg',
+    titleNl: 'Skiverhuur in Winterberg',
+    subtitleDe: 'Modernste Ski- und Snowboardausrüstung: Skiverleih-Stationen direkt an den Pisten des Skiliftkarussells Winterberg.',
+    subtitleNl: 'Nieuwste ski- en snowboarduitrusting: professionele skiverhuurlocaties direct aan de pistes van het Skiliftkarussell.',
+    objectPosition: 'center 45%'
+  },
+
+  'Fahrradverleih': {
+    image: '/fahrradverleih-winterberg-header.jpg',
+    imageAltDe: 'Fahrradverleih in Winterberg: Reihe moderner Mountainbikes und E-Bikes für Radtouren bereitgestellt',
+    imageAltNl: 'Fietsverhuur in Winterberg: Rij moderne mountainbikes en e-bikes klaar voor gebruik',
+    credit: 'Foto: Waldemar Brandt / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Fahrrad- & E-Bike-Verleih in Winterberg',
+    titleNl: 'Fiets- & E-Bike Verhuur in Winterberg',
+    subtitleDe: 'Erkunden Sie das Land der 1000 Berge: E-Mountainbikes, Fullys, Gravelbikes und Tourenräder für anspruchsvolle Trails und Familientouren.',
+    subtitleNl: 'Ontdek het land van de 1000 bergen: e-mountainbikes, fullys, gravelbikes en tourfietsen voor elk niveau.',
+    objectPosition: 'center center'
+  },
+
+  'Fahrradgeschäfte': {
+    image: '/fahrradgeschaefte-winterberg-header.jpg',
+    imageAltDe: 'Fahrradgeschäfte in Winterberg: Werkstattwand mit professionellem Fahrradwerkzeug und Zubehör',
+    imageAltNl: 'Fietsenwinkels in Winterberg: Werkplaatswand met professioneel fietsgereedschap en accessoires',
+    credit: 'Foto: Anton Savinov / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Fahrradgeschäfte & Werkstätten in Winterberg',
+    titleNl: 'Fietsenwinkels & Reparaties in Winterberg',
+    subtitleDe: 'Top-Bikes, Schutzkleidung, Ersatzteile und kompetenter Meisterservice rund ums Zweirad in den Radsportgeschäften Winterbergs.',
+    subtitleNl: 'Topfietsen, beschermende kleding, onderdelen en vakkundig onderhoud in de fietsspeciaalzaken van Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Sport & Outdoor': {
+    image: '/sport-outdoor-winterberg-header.jpg',
+    imageAltDe: 'Sport & Outdoor in Winterberg: Robuster Wanderrucksack auf Holzstamm im Bergwald',
+    imageAltNl: 'Sport & Outdoor in Winterberg: Stevige wandelrugzak op een boomstam in het bergbos',
+    credit: 'Foto: Ali Kazal / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Sport & Outdoor in Winterberg',
+    titleNl: 'Sport & Outdoor in Winterberg',
+    subtitleDe: 'Ausrüstung für Ihr Bergabenteuer: Funktionsbekleidung, Wanderschuhe, Rucksäcke, Kletterzubehör und Campingartikel.',
+    subtitleNl: 'Uitrusting voor uw bergavontuur: functionele kleding, wandelschoenen, rugzakken en kampeerartikelen.',
+    objectPosition: 'center center'
+  },
+
+  'Fitnessstudios': {
+    image: '/fitnessstudios-winterberg-header.jpg',
+    imageAltDe: 'Fitnessstudios in Winterberg: Schwarze Kurzhanteln auf dem Studioboden für Kraft- und Fitnesstraining',
+    imageAltNl: 'Fitnesscentra in Winterberg: Zwarte dumbbells op de vloer voor kracht- en conditietraining',
+    credit: 'Foto: Alora Griffiths / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Fitnessstudios in Winterberg',
+    titleNl: 'Fitnesscentra & Gyms in Winterberg',
+    subtitleDe: 'Kraft, Ausdauer & Wohlbefinden: Moderne Fitnessclubs mit Gerätetraining, Freihantelbereichen, Kursen und Wellness im Hochsauerland.',
+    subtitleNl: 'Kracht, conditie en vitaliteit: moderne fitnessclubs met apparatuur, vrije gewichten, groepslessen en wellness.',
+    objectPosition: 'center center'
+  },
+
+  'Tennisplätze': {
+    image: '/tennisplaetze-winterberg-header.jpg',
+    imageAltDe: 'Tennisplätze in Winterberg: Tennisball auf weißer Spielfeldlinie auf dem Tennisplatz',
+    imageAltNl: 'Tennisbanen in Winterberg: Tennisbal op de belijning van de tennisbaan',
+    credit: 'Foto: Ben Hershey / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Tennisplätze & Tennisclubs in Winterberg',
+    titleNl: 'Tennisbanen & Tennisclubs in Winterberg',
+    subtitleDe: 'Spiel, Satz und Sieg: Sand- und Hallenplätze, Vereine, Tennistraining und Freizeitspiel vor Sauerländer Kulisse.',
+    subtitleNl: 'Gravel- en binnenbanen, verenigingen, tennisles en recreatief tennis te midden van de Sauerlandse natuur.',
+    objectPosition: 'center 45%'
+  },
+
+  'Fußballvereine': {
+    image: '/fussballvereine-winterberg-header.jpg',
+    imageAltDe: 'Fußballvereine in Winterberg: Klassischer Lederfußball auf gepflegtem grünem Rasenplatz',
+    imageAltNl: 'Voetbalclubs in Winterberg: Klassieke voetbal op een strak groen grasveld',
+    credit: 'Foto: Rachel Yoon / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Fußballvereine in Winterberg',
+    titleNl: 'Voetbalclubs & Voetbalverenigingen in Winterberg',
+    subtitleDe: 'Teamgeist & Leidenschaft: Lokale Sportvereine, Nachwuchsförderung, Rasen- und Kunstrasenplätze in den Stadtteilen von Winterberg.',
+    subtitleNl: 'Teamgeest en passie: lokale sportclubs, jeugdopleiding en moderne voetbalvelden in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Reitsport': {
+    image: '/reitsport-winterberg-header.jpg',
+    imageAltDe: 'Reitsport in Winterberg: Edles Pferd mit klassischem Ledersattel im Stall und Weidebereich',
+    imageAltNl: 'Paardensport in Winterberg: Paard met klassiek lederen zadel in de stal en weide',
+    credit: 'Foto: Jez Timms / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Reitsport & Reiterhöfe in Winterberg',
+    titleNl: 'Paardensport & Maneges in Winterberg',
+    subtitleDe: 'Glück auf dem Rücken der Pferde: Reitunterricht, geführte Ausritte, Pensionspferdehaltung und Reithallen im Sauerland.',
+    subtitleNl: 'Paardrijlessen, buitenritten, pensionstallen en overdekte rijhallen in de prachtige natuur van het Sauerland.',
+    objectPosition: 'center 40%'
+  },
+
+  // ==========================================
+  // Gesundheit & Medizin
+  // ==========================================
+  'Gesundheit & Medizin': {
+    image: '/gesundheit-medizin-winterberg-header.jpg',
+    imageAltDe: 'Gesundheit & Medizin in Winterberg: Medizinisches Stethoskop auf Praxistisch für verlässliche medizinische Versorgung',
+    imageAltNl: 'Gezondheid & Zorg in Winterberg: Medische stethoscoop op bureau voor betrouwbare zorg',
+    credit: 'Foto: Hush Naidoo Jade Photography / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Gesundheit & Medizin in Winterberg',
+    titleNl: 'Gezondheid & Zorg in Winterberg',
+    subtitleDe: 'Ihre Gesundheit in besten Händen: Umfassende medizinische Versorgung, Fachärzte, Apotheken, Therapien und Gesundheitsangebote.',
+    subtitleNl: 'Uw gezondheid in goede handen: complete medische zorg, artsen, apotheken, fysiotherapie en wellness in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Ärzte & Praxen': {
+    image: '/aerzte-praxen-winterberg-header.jpg',
+    imageAltDe: 'Ärzte & Praxen in Winterberg: Moderner, heller Praxisflur für Patientenbetreuung',
+    imageAltNl: 'Huisartsen & Specialisten in Winterberg: Moderne, lichte praktijkgang voor patiëntenzorg',
+    credit: 'Foto: Tasha Kostyuk / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Ärzte & Fachpraxen in Winterberg',
+    titleNl: 'Huisartsen & Medische Praktijken in Winterberg',
+    subtitleDe: 'Allgemeinmediziner, Hausärzte und Fachärzte für Kinder, Innere Medizin, Orthopädie und Notfallversorgung in Winterberg.',
+    subtitleNl: 'Huisartsen en specialisten voor algemene geneeskunde, interne geneeskunde, orthopedie en spoedeisende hulp.',
+    objectPosition: 'center center'
+  },
+
+  'Zahnärzte': {
+    image: '/zahnaerzte-winterberg-header.jpg',
+    imageAltDe: 'Zahnärzte in Winterberg: Moderner zahnärztlicher Behandlungsstuhl und moderne Ausstattung',
+    imageAltNl: 'Tandartsen in Winterberg: Moderne tandartsstoel en apparatuur in de praktijk',
+    credit: 'Foto: Atikah Akhtar / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Zahnärzte & Kieferorthopädie in Winterberg',
+    titleNl: 'Tandartsen & Mondzorg in Winterberg',
+    subtitleDe: 'Für Ihr schönstes Lächeln: Zahnvorsorge, Prophylaxe, Implantologie, Zahnersatz und ästhetische Zahnheilkunde.',
+    subtitleNl: 'Voor een stralende glimlach: tandheelkundige controles, preventie, implantaten en cosmetische tandheelkunde in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Apotheken': {
+    image: '/apotheken-winterberg-header.jpg',
+    imageAltDe: 'Apotheken in Winterberg: Traditionsreiche Apothekenregale mit Medizinflaschen und Heilmitteln',
+    imageAltNl: 'Apotheken in Winterberg: Traditionele apothekerskasten met medicijnflesjes en geneesmiddelen',
+    credit: 'Foto: Ángel Nava / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Apotheken in Winterberg',
+    titleNl: 'Apotheken in Winterberg',
+    subtitleDe: 'Schnelle Hilfe & persönliche Beratung: Medikamente, Naturheilkunde, Verleih von Milchpumpen und Notdienstapotheken.',
+    subtitleNl: 'Snelle service en deskundig advies: medicijnen, gezondheidsproducten, natuurgeneeskunde en apotheekspoeddienst.',
+    objectPosition: 'center 40%'
+  },
+
+  'Physiotherapie': {
+    image: '/physiotherapie-winterberg-header.jpg',
+    imageAltDe: 'Physiotherapie in Winterberg: Behandlungsliege im hellen Therapieraum für Krankengymnastik und Rehabilitation',
+    imageAltNl: 'Fysiotherapie in Winterberg: Behandeltafel in een lichte behandelruimte voor revalidatie',
+    credit: 'Foto: Nightingale Home nurse / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Physiotherapie & Krankengymnastik in Winterberg',
+    titleNl: 'Fysiotherapie & Revalidatie in Winterberg',
+    subtitleDe: 'Bewegung ohne Schmerzen: Manuelle Therapie, Krankengymnastik, Sportphysiotherapie, Lymphdrainage und Reha-Konzepte.',
+    subtitleNl: 'Pijnvrij bewegen: manuele therapie, sportfysiotherapie, lymfedrainage en effectieve revalidatie in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Pflegedienste': {
+    image: '/pflegedienste-winterberg-header.jpg',
+    imageAltDe: 'Pflegedienste in Winterberg: Hände ruhen geborgen auf einem Gehstock als Symbol für respektvolle Seniorenpflege',
+    imageAltNl: 'Thuiszorg in Winterberg: Handen rusten op een wandelstok als symbool van respectvolle ouderenzorg',
+    credit: 'Foto: Alexas_Fotos / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Ambulante Pflegedienste in Winterberg',
+    titleNl: 'Thuiszorg & Zorgdiensten in Winterberg',
+    subtitleDe: 'Würdevolle Betreuung zu Hause: Häusliche Krankenpflege, Seniorenbetreuung, Demenzbegleitung und hauswirtschaftliche Entlastung.',
+    subtitleNl: 'Zorgzame begeleiding thuis: wijkverpleging, ouderenzorg, huishoudelijke hulp en ondersteuning van mantelzorgers.',
+    objectPosition: 'center 45%'
+  },
+
+  'Massagen': {
+    image: '/massagen-winterberg-header.jpg',
+    imageAltDe: 'Massagen & Wellness in Winterberg: Feines Massageöl, weiche Handtücher und Blüten auf Holzablage',
+    imageAltNl: 'Massages & Wellness in Winterberg: Massageolie, zachte handdoeken en bloemen voor ontspanning',
+    credit: 'Foto: Camille Brodard / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Massagen & Wellness in Winterberg',
+    titleNl: 'Massages & Wellness in Winterberg',
+    subtitleDe: 'Tiefenentspannung & Regeneration: Klassische Rückenmassagen, Hot Stone, Ayurveda, Sportmassagen und Wohlfühlbehandlungen.',
+    subtitleNl: 'Diepe ontspanning en herstel: klassieke rugmassages, hot stone, sportmassages en weldadige wellnessbehandelingen.',
+    objectPosition: 'center 40%'
+  },
+
+  'Kosmetikstudios': {
+    image: '/kosmetikstudios-winterberg-header.jpg',
+    imageAltDe: 'Kosmetikstudios in Winterberg: Hochwertige Pflegekosmetik und Make-up-Spiegel für Gesichtsbehandlungen',
+    imageAltNl: 'Schoonheidssalons in Winterberg: Huidverzorgingsproducten en spiegel voor gezichtsbehandelingen',
+    credit: 'Foto: Mariia Berezovsky / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Kosmetikstudios & Beauty in Winterberg',
+    titleNl: 'Schoonheidssalons & Beauty in Winterberg',
+    subtitleDe: 'Verwöhnmomente für Haut & Sinne: Gesichtsbehandlungen, Anti-Aging, Maniküre, Pediküre, Wimpern- und Brauenstyling.',
+    subtitleNl: 'Verwenmomenten voor lichaam en gezicht: gezichtsbehandelingen, manicure, pedicure, wimpers en nagelstyling.',
+    objectPosition: 'center center'
+  },
+
+  'Tiergesundheit': {
+    image: '/tiergesundheit-winterberg-header.jpg',
+    imageAltDe: 'Tiergesundheit in Winterberg: Vitaler Hund auf grüner Bergwiese im Sauerland',
+    imageAltNl: 'Dierengezondheid in Winterberg: Gezonde hond op een groene bergweide in het Sauerland',
+    credit: 'Foto: Xingchen Yan / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Tierärzte & Tiergesundheit in Winterberg',
+    titleNl: 'Dierenartsen & Diergezondheid in Winterberg',
+    subtitleDe: 'Beste Fürsorge für Ihre Haustiere: Tierarztpraxen, Tierheilpraktiker, mobile Notdienste und Tierphysiotherapie.',
+    subtitleNl: 'Liefdevolle zorg voor uw huisdieren: dierenartspraktijken, diertherapie en spoedzorg voor honden, katten en paarden.',
+    objectPosition: 'center 40%'
+  },
+
+  'Yoga': {
+    image: '/yoga-winterberg-header.jpg',
+    imageAltDe: 'Yoga in Winterberg: Helles, ruhiges Yogastudio mit viel natürlichem Tageslicht für Achtsamkeit',
+    imageAltNl: 'Yoga in Winterberg: Lichte yogastudio met natuurlijk daglicht voor mindfulness en rust',
+    credit: 'Foto: eran design / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Yoga & Meditation in Winterberg',
+    titleNl: 'Yoga & Meditatie in Winterberg',
+    subtitleDe: 'Ruhepol für Körper und Geist: Hatha Yoga, Vinyasa, Yin Yoga, Klangschalenmeditation und Yoga-Retreats in der Natur.',
+    subtitleNl: 'Rust voor lichaam en geest: Hatha yoga, Vinyasa, Yin yoga, meditatie en yoga-retraites te midden van de natuur.',
+    objectPosition: 'center center'
+  },
+
+  'Sanitätshäuser': {
+    image: '/sanitaetshaeuser-winterberg-header.jpg',
+    imageAltDe: 'Sanitätshäuser in Winterberg: Moderner Leichtgewicht-Rollstuhl für Mobilität und Selbstständigkeit',
+    imageAltNl: 'Thuiszorgwinkels in Winterberg: Moderne rolstoel voor mobiliteit en zelfstandigheid',
+    credit: 'Foto: Junseong Lee / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Sanitätshäuser & Orthopädietechnik in Winterberg',
+    titleNl: 'Thuiszorgwinkels & Orthopedie in Winterberg',
+    subtitleDe: 'Mobilität & Lebensqualität im Alltag: Bandagen, Kompressionsstrümpfe, Gehhilfen, Rollatoren, Rollstühle und Orthopädieschuhtechnik.',
+    subtitleNl: 'Mobiliteit en zelfstandigheid: braces, compressiekousen, looprekken, rollators en orthopedische hulpmiddelen.',
+    objectPosition: 'center center'
+  },
+
+  'Hörgeräteakustiker': {
+    image: '/hoergeraeteakustiker-winterberg-header.jpg',
+    imageAltDe: 'Hörgeräteakustiker in Winterberg: Brillante blaue Schallwellen-Frequenz als Symbol für klares Hören und Akustik',
+    imageAltNl: 'Audiciens in Winterberg: Blauwe geluidsgolven als symbool voor helder horen en akoestiek',
+    credit: 'Foto: Pawel Czerwinski / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Hörgeräteakustiker in Winterberg',
+    titleNl: 'Audiciens & Hoorzorg in Winterberg',
+    subtitleDe: 'Wieder alles verstehen: Kostenlose Hörtests, diskrete moderne Hörgeräte, Gehörschutz und persönliche Akustik-Beratung.',
+    subtitleNl: 'Weer volop genieten van geluid: gratis hoortests, discrete moderne hoortoestellen en vakkundige hoorzorg.',
+    objectPosition: 'center center'
+  },
+
+  'Optiker': {
+    image: '/optiker-winterberg-header.jpg',
+    imageAltDe: 'Optiker in Winterberg: Auslage hochwertiger Brillengestelle und Sehhilfen im Optikerfachgeschäft',
+    imageAltNl: 'Opticiens in Winterberg: Collectie modieuze brillen en monturen in de optiekzaak',
+    credit: 'Foto: CHUTTERSNAP / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Optiker & Brillen in Winterberg',
+    titleNl: 'Opticiens & Brillen in Winterberg',
+    subtitleDe: 'Durchblick mit Stil: Exakte Sehstärkenmessung, modische Korrektionsbrillen, Sonnenbrillen, Sportbrillen und Kontaktlinsen.',
+    subtitleNl: 'Scherp zicht met stijl: nauwkeurige oogmetingen, modieuze merkbrillen, zonnebrillen, sportbrillen en contactlenzen.',
+    objectPosition: 'center 45%'
+  },
+
+  // ==========================================
+  // Mobilität & KFZ
+  // ==========================================
+  'Mobilität & KFZ': {
+    image: '/mobilitaet-kfz-winterberg-header.jpg',
+    imageAltDe: 'Mobilität & KFZ in Winterberg: Malerische geschwungene Bergstraße durch die tiefgrünen Sauerländer Nadelwälder',
+    imageAltNl: 'Mobiliteit & Auto in Winterberg: Schilderachtige bergweg door de diepgroene Sauerlandse dennenbossen',
+    credit: 'Foto: Taneli Lahtinen / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Mobilität & KFZ in Winterberg',
+    titleNl: 'Mobiliteit & Auto in Winterberg',
+    subtitleDe: 'Sicher mobil im Sauerland: Autohäuser, Meisterwerkstätten, Tankstellen und Fahrschulen für Ihr Fahrzeug in Winterberg.',
+    subtitleNl: 'Veilig onderweg in het Sauerland: autodealers, garages, tankstations en rijscholen voor uw auto in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'KFZ-Werkstätten': {
+    image: '/kfz-werkstaetten-winterberg-header.jpg',
+    imageAltDe: 'KFZ-Werkstätten in Winterberg: Professionelles Werkzeugset für Autoreparatur und Inspektion',
+    imageAltNl: 'Autogarages in Winterberg: Professioneel gereedschap voor autoreparatie en onderhoud',
+    credit: 'Foto: Quilia / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'KFZ-Werkstätten & Autoreparatur in Winterberg',
+    titleNl: 'Autogarages & Schadeherstel in Winterberg',
+    subtitleDe: 'Meisterhafte Fahrzeugtechnik: TÜV/AU-Hauptuntersuchung, Inspektionen, Reifenservice, Bremsen, Unfallinstandsetzung und Klimatechnik.',
+    subtitleNl: 'Vakkundig auto-onderhoud: APK-keuring, grote beurt, bandenservice, remmen, aircoservice en schadeherstel.',
+    objectPosition: 'center 45%'
+  },
+
+  'Tankstellen': {
+    image: '/tankstellen-winterberg-header.jpg',
+    imageAltDe: 'Tankstellen in Winterberg: Moderne Tankstelle mit beleuchteten Zapfsäulen bei Nacht',
+    imageAltNl: 'Tankstations in Winterberg: Modern tankstation met verlichte pompen in de avond',
+    credit: 'Foto: Hans Eiskonen / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Tankstellen & E-Ladestationen in Winterberg',
+    titleNl: 'Tankstations & Laadpalen in Winterberg',
+    subtitleDe: 'Tanken, Laden & Rasten: Kraftstoffe, E-Ladesäulen, Waschanlagen, Shop mit Snacks und Reisebedarf rund um die Uhr.',
+    subtitleNl: 'Tanken, opladen en pauzeren: brandstoffen, snelladers voor elektrische auto\'s, wasstraten en tankshops.',
+    objectPosition: 'center center'
+  },
+
+  'Autohäuser': {
+    image: '/autohaeuser-winterberg-header.jpg',
+    imageAltDe: 'Autohäuser in Winterberg: Moderner Ausstellungsraum mit Neufahrzeugen auf glänzendem Fliesenboden',
+    imageAltNl: 'Autodealers in Winterberg: Moderne showroom met nieuwe auto\'s op een glimmende vloer',
+    credit: 'Foto: Kenjiro Yagi / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Autohäuser & Neuwagen in Winterberg',
+    titleNl: 'Autodealers & Showrooms in Winterberg',
+    subtitleDe: 'Finden Sie Ihr Wunschfahrzeug: Neuwagen, Gebrauchtwagen, Leasingangebote, Probefahrten und markengebundene Werkstätten.',
+    subtitleNl: 'Vind uw ideale auto: nieuwe en gebruikte auto\'s, leasecontracten, proefritten en officiële merkdealers.',
+    objectPosition: 'center 40%'
+  },
+
+  'Fahrschulen': {
+    image: '/fahrschulen-winterberg-header.jpg',
+    imageAltDe: 'Fahrschulen in Winterberg: Lenkrad und modernes Cockpit während der Fahrt',
+    imageAltNl: 'Rijscholen in Winterberg: Stuurwiel en modern dashboard tijdens een autorit',
+    credit: 'Foto: Christian Wiediger / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Fahrschulen in Winterberg',
+    titleNl: 'Rijscholen in Winterberg',
+    subtitleDe: 'Erfolgreich zum Führerschein: Professionelle Ausbildung für PKW, Motorrad, Anhänger und Mofa mit moderner Fahrschulflotte.',
+    subtitleNl: 'Snel en veilig uw rijbewijs halen: rijopleidingen voor auto, motor, aanhanger en bromfiets in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  // ==========================================
+  // Freizeit & Erlebnisse
+  // ==========================================
+  'Freizeit': {
+    image: '/freizeit-winterberg-header.jpg',
+    imageAltDe: 'Freizeit & Erlebnis in Winterberg: Idyllischer Bergsee umrahmt von tiefgrünen Tannenwäldern im Sauerland',
+    imageAltNl: 'Vrije tijd & Uitstapjes in Winterberg: Idyllisch bergmeer omringd door sparrenbossen in het Sauerland',
+    credit: 'Foto: Claudia Chiavazza / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Freizeit & Ausflugsziele in Winterberg',
+    titleNl: 'Vrije Tijd & Activiteiten in Winterberg',
+    subtitleDe: 'Unvergessliche Momente im Hochsauerland: Naturerlebnisse, Freizeitparks, Kultur, Sportattraktionen und Familienspaß.',
+    subtitleNl: 'Onvergetelijke momenten in het Sauerland: natuurattracties, themaparken, cultuur, sport en gezinsplezier.',
+    objectPosition: 'center 45%'
+  },
+
+  'Outdoor-Freizeitgebiet': {
+    image: '/outdoor-freizeitgebiet-winterberg-header.jpg',
+    imageAltDe: 'Outdoor-Freizeitgebiet in Winterberg: Spektakuläre Hängebrücke zwischen Baumkronen im dichten Wald',
+    imageAltNl: 'Outdoor recreatiegebied in Winterberg: Spectaculaire hangbrug tussen de boomtoppen in het bos',
+    credit: 'Foto: Sylvain Cleymans / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Outdoor-Freizeitgebiete & Erlebnisberge in Winterberg',
+    titleNl: 'Outdoor Avonturenparken in Winterberg',
+    subtitleDe: 'Abenteuerlust pur: Erlebnisberg Kappe mit Panoramabrücke, Kletterwald, Fly-Line und spannenden Pfaden in luftiger Höhe.',
+    subtitleNl: 'Puur avontuur: de Erlebnisberg Kappe met panoramabrug, klimbos, Fly-Line en sensationele wandelpaden.',
+    objectPosition: 'center 45%'
+  },
+
+  'Indoor-Spielplätze': {
+    image: '/indoor-spielplaetze-winterberg-header.jpg',
+    imageAltDe: 'Indoor-Spielplätze in Winterberg: Farbenfrohes Bällebad mit Kunststoffbällen für Kinder',
+    imageAltNl: 'Binnenspeeltuinen in Winterberg: Kleurrijke ballenbak met plastic ballen voor kinderen',
+    credit: 'Foto: Mustafa Fatemi / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Indoor-Spielplätze & Spielewelten in Winterberg',
+    titleNl: 'Binnenspeeltuinen & Speelparadijzen in Winterberg',
+    subtitleDe: 'Wetterunabhängiger Spielspaß: Hüpfburgen, Trampoline, Kletterlabyrinthe und Bällebäder für Kinder aller Altersgruppen.',
+    subtitleNl: 'Weersonafhankelijk speelplezier: springkussens, trampolines, klimtoestellen en ballenbakken voor kinderen.',
+    objectPosition: 'center 40%'
+  },
+
+  'Kino': {
+    image: '/kino-winterberg-header.jpg',
+    imageAltDe: 'Kino in Winterberg: Gemütliche rote Kinosessel im stimmungsvoll beleuchteten Kinosaal',
+    imageAltNl: 'Bioscopen in Winterberg: Comfortabele rode bioscoopstoelen in een sfeervol verlichte zaal',
+    credit: 'Foto: Felix Mooneeram / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Kino & Filmtheater in Winterberg',
+    titleNl: 'Bioscopen & Filmhuizen in Winterberg',
+    subtitleDe: 'Großes Kino im Sauerland: Aktuelle Blockbuster, Familienfilme, 3D-Kino und beste Snacks für Ihren perfekten Filmabend.',
+    subtitleNl: 'Groots filmplezier in het Sauerland: actuele kaskrakers, familiefilms en popcorn voor een gezellige filmavond.',
+    objectPosition: 'center center'
+  },
+
+  'Bowling': {
+    image: '/bowling-winterberg-header.jpg',
+    imageAltDe: 'Bowling & Kegeln in Winterberg: Bowlingkugel rollt über die Bowlingbahn auf die Pins zu',
+    imageAltNl: 'Bowlingbanen in Winterberg: Bowlingbal rolt over de baan richting de pins',
+    credit: 'Foto: engin akyurt / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Bowling & Kegelbahnen in Winterberg',
+    titleNl: 'Bowling & Kegelbanen in Winterberg',
+    subtitleDe: 'Treffsicherer Freizeitspaß: Moderne Bowlingcenter und traditionelle Sauerländer Kegelbahnen für Freunde, Gruppen und Familien.',
+    subtitleNl: 'Gezellige strike-avonden: moderne bowlingcentra en traditionele kegelbanen voor vriendengroepen en gezinnen.',
+    objectPosition: 'center 40%'
+  },
+
+  'Schwimmbäder': {
+    image: '/schwimmbaeder-winterberg-header.jpg',
+    imageAltDe: 'Schwimmbäder in Winterberg: Klares türkisfarbenes Wasser im modernen Hallenbad mit Startblöcken',
+    imageAltNl: 'Zwembaden in Winterberg: Helder turquoise water in een modern overdekt zwembad',
+    credit: 'Foto: Sandeep Vattapparambil / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Schwimmbäder & Erlebnisbäder in Winterberg',
+    titleNl: 'Zwembaden & Recreatiebaden in Winterberg',
+    subtitleDe: 'Badespaß & Wassersport: Hallenbäder, beheizte Freibäder, Wasserrutschen und Saunabereiche für sportliche Schwimmer und Genießer.',
+    subtitleNl: 'Waterpret en ontspanning: overdekte zwembaden, verwarmde openluchtbaden, waterglijbanen en wellness in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Sommerrodelbahnen': {
+    image: '/sommerrodelbahnen-winterberg-header.jpg',
+    imageAltDe: 'Sommerrodelbahnen in Winterberg: Kurvenreiche Sommerrodelbahn und Rodelstrecke inmitten grüner Berghänge',
+    imageAltNl: 'Rodelbanen in Winterberg: Bochtige zomerrodelbaan en alpine coaster te midden van groene berghellingen',
+    credit: 'Foto: Jan Krzempek / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Sommerrodelbahnen in Winterberg',
+    titleNl: 'Rodelbanen & Alpine Coasters in Winterberg',
+    subtitleDe: 'Rasanter Rodelspaß bei Sonnenschein: Scharfe Kurven, Tunnelfahrten, Jumps und Tempo auf den Sommerrodelbahnen am Erlebnisberg.',
+    subtitleNl: 'Spannende afdalingen in de zon: scherpe bochten, tunnels en jumps op de beroemde rodelbanen van Winterberg.',
+    objectPosition: 'center 45%'
   }
 };
 

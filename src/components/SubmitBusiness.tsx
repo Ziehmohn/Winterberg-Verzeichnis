@@ -244,7 +244,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <span>Premium-pakket</span>
                 <span className="text-xs">↗</span>
               </a>{' '}
-              fotogalerij, uitgebreid profiel, backlinks en toppositie ontgrendelen.
+              fotogalerij, uitgebreid profiel, sterke DoFollow-backlinks en toppositie ontgrendelen.
             </>
           ) : (
             <>
@@ -261,7 +261,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <span>Premium-Paket</span>
                 <span className="text-xs">↗</span>
               </a>{' '}
-              Bildergalerie, ausführliches Profil, Website-Verlinkung und Top-Platzierung freischalten.
+              Bildergalerie, ausführliches Profil, wertvolle DoFollow-Backlinks und Top-Platzierung freischalten.
             </>
           )}
         </p>

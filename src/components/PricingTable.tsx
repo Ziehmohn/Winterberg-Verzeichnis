@@ -71,7 +71,7 @@ export default function PricingTable({
     { name: `${t("company")} & ${t("address")}`, free: true, premium: true },
     { name: t("shortDescription"), free: true, premium: true },
     { name: t("contactDetails"), free: true, premium: true },
-    { name: t("websiteLink"), free: false, premium: true },
+    { name: t("pricingFreeWebsiteLink"), free: 'Nofollow', premium: 'Dofollow (SEO-Backlink)' },
     { name: t("pricingFreeTrustBadge"), free: true, premium: true },
     { name: t("servicesAndFeatures"), free: 'Bis zu 3', premium: 'Bis zu 15' },
     { name: 'Produkte & Angebote', free: 'Bis zu 3', premium: 'Bis zu 15' },
@@ -112,6 +112,7 @@ export default function PricingTable({
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("company")} & {t("address")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("shortDescription")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("contactDetails")}</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingFreeWebsiteLink")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingFree3Services")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingFreeTrustBadge")}</div>
           </div>
@@ -245,7 +246,7 @@ export default function PricingTable({
           
           <div className="grid gap-2.5 text-[15px] text-[#4A544D]">
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingAllFromBasic")}</div>
-            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("websiteLink")}</div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> <span className="font-semibold text-[#0F4C2E]">{t("pricingDofollowLink")}</span></div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingUpTo15Services")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingCatGallery")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingHeroHeader")}</div>
