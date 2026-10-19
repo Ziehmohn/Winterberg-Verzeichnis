@@ -2,6 +2,76 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: '125-jahre-kraelingdruck-siedlinghausen',
+    slug: '125-jahre-kraelingdruck-siedlinghausen-jubilaeum',
+    slug_nl: '125-jaar-kraelingdruck-siedlinghausen-jubileum',
+    title: '125 Jahre KrälingDruck: Mit starken Wurzeln und Innovationskraft in die Zukunft',
+    title_nl: '125 jaar KrälingDruck: Met sterke wortels en innovatiekracht naar de toekomst',
+    author: 'Agentur Textzeit',
+    businessId: 'kraelingdruck-siedlinghausen',
+    businessName: 'Kräling Druck GmbH',
+    businessSlug: 'handwerk/druckereien/kraelingdruck-siedlinghausen',
+    imageUrl: '/news-125-jahre-kraelingdruck.jpg',
+    imageCredit: 'Foto: Agentur Textzeit / Ralf Hermann',
+    isAiGenerated: false,
+    status: 'approved',
+    date: '2026-10-18T15:00:00.000Z',
+    content: `Das traditionsreiche Druck- und Medienhaus **KrälingDruck in Siedlinghausen feiert in diesem Jahr sein 125-jähriges Bestehen**. Was 1901 mit einer kleinen Buchbinderei von Wilhelm Kräling begann, steht heute für gelebte Beständigkeit, kontinuierlichen Wandel und handwerkliche Substanz im Hochsauerland. Für die Wirtschaftsförderung Winterberg ist das Firmenjubiläum ein herausragender Beleg für unternehmerische Kontinuität in der Region.
+
+## Vom Handwerksbetrieb zum modernen Mediendienstleister
+
+Die Wurzeln des Betriebs reichen weit zurück: Zu Beginn holte Gründer Wilhelm Kräling mit dem Fahrrad Gesang- und Gebetbücher in den Nachbardörfern zur Restauration ab, rahmte Bilder ein und fertigte erste Drucksachen an. Über vier Generationen hinweg entwickelte sich der Betrieb stetig weiter:
+
+* **1948:** Sohn Alfons Kräling baut eine eigenständige Druckerei auf.
+* **1974:** Schriftsetzermeister Eberhard Kräling errichtet die modernen Betriebsräume an der Hochsauerlandstraße 74 – der Name **KrälingDruck** etabliert sich als feste regionale Marke.
+* **Seit 2021:** Inhaber **Philipp Imöhl** führt das Traditionsunternehmen erfolgreich in die nächste Ära. Er verbindet bewährtes drucktechnisches Know-how mit zeitgemäßem Mediendesign, digitaler Produktion und persönlicher Betreuung.
+
+## Zukunft mit festen Wurzeln: Baumpatenschaften zum Jubiläum
+
+Wirtschaftsförderer Winfried Borgmann würdigte das Jubiläum im Namen der Stadt Winterberg:
+
+> „KrälingDruck zeigt vorbildlich, wie ein Betrieb über mehr als ein Jahrhundert mit dem technologischen Wandel Schritt hält und dabei fest in unserer Region verwurzelt bleibt.“
+
+Passend zum Leitgedanken *„mit starken Wurzeln in die Zukunft“* überreichte die Wirtschaftsförderung dem Unternehmen Baumpatenschaften für das Aufforstungsprojekt [„Heute für morgen pflanzen“](/news/wanderveranstaltungen-winterberg-oktober-2026). Anfang Oktober pflanzten Philipp Imöhl und Winfried Borgmann gemeinsam junge Zukunftsbäume im Stadtwald – ein lebendiges Symbol für Nachhaltigkeit und die kommenden Generationen am Wirtschaftsstandort Siedlinghausen.
+
+:::contact
+### KrälingDruck Siedlinghausen
+* **Inhaber:** Philipp Imöhl
+* **Adresse:** Hochsauerlandstraße 74, 59955 Winterberg-Siedlinghausen
+* **Telefon:** 02983 666
+* **Website:** [www.kraelingdruck.de](https://www.kraelingdruck.de)
+* **Unternehmensprofil im Verzeichnis:** [Zum Profil von KrälingDruck](/handwerk/druckereien/kraelingdruck-siedlinghausen)
+* **Urheber & Redaktion:** [Agentur Textzeit](https://www.winterberg.de) / Ralf Hermann
+:::`,
+    content_nl: `Het toonaangevende druk- en mediabedrijf **KrälingDruck in Siedlinghausen viert dit jaar zijn 125-jarig jubileum**. Wat in 1901 begon als een bescheiden dorpsboekbinderij van Wilhelm Kräling, staat tegenwoordig voor vakmanschap, continue vernieuwing en duurzame ondernemerskracht in het Hochsauerland. Voor de Wirtschaftsförderung Winterberg is het jubileum een prachtig voorbeeld van economische stabiliteit en continuïteit in de regio.
+
+## Van dorpsboekbinderij tot modern mediabedrijf
+
+De rijke geschiedenis van het familiebedrijf kenmerkt zich door vakmanschap en vooruitstrevendheid. Oprichter Wilhelm Kräling fietste destijds door de omliggende dorpen om kerk- en zangboeken ter restauratie op te halen. Door de generaties heen bleef het bedrijf zich gestaag ontwikkelen:
+
+* **1948:** Zoon Alfons Kräling breidt het bedrijf uit met een zelfstandige drukkerij.
+* **1974:** Meester-letterzetter Eberhard Kräling bouwt het huidige bedrijfspand aan de Hochsauerlandstraße 74 – de naam **KrälingDruck** groeit uit tot een begrip.
+* **Sinds 2021:** Eigenaar **Philipp Imöhl** leidt de drukkerij met veel passie naar de toekomst. Hij combineert grafisch ontwerp, moderne digitale printtechnieken en persoonlijk advies van idee tot eindproduct.
+
+## Sterke wortels voor de toekomst: Boompeterschap als jubileumgebaar
+
+Economisch manager Winfried Borgmann feliciteerde het bedrijf namens de gemeente Winterberg:
+
+> „KrälingDruck laat zien hoe een onderneming meer dan een eeuw lang met haar tijd meegaat en tegelijkertijd stevig verankerd blijft in onze regio.”
+
+Passend bij het motto *„met sterke wortels naar de toekomst“* schonk de Wirtschaftsförderung Winterberg het bedrijf boompeterschappen in het kader van het initiatief [„Vandaag planten voor morgen“](/nl/nieuws). Samen plantten Philipp Imöhl en Winfried Borgmann jonge bomen in het stadsbos van Winterberg – een duurzaam symbool voor de volgende generaties op de bedrijvenlocatie Siedlinghausen.
+
+:::contact
+### KrälingDruck Siedlinghausen
+* **Eigenaar:** Philipp Imöhl
+* **Adres:** Hochsauerlandstraße 74, 59955 Winterberg-Siedlinghausen
+* **Telefoon:** 02983 666
+* **Website:** [www.kraelingdruck.de](https://www.kraelingdruck.de)
+* **Bedrijfsprofiel in de gids:** [Naar het profiel van KrälingDruck](/nl/ambacht/drukkerijen/kraelingdruck-siedlinghausen)
+* **Bron & Redactie:** [Agentur Textzeit](https://www.winterberg.de) / Ralf Hermann
+:::`,
+  },
+  {
     id: '10-jahre-winterberger-winterdorf-2026-2027',
     slug: '10-jahre-winterberger-winterdorf-jubilaeum-termin-highlights',
     slug_nl: '10-jaar-winterberger-winterdorf-jubileum-opening-highlights',

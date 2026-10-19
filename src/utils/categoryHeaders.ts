@@ -84,9 +84,9 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
 
   'Campingplätze': {
     image: '/campingplaetze-winterberg-header.jpg',
-    imageAltDe: 'Campingplätze & Naturcamping in Winterberg: Zelt am Ufer eines ruhigen Bergsees umgeben von Wäldern und Bergen',
-    imageAltNl: 'Campings & Natuurkamperen in Winterberg: Tent aan de oever van een rustig bergmeer omgeven door bossen en bergen',
-    credit: 'Foto: Lesly Derksen / Unsplash',
+    imageAltDe: 'Campingplätze & Stellplätze in Winterberg: Wohnwagen mit Vorzelt auf gepflegtem Campingplatz am Wasser umgeben von Sauerländer Hügeln',
+    imageAltNl: 'Campings & Camperplaatsen in Winterberg: Caravan met voortent op een verzorgde camping aan het water omgeven door heuvels',
+    credit: 'Foto: Brahm Meyer / Unsplash',
     isAiGenerated: false,
     titleDe: 'Campingplätze in Winterberg',
     titleNl: 'Campings in Winterberg',
@@ -569,6 +569,126 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
     subtitleDe: 'Glänzende Schmuckstücke, Verlobungs- und Eheringe, exklusive Uhrenmarken, Gravuren und qualifizierter Uhrmacher- und Goldschmiedeservice.',
     subtitleNl: 'Schitterende sieraden, verlovings- en trouwringen, exclusieve horlogemerken, graveringen en vakkundig juwelierswerk in Winterberg.',
     objectPosition: 'center center'
+  },
+
+  // ==========================================
+  // Gastronomie & Kulinarik
+  // ==========================================
+  'Gastronomie': {
+    image: '/gastronomie-winterberg-header.jpg',
+    imageAltDe: 'Gastronomie in Winterberg: Gemütliches Gasthof-Restaurant mit gedeckten Tischen, Weinkirsche und warmem Kaminfeuer',
+    imageAltNl: 'Horeca & Gastronomie in Winterberg: Sfeervol restaurant met gedekte tafels en warme open haard',
+    credit: 'Foto: Vitor Paladini / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Gastronomie in Winterberg',
+    titleNl: 'Horeca & Eten in Winterberg',
+    subtitleDe: 'Genussmomente im Hochsauerland: Entdecken Sie traditionelle Sauerländer Gasthöfe, gemütliche Restaurants, Berghütten, Cafés und Bars in Winterberg.',
+    subtitleNl: 'Culinair genieten in het Sauerland: ontdek traditionele herbergen, gezellige restaurants, berghutten, cafés en bars in Winterberg.',
+    objectPosition: 'center 45%'
+  },
+
+  'Restaurant': {
+    image: '/restaurant-winterberg-header.jpg',
+    imageAltDe: 'Restaurants in Winterberg: Festlich gedeckter Tisch mit funkelnden Weingläsern, Besteck und warmem Kerzenschein',
+    imageAltNl: 'Restaurants in Winterberg: Feestelijk gedekte tafel met kristallen glazen, bestek en sfeervol kaarslicht',
+    credit: 'Foto: Ronan / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Restaurants in Winterberg',
+    titleNl: 'Restaurants in Winterberg',
+    subtitleDe: 'Von regionaler Sauerländer Küche bis hin zu internationaler Gourmet-Gastronomie: Finden Sie das perfekte Restaurant für Ihren Abend in Winterberg.',
+    subtitleNl: 'Van regionale Sauerlandse specialiteiten tot internationale haute cuisine: vind het perfecte restaurant voor uw avondje uit in Winterberg.',
+    objectPosition: 'center 40%'
+  },
+
+  'Skihütten': {
+    image: '/skihuetten-winterberg-header.jpg',
+    imageAltDe: 'Skihütten & Almen in Winterberg: Urige Holzhütte mit Holzbänken und Panoramablick auf die Sauerländer Berge',
+    imageAltNl: 'Skihutten & Bergalmen in Winterberg: Authentieke houten berghut met houten banken en panoramisch uitzicht',
+    credit: 'Foto: Ruben Hanssen / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Skihütten & Almen in Winterberg',
+    titleNl: 'Skihutten & Bergalmen in Winterberg',
+    subtitleDe: 'Einkehrschwung & Hüttenzauber: Urige Skihütten an den Pisten des Skiliftkarussells und idyllische Almen für Wanderer und Wintersportler.',
+    subtitleNl: 'Gezellige skihutten langs de pistes van het Skiliftkarussell en idyllische berghutten voor wandelaars en wintersporters.',
+    objectPosition: 'center 45%'
+  },
+
+  'Cafés': {
+    image: '/cafes-winterberg-header.jpg',
+    imageAltDe: 'Cafés in Winterberg: Frisch zubereiteter Cappuccino mit Latte Art Herz auf rustikalem Holztisch',
+    imageAltNl: 'Cafés in Winterberg: Vers bereide cappuccino met latte art hart op een houten tafel',
+    credit: 'Foto: Daniel Seßler / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Cafés in Winterberg',
+    titleNl: 'Cafés & Koffiehuizen in Winterberg',
+    subtitleDe: 'Kaffeekultur & süße Verführungen: Gemütliche Cafés mit hausgemachten Torten, frischen Waffeln und erlesenen Kaffeespezialitäten.',
+    subtitleNl: 'Koffiecultuur & gebak: gezellige cafés met huisgemaakte taarten, verse wafels en hoogwaardige koffiespecialiteiten.',
+    objectPosition: 'center center'
+  },
+
+  'Pizzerien': {
+    image: '/pizzerien-winterberg-header.jpg',
+    imageAltDe: 'Pizzerien in Winterberg: Frische Steinofenpizza auf rustikalem Holzbrett vor loderndem Holzbackofen',
+    imageAltNl: 'Pizzeria\'s in Winterberg: Verse pizza op houten plank voor een traditionele houtoven',
+    credit: 'Foto: Nik Owens / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Pizzerien in Winterberg',
+    titleNl: 'Pizzeria\'s in Winterberg',
+    subtitleDe: 'Italienische Lebensfreude im Sauerland: Knusprige Holzofenpizzen, frische Pasta und mediterrane Köstlichkeiten in den Pizzerien Winterbergs.',
+    subtitleNl: 'Italiaanse sferen in het Sauerland: krokante pizza\'s uit de houtoven, verse pasta en mediterrane specialiteiten.',
+    objectPosition: 'center 40%'
+  },
+
+  'Kneipen und Bars': {
+    image: '/kneipen-bars-winterberg-header.jpg',
+    imageAltDe: 'Kneipen & Bars in Winterberg: Klassische glänzende Zapfanlage mit Zapfhähnen an der Holztheke im warmen Bar-Licht',
+    imageAltNl: 'Kroegen & Bars in Winterberg: Klassieke biertap aan de houten bar in sfeervol barlicht',
+    credit: 'Foto: Lucas Santos / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Kneipen & Bars in Winterberg',
+    titleNl: 'Kroegen & Bars in Winterberg',
+    subtitleDe: 'Gesellige Abende & Après-Ski: Traditionelle Sauerländer Kneipen, moderne Cocktailbars, Pubs und Bierlokale für geselliges Beisammensein.',
+    subtitleNl: 'Gezellige avonden & après-ski: authentieke Sauerlandse kroegen, moderne cocktailbars en gezellige pubs in Winterberg.',
+    objectPosition: 'center center'
+  },
+
+  'Eisdielen': {
+    image: '/eisdielen-winterberg-header.jpg',
+    imageAltDe: 'Eisdielen & Eiscafés in Winterberg: Farbige Eisauslage mit handgemachten Eissorten in der Glastheke',
+    imageAltNl: 'IJssalons in Winterberg: Kleurrijke vitrine met ambachtelijk bereid schepijs in vele smaken',
+    credit: 'Foto: masha.uu / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Eisdielen in Winterberg',
+    titleNl: 'IJssalons in Winterberg',
+    subtitleDe: 'Sommerlicher Genuss: Handgemachtes italienisches Speiseeis, verführerische Eisbecher, Waffeln und Shakes in den Eiscafés von Winterberg.',
+    subtitleNl: 'Zomers genieten: ambachtelijk Italiaans ijs, luxe ijscoupes, verse wafels en milkshakes bij de beste ijssalons van Winterberg.',
+    objectPosition: 'center 35%'
+  },
+
+  'Weinstuben': {
+    image: '/weinstuben-winterberg-header.jpg',
+    imageAltDe: 'Weinstuben & Vinotheken in Winterberg: Edle Weingläser auf rustikalem Weintresen mit warmem Kerzenlicht im Hintergrund',
+    imageAltNl: 'Wijnlokalen & Vinotheken in Winterberg: Elegante wijnglazen aan de wijnbar met warm kaarslicht',
+    credit: 'Foto: Ambitious Studio* | Rick Barrett / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Weinstuben in Winterberg',
+    titleNl: 'Wijnlokalen in Winterberg',
+    subtitleDe: 'Erlesene Tropfen & edles Ambiente: Gemütliche Weinstuben und Vinotheken mit Spitzenweinen aus Deutschland und aller Welt.',
+    subtitleNl: 'Exclusieve wijnen & ontspannen sfeer: gezellige wijnlokalen en vinotheken met topwijnen uit Duitsland en de hele wereld.',
+    objectPosition: 'center center'
+  },
+
+  'Imbisse': {
+    image: '/imbisse-winterberg-header.jpg',
+    imageAltDe: 'Imbisse & Schnellrestaurants in Winterberg: Knusprige Pommes frites und saftige Burger mit Dips auf Holzplatte',
+    imageAltNl: 'Snackbars & Cafetaria\'s in Winterberg: Krokante friet en verse burgers met sauzen op een houten schaal',
+    credit: 'Foto: Shaafi Ali / Unsplash',
+    isAiGenerated: false,
+    titleDe: 'Imbisse in Winterberg',
+    titleNl: 'Snackbars & Imbiss in Winterberg',
+    subtitleDe: 'Schnell & lecker: Ob echte Sauerländer Currywurst, knusprige Pommes, Döner oder Gourmet-Burger – hier finden Sie die besten Snacks für den schnellen Hunger.',
+    subtitleNl: 'Snel en lekker: van traditionele Currywurst en goudgele friet tot verse burgers en snelle maaltijden in Winterberg.',
+    objectPosition: 'center 40%'
   }
 };
 
@@ -595,14 +715,18 @@ export function getCategoryHeader(
   }
 
   if (base && override) {
+    const hasCustomImage = Boolean(override.image && override.image.trim() !== '' && override.image !== base.image);
+    const effectiveIsAi = hasCustomImage ? Boolean(override.isAiGenerated) : false;
+    const effectiveCredit = (override.credit && override.credit.trim() !== '') ? override.credit.trim() : base.credit;
+
     return {
       ...base,
       ...override,
       image: override.image || base.image,
       imageAltDe: override.imageAltDe || base.imageAltDe,
       imageAltNl: override.imageAltNl || base.imageAltNl,
-      isAiGenerated: override.isAiGenerated !== undefined ? override.isAiGenerated : base.isAiGenerated,
-      credit: override.credit !== undefined ? override.credit : base.credit,
+      isAiGenerated: effectiveIsAi,
+      credit: effectiveCredit,
       titleDe: override.titleDe || base.titleDe,
       titleNl: override.titleNl || base.titleNl,
       subtitleDe: override.subtitleDe || base.subtitleDe,
