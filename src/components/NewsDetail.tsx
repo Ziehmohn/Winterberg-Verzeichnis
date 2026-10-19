@@ -805,6 +805,15 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
   const targetBusinessImage = matchedBusiness?.image || article.imageUrl || '';
   const targetBusinessId = matchedBusiness?.id || article.businessId || '';
 
+  const isPressRelease = Boolean(
+    article.isBusinessNews ||
+    (article as any).isPressRelease ||
+    targetBusinessId === 'content-agentur-textzeit' ||
+    article.businessId === 'content-agentur-textzeit' ||
+    targetBusinessName.toLowerCase().includes('textzeit') ||
+    article.author?.toLowerCase().includes('textzeit')
+  );
+
   return (
     <article className="max-w-[850px] mx-auto py-[40px] px-[20px]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
@@ -846,29 +855,57 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
 
       {/* Clean Meta Info */}
       <div className="flex items-center gap-[18px] text-[13.5px] font-medium text-[#7C8780] mb-[24px] flex-wrap pb-4 border-b border-[#EDE8E0] justify-between">
-        <div className="flex items-center gap-[18px] flex-wrap">
+        <div className="flex items-center gap-[14px] sm:gap-[18px] flex-wrap">
+          {isPressRelease && (
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF2EC] text-[#0F4C2E] border border-[#0F4C2E]/20">
+              {lang === 'nl' ? 'Persbericht' : 'Pressemitteilung'}
+            </span>
+          )}
           <div>
             {new Date(article.date).toLocaleDateString(lang === 'nl' ? 'nl-NL' : 'de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
           </div>
           <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
-          <div>
-            {t('newsBy')} <span className="text-[#1B211D] font-bold">{article.author}</span>
-          </div>
-          {article.businessName && (
-            <>
-              <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
-              <div>
-                {businessProfileUrl ? (
+          {isPressRelease ? (
+            <div>
+              {lang === 'nl' ? 'Persbericht van' : 'Pressemitteilung von'}{' '}
+              <span className="text-[#1B211D] font-bold">{article.author}</span>
+              {businessProfileUrl && targetBusinessName ? (
+                <>
+                  {' ('}
                   <a
                     href={businessProfileUrl}
-                    className="text-[#0F4C2E] hover:text-[#186841] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all cursor-pointer"
+                    className="text-[#0F4C2E] hover:text-[#186841] font-semibold underline underline-offset-2 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all cursor-pointer"
                   >
-                    {article.businessName}
+                    {targetBusinessName}
                   </a>
-                ) : (
-                  <span className="text-[#0F4C2E] font-semibold">{article.businessName}</span>
-                )}
+                  {')'}
+                </>
+              ) : targetBusinessName ? (
+                ` (${targetBusinessName})`
+              ) : null}
+            </div>
+          ) : (
+            <>
+              <div>
+                {t('newsBy')} <span className="text-[#1B211D] font-bold">{article.author}</span>
               </div>
+              {article.businessName && (
+                <>
+                  <div className="w-1 h-1 rounded-full bg-[#C8C2B7]" />
+                  <div>
+                    {businessProfileUrl ? (
+                      <a
+                        href={businessProfileUrl}
+                        className="text-[#0F4C2E] hover:text-[#186841] font-semibold underline underline-offset-4 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E] transition-all cursor-pointer"
+                      >
+                        {article.businessName}
+                      </a>
+                    ) : (
+                      <span className="text-[#0F4C2E] font-semibold">{article.businessName}</span>
+                    )}
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>
@@ -890,6 +927,42 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
 
       {/* Main Article News Container */}
       <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 sm:p-8 md:p-10 shadow-[0_10px_35px_rgba(27,33,29,0.04)]">
+        {/* Prominent Press Release Notice Callout */}
+        {isPressRelease && (
+          <div className="mb-8 p-4 sm:p-5 rounded-xl bg-[#F6F8F6] border border-[#0F4C2E]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+            <div className="flex items-start sm:items-center gap-3">
+              <span className="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0F4C2E] text-white shrink-0">
+                {lang === 'nl' ? 'Persbericht' : 'Pressemitteilung'}
+              </span>
+              <p className="text-sm text-[#2F3A33] font-medium leading-snug">
+                {lang === 'nl' 
+                  ? 'Dit artikel is een officiële persmededeling van ' 
+                  : 'Dieser Beitrag ist eine offizielle Pressemitteilung von '}
+                {businessProfileUrl ? (
+                  <a 
+                    href={businessProfileUrl} 
+                    className="font-bold text-[#0F4C2E] hover:text-[#186841] underline underline-offset-2 decoration-[#0F4C2E]/40 hover:decoration-[#0F4C2E]"
+                  >
+                    {targetBusinessName || 'Content-Agentur Textzeit'}
+                  </a>
+                ) : (
+                  <strong className="font-bold text-[#1B211D]">{targetBusinessName || 'Content-Agentur Textzeit'}</strong>
+                )}
+                {article.author && article.author !== targetBusinessName ? ` (${article.author})` : ''}
+              </p>
+            </div>
+            {businessProfileUrl && (
+              <a 
+                href={businessProfileUrl}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#0F4C2E] bg-white border border-[#0F4C2E]/25 hover:bg-[#0F4C2E] hover:text-white transition-all shadow-xs shrink-0 self-start sm:self-auto group/pr"
+              >
+                <span>{lang === 'nl' ? 'Bedrijfsprofiel bekijken' : 'Zum Unternehmensprofil'}</span>
+                <ArrowUpRight size={13} className="group-hover/pr:translate-x-0.5 group-hover/pr:-translate-y-0.5 transition-transform" />
+              </a>
+            )}
+          </div>
+        )}
+
         <NewsContentRenderer content={mainContent} />
 
         <div className="mt-8 pt-6 border-t border-[#EDE8E0] flex items-center justify-between flex-wrap gap-3">

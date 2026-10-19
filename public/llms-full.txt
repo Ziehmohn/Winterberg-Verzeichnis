@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (403 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (404 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -3044,6 +3044,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Great Oak IT-Services GmbH & Co. KG is een sinds 2007 gevestigd IT-systeemhuis en managed service provider in Winterberg-Niedersfeld. Het bedrijf ondersteunt het mkb, ambachtelijke ondernemingen, advocaten- en belastingkantoren en instellingen in de gezondheidszorg bij hun complete IT- en netwerkinfrastructuur. Het dienstenaanbod omvat betrouwbaar IT-beheer (werkplekken, servers, cloudoplossingen en proactief onderhoud), netwerktechniek, databeveiliging en noodherstelsystemen. Daarnaast is het bedrijf gespecialiseerd in DATEV-kantoorsoftware, NIS-2-cybersecurityrichtlijnen en gecertificeerde IT-dienstverlening conform § 390 SGB V voor artsenpraktijken en klinieken.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/great-oak-it-services
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/great-oak-it-services
+
+#### [Content-Agentur Textzeit](https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/content-agentur-textzeit)
+- **Kategorie:** Dienstleistungen > Marketingdienstleistungen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Danziger Weg 3, 59955 Winterberg
+- **Telefon:** 0176 32502154
+- **Webseite:** https://www.textzeit.net
+- **Beschreibung (DE):** Die Content-Agentur Textzeit unter Leitung von Journalist und Texter Ralf Hermann ist spezialisiert auf professionelle Presse- und Öffentlichkeitsarbeit, strategische Unternehmenskommunikation und zielgruppengerechtes Storytelling in Winterberg und im Sauerland.
+- **Beschreibung (NL):** Content-Agentur Textzeit onder leiding van journalist en tekstschrijver Ralf Hermann is gespecialiseerd in professionele pers- en public relations, strategische bedrijfscommunicatie en doelgerichte storytelling in Winterberg en het Sauerland.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/content-agentur-textzeit
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/marketingdiensten/content-agentur-textzeit
 
 ### Kategorie: Ski, Bike & Sport
 
