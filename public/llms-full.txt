@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (404 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (405 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1542,6 +1542,18 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Status:** Verifizierter Premium-Eintrag
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/markten/wochenmarkt-winterberg
+
+#### [Winterberger Winterdorf](https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/winterberger-winterdorf)
+- **Kategorie:** Einzelhandel > Märkte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Marktplatz Untere Pforte, 59955 Winterberg
+- **Telefon:** 02981 92500
+- **Webseite:** https://www.instagram.com/winterberger_winterdorf/?hl=de
+- **Beschreibung (DE):** Das Winterberger Winterdorf feiert sein 10-jähriges Jubiläum! Vom 11. Dezember 2026 bis zum 4. Januar 2027 verwandelt sich der festlich geschmückte Marktplatz an der Unteren Pforte in einen stimmungsvollen Treffpunkt für Einheimische und Gäste. Romantische Holzhütten mit Winzerglühwein, Punsch, kulinarischen Spezialitäten, Kinderkarussell und die beliebte Open-Air Silvesterparty.
+- **Beschreibung (NL):** Het Winterberger Winterdorf viert zijn 10-jarig jubileum! Van 11 december 2026 tot en met 4 januari 2027 verandert het gezellige marktplein aan de Untere Pforte in een sfeervol winterdorp. Knusse houten chalets met glühwein, Sauerlandse lekkernijen, kinderdraaimolen en een bruisend oudejaarsfeest in de openlucht.
+- **Status:** Verifizierter Premium-Eintrag
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/winterberger-winterdorf
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/markten/winterberger-winterdorf
 
 #### [REWE](https://www.winterberg-verzeichnis.de/einzelhandel/supermarkt/rewe)
 - **Kategorie:** Einzelhandel > Supermarkt

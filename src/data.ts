@@ -882,6 +882,98 @@ export const businesses: Business[] = [
     ]
   },
   {
+    id: 'winterberger-winterdorf',
+    name: 'Winterberger Winterdorf',
+    category: 'Einzelhandel',
+    subcategory: 'Märkte',
+    additionalCategories: [
+      { category: 'Gastronomie', subcategory: 'Kneipen und Bars' },
+      { category: 'Freizeit', subcategory: 'Outdoor-Freizeitgebiet' }
+    ],
+    isPremium: true,
+    description: 'Das Winterberger Winterdorf feiert sein 10-jähriges Jubiläum! Vom 11. Dezember 2026 bis zum 4. Januar 2027 verwandelt sich der festlich geschmückte Marktplatz an der Unteren Pforte in einen stimmungsvollen Treffpunkt für Einheimische und Gäste. Romantische Holzhütten mit Winzerglühwein, Punsch, kulinarischen Spezialitäten, Kinderkarussell und die beliebte Open-Air Silvesterparty.',
+    description_nl: 'Het Winterberger Winterdorf viert zijn 10-jarig jubileum! Van 11 december 2026 tot en met 4 januari 2027 verandert het gezellige marktplein aan de Untere Pforte in een sfeervol winterdorp. Knusse houten chalets met glühwein, Sauerlandse lekkernijen, kinderdraaimolen en een bruisend oudejaarsfeest in de openlucht.',
+    extendedDescription: 'Ein rundes Jubiläum wirft seinen Glanz voraus: Das Winterberger Winterdorf feiert in diesem Winter sein 10-jähriges Bestehen! Vom 11. Dezember 2026 bis zum 4. Januar 2027 verwandelt sich der festlich geschmückte Marktplatz an der Unteren Pforte wieder in einen stimmungsvollen Treffpunkt für Einheimische, Familien und Winterurlauber. Als traditionsreicher winterlicher Dorfplatz bleibt das Winterdorf über die gesamten Weihnachtsfeiertage, die Zeit „zwischen den Jahren“ und bis ins neue Jahr hinein geöffnet. Neben Winzer-Glühwein und Sauerländer Spezialitäten gibt es ein historisches Kinderkarussell, Besuche des Winterberger Maskottchens und die traditionelle Silvesterparty unter freiem Himmel.',
+    address: 'Marktplatz Untere Pforte, 59955 Winterberg',
+    district: 'Winterberg',
+    imageFallback: 'WW',
+    imageLink: '/news-winterberger-winterdorf-jubilaeum-header.jpg',
+    headerImage: '/news-winterberger-winterdorf-jubilaeum-header.jpg',
+    website: 'https://www.instagram.com/winterberger_winterdorf/?hl=de',
+    phone: '02981 92500',
+    status: 'approved',
+    isActive: true,
+    services: [
+      'Stimmungsvoller Winter- und Weihnachtsmarkt',
+      'Winzer-Glühwein, Punsch & heiße Spezialitäten',
+      'Sauerländer Gastronomie & süße Leckereien',
+      'Historisches Kinderkarussell & Tannenbaumzauber',
+      'Besuch des Winterberger Maskottchens',
+      'Große Open-Air Silvesterparty am 31. Dezember',
+      'Täglich geöffnet vom 11.12.2026 bis 04.01.2027'
+    ],
+    services_nl: [
+      'Sfeervolle winter- en kerstmarkt',
+      'Ambachtelijke glühwein, punch & warme dranken',
+      'Sauerlandse streekgerechten & lekkernijen',
+      'Nostalgische kinderdraaimolen',
+      'Bezoek van de Winterberg-mascotte',
+      'Groot oudejaarsfeest in de openlucht op 31 december',
+      'Dagelijks geopend van 11-12-2026 t/m 04-01-2027'
+    ],
+    openingHours: {
+      monday: '12:00 - 22:00',
+      tuesday: '12:00 - 22:00',
+      wednesday: '12:00 - 22:00',
+      thursday: '12:00 - 22:00',
+      friday: '12:00 - 24:00',
+      saturday: '12:00 - 24:00',
+      sunday: '12:00 - 22:00'
+    },
+    translations: {
+      nl: {
+        description: 'Het Winterberger Winterdorf viert zijn 10-jarig jubileum! Van 11 december 2026 tot en met 4 januari 2027 verandert het gezellige marktplein aan de Untere Pforte in een sfeervol winterdorp.',
+        extendedDescription: 'Een feestelijke mijlpaal in Winterberg: het Winterberger Winterdorf viert dit winterseizoen zijn 10-jarig jubileum! Van 11 december 2026 tot en met 4 januari 2027 tovert het marktplein aan de Untere Pforte zich weer om tot een sfeervol, winters ontmoetingspunt voor inwoners, gezinnen en vakantiegangers. Geopend tijdens de gehele kerstvakantie tot in het nieuwe jaar.'
+      }
+    },
+    events: [
+      {
+        id: 'winterberger-winterdorf-jubilaeum-2026-2027',
+        title: '10 Jahre Winterberger Winterdorf',
+        title_nl: '10 jaar Winterberger Winterdorf',
+        startDate: '2026-12-11',
+        endDate: '2027-01-04',
+        startTime: '12:00',
+        endTime: '22:00',
+        price: 'Freier Eintritt',
+        category: 'Markt',
+        location: 'Marktplatz Untere Pforte, 59955 Winterberg',
+        imageUrl: '/news-winterberger-winterdorf-jubilaeum-header.jpg',
+        description: 'Großes Jubiläum zum 10-jährigen Bestehen: Vom 11. Dezember 2026 bis 4. Januar 2027 verwandelt sich der festlich geschmückte Marktplatz an der Unteren Pforte in ein stimmungsvolles Winter- und Weihnachtsdorf. Freuen Sie sich auf festlich geschmückte Holzhütten mit Winzer-Glühwein, Punsch, Sauerländer Spezialitäten, Kinderkarussell, Besuch vom Maskottchen und die traditionelle große Open-Air-Silvesterparty am 31. Dezember.',
+        description_nl: 'Groot 10-jarig jubileum: van 11 december 2026 t/m 4 januari 2027 verandert het marktplein aan de Untere Pforte in een sfeervol winterdorp. Knusse houten chalets met glühwein, Sauerlandse lekkernijen, een nostalgische kinderdraaimolen, bezoek van de mascotte en het grote oudejaarsfeest in de openlucht op 31 december.',
+        externalUrl: '/nachrichten/10-jahre-winterberger-winterdorf-jubilaeum-termin-highlights',
+        externalUrl_nl: '/nl/nieuws/10-jaar-winterberger-winterdorf-jubileum-opening-highlights'
+      },
+      {
+        id: 'winterdorf-silvesterparty-2026-2027',
+        title: 'Große Silvesterparty im Winterberger Winterdorf',
+        title_nl: 'Grote Oudejaarsparty in het Winterberger Winterdorf',
+        startDate: '2026-12-31',
+        endDate: '2026-12-31',
+        startTime: '12:00',
+        endTime: '01:00',
+        price: 'Freier Eintritt',
+        category: 'Fest & Party',
+        location: 'Marktplatz Untere Pforte, 59955 Winterberg',
+        imageUrl: '/news-winterberger-winterdorf-jubilaeum-header.jpg',
+        description: 'Feiern Sie den Jahreswechsel mitten im Herzen von Winterberg! Am 31. Dezember lädt das Winterberger Winterdorf zur großen Silvesterparty mit DJ, Musik und festlicher Stimmung unter freiem Himmel bis 01:00 Uhr nachts ein.',
+        description_nl: 'Vier de jaarwisseling in het sfeervolle hart van Winterberg! Op 31 december organiseert het Winterdorf een spetterende oudejaarsparty met muziek en feestelijke gezelligheid in de openlucht tot 01:00 uur \'s nachts.',
+        externalUrl: '/nachrichten/10-jahre-winterberger-winterdorf-jubilaeum-termin-highlights',
+        externalUrl_nl: '/nl/nieuws/10-jaar-winterberger-winterdorf-jubileum-opening-highlights'
+      }
+    ]
+  },
+  {
     id: 'rewe-winterberg',
     name: 'REWE',
     category: 'Einzelhandel',

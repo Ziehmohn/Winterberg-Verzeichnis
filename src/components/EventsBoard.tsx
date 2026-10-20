@@ -90,19 +90,23 @@ function CalendarCard({ startDate, endDate }: { startDate: string; endDate?: str
   const weekday = date.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
   
   const isMultiDay = endDate && endDate !== startDate;
-  const endDay = isMultiDay ? new Date(endDate).getDate() : null;
+  const endDateObj = isMultiDay ? new Date(endDate) : null;
+  const isDifferentMonth = endDateObj && (endDateObj.getMonth() !== date.getMonth() || endDateObj.getFullYear() !== date.getFullYear());
+  const endDisplay = endDateObj 
+    ? (isDifferentMonth ? `– ${endDateObj.getDate()}.${endDateObj.toLocaleDateString('de-DE', { month: 'short' }).replace('.', '')}` : `– ${endDateObj.getDate()}`)
+    : null;
 
   return (
-    <div className="w-[58px] h-[64px] rounded-xl overflow-hidden border border-[#E7E2DA] shadow-sm shrink-0 bg-white flex flex-col text-center select-none">
+    <div className="w-[62px] h-[64px] rounded-xl overflow-hidden border border-[#E7E2DA] shadow-sm shrink-0 bg-white flex flex-col text-center select-none">
       <div className="bg-[#7E22CE] text-white text-[9px] font-extrabold tracking-widest py-[3px] leading-none">
         {month}
       </div>
-      <div className="flex-1 flex flex-col items-center justify-center -mt-0.5">
-        <span className="font-display text-[22px] font-black text-[#1B211D] leading-none">
+      <div className="flex-1 flex flex-col items-center justify-center -mt-0.5 px-0.5">
+        <span className="font-display text-[21px] font-black text-[#1B211D] leading-none">
           {day}
         </span>
         {isMultiDay ? (
-          <span className="text-[9px] font-bold text-[#7E22CE] leading-none mt-0.5">– {endDay}</span>
+          <span className="text-[8.5px] font-bold text-[#7E22CE] leading-none mt-0.5 whitespace-nowrap">{endDisplay}</span>
         ) : (
           <span className="text-[9px] font-semibold text-[#8A958E] leading-none mt-0.5">{weekday}</span>
         )}
@@ -158,6 +162,8 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   // Untere Pforte Marktplatz
   'untere pforte': [51.19449, 8.53251],
   'marktplatz': [51.19449, 8.53251],
+  'winterdorf': [51.19449, 8.53251],
+  'wintermarkt': [51.19449, 8.53251],
   // Bei Möppi / In der Büre
   'möppi': [51.19726, 8.51181],
   'büre': [51.19726, 8.51181],
@@ -334,10 +340,14 @@ export default function EventsBoard({
 
   const allEvents = useMemo(() => {
     const list: Array<{ event: EventItem; business: Business }> = [];
+    const seenEventIds = new Set<string>();
     businesses.forEach(bus => {
       if (bus.events && Array.isArray(bus.events)) {
         bus.events.forEach(ev => {
-          list.push({ event: ev, business: bus });
+          if (!seenEventIds.has(ev.id)) {
+            seenEventIds.add(ev.id);
+            list.push({ event: ev, business: bus });
+          }
         });
       }
     });
@@ -389,23 +399,56 @@ export default function EventsBoard({
         </button>
       </div>
 
-      {/* Hero Header */}
-      <div className="bg-gradient-to-br from-[#4A154B] to-[#7E22CE] text-white rounded-3xl p-6 sm:p-10 shadow-lg mb-8 relative overflow-hidden">
-        <div className="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-white/5 pointer-events-none" />
-        <div className="absolute -right-4 -top-8 w-40 h-40 rounded-full bg-white/5 pointer-events-none" />
-        <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white/90 text-xs font-semibold backdrop-blur-xs mb-3.5">
-            <Calendar className="w-3.5 h-3.5 text-purple-300" />
-            <span>{allEvents.length} {lang === 'nl' ? 'Evenementen gepland' : 'Veranstaltungen geplant'}</span>
+      {/* Hero Header with Winterberger Wintermarkt Image */}
+      <div className="relative rounded-3xl overflow-hidden shadow-xl mb-8 text-white bg-[#2A0845] border border-purple-900/40">
+        {/* Background Image Container */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/news-winterberger-winterdorf-jubilaeum-header.jpg"
+            alt={lang === 'nl' ? 'Winterberger Winterdorf en Wintermarkt op het marktplein' : 'Winterberger Wintermarkt und Winterdorf auf dem Marktplatz'}
+            className="w-full h-full object-cover object-center lg:object-[center_35%]"
+          />
+          {/* Gradient Overlays: Rich deep purple on text side fading smoothly into transparency on wide screens */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#200536] via-[#2A0845]/90 to-[#4A154B]/80 lg:bg-gradient-to-r lg:from-[#200536] lg:via-[#2A0845]/95 lg:from-45% lg:via-70% lg:to-transparent" />
+          <div className="absolute inset-0 bg-[#200536]/20 backdrop-blur-[0.5px]" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-2xl">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white text-xs font-semibold backdrop-blur-md shadow-xs">
+              <Calendar className="w-3.5 h-3.5 text-purple-200" />
+              <span>{allEvents.length} {lang === 'nl' ? 'Evenementen gepland' : 'Veranstaltungen geplant'}</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/20 border border-amber-300/30 text-amber-200 text-xs font-semibold backdrop-blur-md">
+              <Sparkles className="w-3 h-3 text-amber-300" />
+              <span>Winterberg & Region</span>
+            </div>
           </div>
-          <h1 className="font-display text-[clamp(28px,4.5vw,42px)] font-extrabold tracking-tight leading-[1.15] mb-3 text-white">
+
+          <h1 className="font-display text-[clamp(28px,4.5vw,44px)] font-extrabold tracking-tight leading-[1.12] mb-3.5 text-white drop-shadow-sm">
             {lang === 'nl' ? 'Evenementenkalender' : 'Veranstaltungskalender'}
           </h1>
-          <p className="text-[15.5px] sm:text-[17px] leading-relaxed text-white/85 font-normal">
+          
+          <p className="text-[15.5px] sm:text-[17px] leading-relaxed text-white/90 font-normal drop-shadow-xs mb-5">
             {lang === 'nl' 
-              ? 'Ontdek wat er te doen is in Winterberg en omgeving. Van feesten tot workshops en concerten – blijf op de hoogte van alle evenementen.'
-              : 'Entdecke, was in Winterberg und Umgebung los ist. Von Festen über Workshops bis hin zu Konzerten – bleibe über alle Veranstaltungen auf dem Laufenden.'}
+              ? 'Ontdek wat er te doen is in Winterberg en omgeving. Van sfeervolle wintermarkten tot sportevenementen, concerten en feesten – mis geen enkel highlight!'
+              : 'Entdecke, was in Winterberg und Umgebung los ist. Vom festlichen Wintermarkt und Weltcup-Highlights über stimmungsvolle Konzerte bis hin zu urigen Hüttenabenden – alle Termine auf einen Blick.'}
           </p>
+
+          {/* Winter Highlight Pill */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/20 border border-white/25 backdrop-blur-md transition-all text-xs sm:text-sm text-white">
+            <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
+            <span className="font-medium">
+              <strong className="font-bold text-amber-200">{lang === 'nl' ? 'Winter-Highlight: ' : 'Winter-Highlight: '}</strong>
+              {lang === 'nl' ? '10 jaar Winterberger Winterdorf (11 dec. – 4 jan.)' : '10 Jahre Winterberger Winterdorf (11. Dez. – 04. Jan.)'}
+            </span>
+          </div>
+        </div>
+
+        {/* Image credit note */}
+        <div className="absolute bottom-2.5 right-3 z-10 text-[10px] text-white/70 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-md pointer-events-none">
+          {lang === 'nl' ? 'Foto: Winterberger Winterdorf / Marktplatz' : 'Foto: Winterberger Winterdorf / Marktplatz'}
         </div>
       </div>
 
@@ -501,6 +544,7 @@ export default function EventsBoard({
             const locationStr = event.location || business.district || business.name;
             const eventKey = `${business.id}-${event.id}`;
             const isMapOpen = expandedMap === eventKey;
+            const eventUrl = (lang === 'nl' && event.externalUrl_nl) ? event.externalUrl_nl : event.externalUrl;
             
             return (
               <article key={eventKey} className={`bg-white border rounded-2xl transition-all shadow-[0_2px_10px_rgba(27,33,29,0.03)] hover:shadow-[0_12px_28px_rgba(27,33,29,0.08)] border-[#EDE8E0] hover:border-[#D8D2C8] overflow-hidden ${viewMode === 'list' ? '' : 'flex flex-col'}`}>
@@ -614,14 +658,22 @@ export default function EventsBoard({
                           </button>
                         )}
 
-                        {event.externalUrl && (
+                        {eventUrl && (
                           <a
-                            href={event.externalUrl}
-                            target={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : "_blank"}
-                            rel={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : (event.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer")}
+                            href={eventUrl}
+                            onClick={(e) => {
+                              if (eventUrl.startsWith('/')) {
+                                e.preventDefault();
+                                window.history.pushState(null, '', eventUrl);
+                                window.dispatchEvent(new PopStateEvent('popstate'));
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }
+                            }}
+                            target={eventUrl.startsWith('mailto:') || eventUrl.startsWith('/') ? undefined : "_blank"}
+                            rel={eventUrl.startsWith('mailto:') || eventUrl.startsWith('/') ? undefined : (event.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer")}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold transition-colors"
                           >
-                            <span>{event.externalUrl.startsWith('mailto:') ? (lang === 'nl' ? 'Aanmelden' : 'Anmelden') : (lang === 'nl' ? 'Meer info' : 'Mehr erfahren')}</span>
+                            <span>{eventUrl.startsWith('mailto:') ? (lang === 'nl' ? 'Aanmelden' : 'Anmelden') : (lang === 'nl' ? 'Meer info' : 'Mehr erfahren')}</span>
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         )}
@@ -633,6 +685,13 @@ export default function EventsBoard({
                       <EventMap location={locationStr} lang={lang} />
                     )}
                   </div>
+
+                  {/* Thumbnail in list view (sm+ screens) */}
+                  {viewMode === 'list' && event.imageUrl && (
+                    <div className="hidden sm:block w-36 h-28 shrink-0 rounded-xl overflow-hidden border border-[#EDE8E0] self-start ml-2 bg-gray-100 shadow-xs">
+                      <img src={event.imageUrl} alt={title} className="w-full h-full object-cover" />
+                    </div>
+                  )}
                 </div>
               </article>
             );
