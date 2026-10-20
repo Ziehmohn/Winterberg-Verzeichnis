@@ -11890,6 +11890,1021 @@ export const businesses: Business[] = [
     ],
   },
 
+  {
+    id: "schuh-schweizer-winterberg",
+    name: "Schuh Schweizer Winterberg",
+    category: "Einzelhandel",
+    subcategory: "Schuhgeschäfte",
+    additionalCategories: [
+      { category: "Ski, Bike & Sport", subcategory: "Sport & Outdoor" },
+    ],
+    address: "Hauptstraße 1, 59955 Winterberg",
+    district: "Winterberg",
+    phone: "02981 899510",
+    email: "info@schuh-schweizer.de",
+    website: "https://www.schuh-schweizer.de",
+    rating: 4.4,
+    reviewCount: 82,
+    openingHours: {
+      monday: "09:30 - 18:00",
+      tuesday: "09:30 - 18:00",
+      wednesday: "09:30 - 18:00",
+      thursday: "09:30 - 18:00",
+      friday: "09:30 - 18:00",
+      saturday: "09:30 - 16:00",
+      sunday: "Geschlossen",
+    },
+    description: "Großes Schuhfachgeschäft an der Hauptstraße 1 im Herzen von Winterberg. Vielfältige Auswahl an Damen-, Herren- und Kinderschuhen, modischen Sneakern sowie bequemen Wander- und Outdoorschuhen.",
+    description_nl: "Ruime schoenenwinkel aan de Hauptstraße 1 in het centrum van Winterberg. Grote collectie dames-, heren- en kinderschoenen, comfortabele wandelschoenen en trendy sneakers.",
+    extendedDescription: "Schuh Schweizer an der Hauptstraße 1 (direkt in der verkehrsberuhigten Fußgängerzone von Winterberg) ist die zentrale Anlaufstelle für bequemes und modisches Schuhwerk. Auf geräumiger, barrierefreier Verkaufsfläche präsentiert das Traditionshaus ein umfangreiches Sortiment für die gesamte Familie.\n\nOb sportive Sneaker, bequeme Komfortschuhe mit Wechselfußbett, wetterfeste Wander- und Trekkingschuhe für Wanderungen im Sauerland oder elegante Abendschuhe: Namhafte Marken wie Rieker, Skechers, Tamaris, Gabor, Waldläufer und Lowa garantieren hohe Qualität und beste Passform. Das freundliche Verkaufsteam berät fachkundig bei der Auswahl der idealen Schuhgröße und Weite.",
+    extendedDescription_nl: "Schuh Schweizer aan de Hauptstraße 1 in het voetgangersgebied van Winterberg biedt een compleet aanbod schoenmode voor dames, heren en kinderen. De winkel is gelijkvloers en rolstoeltoegankelijk ingericht.\n\nHet assortiment reikt van casual sneakers en zomersandalen tot stevige wandel- en outdoorschoenen voor bergwandelingen in het Sauerland. Populaire merken zoals Rieker, Skechers, Tamaris, Gabor en Waldläufer staan garant voor een uitstekend draagcomfort en pasvorm. Het team helpt u graag met persoonlijk advies.",
+    featured: false,
+    status: "approved",
+    isActive: true,
+    imageFallback: "SS",
+    services: [
+      "Große Auswahl an Damen-, Herren- und Kinderschuhen",
+      "Wander- & Outdoorschuhe für Sauerland-Touren",
+      "Komfortschuhe mit Spezialweiten & Wechselfußbetten",
+      "Rollstuhlgerechter / barrierefreier Eingang",
+      "Freundliche & kompetente Passform- und Fußberatung",
+      "Zentrale Lage direkt an der Hauptstraße in Winterberg",
+    ],
+    services_nl: [
+      "Brede collectie dames-, heren- en kinderschoenen",
+      "Wandel- en bergschoenen voor tochten in het Sauerland",
+      "Comfortschoenen met uitneembaar voetbed en wijdtematen",
+      "Rolstoelvriendelijke en drempelvrije toegang",
+      "Deskundig en vriendelijk schoen- en pasvormadvies",
+      "Centraal gelegen aan de winkelstraat Hauptstraße",
+    ],
+    products: [
+      "Sneaker, Halbschuhe & Schnürschuhe",
+      "Wanderschuhe, Trekkingschuhe & Outdoorschuhe",
+      "Sandalen, Pantoletten & Hausschuhe",
+      "Stiefel, Stiefeletten & gefütterte Winterschuhe",
+      "Schuhpflege & Pflegemittel",
+    ],
+    products_nl: [
+      "Sneakers, veterschoenen en instappers",
+      "Wandelschoenen en outdoorschoenen",
+      "Sandalen, slippers en pantoffels",
+      "Laarzen, enkellaarsjes en warme winterlaarzen",
+      "Schoenverzorging en onderhoudsproducten",
+    ],
+    searchSynonyms: [
+      "schuh schweizer",
+      "schuh schweizer winterberg",
+      "schuhgeschaeft winterberg",
+      "schuhe hauptstrasse winterberg",
+      "wanderschuhe winterberg",
+      "rieker winterberg",
+      "schuhe kaufen winterberg",
+      "hauptstrasse 1 schuhe",
+    ],
+  },
+
+  {
+    id: "schuhhaus-kleinsorge-zueschen",
+    name: "Schuhhaus Kleinsorge",
+    category: "Einzelhandel",
+    subcategory: "Schuhgeschäfte",
+    additionalCategories: [
+      { category: "Ski, Bike & Sport", subcategory: "Sport & Outdoor" },
+    ],
+    address: "Rosenweg 4, 59955 Winterberg-Züschen",
+    district: "Züschen",
+    phone: "02981 516",
+    rating: 4.9,
+    reviewCount: 19,
+    openingHours: {
+      monday: "08:30 - 12:30, 14:30 - 18:00",
+      tuesday: "08:30 - 12:30, 14:30 - 18:00",
+      wednesday: "08:30 - 12:30",
+      thursday: "08:30 - 12:30, 14:30 - 18:00",
+      friday: "08:30 - 12:30, 14:30 - 18:00",
+      saturday: "08:30 - 12:30",
+      sunday: "Geschlossen",
+    },
+    description: "Traditionsreiches Schuhfachgeschäft am Rosenweg in Winterberg-Züschen. Hochwertige Markenschuhe für Damen, Herren und Kinder mit persönlicher und herzlicher Fachberatung.",
+    description_nl: "Traditionele schoenenspeciaalzaak aan de Rosenweg in Winterberg-Züschen. Kwaliteitsschoenen voor dames, heren en kinderen met persoonlijke en deskundige service.",
+    extendedDescription: "Das Schuhhaus Kleinsorge am Rosenweg 4 im idyllischen Bundesgolddorf Züschen steht seit Generationen für handwerkliche Schuhkompetenz, hochwertige Marken und erstklassige Beratung. Kunden aus dem gesamten Sauerland schätzen die persönliche Betreuung und das familiäre Ambiente fernab der Hektik.\n\nDas Wohlfühl-Sortiment umfasst modische Damenschuhe, bequeme Herrenhalbschuhe, kindgerechte Lauflern- und Alltagsschuhe sowie robuste Wander- und Trekkingschuhe für die umliegende Berg- und Wanderwelt von Züschen und Winterberg. Hier wird großer Wert auf perfekte Passform, gesunde Fußbettung und langlebige Materialien gelegt.",
+    extendedDescription_nl: "Schuhhaus Kleinsorge aan de Rosenweg 4 in het sfeervolle dorp Züschen staat al generaties lang garant voor kwaliteitsschoenen en ouderwetse vakkennis. Zowel bewoners als toeristen waarderen de hartelijke service en persoonlijke aandacht.\n\nHet aanbod bestaat uit stijlvolle damesschoenen, herenschoenen met hoog draagcomfort, stevige kinderschoenen en functionele wandelschoenen voor wandeltochten in de Sauerlandse natuur. Het team zorgt ervoor dat iedere schoen als gegoten zit.",
+    featured: false,
+    status: "approved",
+    isActive: true,
+    imageFallback: "SK",
+    services: [
+      "Persönliche, herzliche und fachkundige Schuhberatung",
+      "Damen-, Herren- und Kinderschuhe namhafter Qualitätsmarken",
+      "Wanderschuhe & robuste Outdoor-Modelle für Sauerland-Wanderungen",
+      "Komfortschuhe mit bequemen Fußbetten und Passformen",
+      "Ruhige, dörfliche Lage in Winterberg-Züschen mit Parkmöglichkeiten",
+    ],
+    services_nl: [
+      "Persoonlijk en deskundig schoenadvies",
+      "Kwaliteitsschoenen voor dames, heren en kinderen",
+      "Wandelschoenen voor tochten rondom Züschen en Winterberg",
+      "Comfortabele pasvormen en ondersteunende voetbedden",
+      "Rustig gelegen in Züschen met gratis parkeren voor de deur",
+    ],
+    products: [
+      "Damen-Halbschuhe, Sneaker, Sandalen & Stiefel",
+      "Herren-Businessschuhe & Freizeitschuhe",
+      "Kinderschuhe mit guter Stützkraft & flexibler Sohle",
+      "Wander- & Trekkingschuhe",
+      "Schuhzubehör, Einlegesohlen & Pflegemittel",
+    ],
+    products_nl: [
+      "Damesschoenen, sneakers, sandalen en laarzen",
+      "Herenschoenen voor vrije tijd en werk",
+      "Kinderschoenen met stevige zolen",
+      "Wandelschoenen en bergschoenen",
+      "Inlegzolen en onderhoudsproducten",
+    ],
+    searchSynonyms: [
+      "schuhhaus kleinsorge",
+      "schuhhaus zueschen",
+      "schuhe zueschen",
+      "schuhgeschaeft zueschen",
+      "kleinsorge rosenweg",
+      "schuhe kleinsorge",
+      "wanderschuhe zueschen",
+    ],
+  },
+
+  {
+    "id": "comes-gruenes-warenhaus",
+    "name": "Comes Grünes Warenhaus",
+    "category": "Einzelhandel",
+    "subcategory": "Haushaltswaren & Deko",
+    "additionalCategories": [
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Blumengeschäfte"
+      },
+      {
+        "category": "Handwerk",
+        "subcategory": "Gartenbauer"
+      }
+    ],
+    "description": "Comes Grünes Warenhaus an der Remmeswiese in Winterberg bietet eine inspirierende Auswahl an Wohnaccessoires, Deko-Artikeln, Pflanzen, Heimtierbedarf sowie Brennstoffen und Heizöl.",
+    "extendedDescription": "Comes Grünes Warenhaus an der Remmeswiese 12 in Winterberg ist das vielseitige Fachgeschäft für schönes Wohnen, florale Dekoration und praktischen Garten- und Heimtierbedarf im Sauerland. Inhaber Georg Comes und sein Team präsentieren auf einladender Ausstellungsfläche ein stets an die Jahreszeiten angepasstes Sortiment.\n\nDas Angebot umfasst trendige Dekoartikel, stilvolle Wohnaccessoires, Geschenkideen sowie hochwertige Zimmer- und Gartenpflanzen, Blumenerden, Rindenmulch und Düngemittel. Für Tierhalter hält das Fachgeschäft eine breite Auswahl an Futtermitteln, Snacks und Zubehör für Hunde, Katzen und Kleintiere bereit. Ein weiteres wichtiges Standbein des Unternehmens ist die zuverlässige Energieversorgung: Vom Vertrieb von Heizöl über Kaminholz, Holzpellets und Holzbriketts bis hin zu Propangasflaschen bietet Comes bewährte Brennstofflösungen inklusive Lieferservice für die Region Winterberg.",
+    "description_nl": "Comes Grünes Warenhaus aan de Remmeswiese in Winterberg biedt een inspirerend assortiment woonaccessoires, decoratie, planten, dierbenodigdheden en brandstoffen.",
+    "extendedDescription_nl": "Comes Grünes Warenhaus aan de Remmeswiese 12 in Winterberg is een veelzijdige speciaalzaak voor sfeervol wonen, tuin en dierbenodigdheden in het Sauerland. Eigenaar Georg Comes en zijn team presenteren een seizoensgebonden assortiment met oog voor detail.\n\nBezoekers vinden er stijlvolle woonaccessoires, decoratieartikelen, kamer- en tuinplanten, potgrond, boomschors en kwaliteitsvoeding en accessoires voor huisdieren. Daarnaast fungeert de onderneming als betrouwbare leverancier van brandstoffen in de regio Winterberg: van openhaardhout, houtpellets en briketten tot propaangas en stookolie.",
+    "address": "Remmeswiese 12, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 929510",
+    "email": "comesgrueneswarenhaus@web.de",
+    "website": "https://www.comesgrueneswarenhaus.de",
+    "rating": 5,
+    "reviewCount": 63,
+    "coordinates": {
+      "lat": 51.1983,
+      "lng": 8.5285
+    },
+    "image": "/comes-gruenes-warenhaus.jpg",
+    "logoUrl": "/comes-gruenes-warenhaus-logo.png",
+    "imageFallback": "CG",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "contactPerson": {
+      "name": "Georg Comes",
+      "role": "Inhaber",
+      "email": "comesgrueneswarenhaus@web.de",
+      "phone": "02981 929510"
+    },
+    "openingHours": {
+      "monday": "09:00 - 13:00, 14:30 - 18:00",
+      "tuesday": "09:00 - 13:00, 14:30 - 18:00",
+      "wednesday": "09:00 - 13:00, 14:30 - 18:00",
+      "thursday": "09:00 - 13:00, 14:30 - 18:00",
+      "friday": "09:00 - 13:00, 14:30 - 18:00",
+      "saturday": "09:00 - 13:00",
+      "sunday": "Geschlossen"
+    },
+    "services": [
+      "Wohnaccessoires, Deko & saisonale Trends",
+      "Zimmer- und Gartenpflanzen, Stauden & Saisonfloristik",
+      "Erden, Rindenmulch, Dünger & Pflanzgefäße",
+      "Heimtierbedarf, Tiernahrung & Zubehör für Hund & Katze",
+      "Brennstoffe: Holzpellets, Holzbriketts & Kaminholz",
+      "Propangas-Flaschenservice (Verkauf & Tausch)",
+      "Heizölvertrieb & Lieferservice",
+      "Persönliche Fachberatung vor Ort"
+    ],
+    "services_nl": [
+      "Woonaccessoires, decoratie en seizoenstrends",
+      "Kamer- en tuinplanten & seizoensbloemen",
+      "Potgrond, boomschors, meststoffen & plantenbakken",
+      "Dierenbenodigdheden, diervoeding & accessoires",
+      "Brandstoffen: houtpellets, briketten & haardhout",
+      "Propaangas gasflessenservice",
+      "Stookolielevering & bezorgservice",
+      "Deskundig persoonlijk advies ter plaatse"
+    ],
+    "products": [
+      "Dekoration & Geschenkartikel",
+      "Garten- und Balkonpflanzen",
+      "Tierfutter & Heimtierzubehör",
+      "Kaminholz, Holzpellets & Briketts",
+      "Propangasflaschen"
+    ],
+    "products_nl": [
+      "Decoratie- en cadeauartikelen",
+      "Tuin- en balkonplanten",
+      "Diervoeding en verzorgingsproducten",
+      "Haardhout, pellets en briketten",
+      "Propaangasflessen"
+    ],
+    "gallery": [
+      "/comes-gruenes-warenhaus.jpg",
+      "/comes-front.jpg"
+    ],
+    "searchSynonyms": [
+      "comes",
+      "comes gruenes warenhaus",
+      "georg comes",
+      "gartencenter winterberg",
+      "blumengeschaeft winterberg",
+      "deko winterberg",
+      "tierbedarf winterberg",
+      "tierfutter winterberg",
+      "kaminholz winterberg",
+      "pellets winterberg",
+      "propangas winterberg",
+      "heizoel winterberg",
+      "remmeswiese 12"
+    ]
+  },
+  {
+    "id": "wohnmobilpark-hochsauerland",
+    "name": "Wohnmobilpark Hochsauerland",
+    "category": "Hotels und Unterkünfte",
+    "subcategory": "Campingplätze",
+    "additionalCategories": [
+      {
+        "category": "Ski, Bike & Sport",
+        "subcategory": "Sport & Outdoor"
+      }
+    ],
+    "description": "Der Wohnmobilpark Hochsauerland an der Remmeswiese in Winterberg bietet moderne, naturnah gelegene Wohnmobilstellplätze mit Strom, Ver- und Entsorgungsstation sowie direktem Zugang zu Skilift und Bikepark.",
+    "extendedDescription": "Der Wohnmobilpark Hochsauerland an der Remmeswiese 8a in Winterberg ist die ideale Anlaufstelle für Wohnmobilreisende und Camper, die die Ferienwelt Winterberg flexibel und naturnah erleben möchten. Der Platz liegt idyllisch am Fuße des Skiliftkarussells (Lift Rauher Busch) und bietet rund 35 terrassenförmig angelegte Stellplätze mit freiem Blick auf die Sauerländer Mittelgebirgslandschaft.\n\nZur Ausstattung gehören moderne Stromanschlüsse (16A), Frischwasserzapfstellen und eine ganzjährig nutzbare Ver- und Entsorgungsstation für Grauwasser und Kassettentoiletten. Gäste profitieren von der unmittelbaren Nähe zum Campingpark Hochsauerland mit der Möglichkeit zur Nutzung der modernen Sanitäranlagen, des Brötchenservices und des WLAN-Netzes. Auch vierbeinige Begleiter sind herzlich willkommen. Dank der zentralen Lage sind sowohl die Wintersport- und Bike-Angebote als auch das Winterberger Stadtzentrum mit Gastronomie und Einkaufsmöglichkeiten in wenigen Gehminuten erreichbar.",
+    "description_nl": "Wohnmobilpark Hochsauerland aan de Remmeswiese in Winterberg biedt moderne camperplaatsen met elektriciteit, servicestation en directe toegang tot het skigebied en bikepark.",
+    "extendedDescription_nl": "Wohnmobilpark Hochsauerland aan de Remmeswiese 8a in Winterberg is de ideale uitvalsbasis voor camperaars in het Sauerland. Gelegen direct onderaan het skigebied (skilift Rauher Busch) beschikt het terrein over circa 35 terrassenvormig aangelegde plaatsen met fraai uitzicht.\n\nElke plaats is voorzien van stroom (16A) en drinkwatervoorziening. Er is een modern verzorgings- en stortstation voor campers aanwezig. Gasten kunnen gebruikmaken van de sanitaire voorzieningen en broodjesservice van de naastgelegen Campingpark Hochsauerland. Honden zijn van harte welkom en het centrum van Winterberg ligt op loopafstand.",
+    "address": "Remmeswiese 8a, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 3249",
+    "website": "https://www.wohnmobilpark-hochsauerland.de",
+    "rating": 4.2,
+    "reviewCount": 75,
+    "coordinates": {
+      "lat": 51.198,
+      "lng": 8.5278
+    },
+    "image": "/wohnmobilpark-hochsauerland.jpg",
+    "logoUrl": "/wohnmobilpark-hochsauerland-logo.png",
+    "imageFallback": "WH",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "openingHours": {
+      "monday": "08:00 - 19:00",
+      "tuesday": "08:00 - 19:00",
+      "wednesday": "08:00 - 19:00",
+      "thursday": "08:00 - 19:00",
+      "friday": "08:00 - 20:00",
+      "saturday": "08:00 - 19:00",
+      "sunday": "08:00 - 18:00"
+    },
+    "services": [
+      "Terrassenförmige Wohnmobilstellplätze im Grünen",
+      "Stromanschlüsse (16A) an den Stellplätzen",
+      "Moderne Ver- und Entsorgungsstation (Frischwasser & Abwasser)",
+      "Hunde herzlich willkommen",
+      "WLAN auf dem Gelände",
+      "Sanitärnutzung über Campingpark Hochsauerland",
+      "Täglicher Brötchenservice",
+      "Direkte Anbindung an Skigebiet (Rauher Busch) & Bikepark"
+    ],
+    "services_nl": [
+      "Terrasvormige camperplaatsen in het groen",
+      "Stroomaansluitingen (16A) op de standplaatsen",
+      "Modern camper servicestation (vers water en vuilwater)",
+      "Honden van harte welkom",
+      "Gratis wifi op het terrein",
+      "Gebruik van sanitair via Campingpark Hochsauerland",
+      "Dagelijkse broodjesservice",
+      "Directe toegang tot het skigebied en bikepark"
+    ],
+    "products": [
+      "Wohnmobilstellplatz Übernachtung",
+      "Strom- und Frischwasserpauschale",
+      "Brötchenservice am Morgen",
+      "SauerlandCard Vorteile"
+    ],
+    "products_nl": [
+      "Overnachting camperplaats",
+      "Stroom- en waterpakket",
+      "Ochtend broodjesservice",
+      "SauerlandCard kortingen"
+    ],
+    "gallery": [
+      "/wohnmobilpark-hochsauerland.jpg",
+      "/wohnmobilpark-stellplatz.jpg"
+    ],
+    "searchSynonyms": [
+      "wohnmobilpark hochsauerland",
+      "wohnmobilstellplatz winterberg",
+      "camperplaats winterberg",
+      "wohnmobilstellplatz sauerland",
+      "campingplatz remmeswiese",
+      "wohnmobil winterberg",
+      "stellplatz rauher busch",
+      "remmeswiese 8a"
+    ]
+  },
+  {
+    "id": "jysk-winterberg",
+    "name": "JYSK Winterberg",
+    "category": "Einzelhandel",
+    "subcategory": "Haushaltswaren & Deko",
+    "additionalCategories": [
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Bekleidung"
+      }
+    ],
+    "description": "JYSK an der Remmeswiese in Winterberg ist Ihr Fachmarkt für skandinavisches Wohnen, Betten, Matratzen, Gartenmöbel und moderne Dekoartikel zu attraktiven Preisen.",
+    "extendedDescription": "Die JYSK-Filiale an der Remmeswiese 2b in Winterberg bringt skandinavischen Wohnstil und erstklassigen Schlafkomfort ins Hochsauerland. Als international führende Fachmarktkette für Möbel und Schlafkultur bietet JYSK (ehemals Dänisches Bettenlager) ein umfassendes Sortiment rund um das behagliche Zuhause.\n\nIm Fokus steht das zertifizierte Schlafstudio mit einer breiten Auswahl an Matratzen, Boxspringbetten, Lattenrosten, Daunendecken und ergonomischen Kissen samt professioneller Schlafberatung. Darüber hinaus finden Kunden moderne Essgruppen, Sofas, Kleiderschränke, Heimtextilien und stilvolle Wohnaccessoires. In den Frühlings- und Sommermonaten begeistert JYSK mit einer großen Gartenmöbel-Ausstellung mit wetterfesten Loungesets, Gartenstühlen, Tischen und Sonnenschirmen. Services wie Click & Collect zur bequemen Online-Reservierung und Abholung im Geschäft, barrierefreier Zugang und großzügige Parkplätze direkt vor dem Ladenlokal runden das Einkaufserlebnis ab.",
+    "description_nl": "JYSK aan de Remmeswiese in Winterberg biedt Scandinavische meubelen, bedden, matrassen, tuinmeubelen en woonaccessoires voor aantrekkelijke prijzen.",
+    "extendedDescription_nl": "JYSK Winterberg aan de Remmeswiese 2b biedt Scandinavisch design en slaapcomfort in het Sauerland. De speciaalzaak beschikt over een complete slaapafdeling met matrassen, boxsprings, dekbedden en kussens met deskundig advies.\n\nDaarnaast biedt JYSK meubelen voor de woon- en eetkamer, stijlvolle woondecoratie en 's zomers een ruime collectie tuinmeubelen en loungesets. Met Click & Collect en gratis parkeergelegenheid voor de deur.",
+    "address": "Remmeswiese 2b, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 9296990",
+    "website": "https://jysk.de",
+    "rating": 4.4,
+    "reviewCount": 154,
+    "coordinates": {
+      "lat": 51.1993,
+      "lng": 8.5268
+    },
+    "image": "/jysk-winterberg.jpg",
+    "logoUrl": "/jysk-logo.svg",
+    "imageFallback": "JY",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "openingHours": {
+      "monday": "10:00 - 18:30",
+      "tuesday": "10:00 - 18:30",
+      "wednesday": "10:00 - 18:30",
+      "thursday": "10:00 - 18:30",
+      "friday": "10:00 - 18:30",
+      "saturday": "09:30 - 18:00",
+      "sunday": "Geschlossen"
+    },
+    "services": [
+      "Skandinavische Möbel (Wohnen, Schlafen, Essen & Büro)",
+      "Bettenstudio: Matratzen, Boxspringbetten, Lattenroste & Kissen",
+      "Bettwäsche, Daunendecken & Wohndecken",
+      "Große Gartenmöbel-Ausstellung (Loungemöbel, Tische, Stühle & Schirme)",
+      "Wohnaccessoires, Deko, Teppiche & Vorhänge",
+      "Click & Collect: Online reservieren und in der Filiale abholen",
+      "Fachberatung rund um gesunden Schlaf",
+      "Kostenlose Parkplätze direkt vor dem Geschäft",
+      "Barrierefreier Zugang"
+    ],
+    "services_nl": [
+      "Scandinavische meubelen (wonen, slapen en eten)",
+      "Slaapstudio: matrassen, boxsprings, lattenbodems en kussens",
+      "Beddengoed, dekbedden en plaids",
+      "Tuinmeubelcollectie (loungesets, tuinstoelen, tafels en parasols)",
+      "Woonaccessoires, decoratie, vloerkleden en gordijnen",
+      "Click & Collect: online reserveren en afhalen in de winkel",
+      "Deskundig slaapadvies",
+      "Gratis parkeren direct voor de deur",
+      "Rolstoeltoegankelijk"
+    ],
+    "products": [
+      "Betten & Matratzen",
+      "Gartenmöbel & Loungesets",
+      "Schränke, Kommoden & Tische",
+      "Bettwaren & Heimtextilien",
+      "Deko-Artikel & Wohnaccessoires"
+    ],
+    "products_nl": [
+      "Bedden & matrassen",
+      "Tuinmeubelen & loungesets",
+      "Kasten, commodes & tafels",
+      "Beddengoed & huistextiel",
+      "Decoratie & woonaccessoires"
+    ],
+    "gallery": [
+      "/jysk-winterberg.jpg"
+    ],
+    "searchSynonyms": [
+      "jysk",
+      "jysk winterberg",
+      "daenisches bettenlager",
+      "dänisches bettenlager winterberg",
+      "moebelgeschaeft winterberg",
+      "matratzen winterberg",
+      "betten winterberg",
+      "gartenmoebel winterberg",
+      "deko winterberg",
+      "remmeswiese 2b"
+    ]
+  },
+  {
+    "id": "school-of-skillz",
+    "name": "SCHOOL OF SKILLZ",
+    "category": "Ski, Bike & Sport",
+    "subcategory": "Sport & Outdoor",
+    "additionalCategories": [
+      {
+        "category": "Freizeit",
+        "subcategory": "Outdoor-Freizeitgebiet"
+      }
+    ],
+    "description": "SCHOOL OF SKILLZ in Winterberg ist deine professionelle Mountainbike-Schule für Fahrtechnik-Kurse, individuelle 1:1 Coachings und actiongeladene MTB-Camps im Sauerland und in den Alpen.",
+    "extendedDescription": "Die SCHOOL OF SKILLZ mit Sitz am Hillebrandweg 26 in Winterberg-Silbach wurde 2019 von Head Coach Niklas Stach gegründet und gehört zu den führenden Adressen für modernes Mountainbike-Coaching in Deutschland. Ob Einsteiger, fortgeschrittene Trail-Liebhaber oder ambitionierte Downhill- und Enduro-Rider: Das Ausbildungskonzept verbindet fundierte Methodik mit maximalem Fahrspaß und individueller Betreuung.\n\nDas Angebot reicht von intensiven 1:1 Privatcoachings über geführte Gruppen-Fahrtechnikkurse im Bikepark Winterberg und auf den anspruchsvollen Naturtrails der Trailpark-Region bis hin zu mehrtägigen Jugend- und Erwachsenen-Camps (u.a. in Leogang und Saalbach-Hinterglemm). Neben Sprungtechniken, Kurvenfahren, Linienwahl und Flow-Optimierung legt das Team großen Wert auf mentale Stärke und Sicherheit auf zwei Rädern. Mit dem Eventformat „Rise of Gravity“ veranstaltet die Schule zudem beeindruckende MTB- und BMX-Shows sowie Workshops für Schulen und Jugendzentren.",
+    "description_nl": "SCHOOL OF SKILLZ in Winterberg is jouw professionele mountainbikeschool voor rijvaardigheidscursussen, 1:1 coaching en actievolle MTB-camps in het Sauerland en de Alpen.",
+    "extendedDescription_nl": "SCHOOL OF SKILLZ, gevestigd aan de Hillebrandweg 26 in Winterberg-Silbach, werd in 2019 opgericht door head coach Niklas Stach en is een toonaangevende mountainbikeschool. Voor beginners, gevorderden en enduro- of downhillrijders biedt de school professionele rijtechnieklessen met maximaal plezier en veiligheid.\n\nHet programma omvat privétrainingen, groepscursussen in het Bikepark Winterberg en de Sauerlandse trails, evenals meerdaagse camps in de Oostenrijkse Alpen (Saalbach, Leogang). Focus ligt op sprongtechniek, bochtenwerk, lijnkeuze en mentaal vertrouwen op de fiets.",
+    "address": "Hillebrandweg 26, 59955 Winterberg-Silbach",
+    "district": "Silbach",
+    "phone": "0176 72382333",
+    "email": "schoolofskillz@dirtsckr.com",
+    "website": "https://www.schoolofskillz.de",
+    "rating": 5,
+    "reviewCount": 77,
+    "coordinates": {
+      "lat": 51.2295,
+      "lng": 8.4725
+    },
+    "image": "/school-of-skillz-logo.png",
+    "logoUrl": "/school-of-skillz-logo.png",
+    "imageFallback": "SS",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "contactPerson": {
+      "name": "Niklas Stach",
+      "role": "Gründer & Head Coach",
+      "email": "schoolofskillz@dirtsckr.com",
+      "phone": "0176 72382333"
+    },
+    "openingHours": {
+      "monday": "08:00 - 20:00",
+      "tuesday": "08:00 - 20:00",
+      "wednesday": "08:00 - 20:00",
+      "thursday": "08:00 - 20:00",
+      "friday": "08:00 - 20:00",
+      "saturday": "08:00 - 20:00",
+      "sunday": "08:00 - 20:00"
+    },
+    "services": [
+      "Mountainbike-Fahrtechnik-Kurse (Basic, Advanced & Pro)",
+      "1:1 Privat-Coaching & Mentaltraining",
+      "Bikepark Winterberg Coaching & Kurven-/Sprungtraining",
+      "Mehrtägige MTB-Camps für Jugendliche & Erwachsene",
+      "Kids Camps & Nachwuchsförderung",
+      "Geführte Enduro- & Trail-Touren im Sauerland",
+      "Rise of Gravity Actionsport-Shows & Workshops"
+    ],
+    "services_nl": [
+      "Mountainbike rijvaardigheidscursussen (basis, gevorderd & pro)",
+      "1:1 privé coaching & mentale training",
+      "Bikepark Winterberg coaching, bochten- en sprongtraining",
+      "Meerdaagse MTB-camps voor jongeren en volwassenen",
+      "Kids camps & jeugdontwikkeling",
+      "Begeleide enduro- en trailtours in het Sauerland",
+      "Actionsport shows en workshops"
+    ],
+    "products": [
+      "MTB Fahrtechnik-Kurse",
+      "Bikepark Coachings",
+      "Mehrtages-Camps",
+      "Gutscheine für Bike-Kurse"
+    ],
+    "products_nl": [
+      "MTB rijtechnieklessen",
+      "Bikepark coaching",
+      "Meerdaagse camps",
+      "Cadeaubonnen voor fietscursussen"
+    ],
+    "gallery": [
+      "/school-of-skillz-logo.png"
+    ],
+    "searchSynonyms": [
+      "school of skillz",
+      "niklas stach",
+      "mountainbikeschule winterberg",
+      "mtb schule winterberg",
+      "fahrtechnikkurs winterberg",
+      "bikepark coaching",
+      "mtb camp winterberg",
+      "downhill kurs winterberg",
+      "hillebrandweg 26",
+      "silbach bike"
+    ]
+  },
+  {
+    "id": "farben-koester-siedlinghausen",
+    "name": "Farben Köster GmbH & Co. KG",
+    "category": "Handwerk",
+    "subcategory": "Maler & Lackierer",
+    "additionalCategories": [
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Haushaltswaren & Deko"
+      },
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Baustoffe"
+      }
+    ],
+    "description": "Farben Köster in Winterberg-Siedlinghausen ist Ihr traditionsreicher Meisterbetrieb und Farbenfachgeschäft für Malerarbeiten, Raumgestaltung, Bodenbeläge und Fassadenrenovierungen.",
+    "extendedDescription": "Farben Köster GmbH & Co. KG (Köster farbe + raum) an der Hochsauerlandstraße 78 in Winterberg-Siedlinghausen steht seit vielen Jahrzehnten für handwerkliche Perfektion und erstklassige Materialqualität. Der renommierte Maler- und Raumausstattungsbetrieb verbindet professionelles Handwerk mit einem gut sortierten Farbenfachgeschäft vor Ort.\n\nDas Leistungsspektrum umfasst sämtliche Innen- und Außenmalerarbeiten: Von modernen Wandgestaltungen, kreativen Spachtel- und Wischtechniken über Tapezierarbeiten bis hin zum langlebigen Fassadenschutz und Wärmedämmverbundsystemen (WDVS). Ein besonderer Schwerpunkt liegt im Bereich Bodenbeläge – ob edles Parkett, hochwertiges Vinyl, Designbeläge oder behagliche Teppichböden. Im Fachgeschäft an der Hochsauerlandstraße profitieren Kunden von einer computergestützten Farbmischanlage für individuelle Wunschfarbtöne, Lacke und Lasuren sowie von einer umfassenden Tapeten- und Bodenbelagsausstellung mit fachkundiger Beratung.",
+    "description_nl": "Farben Köster in Winterberg-Siedlinghausen is een schildersbedrijf en verfspeciaalzaak voor schilderwerk, interieurafwerking, vloerbedekking en gevelrenovatie.",
+    "extendedDescription_nl": "Farben Köster GmbH & Co. KG aan de Hochsauerlandstraße 78 in Winterberg-Siedlinghausen is een toonaangevend schilders- en interieurbedrijf in het Sauerland. Het bedrijf combineert vakkundig schilderwerk met een goed gesorteerde verfspeciaalzaak.\n\nHet dienstenpakket omvat binnen- en buitenschilderwerk, behangwerk, creatieve wandafwerking en gevelisolatie. Daarnaast levert en legt Farben Köster hoogwaardige vloeren zoals parket, pvc, vinyl en tapijt. In de winkel is een computergestuurde verfmengmachine aanwezig voor alle gewenste kleuren en lakken.",
+    "address": "Hochsauerlandstraße 78, 59955 Winterberg-Siedlinghausen",
+    "district": "Siedlinghausen",
+    "phone": "02983 348",
+    "email": "info@farben-koester.de",
+    "website": "https://www.farben-koester.de",
+    "rating": 4.8,
+    "reviewCount": 32,
+    "coordinates": {
+      "lat": 51.2462,
+      "lng": 8.4988
+    },
+    "image": "/farben-koester-siedlinghausen.jpg",
+    "logoUrl": "/farben-koester-logo.png",
+    "imageFallback": "FK",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "openingHours": {
+      "monday": "08:00 - 12:30, 14:00 - 18:00",
+      "tuesday": "08:00 - 12:30, 14:00 - 18:00",
+      "wednesday": "08:00 - 12:30, 14:00 - 18:00",
+      "thursday": "08:00 - 12:30, 14:00 - 18:00",
+      "friday": "08:00 - 12:30, 14:00 - 18:00",
+      "saturday": "08:00 - 12:30",
+      "sunday": "Geschlossen"
+    },
+    "services": [
+      "Maler-, Lackier- & Tapezierarbeiten (Innen & Außen)",
+      "Computergestützte Farbmischanlage für Wunschfarbtöne",
+      "Kreative Spachtel- & Wandgestaltungstechniken",
+      "Bodenbeläge: Parkett, Vinyl, Designbeläge & Teppichböden",
+      "Fassadenanstriche, Betonschutz & Fassadendämmung (WDVS)",
+      "Verkauf von Profi-Farben, Lacken, Lasuren & Werkzeugen",
+      "Lieferdienst & Vor-Ort-Beratung"
+    ],
+    "services_nl": [
+      "Schilder-, lak- en behangwerkzaamheden (binnen & buiten)",
+      "Computergestuurde verfmengservice voor alle kleurtinten",
+      "Creatieve wandafwerking en stuctechnieken",
+      "Vloeren: parket, pvc/vinyl, laminaat en tapijt",
+      "Gevelverf, betonbescherming en gevelisolatie",
+      "Verkoop van professionele verf, beits, lak en gereedschap",
+      "Bezorgservice en advies aan huis"
+    ],
+    "products": [
+      "Wand- und Fassadenfarben",
+      "Lacke, Lasuren & Holzschutz",
+      "Parkett, Vinyl- & Designböden",
+      "Tapetenkollektionen & Wandbeläge",
+      "Malerwerkzeuge & Zubehör"
+    ],
+    "products_nl": [
+      "Muur- en gevelverf",
+      "Lakken, beitsen en houtbescherming",
+      "Parket-, vinyl- en pvc-vloeren",
+      "Behangcollecties",
+      "Schildersgereedschap"
+    ],
+    "gallery": [
+      "/farben-koester-siedlinghausen.jpg"
+    ],
+    "searchSynonyms": [
+      "farben koester",
+      "koester farbe raum",
+      "maler siedlinghausen",
+      "farbengeschaeft winterberg",
+      "farben winterberg",
+      "bodenbelaege winterberg",
+      "parkett siedlinghausen",
+      "farbmischservice winterberg",
+      "hochsauerlandstrasse 78"
+    ]
+  },
+  {
+    "id": "hotel-marleen-siedlinghausen",
+    "name": "Hotel Marleen",
+    "category": "Hotels und Unterkünfte",
+    "subcategory": "Hotels",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Restaurant"
+      }
+    ],
+    "description": "Das 3-Sterne Hotel Marleen in Winterberg-Siedlinghausen bietet komfortable Zimmer, All-Inclusive-Verwöhnpakete und eine idyllische Lage im Grünen nahe dem Sauerländer Bergland.",
+    "extendedDescription": "Das Hotel Marleen (Enjoyhotel Marleen) am Alten Hagen 1 in Winterberg-Siedlinghausen ist ein gastfreundliches 3-Sterne-Hotel inmitten der malerischen Sauerländer Mittelgebirgslandschaft. Direkt an einem plätschernden Bachlauf und umgeben von einem weitläufigen Garten bietet das Haus Ruhe und Entspannung für Urlauber, Wanderer, Radfahrer und Reisegruppen.\n\nDas beliebte Enjoyhotel-Konzept zeichnet sich durch unbeschwerten Komfort aus: Neben einem reichhaltigen Frühstücksbuffet und abendlichen Mehr-Gänge-Menüs oder Themenbuffets genießen Gäste je nach Buchung ein All-Inclusive-Arrangement mit inkludierten Getränken, Nachmittagssnacks und Unterhaltungsabenden. Die gemütlich eingerichteten Zimmer verfügen über moderne Bäder, TV und teils Balkon mit Blick ins Grüne. Durch die direkte Nähe zu Wanderwegen, Loipen und dem Bahnhof Siedlinghausen ist das Hotel der ideale Ausgangspunkt für Ausflüge in die gesamte Ferienregion Winterberg.",
+    "description_nl": "Het 3-sterren Hotel Marleen in Winterberg-Siedlinghausen biedt comfortabele kamers, all-inclusive arrangementen en een idyllische ligging aan een beekje in het Sauerland.",
+    "extendedDescription_nl": "Hotel Marleen (Enjoyhotel Marleen) aan de Alter Hagen 1 in Winterberg-Siedlinghausen is een sfeervol 3-sterrenhotel omgeven door het heuvelachtige landschap van het Sauerland. Rustig gelegen aan een kabbelende beek en eigen tuin, is het hotel ideaal voor rustzoekers, wandelaars en fietsers.\n\nHet populaire Enjoyhotel-concept biedt een zorgeloze all-inclusive formule met ontbijt, lunch/lunchpakket, dinerbuffet, gratis drankjes in de avond en regelmatig livemuziek. De comfortabele kamers zijn voorzien van alle gemakken. Uitstekend bereikbaar en vlakbij wandelpaden en de bezienswaardigheden van Winterberg.",
+    "address": "Alter Hagen 1, 59955 Winterberg-Siedlinghausen",
+    "district": "Siedlinghausen",
+    "phone": "02983 4059969",
+    "website": "https://www.enjoyhotels.com/de/hotels/hotel-marleen",
+    "rating": 4.4,
+    "reviewCount": 549,
+    "coordinates": {
+      "lat": 51.2486,
+      "lng": 8.4975
+    },
+    "image": "/hotel-marleen-siedlinghausen.jpg",
+    "imageFallback": "HM",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "openingHours": {
+      "monday": "07:00 - 22:00",
+      "tuesday": "07:00 - 22:00",
+      "wednesday": "07:00 - 22:00",
+      "thursday": "07:00 - 22:00",
+      "friday": "07:00 - 22:00",
+      "saturday": "07:00 - 22:00",
+      "sunday": "07:00 - 22:00"
+    },
+    "services": [
+      "Komfortable 3-Sterne-Hotelzimmer (Einzel-, Doppel- & Familienzimmer)",
+      "All-Inclusive-Verpflegungspakete (Frühstück, Lunch & Abendbuffet)",
+      "Hotelrestaurant & gemütliche Hotelbar",
+      "Gartenterrasse direkt am Bachlauf",
+      "Kostenfreie Hotelparkplätze & WLAN",
+      "Aufenthaltsraum mit Billard & Unterhaltungsprogramm",
+      "Haustiere auf Anfrage willkommen"
+    ],
+    "services_nl": [
+      "Comfortabele 3-sterren hotelkamers (1-, 2- en familiekamers)",
+      "All-inclusive verzorging (ontbijt, lunchpakket & diner)",
+      "Hotelrestaurant en gezellige bar",
+      "Tuinterras aan de beek",
+      "Gratis parkeren en wifi",
+      "Recreatiezaal met biljart en entertainment",
+      "Huisdieren op aanvraag welkom"
+    ],
+    "products": [
+      "Hotelübernachtungen & Urlaubsarrangements",
+      "All-Inclusive Wochenend- & Wochentrips",
+      "Gruppenreisen & Busreisen Angebote"
+    ],
+    "products_nl": [
+      "Hotelovernachtingen & arrangementen",
+      "All-inclusive weekend- en midweekreizen",
+      "Groepsreizen en busreizen"
+    ],
+    "gallery": [
+      "/hotel-marleen-siedlinghausen.jpg"
+    ],
+    "searchSynonyms": [
+      "hotel marleen",
+      "enjoyhotel marleen",
+      "hotel marleen siedlinghausen",
+      "enjoy hotel winterberg",
+      "hotel siedlinghausen",
+      "alter hagen 1",
+      "all inclusive hotel winterberg"
+    ]
+  },
+  {
+    "id": "dannys-nachtcafe-winterberg",
+    "name": "Danny's Nachtcafé",
+    "category": "Gastronomie",
+    "subcategory": "Kneipen und Bars",
+    "additionalCategories": [
+      {
+        "category": "Freizeit",
+        "subcategory": "Kneipen und Bars"
+      }
+    ],
+    "description": "Danny's Nachtcafé am Waltenberg in Winterberg ist die legendäre Kult-Kneipe und Nachtbar für gesellige Abende, frisch gezapftes Bier, Cocktails und ausgelassene Stimmung bis in die Morgenstunden.",
+    "extendedDescription": "Danny's Nachtcafé an der zentralen Flaniermeile Am Waltenberg 34 in Winterberg ist eine echte Institution im Nachtleben der Sauerländer Wintersport-Metropole. Unter der herzlichen und temperamentvollen Führung von Inhaberin Daniela „Danny“ Tillmann treffen sich hier Einheimische, Saisonkräfte, Urlauber und Wintersportler zu urigen, unvergesslichen Kneipenabenden.\n\nDie gemütliche Bar besticht durch ihren authentischen Charme fernab austauschbarer Clubs: Frisch gezapfte Bierspezialitäten, gut sortierte Spirituosen, Longdrinks und bunte Cocktails werden an der langen Theke serviert. Gute Musik, Dart, Spielautomaten und lockere Gespräche sorgen für erstklassige Feierlaune – regelmäßig bis in die frühen Morgenstunden. Für alle Nachtschwärmer, die nach dem Restaurantbesuch, Après-Ski oder Club noch nicht nach Hause wollen, ist Danny's Nachtcafé der perfekte Treffpunkt.",
+    "description_nl": "Danny's Nachtcafé aan de Waltenberg in Winterberg is een legendarische nachtbar en café voor gezelligheid, vers getapt bier, cocktails en sfeer tot in de vroege uurtjes.",
+    "extendedDescription_nl": "Danny's Nachtcafé aan de gezellige promenade Am Waltenberg 34 in Winterberg is een begrip in het plaatselijke uitgaansleven. Gerund door gastvrouw Daniela 'Danny' Tillmann is het dé ontmoetingsplek voor een drankje na het skiën of een lange stapavond.\n\nMet vers getapt bier, cocktails, darts en een ongedwongen kroegsfeer tot diep in de nacht.",
+    "address": "Am Waltenberg 34, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 908900",
+    "rating": 4,
+    "reviewCount": 123,
+    "coordinates": {
+      "lat": 51.1947,
+      "lng": 8.5312
+    },
+    "image": "/dannys-nachtcafe-winterberg.jpg",
+    "imageFallback": "DN",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "contactPerson": {
+      "name": "Daniela Tillmann",
+      "role": "Inhaberin",
+      "phone": "02981 908900"
+    },
+    "openingHours": {
+      "monday": "Geschlossen",
+      "tuesday": "Geschlossen",
+      "wednesday": "22:00 - 05:00",
+      "thursday": "22:00 - 05:00",
+      "friday": "22:00 - 05:00",
+      "saturday": "22:00 - 05:00",
+      "sunday": "Geschlossen"
+    },
+    "services": [
+      "Kult-Nachtbar & gemütlicher Nacht-Treffpunkt",
+      "Frisch gezapftes Fassbier & internationale Flaschenbiere",
+      "Cocktails, Longdrinks & hochwertige Spirituosen",
+      "Gesellige Theke mit Musik & Entertainment",
+      "Dart & Spielautomaten",
+      "Speisen vor Ort (Snacks & Kneipenspeisen)"
+    ],
+    "services_nl": [
+      "Gezellige nachtbar en late night ontmoetingsplek",
+      "Vers getapt pils en speciaalbieren",
+      "Cocktails, mixdrankjes en sterke dranken",
+      "Bar met muziek en sfeer",
+      "Darts en speelautomaten",
+      "Barhapjes en snacks"
+    ],
+    "products": [
+      "Fassbiere & Craft-Biere",
+      "Cocktails & Longdrinks",
+      "Shots & Schnäpse",
+      "Alkoholfreie Getränke"
+    ],
+    "products_nl": [
+      "Tapbieren en bieren op fles",
+      "Cocktails en mixdranken",
+      "Shots en borrels",
+      "Frisdranken"
+    ],
+    "gallery": [
+      "/dannys-nachtcafe-winterberg.jpg"
+    ],
+    "searchSynonyms": [
+      "dannys nachtcafe",
+      "danny nachtcafe",
+      "daniela tillmann",
+      "nachtbar winterberg",
+      "bar am waltenberg",
+      "kneipe winterberg",
+      "ausgehen winterberg",
+      "party winterberg",
+      "am waltenberg 34",
+      "cocktailbar winterberg"
+    ]
+  },
+  {
+    "id": "bierstube-abendsonne-niedersfeld",
+    "name": "Bierstube Abendsonne",
+    "category": "Gastronomie",
+    "subcategory": "Kneipen und Bars",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Restaurant"
+      }
+    ],
+    "description": "Die Bierstube Abendsonne im Hotel Niedersfeld in Winterberg ist eine gemütlich-rustikale Einkehr für frisch gezapfte Biere, herzhafte sauerländische Spezialitäten und gesellige Runden.",
+    "extendedDescription": "Die Bierstube Abendsonne an der Ruhrstraße 50 in Winterberg-Niedersfeld – integriert im gastfreundlichen Hotel Niedersfeld – lädt Einheimische, Wanderer und Feriengäste zu bodenständiger Gemütlichkeit ein. In traditionellem Holz- und Wirtshausambiente mit einladender Theke werden kühle Biere vom Fass, erlesene Weine und regionale Spirituosen ausgeschenkt.\n\nDie angeschlossene Küche serviert herzhafte sauerländische Klassiker, Schnitzelvariationen, knackige Salate und saisonale Schmankerl aus frischen Zutaten der Region. Ob zum Ausklang einer ausgedehnten Wanderung rund um den Hillebachsee und die Hochheide, nach einer Mountainbike-Tour oder zum geselligen Feierabend: Die Bierstube Abendsonne bietet ehrliche Gastlichkeit, einen freundlichen Service und auf Wunsch auch Speisen zur bequemen Abholung vor dem Lokal.",
+    "description_nl": "Bierstube Abendsonne in Hotel Niedersfeld is een sfeervol en rustiek café-restaurant voor vers getapt bier, streekgerechten en gezellige avonden in het Sauerland.",
+    "extendedDescription_nl": "Bierstube Abendsonne aan de Ruhrstraße 50 in Winterberg-Niedersfeld, gevestigd in Hotel Niedersfeld, biedt typisch Sauerlandse gastvrijheid. Met een traditionele houten bar en gezellige zithoeken kunnen gasten genieten van een vers getapt biertje, wijnen en stevige streekgerechten zoals schnitzels en seizoensspecialiteiten.",
+    "address": "Ruhrstraße 50, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "phone": "02985 97922",
+    "website": "https://hotel-niedersfeld.de",
+    "rating": 4.4,
+    "reviewCount": 14,
+    "coordinates": {
+      "lat": 51.2585,
+      "lng": 8.5288
+    },
+    "image": "/bierstube-abendsonne-niedersfeld.jpg",
+    "imageFallback": "BA",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "openingHours": {
+      "monday": "17:00 - 23:00",
+      "tuesday": "17:00 - 23:00",
+      "wednesday": "17:00 - 23:00",
+      "thursday": "17:00 - 23:00",
+      "friday": "17:00 - 24:00",
+      "saturday": "17:00 - 24:00",
+      "sunday": "17:00 - 22:00"
+    },
+    "services": [
+      "Rustikale Bierstube mit gemütlicher Theke",
+      "Frisch gezapfte Bierspezialitäten vom Fass",
+      "Traditionelle deutsche & sauerländische Küche",
+      "Speisen vor Ort & Abholung vor dem Laden",
+      "LGBTQ+-freundliche Atmosphäre",
+      "Sonnenterrasse & Parkplätze am Hotel"
+    ],
+    "services_nl": [
+      "Rustieke bierstube met gezellige toog",
+      "Vers getapte bieren van het vat",
+      "Traditionele Duitse en streekgerechten",
+      "Dineren ter plaatse & afhaalservice",
+      "LGBTQ+-vriendelijke gastvrijheid",
+      "Zonneterras en parkeergelegenheid"
+    ],
+    "products": [
+      "Fassbiere & Pilsner Spezialitäten",
+      "Schnitzel- & Fleischgerichte",
+      "Sauerländer Spezialitäten",
+      "Regionale Spirituosen & Weine"
+    ],
+    "products_nl": [
+      "Tapbieren en Duitse pils",
+      "Schnitzels en vleesgerechten",
+      "Sauerlandse streekgerechten",
+      "Lokale likeuren en wijnen"
+    ],
+    "gallery": [
+      "/bierstube-abendsonne-niedersfeld.jpg"
+    ],
+    "searchSynonyms": [
+      "bierstube abendsonne",
+      "abendsonne niedersfeld",
+      "kneipe niedersfeld",
+      "restaurant hotel niedersfeld",
+      "bierstube niedersfeld",
+      "ruhrstrasse 50",
+      "gaststaette niedersfeld"
+    ]
+  },
+  {
+    "id": "malerbetrieb-frank-gladen",
+    "name": "Malerbetrieb Frank Gladen",
+    "category": "Handwerk",
+    "subcategory": "Maler & Lackierer",
+    "additionalCategories": [
+      {
+        "category": "Handwerk",
+        "subcategory": "Bauunternehmen"
+      }
+    ],
+    "description": "Der Malerbetrieb Frank Gladen an der Aschenhütte in Winterberg ist Ihr zuverlässiger Handwerksmeisterbetrieb für professionelle Maler-, Tapezier- und Fassadenarbeiten.",
+    "extendedDescription": "Der Malerbetrieb Frank Gladen mit Sitz An der Aschenhütte 5 in Winterberg steht privaten und gewerblichen Bauherren als zuverlässiger Partner für hochwertige Maler- und Renovierungsarbeiten zur Seite. Der Meisterbetrieb führt sämtliche Anstrich- und Lackierarbeiten im Innen- und Außenbereich fachgerecht und termintreu aus.\n\nDas Leistungsspektrum umfasst klassische Malerarbeiten, moderne Tapezierungen, kreative Wandgestaltungstechniken sowie professionelle Fassadenanstriche zum dauerhaften Schutz gegen Witterungseinflüsse im Sauerland. Bauherren und Renovierer profitieren von persönlicher Beratung vor Ort, sauberer Ausführung und handwerklicher Sorgfalt.",
+    "description_nl": "Schildersbedrijf Frank Gladen aan de Aschenhütte in Winterberg is een vakkundig schildersbedrijf voor schilder-, behang- en gevelwerkzaamheden.",
+    "extendedDescription_nl": "Malerbetrieb Frank Gladen aan de An d. Aschenhütte 5 in Winterberg verzorgt professioneel schilderwerk voor particulieren en bedrijven. Van binnen- en buitenschilderwerk tot behangwerk, creatieve wandafwerking en gevelrenovaties in het Sauerland.",
+    "address": "An d. Aschenhütte 5, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 2972",
+    "coordinates": {
+      "lat": 51.1949,
+      "lng": 8.5305
+    },
+    "imageFallback": "FG",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "openingHours": {
+      "monday": "07:30 - 17:00",
+      "tuesday": "07:30 - 17:00",
+      "wednesday": "07:30 - 17:00",
+      "thursday": "07:30 - 17:00",
+      "friday": "07:30 - 15:00",
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
+    },
+    "services": [
+      "Maler-, Anstrich- & Lackierarbeiten im Innenbereich",
+      "Tapezierarbeiten & Wandbeläge aller Art",
+      "Fassadenanstriche & witterungsbeständiger Fassadenschutz",
+      "Lackierarbeiten für Türen, Fenster & Holzelemente",
+      "Spachtelarbeiten & Untergrundvorbereitung",
+      "Kreative Farbgestaltung & persönliche Beratung vor Ort"
+    ],
+    "services_nl": [
+      "Binnenschilderwerk, sauswerk en lakwerk",
+      "Behangwerk en wandbekleding",
+      "Gevelschilderwerk en weerbestendige gevelbescherming",
+      "Lakwerk voor deuren, kozijnen en houtconstructies",
+      "Plamuurwerk en voorbereiding van ondergronden",
+      "Kleuradvies en vakkundige uitvoering ter plaatse"
+    ],
+    "products": [
+      "Maler- und Anstrichleistungen",
+      "Fassadenrenovierungen",
+      "Tapezier- und Lackierarbeiten"
+    ],
+    "products_nl": [
+      "Schilder- en lakwerken",
+      "Gevelrenovaties",
+      "Behang- en decoratiewerk"
+    ],
+    "searchSynonyms": [
+      "frank gladen",
+      "malerbetrieb frank gladen",
+      "maler gladen",
+      "maler winterberg",
+      "an der aschenhuette 5",
+      "tapezierer winterberg",
+      "fassadenanstrich winterberg"
+    ]
+  },
+  {
+    "id": "haargenau-by-yvonne-winterberg",
+    "name": "haargenau by Yvonne",
+    "category": "Handwerk",
+    "subcategory": "Friseur",
+    "additionalCategories": [
+      {
+        "category": "Gesundheit & Medizin",
+        "subcategory": "Kosmetikstudios"
+      }
+    ],
+    "description": "haargenau by Yvonne in Winterberg-Elkeringhausen ist Ihr persönlicher Wohlfühl-Friseursalon für moderne Haarschnitte, brillante Colorationen, Balayage und typgerechtes Styling.",
+    "extendedDescription": "haargenau by Yvonne am Elkerhagen 6 im malerischen Winterberger Ortsteil Elkeringhausen bietet Friseurhandwerk mit Leidenschaft, Herz und höchstem Qualitätsanspruch. Inhaberin Yvonne empfängt ihre Kundinnen und Kunden in einem modern und behaglich eingerichteten Salonambiente, das zum Entspannen und Abschalten einlädt.\n\nDas Leistungsspektrum reicht von typgerechten Damen-, Herren- und Kinderhaarschnitten über meisterhafte Farb- und Strähnentechniken (wie natürliches Balayage, Babylights und Glossings) bis hin zu pflegenden Haarkuren und festlichen Hochsteckfrisuren für besondere Anlässe. Eine ausführliche persönliche Beratung, schonende Premium-Pflegeprodukte und ein feines Gespür für aktuelle Trends sorgen für perfekte Wohlfühlerlebnisse und gesundes, glänzendes Haar.",
+    "description_nl": "haargenau by Yvonne in Winterberg-Elkeringhausen is een sfeervol kapsalon voor moderne kapsels, schitterende kleuringen, balayage en persoonlijke styling.",
+    "extendedDescription_nl": "haargenau by Yvonne aan de Elkerhagen 6 in Winterberg-Elkeringhausen staat voor professioneel kappersvakmanschap in een ontspannen sfeer. Eigenares Yvonne biedt knip- en stylingbehandelingen voor dames, heren en kinderen, inclusief balayage, highlights, verzorgende haarmaskers en feestelijke kapsels.",
+    "address": "Elkerhagen 6, 59955 Winterberg-Elkeringhausen",
+    "district": "Elkeringhausen",
+    "phone": "01512 8985055",
+    "rating": 5,
+    "reviewCount": 8,
+    "coordinates": {
+      "lat": 51.2135,
+      "lng": 8.5724
+    },
+    "image": "/haargenau-by-yvonne-winterberg.jpg",
+    "imageFallback": "HY",
+    "isPremium": false,
+    "isActive": true,
+    "status": "approved",
+    "contactPerson": {
+      "name": "Yvonne",
+      "role": "Inhaberin & Friseurmeisterin",
+      "phone": "01512 8985055"
+    },
+    "openingHours": {
+      "monday": "Geschlossen",
+      "tuesday": "09:00 - 18:00",
+      "wednesday": "09:00 - 18:00",
+      "thursday": "09:00 - 18:00",
+      "friday": "09:00 - 18:00",
+      "saturday": "08:30 - 13:00",
+      "sunday": "Geschlossen"
+    },
+    "services": [
+      "Damen-, Herren- & Kinderhaarschnitte",
+      "Brillante Colorationen, Tönungen & Glossings",
+      "Moderne Strähnentechniken & Balayage",
+      "Waschen, Föhnen & typgerechtes Styling",
+      "Hochsteckfrisuren & Brautstyling für Hochzeiten",
+      "Intensive Haarkuren & Kopfhautpflege",
+      "Augenbrauen zupfen & färben, Wimpernfärben"
+    ],
+    "services_nl": [
+      "Dames-, heren- en kinderkapsels",
+      "Kleuringen, tinten en glossings",
+      "Moderne highlighttechnieken en balayage",
+      "Wassen, föhnen en individuele styling",
+      "Bruidskapsels en opsteekkapsels",
+      "Verzorgende haar- en hoofdhuidmaskers",
+      "Wenkbrauwen epileren en verven, wimperverf"
+    ],
+    "products": [
+      "Haarpflege- und Stylingprodukte",
+      "Pflegeshampoos & Haarkuren",
+      "Gutscheine für Friseurleistungen"
+    ],
+    "products_nl": [
+      "Haarverzorgings- en stylingproducten",
+      "Shampoos en haarmaskers",
+      "Cadeaubonnen voor kapperbehandelingen"
+    ],
+    "gallery": [
+      "/haargenau-by-yvonne-winterberg.jpg"
+    ],
+    "searchSynonyms": [
+      "haargenau by yvonne",
+      "haargenau yvonne winterberg",
+      "friseur elkeringhausen",
+      "friseur winterberg",
+      "haarschnitt elkeringhausen",
+      "friseursalon winterberg",
+      "balayage winterberg",
+      "elkerhagen 6"
+    ]
+  },
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {

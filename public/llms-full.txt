@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (424 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (436 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1010,6 +1010,28 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/apartment-winterberg-magic-mountain
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/apartment-winterberg-magic-mountain
 
+#### [Wohnmobilpark Hochsauerland](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/campingplaetze/wohnmobilpark-hochsauerland)
+- **Kategorie:** Hotels und Unterkünfte > Campingplätze
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 8a, 59955 Winterberg
+- **Telefon:** 02981 3249
+- **Webseite:** https://www.wohnmobilpark-hochsauerland.de
+- **Beschreibung (DE):** Der Wohnmobilpark Hochsauerland an der Remmeswiese in Winterberg bietet moderne, naturnah gelegene Wohnmobilstellplätze mit Strom, Ver- und Entsorgungsstation sowie direktem Zugang zu Skilift und Bikepark.
+- **Beschreibung (NL):** Wohnmobilpark Hochsauerland aan de Remmeswiese in Winterberg biedt moderne camperplaatsen met elektriciteit, servicestation en directe toegang tot het skigebied en bikepark.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/campingplaetze/wohnmobilpark-hochsauerland
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/campings/wohnmobilpark-hochsauerland
+
+#### [Hotel Marleen](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-marleen)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Alter Hagen 1, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 4059969
+- **Webseite:** https://www.enjoyhotels.com/de/hotels/hotel-marleen
+- **Beschreibung (DE):** Das 3-Sterne Hotel Marleen in Winterberg-Siedlinghausen bietet komfortable Zimmer, All-Inclusive-Verwöhnpakete und eine idyllische Lage im Grünen nahe dem Sauerländer Bergland.
+- **Beschreibung (NL):** Het 3-sterren Hotel Marleen in Winterberg-Siedlinghausen biedt comfortabele kamers, all-inclusive arrangementen en een idyllische ligging aan een beekje in het Sauerland.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-marleen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-marleen
+
 ### Kategorie: Handwerk
 
 #### [Bröker Objekteinrichtungen GmbH & Co. KG](https://www.winterberg-verzeichnis.de/handwerk/schreinereien/broeker-objekteinrichtungen-gmbh-und-co-kg)
@@ -1587,6 +1609,37 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/snow-tec-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bouwbedrijven/snow-tec-winterberg
 
+#### [Farben Köster GmbH & Co. KG](https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/farben-koester-gmbh-und-co-kg)
+- **Kategorie:** Handwerk > Maler & Lackierer
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Hochsauerlandstraße 78, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 348
+- **Webseite:** https://www.farben-koester.de
+- **Beschreibung (DE):** Farben Köster in Winterberg-Siedlinghausen ist Ihr traditionsreicher Meisterbetrieb und Farbenfachgeschäft für Malerarbeiten, Raumgestaltung, Bodenbeläge und Fassadenrenovierungen.
+- **Beschreibung (NL):** Farben Köster in Winterberg-Siedlinghausen is een schildersbedrijf en verfspeciaalzaak voor schilderwerk, interieurafwerking, vloerbedekking en gevelrenovatie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/farben-koester-gmbh-und-co-kg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/schilders/farben-koester-gmbh-und-co-kg
+
+#### [Malerbetrieb Frank Gladen](https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/malerbetrieb-frank-gladen)
+- **Kategorie:** Handwerk > Maler & Lackierer
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** An d. Aschenhütte 5, 59955 Winterberg
+- **Telefon:** 02981 2972
+- **Beschreibung (DE):** Der Malerbetrieb Frank Gladen an der Aschenhütte in Winterberg ist Ihr zuverlässiger Handwerksmeisterbetrieb für professionelle Maler-, Tapezier- und Fassadenarbeiten.
+- **Beschreibung (NL):** Schildersbedrijf Frank Gladen aan de Aschenhütte in Winterberg is een vakkundig schildersbedrijf voor schilder-, behang- en gevelwerkzaamheden.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/malerbetrieb-frank-gladen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/schilders/malerbetrieb-frank-gladen
+
+#### [haargenau by Yvonne](https://www.winterberg-verzeichnis.de/handwerk/friseur/haargenau-by-yvonne)
+- **Kategorie:** Handwerk > Friseur
+- **Ort / Ortsteil:** Elkeringhausen
+- **Adresse:** Elkerhagen 6, 59955 Winterberg-Elkeringhausen
+- **Telefon:** 01512 8985055
+- **Beschreibung (DE):** haargenau by Yvonne in Winterberg-Elkeringhausen ist Ihr persönlicher Wohlfühl-Friseursalon für moderne Haarschnitte, brillante Colorationen, Balayage und typgerechtes Styling.
+- **Beschreibung (NL):** haargenau by Yvonne in Winterberg-Elkeringhausen is een sfeervol kapsalon voor moderne kapsels, schitterende kleuringen, balayage en persoonlijke styling.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/haargenau-by-yvonne
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/kappers/haargenau-by-yvonne
+
 ### Kategorie: Einzelhandel
 
 #### [Wochenmarkt Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg)
@@ -2102,6 +2155,49 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Specialist in professionele grootkeukentechniek, horeca-apparatuur, vaatwassystemen en koeltechniek aan de Remmeswiese in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/gaststaettenbedarf/schauerte-gmbh-grosskuechentechnik
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/horecabenodigdheden/schauerte-gmbh-grosskuechentechnik
+
+#### [Schuh Schweizer Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/schuhgeschaefte/schuh-schweizer-winterberg)
+- **Kategorie:** Einzelhandel > Schuhgeschäfte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 1, 59955 Winterberg
+- **Telefon:** 02981 899510
+- **Webseite:** https://www.schuh-schweizer.de
+- **Beschreibung (DE):** Großes Schuhfachgeschäft an der Hauptstraße 1 im Herzen von Winterberg. Vielfältige Auswahl an Damen-, Herren- und Kinderschuhen, modischen Sneakern sowie bequemen Wander- und Outdoorschuhen.
+- **Beschreibung (NL):** Ruime schoenenwinkel aan de Hauptstraße 1 in het centrum van Winterberg. Grote collectie dames-, heren- en kinderschoenen, comfortabele wandelschoenen en trendy sneakers.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/schuhgeschaefte/schuh-schweizer-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/schoenenwinkels/schuh-schweizer-winterberg
+
+#### [Schuhhaus Kleinsorge](https://www.winterberg-verzeichnis.de/einzelhandel/schuhgeschaefte/schuhhaus-kleinsorge)
+- **Kategorie:** Einzelhandel > Schuhgeschäfte
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Rosenweg 4, 59955 Winterberg-Züschen
+- **Telefon:** 02981 516
+- **Beschreibung (DE):** Traditionsreiches Schuhfachgeschäft am Rosenweg in Winterberg-Züschen. Hochwertige Markenschuhe für Damen, Herren und Kinder mit persönlicher und herzlicher Fachberatung.
+- **Beschreibung (NL):** Traditionele schoenenspeciaalzaak aan de Rosenweg in Winterberg-Züschen. Kwaliteitsschoenen voor dames, heren en kinderen met persoonlijke en deskundige service.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/schuhgeschaefte/schuhhaus-kleinsorge
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/schoenenwinkels/schuhhaus-kleinsorge
+
+#### [Comes Grünes Warenhaus](https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/comes-gruenes-warenhaus)
+- **Kategorie:** Einzelhandel > Haushaltswaren & Deko
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 12, 59955 Winterberg
+- **Telefon:** 02981 929510
+- **Webseite:** https://www.comesgrueneswarenhaus.de
+- **Beschreibung (DE):** Comes Grünes Warenhaus an der Remmeswiese in Winterberg bietet eine inspirierende Auswahl an Wohnaccessoires, Deko-Artikeln, Pflanzen, Heimtierbedarf sowie Brennstoffen und Heizöl.
+- **Beschreibung (NL):** Comes Grünes Warenhaus aan de Remmeswiese in Winterberg biedt een inspirerend assortiment woonaccessoires, decoratie, planten, dierbenodigdheden en brandstoffen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/comes-gruenes-warenhaus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/comes-gruenes-warenhaus
+
+#### [JYSK Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/jysk-winterberg)
+- **Kategorie:** Einzelhandel > Haushaltswaren & Deko
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 2b, 59955 Winterberg
+- **Telefon:** 02981 9296990
+- **Webseite:** https://jysk.de
+- **Beschreibung (DE):** JYSK an der Remmeswiese in Winterberg ist Ihr Fachmarkt für skandinavisches Wohnen, Betten, Matratzen, Gartenmöbel und moderne Dekoartikel zu attraktiven Preisen.
+- **Beschreibung (NL):** JYSK aan de Remmeswiese in Winterberg biedt Scandinavische meubelen, bedden, matrassen, tuinmeubelen en woonaccessoires voor aantrekkelijke prijzen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/jysk-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/jysk-winterberg
 
 ### Kategorie: Gastronomie
 
@@ -2695,6 +2791,27 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Berggasthof zur Glocke in Winterberg-Lenneplätze is een sfeervolle, traditionele herberg met restaurant en gastenkamers in het hoogstgelegen bergdorp van Winterberg nabij de Kahler Asten. Het restaurant serveert eerlijke Sauerlandse streekgerechten, zoals het befaamde „Glockenpfännchen“, wildspecialiteiten uit de lokale bossen, verse beekforel en schnitzels. Gelegen direct aan de Rothaarsteig en het loipenetwerk is het een ideale uitvalsbasis voor wandelaars en wintersporters.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/berggasthof-zur-glocke
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/berggasthof-zur-glocke
+
+#### [Danny's Nachtcafé](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/danny-s-nachtcaf)
+- **Kategorie:** Gastronomie > Kneipen und Bars
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 34, 59955 Winterberg
+- **Telefon:** 02981 908900
+- **Beschreibung (DE):** Danny's Nachtcafé am Waltenberg in Winterberg ist die legendäre Kult-Kneipe und Nachtbar für gesellige Abende, frisch gezapftes Bier, Cocktails und ausgelassene Stimmung bis in die Morgenstunden.
+- **Beschreibung (NL):** Danny's Nachtcafé aan de Waltenberg in Winterberg is een legendarische nachtbar en café voor gezelligheid, vers getapt bier, cocktails en sfeer tot in de vroege uurtjes.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/danny-s-nachtcaf
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/danny-s-nachtcaf
+
+#### [Bierstube Abendsonne](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/bierstube-abendsonne)
+- **Kategorie:** Gastronomie > Kneipen und Bars
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 50, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 97922
+- **Webseite:** https://hotel-niedersfeld.de
+- **Beschreibung (DE):** Die Bierstube Abendsonne im Hotel Niedersfeld in Winterberg ist eine gemütlich-rustikale Einkehr für frisch gezapfte Biere, herzhafte sauerländische Spezialitäten und gesellige Runden.
+- **Beschreibung (NL):** Bierstube Abendsonne in Hotel Niedersfeld is een sfeervol en rustiek café-restaurant voor vers getapt bier, streekgerechten en gezellige avonden in het Sauerland.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/bierstube-abendsonne
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/bierstube-abendsonne
 
 ### Kategorie: Dienstleistungen
 
@@ -3501,6 +3618,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Sportzentrum Winterberg Hochsauerland GmbH is de officiële exploitant en beheerder van toonaangevende topsport- en evenementenaccommodaties in Winterberg, waaronder de wereldberoemde VELTINS-EisArena en het schansenpark.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/sportzentrum-winterberg-hochsauerland-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/sportzentrum-winterberg-hochsauerland-gmbh
+
+#### [SCHOOL OF SKILLZ](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/school-of-skillz)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Silbach
+- **Adresse:** Hillebrandweg 26, 59955 Winterberg-Silbach
+- **Telefon:** 0176 72382333
+- **Webseite:** https://www.schoolofskillz.de
+- **Beschreibung (DE):** SCHOOL OF SKILLZ in Winterberg ist deine professionelle Mountainbike-Schule für Fahrtechnik-Kurse, individuelle 1:1 Coachings und actiongeladene MTB-Camps im Sauerland und in den Alpen.
+- **Beschreibung (NL):** SCHOOL OF SKILLZ in Winterberg is jouw professionele mountainbikeschool voor rijvaardigheidscursussen, 1:1 coaching en actievolle MTB-camps in het Sauerland en de Alpen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/school-of-skillz
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/school-of-skillz
 
 ### Kategorie: Gesundheit & Medizin
 
