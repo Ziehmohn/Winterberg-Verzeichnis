@@ -189,7 +189,7 @@ export default function BusinessMap({ business, lang }: BusinessMapProps) {
         <a
           href={googleMapsUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
           className="absolute inset-0 z-[400] flex items-end justify-end p-2"
           title={lang === 'nl' ? 'Route plannen via Google Maps' : 'Route planen via Google Maps'}
         >
