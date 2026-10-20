@@ -3026,7 +3026,7 @@ export default function App() {
                             placeholder={
                               activeCategory === 'Alle'
                                 ? (lang === 'nl' ? 'Bedrijf, product of dienst zoeken (bijv. bakker, ski, hotel)...' : 'Unternehmen, Produkte oder Leistungen suchen (z. B. Bäcker, Ski, Hotel)...')
-                                : (lang === 'nl' ? `In „${t(activeCategory)}" suchen (z. B. Betrieb, Leistung)...` : `In „${activeCategory}" suchen (z. B. Betrieb, Leistung, Notdienst)...`)
+                                : (lang === 'nl' ? `In „${t(activeCategory)}“ zoeken (bijv. bedrijf of dienst)...` : `In „${activeCategory}“ nach Betrieb oder Leistung suchen...`)
                             }
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
