@@ -577,7 +577,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <a
                 href={shopHref}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                 className="inline-flex items-center justify-center gap-2 bg-[#0F4C2E] hover:bg-[#09321E] text-white font-bold text-[14.5px] px-5 py-3 rounded-xl transition-all shadow-xs hover:shadow-md shrink-0 w-full sm:w-auto text-center"
               >
                 <ShoppingBag className="w-4 h-4 text-[#F2761B]" />
@@ -686,7 +686,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                       key={docItem.id}
                       href={docItem.url}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                       className="group bg-[#FAF8F5] hover:bg-[#F2F7F4] border border-[#EDE8E0] hover:border-[#0F4C2E]/40 rounded-xl p-4 transition-all duration-200 shadow-2xs hover:shadow-md flex items-start justify-between gap-3 text-left"
                     >
                       <div className="flex items-start gap-3 min-w-0">
@@ -804,7 +804,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                             <a
                               href={ev.externalUrl}
                               target="_blank"
-                              rel="noopener noreferrer"
+                              rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold shadow-sm transition-all"
                             >
                               <span>{lang === 'nl' ? 'Meer info & tickets' : 'Mehr Infos & Tickets'}</span>
@@ -846,7 +846,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                         <a
                           href={j.externalUrl}
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0F4C2E] hover:bg-[#15603A] text-white text-xs font-semibold shadow-sm transition-all"
                         >
                           <span>{lang === 'nl' ? 'Direct solliciteren' : 'Jetzt bewerben'}</span>
@@ -1000,7 +1000,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
                           <a
                             href={article.externalLink.startsWith('http') ? article.externalLink : `https://${article.externalLink}`}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                             className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0F4C2E] hover:text-[#F2761B] transition-colors"
                           >
                             {lang === 'nl' ? 'Meer lezen' : 'Mehr lesen'}
@@ -1109,7 +1109,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
               <a
                 href={business.customCta.url}
                 target={business.customCta.url.startsWith('http') ? '_blank' : undefined}
-                rel={business.customCta.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                rel={business.customCta.url.startsWith('http') ? (business.isPremium ? 'noopener noreferrer' : 'nofollow noopener noreferrer') : undefined}
                 className={`w-full flex items-center justify-center gap-2 rounded-md py-3 px-4 text-[15px] font-bold shadow-sm transition-all duration-200 hover:scale-[1.02] text-center cursor-pointer ${
                   business.customCta.type === 'emergency'
                     ? 'bg-[#DC2626] hover:bg-[#B91C1C] text-white shadow-red-500/20 animate-pulse'
@@ -1139,7 +1139,7 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             <a 
               href={shopHref} 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"} 
               className="flex items-center justify-between gap-[11px] bg-[#0F4C2E] text-white rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#09321E] shadow-sm transition-all hover:scale-[1.01]"
             >
               <div className="flex items-center gap-[11px] min-w-0">
@@ -1150,8 +1150,13 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
             </a>
           )}
 
-          {business.isPremium && business.website && webHref && (
-            <a href={webHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors">
+          {business.website && webHref && (
+            <a
+              href={webHref}
+              target="_blank"
+              rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
+              className="flex items-center gap-[11px] bg-[#E8F1EB] text-[#0F4C2E] rounded-md py-3 px-4 text-[15px] font-semibold hover:bg-[#D6E7DC] transition-colors"
+            >
               <Globe className="w-4 h-4" />
               {lang === 'nl' ? 'Website bezoeken' : 'Website öffnen'}
             </a>

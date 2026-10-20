@@ -592,7 +592,7 @@ export default function BestOfPage({
                       <a
                         href={business.customCta.url}
                         target={business.customCta.url.startsWith('http') ? '_blank' : undefined}
-                        rel={business.customCta.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        rel={business.customCta.url.startsWith('http') ? (business.isPremium ? 'noopener noreferrer' : 'nofollow noopener noreferrer') : undefined}
                         className={`w-full py-2 px-3 rounded-lg text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5 shadow-xs ${
                           business.customCta.type === 'emergency'
                             ? 'bg-red-600 hover:bg-red-700 text-white'
@@ -613,7 +613,7 @@ export default function BestOfPage({
                       <a
                         href={business.shopUrl.startsWith('http') ? business.shopUrl : `https://${business.shopUrl}`}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                         className="w-full py-2 px-3 rounded-lg text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5 shadow-xs bg-[#0F4C2E] hover:bg-[#06301C] text-white"
                       >
                         <ShoppingBag className="w-3.5 h-3.5 text-[#F2761B]" />
@@ -626,7 +626,7 @@ export default function BestOfPage({
                       <a
                         href={business.documents[0].url}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel={business.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                         className="w-full bg-white hover:bg-[#FAF8F5] border border-[#EDE8E0] text-[#0F4C2E] font-semibold text-xs py-2 px-3 rounded-lg transition-colors flex items-center justify-center gap-1.5"
                       >
                         <FileDown className="w-3.5 h-3.5 text-[#F2761B]" />

@@ -298,7 +298,7 @@ export default function JobsBoard({
                     <a
                       href={job.externalUrl}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel={job.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                       className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0F4C2E] hover:bg-[#15603A] text-white text-xs font-bold shadow-xs transition-all ml-auto"
                     >
                       <span>{t("jobsApplyNow")}</span>
@@ -607,7 +607,7 @@ export default function JobsBoard({
                           <a
                             href={job.externalUrl}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel={job.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
                             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0F4C2E] hover:bg-[#15603A] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all"
                           >
                             <span>{t("jobsApplyNow")}</span>

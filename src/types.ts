@@ -179,6 +179,7 @@ export interface EventItem {
   category: string;
   imageUrl?: string;
   externalUrl?: string;
+  externalUrl_nl?: string;
   isPremium?: boolean;
   price?: string;
 }

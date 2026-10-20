@@ -246,7 +246,7 @@ export default function PricingTable({
           
           <div className="grid gap-2.5 text-[15px] text-[#4A544D]">
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingAllFromBasic")}</div>
-            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> <span className="font-semibold text-[#0F4C2E]">{t("pricingDofollowLink")}</span></div>
+            <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingDofollowLink")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingUpTo15Services")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingCatGallery")}</div>
             <div className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600" /> {t("pricingHeroHeader")}</div>

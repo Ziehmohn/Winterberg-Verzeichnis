@@ -299,7 +299,11 @@ export default function ClaimBusinessModal({
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-[#F2761B]" />
-                      <strong>Wertvoller DoFollow-Backlink</strong> zur Stärkung Ihrer Website
+                      {lang === 'nl' ? (
+                        <span><strong>Waardevolle DoFollow-backlink</strong> ter versterking van uw website</span>
+                      ) : (
+                        <span><strong>Wertvoller DoFollow-Backlink</strong> zur Stärkung Ihrer Website</span>
+                      )}
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-[#F2761B]" />

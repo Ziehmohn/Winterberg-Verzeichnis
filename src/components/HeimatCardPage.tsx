@@ -832,7 +832,7 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
                     <a 
                       href={att.website} 
                       target="_blank" 
-                      rel="noopener noreferrer" 
+                      rel={matchedBusiness?.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"} 
                       className="text-xs font-medium text-gray-500 hover:text-gray-900 inline-flex items-center gap-1 transition-colors ml-auto"
                     >
                       Website <ExternalLink size={12} />

@@ -618,7 +618,7 @@ export default function EventsBoard({
                           <a
                             href={event.externalUrl}
                             target={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : "_blank"}
-                            rel={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : "noopener noreferrer"}
+                            rel={event.externalUrl.startsWith('mailto:') || event.externalUrl.startsWith('/') ? undefined : (event.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer")}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold transition-colors"
                           >
                             <span>{event.externalUrl.startsWith('mailto:') ? (lang === 'nl' ? 'Aanmelden' : 'Anmelden') : (lang === 'nl' ? 'Meer info' : 'Mehr erfahren')}</span>

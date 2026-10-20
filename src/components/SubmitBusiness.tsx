@@ -244,7 +244,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <span>Premium-pakket</span>
                 <span className="text-xs">↗</span>
               </a>{' '}
-              fotogalerij, uitgebreid profiel, sterke DoFollow-backlinks en toppositie ontgrendelen.
+              fotogalerij, uitgebreid profiel, DoFollow-backlinks en toppositie ontgrendelen.
             </>
           ) : (
             <>
@@ -261,7 +261,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <span>Premium-Paket</span>
                 <span className="text-xs">↗</span>
               </a>{' '}
-              Bildergalerie, ausführliches Profil, wertvolle DoFollow-Backlinks und Top-Platzierung freischalten.
+              Bildergalerie, ausführliches Profil, DoFollow-Backlinks und Top-Platzierung freischalten.
             </>
           )}
         </p>
@@ -426,7 +426,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 {selectedPlan === 'free' && <CheckCircle2 className="w-5 h-5 text-[#F2761B]" />}
               </div>
               <div className="font-bold text-[18px] mb-2">0,00 € <span className="text-[12px] font-normal text-[#5F6B63]">dauerhaft</span></div>
-              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, <strong>bis zu 3 Leistungen & 3 Produkte</strong>, kostenloses Trust-Siegel für Ihre Website.</div>
+              <div className="text-[13px] text-[#5F6B63]">Standard-Sichtbarkeit, Kontaktdaten, <strong>Website-Verlinkung (Nofollow)</strong>, <strong>bis zu 3 Leistungen & 3 Produkte</strong>, kostenloses Trust-Siegel für Ihre Website.</div>
             </div>
             
             <div 
@@ -465,7 +465,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
                 <div className="font-bold text-[18px] mb-2 text-[#D65F0C]">ab {formattedYearlyPerMonth} <span className="text-[12px] font-normal text-[#5F6B63]">netto</span></div>
               )}
               
-              <div className="text-[13px] text-[#5F6B63]"><strong>Bis zu 15 Leistungen & 15 Produkte</strong>, Hero-Header, Galerie (5 Kat. à 5 Bilder mit SEO-Tags), Öffnungszeiten, Jobs, News, Events, Direktes Anfrage-Formular, White-Label Widget, Top-Platzierung.</div>
+              <div className="text-[13px] text-[#5F6B63]">Website-Verlinkung (DoFollow), <strong>bis zu 15 Leistungen & 15 Produkte</strong>, Hero-Header, Galerie (5 Kat. à 5 Bilder mit SEO-Tags), Öffnungszeiten, Jobs, News, Events, Direktes Anfrage-Formular, White-Label Widget, Top-Platzierung.</div>
             </div>
           </div>
         </div>
