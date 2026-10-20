@@ -23,7 +23,9 @@ import {
   Navigation,
   Ticket,
   Compass,
-  Store
+  Store,
+  CalendarDays,
+  Filter
 } from 'lucide-react';
 
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
@@ -113,6 +115,48 @@ function CalendarCard({ startDate, endDate }: { startDate: string; endDate?: str
       </div>
     </div>
   );
+}
+
+// Local date string helper YYYY-MM-DD
+function getLocalDateString(d: Date): string {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+// Get weekend date range (Friday through Sunday)
+function getWeekendRange(): { start: string; end: string } {
+  const now = new Date();
+  const day = now.getDay(); // 0 is Sunday, 1 Mon, ... 5 Fri, 6 Sat
+  const friday = new Date(now);
+  const sunday = new Date(now);
+
+  if (day === 5) {
+    sunday.setDate(now.getDate() + 2);
+  } else if (day === 6) {
+    friday.setDate(now.getDate() - 1);
+    sunday.setDate(now.getDate() + 1);
+  } else if (day === 0) {
+    friday.setDate(now.getDate() - 2);
+  } else {
+    const diff = 5 - day;
+    friday.setDate(now.getDate() + diff);
+    sunday.setDate(now.getDate() + diff + 2);
+  }
+
+  return {
+    start: getLocalDateString(friday),
+    end: getLocalDateString(sunday)
+  };
+}
+
+// Pretty print date for badges e.g. "20.10.2026"
+function formatShortDate(dateStr: string): string {
+  if (!dateStr) return '';
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  return `${parts[2]}.${parts[1]}.${parts[0]}`;
 }
 
 // Fix Leaflet default icon path issues in React
@@ -334,6 +378,133 @@ export default function EventsBoard({
   const [expandedMap, setExpandedMap] = useState<string | null>(null);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
 
+  // Date range filter state
+  const [startDateFilter, setStartDateFilter] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('from') || params.get('ab') || params.get('datum') || '';
+    }
+    return '';
+  });
+  const [endDateFilter, setEndDateFilter] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('to') || params.get('bis') || '';
+    }
+    return '';
+  });
+  const [activeQuickPeriod, setActiveQuickPeriod] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('period')) return params.get('period')!;
+      if (params.get('from') || params.get('to') || params.get('ab') || params.get('bis') || params.get('datum')) return 'custom';
+    }
+    return 'all';
+  });
+
+  const quickPeriods = useMemo(() => [
+    { id: 'all', label: lang === 'nl' ? 'Alle data' : 'Alle Termine' },
+    { id: 'today', label: lang === 'nl' ? 'Vandaag' : 'Heute' },
+    { id: 'weekend', label: lang === 'nl' ? 'Dit weekend' : 'Dieses Wochenende' },
+    { id: '7days', label: lang === 'nl' ? 'Volgende 7 dagen' : 'Nächste 7 Tage' },
+    { id: 'this_month', label: lang === 'nl' ? 'Deze maand' : 'Diesen Monat' },
+    { id: 'next_month', label: lang === 'nl' ? 'Volgende maand' : 'Nächsten Monat' },
+    { id: 'winter', label: lang === 'nl' ? 'Winter 2026/27' : 'Winter 2026/27' },
+  ], [lang]);
+
+  const handleSelectPreset = (presetId: string) => {
+    const now = new Date();
+    if (presetId === 'all') {
+      setStartDateFilter('');
+      setEndDateFilter('');
+      setActiveQuickPeriod('all');
+    } else if (presetId === 'today') {
+      const todayStr = getLocalDateString(now);
+      setStartDateFilter(todayStr);
+      setEndDateFilter(todayStr);
+      setActiveQuickPeriod('today');
+    } else if (presetId === 'weekend') {
+      const { start, end } = getWeekendRange();
+      setStartDateFilter(start);
+      setEndDateFilter(end);
+      setActiveQuickPeriod('weekend');
+    } else if (presetId === '7days') {
+      const start = getLocalDateString(now);
+      const in7 = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+      const end = getLocalDateString(in7);
+      setStartDateFilter(start);
+      setEndDateFilter(end);
+      setActiveQuickPeriod('7days');
+    } else if (presetId === 'this_month') {
+      const start = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
+      const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      setStartDateFilter(start);
+      setEndDateFilter(getLocalDateString(lastDay));
+      setActiveQuickPeriod('this_month');
+    } else if (presetId === 'next_month') {
+      const firstNext = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+      const lastNext = new Date(now.getFullYear(), now.getMonth() + 2, 0);
+      setStartDateFilter(getLocalDateString(firstNext));
+      setEndDateFilter(getLocalDateString(lastNext));
+      setActiveQuickPeriod('next_month');
+    } else if (presetId === 'winter') {
+      setStartDateFilter('2026-12-01');
+      setEndDateFilter('2027-02-28');
+      setActiveQuickPeriod('winter');
+    }
+  };
+
+  const handleCustomStartDate = (val: string) => {
+    setStartDateFilter(val);
+    setActiveQuickPeriod(val || endDateFilter ? 'custom' : 'all');
+    if (endDateFilter && val && val > endDateFilter) {
+      setEndDateFilter('');
+    }
+  };
+
+  const handleCustomEndDate = (val: string) => {
+    setEndDateFilter(val);
+    setActiveQuickPeriod(startDateFilter || val ? 'custom' : 'all');
+  };
+
+  const resetDateFilter = () => {
+    setStartDateFilter('');
+    setEndDateFilter('');
+    setActiveQuickPeriod('all');
+  };
+
+  // Sync URL query params with active filters
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      if (startDateFilter) {
+        url.searchParams.set('from', startDateFilter);
+      } else {
+        url.searchParams.delete('from');
+        url.searchParams.delete('ab');
+        url.searchParams.delete('datum');
+      }
+      if (endDateFilter) {
+        url.searchParams.set('to', endDateFilter);
+      } else {
+        url.searchParams.delete('to');
+        url.searchParams.delete('bis');
+      }
+      if (selectedCategory && selectedCategory !== 'Alle') {
+        url.searchParams.set('category', selectedCategory);
+      } else {
+        url.searchParams.delete('category');
+        url.searchParams.delete('kategorie');
+      }
+      if (activeQuickPeriod && activeQuickPeriod !== 'all' && activeQuickPeriod !== 'custom') {
+        url.searchParams.set('period', activeQuickPeriod);
+      } else {
+        url.searchParams.delete('period');
+      }
+      window.history.replaceState(null, '', url.pathname + url.search);
+    }
+  }, [startDateFilter, endDateFilter, selectedCategory, activeQuickPeriod]);
+
   const toggleDescription = (key: string) => {
     setExpandedDescriptions(prev => ({ ...prev, [key]: !prev[key] }));
   };
@@ -359,6 +530,17 @@ export default function EventsBoard({
     if (selectedCategory !== 'Alle') {
       list = list.filter(item => normalizeEventCategory(item.event.category) === selectedCategory);
     }
+    if (startDateFilter) {
+      list = list.filter(item => {
+        const eventEnd = item.event.endDate || item.event.startDate;
+        return eventEnd >= startDateFilter;
+      });
+    }
+    if (endDateFilter) {
+      list = list.filter(item => {
+        return item.event.startDate <= endDateFilter;
+      });
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       list = list.filter(item => 
@@ -370,7 +552,7 @@ export default function EventsBoard({
       );
     }
     return list;
-  }, [allEvents, selectedCategory, searchQuery]);
+  }, [allEvents, selectedCategory, searchQuery, startDateFilter, endDateFilter]);
 
   const uniqueCategories = useMemo(() => {
     const cats = new Set<string>();
@@ -468,6 +650,100 @@ export default function EventsBoard({
             </button>
           )}
         </div>
+
+        {/* Date & Timeframe Filter Section */}
+        <div className="pt-3 border-t border-[#F0EBE1] space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-[#7E22CE]/10 flex items-center justify-center text-[#7E22CE]">
+                <CalendarDays className="w-3.5 h-3.5" />
+              </div>
+              <span className="font-display text-xs font-bold uppercase tracking-wider text-[#7E22CE]">
+                {lang === 'nl' ? 'Datum & Periode selecteren' : 'Datum & Zeitraum wählen'}
+              </span>
+            </div>
+
+            {(startDateFilter || endDateFilter) && (
+              <button
+                type="button"
+                onClick={resetDateFilter}
+                className="inline-flex items-center gap-1 text-xs font-semibold text-[#7E22CE] hover:text-[#581C87] hover:underline cursor-pointer self-start sm:self-auto"
+              >
+                <X className="w-3.5 h-3.5" />
+                <span>{lang === 'nl' ? 'Periode wissen' : 'Zeitraum zurücksetzen'}</span>
+              </button>
+            )}
+          </div>
+
+          {/* Quick Period Presets */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {quickPeriods.map((preset) => {
+              const isActive = activeQuickPeriod === preset.id;
+              return (
+                <button
+                  key={preset.id}
+                  type="button"
+                  onClick={() => handleSelectPreset(preset.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    isActive 
+                      ? 'bg-[#7E22CE] text-white shadow-xs' 
+                      : 'bg-[#F4F1EA] text-[#4A544D] hover:bg-[#EBE5DB]'
+                  }`}
+                >
+                  {preset.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Interactive Date Inputs: Startdatum & Enddatum */}
+          <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-end">
+            <div className="lg:col-span-5">
+              <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
+                <span>{lang === 'nl' ? 'Events tonen vanaf datum (Ab Datum):' : 'Events anzeigen ab Datum:'}</span>
+              </label>
+              <input
+                type="date"
+                value={startDateFilter}
+                onChange={(e) => handleCustomStartDate(e.target.value)}
+                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+              />
+            </div>
+
+            <div className="lg:col-span-5">
+              <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
+                <span>{lang === 'nl' ? 'Tot en met datum (optioneel):' : 'Bis Datum (optional):'}</span>
+              </label>
+              <input
+                type="date"
+                value={endDateFilter}
+                min={startDateFilter || undefined}
+                onChange={(e) => handleCustomEndDate(e.target.value)}
+                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+              />
+            </div>
+
+            <div className="lg:col-span-2 flex items-center">
+              {(startDateFilter || endDateFilter) ? (
+                <button
+                  type="button"
+                  onClick={resetDateFilter}
+                  className="w-full py-2 px-3 text-xs font-bold text-[#717E75] hover:text-[#1B211D] bg-white hover:bg-gray-50 rounded-lg border border-[#D5D0C5] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
+                >
+                  <X className="w-3.5 h-3.5" />
+                  <span>{lang === 'nl' ? 'Reset' : 'Zurücksetzen'}</span>
+                </button>
+              ) : (
+                <div className="text-[11.5px] text-[#717E75] leading-snug">
+                  {lang === 'nl' ? 'Kies een datum of periode' : 'Wähle ein Datum oder Zeitraum'}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-3 border-t border-[#F0EBE1]">
           <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0">
             {uniqueCategories.map((type) => {
@@ -514,9 +790,50 @@ export default function EventsBoard({
       </div>
 
       {/* Results Header */}
-      <div className="flex items-center justify-between mb-4 px-1">
-        <div className="text-sm font-semibold text-[#1B211D]">
-          {filteredEvents.length} {filteredEvents.length === 1 ? (lang === 'nl' ? 'evenement gevonden' : 'Veranstaltung gefunden') : (lang === 'nl' ? 'evenementen gevunden' : 'Veranstaltungen gefunden')}
+      <div className="flex flex-wrap items-center justify-between gap-2.5 mb-4 px-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-semibold text-[#1B211D]">
+            {filteredEvents.length} {filteredEvents.length === 1 ? (lang === 'nl' ? 'evenement gevonden' : 'Veranstaltung gefunden') : (lang === 'nl' ? 'evenementen gevonden' : 'Veranstaltungen gefunden')}
+          </span>
+
+          {/* Active Date Filter Badge */}
+          {(startDateFilter || endDateFilter) && (
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#7E22CE]/10 text-[#7E22CE] border border-[#7E22CE]/20">
+              <Calendar className="w-3 h-3 text-[#7E22CE]" />
+              <span>
+                {startDateFilter && endDateFilter
+                  ? (startDateFilter === endDateFilter 
+                      ? `${formatShortDate(startDateFilter)}` 
+                      : `${formatShortDate(startDateFilter)} – ${formatShortDate(endDateFilter)}`)
+                  : (startDateFilter 
+                      ? `${lang === 'nl' ? 'Vanaf' : 'Ab'} ${formatShortDate(startDateFilter)}` 
+                      : `${lang === 'nl' ? 'Tot' : 'Bis'} ${formatShortDate(endDateFilter)}`)}
+              </span>
+              <button
+                type="button"
+                onClick={resetDateFilter}
+                className="hover:text-red-600 focus:outline-none p-0.5 rounded-full hover:bg-white/80 transition-colors cursor-pointer"
+                title={lang === 'nl' ? 'Filter wissen' : 'Filter entfernen'}
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </span>
+          )}
+
+          {/* Active Category Badge */}
+          {selectedCategory !== 'Alle' && (
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200">
+              <span>{selectedCategory}</span>
+              <button
+                type="button"
+                onClick={() => setSelectedCategory('Alle')}
+                className="hover:text-red-600 focus:outline-none p-0.5 rounded-full hover:bg-white/80 transition-colors cursor-pointer"
+                title={lang === 'nl' ? 'Categorie wissen' : 'Kategorie entfernen'}
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </span>
+          )}
         </div>
       </div>
 
@@ -526,11 +843,15 @@ export default function EventsBoard({
           <div className="col-span-full bg-white border border-dashed border-[#D8D2C8] rounded-2xl p-12 text-center text-[#5F6B63]">
             <Calendar className="w-10 h-10 mx-auto text-[#8A958E] mb-3" />
             <p className="text-base font-semibold text-[#1B211D] mb-1">{lang === 'nl' ? 'Geen evenementen gevonden' : 'Keine Veranstaltungen gefunden'}</p>
-            <p className="text-sm text-[#717E75] max-w-md mx-auto mb-4">{lang === 'nl' ? 'Probeer een andere zoekterm of categorie.' : 'Bitte versuche einen anderen Suchbegriff oder eine andere Kategorie.'}</p>
-            {(searchQuery || selectedCategory !== 'Alle') && (
-              <button type="button" onClick={() => { setSearchQuery(''); setSelectedCategory('Alle'); }}
-                className="px-4 py-2 bg-[#7E22CE] text-white text-xs font-semibold rounded-lg hover:bg-[#6B21A8] transition-colors"
-              >{lang === 'nl' ? 'Filters resetten' : 'Filter zurücksetzen'}</button>
+            <p className="text-sm text-[#717E75] max-w-md mx-auto mb-4">
+              {(startDateFilter || endDateFilter)
+                ? (lang === 'nl' ? 'Er zijn geen evenementen gevonden in de geselecteerde periode.' : 'In dem ausgewählten Zeitraum wurden keine Veranstaltungen gefunden.')
+                : (lang === 'nl' ? 'Probeer een andere zoekterm of categorie.' : 'Bitte versuche einen anderen Suchbegriff oder eine andere Kategorie.')}
+            </p>
+            {(searchQuery || selectedCategory !== 'Alle' || startDateFilter || endDateFilter) && (
+              <button type="button" onClick={() => { setSearchQuery(''); setSelectedCategory('Alle'); resetDateFilter(); }}
+                className="px-4 py-2 bg-[#7E22CE] text-white text-xs font-semibold rounded-lg hover:bg-[#6B21A8] transition-colors cursor-pointer"
+              >{lang === 'nl' ? 'Alle filters resetten' : 'Alle Filter zurücksetzen'}</button>
             )}
           </div>
         ) : (
