@@ -3977,14 +3977,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/autoservice-kruk
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/autoservice-kruk
 
-#### [Nagel Udo Autoreparatur](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/nagel-udo-autoreparatur)
+#### [Udo Nagel Kfz-Werkstatt & Tankstelle](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/udo-nagel-kfz-werkstatt-und-tankstelle)
 - **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
 - **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Hochsauerlandstr. 56, 59955 Winterberg-Siedlinghausen
-- **Telefon:** 02983 7 61
-- **Beschreibung (DE):** Das Unternehmen Udo Nagel betreibt eine Kfz-Werkstatt mit angeschlossener freier Tankstelle in Winterberg-Siedlinghausen. Der Betrieb bietet fachgerechte Autoreparaturen, Wartungen und allgemeine Kfz-Serviceleistungen für Fahrzeuge. Ergänzt wird das Angebot durch den Kraftstoffverkauf direkt vor Ort an der Hochsauerlandstraße.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/nagel-udo-autoreparatur
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/nagel-udo-autoreparatur
+- **Adresse:** Hochsauerlandstraße 56, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 761
+- **Beschreibung (DE):** Udo Nagel an der Hochsauerlandstraße in Winterberg-Siedlinghausen vereint eine meistergeführte Kfz-Reparaturwerkstatt mit einer zuverlässigen freien Tankstelle für schnelles und günstiges Tanken.
+- **Beschreibung (NL):** Udo Nagel aan de Hochsauerlandstraße in Winterberg-Siedlinghausen combineert een vakkundige autogarage met een betrouwbaar tankstation voor betaalbaar tanken en autoreparaties.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/udo-nagel-kfz-werkstatt-und-tankstelle
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/autogarages/udo-nagel-kfz-werkstatt-und-tankstelle
 
 #### [HAS-Antriebstechnik Bosch Car Service](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/kfz-werkstaetten/has-antriebstechnik-bosch-car-service)
 - **Kategorie:** Mobilität & KFZ > KFZ-Werkstätten
