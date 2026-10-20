@@ -3017,11 +3017,11 @@ export default function App() {
                     )}
 
                     {/* Prominent Search Bar on Category Banner (2-Tier Architecture) */}
-                    <div className="bg-white rounded-xl p-2.5 sm:p-3 max-w-4xl shadow-2xl my-2 sm:my-4 text-[#1B211D] border border-black/5">
+                    <div className="bg-white rounded-xl overflow-hidden max-w-4xl shadow-2xl my-2 sm:my-4 text-[#1B211D] border border-[#E5DFD5]">
                       {/* Row 1: Generous Search Input & Search Action Button */}
-                      <div className="flex items-center gap-2 pb-2.5 sm:pb-3 border-b border-[#F0ECE1]">
+                      <div className="p-2.5 sm:p-3 flex items-center gap-2">
                         <div className="flex items-center gap-2.5 sm:gap-3 w-full flex-1 min-w-0 px-2 sm:px-3 relative">
-                          <Search className="w-5 h-5 text-[#0F4C2E]/60 shrink-0" />
+                          <Search className="w-5 h-5 text-[#0F4C2E]/70 shrink-0" />
                           <input 
                             placeholder={
                               activeCategory === 'Alle'
@@ -3063,17 +3063,17 @@ export default function App() {
                         </button>
                       </div>
 
-                      {/* Row 2: Secondary Filter Controls (Category / Subcategory + Location) */}
-                      <div className="pt-2 sm:pt-2.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-[13px]">
+                      {/* Row 2: Secondary Filter Controls (Visually distinct filter tray) */}
+                      <div className="bg-[#FAF8F5] border-t border-[#EAE5DC] px-3 py-2.5 sm:px-4 sm:py-2.5 flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4 text-xs sm:text-[13px]">
                         {/* Category / Subcategory Dropdown */}
                         <div className="flex items-center gap-2 flex-1 min-w-0">
-                          <span className="text-[#7A827B] font-semibold shrink-0 text-[12px] sm:text-[13px]">
-                            {lang === 'nl' ? 'Bereik:' : 'Bereich:'}
+                          <span className="text-[#3F4842] font-bold shrink-0 text-[12px] sm:text-[13px] whitespace-nowrap">
+                            {lang === 'nl' ? 'Zoeken in:' : 'Suchen in:'}
                           </span>
                           <select
                             value={activeCategory}
                             onChange={(e) => handleCategoryChange(e.target.value)}
-                            className="w-full border border-[#D5D0C5] rounded-md px-2.5 sm:px-3 py-1.5 text-[13px] sm:text-[13.5px] font-medium text-[#1B211D] bg-[#FAF8F5] hover:bg-[#F3EFE6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer transition-colors truncate"
+                            className="w-full border border-[#D5D0C5] rounded-md px-2.5 sm:px-3 py-1.5 text-[13px] sm:text-[13.5px] font-medium text-[#1B211D] bg-white hover:border-[#0F4C2E]/50 focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer transition-colors shadow-2xs truncate"
                             title={lang === 'nl' ? 'Categorie / specialisatie kiezen' : 'Kategorie / Bereich wählen'}
                           >
                             <option value="Alle">{lang === 'nl' ? '🌐 Alle categorieën' : '🌐 Alle Kategorien'}</option>
@@ -3090,8 +3090,8 @@ export default function App() {
 
                         {/* Location Dropdown */}
                         <div className="flex items-center gap-2 flex-1 min-w-0">
-                          <span className="text-[#7A827B] font-semibold shrink-0 text-[12px] sm:text-[13px]">
-                            {lang === 'nl' ? 'Plaats:' : 'Ort:'}
+                          <span className="text-[#3F4842] font-bold shrink-0 text-[12px] sm:text-[13px] whitespace-nowrap">
+                            {lang === 'nl' ? 'In plaats:' : 'In Ort:'}
                           </span>
                           <select
                             value={activeLocation}
@@ -3104,7 +3104,7 @@ export default function App() {
                               const url = getPath(basePath);
                               window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
                             }}
-                            className="w-full border border-[#D5D0C5] rounded-md px-2.5 sm:px-3 py-1.5 text-[13px] sm:text-[13.5px] font-medium text-[#1B211D] bg-[#FAF8F5] hover:bg-[#F3EFE6] focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer transition-colors truncate"
+                            className="w-full border border-[#D5D0C5] rounded-md px-2.5 sm:px-3 py-1.5 text-[13px] sm:text-[13.5px] font-medium text-[#1B211D] bg-white hover:border-[#0F4C2E]/50 focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer transition-colors shadow-2xs truncate"
                           >
                             <option value="Alle">{t("allTowns")}</option>
                             {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
