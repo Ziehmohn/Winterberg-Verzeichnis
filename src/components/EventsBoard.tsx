@@ -400,21 +400,25 @@ export default function EventsBoard({
       </div>
 
       {/* Hero Header with Winterberger Wintermarkt Image */}
-      <div className="relative rounded-3xl overflow-hidden shadow-xl mb-8 text-white bg-[#2A0845] border border-purple-900/40">
-        {/* Background Image Container */}
-        <div className="absolute inset-0 z-0">
+      <section className="relative rounded-3xl overflow-hidden shadow-xl mb-8 text-white bg-gradient-to-br from-[#200536] via-[#3B0764] to-[#4A154B] border border-purple-900/40 flex flex-col lg:block">
+        {/* Hero Image (Desktop: rechts als eigenständiges Motiv mit sanftem Mask-Fade, Mobile: oben im Banner) */}
+        <figure className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-[48%] xl:w-[46%] m-0 h-64 sm:h-80 lg:h-full z-0 overflow-hidden">
           <img
             src="/news-winterberger-winterdorf-jubilaeum-header.jpg"
-            alt={lang === 'nl' ? 'Winterberger Winterdorf en Wintermarkt op het marktplein' : 'Winterberger Wintermarkt und Winterdorf auf dem Marktplatz'}
-            className="w-full h-full object-cover object-center lg:object-[center_35%]"
+            alt={lang === 'nl' ? 'Winterberger Winterdorf marktplein met sfeervolle chalets' : 'Winterberger Wintermarkt und Winterdorf auf dem Marktplatz'}
+            width={1024}
+            height={701}
+            fetchPriority="high"
+            decoding="async"
+            className="w-full h-full object-cover object-[center_60%] hero-events-mask"
           />
-          {/* Gradient Overlays: Rich deep purple on text side fading smoothly into transparency on wide screens */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#200536] via-[#2A0845]/90 to-[#4A154B]/80 lg:bg-gradient-to-r lg:from-[#200536] lg:via-[#2A0845]/95 lg:from-45% lg:via-70% lg:to-transparent" />
-          <div className="absolute inset-0 bg-[#200536]/20 backdrop-blur-[0.5px]" />
-        </div>
+          <figcaption className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 text-[10px] leading-none text-white/85 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-md z-10 pointer-events-none">
+            {lang === 'nl' ? 'Foto: Winterberger Winterdorf / Marktplatz' : 'Foto: Winterberger Winterdorf / Marktplatz'}
+          </figcaption>
+        </figure>
 
         {/* Hero Content */}
-        <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-2xl">
+        <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-xl xl:max-w-2xl">
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white text-xs font-semibold backdrop-blur-md shadow-xs">
               <Calendar className="w-3.5 h-3.5 text-purple-200" />
@@ -445,12 +449,7 @@ export default function EventsBoard({
             </span>
           </div>
         </div>
-
-        {/* Image credit note */}
-        <div className="absolute bottom-2.5 right-3 z-10 text-[10px] text-white/70 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-md pointer-events-none">
-          {lang === 'nl' ? 'Foto: Winterberger Winterdorf / Marktplatz' : 'Foto: Winterberger Winterdorf / Marktplatz'}
-        </div>
-      </div>
+      </section>
 
       {/* Filter and Search Bar */}
       <div className="bg-white border border-[#E7E2DA] rounded-2xl p-4 sm:p-5 shadow-xs mb-8 space-y-4">
