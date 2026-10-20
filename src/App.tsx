@@ -2175,6 +2175,16 @@ export default function App() {
             setIsFuelPricesMode(true);
             window.history.pushState(null, '', getPath(lang === 'nl' ? '/actuele-brandstofprijzen' : '/aktuelle-spritpreise'));
             window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} onSelectCategory={(catName, subcat) => {
+            const catGroup = categories.find(c => c.name === catName || c.subcategories.includes(catName));
+            const groupName = catGroup?.name || catName;
+            const url = buildLocalizedUrl({ view: 'category', category: groupName, subcategory: subcat }, lang);
+            window.history.pushState(null, '', url);
+            setActiveCategory(subcat || groupName);
+            setSearchQuery('');
+            setIsAllMode(false);
+            resetToDirectory();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }} />
         ) : isBestOfMode ? (
           <BestOfPage

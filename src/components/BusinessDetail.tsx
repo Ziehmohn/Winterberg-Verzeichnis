@@ -14,7 +14,7 @@ import { useAuth } from '../AuthContext';
 import Login from './Login';
 import BusinessCategoryIcon from './BusinessCategoryIcon';
 import WidgetGeneratorModal from './WidgetGeneratorModal';
-import { getBusinessPath } from '../utils/routes';
+import { getBusinessPath, buildLocalizedUrl } from '../utils/routes';
 import { RankingInfoModal } from './RankingInfoModal';
 import { RankingBadge } from './RankingBadge';
 import { getBusinessRankingBadge, getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
@@ -34,9 +34,10 @@ interface BusinessDetailProps {
   similarBusinesses?: Business[];
   allBusinesses?: Business[];
   onNavigateToFuelPrices?: () => void;
+  onSelectCategory?: (category: string, subcategory?: string) => void;
 }
 
-export default function BusinessDetail({ business, onBack, theme, activeThemeKey, designSettings, onReviewSubmit, similarBusinesses = [], allBusinesses = [], onNavigateToFuelPrices }: BusinessDetailProps) {
+export default function BusinessDetail({ business, onBack, theme, activeThemeKey, designSettings, onReviewSubmit, similarBusinesses = [], allBusinesses = [], onNavigateToFuelPrices, onSelectCategory }: BusinessDetailProps) {
 
   const { t, lang } = useTranslation();
   const localized = getLocalizedBusiness(business, lang);
@@ -89,6 +90,35 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
   
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [infoModalTopic, setInfoModalTopic] = useState<'score' | 'verified'>('verified');
+
+  const categoryUrl = buildLocalizedUrl({ view: 'category', category: business.category }, lang);
+  const subcategoryUrl = business.subcategory 
+    ? buildLocalizedUrl({ view: 'category', category: business.category, subcategory: business.subcategory }, lang)
+    : '';
+
+  const handleCategoryClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
+      return;
+    }
+    e.preventDefault();
+    if (onSelectCategory) {
+      onSelectCategory(business.category);
+    } else {
+      window.location.href = categoryUrl;
+    }
+  };
+
+  const handleSubcategoryClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
+      return;
+    }
+    e.preventDefault();
+    if (onSelectCategory && business.subcategory) {
+      onSelectCategory(business.category, business.subcategory);
+    } else if (subcategoryUrl) {
+      window.location.href = subcategoryUrl;
+    }
+  };
 
   // Categorized Gallery State
   const [activeGalleryTab, setActiveGalleryTab] = useState<string>('all');
@@ -321,10 +351,49 @@ export default function BusinessDetail({ business, onBack, theme, activeThemeKey
           </div>
 
           <div className="flex gap-2 flex-wrap mb-[14px] items-center">
-            <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{t(business.category)}</span>
+            <a
+              href={categoryUrl}
+              onClick={handleCategoryClick}
+              className="bg-white/10 hover:bg-white/20 hover:text-white active:bg-white/25 text-white rounded px-2.5 py-1 text-[13px] transition-colors inline-flex items-center no-underline cursor-pointer"
+              title={lang === 'nl' ? `Alle bedrijven in ${t(business.category)} bekijken` : `Alle Betriebe in ${t(business.category)} anzeigen`}
+            >
+              {t(business.category)}
+            </a>
             {business.subcategory && (
-              <span className="bg-white/10 rounded px-2.5 py-1 text-[13px]">{t(business.subcategory)}</span>
+              <a
+                href={subcategoryUrl}
+                onClick={handleSubcategoryClick}
+                className="bg-white/10 hover:bg-white/20 hover:text-white active:bg-white/25 text-white rounded px-2.5 py-1 text-[13px] transition-colors inline-flex items-center no-underline cursor-pointer"
+                title={lang === 'nl' ? `Alle bedrijven in ${t(business.subcategory)} bekijken` : `Alle Betriebe in ${t(business.subcategory)} anzeigen`}
+              >
+                {t(business.subcategory)}
+              </a>
             )}
+            {business.additionalCategories && business.additionalCategories.map((ac, idx) => {
+              if (!ac.category || (ac.category === business.category && (!ac.subcategory || ac.subcategory === business.subcategory))) {
+                return null;
+              }
+              const acUrl = buildLocalizedUrl({ view: 'category', category: ac.category, subcategory: ac.subcategory || undefined }, lang);
+              return (
+                <a
+                  key={`ac-${idx}`}
+                  href={acUrl}
+                  onClick={(e) => {
+                    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+                    e.preventDefault();
+                    if (onSelectCategory) {
+                      onSelectCategory(ac.category, ac.subcategory || undefined);
+                    } else {
+                      window.location.href = acUrl;
+                    }
+                  }}
+                  className="bg-white/10 hover:bg-white/20 hover:text-white active:bg-white/25 text-white rounded px-2.5 py-1 text-[13px] transition-colors inline-flex items-center no-underline cursor-pointer"
+                  title={lang === 'nl' ? `Alle bedrijven in ${t(ac.subcategory || ac.category)} bekijken` : `Alle Betriebe in ${t(ac.subcategory || ac.category)} anzeigen`}
+                >
+                  {t(ac.subcategory || ac.category)}
+                </a>
+              );
+            })}
             {business.isPremium && (
               <span className="bg-[#F2761B] rounded px-2.5 py-1 text-[13px] font-semibold">Premium</span>
             )}

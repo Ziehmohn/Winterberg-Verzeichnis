@@ -292,7 +292,7 @@ export default function BestOfPage({
         {/* Filter Tabs */}
         <div className="space-y-4 mb-8 bg-white border border-[#EDE8E0] rounded-xl p-4 sm:p-5 shadow-xs">
           {/* Main Categories */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <div className="flex items-center gap-2 flex-wrap">
             <button
               type="button"
               onClick={() => {
@@ -300,7 +300,7 @@ export default function BestOfPage({
                 setActiveSubcategory(undefined);
                 onSelectCategory('Alle');
               }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold shrink-0 transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeCategory === 'Alle' || activeCategory === 'all'
                   ? 'bg-[#0F4C2E] text-white shadow-sm'
                   : 'bg-[#FAF8F5] text-[#5F6B63] hover:bg-[#E8F1EB] hover:text-[#0F4C2E] border border-[#EDE8E0]'
@@ -320,7 +320,7 @@ export default function BestOfPage({
                     setActiveSubcategory(undefined);
                     onSelectCategory(cat.name);
                   }}
-                  className={`px-4 py-2 rounded-lg text-xs font-bold shrink-0 transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-[#0F4C2E] text-white shadow-sm'
                       : 'bg-[#FAF8F5] text-[#5F6B63] hover:bg-[#E8F1EB] hover:text-[#0F4C2E] border border-[#EDE8E0]'
