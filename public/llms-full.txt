@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (406 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (424 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -239,10 +239,10 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Hotels und Unterkünfte > Hotels
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Kapellenstraße 4, 59955 Winterberg
-- **Telefon:** 02981 1726
-- **Webseite:** https://www.zum-kreuzberg.de
-- **Beschreibung (DE):** Das Hotel zum Kreuzberg ist ein privat und familiär geführtes 3-Sterne-Hotel in ruhiger Lage am Kreuzberg, nur rund fünf Gehminuten vom Winterberger Marktplatz entfernt. Das Haus bietet helle, gemütlich eingerichtete Zimmer mit Dusche/WC, Kabel-TV und teilweise Balkon. Ein abwechslungsreiches Sauerländer Frühstücksbuffet, ein gemütlicher Aufenthaltsraum sowie eine Sonnenterrasse sorgen für einen erholsamen Aufenthalt.
-- **Beschreibung (NL):** Hotel zum Kreuzberg is een gastvrij, door een familie gerund 3-sterrenhotel op een rustige heuvelrug, op slechts vijf minuten lopen van het marktplein van Winterberg. Het hotel beschikt over lichte, comfortabele kamers met eigen sanitair en veelal een balkon. Een uitgebreid Sauerlands ontbijtbuffet, een lounge en een zonneterras maken het verblijf compleet.
+- **Telefon:** 02981 929550
+- **Webseite:** https://www.hotel-zum-kreuzberg.de
+- **Beschreibung (DE):** Gemütliches 3-Sterne-Hotel in ruhiger und doch zentrumsnaher Lage von Winterberg. Ideal für Aktivurlauber, Wanderer, Skifahrer und Biker, mit persönlicher Gastfreundschaft und Sauerländer Frühstücksbuffet.
+- **Beschreibung (NL):** Gezellig 3-sterrenhotel op een rustige en toch centrale locatie in Winterberg. Ideaal voor actieve vakantiegangers, wandelaars, skiërs en fietsers, met persoonlijke gastvrijheid en een Sauerlands ontbijtbuffet.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-zum-kreuzberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-zum-kreuzberg
 
@@ -999,6 +999,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-elisabeth
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/haus-elisabeth
 
+#### [Apartment Winterberg Magic Mountain](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/apartment-winterberg-magic-mountain)
+- **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 70 / Whg 5, 59955 Winterberg
+- **Telefon:** 0176 81105943
+- **Webseite:** https://www.magic-mountain-winterberg.de
+- **Beschreibung (DE):** Modern und hochwertig ausgestattete Ferienwohnung am Waltenberg in direkter Nähe zu den Skiliften und Wanderwegen von Winterberg. Perfekt für Paare, Familien und Bergsportler.
+- **Beschreibung (NL):** Modern en hoogwaardig ingericht vakantieappartement aan de Am Waltenberg, vlak bij de skiliften en wandelroutes van Winterberg. Ideaal voor koppels, gezinnen en actieve vakantiegangers.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/apartment-winterberg-magic-mountain
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/apartment-winterberg-magic-mountain
+
 ### Kategorie: Handwerk
 
 #### [Bröker Objekteinrichtungen GmbH & Co. KG](https://www.winterberg-verzeichnis.de/handwerk/schreinereien/broeker-objekteinrichtungen-gmbh-und-co-kg)
@@ -1532,6 +1543,50 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maschinenbau/leisse-und-soehne-gmbh-und-co-kg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/machinebouw/leisse-und-soehne-gmbh-und-co-kg
 
+#### [PEISMEDIA Werbetechnik](https://www.winterberg-verzeichnis.de/handwerk/druckereien/peismedia-werbetechnik)
+- **Kategorie:** Handwerk > Druckereien
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 1a, 59955 Winterberg
+- **Telefon:** 02981 928770
+- **Webseite:** https://www.peismedia.de
+- **Beschreibung (DE):** PEISMEDIA an der Remmeswiese in Winterberg ist Ihr vielseitiger Spezialist für professionelle Werbetechnik, Textilveredelung, Stickerei, Schilder- und Lichtwerbung, Fahrzeugbeschriftungen sowie hochwertige Printmedien.
+- **Beschreibung (NL):** PEISMEDIA aan de Remmeswiese in Winterberg is uw specialist voor professionele reclametechniek, textielveredeling, borduurwerk, lichtreclame, voertuigbelettering en hoogwaardig drukwerk.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/druckereien/peismedia-werbetechnik
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/drukkerijen/peismedia-werbetechnik
+
+#### [Bau- u. Kunstglaserei Dragowski](https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/bau-u-kunstglaserei-dragowski)
+- **Kategorie:** Handwerk > Bauunternehmen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 11, 59955 Winterberg
+- **Telefon:** 02981 2127
+- **Webseite:** https://www.glasernrw.de
+- **Beschreibung (DE):** Traditionsreicher Meisterbetrieb für Bau- und Kunstglaserei im Gewerbegebiet Remmeswiese in Winterberg. Spezialisiert auf individuelle Glaslösungen, Reparaturverglasungen, Duschabtrennungen und Veredelungen.
+- **Beschreibung (NL):** Traditioneel meesterbedrijf voor bouw- en kunstbeglazing op het bedrijventerrein Remmeswiese in Winterberg. Gespecialiseerd in glas op maat, raam- en deurbouw, reparatiebeglazing en glazen douchewanden.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/bau-u-kunstglaserei-dragowski
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bouwbedrijven/bau-u-kunstglaserei-dragowski
+
+#### [AGEB Elektrotechnik Winterberg GmbH](https://www.winterberg-verzeichnis.de/handwerk/elektriker/ageb-elektrotechnik-winterberg-gmbh)
+- **Kategorie:** Handwerk > Elektriker
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Lamfert 15, 59955 Winterberg
+- **Telefon:** 02981 988060
+- **Webseite:** https://www.ageb.de
+- **Beschreibung (DE):** Fachbetrieb für Gebäude- und Elektrotechnik, Gebäudeautomation, erneuerbare Energien und Schaltschrankbau an der Straße Lamfert in Winterberg.
+- **Beschreibung (NL):** Vakbedrijf voor gebouw- en elektrotechniek, gebouwautomatisering, hernieuwbare energie en schakelpaneelbouw aan de straat Lamfert in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/ageb-elektrotechnik-winterberg-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/ageb-elektrotechnik-winterberg-gmbh
+
+#### [Snow-Tec Winterberg](https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/snow-tec-winterberg)
+- **Kategorie:** Handwerk > Bauunternehmen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Lamfert 7, 59955 Winterberg
+- **Telefon:** 02981 9878129
+- **Webseite:** https://www.snow-tec-winterberg.de
+- **Beschreibung (DE):** Leistungsstarkes Erdbau- und Tiefbauunternehmen am Lamfert in Winterberg. Spezialisiert auf Erdarbeiten, Pisten- und Wegebausanierung, Baggerarbeiten, Abbruch und kommunalen Winterdienst.
+- **Beschreibung (NL):** Ervaren grondverzet- en grondwerkbedrijf aan de Lamfert in Winterberg. Gespecialiseerd in graafwerkzaamheden, piste- en padenbouw, sloopwerken en winterdienst.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/snow-tec-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bouwbedrijven/snow-tec-winterberg
+
 ### Kategorie: Einzelhandel
 
 #### [Wochenmarkt Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg)
@@ -1967,11 +2022,86 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Einzelhandel > Bekleidung
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Hauptstraße 1, 59955 Winterberg
-- **Telefon:** 02981 2248
-- **Beschreibung (DE):** Das Modehaus Schnurbusch (Inh. Luzia Sauerwald) an der Hauptstraße 1 im Herzen von Winterberg ist ein traditionsreiches Fachgeschäft für anspruchsvolle Damenmode. Das Sortiment umfasst stilsichere Kollektionen, Hosen, Strick, Blusen und modische Accessoires renommierter Marken. Kundinnen schätzen die persönliche, typgerechte Beratung in familiärer Atmosphäre direkt in der Winterberger Fußgängerzone.
-- **Beschreibung (NL):** Modehuis Schnurbusch (Luzia Sauerwald) aan de Hauptstraße 1 in het centrum van Winterberg is een gevestigde speciaalzaak voor stijlvolle damesmode. Het assortiment bestaat uit hoogwaardige collecties, broeken, breimode en accessoires met persoonlijk stijladvies.
+- **Telefon:** 02981 1205
+- **Webseite:** https://www.modehaus-schnurbusch.de
+- **Beschreibung (DE):** Traditionsreiches Fachgeschäft für Damen- und Herrenmode in zentraler Lage von Winterberg. Hochwertige Markenkleidung, individuelle Typberatung und erstklassiger Service.
+- **Beschreibung (NL):** Traditioneel modehuis voor dames- en herenkleding op een centrale locatie in Winterberg. Hoogwaardige merkkleding, persoonlijk stijladvies en eersteklas service.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/modehaus-schnurbusch
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/modehaus-schnurbusch
+
+#### [Wellensteyn Store Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/wellensteyn-store-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 43, 59955 Winterberg
+- **Telefon:** 02981 9287313
+- **Webseite:** https://www.wellensteyn.com
+- **Beschreibung (DE):** Offizieller Wellensteyn Markenstore am Waltenberg in Winterberg. Große Auswahl an wind- und wetterfester Funktionsbekleidung, modischen Steppjacken, Parkas und Accessoires für Damen und Herren.
+- **Beschreibung (NL):** Officiële Wellensteyn brandstore aan de Am Waltenberg in Winterberg. Ruime collectie wind- en waterdichte functionele jassen, stijlvolle parka's en accessoires voor dames en heren.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/wellensteyn-store-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/wellensteyn-store-winterberg
+
+#### [Heartbreaker Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/heartbreaker-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 34, 59955 Winterberg
+- **Telefon:** 02981 899990
+- **Beschreibung (DE):** Trendige Modeboutique am Waltenberg in Winterberg. Aktuelle Damenmode, freche Styles, stylische Accessoires und liebevolle Beratung für modebewusste Besucherinnen.
+- **Beschreibung (NL):** Trendy modeboetiek aan de Am Waltenberg in Winterberg. Eigentijdse damesmode, stijlvolle combinaties, accessoires en enthousiast stijladvies.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/heartbreaker-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/heartbreaker-winterberg
+
+#### [IS Moden Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/is-moden-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 15, 59955 Winterberg
+- **Telefon:** 02981 899757
+- **Webseite:** https://www.is-moden.de
+- **Beschreibung (DE):** Fachgeschäft für sportive und elegante Herrenmode am Waltenberg in Winterberg. Markensortiment von casual bis smart-casual mit exzellenter Fachberatung.
+- **Beschreibung (NL):** Speciaalzaak voor sportieve en stijlvolle herenmode aan de Am Waltenberg in Winterberg. Uitgebreide merkencollectie van casual tot zakelijk met vakkundig advies.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/is-moden-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/is-moden-winterberg
+
+#### [Frauen Zimmer Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/frauen-zimmer-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Untere Pforte 4, 59955 Winterberg
+- **Telefon:** 02981 928373
+- **Beschreibung (DE):** Modische Damenboutique an der Unteren Pforte in Winterberg. Spezialisiert auf aktuelle Kollektionen von CECIL, Street One und modernen Markenlooks.
+- **Beschreibung (NL):** Modieuze damesboetiek aan de Untere Pforte in Winterberg. Gespecialiseerd in actuele collecties van merken als CECIL en Street One.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/frauen-zimmer-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/frauen-zimmer-winterberg
+
+#### [Takko Fashion](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/takko-fashion)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Untere Pforte 4, 59955 Winterberg
+- **Telefon:** 02981 802519
+- **Webseite:** https://www.takko.com
+- **Beschreibung (DE):** Moderne Bekleidungsfiliale an der Unteren Pforte in Winterberg. Trendige und bezahlbare Mode für die ganze Familie – Damen, Herren, Kinder und Babys.
+- **Beschreibung (NL):** Moderne kledingwinkel aan de Untere Pforte in Winterberg. Betaalbare en modieuze kleding voor het hele gezin – dames, heren, kinderen en baby's.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/takko-fashion
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/takko-fashion
+
+#### [1xig Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/1xig-winterberg)
+- **Kategorie:** Einzelhandel > Bekleidung
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 3, 59955 Winterberg
+- **Telefon:** 02981 820380
+- **Beschreibung (DE):** Individuelles Bekleidungsgeschäft an der Poststraße in Winterberg. Angesagte Streetwear, sportive Freizeitmode und stilvolle Casual-Looks für Damen und Herren.
+- **Beschreibung (NL):** Eigenzinnige kledingwinkel aan de Poststraße in Winterberg. Hippe streetwear, sportieve vrijetijdskleding en eigentijdse casual outfits voor dames en heren.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/bekleidung/1xig-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/kleding/1xig-winterberg
+
+#### [Schauerte GmbH Großküchentechnik](https://www.winterberg-verzeichnis.de/einzelhandel/gaststaettenbedarf/schauerte-gmbh-grosskuechentechnik)
+- **Kategorie:** Einzelhandel > Gaststättenbedarf
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 17, 59955 Winterberg
+- **Telefon:** 02981 2088
+- **Webseite:** https://www.schauerte.de
+- **Beschreibung (DE):** Spezialist für Großkücheneinrichtungen, Gastronomietechnik, Spültechnik und professionelle Kältetechnik an der Remmeswiese in Winterberg.
+- **Beschreibung (NL):** Specialist in professionele grootkeukentechniek, horeca-apparatuur, vaatwassystemen en koeltechniek aan de Remmeswiese in Winterberg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/gaststaettenbedarf/schauerte-gmbh-grosskuechentechnik
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/horecabenodigdheden/schauerte-gmbh-grosskuechentechnik
 
 ### Kategorie: Gastronomie
 
@@ -2482,11 +2612,11 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 #### [Pannenkoekenhuis Der Brabander](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/pannenkoekenhuis-der-brabander)
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Winterberg
-- **Adresse:** Am Waltenberg 65, 59955 Winterberg
-- **Telefon:** 02981 9320
-- **Webseite:** https://www.brabander.nl/pannenkoekenhaus
-- **Beschreibung (DE):** Original holländisches Pfannkuchenhaus im Ferienhotel Der Brabander in Winterberg. Riesige Auswahl an süßen und herzhaften Pfannkuchen in gemütlich-uriger Atmosphäre.
-- **Beschreibung (NL):** Origineel Nederlands pannenkoekenhuis bij Vakantiehotel Der Brabander in Winterberg. Meer dan 80 soorten pannenkoeken in een oergezellige sfeer.
+- **Adresse:** Am Waltenberg 61, 59955 Winterberg
+- **Telefon:** 02981 932219
+- **Webseite:** https://www.brabander.de/pfannkuchenhaus
+- **Beschreibung (DE):** Modernes holländisches Pfannkuchenrestaurant im Ferienhotel Der Brabander in Winterberg. Bekannt für eine riesige Auswahl an über 70 fantasievollen süßen und pikanten Pfannkuchen, gemütliche Atmosphäre und eine einladende Sonnenterrasse.
+- **Beschreibung (NL):** Modern Nederlands pannenkoekenhuis bij Vakantiehotel Der Brabander in Winterberg. Beroemd om meer dan 70 fantasierijke zoete en hartige pannenkoeken, een gezellige sfeer en een ruim zonneterras.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/pannenkoekenhuis-der-brabander
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/pannenkoekenhuis-der-brabander
 
@@ -3633,6 +3763,71 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Augenoptikergeschäft in Winterberg.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/optiker/lu-brillenschmiede
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/opticiens/lu-brillenschmiede
+
+#### [Studio Entspannungselemente - Astrid Schönhense](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/studio-entspannungselemente-astrid-schoenhense)
+- **Kategorie:** Gesundheit & Medizin > Yoga
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Günninghauser Str. 11, 59955 Winterberg
+- **Telefon:** 0171 7041797
+- **Webseite:** https://www.entspannungselemente.de
+- **Beschreibung (DE):** Yogastudio und Entspannungszentrum von Astrid Schönhense in Winterberg. Angeboten werden Yoga-Retreats, Präsenz- und Online-Klassen, Klangschalenmassagen und geführte Achtsamkeitsworkshops.
+- **Beschreibung (NL):** Yogastudio en ontspanningscentrum van Astrid Schönhense in Winterberg. Biedt yogaretreats, fysieke en online yogalessen, klankschaalmassages en mindfulness-workshops.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/studio-entspannungselemente-astrid-schoenhense
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/yoga/studio-entspannungselemente-astrid-schoenhense
+
+#### [Mutter-Kind-Klinik St. Ursula](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/mutter-kind-klinik-st-ursula)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Ursulinenstraße 26, 59955 Winterberg
+- **Telefon:** 02981 92260
+- **Webseite:** https://www.mutter-kind-klinik-winterberg.de
+- **Beschreibung (DE):** Zertifizierte Fach- und Vorsorgeklinik für Mutter-Kind-Kuren und Vater-Kind-Kuren im heilklimatischen Kurort Winterberg. Ganzheitliche medizinische, psychologische und physiotherapeutische Betreuung.
+- **Beschreibung (NL):** Gecertificeerde gespecialiseerde revalidatie- en kuurkliniek voor moeder-en-kind- en vader-en-kind-kuren in het geneeskrachtige kuuroord Winterberg. Holistische medische, psychologische en fysiotherapeutische zorg.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/mutter-kind-klinik-st-ursula
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/mutter-kind-klinik-st-ursula
+
+#### [Yoga am Rad](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/yoga-am-rad)
+- **Kategorie:** Gesundheit & Medizin > Yoga
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Rad 40, 59955 Winterberg
+- **Telefon:** 0172 2381283
+- **Webseite:** https://www.yoga-am-rad.de
+- **Beschreibung (DE):** Yogastudio am Rad in Winterberg. Vielfältige Yogakurse, Personal Yoga, sanftes Faszientraining und Entspannungseinheiten in herzlicher, persönlicher Studioatmosphäre.
+- **Beschreibung (NL):** Yogastudio Am Rad in Winterberg. Uitgebreide yogalessen, personal yoga, zachte fasciatraining en ontspanningssessies in een warme, persoonlijke sfeer.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/yoga-am-rad
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/yoga/yoga-am-rad
+
+#### [Hundephysiotherapie & Osteopathie Jennifer König](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/hundephysiotherapie-und-osteopathie-jennifer-koenig)
+- **Kategorie:** Gesundheit & Medizin > Tiergesundheit
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Kapellenstraße 2, 59955 Winterberg
+- **Telefon:** 0171 1445775
+- **Webseite:** https://www.hundephysio-winterberg.de
+- **Beschreibung (DE):** Praxis für Hundephysiotherapie und Hundeosteopathie von Jennifer König an der Kapellenstraße in Winterberg. Schmerzlinderung, Rehabilitation nach Operationen und Förderung der Beweglichkeit.
+- **Beschreibung (NL):** Praktijk voor hondenfysiotherapie en hondenosteopathie van Jennifer König aan de Kapellenstraße in Winterberg. Pijnverlichting, revalidatie na operaties en behoud van mobiliteit.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/hundephysiotherapie-und-osteopathie-jennifer-koenig
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/diergezondheid/hundephysiotherapie-und-osteopathie-jennifer-koenig
+
+#### [Tierarztpraxis Karin Klenner](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/tierarztpraxis-karin-klenner)
+- **Kategorie:** Gesundheit & Medizin > Tiergesundheit
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Oberhofer Weg 17, 59955 Winterberg
+- **Telefon:** 02981 908425
+- **Beschreibung (DE):** Etablierte Praxis für Kleintiere und Haustiere am Oberhofer Weg in Winterberg. Ganzheitliche tierärztliche Betreuung, Diagnostik, Vorsorge und Weichteilchirurgie.
+- **Beschreibung (NL):** Gevestigde dierenartsenpraktijk voor gezelschapsdieren aan de Oberhofer Weg in Winterberg. Uitgebreide diergeneeskundige zorg, diagnostiek, preventie en chirurgie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/tierarztpraxis-karin-klenner
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/diergezondheid/tierarztpraxis-karin-klenner
+
+#### [Hundezentrum Pfotenklatscher - Birgit Prager](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/hundezentrum-pfotenklatscher-birgit-prager)
+- **Kategorie:** Gesundheit & Medizin > Tiergesundheit
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Lamfert 12, 59955 Winterberg
+- **Telefon:** 0172 1849271
+- **Webseite:** https://www.hundeschule-pfotenklatscher.de
+- **Beschreibung (DE):** Professionelle Hundeschule und Trainingszentrum von Birgit Prager am Lamfert in Winterberg. Zertifiziertes Hundetraining, Welpenschule, Alltagstraining und Verhaltensberatung.
+- **Beschreibung (NL):** Professionele hondenschool en trainingscentrum van Birgit Prager aan de Lamfert in Winterberg. Gecertificeerde hondentraining, puppylessen, gehoorzaamheid en gedragstherapie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/hundezentrum-pfotenklatscher-birgit-prager
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/diergezondheid/hundezentrum-pfotenklatscher-birgit-prager
 
 ### Kategorie: Mobilität & KFZ
 

@@ -574,6 +574,21 @@ export const SEARCH_INTENTS: SearchIntent[] = [
     ]
   },
   {
+    id: 'werbetechnik-druck',
+    label: 'Werbetechnik, Textildruck & Druckereien',
+    triggers: [
+      'werbetechnik', 'textildruck', 'stickerei', 't-shirtdruck', 't-shirt-druck', 'textilveredelung',
+      'beschriftung', 'beschriftungen', 'autobeschriftung', 'fahrzeugbeschriftung', 'schaufensterbeschriftung',
+      'leuchtreklame', 'lichtwerbung', 'werbeschild', 'werbeschilder', 'pylon', 'werbepylon',
+      'druckerei', 'druckereien', 'drucken', 'digitaldruck', 'plattendruck', 'lasergravur',
+      'arbeitskleidung', 'berufsbekleidung', 'stick', 'stickereien', 'belettering', 'textieldruk'
+    ],
+    targets: [
+      { subcategories: ['Druckereien', 'Marketingdienstleistungen'], weight: 320 },
+      { keywords: ['werbetechnik*', 'peismedia*', 'beschriftung*', 'stickerei*', 'textildruck*', 'druckerei*'], weight: 280 }
+    ]
+  },
+  {
     id: 'coworking',
     label: 'Coworking',
     triggers: ['coworking', 'coworkingspace', 'arbeitsplatz', 'büroplatz', 'homeoffice', 'meetingraum', 'besprechungsraum', 'konferenzraum', 'workation', 'flexdesk'],

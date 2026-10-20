@@ -396,9 +396,10 @@ export function buildBusinessFulltextCorpus(bus: Business): {
   const servicesStr = (bus.services || []).concat(bus.services_nl || []).join(' ');
   const productsStr = (bus.products || []).concat(bus.products_nl || []).join(' ');
   const addCategoriesStr = (bus.additionalCategories || []).map(ac => `${ac.category} ${ac.subcategory || ''}`).join(' ');
+  const synonymsStr = Array.isArray((bus as any).searchSynonyms) ? (bus as any).searchSynonyms.join(' ') : '';
 
   const primaryText = normalizeSearchString(
-    `${bus.name} ${bus.category} ${bus.subcategory || ''} ${addCategoriesStr} ${servicesStr} ${productsStr}`
+    `${bus.name} ${bus.category} ${bus.subcategory || ''} ${addCategoriesStr} ${synonymsStr} ${servicesStr} ${productsStr}`
   );
 
   const contactStr = bus.contactPerson ? `${bus.contactPerson.name} ${bus.contactPerson.role || ''}` : '';
