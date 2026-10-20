@@ -7753,4 +7753,16 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/sportzentrum-winterberg-hochsauerland-gmbh</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/sportzentrum-winterberg-hochsauerland-gmbh</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (405 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (406 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -3361,6 +3361,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/sportzentrum-hochsauerland
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/tennisbanen/sportzentrum-hochsauerland
 
+#### [Sportzentrum Winterberg Hochsauerland GmbH](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/sportzentrum-winterberg-hochsauerland-gmbh)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Buchenweg 52, 59955 Winterberg
+- **Telefon:** 0291 941559
+- **Webseite:** https://www.veltins-eisarena.de
+- **Beschreibung (DE):** Die Sportzentrum Winterberg Hochsauerland GmbH ist die offizielle Träger- und Betreibergesellschaft bedeutender Hochleistungssport- und Veranstaltungsstätten in Winterberg, darunter der weltbekannten VELTINS-EisArena sowie des traditionsreichen Schanzenparks.
+- **Beschreibung (NL):** Sportzentrum Winterberg Hochsauerland GmbH is de officiële exploitant en beheerder van toonaangevende topsport- en evenementenaccommodaties in Winterberg, waaronder de wereldberoemde VELTINS-EisArena en het schansenpark.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/sportzentrum-winterberg-hochsauerland-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/sportzentrum-winterberg-hochsauerland-gmbh
+
 ### Kategorie: Gesundheit & Medizin
 
 #### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
@@ -4030,7 +4041,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Adresse:** Kapperundweg, 59955 Winterberg
 - **Telefon:** 02981 92600
 - **Webseite:** https://www.veltins-eisarena.de
-- **Beschreibung (DE):** Eine der modernsten Kunsteisbahnen weltweit für Bob, Rodel und Skeleton sowie Austragungsort internationaler Weltcups und Führungen.
+- **Beschreibung (DE):** Die VELTINS-EisArena in Winterberg ist eine der modernsten und schnellsten Kunsteisbahnen weltweit für Bob, Rodel und Skeleton sowie Austragungsort internationaler Weltmeisterschaften, Weltcups und exklusiver Bahnführungen.
+- **Beschreibung (NL):** De VELTINS-EisArena in Winterberg is een van de snelste en modernste kunstijsbanen ter wereld voor bobsleeën, rodelen en skeleton, en het decor van wereldbekers, wereldkampioenschappen en rondleidingen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/veltins-eisarena
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/veltins-eisarena
 
