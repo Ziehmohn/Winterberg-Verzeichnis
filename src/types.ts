@@ -563,4 +563,33 @@ export interface ChargingStation {
   }[];
 }
 
+// 4. Winterberger Auftragsbörse (Ausschreibungen & Handwerksaufträge)
+export type TenderTimeframe = 'urgent' | '1_month' | '3_months' | 'flexible';
+
+export interface TenderProject {
+  id: string;
+  title: string;
+  category: string;             // Standard "Handwerk"
+  subcategory: string;          // z. B. "Heizungstechnik", "Elektriker", "Dachdecker", "Maler & Lackierer", "Schreinereien", "Bauunternehmen", "Gartenbauer", "Bäderstudios", "Sonstiges Handwerk"
+  district: string;             // Ortsteil in Winterberg
+  timeframe: TenderTimeframe;   // Ausführungszeitraum
+  description: string;          // Projektbeschreibung
+  budgetRange?: string;         // z. B. "Bis 1.000 €", "1.000 - 5.000 €", "Über 5.000 €", "Keine Angabe"
+  images?: string[];            // Optional Bild-URLs / Base64
+  
+  // Kontaktdaten des Auftraggebers (Geschützt - sichtbar für verifizierte Premium-Partner & Admin)
+  contactName: string;
+  contactEmail: string;
+  contactPhone?: string;
+  preferredContactMethod?: 'phone' | 'email' | 'any';
+
+  // Status & Verwaltung
+  status: 'active' | 'completed' | 'cancelled';
+  manageToken: string;          // Geheimer Token zum Verwalten / Schließen durch den Auftraggeber
+  createdAt: number;
+  unlockedBy?: string[];        // Array von businessIds oder userUids, die den Kontakt eingesehen haben
+  viewsCount?: number;
+}
+
+
 
