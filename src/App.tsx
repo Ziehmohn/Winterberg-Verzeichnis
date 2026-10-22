@@ -1860,7 +1860,7 @@ export default function App() {
                 <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '11px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '2px' }}>{lang === 'nl' ? 'BEDRIJVENGIDS' : 'VERZEICHNIS'}</span>
               </span>
             </div>
-            <nav className="hidden md:flex items-center flex-nowrap whitespace-nowrap shrink-0" style={{ gap: '13px', fontSize: '14px', marginLeft: 'auto' }}>
+            <nav className="hidden md:flex items-center flex-nowrap whitespace-nowrap shrink-0" style={{ gap: '14px', fontSize: '15px', marginLeft: 'auto' }}>
               <div 
                 className="relative flex items-center h-full py-1 whitespace-nowrap shrink-0"
                 onMouseEnter={handleMouseEnterMegaMenu}
