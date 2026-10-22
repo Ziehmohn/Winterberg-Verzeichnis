@@ -1840,7 +1840,7 @@ export default function App() {
 
         {/* Header (Claude Design) */}
         <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(10px)', borderBottom: '1px solid #E7E2DA' }}>
-          <div className="w-full max-w-[1180px] mx-auto px-3.5 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-6">
+          <div className="w-full max-w-[1240px] mx-auto px-3.5 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
             <div 
               onClick={(e) => {
                 e.preventDefault();
@@ -1860,9 +1860,9 @@ export default function App() {
                 <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '11px', fontWeight: 600, letterSpacing: '0.34em', color: '#1B211D', display: 'block', marginTop: '2px' }}>{lang === 'nl' ? 'BEDRIJVENGIDS' : 'VERZEICHNIS'}</span>
               </span>
             </div>
-            <nav className="hidden md:flex items-center" style={{ gap: '14px', fontSize: '14.5px', marginLeft: 'auto' }}>
+            <nav className="hidden md:flex items-center flex-nowrap whitespace-nowrap shrink-0" style={{ gap: '13px', fontSize: '14px', marginLeft: 'auto' }}>
               <div 
-                className="relative flex items-center h-full py-1"
+                className="relative flex items-center h-full py-1 whitespace-nowrap shrink-0"
                 onMouseEnter={handleMouseEnterMegaMenu}
                 onMouseLeave={handleMouseLeaveMegaMenu}
               >
@@ -1876,17 +1876,17 @@ export default function App() {
                     setIsMegaMenuOpen(false);
                   }} 
                   style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 700 }} 
-                  className="hover:text-orange-500 transition-colors flex items-center gap-1.5 cursor-pointer py-1 select-none"
+                  className="hover:text-orange-500 transition-colors flex items-center gap-1.5 cursor-pointer py-1 select-none whitespace-nowrap"
                 >
-                  <span>{t("allCompanies")}</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMegaMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
+                  <span className="whitespace-nowrap">{t("allCompanies")}</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 shrink-0 ${isMegaMenuOpen ? 'rotate-180 text-[#F2761B]' : 'text-[#5F6B63]'}`} />
                 </a>
               </div>
 
-              <div className="w-[1px] h-[18px] bg-[#E7E2DA]"></div>
-              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
-              <a href={getPath(lang === 'nl' ? '/evenementen' : '/events')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Evenementen' : 'Events'}</a>
-              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
+              <div className="w-[1px] h-[18px] bg-[#E7E2DA] shrink-0"></div>
+              <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors whitespace-nowrap">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
+              <a href={getPath(lang === 'nl' ? '/evenementen' : '/events')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors whitespace-nowrap">{lang === 'nl' ? 'Evenementen' : 'Events'}</a>
+              <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors whitespace-nowrap">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
               {isAdminEmail(currentUser?.email) ? (
                 <a 
                   href={getPath('/auftragsboerse')} 
@@ -1897,19 +1897,19 @@ export default function App() {
                     setIsAuftraegeMode(true); 
                   }} 
                   style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 600 }} 
-                  className="hover:text-orange-500 transition-colors inline-flex items-center gap-1.5"
+                  className="hover:text-orange-500 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
                   title="Auftragsbörse (Admin Vorab-Test)"
                 >
-                  <span>{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
-                  <span className="text-[10px] bg-[#F2761B] text-white font-bold px-1.5 py-0.5 rounded">Intern</span>
+                  <span className="whitespace-nowrap">{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
+                  <span className="text-[10px] bg-[#F2761B] text-white font-bold px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">Intern</span>
                 </a>
               ) : (
                 <span 
-                  className="inline-flex items-center gap-1.5 text-gray-400 opacity-50 cursor-not-allowed select-none" 
+                  className="inline-flex items-center gap-1.5 text-gray-400 opacity-50 cursor-not-allowed select-none whitespace-nowrap" 
                   title="Die Winterberger Auftragsbörse befindet sich aktuell im internen Test und startet in Kürze."
                 >
-                  <span>{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
-                  <span className="text-[10px] bg-gray-200 text-gray-500 font-medium px-1.5 py-0.5 rounded">In Kürze</span>
+                  <span className="whitespace-nowrap">{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
+                  <span className="text-[10px] bg-gray-200 text-gray-600 font-medium px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">In Kürze</span>
                 </span>
               )}
               <a 
