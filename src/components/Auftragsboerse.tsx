@@ -285,7 +285,7 @@ export default function Auftragsboerse({
               <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-white/90">
                 <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-sm">
                   <CheckCircle2 className="w-4 h-4 text-[#F2761B]" />
-                  <span><strong>{tenders.length}</strong> aktuelle Ausschreibungen</span>
+                  <span><strong>{tenders.filter(t => !t.id.startsWith('muster-')).length}</strong> aktuelle Ausschreibungen</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-sm">
                   <MapPin className="w-4 h-4 text-[#F2761B]" />
@@ -434,92 +434,151 @@ export default function Auftragsboerse({
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredTenders.map(tender => {
-              const isUnlocked = isUserPremium || !!locallyUnlocked[tender.id];
-
-              return (
-                <div 
-                  key={tender.id}
-                  className="bg-white rounded-2xl border border-[#E7E2DA] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between overflow-hidden"
-                >
-                  <div className="p-5 sm:p-6 space-y-4">
-                    
-                    {/* Meta Top Row */}
-                    <div className="flex items-center justify-between gap-2 flex-wrap">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#0F4C2E]/10 text-[#0F4C2E]">
-                          <Hammer className="w-3.5 h-3.5" /> {tender.subcategory}
-                        </span>
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-100 text-[#5F6B63]">
-                          <MapPin className="w-3.5 h-3.5 text-[#F2761B]" /> {tender.district}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1 text-[11px] text-[#8F9E95]">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{formatRelativeDate(tender.createdAt)}</span>
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <div>
-                      <h2 
-                        onClick={() => setSelectedTenderDetail(tender)}
-                        className="text-lg font-bold text-[#1B211D] hover:text-[#0F4C2E] cursor-pointer transition-colors leading-snug"
-                      >
-                        {tender.title}
-                      </h2>
-                      <p className="text-xs sm:text-sm text-[#5F6B63] mt-2 line-clamp-3 leading-relaxed">
-                        {tender.description}
-                      </p>
-                    </div>
-
-                    {/* Timeframe & Budget Badges */}
-                    <div className="flex items-center gap-2 flex-wrap text-xs">
-                      <div className={`px-2.5 py-1 rounded-md font-semibold inline-flex items-center gap-1 ${
-                        tender.timeframe === 'urgent' 
-                          ? 'bg-red-50 text-red-700 border border-red-200' 
-                          : 'bg-amber-50 text-amber-800 border border-amber-200'
-                      }`}>
-                        <Calendar className="w-3.5 h-3.5" />
-                        <span>{formatTimeframe(tender.timeframe)}</span>
-                      </div>
-
-                      {tender.budgetRange && (
-                        <div className="px-2.5 py-1 rounded-md font-medium bg-[#F7F5F0] text-[#5F6B63] border border-[#E7E2DA]">
-                          Budget: {tender.budgetRange}
-                        </div>
-                      )}
-
-                      {tender.images && tender.images.length > 0 && (
-                        <div className="px-2 py-1 rounded-md text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
-                          📷 {tender.images.length} Foto(s)
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Photo Thumbnails if available */}
-                    {tender.images && tender.images.length > 0 && (
-                      <div className="flex gap-2 pt-1 overflow-x-auto pb-1">
-                        {tender.images.map((img, i) => (
-                          <img
-                            key={i}
-                            src={img}
-                            alt="Projektfoto"
-                            onClick={() => setActiveImagePreview(img)}
-                            className="w-16 h-16 rounded-lg object-cover border border-[#E7E2DA] cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0"
-                          />
-                        ))}
-                      </div>
-                    )}
-
+          <div>
+            {/* Hinweis-Banner falls nur der Muster-Auftrag vorliegt */}
+            {filteredTenders.some(t => t.id.startsWith('muster-')) && (
+              <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-[#F2761B]/30 text-[#1B211D] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#F2761B]/15 text-[#F2761B] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Sparkles className="w-5 h-5 text-[#F2761B]" />
                   </div>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#1B211D] flex items-center gap-2">
+                      Aktuell sind alle vorherigen Aufträge vergeben!
+                    </h4>
+                    <p className="text-xs text-[#5F6B63] mt-0.5 leading-relaxed">
+                      Unten sehen Sie eine Muster-Ausschreibung zur Veranschaulichung. Haben Sie selbst ein Vorhaben? Stellen Sie jetzt Ihre kostenlose Anfrage ein!
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsSubmitModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#F2761B] hover:bg-[#d96312] text-white text-xs font-bold rounded-xl shadow-sm transition-colors whitespace-nowrap self-start sm:self-auto"
+                >
+                  <Plus className="w-4 h-4" /> Eigenen Auftrag ausschreiben
+                </button>
+              </div>
+            )}
 
-                  {/* BOTTOM: Contact Unlock / Lead Section */}
-                  <div className={`p-4 sm:p-5 border-t transition-colors ${
-                    isUnlocked ? 'bg-emerald-50/70 border-emerald-200' : 'bg-[#F7F5F0] border-[#E7E2DA]'
-                  }`}>
-                    {isUnlocked ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {filteredTenders.map(tender => {
+                const isMuster = tender.id.startsWith('muster-');
+                const isUnlocked = isUserPremium || !!locallyUnlocked[tender.id] || isMuster;
+
+                return (
+                  <div 
+                    key={tender.id}
+                    className={`rounded-2xl transition-all flex flex-col justify-between overflow-hidden ${
+                      isMuster 
+                        ? 'bg-gradient-to-br from-white via-orange-50/15 to-amber-50/25 border-2 border-[#F2761B] shadow-md ring-2 ring-[#F2761B]/10' 
+                        : 'bg-white border border-[#E7E2DA] shadow-sm hover:shadow-md'
+                    }`}
+                  >
+                    <div className="p-5 sm:p-6 space-y-4">
+                      
+                      {/* Meta Top Row */}
+                      <div className="flex items-center justify-between gap-2 flex-wrap">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {isMuster ? (
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-[#F2761B] text-white shadow-sm">
+                              <Sparkles className="w-3.5 h-3.5" /> Muster-Auftrag (Beispiel)
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#0F4C2E]/10 text-[#0F4C2E]">
+                              <Hammer className="w-3.5 h-3.5" /> {tender.subcategory}
+                            </span>
+                          )}
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-100 text-[#5F6B63]">
+                            <MapPin className="w-3.5 h-3.5 text-[#F2761B]" /> {tender.district}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1 text-[11px] text-[#8F9E95]">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>{isMuster ? 'Demonstration' : formatRelativeDate(tender.createdAt)}</span>
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <div>
+                        <h2 
+                          onClick={() => setSelectedTenderDetail(tender)}
+                          className="text-lg font-bold text-[#1B211D] hover:text-[#0F4C2E] cursor-pointer transition-colors leading-snug"
+                        >
+                          {tender.title}
+                        </h2>
+                        <p className="text-xs sm:text-sm text-[#5F6B63] mt-2 line-clamp-3 leading-relaxed">
+                          {tender.description}
+                        </p>
+                      </div>
+
+                      {/* Timeframe & Budget Badges */}
+                      <div className="flex items-center gap-2 flex-wrap text-xs">
+                        <div className={`px-2.5 py-1 rounded-md font-semibold inline-flex items-center gap-1 ${
+                          tender.timeframe === 'urgent' 
+                            ? 'bg-red-50 text-red-700 border border-red-200' 
+                            : 'bg-amber-50 text-amber-800 border border-amber-200'
+                        }`}>
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span>{formatTimeframe(tender.timeframe)}</span>
+                        </div>
+
+                        {tender.budgetRange && (
+                          <div className="px-2.5 py-1 rounded-md font-medium bg-[#F7F5F0] text-[#5F6B63] border border-[#E7E2DA]">
+                            Budget: {tender.budgetRange}
+                          </div>
+                        )}
+
+                        {tender.images && tender.images.length > 0 && (
+                          <div className="px-2 py-1 rounded-md text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                            📷 {tender.images.length} Foto(s)
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Photo Thumbnails if available */}
+                      {tender.images && tender.images.length > 0 && (
+                        <div className="flex gap-2 pt-1 overflow-x-auto pb-1">
+                          {tender.images.map((img, i) => (
+                            <img
+                              key={i}
+                              src={img}
+                              alt="Projektfoto"
+                              onClick={() => setActiveImagePreview(img)}
+                              className="w-16 h-16 rounded-lg object-cover border border-[#E7E2DA] cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0"
+                            />
+                          ))}
+                        </div>
+                      )}
+
+                    </div>
+
+                    {/* BOTTOM: Contact Unlock / Lead Section */}
+                    <div className={`p-4 sm:p-5 border-t transition-colors ${
+                      isMuster 
+                        ? 'bg-orange-50/50 border-orange-200'
+                        : isUnlocked 
+                          ? 'bg-emerald-50/70 border-emerald-200' 
+                          : 'bg-[#F7F5F0] border-[#E7E2DA]'
+                    }`}>
+                      {isMuster ? (
+                        /* MUSTER-AUFTRAG DEMO HINWEIS */
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                          <div>
+                            <div className="font-bold text-[#1B211D] flex items-center gap-1.5">
+                              <Sparkles className="w-4 h-4 text-[#F2761B]" /> So präsentiert sich Ihr Projekt
+                            </div>
+                            <div className="text-[11px] text-[#5F6B63] mt-0.5">
+                              Winterberger Betriebe können Ihre Kontaktdaten einsehen und sich direkt melden.
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => setIsSubmitModalOpen(true)}
+                            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-[#0F4C2E] hover:bg-[#0c3c24] text-white font-bold rounded-xl shadow-sm transition-colors whitespace-nowrap"
+                          >
+                            <Plus className="w-3.5 h-3.5" /> Projekt starten
+                          </button>
+                        </div>
+                      ) : isUnlocked ? (
                       /* FREIGESCHALTETE KONTAKTDATEN */
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
@@ -598,6 +657,7 @@ export default function Auftragsboerse({
                 </div>
               );
             })}
+            </div>
           </div>
         )}
 

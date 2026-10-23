@@ -22,85 +22,28 @@ const TENDERS_COLLECTION = 'tenders';
 // In der Startphase sind Leads für alle Winterberger Betriebe kostenfrei zur Aktivierung
 export const IS_PILOT_PHASE = true;
 
-// Realistische Demo-Ausschreibungen aus Winterberg & Ortsteilen (Fallback bei neuem/leerem System)
-export const INITIAL_DEMO_TENDERS: TenderProject[] = [
-  {
-    id: 'demo-tender-1',
-    title: 'Austausch Ölheizung gegen moderne Pellet- / Wärmepumpe',
-    category: 'Handwerk',
-    subcategory: 'Heizungstechnik',
-    district: 'Züschen',
-    timeframe: '1_month',
-    description: 'Wir planen für unser Einfamilienhaus (ca. 165 qm, Baujahr 1994) den Austausch der alten Ölheizung gegen eine zukunftssichere Lösung (bevorzugt Hybrid oder Pelletheizung). Heizungsraum im Keller gut zugänglich. Wir suchen einen zuverlässigen Fachbetrieb aus dem Winterberger Raum für Beratung, Angebot und fachgerechte Installation.',
-    budgetRange: 'Über 5.000 €',
-    contactName: 'Familie Sauerland',
-    contactEmail: 'f.sauerland.zueschen@beispiel.de',
-    contactPhone: '0171 / 8245910',
-    preferredContactMethod: 'phone',
-    status: 'active',
-    manageToken: 'demo-token-1',
-    createdAt: Date.now() - 1000 * 60 * 60 * 26, // vor 1 Tag
-    unlockedBy: [],
-    viewsCount: 14
-  },
-  {
-    id: 'demo-tender-2',
-    title: 'Dachrinnenreinigung & Firstziegel-Reparatur nach Herbststurm',
-    category: 'Handwerk',
-    subcategory: 'Dachdecker',
-    district: 'Altastenberg',
-    timeframe: 'urgent',
-    description: 'An unserem Ferienhaus in Hanglage haben sich am Dachfirst zwei Ziegel gelockert und die Dachrinne zur Westseite muss dringend gereinigt bzw. gerichtet werden, da Regenwasser überläuft. Schnelle Ausführung gewünscht.',
-    budgetRange: 'Bis 1.000 €',
-    contactName: 'Thomas Becker',
-    contactEmail: 't.becker.fewo@beispiel.de',
-    contactPhone: '0160 / 9481230',
-    preferredContactMethod: 'any',
-    status: 'active',
-    manageToken: 'demo-token-2',
-    createdAt: Date.now() - 1000 * 60 * 60 * 52, // vor 2 Tagen
-    unlockedBy: [],
-    viewsCount: 28
-  },
-  {
-    id: 'demo-tender-3',
-    title: 'Maßgefertigter Skikeller-Schrank & Garderobe für Ferienwohnung',
-    category: 'Handwerk',
-    subcategory: 'Schreinereien',
-    district: 'Winterberg (Kernstadt)',
-    timeframe: '3_months',
-    description: 'Für unsere Gästewohnung im Zentrum von Winterberg suchen wir einen Schreiner für einen robusten, maßgefertigten Garderobenschrank im Eingangsbereich mit integrierter Skischuh-Halterung und Trocknungsbelüftung. Maße ca. 2,40m Breite x 2,30m Höhe. Holzart hell (Eiche oder Esche).',
-    budgetRange: '1.000 - 5.000 €',
-    contactName: 'Sabine Krämer',
-    contactEmail: 's.kraemer-winterberg@beispiel.de',
-    contactPhone: '02981 / 55432',
-    preferredContactMethod: 'email',
-    status: 'active',
-    manageToken: 'demo-token-3',
-    createdAt: Date.now() - 1000 * 60 * 60 * 96, // vor 4 Tagen
-    unlockedBy: [],
-    viewsCount: 39
-  },
-  {
-    id: 'demo-tender-4',
-    title: 'Installation Wallbox 11kW & Unterverteilung in Garage',
-    category: 'Handwerk',
-    subcategory: 'Elektriker',
-    district: 'Niedersfeld',
-    timeframe: '1_month',
-    description: 'Wir benötigen für ein neues E-Auto eine 11 kW Wallbox-Installation in unserer freistehenden Garage. Leitungsweg vom Hausanschluss ca. 12 Meter. Leerrohr ist teilweise vorhanden. Anmeldung beim Netzbetreiber erwünscht.',
-    budgetRange: '1.000 - 5.000 €',
-    contactName: 'Klaus Vormann',
-    contactEmail: 'klaus.vormann@beispiel.de',
-    contactPhone: '0151 / 4429011',
-    preferredContactMethod: 'phone',
-    status: 'active',
-    manageToken: 'demo-token-4',
-    createdAt: Date.now() - 1000 * 60 * 60 * 140, // vor 5 Tagen
-    unlockedBy: [],
-    viewsCount: 42
-  }
-];
+// Einzelne Muster-Ausschreibung (Fallback, wenn gerade keine aktiven Aufträge vorliegen)
+export const SAMPLE_DEMO_TENDER: TenderProject = {
+  id: 'muster-auftrag-beispiel',
+  title: 'Musterauftrag: Hier steht der Titel Ihres Projekts (z. B. Badsanierung oder Heizungstausch)',
+  category: 'Handwerk',
+  subcategory: 'Heizungstechnik',
+  district: 'Winterberg (Kernstadt)',
+  timeframe: '1_month',
+  description: 'Dies ist ein beispielhafter Auftrag zur Veranschaulichung. Hier beschreiben Auftraggeber ihr Vorhaben: Art der Arbeit, Raum, Materialwünsche oder Zeitplan. Verifizierte Winterberger Handwerksbetriebe können solche Anfragen einsehen und direkt Angebote abgeben.',
+  budgetRange: '1.000 - 5.000 €',
+  contactName: 'Max Mustermann (Musterkunde)',
+  contactEmail: 'muster@winterberg-verzeichnis.de',
+  contactPhone: '02981 / 123456',
+  preferredContactMethod: 'phone',
+  status: 'active',
+  manageToken: 'muster-token',
+  createdAt: Date.now() - 1000 * 60 * 60 * 3,
+  unlockedBy: [],
+  viewsCount: 7
+};
+
+export const INITIAL_DEMO_TENDERS: TenderProject[] = [SAMPLE_DEMO_TENDER];
 
 /**
  * Send automated email notification via /api/send-mail
@@ -237,15 +180,11 @@ export async function createTender(
               <strong>Wichtig:</strong> Wenn Sie einen passenden Handwerker gefunden haben oder das Gesuch beenden möchten, können Sie die Ausschreibung jederzeit mit einem Klick schließen:
             </p>
 
-            <div style="text-align: center; margin: 28px 0;">
+            <div style="text-align: center; margin: 28px 0 16px 0;">
               <a href="${manageUrl}" style="background-color: #0F4C2E; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; display: inline-block;">
                 Auftrag als vergeben / beendet markieren
               </a>
             </div>
-
-            <p style="font-size: 12px; color: #8F9E95; text-align: center;">
-              Ihr persönlicher Verwaltungscode: <code style="background: #EFEFEF; padding: 2px 6px; border-radius: 4px;">${manageToken}</code>
-            </p>
           </div>
         </div>
       `

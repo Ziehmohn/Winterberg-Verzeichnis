@@ -638,18 +638,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/die-besten/handwerk/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/ambacht/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/die-besten/handwerk/elektriker</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -1754,30 +1742,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/die-besten/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/die-besten/test/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/de-beste/test/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -1857,18 +1821,6 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/ambacht</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/handwerk/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/test</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2973,30 +2925,6 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/vrije-tijd/rodelbanen</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/test/test</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/test/test</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -8232,17 +8160,5 @@
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/handwerk/test/admin-testbetrieb-winterberg</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/ambacht/test/admin-testbetrieb-winterberg</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 </urlset>
