@@ -635,16 +635,18 @@ businesses.forEach((b: any) => {
 
   if (isBusinessDeactivated(b)) {
     const statusCode: 301 | 302 = b.deactivationRedirectType === '302' ? 302 : 301;
+    const targetDe = b.deactivationRedirectUrl || '/alle-unternehmen';
+    const targetNl = b.deactivationRedirectUrlNl || (b.deactivationRedirectUrl ? `/nl${b.deactivationRedirectUrl}` : '/nl/alle-bedrijven');
     deactivatedRedirects.push({
       source: `/${pathDe}`,
-      target: '/alle-unternehmen',
+      target: targetDe,
       lang: 'de',
       statusCode,
       name: b.name
     });
     deactivatedRedirects.push({
       source: `/${pathNl}`,
-      target: '/nl/alle-bedrijven',
+      target: targetNl,
       lang: 'nl',
       statusCode,
       name: b.name

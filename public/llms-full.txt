@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (436 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (434 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1059,6 +1059,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Niedersfeld
 - **Adresse:** Am Eschenberg 8, 59955 Winterberg-Niedersfeld
 - **Telefon:** 02985 8100
+- **Webseite:** https://www.ittermann-tischlerei.de/
 - **Beschreibung (DE):** Die Tischlerei Rudolf Ittermann in Winterberg-Niedersfeld ist ein Handwerksbetrieb mit vielseitigem Leistungsspektrum. Das Unternehmen fertigt maßgeschneiderte Möbel und Einrichtungsgegenstände, realisiert individuellen Innenausbau für private sowie gewerbliche Objekte und ist im Messebau tätig. Darüber hinaus bietet der Betrieb Dienstleistungen im Bestattungswesen an.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/schreinereien/rudolf-ittermann
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/timmerlieden/rudolf-ittermann
@@ -1087,6 +1088,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Poststr. 9, 59955 Winterberg
 - **Telefon:** 02981 22 33
+- **Webseite:** https://www.e-mueller-winterberg.de/
 - **Beschreibung (DE):** Der in dritter Generation geführte Fachbetrieb Elektro-Müller (Inhaber Michael Müller) in Winterberg bietet umfassende Dienstleistungen rund um Elektroinstallationen bei Neubauten und Altbausanierungen. Das Portfolio reicht von normgerechten E-Check-Prüfungen über zeitgemäße E-Mobilitätslösungen wie Wallbox-Installationen bis hin zu Infrarotheizungen. Zudem umfasst das Leistungsangebot den Verkauf sowie den qualifizierten Kundendienst und Reparaturservice für Haus- und Elektrogeräte.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/mueller-michael-elektroinstallation
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/mueller-michael-elektroinstallation
@@ -1124,6 +1126,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Briloner Str. 15, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 8260
+- **Webseite:** https://www.kiemen.de/
 - **Beschreibung (DE):** Hermann J. Kiemen Elektroinstallation ist ein inhabergeführter Elektrotechnik-Meisterbetrieb mit Sitz in Winterberg-Siedlinghausen. Das Unternehmen bietet ein umfassendes Leistungsspektrum im Bereich der Energie- und Gebäudetechnik, von klassischen Elektroinstallationen in Alt- und Neubauten über moderne KNX-Gebäudeautomation bis hin zur Installation von Photovoltaikanlagen und Ladeinfrastruktur.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/kiemen-hermann-j-elektroinstallation
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/kiemen-hermann-j-elektroinstallation
@@ -1142,6 +1145,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Züschen
 - **Adresse:** Oberstraße 12, 59955 Winterberg-Züschen
 - **Telefon:** 02981 928737
+- **Webseite:** https://www.malerbetrieb-schnorbus.de/
 - **Beschreibung (DE):** Der 1987 gegründete Malerbetrieb Schnorbus aus Winterberg-Züschen bietet umfassende Handwerksleistungen für die Gestaltung von Innen- und Außenbereichen. Das Spektrum des Familienunternehmens reicht von klassischen Maler-, Tapezier- und Fassadenarbeiten bis hin zu kreativen Spachteltechniken und Spezial-Wanddekoren. Ergänzend gehören fachgerechte Bodenbelagsarbeiten sowie fugenlose Badgestaltungen zum Leistungsangebot des Betriebs.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/malerbetrieb-schnorbus
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/schilders/malerbetrieb-schnorbus
@@ -1151,6 +1155,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Eichendorffsiedlung 12, 59955 Winterberg
 - **Telefon:** 02981 1273
+- **Webseite:** https://www.malerleber.de/
 - **Beschreibung (DE):** Maler Leber ist ein traditionsreicher Malerfachbetrieb aus Winterberg, der von Maler- und Lackierermeister Christopher Seston geführt wird. Das 1964 gegründete Unternehmen bietet ein vielseitiges Leistungsspektrum rund um Maler-, Lackier- und Tapezierarbeiten sowie kreative Raum- und Wandgestaltungen im Innenbereich. Ergänzend umfasst das Angebot Fassadengestaltungen, Wärmedämmverbundsysteme, Bodenbelagsarbeiten sowie fachgerechte Schimmelpilzbeseitigungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maler-lackierer/maler-leber-inh-christopher-seston-maler-winterberg-brilon
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/schilders/maler-leber-inh-christopher-seston-maler-winterberg-brilon
@@ -1160,6 +1165,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Iberg 7, 59955 Winterberg
 - **Telefon:** 02983 9706466
+- **Webseite:** https://www.gartenbau-biene.de/
 - **Beschreibung (DE):** Gartenbau Biene ist ein meistergeführter Fachbetrieb für Garten- und Landschaftsbau mit Sitz im Gewerbegebiet Burmecke in Winterberg-Siedlinghausen. Das im März 2006 gegründete Unternehmen bietet ein umfassendes Leistungsspektrum von der individuellen Gartengestaltung über Pflaster-, Terrassen- und Zaunbau bis hin zu Teichanlagen, Baumpflege und Baggerarbeiten. Als anerkannter Ausbildungsbetrieb und Mitglied im Verband Garten-, Landschafts- und Sportplatzbau NRW setzt der Betrieb Projekte im Außenbereich fachgerecht um.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/gartenbauer/gartenbau-biene
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/hoveniers/gartenbau-biene
@@ -1168,6 +1174,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Handwerk > Gartenbauer
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Sorpestraße 34a, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 01573 1036870
+- **Webseite:** https://www.gar-na.de/
 - **Beschreibung (DE):** GarNa (Garten und Natur) in Winterberg-Siedlinghausen ist ein Fachbetrieb für naturnahe Gartengestaltung, ökologische Gartenpflege und fundierte Gartenberatung. Das Unternehmen von Dagmar Kramer legt den Schwerpunkt auf artenreiche, nachhaltige Gartenkonzepte und verzichtet dabei konsequent auf chemisch-synthetische Dünger oder Pestizide. Ergänzt wird das Angebot durch Kurse der GarNa Natur-Akademie sowie den am Standort gelegenen, mit der Plakette 
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/gartenbauer/garna-garten-und-natur
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/hoveniers/garna-garten-und-natur
@@ -1177,6 +1185,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Ockelsbach 2, 59955 Winterberg
 - **Telefon:** 02981 5089224
+- **Webseite:** https://www.galabau-tielke.de/
 - **Beschreibung (DE):** Tielke Garten- und Landschaftsbau ist ein von Gärtnermeister Frank Tielke geführter Meisterbetrieb mit Sitz in Winterberg-Züschen. Das Unternehmen bietet umfassende Leistungen von der Beratung und Planung über Neu- und Umgestaltungen bis hin zu Pflasterarbeiten sowie Mauer- und Zaunbau. Zudem übernimmt der Fachbetrieb die fachgerechte Pflege von Gartenanlagen sowie Baum- und Heckenschnitte.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/gartenbauer/tielke-garten-und-landschaftsbau
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/hoveniers/tielke-garten-und-landschaftsbau
@@ -1186,6 +1195,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Burmeckestraße 10, 59955 Winterberg
 - **Telefon:** 02983 21568
+- **Webseite:** https://www.luetteken.com/
 - **Beschreibung (DE):** Die Ralph Lütteken GmbH & Co. KG ist ein meistergeführter Fachbetrieb für Garten- und Landschaftsbau mit Sitz in Winterberg. Das Leistungsspektrum umfasst die individuelle Planung und Gestaltung von Außenanlagen, Pflaster- und Natursteinarbeiten sowie den Bau von Terrassen, Teichen und Pools. Ergänzend übernimmt das Unternehmen fachgerechte Pflegearbeiten, Baum- und Gehölzschnitte sowie Begrünungen für private und gewerbliche Kunden.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/gartenbauer/ralph-luetteken-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/hoveniers/ralph-luetteken-gmbh
@@ -1204,6 +1214,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Lamfert 11, 59955 Winterberg
 - **Telefon:** 02981 92520
+- **Webseite:** https://www.santherm.com/
 - **Beschreibung (DE):** Die SanTHERM Heizung Sanitär Klima Haustechnik GmbH in Winterberg ist ein Fachbetrieb für moderne Heizungs-, Sanitär- und Haustechnik. Das 1998 gegründete Handwerksunternehmen ist insbesondere auf energieeffiziente Heizsysteme wie Wärmepumpen und Pelletanlagen sowie auf die Planung und Umsetzung von Komplettbädern spezialisiert. Ein fachgerechter Kundendienst und Wartungsservice runden das Leistungsangebot des Betriebs ab.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/santherm-heizung-sanitaer-klima-haustechnik-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/santherm-heizung-sanitaer-klima-haustechnik-gmbh
@@ -1213,6 +1224,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Hagenblech 3, 59955 Winterberg
 - **Telefon:** 02981 927190
+- **Webseite:** https://www.braun-lefarth-haustechnik.de/
 - **Beschreibung (DE):** Die Lefarth & Braun Haustechnik GmbH (im Handelsregister als Braun & Lefarth Haustechnik GmbH geführt) ist ein Handwerksbetrieb für Heizungs- und Sanitärtechnik mit Sitz in Winterberg. Das Leistungsspektrum umfasst die Planung, fachgerechte Installation und Wartung moderner Heizsysteme, erneuerbarer Energien wie Wärmepumpen sowie umfassende Sanitär- und Badlösungen. Ergänzt wird das Angebot durch technische Dienstleistungen in den Bereichen Lüftungsanlagen und Schwimmbadtechnik.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/lefarth-und-braun-haustechnik-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/lefarth-und-braun-haustechnik-gmbh
@@ -1222,6 +1234,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Nuhnestraße 3, 59955 Winterberg
 - **Telefon:** 02981 92830
+- **Webseite:** https://www.schoermann.de/
 - **Beschreibung (DE):** Die Norbert Schörmann GmbH & Co. KG ist ein Fachbetrieb für Sanitär-, Heizungs-, Klima- und Solartechnik mit einer Niederlassung in Winterberg. Das Leistungsspektrum umfasst moderne Heizsysteme, regenerative Energielösungen wie Solarthermie sowie komplette Badsanierungen inklusive 3D-Planung. Zudem übernimmt der Handwerksbetrieb professionelle Gas- und Wasserinstallationen sowie Modernisierungsarbeiten im gesamten Bereich der Haustechnik.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/sanitaer-heizung-klima-solar-schoermann
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/sanitaer-heizung-klima-solar-schoermann
@@ -1231,6 +1244,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Remmeswiese 28, 59955 Winterberg
 - **Telefon:** 02981 896960
+- **Webseite:** https://www.3werk-haustechnik.de/
 - **Beschreibung (DE):** Die 3WERK Haustechnik GmbH & Co. KG mit Sitz in Winterberg ist ein Fachbetrieb für moderne Heizungs-, Lüftungs- und Sanitärtechnik. Das Leistungsspektrum umfasst die Planung, Installation und Wartung von Heizsystemen wie Wärmepumpen sowie Badsanierungen und Lüftungskonzepte. Ergänzend berät das Unternehmen zu Fördermöglichkeiten und bietet in Kooperation mit Partnerbetrieben ganzheitliche Lösungen aus einer Hand.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/3werk-haustechnik-gmbh-und-co-kg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/3werk-haustechnik-gmbh-und-co-kg
@@ -1240,6 +1254,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Remmeswiese 1B, 59955 Winterberg
 - **Telefon:** 02981 573
+- **Webseite:** https://www.winzenick.com/
 - **Beschreibung (DE):** Jens Winzenick führt in Winterberg einen Meisterbetrieb für Sanitär- und Heizungstechnik mit Sitz in der Remmeswiese 1b. Das Leistungsspektrum umfasst zeitgemäße Heizungssysteme, Badmodernisierungen sowie Solartechnik und Bauklempnerei. Ergänzend steht der Fachbetrieb seinen Kunden mit einem professionellen Kundendienst für Wartungen und Reparaturen zur Seite.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/jens-winzenick
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/jens-winzenick
@@ -1249,33 +1264,27 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Kolpingstraße 19, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 8214
+- **Webseite:** https://www.hsk-solar.de/
 - **Beschreibung (DE):** Die Senge GmbH mit Sitz in Winterberg-Siedlinghausen ist ein traditionsreicher Meister- und Fachbetrieb für Heizung, Solar und Sanitär. Das Handwerksunternehmen blickt auf eine fast 90-jährige Unternehmensgeschichte zurück und ist insbesondere auf regenerative Heizsysteme wie Solaranlagen sowie Pellet- und Scheitholzheizungen spezialisiert. Darüber hinaus umfasst das Leistungsspektrum die fachgerechte Badmodernisierung und -gestaltung sowie einen zuverlässigen Kundendienst- und Notdienstservice.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/senge-gmbh-heizung-solar-sanitaer
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/senge-gmbh-heizung-solar-sanitaer
 
-#### [ATMOS EcoHeat - Effiziente Direktheizungen & Heizkörper](https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper)
-- **Kategorie:** Handwerk > Heizungstechnik
-- **Ort / Ortsteil:** Siedlinghausen
-- **Adresse:** Allenbergstraße 26, 59955 Winterberg-Siedlinghausen
-- **Telefon:** 02983 891056
-- **Beschreibung (DE):** ATMOS EcoHeat (ATMOS ecotherm Guido Piepenbrink) mit Sitz in Winterberg-Siedlinghausen ist ein Fachanbieter für moderne elektrische Heizsysteme und Direktheizungen. Das Portfolio umfasst energieeffiziente Elektroheizkörper, Design- und Badheizungen, mobile Heizgeräte sowie Elektrokamine und Zubehör. Neben dem Vertrieb bietet das Unternehmen persönliche Beratung und technischen Support rund um bedarfsgerechte elektrische Wärmelösungen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/heizungstechnik/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/verwarmingstechniek/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper
-
-#### [Quick Reiner Elektroinstallation](https://www.winterberg-verzeichnis.de/handwerk/elektriker/quick-reiner-elektroinstallation)
+#### [SKD-E GmbH](https://www.winterberg-verzeichnis.de/handwerk/elektriker/skd-e-gmbh)
 - **Kategorie:** Handwerk > Elektriker
 - **Ort / Ortsteil:** Winterberg
-- **Adresse:** Hellenstr. 54, 59955 Winterberg
-- **Telefon:** 02981 24 64
-- **Beschreibung (DE):** Quick Reiner Elektroinstallation (Walter Quick Inh. Reiner Quick) ist ein Fachbetrieb für Elektrotechnik mit Sitz in Winterberg. Das Unternehmen bietet ein breites Spektrum an Leistungen rund um klassische Elektroinstallationen, Wartungsarbeiten und Gebäudetechnik. Zudem umfasst das Portfolio zukunftssichere Lösungen wie die Montage von Wallboxen für Elektrofahrzeuge, Solaranlagen sowie Kommunikations- und Sicherheitstechnik.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/quick-reiner-elektroinstallation
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/quick-reiner-elektroinstallation
+- **Adresse:** Am Hagenblech 42, 59955 Winterberg
+- **Telefon:** 02981 579100
+- **Webseite:** https://www.skd-e.de/
+- **Beschreibung (DE):** Die SKD-E GmbH (hervorgegangen aus Walter Quick Elektrotechnik) an der Straße Am Hagenblech 42 in Winterberg ist ein moderner Fachbetrieb für Elektrotechnik und Gebäudeautomation. Das Leistungsspektrum umfasst klassische Elektroinstallationen, zukunftssichere Photovoltaikanlagen, Batteriespeicher, Wallbox-Montagen für Elektromobilität sowie moderne Netzwerk- und Sicherheitstechnik.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/skd-e-gmbh
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/skd-e-gmbh
 
 #### [Kösler Elektro](https://www.winterberg-verzeichnis.de/handwerk/elektriker/koesler-elektro)
 - **Kategorie:** Handwerk > Elektriker
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Schanzenstr. 16, 59955 Winterberg
 - **Telefon:** 0173 5 17 71 51
+- **Webseite:** https://www.elektro-koesler.de/
 - **Beschreibung (DE):** Kösler Elektro ist ein im Jahr 2001 von Ralf Kösler gegründeter Elektro-Fachbetrieb mit Sitz in Winterberg. Das Leistungsspektrum umfasst klassische Elektroinstallationen, intelligente Gebäudesteuerung sowie Photovoltaik- und Solaranlagen. Ergänzt wird das Angebot durch fachgerechte Lösungen in den Bereichen Sicherheitstechnik sowie IT- und Netzwerktechnik.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/koesler-elektro
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/koesler-elektro
@@ -1285,7 +1294,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Silbach
 - **Adresse:** Am Iberg 2, 59955 Winterberg-Silbach
 - **Telefon:** 02983 1404
-- **Webseite:** mailto:info@meisterbetrieb-menke.de
+- **Webseite:** https://www.meisterbetrieb-menke.de/
 - **Beschreibung (DE):** Der 1978 gegründete Meisterbetrieb Menke aus Winterberg-Silbach wird in zweiter Generation von Michael Menke geführt. Das Handwerksunternehmen bietet umfassende Leistungen in den Bereichen Dachdeckerei, Klempnerei, Heizungs-, Lüftungs- und Sanitärtechnik sowie Restauration und Denkmalpflege an. Zudem realisiert der Betrieb moderne Lösungen im Bereich erneuerbarer Energien wie Photovoltaik und Solarthermie.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/dachdecker/meisterbetrieb-menke
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/meisterbetrieb-menke
@@ -1295,6 +1304,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Remmeswiese 1, 59955 Winterberg
 - **Telefon:** +49 2981 472
+- **Webseite:** https://www.muellenhoff.com/
 - **Beschreibung (DE):** Die Müllenhoff Winterberg Bedachungs GmbH an der Remmeswiese 1 ist ein traditionsreicher Dachdecker- und Klempnerbetrieb des familiengeführten Unternehmens Müllenhoff, dessen Handwerkstradition bis ins Jahr 1850 zurückreicht. Das Leistungsspektrum umfasst sämtliche Arbeiten rund um das Dach, einschließlich Neueindeckungen, Instandsetzungen, Gaubenausbauten sowie energetischen Modernisierungen nach aktuellen Standards. Dabei verbindet der Fachbetrieb traditionelles Handwerk mit zeitgemäßer Technik und begleitet Kunden von der Beratung und Planung bis zur fachgerechten Ausführung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/dachdecker/muellenhoff-winterberg-bedachungs-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/muellenhoff-winterberg-bedachungs-gmbh
@@ -1304,7 +1314,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Kirchstr. 13, 59955 Winterberg
 - **Telefon:** 02981 8160938
-- **Webseite:** mailto:info@ddm-schindel.de
+- **Webseite:** https://www.schindel-dachdeckermeister.de/
 - **Beschreibung (DE):** Schindel Dachdeckermeister ist ein Handwerks- und Meisterbetrieb mit Sitz in der Kirchstraße in Winterberg. Das Unternehmen bietet fachgerechte Leistungen in den Bereichen Bedachungen aller Art, Bauklempnerei sowie Gerüstbau an. Der Betrieb steht Kunden in Winterberg und Umgebung für zuverlässige Arbeiten rund um Dach und Gebäudehülle zur Verfügung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/dachdecker/schindel-dachdeckermeister
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/schindel-dachdeckermeister
@@ -1495,15 +1505,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Traditionelle Familienbäckerei und gemütliches Café in Winterberg-Siedlinghausen an der Kahlenbergstraße. Meisterhafte Handwerksbackwaren, Kuchen, Torten, Frühstück und Kaffeespezialitäten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/baeckerei/tismes-baeckerei-caf-siedlinghausen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bakkerij/tismes-baeckerei-caf-siedlinghausen
-
-#### [Padberg & Wietell Bedachungen GmbH](https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh)
-- **Kategorie:** Handwerk > Dachdecker
-- **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Zur Egge 2b, 59955 Winterberg-Niedersfeld
-- **Telefon:** 02985 8498
-- **Beschreibung (DE):** Fachbetrieb für Dacheindeckungen und traditionelles Naturschieferhandwerk in Winterberg. Spezialisiert auf Schieferfassaden, Dämmung, Dachsanierungen und Schornsteinsanierung.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/dakdekkers/padberg-und-wietell-bedachungen-gmbh
 
 #### [Fleischerei Heinz-Thomas Knieb](https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-heinz-thomas-knieb)
 - **Kategorie:** Handwerk > Fleischerei

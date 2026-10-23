@@ -53,9 +53,7 @@ const SUBCATEGORIES_FILTER = [
   'Elektriker',
   'Schreinereien',
   'Maler & Lackierer',
-  'Bauunternehmen',
   'Gartenbauer',
-  'Bäderstudios',
   'Sonstiges Handwerk'
 ];
 

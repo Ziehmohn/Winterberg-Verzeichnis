@@ -1196,6 +1196,7 @@ export const businesses: Business[] = [
     address: 'Remmeswiese 26, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 92965-0',
+    email: 'info@broeker-winterberg.de',
     website: 'https://broeker-winterberg.de/',
     imageFallback: 'BO',
   },
@@ -1208,6 +1209,7 @@ export const businesses: Business[] = [
     address: 'Nuhnetalstraße 132, 59955 Winterberg-Züschen',
     district: 'Züschen',
     phone: '02981 8969060',
+    email: 'info@stockhausen-treppen.de',
     website: 'https://stockhausen-treppen.de/',
     imageFallback: 'ST',
   },
@@ -1220,6 +1222,8 @@ export const businesses: Business[] = [
     address: 'Am Eschenberg 8, 59955 Winterberg-Niedersfeld',
     district: 'Niedersfeld',
     phone: '02985 8100',
+    email: 'info@ittermann-tischlerei.de',
+    website: 'https://www.ittermann-tischlerei.de/',
     imageFallback: 'RI',
   },
   {
@@ -1231,6 +1235,7 @@ export const businesses: Business[] = [
     address: 'Hochsauerlandstr. 72, 59955 Winterberg-Siedlinghausen',
     district: 'Siedlinghausen',
     phone: '02983 9740310',
+    email: 'info@tischlerei-soegtrop.de',
     website: 'https://tischlerei-soegtrop.de/',
     imageFallback: 'DS',
   },
@@ -1254,6 +1259,8 @@ export const businesses: Business[] = [
     address: 'Poststr. 9, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 22 33',
+    email: 'info@e-mueller-winterberg.de',
+    website: 'https://www.e-mueller-winterberg.de/',
     imageFallback: 'MM',
   },
   {
@@ -1364,6 +1371,8 @@ export const businesses: Business[] = [
     subcategory: 'Elektriker',
     address: 'Briloner Str. 15, 59955 Winterberg-Siedlinghausen',
     phone: '02983 8260',
+    email: 'info@kiemen.de',
+    website: 'https://www.kiemen.de/',
     district: 'Siedlinghausen',
     imageFallback: 'HK',
     isPremium: false,
@@ -1540,6 +1549,7 @@ export const businesses: Business[] = [
     subcategory: 'Maler & Lackierer',
     address: 'Senge-Platten-Straße 8, 59955 Winterberg-Siedlinghausen',
     phone: '02983 974390',
+    email: 'info@maler-klauke.de',
     district: 'Siedlinghausen',
     isPremium: false,
     status: 'approved'
@@ -1552,6 +1562,8 @@ export const businesses: Business[] = [
     subcategory: 'Maler & Lackierer',
     address: 'Oberstraße 12, 59955 Winterberg-Züschen',
     phone: '02981 928737',
+    email: 'info@malerbetrieb-schnorbus.de',
+    website: 'https://www.malerbetrieb-schnorbus.de/',
     district: 'Züschen',
     isPremium: false,
     status: 'approved'
@@ -1564,6 +1576,8 @@ export const businesses: Business[] = [
     subcategory: 'Maler & Lackierer',
     address: 'Eichendorffsiedlung 12, 59955 Winterberg',
     phone: '02981 1273',
+    email: 'info@malerleber.de',
+    website: 'https://www.malerleber.de/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1576,6 +1590,8 @@ export const businesses: Business[] = [
     subcategory: 'Gartenbauer',
     address: 'Am Iberg 7, 59955 Winterberg',
     phone: '02983 9706466',
+    email: 'info@gartenbau-biene.de',
+    website: 'https://www.gartenbau-biene.de/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1587,6 +1603,9 @@ export const businesses: Business[] = [
     category: 'Handwerk',
     subcategory: 'Gartenbauer',
     address: 'Sorpestraße 34a, 59955 Winterberg-Siedlinghausen',
+    phone: '01573 1036870',
+    email: 'thomas@gar-na.de',
+    website: 'https://www.gar-na.de/',
     district: 'Siedlinghausen',
     isPremium: false,
     status: 'approved'
@@ -1599,6 +1618,8 @@ export const businesses: Business[] = [
     subcategory: 'Gartenbauer',
     address: 'Ockelsbach 2, 59955 Winterberg',
     phone: '02981 5089224',
+    email: 'info@galabau-tielke.de',
+    website: 'https://www.galabau-tielke.de/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1611,6 +1632,8 @@ export const businesses: Business[] = [
     subcategory: 'Gartenbauer',
     address: 'Burmeckestraße 10, 59955 Winterberg',
     phone: '02983 21568',
+    email: 'info@luetteken.com',
+    website: 'https://www.luetteken.com/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1623,6 +1646,7 @@ export const businesses: Business[] = [
     subcategory: 'Gartenbauer',
     address: 'Jakobusstraße 23, 59955 Winterberg',
     phone: '0160 1703131',
+    email: 'info@creative-gardens.de',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1635,6 +1659,8 @@ export const businesses: Business[] = [
     subcategory: 'Heizungstechnik',
     address: 'Lamfert 11, 59955 Winterberg',
     phone: '02981 92520',
+    email: 'info@santherm.com',
+    website: 'https://www.santherm.com/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1647,6 +1673,8 @@ export const businesses: Business[] = [
     subcategory: 'Heizungstechnik',
     address: 'Am Hagenblech 3, 59955 Winterberg',
     phone: '02981 927190',
+    email: 'service@braun-lefarth-haustechnik.de',
+    website: 'https://www.braun-lefarth-haustechnik.de/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1659,6 +1687,8 @@ export const businesses: Business[] = [
     subcategory: 'Heizungstechnik',
     address: 'Nuhnestraße 3, 59955 Winterberg',
     phone: '02981 92830',
+    email: 'info@schoermann.de',
+    website: 'https://www.schoermann.de/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1671,6 +1701,8 @@ export const businesses: Business[] = [
     subcategory: 'Heizungstechnik',
     address: 'Remmeswiese 28, 59955 Winterberg',
     phone: '02981 896960',
+    email: 'kontakt@3werk-haustechnik.de',
+    website: 'https://www.3werk-haustechnik.de/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1683,6 +1715,8 @@ export const businesses: Business[] = [
     subcategory: 'Heizungstechnik',
     address: 'Remmeswiese 1B, 59955 Winterberg',
     phone: '02981 573',
+    email: 'info@winzenick.com',
+    website: 'https://www.winzenick.com/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -1695,6 +1729,8 @@ export const businesses: Business[] = [
     subcategory: 'Heizungstechnik',
     address: 'Kolpingstraße 19, 59955 Winterberg-Siedlinghausen',
     phone: '02983 8214',
+    email: 'info@hsk-solar.de',
+    website: 'https://www.hsk-solar.de/',
     district: 'Siedlinghausen',
     isPremium: false,
     status: 'approved'
@@ -1709,18 +1745,24 @@ export const businesses: Business[] = [
     phone: '02983 891056',
     district: 'Siedlinghausen',
     isPremium: false,
-    status: 'approved'
+    isActive: false,
+    deactivated: true,
+    status: 'deactivated',
+    deactivationRedirectType: '301',
+    deactivationRedirectUrl: '/handwerk/heizungstechnik'
   },
   {
-    id: '13',
-    name: 'Quick Reiner Elektroinstallation',
+    id: 'skd-e',
+    name: 'SKD-E GmbH',
     category: 'Handwerk',
     subcategory: 'Elektriker',
-    description: 'Quick Reiner Elektroinstallation (Walter Quick Inh. Reiner Quick) ist ein Fachbetrieb für Elektrotechnik mit Sitz in Winterberg. Das Unternehmen bietet ein breites Spektrum an Leistungen rund um klassische Elektroinstallationen, Wartungsarbeiten und Gebäudetechnik. Zudem umfasst das Portfolio zukunftssichere Lösungen wie die Montage von Wallboxen für Elektrofahrzeuge, Solaranlagen sowie Kommunikations- und Sicherheitstechnik.',
-    address: 'Hellenstr. 54, 59955 Winterberg',
+    description: 'Die SKD-E GmbH (hervorgegangen aus Walter Quick Elektrotechnik) an der Straße Am Hagenblech 42 in Winterberg ist ein moderner Fachbetrieb für Elektrotechnik und Gebäudeautomation. Das Leistungsspektrum umfasst klassische Elektroinstallationen, zukunftssichere Photovoltaikanlagen, Batteriespeicher, Wallbox-Montagen für Elektromobilität sowie moderne Netzwerk- und Sicherheitstechnik.',
+    address: 'Am Hagenblech 42, 59955 Winterberg',
     district: 'Winterberg',
-    phone: '02981 24 64',
-    imageFallback: 'QR',
+    phone: '02981 579100',
+    email: 'info@skd-e.de',
+    website: 'https://www.skd-e.de/',
+    imageFallback: 'SKD',
   },
   {
     id: '14',
@@ -1731,6 +1773,8 @@ export const businesses: Business[] = [
     address: 'Schanzenstr. 16, 59955 Winterberg',
     district: 'Winterberg',
     phone: '0173 5 17 71 51',
+    email: 'mail@elektro-koesler.de',
+    website: 'https://www.elektro-koesler.de/',
     imageFallback: 'KE',
   },
   {
@@ -1742,7 +1786,8 @@ export const businesses: Business[] = [
     address: 'Am Iberg 2, 59955 Winterberg-Silbach',
     district: 'Silbach',
     phone: '02983 1404',
-    website: 'mailto:info@meisterbetrieb-menke.de',
+    email: 'info@meisterbetrieb-menke.de',
+    website: 'https://www.meisterbetrieb-menke.de/',
     imageFallback: 'MM',
   },
   {
@@ -1754,6 +1799,8 @@ export const businesses: Business[] = [
     address: 'Remmeswiese 1, 59955 Winterberg',
     district: 'Winterberg',
     phone: '+49 2981 472',
+    email: 'post@muellenhoff.com',
+    website: 'https://www.muellenhoff.com/',
     imageFallback: 'MW',
   },
   {
@@ -1765,7 +1812,8 @@ export const businesses: Business[] = [
     address: 'Kirchstr. 13, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 8160938',
-    website: 'mailto:info@ddm-schindel.de',
+    email: 'info@ddm-schindel.de',
+    website: 'https://www.schindel-dachdeckermeister.de/',
     imageFallback: 'SD',
   },
   {
@@ -4542,7 +4590,11 @@ export const businesses: Business[] = [
     services: ['Naturschieferarbeiten', 'Dacheindeckungen & Isolierung', 'Schornsteinsanierung', 'Dachreparaturen & Wartung'],
     imageFallback: 'PW',
     isPremium: false,
-    status: 'approved'
+    isActive: false,
+    deactivated: true,
+    status: 'deactivated',
+    deactivationRedirectType: '301',
+    deactivationRedirectUrl: '/handwerk/dachdecker'
   },
   {
     id: 'reparaturen-markus-becker-groenebach',
@@ -12832,6 +12884,7 @@ export const businesses: Business[] = [
     "address": "An d. Aschenhütte 5, 59955 Winterberg",
     "district": "Winterberg",
     "phone": "02981 2972",
+    "email": "frankgladen@gmx.de",
     "coordinates": {
       "lat": 51.1949,
       "lng": 8.5305

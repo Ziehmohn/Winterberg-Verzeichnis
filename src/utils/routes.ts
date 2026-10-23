@@ -627,10 +627,13 @@ export function getSystemRedirects(
       const pathDe = getBusinessPath({ category: bCat, subcategory: bSub, name: b.name }, 'de');
       const pathNl = getBusinessPath({ category: bCat, subcategory: bSub, name: b.name }, 'nl');
 
+      const targetDe = (b as any).deactivationRedirectUrl || '/alle-unternehmen';
+      const targetNl = (b as any).deactivationRedirectUrlNl || ((b as any).deactivationRedirectUrl ? `/nl${(b as any).deactivationRedirectUrl}` : '/nl/alle-bedrijven');
+
       redirects.push({
         id: `deact-${bSlug}-de`,
         source: pathDe,
-        target: '/alle-unternehmen',
+        target: targetDe,
         isSystem: true,
         type: 'Deaktiviert',
         lang: 'de',
@@ -640,7 +643,7 @@ export function getSystemRedirects(
       redirects.push({
         id: `deact-${bSlug}-nl`,
         source: pathNl,
-        target: '/nl/alle-bedrijven',
+        target: targetNl,
         isSystem: true,
         type: 'Deaktiviert',
         lang: 'nl',

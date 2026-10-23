@@ -92,6 +92,10 @@
 /einzelhandel/bekleidung/modeorth-winterberg-gmbh    /einzelhandel/bekleidung/modeorth-winterberg         301!
 /nl/winkelen/kleding/modeorth-winterberg-gmbh    /nl/winkelen/kleding/modeorth-winterberg         301!
 /news/im-oktober-wird-im-winterberg-gewandert    /news/im-oktober-wird-in-winterberg-gewandert         301!
+/handwerk/heizungstechnik/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper    /handwerk/heizungstechnik         301!
+/nl/ambacht/verwarmingstechniek/atmos-ecoheat-effiziente-direktheizungen-und-heizkoerper    /nl/handwerk/heizungstechnik         301!
+/handwerk/dachdecker/padberg-und-wietell-bedachungen-gmbh    /handwerk/dachdecker         301!
+/nl/ambacht/dakdekkers/padberg-und-wietell-bedachungen-gmbh    /nl/handwerk/dachdecker         301!
 
 # SPA Fallback
 /*    /index.html   200

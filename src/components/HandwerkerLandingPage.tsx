@@ -91,8 +91,8 @@ export default function HandwerkerLandingPage({
       color: 'bg-green-50 text-green-700 border-green-200'
     },
     {
-      name: 'Bauunternehmen & Maurer',
-      desc: 'Sanierung, Durchbrüche, Mauerarbeiten, Kellerabdichtung',
+      name: 'Sonstiges Handwerk & Montage',
+      desc: 'Kleinreparaturen, Metallbau, Schlosserarbeiten, individuelle Vorhaben',
       icon: Layers,
       color: 'bg-stone-50 text-stone-700 border-stone-200'
     },

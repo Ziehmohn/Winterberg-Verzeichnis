@@ -69,6 +69,7 @@ async function sendNotificationEmail(payload: { to: string; subject: string; htm
 export async function notifyMatchingCraftBusinesses(tender: TenderProject, tenderId: string) {
   try {
     const matchingBusinesses = initialBusinesses.filter(b => {
+      if (b.isActive === false || b.status === 'deactivated' || (b as any).deactivated === true) return false;
       const isCraft = b.category === 'Handwerk' || (b.additionalCategories && b.additionalCategories.some(ac => ac.category === 'Handwerk'));
       if (!isCraft) return false;
       if (!b.email || !b.email.includes('@')) return false;

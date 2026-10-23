@@ -34,12 +34,7 @@ const HANDWERK_SUBCATEGORIES = [
   'Elektriker',
   'Schreinereien',
   'Maler & Lackierer',
-  'Bauunternehmen',
   'Gartenbauer',
-  'Bäderstudios',
-  'Baumschulen',
-  'Wäschereien',
-  'Maschinenbau',
   'Sonstiges Handwerk'
 ];
 
