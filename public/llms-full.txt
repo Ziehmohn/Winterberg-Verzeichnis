@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (436 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (437 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1639,6 +1639,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** haargenau by Yvonne in Winterberg-Elkeringhausen is een sfeervol kapsalon voor moderne kapsels, schitterende kleuringen, balayage en persoonlijke styling.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/haargenau-by-yvonne
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/kappers/haargenau-by-yvonne
+
+#### [Admin Testbetrieb Winterberg](https://www.winterberg-verzeichnis.de/handwerk/test/admin-testbetrieb-winterberg)
+- **Kategorie:** Handwerk > Test
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 1, 59955 Winterberg
+- **Telefon:** 02981 00000
+- **Beschreibung (DE):** Interner Testbetrieb für Ausschreibungen und E-Mail-Benachrichtigungen.
+- **Status:** Verifizierter Premium-Eintrag
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/test/admin-testbetrieb-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/test/admin-testbetrieb-winterberg
 
 ### Kategorie: Einzelhandel
 
