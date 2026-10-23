@@ -2640,6 +2640,13 @@ export default function App() {
             pricingSettings={pricingSettings}
             setPricingSettings={setPricingSettings}
             onBack={() => setIsAdminMode(false)}
+            onOpenAuftragsboerse={() => {
+              setIsAdminMode(false);
+              resetToDirectory();
+              setIsAuftraegeMode(true);
+              window.history.pushState(null, '', getPath('/auftragsboerse'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         ) : (
           <>
@@ -5057,7 +5064,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
   }
 
   return (
-    <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)]">
+    <div className="bg-white border border-[#EDE8E0] rounded-lg p-6 shadow-[0_10px_30px_rgba(27,33,29,0.06)] w-full max-w-full min-w-0">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#EDE8E0]">
         <div>
@@ -5081,7 +5088,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
 
       {/* Inline Editor */}
       {isEditing ? (
-        <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl p-6 md:p-8 space-y-6">
+        <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl p-6 md:p-8 space-y-6 w-full max-w-full min-w-0">
           <div className="flex items-center justify-between pb-4 border-b border-[#E7E2DA]">
             <div>
               <h3 className="text-xl font-bold font-display text-[#1B211D]">
@@ -5193,14 +5200,14 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
               <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
                 URL-Slug / Pfad (Optional)
               </label>
-              <div className="flex items-center text-xs text-gray-500 bg-white border border-[#E7E2DA] rounded-md px-3 py-2">
-                <span className="shrink-0 text-gray-400">https://www.winterberg-verzeichnis.de/news/</span>
+              <div className="flex items-center text-xs text-gray-500 bg-white border border-[#E7E2DA] rounded-md px-3 py-2 min-w-0 w-full overflow-hidden">
+                <span className="shrink-0 text-gray-400 truncate max-w-[200px] sm:max-w-none">https://www.winterberg-verzeichnis.de/news/</span>
                 <input 
                   type="text" 
                   value={slug} 
                   onChange={e => setSlug(slugify(e.target.value))}
                   placeholder="mein-news-beitrag"
-                  className="w-full bg-transparent focus:outline-none font-mono text-[#0F4C2E] font-medium ml-1"
+                  className="flex-1 min-w-0 bg-transparent focus:outline-none font-mono text-[#0F4C2E] font-medium ml-1"
                 />
               </div>
             </div>
@@ -5380,13 +5387,13 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
       ) : (
         /* News List */
         news.length > 0 ? (
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4 w-full max-w-full min-w-0">
             {news.map(item => {
               const articleSlug = item.slug || slugify(item.title);
               return (
                 <div 
                   key={item.id} 
-                  className="border border-[#EDE8E0] rounded-lg p-5 bg-white hover:border-[#0F4C2E]/40 transition-all flex flex-col md:flex-row gap-5 items-start"
+                  className="border border-[#EDE8E0] rounded-lg p-4 sm:p-5 bg-white hover:border-[#0F4C2E]/40 transition-all flex flex-col md:flex-row gap-4 sm:gap-5 items-start w-full max-w-full min-w-0"
                 >
                   {/* Thumbnail & Quick Actions */}
                   <div className="w-full md:w-[160px] shrink-0">
@@ -5437,9 +5444,9 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
                   </div>
 
                   {/* Article Info */}
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 w-full">
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                      <span className="font-bold text-[17px] text-[#1B211D] leading-snug">{item.title}</span>
+                      <span className="font-bold text-[17px] text-[#1B211D] leading-snug break-words">{item.title}</span>
                       
                       {item.status === 'pending' ? (
                         <button
@@ -5501,7 +5508,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
                       </span>
                     </div>
 
-                    <div className="text-[13.5px] text-[#4A544D] line-clamp-2 bg-[#FAF8F5] p-3 rounded-md border border-[#EDE8E0]/70 mb-2">
+                    <div className="text-[13.5px] text-[#4A544D] line-clamp-2 break-words overflow-hidden bg-[#FAF8F5] p-3 rounded-md border border-[#EDE8E0]/70 mb-2 w-full max-w-full">
                       {item.content}
                     </div>
 
@@ -5518,11 +5525,11 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
                   </div>
 
                   {/* Actions */}
-                  <div className="flex sm:flex-col gap-2 shrink-0 self-end sm:self-start w-full sm:w-auto justify-end">
+                  <div className="flex sm:flex-col gap-2 shrink-0 self-stretch sm:self-start w-full sm:w-auto md:w-[130px] justify-end">
                     <button 
                       type="button"
                       onClick={() => handleOpenEdit(item)}
-                      className="bg-[#0F4C2E] hover:bg-[#0b3822] text-white rounded-md px-4 py-2 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm cursor-pointer"
+                      className="w-full bg-[#0F4C2E] hover:bg-[#0b3822] text-white rounded-md px-4 py-2 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm cursor-pointer whitespace-nowrap"
                     >
                       <Edit2 className="w-3.5 h-3.5" /> Bearbeiten
                     </button>
@@ -5530,7 +5537,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
                     <button 
                       type="button"
                       onClick={() => handleDelete(item.id)}
-                      className="bg-[#FBEAE7] text-[#C0392B] hover:bg-[#FADBD5] rounded-md px-4 py-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      className="w-full bg-[#FBEAE7] text-[#C0392B] hover:bg-[#FADBD5] rounded-md px-4 py-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap"
                     >
                       <Trash2 className="w-3.5 h-3.5" /> Löschen
                     </button>
@@ -5779,7 +5786,7 @@ function RedirectsAdminPanel({ theme, activeThemeKey, categories: catsProp, busi
   );
 }
 
-function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onRefreshBusinesses, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, pricingSettings, setPricingSettings, onBack }: any) {
+function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBusinessAdded, onRefreshBusinesses, token, setToken, reviewsEnabled, setReviewsEnabled, seoSettings, setSeoSettings, designSettings, setDesignSettings, ads, setAds, pricingSettings, setPricingSettings, onBack, onOpenAuftragsboerse }: any) {
 
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
@@ -6018,7 +6025,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   type AdminCategoryKey = 'content' | 'business' | 'design' | 'tech';
 
   interface AdminSubTab {
-    id: 'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions';
+    id: 'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions' | 'tenders';
     label: string;
     badge?: number | string;
     icon: any;
@@ -6942,13 +6949,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
           <QuestionsAdminPanel />
         ) : activeTab === 'tenders' && isAdmin ? (
           <TendersAdminPanel 
-            onOpenLiveBoerse={() => {
-              setIsAdminMode(false);
-              resetToDirectory();
-              setIsAuftraegeMode(true);
-              window.history.pushState(null, '', getPath('/auftragsboerse'));
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onOpenLiveBoerse={onOpenAuftragsboerse}
           />
         ) : activeTab === 'seo' && isAdmin ? (
           <SeoAdminPanel theme={theme} activeThemeKey={activeThemeKey} seoSettings={seoSettings} setSeoSettings={setSeoSettings} businesses={businesses} />

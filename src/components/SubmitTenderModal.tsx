@@ -84,7 +84,7 @@ export default function SubmitTenderModal({
       return;
     }
 
-    Array.from(files).forEach(file => {
+    Array.from(files).forEach((file: File) => {
       if (file.size > 4 * 1024 * 1024) {
         alert(`Das Bild ${file.name} ist zu groß (max. 4 MB).`);
         return;
