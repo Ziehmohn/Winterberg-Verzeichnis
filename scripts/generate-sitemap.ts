@@ -97,7 +97,9 @@ const staticPages = [
   'shoppingTheme',
   'shoppenWinterberg',
   'skiTheme',
-  'skifahrenWinterberg'
+  'skifahrenWinterberg',
+  'handwerkerTheme',
+  'handwerkerFinden'
 ] as const;
 staticPages.forEach(p => {
   entries.push({

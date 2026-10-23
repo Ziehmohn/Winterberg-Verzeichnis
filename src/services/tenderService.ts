@@ -15,8 +15,12 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { TenderProject, TenderTimeframe, Business } from '../types';
+import { businesses as initialBusinesses } from '../data';
 
 const TENDERS_COLLECTION = 'tenders';
+
+// In der Startphase sind Leads für alle Winterberger Betriebe kostenfrei zur Aktivierung
+export const IS_PILOT_PHASE = true;
 
 // Realistische Demo-Ausschreibungen aus Winterberg & Ortsteilen (Fallback bei neuem/leerem System)
 export const INITIAL_DEMO_TENDERS: TenderProject[] = [
@@ -117,6 +121,75 @@ async function sendNotificationEmail(payload: { to: string; subject: string; htm
 }
 
 /**
+ * Proaktive Benachrichtigung aller passenden Handwerksbetriebe bei einem neuen Auftrag
+ */
+export async function notifyMatchingCraftBusinesses(tender: TenderProject, tenderId: string) {
+  try {
+    const matchingBusinesses = initialBusinesses.filter(b => {
+      const isCraft = b.category === 'Handwerk' || (b.additionalCategories && b.additionalCategories.some(ac => ac.category === 'Handwerk'));
+      if (!isCraft) return false;
+      if (!b.email || !b.email.includes('@')) return false;
+
+      // Subcategory match
+      if (tender.subcategory && b.subcategory) {
+        if (b.subcategory.toLowerCase() === tender.subcategory.toLowerCase()) return true;
+      }
+      return false;
+    });
+
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.winterberg-verzeichnis.de';
+
+    for (const biz of matchingBusinesses) {
+      if (!biz.email) continue;
+      const tenderUrl = `${origin}/auftragsboerse?highlight=${tenderId}`;
+      
+      await sendNotificationEmail({
+        to: biz.email,
+        subject: `Neuer Handwerksauftrag in Winterberg: ${tender.title} (${tender.district})`,
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #1B211D; max-width: 600px; margin: 0 auto; border: 1px solid #E7E2DA; border-radius: 12px; overflow: hidden;">
+            <div style="background-color: #0F4C2E; padding: 24px; text-align: center; color: white;">
+              <h1 style="margin: 0; font-size: 20px;">Neuer Handwerksauftrag in Winterberg</h1>
+              <p style="margin: 6px 0 0; font-size: 13px; opacity: 0.9;">Ein Kunde sucht einen Fachbetrieb wie Ihren!</p>
+            </div>
+            <div style="padding: 24px; background-color: #FFFFFF;">
+              <p>Hallo Team von <strong>${biz.name}</strong>,</p>
+              <p>in der Winterberger Auftragsbörse wurde soeben ein neuer Auftrag für Ihr Gewerk (<strong>${tender.subcategory}</strong>) im Ortsteil <strong>${tender.district}</strong> eingestellt:</p>
+              
+              <div style="background-color: #F7F5F0; border-left: 4px solid #F2761B; padding: 16px; margin: 20px 0; border-radius: 6px;">
+                <h3 style="margin: 0 0 6px 0; color: #0F4C2E; font-size: 16px;">${tender.title}</h3>
+                <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Ortsteil:</strong> ${tender.district}</p>
+                <p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Zeitraum:</strong> ${formatTimeframe(tender.timeframe)}</p>
+                ${tender.budgetRange ? `<p style="margin: 0 0 4px 0; font-size: 13px;"><strong>Budgetrahmen:</strong> ${tender.budgetRange}</p>` : ''}
+                <p style="margin: 8px 0 0; font-size: 13px; color: #5F6B63;">${tender.description.length > 220 ? tender.description.substring(0, 217) + '...' : tender.description}</p>
+              </div>
+
+              ${IS_PILOT_PHASE ? `
+                <div style="background-color: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #1E40AF;">
+                  <strong>Kostenlose Kennenlern-Phase:</strong> Als lokaler Winterberger Betrieb können Sie diesen Auftrag und die Kontaktdaten aktuell kostenfrei einsehen und den Kunden direkt kontaktieren!
+                </div>
+              ` : ''}
+
+              <div style="text-align: center; margin: 24px 0;">
+                <a href="${tenderUrl}" style="background-color: #F2761B; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; display: inline-block;">
+                  Auftrag & Kontaktdaten jetzt ansehen
+                </a>
+              </div>
+
+              <p style="font-size: 12px; color: #8F9E95; text-align: center; margin-top: 24px;">
+                Diese Benachrichtigung wurde Ihnen gesendet, weil Ihr Betrieb im Winterberg-Verzeichnis gelistet ist.
+              </p>
+            </div>
+          </div>
+        `
+      });
+    }
+  } catch (err) {
+    console.warn('Error notifying matching businesses:', err);
+  }
+}
+
+/**
  * Erstellt eine neue Ausschreibung in Firestore und benachrichtigt den Kunden
  */
 export async function createTender(
@@ -194,6 +267,9 @@ export async function createTender(
         </div>
       `
     });
+
+    // Proaktiv alle passenden Handwerksbetriebe mit hinterlegter E-Mail benachrichtigen
+    notifyMatchingCraftBusinesses({ ...newTender, id: tenderId }, tenderId);
 
     return { success: true, id: tenderId, manageToken };
   } catch (err: any) {

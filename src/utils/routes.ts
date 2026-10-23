@@ -142,6 +142,8 @@ export const STATIC_PAGE_SLUGS = {
   skifahrenWinterberg: { de: 'skifahren-in-winterberg', nl: 'skien-in-winterberg' },
   skifahren: { de: 'skifahren', nl: 'skien' },
   auftragsboerse: { de: 'auftragsboerse', nl: 'opdrachten' },
+  handwerkerTheme: { de: 'themen/handwerker-finden-in-winterberg', nl: 'themas/vakmensen-vinden-in-winterberg' },
+  handwerkerFinden: { de: 'handwerker-finden-in-winterberg', nl: 'vakmensen-vinden-in-winterberg' },
 };
 
 export function slugify(str: string): string {
@@ -220,7 +222,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -359,6 +361,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'ski-theme':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.skiTheme[targetLang]}`;
+
+    case 'handwerker-theme':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.handwerkerTheme[targetLang]}`;
 
     case 'auftragsboerse':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.auftragsboerse[targetLang]}`;

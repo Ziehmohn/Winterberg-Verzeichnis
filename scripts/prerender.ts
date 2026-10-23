@@ -367,6 +367,28 @@ const staticPageConfigs: {
     h2Nl: 'Skigebieden, skipasprijzen seizoen 2026/27 en après-ski'
   },
   {
+    key: 'handwerkerTheme',
+    titleDe: 'Handwerker finden in Winterberg | Kostenlos Auftrag ausschreiben',
+    titleNl: 'Vakmensen vinden in Winterberg | Gratis opdracht plaatsen',
+    descDe: 'Finden Sie geprüfte Handwerker in Winterberg und den 14 Ortsteilen. Schreiben Sie Ihr Vorhaben in 2 Minuten kostenlos aus und erhalten Sie Angebote von lokalen Fachbetrieben.',
+    descNl: 'Vind betrouwbare vakmensen in Winterberg en de dorpen. Plaats gratis uw opdracht en ontvang direct offertes van lokale bedrijven.',
+    h1De: 'Handwerker finden in Winterberg – Schnell & ohne Telefon-Marathon',
+    h1Nl: 'Vakmensen vinden in Winterberg – Snel & lokaal',
+    h2De: 'Heizung, Dach, Elektro, Schreinerei, Maler & Gartenbau im Sauerland',
+    h2Nl: 'Lokale ambachtslieden en bouwbedrijven in Winterberg'
+  },
+  {
+    key: 'handwerkerFinden',
+    titleDe: 'Handwerker finden in Winterberg | Die Winterberger Auftragsbörse',
+    titleNl: 'Vakmensen vinden in Winterberg | De Winterbergse Opdrachtenbank',
+    descDe: 'Schreiben Sie Ihr Handwerksprojekt in Winterberg kostenlos aus. Lokale Fachbetriebe aus der Region melden sich direkt bei Ihnen mit konkreten Angeboten.',
+    descNl: 'Plaats gratis uw handwerkopdracht in Winterberg. Lokale vakmensen nemen direct contact met u op.',
+    h1De: 'Handwerker in Winterberg finden',
+    h1Nl: 'Vakmensen in Winterberg vinden',
+    h2De: 'Kostenlose Ausschreibung für Hausbesitzer, Vermieter & Bürger',
+    h2Nl: 'Gratis opdrachten plaatsen voor inwoners en huiseigenaren'
+  },
+  {
     key: 'heimatkarte',
     titleDe: 'Winterberg HeimatCard | Vorteile, Guthaben & Partner | Das Winterberg Verzeichnis',
     titleNl: 'Winterberg HeimatCard | Voordelen & Partners | Het Winterberg Overzicht',

@@ -518,6 +518,30 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.winterberg-verzeichnis.de/themen/handwerker-finden-in-winterberg</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/themas/vakmensen-vinden-in-winterberg</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/handwerker-finden-in-winterberg</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/vakmensen-vinden-in-winterberg</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.winterberg-verzeichnis.de/die-besten</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>

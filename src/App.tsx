@@ -93,6 +93,7 @@ const WasteCalendarPage = React.lazy(() => import('./components/WasteCalendarPag
 const ChargingStationsPage = React.lazy(() => import('./components/ChargingStationsPage'));
 const ShoppingThemePage = React.lazy(() => import('./components/ShoppingThemePage'));
 const SkiThemePage = React.lazy(() => import('./components/SkiThemePage'));
+const HandwerkerLandingPage = React.lazy(() => import('./components/HandwerkerLandingPage'));
 const Auftragsboerse = React.lazy(() => import('./components/Auftragsboerse'));
 const TendersAdminPanel = React.lazy(() => import('./components/TendersAdminPanel'));
 import { db, auth, storage } from './firebase';
@@ -189,6 +190,7 @@ export default function App() {
   let initialChargingStationsMode = false;
   let initialShoppingThemeMode = false;
   let initialSkiThemeMode = false;
+  let initialHandwerkerLandingMode = false;
   let initialAuftraegeMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
@@ -303,6 +305,14 @@ export default function App() {
         (decodedPart1 === 'themas' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'skien-in-winterberg')
       ) {
         initialSkiThemeMode = true;
+      } else if (
+        decodedPart1 === 'handwerker-finden-in-winterberg' || 
+        decodedPart1 === 'vakmensen-vinden-in-winterberg' || 
+        decodedPart1 === 'handwerker-winterberg' || 
+        (decodedPart1 === 'themen' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'handwerker-finden-in-winterberg') ||
+        (decodedPart1 === 'themas' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'vakmensen-vinden-in-winterberg')
+      ) {
+        initialHandwerkerLandingMode = true;
       } else if (
         decodedPart1 === 'auftragsboerse' || 
         decodedPart1 === 'auftraege' || 
@@ -538,6 +548,7 @@ export default function App() {
     if (isChargingStationsMode) return { view: 'charging-stations' };
     if (isShoppingThemeMode) return { view: 'shopping-theme' };
     if (isSkiThemeMode) return { view: 'ski-theme' };
+    if (isHandwerkerLandingMode) return { view: 'handwerker-theme' };
     if (isAuftraegeMode) return { view: 'auftragsboerse' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
@@ -627,6 +638,7 @@ export default function App() {
     if (p === '/e-ladestationen' || p === '/laadpalen' || p === '/ladestationen') return buildLocalizedUrl({ view: 'charging-stations' }, lang);
     if (p === '/shoppen-in-winterberg' || p === '/winkelen-in-winterberg' || p === '/themen/shoppen-in-winterberg' || p === '/themas/winkelen-in-winterberg') return buildLocalizedUrl({ view: 'shopping-theme' }, lang);
     if (p === '/skifahren-in-winterberg' || p === '/skien-in-winterberg' || p === '/skifahren' || p === '/skien' || p === '/themen/skifahren-in-winterberg' || p === '/themas/skien-in-winterberg') return buildLocalizedUrl({ view: 'ski-theme' }, lang);
+    if (p === '/themen/handwerker-finden-in-winterberg' || p === '/themas/vakmensen-vinden-in-winterberg' || p === '/handwerker-finden-in-winterberg' || p === '/vakmensen-vinden-in-winterberg' || p === '/handwerker-winterberg') return buildLocalizedUrl({ view: 'handwerker-theme' }, lang);
     if (p === '/auftragsboerse' || p === '/auftraege' || p === '/opdrachten') return buildLocalizedUrl({ view: 'auftragsboerse' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
@@ -680,6 +692,7 @@ export default function App() {
     setIsChargingStationsMode(false);
     setIsShoppingThemeMode(false);
     setIsSkiThemeMode(false);
+    setIsHandwerkerLandingMode(false);
     setIsAuftraegeMode(false);
   };
 
@@ -827,6 +840,14 @@ export default function App() {
           (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'skien-in-winterberg')
         ) {
           setIsSkiThemeMode(true);
+        } else if (
+          p1 === 'handwerker-finden-in-winterberg' || 
+          p1 === 'vakmensen-vinden-in-winterberg' || 
+          p1 === 'handwerker-winterberg' || 
+          (p1 === 'themen' && pathParts[1] && pathParts[1].toLowerCase() === 'handwerker-finden-in-winterberg') ||
+          (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'vakmensen-vinden-in-winterberg')
+        ) {
+          setIsHandwerkerLandingMode(true);
         } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
           setIsEventsMode(true);
         } else if (p1 === 'auftragsboerse' || p1 === 'auftraege' || p1 === 'opdrachten' || p1 === 'ausschreibungen') {
@@ -1007,6 +1028,7 @@ export default function App() {
   const [isChargingStationsMode, setIsChargingStationsMode] = useState(initialChargingStationsMode);
   const [isShoppingThemeMode, setIsShoppingThemeMode] = useState(initialShoppingThemeMode);
   const [isSkiThemeMode, setIsSkiThemeMode] = useState(initialSkiThemeMode);
+  const [isHandwerkerLandingMode, setIsHandwerkerLandingMode] = useState(initialHandwerkerLandingMode);
   const [isAuftraegeMode, setIsAuftraegeMode] = useState(initialAuftraegeMode);
   const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
@@ -1193,6 +1215,13 @@ export default function App() {
       currentDesc = isNl 
         ? `Alle informatie over ${matchedBusiness.name} in ${city}. ✓ Contactgegevens ✓ Openingstijden ✓ Adres. ${shortDesc}`
         : `Alle Infos zu ${matchedBusiness.name} in ${city}. ✓ Kontaktdaten ✓ Öffnungszeiten ✓ Adresse. ${shortDesc}`;
+    } else if (isHandwerkerLandingMode) {
+      currentTitle = isNl
+        ? `Vakmensen vinden in Winterberg | Handwerkers & Bouw | ${baseTitle}`
+        : `Handwerker finden in Winterberg – Kostenlos Auftrag ausschreiben | ${baseTitle}`;
+      currentDesc = isNl
+        ? `Vind betrouwbare vakmensen en handwerkers in Winterberg en alle 14 dorpen. Plaats nu gratis uw opdracht!`
+        : `Finden Sie zuverlässige Handwerker in Winterberg und den 14 Ortsteilen. Schreiben Sie Ihr Vorhaben in 2 Minuten kostenlos aus!`;
     } else if (isAuftraegeMode) {
       currentTitle = isNl
         ? `Winterbergse Opdrachtenbank | Ambachtslieden & Vaklui | ${baseTitle}`
@@ -1321,7 +1350,7 @@ export default function App() {
     setMeta('name', 'twitter:title', currentTitle);
     setMeta('name', 'twitter:description', currentDesc);
     setMeta('name', 'twitter:image', currentOgImage);
-  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode, isAuftraegeMode]);
+  }, [lang, seoSettings, activeCategory, activeLocation, searchQuery, businesses, selectedBusiness, isJobsMode, jobsCategory, isNewsMode, newsId, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAllMode, isAuftraegeMode, isHandwerkerLandingMode]);
 
   const loadAds = async () => {
     // 1. If fresh cached ads are in localStorage, use them immediately and skip Firestore
@@ -1702,7 +1731,7 @@ export default function App() {
       const catName = parentCat ? parentCat.name : activeCategory;
       const subName = parentCat ? activeCategory : undefined;
       schemaData = generateCollectionPageSchema(catName, subName, filteredBusinesses, lang);
-    } else if (!isJobsMode && !isNewsMode && !isFaqMode && !isPricingMode && !isFuelPricesMode && !isEmergencyMode && !isSubmitMode && !isImpressumMode && !isDatenschutzMode && !isAGBMode && !isGroundingMode && !isAuftraegeMode) {
+    } else if (!isJobsMode && !isNewsMode && !isFaqMode && !isPricingMode && !isFuelPricesMode && !isEmergencyMode && !isSubmitMode && !isImpressumMode && !isDatenschutzMode && !isAGBMode && !isGroundingMode && !isAuftraegeMode && !isHandwerkerLandingMode) {
       schemaData = generateWebSiteSearchSchema();
     }
 
@@ -1711,7 +1740,7 @@ export default function App() {
     } else if (schemaScript && schemaScript.parentNode) {
       schemaScript.parentNode.removeChild(schemaScript);
     }
-  }, [selectedBusiness, isBestOfMode, activeCategory, filteredBusinesses, lang, isJobsMode, isNewsMode, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAuftraegeMode]);
+  }, [selectedBusiness, isBestOfMode, activeCategory, filteredBusinesses, lang, isJobsMode, isNewsMode, isFaqMode, isPricingMode, isFuelPricesMode, isEmergencyMode, isSubmitMode, isImpressumMode, isDatenschutzMode, isAGBMode, isGroundingMode, isAuftraegeMode, isHandwerkerLandingMode]);
 
 
   const getCategoryBadges = () => {
@@ -2408,6 +2437,23 @@ export default function App() {
               </div>
             </div>
           )
+        ) : isHandwerkerLandingMode ? (
+          <HandwerkerLandingPage 
+            businesses={businesses} 
+            theme={theme} 
+            activeThemeKey={activeThemeKey}
+            onNavigateAuftragsboerse={() => {
+              resetToDirectory();
+              setIsAuftraegeMode(true);
+              window.history.pushState(null, '', getPath('/auftragsboerse'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsHandwerkerLandingMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         ) : isPricingMode ? (
           <PricingTable 
             theme={theme} 
@@ -4643,6 +4689,19 @@ export default function App() {
               className="text-white/80 hover:text-white transition-colors"
             >
               {lang === 'nl' ? 'Winkelen in Winterberg' : 'Shoppen in Winterberg'}
+            </a>
+            <a 
+              href={getPath('/themen/handwerker-finden-in-winterberg')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/themen/handwerker-finden-in-winterberg')); 
+                resetToDirectory(); 
+                setIsHandwerkerLandingMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Vakmensen vinden in Winterberg' : 'Handwerker finden in Winterberg'}
             </a>
           </div>
         </div>
