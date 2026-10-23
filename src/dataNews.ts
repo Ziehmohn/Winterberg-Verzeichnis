@@ -10,7 +10,6 @@ export const initialNews: NewsArticle[] = [
     author: "Stadt Winterberg",
     businessName: "Stadt Winterberg & Stadt Hallenberg",
     imageUrl: "/news-waermepumpen-infotag-winterberg.jpg",
-    imageCredit: "KI-generiertes Symbolbild / Visualisierung Wärmepumpe",
     isAiGenerated: true,
     status: 'approved',
     date: "2026-10-23T10:00:00.000Z",
