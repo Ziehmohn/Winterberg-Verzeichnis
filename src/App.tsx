@@ -1916,31 +1916,19 @@ export default function App() {
               <a href={getPath('/jobs')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/jobs')); setIsJobsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors whitespace-nowrap">{lang === 'nl' ? 'Vacatures' : 'Jobs'}</a>
               <a href={getPath(lang === 'nl' ? '/evenementen' : '/events')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath(lang === 'nl' ? '/evenementen' : '/events')); resetToDirectory(); setIsEventsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors whitespace-nowrap">{lang === 'nl' ? 'Evenementen' : 'Events'}</a>
               <a href={getPath('/news')} onClick={(e) => { e.preventDefault(); window.history.pushState(null, '', getPath('/news')); resetToDirectory(); setIsNewsMode(true); }} style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} className="hover:text-orange-500 transition-colors whitespace-nowrap">{lang === 'nl' ? 'Nieuws' : 'News'}</a>
-              {isAdminEmail(currentUser?.email) ? (
-                <a 
-                  href={getPath('/auftragsboerse')} 
-                  onClick={(e) => { 
-                    e.preventDefault(); 
-                    window.history.pushState(null, '', getPath('/auftragsboerse')); 
-                    resetToDirectory(); 
-                    setIsAuftraegeMode(true); 
-                  }} 
-                  style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 600 }} 
-                  className="hover:text-orange-500 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
-                  title="Auftragsbörse (Admin Vorab-Test)"
-                >
-                  <span className="whitespace-nowrap">{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
-                  <span className="text-[10px] bg-[#F2761B] text-white font-bold px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">Intern</span>
-                </a>
-              ) : (
-                <span 
-                  className="inline-flex items-center gap-1.5 text-gray-400 opacity-50 cursor-not-allowed select-none whitespace-nowrap" 
-                  title="Die Winterberger Auftragsbörse befindet sich aktuell im internen Test und startet in Kürze."
-                >
-                  <span className="whitespace-nowrap">{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
-                  <span className="text-[10px] bg-gray-200 text-gray-600 font-medium px-1.5 py-0.5 rounded whitespace-nowrap shrink-0">In Kürze</span>
-                </span>
-              )}
+              <a 
+                href={getPath('/auftragsboerse')} 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  window.history.pushState(null, '', getPath('/auftragsboerse')); 
+                  resetToDirectory(); 
+                  setIsAuftraegeMode(true); 
+                }} 
+                style={{ color: '#0F4C2E', textDecoration: 'none', fontWeight: 500 }} 
+                className="hover:text-orange-500 transition-colors whitespace-nowrap"
+              >
+                {lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}
+              </a>
               <a 
                 href={getPath('/themen/skifahren-in-winterberg')} 
                 onClick={(e) => { 
@@ -2381,62 +2369,22 @@ export default function App() {
             }}
           />
         ) : isAuftraegeMode ? (
-          isAdminEmail(currentUser?.email) ? (
-            <Auftragsboerse 
-              businesses={businesses} 
-              theme={theme} 
-              activeThemeKey={activeThemeKey}
-              onBack={() => {
-                setIsAuftraegeMode(false);
-                window.history.pushState(null, '', getPath('/'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              onNavigatePricing={() => {
-                resetToDirectory();
-                setIsPricingMode(true);
-                window.history.pushState(null, '', getPath('/preise'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            />
-          ) : (
-            <div className="min-h-[70vh] flex items-center justify-center p-6 bg-[#F7F5F0]">
-              <div className="max-w-md w-full bg-white rounded-2xl border border-[#EDE8E0] shadow-md p-8 text-center space-y-4">
-                <div className="w-16 h-16 bg-amber-50 text-amber-700 rounded-2xl flex items-center justify-center mx-auto border border-amber-200">
-                  <Hammer className="w-8 h-8" />
-                </div>
-                <span className="inline-block px-3 py-1 bg-amber-100 text-amber-900 rounded-full text-xs font-bold">
-                  In Vorbereitung • Bald verfügbar
-                </span>
-                <h2 className="text-2xl font-bold text-[#1B211D]">
-                  Winterberger Auftragsbörse
-                </h2>
-                <p className="text-xs sm:text-sm text-[#5F6B63] leading-relaxed">
-                  Die neue Plattform für Handwerks-Ausschreibungen und Auftragsvermittlung in Winterberg wird aktuell für den offiziellen Start vorbereitet.
-                </p>
-                <div className="pt-2 flex flex-col gap-2">
-                  <button
-                    onClick={() => {
-                      setIsAuftraegeMode(false);
-                      window.history.pushState(null, '', getPath('/'));
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="px-5 py-2.5 bg-[#0F4C2E] hover:bg-[#0c3c24] text-white text-xs font-bold rounded-xl shadow-xs transition-colors"
-                  >
-                    Zurück zur Startseite
-                  </button>
-                  <button
-                    onClick={() => {
-                      resetToDirectory();
-                      setIsAdminMode(true);
-                    }}
-                    className="px-5 py-2 text-xs font-semibold text-[#5F6B63] hover:text-[#1B211D] transition-colors"
-                  >
-                    Administrator-Login (für internen Test)
-                  </button>
-                </div>
-              </div>
-            </div>
-          )
+          <Auftragsboerse 
+            businesses={businesses} 
+            theme={theme} 
+            activeThemeKey={activeThemeKey}
+            onBack={() => {
+              setIsAuftraegeMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigatePricing={() => {
+              resetToDirectory();
+              setIsPricingMode(true);
+              window.history.pushState(null, '', getPath('/preise'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         ) : isHandwerkerLandingMode ? (
           <HandwerkerLandingPage 
             businesses={businesses} 
@@ -4143,47 +4091,28 @@ export default function App() {
                 <span>News</span>
               </a>
 
-              {isAdminEmail(currentUser?.email) ? (
-                <a
-                  href={getPath("/auftragsboerse")}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.history.pushState(null, '', getPath('/auftragsboerse'));
-                    resetToDirectory();
-                    setIsAuftraegeMode(true);
-                    setIsMobileNavOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="flex items-center gap-2.5 p-3.5 rounded-lg bg-[#FAF8F5] border border-[#0F4C2E]/40 font-display font-bold text-sm text-[#0F4C2E] hover:border-[#0F4C2E] transition-all shadow-xs"
-                >
-                  <div className="w-8 h-8 rounded-md bg-[#0F4C2E] text-white flex items-center justify-center shrink-0">
-                    <Hammer className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1.5">
-                      <span>Auftragsbörse</span>
-                      <span className="text-[9px] bg-[#F2761B] text-white px-1 py-0.2 rounded font-bold">Intern</span>
-                    </div>
-                    <span className="text-[10px] text-[#5F6B63] font-normal">Handwerk & Bau</span>
-                  </div>
-                </a>
-              ) : (
-                <div
-                  className="flex items-center gap-2.5 p-3.5 rounded-lg bg-gray-50 border border-gray-200 font-display font-medium text-sm text-gray-400 opacity-50 cursor-not-allowed select-none shadow-xs"
-                  title="In Kürze verfügbar"
-                >
-                  <div className="w-8 h-8 rounded-md bg-gray-200 text-gray-400 flex items-center justify-center shrink-0">
-                    <Hammer className="w-4 h-4" />
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1.5">
-                      <span>Auftragsbörse</span>
-                      <span className="text-[9px] bg-gray-200 text-gray-600 px-1 py-0.2 rounded font-bold">In Kürze</span>
-                    </div>
-                    <span className="text-[10px] text-gray-400">Handwerk & Bau</span>
-                  </div>
+              <a
+                href={getPath("/auftragsboerse")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath('/auftragsboerse'));
+                  resetToDirectory();
+                  setIsAuftraegeMode(true);
+                  setIsMobileNavOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3.5 rounded-lg bg-white border border-[#EDE8E0] font-display font-bold text-sm text-[#0F4C2E] hover:border-[#0F4C2E] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-md bg-[#0F4C2E] text-white flex items-center justify-center shrink-0">
+                  <Hammer className="w-4 h-4 text-white" />
                 </div>
-              )}
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-1.5">
+                    <span>{lang === 'nl' ? 'Opdrachten' : 'Auftragsbörse'}</span>
+                  </div>
+                  <span className="text-[10px] text-[#5F6B63] font-normal">Handwerk & Bau</span>
+                </div>
+              </a>
 
               <a
                 href={getPath('/themen/skifahren-in-winterberg')}
@@ -4573,6 +4502,19 @@ export default function App() {
               className="text-white/80 hover:text-white transition-colors"
             >
               {lang === 'nl' ? 'Laadpalen' : 'E-Ladestationen'}
+            </a>
+            <a 
+              href={getPath('/auftragsboerse')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/auftragsboerse')); 
+                resetToDirectory(); 
+                setIsAuftraegeMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Opdrachten (Handwerk)' : 'Auftragsbörse (Handwerk)'}
             </a>
             <a 
               href={getPath('/grounding')} 
