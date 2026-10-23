@@ -12969,20 +12969,6 @@ export const businesses: Business[] = [
       "balayage winterberg",
       "elkerhagen 6"
     ]
-  },
-  {
-    id: "test-admin-betrieb",
-    name: "Admin Testbetrieb Winterberg",
-    category: "Handwerk",
-    subcategory: "Test",
-    district: "Winterberg",
-    ortsteil: "Winterberg",
-    address: "Am Waltenberg 1, 59955 Winterberg",
-    phone: "02981 00000",
-    email: "simon.kraeling@sichtbar-online.com",
-    description: "Interner Testbetrieb für Ausschreibungen und E-Mail-Benachrichtigungen.",
-    isActive: true,
-    isPremium: true
   }
 ];
 
@@ -13101,15 +13087,14 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
 
 export const categories: CategoryGroup[] = [
   { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
-  { name: 'Handwerk', subcategories: ['Test', 'Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
+  { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
   { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Haushaltswaren & Deko', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
   { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
   { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Coworking Space', 'IT & Software', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste', 'Tourismus'] },
   { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
   { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser', 'Hörgeräteakustiker', 'Optiker'] },
   { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },
-  { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder', 'Sommerrodelbahnen'] },
-  { name: 'Test', subcategories: ['Test'] }
+  { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder', 'Sommerrodelbahnen'] }
 ];
 
 import { AdBanner } from './types';

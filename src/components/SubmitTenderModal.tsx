@@ -29,7 +29,6 @@ interface SubmitTenderModalProps {
 }
 
 const HANDWERK_SUBCATEGORIES = [
-  'Test',
   'Heizungstechnik',
   'Dachdecker',
   'Elektriker',

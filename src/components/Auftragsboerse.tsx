@@ -48,7 +48,6 @@ interface AuftragsboerseProps {
 
 const SUBCATEGORIES_FILTER = [
   'Alle Gewerke',
-  'Test',
   'Heizungstechnik',
   'Dachdecker',
   'Elektriker',

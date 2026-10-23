@@ -125,20 +125,7 @@ async function sendNotificationEmail(payload: { to: string; subject: string; htm
  */
 export async function notifyMatchingCraftBusinesses(tender: TenderProject, tenderId: string) {
   try {
-    const isTestTender = 
-      tender.subcategory?.toLowerCase() === 'test' || 
-      tender.category?.toLowerCase() === 'test';
-
     const matchingBusinesses = initialBusinesses.filter(b => {
-      // Wenn Testkategorie gewählt ist: Betriebe mit Subkategorie 'Test' oder Admin-E-Mail benachrichtigen
-      if (isTestTender) {
-        return (
-          b.subcategory?.toLowerCase() === 'test' || 
-          b.category?.toLowerCase() === 'test' || 
-          b.email?.toLowerCase() === 'simon.kraeling@sichtbar-online.com'
-        );
-      }
-
       const isCraft = b.category === 'Handwerk' || (b.additionalCategories && b.additionalCategories.some(ac => ac.category === 'Handwerk'));
       if (!isCraft) return false;
       if (!b.email || !b.email.includes('@')) return false;
@@ -149,22 +136,6 @@ export async function notifyMatchingCraftBusinesses(tender: TenderProject, tende
       }
       return false;
     });
-
-    // Test-Modus Sicherheitsgarantie: Admin-E-Mail immer als Empfänger sicherstellen
-    if (isTestTender && !matchingBusinesses.some(b => b.email?.toLowerCase() === 'simon.kraeling@sichtbar-online.com')) {
-      matchingBusinesses.push({
-        id: 'test-admin-betrieb',
-        name: 'Admin Testbetrieb Handwerk',
-        category: 'Handwerk',
-        subcategory: 'Test',
-        email: 'simon.kraeling@sichtbar-online.com',
-        phone: '02981 00000',
-        address: 'Am Waltenberg 1, 59955 Winterberg',
-        district: 'Winterberg',
-        isActive: true,
-        isPremium: true
-      } as Business);
-    }
 
     const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.winterberg-verzeichnis.de';
 
