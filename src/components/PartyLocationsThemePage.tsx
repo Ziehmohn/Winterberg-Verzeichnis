@@ -100,9 +100,12 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
     };
   }, [isNl]);
 
-  // Extract all party businesses
+  // Extract all verified party businesses in exact order
   const partyBusinesses = useMemo(() => {
-    return businesses.filter(b => isPartyLocation(b));
+    const map = new Map(businesses.map(b => [b.id, b]));
+    return PARTY_VENUES_DATA
+      .map(v => map.get(v.id))
+      .filter((b): b is Business => Boolean(b));
   }, [businesses]);
 
   // Available districts
@@ -119,11 +122,9 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
   const typeOptions: { id: string; labelDe: string; labelNl: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'all', labelDe: 'Alle Locations', labelNl: 'Alle locaties', icon: Building2 },
     { id: 'huette', labelDe: 'Berghütten & Almen', labelNl: 'Berghutten & Almen', icon: Mountain },
-    { id: 'saal', labelDe: 'Festsäle & Schützenhallen', labelNl: 'Feestzalen & Schuttershallen', icon: Building2 },
-    { id: 'club', labelDe: 'Clubs, Pubs & Bars', labelNl: 'Clubs & Bars', icon: Music },
-    { id: 'scheune', labelDe: 'Historische Scheunen', labelNl: 'Historische Schuren', icon: Flame },
-    { id: 'hotel', labelDe: 'Hotels & Eventresorts', labelNl: 'Hotels & Resorts', icon: Sparkles },
-    { id: 'freizeit', labelDe: 'Party & Freizeit', labelNl: 'Feest & Vrije tijd', icon: PartyPopper }
+    { id: 'club', labelDe: 'Clubs & Partylocations', labelNl: 'Clubs & Feestlocaties', icon: Music },
+    { id: 'saal', labelDe: 'Festsäle & Eventhäuser', labelNl: 'Feestzalen & Eventhuizen', icon: Building2 },
+    { id: 'scheune', labelDe: 'Historische Scheunen', labelNl: 'Historische Schuren', icon: Flame }
   ];
 
   // Occasion definitions
@@ -344,9 +345,9 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
             </div>
           </div>
 
-          {/* Row 2: Location-Typ Tabs (Pills) */}
+          {/* Row 2: Location-Typ Tabs (Immer direkt sichtbar, kein horizontales Scrollen) */}
           <div className="border-t border-[#F0EBE1] dark:border-white/5 pt-3">
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+            <div className="flex flex-wrap items-center gap-2">
               {typeOptions.map(opt => {
                 const count = typeCounts[opt.id] || 0;
                 const isSelected = selectedType === opt.id;
@@ -489,9 +490,9 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
                         </span>
                       )}
                     </div>
-                    {bus.website && (
+                    {(meta?.verifiedSourceUrl || bus.website) && (
                       <a
-                        href={bus.website}
+                        href={meta?.verifiedSourceUrl || bus.website}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}

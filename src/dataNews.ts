@@ -7,10 +7,10 @@ export const initialNews: NewsArticle[] = [
     slug_nl: "halloween-2026-winterberg-feest-evenementen-programma",
     title: "Halloween 2026 in Winterberg: Die besten Gruselpartys und Events im Überblick",
     title_nl: "Halloween 2026 in Winterberg: De leukste griezelfeesten en events op een rij",
-    author: "Redaktion Winterberg",
+    author: "Winterberg-Verzeichnis (Simon Kräling)",
     businessName: "Events in Winterberg",
     imageUrl: "/news-halloween-winterberg-2026.jpg",
-    isAiGenerated: false,
+    isAiGenerated: true,
     status: 'approved',
     date: "2026-10-24T18:00:00.000Z",
     content: `Halloween steht vor der Tür! Am **Samstag, den 31. Oktober 2026** verwandelt sich die Ferienwelt Winterberg in ein Paradies für Hexen, Vampire, Gruselfans und Partybegeisterte. Ob kinderfreundlicher Gruselspaß am Nachmittag, abenteuerliche Nachtwanderung im Sauerländer Wald, schaurig-schöne Gewölbekeller-Atmosphäre, handgemachte Live-Musik im Irish Pub oder die durchtanzte Partynacht auf mehreren Club-Floors – in der Kernstadt sowie in den umliegenden Dörfern ist für jedes Alter das passende Highlight geboten.

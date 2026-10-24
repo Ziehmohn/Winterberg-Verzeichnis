@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (442 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (448 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2463,7 +2463,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** In d. Renau 10/11, 59955 Winterberg
 - **Telefon:** 02981 8996399
-- **Webseite:** https://www.nordhangjause.de
+- **Webseite:** https://www.nordhangjause.de/#vermietung
 - **Beschreibung (DE):** Urige Hütte im Wintersport- und Wandergebiet direkt am Skilift mit gutbürgerlicher Küche, Sonnenterrasse und stimmungsvollen Veranstaltungen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/nordhang-jause-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/nordhang-jause-winterberg
@@ -2502,7 +2502,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Remmeswiese 10, 59955 Winterberg
 - **Telefon:** 02981 3249
-- **Webseite:** https://wiesenwirt.de
+- **Webseite:** https://www.rauher-busch.de/feiern
 - **Beschreibung (DE):** Gemütliche, rustikale Skihütte mit warmen und kalten deutschen Buffetspeisen sowie Bier vom Fass und Kaffee.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/skihuette-rauher-busch
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/skihuette-rauher-busch
@@ -2512,7 +2512,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** In d. Büre 32, 59955 Winterberg
 - **Telefon:** 02981 1073
-- **Webseite:** https://www.bei-moeppi.de
+- **Webseite:** https://www.bei-moeppi.de/deine-eventlocation/
 - **Beschreibung (DE):** Kultige Skihütte, Après-Ski-Location und Restaurant direkt an der Piste im Skiliftkarussell Winterberg (Büre Herrloh). Bekannt für legendäre Partys, Events und gemütliche Hüttenabende.
 - **Beschreibung (NL):** Iconische skihut, après-ski locatie en restaurant direct aan de piste in de Skiliftkarussell Winterberg (Büre Herrloh). Bekend om legendarische feesten, evenementen en gezellige sfeer.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bei-moeppi
@@ -2534,7 +2534,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Astenstraße 10, 59955 Winterberg
 - **Telefon:** 02981 2897
-- **Webseite:** https://www.sahnehang.de
+- **Webseite:** https://sahnehang.de/events/ihr-event
 - **Beschreibung (DE):** Urigste Berghütte am schneesichersten Hang im Sauerland. Direkt am Familienskigebiet Sahnehang und der Rodelbahn auf über 830 Metern Höhe am Kahlen Asten. Bekannt für deftigen Gulasch, heißen Kakao und authentische Hütten-Atmosphäre.
 - **Beschreibung (NL):** Meest authentieke berghut op de meest sneeuwzekere helling van het Sauerland direct aan het skigebied Sahnehang (836 m). Bekend om stevige soepen, warme chocolademelk en gezelligheid.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/koehlerhuette-am-sahnehang
@@ -2545,7 +2545,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Am Waltenberg 99, 59955 Winterberg
 - **Telefon:** 0171 9313600
-- **Webseite:** https://www.bremberg-klause.de
+- **Webseite:** https://www.bremberg-klause.de/unsere-huette/
 - **Beschreibung (DE):** Beliebte Skihütte, Restaurant und Eventlocation direkt im Skiliftkarussell an den Bremberg-Pisten 10 & 11. Urige Gemütlichkeit, hausgemachte Speisen, heiße Getränke und Sonnenterrasse. Freitags auch bei Flutlicht geöffnet.
 - **Beschreibung (NL):** Gezellige skihut, restaurant en eventlocatie direct aan de Bremberg-pistes (10 & 11). Warme gerechten, drankjes en zonneterras. Vrijdags tevens geopend tijdens het avondskiën.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/bremberg-klause
@@ -2641,7 +2641,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Skihütten
 - **Ort / Ortsteil:** Niedersfeld
 - **Adresse:** Auf der Knippe 100, 59955 Winterberg-Niedersfeld
-- **Webseite:** https://hochheidehuette-niedersfeld.de
+- **Webseite:** https://www.hochheidehuette-niedersfeld.de/feiern-auf-der-hochheide-huette-niedersfeld/
 - **Beschreibung (DE):** Gemütliche Hütte auf der Hochheide mit großer Sonnenterrasse, Speisen und Getränken.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/hochheide-huette
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/hochheide-huette
@@ -2813,6 +2813,61 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Bierstube Abendsonne in Hotel Niedersfeld is een sfeervol en rustiek café-restaurant voor vers getapt bier, streekgerechten en gezellige avonden in het Sauerland.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/bierstube-abendsonne
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/bierstube-abendsonne
+
+#### [Schneewittchenhaus Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schneewittchenhaus-winterberg)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 119, 59955 Winterberg
+- **Telefon:** +49 2981 4259020
+- **Webseite:** https://www.schneewittchenhaus.de/feiern
+- **Beschreibung (DE):** Das Schneewittchenhaus liegt direkt an der Schneewittchen-Piste (Abfahrt 25) und der Bremberg-Sesselbahn im Skiliftkarussell Winterberg. Die moderne alpine Event- und Panoramalocation bietet den perfekten Rahmen für private Partys, Hochzeiten, runde Geburtstage, Firmen-Incentives und Sommerfeste mit herrlicher Sonnenterrasse, erstklassiger Gastronomie und flexiblen Räumlichkeiten.
+- **Beschreibung (NL):** Het Schneewittchenhaus ligt direct aan de Schneewittchen-piste en stoeltjeslift in het Skiliftkarussell Winterberg. Deze moderne alpine feest- en panoramalocatie biedt het ideale decor voor besloten feesten, bruiloften, verjaardagen en bedrijfsuitjes met een prachtig zonneterras en uitstekende horeca.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schneewittchenhaus-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/schneewittchenhaus-winterberg
+
+#### [Freestyle Area Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/freestyle-area-winterberg)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 121, 59955 Winterberg
+- **Telefon:** 0160 97090510
+- **Webseite:** https://www.freestyle-area.de/events
+- **Beschreibung (DE):** Die Freestyle Area Winterberg direkt an der Schneewittchen-Piste (Am Waltenberg 121) ist die moderne Event- und Partylocation im Skigebiet. Mit lässiger Lounge-Atmosphäre, großer Pisten-Sonnenterrasse, fettem Sound und kompletter Event-Organisation ist sie perfekt für private Partys, Junggesellenabschiede (JGA), runde Geburtstage und Firmenevents mietbar.
+- **Beschreibung (NL):** Freestyle Area Winterberg direct aan de Schneewittchen-piste (Am Waltenberg 121) is dé trendy evenementen- en feestlocatie in het skigebied. Met relaxte lounge-ambiance, groot zonneterras aan de piste, uitstekend geluid en complete eventorganisatie voor besloten partijen, verjaardagen en vrijgezellenfeesten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/freestyle-area-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/freestyle-area-winterberg
+
+#### [Party-Location „Abendrot“ (Resort Schöner Asten)](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/party-location-abendrot-resort-schoener-asten)
+- **Kategorie:** Gastronomie > Kneipen und Bars
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Renauweg 54, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 8050
+- **Webseite:** https://www.resort-winterberg.de/nederlands/component/content/article/192-party-location-sauerland-2?catid=2
+- **Beschreibung (DE):** Das „Abendrot“ im Familien Resort Der Schöne Asten in Altastenberg ist die exklusive Partylocation für geschlossene Gesellschaften, Hochzeiten, runde Geburtstage, Vereinsfeste und Betriebsfeiern. Ausgestattet mit eigener Bar, professioneller Sound- und Lichtanlage, Tanzfläche und direktem Zugang zu den Hotelzimmern für bequemes Übernachten aller Gäste direkt vor Ort.
+- **Beschreibung (NL):** Party-Location „Abendrot“ in het resort Der Schöne Asten in Altastenberg is dé exclusieve feestlocatie voor besloten gezelschappen, bruiloften, verjaardagen, verenigings- en bedrijfsfeesten. Voorzien van een eigen bar, professionele licht- en geluidsinstallatie, dansvloer en comfortabele hotelkamers direct ter plaatse.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/party-location-abendrot-resort-schoener-asten
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/party-location-abendrot-resort-schoener-asten
+
+#### [Schweden Hütte Altastenberg](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schweden-huette-altastenberg)
+- **Kategorie:** Gastronomie > Skihütten
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Westfalenhang 1, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 1836
+- **Webseite:** https://www.schwedenhuette.de/
+- **Beschreibung (DE):** Die Schweden Hütte in Altastenberg liegt idyllisch am Westfalenhang im höchstgelegenen Höhendorf des Sauerlands. Uriges Hüttenflair mit Holzofen, herzhaften Sauerländer Spezialitäten, hausgemachten Kuchen und Sonnenterrasse direkt am Einstieg ins Skigebiet und an den Höhenwanderwegen rund um den Kahlen Asten.
+- **Beschreibung (NL):** De Schweden Hütte in Altastenberg ligt idyllisch aan de Westfalenhang in het hoogste dorp van het Sauerland. Authentieke berghutsfeer met houtkachel, hartige streekgerechten, huisgemaakt gebak en zonneterras direct aan de piste en wandelroutes.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schweden-huette-altastenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/schweden-huette-altastenberg
+
+#### [Gockelstall Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/gockelstall-winterberg)
+- **Kategorie:** Gastronomie > Restaurant
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 10, 59955 Winterberg
+- **Telefon:** 02981 928374
+- **Webseite:** https://www.gockelstall.de/
+- **Beschreibung (DE):** Der Gockelstall in der Winterberger Innenstadt steht für knusprige, frisch gegrillte Hähnchenspezialitäten, saftige Burger, krosse Pommes und herzhafte Sauerländer Snacks. Beliebter Treffpunkt für den schnellen Genuss vor Ort oder bequem zum Mitnehmen.
+- **Beschreibung (NL):** Gockelstall in het centrum van Winterberg staat bekend om knapperige vers gegrilde haantjes, sappige burgers, krokante friet en hartige snacks. Geliefde eetgelegenheid voor een snelle hap ter plaatse of afhaal.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/gockelstall-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/gockelstall-winterberg
 
 ### Kategorie: Dienstleistungen
 
@@ -3400,6 +3455,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Traditionele feestzaal van de St. Hubertus schutters in Silbach. Veelzijdige zaal met bar, keuken en podium voor feesten, verjaardagen en bijeenkomsten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-silbach
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-silbach
+
+#### [Gästehaus Winterberg (Die Eventlocation)](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/gaestehaus-winterberg-die-eventlocation)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Marienweg 2, 59955 Winterberg-Grönebach
+- **Telefon:** 02981 92890
+- **Webseite:** https://www.gaestehaus-winterberg.de/die-eventlocation
+- **Beschreibung (DE):** Das Gästehaus Winterberg in Grönebach ist die vielseitige Eventlocation für Hochzeiten im Grünen, Familienfeiern, Geburtstage, Tagungen und Seminare. Mit großem Fest- und Speisesaal für bis zu 130 Personen, 125 m² Profi-Großküche für Caterer, eigener hauseigener Kapelle für Trauungen und 135 Übernachtungsbetten im Haus ideal für unvergessliche Feste mit Übernachtung.
+- **Beschreibung (NL):** Gästehaus Winterberg in Grönebach is dé veelzijdige evenementenlocatie voor bruiloften in het groen, familiefeesten, verjaardagen en congressen. Beschikt over een grote feest- en eetzaal tot 130 personen, 125 m² professionele grootkeuken, eigen kapel voor huwelijksvoltrekkingen en 135 overnachtingsbedden ter plaatse.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/gaestehaus-winterberg-die-eventlocation
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/gaestehaus-winterberg-die-eventlocation
 
 ### Kategorie: Ski, Bike & Sport
 
