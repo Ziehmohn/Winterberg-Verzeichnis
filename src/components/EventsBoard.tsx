@@ -378,18 +378,45 @@ export default function EventsBoard({
   const [expandedMap, setExpandedMap] = useState<string | null>(null);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
 
-  // Date range filter state
+  // Date range filter state - default to upcoming events (from today onwards)
   const [startDateFilter, setStartDateFilter] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      return params.get('from') || params.get('ab') || params.get('datum') || '';
+      if (params.get('period') === 'all') return '';
+      const explicitFrom = params.get('from') || params.get('ab') || params.get('datum');
+      if (explicitFrom) return explicitFrom;
+      const period = params.get('period');
+      if (period) {
+        const now = new Date();
+        if (period === 'upcoming') return getLocalDateString(now);
+        if (period === 'today') return getLocalDateString(now);
+        if (period === 'weekend') return getWeekendRange().start;
+        if (period === '7days') return getLocalDateString(now);
+        if (period === 'this_month') return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
+        if (period === 'next_month') return getLocalDateString(new Date(now.getFullYear(), now.getMonth() + 1, 1));
+        if (period === 'winter') return '2026-12-01';
+      }
+      if (params.get('to') || params.get('bis')) return '';
+      return getLocalDateString(new Date());
     }
-    return '';
+    return getLocalDateString(new Date());
   });
   const [endDateFilter, setEndDateFilter] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      return params.get('to') || params.get('bis') || '';
+      const explicitTo = params.get('to') || params.get('bis');
+      if (explicitTo) return explicitTo;
+      const period = params.get('period');
+      if (period) {
+        const now = new Date();
+        if (period === 'upcoming') return '';
+        if (period === 'today') return getLocalDateString(now);
+        if (period === 'weekend') return getWeekendRange().end;
+        if (period === '7days') return getLocalDateString(new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000));
+        if (period === 'this_month') return getLocalDateString(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+        if (period === 'next_month') return getLocalDateString(new Date(now.getFullYear(), now.getMonth() + 2, 0));
+        if (period === 'winter') return '2027-02-28';
+      }
     }
     return '';
   });
@@ -398,18 +425,20 @@ export default function EventsBoard({
       const params = new URLSearchParams(window.location.search);
       if (params.get('period')) return params.get('period')!;
       if (params.get('from') || params.get('to') || params.get('ab') || params.get('bis') || params.get('datum')) return 'custom';
+      return 'upcoming';
     }
-    return 'all';
+    return 'upcoming';
   });
 
   const quickPeriods = useMemo(() => [
-    { id: 'all', label: lang === 'nl' ? 'Alle data' : 'Alle Termine' },
+    { id: 'upcoming', label: lang === 'nl' ? 'Vanaf vandaag' : 'Ab heute' },
     { id: 'today', label: lang === 'nl' ? 'Vandaag' : 'Heute' },
     { id: 'weekend', label: lang === 'nl' ? 'Dit weekend' : 'Dieses Wochenende' },
     { id: '7days', label: lang === 'nl' ? 'Volgende 7 dagen' : 'Nächste 7 Tage' },
     { id: 'this_month', label: lang === 'nl' ? 'Deze maand' : 'Diesen Monat' },
     { id: 'next_month', label: lang === 'nl' ? 'Volgende maand' : 'Nächsten Monat' },
     { id: 'winter', label: lang === 'nl' ? 'Winter 2026/27' : 'Winter 2026/27' },
+    { id: 'all', label: lang === 'nl' ? 'Alle data' : 'Alle Termine' },
   ], [lang]);
 
   const handleSelectPreset = (presetId: string) => {
@@ -418,6 +447,11 @@ export default function EventsBoard({
       setStartDateFilter('');
       setEndDateFilter('');
       setActiveQuickPeriod('all');
+    } else if (presetId === 'upcoming') {
+      const todayStr = getLocalDateString(now);
+      setStartDateFilter(todayStr);
+      setEndDateFilter('');
+      setActiveQuickPeriod('upcoming');
     } else if (presetId === 'today') {
       const todayStr = getLocalDateString(now);
       setStartDateFilter(todayStr);
@@ -477,31 +511,45 @@ export default function EventsBoard({
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
-      if (startDateFilter) {
-        url.searchParams.set('from', startDateFilter);
-      } else {
+
+      // Default state is 'upcoming' (starting from today) - keep URL clean without query noise
+      if (activeQuickPeriod === 'upcoming' && !endDateFilter) {
         url.searchParams.delete('from');
         url.searchParams.delete('ab');
         url.searchParams.delete('datum');
-      }
-      if (endDateFilter) {
-        url.searchParams.set('to', endDateFilter);
-      } else {
         url.searchParams.delete('to');
         url.searchParams.delete('bis');
+        url.searchParams.delete('period');
+      } else {
+        if (startDateFilter) {
+          url.searchParams.set('from', startDateFilter);
+        } else {
+          url.searchParams.delete('from');
+          url.searchParams.delete('ab');
+          url.searchParams.delete('datum');
+        }
+        if (endDateFilter) {
+          url.searchParams.set('to', endDateFilter);
+        } else {
+          url.searchParams.delete('to');
+          url.searchParams.delete('bis');
+        }
+        if (activeQuickPeriod && activeQuickPeriod !== 'custom') {
+          url.searchParams.set('period', activeQuickPeriod);
+        } else {
+          url.searchParams.delete('period');
+        }
       }
+
       if (selectedCategory && selectedCategory !== 'Alle') {
         url.searchParams.set('category', selectedCategory);
       } else {
         url.searchParams.delete('category');
         url.searchParams.delete('kategorie');
       }
-      if (activeQuickPeriod && activeQuickPeriod !== 'all' && activeQuickPeriod !== 'custom') {
-        url.searchParams.set('period', activeQuickPeriod);
-      } else {
-        url.searchParams.delete('period');
-      }
-      window.history.replaceState(null, '', url.pathname + url.search);
+
+      const queryString = url.searchParams.toString();
+      window.history.replaceState(null, '', url.pathname + (queryString ? '?' + queryString : ''));
     }
   }, [startDateFilter, endDateFilter, selectedCategory, activeQuickPeriod]);
 
@@ -806,7 +854,9 @@ export default function EventsBoard({
                       ? `${formatShortDate(startDateFilter)}` 
                       : `${formatShortDate(startDateFilter)} – ${formatShortDate(endDateFilter)}`)
                   : (startDateFilter 
-                      ? `${lang === 'nl' ? 'Vanaf' : 'Ab'} ${formatShortDate(startDateFilter)}` 
+                      ? (activeQuickPeriod === 'upcoming'
+                          ? (lang === 'nl' ? 'Vanaf vandaag' : 'Ab heute')
+                          : `${lang === 'nl' ? 'Vanaf' : 'Ab'} ${formatShortDate(startDateFilter)}`)
                       : `${lang === 'nl' ? 'Tot' : 'Bis'} ${formatShortDate(endDateFilter)}`)}
               </span>
               <button
@@ -869,13 +919,37 @@ export default function EventsBoard({
             return (
               <article key={eventKey} className={`bg-white border rounded-2xl transition-all shadow-[0_2px_10px_rgba(27,33,29,0.03)] hover:shadow-[0_12px_28px_rgba(27,33,29,0.08)] border-[#EDE8E0] hover:border-[#D8D2C8] overflow-hidden ${viewMode === 'list' ? '' : 'flex flex-col'}`}>
                 {/* Image for grid view */}
-                {viewMode === 'grid' && event.imageUrl && (
-                  <div className="w-full h-44 shrink-0 relative bg-gray-100">
-                    <img src={event.imageUrl} alt={title} className="w-full h-full object-cover object-top" />
-                    <div className="absolute top-3 left-3">
-                      <CalendarCard startDate={event.startDate} endDate={event.endDate} />
+                {viewMode === 'grid' && (
+                  event.imageUrl ? (
+                    <div className="w-full h-44 shrink-0 relative bg-gray-100">
+                      <img src={event.imageUrl} alt={title} className="w-full h-full object-cover object-top" />
+                      <div className="absolute top-3 left-3">
+                        <CalendarCard startDate={event.startDate} endDate={event.endDate} />
+                      </div>
+                      {business.logoUrl && (
+                        <div 
+                          className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-lg border border-white/90 bg-white p-0.5 shadow-md flex items-center justify-center overflow-hidden z-10"
+                          style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                          title={business.name}
+                        >
+                          <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                        </div>
+                      )}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="w-full bg-[#FAF8F5] border-b border-[#EDE8E0] p-4 flex items-center justify-between">
+                      <CalendarCard startDate={event.startDate} endDate={event.endDate} />
+                      {business.logoUrl && (
+                        <div 
+                          className="w-10 h-10 rounded-lg border border-[#EDE8E0] bg-white p-1 shadow-2xs flex items-center justify-center overflow-hidden"
+                          style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                          title={business.name}
+                        >
+                          <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                        </div>
+                      )}
+                    </div>
+                  )
                 )}
                 
                 <div className={`p-5 flex gap-4 ${viewMode === 'grid' ? 'flex-col' : 'items-start'}`}>
@@ -955,9 +1029,29 @@ export default function EventsBoard({
 
                     {/* Footer */}
                     <div className="pt-3 border-t border-[#F0EBE1] flex flex-wrap items-center justify-between gap-3 mt-auto">
-                      <button type="button" onClick={() => onBusinessSelect(business)} className="text-sm font-semibold text-[#0F4C2E] hover:underline flex items-center gap-1.5 cursor-pointer">
-                        <Building2 className="w-4 h-4" />
-                        <span>{business.name}</span>
+                      <button 
+                        type="button" 
+                        onClick={() => onBusinessSelect(business)} 
+                        className="text-sm font-semibold text-[#0F4C2E] hover:underline flex items-center gap-2 cursor-pointer group text-left min-w-0"
+                      >
+                        {business.logoUrl ? (
+                          <div 
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-[#EDE8E0] bg-white p-0.5 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs group-hover:border-[#7E22CE]/40 transition-colors"
+                            style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                          >
+                            <img 
+                              src={business.logoUrl} 
+                              alt={business.name} 
+                              className="max-w-full max-h-full object-contain"
+                              loading="lazy"
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-7 h-7 rounded-lg bg-[#0F4C2E]/10 flex items-center justify-center shrink-0 text-[#0F4C2E]">
+                            <Building2 className="w-4 h-4" />
+                          </div>
+                        )}
+                        <span className="truncate">{business.name}</span>
                       </button>
 
                       <div className="flex items-center gap-2">
@@ -1007,10 +1101,29 @@ export default function EventsBoard({
                   </div>
 
                   {/* Thumbnail in list view (sm+ screens) */}
-                  {viewMode === 'list' && event.imageUrl && (
-                    <div className="hidden sm:block w-36 h-28 shrink-0 rounded-xl overflow-hidden border border-[#EDE8E0] self-start ml-2 bg-gray-100 shadow-xs">
-                      <img src={event.imageUrl} alt={title} className="w-full h-full object-cover" />
-                    </div>
+                  {viewMode === 'list' && (
+                    event.imageUrl ? (
+                      <div className="hidden sm:block w-36 h-28 shrink-0 rounded-xl overflow-hidden border border-[#EDE8E0] self-start ml-2 bg-gray-100 shadow-xs relative">
+                        <img src={event.imageUrl} alt={title} className="w-full h-full object-cover" />
+                        {business.logoUrl && (
+                          <div 
+                            className="absolute bottom-1.5 right-1.5 w-6 h-6 rounded border border-white/90 bg-white p-0.5 shadow-xs flex items-center justify-center overflow-hidden"
+                            style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                            title={business.name}
+                          >
+                            <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                          </div>
+                        )}
+                      </div>
+                    ) : business.logoUrl ? (
+                      <div 
+                        className="hidden sm:flex w-28 h-24 shrink-0 rounded-xl border border-[#EDE8E0] self-start ml-2 p-2.5 items-center justify-center shadow-2xs"
+                        style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                        title={business.name}
+                      >
+                        <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                      </div>
+                    ) : null
                   )}
                 </div>
               </article>

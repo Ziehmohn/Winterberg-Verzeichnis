@@ -218,7 +218,7 @@ export interface Business {
   logoBgColor?: string;
   extendedDescription?: string;
   ownerId?: string;
-  status?: 'pending' | 'approved';
+  status?: 'pending' | 'approved' | 'deactivated';
   isVerified?: boolean;
   city?: string;
   additionalCategories?: { category: string, subcategory: string }[];
