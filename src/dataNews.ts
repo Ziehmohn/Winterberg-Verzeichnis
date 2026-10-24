@@ -2,6 +2,197 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "halloween-2026-winterberg-party-events-feste",
+    slug: "halloween-2026-winterberg-party-events-programm",
+    slug_nl: "halloween-2026-winterberg-feest-evenementen-programma",
+    title: "Halloween 2026 in Winterberg: Die besten Gruselpartys und Events im Überblick",
+    title_nl: "Halloween 2026 in Winterberg: De leukste griezelfeesten en events op een rij",
+    author: "Redaktion Winterberg",
+    businessName: "Events in Winterberg",
+    imageUrl: "/news-halloween-winterberg-2026.jpg",
+    isAiGenerated: false,
+    status: 'approved',
+    date: "2026-10-24T18:00:00.000Z",
+    content: `Halloween steht vor der Tür! Am **Samstag, den 31. Oktober 2026** verwandelt sich die Ferienwelt Winterberg in ein Paradies für Hexen, Vampire, Gruselfans und Partybegeisterte. Ob kinderfreundlicher Gruselspaß am Nachmittag, abenteuerliche Nachtwanderung im Sauerländer Wald, schaurig-schöne Gewölbekeller-Atmosphäre, handgemachte Live-Musik im Irish Pub oder die durchtanzte Partynacht auf mehreren Club-Floors – in der Kernstadt sowie in den umliegenden Dörfern ist für jedes Alter das passende Highlight geboten.
+
+Wir haben alle wichtigen Veranstaltungen, Zeiten, Eintrittspreise und Highlights für das schaurigste Wochenende des Jahres für Sie zusammengefasst!
+
+---
+
+## 1. Halloween in der Tenne! Kids Edition (15:00 – 18:00 Uhr)
+
+![Halloween Kids Edition in der Tenne Winterberg](/events-halloween-tenne-kids.jpg)
+
+Nach den großartigen Erfolgen an Karneval und Halloween im Vorjahr lädt die Tenne Winterberg die jüngsten Gruselfans am Nachmittag wieder zur großen **Kids Edition** ein. Zwischen 15:00 und 18:00 Uhr heißt es hier: **Kids only!** Kinder zwischen 7 und 12 Jahren feiern gemeinsam ohne Eltern in der liebevoll dekorierten Gruseltenne.
+
+Für die Eltern gibt es ein echtes Rundum-Sorglos-Paket: Alle Leistungen sind im Eintrittspreis von **15,00 €** komplett enthalten, sodass die Kinder kein Taschengeld mitnehmen müssen. 
+
+* **Snacks & Getränke:** Süßigkeiten, Eis, Frei-Getränke und Leckereien satt.
+* **Show & Entertainment:** Eigene Kinder-Horror-Show, Live-DJ, eine große Tombola sowie eine professionelle Fotobox mit Direkt-Ausdruck für unvergessliche Erinnerungsfotos im Lieblingskostüm.
+* **Wichtiger Hinweis:** Die Eltern bringen ihre Kinder bitte um 15:00 Uhr und holen sie um 18:00 Uhr wieder ab. Zudem muss die Einverständniserklärung der Eltern unterschrieben mitgebracht werden.
+* **Tickets:** Digitaler Vorverkauf direkt über den [Tenne-Ticketshop](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-kids-edition-2/).
+
+---
+
+## 2. Halloween-Nacht der Kolpingjugend Züschen an der Skiclubhütte (ab 17:00 Uhr)
+
+![Halloween-Nacht der Kolpingjugend Züschen](/events-halloween-kolpingjugend-zueschen.png)
+
+Auch im idyllischen Höhendorf Züschen wird Halloween gebührend gefeiert: Die Kolpingjugend Züschen veranstaltet am 31. Oktober eine spannende **Halloween-Aktion an der Skiclubhütte in Züschen**. Willkommen sind alle Kinder ab der 1. Klasse, die Lust auf Abenteuer und schaurig-schöne Stunden in geselliger Runde haben.
+
+* **Wann & Wo:** Samstag, 31.10.2026 von 17:00 bis ca. 22:00/22:30 Uhr an der Skiclubhütte Züschen.
+* **Programm:** Gruselige Spiele, Überraschungen, ein großer Kostümwettbewerb für die kreativsten Verkleidungen und als absoluter Höhepunkt eine abenteuerliche Nachtwanderung durch die Sauerländer Dämmerung mit reichlich Gänsehaut-Faktor.
+* **Kosten:** 20,00 € für Mitglieder der Kolpingjugend, 25,00 € für Nicht-Mitglieder.
+* **Anmeldung:** Eine vorherige Anmeldung ist per WhatsApp unter [0151 2073 1587](https://wa.me/4915120731587) erforderlich.
+
+---
+
+## 3. Der verfluchte Keller – Halloween im Hessenkeller (ab 17:00 Uhr)
+
+![Der verfluchte Keller – Halloween im Hessenkeller Winterberg](/events-halloween-hessenkeller.png)
+
+Für alle Gruselfreunde ab 16 Jahren öffnet der Hessenkeller am Waltenberg seine Pforten zu einem ganz besonderen Abend. Unter dem unheilvollen Motto: **„Der verfluchte Keller – Keiner verlässt ihn so, wie er ihn betreten hat“** verwandelt sich die urige Bierstube des Hotel Hessenhof in ein düsteres Labyrinth voller Überraschungen.
+
+* **Beginn:** Samstag, 31.10.2026 ab 17:00 Uhr.
+* **Eintritt:** Freier Eintritt für alle Gäste (Einlass ab 16 Jahren).
+* **Highlights:** Zur Begrüßung wartet ein spezieller Überraschungs-Longdrink, dazu gibt es kleine schaurige Snacks, knisternde Atmosphäre im historischen Kellergewölbe und die passende Soundkulisse.
+* **Ort:** Hessenkeller Winterberg, Am Waltenberg 1, 59955 Winterberg.
+
+---
+
+## 4. Halloween Party im Blackwater Irish Pub mit Owen Casey (ab 21:00 Uhr)
+
+![Halloween Party mit Live-Musik im Blackwater Irish Pub Winterberg](/events-halloween-blackwater-irish-pub.jpg)
+
+Wenn sich irische Gemütlichkeit mit echtem Halloween-Grusel verbindet, bebt die Nuhnestraße: Der Blackwater Irish Pub lädt am Samstagabend zur stimmungsgeladenen Halloween-Party ein. 
+
+* **Live-Musik ab 21:00 Uhr:** Der gefeierte Musiker **OWEN CASEY** steht live auf der Bühne und sorgt mit kraftvoller Gitarre, markanter Stimme und mitreißenden Pub-Hits für energiegeladene Stimmung.
+* **Großer Kostümwettbewerb (Fancy Dress Competition):** Unter dem Leitspruch *„Come dressed to impress... or TERRIFY!“* werden die besten Verkleidungen prämiert:
+  * **1. Platz:** 100,00 € Blackwater-Gutschein
+  * **2. Platz:** 50,00 € Blackwater-Gutschein
+  * **3. Platz:** Eine Runde Shots auf das Haus
+* **Eintritt:** Schlanke 3,00 € an der Abendkasse.
+* **Atmosphäre:** Frisch gezapftes Guinness, kühle Drinks, ausgehöhlte Kürbisse und die legendär-herzliche Pub-Atmosphäre mitten im Herzen Winterbergs.
+
+---
+
+## 5. Die legendäre Halloween-Kultparty in der Tenne (ab 20:00 Uhr)
+
+![Halloween Party für Erwachsene in der Tenne Winterberg](/events-halloween-tenne-adults.jpg)
+
+Wer bis in die frühen Morgenstunden tanzen möchte, kommt an der Tenne Winterberg nicht vorbei: Die dienstälteste Diskothek des Sauerlands schaltet wie jedes Jahr in den absoluten Vollgruselmodus! Auf drei Ebenen und an sechs Thekenbereichen erwartet die Partygäste eine aufwendige Gruseldekoration, Horror-Walk-Acts und unvergessliche Clubstimmung.
+
+* **Special Guests in der Cocktailbar:** In diesem Jahr legen **MAD Rick & HarmonX** an den Decks auf und bringen feinsten Sound aus House, EDM und mitreißendem Techno in die Cocktail-Lounge.
+* **Kostümwettbewerb mit 300 € Bargeld:** Wer sich besonders kreativ oder gruselig verkleidet, hat beste Chancen auf bare Münze. Insgesamt 300,00 € Preisgeld werden in bar vergeben:
+  * **1. Preis:** 150,00 € in bar
+  * **2. Preis:** 100,00 € in bar
+  * **3. Preis:** 50,00 € in bar
+* **Tickets & Einlass:** Samstag, 31.10.2026 ab 20:00 Uhr. Online-Vorverkauf zum Sparpreis von **8,50 €** direkt auf [tenne-winterberg.de](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-2/) oder 10,00 € an der Abendkasse.
+
+---
+
+:::contact
+### Alle Halloween-Events 2026 auf einen Blick
+
+* **15:00 – 18:00 Uhr:** Halloween in der Tenne! Kids Edition (7–12 Jahre) · Die Tenne Winterberg · Eintritt 15 € inkl. Rundum-Paket
+* **Ab 17:00 Uhr:** Halloween-Nacht der Kolpingjugend Züschen (Kinder ab 1. Klasse) · Skiclubhütte Züschen · 20 € / 25 € inkl. Nachtwanderung
+* **Ab 17:00 Uhr:** Der verfluchte Keller (ab 16 Jahre) · Hessenkeller Winterberg · Freier Eintritt & Überraschungs-Drink
+* **Ab 20:00 Uhr:** Halloween in der Tenne! (Erwachsene Party) · Die Tenne Winterberg · VVK 8,50 € / AK 10,00 € (Special: MAD Rick & HarmonX)
+* **Ab 21:00 Uhr:** Halloween Party mit Owen Casey live · Blackwater Irish Pub Winterberg · Eintritt 3 € (Fancy Dress Wettbewerb)
+
+🎃 **Tipp:** Alle Detailinformationen, Adressen und Kartenansichten zu den Events finden Sie auch direkt in unserem [zentralen Veranstaltungskalender](/events?period=all)!
+:::`,
+    content_nl: `Halloween staat voor de deur! Op **zaterdag 31 oktober 2026** verandert Winterberg in een sfeervol decor voor heksen, vampieren, griezelfans en feestgangers. Of u nu op zoek bent naar een gezellige kindermiddag, een mysterieuze nachtwandeling door de bossen van Züschen, de mystieke sfeer van een historische gewelvenkelder, energieke livemuziek in een Ierse pub of een knallend feest op meerdere clubvloeren – in Winterberg en de omliggende dorpen is er voor elke leeftijd volop te beleven.
+
+Hieronder vindt u het complete overzicht van alle Halloween-activiteiten, aanvangstijden, prijzen en hoogtepunten in Winterberg!
+
+---
+
+## 1. Halloween in de Tenne! Kids Edition (15:00 – 18:00 uur)
+
+![Halloween Kids Edition in de Tenne Winterberg](/events-halloween-tenne-kids.jpg)
+
+Na het grote succes tijdens carnaval en Halloween vorig jaar, organiseert Die Tenne Winterberg 's middags weer een speciale **Kids Edition**. Tussen 15:00 en 18:00 uur geldt: **Kids only!** Kinderen van 7 tot en met 12 jaar vieren feest zonder ouders in een prachtig gedecoreerde griezelclub.
+
+Voor ouders is er een compleet all-inclusive pakket: alle activiteiten, hapjes en drankjes zijn inbegrepen in de entreeprijs van **€ 15,00**, zodat de kinderen geen extra zakgeld nodig hebben.
+
+* **Snacks & drankjes:** Onbeperkt snoep, ijs, frisdrank en lekkernijen.
+* **Programma & show:** Een speciale kinder-horrorshow, live-dj, een grote tombola en een professionele photobooth met directe fotoafdruk voor een griezelige herinnering.
+* **Belangrijk:** Ouders brengen hun kinderen om 15:00 uur en halen hen om 18:00 uur weer op. Een ondertekende toestemmingsverklaring van de ouders is verplicht bij binnenkomst.
+* **Tickets:** Online tickets zijn vooraf verkrijgbaar via de [Tenne ticketshop](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-kids-edition-2/).
+
+---
+
+## 2. Halloween-nacht van de Kolpingjugend Züschen bij de Skiclubhütte (vanaf 17:00 uur)
+
+![Halloween-nacht van de Kolpingjugend Züschen](/events-halloween-kolpingjugend-zueschen.png)
+
+Ook in het idyllische bergdorp Züschen staat Halloween centraal: de jeugdorganisatie Kolpingjugend Züschen organiseert een spannende **Halloween-actie bij de Skiclubhütte in Züschen**. Alle kinderen vanaf groep 3 (Duitse 1. Klasse) zijn van harte welkom om mee te griezelen.
+
+* **Wanneer & waar:** Zaterdag 31.10.2026 van 17:00 tot ca. 22:00/22:30 uur bij de Skiclubhütte Züschen.
+* **Programma:** Griezelspelletjes, verrassingen, een verkleedwedstrijd voor de origineelste outfits en als absoluut hoogtepunt een spannende nachtwandeling door het Sauerlandse bos.
+* **Kosten:** € 20,00 voor leden van de Kolpingjugend, € 25,00 voor niet-leden.
+* **Aanmelden:** Vooraf aanmelden per WhatsApp via [+49 151 2073 1587](https://wa.me/4915120731587).
+
+---
+
+## 3. De vervloekte kelder – Halloween in de Hessenkeller (vanaf 17:00 uur)
+
+![De vervloekte kelder – Halloween in de Hessenkeller](/events-halloween-hessenkeller.png)
+
+Voor jongeren en volwassenen vanaf 16 jaar opent de karakteristieke Hessenkeller aan de Waltenberg zijn deuren voor een bijzondere thema-avond. Onder het sinistere motto: **„De vervloekte kelder – Niemand verlaat hem zoals hij binnenkwam“** verandert het café van Hotel Hessenhof in een sfeervol griezeldecor.
+
+* **Aanvang:** Zaterdag 31.10.2026 vanaf 17:00 uur.
+* **Toegang:** Gratis entree voor iedereen (vanaf 16 jaar).
+* **Hoogtepunten:** Een speciale verrassingslongdrink, lekkere borrelhapjes, een unieke gewelvenkelder-sfeer en passende muziek.
+* **Locatie:** Hessenkeller Winterberg, Am Waltenberg 1, 59955 Winterberg.
+
+---
+
+## 4. Halloween Party in The Blackwater Irish Pub met Owen Casey (vanaf 21:00 uur)
+
+![Halloween Party met livemuziek in The Blackwater Irish Pub](/events-halloween-blackwater-irish-pub.jpg)
+
+Wanneer Ierse gezelligheid samensmelt met Halloween, staat de Nuhnestraße op z'n kop: The Blackwater Irish Pub nodigt iedereen uit voor een onvergetelijke Halloween-avond vol livemuziek.
+
+* **Livemuziek vanaf 21:00 uur:** De geliefde singer-songwriter **OWEN CASEY** treedt live op met akoestische gitaar, karakteristieke stem en meeslepende pub-klassiekers.
+* **Fancy Dress competitie:** Onder het motto *„Come dressed to impress... or TERRIFY!“* zijn er geweldige prijzen te winnen:
+  * **1e prijs:** € 100,00 Blackwater-waardebon
+  * **2e prijs:** € 50,00 Blackwater-waardebon
+  * **3e prijs:** Een gratis ronde shots van het huis
+* **Entree:** Slechts € 3,00 aan de kassa.
+* **Ambiance:** Vers getapt Guinness, griezelige kostuums, pompoenen en de warme sfeer van de Ierse pub in het centrum van Winterberg.
+
+---
+
+## 5. De legendarische Halloween-cultparty in Die Tenne (vanaf 20:00 uur)
+
+![Halloween Party voor volwassenen in Die Tenne Winterberg](/events-halloween-tenne-adults.jpg)
+
+Wie tot in de vroege uurtjes wil dansen, mag de Halloween-nacht in Die Tenne niet missen: de oudste discotheek van het Sauerland pakt traditioneel groots uit met griezeldecoraties op 3 niveaus en 6 verschillende barzones.
+
+* **Special guests in de cocktailbar:** Dit jaar staan **MAD Rick & HarmonX** achter de draaitafels met de beste beats uit house, EDM en techno.
+* **Kostuumwedstrijd met € 300 prijzengeld:** Wie in de meest angstaanjagende of creatieve outfit verschijnt, maakt kans op mooie geldprijzen:
+  * **1e prijs:** € 150,00 contant
+  * **2e prijs:** € 100,00 contant
+  * **3e prijs:** € 50,00 contant
+* **Tickets & aanvang:** Zaterdag 31.10.2026 vanaf 20:00 uur. Online voorverkoop voor **€ 8,50** via [tenne-winterberg.de](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-2/) of € 10,00 aan de avondkassa.
+
+---
+
+:::contact
+### Alle Halloween-events 2026 op een rij
+
+* **15:00 – 18:00 uur:** Halloween in de Tenne! Kids Edition (7–12 jaar) · Die Tenne Winterberg · Entree € 15 all-inclusive
+* **Vanaf 17:00 uur:** Halloween-nacht Kolpingjugend (groep 3 en ouder) · Skiclubhütte Züschen · € 20 / € 25 incl. nachtwandeling
+* **Vanaf 17:00 uur:** De vervloekte kelder (vanaf 16 jaar) · Hessenkeller Winterberg · Gratis toegang & verrassingsdrankje
+* **Vanaf 20:00 uur:** Halloween in de Tenne! (voor volwassenen) · Die Tenne Winterberg · VVK € 8,50 / kassa € 10,00 (met MAD Rick & HarmonX)
+* **Vanaf 21:00 uur:** Halloween Party met Owen Casey live · Blackwater Irish Pub Winterberg · Entree € 3 (Fancy Dress competitie)
+
+🎃 **Tip:** Bekijk alle details, locaties en plattegronden ook in onze [centrale evenementenkalender](/events?period=all)!
+:::`,
+  },
+  {
     id: "waermepumpen-infotag-winterberg-hallenberg-2027",
     slug: "waermepumpen-infotag-winterberg-hallenberg-gastgeber-2027",
     slug_nl: "warmtepomp-infodag-winterberg-hallenberg-gastgemeente-2027",

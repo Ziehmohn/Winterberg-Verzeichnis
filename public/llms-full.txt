@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (434 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (442 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2721,7 +2721,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Kneipen und Bars
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Marktstraße 12, 59955 Winterberg
-- **Telefon:** 02981 1234
+- **Telefon:** 02981 8997312
 - **Webseite:** https://www.tenne-winterberg.de
 - **Beschreibung (DE):** Traditionsreicher Party- und Kneipentreffpunkt in der Winterberger Altstadt mit Club-Bereichen, Cocktailbar und Tanzstimmung.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-tenne-winterberg
@@ -3315,6 +3315,91 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Content-Agentur Textzeit onder leiding van journalist en tekstschrijver Ralf Hermann is gespecialiseerd in professionele pers- en public relations, strategische bedrijfscommunicatie en doelgerichte storytelling in Winterberg en het Sauerland.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/content-agentur-textzeit
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/marketingdiensten/content-agentur-textzeit
+
+#### [Schützenhalle Winterberg (St. Georg)](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-winterberg-st-georg)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 89, 59955 Winterberg
+- **Telefon:** 02981 2288
+- **Webseite:** https://schuetzenverein-winterberg.de
+- **Beschreibung (DE):** Die traditionsreiche Schützenhalle der St. Georg Schützenbruderschaft Winterberg bietet ideale Räumlichkeiten für große Hochzeiten, Geburtstage, Firmenfeiern, Abibälle und Vereinsjubiläen. Mit großem Festsaal, Foyer, Bühne, moderner Thekenanlage und ausgestatteter Großküche für private und geschäftliche Events mietbar.
+- **Beschreibung (NL):** De traditionele feest- en schuttershal van de St. Georg broederschap in Winterberg biedt ideale ruimtes voor grote bruiloften, verjaardagen, bedrijfsfeesten en jubilea. Beschikt over een grote zaal met podium, ruime bar, foyer en professionele keuken.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-winterberg-st-georg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-winterberg-st-georg
+
+#### [Schützenhalle Niedersfeld](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-niedersfeld)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Josefsweg 8, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 8290
+- **Webseite:** https://niedersfeld.info
+- **Beschreibung (DE):** Die geräumige Schützenhalle in Niedersfeld ist die beliebte Event- und Feierlocation im Hillebachtal. Ausgestattet mit großem Festsaal, separatem Speiseraum/Sektbar, moderner Beschallungstechnik und Küche. Perfekt für Hochzeiten, Polterabende, runde Geburtstage und Betriebsfeiern.
+- **Beschreibung (NL):** De ruime schuttershal in Niedersfeld is een geliefde feestlocatie in het Hillebachtal. Voorzien van een grote feestzaal, aparte eetzaal/wijnbar, moderne geluidstechniek en keuken. Ideaal voor bruiloften, verjaardagen en bedrijfsuitjes.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-niedersfeld
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-niedersfeld
+
+#### [Schützenhalle Züschen](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-zueschen)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Züschen
+- **Adresse:** Mollseifener Straße 24, 59955 Winterberg-Züschen
+- **Telefon:** 02981 6815
+- **Webseite:** https://zueschen.de
+- **Beschreibung (DE):** Die Schützenhalle der St. Hubertus Schützenbruderschaft Züschen bietet einen wunderschönen Rahmen für Feiern jeder Größenordnung. Großer Festsaal, separate Gaststube / Speiseraum, Thekenbereich und Cateringküche für Hochzeiten, Geburtstagsfeiern und Vereinsfeiern flexibel mietbar.
+- **Beschreibung (NL):** De schuttershal van de St. Hubertus broederschap in Züschen biedt een sfeervol decor voor feesten en partijen. Grote zaal, apart praathuis, ruime bar en cateringkeuken voor bruiloften, verjaardagen en jubilea.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-zueschen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-zueschen
+
+#### [Schützenhalle Siedlinghausen](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-siedlinghausen)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Sorpestraße 26, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 1475
+- **Webseite:** https://schuetzenbruderschaft-siedlinghausen.de
+- **Beschreibung (DE):** Großzügige Festhalle der St. Johannes Schützenbruderschaft Siedlinghausen im Negertal. Großer Festsaal mit Bühne, gemütlicher Speiseraum, moderne Schankanlage und vollständige Kücheneinrichtung – optimal für Hochzeiten, Großveranstaltungen und Familienfeiern mietbar.
+- **Beschreibung (NL):** Riante feestzaal van de St. Johannes broederschap in Siedlinghausen. Grote zaal met podium, sfeervolle eetzaal, moderne biertap en volledige keuken – perfect voor bruiloften, feesten en bijeenkomsten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-siedlinghausen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-siedlinghausen
+
+#### [Dorfgemeinschaftshalle Elkeringhausen](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/dorfgemeinschaftshalle-elkeringhausen)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Elkeringhausen
+- **Adresse:** Am Knittenberg 2, 59955 Winterberg-Elkeringhausen
+- **Telefon:** 02981 1238
+- **Beschreibung (DE):** Idyllisch am Fuße des Rothaargebirges gelegen: Die Dorfgemeinschaftshalle Elkeringhausen ist die perfekte Location für gemütliche Geburtstage, Familienfeste, Polterabende und Vereinsfeiern mit Saal, Theke, Küche und Außengelände im Grünen.
+- **Beschreibung (NL):** Idyllisch gelegen dorpshuis in Elkeringhausen: dé perfecte locatie voor gezellige verjaardagen, familiefeesten en besloten partijen met feestzaal, bar, keuken en groen buitenterrein.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/dorfgemeinschaftshalle-elkeringhausen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/dorfgemeinschaftshalle-elkeringhausen
+
+#### [Schützenhalle Altastenberg](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-altastenberg)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Astenstraße 30, 59955 Winterberg-Altastenberg
+- **Telefon:** 02981 2130
+- **Webseite:** https://altastenberg.de
+- **Beschreibung (DE):** Im höchstgelegenen Höhendorf NRWs auf fast 800 Metern: Die Schützenhalle Altastenberg bietet urigen Sauerländer Charme für Hochzeiten, zünftige Hüttenpartys, Geburtstage und Firmenfeiern nahe dem Kahlen Asten.
+- **Beschreibung (NL):** In het hoogste dorp van Sauerland op 800 meter hoogte: de schuttershal in Altastenberg biedt authentieke gezelligheid voor bruiloften, feestavonden, verjaardagen en bedrijfsuitjes nabij de Kahler Asten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-altastenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-altastenberg
+
+#### [Schützenhalle Grönebach](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-groenebach)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Grönebach
+- **Adresse:** Lambertusstraße 12, 59955 Winterberg-Grönebach
+- **Telefon:** 02981 7215
+- **Beschreibung (DE):** Moderne Dorffesthalle der St. Hubertus Schützenbruderschaft Grönebach. Helle Festhalle mit Theke, moderner Beleuchtung und Nebenräumen für private Partys, Hochzeiten und Vereinsfeste.
+- **Beschreibung (NL):** Moderne dorpsfeestzaal van de St. Hubertus broederschap in Grönebach. Lichte feestzaal met bar, sfeervolle verlichting en nevenruimtes voor besloten feesten, bruiloften en evenementen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-groenebach
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-groenebach
+
+#### [Schützenhalle Silbach](https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-silbach)
+- **Kategorie:** Dienstleistungen > Tagungszentren
+- **Ort / Ortsteil:** Silbach
+- **Adresse:** Auf dem Berg 1, 59955 Winterberg-Silbach
+- **Telefon:** 02983 8312
+- **Beschreibung (DE):** Traditionelle Festhalle der St. Hubertus Schützen Silbach im idyllischen Bergdorf. Vielseitig nutzbarer Festsaal mit Thekenanlage, Küche und Bühne für Festivitäten, Geburtstage und Polterabende.
+- **Beschreibung (NL):** Traditionele feestzaal van de St. Hubertus schutters in Silbach. Veelzijdige zaal met bar, keuken en podium voor feesten, verjaardagen en bijeenkomsten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/schuetzenhalle-silbach
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/schuetzenhalle-silbach
 
 ### Kategorie: Ski, Bike & Sport
 

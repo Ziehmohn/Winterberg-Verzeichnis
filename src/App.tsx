@@ -110,6 +110,7 @@ import BusinessCard from './components/BusinessCard';
 import ClaimsAdminPanel from './components/ClaimsAdminPanel';
 import UsersAdminPanel from './components/UsersAdminPanel';
 import QuestionsAdminPanel from './components/QuestionsAdminPanel';
+const EventsAdminPanel = React.lazy(() => import('./components/EventsAdminPanel'));
 import PromoTopBar from './components/PromoTopBar';
 import PwaInstallPrompt from './components/PwaInstallPrompt';
 import AppBottomNav from './components/AppBottomNav';
@@ -5792,7 +5793,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const { t } = useTranslation();
   const { currentUser, userProfile } = useAuth();
   const [view, setView] = useState<'list' | 'add' | 'edit'>('list');
-  const [activeTab, setActiveTab] = useState<'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions' | 'tenders'>('entries');
+  const [activeTab, setActiveTab] = useState<'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions' | 'tenders' | 'events'>('entries');
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [generatorBusiness, setGeneratorBusiness] = useState<Business | null>(null);
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
@@ -5968,7 +5969,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   }
 
   // Security guard: If non-admin has activeTab that is admin-only, reset to entries
-  const ownerAllowedTabs = ['entries', 'reviews', 'widgets', 'abrechnung'];
+  const ownerAllowedTabs = ['entries', 'events', 'reviews', 'widgets', 'abrechnung'];
   if (!isAdmin && !ownerAllowedTabs.includes(activeTab)) {
     setActiveTab('entries');
   }
@@ -6026,7 +6027,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   type AdminCategoryKey = 'content' | 'business' | 'design' | 'tech';
 
   interface AdminSubTab {
-    id: 'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions' | 'tenders';
+    id: 'entries' | 'users' | 'widgets' | 'seo' | 'design' | 'pricing' | 'reviews' | 'abrechnung' | 'werbung' | 'news' | 'redirects' | 'scripts' | 'test_kachel' | 'claims' | 'questions' | 'tenders' | 'events';
     label: string;
     badge?: number | string;
     icon: any;
@@ -6047,10 +6048,11 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
     {
       key: 'content',
       label: 'Inhalte & Redaktion',
-      shortDesc: 'Einträge, News, Reviews & Q&A',
+      shortDesc: 'Einträge, Events, News, Reviews & Q&A',
       icon: FileText,
       tabs: [
         { id: 'entries', label: 'Einträge', badge: pendingBusinessesCount > 0 ? pendingBusinessesCount : undefined, icon: Building2 },
+        { id: 'events' as const, label: 'Events & Termine', icon: Calendar },
         ...(isAdmin ? [{ id: 'news' as const, label: 'News & Aktuelles', icon: Newspaper }] : []),
         { id: 'reviews', label: 'Bewertungen', badge: pendingReviewsCount > 0 ? pendingReviewsCount : undefined, icon: Star },
         ...(isAdmin ? [{ id: 'questions' as const, label: 'Fragen & Antworten', icon: MessageSquare }] : [])
@@ -6159,6 +6161,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
         <div className="mb-6 bg-white border border-[#EDE8E0] rounded-xl p-2 flex flex-wrap items-center gap-2 shadow-xs">
           {[
             { id: 'entries' as const, label: 'Mein Unternehmen', icon: Building2 },
+            { id: 'events' as const, label: 'Events & Termine', icon: Calendar },
             { id: 'reviews' as const, label: 'Kundenbewertungen', icon: Star, badge: pendingReviewsCount > 0 ? pendingReviewsCount : undefined },
             { id: 'widgets' as const, label: 'Trust-Siegel & Widget', icon: Sparkles },
             { id: 'abrechnung' as const, label: 'Abrechnung & Premium', icon: CreditCard },
@@ -6740,6 +6743,15 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             </div>
           </div>
 
+        ) : activeTab === 'events' ? (
+          <EventsAdminPanel 
+            businesses={businesses} 
+            setBusinesses={setBusinesses} 
+            isAdmin={isAdmin}
+            currentUser={currentUser}
+            allowedBusinesses={allowedBusinesses}
+            onRefreshBusinesses={onRefreshBusinesses}
+          />
         ) : activeTab === 'news' ? (
           <NewsAdminPanel theme={theme} activeThemeKey={activeThemeKey} businesses={businesses} />
         ) : activeTab === 'reviews' ? (

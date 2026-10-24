@@ -1004,6 +1004,23 @@ export const businesses: Business[] = [
     phone: '02981 930111',
     website: 'https://hotel-hessenhof.de',
     imageFallback: 'HK',
+    events: [
+      {
+        id: 'der-verfluchte-keller-halloween-hessenkeller-2026',
+        title: 'Der verfluchte Keller – Halloween im Hessenkeller',
+        title_nl: 'De vervloekte kelder – Halloween in de Hessenkeller',
+        startDate: '2026-10-31',
+        endDate: '2026-10-31',
+        startTime: '17:00',
+        price: 'Freier Eintritt (ab 16 Jahre)',
+        category: 'Fest & Party',
+        location: 'Hessenkeller Winterberg, Am Waltenberg 1, 59955 Winterberg',
+        imageUrl: '/events-halloween-hessenkeller.png',
+        description: 'Halloween im Hessenkeller Winterberg unter dem schaurigen Motto: „Der verfluchte Keller – Keiner verlässt ihn so, wie er ihn betreten hat.“ Freuen Sie sich auf gruselige Gewölbekeller-Atmosphäre, einen Überraschungs-Longdrink, kleine Snacks und schaurig-gute Partystimmung. Der Eintritt ist frei (Einlass ab 16 Jahre). Start ist am Samstag, 31. Oktober 2026 ab 17:00 Uhr direkt am Waltenberg.',
+        description_nl: 'Halloween in de Hessenkeller Winterberg onder het griezelige motto: "De vervloekte kelder – Niemand verlaat hem zoals hij binnenkwam." Geniet van een sfeervol verlichte gewelvenkelder, een verrassingslongdrink, lekkere snacks en geweldige partymuziek. Gratis toegang (vanaf 16 jaar). Zaterdag 31 oktober 2026 vanaf 17:00 uur aan de Waltenberg bij Hotel Hessenhof.',
+        externalUrl: 'https://hotel-hessenhof.de'
+      }
+    ]
   },
   {
     id: '143',
@@ -1031,6 +1048,23 @@ export const businesses: Business[] = [
     phone: '02981 899539',
     website: 'https://blackwater-irishpub.de',
     imageFallback: 'BW',
+    events: [
+      {
+        id: 'halloween-party-blackwater-irish-pub-2026',
+        title: 'Halloween Party at The Blackwater – Live Music with Owen Casey',
+        title_nl: 'Halloween Party in de Blackwater Irish Pub – Live Music met Owen Casey',
+        startDate: '2026-10-31',
+        endDate: '2026-10-31',
+        startTime: '21:00',
+        price: '3,00 €',
+        category: 'Fest & Party',
+        location: 'Blackwater Irish Pub, Nuhnestraße 2, 59955 Winterberg',
+        imageUrl: '/events-halloween-blackwater-irish-pub.jpg',
+        description: 'Get ready for a scary, spooky and seriously good night at The Blackwater Irish Pub Winterberg! Am Samstag, den 31. Oktober ab 21:00 Uhr sorgt Ausnahmemusiker OWEN CASEY mit handgemachter Live-Musik für unvergleichliche Pub-Stimmung. Großer Fancy Dress Kostümwettbewerb („Come dressed to impress... or TERRIFY!“): 1. Preis: 100 € Blackwater-Gutschein, 2. Preis: 50 € Blackwater-Gutschein, 3. Preis: Eine Runde Shots. Kürbisse, fantastische Kostüme, kühles Bier und echte Blackwater-Halloween-Atmosphäre. Eintritt: 3 €.',
+        description_nl: 'Maak je klaar voor een huiveringwekkend gezellige avond in The Blackwater Irish Pub Winterberg! Zaterdag 31 oktober vanaf 21:00 uur livemuziek met singer-songwriter OWEN CASEY. Grote Fancy Dress competitie met mooie prijzen: 1e prijs: € 100 waardebon, 2e prijs: € 50 waardebon, 3e prijs: een ronde shots. Uitgesneden pompoenen, geweldige verkleedkleren, koud Guinness en authentieke Ierse pubsfeer. Entree: € 3.',
+        externalUrl: 'https://blackwater-irishpub.de'
+      }
+    ]
   },
   {
     id: '145',
@@ -8126,9 +8160,42 @@ export const businesses: Business[] = [
     description: 'Traditionsreicher Party- und Kneipentreffpunkt in der Winterberger Altstadt mit Club-Bereichen, Cocktailbar und Tanzstimmung.',
     address: 'Marktstraße 12, 59955 Winterberg',
     district: 'Winterberg',
-    phone: '02981 1234',
+    phone: '02981 8997312',
     website: 'https://www.tenne-winterberg.de',
-    isActive: true
+    isActive: true,
+    events: [
+      {
+        id: 'halloween-in-der-tenne-kids-edition-2026',
+        title: 'Halloween in der Tenne! Kids Edition',
+        title_nl: 'Halloween in de Tenne! Kids Edition',
+        startDate: '2026-10-31',
+        endDate: '2026-10-31',
+        startTime: '15:00',
+        endTime: '18:00',
+        price: '15,00 € (All-Inclusive)',
+        category: 'Fest & Party',
+        location: 'Die Tenne Winterberg, Marktstraße 12, 59955 Winterberg',
+        imageUrl: '/events-halloween-tenne-kids.jpg',
+        description: 'Halloween in der Gruseltenne für Kids von 7 bis 12 Jahren! Kids only – Feiern ohne Eltern (bitte die Kinder um 18:00 Uhr abholen). Das große Rundum-Sorglos-Paket: Snacks, Süßigkeiten, Eis und Frei-Getränke inklusive. Aufregendes Gruselprogramm mit großer Tombola, Fotobox mit Sofortausdruck, Live-DJ und Kinder-Horror-Show. Alle Leistungen sind im Eintrittspreis von 15 € enthalten (kein Extrageld nötig). Wichtig: Bitte bringen Sie die Einverständniserklärung der Eltern unterschrieben mit! Tickets vorab online buchbar auf tenne-winterberg.de.',
+        description_nl: 'Halloween in de Gruseltenne speciaal voor kinderen van 7 tot 12 jaar! Kids only – feesten zonder ouders (kinderen om 18:00 uur ophalen). Compleet all-inclusive pakket inclusief snacks, snoep, ijs en gratis drankjes. Spetterend griezelprogramma met grote tombola, photobooth met afdrukservice, live-dj en een speciale kinder-horrorshow. Alle onderdelen zijn inbegrepen in de entreeprijs van € 15 (geen extra geld nodig). Belangrijk: ondertekende ouderverklaring meenemen. Tickets vooraf online te boeken op tenne-winterberg.de.',
+        externalUrl: 'https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-kids-edition-2/'
+      },
+      {
+        id: 'halloween-in-der-tenne-2026',
+        title: 'Halloween in der Tenne! – Die Kultparty',
+        title_nl: 'Halloween in de Tenne! – De griezel-cultparty',
+        startDate: '2026-10-31',
+        endDate: '2026-10-31',
+        startTime: '20:00',
+        price: 'VVK: 8,50 € / AK: 10,00 €',
+        category: 'Fest & Party',
+        location: 'Die Tenne Winterberg, Marktstraße 12, 59955 Winterberg',
+        imageUrl: '/events-halloween-tenne-adults.jpg',
+        description: 'Wie jedes Jahr die Tenne im absoluten Gruselmodus! Legendäre Halloween-Party mit aufwendiger Grusel-Deko, schaurigen Kostümen und bester Club-Atmosphäre auf 3 Ebenen mit 6 Thekenbereichen. In diesem Jahr zusätzlich: MAD Rick & HarmonX live in der Cocktailbar (House, EDM & Techno)! Großer Kostümwettbewerb mit 300 € Preisgeld in bar für die besten Gruselkluften (1. Platz: 150 €, 2. Platz: 100 €, 3. Platz: 50 €). Online-Vorverkauf 8,50 €, Abendkasse 10,00 €.',
+        description_nl: 'Zoals ieder jaar Die Tenne in de absolute griezelstand! Legendarisch Halloween-feest met angstaanjagende decoraties, te gekke outfits en feest op 3 verdiepingen met 6 verschillende barzones. Dit jaar met special act MAD Rick & HarmonX in de cocktailbar (House, EDM & Techno)! Grote verkleedwedstrijd met € 300 cash prijzengeld (1e prijs: € 150, 2e: € 100, 3e: € 50). Online voorverkoop € 8,50, avondkassa € 10,00.',
+        externalUrl: 'https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-2/'
+      }
+    ]
   },
   {
     id: 'juwelier-eiloff-winterberg',
@@ -13021,6 +13088,240 @@ export const businesses: Business[] = [
       "friseursalon winterberg",
       "balayage winterberg",
       "elkerhagen 6"
+    ]
+  }
+,
+  {
+    "id": "schuetzenhalle-winterberg",
+    "name": "Schützenhalle Winterberg (St. Georg)",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Die traditionsreiche Schützenhalle der St. Georg Schützenbruderschaft Winterberg bietet ideale Räumlichkeiten für große Hochzeiten, Geburtstage, Firmenfeiern, Abibälle und Vereinsjubiläen. Mit großem Festsaal, Foyer, Bühne, moderner Thekenanlage und ausgestatteter Großküche für private und geschäftliche Events mietbar.",
+    "description_nl": "De traditionele feest- en schuttershal van de St. Georg broederschap in Winterberg biedt ideale ruimtes voor grote bruiloften, verjaardagen, bedrijfsfeesten en jubilea. Beschikt over een grote zaal met podium, ruime bar, foyer en professionele keuken.",
+    "address": "Am Waltenberg 89, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 2288",
+    "website": "https://schuetzenverein-winterberg.de",
+    "imageFallback": "SW",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Großer Festsaal mieten (bis 600 Personen)",
+      "Hochzeitsfeiern & Polterabende",
+      "Geburtstage & Firmenjubiläen",
+      "Große Bühne & Licht-/Tontechnik",
+      "Moderne Schankanlage & Theke",
+      "Großküche für Caterer & Festbewirtung",
+      "Parkplätze direkt an der Halle"
+    ],
+    "services_nl": [
+      "Grote feestzaal te huur (tot 600 personen)",
+      "Bruiloften & verjaardagen",
+      "Bedrijfsfeesten & gala-avonden",
+      "Groot podium & techniek",
+      "Ruime bar & tapinstallatie",
+      "Professionele keuken voor cateraars",
+      "Parkeren bij de zaal"
+    ]
+  },
+  {
+    "id": "schuetzenhalle-niedersfeld",
+    "name": "Schützenhalle Niedersfeld",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Die geräumige Schützenhalle in Niedersfeld ist die beliebte Event- und Feierlocation im Hillebachtal. Ausgestattet mit großem Festsaal, separatem Speiseraum/Sektbar, moderner Beschallungstechnik und Küche. Perfekt für Hochzeiten, Polterabende, runde Geburtstage und Betriebsfeiern.",
+    "description_nl": "De ruime schuttershal in Niedersfeld is een geliefde feestlocatie in het Hillebachtal. Voorzien van een grote feestzaal, aparte eetzaal/wijnbar, moderne geluidstechniek en keuken. Ideaal voor bruiloften, verjaardagen en bedrijfsuitjes.",
+    "address": "Josefsweg 8, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "phone": "02985 8290",
+    "website": "https://niedersfeld.info",
+    "imageFallback": "SN",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Festsaal für Feiern bis 350 Personen",
+      "Separater Speiseraum & Sektbar",
+      "Thekenanlage mit Zapftechnik",
+      "Küche & Vorbereitungsräume",
+      "Hochzeiten, Geburtstage & Vereinsfeste"
+    ],
+    "services_nl": [
+      "Feestzaal tot 350 personen",
+      "Aparte eetzaal & wijnbar",
+      "Biertap & toog",
+      "Keuken voor catering",
+      "Bruiloften, verjaardagen & dorpsfeesten"
+    ]
+  },
+  {
+    "id": "schuetzenhalle-zueschen",
+    "name": "Schützenhalle Züschen",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Die Schützenhalle der St. Hubertus Schützenbruderschaft Züschen bietet einen wunderschönen Rahmen für Feiern jeder Größenordnung. Großer Festsaal, separate Gaststube / Speiseraum, Thekenbereich und Cateringküche für Hochzeiten, Geburtstagsfeiern und Vereinsfeiern flexibel mietbar.",
+    "description_nl": "De schuttershal van de St. Hubertus broederschap in Züschen biedt een sfeervol decor voor feesten en partijen. Grote zaal, apart praathuis, ruime bar en cateringkeuken voor bruiloften, verjaardagen en jubilea.",
+    "address": "Mollseifener Straße 24, 59955 Winterberg-Züschen",
+    "district": "Züschen",
+    "phone": "02981 6815",
+    "website": "https://zueschen.de",
+    "imageFallback": "SZ",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Festsaal mieten bis ca. 300 Personen",
+      "Gemütliche Gaststube & Theke",
+      "Cateringküche & Kühlmöglichkeiten",
+      "Hochzeitsfeiern & Familienfeste",
+      "Parkplätze direkt vor Ort"
+    ],
+    "services_nl": [
+      "Zaalhuur tot ca. 300 personen",
+      "Gezellig praathuis & bar",
+      "Cateringkeuken & koelcellen",
+      "Bruiloften & familiefeesten",
+      "Parkeren voor de deur"
+    ]
+  },
+  {
+    "id": "schuetzenhalle-siedlinghausen",
+    "name": "Schützenhalle Siedlinghausen",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Großzügige Festhalle der St. Johannes Schützenbruderschaft Siedlinghausen im Negertal. Großer Festsaal mit Bühne, gemütlicher Speiseraum, moderne Schankanlage und vollständige Kücheneinrichtung – optimal für Hochzeiten, Großveranstaltungen und Familienfeiern mietbar.",
+    "description_nl": "Riante feestzaal van de St. Johannes broederschap in Siedlinghausen. Grote zaal met podium, sfeervolle eetzaal, moderne biertap en volledige keuken – perfect voor bruiloften, feesten en bijeenkomsten.",
+    "address": "Sorpestraße 26, 59955 Winterberg-Siedlinghausen",
+    "district": "Siedlinghausen",
+    "phone": "02983 1475",
+    "website": "https://schuetzenbruderschaft-siedlinghausen.de",
+    "imageFallback": "SS",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Haupthalle mit Bühne bis zu 400 Personen",
+      "Separater Speisesaal für kleinere Gesellschaften",
+      "Moderne Zapfanlage & Kühlanlagen",
+      "Große Küche für Catering",
+      "Barrierearmer Zugang"
+    ],
+    "services_nl": [
+      "Grote zaal met podium tot 400 personen",
+      "Aparte eetzaal voor kleinere groepen",
+      "Moderne tap & koeling",
+      "Grote cateringkeuken",
+      "Goede toegankelijkheid"
+    ]
+  },
+  {
+    "id": "dorfgemeinschaftshalle-elkeringhausen",
+    "name": "Dorfgemeinschaftshalle Elkeringhausen",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Idyllisch am Fuße des Rothaargebirges gelegen: Die Dorfgemeinschaftshalle Elkeringhausen ist die perfekte Location für gemütliche Geburtstage, Familienfeste, Polterabende und Vereinsfeiern mit Saal, Theke, Küche und Außengelände im Grünen.",
+    "description_nl": "Idyllisch gelegen dorpshuis in Elkeringhausen: dé perfecte locatie voor gezellige verjaardagen, familiefeesten en besloten partijen met feestzaal, bar, keuken en groen buitenterrein.",
+    "address": "Am Knittenberg 2, 59955 Winterberg-Elkeringhausen",
+    "district": "Elkeringhausen",
+    "phone": "02981 1238",
+    "imageFallback": "DE",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Saal für private Feiern bis 150 Personen",
+      "Schöne Waldrandlage & Außengelände",
+      "Thekenanlage & gut ausgestattete Küche",
+      "Ideal für Geburtstage & Polterabende"
+    ],
+    "services_nl": [
+      "Zaal voor besloten feesten tot 150 personen",
+      "Mooie ligging aan de bosrand met buitenruimte",
+      "Toog & verzorgde keuken",
+      "Ideaal voor verjaardagen en intieme feesten"
+    ]
+  },
+  {
+    "id": "schuetzenhalle-altastenberg",
+    "name": "Schützenhalle Altastenberg",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Im höchstgelegenen Höhendorf NRWs auf fast 800 Metern: Die Schützenhalle Altastenberg bietet urigen Sauerländer Charme für Hochzeiten, zünftige Hüttenpartys, Geburtstage und Firmenfeiern nahe dem Kahlen Asten.",
+    "description_nl": "In het hoogste dorp van Sauerland op 800 meter hoogte: de schuttershal in Altastenberg biedt authentieke gezelligheid voor bruiloften, feestavonden, verjaardagen en bedrijfsuitjes nabij de Kahler Asten.",
+    "address": "Astenstraße 30, 59955 Winterberg-Altastenberg",
+    "district": "Altastenberg",
+    "phone": "02981 2130",
+    "website": "https://altastenberg.de",
+    "imageFallback": "SA",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Festhalle für bis zu 200 Personen",
+      "Höhenlage nahe Kahler Asten",
+      "Theke, Küche & Speiseraum",
+      "Hochzeiten, Geburtstage & Höhendorf-Partys"
+    ],
+    "services_nl": [
+      "Feestzaal tot 200 personen",
+      "Prachtige hoogtelocatie bij de Kahler Asten",
+      "Bar, keuken & eetruimte",
+      "Bruiloften, verjaardagen & feestavonden"
+    ]
+  },
+  {
+    "id": "schuetzenhalle-groenebach",
+    "name": "Schützenhalle Grönebach",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Moderne Dorffesthalle der St. Hubertus Schützenbruderschaft Grönebach. Helle Festhalle mit Theke, moderner Beleuchtung und Nebenräumen für private Partys, Hochzeiten und Vereinsfeste.",
+    "description_nl": "Moderne dorpsfeestzaal van de St. Hubertus broederschap in Grönebach. Lichte feestzaal met bar, sfeervolle verlichting en nevenruimtes voor besloten feesten, bruiloften en evenementen.",
+    "address": "Lambertusstraße 12, 59955 Winterberg-Grönebach",
+    "district": "Grönebach",
+    "phone": "02981 7215",
+    "imageFallback": "SG",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Festhalle für Feiern bis 250 Personen",
+      "Helle Räumlichkeiten & moderner Schankbereich",
+      "Küche & Vorbereitungsräume",
+      "Ideal für Hochzeiten, Geburtstage & Polterabende"
+    ],
+    "services_nl": [
+      "Feestzaal tot 250 personen",
+      "Lichte ruimtes & moderne bar",
+      "Keuken voor catering",
+      "Ideaal voor bruiloften en verjaardagsfeesten"
+    ]
+  },
+  {
+    "id": "schuetzenhalle-silbach",
+    "name": "Schützenhalle Silbach",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "description": "Traditionelle Festhalle der St. Hubertus Schützen Silbach im idyllischen Bergdorf. Vielseitig nutzbarer Festsaal mit Thekenanlage, Küche und Bühne für Festivitäten, Geburtstage und Polterabende.",
+    "description_nl": "Traditionele feestzaal van de St. Hubertus schutters in Silbach. Veelzijdige zaal met bar, keuken en podium voor feesten, verjaardagen en bijeenkomsten.",
+    "address": "Auf dem Berg 1, 59955 Winterberg-Silbach",
+    "district": "Silbach",
+    "phone": "02983 8312",
+    "imageFallback": "SS",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Festsaal für Feiern bis 250 Personen",
+      "Bühne für Band / DJ & Schankbereich",
+      "Ausgestattete Küche & Nebenräume",
+      "Parkplätze direkt an der Halle"
+    ],
+    "services_nl": [
+      "Feestzaal tot 250 personen",
+      "Podium voor band/dj & toog",
+      "Keuken & nevenruimtes",
+      "Parkeren bij de zaal"
     ]
   }
 ];

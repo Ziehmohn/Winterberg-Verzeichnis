@@ -28,6 +28,7 @@
 /* Weicher, nahtloser Verlauf für Header-Bilder ohne sichtbare Kanten */
 .hero-category-mask,
 .hero-shopping-mask,
+.hero-party-mask,
 .hero-events-mask {
   mask-image: linear-gradient(to bottom, #000 65%, rgba(0, 0, 0, 0.35) 85%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 65%, rgba(0, 0, 0, 0.35) 85%, transparent 100%);
@@ -36,6 +37,7 @@
 @media (min-width: 1024px) {
   .hero-category-mask,
   .hero-shopping-mask,
+  .hero-party-mask,
   .hero-events-mask {
     mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.7) 35%, #000 60%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.7) 35%, #000 60%);
