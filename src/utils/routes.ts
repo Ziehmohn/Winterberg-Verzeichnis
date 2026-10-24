@@ -144,6 +144,8 @@ export const STATIC_PAGE_SLUGS = {
   auftragsboerse: { de: 'auftragsboerse', nl: 'opdrachten' },
   handwerkerTheme: { de: 'themen/handwerker-finden-in-winterberg', nl: 'themas/vakmensen-vinden-in-winterberg' },
   handwerkerFinden: { de: 'handwerker-finden-in-winterberg', nl: 'vakmensen-vinden-in-winterberg' },
+  partyLocationsTheme: { de: 'themen/partylocations-in-winterberg', nl: 'themas/feestlocaties-in-winterberg' },
+  partyLocations: { de: 'partylocations-in-winterberg', nl: 'feestlocaties-in-winterberg' },
 };
 
 export function slugify(str: string): string {
@@ -222,7 +224,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -364,6 +366,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'handwerker-theme':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.handwerkerTheme[targetLang]}`;
+
+    case 'party-locations-theme':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.partyLocationsTheme[targetLang]}`;
 
     case 'auftragsboerse':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.auftragsboerse[targetLang]}`;

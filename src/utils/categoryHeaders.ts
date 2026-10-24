@@ -15,6 +15,22 @@ export interface CategoryHeaderData {
 
 export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // ==========================================
+  // Partylocations & Feiern
+  // ==========================================
+  'Partylocations': {
+    image: '/partylocations-winterberg-header.jpg',
+    imageAltDe: 'Partylocations in Winterberg: Atmosphärische Feier in alpiner Eventlocation mit warmen Lichterketten',
+    imageAltNl: 'Feestlocaties in Winterberg: Sfeervolle viering in alpenhut met feestelijke verlichting',
+    credit: 'Foto: SICHTBAR Winterberg',
+    isAiGenerated: false,
+    titleDe: 'Partylocations in Winterberg mieten',
+    titleNl: 'Partylocaties & Feestzalen in Winterberg',
+    subtitleDe: 'Feste feiern im Sauerland: Urige Berghütten, historische Scheunen, große Festsäle und Clubs für Hochzeiten, Geburtstage und Firmenevents mieten.',
+    subtitleNl: 'Feesten in het Sauerland: berghutten, historische schuren, feestzalen en clubs te huur voor bruiloften, verjaardagen en bedrijfsuitjes.',
+    objectPosition: 'center 40%'
+  },
+
+  // ==========================================
   // Hotels und Unterkünfte
   // ==========================================
   'Hotels und Unterkünfte': {

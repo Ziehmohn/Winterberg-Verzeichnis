@@ -2895,7 +2895,7 @@ export const businesses: Business[] = [
     address: 'In d. Renau 10/11, 59955 Winterberg',
     phone: '02981 8996399',
     email: 'info@nordhangjause.de',
-    website: 'https://www.nordhangjause.de',
+    website: 'https://www.nordhangjause.de/#vermietung',
     district: 'Winterberg',
     coordinates: { lat: 51.18505, lng: 8.48940 },
     isPremium: false,
@@ -2993,7 +2993,7 @@ export const businesses: Business[] = [
     description: 'Gemütliche, rustikale Skihütte mit warmen und kalten deutschen Buffetspeisen sowie Bier vom Fass und Kaffee.',
     address: 'Remmeswiese 10, 59955 Winterberg',
     phone: '02981 3249',
-    website: 'https://wiesenwirt.de',
+    website: 'https://www.rauher-busch.de/feiern',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved'
@@ -3008,7 +3008,7 @@ export const businesses: Business[] = [
     address: 'In d. Büre 32, 59955 Winterberg',
     phone: '02981 1073',
     email: 'anfrage@bei-moeppi.de',
-    website: 'https://www.bei-moeppi.de',
+    website: 'https://www.bei-moeppi.de/deine-eventlocation/',
     district: 'Winterberg',
     isPremium: false,
     status: 'approved',
@@ -3055,7 +3055,7 @@ export const businesses: Business[] = [
     address: 'Astenstraße 10, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 2897',
-    website: 'https://www.sahnehang.de',
+    website: 'https://sahnehang.de/events/ihr-event',
     isPremium: false,
     status: 'approved'
   },
@@ -3070,7 +3070,7 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '0171 9313600',
     email: 'info@bremberg-klause.de',
-    website: 'https://www.bremberg-klause.de',
+    website: 'https://www.bremberg-klause.de/unsere-huette/',
     openingHours: {
       monday: '09:00 - 17:00',
       tuesday: '09:00 - 17:00',
@@ -6120,7 +6120,7 @@ export const businesses: Business[] = [
     description: 'Gemütliche Hütte auf der Hochheide mit großer Sonnenterrasse, Speisen und Getränken.',
     address: 'Auf der Knippe 100, 59955 Winterberg-Niedersfeld',
     district: 'Niedersfeld',
-    website: 'https://hochheidehuette-niedersfeld.de',
+    website: 'https://www.hochheidehuette-niedersfeld.de/feiern-auf-der-hochheide-huette-niedersfeld/',
     imageFallback: 'HH',
     isPremium: false,
     status: 'approved',
@@ -13322,6 +13322,252 @@ export const businesses: Business[] = [
       "Podium voor band/dj & toog",
       "Keuken & nevenruimtes",
       "Parkeren bij de zaal"
+    ]
+  }
+,
+  {
+    "id": "schneewittchenhaus-winterberg",
+    "name": "Schneewittchenhaus Winterberg",
+    "category": "Gastronomie",
+    "subcategory": "Skihütten",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Restaurant"
+      },
+      {
+        "category": "Dienstleistungen",
+        "subcategory": "Tagungszentren"
+      }
+    ],
+    "description": "Das Schneewittchenhaus liegt direkt an der Schneewittchen-Piste (Abfahrt 25) und der Bremberg-Sesselbahn im Skiliftkarussell Winterberg. Die moderne alpine Event- und Panoramalocation bietet den perfekten Rahmen für private Partys, Hochzeiten, runde Geburtstage, Firmen-Incentives und Sommerfeste mit herrlicher Sonnenterrasse, erstklassiger Gastronomie und flexiblen Räumlichkeiten.",
+    "description_nl": "Het Schneewittchenhaus ligt direct aan de Schneewittchen-piste en stoeltjeslift in het Skiliftkarussell Winterberg. Deze moderne alpine feest- en panoramalocatie biedt het ideale decor voor besloten feesten, bruiloften, verjaardagen en bedrijfsuitjes met een prachtig zonneterras en uitstekende horeca.",
+    "address": "Am Waltenberg 119, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "+49 2981 4259020",
+    "email": "kontakt@schneewittchenhaus.de",
+    "website": "https://www.schneewittchenhaus.de/feiern",
+    "imageFallback": "SW",
+    "headerImage": "/skihuetten-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "isPartyLocation": true,
+    "services": [
+      "Eventlocation mieten für eigene Feiern",
+      "Traumhochzeiten & freie Trauungen mit Bergpanorama",
+      "Geburtstagsfeiern & Hüttenpartys",
+      "Firmenevents, Sommerfeste & Weihnachtsfeiern",
+      "Große Panorama-Sonnenterrasse direkt an der Piste",
+      "Professionelle Eventorganisation & Catering"
+    ],
+    "services_nl": [
+      "Evenementenlocatie te huur voor besloten feesten",
+      "Bruiloften met prachtig bergpanorama",
+      "Verjaardagen & hutfeesten",
+      "Bedrijfsuitjes, zomer- en kerstfeesten",
+      "Groot panoramaterras aan de piste",
+      "Professionele catering & organisatie"
+    ]
+  },
+  {
+    "id": "freestyle-area-winterberg",
+    "name": "Freestyle Area Winterberg",
+    "category": "Gastronomie",
+    "subcategory": "Skihütten",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Kneipen und Bars"
+      },
+      {
+        "category": "Freizeit",
+        "subcategory": "Outdoor-Freizeitgebiet"
+      }
+    ],
+    "description": "Die Freestyle Area Winterberg direkt an der Schneewittchen-Piste (Am Waltenberg 121) ist die moderne Event- und Partylocation im Skigebiet. Mit lässiger Lounge-Atmosphäre, großer Pisten-Sonnenterrasse, fettem Sound und kompletter Event-Organisation ist sie perfekt für private Partys, Junggesellenabschiede (JGA), runde Geburtstage und Firmenevents mietbar.",
+    "description_nl": "Freestyle Area Winterberg direct aan de Schneewittchen-piste (Am Waltenberg 121) is dé trendy evenementen- en feestlocatie in het skigebied. Met relaxte lounge-ambiance, groot zonneterras aan de piste, uitstekend geluid en complete eventorganisatie voor besloten partijen, verjaardagen en vrijgezellenfeesten.",
+    "address": "Am Waltenberg 121, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "0160 97090510",
+    "email": "info@freestyle-area.de",
+    "website": "https://www.freestyle-area.de/events",
+    "imageFallback": "FA",
+    "headerImage": "/skihuetten-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "isPartyLocation": true,
+    "services": [
+      "Eventlocation für eigene Partys & Feiern mieten",
+      "Après-Ski, Clubabende & DJ-Events",
+      "Junggesellenabschiede (JGA) & Action-Geburtstage",
+      "Firmenfeiern, Teamevents & Sommerpartys",
+      "Große Sonnenterrasse direkt am Einstieg Schneewittchen",
+      "Individuelle Eventplanung & Gastronomie"
+    ],
+    "services_nl": [
+      "Feestlocatie te huur voor besloten feesten",
+      "Après-ski & dj-avonden",
+      "Vrijgezellenfeesten & actieve verjaardagen",
+      "Bedrijfsuitjes & zomerfeesten",
+      "Groot zonneterras direct aan de piste",
+      "Evenementenorganisatie op maat"
+    ]
+  },
+  {
+    "id": "party-location-abendrot-altastenberg",
+    "name": "Party-Location „Abendrot“ (Resort Schöner Asten)",
+    "category": "Gastronomie",
+    "subcategory": "Kneipen und Bars",
+    "additionalCategories": [
+      {
+        "category": "Dienstleistungen",
+        "subcategory": "Tagungszentren"
+      },
+      {
+        "category": "Gastronomie",
+        "subcategory": "Skihütten"
+      }
+    ],
+    "description": "Das „Abendrot“ im Familien Resort Der Schöne Asten in Altastenberg ist die exklusive Partylocation für geschlossene Gesellschaften, Hochzeiten, runde Geburtstage, Vereinsfeste und Betriebsfeiern. Ausgestattet mit eigener Bar, professioneller Sound- und Lichtanlage, Tanzfläche und direktem Zugang zu den Hotelzimmern für bequemes Übernachten aller Gäste direkt vor Ort.",
+    "description_nl": "Party-Location „Abendrot“ in het resort Der Schöne Asten in Altastenberg is dé exclusieve feestlocatie voor besloten gezelschappen, bruiloften, verjaardagen, verenigings- en bedrijfsfeesten. Voorzien van een eigen bar, professionele licht- en geluidsinstallatie, dansvloer en comfortabele hotelkamers direct ter plaatse.",
+    "address": "Renauweg 54, 59955 Winterberg-Altastenberg",
+    "district": "Altastenberg",
+    "phone": "02981 8050",
+    "email": "info@resort-winterberg.de",
+    "website": "https://www.resort-winterberg.de/nederlands/component/content/article/192-party-location-sauerland-2?catid=2",
+    "imageFallback": "AR",
+    "headerImage": "/kneipen-bars-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "isPartyLocation": true,
+    "services": [
+      "Exklusive Partylocation für geschlossene Gesellschaften",
+      "Eigene Bar & Schankanlage",
+      "Tanzfläche mit professioneller Sound- & Lichttechnik",
+      "Buffets, Menüs & Catering nach Wunsch",
+      "Hotelübernachtung für alle Gäste direkt im Haus",
+      "Hochzeiten, Geburtstage, Vereins- & Firmenfeste"
+    ],
+    "services_nl": [
+      "Exclusieve feestlocatie voor besloten gezelschappen",
+      "Eigen bar & tapinstallatie",
+      "Dansvloer met professioneel licht & geluid",
+      "Buffetten & catering op maat",
+      "Overnachten in het resort voor alle gasten",
+      "Bruiloften, verjaardagen & bedrijfsfeesten"
+    ]
+  },
+  {
+    "id": "gaestehaus-winterberg-groenebach",
+    "name": "Gästehaus Winterberg (Die Eventlocation)",
+    "category": "Dienstleistungen",
+    "subcategory": "Tagungszentren",
+    "additionalCategories": [
+      {
+        "category": "Hotels und Unterkünfte",
+        "subcategory": "Hotels"
+      }
+    ],
+    "description": "Das Gästehaus Winterberg in Grönebach ist die vielseitige Eventlocation für Hochzeiten im Grünen, Familienfeiern, Geburtstage, Tagungen und Seminare. Mit großem Fest- und Speisesaal für bis zu 130 Personen, 125 m² Profi-Großküche für Caterer, eigener hauseigener Kapelle für Trauungen und 135 Übernachtungsbetten im Haus ideal für unvergessliche Feste mit Übernachtung.",
+    "description_nl": "Gästehaus Winterberg in Grönebach is dé veelzijdige evenementenlocatie voor bruiloften in het groen, familiefeesten, verjaardagen en congressen. Beschikt over een grote feest- en eetzaal tot 130 personen, 125 m² professionele grootkeuken, eigen kapel voor huwelijksvoltrekkingen en 135 overnachtingsbedden ter plaatse.",
+    "address": "Marienweg 2, 59955 Winterberg-Grönebach",
+    "district": "Grönebach",
+    "phone": "02981 92890",
+    "website": "https://www.gaestehaus-winterberg.de/die-eventlocation",
+    "imageFallback": "GW",
+    "headerImage": "/tagungszentren-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "isPartyLocation": true,
+    "services": [
+      "Eventlocation mieten mit Festsaal (bis 130 Personen)",
+      "Hochzeiten im Grünen & eigene Kapelle für Trauungen",
+      "125 m² Großküche für Caterer & Selbstversorger",
+      "135 Betten Übernachtungskapazität direkt im Haus",
+      "Familienfeiern, Geburtstage, Tagungen & Seminare",
+      "Großzügiges Außengelände & Parkplätze"
+    ],
+    "services_nl": [
+      "Evenementenlocatie met feestzaal (tot 130 personen)",
+      "Bruiloften in het groen met eigen kapel",
+      "125 m² professionele keuken voor catering",
+      "135 bedden overnachtingscapaciteit direct in het pand",
+      "Familiefeesten, verjaardagen en seminars",
+      "Groot buitenterrein & parkeergelegenheid"
+    ]
+  },
+  {
+    "id": "schwedenhuette-altastenberg",
+    "name": "Schweden Hütte Altastenberg",
+    "category": "Gastronomie",
+    "subcategory": "Skihütten",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Restaurant"
+      }
+    ],
+    "description": "Die Schweden Hütte in Altastenberg liegt idyllisch am Westfalenhang im höchstgelegenen Höhendorf des Sauerlands. Uriges Hüttenflair mit Holzofen, herzhaften Sauerländer Spezialitäten, hausgemachten Kuchen und Sonnenterrasse direkt am Einstieg ins Skigebiet und an den Höhenwanderwegen rund um den Kahlen Asten.",
+    "description_nl": "De Schweden Hütte in Altastenberg ligt idyllisch aan de Westfalenhang in het hoogste dorp van het Sauerland. Authentieke berghutsfeer met houtkachel, hartige streekgerechten, huisgemaakt gebak en zonneterras direct aan de piste en wandelroutes.",
+    "address": "Am Westfalenhang 1, 59955 Winterberg-Altastenberg",
+    "district": "Altastenberg",
+    "phone": "02981 1836",
+    "website": "https://www.schwedenhuette.de/",
+    "imageFallback": "SH",
+    "headerImage": "/skihuetten-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "isPartyLocation": false,
+    "services": [
+      "Gemütliche Einkehr am Westfalenhang",
+      "Sauerländer Spezialitäten & deftige Vesper",
+      "Hausgemachte Kuchen & frische Waffeln",
+      "Große Sonnenterrasse mit Bergblick",
+      "Direkt an Piste und Wanderwegen"
+    ],
+    "services_nl": [
+      "Gezellige berghut aan de Westfalenhang",
+      "Sauerlandse streekgerechten & borrelplanken",
+      "Huisgemaakt gebak & wafels",
+      "Groot zonneterras met bergzicht",
+      "Direct aan de piste en wandelpaden"
+    ]
+  },
+  {
+    "id": "gockelstall-winterberg",
+    "name": "Gockelstall Winterberg",
+    "category": "Gastronomie",
+    "subcategory": "Restaurant",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Imbisse"
+      }
+    ],
+    "description": "Der Gockelstall in der Winterberger Innenstadt steht für knusprige, frisch gegrillte Hähnchenspezialitäten, saftige Burger, krosse Pommes und herzhafte Sauerländer Snacks. Beliebter Treffpunkt für den schnellen Genuss vor Ort oder bequem zum Mitnehmen.",
+    "description_nl": "Gockelstall in het centrum van Winterberg staat bekend om knapperige vers gegrilde haantjes, sappige burgers, krokante friet en hartige snacks. Geliefde eetgelegenheid voor een snelle hap ter plaatse of afhaal.",
+    "address": "Poststraße 10, 59955 Winterberg",
+    "district": "Winterberg",
+    "phone": "02981 928374",
+    "website": "https://www.gockelstall.de/",
+    "imageFallback": "GS",
+    "headerImage": "/restaurant-winterberg-header.jpg",
+    "isActive": true,
+    "status": "approved",
+    "isPartyLocation": false,
+    "services": [
+      "Frisch gegrillte halbe Hähnchen",
+      "Burger & Chicken-Spezialitäten",
+      "Krosse Pommes & frische Salate",
+      "Alle Gerichte auch zum Mitnehmen (Takeaway)",
+      "Gemütliche Sitzplätze im Innenbereich"
+    ],
+    "services_nl": [
+      "Vers gegrilde halve haantjes",
+      "Burgers & kipspecialiteiten",
+      "Friet & verse salades",
+      "Alle maaltijden ook om mee te nemen",
+      "Gezellige zitplaatsen binnen"
     ]
   }
 ];

@@ -431,6 +431,71 @@ export const PARTY_VENUES_DATA: PartyRentalVenue[] = [
     capacityNl: 'Tot ca. 250 personen',
     highlightsDe: ['Idyllische Hanglage', 'Bühne & Schankbereich', 'Gepflegte Räumlichkeiten'],
     highlightsNl: ['Idyllische berghelling', 'Podium & bar', 'Verzorgde accommodatie']
+  },
+  // 33. Nordhang Jause
+  {
+    id: 'nordhang-jause',
+    locationType: 'huette',
+    locationTypeLabelDe: 'Berghütte & Feierlocation',
+    locationTypeLabelNl: 'Berghut & Feestlocatie',
+    occasionsDe: ['Hüttenparty', 'Geburtstag', 'Firmenfeier', 'Hochzeit', 'Sommerfest'],
+    occasionsNl: ['Hutfeest', 'Verjaardag', 'Bedrijfsuitje', 'Bruiloft'],
+    capacityDe: 'Bis ca. 120 Personen',
+    capacityNl: 'Tot ca. 120 personen',
+    highlightsDe: ['Exklusive Hüttenvermietung', 'Direkt an der Nordhang-Piste', 'Gemütlicher Gastraum & Panoramaterrasse', 'Catering & Grillabende'],
+    highlightsNl: ['Exclusieve zaalverhuur', 'Direct aan de piste Nordhang', 'Gezellige zaal & zonneterras', 'Catering & barbecue']
+  },
+  // 34. Schneewittchenhaus Winterberg
+  {
+    id: 'schneewittchenhaus-winterberg',
+    locationType: 'huette',
+    locationTypeLabelDe: 'Moderne Panorama-Alm',
+    locationTypeLabelNl: 'Moderne Panoramalocatie',
+    occasionsDe: ['Hochzeit & Freie Trauung', 'Runder Geburtstag', 'Firmen-Incentive', 'Weihnachtsfeier', 'Hüttengaudi'],
+    occasionsNl: ['Bruiloft met ceremonie', 'Verjaardag', 'Bedrijfsincentive', 'Kerstfeest', 'Hutfeest'],
+    capacityDe: 'Bis ca. 200 Personen',
+    capacityNl: 'Tot ca. 200 personen',
+    highlightsDe: ['Direkt an der Schneewittchen-Piste', 'Herrliche Panorama-Sonnenterrasse', 'Erstklassige Kulinarik & Eventorganisation', 'Moderne alpine Architektur'],
+    highlightsNl: ['Direct aan de skipiste Schneewittchen', 'Groot zonneterras met bergzicht', 'Catering van hoog niveau', 'Moderne alpine architectuur']
+  },
+  // 35. Freestyle Area Winterberg
+  {
+    id: 'freestyle-area-winterberg',
+    locationType: 'club',
+    locationTypeLabelDe: 'Lounge, Bar & Event-Area',
+    locationTypeLabelNl: 'Lounge, Bar & Event-Area',
+    occasionsDe: ['Clubparty & DJ-Events', 'Junggesellenabschied (JGA)', 'Geburtstag', 'Firmenfeier', 'Après-Ski-Party'],
+    occasionsNl: ['Clubparty & dj-avonden', 'Vrijgezellenfeest', 'Verjaardag', 'Bedrijfsborrel', 'Après-ski'],
+    capacityDe: 'Bis ca. 150 Personen',
+    capacityNl: 'Tot ca. 150 personen',
+    highlightsDe: ['Lässige Lounge-Atmosphäre an der Piste', 'Professionelle Sound- & DJ-Technik', 'Große Pisten-Sonnenterrasse', 'Event-Organisation aus einer Hand'],
+    highlightsNl: ['Relaxte lounge direct aan de piste', 'Professioneel licht & geluid', 'Groot zonneterras', 'Complete organisatie van events']
+  },
+  // 36. Party-Location „Abendrot“ (Resort Schöner Asten)
+  {
+    id: 'party-location-abendrot-altastenberg',
+    locationType: 'club',
+    locationTypeLabelDe: 'Party-Location & Tanzclub',
+    locationTypeLabelNl: 'Party-Location & Dansclub',
+    occasionsDe: ['Hochzeit', 'Runder Geburtstag', 'Betriebsfeier', 'Vereinsfest', 'Weihnachtsfeier'],
+    occasionsNl: ['Bruiloft', 'Verjaardag', 'Bedrijfsfeest', 'Verenigingsfeest', 'Kerstfeest'],
+    capacityDe: 'Bis ca. 150 Personen',
+    capacityNl: 'Tot ca. 150 personen',
+    highlightsDe: ['Exklusiv für geschlossene Gesellschaften', 'Eigene Bar & Schankanlage', 'Tanzfläche mit Licht- & Tontechnik', 'Übernachtung im Hotel direkt vor Ort'],
+    highlightsNl: ['Exclusief voor besloten gezelschappen', 'Eigen bar & tap', 'Dansvloer met licht & geluid', 'Overnachten in het resort voor alle gasten']
+  },
+  // 37. Gästehaus Winterberg (Die Eventlocation in Grönebach)
+  {
+    id: 'gaestehaus-winterberg-groenebach',
+    locationType: 'saal',
+    locationTypeLabelDe: 'Eventlocation & Tagungshaus',
+    locationTypeLabelNl: 'Evenementenlocatie & Feestzaal',
+    occasionsDe: ['Hochzeit im Grünen', 'Große Familienfeier', 'Runder Geburtstag', 'Tagung & Seminar', 'Vereinsfreizeit'],
+    occasionsNl: ['Bruiloft in het groen', 'Grote familiebijeenkomst', 'Verjaardag', 'Congres & seminar'],
+    capacityDe: 'Bis zu 130 Personen (135 Betten)',
+    capacityNl: 'Tot 130 personen (135 bedden)',
+    highlightsDe: ['Großer Festsaal & 125 m² Profi-Großküche', 'Hauseigene Kapelle für Trauungen', '135 Betten Übernachtungskapazität im Haus', 'Großzügiges Außengelände im Grünen'],
+    highlightsNl: ['Grote feestzaal & 125 m² professionele keuken', 'Eigen kapel voor huwelijksvoltrekkingen', '135 slaapplaatsen ter plaatse', 'Royaal buitenterrein in het groen']
   }
 ];
 
@@ -444,9 +509,8 @@ export function getPartyVenueInfo(id: string): PartyRentalVenue | undefined {
 }
 
 export function isPartyLocation(bus: Business): boolean {
+  if (bus.isPartyLocation === false) return false;
   if (PARTY_VENUES_MAP[bus.id]) return true;
-  if (bus.isPartyLocation) return true;
-  if (bus.subcategory === 'Skihütten') return true;
-  if (bus.subcategory === 'Tagungszentren') return true;
+  if (bus.isPartyLocation === true) return true;
   return false;
 }

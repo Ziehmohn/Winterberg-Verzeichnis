@@ -94,6 +94,7 @@ const ChargingStationsPage = React.lazy(() => import('./components/ChargingStati
 const ShoppingThemePage = React.lazy(() => import('./components/ShoppingThemePage'));
 const SkiThemePage = React.lazy(() => import('./components/SkiThemePage'));
 const HandwerkerLandingPage = React.lazy(() => import('./components/HandwerkerLandingPage'));
+const PartyLocationsThemePage = React.lazy(() => import('./components/PartyLocationsThemePage'));
 const Auftragsboerse = React.lazy(() => import('./components/Auftragsboerse'));
 const TendersAdminPanel = React.lazy(() => import('./components/TendersAdminPanel'));
 import { db, auth, storage } from './firebase';
@@ -192,6 +193,7 @@ export default function App() {
   let initialShoppingThemeMode = false;
   let initialSkiThemeMode = false;
   let initialHandwerkerLandingMode = false;
+  let initialPartyLocationsMode = false;
   let initialAuftraegeMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
@@ -314,6 +316,15 @@ export default function App() {
         (decodedPart1 === 'themas' && pathParts[1] && decodeURIComponent(pathParts[1]).toLowerCase() === 'vakmensen-vinden-in-winterberg')
       ) {
         initialHandwerkerLandingMode = true;
+      } else if (
+        decodedPart1 === 'partylocations-in-winterberg' || 
+        decodedPart1 === 'feestlocaties-in-winterberg' || 
+        decodedPart1 === 'partylocations' || 
+        decodedPart1 === 'feestlocaties' || 
+        (decodedPart1 === 'themen' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'partylocations-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'partylocations')) ||
+        (decodedPart1 === 'themas' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties'))
+      ) {
+        initialPartyLocationsMode = true;
       } else if (
         decodedPart1 === 'auftragsboerse' || 
         decodedPart1 === 'auftraege' || 
@@ -550,6 +561,7 @@ export default function App() {
     if (isShoppingThemeMode) return { view: 'shopping-theme' };
     if (isSkiThemeMode) return { view: 'ski-theme' };
     if (isHandwerkerLandingMode) return { view: 'handwerker-theme' };
+    if (isPartyLocationsMode) return { view: 'party-locations-theme' };
     if (isAuftraegeMode) return { view: 'auftragsboerse' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
@@ -640,6 +652,7 @@ export default function App() {
     if (p === '/shoppen-in-winterberg' || p === '/winkelen-in-winterberg' || p === '/themen/shoppen-in-winterberg' || p === '/themas/winkelen-in-winterberg') return buildLocalizedUrl({ view: 'shopping-theme' }, lang);
     if (p === '/skifahren-in-winterberg' || p === '/skien-in-winterberg' || p === '/skifahren' || p === '/skien' || p === '/themen/skifahren-in-winterberg' || p === '/themas/skien-in-winterberg') return buildLocalizedUrl({ view: 'ski-theme' }, lang);
     if (p === '/themen/handwerker-finden-in-winterberg' || p === '/themas/vakmensen-vinden-in-winterberg' || p === '/handwerker-finden-in-winterberg' || p === '/vakmensen-vinden-in-winterberg' || p === '/handwerker-winterberg') return buildLocalizedUrl({ view: 'handwerker-theme' }, lang);
+    if (p === '/themen/partylocations-in-winterberg' || p === '/themas/feestlocaties-in-winterberg' || p === '/partylocations-in-winterberg' || p === '/feestlocaties-in-winterberg' || p === '/partylocations' || p === '/feestlocaties') return buildLocalizedUrl({ view: 'party-locations-theme' }, lang);
     if (p === '/auftragsboerse' || p === '/auftraege' || p === '/opdrachten') return buildLocalizedUrl({ view: 'auftragsboerse' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
@@ -694,6 +707,7 @@ export default function App() {
     setIsShoppingThemeMode(false);
     setIsSkiThemeMode(false);
     setIsHandwerkerLandingMode(false);
+    setIsPartyLocationsMode(false);
     setIsAuftraegeMode(false);
   };
 
@@ -849,6 +863,15 @@ export default function App() {
           (p1 === 'themas' && pathParts[1] && pathParts[1].toLowerCase() === 'vakmensen-vinden-in-winterberg')
         ) {
           setIsHandwerkerLandingMode(true);
+        } else if (
+          p1 === 'partylocations-in-winterberg' || 
+          p1 === 'feestlocaties-in-winterberg' || 
+          p1 === 'partylocations' || 
+          p1 === 'feestlocaties' || 
+          (p1 === 'themen' && pathParts[1] && (pathParts[1].toLowerCase() === 'partylocations-in-winterberg' || pathParts[1].toLowerCase() === 'partylocations')) ||
+          (p1 === 'themas' && pathParts[1] && (pathParts[1].toLowerCase() === 'feestlocaties-in-winterberg' || pathParts[1].toLowerCase() === 'feestlocaties'))
+        ) {
+          setIsPartyLocationsMode(true);
         } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
           setIsEventsMode(true);
         } else if (p1 === 'auftragsboerse' || p1 === 'auftraege' || p1 === 'opdrachten' || p1 === 'ausschreibungen') {
@@ -1030,6 +1053,7 @@ export default function App() {
   const [isShoppingThemeMode, setIsShoppingThemeMode] = useState(initialShoppingThemeMode);
   const [isSkiThemeMode, setIsSkiThemeMode] = useState(initialSkiThemeMode);
   const [isHandwerkerLandingMode, setIsHandwerkerLandingMode] = useState(initialHandwerkerLandingMode);
+  const [isPartyLocationsMode, setIsPartyLocationsMode] = useState(initialPartyLocationsMode);
   const [isAuftraegeMode, setIsAuftraegeMode] = useState(initialAuftraegeMode);
   const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
@@ -2605,6 +2629,29 @@ export default function App() {
             onBack={() => {
               setIsSkiThemeMode(false);
               window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isPartyLocationsMode ? (
+          <PartyLocationsThemePage
+            businesses={businesses}
+            theme={theme}
+            designSettings={designSettings}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsPartyLocationsMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsPartyLocationsMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateContact={() => {
+              resetToDirectory();
+              setIsSubmitMode(true);
+              window.history.pushState(null, '', getPath('/eintragen'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
@@ -4646,6 +4693,19 @@ export default function App() {
             >
               {lang === 'nl' ? 'Vakmensen vinden in Winterberg' : 'Handwerker finden in Winterberg'}
             </a>
+            <a 
+              href={getPath('/themen/partylocations-in-winterberg')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/themen/partylocations-in-winterberg')); 
+                resetToDirectory(); 
+                setIsPartyLocationsMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Feestlocaties in Winterberg' : 'Partylocations in Winterberg'}
+            </a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
@@ -4828,11 +4888,16 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
     try {
       setLoading(true);
       const snap = await getDocs(collection(db, 'news'));
-      const items = snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
+      const firestoreItems = snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
+      const map = new Map<string, any>();
+      initialNews.forEach(n => map.set(n.id, n));
+      firestoreItems.forEach(n => map.set(n.id, { ...(map.get(n.id) || {}), ...n }));
+      const items = Array.from(map.values());
       items.sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
       setNews(items);
     } catch(e) {
       console.error("Error loading news in admin:", e);
+      setNews([...initialNews].sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()));
     } finally {
       setLoading(false);
     }
@@ -5034,7 +5099,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
 
     try {
       if (editingItem) {
-        await updateDoc(doc(db, 'news', editingItem.id), articleData);
+        await setDoc(doc(db, 'news', editingItem.id), articleData, { merge: true });
       } else {
         await addDoc(collection(db, 'news'), {
           ...articleData,
