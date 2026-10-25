@@ -1071,11 +1071,38 @@ export const businesses: Business[] = [
     name: 'Bu\'ket Bar Winterberg',
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
-    description: 'Die Bu’ket Bar in Winterberg ist eine moderne Cocktail- und Weinbar mit angeschlossener Vinothek. Das Unternehmen bietet eine feine Auswahl an handgemachten Cocktails, erlesenen Weinen sowie Spirituosen in stilvollem Ambiente. Ergänzend zum regulären Barbetrieb werden Tastings, Veranstaltungen und ein Außer-Haus-Weinverkauf angeboten.',
+    additionalCategories: [
+      { category: 'Dienstleistungen', subcategory: 'Tagungszentren' },
+      { category: 'Einzelhandel', subcategory: 'Feinkost & Lebensmittel' }
+    ],
+    description: 'Die Bu’ket Bar in Winterberg ist eine stilvolle Cocktail- und Weinbar mit angeschlossener Vinothek und exklusiver Eventlocation. Die Location kann für geschlossene Gesellschaften, Geburtstage, Firmenfeiern und Feiern im Freundeskreis (bis ca. 40 Personen) exklusiv gemietet werden. Zudem werden professionelle Cocktailkurse und moderierte Weintastings im separaten Patron Room angeboten.',
+    description_nl: 'Bu’ket Bar in Winterberg is een stijlvolle cocktail- en wijnbar met vinotheek en exclusieve evenementenlocatie. De locatie kan exclusief worden afgehuurd voor besloten feesten, verjaardagen en bedrijfsuitjes tot 40 personen. Daarnaast worden er cocktailworkshops en wijnproeverijen georganiseerd in de sfeervolle Patron Room.',
     address: 'Poststraße 1, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 8968670',
+    email: 'post@buket.de',
+    website: 'https://www.buket.de/events',
     imageFallback: 'BK',
+    headerImage: '/kneipen-bars-winterberg-header.jpg',
+    isActive: true,
+    status: 'approved',
+    isPartyLocation: true,
+    services: [
+      'Exklusive Vermietung für geschlossene Gesellschaften (bis 40 Personen)',
+      'Cocktailkurse für Gruppen & JGAs (ab 5 Personen)',
+      'Moderierte Weintastings im Patron Room (5 bis 18 Personen)',
+      'Individuelle Getränkeauswahl, Drinks & Catering-Snacks',
+      'Geburtstagsfeiern, Firmen-Events & private Feiern',
+      'Zentrale Lage an der Poststraße'
+    ],
+    services_nl: [
+      'Exclusieve zaalverhuur voor besloten feesten (tot 40 personen)',
+      'Cocktailworkshops voor groepen (vanaf 5 personen)',
+      'Wijnproeverijen in de Patron Room (5 tot 18 personen)',
+      'Drankjes, cocktails & tapas op maat',
+      'Verjaardagsfeesten en bedrijfsuitjes',
+      'Centraal gelegen aan de Poststraße'
+    ]
   },
 
   {

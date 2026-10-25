@@ -272,6 +272,21 @@ export const PARTY_VENUES_DATA: PartyRentalVenue[] = [
     highlightsNl: ['Officiële trouwlocatie van gemeente Winterberg', 'Monumentale vakwerksfeer uit 1791', 'Keuken & bar aanwezig', 'Bijzondere sfeer'],
     verifiedSourceUrl: 'https://www.borgs-scheune.de',
     sourceDescription: 'Offizieller Trauort Stadt Winterberg & historische Eventtenne'
+  },
+  // 18. Bu'ket Bar Winterberg
+  {
+    id: '145',
+    locationType: 'club',
+    locationTypeLabelDe: 'Cocktail- & Weinbar (Eventlocation)',
+    locationTypeLabelNl: 'Cocktail- & Wijnbar (Feestlocatie)',
+    occasionsDe: ['Geburtstag', 'Firmenfeier', 'Weintasting', 'Cocktailkurs', 'Exklusive Feiern'],
+    occasionsNl: ['Verjaardag', 'Bedrijfsborrel', 'Wijnproeverij', 'Cocktailworkshop', 'Besloten feesten'],
+    capacityDe: 'Bis ca. 40 Personen (Tasting bis 18)',
+    capacityNl: 'Tot ca. 40 personen (proeverij tot 18)',
+    highlightsDe: ['Exklusiv als geschlossene Gesellschaft mietbar', 'Separater Patron Room für Tastings & Workshops', 'Individuelle Cocktails, erlesene Weine & Fingerfood', 'Zentrale Lage in der Poststraße'],
+    highlightsNl: ['Exclusief af te huren voor besloten feesten', 'Aparte Patron Room voor workshops & proeverijen', 'Cocktails, wijnen & hapjes op maat', 'In het centrum aan de Poststraße'],
+    verifiedSourceUrl: 'https://www.buket.de/events',
+    sourceDescription: 'Offizielle Event- & Vermietungsseite für geschlossene Gesellschaften, Tastings & Kurse'
   }
 ];
 
