@@ -2,6 +2,91 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "falstaff-barguide-2027-buket-bar-winterberg-auszeichnung",
+    slug: "falstaff-barguide-buket-bar-winterberg-auszeichnung",
+    slug_nl: "falstaff-bargids-buket-bar-winterberg-onderscheiding",
+    title: "Falstaff Barguide: Bu’ket Bar in Winterberg mit herausragenden 91 Punkten als „Best of Germany“ ausgezeichnet",
+    title_nl: "Falstaff Barguide: Bu’ket Bar in Winterberg bekroond met 91 punten als 'Best of Germany'",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "145",
+    businessName: "Bu'ket Bar Winterberg",
+    businessSlug: "gastronomie/kneipen-und-bars/bu-ket-bar-winterberg",
+    imageUrl: "/news-buket-bar-falstaff-barguide-2027.png",
+    status: 'approved',
+    date: "2026-10-25T10:30:00.000Z",
+    content: `Für herausragende Cocktailkultur, virtuose Barkeeper-Kunst und erstklassiges Bar-Ambiente muss man längst nicht mehr in Metropolen wie Berlin, Hamburg, Köln oder München reisen: Die **Bu’ket Bar in Winterberg** (Poststraße 1) wurde im renommierten **Falstaff Barguide 2027** mit herausragenden **91 von 100 Punkten** und **3 Gläsern (YYY)** als eine der besten Cocktailbars des Landes („Best of Germany“) ausgezeichnet!
+
+![Falstaff Barguide 2027 – Best of Germany Auszeichnung für die Bu’ket Bar Winterberg](/news-buket-bar-falstaff-barguide-2027.png)
+
+## Was ist Falstaff & was bedeutet diese Auszeichnung?
+
+Der **Falstaff** gilt im gesamten deutschsprachigen Raum (Deutschland, Österreich, Schweiz) als das maßgebliche Leitmedium und die einflussreichste Institution für Genuss, Wein, Spitzengastronomie und anspruchsvolle Barkultur – vergleichbar mit dem *Guide Michelin* für die Restaurantwelt. 
+
+Für den jährlichen **Falstaff Barguide** werden hunderte Bars von unabhängigen Bar- und Spirituosen-Experten sowie einer fachkundigen Genuss-Community bewertet. Beurteilt werden unter anderem:
+* **Cocktail- & Drink-Qualität (bis zu 50 Punkte):** Balance, Aromatik, Frische der Zutaten, handwerkliche Präzision und kreative Handschrift.
+* **Ambiente & Design (bis zu 20 Punkte):** Lichtstimmung, Musik, Sitzkomfort und urbane Lounge-Atmosphäre.
+* **Servicekompetenz (bis zu 20 Punkte):** Fachwissen des Bar-Teams, Gastfreundschaft, Schnelligkeit und individuelle Empfehlungen.
+* **Sortiment & Range (bis zu 10 Punkte):** Hochwertige Spirituosen-Auswahl, Spezialitäten und Weinangebot.
+
+Mit einer **Bewertung von 91 Punkten** knackt die Bu’ket Bar mühelos die magische 90er-Schallmauer und platziert sich in der exklusiven Riege der **„Best of Germany“**-Locations.
+
+---
+
+## Eine Location, die Winterberg extrem aufwertet
+
+Winterberg ist längst mehr als ein Eldorado für Wintersportler, Wanderer und Mountainbiker: Immer mehr Gastronomen setzen auf Qualität, Stil und niveauvollen Genuss. Die Bu’ket Bar von Inhaber Dominic Bruckmann setzt hierbei ganz neue Maßstäbe.
+
+Mit ihrem modernen, warmen Interieur, gemütlichen Sitzecken und dem separaten *Patron Room* bringt die Bar ein urbanes Flair ins Sauerland, das man sonst nur in europäischen Metropolen vermuten würde. Neben anspruchsvollen Cocktail-Klassikern und kreativen Signature-Drinks – von perfekt balancierten Sours bis hin zu komplexen Mocktails (alkoholfreie Cocktails) – begeistert die Location durch ihre integrierte Vinothek mit handverlesenen Weinen renommierter Winzer.
+
+Zusätzlich bietet die Bar ein abwechslungsreiches Event-Programm: Von moderierten Weintastings über professionelle Cocktail-Workshops bis hin zu beliebten Pub-Quiz-Abenden und exklusiven Feiern für geschlossene Gesellschaften.
+
+---
+
+## Absolut einen Besuch wert!
+
+Ob zum entspannten Ausklang nach einem Tag auf den Bergen, als glamouröser Auftakt in das Winterberger Nachtleben oder für ein geselliges Genusserlebnis mit Freunden: Die Bu’ket Bar beweist eindrucksvoll, dass echte Spitzen-Barkultur mitten im Sauerland zuhause ist. 
+
+Lassen Sie sich von den Cocktail-Kreationen des Bar-Teams verzaubern und erleben Sie die prämierte Bar-Atmosphäre live vor Ort!
+
+:::contact
+### Bu’ket Bar Winterberg – Daten & Links
+* **Adresse:** Poststraße 1, 59955 Winterberg (Kernstadt)
+* **Auszeichnung:** Falstaff Barguide 2027 – 91/100 Punkte (3 Gläser YYY · Best of Germany)
+* **Telefon:** 02981 8968670
+* **E-Mail:** post@buket.de
+* **Offizielle Website:** [www.buket.de](https://www.buket.de/events)
+* **Falstaff-Bewertung:** [Zum offiziellen Falstaff-Profil der Bu’ket Bar](https://www.falstaff.com/de/bars/buket)
+* **Unternehmensprofil:** [Zum Profil der Bu’ket Bar im Winterberg-Verzeichnis](/gastronomie/kneipen-und-bars/bu-ket-bar-winterberg)
+:::`,
+    content_nl: `Voor uitzonderlijke cocktailcultuur, virtuoos barmanschap en een stijlvolle loungesfeer hoeft men niet langer naar wereldsteden zoals Berlijn, Hamburg, Keulen of München af te reizen: De **Bu’ket Bar in Winterberg** (Poststraße 1) is in de gerenommeerde **Falstaff Barguide 2027** bekroond met maar liefst **91 van de 100 punten** en **3 glazen (YYY)** als een van de beste cocktailbars van Duitsland ('Best of Germany')!
+
+![Falstaff Barguide 2027 – Best of Germany onderscheiding voor Bu’ket Bar Winterberg](/news-buket-bar-falstaff-barguide-2027.png)
+
+## Wat is Falstaff en wat betekent deze prijs?
+
+De **Falstaff** geldt in het Duitstalige gebied als het toonaangevende medium voor gastronomie, wijn en hoogwaardige barkeeperskunst – vergelijkbaar met de *Michelingids* voor de restaurantwereld.
+
+Voor de jaarlijkse bargids beoordelen onafhankelijke deskundigen honderden cocktail- en wijnlocaties op het gebied van drinkkwaliteit, vakkennis, sfeer en assortiment. Met een score van **91 punten** behoort de Bu’ket Bar officieel tot de nationale topklasse.
+
+---
+
+## Een enorme verrijking voor Winterberg
+
+Met een warm en modern interieur brengt eigenaar Dominic Bruckmann met zijn team een kosmopolitische sfeer naar het Sauerland. Naast meesterlijke klassiekers en innovatieve signature drinks beschikt de Bu'ket Bar over een eigen vinotheek met zorgvuldig geselecteerde kwaliteitswijnen, evenals workshops en proeverijen in de Patron Room.
+
+Een absolute aanrader voor iedereen die houdt van goed glas en een gastvrije ambiance!
+
+:::contact
+### Bu’ket Bar Winterberg – Gegevens & Links
+* **Adres:** Poststraße 1, 59955 Winterberg
+* **Onderscheiding:** Falstaff Barguide 2027 – 91/100 punten (3 glazen · Best of Germany)
+* **Telefoon:** +49 2981 8968670
+* **Officiële website:** [www.buket.de](https://www.buket.de/events)
+* **Falstaff-profiel:** [Naar de officiële Falstaff-pagina van Bu’ket Bar](https://www.falstaff.com/de/bars/buket)
+* **Bedrijfsprofiel:** [Naar het profiel van Bu’ket Bar in het Winterberg-overzicht](/gastronomie/kneipen-und-bars/bu-ket-bar-winterberg)
+:::`,
+  },
+  {
     id: "halloween-2026-winterberg-party-events-feste",
     slug: "halloween-2026-winterberg-party-events-programm",
     slug_nl: "halloween-2026-winterberg-feest-evenementen-programma",
