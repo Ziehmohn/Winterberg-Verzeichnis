@@ -1102,6 +1102,24 @@ export const businesses: Business[] = [
       'Drankjes, cocktails & tapas op maat',
       'Verjaardagsfeesten en bedrijfsuitjes',
       'Centraal gelegen aan de Poststraße'
+    ],
+    events: [
+      {
+        id: 'pub-quiz-music-edition-buket-bar-winterberg-2026',
+        title: 'Pub Quiz Music Edition',
+        title_nl: 'Pub Quiz Music Edition',
+        startDate: '2026-11-14',
+        endDate: '2026-11-14',
+        startTime: '18:00',
+        endTime: '23:45',
+        price: '80 € pro 4er-Team (20 € p.P.)',
+        category: 'Fest & Party',
+        location: 'Bu\'ket Bar, Poststraße 1, 59955 Winterberg',
+        imageUrl: '/event-pub-quiz-music-edition-buket.png',
+        description: 'Dein Musikwissen auf dem Prüfstand in der Bu\'ket Bar Winterberg! Wir spielen die Songs, ihr habt das Wissen: Tretet als 4er-Team an und sammelt Punkte für jede richtige Antwort. Das absolute Highlight des Abends: Wir übernehmen vom Gewinnerteam die gesamte Tischrechnung! Die Teilnahmegebühr von 20 € pro Person (80 € für das gesamte 4er-Team) beinhaltet bereits exklusive Team-Shirts sowie einen fruchtigen „Black Ruby“-Welcome-Drink zur Begrüßung. Einlass und Beginn ab 18:00 Uhr bis 23:45 Uhr. Voranmeldung und Tickets vorab über Rausgegangen oder www.buket.de.',
+        description_nl: 'Test je muziekkennis in de Bu\'ket Bar Winterberg! De beste muzieknummers worden gedraaid en teams van vier strijden om de felbegeerde punten. Het absolute hoogtepunt: de complete rekening van de winnende tafel wordt door de bar betaald! De deelnamekosten van € 20 per persoon (€ 80 per 4-tal) zijn inclusief exclusieve team-T-shirts en een fruitige \'Black Ruby\' welkomstcocktail. Deuren open van 18:00 tot 23:45 uur. Aanmelden en tickets vooraf via Rausgegangen of www.buket.de.',
+        externalUrl: 'https://rausgegangen.de/events/pub-quiz-music-edition-0/'
+      }
     ]
   },
 
@@ -13712,16 +13730,28 @@ export const themes: Record<ThemeKey, ThemeConfig> = {
   }
 };
 
+export const categoryImageMap: Record<string, string> = {
+  'Hotels und Unterkünfte': '/categories/hotels-und-unterkuenfte.jpg',
+  'Handwerk': '/categories/handwerk.jpg',
+  'Einzelhandel': '/categories/einzelhandel.jpg',
+  'Gastronomie': '/categories/gastronomie.jpg',
+  'Dienstleistungen': '/categories/dienstleistungen.jpg',
+  'Ski, Bike & Sport': '/categories/ski-bike-sport.jpg',
+  'Gesundheit & Medizin': '/categories/gesundheit-medizin.jpg',
+  'Mobilität & KFZ': '/categories/mobilitaet-kfz.jpg',
+  'Freizeit': '/categories/freizeit.jpg'
+};
+
 export const categories: CategoryGroup[] = [
-  { name: 'Hotels und Unterkünfte', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
-  { name: 'Handwerk', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
-  { name: 'Einzelhandel', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Haushaltswaren & Deko', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
-  { name: 'Gastronomie', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
-  { name: 'Dienstleistungen', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Coworking Space', 'IT & Software', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste', 'Tourismus'] },
-  { name: 'Ski, Bike & Sport', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
-  { name: 'Gesundheit & Medizin', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser', 'Hörgeräteakustiker', 'Optiker'] },
-  { name: 'Mobilität & KFZ', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },
-  { name: 'Freizeit', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder', 'Sommerrodelbahnen'] }
+  { name: 'Hotels und Unterkünfte', image: '/categories/hotels-und-unterkuenfte.jpg', subcategories: ['Hotels', 'Ferienwohnungen', 'Ferienhäuser', 'Ferienparks', 'Campingplätze'] },
+  { name: 'Handwerk', image: '/categories/handwerk.jpg', subcategories: ['Elektriker', 'Heizungstechnik', 'Dachdecker', 'Schreinereien', 'Maler & Lackierer', 'Bauunternehmen', 'Gartenbauer', 'Friseur', 'Bäckerei', 'Fleischerei', 'Bäderstudios', 'Baumschulen', 'Wäschereien', 'Druckereien', 'Maschinenbau'] },
+  { name: 'Einzelhandel', image: '/categories/einzelhandel.jpg', subcategories: ['Supermarkt', 'Bekleidung', 'Drogerien', 'Baumärkte', 'Blumengeschäfte', 'Schuhgeschäfte', 'Buchhandlungen', 'Haushaltswaren & Deko', 'Feinkost & Lebensmittel', 'Märkte', 'Gaststättenbedarf', 'Baustoffe', 'Bürobedarf', 'Spielwaren', 'Parfümerie', 'Kioske', 'Telekommunikation', 'Juweliere & Uhren'] },
+  { name: 'Gastronomie', image: '/categories/gastronomie.jpg', subcategories: ['Restaurant', 'Skihütten', 'Cafés', 'Pizzerien', 'Kneipen und Bars', 'Eisdielen', 'Weinstuben', 'Imbisse'] },
+  { name: 'Dienstleistungen', image: '/categories/dienstleistungen.jpg', subcategories: ['Immobilienmakler', 'Steuerberater', 'Rechtsanwälte', 'Banken', 'Versicherungsagenturen', 'Marketingdienstleistungen', 'Finanzberatung', 'Coworking Space', 'IT & Software', 'Kindergärten & Kitas', 'Schulen', 'Tagungszentren', 'Soziale Dienste', 'Tourismus'] },
+  { name: 'Ski, Bike & Sport', image: '/categories/ski-bike-sport.jpg', subcategories: ['Skiverleih', 'Fahrradverleih', 'Fahrradgeschäfte', 'Sport & Outdoor', 'Fitnessstudios', 'Tennisplätze', 'Fußballvereine', 'Reitsport'] },
+  { name: 'Gesundheit & Medizin', image: '/categories/gesundheit-medizin.jpg', subcategories: ['Ärzte & Praxen', 'Zahnärzte', 'Apotheken', 'Physiotherapie', 'Pflegedienste', 'Massagen', 'Kosmetikstudios', 'Tiergesundheit', 'Yoga', 'Sanitätshäuser', 'Hörgeräteakustiker', 'Optiker'] },
+  { name: 'Mobilität & KFZ', image: '/categories/mobilitaet-kfz.jpg', subcategories: ['KFZ-Werkstätten', 'Tankstellen', 'Autohäuser', 'Fahrschulen'] },
+  { name: 'Freizeit', image: '/categories/freizeit.jpg', subcategories: ['Outdoor-Freizeitgebiet', 'Indoor-Spielplätze', 'Kino', 'Bowling', 'Schwimmbäder', 'Sommerrodelbahnen'] }
 ];
 
 import { AdBanner } from './types';

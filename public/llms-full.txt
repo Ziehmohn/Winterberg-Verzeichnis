@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-24
+# Stand: 2026-10-25
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -2237,7 +2237,9 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Poststraße 1, 59955 Winterberg
 - **Telefon:** 02981 8968670
-- **Beschreibung (DE):** Die Bu’ket Bar in Winterberg ist eine moderne Cocktail- und Weinbar mit angeschlossener Vinothek. Das Unternehmen bietet eine feine Auswahl an handgemachten Cocktails, erlesenen Weinen sowie Spirituosen in stilvollem Ambiente. Ergänzend zum regulären Barbetrieb werden Tastings, Veranstaltungen und ein Außer-Haus-Weinverkauf angeboten.
+- **Webseite:** https://www.buket.de/events
+- **Beschreibung (DE):** Die Bu’ket Bar in Winterberg ist eine stilvolle Cocktail- und Weinbar mit angeschlossener Vinothek und exklusiver Eventlocation. Die Location kann für geschlossene Gesellschaften, Geburtstage, Firmenfeiern und Feiern im Freundeskreis (bis ca. 40 Personen) exklusiv gemietet werden. Zudem werden professionelle Cocktailkurse und moderierte Weintastings im separaten Patron Room angeboten.
+- **Beschreibung (NL):** Bu’ket Bar in Winterberg is een stijlvolle cocktail- en wijnbar met vinotheek en exclusieve evenementenlocatie. De locatie kan exclusief worden afgehuurd voor besloten feesten, verjaardagen en bedrijfsuitjes tot 40 personen. Daarnaast worden er cocktailworkshops en wijnproeverijen georganiseerd in de sfeervolle Patron Room.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/bu-ket-bar-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/bu-ket-bar-winterberg
 

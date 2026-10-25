@@ -1,6 +1,7 @@
 export interface CategoryGroup {
   name: string;
   subcategories: string[];
+  image?: string;
 }
 
 export interface OpeningHours {

@@ -5,7 +5,8 @@ import {
   businesses as initialBusinesses, 
   categories, 
   themes, 
-  initialAds 
+  initialAds,
+  categoryImageMap
 } from './data';
 import { initialNews } from './dataNews';
 import { ThemeKey, CategoryGroup, Business, SeoSettings, DesignSettings, AdBanner, PricingSettings } from './types';
@@ -2985,17 +2986,22 @@ export default function App() {
                         <div 
                           key={cat.name}
                           onClick={() => { setActiveCategory(cat.name); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                          className="bg-white border border-[#EDE8E0] rounded-lg p-6 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
+                          className="group bg-white border border-[#EDE8E0] rounded-lg p-6 cursor-pointer shadow-[0_2px_10px_rgba(27,33,29,0.04)] hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,33,29,0.10)] transition-all"
                         >
                           <div className="flex items-center gap-[14px]">
-                            <div className="w-[48px] h-[48px] rounded-md bg-[#E4F0F4] text-[#146C82] flex items-center justify-center shrink-0">
-                               {cat.name === 'Dienstleistungen' ? <Briefcase className="w-6 h-6" /> : cat.name === 'Freizeit' ? <Sun className="w-6 h-6" /> : cat.name === 'Hotels & Unterkünfte' ? <Bed className="w-6 h-6" /> : cat.name === 'Einkaufen' ? <ShoppingBag className="w-6 h-6" /> : cat.name === 'Gastronomie' ? <Utensils className="w-6 h-6" /> : <BadgeCheck className="w-6 h-6" />}
+                            <div className="w-[52px] h-[52px] rounded-lg overflow-hidden shrink-0 border border-[#EDE8E0] shadow-sm bg-[#FAF8F5]">
+                              <img 
+                                src={cat.image || categoryImageMap[cat.name] || '/categories/hotels-und-unterkuenfte.jpg'} 
+                                alt={t(cat.name)}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                loading="lazy"
+                              />
                             </div>
-                            <div className="flex-1">
-                              <div className="font-display text-[21px] font-semibold text-gray-900 leading-tight">{t(cat.name)}</div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-display text-[21px] font-semibold text-gray-900 leading-tight group-hover:text-[#0F4C2E] transition-colors">{t(cat.name)}</div>
                               <div className="text-[14px] text-[#5F6B63]">{businesses.filter(b => b.category === cat.name || b.subcategory === cat.name).length} {lang === 'nl' ? 'bedrijven' : 'Betriebe'}</div>
                             </div>
-                            <ChevronRight className="w-5 h-5 text-[#B9B2A8]" />
+                            <ChevronRight className="w-5 h-5 text-[#B9B2A8] group-hover:text-[#0F4C2E] group-hover:translate-x-0.5 transition-all shrink-0" />
                           </div>
                           <div className="mt-[16px] text-[14px] text-[#5F6B63] leading-[1.6]">
                             {cat.subcategories.map(s => t(s)).join(', ')}
