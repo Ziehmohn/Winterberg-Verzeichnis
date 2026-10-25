@@ -46,8 +46,8 @@ export const SundayOpenPage: React.FC<SundayOpenPageProps> = ({
     document.title = title;
 
     const desc = isNl
-      ? 'Overzicht van alle winkels, bakkers en restaurants in Winterberg die op zondag geopend zijn dankzij de officiële Bäderregelung.'
-      : 'Übersicht aller Geschäfte, Bäckereien, Skiverleiher und Gastronomien in Winterberg, die sonntags im Rahmen der Bäderregelung geöffnet haben.';
+      ? 'Overzicht van alle winkels, bakkers en restaurants in Winterberg die op zondag geopend zijn tijdens de officiële koopzondagen.'
+      : 'Übersicht aller Geschäfte, Bäckereien, Skiverleiher und Gastronomien in Winterberg, die an verkaufsoffenen Sonntagen geöffnet haben.';
     
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', desc);

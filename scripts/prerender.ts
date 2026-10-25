@@ -269,14 +269,14 @@ const staticPageConfigs: {
   },
   {
     key: 'sundayOpen',
-    titleDe: 'Sonntags geöffnet in Winterberg | Bäderregelung & Shopping',
-    titleNl: 'Op zondag geopend in Winterberg | Bäderregeling & Winkels',
-    descDe: 'Übersicht aller Geschäfte, Bäckereien, Skiverleiher und Restaurants in Winterberg, die sonntags im Rahmen der Bäderregelung geöffnet haben.',
-    descNl: 'Overzicht van alle winkels, bakkers en restaurants in Winterberg die op zondag geopend zijn dankzij de officiële Bäderregeling.',
+    titleDe: 'Sonntags geöffnet in Winterberg | Verkaufsoffene Sonntage & Shopping',
+    titleNl: 'Op zondag geopend in Winterberg | Koopzondagen & Winkels',
+    descDe: 'Übersicht aller Geschäfte, Bäckereien, Skiverleiher und Restaurants in Winterberg, die an verkaufsoffenen Sonntagen geöffnet haben.',
+    descNl: 'Overzicht van alle winkels, bakkers en restaurants in Winterberg die op zondag en tijdens koopzondagen geopend zijn.',
     h1De: 'Sonntags geöffnet in Winterberg',
     h1Nl: 'Op zondag geopend in Winterberg',
-    h2De: 'Bäderregelung für den heilklimatischen Kurort Winterberg',
-    h2Nl: 'Bäderregeling voor het kuuroord Winterberg'
+    h2De: 'Verkaufsoffene Sonntage in Winterberg',
+    h2Nl: 'Koopzondagen in Winterberg'
   },
   {
     key: 'skiReport',
@@ -341,7 +341,7 @@ const staticPageConfigs: {
     descNl: 'Ontdek de winkels in Winterberg: kledingwinkels, schoenen, juweliers, parfumerie en koopzondagen in het Sauerland.',
     h1De: 'Shoppen in Winterberg',
     h1Nl: 'Winkelen in Winterberg',
-    h2De: 'Boutiquen, Sportfachgeschäfte & Termine der Bäderregelung',
+    h2De: 'Boutiquen, Sportfachgeschäfte & Termine der verkaufsoffenen Sonntage',
     h2Nl: 'Boetieks, sportwinkels en koopzondagen'
   },
   {

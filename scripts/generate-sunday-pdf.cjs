@@ -195,7 +195,7 @@ async function generatePdf() {
       <div class="brand-title">Das Winterberg Verzeichnis</div>
       <div class="brand-sub">Offizieller Kalender & Guide für Winterberg</div>
     </div>
-    <div class="badge">Bäderregelung NRW 2026</div>
+    <div class="badge">Verkaufsoffene Sonntage 2026</div>
   </div>
 
   <div class="hero">
@@ -335,7 +335,7 @@ async function generatePdf() {
   <div class="rules-box">
     <div class="rules-title">Wichtige Besucher-Hinweise & Regelungen</div>
     <div class="rules-text">
-      <strong>Bäderverordnung NRW (§ 10 LÖG):</strong> Als heilklimatischer Kurort darf der Einzelhandel in Winterberg an bis zu 40 Sonn- und Feiertagen im Jahr öffnen. Die Kernöffnungszeit der Bekleidungsgeschäfte, Modegeschäfte, Schuhhäuser, Sportfachgeschäfte und Outlets liegt zwischen <strong>11:00 und 17:00 Uhr</strong>. Bäckereien und Gastronomien öffnen in der Regel früher. Supermärkte (Aldi, Lidl, etc.) bleiben sonntags geschlossen. Alle Angaben basieren auf der amtlichen Genehmigung für 2026 (Änderungen vorbehalten).
+      <strong>Verkaufsoffene Sonntage Winterberg (§ 10 LÖG NRW):</strong> An bis zu 40 Sonn- und Feiertagen im Jahr darf der Einzelhandel in Winterberg öffnen. Die Kernöffnungszeit der Bekleidungsgeschäfte, Modegeschäfte, Schuhhäuser, Sportfachgeschäfte und Outlets liegt zwischen <strong>11:00 und 17:00 Uhr</strong>. Bäckereien und Gastronomien öffnen in der Regel früher. Supermärkte (Aldi, Lidl, etc.) bleiben sonntags geschlossen. Alle Angaben basieren auf der amtlichen Genehmigung für 2026 (Änderungen vorbehalten).
     </div>
   </div>
 

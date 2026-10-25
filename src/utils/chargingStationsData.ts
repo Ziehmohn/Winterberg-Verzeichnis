@@ -887,6 +887,51 @@ export const CHARGING_STATIONS_DATA: ChargingStation[] = [
     ]
   },
   {
+    "id": "niedersfeld-kartbahn-eschenberg",
+    "name": "Niedersfeld Kartbahn & Eschenberg (HPC Schnelllader)",
+    "operator": "Baltic Renewable / Compleo",
+    "address": "Am Eschenberg 1",
+    "district": "Niedersfeld",
+    "lat": 51.2402,
+    "lng": 8.5260,
+    "isFastCharger": true,
+    "maxPowerKw": 160,
+    "plugs": [
+      {
+        "type": "CCS",
+        "count": 2,
+        "powerKw": 160
+      },
+      {
+        "type": "Type2",
+        "count": 1,
+        "powerKw": 22
+      }
+    ],
+    "costInfo": "Ad-hoc Laden per QR-Code / Kreditkarte sowie gängige Ladekarten (EnBW, Shell Recharge, Maingau etc.)",
+    "costInfo_nl": "Ad-hoc laden via QR-code / creditcard en gangbare laadpassen (Shell Recharge, EnBW e.a.)",
+    "parkingFeeInfo": "Kostenfreies Parken während des Ladevorgangs an der Kartbahn & Pizzeria",
+    "parkingFeeInfo_nl": "Gratis parkeren tijdens het laden bij de kartbaan & pizzeria",
+    "availableHours": "24/7 geöffnet",
+    "nearbyHighlights": [
+      {
+        "name": "Kartbahn Winterberg-Niedersfeld",
+        "category": "Freizeit",
+        "distanceMeters": 20
+      },
+      {
+        "name": "Pizzeria Bella Napoli",
+        "category": "Gastronomie",
+        "distanceMeters": 10
+      },
+      {
+        "name": "Skigebiet Eschenberglifte & Rodelhang",
+        "category": "Wintersport",
+        "distanceMeters": 80
+      }
+    ]
+  },
+  {
     "id": "zueschen-dorfplatz",
     "name": "Züschen Dorfplatz / Hardtstraße",
     "operator": "Westenergie / Innogy",

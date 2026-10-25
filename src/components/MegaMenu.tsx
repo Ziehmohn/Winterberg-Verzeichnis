@@ -698,7 +698,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                           {lang === 'nl' ? 'Zondag geopende bedrijven' : 'Sonntags geöffnete Betriebe'}
                         </span>
                         <span className="text-[10px] text-[#5F6B63]">
-                          {lang === 'nl' ? 'Bäderregeling' : 'Bäderregelung'}
+                          {lang === 'nl' ? 'Koopzondagen' : 'Verkaufsoffene Sonntage'}
                         </span>
                       </div>
                     </a>

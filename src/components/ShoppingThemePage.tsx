@@ -163,8 +163,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
           "acceptedAnswer": {
             "@type": "Answer",
             "text": isNl
-              ? "Ja, dankzij de officiële Bäderregeling (kuuroord-status) mogen veel winkels in Winterberg op 39 zon- en feestdagen in 2026 openen, van 11:00 tot 17:00 uur."
-              : "Ja, dank der Kurort-Bäderregelung (§ 10 LÖG NRW) öffnen viele Einzelhändler in Winterberg an 39 Sonn- und Feiertagen im Jahr 2026 ihre Türen von 11:00 bis 17:00 Uhr."
+              ? "Ja, aan de hand van de officiële koopzondagen mogen veel winkels in Winterberg op 39 zon- en feestdagen in 2026 openen, van 11:00 tot 17:00 uur."
+              : "Ja, an den offiziellen verkaufsoffenen Sonn- und Feiertagen (§ 10 LÖG NRW) öffnen viele Einzelhändler in Winterberg an 39 Terminen im Jahr 2026 ihre Türen von 11:00 bis 17:00 Uhr."
           }
         },
         {
@@ -325,8 +325,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
     {
       q: isNl ? 'Kan men op zondag winkelen in Winterberg?' : 'Kann man in Winterberg sonntags shoppen?',
       a: isNl
-        ? 'Jazeker! Als officieel erkend kuuroord (Bäderregelung NRW) mogen winkels in Winterberg op 39 zon- en feestdagen in 2026 hun deuren openen. De winkels zijn dan geopend van 11:00 tot 17:00 uur.'
-        : 'Ja, absolut! Als staatlich anerkannter heilklimatischer Kurort profitiert Winterberg von der nordrhein-westfälischen Bäderregelung (§ 10 LÖG NRW). Dadurch dürfen die Fachgeschäfte und Boutiquen an bis zu 39 Sonn- und Feiertagen im Jahr 2026 öffnen. Die Öffnungszeiten sind sonntags von 11:00 bis 17:00 Uhr.'
+        ? 'Jazeker! Op de officiële koopzondagen in Winterberg mogen winkels op 39 zon- en feestdagen in 2026 hun deuren openen. De winkels zijn dan geopend van 11:00 tot 17:00 uur.'
+        : 'Ja, absolut! Winterberg bietet an bis zu 39 Sonn- und Feiertagen im Jahr 2026 verkaufsoffene Sonntage (§ 10 LÖG NRW). Dadurch dürfen die Fachgeschäfte und Boutiquen öffnen. Die Öffnungszeiten sind sonntags von 11:00 bis 17:00 Uhr.'
     },
     {
       q: isNl ? 'Welke kledingwinkels en boetieks zijn er in Winterberg?' : 'Welche Modegeschäfte und Boutiquen gibt es in Winterberg?',
@@ -493,7 +493,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
             </p>
           </div>
 
-          {/* Card 3: Bäderregelung Sonntagsöffnung */}
+          {/* Card 3: Verkaufsoffene Sonntage */}
           <div className="bg-white dark:bg-[#1E2621] p-6 rounded-2xl border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
             <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center mb-4">
               <Sun className="w-6 h-6" />
@@ -504,7 +504,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
             <p className="text-sm text-[#5F6B63] dark:text-gray-300 leading-relaxed">
               {isNl
                 ? 'Dankzij de kuuroord-status openen winkels op wel 39 zon- en feestdagen van 11:00 tot 17:00 uur. Ideaal te combineren met een weekendje weg!'
-                : 'Dank der nordrhein-westfälischen Kurort-Bäderregelung öffnen die Geschäfte an 39 Sonn- und Feiertagen von 11:00 bis 17:00 Uhr. Perfekt für einen entspannten Wochenendausflug!'}
+                : 'An 39 verkaufsoffenen Sonn- und Feiertagen öffnen die Geschäfte von 11:00 bis 17:00 Uhr. Perfekt für einen entspannten Wochenendausflug!'}
             </p>
           </div>
         </div>
@@ -761,7 +761,7 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-950 text-[#0F4C2E] dark:text-emerald-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
                 <Sun className="w-3.5 h-3.5 text-amber-500" />
-                {isNl ? 'Bäderregeling Winterberg 2026' : 'Kurort-Bäderregelung 2026'}
+                {isNl ? 'Koopzondagen Winterberg 2026' : 'Verkaufsoffene Sonntage 2026'}
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B211D] dark:text-white mb-2">
                 {isNl ? 'Koopzondagen in Winterberg 2026' : 'Verkaufsoffene Sonntage in Winterberg 2026'}
@@ -1032,10 +1032,10 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
           <div className="mt-8 bg-white/70 dark:bg-black/30 p-4 rounded-2xl border border-black/5 flex items-start gap-3 text-xs text-[#5F6B63] dark:text-gray-400 leading-relaxed">
             <span className="text-base shrink-0">ℹ️</span>
             <div>
-              <strong className="text-stone-900 dark:text-stone-200">{isNl ? 'Wettelijke noot:' : 'Rechtlicher Hinweis zur Bäderregelung:'}</strong>{' '}
+              <strong className="text-stone-900 dark:text-stone-200">{isNl ? 'Wettelijke noot:' : 'Rechtlicher Hinweis zu den verkaufsoffenen Sonntagen:'}</strong>{' '}
               {isNl
-                ? 'Verkoopzondagen vinden plaats in het kader van de officiële kuuroord-bäderregeling van Noordrijn-Westfalen (§ 10 LÖG NRW). Wijzigingen door de overheid of individuele winkeliers voorbehouden. Supermarkten (zoals Aldi en Lidl) blijven op zondag gesloten.'
-                : 'Die Sonntagsöffnungen erfolgen im Rahmen der Kurort-Bäderregelung des Landes Nordrhein-Westfalen (§ 10 LÖG NRW). Änderungen durch Behörden oder teilnehmende Einzelhändler vorbehalten. Supermärkte und Discounter (Aldi, Lidl, REWE, etc.) bleiben sonntags geschlossen.'}
+                ? 'Verkoopzondagen vinden plaats op basis van de wettelijke regeling van Noordrijn-Westfalen (§ 10 LÖG NRW). Wijzigingen door de overheid of individuele winkeliers voorbehouden. Supermarkten (zoals Aldi en Lidl) blijven op zondag gesloten.'
+                : 'Die Sonntagsöffnungen erfolgen im Rahmen der gesetzlichen Regelung des Landes Nordrhein-Westfalen (§ 10 LÖG NRW). Änderungen durch Behörden oder teilnehmende Einzelhändler vorbehalten. Supermärkte und Discounter (Aldi, Lidl, REWE, etc.) bleiben sonntags geschlossen.'}
             </div>
           </div>
         </div>
