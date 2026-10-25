@@ -45,12 +45,10 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
   const [news, setNews] = useState<NewsArticle[]>(() => {
     const cached = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true);
     const map = new Map<string, NewsArticle>();
-    initialNews.forEach(n => map.set(n.slug || n.id, n));
+    initialNews.forEach(n => map.set(n.id, n));
     if (cached && Array.isArray(cached)) {
-      cached.forEach(n => map.set(n.slug || n.id, n));
+      cached.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
     }
-    // Re-assert latest initialNews
-    initialNews.forEach(n => map.set(n.slug || n.id, n));
     return Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   });
   const [loading, setLoading] = useState(() => {
@@ -64,9 +62,8 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
       const fresh = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS);
       if (fresh && fresh.length > 0) {
         const map = new Map<string, NewsArticle>();
-        initialNews.forEach(n => map.set(n.slug || n.id, n));
-        fresh.forEach(n => map.set(n.slug || n.id, n));
-        initialNews.forEach(n => map.set(n.slug || n.id, n));
+        initialNews.forEach(n => map.set(n.id, n));
+        fresh.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
         const merged = Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setNews(merged);
         setLoading(false);
@@ -77,9 +74,8 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
         const snapshot = await getDocs(q);
         const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as NewsArticle));
         const map = new Map<string, NewsArticle>();
-        initialNews.forEach(n => map.set(n.slug || n.id, n));
-        fetched.forEach(n => map.set(n.slug || n.id, n));
-        initialNews.forEach(n => map.set(n.slug || n.id, n));
+        initialNews.forEach(n => map.set(n.id, n));
+        fetched.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
         const merged = Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setNews(merged);
         setCachedItem(CACHE_KEYS.NEWS, merged);
@@ -87,11 +83,10 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
         console.warn("Error fetching news from Firestore (quota or offline), using cached/initial news:", e);
         const fallback = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true) || initialNews;
         const map = new Map<string, NewsArticle>();
-        initialNews.forEach(n => map.set(n.slug || n.id, n));
+        initialNews.forEach(n => map.set(n.id, n));
         if (Array.isArray(fallback)) {
-          fallback.forEach(n => map.set(n.slug || n.id, n));
+          fallback.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
         }
-        initialNews.forEach(n => map.set(n.slug || n.id, n));
         setNews(Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       } finally {
         setLoading(false);

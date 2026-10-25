@@ -1103,6 +1103,17 @@ export const businesses: Business[] = [
       'Verjaardagsfeesten en bedrijfsuitjes',
       'Centraal gelegen aan de Poststraße'
     ],
+    businessNews: [
+      {
+        id: 'falstaff-barguide-2027-buket-bar-winterberg-auszeichnung',
+        title: 'Falstaff Barguide: Bu’ket Bar in Winterberg mit herausragenden 91 Punkten als „Best of Germany“ ausgezeichnet',
+        excerpt: 'Für herausragende Cocktailkultur muss man nicht nach Berlin, Hamburg, Köln oder München reisen: Die Bu’ket Bar wurde im Falstaff Barguide mit 91/100 Punkten prämiert!',
+        content: `Für herausragende Cocktailkultur, virtuose Barkeeper-Kunst und erstklassiges Bar-Ambiente muss man längst nicht mehr in Metropolen wie Berlin, Hamburg, Köln oder München reisen: Die **Bu’ket Bar in Winterberg** (Poststraße 1) wurde im renommierten **Falstaff Barguide 2027** mit herausragenden **91 von 100 Punkten** und **3 Gläsern (YYY)** als eine der besten Cocktailbars des Landes („Best of Germany“) ausgezeichnet!\n\n![Falstaff Barguide 2027 – Best of Germany Auszeichnung für die Bu’ket Bar Winterberg](/news-buket-bar-falstaff-barguide-2027.png)\n\n## Was ist Falstaff & was bedeutet diese Auszeichnung?\n\nDer **Falstaff** gilt im gesamten deutschsprachigen Raum als das maßgebliche Leitmedium und die einflussreichste Institution für Genuss, Wein, Spitzengastronomie und anspruchsvolle Barkultur.\n\nMit einer **Bewertung von 91 Punkten** knackt die Bu’ket Bar mühelos die magische 90er-Schallmauer und platziert sich in der exklusiven Riege der **„Best of Germany“**-Locations.`,
+        imageUrl: '/news-buket-bar-cocktail-winterberg.png',
+        publishedAt: '2026-10-25T10:30:00.000Z',
+        status: 'published'
+      }
+    ],
     events: [
       {
         id: 'pub-quiz-music-edition-buket-bar-winterberg-2026',
