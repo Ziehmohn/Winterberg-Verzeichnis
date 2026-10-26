@@ -1396,51 +1396,7 @@ Sichern Sie sich rechtzeitig Ihre Plätze für das Konzert der New York Gospel S
 * **Locatieprofiel:** [Naar het profiel van Stadthalle Oversum in het overzicht](/dienstleistungen/tagungszentren/stadthalle-oversum-winterberg)
 :::`
   },
-  {
-    id: 'neue-kinderarztpraxis-winterberg-poststrasse',
-    slug: 'neue-kinderarztpraxis-winterberg-poststrasse',
-    title: 'Neue Kinderarztpraxis an der Poststraße in Winterberg eröffnet',
-    title_nl: 'Nieuwe kinderartspraktijk aan de Poststraße in Winterberg geopend',
-    author: 'Simon Kräling',
-    businessId: 'kinderarztpraxis-winterberg',
-    businessName: 'Kinderarztpraxis Winterberg (MVZ)',
-    businessSlug: 'kinderarztpraxis-winterberg',
-    imageUrl: '/news-kinderarztpraxis.jpg',
-    status: 'approved',
-    category: 'gesundheit',
-    date: '2026-09-07T10:00:00.000Z',
-    content: `Große Erleichterung für Familien in Winterberg, Medebach und Hallenberg: An der Poststraße 12 in Winterberg hat die neue kinder- und jugendärztliche Praxis eröffnet. Damit wird die wohnortnahe medizinische Versorgung für Kinder in unserer Region nachhaltig gestärkt und weite Anfahrtswege werden deutlich verkürzt.
 
-Träger der neuen Praxis ist das St. Franziskus Hospital Winterberg. Die Ansiedlung wurde in enger Kooperation zwischen der Stadt Winterberg, der Wirtschaftsförderung sowie den Nachbarkommunen Medebach und Hallenberg realisiert.
-
-## Das Praxisteam an der Poststraße
-
-Für eine kompetente und einfühlsame Betreuung sorgt ein erfahrenes Mediziner- und Praxisteam:
-
-* **Dr. Peter Gelshäuser (Ärztlicher Leiter)**
-  Facharzt für Kinder- und Jugendmedizin in Vollzeit mit langjähriger Praxis- und Klinikerfahrung.
-
-* **Dr. Ralph Armbrust (Facharzt für Kinder- und Jugendmedizin)**
-  Unterstützt die Praxis auf einer Teilzeitstelle und übernimmt die Vertretung.
-
-* **Engagiertes Praxis- & MFA-Team**
-  Ein fünfköpfiges Team aus medizinischen Fachangestellten betreut Familien von der Terminvergabe bis zur Behandlung.
-
-:::contact
-### Kontakt & Praxisdaten
-* **Standort:** Poststraße 12, 59955 Winterberg
-* **Telefon:** 02981 909348-0
-* **E-Mail:** kinderarzt@kh-winterberg.de
-:::`,
-    content_nl: `Grote opluchting voor gezinnen in Winterberg, Medebach en Hallenberg: Aan de Poststraße 12 in Winterberg is de nieuwe kinderartspraktijk geopend. Hiermee wordt de medische zorg voor kinderen in de regio aanzienlijk versterkt.
-
-:::contact
-### Contact & Praktijkgegevens
-* **Locatie:** Poststraße 12, 59955 Winterberg
-* **Telefoon:** 02981 909348-0
-* **E-mail:** kinderarzt@kh-winterberg.de
-:::`
-  },
   {
     id: '0MFwSDdhOmyvv3O8IqnA',
     slug: 'freistehende-ladenlokale-und-foerderprogramme-winterberg',

@@ -580,7 +580,12 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         const docRef = doc(db, 'news', newsId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setRawArticle({ id: docSnap.id, ...docSnap.data() } as NewsArticle);
+          const data = docSnap.data() as any;
+          if (data.status === 'deleted' || data.isDeleted || data.status === 'deactivated') {
+            setRawArticle(null);
+            return;
+          }
+          setRawArticle({ id: docSnap.id, ...data } as NewsArticle);
           return;
         }
 
@@ -589,7 +594,12 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         const slugSnap = await getDocs(slugQuery);
         if (!slugSnap.empty) {
           const matchedDoc = slugSnap.docs[0];
-          setRawArticle({ id: matchedDoc.id, ...matchedDoc.data() } as NewsArticle);
+          const data = matchedDoc.data() as any;
+          if (data.status === 'deleted' || data.isDeleted || data.status === 'deactivated') {
+            setRawArticle(null);
+            return;
+          }
+          setRawArticle({ id: matchedDoc.id, ...data } as NewsArticle);
           return;
         }
 
@@ -598,7 +608,12 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         const slugNlSnap = await getDocs(slugNlQuery);
         if (!slugNlSnap.empty) {
           const matchedDoc = slugNlSnap.docs[0];
-          setRawArticle({ id: matchedDoc.id, ...matchedDoc.data() } as NewsArticle);
+          const data = matchedDoc.data() as any;
+          if (data.status === 'deleted' || data.isDeleted || data.status === 'deactivated') {
+            setRawArticle(null);
+            return;
+          }
+          setRawArticle({ id: matchedDoc.id, ...data } as NewsArticle);
           return;
         }
 
@@ -622,7 +637,12 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
         });
 
         if (found) {
-          setRawArticle({ id: found.id, ...found.data() } as NewsArticle);
+          const data = found.data() as any;
+          if (data.status === 'deleted' || data.isDeleted || data.status === 'deactivated') {
+            setRawArticle(null);
+            return;
+          }
+          setRawArticle({ id: found.id, ...data } as NewsArticle);
         }
       } catch (e) {
         console.warn("Could not fetch news article from Firestore (quota limit or offline):", e);

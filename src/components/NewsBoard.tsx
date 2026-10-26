@@ -67,12 +67,10 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
 
   const [news, setNews] = useState<NewsArticle[]>(() => {
     const cached = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true);
-    const map = new Map<string, NewsArticle>();
-    initialNews.forEach(n => map.set(n.id, n));
-    if (cached && Array.isArray(cached)) {
-      cached.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
+    if (cached && Array.isArray(cached) && cached.length > 0) {
+      return cached.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted);
     }
-    return Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return [...initialNews].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   });
 
   const [loading, setLoading] = useState(() => {
@@ -132,33 +130,37 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
       // 1. Show cached merged news immediately, then revalidate in background
       const fresh = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS);
       if (fresh && fresh.length > 0) {
-        const map = new Map<string, NewsArticle>();
-        initialNews.forEach(n => map.set(n.id, n));
-        fresh.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
-        const merged = Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        setNews(merged);
+        setNews(fresh.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted));
         setLoading(false);
       }
 
       try {
-        const q = query(collection(db, 'news'), where('status', '==', 'approved'));
-        const snapshot = await getDocs(q);
-        const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as NewsArticle));
+        const snapshot = await getDocs(collection(db, 'news'));
         const map = new Map<string, NewsArticle>();
         initialNews.forEach(n => map.set(n.id, n));
-        fetched.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
+
+        snapshot.docs.forEach(d => {
+          const data = d.data() as any;
+          const id = d.id;
+          if (data.status === 'deleted' || data.isDeleted || data.status === 'deactivated' || data.status === 'pending') {
+            map.delete(id);
+          } else if (data.status === 'approved') {
+            const existing = map.get(id);
+            map.set(id, existing ? { ...existing, ...data, id } : { ...data, id });
+          }
+        });
+
         const merged = Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setNews(merged);
         setCachedItem(CACHE_KEYS.NEWS, merged);
       } catch (e) {
         console.warn("Error fetching news from Firestore (quota or offline), using cached/initial news:", e);
         const fallback = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true) || initialNews;
-        const map = new Map<string, NewsArticle>();
-        initialNews.forEach(n => map.set(n.id, n));
         if (Array.isArray(fallback)) {
-          fallback.forEach(n => { const existing = map.get(n.id); map.set(n.id, existing ? { ...existing, ...n } : n); });
+          setNews(fallback.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted));
+        } else {
+          setNews([...initialNews]);
         }
-        setNews(Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       } finally {
         setLoading(false);
       }

@@ -4897,7 +4897,13 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
       const firestoreItems = snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() }));
       const map = new Map<string, any>();
       initialNews.forEach(n => map.set(n.id, n));
-      firestoreItems.forEach(n => map.set(n.id, { ...(map.get(n.id) || {}), ...n }));
+      firestoreItems.forEach(n => {
+        if (n.status === 'deleted' || n.isDeleted) {
+          map.delete(n.id);
+        } else {
+          map.set(n.id, { ...(map.get(n.id) || {}), ...n, id: n.id });
+        }
+      });
       const items = Array.from(map.values());
       items.sort((a: any, b: any) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
       setNews(items);
@@ -5028,9 +5034,10 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
   const handleToggleStatus = async (id: string, currentStatus: 'pending' | 'approved') => {
     const nextStatus = currentStatus === 'pending' ? 'approved' : 'pending';
     try {
-      await updateDoc(doc(db, 'news', id), { status: nextStatus });
+      await setDoc(doc(db, 'news', id), { status: nextStatus }, { merge: true });
       setNews(prev => prev.map(item => item.id === id ? { ...item, status: nextStatus } : item));
       invalidateCache(CACHE_KEYS.NEWS);
+      bumpRemoteBusinessesVersion(db);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Aktualisieren des Status');
@@ -5040,9 +5047,10 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
   const handleDelete = async (id: string) => {
     if (!window.confirm('Möchten Sie diesen News-Beitrag wirklich unwiderruflich löschen?')) return;
     try {
-      await deleteDoc(doc(db, 'news', id));
+      await setDoc(doc(db, 'news', id), { status: 'deleted', isDeleted: true, deletedAt: new Date().toISOString() }, { merge: true });
       setNews(prev => prev.filter(item => item.id !== id));
       invalidateCache(CACHE_KEYS.NEWS);
+      bumpRemoteBusinessesVersion(db);
     } catch (e) {
       console.error(e);
       alert('Fehler beim Löschen');
