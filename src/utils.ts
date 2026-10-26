@@ -201,7 +201,7 @@ export function parseBusinessAddress(address?: string, district?: string): { str
 }
 
 /**
- * Checks whether a business is open on Sunday (regularly or via Bäderregelung)
+ * Checks whether a business is open on Sunday (regularly or on open Sundays)
  */
 export function isSundayOpen(openingHours?: OpeningHours | null): boolean {
   if (!openingHours || !openingHours.sunday) return false;

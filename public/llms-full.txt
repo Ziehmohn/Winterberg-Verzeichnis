@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-25
+# Stand: 2026-10-26
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -4594,7 +4594,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### Frage: Wann sind verkaufsoffene Sonntage in Winterberg?
 - **Kategorie:** Einkaufen & Shopping
-- **Antwort:** Im Rahmen der nordrhein-westfälischen Bäderregelung für heilklimatische Kurorte hat Winterberg 2026 an 39 Sonn- und Feiertagen verkaufsoffen (Öffnungszeiten: 11:00 bis 17:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.
+- **Antwort:** In Winterberg öffnen die Geschäfte 2026 an 39 verkaufsoffenen Sonn- und Feiertagen (Öffnungszeiten: 11:00 bis 17:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.
 
 #### Frage: Wo kann man in Winterberg gut essen?
 - **Kategorie:** Essen & Trinken

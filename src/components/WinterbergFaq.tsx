@@ -616,11 +616,11 @@ export const FAQ_DATA: FaqItem[] = [
     categoryGroup: 'Einkaufen & Shopping',
     de: {
       question: 'Wann sind verkaufsoffene Sonntage in Winterberg?',
-      quickSummary: 'Im Jahr 2026 öffnen die Geschäfte in Winterberg an 39 behördlich genehmigten Sonn- und Feiertagen (Bäderregelung NRW), jeweils von 11:00 bis 17:00 Uhr.',
-      plainAnswer: 'Im Rahmen der nordrhein-westfälischen Bäderregelung für heilklimatische Kurorte hat Winterberg 2026 an 39 Sonn- und Feiertagen verkaufsoffen (Öffnungszeiten: 11:00 bis 17:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.',
+      quickSummary: 'Im Jahr 2026 öffnen die Geschäfte in Winterberg an 39 behördlich genehmigten Sonn- und Feiertagen (verkaufsoffene Sonntage), jeweils von 11:00 bis 17:00 Uhr.',
+      plainAnswer: 'In Winterberg öffnen die Geschäfte 2026 an 39 verkaufsoffenen Sonn- und Feiertagen (Öffnungszeiten: 11:00 bis 17:00 Uhr). Termine und den offiziellen PDF-Kalender finden Sie auf unserer Themenseite Shoppen in Winterberg.',
       answerHtml: (
         <div className="space-y-3">
-          <p>Als anerkannter heilklimatischer Kurort gilt in Winterberg die Bäderregelung nach § 10 LÖG NRW:</p>
+          <p>In Winterberg finden 2026 zahlreiche verkaufsoffene Sonntage nach § 10 LÖG NRW statt:</p>
           <ul className="list-disc pl-5 space-y-1.5">
             <li><strong>39 Termine im Jahr 2026:</strong> An zahlreichen Sonntagen während der Wintersportsaison, an Pfingsten, Kirmes, im goldenen Oktober und an Adventswochenenden öffnen die Geschäfte ihre Türen.</li>
             <li><strong>Öffnungszeiten:</strong> Jeweils von <strong>11:00 bis 17:00 Uhr</strong>.</li>
@@ -660,7 +660,7 @@ export const FAQ_DATA: FaqItem[] = [
       plainAnswer: 'Dankzij de kuuroord-status zijn winkels in Winterberg in 2026 op 39 zon- en feestdagen geopend, van 11:00 tot 17:00 uur. Download de complete kalender op onze thesapagina Winkelen in Winterberg.',
       answerHtml: (
         <div className="space-y-3">
-          <p>Winterberg beschikt dankzij de kuuroordstatus over een ruime koopzondagenregeling (Bäderregelung):</p>
+          <p>Winterberg beschikt dankzij de kuuroordstatus over een ruime koopzondagenregeling:</p>
           <ul className="list-disc pl-5 space-y-1.5">
             <li><strong>39 Dagen in 2026:</strong> Veel zondagen in het wintersportseizoen, met Pinksteren, kermis, herfstvakantie en advent.</li>
             <li><strong>Openingstijden:</strong> Van <strong>11:00 tot 17:00 uur</strong>.</li>

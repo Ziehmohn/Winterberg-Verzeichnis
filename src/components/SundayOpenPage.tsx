@@ -115,15 +115,15 @@ export const SundayOpenPage: React.FC<SundayOpenPageProps> = ({
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-amber-300 mb-4">
             <Sun className="w-3.5 h-3.5" />
-            {isNl ? 'Bäderregeling Winterberg' : 'Bäderregelung Winterberg (Kurort)'}
+            {isNl ? 'Koopzondagen Winterberg' : 'Verkaufsoffene Sonntage Winterberg'}
           </div>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
             {isNl ? 'Op zondag geopend in Winterberg' : 'Sonntags geöffnet in Winterberg'}
           </h1>
           <p className="text-sm sm:text-base text-white/90 leading-relaxed">
             {isNl
-              ? 'Winkelen, lekker ontbijten of skispullen huren op zondag? Dankzij de officiële heilklimatische kuuroord-status mogen veel zaken in Winterberg ook op zon- en feestdagen de deuren openen.'
-              : 'Einkaufen, frische Brötchen holen oder die Skiausrüstung leihen? Als anerkannter heilklimatischer Kurort profitieren viele Winterberger Händler, Bäcker und Betriebe von der Bäderverordnung NRW.'}
+              ? 'Winkelen, lekker ontbijten of skispullen huren op zondag? Dankzij de officiële koopzondagen mogen veel zaken in Winterberg ook op zon- en feestdagen de deuren openen.'
+              : 'Einkaufen, frische Brötchen holen oder die Skiausrüstung leihen? An den verkaufsoffenen Sonntagen öffnen viele Winterberger Händler, Bäcker und Betriebe ihre Türen.'}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -250,7 +250,7 @@ export const SundayOpenPage: React.FC<SundayOpenPageProps> = ({
         </div>
       )}
 
-      {/* SEO Explanatory Guide Box about Bäderregelung */}
+      {/* SEO Explanatory Guide Box about verkaufsoffene Sonntage */}
       <section className="mt-14 bg-emerald-50/70 dark:bg-[#17231B] border border-emerald-100 dark:border-emerald-900/50 rounded-2xl p-6 sm:p-8">
         <div className="flex items-start gap-4">
           <div className="p-3 bg-emerald-100 dark:bg-emerald-900/40 rounded-xl text-[#0F4C2E] dark:text-emerald-400 shrink-0">
@@ -259,19 +259,19 @@ export const SundayOpenPage: React.FC<SundayOpenPageProps> = ({
           <div>
             <h2 className="text-lg font-bold text-[#0F4C2E] dark:text-emerald-300 mb-2">
               {isNl
-                ? 'Wat is de Bäderregeling in Winterberg?'
-                : 'Hintergrund: Die Bäderverordnung & Sonntagsöffnung in Winterberg'}
+                ? 'Hoe werken de koopzondagen in Winterberg?'
+                : 'Hintergrund: Verkaufsoffene Sonntage in Winterberg'}
             </h2>
             <div className="text-sm text-gray-700 dark:text-gray-300 space-y-2 leading-relaxed">
               <p>
                 {isNl
-                  ? 'In Duitsland zijn winkels op zondag doorgaans wettelijk gesloten. Omdat Winterberg officieel erkend is als heilklimatischer Kurort en drukbezocht wintersportcentrum, geldt hier een uitzondering: de zogeheten Bäderregelung van de deelstaat Noordrijn-Westfalen (NRW).'
-                  : 'Grundsätzlich gilt in Deutschland das Sonn- und Feiertagsverkaufsverbot. Weil Winterberg jedoch als heilklimatischer Kurort und internationales Wintersportzentrum anerkannt ist, greift hier die nordrhein-westfälische Bäderverordnung.'}
+                  ? 'In Duitsland zijn winkels op zondag doorgaans wettelijk gesloten. In Winterberg geldt voor het kuuroord en wintersportcentrum een uitzondering: hier vinden jaarlijks talrijke officiële koopzondagen plaats.'
+                  : 'Grundsätzlich gilt in Deutschland das Sonn- und Feiertagsverkaufsverbot. Weil Winterberg jedoch als heilklimatischer Kurort und internationales Wintersportzentrum anerkannt ist, gibt es hier an bis zu 39 Terminen im Jahr verkaufsoffene Sonntage.'}
               </p>
               <p>
                 {isNl
                   ? 'Hierdoor mogen winkels met artikelen voor toeristen, sportkleding, souvenirs, levensmiddelen en bakkers op vaste zondagen in het seizoen de deuren openen. Horecagelegenheden en skiverhuurbedrijven zijn vanzelfsprekend regulier geopend.'
-                  : 'Einzelhändler für Sportartikel, Bekleidung, Souvenirs und Reisebedarf sowie Lebensmittelanbieter dürfen an Sonntagen im Rahmen der festgelegten Kernzeiten öffnen. Gastronomiebetriebe und Skiverleiher haben regulär an Wochenenden Hochbetrieb.'}
+                  : 'Einzelhändler für Sportartikel, Bekleidung, Souvenirs und Reisebedarf sowie Lebensmittelanbieter dürfen an verkaufsoffenen Sonntagen im Rahmen der festgelegten Kernzeiten öffnen. Gastronomiebetriebe und Skiverleiher haben regulär an Wochenenden Hochbetrieb.'}
               </p>
             </div>
           </div>
