@@ -682,7 +682,7 @@ export default function EventsBoard({
       </section>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white border border-[#E7E2DA] rounded-2xl p-4 sm:p-5 shadow-xs mb-8 space-y-4">
+      <div className="bg-[#F5F4F0] border-2 border-[#DDD7CD] rounded-3xl p-5 sm:p-6 shadow-[0_4px_24px_rgba(27,33,29,0.06)] mb-8 space-y-4">
         <div className="relative">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#717E75]" />
           <input
@@ -690,7 +690,7 @@ export default function EventsBoard({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={lang === 'nl' ? 'Zoek evenement of organisator...' : 'Event oder Veranstalter suchen...'}
-            className="w-full pl-10 pr-10 py-2.5 bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl text-[14.5px] text-[#1B211D] placeholder-[#8A958E] focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all"
+            className="w-full pl-10 pr-10 py-2.5 bg-white border border-[#D5D0C5] rounded-xl text-[14.5px] text-[#1B211D] placeholder-[#8A958E] focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all shadow-xs"
           />
           {searchQuery && (
             <button type="button" onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1">
@@ -700,7 +700,7 @@ export default function EventsBoard({
         </div>
 
         {/* Date & Timeframe Filter Section */}
-        <div className="pt-3 border-t border-[#F0EBE1] space-y-3">
+        <div className="pt-3 border-t border-[#E2DDD3] space-y-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-md bg-[#7E22CE]/10 flex items-center justify-center text-[#7E22CE]">
@@ -735,7 +735,7 @@ export default function EventsBoard({
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                     isActive 
                       ? 'bg-[#7E22CE] text-white shadow-xs' 
-                      : 'bg-[#F4F1EA] text-[#4A544D] hover:bg-[#EBE5DB]'
+                      : 'bg-white text-[#4A544D] border border-[#DDD7CD] hover:bg-[#FAF9F6] shadow-2xs'
                   }`}
                 >
                   {preset.label}
@@ -745,7 +745,7 @@ export default function EventsBoard({
           </div>
 
           {/* Interactive Date Inputs: Startdatum & Enddatum */}
-          <div className="bg-[#FAF8F5] border border-[#E7E2DA] rounded-xl p-3 sm:p-3.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-end">
+          <div className="bg-white border border-[#DDD7CD] rounded-2xl p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-2xs">
             <div className="lg:col-span-5">
               <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
@@ -755,7 +755,7 @@ export default function EventsBoard({
                 type="date"
                 value={startDateFilter}
                 onChange={(e) => handleCustomStartDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2 bg-[#FAF8F5] border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
               />
             </div>
 
@@ -769,7 +769,7 @@ export default function EventsBoard({
                 value={endDateFilter}
                 min={startDateFilter || undefined}
                 onChange={(e) => handleCustomEndDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2 bg-[#FAF8F5] border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
               />
             </div>
 
@@ -778,7 +778,7 @@ export default function EventsBoard({
                 <button
                   type="button"
                   onClick={resetDateFilter}
-                  className="w-full py-2 px-3 text-xs font-bold text-[#717E75] hover:text-[#1B211D] bg-white hover:bg-gray-50 rounded-lg border border-[#D5D0C5] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
+                  className="w-full py-2 px-3 text-xs font-bold text-[#717E75] hover:text-[#1B211D] bg-[#FAF8F5] hover:bg-gray-100 rounded-lg border border-[#D5D0C5] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
                 >
                   <X className="w-3.5 h-3.5" />
                   <span>{lang === 'nl' ? 'Reset' : 'Zurücksetzen'}</span>
@@ -792,7 +792,7 @@ export default function EventsBoard({
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-3 border-t border-[#F0EBE1]">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-3 border-t border-[#E2DDD3]">
           <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0">
             {uniqueCategories.map((type) => {
               const isActive = selectedCategory === type;
@@ -805,7 +805,9 @@ export default function EventsBoard({
                 <button
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
                   className={`px-3.5 py-1.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
-                    isActive ? 'bg-[#7E22CE] text-white shadow-xs' : 'bg-[#F4F1EA] text-[#4A544D] hover:bg-[#EBE5DB]'
+                    isActive 
+                      ? 'bg-[#7E22CE] text-white shadow-xs' 
+                      : 'bg-white text-[#4A544D] border border-[#DDD7CD] hover:bg-[#FAF9F6] shadow-2xs'
                   }`}
                 >
                   {CatIcon && <CatIcon className="w-3.5 h-3.5" />}
@@ -814,7 +816,7 @@ export default function EventsBoard({
               );
             })}
           </div>
-          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-[#F4F1EA] p-1 rounded-lg border border-[#E7E2DA]">
+          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-white p-1 rounded-xl border border-[#DDD7CD] shadow-2xs">
             <button
               type="button"
               onClick={() => setViewMode('list')}
