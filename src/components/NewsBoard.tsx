@@ -325,95 +325,93 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
       </div>
 
       {/* Filter and Search Container */}
-      <div className="bg-white border border-[#EDE8E0] rounded-xl p-4 md:p-5 mb-8 shadow-sm space-y-4">
-        {/* Top Filter Controls: Search + Period + Business + Sort */}
-        <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3">
-          {/* Search Input */}
-          <div className="relative flex-1">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={isNl ? "Nieuws doorzoeken (bijv. Bu'ket Bar, skilift, winterdorp...)" : "News durchsuchen (z. B. Bu'ket Bar, Skilift, Winterdorf...)"}
-              className="w-full pl-10 pr-9 py-2.5 text-[14px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] transition-all text-[#1B211D] placeholder:text-[#8A958E]"
-            />
-            {searchQuery && (
-              <button 
-                type="button"
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-[#8A958E] hover:text-[#1B211D] transition-colors"
-                title={isNl ? "Zoekopdracht wissen" : "Suche löschen"}
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
+      <div className="bg-white border border-[#EDE8E0] rounded-xl p-4 md:p-5 mb-8 shadow-sm space-y-3.5">
+        {/* Row 1: Search Bar Full Width */}
+        <div className="relative w-full">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={isNl ? "Nieuws doorzoeken op trefwoord, bedrijf of onderwerp..." : "News nach Stichwort, Betrieb oder Thema durchsuchen..."}
+            className="w-full pl-10 pr-9 py-2.5 text-[14px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] transition-all text-[#1B211D] placeholder:text-[#8A958E]"
+          />
+          {searchQuery && (
+            <button 
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-[#8A958E] hover:text-[#1B211D] transition-colors"
+              title={isNl ? "Zoekopdracht wissen" : "Suche löschen"}
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Row 2: 3 Filter Dropdowns in a balanced responsive grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+          {/* Period Dropdown */}
+          <div className="relative min-w-0 w-full">
+            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
+            <select
+              value={selectedPeriod}
+              onChange={(e) => setSelectedPeriod(e.target.value)}
+              aria-label={isNl ? "Periode filteren" : "Zeitraum filtern"}
+              className="w-full pl-9 pr-7 py-2.5 text-[13.5px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] text-[#1B211D] font-medium transition-all cursor-pointer appearance-none truncate"
+            >
+              <option value="all">{isNl ? 'Alle periodes' : 'Alle Zeiten'}</option>
+              <option value="30days">{isNl ? 'Laatste 30 dagen' : 'Letzte 30 Tage'}</option>
+              <option value="90days">{isNl ? 'Laatste 3 maanden' : 'Letzte 3 Monate'}</option>
+              <option value="2026">2026</option>
+              <option value="2025">{isNl ? '2025 & ouder' : '2025 & älter'}</option>
+            </select>
+            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#8A958E] text-[11px]">
+              ▼
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 shrink-0">
-            {/* Period Dropdown */}
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
-              <select
-                value={selectedPeriod}
-                onChange={(e) => setSelectedPeriod(e.target.value)}
-                aria-label={isNl ? "Periode filteren" : "Zeitraum filtern"}
-                className="w-full pl-9 pr-7 py-2.5 text-[13.5px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] text-[#1B211D] font-medium transition-all cursor-pointer appearance-none"
-              >
-                <option value="all">{isNl ? 'Alle periodes' : 'Alle Zeiten'}</option>
-                <option value="30days">{isNl ? 'Laatste 30 dagen' : 'Letzte 30 Tage'}</option>
-                <option value="90days">{isNl ? 'Laatste 3 maanden' : 'Letzte 3 Monate'}</option>
-                <option value="2026">2026</option>
-                <option value="2025">{isNl ? '2025 & ouder' : '2025 & älter'}</option>
-              </select>
-              <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#8A958E] text-[11px]">
-                ▼
-              </div>
+          {/* Business Dropdown */}
+          <div className="relative min-w-0 w-full">
+            <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
+            <select
+              value={selectedBusiness}
+              onChange={(e) => setSelectedBusiness(e.target.value)}
+              aria-label={isNl ? "Bedrijf filteren" : "Unternehmen filtern"}
+              className="w-full pl-9 pr-7 py-2.5 text-[13.5px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] text-[#1B211D] font-medium transition-all cursor-pointer appearance-none truncate"
+            >
+              <option value="all">{isNl ? 'Alle bedrijven' : 'Alle Unternehmen'}</option>
+              {availableBusinesses.map(b => (
+                <option key={b.name} value={b.name}>
+                  {b.name} ({b.count})
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#8A958E] text-[11px]">
+              ▼
             </div>
+          </div>
 
-            {/* Business Dropdown */}
-            <div className="relative">
-              <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
-              <select
-                value={selectedBusiness}
-                onChange={(e) => setSelectedBusiness(e.target.value)}
-                aria-label={isNl ? "Bedrijf filteren" : "Unternehmen filtern"}
-                className="w-full pl-9 pr-7 py-2.5 text-[13.5px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] text-[#1B211D] font-medium transition-all cursor-pointer appearance-none truncate"
-              >
-                <option value="all">{isNl ? 'Alle bedrijven' : 'Alle Unternehmen'}</option>
-                {availableBusinesses.map(b => (
-                  <option key={b.name} value={b.name}>
-                    {b.name} ({b.count})
-                  </option>
-                ))}
-              </select>
-              <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#8A958E] text-[11px]">
-                ▼
-              </div>
-            </div>
-
-            {/* Sort Toggle */}
-            <div className="relative">
-              <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
-                aria-label={isNl ? "Sortering" : "Sortierung"}
-                className="w-full pl-9 pr-7 py-2.5 text-[13.5px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] text-[#1B211D] font-medium transition-all cursor-pointer appearance-none"
-              >
-                <option value="newest">{isNl ? 'Nieuwste eerst' : 'Neueste zuerst'}</option>
-                <option value="oldest">{isNl ? 'Oudste eerst' : 'Älteste zuerst'}</option>
-              </select>
-              <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#8A958E] text-[11px]">
-                ▼
-              </div>
+          {/* Sort Toggle */}
+          <div className="relative min-w-0 w-full">
+            <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A958E] pointer-events-none" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
+              aria-label={isNl ? "Sortering" : "Sortierung"}
+              className="w-full pl-9 pr-7 py-2.5 text-[13.5px] bg-[#FAF8F5] border border-[#E2DDD3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F4C2E]/20 focus:border-[#0F4C2E] text-[#1B211D] font-medium transition-all cursor-pointer appearance-none truncate"
+            >
+              <option value="newest">{isNl ? 'Nieuwste eerst' : 'Neueste zuerst'}</option>
+              <option value="oldest">{isNl ? 'Oudste eerst' : 'Älteste zuerst'}</option>
+            </select>
+            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#8A958E] text-[11px]">
+              ▼
             </div>
           </div>
         </div>
 
-        {/* Category Pills (Horizontal Scroll on Mobile) */}
+        {/* Row 3: Category Pills (Wrap naturally without horizontal scrollbar) */}
         <div className="pt-2 border-t border-[#F0ECE3]">
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 pt-1 scrollbar-thin scrollbar-thumb-gray-200">
+          <div className="flex flex-wrap items-center gap-2">
             {NEWS_CATEGORIES.map(cat => {
               const isActive = selectedCategory === cat.id;
               const count = categoryCounts[cat.id] ?? 0;
