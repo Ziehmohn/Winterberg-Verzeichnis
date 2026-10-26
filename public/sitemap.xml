@@ -182,18 +182,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.winterberg-verzeichnis.de/news/neue-kinderarztpraxis-winterberg-poststrasse</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/neue-kinderarztpraxis-winterberg-poststrasse</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.winterberg-verzeichnis.de/news/freistehende-ladenlokale-und-foerderprogramme-winterberg</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -261,6 +249,18 @@
   </url>
   <url>
     <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/trachtenmode-oktoberfest-bessmann-winterberg-neue-mitte</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/news/neue-kinderarztpraxis-winterberg-poststrasse</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.winterberg-verzeichnis.de/nl/nieuws/neue-kinderarztpraxis-winterberg-poststrasse</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

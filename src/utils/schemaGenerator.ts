@@ -297,3 +297,71 @@ export function generateWebSiteSearchSchema(): any {
     }
   };
 }
+
+/**
+ * Generates Schema.org Event JSON-LD for rich snippets
+ */
+export function generateEventSchema(event: any, business?: any, lang: 'de' | 'nl' = 'de'): any {
+  const title = (lang === 'nl' && event.title_nl) ? event.title_nl : event.title;
+  const description = (lang === 'nl' && event.description_nl) ? event.description_nl : event.description;
+  const locationName = event.location || (business?.district ? `${business.name}, ${business.district}` : business?.name) || 'Winterberg';
+  const eventSlug = (lang === 'nl' && event.slug_nl) ? event.slug_nl : (event.slug || event.id);
+  const eventUrl = `${BASE_URL}${lang === 'nl' ? '/nl/evenementen' : '/veranstaltungen'}/${eventSlug}`;
+
+  const startIso = event.startTime ? `${event.startDate}T${event.startTime}:00` : `${event.startDate}T00:00:00`;
+  const endIso = event.endDate 
+    ? (event.endTime ? `${event.endDate}T${event.endTime}:00` : `${event.endDate}T23:59:59`)
+    : (event.endTime ? `${event.startDate}T${event.endTime}:00` : undefined);
+
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    'name': title,
+    'description': description || title,
+    'startDate': startIso,
+    'eventStatus': 'https://schema.org/EventScheduled',
+    'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+    'url': eventUrl,
+    'location': {
+      '@type': 'Place',
+      'name': locationName,
+      'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': business?.address || 'Winterberg',
+        'addressLocality': business?.district || 'Winterberg',
+        'postalCode': '59955',
+        'addressCountry': 'DE'
+      }
+    }
+  };
+
+  if (endIso) {
+    schema.endDate = endIso;
+  }
+
+  if (event.imageUrl) {
+    schema.image = [event.imageUrl.startsWith('http') ? event.imageUrl : `${BASE_URL}${event.imageUrl}`];
+  }
+
+  if (business) {
+    schema.organizer = {
+      '@type': 'Organization',
+      'name': business.name,
+      'url': business.website || `${BASE_URL}${getBusinessPath(business, lang)}`
+    };
+  }
+
+  const ticketUrl = event.ticketUrl || (event.externalUrl && /ticket|karten|buchen|eventim|reservix/i.test(event.externalUrl) ? event.externalUrl : undefined);
+  if (ticketUrl || event.price) {
+    schema.offers = {
+      '@type': 'Offer',
+      'price': event.price ? (event.price.replace(/[^0-9.,]/g, '').replace(',', '.') || '0') : '0',
+      'priceCurrency': 'EUR',
+      'availability': 'https://schema.org/InStock',
+      'url': ticketUrl || eventUrl,
+      'validFrom': event.startDate
+    };
+  }
+
+  return schema;
+}

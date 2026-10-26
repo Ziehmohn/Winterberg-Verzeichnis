@@ -183,6 +183,10 @@ export interface EventItem {
   imageUrl?: string;
   externalUrl?: string;
   externalUrl_nl?: string;
+  ticketUrl?: string;
+  ticketUrl_nl?: string;
+  slug?: string;
+  slug_nl?: string;
   isPremium?: boolean;
   price?: string;
 }

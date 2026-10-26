@@ -5205,7 +5205,24 @@ export const businesses: Business[] = [
       friday: '00:00 - 24:00',
       saturday: '00:00 - 24:00',
       sunday: '00:00 - 24:00'
-    }
+    },
+    events: [
+      {
+        id: 'landrat-thomas-grosche-winterberg-2026-11-04',
+        title: 'Ein Jahr im Amt – Landrat Thomas Grosche zu Gast in Winterberg',
+        title_nl: 'Eén jaar in functie – Landraad Thomas Grosche te gast in Winterberg',
+        startDate: '2026-11-04',
+        endDate: '2026-11-04',
+        startTime: '16:00',
+        endTime: '18:00',
+        price: 'Freier Eintritt (Öffentlich)',
+        category: 'Kultur',
+        location: 'Schulungsraum des Pflegekollegs Winterberg, Am Kurpark 4 (beim Oversum), 59955 Winterberg',
+        imageUrl: '/event-landrat-grosche-winterberg-2026.jpg',
+        description: 'Auf Einladung des Seniorenbeirats Winterberg kommt Landrat Thomas Grosche anlässlich seines einjährigen Amtsjubiläums nach Winterberg. Alle Bürgerinnen und Bürger sind herzlich zu dieser öffentlichen Informations- und Dialogveranstaltung eingeladen!\n\nZum Auftakt stellt das St. Franziskus-Hospital sein modernes Ausbildungszentrum vor. Mit dieser Einrichtung leistet das Krankenhaus einen unverzichtbaren Beitrag zur Sicherung von Fachkräften im Gesundheitswesen.\n\nAnschließend berichtet Landrat Thomas Grosche über aktuelle Herausforderungen im Hochsauerlandkreis. Im Mittelpunkt stehen:\n• Sicherung der medizinischen Infrastruktur, insbesondere der Rettungsdienste\n• Demografischer Wandel und Finanzen, unter anderem der Haushaltsplanentwurf 2027\n\nZum Abschluss besteht die Möglichkeit, mit dem Landrat ins Gespräch zu kommen, Fragen zu stellen und aktuelle Themen gemeinsam zu diskutieren.',
+        description_nl: 'Op uitnodiging van de Seniorenraad Winterberg is Landraad Thomas Grosche ter gelegenheid van zijn eenjarig ambtsjubileum te gast in Winterberg. Alle inwoners en geïnteresseerden zijn van harte welkom bij deze openbare bijeenkomst!\n\nAls opening presenteert het St. Franziskus-Hospital zijn moderne opleidingscentrum. Hiermee levert het ziekenhuis een belangrijke bijdrage aan de werving en opleiding van zorgpersoneel in de regio.\n\nAansluitend bespreekt Landraad Thomas Grosche actuele thema\'s en uitdagingen in het Hochsauerlandkreis, waaronder de medische infrastructuur, ambulancediensten, demografische ontwikkelingen en de ontwerpbegroting voor 2027. Tot slot is er gelegenheid voor een open dialoog en vragenronde.'
+      }
+    ]
   },
   {
     id: 'dr-daniel-castillo-chevallier-winterberg',

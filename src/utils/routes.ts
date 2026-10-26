@@ -177,6 +177,13 @@ export function getBusinessPath(bus: { category: string; subcategory?: string; n
   return subSlug ? `${prefix}/${catSlug}/${subSlug}/${bSlug}` : `${prefix}/${catSlug}/${bSlug}`;
 }
 
+export function getEventPath(event: { id: string; slug?: string; slug_nl?: string }, lang: Lang = 'de'): string {
+  const prefix = lang === 'nl' ? '/nl' : '';
+  const baseSlug = STATIC_PAGE_SLUGS.events[lang];
+  const eSlug = (lang === 'nl' && event.slug_nl) ? event.slug_nl : (event.slug || event.id);
+  return `${prefix}/${baseSlug}/${eSlug}`;
+}
+
 export function getCategorySlug(categoryName: string, lang: Lang): string {
   const mapping = CATEGORY_SLUGS[categoryName];
   if (mapping) return mapping[lang];
@@ -224,12 +231,14 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'event-detail' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
   newsSlug?: string;
   newsSlugNl?: string;
+  eventSlug?: string;
+  eventSlugNl?: string;
   jobsCategory?: string;
   location?: string;
 }
@@ -296,6 +305,12 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'events':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.events[targetLang]}`;
+
+    case 'event-detail': {
+      const baseSlug = STATIC_PAGE_SLUGS.events[targetLang];
+      const detailSlug = (targetLang === 'nl' && state.eventSlugNl) ? state.eventSlugNl : state.eventSlug;
+      return `${baseUrl}${prefix}/${baseSlug}/${detailSlug || ''}`;
+    }
 
     case 'news': {
       const slug = STATIC_PAGE_SLUGS.news[targetLang];
