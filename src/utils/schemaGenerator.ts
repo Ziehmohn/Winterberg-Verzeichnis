@@ -299,6 +299,22 @@ export function generateWebSiteSearchSchema(): any {
 }
 
 /**
+ * Maps event categories to official Schema.org Event sub-types
+ */
+export function getSchemaEventType(category: string = ''): string {
+  const cat = category.toLowerCase();
+  if (cat.includes('sport') || cat.includes('cup') || cat.includes('lauf') || cat.includes('rennen') || cat.includes('weltcup')) return 'SportsEvent';
+  if (cat.includes('konzert') || cat.includes('musik') || cat.includes('music') || cat.includes('band')) return 'MusicEvent';
+  if (cat.includes('fest') || cat.includes('festival') || cat.includes('party') || cat.includes('kirmes')) return 'Festival';
+  if (cat.includes('comedy') || cat.includes('kabarett') || cat.includes('humor')) return 'ComedyEvent';
+  if (cat.includes('kulinar') || cat.includes('food') || cat.includes('essen') || cat.includes('tasting')) return 'FoodEvent';
+  if (cat.includes('kunst') || cat.includes('art') || cat.includes('ausstellung')) return 'ExhibitionEvent';
+  if (cat.includes('theater') || cat.includes('schauspiel')) return 'TheaterEvent';
+  if (cat.includes('workshop') || cat.includes('kurs') || cat.includes('seminar')) return 'Course';
+  return 'Event';
+}
+
+/**
  * Generates Schema.org Event JSON-LD for rich snippets
  */
 export function generateEventSchema(event: any, business?: any, lang: 'de' | 'nl' = 'de'): any {
@@ -313,9 +329,11 @@ export function generateEventSchema(event: any, business?: any, lang: 'de' | 'nl
     ? (event.endTime ? `${event.endDate}T${event.endTime}:00` : `${event.endDate}T23:59:59`)
     : (event.endTime ? `${event.startDate}T${event.endTime}:00` : undefined);
 
+  const eventType = getSchemaEventType(event.category);
+
   const schema: any = {
     '@context': 'https://schema.org',
-    '@type': 'Event',
+    '@type': eventType,
     'name': title,
     'description': description || title,
     'startDate': startIso,

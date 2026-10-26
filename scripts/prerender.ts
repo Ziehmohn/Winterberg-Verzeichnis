@@ -16,7 +16,7 @@ import {
   BUSINESS_DEDUPLICATION_REDIRECTS,
   isBusinessDeactivated
 } from '../src/utils/routes';
-import { generateLocalBusinessSchema, generateCollectionPageSchema } from '../src/utils/schemaGenerator';
+import { generateLocalBusinessSchema, generateCollectionPageSchema, getSchemaEventType } from '../src/utils/schemaGenerator';
 import { getLocalizedBusiness } from '../src/utils/translator';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
@@ -932,9 +932,11 @@ Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
     ? (event.imageUrl.startsWith('http') ? event.imageUrl : `${baseUrl}${event.imageUrl.startsWith('/') ? '' : '/'}${event.imageUrl}`)
     : `${baseUrl}/winterberg-header.webp`;
 
+  const ticketUrl = event.ticketUrl || (event.externalUrl && /ticket|karten|buchen|eventim|reservix/i.test(event.externalUrl) ? event.externalUrl : undefined);
+
   const schemaJsonLdDe: any = {
     '@context': 'https://schema.org',
-    '@type': 'Event',
+    '@type': getSchemaEventType(event.category),
     name: event.title,
     description: descDe,
     startDate: event.startTime ? `${event.startDate}T${event.startTime}:00` : `${event.startDate}T00:00:00`,
@@ -959,6 +961,16 @@ Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
   };
   if (event.endDate) {
     schemaJsonLdDe.endDate = event.endTime ? `${event.endDate}T${event.endTime}:00` : `${event.endDate}T23:59:59`;
+  }
+  if (ticketUrl || event.price) {
+    schemaJsonLdDe.offers = {
+      '@type': 'Offer',
+      price: event.price ? (event.price.replace(/[^0-9.,]/g, '').replace(',', '.') || '0') : '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url: ticketUrl || `${baseUrl}/${pathDe}`,
+      validFrom: event.startDate
+    };
   }
 
   const schemaJsonLdNl = {
