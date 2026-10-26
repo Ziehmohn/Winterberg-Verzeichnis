@@ -40,6 +40,7 @@ interface EventsBoardProps {
   onBusinessSelect: (business: Business) => void;
   onBack: () => void;
   onNavigatePricing?: () => void;
+  onEventClick?: (slug: string) => void;
 }
 
 import { normalizeEventCategory } from '../utils/eventUtils';
@@ -345,9 +346,21 @@ export default function EventsBoard({
   activeThemeKey, 
   onBusinessSelect, 
   onBack,
-  onNavigatePricing 
+  onNavigatePricing,
+  onEventClick
 }: EventsBoardProps) {
   const { t, lang } = useTranslation();
+
+  const handleEventClick = (eventSlug: string) => {
+    if (onEventClick) {
+      onEventClick(eventSlug);
+    } else {
+      const targetUrl = (lang === 'nl' ? '/nl/evenementen/' : '/veranstaltungen/') + eventSlug;
+      window.history.pushState(null, '', targetUrl);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>(() => {
@@ -902,14 +915,22 @@ export default function EventsBoard({
             const eventKey = `${business.id}-${event.id}`;
             const isMapOpen = expandedMap === eventKey;
             const eventUrl = (lang === 'nl' && event.externalUrl_nl) ? event.externalUrl_nl : event.externalUrl;
+            const eventSlug = (lang === 'nl' && event.slug_nl) ? event.slug_nl : (event.slug || event.id);
+            const eventDetailPath = (lang === 'nl' ? '/nl/evenementen/' : '/veranstaltungen/') + eventSlug;
+            const explicitTicketUrl = (lang === 'nl' && event.ticketUrl_nl) ? event.ticketUrl_nl : event.ticketUrl;
+            const isDetectedTicketUrl = !!eventUrl && /ticket|karten|buchen|eventim|reservix|ticket\.io|pretix|standup-republic|tivents/i.test(eventUrl);
+            const directTicketUrl = explicitTicketUrl || (isDetectedTicketUrl ? eventUrl : undefined);
             
             return (
               <article key={eventKey} className={`bg-white border rounded-2xl transition-all shadow-[0_2px_10px_rgba(27,33,29,0.03)] hover:shadow-[0_12px_28px_rgba(27,33,29,0.08)] border-[#EDE8E0] hover:border-[#D8D2C8] overflow-hidden ${viewMode === 'list' ? '' : 'flex flex-col'}`}>
                 {/* Image for grid view */}
                 {viewMode === 'grid' && (
                   event.imageUrl ? (
-                    <div className="w-full h-44 shrink-0 relative bg-gray-100">
-                      <img src={event.imageUrl} alt={title} className="w-full h-full object-cover object-top" />
+                    <div 
+                      onClick={() => handleEventClick(eventSlug)}
+                      className="w-full h-44 shrink-0 relative bg-gray-100 cursor-pointer group/img"
+                    >
+                      <img src={event.imageUrl} alt={title} className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300" />
                       <div className="absolute top-3 left-3">
                         <CalendarCard startDate={event.startDate} endDate={event.endDate} />
                       </div>
@@ -942,7 +963,9 @@ export default function EventsBoard({
                 <div className={`p-5 flex gap-4 ${viewMode === 'grid' ? 'flex-col' : 'items-start'}`}>
                   {/* Calendar card (list view) */}
                   {viewMode === 'list' && (
-                    <CalendarCard startDate={event.startDate} endDate={event.endDate} />
+                    <div onClick={() => handleEventClick(eventSlug)} className="cursor-pointer hover:scale-105 transition-transform">
+                      <CalendarCard startDate={event.startDate} endDate={event.endDate} />
+                    </div>
                   )}
 
                   <div className="flex-1 min-w-0 flex flex-col">
@@ -959,7 +982,12 @@ export default function EventsBoard({
                         </span>
                       </div>
 
-                      <h2 className="font-display text-[18px] font-bold text-[#1B211D] leading-snug mb-1.5">{title}</h2>
+                      <h2 
+                        onClick={() => handleEventClick(eventSlug)}
+                        className="font-display text-[18px] font-bold text-[#1B211D] leading-snug mb-1.5 hover:text-[#7E22CE] transition-colors cursor-pointer"
+                      >
+                        {title}
+                      </h2>
 
                       {/* Time & Location */}
                       <div className="flex flex-wrap items-center gap-3 text-[13px] text-[#5F6B63] mb-3">
@@ -1059,25 +1087,33 @@ export default function EventsBoard({
                           </button>
                         )}
 
-                        {eventUrl && (
+                        {/* Direct Ticket Link if available */}
+                        {directTicketUrl && (
                           <a
-                            href={eventUrl}
-                            onClick={(e) => {
-                              if (eventUrl.startsWith('/')) {
-                                e.preventDefault();
-                                window.history.pushState(null, '', eventUrl);
-                                window.dispatchEvent(new PopStateEvent('popstate'));
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                              }
-                            }}
-                            target={eventUrl.startsWith('mailto:') || eventUrl.startsWith('/') ? undefined : "_blank"}
-                            rel={eventUrl.startsWith('mailto:') || eventUrl.startsWith('/') ? undefined : (event.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer")}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold transition-colors"
+                            href={directTicketUrl}
+                            target="_blank"
+                            rel={event.isPremium ? "noopener noreferrer" : "nofollow noopener noreferrer"}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 text-[#7E22CE] border border-purple-200 text-xs font-bold transition-colors"
+                            title={lang === 'nl' ? 'Tickets direct bestellen' : 'Tickets direkt buchen'}
                           >
-                            <span>{eventUrl.startsWith('mailto:') ? (lang === 'nl' ? 'Aanmelden' : 'Anmelden') : (lang === 'nl' ? 'Meer info' : 'Mehr erfahren')}</span>
-                            <ExternalLink className="w-3 h-3" />
+                            <Ticket className="w-3 h-3" />
+                            <span>Tickets</span>
+                            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
                           </a>
                         )}
+
+                        {/* Main Detail Page Link */}
+                        <a
+                          href={eventDetailPath}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleEventClick(eventSlug);
+                          }}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#7E22CE] hover:bg-[#6B21A8] text-white text-xs font-semibold transition-colors cursor-pointer shadow-2xs"
+                        >
+                          <span>{lang === 'nl' ? 'Meer info' : 'Mehr erfahren'}</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </a>
                       </div>
                     </div>
 
@@ -1090,7 +1126,10 @@ export default function EventsBoard({
                   {/* Thumbnail in list view (sm+ screens) */}
                   {viewMode === 'list' && (
                     event.imageUrl ? (
-                      <div className="hidden sm:block w-36 h-28 shrink-0 rounded-xl overflow-hidden border border-[#EDE8E0] self-start ml-2 bg-gray-100 shadow-xs relative">
+                      <div 
+                        onClick={() => handleEventClick(eventSlug)}
+                        className="hidden sm:block w-36 h-28 shrink-0 rounded-xl overflow-hidden border border-[#EDE8E0] self-start ml-2 bg-gray-100 shadow-xs relative cursor-pointer hover:scale-[1.02] transition-transform"
+                      >
                         <img src={event.imageUrl} alt={title} className="w-full h-full object-cover" />
                         {business.logoUrl && (
                           <div 
@@ -1104,7 +1143,8 @@ export default function EventsBoard({
                       </div>
                     ) : business.logoUrl ? (
                       <div 
-                        className="hidden sm:flex w-28 h-24 shrink-0 rounded-xl border border-[#EDE8E0] self-start ml-2 p-2.5 items-center justify-center shadow-2xs"
+                        onClick={() => handleEventClick(eventSlug)}
+                        className="hidden sm:flex w-28 h-24 shrink-0 rounded-xl border border-[#EDE8E0] self-start ml-2 p-2.5 items-center justify-center shadow-2xs cursor-pointer hover:border-[#7E22CE]/40 transition-colors"
                         style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
                         title={business.name}
                       >

@@ -89,6 +89,8 @@ export default function EventsAdminPanel({
   const [customCategory, setCustomCategory] = useState('');
   const [price, setPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [ticketUrl, setTicketUrl] = useState('');
+  const [ticketUrlNl, setTicketUrlNl] = useState('');
   const [externalUrl, setExternalUrl] = useState('');
   const [externalUrlNl, setExternalUrlNl] = useState('');
 
@@ -202,6 +204,8 @@ export default function EventsAdminPanel({
     setCustomCategory('');
     setPrice('');
     setImageUrl('');
+    setTicketUrl('');
+    setTicketUrlNl('');
     setExternalUrl('');
     setExternalUrlNl('');
     setFormError(null);
@@ -231,6 +235,8 @@ export default function EventsAdminPanel({
     }
     setPrice(event.price || '');
     setImageUrl(event.imageUrl || '');
+    setTicketUrl(event.ticketUrl || '');
+    setTicketUrlNl(event.ticketUrl_nl || '');
     setExternalUrl(event.externalUrl || '');
     setExternalUrlNl(event.externalUrl_nl || '');
     setFormError(null);
@@ -260,6 +266,8 @@ export default function EventsAdminPanel({
     }
     setPrice(event.price || '');
     setImageUrl(event.imageUrl || '');
+    setTicketUrl(event.ticketUrl || '');
+    setTicketUrlNl(event.ticketUrl_nl || '');
     setExternalUrl(event.externalUrl || '');
     setExternalUrlNl(event.externalUrl_nl || '');
     setFormError(null);
@@ -389,6 +397,8 @@ export default function EventsAdminPanel({
         category: effectiveCategory,
         price: price.trim() || undefined,
         imageUrl: imageUrl.trim() || undefined,
+        ticketUrl: ticketUrl.trim() || undefined,
+        ticketUrl_nl: ticketUrlNl.trim() || undefined,
         externalUrl: externalUrl.trim() || undefined,
         externalUrl_nl: externalUrlNl.trim() || undefined,
         isPremium: targetBus.isPremium
@@ -1039,12 +1049,43 @@ export default function EventsAdminPanel({
                 )}
               </div>
 
+              {/* Ticket URL */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                    <Ticket className="w-3.5 h-3.5 text-[#7E22CE]" />
+                    <span>Direkter Ticket-Link (Optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={ticketUrl}
+                    onChange={e => setTicketUrl(e.target.value)}
+                    placeholder="https://ticket-shop.de/..."
+                    className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-xl text-xs sm:text-sm text-[#1B211D] focus:outline-none focus:border-[#7E22CE]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#7E22CE] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                    <Ticket className="w-3.5 h-3.5 text-[#7E22CE]" />
+                    <span>Ticket-Link (NL) 🇳🇱</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={ticketUrlNl}
+                    onChange={e => setTicketUrlNl(e.target.value)}
+                    placeholder="Niederländischer Ticket-Link..."
+                    className="w-full px-3.5 py-2 bg-[#FAF5FF] border border-[#D5D0C5] rounded-xl text-xs sm:text-sm text-[#1B211D] focus:outline-none focus:border-[#7E22CE]"
+                  />
+                </div>
+              </div>
+
               {/* External URL */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <ExternalLink className="w-3.5 h-3.5 text-[#0F4C2E]" />
-                    <span>Weblink / Ticket-Shop (Optional)</span>
+                    <span>Externe Infoseite / Weblink (Optional)</span>
                   </label>
                   <input
                     type="text"

@@ -78,6 +78,7 @@ const FuelPricesPage = React.lazy(() => import('./components/FuelPricesPage'));
 const EmergencyPage = React.lazy(() => import('./components/EmergencyPage'));
 const JobsBoard = React.lazy(() => import('./components/JobsBoard'));
 const EventsBoard = React.lazy(() => import('./components/EventsBoard'));
+const EventDetail = React.lazy(() => import('./components/EventDetail'));
 const AdminPanel = React.lazy(() => import('./components/AdminPanel'));
 const ScriptManager = React.lazy(() => import('./components/ScriptManager'));
 const Datenschutz = React.lazy(() => import('./components/Datenschutz'));
@@ -168,6 +169,7 @@ export default function App() {
   let initialSelectedBusiness: Business | null = null;
   let initialJobsMode = false;
   let initialEventsMode = false;
+  let initialEventSlug: string | null = null;
   let initialJobsCategory: string | null = null;
   let initialAllMode = false;
   let initialBestOfMode = false;
@@ -262,7 +264,11 @@ export default function App() {
           initialJobsCategory = decodeURIComponent(pathParts[1]);
         }
       } else if (decodedPart1 === 'veranstaltungen' || decodedPart1 === 'events' || decodedPart1 === 'evenementen') {
-        initialEventsMode = true;
+        if (pathParts[1]) {
+          initialEventSlug = decodeURIComponent(pathParts[1]);
+        } else {
+          initialEventsMode = true;
+        }
       } else if (decodedPart1 === 'faq' || decodedPart1 === 'faqs' || decodedPart1 === 'veelgestelde-vragen' || decodedPart1 === 'winterberg-faq') {
         initialFaqMode = true;
       } else if (decodedPart1 === 'impressum' || decodedPart1 === 'colofon') {
@@ -489,6 +495,7 @@ export default function App() {
 
   const [isNewsMode, setIsNewsMode] = useState(initialNewsMode);
   const [isEventsMode, setIsEventsMode] = useState(initialEventsMode);
+  const [selectedEventSlug, setSelectedEventSlug] = useState<string | null>(initialEventSlug);
   const [isNewsSubmitMode, setIsNewsSubmitMode] = useState(initialNewsSubmitMode);
   const [newsId, setNewsId] = useState<string | null>(initialNewsId);
   const [isGroundingMode, setIsGroundingMode] = useState(initialGroundingMode);
@@ -540,6 +547,7 @@ export default function App() {
       };
     }
     if (isJobsMode) return { view: 'jobs', jobsCategory: jobsCategory || undefined };
+    if (selectedEventSlug) return { view: 'event-detail', eventSlug: selectedEventSlug };
     if (isEventsMode) return { view: 'events' };
     if (isNewsSubmitMode) return { view: 'news-submit' };
     if (newsId) return { view: 'news-detail', newsSlug: newsId };
@@ -691,6 +699,7 @@ export default function App() {
     setIsEmergencyMode(false);
     setIsJobsMode(false);
     setIsEventsMode(false);
+    setSelectedEventSlug(null);
     setIsNotFound(false);
     setIsAllMode(false);
     setIsBestOfMode(false);
@@ -874,7 +883,13 @@ export default function App() {
         ) {
           setIsPartyLocationsMode(true);
         } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
-          setIsEventsMode(true);
+          if (pathParts[1]) {
+            setSelectedEventSlug(decodeURIComponent(pathParts[1]));
+            setIsEventsMode(false);
+          } else {
+            setSelectedEventSlug(null);
+            setIsEventsMode(true);
+          }
         } else if (p1 === 'auftragsboerse' || p1 === 'auftraege' || p1 === 'opdrachten' || p1 === 'ausschreibungen') {
           setIsAuftraegeMode(true);
         } else {
@@ -2373,6 +2388,31 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
+        ) : selectedEventSlug ? (
+          <EventDetail 
+            eventSlug={selectedEventSlug}
+            businesses={businesses}
+            theme={theme}
+            activeThemeKey={activeThemeKey}
+            onBack={() => {
+              setSelectedEventSlug(null);
+              setIsEventsMode(true);
+              const targetUrl = buildLocalizedUrl({ view: 'events' }, lang);
+              window.history.pushState(null, '', targetUrl);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBusinessSelect={(business) => {
+              setSelectedBusiness(business);
+              setSelectedEventSlug(null);
+              setIsEventsMode(false);
+            }}
+            onEventClick={(slug) => {
+              setSelectedEventSlug(slug);
+              const targetUrl = buildLocalizedUrl({ view: 'event-detail', eventSlug: slug }, lang);
+              window.history.pushState(null, '', targetUrl);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         ) : isEventsMode ? (
           <EventsBoard 
             businesses={businesses} 
@@ -2381,6 +2421,13 @@ export default function App() {
             onBusinessSelect={(business) => {
               setSelectedBusiness(business);
               setIsEventsMode(false);
+            }}
+            onEventClick={(slug) => {
+              setSelectedEventSlug(slug);
+              setIsEventsMode(false);
+              const targetUrl = buildLocalizedUrl({ view: 'event-detail', eventSlug: slug }, lang);
+              window.history.pushState(null, '', targetUrl);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onBack={() => {
               setIsEventsMode(false);

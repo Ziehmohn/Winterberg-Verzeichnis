@@ -902,6 +902,107 @@ Array.from(allNewsBySlug.values()).filter(n => n.status !== 'pending' && n.statu
   });
 });
 
+// Prerender Event Detail Pages
+const eventsForPrerender = new Map<string, { event: any; business: any }>();
+businesses.forEach(b => {
+  if (b.events && Array.isArray(b.events)) {
+    b.events.forEach(e => {
+      const eSlug = e.slug || e.id;
+      if (eSlug && !eventsForPrerender.has(eSlug)) {
+        eventsForPrerender.set(eSlug, { event: e, business: b });
+      }
+    });
+  }
+});
+
+Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
+  const eSlug = event.slug || event.id;
+  const eSlugNl = event.slug_nl || eSlug;
+  const pathDe = `veranstaltungen/${eSlug}`;
+  const pathNl = `nl/evenementen/${eSlugNl}`;
+
+  const plainDescDe = stripMarkdownForSeo(event.description || '');
+  const descDe = plainDescDe.length > 160 ? plainDescDe.substring(0, 157).trim() + '...' : (plainDescDe || `${event.title} in Winterberg am ${event.startDate}`);
+
+  const plainDescNl = event.description_nl ? stripMarkdownForSeo(event.description_nl) : plainDescDe;
+  const descNl = plainDescNl.length > 160 ? plainDescNl.substring(0, 157).trim() + '...' : (plainDescNl || `${event.title_nl || event.title} in Winterberg`);
+  const titleNl = event.title_nl || event.title;
+
+  const eventImg = event.imageUrl
+    ? (event.imageUrl.startsWith('http') ? event.imageUrl : `${baseUrl}${event.imageUrl.startsWith('/') ? '' : '/'}${event.imageUrl}`)
+    : `${baseUrl}/winterberg-header.webp`;
+
+  const schemaJsonLdDe: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.title,
+    description: descDe,
+    startDate: event.startTime ? `${event.startDate}T${event.startTime}:00` : `${event.startDate}T00:00:00`,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    url: `${baseUrl}/${pathDe}`,
+    image: [eventImg],
+    location: {
+      '@type': 'Place',
+      name: event.location || business.name,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Winterberg',
+        postalCode: '59955',
+        addressCountry: 'DE'
+      }
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: business.name
+    }
+  };
+  if (event.endDate) {
+    schemaJsonLdDe.endDate = event.endTime ? `${event.endDate}T${event.endTime}:00` : `${event.endDate}T23:59:59`;
+  }
+
+  const schemaJsonLdNl = {
+    ...schemaJsonLdDe,
+    name: titleNl,
+    description: descNl,
+    url: `${baseUrl}/${pathNl}`
+  };
+
+  // DE Event Detail
+  pagesToPrerender.push({
+    path: pathDe,
+    title: `${event.title} – Veranstaltung in Winterberg | Das Winterberg Verzeichnis`,
+    description: descDe,
+    canonicalUrl: `${baseUrl}/${pathDe}`,
+    alternateDe: `${baseUrl}/${pathDe}`,
+    alternateNl: `${baseUrl}/${pathNl}`,
+    alternateXDefault: `${baseUrl}/${pathDe}`,
+    lang: 'de',
+    h1: event.title,
+    h2: `${event.startDate} | ${event.location || business.name}`,
+    ogType: 'website',
+    ogImage: eventImg,
+    jsonLd: schemaJsonLdDe
+  });
+
+  // NL Event Detail
+  pagesToPrerender.push({
+    path: pathNl,
+    title: `${titleNl} – Evenement in Winterberg | Het Winterberg Overzicht`,
+    description: descNl,
+    canonicalUrl: `${baseUrl}/${pathNl}`,
+    alternateDe: `${baseUrl}/${pathDe}`,
+    alternateNl: `${baseUrl}/${pathNl}`,
+    alternateXDefault: `${baseUrl}/${pathDe}`,
+    lang: 'nl',
+    h1: titleNl,
+    h2: `${event.startDate} | ${event.location || business.name}`,
+    ogType: 'website',
+    ogImage: eventImg,
+    jsonLd: schemaJsonLdNl
+  });
+});
+
 console.log(`Starting SSG Pre-rendering for ${pagesToPrerender.length} routes...`);
 
 let createdCount = 0;

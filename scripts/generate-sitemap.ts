@@ -66,6 +66,29 @@ Array.from(newsBySlug.values()).filter(n => n.status !== 'pending' && n.status !
   });
 });
 
+// Add Event Detail Pages (from all businesses)
+const eventsBySlug = new Map<string, any>();
+businesses.forEach(b => {
+  if (b.events && Array.isArray(b.events)) {
+    b.events.forEach(e => {
+      const eSlug = e.slug || e.id;
+      if (eSlug && !eventsBySlug.has(eSlug)) {
+        eventsBySlug.set(eSlug, e);
+      }
+    });
+  }
+});
+Array.from(eventsBySlug.values()).forEach(ev => {
+  const eSlug = ev.slug || ev.id;
+  const eSlugNl = ev.slug_nl || eSlug;
+  entries.push({
+    locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.events.de}/${eSlug}`,
+    locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.events.nl}/${eSlugNl}`,
+    changefreq: 'weekly',
+    priority: '0.8',
+  });
+});
+
 // 2. All businesses
 entries.push({
   locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
