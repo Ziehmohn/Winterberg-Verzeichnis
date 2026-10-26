@@ -7,6 +7,7 @@ import { ImagePlus, X, Check } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { fetchDutchTranslation } from '../utils/translator';
 import { businesses } from '../data';
+import { NEWS_CATEGORIES } from '../utils/newsFilters';
 
 interface SubmitNewsProps {
   theme: ThemeConfig;
@@ -19,6 +20,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
 
   const [formData, setFormData] = useState({
     title: '',
+    category: 'wirtschaft',
     content: '',
     author: '',
     businessName: '',
@@ -97,6 +99,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         content: contentDe,
         content_nl: contentNl || '',
         author: formData.author,
+        category: formData.category || 'wirtschaft',
         businessName: matchedBiz ? matchedBiz.name : (formData.businessName || ''),
         businessId: matchedBiz ? matchedBiz.id : '',
         businessSlug: matchedBiz ? ((matchedBiz as any).slug || (matchedBiz.name || '').toLowerCase().replace(/\s+/g, '-')) : '',
@@ -213,6 +216,23 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
                 ))}
               </datalist>
             </div>
+          </div>
+
+          <div>
+            <label className={labelClass}>
+              {isNl ? 'Categorie / Thema *' : 'Kategorie / Themenbereich *'}
+            </label>
+            <select
+              value={formData.category}
+              onChange={e => setFormData({...formData, category: e.target.value})}
+              className={`${inputClass} cursor-pointer`}
+            >
+              {NEWS_CATEGORIES.filter(c => c.id !== 'all').map(c => (
+                <option key={c.id} value={c.id}>
+                  {isNl ? c.nameNl : c.nameDe}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>

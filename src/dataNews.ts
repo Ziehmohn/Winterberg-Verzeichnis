@@ -13,6 +13,7 @@ export const initialNews: NewsArticle[] = [
     businessSlug: "gastronomie/kneipen-und-bars/bu-ket-bar-winterberg",
     imageUrl: "/news-buket-bar-cocktail-winterberg.png",
     status: 'approved',
+    category: 'gastronomie',
     date: "2026-10-25T10:30:00.000Z",
     content: `Für herausragende Cocktailkultur, virtuose Barkeeper-Kunst und erstklassiges Bar-Ambiente muss man längst nicht mehr in Metropolen wie Berlin, Hamburg, Köln oder München reisen: Die **Bu’ket Bar in Winterberg** (Poststraße 1) wurde im renommierten **Falstaff Barguide 2027** mit herausragenden **91 von 100 Punkten** und **3 Gläsern (YYY)** als eine der besten Cocktailbars des Landes („Best of Germany“) ausgezeichnet!
 
@@ -97,6 +98,7 @@ Een absolute aanrader voor iedereen die houdt van goed glas en een gastvrije amb
     imageUrl: "/news-halloween-winterberg-2026.jpg",
     isAiGenerated: true,
     status: 'approved',
+    category: 'events',
     date: "2026-10-24T18:00:00.000Z",
     content: `Halloween steht vor der Tür! Am **Samstag, den 31. Oktober 2026** verwandelt sich die Ferienwelt Winterberg in ein Paradies für Hexen, Vampire, Gruselfans und Partybegeisterte. Ob kinderfreundlicher Gruselspaß am Nachmittag, abenteuerliche Nachtwanderung im Sauerländer Wald, schaurig-schöne Gewölbekeller-Atmosphäre, handgemachte Live-Musik im Irish Pub oder die durchtanzte Partynacht auf mehreren Club-Floors – in der Kernstadt sowie in den umliegenden Dörfern ist für jedes Alter das passende Highlight geboten.
 
@@ -288,6 +290,7 @@ Wie tot in de vroege uurtjes wil dansen, mag de Halloween-nacht in Die Tenne nie
     imageUrl: "/news-waermepumpen-infotag-winterberg.jpg",
     isAiGenerated: true,
     status: 'approved',
+    category: 'wirtschaft',
     date: "2026-10-23T10:00:00.000Z",
     content: `Winterberg und Hallenberg setzen ein starkes Zeichen für die regionale Wärmewende: Als eine von nur 25 ausgewählten Kommunen in ganz Deutschland haben die beiden Sauerländer Nachbarstädte den Zuschlag erhalten, Gastgeber für die renommierten **bundesweiten Wärmepumpen-Infotage 2026/2027** ([waermepumpen-infotag.de](https://waermepumpen-infotag.de)) zu sein. Aus bundesweit rund 60 Bewerbungen überzeugte das gemeinsame Konzept der beiden Städte. Die Großveranstaltung kommt im **Januar 2027** nach Winterberg – das genaue Veranstaltungsdatum und der Tagungsort folgen in Kürze.
 
@@ -390,6 +393,7 @@ Alle feiten over de Warmtepomp Infodag op een rij:
     imageCredit: 'Foto: Winterberger Winterdorf / Instagram @winterberger_winterdorf',
     isAiGenerated: false,
     status: 'approved',
+    category: 'events',
     date: '2026-10-17T18:00:00.000Z',
     content: `Ein rundes Jubiläum wirft seinen Glanz voraus: Das **Winterberger Winterdorf feiert in diesem Winter sein 10-jähriges Bestehen**! Vom **11. Dezember 2026 bis zum 4. Januar 2027** verwandelt sich der festlich geschmückte Marktplatz an der Unteren Pforte wieder in einen stimmungsvollen Treffpunkt für Einheimische, Familien und Winterurlauber.
 
@@ -476,6 +480,7 @@ Alle kerngegevens over het 10-jarig jubileum op een rij:
     imageCredit: 'Foto: Tuxyso / Wikimedia Commons (CC BY-SA 4.0)',
     isAiGenerated: false,
     status: 'approved',
+    category: 'freizeit',
     date: '2026-10-17T08:00:00.000Z',
     content: `Wintersportfreunde dürfen sich den Termin im Kalender rot anstreichen: Im Skiliftkarussell Winterberg sollen die ersten Liftanlagen bereits am **Freitag, den 27. November 2026**, ihren Betrieb aufnehmen. Damit startet die beliebte Wintersport-Destination im Sauerland wieder mit einem besonders frühen Saisonauftakt in den Winter.
 
@@ -564,6 +569,7 @@ Bereid uw wintersportdag in Winterberg eenvoudig voor:
     imageCredit: 'Ferienwelt Winterberg / Stephan Peters',
     isAiGenerated: false,
     status: 'approved',
+    category: 'freizeit',
     date: '2026-10-15T18:30:00.000Z',
     content: `Goldene Sonnenstrahlen, farbenprächtige Laubwälder und glasklare Bergluft: Die zweite Oktoberhälfte lädt im Sauerland zu den schönsten Wandertagen des Jahres ein. Unter dem Motto **„Wanderveranstaltungen 16. bis 29. Oktober“** hat die Winterberg Touristik und Wirtschaft GmbH ein abwechslungsreiches Programm an geführten Touren, Erlebnissen und Rundgängen zusammengestellt.
 
@@ -666,6 +672,7 @@ Alle begeleide wandelingen en rondleidingen vindt u vanaf nu overzichtelijk in o
     imageCredit: 'Flyer / Fotos: Nordhang Jause Winterberg',
     isAiGenerated: false,
     status: 'approved',
+    category: 'gastronomie',
     date: '2026-10-15T16:30:00.000Z',
     content: `Bunte Laubwälder, klare Bergluft und der verlockende Duft von knisterndem Buchenholz: Der Herbst hält Einzug im Hochsauerland und verwandelt die Bergkulisse rund um den Kahlen Asten in ein farbenfrohes Naturparadies. An der beliebten **Nordhang Jause in Winterberg** beginnt damit die gemütlichste Zeit des Jahres. Hüttenwirt und Team laden Einheimische, Wanderer und Urlaubsgäste im Oktober und November zu zwei stimmungsvollen Veranstaltungshöhepunkten ein, die herbstliches Naturerlebnis, Geselligkeit und Gaumenfreuden miteinander verbinden.
 
@@ -768,6 +775,7 @@ Ideaal als feestelijke afsluiting van een frisse herfstwandeling of voor een gez
     imageCredit: 'Foto: Simon Kräling',
     isAiGenerated: false,
     status: 'approved',
+    category: 'gastronomie',
     date: '2026-10-14T14:00:00.000Z',
     content: `Am Waltenberg 13 in Winterberg tut sich was: Mit der **Beef Manufaktur von Ata’s Döner** eröffnet am **Freitag, den 16. Oktober 2026 um 12:00 Uhr**, ein neues kulinarisches Konzept für Streetfood-Liebhaber. Wer das neue Ladengeschäft mit der markanten, beleuchteten Fassade bereits im Vorbeigehen bemerkt hat, darf sich zum Start direkt über eine Willkommensaktion freuen: Zur Eröffnung gibt es zu jeder Steak-Döner-Bestellung einen **Softdrink gratis** dazu.
 
@@ -874,6 +882,7 @@ Ata’s Döner – Beef Manufaktur in Winterberg:
     imageCredit: 'Pizzeria Dani by Savino',
     isAiGenerated: false,
     status: 'approved',
+    category: 'gastronomie',
     date: '2026-10-12T18:00:00.000Z',
     content: `Wer in den vergangenen Tagen am Waltenberg unterwegs war, um sich bei der Pizzeria Dani eine ofenfrische Pizza zu holen, stand möglicherweise überrascht vor einer neuen Fassade: Am bisherigen Standort hat vor Kurzem das [Nowa Kebabhaus](/gastronomie/imbisse/nowa-kebabhaus-winterberg) eröffnet. Doch Pizza-Fans müssen sich keine Sorgen machen – die beliebte Pizzeria hat Winterberg keineswegs den Rücken gekehrt, sondern ist lediglich an einen neuen Standort umgezogen.
 
@@ -969,6 +978,7 @@ Pizzeria Dani by Savino in Winterberg:
     imagePosition: '50% 18%',
     isAiGenerated: false,
     status: 'approved',
+    category: 'gesundheit',
     date: '2026-10-12T08:30:00.000Z',
     content: `Wichtiger Meilenstein für die ambulante Gesundheitsversorgung in Winterberg: Mit **Lisa Veldhuis** hat sich erstmals eine psychologische Psychotherapeutin mit eigenem Kassensitz für Erwachsene im Stadtgebiet niedergelassen. Die Praxis für Verhaltenstherapie befindet sich an zentraler Stelle Am Waltenberg 46 und schließt eine langjährige Versorgungslücke für Patientinnen und Patienten aus Winterberg und den umliegenden Dörfern.
 
@@ -1061,6 +1071,7 @@ Psychotherapeutische praktijk voor volwassenen:
     imageCredit: 'Foto: Nowa Kebabhaus Winterberg',
     isAiGenerated: false,
     status: 'approved',
+    category: 'gastronomie',
     date: '2026-10-05T17:40:00.000Z',
     content: `Winterbergs Gastronomieszene hat Zuwachs bekommen: Am heutigen Montag, den 5. Oktober 2026, hat an der belebten Flaniermeile Am Waltenberg 27 das neue **Nowa Kebabhaus** offiziell eröffnet. Zur großen Neueröffnung lockte das Team mit einer besonderen Aktion: Dönertaschen gab es am Eröffnungstag für unschlagbare 1,99 Euro.
 
@@ -1174,6 +1185,7 @@ Wilt u gerechten vooraf bestellen of catering aanvragen voor uw evenement?
     imageCredit: 'Foto: Filmtheater Winterberg / Familie Wahle',
     isAiGenerated: false,
     status: 'approved',
+    category: 'events',
     date: '2026-09-30T06:35:00.000Z',
     content: `Das Filmtheater Winterberg steht vor einem Generationenwechsel: Die Familie Wahle, die das Lichtspielhaus an der Nuhnestraße bereits in der dritten Generation führt, sucht zum nächstmöglichen Zeitpunkt eine Nachfolge zur Verpachtung des Kinos. Für Winterberg und die Region steht damit eine zentrale Kultur- und Freizeiteinrichtung im Fokus – denn ohne neue Betreiber droht dem beliebten Lichtspielhaus die Schließung.
 
@@ -1260,6 +1272,7 @@ Vragen over de verpachting en de overname van de bioscoop? Familie Wahle staat u
     author: 'Simon Kräling',
     imageUrl: '/news-winterberg-onlineshops.jpg',
     status: 'approved',
+    category: 'wirtschaft',
     date: '2026-09-09T14:30:00.000Z',
     content: `Winterberg pulsiert durch seine lebendige Innenstadt, die vielfältigen Flaniermeilen und ein breites Angebot an inhabergeführten Fachgeschäften, Sportausstattern und Boutiquen. Jahr für Jahr schätzen Einheimische wie Feriengäste das persönliche Einkaufserlebnis und die individuelle Beratung vor Ort.
 
@@ -1345,6 +1358,7 @@ Heeft u een winkel of bedrijf in Winterberg of een van de dorpen en verkoopt u u
     businessSlug: 'stadthalle-oversum-winterberg',
     imageUrl: '/news-gospel-stars-winterberg.jpg',
     status: 'approved',
+    category: 'events',
     date: '2026-09-08T18:00:00.000Z',
     content: `Am 20. Dezember dürfen sich Musikbegeisterte und Kulturfreunde im Sauerland auf ein ganz besonderes musikalisches Highlight freuen: Die weltbekannten **New York Gospel Stars** gastieren in Winterberg und bringen ihre unverwechselbare Energie, kraftvolle Stimmen und jede Menge Gefühl auf die Bühne der Stadthalle Oversum.
 
@@ -1393,6 +1407,7 @@ Sichern Sie sich rechtzeitig Ihre Plätze für das Konzert der New York Gospel S
     businessSlug: 'kinderarztpraxis-winterberg',
     imageUrl: '/news-kinderarztpraxis.jpg',
     status: 'approved',
+    category: 'gesundheit',
     date: '2026-09-07T10:00:00.000Z',
     content: `Große Erleichterung für Familien in Winterberg, Medebach und Hallenberg: An der Poststraße 12 in Winterberg hat die neue kinder- und jugendärztliche Praxis eröffnet. Damit wird die wohnortnahe medizinische Versorgung für Kinder in unserer Region nachhaltig gestärkt und weite Anfahrtswege werden deutlich verkürzt.
 
@@ -1435,6 +1450,7 @@ Für eine kompetente und einfühlsame Betreuung sorgt ein erfahrenes Mediziner- 
     businessName: 'Stadt Winterberg & Wirtschaftsförderung',
     imageUrl: '/news-ladenlokale.jpg',
     status: 'approved',
+    category: 'wirtschaft',
     date: '2026-09-01T12:00:00.000Z',
     content: `Haben Sie schon länger eine Geschäftsidee im Kopf oder möchten mit Ihrem bestehenden Betrieb nach Winterberg expandieren? Jetzt ist der ideale Zeitpunkt! Die Stadt Winterberg und die Wirtschaftsförderung bieten nicht nur attraktive Gewerbe- und Ladenlokale in besten Lagen, sondern unterstützen neue Konzepte auch mit gezielten Förderprogrammen und spürbaren Mietzuschüssen.
 
@@ -1462,6 +1478,7 @@ Für eine kompetente und einfühlsame Betreuung sorgt ein erfahrenes Mediziner- 
 ,
   {
     id: "0nAFWBuMc3VEva6YHAki",
+    category: "wirtschaft",
     slug: "winterberg-legt-bei-uebernachtungen-deutlich-zu-plus-von-6-4-prozent-bis-juni",
     slug_nl: "winterberg-stijgt-flink-in-overnachtingen-stijging-van-6-4-procent-in-juni",
     title: "Winterberg legt bei Übernachtungen deutlich zu: Plus von 6,4 Prozent bis Juni",
@@ -1481,6 +1498,7 @@ Für eine kompetente und einfühlsame Betreuung sorgt ein erfahrenes Mediziner- 
   },
   {
     id: "wLhWgnD9yRe4LkTYlBsP",
+    category: "freizeit",
     slug: "sauerlandrundfahrt-macht-winterberg-zum-ziel-der-koenigsetappe",
     slug_nl: "sauerlandtour-maakt-winterberg-tot-bestemming-van-het-koninklijke-podium",
     title: "SauerlandRundfahrt macht Winterberg zum Ziel der Königsetappe",

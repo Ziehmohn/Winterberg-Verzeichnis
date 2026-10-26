@@ -661,6 +661,7 @@ export function getLocalizedNewsArticle(article: NewsArticle, lang: 'de' | 'nl')
     slug: article.slug_nl || article.slug,
     title,
     content,
+    category: article.category_nl || article.category,
     imageSource: article.imageSource ? translateTextToDutch(article.imageSource) : undefined,
   };
 }

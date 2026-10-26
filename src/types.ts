@@ -132,6 +132,8 @@ export interface NewsArticle {
   title_nl?: string;
   content: string;
   content_nl?: string;
+  category?: string;
+  category_nl?: string;
   author: string;
   businessId?: string;
   businessName?: string;

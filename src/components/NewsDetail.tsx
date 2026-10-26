@@ -11,6 +11,7 @@ import { businesses } from '../data';
 import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 import ShareButton from './ShareButton';
 import NewsReviewPrompt from './NewsReviewPrompt';
+import { normalizeNewsCategory, getNewsCategoryLabel, getNewsCategoryBadgeClass } from '../utils/newsFilters';
 
 interface NewsDetailProps {
   newsId: string;
@@ -856,6 +857,26 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       {/* Clean Meta Info */}
       <div className="flex items-center gap-[18px] text-[13.5px] font-medium text-[#7C8780] mb-[24px] flex-wrap pb-4 border-b border-[#EDE8E0] justify-between">
         <div className="flex items-center gap-[14px] sm:gap-[18px] flex-wrap">
+          {(() => {
+            const cat = normalizeNewsCategory(rawArticle?.category, rawArticle || undefined);
+            const catLabel = getNewsCategoryLabel(cat, lang);
+            const catBadgeClass = getNewsCategoryBadgeClass(cat);
+            const newsBase = lang === 'nl' ? '/nl/nieuws' : '/news';
+            return (
+              <a
+                href={`${newsBase}?category=${cat}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', `${newsBase}?category=${cat}`);
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border transition-all hover:scale-105 cursor-pointer ${catBadgeClass}`}
+                title={lang === 'nl' ? `Alle berichten in ${catLabel}` : `Alle Beiträge in ${catLabel}`}
+              >
+                {catLabel}
+              </a>
+            );
+          })()}
           {isPressRelease && (
             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF2EC] text-[#0F4C2E] border border-[#0F4C2E]/20">
               {lang === 'nl' ? 'Persbericht' : 'Pressemitteilung'}
