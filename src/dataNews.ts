@@ -11,7 +11,7 @@ export const initialNews: NewsArticle[] = [
     imageUrl: "/news-sondermuell-sammlung-winterberg.jpg",
     imageCredit: "Stadt Winterberg / Winterberg-Verzeichnis Redaktion",
     status: 'approved',
-    category: 'wirtschaft',
+    category: 'buergerinfo',
     date: "2026-10-27T08:00:00.000Z",
     content: `Farbreste, Lösungsmittel oder Pflanzenschutzmittel im Keller? Am **Freitag, den 6. November, und Samstag, den 7. November 2026** macht das Schadstoffmobil wieder Station in Winterberg und allen Ortsteilen. Bürgerinnen und Bürger können Problemabfälle aus Privathaushalten kostenlos und fachgerecht entsorgen.
 

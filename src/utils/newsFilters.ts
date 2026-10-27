@@ -15,6 +15,12 @@ export const NEWS_CATEGORIES: NewsCategoryConfig[] = [
     badgeClass: 'bg-[#0F4C2E] text-white border-transparent'
   },
   { 
+    id: 'buergerinfo', 
+    nameDe: 'Stadt & Bürger', 
+    nameNl: 'Stad & Inwoners',
+    badgeClass: 'bg-blue-50 text-blue-900 border-blue-200/80 hover:bg-blue-100/70'
+  },
+  { 
     id: 'gastronomie', 
     nameDe: 'Gastronomie & Genuss', 
     nameNl: 'Horeca & Culinair',
@@ -49,6 +55,7 @@ export const NEWS_CATEGORIES: NewsCategoryConfig[] = [
 export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArticle>): string {
   if (rawCat) {
     const c = rawCat.toLowerCase().trim();
+    if (c === 'buergerinfo' || c === 'buerger' || c === 'einwohner' || c === 'stadt' || c === 'kommunales' || c.includes('bürger') || c.includes('buerger') || c.includes('einwohner') || c.includes('rathaus') || c.includes('stadt') || c.includes('inwoner')) return 'buergerinfo';
     if (c === 'gastronomie' || c.includes('gastro') || c.includes('essen') || c.includes('horeca')) return 'gastronomie';
     if (c === 'events' || c.includes('event') || c.includes('kultur') || c.includes('party')) return 'events';
     if (c === 'freizeit' || c.includes('sport') || c.includes('ski') || c.includes('wander')) return 'freizeit';
@@ -57,6 +64,9 @@ export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArt
   }
   if (article) {
     const text = `${article.title || ''} ${article.businessName || ''} ${article.content || ''}`.toLowerCase();
+    if (text.includes('sondermüll') || text.includes('schadstoff') || text.includes('müll') || text.includes('abfall') || text.includes('bürgerservice') || text.includes('einwohner') || text.includes('rathaus')) {
+      return 'buergerinfo';
+    }
     if (text.includes('bar') || text.includes('döner') || text.includes('pizz') || text.includes('restaur') || text.includes('cocktail') || text.includes('jause') || text.includes('kebab')) {
       return 'gastronomie';
     }
