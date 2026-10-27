@@ -15,13 +15,13 @@ export const initialNews: NewsArticle[] = [
     date: "2026-10-27T08:00:00.000Z",
     content: `Farbreste, Lösungsmittel oder Pflanzenschutzmittel im Keller? Am **Freitag, den 6. November, und Samstag, den 7. November 2026** macht das Schadstoffmobil wieder Station in Winterberg und allen Ortsteilen. Bürgerinnen und Bürger können Problemabfälle aus Privathaushalten kostenlos und fachgerecht entsorgen.
 
-Sonderabfälle gehören keinesfalls in den normalen Hausmüll oder in den Abfluss, da sie Umwelt und Grundwasser massiv belasten können. Zweimal jährlich bietet die Stadt Winterberg daher die mobile Schadstoffsammlung an.
+Sonderabfälle gehören keinesfalls in den normalen Hausmüll oder in den Abfluss, da sie Umwelt und Grundwasser massiv belasten können. Zweimal jährlich bietet die Stadt Winterberg daher die mobile Schadstoffsammlung direkt vor Ort an.
 
 ---
 
 ## 📍 Haltestellen & Fahrplan des Schadstoffmobils
 
-Damit alle Bürgerinnen und Bürger kurze Wege haben, fährt das Spezialfahrzeug an beiden Tagen alle Ortsteile an:
+Damit alle Bürgerinnen und Bürger kurze Wege haben, fährt das Spezialfahrzeug an beiden Tagen alle Ortsteile im Winterberger Stadtgebiet an:
 
 ### Freitag, 06. November 2026
 * **Züschen:** 14:00 – 14:30 Uhr (Mollseifener Straße, Glascontainer am Radweg)
@@ -43,34 +43,72 @@ Damit alle Bürgerinnen und Bürger kurze Wege haben, fährt das Spezialfahrzeug
 
 ---
 
-## ⚠️ Wichtige Abgabe- & Sicherheitshinweise
+## ⚖️ Maximale Gebindegrößen für die Abgabe
 
-* **Ausschließlich persönliche Abgabe:** Die Sonderabfälle müssen **direkt und persönlich beim Fachpersonal** am Sammelfahrzeug übergeben werden.
-* **Kein vorzeitiges Abstellen:** Das Abstellen von Kanistern, Dosen oder Flaschen vor Eintreffen des Fahrzeugs ist strengstens untersagt. Es stellt eine erhebliche Gefährdung (insbesondere für spielende Kinder und Tiere) sowie eine Ordnungswidrigkeit bzw. illegale Müllentsorgung dar.
-* **Flüssigkeiten:** Müssen in fest verschlossenen Behältern abgegeben werden.
-* **Vorsortierung:** Nach Möglichkeit sollten Chemikalien und Problemstoffe vorsortiert in Kisten, Eimern oder Kartons angeliefert werden, um Wartezeiten am Fahrzeug zu minimieren.
+Für die sichere Annahme und Verladung am Schadstoffmobil gelten strikte **Höchstgrenzen pro Gebinde**:
+
+| Abfallart | Maximale Gebindegröße |
+| :--- | :--- |
+| **Säuren, Laugen, Chemikalien** | max. **1 Liter** |
+| **Pflanzenschutz- & Schädlingsbekämpfungsmittel** | max. **1 Liter** |
+| **Altlacke, Altfarben, Klebstoffe, Harze** | max. **2,5 Liter** |
+| **Feste und flüssige Stoffe** | max. **3 kg** |
+| **Lösungsmittel, Verdünnung** | max. **5 Liter** |
+| **Raumfarben, Kalk, Latex** | max. **15 Liter** |
+| **Leere Behältnisse** | max. **25 Liter** |
 
 ---
 
-## ✅ Was wird angenommen? (Nur haushaltsübliche Mengen)
-* Altfarben, Lacke, Beizen, Holzschutzmittel
-* Klebstoffe, Leim, Lösungsmittel, Verdünner
-* Foto-, Hobby- und Haushaltschemikalien
-* Pflanzenschutz-, Unkraut- und Schädlingsbekämpfungsmittel, Desinfektionsmittel
-* Altmedikamente, Altkosmetika und Spraydosen mit Restinhalt
+## ✅ Welche Sonderabfälle werden angenommen?
+Die Sammlung richtet sich ausschließlich an private Haushalte. Angenommen werden:
+* **Altfarben, Altlacke, Beizen, Holzschutzmittel**
+* **Leim, Klebstoffe und Kunstharze**
+* **Lösungsmittel, Verdünner, Pinselreiniger**
+* **Foto-, Hobby- und Haushaltschemikalien, Laborchemikalien**
+* **Pflanzenschutz-, Schädlingsbekämpfungs- und Unkrautvernichtungsmittel**
+* **Desinfektionsmittel**
+* **Altmedikamente und Altkosmetika**
+* **Spraydosen mit Restinhalt**
 
-## ❌ Was wird nicht angenommen?
-* **Gewerbliche Sonderabfälle:** Es werden ausschließlich Abfälle aus privaten Haushalten angenommen.
-* **Altöl:** Muss gesetzlich über den Fach- und Einzelhandel zurückgegeben werden.
-* **Autoreifen und Leuchtstoffröhren:** Werden am Mobil nicht angenommen.
-* **Batterien:** Haushaltsbatterien können jederzeit kostenfrei in den Sammelbehältern des Handels sowie im **Bürgerbahnhof Winterberg** abgegeben werden.`,
+---
+
+## 🛢️ Wichtige Regelung zu Altöl
+**Altöl wird am Schadstoffmobil ausdrücklich nicht angenommen!**  
+Der Handel ist gesetzlich verpflichtet, Altöl in der Menge kostenlos zurückzunehmen, in der frisches Motoren- oder Getriebeöl gekauft wurde. Bringen Sie Ihr Altöl daher bitte direkt zu der Verkaufsstelle (Fachhandel, Baumarkt, Tankstelle), bei der Sie das Öl erworben haben (idealerweise unter Vorlage des Kassenbons).
+
+---
+
+## ❌ Was wird am Mobil ebenfalls NICHT angenommen?
+* **Gewerbliche Sonderabfälle:** Sonderabfälle aus Industrie- und Gewerbebetrieben sind von der kommunalen Sammlung ausgeschlossen.
+* **Leuchtstoffröhren und Energiesparlampen**
+* **Autoreifen**
+* **Haushaltsbatterien:** Diese können jedoch während der regulären Öffnungszeiten **kostenlos im Bürgerservice (Bürgerbahnhof)** der Stadt Winterberg oder an den bekannten Sammelboxen im Einzelhandel abgegeben werden.
+
+---
+
+## ⚠️ Sicherheit & Vorbereitung: Richtlinien für die Anlieferung
+
+* **Ausschließlich persönliche Abgabe:** Die Sonderabfälle müssen **direkt und persönlich am Spezialfahrzeug an das Fachpersonal** übergeben werden.
+* **Kein vorzeitiges Abstellen – Illegale Müllentsorgung:** Das Abstellen von Sondermüll vor den Abfuhrterminen oder nach Abfahrt des Mobils ist strengstens verboten. Es birgt erhebliche Gefahren für Mensch, Umwelt und insbesondere spielende Kinder. Widerrechtliches Abstellen stellt eine **illegale Müllbeseitigung** dar und zieht ausnahmslos eine **Ordnungswidrigkeitenanzeige** nach sich.
+* **Originalgebinde:** Zur schnellen und eindeutigen Identifizierung sollten alle Stoffe möglichst in ihren unbeschädigten **Originalgebinden und -verpackungen** abgegeben werden.
+* **Dichte Behälter:** Flüssige Abfälle dürfen keinesfalls lose oder in undichten Gefäßen transportiert werden, sondern müssen in fest verschlossenen Behältern angeliefert werden.
+* **Vorsortierung:** Bitte liefern Sie die Abfälle nach Sorten getrennt an (z. B. getrennte Kisten, Eimer oder Tüten für Medikamente, Spraydosen, Farben/Lacke oder Pflanzenschutzmittel), um den Ablauf am Fahrzeug zu beschleunigen.
+
+---
+
+## ℹ️ Rückfragen & Kontakt
+Für weitere Auskünfte zur Schadstoffsammlung steht die Stadt Winterberg gerne zur Verfügung:  
+* **Ansprechpartnerin:** Rabea Kappen (Öffentlichkeitsarbeit Stadt Winterberg)  
+* **Telefon:** 02981 / 800-121  
+* **E-Mail:** rabea.kappen@winterberg.de  
+* **Web:** [www.rathaus-winterberg.de](https://www.rathaus-winterberg.de)`,
     content_nl: `Verfresten, oplosmiddelen of bestrijdingsmiddelen in de schuur? Op **vrijdag 6 november** en **zaterdag 7 november 2026** rijdt de milieubus weer door Winterberg en alle dorpskernen om klein chemisch afval (KCA) van particulieren gratis en veilig in te zamelen.
 
-Gevaarlijk afval hoort beslist niet bij het gewone restafval of in het riool, omdat het het milieu en het grondwater ernstig kan schaden. Twee keer per jaar organiseert de gemeente Winterberg daarom deze mobiele inzameling.
+Gevaarlijk afval hoort beslist niet bij het gewone restafval of in het riool, omdat het het milieu en het grondwater ernstig kan schaden. Twee keer per jaar organiseert de gemeente Winterberg daarom deze mobiele inzameling direct op locatie.
 
 ---
 
-## 📍 Dienstregeling & Haltes
+## 📍 Dienstregeling & Haltes van de milieubus
 
 ### Vrijdag 6 november 2026
 * **Züschen:** 14:00 – 14:30 uur (Mollseifener Straße, glascontainers bij het fietspad)
@@ -92,10 +130,35 @@ Gevaarlijk afval hoort beslist niet bij het gewone restafval of in het riool, om
 
 ---
 
-## ⚠️ Belangrijke richtlijnen & Veiligheid
-* **Persoonlijk afgeven:** Het gevaarlijk afval dient direct en persoonlijk aan het personeel bij het inzamelvoertuig te worden overhandigd. Het vooraf neerzetten van bussen of flessen is streng verboden en strafbaar.
-* **Vloeistoffen:** Alleen in lekvrije, goed gesloten verpakkingen aanleveren.
-* **Alleen huishoudelijk afval:** Bedrijfsafval, motorolie (inleveren via verkooppunten), autobanden en tl-buizen worden niet geaccepteerd. Huishoudbatterijen kunnen gratis worden ingeleverd in het Bürgerbahnhof Winterberg.`
+## ⚖️ Maximale verpakkingsgrootte
+
+Voor een veilige inname bij het inzamelvoertuig gelden maximale hoeveelheden per verpakking:
+* **Zuren, logen, chemicaliën:** max. 1 liter
+* **Gewasbescherming & ongediertebestrijding:** max. 1 liter
+* **Lakken, verven, lijm, harsen:** max. 2,5 liter
+* **Vaste en vloeibare stoffen:** max. 3 kg
+* **Oplosmiddelen, verdunners:** max. 5 liter
+* **Muurverven, kalk, latex:** max. 15 liter
+* **Lege verpakkingen:** max. 25 liter
+
+---
+
+## 🛢️ Belangrijk: Motorolie (Altöl)
+**Afgewerkte motorolie wordt NIET geaccepteerd bij de milieubus!**  
+Verkooppunten zijn wettelijk verplicht om oude olie kosteloos terug te nemen bij aankoop van nieuwe olie. Lever afgewerkte olie in bij de winkel, bouwmarkt of het tankstation waar u deze hebt gekocht.
+
+---
+
+## ❌ Wat wordt verder NIET geaccepteerd?
+* **Bedrijfsafval:** Alleen gevaarlijk afval van particuliere huishoudens.
+* **Autobanden en tl-buizen / spaarlampen.**
+* **Batterijen:** Huishoudbatterijen kunnen gratis worden ingeleverd in het Bürgerbahnhof Winterberg of in de inleverbakken bij winkels.
+
+---
+
+## ⚠️ Veiligheidsvoorschriften
+* **Persoonlijk overhandigen:** Gevaarlijk afval moet persoonlijk aan de medewerkers bij de vrachtwagen worden overhandigd. Het vooraf neerzetten van chemisch afval is ten strengste verboden en geldt als illegale afvaldumping met kans op een boete.
+* **Originele verpakking:** Lever stoffen bij voorkeur in de originele verpakking en goed gesloten aan. Sorteer vooraf per soort (bijv. medicijnen, spuitbussen, verf) om wachttijden te beperken.`
   },
   {
     id: "falstaff-barguide-2027-buket-bar-winterberg-auszeichnung",
