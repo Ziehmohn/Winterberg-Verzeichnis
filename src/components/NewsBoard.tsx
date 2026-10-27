@@ -10,7 +10,8 @@ import {
   NEWS_CATEGORIES, 
   normalizeNewsCategory, 
   getNewsCategoryLabel, 
-  getNewsCategoryBadgeClass 
+  getNewsCategoryBadgeClass,
+  sanitizeNewsArticle
 } from '../utils/newsFilters';
 import { 
   Search, 
@@ -68,9 +69,9 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
   const [news, setNews] = useState<NewsArticle[]>(() => {
     const cached = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true);
     if (cached && Array.isArray(cached) && cached.length > 0) {
-      return cached.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted);
+      return cached.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted).map(sanitizeNewsArticle);
     }
-    return [...initialNews].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return [...initialNews].map(sanitizeNewsArticle).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   });
 
   const [loading, setLoading] = useState(() => {
@@ -137,7 +138,7 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
       try {
         const snapshot = await getDocs(collection(db, 'news'));
         const map = new Map<string, NewsArticle>();
-        initialNews.forEach(n => map.set(n.id, n));
+        initialNews.forEach(n => map.set(n.id, sanitizeNewsArticle(n)));
 
         snapshot.docs.forEach(d => {
           const data = d.data() as any;
@@ -145,8 +146,18 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
           if (data.status === 'deleted' || data.isDeleted || data.status === 'deactivated' || data.status === 'pending') {
             map.delete(id);
           } else if (data.status === 'approved') {
-            const existing = map.get(id);
-            map.set(id, existing ? { ...existing, ...data, id } : { ...data, id });
+            let targetKey = id;
+            if (!map.has(id) && data.slug) {
+              for (const [k, v] of map.entries()) {
+                if (v.slug === data.slug) {
+                  targetKey = k;
+                  break;
+                }
+              }
+            }
+            const existing = map.get(targetKey);
+            const sanitized = sanitizeNewsArticle({ ...data, id });
+            map.set(targetKey, existing ? { ...existing, ...sanitized } : sanitized);
           }
         });
 
@@ -157,9 +168,9 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
         console.warn("Error fetching news from Firestore (quota or offline), using cached/initial news:", e);
         const fallback = getCachedItem<NewsArticle[]>(CACHE_KEYS.NEWS, CACHE_TTLS.NEWS, true) || initialNews;
         if (Array.isArray(fallback)) {
-          setNews(fallback.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted));
+          setNews(fallback.filter(n => (n as any).status !== 'deleted' && !(n as any).isDeleted).map(sanitizeNewsArticle));
         } else {
-          setNews([...initialNews]);
+          setNews([...initialNews].map(sanitizeNewsArticle));
         }
       } finally {
         setLoading(false);

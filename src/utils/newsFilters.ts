@@ -55,7 +55,7 @@ export const NEWS_CATEGORIES: NewsCategoryConfig[] = [
 export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArticle>): string {
   if (rawCat) {
     const c = rawCat.toLowerCase().trim();
-    if (c === 'buergerinfo' || c === 'buerger' || c === 'einwohner' || c === 'stadt' || c === 'kommunales' || c.includes('bürger') || c.includes('buerger') || c.includes('einwohner') || c.includes('rathaus') || c.includes('stadt') || c.includes('inwoner')) return 'buergerinfo';
+    if (c === 'buergerinfo' || c === 'buerger' || c === 'einwohner' || c === 'kommunales' || c === 'stadt-buerger' || c === 'rathaus' || c.includes('bürger') || c.includes('buerger') || c.includes('inwoner')) return 'buergerinfo';
     if (c === 'gastronomie' || c.includes('gastro') || c.includes('essen') || c.includes('horeca')) return 'gastronomie';
     if (c === 'events' || c.includes('event') || c.includes('kultur') || c.includes('party')) return 'events';
     if (c === 'freizeit' || c.includes('sport') || c.includes('ski') || c.includes('wander')) return 'freizeit';
@@ -64,7 +64,8 @@ export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArt
   }
   if (article) {
     const text = `${article.title || ''} ${article.businessName || ''} ${article.content || ''}`.toLowerCase();
-    if (text.includes('sondermüll') || text.includes('schadstoff') || text.includes('müll') || text.includes('abfall') || text.includes('bürgerservice') || text.includes('einwohner') || text.includes('rathaus')) {
+    // Exakte Schluesselbegriffe fuer Buergerinfo / Schadstoffmobil (kein breites 'müll', das Familiennamen wie Müllenhoff matcht)
+    if (/\b(sondermüll|schadstoffmobil|schadstoffsammlung|abfallkalender|müllabfuhr|sperrmüll)\b/i.test(text)) {
       return 'buergerinfo';
     }
     if (text.includes('bar') || text.includes('döner') || text.includes('pizz') || text.includes('restaur') || text.includes('cocktail') || text.includes('jause') || text.includes('kebab')) {
@@ -79,11 +80,23 @@ export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArt
     if (text.includes('arzt') || text.includes('praxis') || text.includes('therap') || text.includes('gesund') || text.includes('psych')) {
       return 'gesundheit';
     }
-    if (text.includes('ladenlokal') || text.includes('onlineshop') || text.includes('übernachtung') || text.includes('förderprogramm') || text.includes('wärmepumpen')) {
+    if (text.includes('onlineshop') || text.includes('einkaufen') || text.includes('einzelhandel') || text.includes('ladenlokal') || text.includes('übernachtung') || text.includes('förderprogramm') || text.includes('wärmepumpen')) {
       return 'wirtschaft';
     }
   }
   return 'wirtschaft';
+}
+
+export function sanitizeNewsArticle<T extends Partial<NewsArticle>>(article: T): T {
+  let author = article.author;
+  if (!author || author.includes('Simon') || author.includes('Kräling')) {
+    author = 'Winterberg-Verzeichnis Redaktion';
+  }
+  let imageCredit = article.imageCredit;
+  if (imageCredit && (imageCredit.includes('Simon') || imageCredit.includes('Kräling'))) {
+    imageCredit = 'Foto: Winterberg-Verzeichnis Redaktion';
+  }
+  return { ...article, author, imageCredit };
 }
 
 export function getNewsCategoryLabel(catId: string, lang: 'de' | 'nl'): string {

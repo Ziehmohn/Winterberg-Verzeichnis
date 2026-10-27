@@ -11,7 +11,7 @@ import { businesses } from '../data';
 import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 import ShareButton from './ShareButton';
 import NewsReviewPrompt from './NewsReviewPrompt';
-import { normalizeNewsCategory, getNewsCategoryLabel, getNewsCategoryBadgeClass } from '../utils/newsFilters';
+import { normalizeNewsCategory, getNewsCategoryLabel, getNewsCategoryBadgeClass, sanitizeNewsArticle } from '../utils/newsFilters';
 
 interface NewsDetailProps {
   newsId: string;
@@ -570,7 +570,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       });
 
       if (localMatch) {
-        setRawArticle(localMatch);
+        setRawArticle(sanitizeNewsArticle(localMatch));
         setLoading(false);
         // Do not return here: continue to fetch latest live document from Firestore
       }
@@ -585,7 +585,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             setRawArticle(null);
             return;
           }
-          setRawArticle({ id: docSnap.id, ...data } as NewsArticle);
+          setRawArticle(sanitizeNewsArticle({ id: docSnap.id, ...data } as NewsArticle));
           return;
         }
 
@@ -599,7 +599,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             setRawArticle(null);
             return;
           }
-          setRawArticle({ id: matchedDoc.id, ...data } as NewsArticle);
+          setRawArticle(sanitizeNewsArticle({ id: matchedDoc.id, ...data } as NewsArticle));
           return;
         }
 
@@ -613,7 +613,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             setRawArticle(null);
             return;
           }
-          setRawArticle({ id: matchedDoc.id, ...data } as NewsArticle);
+          setRawArticle(sanitizeNewsArticle({ id: matchedDoc.id, ...data } as NewsArticle));
           return;
         }
 
@@ -642,7 +642,7 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             setRawArticle(null);
             return;
           }
-          setRawArticle({ id: found.id, ...data } as NewsArticle);
+          setRawArticle(sanitizeNewsArticle({ id: found.id, ...data } as NewsArticle));
         }
       } catch (e) {
         console.warn("Could not fetch news article from Firestore (quota limit or offline):", e);
