@@ -2,6 +2,102 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "sondermuell-sammlung-winterberg-november-2026",
+    slug: "sondermuell-sammlung-winterberg-november-2026",
+    slug_nl: "inzameling-klein-chemisch-afval-winterberg-november-2026",
+    title: "Schadstoffmobil im Stadtgebiet: Sondermüll-Sammlung in Winterberg und den Ortsteilen am 6. und 7. November",
+    title_nl: "Milieubus op pad: Inzameling van klein chemisch afval in Winterberg op 6 en 7 november",
+    author: "Winterberg-Verzeichnis Redaktion",
+    imageUrl: "/news-sondermuell-sammlung-winterberg.jpg",
+    imageCredit: "Stadt Winterberg / Winterberg-Verzeichnis Redaktion",
+    status: 'approved',
+    category: 'wirtschaft',
+    date: "2026-10-27T08:00:00.000Z",
+    content: `Farbreste, Lösungsmittel oder Pflanzenschutzmittel im Keller? Am **Freitag, den 6. November, und Samstag, den 7. November 2026** macht das Schadstoffmobil wieder Station in Winterberg und allen Ortsteilen. Bürgerinnen und Bürger können Problemabfälle aus Privathaushalten kostenlos und fachgerecht entsorgen.
+
+Sonderabfälle gehören keinesfalls in den normalen Hausmüll oder in den Abfluss, da sie Umwelt und Grundwasser massiv belasten können. Zweimal jährlich bietet die Stadt Winterberg daher die mobile Schadstoffsammlung an.
+
+---
+
+## 📍 Haltestellen & Fahrplan des Schadstoffmobils
+
+Damit alle Bürgerinnen und Bürger kurze Wege haben, fährt das Spezialfahrzeug an beiden Tagen alle Ortsteile an:
+
+### Freitag, 06. November 2026
+* **Züschen:** 14:00 – 14:30 Uhr (Mollseifener Straße, Glascontainer am Radweg)
+* **Winterberg:** 15:00 – 16:15 Uhr (Kirmesplatz)
+* **Silbach:** 17:00 – 17:30 Uhr (Parkplatz Unterdorf)
+* **Siedlinghausen:** 17:45 – 18:30 Uhr (Parkplatz Eschenplatz)
+* **Altenfeld:** 18:45 – 19:00 Uhr (Schützenhalle)
+
+### Samstag, 07. November 2026
+* **Niedersfeld:** 08:00 – 08:30 Uhr (Dorfhalle)
+* **Hildfeld:** 08:45 – 09:15 Uhr (Hochsauerlandhalle)
+* **Grönebach:** 09:30 – 10:00 Uhr (Neues Feuerwehrhaus)
+* **Elkeringhausen:** 10:15 – 10:45 Uhr (Parkstraße)
+* **Mollseifen:** 11:15 – 11:30 Uhr (Grenzstraße bei der Friedhofskapelle)
+* **Hoheleye:** 11:45 – 12:00 Uhr (Kreisstraße 52, Seitenstreifen)
+* **Langewiese:** 12:15 – 12:45 Uhr (Parkplatz Bundesstraße)
+* **Neuastenberg / Lenneplätze:** 13:00 – 13:30 Uhr (Parkplatz neben Hotel Zur Post)
+* **Altastenberg:** 13:45 – 14:15 Uhr (Parkplatz gegenüber Landhotel Altastenberg)
+
+---
+
+## ⚠️ Wichtige Abgabe- & Sicherheitshinweise
+
+* **Ausschließlich persönliche Abgabe:** Die Sonderabfälle müssen **direkt und persönlich beim Fachpersonal** am Sammelfahrzeug übergeben werden.
+* **Kein vorzeitiges Abstellen:** Das Abstellen von Kanistern, Dosen oder Flaschen vor Eintreffen des Fahrzeugs ist strengstens untersagt. Es stellt eine erhebliche Gefährdung (insbesondere für spielende Kinder und Tiere) sowie eine Ordnungswidrigkeit bzw. illegale Müllentsorgung dar.
+* **Flüssigkeiten:** Müssen in fest verschlossenen Behältern abgegeben werden.
+* **Vorsortierung:** Nach Möglichkeit sollten Chemikalien und Problemstoffe vorsortiert in Kisten, Eimern oder Kartons angeliefert werden, um Wartezeiten am Fahrzeug zu minimieren.
+
+---
+
+## ✅ Was wird angenommen? (Nur haushaltsübliche Mengen)
+* Altfarben, Lacke, Beizen, Holzschutzmittel
+* Klebstoffe, Leim, Lösungsmittel, Verdünner
+* Foto-, Hobby- und Haushaltschemikalien
+* Pflanzenschutz-, Unkraut- und Schädlingsbekämpfungsmittel, Desinfektionsmittel
+* Altmedikamente, Altkosmetika und Spraydosen mit Restinhalt
+
+## ❌ Was wird nicht angenommen?
+* **Gewerbliche Sonderabfälle:** Es werden ausschließlich Abfälle aus privaten Haushalten angenommen.
+* **Altöl:** Muss gesetzlich über den Fach- und Einzelhandel zurückgegeben werden.
+* **Autoreifen und Leuchtstoffröhren:** Werden am Mobil nicht angenommen.
+* **Batterien:** Haushaltsbatterien können jederzeit kostenfrei in den Sammelbehältern des Handels sowie im **Bürgerbahnhof Winterberg** abgegeben werden.`,
+    content_nl: `Verfresten, oplosmiddelen of bestrijdingsmiddelen in de schuur? Op **vrijdag 6 november** en **zaterdag 7 november 2026** rijdt de milieubus weer door Winterberg en alle dorpskernen om klein chemisch afval (KCA) van particulieren gratis en veilig in te zamelen.
+
+Gevaarlijk afval hoort beslist niet bij het gewone restafval of in het riool, omdat het het milieu en het grondwater ernstig kan schaden. Twee keer per jaar organiseert de gemeente Winterberg daarom deze mobiele inzameling.
+
+---
+
+## 📍 Dienstregeling & Haltes
+
+### Vrijdag 6 november 2026
+* **Züschen:** 14:00 – 14:30 uur (Mollseifener Straße, glascontainers bij het fietspad)
+* **Winterberg:** 15:00 – 16:15 uur (Kirmesplatz)
+* **Silbach:** 17:00 – 17:30 uur (Parkeerplaats Unterdorf)
+* **Siedlinghausen:** 17:45 – 18:30 uur (Parkeerplaats Eschenplatz)
+* **Altenfeld:** 18:45 – 19:00 uur (Schützenhalle)
+
+### Zaterdag 7 november 2026
+* **Niedersfeld:** 08:00 – 08:30 uur (Dorfhalle)
+* **Hildfeld:** 08:45 – 09:15 uur (Hochsauerlandhalle)
+* **Grönebach:** 09:30 – 10:00 uur (Nieuwe kazerne brandweer)
+* **Elkeringhausen:** 10:15 – 10:45 uur (Parkstraße)
+* **Mollseifen:** 11:15 – 11:30 uur (Grenzstraße bij de begraafplaatskapel)
+* **Hoheleye:** 11:45 – 12:00 uur (Kreisstraße 52, berm)
+* **Langewiese:** 12:15 – 12:45 uur (Parkeerplaats Bundesstraße)
+* **Neuastenberg / Lenneplätze:** 13:00 – 13:30 uur (Parkeerplaats naast Hotel Zur Post)
+* **Altastenberg:** 13:45 – 14:15 uur (Parkeerplaats tegenover Landhotel Altastenberg)
+
+---
+
+## ⚠️ Belangrijke richtlijnen & Veiligheid
+* **Persoonlijk afgeven:** Het gevaarlijk afval dient direct en persoonlijk aan het personeel bij het inzamelvoertuig te worden overhandigd. Het vooraf neerzetten van bussen of flessen is streng verboden en strafbaar.
+* **Vloeistoffen:** Alleen in lekvrije, goed gesloten verpakkingen aanleveren.
+* **Alleen huishoudelijk afval:** Bedrijfsafval, motorolie (inleveren via verkooppunten), autobanden en tl-buizen worden niet geaccepteerd. Huishoudbatterijen kunnen gratis worden ingeleverd in het Bürgerbahnhof Winterberg.`
+  },
+  {
     id: "falstaff-barguide-2027-buket-bar-winterberg-auszeichnung",
     slug: "falstaff-barguide-buket-bar-winterberg-auszeichnung",
     slug_nl: "falstaff-bargids-buket-bar-winterberg-onderscheiding",
@@ -93,7 +189,7 @@ Een absolute aanrader voor iedereen die houdt van goed glas en een gastvrije amb
     slug_nl: "halloween-2026-winterberg-feest-evenementen-programma",
     title: "Halloween 2026 in Winterberg: Die besten Gruselpartys und Events im Überblick",
     title_nl: "Halloween 2026 in Winterberg: De leukste griezelfeesten en events op een rij",
-    author: "Winterberg-Verzeichnis (Simon Kräling)",
+    author: "Winterberg-Verzeichnis Redaktion",
     businessName: "Events in Winterberg",
     imageUrl: "/news-halloween-winterberg-2026.jpg",
     isAiGenerated: true,
@@ -385,7 +481,7 @@ Alle feiten over de Warmtepomp Infodag op een rij:
     slug_nl: '10-jaar-winterberger-winterdorf-jubileum-opening-highlights',
     title: '10 Jahre Winterberger Winterdorf: Großes Jubiläum vom 11. Dezember bis 4. Januar auf dem Marktplatz',
     title_nl: '10 jaar Winterberger Winterdorf: Groot jubileum van 11 december t/m 4 januari op het marktplein',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'winterberger-winterdorf',
     businessName: 'Winterberger Winterdorf',
     businessSlug: 'winterberger-winterdorf',
@@ -472,7 +568,7 @@ Alle kerngegevens over het 10-jarig jubileum op een rij:
     slug_nl: 'skiseizoen-winterberg-opening-27-november-2026',
     title: 'Früher Start in den Winter: Erste Lifte in Winterberg sollen bereits am 27. November öffnen',
     title_nl: 'Vroege start van de winter: Eerste skiliften in Winterberg gaan al op 27 november open',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'skiliftkarussell-winterberg',
     businessName: 'Skiliftkarussell Winterberg',
     businessSlug: 'pistenbericht',
@@ -561,7 +657,7 @@ Bereid uw wintersportdag in Winterberg eenvoudig voor:
     slug_nl: 'in-oktober-wordt-er-gewandeld-in-winterberg',
     title: 'Im Oktober wird in Winterberg gewandert',
     title_nl: 'In oktober wordt er in Winterberg gewandeld',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'winterberg-touristik',
     businessName: 'Winterberg Touristik und Wirtschaft GmbH',
     businessSlug: 'winterberg-touristik',
@@ -664,7 +760,7 @@ Alle begeleide wandelingen en rondleidingen vindt u vanaf nu overzichtelijk in o
     slug_nl: 'herfst-nordhang-jause-pompoensnijden-lichtjesmagie',
     title: 'Goldener Oktober & leuchtende Novemberabende: Die Herbst-Highlights an der Nordhang Jause',
     title_nl: 'Gouden herfst & fonkelende avonden: De najaarshoogtepunten bij Nordhang Jause',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'nordhang-jause',
     businessName: 'Nordhang Jause Winterberg',
     businessSlug: 'gastronomie/restaurant/nordhang-jause-winterberg',
@@ -767,12 +863,12 @@ Ideaal als feestelijke afsluiting van een frisse herfstwandeling of voor een gez
     slug_nl: 'atas-doener-beef-manufaktur-winterberg-opening',
     title: 'Eröffnung am 16. Oktober: Ata’s Döner bringt Steak-Döner und Beef-Manufaktur an den Waltenberg',
     title_nl: 'Opening op 16 oktober: Ata’s Döner brengt ambachtelijke steakdöner naar de Waltenberg',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'atas-doener-winterberg',
     businessName: "Ata's Döner Winterberg",
     businessSlug: 'gastronomie/imbisse/atas-doener-winterberg',
     imageUrl: '/news-atas-doener-winterberg-eroeffnung.jpg',
-    imageCredit: 'Foto: Simon Kräling',
+    imageCredit: "Foto: Winterberg-Verzeichnis Redaktion",
     isAiGenerated: false,
     status: 'approved',
     category: 'gastronomie',
@@ -874,7 +970,7 @@ Ata’s Döner – Beef Manufaktur in Winterberg:
     slug_nl: 'pizzeria-dani-winterberg-verhuizing-orkestrasse',
     title: 'Neuer Standort in der Orkestraße: Pizzeria Dani zieht um und empfängt Gäste im neuen Ambiente',
     title_nl: 'Nieuwe locatie in de Orkestraße: Pizzeria Dani verhuisd en verwelkomt gasten in sfeervol nieuw pand',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'pizzeria-dani',
     businessName: 'Pizzeria Dani by Savino',
     businessSlug: 'gastronomie/pizzerien/pizzeria-dani',
@@ -969,7 +1065,7 @@ Pizzeria Dani by Savino in Winterberg:
     slug_nl: 'psychotherapeute-lisa-veldhuis-praktijk-winterberg-opening',
     title: 'Neue Praxis am Waltenberg: Psychotherapeutin Lisa Veldhuis eröffnet Praxis für Erwachsene in Winterberg',
     title_nl: 'Nieuwe praktijk aan de Waltenberg: Psychotherapeute Lisa Veldhuis opent praktijk voor volwassenen in Winterberg',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'psychotherapie-lisa-veldhuis-winterberg',
     businessName: 'Psychotherapeutische Praxis Lisa Veldhuis',
     businessSlug: 'gesundheit-und-medizin/aerzte-und-praxen/psychotherapie-lisa-veldhuis-winterberg',
@@ -1063,7 +1159,7 @@ Psychotherapeutische praktijk voor volwassenen:
     slug_nl: 'nowa-kebabhaus-winterberg-opening',
     title: 'Neueröffnung am Waltenberg: Nowa Kebabhaus startet mit 1,99-Euro-Döneraktion in Winterberg',
     title_nl: 'Nieuwe opening aan de Waltenberg: Nowa Kebabhaus start met 1,99 euro döneractie in Winterberg',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'nowa-kebabhaus-winterberg',
     businessName: 'Nowa Kebabhaus Winterberg',
     businessSlug: 'gastronomie/imbisse/nowa-kebabhaus-winterberg',
@@ -1177,7 +1273,7 @@ Wilt u gerechten vooraf bestellen of catering aanvragen voor uw evenement?
     slug: 'filmtheater-winterberg-nachfolge-gesucht-kino-pachten',
     title: 'Nachfolge gesucht: Traditionsreiches Filmtheater Winterberg sucht neue Kinobetreiber',
     title_nl: 'Opvolging gezocht: Historische bioscoop Filmtheater Winterberg zoekt nieuwe uitbater',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'filmtheater-winterberg',
     businessName: 'Filmtheater Winterberg',
     businessSlug: 'freizeit/kino/filmtheater-winterberg',
@@ -1269,7 +1365,7 @@ Vragen over de verpachting en de overname van de bioscoop? Familie Wahle staat u
     slug: 'lokal-einkaufen-und-online-bestellen-winterberger-onlineshops',
     title: 'Lokal einkaufen & online bestellen: Winterberger Geschäfte verbinden stationären Handel und Onlineshopping',
     title_nl: 'Lokaal winkelen & online bestellen: Winkels in Winterberg combineren fysieke winkel met webshop',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     imageUrl: '/news-winterberg-onlineshops.jpg',
     status: 'approved',
     category: 'wirtschaft',
@@ -1352,7 +1448,7 @@ Heeft u een winkel of bedrijf in Winterberg of een van de dorpen en verkoopt u u
     slug: 'new-york-gospel-stars-konzert-oversum-winterberg',
     title: 'New York Gospel Stars live in Winterberg: Weihnachtliches Konzert-Highlight im Oversum',
     title_nl: 'New York Gospel Stars live in Winterberg: Kerstconcert-hoogtepunt in het Oversum',
-    author: 'Simon Kräling',
+    author: "Winterberg-Verzeichnis Redaktion",
     businessId: 'stadthalle-oversum-winterberg',
     businessName: 'Stadthalle Oversum Winterberg',
     businessSlug: 'stadthalle-oversum-winterberg',
