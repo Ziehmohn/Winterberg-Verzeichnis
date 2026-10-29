@@ -13960,6 +13960,108 @@ export const businesses: Business[] = [
       "saturday": "10:00 - 19:00",
       "sunday": "10:00 - 19:00"
     }
+    },
+  {
+    "id": "wakeland-sauerland",
+    "name": "WakeLand Sauerland (Wasserski Winterberg)",
+    "category": "Freizeit",
+    "subcategory": "Outdoor-Freizeitgebiet",
+    "additionalCategories": [
+      {
+        "category": "Ski, Bike & Sport",
+        "subcategory": "Sport & Outdoor"
+      }
+    ],
+    "description": "WakeLand Sauerland (auch bekannt als Wasserski Winterberg) ist die moderne Wasserski- und Wakeboard-Seilbahn am malerischen Hillebachsee in Winterberg-Niedersfeld. Die 5-Mast-Umlaufanlage bietet optimale Bedingungen für Anfänger bis Profis, um mit Wasserski, Wakeboard, Wakeskate oder Kneeboard über den See zu gleiten. Für Fortgeschrittene stehen anspruchsvolle Obstacles wie Kicker und Slider bereit, während Einsteiger in Kursen schnell erste Erfolge feiern. Die Anlage liegt inmitten der beliebten Freizeitoase Hillebachsee mit Badebucht, Sandstrand, Beachvolleyball, Spielplatz und Seegastronomie.",
+    "description_nl": "WakeLand Sauerland (bekend als Wasserski Winterberg) is de moderne waterski- en wakeboardkabelbaan aan de idyllische Hillebachsee in Winterberg-Niedersfeld. De 5-masts kabelbaan biedt optimale condities voor zowel beginners als gevorderden – op waterski's, wakeboard, wakeskate of kneeboard. Voor gevorderden zijn er uitdagende obstakels (kickers & sliders), terwijl beginners met speciale cursussen snel op het water staan. Gelegen bij de Hillebachsee met zwembaai, zandstrand, beachvolleybal en horeca aan het water.",
+    "extendedDescription": "Am Hillebachsee in Niedersfeld schlägt das Herz des Wassersports im Sauerland: WakeLand Sauerland bietet auf dem rund 8,5 Hektar großen Stausee eine professionelle Wasserski-Seilbahn für puren Fahrspaß im Sommer. Neben regulären Rundenzeiten und Tagestickets werden Einsteigerkurse, Gruppenevents, Schulklassen-Ausflüge und private Bahnmieten angeboten. Das Verleihmaterial umfasst moderne Boards, Skier, Schwimmwesten und Neoprenanzüge. Durch die Lage direkt am Hillebachsee mit Badebucht, Rundwanderweg, Beachvolleyballplatz und Gastronomie mit Seeterrasse ist die Anlage ein perfektes Ausflugsziel für Wassersportler und Familien.",
+    "extendedDescription_nl": "Aan de Hillebachsee in Niedersfeld bevindt zich dé watersportlocatie van het Sauerland: WakeLand Sauerland beschikt over een professionele waterskikabelbaan op het 8,5 hectare grote meer. Naast losse ritten en dagpassen worden beginnerscursussen, groepsuitjes en exclusieve baanhuur aangeboden. Hoogwaardig huurmateriaal (boards, ski's, reddingsvesten, wetsuits) is ter plaatse aanwezig. Dankzij de zwembaai, wandelroute rond het meer, beachvolleybal en terras aan het water is dit een complete bestemming voor watersporters en gezinnen.",
+    "address": "Grönebacher Straße 100, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "0175 1679310",
+    "email": "wakelandsauerland@gmail.com",
+    "website": "https://wakelandsauerland.net/",
+    "contactPerson": {
+      "name": "Falk Lieberz",
+      "role": "Geschäftsführer & Betreiber"
+    },
+    "coordinates": {
+      "lat": 51.252,
+      "lng": 8.533
+    },
+    "imageFallback": "WS",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "5-Mast Wasserski- & Wakeboard-Seilbahnanlage am Hillebachsee",
+      "Wasserski, Wakeboard, Kneeboard & Wakeskating",
+      "Einsteigerkurse & professionelle Betreuung für Anfänger",
+      "Obstacles, Kicker & Slider für fortgeschrittene Rider",
+      "Kompletter Verleih: Boards, Wasserski, Neoprenanzüge & Schwimmwesten",
+      "Gruppen- und Firmenevents sowie exklusive Bahnmieten",
+      "Direkt an der Freizeitanlage Hillebachsee mit Badebucht & Strand"
+    ],
+    "services_nl": [
+      "5-masts waterski- en wakeboardkabelbaan aan de Hillebachsee",
+      "Waterskiën, wakeboarden, kneeboarden & wakeskating",
+      "Beginnerscursussen & deskundige begeleiding voor starters",
+      "Obstacles, kickers & sliders voor gevorderde riders",
+      "Complete verhuur: boards, waterski's, wetsuits & zwemvesten",
+      "Groepsuitjes, bedrijfsevenementen en exclusieve baanhuur",
+      "Direct aan de recreatieplas Hillebachsee met zwembaai en strand"
+    ]
+  },
+  {
+    "id": "highfive-hillebachsee",
+    "name": "HighFive (Café am Hillebachsee)",
+    "category": "Gastronomie",
+    "subcategory": "Cafés",
+    "additionalCategories": [
+      {
+        "category": "Gastronomie",
+        "subcategory": "Kneipen und Bars"
+      }
+    ],
+    "description": "Das HighFive ist das gemütliche Café und Strandhaus direkt am Hillebachsee in Winterberg-Niedersfeld. Unmittelbar oberhalb der Wakeboard- und Wasserskianlage gelegen, lädt die große Sonnenterrasse mit traumhaftem Seeblick zum Verweilen und Genießen ein. Ob frisch gebrühter Kaffee, kühle Erfrischungsgetränke, Eis, Snacks oder sommerliche Drinks – hier entspannt man nach einem Spaziergang um den See oder beobachtet die Wakeboarder bei ihren spektakulären Sprüngen und Tricks.",
+    "description_nl": "HighFive is het sfeervolle café en strandhuis direct aan de Hillebachsee in Winterberg-Niedersfeld. Gelegen direct boven de wakeboard- en waterskikabelbaan biedt het grote zonneterras een schitterend uitzicht over het meer. Geniet van verse koffie, koude dranken, ijs, snacks en zomerse drankjes na een wandeling om het meer of kijk ontspannen naar de spectaculaire sprongen van de wakeboarders op het water.",
+    "extendedDescription": "Mit unverwechselbarem Strandhaus-Flair und erstklassiger Lage am Hillestausee ist das HighFive – betrieben von Jeffrey Meurs – der perfekte Treffpunkt an sonnigen Tagen in Niedersfeld. Die einladende Außenterrasse mit gemütlichen Loungemöbeln bietet Logenplätze für den Wassersportbetrieb und einen freien Panoramablick über die Wasserfläche und die Sauerländer Hügel. Neben klassischen Kaffeespezialitäten und Kuchen werden erfrischende Cocktails, kühles Bier und herzhafte Snacks für Badegäste, Ausflügler, Biker und Wassersportbegeisterte serviert.",
+    "extendedDescription_nl": "Met een ontspannen strandhuissfeer en toplocatie aan de Hillebachsee is HighFive – gerund door Jeffrey Meurs – de ideale ontmoetingsplek op zonnige dagen in Niedersfeld. Het gezellige terras met loungemeubilair biedt een panoramisch uitzicht over het water en de heuvels van het Sauerland. Gasten genieten van kwaliteitskoffie, gebak, koude bieren, cocktails en hartige snacks voor badgasten, wandelaars en watersporters.",
+    "address": "Grönebacher Straße 100, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "01514 1832477",
+    "email": "Jeffrey_Meurs@hotmail.de",
+    "website": "https://www.facebook.com/HighFiveWinterberg",
+    "contactPerson": {
+      "name": "Jeffrey Meurs",
+      "role": "Inhaber & Betreiber"
+    },
+    "coordinates": {
+      "lat": 51.252,
+      "lng": 8.533
+    },
+    "imageFallback": "HF",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Café & Strandhaus mit großer Seeterrasse am Hillebachsee",
+      "Direkter Blick auf die Wasserski- und Wakeboardanlage",
+      "Kaffeespezialitäten, Kuchen, Eis & Erfrischungsgetränke",
+      "Sommerliche Drinks, Cocktails & kühles Fassbier",
+      "Herzhafte Snacks & Imbissangebote für Seebesucher",
+      "Gemütliche Outdoor-Lounge-Möbel zum Entspannen",
+      "Direkt am Badesee, Strand & Rundwanderweg gelegen"
+    ],
+    "services_nl": [
+      "Café & beachhouse met groot zonneterras aan de Hillebachsee",
+      "Direct uitzicht op de waterski- en wakeboardkabelbaan",
+      "Koffiespecialiteiten, gebak, ijs & frisdranken",
+      "Zomerse drankjes, cocktails & koud bier",
+      "Hartige snacks voor strand- en meerbezoekers",
+      "Comfortabele loungehoek om te ontspannen",
+      "Direct aan het meer, zandstrand en de wandelroute"
+    ]
   }
 ];
 

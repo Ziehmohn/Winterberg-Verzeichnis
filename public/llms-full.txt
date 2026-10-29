@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (452 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (454 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2881,6 +2881,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/gockelstall-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/gockelstall-winterberg
 
+#### [HighFive (Café am Hillebachsee)](https://www.winterberg-verzeichnis.de/gastronomie/cafes/highfive-caf-am-hillebachsee)
+- **Kategorie:** Gastronomie > Cafés
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Grönebacher Straße 100, 59955 Winterberg-Niedersfeld
+- **Telefon:** 01514 1832477
+- **Webseite:** https://www.facebook.com/HighFiveWinterberg
+- **Beschreibung (DE):** Das HighFive ist das gemütliche Café und Strandhaus direkt am Hillebachsee in Winterberg-Niedersfeld. Unmittelbar oberhalb der Wakeboard- und Wasserskianlage gelegen, lädt die große Sonnenterrasse mit traumhaftem Seeblick zum Verweilen und Genießen ein. Ob frisch gebrühter Kaffee, kühle Erfrischungsgetränke, Eis, Snacks oder sommerliche Drinks – hier entspannt man nach einem Spaziergang um den See oder beobachtet die Wakeboarder bei ihren spektakulären Sprüngen und Tricks.
+- **Beschreibung (NL):** HighFive is het sfeervolle café en strandhuis direct aan de Hillebachsee in Winterberg-Niedersfeld. Gelegen direct boven de wakeboard- en waterskikabelbaan biedt het grote zonneterras een schitterend uitzicht over het meer. Geniet van verse koffie, koude dranken, ijs, snacks en zomerse drankjes na een wandeling om het meer of kijk ontspannen naar de spectaculaire sprongen van de wakeboarders op het water.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/cafes/highfive-caf-am-hillebachsee
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/cafes/highfive-caf-am-hillebachsee
+
 ### Kategorie: Dienstleistungen
 
 #### [Winterberg Touristik und Wirtschaft GmbH](https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh)
@@ -4588,6 +4599,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** LEbertiGO Aktivmuseum in Winterberg-Niedersfeld is het grootste interactieve LEGO®- en speelgoedmuseum in het Sauerland. Op ruim 1.200 m² expositieruimte bewonderen bezoekers bijna 5.000 gedetailleerde LEGO® modellen, indrukwekkende themawerelden en unieke MOC-bouwwerken. In de grote interactieve bouwruimte kunnen jong en oud zelf creatief aan de slag. Een goed gesorteerde winkel met nieuwe sets, verzamelobjecten en losse stenen en laadpalen voor elektrische voertuigen maken dit overdekte familie-uitstapje compleet.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/lebertigo-aktivmuseum
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/lebertigo-aktivmuseum
+
+#### [WakeLand Sauerland (Wasserski Winterberg)](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/wakeland-sauerland-wasserski-winterberg)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Grönebacher Straße 100, 59955 Winterberg-Niedersfeld
+- **Telefon:** 0175 1679310
+- **Webseite:** https://wakelandsauerland.net/
+- **Beschreibung (DE):** WakeLand Sauerland (auch bekannt als Wasserski Winterberg) ist die moderne Wasserski- und Wakeboard-Seilbahn am malerischen Hillebachsee in Winterberg-Niedersfeld. Die 5-Mast-Umlaufanlage bietet optimale Bedingungen für Anfänger bis Profis, um mit Wasserski, Wakeboard, Wakeskate oder Kneeboard über den See zu gleiten. Für Fortgeschrittene stehen anspruchsvolle Obstacles wie Kicker und Slider bereit, während Einsteiger in Kursen schnell erste Erfolge feiern. Die Anlage liegt inmitten der beliebten Freizeitoase Hillebachsee mit Badebucht, Sandstrand, Beachvolleyball, Spielplatz und Seegastronomie.
+- **Beschreibung (NL):** WakeLand Sauerland (bekend als Wasserski Winterberg) is de moderne waterski- en wakeboardkabelbaan aan de idyllische Hillebachsee in Winterberg-Niedersfeld. De 5-masts kabelbaan biedt optimale condities voor zowel beginners als gevorderden – op waterski's, wakeboard, wakeskate of kneeboard. Voor gevorderden zijn er uitdagende obstakels (kickers & sliders), terwijl beginners met speciale cursussen snel op het water staan. Gelegen bij de Hillebachsee met zwembaai, zandstrand, beachvolleybal en horeca aan het water.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/wakeland-sauerland-wasserski-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/wakeland-sauerland-wasserski-winterberg
 
 ---
 

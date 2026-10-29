@@ -2061,6 +2061,32 @@
         "Gratis parkeergelegenheid direct voor de hal"
       ],
       "products": []
+    },
+    "wakeland-sauerland": {
+      "description": "WakeLand Sauerland (bekend als Wasserski Winterberg) is de moderne waterski- en wakeboardkabelbaan aan de idyllische Hillebachsee in Winterberg-Niedersfeld.",
+      "services": [
+        "5-masts waterski- en wakeboardkabelbaan aan de Hillebachsee",
+        "Waterskiën, wakeboarden, kneeboarden & wakeskating",
+        "Beginnerscursussen & deskundige begeleiding voor starters",
+        "Obstacles, kickers & sliders voor gevorderde riders",
+        "Complete verhuur: boards, waterski's, wetsuits & zwemvesten",
+        "Groepsuitjes, bedrijfsevenementen en exclusieve baanhuur",
+        "Direct aan de recreatieplas Hillebachsee met zwembaai en strand"
+      ],
+      "products": []
+    },
+    "highfive-hillebachsee": {
+      "description": "HighFive is het sfeervolle café en strandhaus direct aan de Hillebachsee in Winterberg-Niedersfeld met een zonneterras en uitzicht op het water.",
+      "services": [
+        "Café & beachhouse met groot zonneterras aan de Hillebachsee",
+        "Direct uitzicht op de waterski- en wakeboardkabelbaan",
+        "Koffiespecialiteiten, gebak, ijs & frisdranken",
+        "Zomerse drankjes, cocktails & koud bier",
+        "Hartige snacks voor strand- en meerbezoekers",
+        "Comfortabele loungehoek om te ontspannen",
+        "Direct aan het meer, zandstrand en de wandelroute"
+      ],
+      "products": []
     }
   }
 }
