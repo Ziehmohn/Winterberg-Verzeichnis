@@ -107,6 +107,9 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'blackwater': [51.1948, 8.5341],
   'borgs scheune': [51.1601, 8.5638],
   'züschen': [51.1601, 8.5638],
+  // Hildfeld / Hochsauerlandhalle
+  'hochsauerlandhalle': [51.2536, 8.5667],
+  'hildfeld': [51.2536, 8.5667],
 };
 
 function getKnownOrDistrictCoordinates(location: string): [number, number] {
