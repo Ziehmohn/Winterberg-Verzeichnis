@@ -13938,6 +13938,62 @@ export const businesses: Business[] = [
       "Individuele afspraken dagelijks op reservering",
       "Gratis parkeren direct op het terrein"
     ]
+    },
+  {
+    "id": "lebertigo",
+    "name": "LEbertiGO Aktivmuseum",
+    "category": "Freizeit",
+    "subcategory": "Indoor-Spielplätze",
+    "additionalCategories": [
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Spielwaren"
+      }
+    ],
+    "description": "Das LEbertiGO Aktivmuseum in Winterberg-Niedersfeld ist das größte LEGO®-Aktiv- und Spielzeugmuseum im Sauerland. Auf über 1.200 m² Ausstellungsfläche begeistern rund 5.000 detailreiche LEGO® Modelle, faszinierende Themenwelten und spektakuläre MOC-Eigenkreationen kleine und große Besucher. Im großzügigen Aktiv- und Baubereich können Kinder und Erwachsene selbst zu Baumeistern werden. Ein umfangreicher Shop für Neuware, Sets, Sammlerstücke und Einzelsteine sowie Ladestationen für E-Autos und E-Bikes runden das wetterunabhängige Erlebnisangebot ab.",
+    "description_nl": "LEbertiGO Aktivmuseum in Winterberg-Niedersfeld is het grootste interactieve LEGO®- en speelgoedmuseum in het Sauerland. Op ruim 1.200 m² expositieruimte bewonderen bezoekers bijna 5.000 gedetailleerde LEGO® modellen, indrukwekkende themawerelden en unieke MOC-bouwwerken. In de grote interactieve bouwruimte kunnen jong en oud zelf creatief aan de slag. Een goed gesorteerde winkel met nieuwe sets, verzamelobjecten en losse stenen en laadpalen voor elektrische voertuigen maken dit overdekte familie-uitstapje compleet.",
+    "extendedDescription": "Direkt an der B480 in Winterberg-Niedersfeld (Am Eschenberg 2a, zwischen Imbiss und Kartbahn) liegt das LEbertiGO Aktivmuseum. Das inhabergeführte Ausflugsziel von Mio Espig und Berthold Kernberg widmet sich der Faszination der bunten Klemmbausteine aus Billund. Neben detailgetreuen Großmodellen und Dioramen steht das eigene Mitmachen im Mittelpunkt: Riesige Steinebecken und Bauzonen laden zum ausgiebigen Konstruieren ein. Der angeschlossene Store bietet seltene Minifiguren, Ersatzteile und aktuelle Bausätze. Direkt vor der Halle stehen kostenfreie Parkplätze und moderne Ladesäulen zur Verfügung.",
+    "extendedDescription_nl": "Direct aan de B480 in Winterberg-Niedersfeld (Am Eschenberg 2a, tussen snackbar en kartbaan) bevindt zich het LEbertiGO Aktivmuseum. Deze bijzondere attractie staat volledig in het teken van de Deense bouwstenen. Naast enorme diorama's en miniaturen staat zelf bouwen centraal met grote voorraden stenen voor eindeloos speelplezier. De winkel biedt unieke minifiguren, reserveonderdelen en actuele sets. Gratis parkeerplaatsen en laadpalen voor e-auto's en fietsen zijn aanwezig.",
+    "address": "Am Eschenberg 2a, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "0151 51566674",
+    "email": "info@lebertigo.de",
+    "website": "https://lebertigo.de/",
+    "contactPerson": {
+      "name": "Mio Espig & Berthold Kernberg",
+      "role": "Geschäftsführer"
+    },
+    "coordinates": {
+      "lat": 51.2462,
+      "lng": 8.5288
+    },
+    "imageFallback": "LG",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Großes LEGO®-Aktivmuseum auf über 1.200 m² Fläche",
+      "Knapp 5.000 Modelle, Dioramen und MOC-Eigenkreationen",
+      "Riesiger Mitmach- und Baubereich für Kinder und Erwachsene",
+      "LEGO® Store mit Sets, Raritäten, Minifiguren und Einzelteilen",
+      "Wetterunabhängiges Ausflugsziel für die ganze Familie",
+      "Ladeinfrastruktur für E-Autos und E-Bikes direkt vor Ort",
+      "Kostenfreie Besucherparkplätze unmittelbar vor der Halle"
+    ],
+    "services_nl": [
+      "Groot interactief LEGO®-museum op ruim 1.200 m² oppervlak",
+      "Bijna 5.000 modellen, diorama's en unieke MOC-creaties",
+      "Grote interactieve bouw- en speelruimte voor het hele gezin",
+      "LEGO® winkel met sets, verzamelobjecten, minifiguren en losse steentjes",
+      "Weersonafhankelijk dagje uit voor alle leeftijden",
+      "Laadpalen voor elektrische auto's en e-bikes direct voor de deur",
+      "Gratis parkeergelegenheid direct voor de hal"
+    ],
+    "openingHours": {
+      "friday": "13:00 - 19:00",
+      "saturday": "10:00 - 19:00",
+      "sunday": "10:00 - 19:00"
+    }
   }
 ];
 

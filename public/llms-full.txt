@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (451 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (452 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -4578,6 +4578,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Paintballhalle Winterberg in Niedersfeld aan de Eschenberg biedt adrenalineverhogende actie en teamwork op een overdekt speelveld van ruim 2.500 m². Ideaal voor vrijgezellenfeesten, verenigingsuitjes, verjaardagen en bedrijfsuitjes. Uitgerust met professionele markeerders, gezichtsmaskers en gevarieerde spelscenario's (toegang vanaf 18 jaar). Naast flexibele groepstarieven zijn er aantrekkelijke combinatie-arrangementen mogelijk met de direct naastgelegen outdoor-kartbaan.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/paintballhalle-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/paintballhalle-winterberg
+
+#### [LEbertiGO Aktivmuseum](https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/lebertigo-aktivmuseum)
+- **Kategorie:** Freizeit > Indoor-Spielplätze
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Am Eschenberg 2a, 59955 Winterberg-Niedersfeld
+- **Telefon:** 0151 51566674
+- **Webseite:** https://lebertigo.de/
+- **Beschreibung (DE):** Das LEbertiGO Aktivmuseum in Winterberg-Niedersfeld ist das größte LEGO®-Aktiv- und Spielzeugmuseum im Sauerland. Auf über 1.200 m² Ausstellungsfläche begeistern rund 5.000 detailreiche LEGO® Modelle, faszinierende Themenwelten und spektakuläre MOC-Eigenkreationen kleine und große Besucher. Im großzügigen Aktiv- und Baubereich können Kinder und Erwachsene selbst zu Baumeistern werden. Ein umfangreicher Shop für Neuware, Sets, Sammlerstücke und Einzelsteine sowie Ladestationen für E-Autos und E-Bikes runden das wetterunabhängige Erlebnisangebot ab.
+- **Beschreibung (NL):** LEbertiGO Aktivmuseum in Winterberg-Niedersfeld is het grootste interactieve LEGO®- en speelgoedmuseum in het Sauerland. Op ruim 1.200 m² expositieruimte bewonderen bezoekers bijna 5.000 gedetailleerde LEGO® modellen, indrukwekkende themawerelden en unieke MOC-bouwwerken. In de grote interactieve bouwruimte kunnen jong en oud zelf creatief aan de slag. Een goed gesorteerde winkel met nieuwe sets, verzamelobjecten en losse stenen en laadpalen voor elektrische voertuigen maken dit overdekte familie-uitstapje compleet.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/lebertigo-aktivmuseum
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/lebertigo-aktivmuseum
 
 ---
 

@@ -2048,6 +2048,19 @@
         "Gratis parkeren direct op het terrein"
       ],
       "products": []
+    },
+    "lebertigo": {
+      "description": "LEbertiGO Aktivmuseum in Winterberg-Niedersfeld is het grootste interactieve LEGO®- en speelgoedmuseum in het Sauerland met ruim 1.200 m² expositie- en bouwplezier.",
+      "services": [
+        "Groot interactief LEGO®-museum op ruim 1.200 m² oppervlak",
+        "Bijna 5.000 modellen, diorama's en unieke MOC-creaties",
+        "Grote interactieve bouw- en speelruimte voor het hele gezin",
+        "LEGO® winkel met sets, verzamelobjecten, minifiguren en losse steentjes",
+        "Weersonafhankelijk dagje uit voor alle leeftijden",
+        "Laadpalen voor elektrische auto's en e-bikes direct voor de deur",
+        "Gratis parkeergelegenheid direct voor de hal"
+      ],
+      "products": []
     }
   }
 }
