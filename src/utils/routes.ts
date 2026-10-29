@@ -514,7 +514,7 @@ export interface SystemRedirectEntry {
   source: string;
   target: string;
   isSystem: boolean;
-  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert' | 'News';
+  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert' | 'News' | 'Ortsteil';
   lang: 'de' | 'nl';
   statusCode?: 301 | 302;
 }
