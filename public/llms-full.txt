@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (455 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (465 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1652,6 +1652,49 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/maschinenbau/schuhl-und-co-gmbh
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/machinebouw/schuhl-und-co-gmbh
 
+#### [Treppen- und Metallbau Schröder](https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/treppen-und-metallbau-schroeder)
+- **Kategorie:** Handwerk > Bauunternehmen
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Am Eschenberg 14, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 908351
+- **Webseite:** https://www.metallbau-schröder.de/
+- **Beschreibung (DE):** Treppen- und Metallbau Schröder (Inhaber Jens Schröder) am Eschenberg 14 in Winterberg-Niedersfeld ist der erfahrene Handwerksbetrieb für anspruchsvolle Metall- und Stahlbauarbeiten. Das Unternehmen fertigt maßgeschneiderte Stahltreppen für den Innen- und Außenbereich, hochwertige Treppen- und Balkongeländer, robuste Zaunanlagen, Vordächer und Tore sowie individuelle Schweißkonstruktionen für private Bauherren, Gewerbebetriebe und die Industrie.
+- **Beschreibung (NL):** Treppen- und Metallbau Schröder (Jens Schröder) aan de Eschenberg 14 in Winterberg-Niedersfeld is het vakkundige metaalbewerkingsbedrijf voor stalen trappen, trap- en balkonleuningen, hekwerken, overkappingen en stalen constructies op maat voor particulieren en bedrijven.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/bauunternehmen/treppen-und-metallbau-schroeder
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/bouwbedrijven/treppen-und-metallbau-schroeder
+
+#### [MTH-Systems (Elektrotechnik & Wiegesysteme)](https://www.winterberg-verzeichnis.de/handwerk/elektriker/mth-systems-elektrotechnik-und-wiegesysteme)
+- **Kategorie:** Handwerk > Elektriker
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Am Hagen 19, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 9699505
+- **Webseite:** https://www.mth-systems.de/
+- **Beschreibung (DE):** MTH-Systems unter Leitung von Dipl.-Ing. Stefan Harbecke am Hagen 19 in Winterberg-Niedersfeld ist ein spezialisierter Technologie- und Handwerksbetrieb für moderne Elektrotechnik, mobile und stationäre Wiegesysteme sowie professionelle Schneeanlagen und Beschneiungstechnik. Das Unternehmen bietet Beratung, Vertrieb, Installation, Kalibrierung und Wartung aus einer Hand für Gewerbe-, Industrie-, Steinbruch- und Wintersportbetriebe im gesamten Sauerland und darüber hinaus.
+- **Beschreibung (NL):** MTH-Systems onder leiding van Dipl.-Ing. Stefan Harbecke in Winterberg-Niedersfeld is gespecialiseerd in elektrotechniek, mobiele en stationaire weegsystemen (wiellader- en bandweegschalen) en professionele sneeuwkanonnen en besneeuwingsinstallaties voor skigebieden.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/mth-systems-elektrotechnik-und-wiegesysteme
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/mth-systems-elektrotechnik-und-wiegesysteme
+
+#### [Fleischerei Buschmann](https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-buschmann)
+- **Kategorie:** Handwerk > Fleischerei
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 32, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 8170
+- **Webseite:** http://www.fleischerei-buschmann.com/
+- **Beschreibung (DE):** Die traditionsreiche Fleischerei Buschmann (Inhaber Jörg Buschmann) an der Ruhrstraße 32 in Winterberg-Niedersfeld steht seit Generationen für meisterhaftes Fleischerhandwerk, beste Frische und regionale Spitzenqualität. Der bio-zertifizierte Handwerksbetrieb bezieht Schlachttiere aus kontrollierter, artgerechter Tierhaltung aus der Region. Das Sortiment umfasst feine Fleisch- und Schinkenspezialitäten, hausgemachte Sauerländer Wurstwaren nach Familienrezepten, schmackhafte Konserven und einen beliebten Mittagstisch.
+- **Beschreibung (NL):** Slagerij Buschmann (Jörg Buschmann) aan de Ruhrstraße 32 in Winterberg-Niedersfeld staat voor ambachtelijke kwaliteit en biologisch gecertificeerd vlees uit de regio. Huisgemaakte Sauerlandse worsten, hammen, kant-en-klaargerechten en een verse lunchbalie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/fleischerei/fleischerei-buschmann
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/slagerijen/fleischerei-buschmann
+
+#### [Elektro Hankeln (Installation & Haushaltswaren)](https://www.winterberg-verzeichnis.de/handwerk/elektriker/elektro-hankeln-installation-und-haushaltswaren)
+- **Kategorie:** Handwerk > Elektriker
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 29, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 286
+- **Beschreibung (DE):** Elektro Hankeln (Inhaber Markus Hankeln) an der Ruhrstraße 29 in Winterberg-Niedersfeld ist Ihr zuverlässiger Meisterbetrieb für Elektroinstallationen, Gebäudetechnik und Elektro-Fachhandel im oberen Ruhrtal. Neben fachgerechten Installationen in Alt- und Neubauten, Beleuchtungskonzepten und Wallbox-Montagen für E-Mobilität führt das Ladengeschäft ein sorgfältig ausgewähltes Sortiment an Haushaltsgroß- und -kleingeräten (Weiße Ware, Waschmaschinen, Kühlschränke, Kaffeemaschinen, Toaster), Leuchtmitteln und Ersatzteilen inklusive Reparaturservice.
+- **Beschreibung (NL):** Elektro Hankeln (Markus Hankeln) aan de Ruhrstraße 29 in Winterberg-Niedersfeld is het vertrouwde elektrobedrijf en witgoedspeciaalzaak. Van vakkundige elektro-installaties, verlichting en wallboxen tot de verkoop en reparatie van wasmachines, koelkasten en huishoudelijke apparatuur.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/elektro-hankeln-installation-und-haushaltswaren
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/elektro-hankeln-installation-und-haushaltswaren
+
 ### Kategorie: Einzelhandel
 
 #### [Wochenmarkt Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/maerkte/wochenmarkt-winterberg)
@@ -2903,6 +2946,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/cafes/highfive-caf-am-hillebachsee
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/cafes/highfive-caf-am-hillebachsee
 
+#### [Imbiss Hans' Wurst](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/imbiss-hans-wurst)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 32, 59955 Winterberg-Niedersfeld
+- **Telefon:** 0177 9123906
+- **Webseite:** https://niedersfeld.info/gewerbe/gastronomie-und-lebensmittel/hans-wurst/
+- **Beschreibung (DE):** Der Imbiss Hans' Wurst an der Ruhrstraße 32 in Niedersfeld (direkt neben der Fleischerei Buschmann) bringt die klassische und beliebte Imbisskultur ins Dorf zurück. Ob knusprige Pommes, original Mantaplatte (Currywurst mit Pommes Schranke), deftige Bratwurst oder herzhafte Burger – Hans serviert ehrliche, handgemachte Imbisse aus regionalen Zutaten für Einheimische, Handwerker und Sauerland-Urlauber. Telefonische Vorbestellung ist möglich.
+- **Beschreibung (NL):** Snackwagen Hans' Wurst aan de Ruhrstraße 32 in Niedersfeld (naast slagerij Buschmann) serveert klassieke en ambachtelijke snacks: knapperige friet, curryworst, echte Mantaplatte en sappige burgers bereid met streekproducten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/imbiss-hans-wurst
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/imbiss-hans-wurst
+
 ### Kategorie: Dienstleistungen
 
 #### [Winterberg Touristik und Wirtschaft GmbH](https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh)
@@ -3501,6 +3555,50 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tagungszentren/gaestehaus-winterberg-die-eventlocation
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/conferentiecentra/gaestehaus-winterberg-die-eventlocation
 
+#### [Great Oak Datenschutz](https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/great-oak-datenschutz)
+- **Kategorie:** Dienstleistungen > IT & Software
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 16, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 9999690
+- **Webseite:** https://great-oak-datenschutz.de/
+- **Beschreibung (DE):** Die Great Oak Datenschutz GmbH & Co. KG mit Hauptsitz in Winterberg-Niedersfeld (Ruhrstraße 16) und Niederlassung in Rostock ist ein spezialisiertes Beratungsunternehmen für betrieblichen Datenschutz, Informationssicherheit und IT-Compliance. Als zertifizierter externer Datenschutzbeauftragter (DSB) und Informationssicherheitsbeauftragter (CISO/ISB) betreut das Team bundesweit mittelständische Unternehmen, Handwerksbetriebe, Kanzleien, Krankenhäuser und Arztpraxen. Das Leistungsspektrum umfasst professionelle DSGVO-Audits, die Erstellung von Verarbeitungsverzeichnissen und Richtlinien, Mitarbeiterschulungen sowie strategische Sicherheitsberatung nach NIS-2 und KRITIS.
+- **Beschreibung (NL):** Great Oak Datenschutz GmbH & Co. KG met hoofdkantoor in Winterberg-Niedersfeld (Ruhrstraße 16) en vestiging in Rostock is een gespecialiseerd adviesbureau voor gegevensbescherming (AVG/GDPR), informatiebeveiliging en IT-compliance. Als extern functionaris voor gegevensbescherming (FG/DPO) en CISO/ISB ondersteunt het deskundige team mkb-bedrijven, zorginstellingen, klinieken en advocatenkantoren met audits, privacybeleid, medewerkerstrainingen en NIS-2-cybersecuritybegeleiding.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/great-oak-datenschutz
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/great-oak-datenschutz
+
+#### [Lektorat Claudius Kretzer](https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/lektorat-claudius-kretzer)
+- **Kategorie:** Dienstleistungen > Marketingdienstleistungen
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 16, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 8069852
+- **Webseite:** https://www.lektorat-kretzer.de/
+- **Beschreibung (DE):** Das Lektorat Claudius Kretzer an der Ruhrstraße 16 in Winterberg-Niedersfeld bietet professionelle redaktionelle Dienstleistungen für Verlage, Unternehmen, Autoren und Bildungsinstitutionen. Von fachkundigem Lektorat (stilistische und inhaltliche Textoptimierung) und präzisem Korrektorat (Orthografie, Grammatik, Zeichensetzung) über die Konzeption moderner Bildungsmedien bis hin zum Autorenmanagement und zur externen Redaktion bis zur Imprimatur: Mit sprachlicher Präzision und langjähriger Expertise sorgt Claudius Kretzer für fehlerfreie und lesefreundliche Publikationen.
+- **Beschreibung (NL):** Lektorat Claudius Kretzer aan de Ruhrstraße 16 in Winterberg-Niedersfeld biedt professionele redactionele diensten voor uitgeverijen, bedrijven, auteurs en onderwijsinstellingen. Van inhoudelijke en stilistische redactie tot nauwgezette proefcorrectie van grammatica en spelling. Met taalkundige precisie zorgt Claudius Kretzer voor foutloze en overtuigende publicaties.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/lektorat-claudius-kretzer
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/marketingdiensten/lektorat-claudius-kretzer
+
+#### [Tuss Bus Reisen](https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/tuss-bus-reisen)
+- **Kategorie:** Dienstleistungen > Tourismus
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Kampstraße 12, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 262
+- **Webseite:** https://www.tussbus.de/
+- **Beschreibung (DE):** Die Tuss Verkehrsgesellschaft mbH (Tuss Bus Reisen) mit Sitz in Winterberg-Niedersfeld (Kampstraße 12 / Betriebshof Ruhrstraße 12c) ist seit vielen Jahrzehnten der verlässliche Partner für Reiseverkehr, Gruppenfahrten und Busvermietungen im Hochsauerland. Mit einer modernen und komfortablen Reisebusflotte erkunden Gäste von Niedersfeld aus ganz Europa: von organisierten Rundreisen und Städtereisen über Musical- und Skifahrten bis hin zu Vereins- und Schulausflügen. Ergänzt wird das Leistungsspektrum durch zuverlässigen Linien- und Schülerverkehr.
+- **Beschreibung (NL):** Tuss Verkehrsgesellschaft mbH (Tuss Bus Reisen) in Winterberg-Niedersfeld is al decennialang dé betrouwbare partner voor busreizen, groepsreizen, schoolreizen en touringcarverhuur in het Sauerland. Met een modern en comfortabel wagenpark ontdekken reizigers vanuit Niedersfeld heel Europa – van meerdaagse vakantiereizen en stedentrips tot dagtochten op maat. Daarnaast verzorgt het familiebedrijf betrouwbaar streek- en schoolvervoer.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/tourismus/tuss-bus-reisen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/toerisme/tuss-bus-reisen
+
+#### [SI Werbeform – Beschriftung und Werbung](https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/si-werbeform-beschriftung-und-werbung)
+- **Kategorie:** Dienstleistungen > Marketingdienstleistungen
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 12b, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 908450
+- **Webseite:** https://www.si-werbeform.de/
+- **Beschreibung (DE):** SI Werbeform (Inhaberin Sophia Klüppel) an der Ruhrstraße 12b in Winterberg-Niedersfeld ist Ihr regionaler Fachbetrieb für professionelle Werbetechnik, Beschriftungen und visuelle Markenauftritte im Sauerland. Das Leistungsspektrum umfasst passgenaue Fahrzeugbeschriftungen, Schaufensterbeklebungen, hochwertige Werbeschilder, Bauschilder, Banner sowie Lichtwerbung und Foliendesign. Ob Gewerbekunde, Gastronomie oder Verein – SI Werbeform setzt Werbebotschaften mit handwerklichem Geschick und langlebigen Materialien wirkungsvoll in Szene.
+- **Beschreibung (NL):** SI Werbeform (Sophia Klüppel) aan de Ruhrstraße 12b in Winterberg-Niedersfeld is dé regionale specialist voor professionele reclametechniek, belettering en visuele communicatie in het Sauerland. Van hoogwaardige voertuigbelettering en raamfolies tot reclameborden, spandoeken, lichtreclame en grafisch ontwerp.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/si-werbeform-beschriftung-und-werbung
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/marketingdiensten/si-werbeform-beschriftung-und-werbung
+
 ### Kategorie: Ski, Bike & Sport
 
 #### [Tennisplätze Niedersfeld](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-niedersfeld)
@@ -4008,15 +4106,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/yoga/mountain-yoga-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/yoga/mountain-yoga-winterberg
 
-#### [Ambulanter Pflegedienst und Tagespflege Dönekes](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes)
+#### [Tagespflege Dönekes](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/tagespflege-doenekes)
 - **Kategorie:** Gesundheit & Medizin > Pflegedienste
 - **Ort / Ortsteil:** Niedersfeld
-- **Adresse:** Ruhrstraße 38A, 59955 Winterberg-Niedersfeld
+- **Adresse:** Ruhrstraße 38a, 59955 Winterberg-Niedersfeld
 - **Telefon:** 02985 3689975
 - **Webseite:** https://tagespflege-niedersfeld.de
-- **Beschreibung (DE):** Ambulanter Pflegedienst und Tagespflege in Niedersfeld.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/ambulanter-pflegedienst-und-tagespflege-doenekes
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/thuiszorg/ambulanter-pflegedienst-und-tagespflege-doenekes
+- **Beschreibung (DE):** In der Tagespflege-Einrichtung „Dönekes“ an der Ruhrstraße 38a in Winterberg-Niedersfeld werden ältere und hilfebedürftige Menschen, die zu Hause leben, werktags von morgens bis nachmittags liebevoll betreut. Die Einrichtung bietet strukturierte Tagesabläufe, gemeinsame Mahlzeiten, kognitive und motorische Aktivierungsangebote sowie herzliche Geselligkeit zur nachhaltigen Entlastung pflegender Angehöriger.
+- **Beschreibung (NL):** In dagopvangvoorziening „Dönekes“ aan de Ruhrstraße 38a in Winterberg-Niedersfeld worden ouderen en hulpbehoevenden die thuis wonen op werkdagen overdag liefdevol opgevangen en verzorgd. Met gezamenlijke maaltijden, activiteiten en gezelligheid biedt Dönekes tevens een welkome ontlasting voor mantelzorgers.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/pflegedienste/tagespflege-doenekes
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/thuiszorg/tagespflege-doenekes
 
 #### [MCS - Mein Care Service / Sanitätshaus Winterberg](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/sanitaetshaeuser/mcs-mein-care-service-sanitaetshaus-winterberg)
 - **Kategorie:** Gesundheit & Medizin > Sanitätshäuser
@@ -4142,6 +4241,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Professionele hondenschool en trainingscentrum van Birgit Prager aan de Lamfert in Winterberg. Gecertificeerde hondentraining, puppylessen, gehoorzaamheid en gedragstherapie.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/tiergesundheit/hundezentrum-pfotenklatscher-birgit-prager
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/diergezondheid/hundezentrum-pfotenklatscher-birgit-prager
+
+#### [NATURHEILPRAXIS und FeelGood Wellnessmassagen](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/naturheilpraxis-und-feelgood-wellnessmassagen)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Ruhrstraße 19, 59955 Winterberg-Niedersfeld
+- **Telefon:** 02985 9799892
+- **Webseite:** https://www.naturheilpraxis-niedersfeld.de/
+- **Beschreibung (DE):** Die Naturheilpraxis und FeelGood Wellnessmassagen von Heilpraktikerin Stefanie Dietrich an der Ruhrstraße 19 in Winterberg-Niedersfeld steht für ganzheitliche Gesundheit und erholsame Wohlfühlbehandlungen. Mit fundierten naturheilkundlichen Therapieverfahren (darunter Homöopathie, Akupunktur, Schmerztherapie und Darmsanierung) sowie wohltuenden FeelGood-Wellnessmassagen (u. a. Rücken- und Ganzkörpermassagen, Fußreflexzonen- und Hot-Stone-Massagen) unterstützt Stefanie Dietrich Körper und Geist bei der Regeneration und Schmerzlinderung.
+- **Beschreibung (NL):** Naturheilpraxis en FeelGood Wellnessmassagen van natuurgeneeskundige Stefanie Dietrich aan de Ruhrstraße 19 in Winterberg-Niedersfeld biedt holistische gezondheidszorg en ontspannende wellnessmassages. Van acupunctuur, homeopathie en pijntherapie tot weldadige rug-, hot-stone- en voetreflexzonemassages ter ondersteuning van natuurlijk herstel en ontspanning.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/naturheilpraxis-und-feelgood-wellnessmassagen
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/naturheilpraxis-und-feelgood-wellnessmassagen
 
 ### Kategorie: Mobilität & KFZ
 
