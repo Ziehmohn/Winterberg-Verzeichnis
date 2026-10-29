@@ -436,7 +436,7 @@ export default function EventDetail({
   const displayCategory = normalizeEventCategory(event.category);
   const meta = getCategoryMeta(displayCategory);
   const CatIcon = meta.Icon;
-  const locationStr = event.location || business.district || business.name;
+  const locationStr = event.location || (event.hideOrganizer ? 'Winterberg' : (business.district || business.name));
   const position = getKnownOrDistrictCoordinates(locationStr);
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(locationStr + ', Winterberg')}`;
 
@@ -507,19 +507,39 @@ export default function EventDetail({
                   </span>
                 </div>
 
-                {business.logoUrl && (
+                {/* AI / Image Credit Badge */}
+                {(event.isAiGenerated || event.imageCredit || event.imageSource) && (
+                  <div className="absolute bottom-4 left-4 bg-black/65 backdrop-blur-md text-white/95 text-[11px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm z-10">
+                    {event.isAiGenerated && (
+                      <span className="flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-amber-300" />
+                        {isNl ? 'Afbeelding AI-gegenereerd' : 'Bild KI-generiert'}
+                      </span>
+                    )}
+                    {event.isAiGenerated && (event.imageCredit || event.imageSource) && (
+                      <span className="opacity-60">|</span>
+                    )}
+                    {event.imageCredit ? (
+                      <span>{event.imageCredit}</span>
+                    ) : event.imageSource ? (
+                      <span>{event.imageSource}</span>
+                    ) : null}
+                  </div>
+                )}
+
+                {!event.hideOrganizer && business.logoUrl && (
                   <div 
                     onClick={() => onBusinessSelect(business)}
                     className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-1.5 shadow-lg border border-white/80 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2 max-w-[220px]"
-                    title={business.name}
+                    title={event.organizer || business.name}
                   >
                     <div 
                       className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center p-0.5"
                       style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
                     >
-                      <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                      <img src={business.logoUrl} alt={event.organizer || business.name} className="max-w-full max-h-full object-contain" />
                     </div>
-                    <span className="text-xs font-bold text-[#1B211D] truncate pr-1">{business.name}</span>
+                    <span className="text-xs font-bold text-[#1B211D] truncate pr-1">{event.organizer || business.name}</span>
                   </div>
                 )}
               </div>
@@ -811,51 +831,53 @@ export default function EventDetail({
           </div>
 
           {/* Organizer / Presenter Card */}
-          <div className="bg-white border border-[#EDE8E0] rounded-3xl p-6 shadow-sm">
-            <span className="text-xs font-bold text-[#7E22CE] uppercase tracking-wider block mb-3">
-              {isNl ? 'Georganiseerd door' : 'Veranstalter & Organisation'}
-            </span>
+          {!event.hideOrganizer && (
+            <div className="bg-white border border-[#EDE8E0] rounded-3xl p-6 shadow-sm">
+              <span className="text-xs font-bold text-[#7E22CE] uppercase tracking-wider block mb-3">
+                {isNl ? 'Georganiseerd door' : 'Veranstalter & Organisation'}
+              </span>
 
-            <div className="flex items-center gap-3.5 mb-4">
-              {business.logoUrl ? (
-                <div 
-                  className="w-12 h-12 rounded-xl border border-[#EDE8E0] bg-white p-1 shadow-2xs flex items-center justify-center overflow-hidden shrink-0"
-                  style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-                >
-                  <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+              <div className="flex items-center gap-3.5 mb-4">
+                {business.logoUrl ? (
+                  <div 
+                    className="w-12 h-12 rounded-xl border border-[#EDE8E0] bg-white p-1 shadow-2xs flex items-center justify-center overflow-hidden shrink-0"
+                    style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                  >
+                    <img src={business.logoUrl} alt={event.organizer || business.name} className="max-w-full max-h-full object-contain" />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 rounded-xl bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center shrink-0">
+                    <Building2 className="w-6 h-6" />
+                  </div>
+                )}
+
+                <div className="min-w-0">
+                  <h4 className="font-display font-bold text-[#1B211D] text-base leading-snug truncate">
+                    {event.organizer || business.name}
+                  </h4>
+                  {business.district && (
+                    <p className="text-xs text-[#5F6B63] mt-0.5 truncate">{business.district}, Winterberg</p>
+                  )}
                 </div>
-              ) : (
-                <div className="w-12 h-12 rounded-xl bg-[#0F4C2E]/10 text-[#0F4C2E] flex items-center justify-center shrink-0">
-                  <Building2 className="w-6 h-6" />
-                </div>
+              </div>
+
+              {business.description && (
+                <p className="text-xs text-[#717E75] line-clamp-3 mb-4 leading-relaxed">
+                  {business.description}
+                </p>
               )}
 
-              <div className="min-w-0">
-                <h4 className="font-display font-bold text-[#1B211D] text-base leading-snug truncate">
-                  {business.name}
-                </h4>
-                {business.district && (
-                  <p className="text-xs text-[#5F6B63] mt-0.5 truncate">{business.district}, Winterberg</p>
-                )}
-              </div>
+              <button
+                type="button"
+                onClick={() => onBusinessSelect(business)}
+                className="w-full py-2.5 px-4 rounded-xl bg-[#FAF8F5] border border-[#E7E2DA] hover:border-[#0F4C2E] text-[#0F4C2E] font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <Building2 className="w-3.5 h-3.5" />
+                <span>{isNl ? 'Bedrijfsprofiel bekijken' : 'Unternehmensprofil ansehen'}</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
-
-            {business.description && (
-              <p className="text-xs text-[#717E75] line-clamp-3 mb-4 leading-relaxed">
-                {business.description}
-              </p>
-            )}
-
-            <button
-              type="button"
-              onClick={() => onBusinessSelect(business)}
-              className="w-full py-2.5 px-4 rounded-xl bg-[#FAF8F5] border border-[#E7E2DA] hover:border-[#0F4C2E] text-[#0F4C2E] font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <Building2 className="w-3.5 h-3.5" />
-              <span>{isNl ? 'Bedrijfsprofiel bekijken' : 'Unternehmensprofil ansehen'}</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+          )}
 
           {/* More Upcoming Events in Winterberg */}
           {otherUpcomingEvents.length > 0 && (

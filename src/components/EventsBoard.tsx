@@ -956,7 +956,7 @@ export default function EventsBoard({
             const displayCategory = normalizeEventCategory(event.category);
             const meta = getCategoryMeta(displayCategory);
             const CatIcon = meta.Icon;
-            const locationStr = event.location || business.district || business.name;
+            const locationStr = event.location || (event.hideOrganizer ? 'Winterberg' : (business.district || business.name));
             const eventKey = `${business.id}-${event.id}`;
             const isMapOpen = expandedMap === eventKey;
             const eventUrl = (lang === 'nl' && event.externalUrl_nl) ? event.externalUrl_nl : event.externalUrl;
@@ -979,26 +979,32 @@ export default function EventsBoard({
                       <div className="absolute top-3 left-3">
                         <CalendarCard startDate={event.startDate} endDate={event.endDate} />
                       </div>
-                      {business.logoUrl && (
+                      {event.isAiGenerated && (
+                        <div className="absolute bottom-2.5 left-2.5 bg-black/60 backdrop-blur-md text-white/95 text-[10px] font-medium px-2 py-0.5 rounded pointer-events-none tracking-wide z-10 flex items-center gap-1 shadow-xs">
+                          <Sparkles className="w-2.5 h-2.5 text-amber-300" />
+                          <span>{lang === 'nl' ? 'Afbeelding AI-gegenereerd' : 'Bild KI-generiert'}</span>
+                        </div>
+                      )}
+                      {!event.hideOrganizer && business.logoUrl && (
                         <div 
                           className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-lg border border-white/90 bg-white p-0.5 shadow-md flex items-center justify-center overflow-hidden z-10"
                           style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-                          title={business.name}
+                          title={event.organizer || business.name}
                         >
-                          <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                          <img src={business.logoUrl} alt={event.organizer || business.name} className="max-w-full max-h-full object-contain" />
                         </div>
                       )}
                     </div>
                   ) : (
                     <div className="w-full bg-[#FAF8F5] border-b border-[#EDE8E0] p-4 flex items-center justify-between">
                       <CalendarCard startDate={event.startDate} endDate={event.endDate} />
-                      {business.logoUrl && (
+                      {!event.hideOrganizer && business.logoUrl && (
                         <div 
                           className="w-10 h-10 rounded-lg border border-[#EDE8E0] bg-white p-1 shadow-2xs flex items-center justify-center overflow-hidden"
                           style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-                          title={business.name}
+                          title={event.organizer || business.name}
                         >
-                          <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                          <img src={business.logoUrl} alt={event.organizer || business.name} className="max-w-full max-h-full object-contain" />
                         </div>
                       )}
                     </div>
@@ -1089,30 +1095,34 @@ export default function EventsBoard({
 
                     {/* Footer */}
                     <div className="pt-3 border-t border-[#F0EBE1] flex flex-wrap items-center justify-between gap-3 mt-auto">
-                      <button 
-                        type="button" 
-                        onClick={() => onBusinessSelect(business)} 
-                        className="text-sm font-semibold text-[#0F4C2E] hover:underline flex items-center gap-2 cursor-pointer group text-left min-w-0"
-                      >
-                        {business.logoUrl ? (
-                          <div 
-                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-[#EDE8E0] bg-white p-0.5 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs group-hover:border-[#7E22CE]/40 transition-colors"
-                            style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-                          >
-                            <img 
-                              src={business.logoUrl} 
-                              alt={business.name} 
-                              className="max-w-full max-h-full object-contain"
-                              loading="lazy"
-                            />
-                          </div>
-                        ) : (
-                          <div className="w-7 h-7 rounded-lg bg-[#0F4C2E]/10 flex items-center justify-center shrink-0 text-[#0F4C2E]">
-                            <Building2 className="w-4 h-4" />
-                          </div>
-                        )}
-                        <span className="truncate">{business.name}</span>
-                      </button>
+                      {!event.hideOrganizer ? (
+                        <button 
+                          type="button" 
+                          onClick={() => onBusinessSelect(business)} 
+                          className="text-sm font-semibold text-[#0F4C2E] hover:underline flex items-center gap-2 cursor-pointer group text-left min-w-0"
+                        >
+                          {business.logoUrl ? (
+                            <div 
+                              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-[#EDE8E0] bg-white p-0.5 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs group-hover:border-[#7E22CE]/40 transition-colors"
+                              style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
+                            >
+                              <img 
+                                src={business.logoUrl} 
+                                alt={event.organizer || business.name} 
+                                className="max-w-full max-h-full object-contain"
+                                loading="lazy"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-7 h-7 rounded-lg bg-[#0F4C2E]/10 flex items-center justify-center shrink-0 text-[#0F4C2E]">
+                              <Building2 className="w-4 h-4" />
+                            </div>
+                          )}
+                          <span className="truncate">{event.organizer || business.name}</span>
+                        </button>
+                      ) : (
+                        <div />
+                      )}
 
                       <div className="flex items-center gap-2">
                         {/* Map toggle */}
@@ -1176,24 +1186,30 @@ export default function EventsBoard({
                         className="hidden sm:block w-36 h-28 shrink-0 rounded-xl overflow-hidden border border-[#EDE8E0] self-start ml-2 bg-gray-100 shadow-xs relative cursor-pointer hover:scale-[1.02] transition-transform"
                       >
                         <img src={event.imageUrl} alt={title} className="w-full h-full object-cover" />
-                        {business.logoUrl && (
+                        {event.isAiGenerated && (
+                          <div className="absolute bottom-1.5 left-1.5 bg-black/60 backdrop-blur-md text-white/95 text-[9px] font-medium px-1.5 py-0.5 rounded pointer-events-none tracking-wide z-10 flex items-center gap-0.5 shadow-xs">
+                            <Sparkles className="w-2.5 h-2.5 text-amber-300" />
+                            <span>{lang === 'nl' ? 'AI' : 'KI'}</span>
+                          </div>
+                        )}
+                        {!event.hideOrganizer && business.logoUrl && (
                           <div 
                             className="absolute bottom-1.5 right-1.5 w-6 h-6 rounded border border-white/90 bg-white p-0.5 shadow-xs flex items-center justify-center overflow-hidden"
                             style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-                            title={business.name}
+                            title={event.organizer || business.name}
                           >
-                            <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                            <img src={business.logoUrl} alt={event.organizer || business.name} className="max-w-full max-h-full object-contain" />
                           </div>
                         )}
                       </div>
-                    ) : business.logoUrl ? (
+                    ) : (!event.hideOrganizer && business.logoUrl) ? (
                       <div 
                         onClick={() => handleEventClick(eventSlug)}
                         className="hidden sm:flex w-28 h-24 shrink-0 rounded-xl border border-[#EDE8E0] self-start ml-2 p-2.5 items-center justify-center shadow-2xs cursor-pointer hover:border-[#7E22CE]/40 transition-colors"
                         style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-                        title={business.name}
+                        title={event.organizer || business.name}
                       >
-                        <img src={business.logoUrl} alt={business.name} className="max-w-full max-h-full object-contain" />
+                        <img src={business.logoUrl} alt={event.organizer || business.name} className="max-w-full max-h-full object-contain" />
                       </div>
                     ) : null
                   )}

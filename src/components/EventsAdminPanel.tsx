@@ -89,6 +89,8 @@ export default function EventsAdminPanel({
   const [customCategory, setCustomCategory] = useState('');
   const [price, setPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [isAiGenerated, setIsAiGenerated] = useState(false);
+  const [hideOrganizer, setHideOrganizer] = useState(false);
   const [ticketUrl, setTicketUrl] = useState('');
   const [ticketUrlNl, setTicketUrlNl] = useState('');
   const [externalUrl, setExternalUrl] = useState('');
@@ -204,6 +206,8 @@ export default function EventsAdminPanel({
     setCustomCategory('');
     setPrice('');
     setImageUrl('');
+    setIsAiGenerated(false);
+    setHideOrganizer(false);
     setTicketUrl('');
     setTicketUrlNl('');
     setExternalUrl('');
@@ -235,6 +239,8 @@ export default function EventsAdminPanel({
     }
     setPrice(event.price || '');
     setImageUrl(event.imageUrl || '');
+    setIsAiGenerated(!!event.isAiGenerated);
+    setHideOrganizer(!!event.hideOrganizer);
     setTicketUrl(event.ticketUrl || '');
     setTicketUrlNl(event.ticketUrl_nl || '');
     setExternalUrl(event.externalUrl || '');
@@ -266,6 +272,8 @@ export default function EventsAdminPanel({
     }
     setPrice(event.price || '');
     setImageUrl(event.imageUrl || '');
+    setIsAiGenerated(!!event.isAiGenerated);
+    setHideOrganizer(!!event.hideOrganizer);
     setTicketUrl(event.ticketUrl || '');
     setTicketUrlNl(event.ticketUrl_nl || '');
     setExternalUrl(event.externalUrl || '');
@@ -397,6 +405,8 @@ export default function EventsAdminPanel({
         category: effectiveCategory,
         price: price.trim() || undefined,
         imageUrl: imageUrl.trim() || undefined,
+        isAiGenerated: isAiGenerated || undefined,
+        hideOrganizer: hideOrganizer || undefined,
         ticketUrl: ticketUrl.trim() || undefined,
         ticketUrl_nl: ticketUrlNl.trim() || undefined,
         externalUrl: externalUrl.trim() || undefined,
@@ -1047,6 +1057,44 @@ export default function EventsAdminPanel({
                     </div>
                   </div>
                 )}
+
+                {/* Options: AI Image & Hide Organizer */}
+                <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 bg-purple-50/50 rounded-xl border border-purple-100">
+                  <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={isAiGenerated}
+                      onChange={e => setIsAiGenerated(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 rounded text-[#7E22CE] focus:ring-[#7E22CE] accent-[#7E22CE]"
+                    />
+                    <div>
+                      <span className="text-xs font-bold text-[#1B211D] flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                        Bild ist KI-generiert
+                      </span>
+                      <p className="text-[11px] text-[#5F6B63] mt-0.5 leading-snug">
+                        Kennzeichnet das Event-Bild mit einem dezenten KI-Badge.
+                      </p>
+                    </div>
+                  </label>
+
+                  <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={hideOrganizer}
+                      onChange={e => setHideOrganizer(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 rounded text-[#7E22CE] focus:ring-[#7E22CE] accent-[#7E22CE]"
+                    />
+                    <div>
+                      <span className="text-xs font-bold text-[#1B211D]">
+                        Veranstalter ausblenden
+                      </span>
+                      <p className="text-[11px] text-[#5F6B63] mt-0.5 leading-snug">
+                        Verknüpftes Profil / Logo auf Event-Karten und Detailseite verbergen.
+                      </p>
+                    </div>
+                  </label>
+                </div>
               </div>
 
               {/* Ticket URL */}

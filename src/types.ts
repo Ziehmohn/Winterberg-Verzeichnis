@@ -181,6 +181,12 @@ export interface EventItem {
   location?: string;
   category: string;
   imageUrl?: string;
+  imageSource?: string;
+  imageCredit?: string;
+  isAiGenerated?: boolean;
+  organizer?: string;
+  organizer_nl?: string;
+  hideOrganizer?: boolean;
   externalUrl?: string;
   externalUrl_nl?: string;
   ticketUrl?: string;

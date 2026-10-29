@@ -30,6 +30,9 @@ export const businesses: Business[] = [
         description: 'Neuer Linedance-Kurs für Anfänger mit wenig oder ohne Vorkenntnisse in Winterberg! An 6 Abenden lernen die Teilnehmenden donnerstags jeweils von 18:30 bis 20:00 Uhr die Grundschritte und einfache Tänze. Linedance trainiert Koordination, Kondition und Gedächtnis und macht jede Menge Spaß. Anmeldung über die VHS Winterberg (Tel. 0291/945131), Informationen bei B. Wirsing-Kremser (Tel. 02981/6513).',
         description_nl: 'Nieuwe line dance cursus voor beginners in Winterberg! In 6 lessen op donderdagavond (18:30 – 20:00 uur) leren deelnemers de basispassen en eenvoudige choreografieën met de Winterberger Country Liners. Aanmelden via VHS Winterberg (tel. +49 291 945131), inlichtingen bij mevr. B. Wirsing-Kremser (tel. +49 2981 6513).',
         imageUrl: '/event-linedance-winterberg.jpg',
+        isAiGenerated: true,
+        imageCredit: 'KI-Symbolbild / Winterberg-Verzeichnis',
+        hideOrganizer: true,
         slug: 'linedance-anfaengerkurs-winterberg-2026',
         slug_nl: 'line-dance-beginnerscursus-winterberg-2026',
         price: 'Anmeldung über VHS'

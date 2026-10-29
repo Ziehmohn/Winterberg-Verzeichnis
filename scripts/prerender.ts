@@ -982,19 +982,21 @@ Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
     image: [eventImg],
     location: {
       '@type': 'Place',
-      name: event.location || business.name,
+      name: event.location || (event.hideOrganizer ? 'Winterberg' : business.name),
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Winterberg',
         postalCode: '59955',
         addressCountry: 'DE'
       }
-    },
-    organizer: {
-      '@type': 'Organization',
-      name: business.name
     }
   };
+  if (!event.hideOrganizer) {
+    schemaJsonLdDe.organizer = {
+      '@type': 'Organization',
+      name: event.organizer || business.name
+    };
+  }
   if (event.endDate) {
     schemaJsonLdDe.endDate = event.endTime ? `${event.endDate}T${event.endTime}:00` : `${event.endDate}T23:59:59`;
   }
@@ -1027,7 +1029,7 @@ Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'de',
     h1: event.title,
-    h2: `${event.startDate} | ${event.location || business.name}`,
+    h2: `${event.startDate} | ${event.location || (event.hideOrganizer ? 'Winterberg' : business.name)}`,
     ogType: 'website',
     ogImage: eventImg,
     jsonLd: schemaJsonLdDe
@@ -1044,7 +1046,7 @@ Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'nl',
     h1: titleNl,
-    h2: `${event.startDate} | ${event.location || business.name}`,
+    h2: `${event.startDate} | ${event.location || (event.hideOrganizer ? 'Winterberg' : business.name)}`,
     ogType: 'website',
     ogImage: eventImg,
     jsonLd: schemaJsonLdNl

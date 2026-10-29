@@ -361,12 +361,20 @@ export function generateEventSchema(event: any, business?: any, lang: 'de' | 'nl
     schema.image = [event.imageUrl.startsWith('http') ? event.imageUrl : `${BASE_URL}${event.imageUrl}`];
   }
 
-  if (business) {
-    schema.organizer = {
-      '@type': 'Organization',
-      'name': business.name,
-      'url': business.website || `${BASE_URL}${getBusinessPath(business, lang)}`
-    };
+  if (!event.hideOrganizer) {
+    if (event.organizer) {
+      schema.organizer = {
+        '@type': 'Organization',
+        'name': event.organizer,
+        'url': eventUrl
+      };
+    } else if (business) {
+      schema.organizer = {
+        '@type': 'Organization',
+        'name': business.name,
+        'url': business.website || `${BASE_URL}${getBusinessPath(business, lang)}`
+      };
+    }
   }
 
   const ticketUrl = event.ticketUrl || (event.externalUrl && /ticket|karten|buchen|eventim|reservix/i.test(event.externalUrl) ? event.externalUrl : undefined);
