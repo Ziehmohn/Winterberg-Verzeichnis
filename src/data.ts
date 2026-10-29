@@ -8338,17 +8338,11 @@ export const businesses: Business[] = [
     name: 'Die Grube – Technologiezentrum für elektronische Musik',
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
-    additionalCategories: [
-      { category: 'Dienstleistungen', subcategory: 'Tagungszentren' }
-    ],
-    isPremium: true,
-    isVerified: true,
+    isPremium: false,
     isActive: true,
     status: 'approved',
-    description: 'Legendärer Kult-Club und modernes Technologiezentrum für elektronische Musik in einer historischen Schieferfabrik in Siedlinghausen.',
-    description_nl: 'Legendarische cultclub en modern technologiecentrum voor elektronische muziek in een historische leisteenfabriek in Siedlinghausen.',
-    extendedDescription: 'Über drei Jahrzehnte hinweg war die ehemalige Schieferfabrik „Die Grube“ in Winterberg-Siedlinghausen eine überregional bekannte Kultstätte der elektronischen Musikkultur und zählte in den 1990er-Jahren zu den führenden Zentren der europäischen Goa- und Psytrance-Szene. Nach vierjährigem Stillstand wird die traditionsreiche Location nun von den neuen Betreibern Jana Völk und Guido Piepenbrink wiederbelebt. Als modernes „Technologiezentrum für elektronische Musik“ vereint Die Grube erstklassigen Clubbetrieb mit zeitgemäßer Sound- und Lichttechnik, Raumvermietung für private Feiern und Firmenveranstaltungen sowie Raum für Workshops, Nachwuchsförderung und Kulturprojekte im Sauerland.',
-    extendedDescription_nl: 'Meer dan drie decennia lang was de voormalige leisteenfabriek "Die Grube" in Winterberg-Siedlinghausen een legendarisch icoon van de elektronische muziekcultuur en behoorde in de jaren 90 tot de toonaangevende centra van de Europese goa- en psytrancescene. Na vier jaar stilstand blazen de nieuwe exploitanten Jana Völk en Guido Piepenbrink de iconische locatie nieuw leven in. Als modern technologiecentrum voor elektronische muziek combineert Die Grube clubcultuur met moderne audio- en lichttechniek, zaalverhuur voor feesten en zakelijke evenementen, evenals workshops en culturele projecten.',
+    description: 'Legendärer Kult-Club in einer historischen Schieferfabrik in Siedlinghausen, bekannt für elektronische Musik, Clubkultur und Raumvermietung.',
+    description_nl: 'Legendarische cultclub in een historische leisteenfabriek in Siedlinghausen, bekend om elektronische muziek, clubcultuur en zaalverhuur.',
     address: 'Sorpestraße 78, 59955 Winterberg-Siedlinghausen',
     district: 'Siedlinghausen',
     city: 'Winterberg',
@@ -8356,34 +8350,6 @@ export const businesses: Business[] = [
     email: 'info@diegrube.com',
     website: 'https://www.diegrube.com',
     imageFallback: 'DG',
-    uploadedImage: '/die-grube-logo.png',
-    headerImage: '/die-grube-mainfloor.jpg',
-    logoUrl: '/die-grube-logo.png',
-    gallery: [
-      '/die-grube-party-termine-plakat.jpg',
-      '/die-grube-gebaeude.jpg',
-      '/die-grube-mainfloor.jpg',
-      '/die-grube-bistro.jpg',
-      '/die-grube-theke.jpg'
-    ],
-    contactPerson: {
-      name: 'Jana Völk & Guido Piepenbrink',
-      role: 'Inhaber & Betreiber'
-    },
-    services: [
-      'Club- & Partyveranstaltungen (Psytrance, Techno, EDM)',
-      'Raumvermietung für private Feste & Firmenfeiern',
-      'Eventlocation für Flohmärkte, Messen & Kunstausstellungen',
-      'Professionelle Sound- & Lichttechnik',
-      'Workshops & Technologiezentrum für elektronische Musik'
-    ],
-    services_nl: [
-      'Club- & feestavonden (psytrance, techno, edm)',
-      'Zaalverhuur voor privéfeesten en bedrijfsevenementen',
-      'Locatie voor beurzen, markten en kunsttentoonstellingen',
-      'Professionele geluids- en lichttechniek',
-      'Workshops en educatie voor elektronische muziek'
-    ],
     events: [
       {
         id: 'the-next-chapter-opening-party-die-grube-2026',
@@ -8396,7 +8362,7 @@ export const businesses: Business[] = [
         endTime: '10:00',
         price: 'Early Bird 25 € / VVK 30 € / AK 35 €',
         location: 'Musik- und Kulturfabrik "Die Grube", Sorpestraße 78, 59955 Winterberg-Siedlinghausen',
-        imageUrl: '/die-grube-the-next-chapter-flyer.png',
+        imageUrl: '/die-grube-party-termine-plakat.jpg',
         externalUrl: 'https://www.diegrube.com/eventkalender-club',
         ticketUrl: 'https://www.eventim-light.com/de/a/6adf7bb8e83e64e66f3a4cb0/e/6adf7f3526d33ed7b3d40f12',
         description: 'Nach fast vier Jahren Pause meldet sich die legendäre Musik- und Kulturfabrik Die Grube in Siedlinghausen zurück! Am 2. Weihnachtsfeiertag (26. Dezember 2026) öffnet der Kult-Club ab 22:00 Uhr seine Pforten für das große Eröffnungsevent „The Next Chapter“. Gefeiert wird mit energiegeladenem Psytrance auf dem Mainfloor, runderneuerter Sound- und Lichttechnik und treibenden Bässen bis 10:00 Uhr morgens.',

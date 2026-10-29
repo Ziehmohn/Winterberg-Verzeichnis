@@ -2724,9 +2724,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Sorpestraße 78, 59955 Winterberg-Siedlinghausen
 - **Webseite:** https://www.diegrube.com
-- **Beschreibung (DE):** Legendärer Kult-Club und modernes Technologiezentrum für elektronische Musik in einer historischen Schieferfabrik in Siedlinghausen.
-- **Beschreibung (NL):** Legendarische cultclub en modern technologiecentrum voor elektronische muziek in een historische leisteenfabriek in Siedlinghausen.
-- **Status:** Verifizierter Premium-Eintrag
+- **Beschreibung (DE):** Legendärer Kult-Club in einer historischen Schieferfabrik in Siedlinghausen, bekannt für elektronische Musik, Clubkultur und Raumvermietung.
+- **Beschreibung (NL):** Legendarische cultclub in een historische leisteenfabriek in Siedlinghausen, bekend om elektronische muziek, clubcultuur en zaalverhuur.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-grube-technologiezentrum-fuer-elektronische-musik
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/die-grube-technologiezentrum-fuer-elektronische-musik
 
