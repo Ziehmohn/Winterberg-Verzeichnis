@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-10-27
+# Stand: 2026-10-29
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (448 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (449 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2718,6 +2718,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Modern Nederlands pannenkoekenhuis bij Vakantiehotel Der Brabander in Winterberg. Beroemd om meer dan 70 fantasierijke zoete en hartige pannenkoeken, een gezellige sfeer en een ruim zonneterras.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/pannenkoekenhuis-der-brabander
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/pannenkoekenhuis-der-brabander
+
+#### [Die Grube – Technologiezentrum für elektronische Musik](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-grube-technologiezentrum-fuer-elektronische-musik)
+- **Kategorie:** Gastronomie > Kneipen und Bars
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Sorpestraße 78, 59955 Winterberg-Siedlinghausen
+- **Webseite:** https://www.diegrube.com
+- **Beschreibung (DE):** Legendärer Kult-Club und modernes Technologiezentrum für elektronische Musik in einer historischen Schieferfabrik in Siedlinghausen.
+- **Beschreibung (NL):** Legendarische cultclub en modern technologiecentrum voor elektronische muziek in een historische leisteenfabriek in Siedlinghausen.
+- **Status:** Verifizierter Premium-Eintrag
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-grube-technologiezentrum-fuer-elektronische-musik
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/kroegen-en-bars/die-grube-technologiezentrum-fuer-elektronische-musik
 
 #### [Die Tenne Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/die-tenne-winterberg)
 - **Kategorie:** Gastronomie > Kneipen und Bars

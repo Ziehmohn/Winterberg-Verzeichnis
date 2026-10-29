@@ -2,6 +2,49 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "kult-club-die-grube-siedlinghausen-wiedereroeffnung-2026",
+    slug: "kult-club-die-grube-siedlinghausen-wiedereroeffnung-2026",
+    slug_nl: "cultclub-die-grube-siedlinghausen-heropening-2026",
+    title: "Comeback für Kult-Disco „Die Grube“: Wiedereröffnung in Siedlinghausen noch in diesem Jahr",
+    title_nl: "Comeback voor cultclub „Die Grube“: Heropening in Siedlinghausen nog dit jaar",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "die-grube-siedlinghausen",
+    businessName: "Die Grube – Technologiezentrum für elektronische Musik",
+    businessSlug: "die-grube-siedlinghausen",
+    imageUrl: "/die-grube-gebaeude.jpg",
+    imageCredit: "Westfalenpost / Kevin Schmidt / Die Grube",
+    status: 'approved',
+    category: 'freizeit',
+    category_nl: 'vrije-tijd',
+    date: "2026-10-29T08:00:00.000Z",
+    content: `Die traditionsreiche Discothek „Die Grube“ in Winterberg-Siedlinghausen steht vor ihrer Wiedereröffnung. Nach dem vorübergehenden Aus im Januar 2023 übernimmt nun eine neue Betreibergeneration das Ruder, um der geschichtsträchtigen Feierstätte neues Leben einzuhauchen.
+
+### Vom Schieferbergwerk zur Kult-Diskothek
+Ursprünglich als Werkshalle eines Schieferbergwerks unweit des Bergsees am Meisterstein erbaut, blickt das Gebäude auf eine lange Historie zurück. In den 1980er-Jahren von den Brüdern Michael und Ulrich Pretzsch erworben und aufwendig umgebaut, öffnete die Location im Oktober 1991 als Discothek ihre Pforten. In den folgenden Jahrzehnten entwickelte sich „Die Grube“ zu einer festen Institution der überregionalen Musikszene und zu einem weithin bekannten Anziehungspunkt für elektronische Musik, insbesondere für die Goa- und Psytrance-Szene.
+
+### Frischer Wind durch neues Betreiber-Team
+Nun wagen Jana Völk und Guido Piepenbrink gemeinsam mit einem engagierten Helferkreis den Neustart. In den Räumlichkeiten laufen die Arbeiten bereits auf Hochtouren: Es wird aufgeräumt, renoviert und gestrichen. Die Licht- und Audiotechnik wird komplett auf den neuesten Stand gebracht, während der unverwechselbare industrielle Charakter der Schieferfabrik erhalten bleibt.
+
+### Vielseitiges Kultur- und Eventkonzept
+Das neue Konzept sieht vor, den Clubbetrieb schrittweise breiter aufzustellen. Neben elektronischer Musik wie Psytrance und Techno sind auch Kooperationen mit anderen Clubs und Veranstaltern angedacht. Langfristig soll sich die Lokalität zudem zu einem multifunktionalen Kulturzentrum mit Raumvermietung entwickeln – geeignet für Konzerte, Firmenanlässe, Messen, Märkte, Kunstausstellungen und Workshops.
+
+### Startschuss am zweiten Weihnachtstag
+Die offizielle Wiedereröffnung ist für Samstag, den **26. Dezember 2026**, geplant. Mit der Eröffnungsparty **„The Next Chapter“** knüpft Die Grube an ihre Wurzeln an: Ab 22:00 Uhr bis in die Morgenstunden um 10:00 Uhr wird auf dem Mainfloor gefeiert. Tickets sind bereits im Vorverkauf erhältlich.`,
+    content_nl: `De traditionele discotheek „Die Grube“ in Winterberg-Siedlinghausen staat voor haar heropening. Na de tijdelijke sluiting in januari 2023 neemt een nieuwe generatie het roer over om de legendarische uitgaanslocatie nieuw leven in te blazen.
+
+### Van leisteenmijn naar cultlocatie
+Het karakteristieke gebouw deed oorspronkelijk dienst als werkplaats van een leisteenmijn vlakbij het bergmeer bij de Meisterstein. Eind jaren 80 werd het complex aangekocht door de broers Michael en Ulrich Pretzsch, die het transformeerden tot discotheek. Na de opening in oktober 1991 groeide Die Grube uit tot een internationaal befaamde hotspot voor elektronische muziek, in het bijzonder binnen de Europese goa- en psytrancescene.
+
+### Nieuwe dynamiek met jong team
+Nu pakken de nieuwe exploitanten Jana Völk en Guido Piepenbrink samen met een team van vrijwilligers de herstart aan. Er wordt volop gewerkt aan modernisering: schilderwerk, opknapbeurten en een complete upgrade van de geluids- en lichtinstallatie. Het markante industriële karakter van het leisteencomplex blijft daarbij behouden.
+
+### Veelzijdig cultuur- en evenementenconcept
+Het vernieuwde concept richt zich naast clubavonden en feesten ook op een bredere culturele programmering. De ruimtes zullen beschikbaar zijn voor zaalverhuur, zakelijke evenementen, markten, kunsttentoonstellingen en workshops rondom elektronische muziekproductie.
+
+### Heropening op tweede kerstdag
+Het officiële openingsfeest vindt plaats op zaterdag **26 december 2026**. Met het evenement **„The Next Chapter“** keert het clubgevoel terug: vanaf 22:00 uur 's avonds tot 10:00 uur 's ochtends wordt op de main floor gedanst op energieke psytrance. Kaarten zijn reeds verkrijgbaar in de voorverkoop.`
+  },
+  {
     id: "sondermuell-sammlung-winterberg-november-2026",
     slug: "sondermuell-sammlung-winterberg-november-2026",
     slug_nl: "inzameling-klein-chemisch-afval-winterberg-november-2026",
