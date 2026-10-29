@@ -2,6 +2,64 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "linedance-kurs-winterberger-country-liners-2026",
+    slug: "linedance-kurs-winterberger-country-liners-2026",
+    slug_nl: "line-dance-cursus-winterberger-country-liners-2026",
+    title: "Linedance in Winterberg: Neuer Anfängerkurs der Winterberger Country Liners startet im November",
+    title_nl: "Line dance in Winterberg: Nieuwe beginnerscursus van de Winterberger Country Liners start in november",
+    author: "Winterberg-Verzeichnis Redaktion",
+    imageUrl: "/event-linedance-winterberg.jpg",
+    imageCredit: "Winterberger Country Liners / VHS Winterberg",
+    status: 'approved',
+    category: 'freizeit',
+    category_nl: 'vrije-tijd',
+    date: "2026-10-29T18:00:00.000Z",
+    content: `Wer Lust auf Country-Musik, Schwung und Gemeinschaft hat, darf sich freuen: In Winterberg startet ab Donnerstag, den **05. November 2026**, ein neuer Linedance-Kurs für Einsteiger. Unter dem Motto der **Winterberger Country Liners** können Tanzbegeisterte jeden Alters ganz unkompliziert in die beliebte Tanzform hineinschnuppern – und das ganz ohne festen Tanzpartner.
+
+### Was ist Linedance?
+Linedance ist eine eigenständige Tanzart, bei der einzelne Tänzerinnen und Tänzer in Reihen und Linien vor- und nebeneinander tanzen. Zu moderner Country- und Popmusik werden feste Schrittfolgen einstudiert. Das macht nicht nur unglaublich viel Spaß, sondern ist auch ein hervorragendes Training für Koordination, Kondition, Konzentration und das Gedächtnis. Jeder tanzt für sich und doch alle synchron als Einheit.
+
+### Kursdetails im Überblick
+* **Start:** Donnerstag, 05. November 2026
+* **Dauer:** 6 Termine à 90 Minuten (jeweils donnerstags von 18:30 bis 20:00 Uhr)
+* **Ort:** Grundschule Winterberg, Eingangshalle, Am Postteich 1, 59955 Winterberg
+* **Voraussetzungen:** Keine – der Kurs richtet sich gezielt an Anfänger mit wenig oder ohne Vorkenntnisse.
+
+![Aushang zum Linedance Kurs in Winterberg](/linedance-kurs-winterberg-plakat.jpg)
+
+### Nach dem Kurs: Gemeinsam weitermachen
+Das Erlernen der Grundschritte und einfacher Tänze bildet die Basis. Wer nach den sechs Kursabenden Gefallen an der Bewegung gefunden hat, hat die Möglichkeit, bei den **Winterberger Country Liners** weiterzumachen. Zu den Highlights der Gruppe gehören gemeinsame Fahrten zu überregionalen Linedance-Events sowie gelegentliche, rein freiwillige Auftritte.
+
+:::contact
+### Anmeldung & Auskünfte
+* **Anmeldung:** Volkshochschule (VHS) Winterberg, Tel. **0291 / 945131**
+* **Persönliche Auskünfte:** B. Wirsing-Kremser (Winterberger Country Liners), Tel. **02981 / 6513**
+* **Ort:** Eingangshalle der Grundschule Winterberg, Am Postteich 1
+:::`,
+    content_nl: `Wie zin heeft in countrymuziek, ritme en gezelligheid heeft geluk: in Winterberg start vanaf donderdag **5 november 2026** een nieuwe beginnerscursus line dance. Onder auspiciën van de **Winterberger Country Liners** kunnen dansliefhebbers op een laagdrempelige manier kennismaken met deze populaire dansstijl – helemaal zonder vaste danspartner.
+
+### Wat is Line dance?
+Line dance is een dansvorm waarbij dansers in rijen en lijnen synchroon choreografieën uitvoeren op country- en moderne popmuziek. Het is niet alleen enorm gezellig, maar ook een uitstekende training voor coördinatie, conditie en geheugen.
+
+### Cursusinformatie
+* **Start:** Donderdag 5 november 2026
+* **Duur:** 6 lessen van 90 minuten (elke donderdag van 18:30 tot 20:00 uur)
+* **Locatie:** Basisschool Winterberg (hal/aula), Am Postteich 1, 59955 Winterberg
+* **Niveau:** Geen voorkennis vereist – ideaal voor beginners.
+
+![Affiche line dance cursus Winterberg](/linedance-kurs-winterberg-plakat.jpg)
+
+### Aansluiting bij de groep
+Na afloop van de 6 basislessen is er de mogelijkheid om aan te sluiten bij de vaste groep van de **Winterberger Country Liners** voor gezamenlijke uitstapjes naar festivals en optredens (vrijblijvend).
+
+:::contact
+### Aanmelding & Contact
+* **Aanmelding:** VHS Winterberg, tel. **+49 291 945131**
+* **Inlichtingen:** Mevr. B. Wirsing-Kremser (Winterberger Country Liners), tel. **+49 2981 6513**
+* **Locatie:** Grundschule Winterberg, Am Postteich 1
+:::`,
+  },
+  {
     id: "kult-club-die-grube-siedlinghausen-wiedereroeffnung-2026",
     slug: "kult-club-die-grube-siedlinghausen-wiedereroeffnung-2026",
     slug_nl: "cultclub-die-grube-siedlinghausen-heropening-2026",
