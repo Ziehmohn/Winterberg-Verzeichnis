@@ -6290,24 +6290,49 @@ export const businesses: Business[] = [
   },
   {
     id: 'pflegedienst-doenekes',
-    name: 'Ambulanter Pflegedienst und Tagespflege Dönekes',
+    name: 'Tagespflege Dönekes',
     category: 'Gesundheit & Medizin',
     subcategory: 'Pflegedienste',
-    description: 'Ambulanter Pflegedienst und Tagespflege in Niedersfeld.',
-    address: 'Ruhrstraße 38A, 59955 Winterberg-Niedersfeld',
+    description: 'In der Tagespflege-Einrichtung „Dönekes“ an der Ruhrstraße 38a in Winterberg-Niedersfeld werden ältere und hilfebedürftige Menschen, die zu Hause leben, werktags von morgens bis nachmittags liebevoll betreut. Die Einrichtung bietet strukturierte Tagesabläufe, gemeinsame Mahlzeiten, kognitive und motorische Aktivierungsangebote sowie herzliche Geselligkeit zur nachhaltigen Entlastung pflegender Angehöriger.',
+    description_nl: 'In dagopvangvoorziening „Dönekes“ aan de Ruhrstraße 38a in Winterberg-Niedersfeld worden ouderen en hulpbehoevenden die thuis wonen op werkdagen overdag liefdevol opgevangen en verzorgd. Met gezamenlijke maaltijden, activiteiten en gezelligheid biedt Dönekes tevens een welkome ontlasting voor mantelzorgers.',
+    extendedDescription: 'Die Tagespflege Dönekes unter Leitung von Inhaberin Jeniffer Leutner verbindet professionelle pflegerische Betreuung mit familiärer Wohlfühlatmosphäre. Gäste verbringen hier ihren Tag in Gesellschaft, nehmen gemeinsam an Frühstück, Mittagessen und Nachmittagskaffee teil und profitieren von gezielten Bewegungs- und Gedächtnisübungen. Ein zuverlässiger Hol- und Bringdienst sorgt für eine bequeme und sichere Anfahrt aus dem gesamten Umkreis.',
+    extendedDescription_nl: 'Dagverzorging Dönekes onder leiding van Jeniffer Leutner combineert deskundige zorg met een huiselijke sfeer. Gasten genieten van gezelschap, verse maaltijden en stimulerende activiteiten. Een eigen vervoersdienst zorgt voor veilig halen en brengen in de regio.',
+    address: 'Ruhrstraße 38a, 59955 Winterberg-Niedersfeld',
     district: 'Niedersfeld',
+    city: 'Winterberg',
     phone: '02985 3689975',
+    email: 'info@tagespflege-niedersfeld.de',
     website: 'https://tagespflege-niedersfeld.de',
-    imageFallback: 'PD',
+    contactPerson: {
+      name: 'Jeniffer Leutner',
+      role: 'Inhaberin'
+    },
+    imageFallback: 'TD',
     isPremium: false,
+    isActive: true,
     status: 'approved',
-    services: ['Ambulante Pflege', 'Tagespflege', 'Pflegedienst'],
+    services: [
+      'Tagespflege für Senioren & hilfebedürftige Menschen (werktags)',
+      'Gemeinsame Mahlzeiten (Frühstück, Mittagessen & Nachmittagskaffee)',
+      'Gedächtnistraining, Bewegung & soziale Beschäftigung',
+      'Entlastung pflegender Angehöriger',
+      'Zuverlässiger Hol- und Bringservice (Fahrdienst)',
+      'Individuelle Beratung zu Pflegegraden & Finanzierung'
+    ],
+    services_nl: [
+      'Dagopvang voor senioren en zorgbehoevenden op werkdagen',
+      'Gezamenlijke maaltijden (ontbijt, lunch en middagkoffie)',
+      'Geheugentraining, beweging en creatieve activiteiten',
+      'Effectieve ontlasting voor mantelzorgers',
+      'Betrouwbare haal- en brengservice',
+      'Persoonlijk advies over zorgbudgetten en vergoedingen'
+    ],
     openingHours: {
-      monday: '08:00 - 16:00',
-      tuesday: '08:00 - 16:00',
-      wednesday: '08:00 - 16:00',
-      thursday: '08:00 - 16:00',
-      friday: '08:00 - 16:00',
+      monday: '08:00 - 16:30',
+      tuesday: '08:00 - 16:30',
+      wednesday: '08:00 - 16:30',
+      thursday: '08:00 - 16:30',
+      friday: '08:00 - 16:30',
       saturday: 'Geschlossen',
       sunday: 'Geschlossen'
     }
@@ -9019,13 +9044,17 @@ export const businesses: Business[] = [
     address: 'Ruhrstraße 16, 59955 Winterberg-Niedersfeld',
     district: 'Niedersfeld',
     phone: '02985 9779790',
-    email: 'info@systemhaus-winterberg.de',
+    email: 'info@great-oak.de',
     website: 'https://systemhaus-winterberg.de',
     image: '/great-oak-it-services-winterberg.jpg',
     imageFallback: 'GO',
     isPremium: false,
     isActive: true,
     status: 'approved',
+    contactPerson: {
+      name: 'Leonhard Hankeln',
+      role: 'Geschäftsführer'
+    },
     description: 'Die Great Oak IT-Services GmbH & Co. KG ist ein seit 2007 etabliertes IT-Systemhaus mit Sitz in Winterberg-Niedersfeld. Das Unternehmen betreut mittelständische Unternehmen, Handwerksbetriebe, Kanzleien sowie Einrichtungen des Gesundheitswesens rund um die gesamte Informations- und Kommunikationstechnik. Das Leistungsspektrum reicht von der zuverlässigen IT-Grundversorgung (Arbeitsplätze, Server, Cloud-Lösungen und proaktive Wartung) über zukunftssichere Netzwerktechnik und Firewall-Lösungen bis hin zu umfassenden Datensicherheits- und Backup-Konzepten. Als spezialisierter Partner unterstützt das Systemhaus Kanzleien im DATEV-Umfeld, berät Unternehmen bei der Umsetzung der europäischen NIS-2-Richtlinie und ist nach § 390 SGB V zertifizierter IT-Dienstleister für Arztpraxen, Medizinische Versorgungszentren (MVZ) und Kliniken.',
     description_nl: 'Great Oak IT-Services GmbH & Co. KG is een sinds 2007 gevestigd IT-systeemhuis en managed service provider in Winterberg-Niedersfeld. Het bedrijf ondersteunt het mkb, ambachtelijke ondernemingen, advocaten- en belastingkantoren en instellingen in de gezondheidszorg bij hun complete IT- en netwerkinfrastructuur. Het dienstenaanbod omvat betrouwbaar IT-beheer (werkplekken, servers, cloudoplossingen en proactief onderhoud), netwerktechniek, databeveiliging en noodherstelsystemen. Daarnaast is het bedrijf gespecialiseerd in DATEV-kantoorsoftware, NIS-2-cybersecurityrichtlijnen en gecertificeerde IT-dienstverlening conform § 390 SGB V voor artsenpraktijken en klinieken.',
     services: [
@@ -14157,6 +14186,510 @@ export const businesses: Business[] = [
       "Technisch advies en engineering van klantspecifieke delen",
       "Gecertificeerd kwaliteitsbeheer voor automotive en machinebouw"
     ]
+  },
+  {
+    "id": "great-oak-datenschutz",
+    "name": "Great Oak Datenschutz",
+    "category": "Dienstleistungen",
+    "subcategory": "IT & Software",
+    "description": "Die Great Oak Datenschutz GmbH & Co. KG mit Hauptsitz in Winterberg-Niedersfeld (Ruhrstraße 16) und Niederlassung in Rostock ist ein spezialisiertes Beratungsunternehmen für betrieblichen Datenschutz, Informationssicherheit und IT-Compliance. Als zertifizierter externer Datenschutzbeauftragter (DSB) und Informationssicherheitsbeauftragter (CISO/ISB) betreut das Team bundesweit mittelständische Unternehmen, Handwerksbetriebe, Kanzleien, Krankenhäuser und Arztpraxen. Das Leistungsspektrum umfasst professionelle DSGVO-Audits, die Erstellung von Verarbeitungsverzeichnissen und Richtlinien, Mitarbeiterschulungen sowie strategische Sicherheitsberatung nach NIS-2 und KRITIS.",
+    "description_nl": "Great Oak Datenschutz GmbH & Co. KG met hoofdkantoor in Winterberg-Niedersfeld (Ruhrstraße 16) en vestiging in Rostock is een gespecialiseerd adviesbureau voor gegevensbescherming (AVG/GDPR), informatiebeveiliging en IT-compliance. Als extern functionaris voor gegevensbescherming (FG/DPO) en CISO/ISB ondersteunt het deskundige team mkb-bedrijven, zorginstellingen, klinieken en advocatenkantoren met audits, privacybeleid, medewerkerstrainingen en NIS-2-cybersecuritybegeleiding.",
+    "extendedDescription": "Datenschutz und Informationssicherheit sind heute unverzichtbare Pfeiler erfolgreicher Unternehmensführung. Die Great Oak Datenschutz GmbH & Co. KG unter Leitung von Geschäftsführer Leonhard Hankeln unterstützt Unternehmen praxisnah bei der rechtssicheren Umsetzung aller Vorgaben der DSGVO und des BDSG. Durch die enge Verzahnung mit dem IT-Systemhaus Great Oak IT-Services erhalten Kunden maßgeschneiderte Lösungen aus einer Hand – von der technischen Absicherung über die Erstellung von Verarbeitungsverzeichnissen und Notfallkonzepten bis hin zum professionellen Incident-Management.",
+    "extendedDescription_nl": "Privacybescherming en informatiebeveiliging zijn essentiële pijlers voor modern ondernemerschap. Great Oak Datenschutz GmbH & Co. KG onder leiding van Leonhard Hankeln helpt organisaties praktisch en betrouwbaar bij de naleving van de Europese privacywetgeving (AVG). In nauwe samenwerking met zusterorganisatie Great Oak IT-Services levert het bureau totaaloplossingen: van technische netwerkbeveiliging en verwerkingsregisters tot calamiteitenplannen en incident response.",
+    "address": "Ruhrstraße 16, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 9999690",
+    "email": "info@great-oak.de",
+    "website": "https://great-oak-datenschutz.de/",
+    "contactPerson": {
+      "name": "Leonhard Hankeln",
+      "role": "Geschäftsführer"
+    },
+    "coordinates": {
+      "lat": 51.2585,
+      "lng": 8.5298
+    },
+    "imageFallback": "GD",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Externer Datenschutzbeauftragter (DSB) nach EU-DSGVO",
+      "Externer Informationssicherheitsbeauftragter (CISO / ISB)",
+      "DSGVO-Compliance-Audits & Bestandsaufnahmen",
+      "Datenschutz im Gesundheitswesen (Arztpraxen, MVZ & Kliniken)",
+      "Mitarbeiter-Schulungen & Sensibilisierung (Awareness)",
+      "Erstellung von Verzeichnissen von Verarbeitungstätigkeiten (VVT)",
+      "Beratung zu europäischen NIS-2-Richtlinien & KRITIS",
+      "Auftragsverarbeitungsverträge (AVV) & Löschkonzepte"
+    ],
+    "services_nl": [
+      "Externe functionaris voor gegevensbescherming (FG / DPO) conform AVG",
+      "Externe Chief Information Security Officer (CISO / ISB)",
+      "AVG-compliance audits en privacy-nulmetingen",
+      "Gegevensbescherming in de zorgsector (artsenpraktijken & klinieken)",
+      "Medewerkerstrainingen en privacy-awareness workshops",
+      "Opstellen van verwerkingsregisters en bewaarbeleid",
+      "Begeleiding bij Europese NIS-2-richtlijnen en KRITIS",
+      "Verwerkersovereenkomsten en calamiteitenbeheer"
+    ],
+    "openingHours": {
+      "monday": "08:30 - 17:00",
+      "tuesday": "08:30 - 17:00",
+      "wednesday": "08:30 - 17:00",
+      "thursday": "08:30 - 17:00",
+      "friday": "08:30 - 17:00",
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
+    }
+  },
+  {
+    "id": "lektorat-kretzer",
+    "name": "Lektorat Claudius Kretzer",
+    "category": "Dienstleistungen",
+    "subcategory": "Marketingdienstleistungen",
+    "description": "Das Lektorat Claudius Kretzer an der Ruhrstraße 16 in Winterberg-Niedersfeld bietet professionelle redaktionelle Dienstleistungen für Verlage, Unternehmen, Autoren und Bildungsinstitutionen. Von fachkundigem Lektorat (stilistische und inhaltliche Textoptimierung) und präzisem Korrektorat (Orthografie, Grammatik, Zeichensetzung) über die Konzeption moderner Bildungsmedien bis hin zum Autorenmanagement und zur externen Redaktion bis zur Imprimatur: Mit sprachlicher Präzision und langjähriger Expertise sorgt Claudius Kretzer für fehlerfreie und lesefreundliche Publikationen.",
+    "description_nl": "Lektorat Claudius Kretzer aan de Ruhrstraße 16 in Winterberg-Niedersfeld biedt professionele redactionele diensten voor uitgeverijen, bedrijven, auteurs en onderwijsinstellingen. Van inhoudelijke en stilistische redactie tot nauwgezette proefcorrectie van grammatica en spelling. Met taalkundige precisie zorgt Claudius Kretzer voor foutloze en overtuigende publicaties.",
+    "extendedDescription": "Als freier Lektor und Redakteur unterstützt Claudius Kretzer Buchverlage, Schulbuchredaktionen, Agenturen und mittelständische Unternehmen bei der textlichen und konzeptionellen Umsetzung anspruchsvoller Publikationen. Schwerpunkte liegen in den Bereichen Bildungsmedien, Sachbücher, Fachpublikationen sowie hochwertige Unternehmenskommunikation. Vom ersten Manuskriptentwurf über das Autorenmanagement bis zum druckreifen Abschluss begleitet das Lektorat Medienprojekte zuverlässig und termintreu.",
+    "extendedDescription_nl": "Als freelance redacteur begeleidt Claudius Kretzer uitgevers en bedrijven bij tekstuele projecten en educatieve media. Met een scherp oog voor stijl, grammatica en lay-out zorgt hij voor heldere en aantrekkelijke teksten van concept tot drukproef.",
+    "address": "Ruhrstraße 16, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 8069852",
+    "email": "info@lektorat-kretzer.de",
+    "website": "https://www.lektorat-kretzer.de/",
+    "contactPerson": {
+      "name": "Claudius Kretzer",
+      "role": "Inhaber & Freier Lektor"
+    },
+    "coordinates": {
+      "lat": 51.2585,
+      "lng": 8.5298
+    },
+    "imageFallback": "LK",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Lektorat: Stilistische & inhaltliche Textoptimierung",
+      "Korrektorat: Rechtschreibung, Grammatik & Zeichensetzung",
+      "Externe Redaktion vom Manuskript bis zur Imprimatur",
+      "Konzeption & Redaktion von Bildungsmedien und Fachbüchern",
+      "Autorenmanagement & Koordination von Autorenteams",
+      "Text- und Bildrecherche sowie Fachredaktion"
+    ],
+    "services_nl": [
+      "Redactie: Stilistische en inhoudelijke tekstoptimalisatie",
+      "Correctiewerk: Controle op spelling, grammatica en interpunctie",
+      "Externe redactie van manuscript tot drukproef",
+      "Conceptontwikkeling en redactie van educatieve media",
+      "Auteursbegeleiding en coördinatie van auteursteams",
+      "Tekst- en beeldonderzoek & vakkundige eindredactie"
+    ]
+  },
+  {
+    "id": "tuss-bus-reisen",
+    "name": "Tuss Bus Reisen",
+    "category": "Dienstleistungen",
+    "subcategory": "Tourismus",
+    "additionalCategories": [
+      {
+        "category": "Mobilität & KFZ",
+        "subcategory": "Autohäuser"
+      }
+    ],
+    "description": "Die Tuss Verkehrsgesellschaft mbH (Tuss Bus Reisen) mit Sitz in Winterberg-Niedersfeld (Kampstraße 12 / Betriebshof Ruhrstraße 12c) ist seit vielen Jahrzehnten der verlässliche Partner für Reiseverkehr, Gruppenfahrten und Busvermietungen im Hochsauerland. Mit einer modernen und komfortablen Reisebusflotte erkunden Gäste von Niedersfeld aus ganz Europa: von organisierten Rundreisen und Städtereisen über Musical- und Skifahrten bis hin zu Vereins- und Schulausflügen. Ergänzt wird das Leistungsspektrum durch zuverlässigen Linien- und Schülerverkehr.",
+    "description_nl": "Tuss Verkehrsgesellschaft mbH (Tuss Bus Reisen) in Winterberg-Niedersfeld is al decennialang dé betrouwbare partner voor busreizen, groepsreizen, schoolreizen en touringcarverhuur in het Sauerland. Met een modern en comfortabel wagenpark ontdekken reizigers vanuit Niedersfeld heel Europa – van meerdaagse vakantiereizen en stedentrips tot dagtochten op maat. Daarnaast verzorgt het familiebedrijf betrouwbaar streek- en schoolvervoer.",
+    "extendedDescription": "Von Niedersfeld aus bequem ganz Europa erkunden: Das traditionsreiche Familienunternehmen Tuss Bus Reisen bietet Reisenden erstklassigen Reisekomfort mit modernster Fahrzeugtechnik, Bordküche, WC, Klimaanlage und erfahrenen Chauffeuren. Ob beliebte Mehrtagesfahrten in die Alpen, an Nord- und Ostsee oder quer durch Europa – das abwechslungsreiche Reiseprogramm begeistert Urlauber aller Generationen. Vereine, Firmen und Schulklassen schätzen zudem den individuellen Charter- und Anmietservice für maßgeschneiderte Gruppenfahrten.",
+    "extendedDescription_nl": "Vanuit Niedersfeld comfortabel heel Europa ontdekken: Tuss Bus Reisen biedt touringcars van topklasse met ervaren chauffeurs. Naast georganiseerde meerdaagse reizen kunnen touringcars inclusief chauffeur worden gehuurd voor groepen, scholen en bedrijven.",
+    "address": "Kampstraße 12, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 262",
+    "email": "info@tussbus.de",
+    "website": "https://www.tussbus.de/",
+    "contactPerson": {
+      "name": "Christian Tuss",
+      "role": "Geschäftsführer"
+    },
+    "coordinates": {
+      "lat": 51.258,
+      "lng": 8.527
+    },
+    "imageFallback": "TB",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Moderne Fernreisebusflotte für Europa- und Städtereisen",
+      "Organisierte Mehrtagesreisen, Rundfahrten & Urlaubsreisen",
+      "Busvermietung mit Fahrer für Betriebe, Vereine & Schulen",
+      "Tagesfahrten, Musical-Touren, Event- & Skireisen",
+      "Zuverlässiger Linien- und Schülerverkehr im Hochsauerlandkreis",
+      "Individuelle Gruppenreiseplanung & Beratung"
+    ],
+    "services_nl": [
+      "Moderne, comfortabele touringcarvloot voor Europese reizen en stedentrips",
+      "Georganiseerde meerdaagse reizen, rondreizen en vakanties",
+      "Touringcarverhuur met chauffeur voor verenigingen, scholen en groepen",
+      "Dagtochten, musicalreizen, evenementen- en skitochten",
+      "Betrouwbaar openbaar vervoer en scholierenvervoer in het Sauerland",
+      "Persoonlijke reisorganisatie en groepsbegeleiding op maat"
+    ]
+  },
+  {
+    "id": "naturheilpraxis-stefanie-dietrich",
+    "name": "NATURHEILPRAXIS und FeelGood Wellnessmassagen",
+    "category": "Gesundheit & Medizin",
+    "subcategory": "Ärzte & Praxen",
+    "additionalCategories": [
+      {
+        "category": "Gesundheit & Medizin",
+        "subcategory": "Massagen"
+      }
+    ],
+    "description": "Die Naturheilpraxis und FeelGood Wellnessmassagen von Heilpraktikerin Stefanie Dietrich an der Ruhrstraße 19 in Winterberg-Niedersfeld steht für ganzheitliche Gesundheit und erholsame Wohlfühlbehandlungen. Mit fundierten naturheilkundlichen Therapieverfahren (darunter Homöopathie, Akupunktur, Schmerztherapie und Darmsanierung) sowie wohltuenden FeelGood-Wellnessmassagen (u. a. Rücken- und Ganzkörpermassagen, Fußreflexzonen- und Hot-Stone-Massagen) unterstützt Stefanie Dietrich Körper und Geist bei der Regeneration und Schmerzlinderung.",
+    "description_nl": "Naturheilpraxis en FeelGood Wellnessmassagen van natuurgeneeskundige Stefanie Dietrich aan de Ruhrstraße 19 in Winterberg-Niedersfeld biedt holistische gezondheidszorg en ontspannende wellnessmassages. Van acupunctuur, homeopathie en pijntherapie tot weldadige rug-, hot-stone- en voetreflexzonemassages ter ondersteuning van natuurlijk herstel en ontspanning.",
+    "extendedDescription": "In harmonischer und ruhiger Atmosphäre widmet sich Heilpraktikerin Stefanie Dietrich der individuellen Ursachenforschung von Beschwerden und der Aktivierung der körpereigenen Selbstheilungskräfte. Die Kombination aus traditioneller Naturheilkunde und entspannenden Wellnessmassagen schenkt Patienten und Erholungssuchenden neue Energie und Ausgeglichenheit.",
+    "extendedDescription_nl": "In een rustige sfeer biedt Stefanie Dietrich persoonlijke begeleiding om klachten bij de bron aan te pakken. De combinatie van natuurgeneeskundige therapieën en ontspanningsmassages brengt lichaam en geest weer in balans.",
+    "address": "Ruhrstraße 19, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 9799892",
+    "email": "kontakt@naturheilpraxis-niedersfeld.de",
+    "website": "https://www.naturheilpraxis-niedersfeld.de/",
+    "contactPerson": {
+      "name": "Stefanie Dietrich",
+      "role": "Heilpraktikerin & Inhaberin"
+    },
+    "coordinates": {
+      "lat": 51.2588,
+      "lng": 8.5295
+    },
+    "imageFallback": "ND",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Ganzheitliche Naturheilkunde & individuelle Diagnostik",
+      "Akupunktur, Schmerztherapie & Homöopathie",
+      "FeelGood-Wellnessmassagen (Rücken, Ganzkörper, Hot Stone)",
+      "Fußreflexzonenmassage & Entspannungsbehandlungen",
+      "Darmsanierung, Entgiftung & Ernährungsberatung",
+      "Individuelle Gesundheitsberatung in ruhiger Praxisatmosphäre"
+    ],
+    "services_nl": [
+      "Holistische natuurgeneeskunde & persoonlijke diagnostiek",
+      "Acupunctuur, pijntherapie & klassieke homeopathie",
+      "FeelGood-wellnessmassages (rug, lichaam, hot stone)",
+      "Voetreflexzonemassage & diepe ontspanningsbehandelingen",
+      "Darmreiniging, ontgifting en voedingsbegeleiding",
+      "Persoonlijke consulten in een ontspannen praktijksfeer"
+    ]
+  },
+  {
+    "id": "si-werbeform",
+    "name": "SI Werbeform – Beschriftung und Werbung",
+    "category": "Dienstleistungen",
+    "subcategory": "Marketingdienstleistungen",
+    "additionalCategories": [
+      {
+        "category": "Handwerk",
+        "subcategory": "Druckereien"
+      }
+    ],
+    "description": "SI Werbeform (Inhaberin Sophia Klüppel) an der Ruhrstraße 12b in Winterberg-Niedersfeld ist Ihr regionaler Fachbetrieb für professionelle Werbetechnik, Beschriftungen und visuelle Markenauftritte im Sauerland. Das Leistungsspektrum umfasst passgenaue Fahrzeugbeschriftungen, Schaufensterbeklebungen, hochwertige Werbeschilder, Bauschilder, Banner sowie Lichtwerbung und Foliendesign. Ob Gewerbekunde, Gastronomie oder Verein – SI Werbeform setzt Werbebotschaften mit handwerklichem Geschick und langlebigen Materialien wirkungsvoll in Szene.",
+    "description_nl": "SI Werbeform (Sophia Klüppel) aan de Ruhrstraße 12b in Winterberg-Niedersfeld is dé regionale specialist voor professionele reclametechniek, belettering en visuele communicatie in het Sauerland. Van hoogwaardige voertuigbelettering en raamfolies tot reclameborden, spandoeken, lichtreclame en grafisch ontwerp.",
+    "extendedDescription": "Ähnlich wie große Medienagenturen bietet SI Werbeform umfassende Werbetechnik aus einer Hand. Mit moderner Schneideplotter- und Digitaldrucktechnik entstehen langlebige Beschriftungen für Handwerkerfahrzeuge, Firmenflotten, Praxen, Geschäfte und Hotels. Eine persönliche Beratung und präzise Montage vor Ort runden das Angebot ab.",
+    "extendedDescription_nl": "SI Werbeform levert complete reclametechniek op maat: van ontwerp tot fabricage en vakkundige montage van beletteringen, spandoeken en borden voor bedrijven in de regio.",
+    "address": "Ruhrstraße 12b, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 908450",
+    "email": "info@si-werbeform.de",
+    "website": "https://www.si-werbeform.de/",
+    "contactPerson": {
+      "name": "Sophia Klüppel",
+      "role": "Inhaberin"
+    },
+    "coordinates": {
+      "lat": 51.258,
+      "lng": 8.529
+    },
+    "imageFallback": "SW",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Fahrzeugbeschriftung & Car-Wrapping für PKW & Transporter",
+      "Schaufensterbeklebung & Sichtschutzfolien",
+      "Werbeschilder, Firmenschilder & Praxisschilder",
+      "Großformatdruck, Werbebanner, Planen & Fahnen",
+      "Lichtwerbung, Profilbuchstaben & Leitsysteme",
+      "Grafische Gestaltung & Layout-Erstellung"
+    ],
+    "services_nl": [
+      "Voertuigbelettering & belettering van wagenparken",
+      "Raambelettering & privacy-folies voor winkels en kantoren",
+      "Reclameborden, bedrijfspanelen en gevelborden",
+      "Grootformaat printwerk, spandoeken en vlaggen",
+      "Lichtreclame en bewegwijzeringssystemen",
+      "Grafisch ontwerp en vormgeving van reclame-uitingen"
+    ]
+  },
+  {
+    "id": "metallbau-schroeder",
+    "name": "Treppen- und Metallbau Schröder",
+    "category": "Handwerk",
+    "subcategory": "Bauunternehmen",
+    "additionalCategories": [
+      {
+        "category": "Handwerk",
+        "subcategory": "Maschinenbau"
+      }
+    ],
+    "description": "Treppen- und Metallbau Schröder (Inhaber Jens Schröder) am Eschenberg 14 in Winterberg-Niedersfeld ist der erfahrene Handwerksbetrieb für anspruchsvolle Metall- und Stahlbauarbeiten. Das Unternehmen fertigt maßgeschneiderte Stahltreppen für den Innen- und Außenbereich, hochwertige Treppen- und Balkongeländer, robuste Zaunanlagen, Vordächer und Tore sowie individuelle Schweißkonstruktionen für private Bauherren, Gewerbebetriebe und die Industrie.",
+    "description_nl": "Treppen- und Metallbau Schröder (Jens Schröder) aan de Eschenberg 14 in Winterberg-Niedersfeld is het vakkundige metaalbewerkingsbedrijf voor stalen trappen, trap- en balkonleuningen, hekwerken, overkappingen en stalen constructies op maat voor particulieren en bedrijven.",
+    "extendedDescription": "Seit vielen Jahren steht der Meisterbetrieb von Jens Schröder für handwerkliche Präzision im Metallbau. Von der millimetergenauen Planung über die statisch einwandfreie Fertigung bis hin zur sicheren Montage vor Ort entstehen individuelle Treppenlösungen in Stahl, Edelstahl und Glas, die Ästhetik und Langlebigkeit perfekt vereinen.",
+    "extendedDescription_nl": "Vakmanschap in metaal en staal: Jens Schröder ontwerpt en produceert trappen, leuningen en hekwerken volgens hoogste kwaliteits- en veiligheidseisen.",
+    "address": "Am Eschenberg 14, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 908351",
+    "email": "metallbau-schroeder@t-online.de",
+    "website": "https://www.metallbau-schröder.de/",
+    "contactPerson": {
+      "name": "Jens Schröder",
+      "role": "Inhaber"
+    },
+    "coordinates": {
+      "lat": 51.248,
+      "lng": 8.528
+    },
+    "imageFallback": "MS",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Individuelle Stahltreppen für Innen- und Außenbereiche",
+      "Balkongeländer & Treppengeländer in Stahl und Edelstahl",
+      "Zaunanlagen, Einfriedungen, Tore & Absperrungen",
+      "Vordächer, Carports & Stahlbaukonstruktionen",
+      "Reparatur- und Schweißarbeiten vor Ort",
+      "Fachmännische Beratung, Aufmaß & Montage"
+    ],
+    "services_nl": [
+      "Stalen trappen op maat voor binnen en buiten",
+      "Balkon- en trapleuningen in staal en rvs",
+      "Hekwerken, poorten en afrasteringen",
+      "Overkappingen, luifels en staalconstructies",
+      "Reparatie- en laswerkzaamheden ter plaatse",
+      "Deskundig advies, inmeten en montage"
+    ]
+  },
+  {
+    "id": "mth-systems",
+    "name": "MTH-Systems (Elektrotechnik & Wiegesysteme)",
+    "category": "Handwerk",
+    "subcategory": "Elektriker",
+    "additionalCategories": [
+      {
+        "category": "Handwerk",
+        "subcategory": "Maschinenbau"
+      }
+    ],
+    "description": "MTH-Systems unter Leitung von Dipl.-Ing. Stefan Harbecke am Hagen 19 in Winterberg-Niedersfeld ist ein spezialisierter Technologie- und Handwerksbetrieb für moderne Elektrotechnik, mobile und stationäre Wiegesysteme sowie professionelle Schneeanlagen und Beschneiungstechnik. Das Unternehmen bietet Beratung, Vertrieb, Installation, Kalibrierung und Wartung aus einer Hand für Gewerbe-, Industrie-, Steinbruch- und Wintersportbetriebe im gesamten Sauerland und darüber hinaus.",
+    "description_nl": "MTH-Systems onder leiding van Dipl.-Ing. Stefan Harbecke in Winterberg-Niedersfeld is gespecialiseerd in elektrotechniek, mobiele en stationaire weegsystemen (wiellader- en bandweegschalen) en professionele sneeuwkanonnen en besneeuwingsinstallaties voor skigebieden.",
+    "extendedDescription": "Als erfahrener Ingenieur- und Fachbetrieb vereint MTH-Systems tiefes Know-how in der industriellen Wägetechnik mit maßgeschneiderter Elektro- und Steuerungstechnik. Von der Ausrüstung schwerer Baumaschinen mit eichfähigen Wiegesystemen bis hin zur Planung und Instandhaltung komplexer Beschneiungssysteme für Skikarussells steht Stefan Harbecke seinen Kunden mit starkem Vor-Ort-Service zur Seite.",
+    "extendedDescription_nl": "Technologische precisie: MTH-Systems levert en onderhoudt weegapparatuur voor grondverzetmachines en complete besneeuwingsinstallaties inclusief besturingstechniek.",
+    "address": "Am Hagen 19, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 9699505",
+    "email": "info@mth-systems.de",
+    "website": "https://www.mth-systems.de/",
+    "contactPerson": {
+      "name": "Dipl.-Ing. Stefan Harbecke",
+      "role": "Inhaber"
+    },
+    "coordinates": {
+      "lat": 51.256,
+      "lng": 8.531
+    },
+    "imageFallback": "MT",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Elektroinstallation & Steuerungsbau für Industrie & Gewerbe",
+      "Mobile & stationäre Wiegesysteme (Radlader-, Bagger- & Bandwaagen)",
+      "Schneeanlagen, Beschneiungstechnik & Pumpstationen für Skigebiete",
+      "Service, Eichvorbereitung, Kalibrierung & Wartung",
+      "Sensortechnik & Automatisierungslösungen",
+      "Technischer Vor-Ort-Kundendienst & Notfallservice"
+    ],
+    "services_nl": [
+      "Elektro-installaties en paneelbouw voor industrie en bedrijven",
+      "Mobiele en vaste weegsystemen voor wielladers en graafmachines",
+      "Besneeuwingsinstallaties, sneeuwkanonnen en pompstations",
+      "Onderhoud, kalibratie en ijking van weegapparatuur",
+      "Sensoriek en industriële automatisering",
+      "Storingsdienst en service ter plaatse"
+    ]
+  },
+  {
+    "id": "hans-wurst-imbiss",
+    "name": "Imbiss Hans' Wurst",
+    "category": "Gastronomie",
+    "subcategory": "Imbisse",
+    "description": "Der Imbiss Hans' Wurst an der Ruhrstraße 32 in Niedersfeld (direkt neben der Fleischerei Buschmann) bringt die klassische und beliebte Imbisskultur ins Dorf zurück. Ob knusprige Pommes, original Mantaplatte (Currywurst mit Pommes Schranke), deftige Bratwurst oder herzhafte Burger – Hans serviert ehrliche, handgemachte Imbisse aus regionalen Zutaten für Einheimische, Handwerker und Sauerland-Urlauber. Telefonische Vorbestellung ist möglich.",
+    "description_nl": "Snackwagen Hans' Wurst aan de Ruhrstraße 32 in Niedersfeld (naast slagerij Buschmann) serveert klassieke en ambachtelijke snacks: knapperige friet, curryworst, echte Mantaplatte en sappige burgers bereid met streekproducten.",
+    "address": "Ruhrstraße 32, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "0177 9123906",
+    "website": "https://niedersfeld.info/gewerbe/gastronomie-und-lebensmittel/hans-wurst/",
+    "coordinates": {
+      "lat": 51.259,
+      "lng": 8.5292
+    },
+    "imageFallback": "HW",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Klassische Mantaplatte & feine Currywurst",
+      "Krosse Pommes frites & Bratwurstspezialitäten",
+      "Herzhafte Burger & regionale Imbissklassiker",
+      "Telefonische Vorbestellung zur schnellen Abholung",
+      "Steh- und Sitzmöglichkeiten direkt vor Ort",
+      "Zentrale Lage direkt an der Ruhrstraße"
+    ],
+    "services_nl": [
+      "Klassieke Mantaplatte & curryworst met friet",
+      "Knapperige friet en ambachtelijke braadworsten",
+      "Burgers en hartige snacks voor onderweg",
+      "Telefonisch bestellen en afhalen mogelijk",
+      "Zit- en staplaatsen direct bij de wagen",
+      "Centraal gelegen aan de Ruhrstraße"
+    ],
+    "openingHours": {
+      "monday": "12:00 - 19:00",
+      "tuesday": "12:00 - 19:00",
+      "wednesday": "12:00 - 19:00",
+      "thursday": "12:00 - 19:00",
+      "friday": "12:00 - 19:00",
+      "saturday": "12:00 - 19:00",
+      "sunday": "12:00 - 19:00"
+    }
+  },
+  {
+    "id": "fleischerei-buschmann",
+    "name": "Fleischerei Buschmann",
+    "category": "Handwerk",
+    "subcategory": "Fleischerei",
+    "additionalCategories": [
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Feinkost & Lebensmittel"
+      }
+    ],
+    "description": "Die traditionsreiche Fleischerei Buschmann (Inhaber Jörg Buschmann) an der Ruhrstraße 32 in Winterberg-Niedersfeld steht seit Generationen für meisterhaftes Fleischerhandwerk, beste Frische und regionale Spitzenqualität. Der bio-zertifizierte Handwerksbetrieb bezieht Schlachttiere aus kontrollierter, artgerechter Tierhaltung aus der Region. Das Sortiment umfasst feine Fleisch- und Schinkenspezialitäten, hausgemachte Sauerländer Wurstwaren nach Familienrezepten, schmackhafte Konserven und einen beliebten Mittagstisch.",
+    "description_nl": "Slagerij Buschmann (Jörg Buschmann) aan de Ruhrstraße 32 in Winterberg-Niedersfeld staat voor ambachtelijke kwaliteit en biologisch gecertificeerd vlees uit de regio. Huisgemaakte Sauerlandse worsten, hammen, kant-en-klaargerechten en een verse lunchbalie.",
+    "extendedDescription": "Wenn es frisch, handwerklich hergestellt und aus der Region sein soll, führt in Niedersfeld kein Weg an Fleischerei Buschmann vorbei. Mit viel Leidenschaft und Fachwissen verarbeitet Meister Jörg Buschmann und sein Team bestes Fleisch aus artgerechter Tierhaltung. Neben dem täglichen Thekenverkauf bietet die Fleischerei einen abwechslungsreichen Partyservice für Feierlichkeiten aller Art.",
+    "extendedDescription_nl": "Gecertificeerde biologische slagerij met passie voor het vak: vers vlees, ambachtelijke streekwaren en betrouwbare partyservice in het Sauerland.",
+    "address": "Ruhrstraße 32, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 8170",
+    "email": "fleischerei-buschmann@t-online.de",
+    "website": "http://www.fleischerei-buschmann.com/",
+    "contactPerson": {
+      "name": "Jörg Buschmann",
+      "role": "Inhaber & Fleischermeister"
+    },
+    "coordinates": {
+      "lat": 51.259,
+      "lng": 8.5292
+    },
+    "imageFallback": "FB",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Bio-zertifiziertes Fleischerhandwerk & regionales Frischfleisch",
+      "Hausgemachte Wurstwaren, Schinken & Sauerländer Dauerwurst",
+      "Partyservice & Buffets für Geburtstage, Firmen & Feste",
+      "Frischer Mittagstisch & warme Theke",
+      "Hausgemachte Eintöpfe & Wurstkonserven im Glas",
+      "Fachkundige und herzliche Bedienung an der Frischetheke"
+    ],
+    "services_nl": [
+      "Biologisch gecertificeerd vers vlees van boeren uit de regio",
+      "Ambachtelijke worsten, rauwe ham en specialiteiten",
+      "Partyservice en catering voor familiefeesten en evenementen",
+      "Dagelijkse verse warme maaltijden",
+      "Huisgemaakte soepen en maaltijdconserven in glas",
+      "Vakkundig en vriendelijk advies aan de toonbank"
+    ],
+    "openingHours": {
+      "monday": "08:00 - 12:30, 14:30 - 18:00",
+      "tuesday": "08:00 - 12:30, 14:30 - 18:00",
+      "wednesday": "08:00 - 12:30",
+      "thursday": "08:00 - 12:30, 14:30 - 18:00",
+      "friday": "08:00 - 12:30, 14:30 - 18:00",
+      "saturday": "08:00 - 12:30",
+      "sunday": "Geschlossen"
+    }
+  },
+  {
+    "id": "elektro-hankeln",
+    "name": "Elektro Hankeln (Installation & Haushaltswaren)",
+    "category": "Handwerk",
+    "subcategory": "Elektriker",
+    "additionalCategories": [
+      {
+        "category": "Einzelhandel",
+        "subcategory": "Haushaltswaren & Deko"
+      }
+    ],
+    "description": "Elektro Hankeln (Inhaber Markus Hankeln) an der Ruhrstraße 29 in Winterberg-Niedersfeld ist Ihr zuverlässiger Meisterbetrieb für Elektroinstallationen, Gebäudetechnik und Elektro-Fachhandel im oberen Ruhrtal. Neben fachgerechten Installationen in Alt- und Neubauten, Beleuchtungskonzepten und Wallbox-Montagen für E-Mobilität führt das Ladengeschäft ein sorgfältig ausgewähltes Sortiment an Haushaltsgroß- und -kleingeräten (Weiße Ware, Waschmaschinen, Kühlschränke, Kaffeemaschinen, Toaster), Leuchtmitteln und Ersatzteilen inklusive Reparaturservice.",
+    "description_nl": "Elektro Hankeln (Markus Hankeln) aan de Ruhrstraße 29 in Winterberg-Niedersfeld is het vertrouwde elektrobedrijf en witgoedspeciaalzaak. Van vakkundige elektro-installaties, verlichting en wallboxen tot de verkoop en reparatie van wasmachines, koelkasten en huishoudelijke apparatuur.",
+    "extendedDescription": "Kühlschrank kaputt? Radio stumm? Toaster durchgebrannt? Elektro Hankeln bietet schnelle und kompetente Hilfe direkt vor Ort. Der Handwerksbetrieb verbindet moderne Energie- und Gebäudetechnik mit einem sympathischen Nahversorger-Fachgeschäft für Haushaltsgeräte mitten in Niedersfeld.",
+    "extendedDescription_nl": "Deskundige hulp bij defecte huishoudelijke apparatuur, nieuwe witgoedtoestellen en complete elektro-installaties voor particulieren en bedrijven in Niedersfeld.",
+    "address": "Ruhrstraße 29, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 286",
+    "email": "elektro-hankeln@t-online.de",
+    "contactPerson": {
+      "name": "Markus Hankeln",
+      "role": "Inhaber & Elektromeister"
+    },
+    "coordinates": {
+      "lat": 51.2589,
+      "lng": 8.5293
+    },
+    "imageFallback": "EH",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Elektroinstallation & Gebäudetechnik für Alt- und Neubau",
+      "Montage von Wallboxen & Ladeinfrastruktur für E-Autos",
+      "Verkauf von Haushaltsgroßgeräten (Waschmaschinen, Trockner, Kühlgeräte)",
+      "Elektro-Kleingeräte, Toaster, Kaffeemaschinen & Zubehör",
+      "Reparatur- und Kundendienst für Haushaltsgeräte vor Ort",
+      "Leuchtmittel, Kabel, Batterien & Elektro-Ersatzteile"
+    ],
+    "services_nl": [
+      "Elektrotechnische installaties voor nieuwbouw en renovatie",
+      "Installatie van wallboxen en laadpunten voor elektrische auto's",
+      "Verkoop van witgoed (wasmachines, drogers, koelkasten)",
+      "Kleine huishoudelijke apparaten en consumentenelektronica",
+      "Reparatieservice en storingsdienst voor huishoudtoestellen",
+      "Lampen, kabels en reserveonderdelen in de winkel"
+    ],
+    "openingHours": {
+      "monday": "10:00 - 12:30, 16:00 - 18:00",
+      "tuesday": "10:00 - 12:30, 16:00 - 18:00",
+      "wednesday": "10:00 - 12:30",
+      "thursday": "10:00 - 12:30, 16:00 - 18:00",
+      "friday": "10:00 - 12:30, 16:00 - 18:00",
+      "saturday": "09:00 - 12:30",
+      "sunday": "Geschlossen"
+    }
   }
 ];
 

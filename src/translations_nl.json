@@ -1997,11 +1997,12 @@
       "products": []
     },
     "pflegedienst-doenekes": {
-      "description": "Poliklinische verpleegdienst en dagopvang in Niedersfeld.",
+      "description": "In dagopvangvoorziening „Dönekes“ aan de Ruhrstraße 38a in Winterberg-Niedersfeld worden ouderen en hulpbehoevenden overdag liefdevol opgevangen en verzorgd.",
       "services": [
-        "Ambulante zorg",
-        "Dagopvang",
-        "Verpleegkundige dienst"
+        "Dagopvang voor senioren en zorgbehoevenden op werkdagen",
+        "Gezamenlijke maaltijden (ontbijt, lunch en middagkoffie)",
+        "Geheugentraining, beweging en creatieve activiteiten",
+        "Effectieve ontlasting voor mantelzorgers"
       ],
       "products": []
     },
@@ -2104,6 +2105,109 @@
         "Lasmoeren volgens industrienorm en fabrieksspecificatie",
         "Speciale bevestigingselementen voor automotive en industrie"
       ]
+    },
+    "great-oak-datenschutz": {
+      "description": "Great Oak Datenschutz GmbH & Co. KG in Winterberg-Niedersfeld is een gespecialiseerd adviesbureau voor gegevensbescherming (AVG/GDPR), informatiebeveiliging en IT-compliance.",
+      "services": [
+        "Externe functionaris voor gegevensbescherming (FG / DPO) conform AVG",
+        "Externe Chief Information Security Officer (CISO / ISB)",
+        "AVG-compliance audits en privacy-nulmetingen",
+        "Gegevensbescherming in de zorgsector (artsenpraktijken & klinieken)",
+        "Medewerkerstrainingen en privacy-awareness workshops",
+        "Opstellen van verwerkingsregisters en bewaarbeleid"
+      ],
+      "products": []
+    },
+    "lektorat-kretzer": {
+      "description": "Lektorat Claudius Kretzer in Winterberg-Niedersfeld biedt professionele redactionele diensten voor uitgeverijen, bedrijven, auteurs en onderwijsinstellingen.",
+      "services": [
+        "Redactie: Stilistische en inhoudelijke tekstoptimalisatie",
+        "Correctiewerk: Controle op spelling, grammatica en interpunctie",
+        "Externe redactie van manuscript tot drukproef",
+        "Conceptontwikkeling en redactie van educatieve media",
+        "Auteursbegeleiding en coördinatie van auteursteams"
+      ],
+      "products": []
+    },
+    "tuss-bus-reisen": {
+      "description": "Tuss Verkehrsgesellschaft mbH (Tuss Bus Reisen) in Winterberg-Niedersfeld is de vertrouwde partner voor georganiseerde busreizen, stedentrips en touringcarverhuur.",
+      "services": [
+        "Moderne touringcarvloot voor Europese reizen en stedentrips",
+        "Georganiseerde meerdaagse reizen en vakanties",
+        "Touringcarverhuur met chauffeur voor groepen, scholen en bedrijven",
+        "Dagtochten, evenementen- en skitochten"
+      ],
+      "products": []
+    },
+    "naturheilpraxis-stefanie-dietrich": {
+      "description": "Naturheilpraxis en FeelGood Wellnessmassagen van natuurgeneeskundige Stefanie Dietrich in Niedersfeld biedt holistische gezondheidszorg en ontspannende massages.",
+      "services": [
+        "Holistische natuurgeneeskunde & persoonlijke diagnostiek",
+        "Acupunctuur, pijntherapie & klassieke homeopathie",
+        "FeelGood-wellnessmassages (rug, lichaam, hot stone)",
+        "Voetreflexzonemassage & diepe ontspanning"
+      ],
+      "products": []
+    },
+    "si-werbeform": {
+      "description": "SI Werbeform (Sophia Klüppel) in Winterberg-Niedersfeld is specialist voor professionele reclametechniek, belettering en visuele communicatie.",
+      "services": [
+        "Voertuigbelettering & belettering van wagenparken",
+        "Raambelettering & privacy-folies voor winkels en kantoren",
+        "Reclameborden, bedrijfspanelen en gevelborden",
+        "Grootformaat printwerk, spandoeken en vlaggen"
+      ],
+      "products": []
+    },
+    "metallbau-schroeder": {
+      "description": "Treppen- und Metallbau Schröder in Winterberg-Niedersfeld is het vakkundige metaalbewerkingsbedrijf voor stalen trappen, leuningen en hekwerken op maat.",
+      "services": [
+        "Stalen trappen op maat voor binnen en buiten",
+        "Balkon- en trapleuningen in staal en rvs",
+        "Hekwerken, poorten en afrasteringen",
+        "Overkappingen, luifels en staalconstructies"
+      ],
+      "products": []
+    },
+    "mth-systems": {
+      "description": "MTH-Systems in Winterberg-Niedersfeld is gespecialiseerd in industriële elektrotechniek, mobiele en vaste weegsystemen en professionele sneeuwkanonnen.",
+      "services": [
+        "Elektro-installaties en paneelbouw voor industrie en bedrijven",
+        "Mobiele en vaste weegsystemen voor wielladers en graafmachines",
+        "Besneeuwingsinstallaties, sneeuwkanonnen en pompstations",
+        "Onderhoud, kalibratie en ijking van weegapparatuur"
+      ],
+      "products": []
+    },
+    "hans-wurst-imbiss": {
+      "description": "Snackwagen Hans' Wurst aan de Ruhrstraße 32 in Niedersfeld serveert knapperige friet, curryworst, echte Mantaplatte en sappige burgers.",
+      "services": [
+        "Klassieke Mantaplatte & curryworst met friet",
+        "Knapperige friet en ambachtelijke braadworsten",
+        "Burgers en hartige snacks voor onderweg",
+        "Telefonisch bestellen en afhalen mogelijk"
+      ],
+      "products": []
+    },
+    "fleischerei-buschmann": {
+      "description": "Biologische slagerij Buschmann aan de Ruhrstraße 32 in Winterberg-Niedersfeld staat voor ambachtelijk vers vlees, huisgemaakte worsten en partyservice.",
+      "services": [
+        "Biologisch gecertificeerd vers vlees van boeren uit de regio",
+        "Ambachtelijke worsten, rauwe ham en specialiteiten",
+        "Partyservice en catering voor familiefeesten en evenementen",
+        "Dagelijkse verse warme maaltijden"
+      ],
+      "products": []
+    },
+    "elektro-hankeln": {
+      "description": "Elektro Hankeln in Winterberg-Niedersfeld is uw vertrouwde vakbedrijf voor elektro-installaties, witgoed, huishoudelijke apparaten en reparaties.",
+      "services": [
+        "Elektrotechnische installaties voor nieuwbouw en renovatie",
+        "Installatie van wallboxen en laadpunten voor elektrische auto's",
+        "Verkoop van witgoed (wasmachines, drogers, koelkasten)",
+        "Reparatieservice en storingsdienst voor huishoudtoestellen"
+      ],
+      "products": []
     }
   }
 }
