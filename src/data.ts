@@ -90,6 +90,42 @@ export const businesses: Business[] = [
         price: 'Kostenlos'
       },
       {
+        id: 'weihnachtsmarkt-niedersfeld-2026',
+        title: 'Weihnachtsmarkt in Niedersfeld',
+        title_nl: 'Kerstmarkt in Niedersfeld',
+        startDate: '2026-11-28',
+        endDate: '2026-11-29',
+        startTime: '12:00',
+        endTime: '',
+        category: 'Markt',
+        location: 'Schützenhalle Niedersfeld, An der Hille 6, 59955 Winterberg',
+        description: 'Traditioneller Weihnachtsmarkt der Schützenbruderschaft St. Hubertus 1888 Niedersfeld e.V. am ersten Adventswochenende in der Dorfhalle / Schützenhalle Niedersfeld. Der Markt trotzt jedem Wetter und bietet ein stimmungsvolles vorweihnachtliches Flair mit fast 50 Ständen für Weihnachtsdeko und Geschenkideen, einer Kinderspielzeugbörse, Kaffee und Kuchen, frischen Waffeln, Pommes, Bratwurst sowie Bier und Glühwein an der Schützentheke. Am Sonntag rundet das festliche Weihnachtskonzert der Blasmusik das Programm ab.',
+        description_nl: 'Traditionele overdekte kerstmarkt van de Schützenbruderschaft St. Hubertus 1888 Niedersfeld e.V. in het eerste adventsweekend in de Schützenhalle Niedersfeld. Met bijna 50 kramen vol kerstdecoratie en geschenken, een kinderspeelgoedbeurs, verse wafels, koffie met gebak, warme grillspecialiteiten en glühwein aan de toog. Op zondag kerstconcert van de plaatselijke blaasmuziek.',
+        imageUrl: '/events-weihnachtsmarkt-niedersfeld.jpg',
+        externalUrl: 'https://niedersfeld.info',
+        slug: 'weihnachtsmarkt-niedersfeld-2026',
+        slug_nl: 'kerstmarkt-niedersfeld-2026',
+        price: 'Kostenlos'
+      },
+      {
+        id: 'weihnachtskonzert-hildfeld-2026',
+        title: 'Weihnachtskonzert Hildfeld',
+        title_nl: 'Kerstconcert Hildfeld',
+        startDate: '2026-12-05',
+        endDate: '2026-12-05',
+        startTime: '19:00',
+        endTime: '',
+        category: 'Konzert',
+        location: 'Hochsauerlandhalle Hildfeld, Hildfelderstraße 18, 59955 Winterberg',
+        description: 'Alle zwei Jahre veranstaltet die Stadtfeuerwehrkapelle Hildfeld das festliche Weihnachtskonzert in der Hochsauerlandhalle. Gemeinsam mit dem Jugendensemble Beat Taste, den Christmas Singers, der Gitarrengruppe Hildfeld und dem Chor Haste Töne Hildfeld erwartet die Besucher ein abwechslungsreiches musikalisches Vorweihnachtsprogramm. Einlass ist ab 18:15 Uhr, Beginn um 19:00 Uhr. Für das leibliche Wohl wird bestens gesorgt.',
+        description_nl: 'Om de twee jaar organiseert de Stadtfeuerwehrkapelle Hildfeld het traditionele kerstconcert in de Hochsauerlandhalle in Hildfeld. Samen met het jeugdensemble Beat Taste, de Christmas Singers, de gitaargroep Hildfeld en het koor Haste Töne Hildfeld wordt een sfeervol en gevarieerd programma gebracht. Zaal open vanaf 18:15 uur, aanvang om 19:00 uur. Verzorging met hapjes en drankjes aanwezig.',
+        imageUrl: '/events-weihnachtskonzert-hildfeld.jpg',
+        externalUrl: 'mailto:musikvereinhildfeld@googlemail.com',
+        slug: 'weihnachtskonzert-hildfeld-2026',
+        slug_nl: 'kerstconcert-hildfeld-2026',
+        price: 'Kostenlos'
+      },
+      {
         id: 'eberspaecher-rodel-weltcup-2026',
         title: 'EBERSPÄCHER Rodel-Weltcup',
         startDate: '2026-11-28',
@@ -112,6 +148,26 @@ export const businesses: Business[] = [
         location: 'VELTINS-EisArena, Winterberg',
         description: 'Wettbewerbe der IBSF Europacup-Serie im Bobsport in der VELTINS-EisArena. Ein fester Bestandteil des internationalen Sportkalenders in Winterberg.',
         externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/detail/ibsf-europacup-bob-4719/685e7d339864f076fafda8bf/'
+      },
+      {
+        id: 'till-froemmel-toyboy-winterberg-2027',
+        title: 'Till Frömmel – TOYBOY (Impro-Comedy & Magie)',
+        title_nl: 'Till Frömmel – TOYBOY (Impro-comedy & magie)',
+        startDate: '2027-01-09',
+        endDate: '2027-01-09',
+        startTime: '19:00',
+        endTime: '21:30',
+        category: 'Comedy',
+        location: 'Stadthalle Oversum, Am Kurpark 6, 59955 Winterberg',
+        price: 'ab 23,50 €',
+        imageUrl: '/events-till-froemmel-toyboy-winterberg.jpg',
+        description: 'Nach seinem erfolgreichen Winterberg-Debüt kehrt das Comedy-Multitalent Till Frömmel mit seiner neuen Live-Show **„TOYBOY“** zurück ins Oversum! Bekannt aus beliebten TV-Formaten wie *NightWash* begeistert der energiegeladene Wirbelwind mit einer rasanten Kombination aus schlagfertiger Stand-up-Comedy, verblüffender Zauberkunst und spontanen Improvisationsspielen.\n\nBei Till wird das Publikum von der ersten Minute an Teil der Show: Statt auf gewöhnlichen Smalltalk setzt er auf explosives Tempo, bindet spontan die Social-Media-Welt der Zuschauer ein und parodiert magische Las-Vegas-Momente mit herrlich frechem Humor. Ein urkomischer, unberechenbarer Abend, der das Spielkind in jedem weckt!\n\n- **Einlass:** 18:00 Uhr | **Beginn:** 19:00 Uhr\n- **Ort:** Stadthalle im Oversum, Am Kurpark 6, 59955 Winterberg\n- **Platzwahl:** Freie Platzwahl\n- **Veranstalter:** Stadtmarketingverein Winterberg mit seinen Dörfern e.V.',
+        description_nl: 'Na zijn succesvolle debuut in Winterberg keert allroundtalent Till Frömmel terug naar de Stadthalle Oversum met zijn gloednieuwe liveshow **„TOYBOY“**! Bekend van onder andere de Duitse tv-show *NightWash* trakteert de energieke comedian het publiek op een wervelende mix van gevatte stand-up comedy, interactieve improvisatie en verrassende goochelkunst.\n\nVanaf het eerste moment betrekt hij de zaal direct bij het programma – met snelle gags, spontane interactie en een flinke dosis humor. Een heerlijk vermakelijke avond vol vaart en onverwachte wendingen!\n\n- **Zaal open:** 18:00 uur | **Aanvang:** 19:00 uur\n- **Locatie:** Stadthalle im Oversum, Am Kurpark 6, 59955 Winterberg\n- **Zitplaatsen:** Vrije plaatskeuze\n- **Organisatie:** Stadtmarketingverein Winterberg',
+        externalUrl: 'https://www.winterberg.de/vor-ort-aktuelles/veranstaltungen/',
+        ticketUrl: 'https://www.eventim.de/artist/till-froemmel/',
+        slug: 'till-froemmel-toyboy-winterberg-2027',
+        slug_nl: 'till-froemmel-toyboy-winterberg-2027',
+        isPremium: true
       },
       {
         id: 'ibsf-bob-skeleton-weltcup-2027',
@@ -13350,6 +13406,26 @@ export const businesses: Business[] = [
       "Biertap & toog",
       "Keuken voor catering",
       "Bruiloften, verjaardagen & dorpsfeesten"
+    ],
+    "events": [
+      {
+        "id": "weihnachtsmarkt-niedersfeld-2026",
+        "title": "Weihnachtsmarkt in Niedersfeld",
+        "title_nl": "Kerstmarkt in Niedersfeld",
+        "startDate": "2026-11-28",
+        "endDate": "2026-11-29",
+        "startTime": "12:00",
+        "endTime": "",
+        "category": "Markt",
+        "location": "Schützenhalle Niedersfeld, An der Hille 6, 59955 Winterberg",
+        "description": "Traditioneller Weihnachtsmarkt der Schützenbruderschaft St. Hubertus 1888 Niedersfeld e.V. am ersten Adventswochenende in der Dorfhalle / Schützenhalle Niedersfeld. Der Markt trotzt jedem Wetter und bietet ein stimmungsvolles vorweihnachtliches Flair mit fast 50 Ständen für Weihnachtsdeko und Geschenkideen, einer Kinderspielzeugbörse, Kaffee und Kuchen, frischen Waffeln, Pommes, Bratwurst sowie Bier und Glühwein an der Schützentheke. Am Sonntag rundet das festliche Weihnachtskonzert der Blasmusik das Programm ab.",
+        "description_nl": "Traditionele overdekte kerstmarkt van de Schützenbruderschaft St. Hubertus 1888 Niedersfeld e.V. in het eerste adventsweekend in de Schützenhalle Niedersfeld. Met bijna 50 kramen vol kerstdecoratie en geschenken, een kinderspeelgoedbeurs, verse wafels, koffie met gebak, warme grillspecialiteiten en glühwein aan de toog. Op zondag kerstconcert van de plaatselijke blaasmuziek.",
+        "imageUrl": "/events-weihnachtsmarkt-niedersfeld.jpg",
+        "externalUrl": "https://niedersfeld.info",
+        "slug": "weihnachtsmarkt-niedersfeld-2026",
+        "slug_nl": "kerstmarkt-niedersfeld-2026",
+        "price": "Kostenlos"
+      }
     ]
   },
   {
@@ -14025,6 +14101,61 @@ export const businesses: Business[] = [
       "Hartige snacks voor strand- en meerbezoekers",
       "Comfortabele loungehoek om te ontspannen",
       "Direct aan het meer, zandstrand en de wandelroute"
+    ]
+    },
+  {
+    "id": "schuhl-co",
+    "name": "Schuhl & Co. GmbH",
+    "category": "Handwerk",
+    "subcategory": "Maschinenbau",
+    "description": "Die Schuhl & Co. GmbH mit Sitz in Winterberg-Niedersfeld (Auf der Hütte 31) ist ein führender und traditionsreicher Hersteller von Verbindungselementen, Spezialmuttern und Präzisions-Kaltfließpressteilen. Bekannt ist das Industrieunternehmen insbesondere für seine patentierten Comby®-Muttern (Kombimuttern mit unverlierbar montierten, drehbaren Scheiben von M3 bis M24), flache Muttern (Vierkant-, Sechskant-, Rechteck- und Rundmuttern), Schweißmuttern sowie anspruchsvolle Sonderteile nach Kundenzeichnung. Kunden aus der Automobilindustrie, dem Maschinenbau, der Elektrotechnik und Montagetechnik vertrauen weltweit auf die zertifizierte Fertigungsqualität 'Made in Winterberg'.",
+    "description_nl": "Schuhl & Co. GmbH in Winterberg-Niedersfeld (Auf der Hütte 31) is een toonaangevende producent van hoogwaardige bevestigingselementen, speciale moeren en koudgevormde precisiepersdelen. Het bedrijf staat internationaal bekend om haar gepatenteerde Comby®-moeren (gecombineerde moeren met onverliesbare draaibare sluitringen van M3 tot M24), platte moeren, lasmoeren en klantspecifieke vormdelen volgens tekening. Klanten uit de automotive, machinebouw en industrie vertrouwen op de gecertificeerde productiekwaliteit 'Made in Winterberg'.",
+    "extendedDescription": "Seit vielen Jahrzehnten fertigt die Schuhl & Co. GmbH im Winterberger Ortsteil Niedersfeld hochpräzise Kaltfließpressteile und Sonderbefestigungen. Das Produktspektrum umfasst innovative Comby®-Kombimuttern mit unverlierbaren Zahn-, Fächer-, Well- oder Kontaktscheiben zur deutlichen Beschleunigung von Montageprozessen sowie DIN- und Werksnorm-Schweißmuttern für belastbare Verbindungen. Mit modernsten Mehrstufenpressen, optoelektronischer 100%-Sortierung und durchgängigem Qualitätsmanagement beliefert Schuhl & Co. weltweit anspruchsvolle Industriezweige direkt aus dem Sauerland.",
+    "extendedDescription_nl": "Schuhl & Co. GmbH produceert al decennialang in Winterberg-Niedersfeld hoogwaardige koudpersdelen en speciale bevestigingsmaterialen. Het assortiment omvat innovatieve Comby®-moeren met onverliesbare tand-, veer- of contactringen voor efficiëntere montageprocessen, evenals lasmoeren en flensmoeren. Met moderne meerstaps persen, 100% optische kwaliteitscontrole en gecertificeerd beheer levert het bedrijf wereldwijd aan toonaangevende industriële klanten.",
+    "address": "Auf der Hütte 31, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "02985 8070",
+    "email": "verkauf@schuhl.de",
+    "website": "https://schuhl.de/",
+    "contactPerson": {
+      "name": "André Wiegelmann & Christian Wiese",
+      "role": "Geschäftsführung"
+    },
+    "coordinates": {
+      "lat": 51.2595,
+      "lng": 8.5290
+    },
+    "imageFallback": "SC",
+    "isActive": true,
+    "status": "approved",
+    "products": [
+      "Comby®-Muttern mit unverlierbar montierten Scheiben (M3 bis M24)",
+      "Präzisions-Kaltfließpressteile & Zeichnungsteile nach Kundenspezifikation",
+      "Flache Muttern: Vierkant-, Sechskant-, Rechteck- & Rundmuttern",
+      "Schweißmuttern nach DIN- und Werksnorm",
+      "Sonderteile & spezielle Befestigungselemente für Automotive & Industrie"
+    ],
+    "products_nl": [
+      "Comby®-moeren met onverliesbaar gemonteerde sluitringen (M3 tot M24)",
+      "Precisie koudvloeipersdelen en speciale delen volgens tekening",
+      "Platte moeren (vierkant, zeskant, rechthoekig en rond)",
+      "Lasmoeren volgens industrienorm en fabrieksspecificatie",
+      "Speciale bevestigingselementen voor automotive en industrie"
+    ],
+    "services": [
+      "Herstellung von Kaltfließpressteilen und Spezialverbindungselementen",
+      "Comby®-Mutternfertigung zur effizienten Montageoptimierung",
+      "100% optoelektronische Qualitätsprüfung & Sortierung",
+      "Individuelle technische Beratung & Zeichnungsteile-Entwicklung",
+      "Zertifiziertes Qualitätsmanagement für Automotive und Industrie"
+    ],
+    "services_nl": [
+      "Productie van koudgevormde persdelen en speciale bevestigingen",
+      "Comby®-moerenproductie voor snellere montageprocessen",
+      "100% opto-elektronische kwaliteitscontrole en sortering",
+      "Technisch advies en engineering van klantspecifieke delen",
+      "Gecertificeerd kwaliteitsbeheer voor automotive en machinebouw"
     ]
   }
 ];

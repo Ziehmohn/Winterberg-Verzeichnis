@@ -213,6 +213,9 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'züschen': [51.1578, 8.5663],
   // St. Jakobus Winterberg
   'jakobus': [51.1956, 8.5338],
+  // Hildfeld / Hochsauerlandhalle
+  'hochsauerlandhalle': [51.2536, 8.5667],
+  'hildfeld': [51.2536, 8.5667],
 };
 
 function getKnownOrDistrictCoordinates(location: string): [number, number] {
@@ -693,29 +696,36 @@ export default function EventsBoard({
       </section>
 
       {/* Filter and Search Bar */}
-      <div className="bg-[#F5F4F0] border-2 border-[#DDD7CD] rounded-3xl p-5 sm:p-6 shadow-[0_4px_24px_rgba(27,33,29,0.06)] mb-8 space-y-4">
+      <div className="relative bg-white border border-[#DDD7CD] rounded-3xl p-5 sm:p-7 shadow-[0_10px_30px_rgba(27,33,29,0.08)] mb-8 space-y-5 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1.5 before:bg-gradient-to-r before:from-purple-600 before:via-[#7E22CE] before:to-amber-400">
         <div className="relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#717E75]" />
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-[#7E22CE]/10 flex items-center justify-center pointer-events-none">
+            <Search className="w-4 h-4 text-[#7E22CE]" />
+          </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={lang === 'nl' ? 'Zoek evenement of organisator...' : 'Event oder Veranstalter suchen...'}
-            className="w-full pl-10 pr-10 py-2.5 bg-white border border-[#D5D0C5] rounded-xl text-[14.5px] text-[#1B211D] placeholder-[#8A958E] focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all shadow-xs"
+            placeholder={lang === 'nl' ? 'Zoek op evenement, artiest of organisator...' : 'Event, Künstler oder Veranstalter suchen...'}
+            className="w-full pl-14 pr-11 py-3.5 bg-[#FAF8F5] hover:bg-white focus:bg-white border-2 border-[#E2DDD3] focus:border-[#7E22CE] rounded-2xl text-[15px] text-[#1B211D] placeholder-[#8A958E] font-medium focus:outline-none focus:ring-4 focus:ring-[#7E22CE]/15 transition-all shadow-inner"
           />
           {searchQuery && (
-            <button type="button" onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1">
+            <button 
+              type="button" 
+              onClick={() => setSearchQuery('')} 
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+              title={lang === 'nl' ? 'Wissen' : 'Löschen'}
+            >
               <X className="w-4 h-4" />
             </button>
           )}
         </div>
 
         {/* Date & Timeframe Filter Section */}
-        <div className="pt-3 border-t border-[#E2DDD3] space-y-3">
+        <div className="pt-4 border-t border-[#EAE5DC] space-y-3.5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-[#7E22CE]/10 flex items-center justify-center text-[#7E22CE]">
-                <CalendarDays className="w-3.5 h-3.5" />
+              <div className="w-7 h-7 rounded-lg bg-[#7E22CE]/10 flex items-center justify-center text-[#7E22CE]">
+                <CalendarDays className="w-4 h-4" />
               </div>
               <span className="font-display text-xs font-bold uppercase tracking-wider text-[#7E22CE]">
                 {lang === 'nl' ? 'Datum & Periode selecteren' : 'Datum & Zeitraum wählen'}
@@ -756,7 +766,7 @@ export default function EventsBoard({
           </div>
 
           {/* Interactive Date Inputs: Startdatum & Enddatum */}
-          <div className="bg-white border border-[#DDD7CD] rounded-2xl p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-2xs">
+          <div className="bg-[#FAF8F5] border border-[#E2DDD3] rounded-2xl p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-2xs">
             <div className="lg:col-span-5">
               <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
@@ -766,7 +776,7 @@ export default function EventsBoard({
                 type="date"
                 value={startDateFilter}
                 onChange={(e) => handleCustomStartDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-[#FAF8F5] border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
               />
             </div>
 
@@ -780,7 +790,7 @@ export default function EventsBoard({
                 value={endDateFilter}
                 min={startDateFilter || undefined}
                 onChange={(e) => handleCustomEndDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-[#FAF8F5] border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
               />
             </div>
 
@@ -789,7 +799,7 @@ export default function EventsBoard({
                 <button
                   type="button"
                   onClick={resetDateFilter}
-                  className="w-full py-2 px-3 text-xs font-bold text-[#717E75] hover:text-[#1B211D] bg-[#FAF8F5] hover:bg-gray-100 rounded-lg border border-[#D5D0C5] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
+                  className="w-full py-2 px-3 text-xs font-bold text-[#717E75] hover:text-[#1B211D] bg-white hover:bg-gray-100 rounded-lg border border-[#D5D0C5] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
                 >
                   <X className="w-3.5 h-3.5" />
                   <span>{lang === 'nl' ? 'Reset' : 'Zurücksetzen'}</span>
@@ -803,7 +813,7 @@ export default function EventsBoard({
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-3 border-t border-[#E2DDD3]">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-4 border-t border-[#EAE5DC]">
           <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0">
             {uniqueCategories.map((type) => {
               const isActive = selectedCategory === type;
@@ -847,6 +857,17 @@ export default function EventsBoard({
               {lang === 'nl' ? 'Raster' : 'Raster'}
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Visual Section Divider to Events */}
+      <div className="relative my-7 sm:my-9 flex items-center justify-center" aria-hidden="true">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-[#DDD7CD]"></div>
+        </div>
+        <div className="relative bg-[#FAF8F5] px-4 py-1 rounded-full border border-[#DDD7CD] text-[11.5px] font-bold uppercase tracking-widest text-[#717E75] flex items-center gap-2 shadow-2xs">
+          <Sparkles className="w-3.5 h-3.5 text-[#7E22CE]" />
+          <span>{lang === 'nl' ? 'Evenementen & Highlights' : 'Veranstaltungen & Highlights'}</span>
         </div>
       </div>
 
