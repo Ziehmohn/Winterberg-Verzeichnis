@@ -4,8 +4,8 @@ import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import Stripe from 'stripe';
 import nodemailer from 'nodemailer';
-import { categories } from './src/data';
-import { getLegacyCategoryRedirect, BUSINESS_DEDUPLICATION_REDIRECTS } from './src/utils/routes';
+import { categories, businesses } from './src/data';
+import { getLegacyCategoryRedirect, BUSINESS_DEDUPLICATION_REDIRECTS, getSystemRedirects } from './src/utils/routes';
 
 let stripeClient: Stripe | null = null;
 function getStripe(): Stripe {
@@ -30,7 +30,8 @@ interface RedirectRule {
 let redirectsMap = new Map<string, RedirectRule>();
 
 // Pre-seed redirects with permanent deduplication 301 rules
-BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => redirectsMap.set(r.source, { target: r.target, statusCode: (r.statusCode as 301 | 302) || 301 }));
+const sysRedirects = getSystemRedirects(categories, businesses);
+sysRedirects.forEach(r => redirectsMap.set(r.source, { target: r.target, statusCode: (r.statusCode as 301 | 302) || 301 }));
 
 async function fetchRedirects() {
   try {
@@ -39,7 +40,7 @@ async function fetchRedirects() {
     const data = await res.json();
     const newMap = new Map<string, RedirectRule>();
     // Keep deduplication rules
-    BUSINESS_DEDUPLICATION_REDIRECTS.forEach(r => newMap.set(r.source, { target: r.target, statusCode: (r.statusCode as 301 | 302) || 301 }));
+    sysRedirects.forEach(r => newMap.set(r.source, { target: r.target, statusCode: (r.statusCode as 301 | 302) || 301 }));
 
     if (data.documents) {
       data.documents.forEach((doc: any) => {

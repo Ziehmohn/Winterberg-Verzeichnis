@@ -49,7 +49,10 @@ import {
   getLegacyCategoryRedirect,
   getSystemRedirects,
   BUSINESS_DEDUPLICATION_REDIRECTS,
-  isBusinessDeactivated
+  isBusinessDeactivated,
+  DISTRICTS,
+  getDistrictSlug,
+  findDistrictFromSlug
 } from './utils/routes';
 import { getLocalizedBusiness, fetchDutchTranslation, translateTextToDutch } from './utils/translator';
 import { getBusinessReviewUsps } from './utils/reviewUsps';
@@ -172,6 +175,7 @@ export default function App() {
   let initialEventSlug: string | null = null;
   let initialJobsCategory: string | null = null;
   let initialAllMode = false;
+  let initialLocation = 'Alle';
   let initialBestOfMode = false;
   let initialBestOfCategory = 'Alle';
   let initialBestOfSubcategory: string | undefined = undefined;
@@ -205,6 +209,12 @@ export default function App() {
   let initialEmbedWhitelabel = false;
 
   if (typeof window !== 'undefined') {
+    const searchParams = new URLSearchParams(window.location.search);
+    const ortFromQuery = searchParams.get('ort');
+    if (ortFromQuery) {
+      initialLocation = ortFromQuery;
+    }
+
     const path = window.location.pathname;
     const pathParts = path.split('/').filter(Boolean);
     if (pathParts[0] === 'nl') {
@@ -258,6 +268,29 @@ export default function App() {
         }
       } else if (decodedPart1 === 'alle-unternehmen' || decodedPart1 === 'alle-bedrijven') {
         initialAllMode = true;
+        if (pathParts[1]) {
+          const district = findDistrictFromSlug(decodeURIComponent(pathParts[1]));
+          if (district) {
+            initialLocation = district;
+          }
+        } else if (ortFromQuery && ortFromQuery !== 'Alle') {
+          const dSlug = getDistrictSlug(ortFromQuery);
+          if (dSlug) {
+            const isNl = window.location.pathname.startsWith('/nl');
+            const prefix = isNl ? '/nl' : '';
+            const baseSlug = isNl ? 'alle-bedrijven' : 'alle-unternehmen';
+            window.history.replaceState(null, '', `${prefix}/${baseSlug}/${dSlug}`);
+          }
+        }
+      } else if (decodedPart1.startsWith('alle-unternehmen-ort-') || decodedPart1.startsWith('alle-bedrijven-ort-')) {
+        const rawSlug = decodedPart1.replace(/^alle-(unternehmen|bedrijven)-ort-/, '');
+        const foundDistrict = findDistrictFromSlug(rawSlug);
+        const districtSlug = foundDistrict ? getDistrictSlug(foundDistrict) : rawSlug;
+        const isNl = window.location.pathname.startsWith('/nl');
+        const prefix = isNl ? '/nl' : '';
+        const baseSlug = isNl ? 'alle-bedrijven' : 'alle-unternehmen';
+        window.location.replace(`${prefix}/${baseSlug}/${districtSlug}`);
+        return;
       } else if (decodedPart1 === 'stellenangebote' || decodedPart1 === 'jobs' || decodedPart1 === 'vacatures') {
         initialJobsMode = true;
         if (pathParts[1]) {
@@ -485,7 +518,7 @@ export default function App() {
     };
   }, []);
 
-  const [activeLocation, setActiveLocation] = useState<string>('Alle');
+  const [activeLocation, setActiveLocation] = useState<string>(initialLocation);
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [sortBy, setSortBy] = useState<'featured' | 'rating' | 'reviews_count' | 'name_asc' | 'name_desc'>('featured');
   const [isAllMode, setIsAllMode] = useState(initialAllMode);
@@ -629,7 +662,28 @@ export default function App() {
   
   const getPath = (p: string) => {
     if (!p || p === '/') return buildLocalizedUrl({ view: 'home' }, lang);
-    if (p === '/alle-unternehmen' || p === '/alle-bedrijven') return buildLocalizedUrl({ view: 'all' }, lang);
+
+    const [pathOnly, queryString] = p.split('?');
+
+    if (pathOnly === '/alle-unternehmen' || pathOnly === '/alle-bedrijven') {
+      if (queryString) {
+        const params = new URLSearchParams(queryString);
+        const ort = params.get('ort');
+        if (ort && ort !== 'Alle') {
+          return buildLocalizedUrl({ view: 'all', location: ort }, lang);
+        }
+      }
+      return buildLocalizedUrl({ view: 'all' }, lang);
+    }
+
+    if (pathOnly.startsWith('/alle-unternehmen/') || pathOnly.startsWith('/alle-bedrijven/')) {
+      const parts = pathOnly.split('/').filter(Boolean);
+      const isNlPrefix = parts[0] === 'nl';
+      const offset = isNlPrefix ? 1 : 0;
+      const districtSlug = parts[offset + 1];
+      const district = districtSlug ? (findDistrictFromSlug(districtSlug) || districtSlug) : undefined;
+      return buildLocalizedUrl({ view: 'all', location: district }, lang);
+    }
     if (p.startsWith('/die-besten') || p.startsWith('/de-beste')) {
       const clean = p.startsWith('/') ? p.slice(1) : p;
       const parts = clean.split('/').filter(Boolean);
@@ -724,8 +778,10 @@ export default function App() {
   const handleCategoryChange = (catName: string) => {
     resetToDirectory();
     if (catName === 'Alle') {
-      const url = getPath('/alle-unternehmen');
-      window.history.pushState(null, '', activeLocation !== 'Alle' ? `${url}?ort=${encodeURIComponent(activeLocation)}` : url);
+      const url = activeLocation !== 'Alle'
+        ? buildLocalizedUrl({ view: 'all', location: activeLocation }, lang)
+        : getPath('/alle-unternehmen');
+      window.history.pushState(null, '', url);
       setActiveCategory('Alle');
       setIsAllMode(true);
     } else {
@@ -814,6 +870,14 @@ export default function App() {
           }
         } else if (p1 === 'alle-unternehmen' || p1 === 'alle-bedrijven') {
           setIsAllMode(true);
+          if (pathParts[1]) {
+            const district = findDistrictFromSlug(decodeURIComponent(pathParts[1]));
+            setActiveLocation(district || 'Alle');
+          } else {
+            const searchParams = new URLSearchParams(window.location.search);
+            const ortParam = searchParams.get('ort');
+            setActiveLocation(ortParam || 'Alle');
+          }
         } else if (p1 === 'stellenangebote' || p1 === 'jobs' || p1 === 'vacatures') {
           setIsJobsMode(true);
           if (pathParts[1]) {
@@ -1270,6 +1334,20 @@ export default function App() {
       currentDesc = isNl
         ? `Plaats uw opdracht gratis en ontvang direct reacties van lokale vakmensen in Winterberg.`
         : `Schreiben Sie Ihren Handwerksauftrag kostenlos aus und erhalten Sie Angebote von verifizierten Fachbetrieben aus Winterberg und den 14 Ortsteilen.`;
+    } else if (isAllMode && activeLocation && activeLocation !== 'Alle') {
+      currentTitle = isNl
+        ? `Bedrijven in ${activeLocation} | ${baseTitle}`
+        : `Unternehmen & Betriebe in ${activeLocation} | ${baseTitle}`;
+      currentDesc = isNl
+        ? `Compleet overzicht van alle geregistreerde bedrijven, winkels en dienstverleners in het Winterbergse stadsdeel ${activeLocation}. Contactgegevens, openingstijden en adressen.`
+        : `Vollständige Übersicht aller Unternehmen, Handwerksbetriebe und Dienstleister im Winterberger Ortsteil ${activeLocation}. Adressen, Öffnungszeiten und Kontaktdaten.`;
+    } else if (isAllMode) {
+      currentTitle = isNl
+        ? `Alle bedrijven in Winterberg | ${baseTitle}`
+        : `Alle Unternehmen in Winterberg | ${baseTitle}`;
+      currentDesc = isNl
+        ? `Volledig overzicht van alle geregistreerde bedrijven, horeca en ambachtslieden in Winterberg en de 14 omliggende dorpen.`
+        : `Vollständige Übersicht aller 150+ registrierten Unternehmen, Dienstleister und Handwerksbetriebe in Winterberg und allen 14 Ortsteilen.`;
     } else if (activeCategory !== 'Alle') {
       const catLabel = t(activeCategory) || activeCategory;
       currentTitle = isNl 
@@ -2143,7 +2221,7 @@ export default function App() {
               setSearchQuery(query);
               if (location && location !== 'Alle') {
                 setActiveLocation(location);
-                const targetUrl = `${getPath('/alle-unternehmen')}?ort=${encodeURIComponent(location)}`;
+                const targetUrl = buildLocalizedUrl({ view: 'all', location }, lang);
                 window.history.pushState(null, '', targetUrl);
               } else {
                 setActiveLocation('Alle');
@@ -2183,7 +2261,9 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onSelectLocation={(loc) => {
-              const url = getPath(`/alle-unternehmen?ort=${encodeURIComponent(loc)}`);
+              const url = loc && loc !== 'Alle'
+                ? buildLocalizedUrl({ view: 'all', location: loc }, lang)
+                : getPath('/alle-unternehmen');
               window.history.pushState(null, '', url);
               setActiveCategory('Alle');
               setActiveLocation(loc);
@@ -3205,23 +3285,49 @@ export default function App() {
                           <span>/</span>
                         </>
                       )}
-                      <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
+                      {activeCategory === 'Alle' && activeLocation !== 'Alle' ? (
+                        <>
+                          <a 
+                            href={getPath('/alle-unternehmen')} 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setActiveLocation('Alle');
+                              window.history.pushState(null, '', getPath('/alle-unternehmen'));
+                            }} 
+                            className="text-white/80 hover:text-white transition-colors"
+                          >
+                            {t("allCompanies")}
+                          </a>
+                          <span>/</span>
+                          <span className="text-white font-medium">{activeLocation}</span>
+                        </>
+                      ) : (
+                        <span className="text-white font-medium">{activeCategory === 'Alle' ? t("allCompanies") : t(activeCategory)}</span>
+                      )}
                     </div>
 
                     <h1 className="font-display text-[26px] sm:text-[38px] md:text-[48px] font-bold m-0 mb-1.5 sm:mb-3 leading-tight tracking-tight">
                       {activeCategory === 'Alle' 
-                        ? t("allCompanies") 
+                        ? (activeLocation !== 'Alle'
+                            ? (lang === 'nl' ? `Bedrijven in ${activeLocation}` : `Unternehmen in ${activeLocation}`)
+                            : t("allCompanies")) 
                         : (categoryHeader && activeCategory === activeGroup?.name
                             ? (lang === 'nl' ? (categoryHeader.titleNl || t(activeCategory)) : (categoryHeader.titleDe || t(activeCategory)))
                             : t(activeCategory))}
                     </h1>
 
                     {/* Subtitle / Description */}
-                    {categoryHeader && (
+                    {activeCategory === 'Alle' && activeLocation !== 'Alle' ? (
+                      <p className="text-xs sm:text-base md:text-[16.5px] text-white/90 leading-snug sm:leading-relaxed mb-3 sm:mb-6 max-w-2xl">
+                        {lang === 'nl'
+                          ? `Ontdek alle lokale bedrijven, vakmensen en dienstverleners in het Winterbergse stadsdeel ${activeLocation}.`
+                          : `Entdecken Sie alle lokalen Betriebe, Handwerker und Dienstleister im Winterberger Ortsteil ${activeLocation}.`}
+                      </p>
+                    ) : categoryHeader ? (
                       <p className="text-xs sm:text-base md:text-[16.5px] text-white/90 leading-snug sm:leading-relaxed mb-3 sm:mb-6 max-w-2xl">
                         {lang === 'nl' ? categoryHeader.subtitleNl : categoryHeader.subtitleDe}
                       </p>
-                    )}
+                    ) : null}
 
                     {/* Prominent Search Bar on Category Banner (2-Tier Architecture) */}
                     <div className="bg-white rounded-xl overflow-hidden max-w-4xl shadow-2xl my-2 sm:my-4 text-[#1B211D] border border-[#E5DFD5]">
@@ -3305,11 +3411,17 @@ export default function App() {
                             onChange={(e) => {
                               const loc = e.target.value;
                               setActiveLocation(loc);
-                              const basePath = activeCategory !== 'Alle' 
-                                ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
-                                : '/alle-unternehmen';
-                              const url = getPath(basePath);
-                              window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
+                              if (activeCategory === 'Alle') {
+                                const url = loc !== 'Alle'
+                                  ? buildLocalizedUrl({ view: 'all', location: loc }, lang)
+                                  : getPath('/alle-unternehmen');
+                                window.history.pushState(null, '', url);
+                                setIsAllMode(true);
+                              } else {
+                                const basePath = `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}`;
+                                const url = getPath(basePath);
+                                window.history.pushState(null, '', loc !== 'Alle' ? `${url}?ort=${encodeURIComponent(loc)}` : url);
+                              }
                             }}
                             className="flex-1 w-full border border-[#D5D0C5] rounded-md px-2.5 sm:px-3 py-1.5 text-[13px] sm:text-[13.5px] font-medium text-[#1B211D] bg-white hover:border-[#0F4C2E]/50 focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer transition-colors shadow-2xs truncate"
                           >
@@ -3498,13 +3610,18 @@ export default function App() {
                         type="button"
                         onClick={(e) => {
                           e.preventDefault();
-                          const basePath = activeCategory !== 'Alle' 
-                            ? `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}` 
-                            : '/alle-unternehmen';
-                          const url = getPath(basePath);
-                          window.history.pushState(null, '', d !== 'Alle' ? `${url}?ort=${encodeURIComponent(d)}` : url);
                           setActiveLocation(d);
-                          if(activeCategory === 'Alle') setIsAllMode(true);
+                          if (activeCategory === 'Alle') {
+                            const url = d !== 'Alle' 
+                              ? buildLocalizedUrl({ view: 'all', location: d }, lang)
+                              : getPath('/alle-unternehmen');
+                            window.history.pushState(null, '', url);
+                            setIsAllMode(true);
+                          } else {
+                            const basePath = `/${encodeURIComponent(categories.find(c => c.name === activeCategory || c.subcategories.includes(activeCategory))?.name || activeCategory)}${categories.some(c => c.subcategories.includes(activeCategory)) ? `/${encodeURIComponent(activeCategory)}` : ''}`;
+                            const url = getPath(basePath);
+                            window.history.pushState(null, '', d !== 'Alle' ? `${url}?ort=${encodeURIComponent(d)}` : url);
+                          }
                           if(isMobileSidebarFilterOpen) setIsMobileSidebarFilterOpen(false);
                         }}
                         className={`border rounded-md px-3 py-1.5 text-[13px] font-medium cursor-pointer transition-colors ${isDistActive ? 'border-[#0F4C2E] bg-[#0F4C2E] text-white' : 'border-[#E7E2DA] bg-transparent text-[#1B211D] hover:border-[#0F4C2E]'}`}

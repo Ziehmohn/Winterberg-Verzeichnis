@@ -14,7 +14,9 @@ import {
   RouteState,
   LEGACY_SUBCATEGORY_PARENTS,
   BUSINESS_DEDUPLICATION_REDIRECTS,
-  isBusinessDeactivated
+  isBusinessDeactivated,
+  DISTRICTS,
+  getDistrictSlug
 } from '../src/utils/routes';
 import { generateLocalBusinessSchema, generateCollectionPageSchema, getSchemaEventType } from '../src/utils/schemaGenerator';
 import { getLocalizedBusiness } from '../src/utils/translator';
@@ -110,6 +112,40 @@ pagesToPrerender.push({
   lang: 'nl',
   h1: 'Alle bedrijven in Winterberg',
   h2: 'Compleet overzicht van alle bedrijven en dienstverleners'
+});
+
+
+// 2b. District Landing Pages
+DISTRICTS.forEach(district => {
+  const dSlug = getDistrictSlug(district);
+  const pathDe = `${STATIC_PAGE_SLUGS.all.de}/${dSlug}`;
+  const pathNl = `nl/${STATIC_PAGE_SLUGS.all.nl}/${dSlug}`;
+
+  pagesToPrerender.push({
+    path: pathDe,
+    title: `Unternehmen & Betriebe in ${district} | Das Winterberg Verzeichnis`,
+    description: `Vollständige Übersicht aller Unternehmen, Handwerksbetriebe und Dienstleister im Winterberger Ortsteil ${district}. Adressen, Öffnungszeiten und Kontaktdaten.`,
+    canonicalUrl: `${baseUrl}/${pathDe}`,
+    alternateDe: `${baseUrl}/${pathDe}`,
+    alternateNl: `${baseUrl}/${pathNl}`,
+    alternateXDefault: `${baseUrl}/${pathDe}`,
+    lang: 'de',
+    h1: `Unternehmen in ${district}`,
+    h2: `Lokale Betriebe, Handwerker und Dienstleister im Winterberger Ortsteil ${district}`
+  });
+
+  pagesToPrerender.push({
+    path: pathNl,
+    title: `Bedrijven in ${district} | Het Winterberg Overzicht`,
+    description: `Compleet overzicht van alle bedrijven, ambachten en dienstverleners in het Winterbergse stadsdeel ${district}. Adressen, openingstijden en contact.`,
+    canonicalUrl: `${baseUrl}/${pathNl}`,
+    alternateDe: `${baseUrl}/${pathDe}`,
+    alternateNl: `${baseUrl}/${pathNl}`,
+    alternateXDefault: `${baseUrl}/${pathDe}`,
+    lang: 'nl',
+    h1: `Bedrijven in ${district}`,
+    h2: `Lokale ondernemingen, vakmensen en dienstverleners in Winterberg-${district}`
+  });
 });
 
 // 3. Static Pages

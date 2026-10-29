@@ -30,7 +30,7 @@ import {
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
-import { getBusinessPath } from '../utils/routes';
+import { getBusinessPath, buildLocalizedUrl } from '../utils/routes';
 
 export const ALL_DISTRICTS = [
   'Winterberg',

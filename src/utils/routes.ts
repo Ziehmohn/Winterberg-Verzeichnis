@@ -148,6 +148,41 @@ export const STATIC_PAGE_SLUGS = {
   partyLocations: { de: 'partylocations-in-winterberg', nl: 'feestlocaties-in-winterberg' },
 };
 
+export const DISTRICTS = [
+  'Winterberg',
+  'Altastenberg',
+  'Altenfeld',
+  'Elkeringhausen',
+  'Grönebach',
+  'Hildfeld',
+  'Hoheleye',
+  'Langewiese',
+  'Lenneplätze',
+  'Mollseifen',
+  'Neuastenberg',
+  'Niedersfeld',
+  'Siedlinghausen',
+  'Silbach',
+  'Züschen'
+] as const;
+
+export function getDistrictSlug(district: string): string {
+  if (!district || district === 'Alle') return '';
+  const clean = district.trim().toLowerCase();
+  if (clean.includes('winterberg')) return 'winterberg';
+  return slugify(district);
+}
+
+export function findDistrictFromSlug(slug: string): string | null {
+  if (!slug) return null;
+  const clean = slugify(decodeURIComponent(slug));
+  if (clean === 'winterberg' || clean === 'winterberg-kernstadt' || clean === 'kernstadt') return 'Winterberg';
+  for (const d of DISTRICTS) {
+    if (slugify(d) === clean) return d;
+  }
+  return null;
+}
+
 export function slugify(str: string): string {
   return str
     .toLowerCase()
@@ -255,8 +290,13 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'all': {
       const slug = STATIC_PAGE_SLUGS.all[targetLang];
-      const query = state.location && state.location !== 'Alle' ? `?ort=${encodeURIComponent(state.location)}` : '';
-      return `${baseUrl}${prefix}/${slug}${query}`;
+      if (state.location && state.location !== 'Alle') {
+        const districtSlug = getDistrictSlug(state.location);
+        if (districtSlug) {
+          return `${baseUrl}${prefix}/${slug}/${districtSlug}`;
+        }
+      }
+      return `${baseUrl}${prefix}/${slug}`;
     }
 
     case 'best-of': {
@@ -694,6 +734,29 @@ export function getSystemRedirects(
         });
       }
     }
+  }
+
+  // 301 Redirects for district URLs: old accidental slug -> new clean landingpage
+  for (const d of DISTRICTS) {
+    const dSlug = getDistrictSlug(d);
+    redirects.push({
+      id: `district-${dSlug}-de`,
+      source: `/alle-unternehmen-ort-${dSlug}`,
+      target: `/alle-unternehmen/${dSlug}`,
+      isSystem: true,
+      type: 'Ortsteil',
+      lang: 'de',
+      statusCode: 301
+    });
+    redirects.push({
+      id: `district-${dSlug}-nl`,
+      source: `/nl/alle-bedrijven-ort-${dSlug}`,
+      target: `/nl/alle-bedrijven/${dSlug}`,
+      isSystem: true,
+      type: 'Ortsteil',
+      lang: 'nl',
+      statusCode: 301
+    });
   }
 
   return redirects;

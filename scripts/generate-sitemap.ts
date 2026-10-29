@@ -9,7 +9,9 @@ import {
   getCategorySlug,
   getSubcategorySlug,
   slugify,
-  isBusinessDeactivated
+  isBusinessDeactivated,
+  DISTRICTS,
+  getDistrictSlug
 } from '../src/utils/routes';
 
 const baseUrl = 'https://www.winterberg-verzeichnis.de';
@@ -95,6 +97,18 @@ entries.push({
   locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.all.nl}`,
   changefreq: 'daily',
   priority: '0.9',
+});
+
+
+// 2b. District Landing Pages
+DISTRICTS.forEach(district => {
+  const dSlug = getDistrictSlug(district);
+  entries.push({
+    locDe: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}/${dSlug}`,
+    locNl: `${baseUrl}/nl/${STATIC_PAGE_SLUGS.all.nl}/${dSlug}`,
+    changefreq: 'weekly',
+    priority: '0.85',
+  });
 });
 
 // 3. Static Pages
