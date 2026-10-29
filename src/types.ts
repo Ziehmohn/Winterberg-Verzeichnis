@@ -189,6 +189,9 @@ export interface EventItem {
   slug_nl?: string;
   isPremium?: boolean;
   price?: string;
+  recurrence?: string;
+  recurrence_nl?: string;
+  seriesId?: string;
 }
 
 export interface Business {
