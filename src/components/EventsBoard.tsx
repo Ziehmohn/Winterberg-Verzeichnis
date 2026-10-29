@@ -696,23 +696,34 @@ export default function EventsBoard({
       </section>
 
       {/* Filter and Search Bar */}
-      <div className="relative bg-white border border-[#DDD7CD] rounded-3xl p-5 sm:p-7 shadow-[0_10px_30px_rgba(27,33,29,0.08)] mb-8 space-y-5 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1.5 before:bg-gradient-to-r before:from-purple-600 before:via-[#7E22CE] before:to-amber-400">
+      <div className="relative bg-gradient-to-b from-[#FAF5FF] via-[#F6EEFD] to-[#F1E4FA] border-2 border-[#D8B4FE] rounded-3xl p-5 sm:p-7 shadow-[0_12px_36px_rgba(126,34,206,0.10)] mb-9 space-y-5 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1.5 before:bg-gradient-to-r before:from-purple-600 before:via-[#7E22CE] before:to-amber-400">
+        {/* Header row inside search box */}
+        <div className="flex flex-wrap items-center justify-between gap-2 -mb-1">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7E22CE] text-white text-xs font-bold tracking-wide shadow-xs">
+            <Filter className="w-3.5 h-3.5" />
+            <span>{lang === 'nl' ? 'Filter & Zoeken' : 'Event-Suche & Filter'}</span>
+          </div>
+          <span className="text-xs text-[#6B21A8] font-semibold bg-white/80 backdrop-blur-xs px-2.5 py-0.5 rounded-full border border-[#DDD6FE] shadow-2xs">
+            {filteredEvents.length} {filteredEvents.length === 1 ? (lang === 'nl' ? 'evenement beschikbaar' : 'Event gefunden') : (lang === 'nl' ? 'evenementen beschikbaar' : 'Events gefunden')}
+          </span>
+        </div>
+
         <div className="relative">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-[#7E22CE]/10 flex items-center justify-center pointer-events-none">
-            <Search className="w-4 h-4 text-[#7E22CE]" />
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-gradient-to-br from-[#7E22CE] to-[#581C87] text-white flex items-center justify-center shadow-xs pointer-events-none">
+            <Search className="w-4 h-4" />
           </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={lang === 'nl' ? 'Zoek op evenement, artiest of organisator...' : 'Event, Künstler oder Veranstalter suchen...'}
-            className="w-full pl-14 pr-11 py-3.5 bg-[#FAF8F5] hover:bg-white focus:bg-white border-2 border-[#E2DDD3] focus:border-[#7E22CE] rounded-2xl text-[15px] text-[#1B211D] placeholder-[#8A958E] font-medium focus:outline-none focus:ring-4 focus:ring-[#7E22CE]/15 transition-all shadow-inner"
+            className="w-full pl-15 pr-11 py-3.5 bg-white border-2 border-[#D8B4FE] hover:border-[#A855F7] focus:border-[#7E22CE] rounded-2xl text-[15px] text-[#1B211D] placeholder-[#7E22CE]/60 font-medium focus:outline-none focus:ring-4 focus:ring-[#7E22CE]/20 transition-all shadow-xs"
           />
           {searchQuery && (
             <button 
               type="button" 
               onClick={() => setSearchQuery('')} 
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
               title={lang === 'nl' ? 'Wissen' : 'Löschen'}
             >
               <X className="w-4 h-4" />
@@ -721,13 +732,13 @@ export default function EventsBoard({
         </div>
 
         {/* Date & Timeframe Filter Section */}
-        <div className="pt-4 border-t border-[#EAE5DC] space-y-3.5">
+        <div className="pt-4 border-t border-[#E9D5FF] space-y-3.5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-[#7E22CE]/10 flex items-center justify-center text-[#7E22CE]">
+              <div className="w-7 h-7 rounded-lg bg-[#7E22CE] text-white flex items-center justify-center shadow-xs">
                 <CalendarDays className="w-4 h-4" />
               </div>
-              <span className="font-display text-xs font-bold uppercase tracking-wider text-[#7E22CE]">
+              <span className="font-display text-xs font-bold uppercase tracking-wider text-[#6B21A8]">
                 {lang === 'nl' ? 'Datum & Periode selecteren' : 'Datum & Zeitraum wählen'}
               </span>
             </div>
@@ -736,7 +747,7 @@ export default function EventsBoard({
               <button
                 type="button"
                 onClick={resetDateFilter}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-[#7E22CE] hover:text-[#581C87] hover:underline cursor-pointer self-start sm:self-auto"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-[#7E22CE] hover:text-[#581C87] hover:underline cursor-pointer self-start sm:self-auto bg-white/80 px-2.5 py-1 rounded-md border border-[#DDD6FE]"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>{lang === 'nl' ? 'Periode wissen' : 'Zeitraum zurücksetzen'}</span>
@@ -755,8 +766,8 @@ export default function EventsBoard({
                   onClick={() => handleSelectPreset(preset.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                     isActive 
-                      ? 'bg-[#7E22CE] text-white shadow-xs' 
-                      : 'bg-white text-[#4A544D] border border-[#DDD7CD] hover:bg-[#FAF9F6] shadow-2xs'
+                      ? 'bg-[#7E22CE] text-white shadow-sm ring-2 ring-[#7E22CE]/30' 
+                      : 'bg-white text-[#581C87] border border-[#DDD6FE] hover:bg-[#FAF5FF] hover:border-[#A855F7] shadow-2xs'
                   }`}
                 >
                   {preset.label}
@@ -766,9 +777,9 @@ export default function EventsBoard({
           </div>
 
           {/* Interactive Date Inputs: Startdatum & Enddatum */}
-          <div className="bg-[#FAF8F5] border border-[#E2DDD3] rounded-2xl p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-2xs">
+          <div className="bg-white/95 border border-[#DDD6FE] rounded-2xl p-3.5 sm:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-xs">
             <div className="lg:col-span-5">
-              <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
+              <label className="block text-xs font-bold text-[#4A1D96] mb-1.5 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
                 <span>{lang === 'nl' ? 'Events tonen vanaf datum (Ab Datum):' : 'Events anzeigen ab Datum:'}</span>
               </label>
@@ -776,12 +787,12 @@ export default function EventsBoard({
                 type="date"
                 value={startDateFilter}
                 onChange={(e) => handleCustomStartDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2 bg-[#FAF8F5] hover:bg-white focus:bg-white border border-[#D8B4FE] focus:border-[#7E22CE] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 transition-all cursor-pointer shadow-xs"
               />
             </div>
 
             <div className="lg:col-span-5">
-              <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
+              <label className="block text-xs font-bold text-[#4A1D96] mb-1.5 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
                 <span>{lang === 'nl' ? 'Tot en met datum (optioneel):' : 'Bis Datum (optional):'}</span>
               </label>
@@ -790,7 +801,7 @@ export default function EventsBoard({
                 value={endDateFilter}
                 min={startDateFilter || undefined}
                 onChange={(e) => handleCustomEndDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-white border border-[#D5D0C5] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 focus:border-[#7E22CE] transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2 bg-[#FAF8F5] hover:bg-white focus:bg-white border border-[#D8B4FE] focus:border-[#7E22CE] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 transition-all cursor-pointer shadow-xs"
               />
             </div>
 
@@ -799,13 +810,13 @@ export default function EventsBoard({
                 <button
                   type="button"
                   onClick={resetDateFilter}
-                  className="w-full py-2 px-3 text-xs font-bold text-[#717E75] hover:text-[#1B211D] bg-white hover:bg-gray-100 rounded-lg border border-[#D5D0C5] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
+                  className="w-full py-2 px-3 text-xs font-bold text-[#7E22CE] hover:text-[#581C87] bg-[#FAF5FF] hover:bg-purple-100 rounded-lg border border-[#D8B4FE] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
                 >
                   <X className="w-3.5 h-3.5" />
                   <span>{lang === 'nl' ? 'Reset' : 'Zurücksetzen'}</span>
                 </button>
               ) : (
-                <div className="text-[11.5px] text-[#717E75] leading-snug">
+                <div className="text-[11.5px] text-[#6B21A8] leading-snug font-medium">
                   {lang === 'nl' ? 'Kies een datum of periode' : 'Wähle ein Datum oder Zeitraum'}
                 </div>
               )}
@@ -813,7 +824,7 @@ export default function EventsBoard({
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-4 border-t border-[#EAE5DC]">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-4 border-t border-[#E9D5FF]">
           <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0">
             {uniqueCategories.map((type) => {
               const isActive = selectedCategory === type;
@@ -827,8 +838,8 @@ export default function EventsBoard({
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
                   className={`px-3.5 py-1.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                     isActive 
-                      ? 'bg-[#7E22CE] text-white shadow-xs' 
-                      : 'bg-white text-[#4A544D] border border-[#DDD7CD] hover:bg-[#FAF9F6] shadow-2xs'
+                      ? 'bg-gradient-to-r from-[#7E22CE] to-[#6B21A8] text-white shadow-md ring-2 ring-[#7E22CE]/25' 
+                      : 'bg-white text-[#581C87] border border-[#DDD6FE] hover:bg-[#FAF5FF] hover:border-[#A855F7] shadow-2xs'
                   }`}
                 >
                   {CatIcon && <CatIcon className="w-3.5 h-3.5" />}
@@ -837,12 +848,12 @@ export default function EventsBoard({
               );
             })}
           </div>
-          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-white p-1 rounded-xl border border-[#DDD7CD] shadow-2xs">
+          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-white p-1 rounded-xl border border-[#DDD6FE] shadow-2xs">
             <button
               type="button"
               onClick={() => setViewMode('list')}
               className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
-                viewMode === 'list' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'
+                viewMode === 'list' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#581C87] hover:text-[#3B0764]'
               }`}
             >
               {lang === 'nl' ? 'Lijst' : 'Liste'}
@@ -851,7 +862,7 @@ export default function EventsBoard({
               type="button"
               onClick={() => setViewMode('grid')}
               className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
-                viewMode === 'grid' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'
+                viewMode === 'grid' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#581C87] hover:text-[#3B0764]'
               }`}
             >
               {lang === 'nl' ? 'Raster' : 'Raster'}
@@ -861,11 +872,11 @@ export default function EventsBoard({
       </div>
 
       {/* Visual Section Divider to Events */}
-      <div className="relative my-7 sm:my-9 flex items-center justify-center" aria-hidden="true">
+      <div className="relative my-8 sm:my-10 flex items-center justify-center" aria-hidden="true">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-[#DDD7CD]"></div>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#C084FC]/70 to-transparent"></div>
         </div>
-        <div className="relative bg-[#FAF8F5] px-4 py-1 rounded-full border border-[#DDD7CD] text-[11.5px] font-bold uppercase tracking-widest text-[#717E75] flex items-center gap-2 shadow-2xs">
+        <div className="relative bg-[#FAF8F5] px-4 py-1.5 rounded-full border-2 border-[#D8B4FE] text-[11.5px] font-extrabold uppercase tracking-widest text-[#6B21A8] flex items-center gap-2 shadow-xs">
           <Sparkles className="w-3.5 h-3.5 text-[#7E22CE]" />
           <span>{lang === 'nl' ? 'Evenementen & Highlights' : 'Veranstaltungen & Highlights'}</span>
         </div>
