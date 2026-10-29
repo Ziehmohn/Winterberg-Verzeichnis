@@ -201,7 +201,18 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'büre': [51.19726, 8.51181],
   // Nordhang Jause
   'nordhang': [51.18492, 8.48927],
-  'renau': [51.18492, 8.48927],
+    'renau': [51.18492, 8.48927],
+  // Grönebach
+  'grönebach': [51.2359, 8.5583],
+  'lambertus': [51.2359, 8.5583],
+  // Siedlinghausen
+  'siedlinghausen': [51.2505, 8.4901],
+  // Silbach
+  'silbach': [51.2263, 8.4727],
+  // Züschen
+  'züschen': [51.1578, 8.5663],
+  // St. Jakobus Winterberg
+  'jakobus': [51.1956, 8.5338],
 };
 
 function getKnownOrDistrictCoordinates(location: string): [number, number] {

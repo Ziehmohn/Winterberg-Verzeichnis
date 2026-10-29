@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (449 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (451 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -4556,6 +4556,28 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Disc Golf Park Altastenberg is een sportieve en leuke buitenactiviteit voor families, vriendengroepen en actieve vakantiegangers in het hoogstgelegen bergdorp van het Sauerland. Op een gevarieerd 18-holes parcours aan de voet van de Kahler Asten proberen spelers frisbees met zo min mogelijk worpen in speciale stalen vangmanden te werpen. Het gebruik van het parcours is gratis. Discs en scorekaarten zijn tegen een kleine vergoeding te leen bij diverse punten in het dorp.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/disc-golf-park-altastenberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/disc-golf-park-altastenberg
+
+#### [Kartbahn Winterberg](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/kartbahn-winterberg)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Am Eschenberg 2, 59955 Winterberg-Niedersfeld
+- **Telefon:** 0151 12563759
+- **Webseite:** https://www.kartbahn-winterberg.de/
+- **Beschreibung (DE):** Die Outdoor-Kartbahn Winterberg am Eschenberg in Niedersfeld bietet auf einer rund 980 Meter langen Rennstrecke packenden Motorsport-Spaß für die ganze Familie. Neben modernen Leihkarts für Erwachsene stehen spezielle Kinderkarts (ab ca. 8 Jahren) sowie Twin-Karts (Doppelsitzer) bereit, mit denen bereits Kinder ab 4 Jahren in Begleitung Erwachsener mitfahren können. Eine anspruchsvolle Kurvenkombination, Steigungen und Bergab-Passagen sorgen für echtes Rennsport-Feeling. Eine Paintballhalle und Gastronomie direkt auf dem Gelände runden das Freizeitangebot ab.
+- **Beschreibung (NL):** Outdoor-Kartbaan Winterberg aan de Eschenberg in Niedersfeld biedt op een circa 980 meter lang racecircuit volop spanning en autosportplezier voor het hele gezin. Naast karts voor volwassenen zijn er speciale kinderkarts (vanaf ca. 8 jaar) en twin-karts (duozitters) voor ritten met kinderen vanaf 4 jaar. Het gevarieerde parcours met stijgingen en uitdagende bochten staat garant voor een echte racebeleving. Een paintballhal en horecagelegenheid op het terrein maken het aanbod compleet.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/kartbahn-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/kartbahn-winterberg
+
+#### [Paintballhalle Winterberg](https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/paintballhalle-winterberg)
+- **Kategorie:** Freizeit > Indoor-Spielplätze
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Am Eschenberg 2, 59955 Winterberg-Niedersfeld
+- **Telefon:** 0151 12563759
+- **Webseite:** https://www.paintballhalle-winterberg.de/
+- **Beschreibung (DE):** Die Paintballhalle Winterberg in Niedersfeld am Eschenberg bietet adrenalingeladene Action und Teamplay auf einer über 2.500 m² großen, wetterunabhängigen Indoor-Spielfläche. Ob Junggesellenabschiede, Vereinsausflüge, Geburtstage oder Firmenevents – mit professioneller Schutzausrüstung, Markierern und abwechslungsreichen Spielszenarien ist maximaler Spielspaß garantiert (Zutritt ab 18 Jahren). Neben flexiblen Gruppenpaketen werden attraktive Kombi-Angebote mit der direkt angrenzenden Outdoor-Kartbahn angeboten. Termine und Buchungen sind nach Absprache täglich möglich.
+- **Beschreibung (NL):** Paintballhalle Winterberg in Niedersfeld aan de Eschenberg biedt adrenalineverhogende actie en teamwork op een overdekt speelveld van ruim 2.500 m². Ideaal voor vrijgezellenfeesten, verenigingsuitjes, verjaardagen en bedrijfsuitjes. Uitgerust met professionele markeerders, gezichtsmaskers en gevarieerde spelscenario's (toegang vanaf 18 jaar). Naast flexibele groepstarieven zijn er aantrekkelijke combinatie-arrangementen mogelijk met de direct naastgelegen outdoor-kartbaan.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/paintballhalle-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/paintballhalle-winterberg
 
 ---
 

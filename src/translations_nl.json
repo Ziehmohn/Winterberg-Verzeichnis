@@ -2022,6 +2022,32 @@
         "wijn"
       ],
       "products": []
+    },
+    "kartbahn-winterberg": {
+      "description": "Outdoor-Kartbaan Winterberg aan de Eschenberg in Niedersfeld biedt op een circa 980 meter lang racecircuit volop spanning en autosportplezier voor het hele gezin.",
+      "services": [
+        "Outdoor-kartbaan met circa 980 meter circuitlengte",
+        "Huurkarts voor volwassenen en racesensatie",
+        "Kinderkarts vanaf ca. 8 jaar",
+        "Twin-karts (duozitters) voor ritten met kinderen vanaf 4 jaar",
+        "Groeps- en bedrijfsuitjes & race-arrangementen met tijdmeting",
+        "Overdekte paintballhal op het recreatieterrein",
+        "Gratis parkeerplaatsen ter plaatse"
+      ],
+      "products": []
+    },
+    "paintballhalle-winterberg": {
+      "description": "Paintballhalle Winterberg in Niedersfeld aan de Eschenberg biedt adrenalineverhogende actie en teamwork op een overdekt speelveld van ruim 2.500 m².",
+      "services": [
+        "Overdekte indoor-paintballhal (ruim 2.500 m² speelveld)",
+        "Complete huuruitrusting (markeerders, thermomaskers, paints)",
+        "Toegang vanaf 18 jaar volgens wettelijke voorschriften",
+        "Groepsarrangementen voor verenigingen, vrijgezellenfeesten & bedrijven",
+        "Combi-pakketten met de naastgelegen outdoor-kartbaan",
+        "Individuele afspraken dagelijks op reservering",
+        "Gratis parkeren direct op het terrein"
+      ],
+      "products": []
     }
   }
 }

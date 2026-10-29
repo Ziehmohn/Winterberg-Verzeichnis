@@ -18,6 +18,114 @@ export const businesses: Business[] = [
     isActive: true,
     events: [
       {
+        id: 'martinsumzug-groenebach-2026',
+        title: 'Martinsumzug - Pfarrgemeinde (Grönebach)',
+        title_nl: 'Sint-Maartensoptocht - Parochie Grönebach',
+        startDate: '2026-11-11',
+        endDate: '2026-11-11',
+        startTime: '17:30',
+        endTime: '19:30',
+        category: 'Fest & Party',
+        location: 'St. Lambertus Pfarrkirche & Pfarrheim, Winterberg-Grönebach',
+        description: 'Traditioneller Martinsumzug der katholischen Pfarrgemeinde St. Lambertus in Grönebach. Nach der gemeinsamen Einstimmung und Martinsandacht in der Kirche ziehen die Kinder mit ihren bunten, selbstgebastelten Laternen durch die Straßen von Grönebach, musikalisch begleitet vom Spielmannszug Grönebach. Anschließend versammeln sich alle am Martinsfeuer zum gemeinsamen Singen, Teilen der Martinsbrezeln sowie Heißgetränken.',
+        description_nl: 'Traditionele Sint-Maartensoptocht van de parochie St. Lambertus in Grönebach. Na de viering in de kerk trekken kinderen met lampions door het dorp, muzikaal begeleid door het plaatselijke muziekkorps, met na afloop een kampvuur, warme dranken en verse maartenbroodjes.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        externalUrl: 'https://www.groenebach.de',
+        slug: 'martinsumzug-groenebach-2026',
+        slug_nl: 'sint-maartensoptocht-groenebach-2026',
+        price: 'Kostenlos'
+      },
+      {
+        id: 'martinsumzug-winterberg-kernstadt-2026',
+        title: 'Großer Martinsumzug Winterberg',
+        title_nl: 'Grote Sint-Maartensoptocht Winterberg',
+        startDate: '2026-11-11',
+        endDate: '2026-11-11',
+        startTime: '17:30',
+        endTime: '19:30',
+        category: 'Fest & Party',
+        location: 'St. Jakobus Kirche / Marktplatz Untere Pforte, Winterberg',
+        description: 'Der große Martinsumzug in der Kernstadt Winterberg, veranstaltet von der katholischen Pfarrgemeinde St. Jakobus der Ältere, der Grundschule Winterberg und den Kindergärten. Hunderte Kinder ziehen mit ihren leuchtenden Laternen durch die historische Altstadt, angeführt von St. Martin hoch zu Ross und begleitet von festlicher Blasmusik. Das festliche Finale mit Martinsfeuer und Brezelausgabe findet auf dem Marktplatz an der Unteren Pforte statt.',
+        description_nl: 'Grote Sint-Maartensoptocht in het centrum van Winterberg, georganiseerd door de basisschool en parochie St. Jakobus. Honderden kinderen trekken met lampions door de historische binnenstad, begeleid door Sint-Maarten te paard en feestelijke blaasmuziek, met afsluitend kampvuur en maartenbroodjes op het marktplein.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        externalUrl: 'https://www.winterberg.de',
+        slug: 'martinsumzug-winterberg-2026',
+        slug_nl: 'sint-maartensoptocht-winterberg-2026',
+        price: 'Kostenlos'
+      },
+      {
+        id: 'martinsumzug-niedersfeld-2026',
+        title: 'Martinsumzug Niedersfeld',
+        title_nl: 'Sint-Maartensoptocht Niedersfeld',
+        startDate: '2026-11-11',
+        endDate: '2026-11-11',
+        startTime: '17:30',
+        endTime: '19:30',
+        category: 'Fest & Party',
+        location: 'St. Antonius Pfarrkirche & Josefshaus, Winterberg-Niedersfeld',
+        description: 'Traditioneller Martinsumzug der Dorfgemeinschaft und des Kindergartens Niedersfeld. Beginn mit einer feierlichen Andacht und dem Martinsspiel in der Pfarrkirche St. Antonius. Anschließend zieht der Laternenzug mit St. Martin zu Pferd und musikalischer Begleitung durch die Blasmusik Niedersfeld über den Josefsweg zum Josefshaus. Dort gibt es Martinsbrezeln für die Kinder sowie Kinderpunsch und Glühwein.',
+        description_nl: 'Traditionele Sint-Maartensoptocht in Niedersfeld. Start bij de St. Antoniuskerk met het Sint-Maartenspel, gevolgd door een lampionnentocht met Sint-Maarten te paard en blaasmuziek naar het Josefshaus voor warme dranken en traditionele koeken.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        externalUrl: 'https://www.niedersfeld.info',
+        slug: 'martinsumzug-niedersfeld-2026',
+        slug_nl: 'sint-maartensoptocht-niedersfeld-2026',
+        price: 'Kostenlos'
+      },
+      {
+        id: 'martinsumzug-siedlinghausen-2026',
+        title: 'St. Martinsumzug Siedlinghausen',
+        title_nl: 'Sint-Maartensoptocht Siedlinghausen',
+        startDate: '2026-11-11',
+        endDate: '2026-11-11',
+        startTime: '17:30',
+        endTime: '19:30',
+        category: 'Fest & Party',
+        location: 'Pfarrkirche St. Johannes Evangelist, Winterberg-Siedlinghausen',
+        description: 'Traditioneller St. Martinsumzug in Siedlinghausen. Nach der Martinsandacht in der Pfarrkirche St. Johannes Evangelist ziehen die Kinder mit ihren Laternen durch das Dorf, angeführt von St. Martin zu Pferd und musikalisch begleitet von den Negertalmusikanten. Im Anschluss Martinsfeuer mit Brezelausgabe der Kolpingjugend und Feuerwehr.',
+        description_nl: 'Traditionele Sint-Maartensoptocht in Siedlinghausen. Na de viering in de parochiekerk trekken kinderen met lampionnen door het dorp, vergezeld door Sint-Maarten te paard en de Negertalmusikanten, met afsluitend kampvuur en maartenbroodjes.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        externalUrl: 'https://www.siedlinghausen.de',
+        slug: 'martinsumzug-siedlinghausen-2026',
+        slug_nl: 'sint-maartensoptocht-siedlinghausen-2026',
+        price: 'Kostenlos'
+      },
+      {
+        id: 'martinsumzug-zueschen-2026',
+        title: 'St. Martinsumzug Züschen',
+        title_nl: 'Sint-Maartensoptocht Züschen',
+        startDate: '2026-11-11',
+        endDate: '2026-11-11',
+        startTime: '17:30',
+        endTime: '19:30',
+        category: 'Fest & Party',
+        location: 'Pfarrkirche St. Johannes Baptist & Schützenplatz, Winterberg-Züschen',
+        description: 'Traditioneller Martinsumzug in Züschen mit dem Musikverein Züschen und der Kirchengemeinde. Nach dem Martinsspiel in der Pfarrkirche St. Johannes Baptist zieht der bunte Laternenzug durch den Ort zum Martinsfeuer, wo Stutenkerle und Heißgetränke auf Groß und Klein warten.',
+        description_nl: 'Sint-Maartensoptocht in Züschen met muzikale begeleiding van Muziekvereniging Züschen, lampionnentocht, Sint-Maartenspel en verse stutenkerle bij het vuur.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        externalUrl: 'https://www.zueschen.de',
+        slug: 'martinsumzug-zueschen-2026',
+        slug_nl: 'sint-maartensoptocht-zueschen-2026',
+        price: 'Kostenlos'
+      },
+      {
+        id: 'martinsumzug-silbach-2026',
+        title: 'Martinsumzug Silbach',
+        title_nl: 'Sint-Maartensoptocht Silbach',
+        startDate: '2026-11-11',
+        endDate: '2026-11-11',
+        startTime: '17:30',
+        endTime: '19:30',
+        category: 'Fest & Party',
+        location: 'St. Josef Kirche & Schützenhalle, Winterberg-Silbach',
+        description: 'Feierlicher Laternenumzug zum Martinstag in Silbach. Treffpunkt ist an der Kirche St. Josef mit anschließendem Laternenzug durch die Bergmannsgemeinde bis zur Schützenhalle Silbach. Mit Martinsfeuer, frischen Brezeln und wärmenden Heißgetränken.',
+        description_nl: 'Feestelijke lampionoptocht voor Sint-Maarten in Silbach met afsluitend kampvuur en maartenbroodjes bij de Schützenhalle.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        externalUrl: 'https://www.silbach.de',
+        slug: 'martinsumzug-silbach-2026',
+        slug_nl: 'sint-maartensoptocht-silbach-2026',
+        price: 'Kostenlos'
+      },
+      {
         id: 'eberspaecher-rodel-weltcup-2026',
         title: 'EBERSPÄCHER Rodel-Weltcup',
         startDate: '2026-11-28',
@@ -8248,10 +8356,11 @@ export const businesses: Business[] = [
     email: 'info@diegrube.com',
     website: 'https://www.diegrube.com',
     imageFallback: 'DG',
-    uploadedImage: '/die-grube-gebaeude.jpg',
+    uploadedImage: '/die-grube-logo.png',
     headerImage: '/die-grube-mainfloor.jpg',
-    logoUrl: '/die-grube-logo.jpg',
+    logoUrl: '/die-grube-logo.png',
     gallery: [
+      '/die-grube-party-termine-plakat.jpg',
       '/die-grube-gebaeude.jpg',
       '/die-grube-mainfloor.jpg',
       '/die-grube-bistro.jpg',
@@ -8292,6 +8401,21 @@ export const businesses: Business[] = [
         ticketUrl: 'https://www.eventim-light.com/de/a/6adf7bb8e83e64e66f3a4cb0/e/6adf7f3526d33ed7b3d40f12',
         description: 'Nach fast vier Jahren Pause meldet sich die legendäre Musik- und Kulturfabrik Die Grube in Siedlinghausen zurück! Am 2. Weihnachtsfeiertag (26. Dezember 2026) öffnet der Kult-Club ab 22:00 Uhr seine Pforten für das große Eröffnungsevent „The Next Chapter“. Gefeiert wird mit energiegeladenem Psytrance auf dem Mainfloor, runderneuerter Sound- und Lichttechnik und treibenden Bässen bis 10:00 Uhr morgens.',
         description_nl: 'Na bijna vier jaar stilte keert de legendarische muziek- en cultuurfabriek Die Grube in Siedlinghausen terug! Op tweede kerstdag (26 december 2026) opent de cultclub vanaf 22:00 uur haar deuren voor het grote heropeningsfeest "The Next Chapter". Vier mee met energieke psytrance op de main floor, vernieuwde geluids- en lichtinstallatie en pompende bassen tot 10:00 uur \'s ochtends.'
+      },
+      {
+        id: 'schranz-all-night-die-grube-2027',
+        title: 'Schranz All Night – Hosted by Technoallianz Köln',
+        title_nl: 'Schranz All Night – Hosted by Technoallianz Köln',
+        category: 'Fest & Party',
+        startDate: '2027-01-16',
+        endDate: '2027-01-17',
+        startTime: '22:00',
+        endTime: '08:00',
+        location: 'Musik- und Kulturfabrik "Die Grube", Sorpestraße 78, 59955 Winterberg-Siedlinghausen',
+        imageUrl: '/die-grube-party-termine-plakat.jpg',
+        externalUrl: 'https://www.diegrube.com/eventkalender-club',
+        description: 'Harte Bässe und kompromissloser Sound: Technoallianz Köln übernimmt Die Grube in Winterberg-Siedlinghausen für eine legendäre Schranz All Night Session.',
+        description_nl: 'Harde bassen en compromisloze sounds: Technoallianz Köln neemt Die Grube in Winterberg-Siedlinghausen over voor een legendarische Schranz All Night sessie.'
       }
     ]
   },
@@ -13711,6 +13835,108 @@ export const businesses: Business[] = [
       "Friet & verse salades",
       "Alle maaltijden ook om mee te nemen",
       "Gezellige zitplaatsen binnen"
+    ]
+  },
+  {
+    "id": "kartbahn-winterberg",
+    "name": "Kartbahn Winterberg",
+    "category": "Freizeit",
+    "subcategory": "Outdoor-Freizeitgebiet",
+    "additionalCategories": [
+      {
+        "category": "Ski, Bike & Sport",
+        "subcategory": "Sport & Outdoor"
+      }
+    ],
+    "description": "Die Outdoor-Kartbahn Winterberg am Eschenberg in Niedersfeld bietet auf einer rund 980 Meter langen Rennstrecke packenden Motorsport-Spaß für die ganze Familie. Neben modernen Leihkarts für Erwachsene stehen spezielle Kinderkarts (ab ca. 8 Jahren) sowie Twin-Karts (Doppelsitzer) bereit, mit denen bereits Kinder ab 4 Jahren in Begleitung Erwachsener mitfahren können. Eine anspruchsvolle Kurvenkombination, Steigungen und Bergab-Passagen sorgen für echtes Rennsport-Feeling. Eine Paintballhalle und Gastronomie direkt auf dem Gelände runden das Freizeitangebot ab.",
+    "description_nl": "Outdoor-Kartbaan Winterberg aan de Eschenberg in Niedersfeld biedt op een circa 980 meter lang racecircuit volop spanning en autosportplezier voor het hele gezin. Naast karts voor volwassenen zijn er speciale kinderkarts (vanaf ca. 8 jaar) en twin-karts (duozitters) voor ritten met kinderen vanaf 4 jaar. Het gevarieerde parcours met stijgingen en uitdagende bochten staat garant voor een echte racebeleving. Een paintballhal en horecagelegenheid op het terrein maken het aanbod compleet.",
+    "extendedDescription": "Die traditionsreiche Kartbahn Winterberg-Niedersfeld liegt am Eschenberg und gehört mit einer Streckenlänge von ca. 980 Metern zu den bekanntesten Outdoor-Kartstrecken des Sauerlands. Ob Einzelfahrten für Gelegenheitsfahrer, 3er-Karten oder exklusive Gruppen- und Firmenevents mit Zeiterfassung – die Anlage bietet Motorsportbegeisterten jeden Alters beste Bedingungen. Ergänzend zum Kartfahren lädt die wetterfeste Paintballhalle auf dem Areal zu actionreichen Matches ein.",
+    "extendedDescription_nl": "De outdoor-kartbaan Winterberg-Niedersfeld aan de Eschenberg is met een lengte van circa 980 meter een van de populairste kartbanen in het Sauerland. Van losse ritten en 3-rittenkaarten tot exclusieve groeps- en bedrijfsevenementen met tijdregistratie – het circuit biedt optimale omstandigheden voor racers van alle leeftijden. Naast karting biedt het terrein een overdekte paintballhal voor actievolle uitstapjes.",
+    "address": "Am Eschenberg 2, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "0151 12563759",
+    "email": "info@kartbahn-winterberg.de",
+    "website": "https://www.kartbahn-winterberg.de/",
+    "contactPerson": {
+      "name": "Giesela Schleimer",
+      "role": "Inhaberin & Verantwortliche"
+    },
+    "coordinates": {
+      "lat": 51.246,
+      "lng": 8.5287
+    },
+    "imageFallback": "KW",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Outdoor-Kartbahn mit ca. 980 Metern Streckenlänge",
+      "Leihkarts für Erwachsene & Rennsport-Erlebnis",
+      "Kinderkarts ab ca. 8 Jahren",
+      "Twin-Karts (Doppelsitzer) für Fahrten mit Kindern ab 4 Jahren",
+      "Gruppen- und Firmentarife & Rennveranstaltungen mit Zeiterfassung",
+      "Wetterunabhängige Paintballhalle auf dem Areal",
+      "Kostenfreie Parkplätze direkt vor Ort"
+    ],
+    "services_nl": [
+      "Outdoor-kartbaan met circa 980 meter circuitlengte",
+      "Huurkarts voor volwassenen en racesensatie",
+      "Kinderkarts vanaf ca. 8 jaar",
+      "Twin-karts (duozitters) voor ritten met kinderen vanaf 4 jaar",
+      "Groeps- en bedrijfsuitjes & race-arrangementen met tijdmeting",
+      "Overdekte paintballhal op het recreatieterrein",
+      "Gratis parkeerplaatsen ter plaatse"
+    ],
+  },
+  {
+    "id": "paintballhalle-winterberg",
+    "name": "Paintballhalle Winterberg",
+    "category": "Freizeit",
+    "subcategory": "Indoor-Spielplätze",
+    "additionalCategories": [
+      {
+        "category": "Ski, Bike & Sport",
+        "subcategory": "Sport & Outdoor"
+      }
+    ],
+    "description": "Die Paintballhalle Winterberg in Niedersfeld am Eschenberg bietet adrenalingeladene Action und Teamplay auf einer über 2.500 m² großen, wetterunabhängigen Indoor-Spielfläche. Ob Junggesellenabschiede, Vereinsausflüge, Geburtstage oder Firmenevents – mit professioneller Schutzausrüstung, Markierern und abwechslungsreichen Spielszenarien ist maximaler Spielspaß garantiert (Zutritt ab 18 Jahren). Neben flexiblen Gruppenpaketen werden attraktive Kombi-Angebote mit der direkt angrenzenden Outdoor-Kartbahn angeboten. Termine und Buchungen sind nach Absprache täglich möglich.",
+    "description_nl": "Paintballhalle Winterberg in Niedersfeld aan de Eschenberg biedt adrenalineverhogende actie en teamwork op een overdekt speelveld van ruim 2.500 m². Ideaal voor vrijgezellenfeesten, verenigingsuitjes, verjaardagen en bedrijfsuitjes. Uitgerust met professionele markeerders, gezichtsmaskers en gevarieerde spelscenario's (toegang vanaf 18 jaar). Naast flexibele groepstarieven zijn er aantrekkelijke combinatie-arrangementen mogelijk met de direct naastgelegen outdoor-kartbaan.",
+    "extendedDescription": "Die Paintballhalle Winterberg auf dem Eschenberg-Areal in Niedersfeld ist die ideale Location für actionreiche Matches bei jedem Wetter. Mit über 2.500 m² Spielfläche zählt sie zu den großen Indoor-Paintballanlagen in Nordrhein-Westfalen. Gruppen ab 4 Personen können hier spannende Taktikspiele wie 'Capture the Flag' austragen. Zur Grundausstattung gehören moderne Markierer, Thermomasken und Farbkugeln (Paints), optional ergänzt durch Brustpanzer und Overalls. In Kombination mit der benachbarten Outdoor-Kartbahn lassen sich unvergessliche Tagesevents für Firmen und Gruppen realisieren.",
+    "extendedDescription_nl": "De overdekte Paintballhalle Winterberg op het Eschenberg-complex in Niedersfeld is dé bestemming voor actievolle spelsessies in alle weersomstandigheden. Met ruim 2.500 m² speeloppervlak behoort de hal tot de grotere indoor-paintballcentra van de regio. Groepen vanaf 4 personen kunnen hier tactische matches spelen. De complete uitrusting met markeerders, thermische maskers en paints is inbegrepen. In combinatie met de naastgelegen kartbaan kunnen complete dagarrangementen voor bedrijven en groepen worden geboekt.",
+    "address": "Am Eschenberg 2, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "0151 12563759",
+    "email": "info@kartbahn-winterberg.de",
+    "website": "https://www.paintballhalle-winterberg.de/",
+    "contactPerson": {
+      "name": "Giesela Schleimer",
+      "role": "Inhaberin & Betreiberin"
+    },
+    "coordinates": {
+      "lat": 51.246,
+      "lng": 8.5287
+    },
+    "imageFallback": "PW",
+    "isActive": true,
+    "status": "approved",
+    "services": [
+      "Wetterunabhängige Indoor-Paintballhalle (über 2.500 m² Spielfläche)",
+      "Komplette Leihausrüstung (Markierer, Schutzmaske, Paints)",
+      "Zutritt ab 18 Jahren nach gesetzlicher Vorgabe",
+      "Attraktive Gruppenangebote für Vereine, JGA & Firmenevents",
+      "Kombi-Pakete mit der benachbarten Outdoor-Kartbahn",
+      "Individuelle Terminbuchungen täglich nach Absprache",
+      "Kostenfreie Parkplätze direkt am Areal"
+    ],
+    "services_nl": [
+      "Overdekte indoor-paintballhal (ruim 2.500 m² speelveld)",
+      "Complete huuruitrusting (markeerders, thermomaskers, paints)",
+      "Toegang vanaf 18 jaar volgens wettelijke voorschriften",
+      "Groepsarrangementen voor verenigingen, vrijgezellenfeesten & bedrijven",
+      "Combi-pakketten met de naastgelegen outdoor-kartbaan",
+      "Individuele afspraken dagelijks op reservering",
+      "Gratis parkeren direct op het terrein"
     ]
   }
 ];

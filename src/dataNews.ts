@@ -11,8 +11,8 @@ export const initialNews: NewsArticle[] = [
     businessId: "die-grube-siedlinghausen",
     businessName: "Die Grube – Technologiezentrum für elektronische Musik",
     businessSlug: "die-grube-siedlinghausen",
-    imageUrl: "/die-grube-gebaeude.jpg",
-    imageCredit: "Westfalenpost / Kevin Schmidt / Die Grube",
+    imageUrl: "/die-grube-logo.png",
+    imageCredit: "Die Grube / Technologiezentrum für elektronische Musik",
     status: 'approved',
     category: 'freizeit',
     category_nl: 'vrije-tijd',
@@ -20,7 +20,7 @@ export const initialNews: NewsArticle[] = [
     content: `Die traditionsreiche Discothek „Die Grube“ in Winterberg-Siedlinghausen steht vor ihrer Wiedereröffnung. Nach dem vorübergehenden Aus im Januar 2023 übernimmt nun eine neue Betreibergeneration das Ruder, um der geschichtsträchtigen Feierstätte neues Leben einzuhauchen.
 
 ### Vom Schieferbergwerk zur Kult-Diskothek
-Ursprünglich als Werkshalle eines Schieferbergwerks unweit des Bergsees am Meisterstein erbaut, blickt das Gebäude auf eine lange Historie zurück. In den 1980er-Jahren von den Brüdern Michael und Ulrich Pretzsch erworben und aufwendig umgebaut, öffnete die Location im Oktober 1991 als Discothek ihre Pforten. In den folgenden Jahrzehnten entwickelte sich „Die Grube“ zu einer festen Institution der überregionalen Musikszene und zu einem weithin bekannten Anziehungspunkt für elektronische Musik, insbesondere für die Goa- und Psytrance-Szene.
+Ursprünglich als Werkshalle eines Schieferbergwerks unweit des Bergsees am Meisterstein erbaut, blickt das Gebäude auf eine lange Historie zurück. In den 1980er-Jahren von den Brüdern Michael und Ulrich Pretzsch erworben und aufwendig umgebaut, öffnete die Location im Oktober 1991 als Discothek ihre Pforten. In den folgenden Jahrzehnten entwickelte sich „Die Grube“ zu einer festen Institution der überregionalen Musikszene und zu einem weithin bekannten Anziehungspunkt für elektronische Musik, insbesondere für die Goa- und Psytrance-Szene. Legendäre Formate wie das „2für1“ am Freitagabend oder der traditionelle Weihnachtsball am 25. Dezember machten den Club über Generationen hinweg zum Treffpunkt im Sauerland.
 
 ### Frischer Wind durch neues Betreiber-Team
 Nun wagen Jana Völk und Guido Piepenbrink gemeinsam mit einem engagierten Helferkreis den Neustart. In den Räumlichkeiten laufen die Arbeiten bereits auf Hochtouren: Es wird aufgeräumt, renoviert und gestrichen. Die Licht- und Audiotechnik wird komplett auf den neuesten Stand gebracht, während der unverwechselbare industrielle Charakter der Schieferfabrik erhalten bleibt.
@@ -28,8 +28,25 @@ Nun wagen Jana Völk und Guido Piepenbrink gemeinsam mit einem engagierten Helfe
 ### Vielseitiges Kultur- und Eventkonzept
 Das neue Konzept sieht vor, den Clubbetrieb schrittweise breiter aufzustellen. Neben elektronischer Musik wie Psytrance und Techno sind auch Kooperationen mit anderen Clubs und Veranstaltern angedacht. Langfristig soll sich die Lokalität zudem zu einem multifunktionalen Kulturzentrum mit Raumvermietung entwickeln – geeignet für Konzerte, Firmenanlässe, Messen, Märkte, Kunstausstellungen und Workshops.
 
-### Startschuss am zweiten Weihnachtstag
-Die offizielle Wiedereröffnung ist für Samstag, den **26. Dezember 2026**, geplant. Mit der Eröffnungsparty **„The Next Chapter“** knüpft Die Grube an ihre Wurzeln an: Ab 22:00 Uhr bis in die Morgenstunden um 10:00 Uhr wird auf dem Mainfloor gefeiert. Tickets sind bereits im Vorverkauf erhältlich.`,
+### Startschuss am zweiten Weihnachtstag & die ersten Termine
+Die offizielle Wiedereröffnung ist für Samstag, den **26. Dezember 2026**, geplant. Mit der Eröffnungsparty **„The Next Chapter“** knüpft Die Grube an ihre Wurzeln an: Ab 22:00 Uhr bis in die Morgenstunden um 10:00 Uhr wird auf dem Mainfloor gefeiert. Tickets sind bereits im Vorverkauf erhältlich.
+
+![Party-Termine Die Grube Winterberg-Siedlinghausen](/die-grube-party-termine-plakat.jpg)
+
+**Die ersten drei Event-Highlights im Überblick:**
+* **26.12.2026:** The Next Chapter (Reopening Party – Psytrance)
+* **16.01.2027:** Schranz All Night (hosted by Technoallianz Köln)
+* **06.02.2027:** Coming Soon...
+
+:::contact
+### Die Grube – Daten & Links
+* **Adresse:** Sorpestraße 78, 59955 Winterberg-Siedlinghausen
+* **Inhaber:** Jana Völk & Guido Piepenbrink
+* **E-Mail:** info@diegrube.com
+* **Offizielle Website:** [www.diegrube.com](https://www.diegrube.com)
+* **Ticketshop:** [Tickets im Eventim-Light Shop sichern](https://www.eventim-light.com/de/a/6adf7bb8e83e64e66f3a4cb0/e/6adf7f3526d33ed7b3d40f12)
+* **Unternehmensprofil:** [Zum Profil von Die Grube im Winterberg-Verzeichnis](/gastronomie/kneipen-und-bars/die-grube-siedlinghausen)
+:::`,
     content_nl: `De traditionele discotheek „Die Grube“ in Winterberg-Siedlinghausen staat voor haar heropening. Na de tijdelijke sluiting in januari 2023 neemt een nieuwe generatie het roer over om de legendarische uitgaanslocatie nieuw leven in te blazen.
 
 ### Van leisteenmijn naar cultlocatie
@@ -41,8 +58,25 @@ Nu pakken de nieuwe exploitanten Jana Völk en Guido Piepenbrink samen met een t
 ### Veelzijdig cultuur- en evenementenconcept
 Het vernieuwde concept richt zich naast clubavonden en feesten ook op een bredere culturele programmering. De ruimtes zullen beschikbaar zijn voor zaalverhuur, zakelijke evenementen, markten, kunsttentoonstellingen en workshops rondom elektronische muziekproductie.
 
-### Heropening op tweede kerstdag
-Het officiële openingsfeest vindt plaats op zaterdag **26 december 2026**. Met het evenement **„The Next Chapter“** keert het clubgevoel terug: vanaf 22:00 uur 's avonds tot 10:00 uur 's ochtends wordt op de main floor gedanst op energieke psytrance. Kaarten zijn reeds verkrijgbaar in de voorverkoop.`
+### Heropening op tweede kerstdag & de eerste data
+Het officiële openingsfeest vindt plaats op zaterdag **26 december 2026**. Met het evenement **„The Next Chapter“** keert het clubgevoel terug: vanaf 22:00 uur 's avonds tot 10:00 uur 's ochtends wordt op de main floor gedanst op energieke psytrance. Kaarten zijn reeds verkrijgbaar in de voorverkoop.
+
+![Party-agenda Die Grube Winterberg-Siedlinghausen](/die-grube-party-termine-plakat.jpg)
+
+**De eerste drie evenementen op een rij:**
+* **26.12.2026:** The Next Chapter (Heropeningsfeest – Psytrance)
+* **16.01.2027:** Schranz All Night (hosted by Technoallianz Köln)
+* **06.02.2027:** Coming Soon...
+
+:::contact
+### Die Grube – Contact & Links
+* **Adres:** Sorpestraße 78, 59955 Winterberg-Siedlinghausen
+* **Exploitanten:** Jana Völk & Guido Piepenbrink
+* **E-mail:** info@diegrube.com
+* **Officiële website:** [www.diegrube.com](https://www.diegrube.com)
+* **Ticketshop:** [Tickets via Eventim-Light bestellen](https://www.eventim-light.com/de/a/6adf7bb8e83e64e66f3a4cb0/e/6adf7f3526d33ed7b3d40f12)
+* **Bedrijfsprofiel:** [Naar het profiel van Die Grube in de Winterberg-gids](/nl/gastronomie/cafes-en-bars/die-grube-siedlinghausen)
+:::`
   },
   {
     id: "sondermuell-sammlung-winterberg-november-2026",

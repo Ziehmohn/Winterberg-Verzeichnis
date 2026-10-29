@@ -446,7 +446,7 @@ function StandaloneContactBox({ rawContact, heading }: { rawContact: string; hea
 
   // Extract heading if inside markdown
   const headingMatch = rawContact.match(/^###\s+([^\n]+)/m);
-  const effectiveHeading = heading || (headingMatch ? headingMatch[1].trim() : "Ansprechpartner & Beratung");
+  const effectiveHeading = heading || (headingMatch ? headingMatch[1].trim() : "Weitere Informationen");
   const contentWithoutHeading = rawContact.replace(/^###\s+[^\n]+\n?/m, '').trim();
 
   // Collect bottom action buttons across all blocks

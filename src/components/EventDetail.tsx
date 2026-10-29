@@ -92,7 +92,16 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'möppi': [51.19726, 8.51181],
   'büre': [51.19726, 8.51181],
   'nordhang': [51.18492, 8.48927],
-  'renau': [51.18492, 8.48927],
+    'renau': [51.18492, 8.48927],
+  // Grönebach
+  'grönebach': [51.2359, 8.5583],
+  'lambertus': [51.2359, 8.5583],
+  // Siedlinghausen
+  'siedlinghausen': [51.2505, 8.4901],
+  // Silbach
+  'silbach': [51.2263, 8.4727],
+  // St. Jakobus Winterberg
+  'jakobus': [51.1956, 8.5338],
   'tenne': [51.1942, 8.5332],
   'hessenkeller': [51.1951, 8.5336],
   'blackwater': [51.1948, 8.5341],
