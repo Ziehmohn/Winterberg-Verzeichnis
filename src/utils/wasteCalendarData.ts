@@ -1485,3 +1485,43 @@ export function generateIcsCalendar(districtName: string, items: WasteCollection
     'END:VCALENDAR'
   ].join('\r\n');
 }
+
+/**
+ * Offizielle PDFs zum Download (Original-Abfallkalender Stadt Winterberg 2026)
+ */
+export const DISTRICT_PDF_MAP: Record<string, string> = {
+  'Winterberg': '/downloads/abfallkalender/abfallkalender-2026-winterberg.pdf',
+  'Altastenberg': '/downloads/abfallkalender/abfallkalender-2026-altastenberg.pdf',
+  'Altenfeld': '/downloads/abfallkalender/abfallkalender-2026-altenfeld.pdf',
+  'Elkeringhausen': '/downloads/abfallkalender/abfallkalender-2026-elkeringhausen.pdf',
+  'Grönebach': '/downloads/abfallkalender/abfallkalender-2026-groenebach.pdf',
+  'Hildfeld': '/downloads/abfallkalender/abfallkalender-2026-hildfeld.pdf',
+  'Hoheleye': '/downloads/abfallkalender/abfallkalender-2026-hoheleye.pdf',
+  'Langewiese': '/downloads/abfallkalender/abfallkalender-2026-langewiese.pdf',
+  'Lenneplätze': '/downloads/abfallkalender/abfallkalender-2026-lenneplaetze.pdf',
+  'Mollseifen': '/downloads/abfallkalender/abfallkalender-2026-mollseifen.pdf',
+  'Niedersfeld': '/downloads/abfallkalender/abfallkalender-2026-niedersfeld.pdf',
+  'Neuastenberg': '/downloads/abfallkalender/abfallkalender-2026-neuastenberg.pdf',
+  'Siedlinghausen': '/downloads/abfallkalender/abfallkalender-2026-siedlinghausen.pdf',
+  'Silbach': '/downloads/abfallkalender/abfallkalender-2026-silbach.pdf',
+  'Züschen': '/downloads/abfallkalender/abfallkalender-2026-zueschen.pdf'
+};
+
+export const ALL_DISTRICTS_PDF = '/downloads/abfallkalender/abfallkalender-2026-winterberg-gesamt.pdf';
+
+/**
+ * Helper to calculate ISO 8601 calendar week (KW 1 bis 53)
+ */
+export function getISOWeek(dateStr: string): number {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const target = new Date(Date.UTC(y, m - 1, d));
+  const dayNr = (target.getUTCDay() + 6) % 7;
+  target.setUTCDate(target.getUTCDate() - dayNr + 3);
+  const firstThursday = target.getTime();
+  target.setUTCMonth(0, 1);
+  if (target.getUTCDay() !== 4) {
+    target.setUTCMonth(0, 1 + ((4 - target.getUTCDay()) + 7) % 7);
+  }
+  return 1 + Math.ceil((firstThursday - target.getTime()) / 604800000);
+}
+
