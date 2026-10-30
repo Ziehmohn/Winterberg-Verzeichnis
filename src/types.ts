@@ -179,6 +179,7 @@ export interface EventItem {
   startTime?: string; // z.B. "18:00"
   endTime?: string;   // z.B. "22:00"
   location?: string;
+  coordinates?: { lat: number; lng: number };
   category: string;
   imageUrl?: string;
   imageSource?: string;

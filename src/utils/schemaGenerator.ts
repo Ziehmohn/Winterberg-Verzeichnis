@@ -345,11 +345,18 @@ export function generateEventSchema(event: any, business?: any, lang: 'de' | 'nl
       'name': locationName,
       'address': {
         '@type': 'PostalAddress',
-        'streetAddress': business?.address || 'Winterberg',
-        'addressLocality': business?.district || 'Winterberg',
+        'streetAddress': event.location || (!event.hideOrganizer ? business?.address : undefined) || 'Winterberg',
+        'addressLocality': (!event.hideOrganizer ? business?.district : undefined) || 'Winterberg',
         'postalCode': '59955',
         'addressCountry': 'DE'
-      }
+      },
+      ...(event.coordinates ? {
+        'geo': {
+          '@type': 'GeoCoordinates',
+          'latitude': event.coordinates.lat,
+          'longitude': event.coordinates.lng
+        }
+      } : {})
     }
   };
 

@@ -213,6 +213,10 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'züschen': [51.1578, 8.5663],
   // St. Jakobus Winterberg
   'jakobus': [51.1956, 8.5338],
+  // Grundschule Winterberg / Am Postteich
+  'grundschule': [51.19198, 8.54046],
+  'postteich': [51.19198, 8.54046],
+  'am postteich': [51.19198, 8.54046],
   // Hildfeld / Hochsauerlandhalle
   'hochsauerlandhalle': [51.2536, 8.5667],
   'hildfeld': [51.2536, 8.5667],
@@ -244,11 +248,20 @@ function getKnownOrDistrictCoordinates(location: string): [number, number] {
 const geocodeCache: Record<string, [number, number]> = {};
 
 // Inline event map
-function EventMap({ location, lang }: { location: string; lang: string }) {
-  const defaultPos = useMemo(() => getKnownOrDistrictCoordinates(location), [location]);
+function EventMap({ location, event, lang }: { location: string; event?: EventItem; lang: string }) {
+  const defaultPos = useMemo(() => {
+    if (event?.coordinates?.lat && event?.coordinates?.lng) {
+      return [event.coordinates.lat, event.coordinates.lng] as [number, number];
+    }
+    return getKnownOrDistrictCoordinates(location);
+  }, [location, event]);
   const [position, setPosition] = useState<[number, number]>(() => geocodeCache[location] || defaultPos);
 
   useEffect(() => {
+    if (event?.coordinates?.lat && event?.coordinates?.lng) {
+      setPosition([event.coordinates.lat, event.coordinates.lng]);
+      return;
+    }
     if (geocodeCache[location]) {
       setPosition(geocodeCache[location]);
       return;
@@ -1174,7 +1187,7 @@ export default function EventsBoard({
 
                     {/* Expandable Map */}
                     {isMapOpen && locationStr && (
-                      <EventMap location={locationStr} lang={lang} />
+                      <EventMap location={locationStr} event={event} lang={lang} />
                     )}
                   </div>
 

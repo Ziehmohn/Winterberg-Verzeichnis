@@ -985,10 +985,18 @@ Array.from(eventsForPrerender.values()).forEach(({ event, business }) => {
       name: event.location || (event.hideOrganizer ? 'Winterberg' : business.name),
       address: {
         '@type': 'PostalAddress',
+        streetAddress: event.location || (!event.hideOrganizer ? business.address : undefined) || 'Winterberg',
         addressLocality: 'Winterberg',
         postalCode: '59955',
         addressCountry: 'DE'
-      }
+      },
+      ...(event.coordinates ? {
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: event.coordinates.lat,
+          longitude: event.coordinates.lng
+        }
+      } : {})
     }
   };
   if (!event.hideOrganizer) {

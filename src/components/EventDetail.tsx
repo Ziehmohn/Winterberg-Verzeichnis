@@ -107,6 +107,10 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'blackwater': [51.1948, 8.5341],
   'borgs scheune': [51.1601, 8.5638],
   'züschen': [51.1601, 8.5638],
+  // Grundschule Winterberg / Am Postteich
+  'grundschule': [51.19198, 8.54046],
+  'postteich': [51.19198, 8.54046],
+  'am postteich': [51.19198, 8.54046],
   // Hildfeld / Hochsauerlandhalle
   'hochsauerlandhalle': [51.2536, 8.5667],
   'hildfeld': [51.2536, 8.5667],
@@ -126,6 +130,13 @@ function getKnownOrDistrictCoordinates(location: string): [number, number] {
     }
   }
   return [51.1956, 8.5338];
+}
+
+function getEventCoordinates(event: EventItem, location: string): [number, number] {
+  if (event.coordinates && typeof event.coordinates.lat === 'number' && typeof event.coordinates.lng === 'number') {
+    return [event.coordinates.lat, event.coordinates.lng];
+  }
+  return getKnownOrDistrictCoordinates(location);
 }
 
 const violetEventIcon = new L.Icon({
@@ -437,7 +448,41 @@ export default function EventDetail({
   const meta = getCategoryMeta(displayCategory);
   const CatIcon = meta.Icon;
   const locationStr = event.location || (event.hideOrganizer ? 'Winterberg' : (business.district || business.name));
-  const position = getKnownOrDistrictCoordinates(locationStr);
+  const initialPos = useMemo(() => getEventCoordinates(event, locationStr), [event, locationStr]);
+  const [position, setPosition] = useState<[number, number]>(initialPos);
+
+  useEffect(() => {
+    if (event.coordinates && typeof event.coordinates.lat === 'number' && typeof event.coordinates.lng === 'number') {
+      setPosition([event.coordinates.lat, event.coordinates.lng]);
+      return;
+    }
+    const known = getKnownOrDistrictCoordinates(locationStr);
+    setPosition(known);
+
+    const lower = locationStr.toLowerCase();
+    const isDirectKnown = Object.keys(KNOWN_EVENT_VENUES).some(k => lower.includes(k));
+    if (isDirectKnown) return;
+
+    const cleanAddress = locationStr
+      .replace(/\bIn d\.\s*/gi, 'In der ')
+      .replace(/\bBgm\.-/gi, 'Bürgermeister-')
+      .replace(/\bDr\.-/gi, 'Doktor-')
+      .replace(/(\d+)\/\d+/g, '$1')
+      .replace(/,?\s*(Winterberg|Deutschland)\b/gi, '')
+      .trim();
+
+    const query = `${cleanAddress}, Winterberg`;
+    fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=1`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        const feat = data?.features?.[0];
+        if (feat?.geometry?.coordinates && Array.isArray(feat.geometry.coordinates)) {
+          setPosition([feat.geometry.coordinates[1], feat.geometry.coordinates[0]]);
+        }
+      })
+      .catch(() => {});
+  }, [event, locationStr]);
+
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(locationStr + ', Winterberg')}`;
 
   // Ticket link & external link logic
