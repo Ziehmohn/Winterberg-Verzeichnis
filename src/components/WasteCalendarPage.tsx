@@ -13,6 +13,7 @@ import {
   HelpCircle,
   ExternalLink,
   ChevronRight,
+  ChevronDown,
   Filter
 } from 'lucide-react';
 import { ThemeConfig, WasteBinType } from '../types';
@@ -61,13 +62,20 @@ export const WasteCalendarPage: React.FC<WasteCalendarPageProps> = ({
     return schedule.collections.filter(c => c.binType === selectedBinType);
   }, [schedule, selectedBinType]);
 
-  // Next upcoming collection
-  const nextCollection = schedule.collections[0];
+  // Today's local date in YYYY-MM-DD
+  const todayStr = useMemo(() => {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }, []);
 
-  // Helper to format date
+  // Helper to format date without UTC shift
   const formatDate = (dateStr: string) => {
-    const d = new Date(dateStr);
-    return d.toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dateObj = new Date(y, m - 1, d);
+    return dateObj.toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', {
       weekday: 'short',
       day: '2-digit',
       month: '2-digit',
@@ -77,14 +85,38 @@ export const WasteCalendarPage: React.FC<WasteCalendarPageProps> = ({
 
   // Helper to calculate days remaining
   const getDaysRemaining = (dateStr: string) => {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const target = new Date(y, m - 1, d, 0, 0, 0, 0);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const target = new Date(dateStr);
-    target.setHours(0, 0, 0, 0);
     const diffTime = target.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
+    return Math.round(diffTime / (1000 * 60 * 60 * 24));
   };
+
+  // Next upcoming collection day (today or next future date)
+  const nextUpcoming = useMemo(() => {
+    // Find upcoming collection(s) on or after today
+    const upcoming = schedule.collections.filter(c => c.date >= todayStr);
+    if (upcoming.length > 0) {
+      const targetDate = upcoming[0].date;
+      const items = upcoming.filter(c => c.date === targetDate);
+      return {
+        date: targetDate,
+        items,
+        isPast: false
+      };
+    }
+    // If all dates of the year are already past (e.g. at end of 2026), show the last collection as completed
+    if (schedule.collections.length > 0) {
+      const lastDate = schedule.collections[schedule.collections.length - 1].date;
+      return {
+        date: lastDate,
+        items: schedule.collections.filter(c => c.date === lastDate),
+        isPast: true
+      };
+    }
+    return null;
+  }, [schedule, todayStr]);
 
   // Download ICS File
   const handleDownloadIcs = () => {
@@ -134,24 +166,40 @@ export const WasteCalendarPage: React.FC<WasteCalendarPageProps> = ({
           </p>
 
           {/* District Selector Header */}
-          <div className="mt-6 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
-            <div className="relative flex-1 max-w-md">
-              <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-700 pointer-events-none" />
-              <select
-                value={selectedDistrict}
-                onChange={(e) => setSelectedDistrict(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white text-gray-900 font-semibold text-sm rounded-xl shadow-md border-0 focus:ring-2 focus:ring-emerald-400 cursor-pointer"
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 items-stretch sm:items-end">
+            <div className="flex-1 max-w-md">
+              <label 
+                htmlFor="district-select" 
+                className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-200 mb-1.5 flex items-center gap-1.5"
               >
-                {WINTERBERG_DISTRICTS.map(d => (
-                  <option key={d} value={d}>{d}</option>
-                ))}
-              </select>
+                <MapPin className="w-4 h-4 text-emerald-300 shrink-0" />
+                <span>{isNl ? 'Hier dorp / wijk selecteren:' : 'Hier Ortsteil auswählen:'}</span>
+              </label>
+              <div className="relative">
+                <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-700 pointer-events-none" />
+                <select
+                  id="district-select"
+                  value={selectedDistrict}
+                  onChange={(e) => setSelectedDistrict(e.target.value)}
+                  className="w-full pl-10 pr-10 py-3 bg-white text-gray-900 font-bold text-sm sm:text-base rounded-xl shadow-md border-2 border-emerald-400/40 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400 cursor-pointer appearance-none"
+                  aria-label={isNl ? 'Dorp of wijk selecteren' : 'Ortsteil auswählen'}
+                >
+                  {WINTERBERG_DISTRICTS.map(d => (
+                    <option key={d} value={d}>
+                      {d} {d === 'Winterberg' ? (isNl ? '(Kernstad)' : '(Kernstadt)') : ''}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                  <ChevronDown className="w-4 h-4" />
+                </div>
+              </div>
             </div>
 
             <button
               type="button"
               onClick={handleDownloadIcs}
-              className="inline-flex items-center justify-center gap-2 py-3 px-5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl shadow-md transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 py-3 px-5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold rounded-xl shadow-md transition-colors cursor-pointer h-[46px] sm:self-end"
             >
               <Download className="w-4 h-4" />
               <span>{isNl ? 'Exporteer naar agenda (.ics)' : 'Termine in Kalender laden (.ics)'}</span>
@@ -166,32 +214,70 @@ export const WasteCalendarPage: React.FC<WasteCalendarPageProps> = ({
       </section>
 
       {/* NEXT COLLECTION SPOTLIGHT CARD */}
-      {nextCollection && (
-        <div className="mb-8 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-[#17261E] dark:to-[#172D24] border-2 border-emerald-500/30 dark:border-emerald-500/20 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <div className="flex items-center gap-4">
+      {nextUpcoming && (
+        <div className="mb-8 bg-gradient-to-r from-emerald-50 via-teal-50/50 to-emerald-50 dark:from-[#17261E] dark:to-[#172D24] border-2 border-emerald-500/30 dark:border-emerald-500/20 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div className="flex items-start sm:items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shrink-0">
               <Calendar className="w-7 h-7" />
             </div>
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block mb-0.5">
-                {isNl ? 'Eerstvolgende ophaaldag' : 'Nächster Abfuhrtermin'} in {selectedDistrict}
-              </span>
-              <h3 className="text-xl font-extrabold text-gray-900 dark:text-white">
-                {isNl ? nextCollection.title_nl : nextCollection.title}
+              <div className="flex items-center gap-2 mb-1 flex-wrap">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 block">
+                  {nextUpcoming.isPast
+                    ? (isNl ? `Laatste ophaaldag 2026 in ${selectedDistrict}` : `Letzter Abfuhrtermin 2026 in ${selectedDistrict}`)
+                    : (isNl ? `Eerstvolgende ophaaldag in ${selectedDistrict}` : `Nächster Abfuhrtermin in ${selectedDistrict}`)}
+                </span>
+                {nextUpcoming.items.map(item => {
+                  const cfg = BIN_TYPE_CONFIG[item.binType];
+                  return (
+                    <span 
+                      key={item.id} 
+                      className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${cfg.colorBadge} shadow-xs`}
+                    >
+                      {isNl ? cfg.label_nl : cfg.label}
+                    </span>
+                  );
+                })}
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white">
+                {nextUpcoming.items.map(c => isNl ? c.title_nl : c.title).join(' & ')}
               </h3>
-              <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
-                {formatDate(nextCollection.date)} • {isNl ? 'Zet de container voor 06:00 uur klaar' : 'Tonne bitte bis spätestens 06:00 Uhr bereitstellen'}
+
+              <p className="text-xs text-gray-600 dark:text-gray-300 mt-1.5 flex items-center gap-2 flex-wrap">
+                <span className="font-bold text-gray-900 dark:text-gray-100 bg-white dark:bg-black/30 px-2 py-0.5 rounded border border-black/5 dark:border-white/10">
+                  {formatDate(nextUpcoming.date)}
+                </span>
+                <span>•</span>
+                <span>{isNl ? 'Zet de container voor 06:00 uur klaar' : 'Tonne bitte bis spätestens 06:00 Uhr bereitstellen'}</span>
               </p>
             </div>
           </div>
 
-          <div className="shrink-0 bg-white dark:bg-[#1E2621] px-4 py-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800 shadow-sm text-center">
-            <span className="text-[11px] text-gray-500 block uppercase font-bold">{isNl ? 'Resterend' : 'Noch'}</span>
-            <span className="text-lg font-black text-emerald-700 dark:text-emerald-400">
-              {getDaysRemaining(nextCollection.date) <= 0 
-                ? (isNl ? 'Vandaag' : 'Heute!') 
-                : `${getDaysRemaining(nextCollection.date)} ${isNl ? 'dagen' : 'Tage'}`}
-            </span>
+          <div className="shrink-0 bg-white dark:bg-[#1E2621] px-5 py-3 rounded-xl border border-emerald-200 dark:border-emerald-800 shadow-sm text-center min-w-[120px] self-stretch sm:self-center">
+            {nextUpcoming.isPast ? (
+              <>
+                <span className="text-[11px] text-gray-500 block uppercase font-bold">
+                  {isNl ? 'Status' : 'Status'}
+                </span>
+                <span className="text-sm font-black text-gray-500">
+                  {isNl ? 'Voltooid' : 'Abgeschlossen'}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-[11px] text-gray-500 block uppercase font-bold">
+                  {getDaysRemaining(nextUpcoming.date) === 0 ? (isNl ? 'Status' : 'Termin') : (isNl ? 'Resterend' : 'Noch')}
+                </span>
+                <span className="text-lg sm:text-xl font-black text-emerald-700 dark:text-emerald-400">
+                  {getDaysRemaining(nextUpcoming.date) === 0 
+                    ? (isNl ? 'Vandaag!' : 'Heute!') 
+                    : getDaysRemaining(nextUpcoming.date) === 1 
+                      ? (isNl ? 'Morgen!' : 'Morgen!')
+                      : `${getDaysRemaining(nextUpcoming.date)} ${isNl ? 'dagen' : 'Tage'}`}
+                </span>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -244,25 +330,41 @@ export const WasteCalendarPage: React.FC<WasteCalendarPageProps> = ({
           {filteredCollections.map((item) => {
             const cfg = BIN_TYPE_CONFIG[item.binType];
             const daysLeft = getDaysRemaining(item.date);
+            const isToday = daysLeft === 0;
+            const isTomorrow = daysLeft === 1;
+            const isPast = daysLeft < 0;
+
+            const [y, m, d] = item.date.split('-').map(Number);
+            const itemDate = new Date(y, m - 1, d);
 
             return (
               <div 
                 key={item.id}
-                className="p-4 sm:px-6 hover:bg-gray-50/70 dark:hover:bg-[#151B17] transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                className={`p-4 sm:px-6 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                  isToday 
+                    ? 'bg-emerald-50/80 dark:bg-emerald-950/20 font-medium' 
+                    : isPast 
+                      ? 'opacity-65 hover:opacity-100 hover:bg-gray-50/70 dark:hover:bg-[#151B17]' 
+                      : 'hover:bg-gray-50/70 dark:hover:bg-[#151B17]'
+                }`}
               >
                 {/* Date and Day */}
                 <div className="flex items-center gap-4">
-                  <div className="text-center w-16 shrink-0 py-1.5 px-2 bg-gray-100 dark:bg-[#151B17] rounded-lg">
-                    <span className="text-xs uppercase font-bold text-gray-400 block">
-                      {new Date(item.date).toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { weekday: 'short' })}
+                  <div className={`text-center w-16 shrink-0 py-1.5 px-2 rounded-lg ${
+                    isToday 
+                      ? 'bg-emerald-600 text-white shadow-xs' 
+                      : 'bg-gray-100 dark:bg-[#151B17]'
+                  }`}>
+                    <span className={`text-xs uppercase font-bold block ${isToday ? 'text-emerald-100' : 'text-gray-400'}`}>
+                      {itemDate.toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { weekday: 'short' })}
                     </span>
-                    <span className="text-base font-black text-gray-800 dark:text-gray-200">
-                      {new Date(item.date).toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { day: '2-digit', month: '2-digit' })}
+                    <span className={`text-base font-black ${isToday ? 'text-white' : 'text-gray-800 dark:text-gray-200'}`}>
+                      {itemDate.toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { day: '2-digit', month: '2-digit' })}
                     </span>
                   </div>
 
                   <div>
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className={`px-2.5 py-0.5 rounded text-[11px] font-bold ${cfg.colorBadge}`}>
                         {isNl ? cfg.label_nl : cfg.label}
                       </span>
@@ -275,10 +377,22 @@ export const WasteCalendarPage: React.FC<WasteCalendarPageProps> = ({
 
                 {/* Days remaining badge */}
                 <div className="self-end sm:self-center">
-                  <span className="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-[#252E28] text-gray-600 dark:text-gray-300 rounded-md">
-                    {daysLeft <= 0 
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-md ${
+                    isToday
+                      ? 'bg-emerald-600 text-white font-bold'
+                      : isTomorrow
+                        ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 font-bold'
+                        : isPast
+                          ? 'bg-gray-100 dark:bg-[#252E28] text-gray-400 dark:text-gray-500'
+                          : 'bg-gray-100 dark:bg-[#252E28] text-gray-600 dark:text-gray-300'
+                  }`}>
+                    {isToday 
                       ? (isNl ? 'Vandaag' : 'Heute') 
-                      : (daysLeft === 1 ? (isNl ? 'Morgen' : 'Morgen') : `in ${daysLeft} ${isNl ? 'dagen' : 'Tagen'}`)}
+                      : isTomorrow 
+                        ? (isNl ? 'Morgen' : 'Morgen') 
+                        : isPast 
+                          ? (isNl ? 'Vergangen' : 'Vergangen') 
+                          : `in ${daysLeft} ${isNl ? 'dagen' : 'Tagen'}`}
                   </span>
                 </div>
               </div>
