@@ -4,6 +4,7 @@ import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import Stripe from 'stripe';
 import nodemailer from 'nodemailer';
+import sendNewsPushHandler from './api/send-news-push.js';
 import { categories, businesses } from './src/data';
 import { getLegacyCategoryRedirect, BUSINESS_DEDUPLICATION_REDIRECTS, getSystemRedirects } from './src/utils/routes';
 
@@ -199,6 +200,9 @@ async function startServer() {
       return res.status(500).json({ error: err.message });
     }
   });
+
+  // Push Notification Route
+  app.post('/api/send-news-push', (req, res) => sendNewsPushHandler(req, res));
 
   // Email Route
   app.post('/api/send-mail', async (req, res) => {

@@ -20,3 +20,20 @@ export const db = initializeFirestore(app, {
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
+export const VAPID_KEY = "BF3Wfob8p_9-4B5SiXTEHZWIQ0i3US-Mmoc_isRkwLvTA_zy2SVBR0zmx8qF4FllsJNV9NJ7UhV0nNIIIWQfAEw";
+
+// Safely obtain messaging instance only on client side where supported
+export async function getFirebaseMessaging() {
+  if (typeof window === 'undefined') return null;
+  try {
+    const { getMessaging, isSupported } = await import('firebase/messaging');
+    const supported = await isSupported();
+    if (!supported) return null;
+    return getMessaging(app);
+  } catch (err) {
+    console.warn('Firebase Messaging is not supported in this environment:', err);
+    return null;
+  }
+}
+
+

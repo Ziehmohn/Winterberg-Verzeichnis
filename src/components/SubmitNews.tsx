@@ -3,7 +3,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../firebase';
 import { ThemeConfig } from '../types';
-import { ImagePlus, X, Check } from 'lucide-react';
+import { ImagePlus, X, Check, Bell } from 'lucide-react';
 import { useTranslation } from '../i18n';
 import { fetchDutchTranslation } from '../utils/translator';
 import { businesses } from '../data';
@@ -29,6 +29,7 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
     isAiGenerated: false
   });
   
+  const [sendPush, setSendPush] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -109,6 +110,27 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
         status: 'pending',
         date: new Date().toISOString()
       });
+
+      if (sendPush) {
+        try {
+          const cleanSlug = (titleDe || '').toLowerCase()
+            .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+            .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+          const cleanContent = contentDe.replace(/[#*`_\[\]()]/g, '').trim();
+          fetch('/api/send-news-push', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title: titleDe,
+              body: cleanContent.substring(0, 150) + (cleanContent.length > 150 ? '...' : ''),
+              url: `/news/${cleanSlug}`,
+              imageUrl: finalImageUrl || undefined
+            })
+          }).catch(e => console.warn('Push error:', e));
+        } catch (pushErr) {
+          console.warn('Push trigger failed:', pushErr);
+        }
+      }
 
       setIsSuccess(true);
     } catch (err) {
@@ -305,6 +327,27 @@ export default function SubmitNews({ theme, activeThemeKey }: SubmitNewsProps) {
                 </label>
               </div>
             )}
+          </div>
+
+          <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-lg p-3.5 flex items-start gap-3">
+            <input 
+              type="checkbox"
+              id="sendPushNotification"
+              checked={sendPush}
+              onChange={e => setSendPush(e.target.checked)}
+              className="w-4 h-4 mt-0.5 rounded text-[#0F4C2E] focus:ring-[#0F4C2E] accent-[#0F4C2E] cursor-pointer"
+            />
+            <label htmlFor="sendPushNotification" className="text-xs text-gray-800 cursor-pointer select-none">
+              <span className="font-bold flex items-center gap-1.5 text-emerald-900">
+                <Bell className="w-3.5 h-3.5 text-emerald-700" />
+                {isNl ? 'Pushmelding naar abonnees sturen' : 'Push-Benachrichtigung an alle Abonnenten senden'}
+              </span>
+              <span className="text-gray-600 block mt-0.5">
+                {isNl 
+                  ? 'Stuur direct een smartphone- en desktop-notificatie naar alle ingeschreven gebruikers.' 
+                  : 'Informiert alle angemeldeten Leser per Desktop- & Smartphone-Benachrichtigung.'}
+              </span>
+            </label>
           </div>
 
           <div className="pt-[16px] border-t border-[#F3F0EA]">

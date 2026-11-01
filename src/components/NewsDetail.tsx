@@ -11,6 +11,7 @@ import { businesses } from '../data';
 import { getCachedItem, CACHE_KEYS, CACHE_TTLS } from '../utils/dbCache';
 import ShareButton from './ShareButton';
 import NewsReviewPrompt from './NewsReviewPrompt';
+import { NewsPushPrompt } from './NewsPushPrompt';
 import { normalizeNewsCategory, getNewsCategoryLabel, getNewsCategoryBadgeClass, sanitizeNewsArticle } from '../utils/newsFilters';
 
 interface NewsDetailProps {
@@ -1017,6 +1018,9 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             variant="button-subtle" 
           />
         </div>
+
+        {/* Push Notification Opt-in Prompt */}
+        <NewsPushPrompt variant="card" className="mt-8" />
       </div>
 
       {/* Dedicated Standalone Contact Box OUTSIDE & BELOW the News Container */}

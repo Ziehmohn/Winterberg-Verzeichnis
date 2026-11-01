@@ -13,6 +13,7 @@ import {
   getNewsCategoryBadgeClass,
   sanitizeNewsArticle
 } from '../utils/newsFilters';
+import { NewsPushPrompt } from './NewsPushPrompt';
 import { 
   Search, 
   Calendar, 
@@ -336,6 +337,9 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
           {t('newsSubmit')}
         </button>
       </div>
+
+      {/* Push Notification Opt-in Prompt */}
+      <NewsPushPrompt variant="banner" className="mb-8" />
 
       {/* Filter and Search Container */}
       <div className="bg-white border border-[#EDE8E0] rounded-xl p-4 md:p-5 mb-8 shadow-sm space-y-3.5">

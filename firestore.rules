@@ -21,6 +21,12 @@ service cloud.firestore {
         || (data[key] is string && data[key].size() <= maxLen);
     }
 
+    function isOptionalDate(data, key) {
+      return !(key in data) || data[key] == null
+        || (data[key] is string && data[key].size() <= 50)
+        || data[key] is timestamp;
+    }
+
     // ---------------------------------------------------------------
     // Users
     // ---------------------------------------------------------------
@@ -184,6 +190,31 @@ service cloud.firestore {
       allow create: if isAdmin() || isValidTenderCreate();
       allow update: if isAdmin() || isTenderPublicUpdate();
       allow delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------------
+    // Push Subscriptions (Web Push / FCM Tokens)
+    // ---------------------------------------------------------------
+    function isValidPushSubscription() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['token', 'createdAt', 'userAgent', 'platform', 'topic', 'active', 'updatedAt'])
+        && d.token is string && d.token.size() > 0 && d.token.size() <= 1000
+        && isOptionalString(d, 'platform', 50)
+        && isOptionalString(d, 'topic', 100)
+        && isOptionalString(d, 'userAgent', 500)
+        && (!('active' in d) || d.active is bool)
+        && isOptionalDate(d, 'createdAt')
+        && isOptionalDate(d, 'updatedAt');
+    }
+
+    match /push_subscriptions/{subId} {
+      // Only admins can inspect or list push subscriptions (protect tokens & device info)
+      allow read: if isAdmin();
+      // Public / anonymous users can subscribe (create or update their device token)
+      allow create: if isAdmin() || isValidPushSubscription();
+      allow update: if isAdmin() || isValidPushSubscription();
+      // Admins or clients unsubscribing can delete
+      allow delete: if isAdmin() || true;
     }
 
     match /system/{docId} {
