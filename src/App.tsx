@@ -125,6 +125,7 @@ import { generateLocalBusinessSchema, generateCollectionPageSchema, generateItem
 import FavoritesDrawer from './components/FavoritesDrawer';
 import { useFavorites } from './utils/favorites';
 import { isAdminEmail } from './utils/admin';
+import { PushNotificationStatsCard } from './components/PushNotificationStatsCard';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   state = { hasError: false, error: null as Error | null };
@@ -5053,6 +5054,7 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
   const [isAiGenerated, setIsAiGenerated] = useState(false);
   const [status, setStatus] = useState<'pending' | 'approved'>('approved');
   const [isTranslating, setIsTranslating] = useState(false);
+  const [sendPushNotification, setSendPushNotification] = useState(true);
 
   const loadNews = async () => {
     try {
@@ -5288,6 +5290,22 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
       invalidateCache(CACHE_KEYS.NEWS);
       bumpRemoteBusinessesVersion(db);
 
+      // Trigger Web Push notification if published as approved
+      if (status === 'approved' && sendPushNotification) {
+        try {
+          fetch('/api/send-news-push', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title: title.trim(),
+              body: content.trim().slice(0, 140) + '...',
+              url: `/news/${finalSlug}`,
+              icon: imageUrl.trim() || '/pwa-icon-192.png'
+            })
+          }).catch(pushErr => console.warn('Could not dispatch push notification:', pushErr));
+        } catch (_) {}
+      }
+
       setIsEditing(false);
       setEditingItem(null);
       await loadNews();
@@ -5330,6 +5348,9 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
           </button>
         )}
       </div>
+
+      {/* Push Notification Statistics Card */}
+      {!isEditing && <PushNotificationStatsCard />}
 
       {/* Inline Editor */}
       {isEditing ? (
@@ -5607,6 +5628,26 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
               >
                 ⏳ In Prüfung (Nicht öffentlich)
               </button>
+            </div>
+
+            {/* Push Notification Toggle */}
+            <div className="p-3.5 bg-emerald-50/70 border border-emerald-200/90 rounded-lg flex items-center justify-between gap-3">
+              <label className="flex items-center gap-2.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={sendPushNotification}
+                  onChange={e => setSendPushNotification(e.target.checked)}
+                  className="w-4 h-4 accent-[#0F4C2E] rounded cursor-pointer"
+                />
+                <div>
+                  <span className="text-xs font-bold text-[#0F4C2E] flex items-center gap-1.5">
+                    <Bell className="w-3.5 h-3.5" /> Push-Benachrichtigung an alle Abonnenten senden
+                  </span>
+                  <span className="text-[11px] text-[#5F6B63] block">
+                    Informiert alle angemeldeten Smartphones und Desktop-Nutzer sofort beim Veröffentlichen.
+                  </span>
+                </div>
+              </label>
             </div>
 
             {/* Form Actions */}
