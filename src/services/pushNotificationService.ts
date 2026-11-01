@@ -84,6 +84,9 @@ export async function subscribeToNewsPush(): Promise<PushSubscriptionResult> {
     const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
       scope: '/'
     });
+    try {
+      await registration.update();
+    } catch (_) {}
     await navigator.serviceWorker.ready;
 
     // 3. Get Firebase Messaging instance
