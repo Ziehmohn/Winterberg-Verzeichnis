@@ -139,7 +139,11 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/|sitemap\\.xml|sitemap\\.xsl|robots\\.txt).*)",
+      "source": "/api/submit-review",
+      "destination": "/api/manage-review"
+    },
+    {
+      "source": "/((?!api/|firebase-messaging-sw\\.js|sitemap\\.xml|sitemap\\.xsl|robots\\.txt).*)",
       "destination": "/index.html"
     }
   ]
