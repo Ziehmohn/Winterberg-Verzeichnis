@@ -2,6 +2,147 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "kitaportal-hsk-anmeldung-kitajahr-2027-2028-winterberg",
+    slug: "kitaportal-hsk-anmeldung-kitajahr-2027-2028-winterberg",
+    slug_nl: "kitaportal-hsk-aanmelding-kinderopvang-2027-2028-winterberg",
+    title: "Betreuungsplätze 2027/28 in Winterberg: Jetzt über das KiTaPortal HSK anmelden – Frist endet am 13. November",
+    title_nl: "Kinderopvang 2027/28 in Winterberg: Nu aanmelden via KiTaPortal HSK – Deadline 13 november",
+    author: "Winterberg-Verzeichnis Redaktion",
+    imageUrl: "/news-kitaportal-anmeldung-winterberg-2027.jpg",
+    imageCredit: "KiTaPortal HSK / Kindertagespflege Die Windelflitzer",
+    status: 'approved',
+    category: 'buergerinfo',
+    date: "2026-11-02T09:30:00.000Z",
+    content: `Für alle Familien in Winterberg und den umliegenden Dörfern, die für ihr Kind ab August 2027 einen Betreuungsplatz suchen, läuft aktuell die entscheidende Anmeldephase: Ob in einer Kindertagesstätte (Kita) oder in der familiennahen **Kindertagespflege (Tagesmutter / Tagesvater)** – die Anmeldung für das Kindergartenjahr 2027/2028 erfolgt kreisweit zentral über das **KiTaPortal des Hochsauerlandkreises (HSK)**.
+
+Eltern sollten jetzt zeitnah aktiv werden: Die Hauptanmeldefrist für die erste offizielle Vergaberunde endet am **Freitag, den 13. November 2026**.
+
+![Anmeldungen für das Kita-Jahr 2027/28 im KiTaPortal](/news-kitaportal-anmeldung-winterberg-2027.jpg)
+
+### Wichtiger Stichtag: Warum der 13. November zählt
+Im Hochsauerlandkreis ist das Vergabeverfahren für Betreuungsplätze einheitlich geregelt. Die Einrichtungen und das Kreisjugendamt beginnen ab dem **15. November 2026** mit dem Versand der ersten verbindlichen Platzzusagen für das kommende Kita-Jahr. 
+
+Damit eine Familie bei dieser ersten und wichtigsten Vergaberunde berücksichtigt werden kann, müssen alle Vormerkungen vor dem Wochenende des 14./15. Novembers im System vorliegen – Stichtag ist daher **Freitag, der 13. November 2026**.
+
+Sobald Eltern eine Zusage über das KiTaPortal erhalten, gilt eine verbindliche **Frist von 10 Tagen**, um das Platzangebot digital anzunehmen.
+
+---
+
+### Nicht nur Kitas: Auch Kindertagespflege läuft über das Portal
+Ein wichtiger Hinweis für Eltern von Kleinkindern: Über das KiTaPortal HSK werden nicht nur Plätze in Kindertageseinrichtungen (wie den Kitas in Winterberg, Siedlinghausen, Niedersfeld oder Züschen) vermittelt, sondern auch die öffentlich geförderte **Kindertagespflege**. 
+
+Gerade für Kinder unter drei Jahren (U3) stellt die Betreuung bei einer qualifizierten Tagesmutter eine besonders geschätzte Alternative dar:
+* **Kleine, familiäre Gruppen** von meist maximal fünf Kindern
+* **Feste Bezugsperson** und individuelle Förderung im häuslichen Umfeld
+* **Hohe Flexibilität** bei Bring- und Abholzeiten
+* **Gleiche Elternbeitragstabelle** des Hochsauerlandkreises wie bei einem Kita-Platz
+
+---
+
+### Tagesmütter im Stadtgebiet Winterberg im Portrait
+
+Im Stadtgebiet Winterberg stehen engagierte und zertifizierte Kindertagespflegepersonen bereit, die unter fachlicher Begleitung des **kfd-Kindertagespflege Meschede e.V.** arbeiten:
+
+* **Kindertagespflege „Die Windelflitzer“ – Sophia Pieper (Siedlinghausen):**  
+  Am Tannenbergweg 10 betreut Sophia Pieper Kleinkinder im Alter von 4 Monaten bis zum Kindergarteneintritt. In zwei liebevoll gestalteten Spielräumen mit Spiel- und Schlafpodest sowie einem großen Außengelände mit Garten stehen Natur, Bewegung und Geborgenheit im Fokus.  
+  *Betreuungszeiten:* Montag bis Freitag von **07:45 bis 14:30 Uhr**.  
+  *Kontakt:* Tel. **0151 / 52585679** | Instagram: **[@windelflitzer_siedlinghausen](https://www.instagram.com/windelflitzer_siedlinghausen/)**
+
+* **Kindertagespflege Olga Brieden (Siedlinghausen):**  
+  Als examinierte Kinderpflegerin mit pädagogischem Studium bietet Olga Brieden an der Briloner Straße eine bedürfnisorientierte Kleinkindförderung im eigenen Haus mit gesichertem Garten, begleitet von Familienhund Malu und täglich frisch zubereiteten Mahlzeiten aus regionalen Bio-Zutaten.  
+  *Betreuungszeiten:* Montag bis Donnerstag (flexibel nach Absprache).  
+  *Kontakt:* Tel. **0176 / 41017807**
+
+* **Kindertagespflege „Kleine Hände – Große Entdecker“ – Helga Hermann (Winterberg):**  
+  Bereits seit 2004 betreut die staatlich geprüfte Erzieherin Helga Hermann am Danziger Weg 3 Kleinkinder im Alter von 4 Monaten bis 3 Jahren. Auf die Kleinen warten ein großes Spielzimmer, ein separater Schlafraum sowie ein komplett eingezäunter Garten mit Trampolin, Rutsche, Sandkasten und Matschküche nahe den Winterberger Wiesen.  
+  *Kontakt:* Tel. **0152 / 25452339**
+
+* **Kindertagespflege „Zwergenwald“ – Dorothe Sassenberg (Niedersfeld):**  
+  An der Grünebacher Straße 16 setzt Dorothe Sassenberg auf viel Musik, Bewegung und kreative Entfaltung. Ausflüge in die Natur unternimmt die Gruppe mit einem modernen, elektrischen Kinderbus.  
+  *Kontakt:* Instagram: **@doro_zwergenwald**
+
+---
+
+### So funktioniert die Anmeldung Schritt für Schritt
+
+1. **KiTaPortal HSK aufrufen:** Besuchen Sie die offizielle Plattform unter [www.kitaplaner.de/hsk/kitaportal/de/](https://www.kitaplaner.de/hsk/kitaportal/de/).
+2. **Konto erstellen:** Registrieren Sie sich kostenlos mit Ihrer E-Mail-Adresse.
+3. **Wunsch-Einrichtungen auswählen:** Geben Sie Ihre bevorzugten Kitas und/oder Kindertagespflegen in Winterberg und den Dörfern an und legen Sie Ihre Wunschprioritäten fest.
+4. **Anmeldung absenden:** Reichen Sie die Vormerkung bis spätestens **Freitag, 13. November 2026** ein.
+5. **Zusagen prüfen:** Ab dem 15. November 2026 werden die Zusagen im Portal freigeschaltet. Nach Erhalt haben Sie 10 Tage Zeit zur Bestätigung.
+
+:::contact
+### Wichtige Links & Ansprechpartner
+* **Zentrales Anmeldeportal:** [KiTaPortal Hochsauerlandkreis](https://www.kitaplaner.de/hsk/kitaportal/de/)
+* **Fachberatung & Träger Kindertagespflege:** [kfd-Kindertagespflege Meschede e.V.](https://www.kfd-kindertagespflege-meschede.de/) (Tel. 0291 / 52233)
+* **Tipp:** Nehmen Sie parallel zur Online-Vormerkung gerne vorab direkt Kontakt mit den gewünschten Tagesmüttern oder Kita-Leitungen auf, um die Räumlichkeiten und das pädagogische Konzept persönlich kennenzulernen.
+:::`,
+    content_nl: `Voor alle gezinnen in Winterberg en de omliggende dorpen die voor hun kind vanaf augustus 2027 een opvangplek zoeken, is de belangrijkste aanmeldperiode aangebroken: of het nu gaat om een kinderdagverblijf (kindergarten/kita) of kleinschalige, huiselijke **gastouderopvang (Kindertagespflege)** – de aanmelding voor het opvangjaar 2027/2028 verloopt centraal via het **KiTaPortal van het Hochsauerlandkreis (HSK)**.
+
+Ouders dienen nu snel in actie te komen: de hoofddeadline voor de eerste officiële toewijzingsronde sluit op **vrijdag 13 november 2026**.
+
+![Aanmeldingen kinderopvang 2027/28 in het KiTaPortal](/news-kitaportal-anmeldung-winterberg-2027.jpg)
+
+### Belangrijke deadline: waarom 13 november telt
+In het Hochsauerlandkreis is de toewijzingsprocedure uniform geregeld. De instellingen en het regionale jeugdbureau starten vanaf **15 november 2026** met het versturen van de eerste officiële plaatsingstoezeggingen voor het nieuwe schooljaar.
+
+Om bij deze eerste en belangrijkste toewijzingsronde meegenomen te worden, moeten alle aanvragen vóór het weekend van 14/15 november in het digitale systeem zijn ingediend – de uiterste aanmelddag is daarom **vrijdag 13 november 2026**.
+
+Zodra ouders een plaatsingsovereenkomst ontvangen via het KiTaPortal, geldt een termijn van **10 dagen** om het aanbod digitaal te accepteren.
+
+---
+
+### Niet alleen crèches: ook gastouderopvang via het portal
+Een belangrijk weetje voor ouders van baby's en peuters: via het KiTaPortal HSK worden niet alleen klassieke crèches aangemeld, maar ook de door de overheid erkende en gesubsidieerde **gastouderopvang (Kindertagespflege)**.
+
+Met name voor kinderen onder de drie jaar (U3) is een gastouder een zeer geliefd en vertrouwd alternatief:
+* **Kleine, gezellige groepen** van maximaal vijf kinderen
+* **Vaste verzorger** en persoonlijke aandacht in een warme thuissfeer
+* **Flexibiliteit** in breng- en haaltijden
+* **Dezelfde gemeentelijke bijdragetarieven** als voor reguliere kinderopvang
+
+---
+
+### Gastouders in de gemeente Winterberg
+
+In Winterberg en de dorpen staan gekwalificeerde gastouders klaar onder pedagogische begeleiding van de erkende vereniging **kfd-Kindertagespflege Meschede e.V.**:
+
+* **Kindertagespflege „Die Windelflitzer“ – Sophia Pieper (Siedlinghausen):**  
+  Aan de Tannenbergweg 10 verzorgt Sophia Pieper opvang voor kindjes van 4 maanden tot aan de kleuterschoolleeftijd. Met twee gezellige speelkamers en een grote tuin staat buitenspelen, natuur en geborgenheid centraal.  
+  *Opvangtijden:* maandag t/m vrijdag van **07:45 tot 14:30 uur**.  
+  *Contact:* Tel. **+49 151 52585679** | Instagram: **[@windelflitzer_siedlinghausen](https://www.instagram.com/windelflitzer_siedlinghausen/)**
+
+* **Kindertagespflege Olga Brieden (Siedlinghausen):**  
+  Als gediplomeerd kinderverzorgster en pedagoog biedt Olga Brieden aan de Briloner Straße belevingsgerichte opvang in haar eigen huis met veilige omheinde tuin, hond Malu en verse biologische streekmaaltijden.  
+  *Opvangtijden:* maandag t/m donderdag (in overleg).  
+  *Contact:* Tel. **+49 176 41017807**
+
+* **Kindertagespflege „Kleine Hände – Große Entdecker“ – Helga Hermann (Winterberg):**  
+  Al sinds 2004 actief als gediplomeerd opvoedster aan de Danziger Weg 3. Een ruime speelkamer, aparte slaapruimte en een omheinde tuin met trampoline, zandbak en speeltoestellen.  
+  *Contact:* Tel. **+49 152 25452339**
+
+* **Kindertagespflege „Zwergenwald“ – Dorothe Sassenberg (Niedersfeld):**  
+  Gelegen aan de Grünebacher Straße 16 met een focus op muziek, motoriek en natuuruitstapjes met een elektrische kinderbus.  
+  *Contact:* Instagram: **@doro_zwergenwald**
+
+---
+
+### Hoe werkt het aanmeldproces stap voor stap?
+
+1. **KiTaPortal HSK openen:** Ga naar [www.kitaplaner.de/hsk/kitaportal/de/](https://www.kitaplaner.de/hsk/kitaportal/de/).
+2. **Account aanmaken:** Registreer eenvoudig met uw e-mailadres.
+3. **Voorkeuren selecteren:** Selecteer uw favoriete kdv's en/of gastouders in Winterberg en stel uw prioriteiten in.
+4. **Verzenden vóór de deadline:** Dien de aanvraag uiterlijk in op **vrijdag 13 november 2026**.
+5. **Aanbod accepteren:** Vanaf 15 november 2026 ontvangt u digitaal bericht. Binnen 10 dagen kunt u de plaats online bevestigen.
+
+:::contact
+### Nuttige links & contactpersonen
+* **Centraal aanmeldportaal:** [KiTaPortal Hochsauerlandkreis](https://www.kitaplaner.de/hsk/kitaportal/de/)
+* **Organisatie gastouders:** [kfd-Kindertagespflege Meschede e.V.](https://www.kfd-kindertagespflege-meschede.de/) (Tel. +49 291 52233)
+* **Tip:** Neem naast de digitale registratie gerust vooraf persoonlijk contact op met de gastouders of crècheleiding om kennis te maken.
+:::`,
+  },
+  {
     id: "linedance-kurs-winterberger-country-liners-2026",
     slug: "linedance-kurs-winterberger-country-liners-2026",
     slug_nl: "line-dance-cursus-winterberger-country-liners-2026",

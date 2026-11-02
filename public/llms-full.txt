@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-11-01
+# Stand: 2026-11-02
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (465 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (469 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -3598,6 +3598,49 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** SI Werbeform (Sophia Klüppel) aan de Ruhrstraße 12b in Winterberg-Niedersfeld is dé regionale specialist voor professionele reclametechniek, belettering en visuele communicatie in het Sauerland. Van hoogwaardige voertuigbelettering en raamfolies tot reclameborden, spandoeken, lichtreclame en grafisch ontwerp.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/marketingdienstleistungen/si-werbeform-beschriftung-und-werbung
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/marketingdiensten/si-werbeform-beschriftung-und-werbung
+
+#### [Kindertagespflege Die Windelflitzer – Sophia Pieper](https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-die-windelflitzer-sophia-pieper)
+- **Kategorie:** Dienstleistungen > Kindergärten & Kitas
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Tannenbergweg 10, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 0151 52585679
+- **Webseite:** https://www.instagram.com/windelflitzer_siedlinghausen/
+- **Beschreibung (DE):** Liebevolle und familiennahe Kindertagespflege in Winterberg-Siedlinghausen für Kinder von 4 Monaten bis zum Kindergarteneintritt. Spiel, Bewegung in der Natur und geborgene Betreuung bei den Windelflitzern.
+- **Beschreibung (NL):** Kleinschalige en liefdevolle gastouderopvang in Winterberg-Siedlinghausen voor kinderen van 4 maanden tot aan de kleuterschoolleeftijd. Buitenspelen, natuur en geborgenheid bij Die Windelflitzer.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-die-windelflitzer-sophia-pieper
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/kinderdagverblijven/kindertagespflege-die-windelflitzer-sophia-pieper
+
+#### [Kindertagespflege Olga Brieden](https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-olga-brieden)
+- **Kategorie:** Dienstleistungen > Kindergärten & Kitas
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Briloner Straße, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 0176 41017807
+- **Webseite:** https://www.kfd-kindertagespflege-meschede.de/f%C3%BCr-kindertagespflegepersonen/die-kindertagespflegepersonen/hallenberg-medebach-winterberg/
+- **Beschreibung (DE):** Familiäre und bedürfnisorientierte Kindertagespflege in Winterberg-Siedlinghausen durch examinierte Kinderpflegerin und Pädagogin mit Haus, Garten und Hund Malu.
+- **Beschreibung (NL):** Huiselijke gastouderopvang in Winterberg-Siedlinghausen door gediplomeerd kinderverzorgster en pedagoog met tuin, gezonde voeding en gezinshond Malu.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-olga-brieden
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/kinderdagverblijven/kindertagespflege-olga-brieden
+
+#### [Kindertagespflege Kleine Hände – Große Entdecker (Helga Hermann)](https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-kleine-haende-grosse-entdecker-helga-hermann)
+- **Kategorie:** Dienstleistungen > Kindergärten & Kitas
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Danziger Weg 3, 59955 Winterberg
+- **Telefon:** 0152 25452339
+- **Webseite:** https://www.kfd-kindertagespflege-meschede.de/f%C3%BCr-kindertagespflegepersonen/die-kindertagespflegepersonen/hallenberg-medebach-winterberg/
+- **Beschreibung (DE):** Zertifizierte Kindertagespflege in Winterberg für Kinder unter 3 Jahren seit 2004. Staatlich ausgebildete Erzieherin mit großem Spielzimmer, geschütztem Hof und weitläufigem Garten.
+- **Beschreibung (NL):** Erkende gastouderopvang in Winterberg voor kinderen onder de 3 jaar sinds 2004. Gediplomeerd opvoedster met grote speelkamer en veilige buitentuin.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-kleine-haende-grosse-entdecker-helga-hermann
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/kinderdagverblijven/kindertagespflege-kleine-haende-grosse-entdecker-helga-hermann
+
+#### [Kindertagespflege Zwergenwald – Dorothe Sassenberg](https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-zwergenwald-dorothe-sassenberg)
+- **Kategorie:** Dienstleistungen > Kindergärten & Kitas
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Grünebacher Straße 16, 59955 Winterberg-Niedersfeld
+- **Webseite:** https://www.instagram.com/doro_zwergenwald/
+- **Beschreibung (DE):** Zertifizierte Kindertagespflege in Winterberg-Niedersfeld mit Schwerpunkt Musik und Bewegung, zwei Spielzimmern und Ausflügen mit dem Elektro-Kinderbus.
+- **Beschreibung (NL):** Gecertificeerde gastouderopvang in Winterberg-Niedersfeld met veel muziek, beweging en natuuruitstapjes in een elektrische kinderbus.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-zwergenwald-dorothe-sassenberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/kinderdagverblijven/kindertagespflege-zwergenwald-dorothe-sassenberg
 
 ### Kategorie: Ski, Bike & Sport
 

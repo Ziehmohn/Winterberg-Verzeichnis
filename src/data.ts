@@ -14731,6 +14731,232 @@ export const businesses: Business[] = [
       "sunday": "Geschlossen"
     }
   }
+,
+  {
+    "id": "kindertagespflege-die-windelflitzer-sophia-pieper",
+    "name": "Kindertagespflege Die Windelflitzer – Sophia Pieper",
+    "category": "Dienstleistungen",
+    "subcategory": "Kindergärten & Kitas",
+    "description": "Liebevolle und familiennahe Kindertagespflege in Winterberg-Siedlinghausen für Kinder von 4 Monaten bis zum Kindergarteneintritt. Spiel, Bewegung in der Natur und geborgene Betreuung bei den Windelflitzern.",
+    "description_nl": "Kleinschalige en liefdevolle gastouderopvang in Winterberg-Siedlinghausen voor kinderen van 4 maanden tot aan de kleuterschoolleeftijd. Buitenspelen, natuur en geborgenheid bij Die Windelflitzer.",
+    "extendedDescription": "In der Kindertagespflege „Die Windelflitzer“ am Tannenbergweg 10 in Siedlinghausen begleitet Sophia Pieper Kleinkinder im Alter von 4 Monaten bis zum Eintritt in den Kindergarten. In zwei freundlich eingerichteten Spielräumen mit Spiel- und Schlafpodest sowie einem großen Außengelände mit Garten und Spielbereich steht das Wohl und die Entdeckerfreude der Kleinen an erster Stelle.\n\nOb Ausflüge in den Wald, Toben im Garten, Singen oder kreatives Basteln: Bei den Windelflitzern dürfen Kinder Kinder sein und wachsen in einem geschützten, familiären Rahmen auf. Frische, gesunde Ernährung und die individuelle Förderung von Motorik, Sprache und Sozialverhalten runden das Betreuungsangebot ab. Die Anmeldung erfolgt kreisweit zentral über das KiTaPortal HSK.",
+    "extendedDescription_nl": "Bij gastouderopvang „Die Windelflitzer“ aan de Tannenbergweg 10 in Siedlinghausen vangt Sophia Pieper kindjes op van 4 maanden tot kleuterschoolleeftijd. Met twee knusse speelkamers met speel- en slaapvide en een grote tuin met speeltoestellen staat spelend leren en buitenleven centraal.\n\nRegelmatige uitstapjes naar het bos, creatief knutselen, zingen en gezonde voeding maken deel uit van de dagelijkse routine. Aanmelden verloopt centraal via het officiële KiTaPortal HSK.",
+    "address": "Tannenbergweg 10, 59955 Winterberg-Siedlinghausen",
+    "district": "Siedlinghausen",
+    "city": "Winterberg",
+    "phone": "0151 52585679",
+    "email": "sophiapieper112@gmail.com",
+    "website": "https://www.instagram.com/windelflitzer_siedlinghausen/",
+    "coordinates": {
+      "lat": 51.24975,
+      "lng": 8.47377
+    },
+    "image": "/news-kitaportal-anmeldung-winterberg-2027.jpg",
+    "headerImage": "/news-kitaportal-anmeldung-winterberg-2027.jpg",
+    "imageFallback": "WP",
+    "status": "approved",
+    "isActive": true,
+    "featured": false,
+    "services": [
+      "U3-Kindertagespflege (ab 4 Monate bis Kita-Eintritt)",
+      "Familiäre Kleingruppe mit persönlicher Bezugsperson",
+      "Zwei kindgerechte Spielräume mit Schlafpodest",
+      "Großer Garten & naturnahe Waldspaziergänge",
+      "Kreativ- & Bastelangebote nach Jahreszeiten",
+      "Zentrale Anmeldung über das KiTaPortal HSK"
+    ],
+    "services_nl": [
+      "Gastouderopvang voor 0-3 jarigen",
+      "Kleinschalige groep met vaste opvoedster",
+      "Twee speelkamers met slaapplaatsen",
+      "Grote omheinde tuin & natuurwandelingen",
+      "Creatieve activiteiten & knutselen",
+      "Centrale inschrijving via KiTaPortal HSK"
+    ],
+    "openingHours": {
+      "monday": "07:45 - 14:30",
+      "tuesday": "07:45 - 14:30",
+      "wednesday": "07:45 - 14:30",
+      "thursday": "07:45 - 14:30",
+      "friday": "07:45 - 14:30",
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
+    },
+    "searchSynonyms": [
+      "sophia pieper",
+      "windelflitzer",
+      "windelflitzer siedlinghausen",
+      "die windelflitzer",
+      "kindertagespflege siedlinghausen",
+      "tagesmutter siedlinghausen",
+      "tagesmutter winterberg",
+      "kinderbetreuung siedlinghausen",
+      "tannenbergweg"
+    ]
+  },
+  {
+    "id": "kindertagespflege-olga-brieden",
+    "name": "Kindertagespflege Olga Brieden",
+    "category": "Dienstleistungen",
+    "subcategory": "Kindergärten & Kitas",
+    "description": "Familiäre und bedürfnisorientierte Kindertagespflege in Winterberg-Siedlinghausen durch examinierte Kinderpflegerin und Pädagogin mit Haus, Garten und Hund Malu.",
+    "description_nl": "Huiselijke gastouderopvang in Winterberg-Siedlinghausen door gediplomeerd kinderverzorgster en pedagoog met tuin, gezonde voeding en gezinshond Malu.",
+    "extendedDescription": "Olga Brieden ist examinierte Kinderpflegerin mit abgeschlossenem Studium im Bereich Pädagogik und Psychologie für Kinder im Vorschulalter. In ihrem Haus an der Briloner Straße in Siedlinghausen bietet sie Kindern im Alter von 4 Monaten bis 3 Jahren ein geschütztes, familiäres Umfeld – begleitet von Familienhund Malu.\n\nNeben der gezielten Förderung von Sprache, Motorik und sozialer Kompetenz wird großer Wert auf täglich frisch zubereitete Mahlzeiten aus regionalen und biologischen Lebensmitteln gelegt. Die Kernbetreuungszeiten sind montags bis donnerstags, wobei die Bring- und Abholzeiten flexibel mit den Eltern abgestimmt werden. Anmeldung zentral über das KiTaPortal HSK.",
+    "extendedDescription_nl": "Olga Brieden is gediplomeerd kinderverzorgster met een studie in pedagogiek en kinderpsychologie. In haar woning aan de Briloner Straße in Siedlinghausen biedt zij kindjes van 4 maanden tot 3 jaar een warm en veilig thuis, samen met hond Malu.\n\nEr wordt dagelijks vers gekookt met biologische en regionale producten. Kernopvangdagen zijn maandag tot en met donderdag. Aanmelding via het KiTaPortal HSK.",
+    "address": "Briloner Straße, 59955 Winterberg-Siedlinghausen",
+    "district": "Siedlinghausen",
+    "city": "Winterberg",
+    "phone": "0176 41017807",
+    "website": "https://www.kfd-kindertagespflege-meschede.de/f%C3%BCr-kindertagespflegepersonen/die-kindertagespflegepersonen/hallenberg-medebach-winterberg/",
+    "imageFallback": "OB",
+    "status": "approved",
+    "isActive": true,
+    "featured": false,
+    "services": [
+      "U3-Kleinkindbetreuung ab 4 Monaten",
+      "Pädagogisch fundierte Frühförderung & Sprachentwicklung",
+      "Haus mit sicher eingezäuntem Spielgarten",
+      "Tiergestützte Begleitung (Familienhund Malu)",
+      "Frisch gekochte Bio-Mahlzeiten aus der Region",
+      "Flexible Bring- und Abholzeiten"
+    ],
+    "services_nl": [
+      "Kleinschalige opvang 0-3 jaar",
+      "Pedagogische vroegstimulering & taalontwikkeling",
+      "Woning met omheinde tuin",
+      "Gezelschap van kindvriendelijke hond Malu",
+      "Dagelijks verse biologische maaltijden",
+      "Flexibele breng- en haaltijden"
+    ],
+    "openingHours": {
+      "monday": "08:00 - 16:00",
+      "tuesday": "08:00 - 16:00",
+      "wednesday": "08:00 - 16:00",
+      "thursday": "08:00 - 16:00",
+      "friday": "Geschlossen",
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
+    },
+    "searchSynonyms": [
+      "olga brieden",
+      "kindertagespflege olga brieden",
+      "tagesmutter olga brieden",
+      "kindertagespflege siedlinghausen",
+      "tagesmutter siedlinghausen"
+    ]
+  },
+  {
+    "id": "kindertagespflege-helga-hermann",
+    "name": "Kindertagespflege Kleine Hände – Große Entdecker (Helga Hermann)",
+    "category": "Dienstleistungen",
+    "subcategory": "Kindergärten & Kitas",
+    "description": "Zertifizierte Kindertagespflege in Winterberg für Kinder unter 3 Jahren seit 2004. Staatlich ausgebildete Erzieherin mit großem Spielzimmer, geschütztem Hof und weitläufigem Garten.",
+    "description_nl": "Erkende gastouderopvang in Winterberg voor kinderen onder de 3 jaar sinds 2004. Gediplomeerd opvoedster met grote speelkamer en veilige buitentuin.",
+    "extendedDescription": "Bereits seit 2004 betreut die staatlich ausgebildete Erzieherin Helga Hermann Kleinkinder im Danziger Weg 3 in Winterberg. Mit viel Herzblut, pädagogischer Erfahrung und kontinuierlichen Fortbildungen schafft sie einen verlässlichen Schutz- und Entwicklungsraum für Kinder von 4 Monaten bis zum Eintritt in den Kindergarten.\n\nDas ruhig gelegene Wohnhaus nahe Wald und Wiesen bietet ein großzügiges Spielzimmer im Haus, einen separaten Schlafraum sowie einen komplett eingezäunten Außenbereich mit Spielgeräten, Rutsche, Trampolin, Sandkasten, Bobby-Cars und Matschküche. Anmeldung zentral über das KiTaPortal HSK.",
+    "extendedDescription_nl": "Sinds 2004 biedt gediplomeerd leidster Helga Hermann kleinschalige opvang aan de Danziger Weg 3 in Winterberg voor kinderen van 4 maanden tot 3 jaar.\n\nDe rustig gelegen woning vlakbij bos en weiden beschikt over een royale speelkamer, aparte slaapruimte en een omheinde tuin met glijbaan, trampoline, zandbak en modderkeuken. Aanmelding via het KiTaPortal HSK.",
+    "address": "Danziger Weg 3, 59955 Winterberg",
+    "district": "Winterberg",
+    "city": "Winterberg",
+    "phone": "0152 25452339",
+    "website": "https://www.kfd-kindertagespflege-meschede.de/f%C3%BCr-kindertagespflegepersonen/die-kindertagespflegepersonen/hallenberg-medebach-winterberg/",
+    "coordinates": {
+      "lat": 51.20202,
+      "lng": 8.54158
+    },
+    "imageFallback": "HH",
+    "status": "approved",
+    "isActive": true,
+    "featured": false,
+    "services": [
+      "U3-Kinderbetreuung seit 2004",
+      "Staatlich ausgebildete Erzieherin",
+      "Großes Spielzimmer & separater Ruheraum",
+      "Eingezäunter Garten mit Trampolin & Matschküche",
+      "Ruhige Wohnlage direkt an Wiesen und Wald",
+      "Zentrale Anmeldung über das KiTaPortal HSK"
+    ],
+    "services_nl": [
+      "Opvang voor 0-3 jarigen sinds 2004",
+      "Gediplomeerd pedagogisch medewerkster",
+      "Ruime speelkamer & aparte slaapkamer",
+      "Omheinde tuin met speeltoestellen en modderkeuken",
+      "Rustige ligging bij bos en weide",
+      "Aanmelding via KiTaPortal HSK"
+    ],
+    "openingHours": {
+      "monday": "07:30 - 16:30",
+      "tuesday": "07:30 - 16:30",
+      "wednesday": "07:30 - 16:30",
+      "thursday": "07:30 - 16:30",
+      "friday": "07:30 - 16:30",
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
+    },
+    "searchSynonyms": [
+      "helga hermann",
+      "helga herrmann",
+      "kleine haende grosse entdecker",
+      "kleine hände große entdecker",
+      "kindertagespflege winterberg",
+      "tagesmutter winterberg",
+      "danziger weg"
+    ]
+  },
+  {
+    "id": "kindertagespflege-zwergenwald-dorothe-sassenberg",
+    "name": "Kindertagespflege Zwergenwald – Dorothe Sassenberg",
+    "category": "Dienstleistungen",
+    "subcategory": "Kindergärten & Kitas",
+    "description": "Zertifizierte Kindertagespflege in Winterberg-Niedersfeld mit Schwerpunkt Musik und Bewegung, zwei Spielzimmern und Ausflügen mit dem Elektro-Kinderbus.",
+    "description_nl": "Gecertificeerde gastouderopvang in Winterberg-Niedersfeld met veel muziek, beweging en natuuruitstapjes in een elektrische kinderbus.",
+    "extendedDescription": "Dorothe Sassenberg betreut seit 2017 Kleinkinder in ihrer Kindertagespflege Zwergenwald an der Grünebacher Straße 16 in Winterberg-Niedersfeld. In einer kompletten Etage im Untergeschoss stehen zwei freundliche Spielzimmer mit viel Platz zum Spielen und Bewegen, ein eigener Ruheraum, eine Küche und ein kindgerechtes Badezimmer zur Verfügung.\n\nPädagogische Schwerpunkte sind Musik, Rhythmus und Bewegung. Dank des elektrischen Mehrsitzer-Kinderbusses unternimmt die Gruppe regelmäßig Ausflüge in die Natur rund um Niedersfeld und den Hillebachsee. Anmeldung zentral über das KiTaPortal HSK.",
+    "extendedDescription_nl": "Dorothe Sassenberg vangt sinds 2017 kindjes op aan de Grünebacher Straße 16 in Niedersfeld. Met twee speelkamers, aparte slaapkamer en een elektrische kinderbus voor tochtjes door de natuur.\n\nSpeerpunten zijn muziek, ritme en beweging. Aanmelding via KiTaPortal HSK.",
+    "address": "Grünebacher Straße 16, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "website": "https://www.instagram.com/doro_zwergenwald/",
+    "coordinates": {
+      "lat": 51.257497,
+      "lng": 8.532609
+    },
+    "imageFallback": "ZW",
+    "status": "approved",
+    "isActive": true,
+    "featured": false,
+    "services": [
+      "U3-Kindertagespflege seit 2017",
+      "Musik- & Bewegungsfrühförderung",
+      "Ausflüge mit dem modernen Elektro-Kinderbus",
+      "Zwei Spielzimmer & separater Ruheraum",
+      "Ruhige dörfliche Lage in Niedersfeld",
+      "Zentrale Anmeldung im KiTaPortal HSK"
+    ],
+    "services_nl": [
+      "Gastouderopvang sinds 2017",
+      "Muziek- en bewegingsstimulering",
+      "Uitstapjes met de elektrische kinderbus",
+      "Twee speelkamers & rustruimte",
+      "Rustige dorpslocatie in Niedersfeld",
+      "Aanmelding via KiTaPortal HSK"
+    ],
+    "openingHours": {
+      "monday": "07:00 - 14:00",
+      "tuesday": "07:00 - 14:00",
+      "wednesday": "07:00 - 14:00",
+      "thursday": "07:00 - 14:00",
+      "friday": "07:00 - 14:00",
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
+    },
+    "searchSynonyms": [
+      "dorothe sassenberg",
+      "zwergenwald",
+      "kindertagespflege zwergenwald",
+      "tagesmutter niedersfeld",
+      "kindertagespflege niedersfeld",
+      "kinderbetreuung niedersfeld"
+    ]
+  }
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {
