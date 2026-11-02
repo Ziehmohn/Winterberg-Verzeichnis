@@ -34,15 +34,11 @@ Das Besondere an dem Angebot: Wer die Testwochen bucht, profitiert ab Tag eins v
 * **Vielseitiges Kursprogramm:** Abwechslungsreiche Gruppenkurse bringen neue Motivation und Dynamik in den Trainingsalltag.
 * **Maximale Flexibilität – 365 Tage im Jahr von 06:00 bis 00:00 Uhr geöffnet:** Dank eines modernen elektronischen Zugangssystems können Mitglieder und Tester an jedem einzelnen Tag im Jahr von morgens 6 Uhr bis Mitternacht trainieren – egal ob vor der Arbeit, in der Mittagspause oder am späten Abend.
 
----
-
 ### Der perfekte Einstieg für Wintersportler, Berufstätige und Einsteiger
 
 Gerade jetzt im November ist das Schnupper-Angebot eine ideale Gelegenheit: Die Tage werden kürzer, die Skisaison im Sauerland steht vor der Tür und viele Menschen suchen nach einem motivierenden Ausgleich für die dunklere Jahreszeit. Ob zur Vorbereitung der Oberschenkel- und Rumpfmuskulatur auf die Skipiste, zur Vorbeugung von Rückenbeschwerden nach langen Bürotagen oder einfach, um fit und vital durch den Winter zu kommen: Mit der Testphase von vier, acht oder sechzehn Wochen lässt sich ohne jedes finanzielle Risiko herausfinden, wie gut regelmäßige Bewegung tut.
 
 Und wer nach der Schnupperphase merkt, wie gut das Training tut und wie herzlich die Atmosphäre am Hagenblech ist, kann im Anschluss nahtlos dabeibleiben.
-
----
 
 ### Jetzt bis zum 20. November Schnupperphase sichern
 
@@ -80,15 +76,11 @@ Het bijzondere aan de proefweken bij corpus pro: wie instapt, profiteert vanaf d
 * **Gevarieerd groepslesprogramma:** Doe mee met motiverende groepslessen voor extra energie en plezier.
 * **365 dagen per jaar geopend van 06:00 tot 24:00 uur:** Dankzij een modern elektronisch toegangssysteem kun je iedere dag van het jaar sporten wanneer het jou uitkomt – voor het werk, tijdens de lunchpauze of 's avonds laat.
 
----
-
 ### De ideale voorbereiding voor wintersporters en actieve inwoners
 
 Juist nu in november is deze kennismakingsactie een gouden kans: de dagen worden korter en het skiseizoen in Winterberg nadert snel. Of je nu je bovenbenen en romp wilt trainen voor de skipistes, rugklachten van zittend werk wilt aanpakken of gewoon lekker in beweging wilt blijven: met een proefperiode van 1, 2 of 4 maanden test je zonder enig risico wat regelmatig trainen met je doet.
 
 Bevalt de sfeer en het resultaat? Dan kun je na afloop uiteraard ontspannen lid blijven – maar altijd op jouw voorwaarden.
-
----
 
 ### Meld je aan vóór 20 november 2026
 
@@ -139,8 +131,6 @@ Vivien Schleimer steht für typgerechte Beratung und kreative Handwerkskunst. Im
 * **Typgerechte Beratung & Haarpflege:** Ehrliche Beratung zu Schnitt, Farbe und nachhaltiger Pflege für rundum gesundes Haar.
 * **Gemütliche Wohlfühlatmosphäre:** Kein stressiger Massenbetrieb, sondern persönliche Betreuung mit Zeit, Ruhe und viel Liebe zum Detail.
 
----
-
 ### Vom Spatenstich zur feierlichen Eröffnung
 
 Der Weg zum neuen Salon wurde im Dorf mit großer Begeisterung begleitet. Bereits am 7. August 2026 fand im Beisein von Vertretern der Dorfgemeinschaft und des Verkehrsvereins Niedersfeld der symbolische Spatenstich auf der Grünfläche am Josefsweg statt – das gesamte Dorf freute sich über die Wiederansiedlung des Friseurhandwerks vor Ort. 
@@ -148,8 +138,6 @@ Der Weg zum neuen Salon wurde im Dorf mit großer Begeisterung begleitet. Bereit
 Nach zügiger Bauphase öffnete der Salon pünktlich Anfang Oktober seine Türen: Nach den ersten Kundenterminen ab dem 6. Oktober folgte am Samstag, den **10. Oktober 2026**, die offizielle Eröffnungsfeier mit vielen Freunden, Nachbarn und Gratulanten.
 
 „Ich möchte einen Ort schaffen, an dem man vom ersten Augenblick an ankommen, entspannen und sich rundum verwöhnen lassen kann“, freut sich Inhaberin Vivien Schleimer über ihren erfolgreichen Start in Niedersfeld.
-
----
 
 ### Terminvereinbarung flexibel nach Absprache
 
@@ -179,15 +167,11 @@ Bij Vivien Schleimer staat persoonlijke aandacht en creatief vakmanschap centraa
 * **Persoonlijk stijladvies & haarverzorging:** Eerlijk advies afgestemd op haartype, gezichtsvorm en leefstijl.
 * **Rust en ontspanning:** Geen massale drukte, maar tijd, rust en toewijding voor elke klant.
 
----
-
 ### Van eerste schop in de grond tot feestelijke opening
 
 De komst van de nieuwe studio werd met veel enthousiasme onthaald in Niedersfeld. Na de symbolische start van de werkzaamheden in augustus en een voorspoedige bouwperiode gingen de deuren begin oktober 2026 open. Na de eerste afspraken vanaf 6 oktober volgde op zaterdag **10 oktober 2026** een drukbezochte officiële openingsreceptie met dorpsgenoten, vrienden en belangstellenden.
 
 „Ik wil een plek creëren waar je je vanaf het eerste moment thuis voelt, kunt ontspannen en optimaal wordt verzorgd“, vertelt Vivien Schleimer enthousiast over haar nieuwe kapsalon.
-
----
 
 ### Afspraken flexibel op afspraak
 
@@ -227,8 +211,6 @@ Damit eine Familie bei dieser ersten und wichtigsten Vergaberunde berücksichtig
 
 Sobald Eltern eine Zusage über das KiTaPortal erhalten, gilt eine verbindliche **Frist von 10 Tagen**, um das Platzangebot digital anzunehmen.
 
----
-
 ### Nicht nur Kitas: Auch Kindertagespflege läuft über das Portal
 Ein wichtiger Hinweis für Eltern von Kleinkindern: Über das KiTaPortal HSK werden nicht nur Plätze in Kindertageseinrichtungen (wie den Kitas in Winterberg, Siedlinghausen, Niedersfeld oder Züschen) vermittelt, sondern auch die öffentlich geförderte **Kindertagespflege**. 
 
@@ -237,8 +219,6 @@ Gerade für Kinder unter drei Jahren (U3) stellt die Betreuung bei einer qualifi
 * **Feste Bezugsperson** und individuelle Förderung im häuslichen Umfeld
 * **Hohe Flexibilität** bei Bring- und Abholzeiten
 * **Gleiche Elternbeitragstabelle** des Hochsauerlandkreises wie bei einem Kita-Platz
-
----
 
 ### Tagesmütter im Stadtgebiet Winterberg im Portrait
 
@@ -261,8 +241,6 @@ Im Stadtgebiet Winterberg stehen engagierte und zertifizierte Kindertagespflegep
 * **Kindertagespflege „Zwergenwald“ – Dorothe Sassenberg (Niedersfeld):**  
   An der Grünebacher Straße 16 setzt Dorothe Sassenberg auf viel Musik, Bewegung und kreative Entfaltung. Ausflüge in die Natur unternimmt die Gruppe mit einem modernen, elektrischen Kinderbus.  
   *Kontakt:* Instagram: **@doro_zwergenwald**
-
----
 
 ### So funktioniert die Anmeldung Schritt für Schritt
 
@@ -289,8 +267,6 @@ Om bij deze eerste en belangrijkste toewijzingsronde meegenomen te worden, moete
 
 Zodra ouders een plaatsingsovereenkomst ontvangen via het KiTaPortal, geldt een termijn van **10 dagen** om het aanbod digitaal te accepteren.
 
----
-
 ### Niet alleen crèches: ook gastouderopvang via het portal
 Een belangrijk weetje voor ouders van baby's en peuters: via het KiTaPortal HSK worden niet alleen klassieke crèches aangemeld, maar ook de door de overheid erkende en gesubsidieerde **gastouderopvang (Kindertagespflege)**.
 
@@ -299,8 +275,6 @@ Met name voor kinderen onder de drie jaar (U3) is een gastouder een zeer geliefd
 * **Vaste verzorger** en persoonlijke aandacht in een warme thuissfeer
 * **Flexibiliteit** in breng- en haaltijden
 * **Dezelfde gemeentelijke bijdragetarieven** als voor reguliere kinderopvang
-
----
 
 ### Gastouders in de gemeente Winterberg
 
@@ -323,8 +297,6 @@ In Winterberg en de dorpen staan gekwalificeerde gastouders klaar onder pedagogi
 * **Kindertagespflege „Zwergenwald“ – Dorothe Sassenberg (Niedersfeld):**  
   Gelegen aan de Grünebacher Straße 16 met een focus op muziek, motoriek en natuuruitstapjes met een elektrische kinderbus.  
   *Contact:* Instagram: **@doro_zwergenwald**
-
----
 
 ### Hoe werkt het aanmeldproces stap voor stap?
 
@@ -493,8 +465,6 @@ Het officiële openingsfeest vindt plaats op zaterdag **26 december 2026**. Met 
 
 Sonderabfälle gehören keinesfalls in den normalen Hausmüll oder in den Abfluss, da sie Umwelt und Grundwasser massiv belasten können. Zweimal jährlich bietet die Stadt Winterberg daher die mobile Schadstoffsammlung direkt vor Ort an.
 
----
-
 ## 📍 Haltestellen & Fahrplan des Schadstoffmobils
 
 Damit alle Bürgerinnen und Bürger kurze Wege haben, fährt das Spezialfahrzeug an beiden Tagen alle Ortsteile im Winterberger Stadtgebiet an:
@@ -517,8 +487,6 @@ Damit alle Bürgerinnen und Bürger kurze Wege haben, fährt das Spezialfahrzeug
 * **Neuastenberg / Lenneplätze:** 13:00 – 13:30 Uhr (Parkplatz neben Hotel Zur Post)
 * **Altastenberg:** 13:45 – 14:15 Uhr (Parkplatz gegenüber Landhotel Altastenberg)
 
----
-
 ## ⚖️ Maximale Gebindegrößen für die Abgabe
 
 Für die sichere Annahme und Verladung am Schadstoffmobil gelten strikte **Höchstgrenzen pro Gebinde**:
@@ -533,8 +501,6 @@ Für die sichere Annahme und Verladung am Schadstoffmobil gelten strikte **Höch
 | **Raumfarben, Kalk, Latex** | max. **15 Liter** |
 | **Leere Behältnisse** | max. **25 Liter** |
 
----
-
 ## ✅ Welche Sonderabfälle werden angenommen?
 Die Sammlung richtet sich ausschließlich an private Haushalte. Angenommen werden:
 * **Altfarben, Altlacke, Beizen, Holzschutzmittel**
@@ -546,21 +512,15 @@ Die Sammlung richtet sich ausschließlich an private Haushalte. Angenommen werde
 * **Altmedikamente und Altkosmetika**
 * **Spraydosen mit Restinhalt**
 
----
-
 ## 🛢️ Wichtige Regelung zu Altöl
 **Altöl wird am Schadstoffmobil ausdrücklich nicht angenommen!**  
 Der Handel ist gesetzlich verpflichtet, Altöl in der Menge kostenlos zurückzunehmen, in der frisches Motoren- oder Getriebeöl gekauft wurde. Bringen Sie Ihr Altöl daher bitte direkt zu der Verkaufsstelle (Fachhandel, Baumarkt, Tankstelle), bei der Sie das Öl erworben haben (idealerweise unter Vorlage des Kassenbons).
-
----
 
 ## ❌ Was wird am Mobil ebenfalls NICHT angenommen?
 * **Gewerbliche Sonderabfälle:** Sonderabfälle aus Industrie- und Gewerbebetrieben sind von der kommunalen Sammlung ausgeschlossen.
 * **Leuchtstoffröhren und Energiesparlampen**
 * **Autoreifen**
 * **Haushaltsbatterien:** Diese können jedoch während der regulären Öffnungszeiten **kostenlos im Bürgerservice (Bürgerbahnhof)** der Stadt Winterberg oder an den bekannten Sammelboxen im Einzelhandel abgegeben werden.
-
----
 
 ## ⚠️ Sicherheit & Vorbereitung: Richtlinien für die Anlieferung
 
@@ -569,8 +529,6 @@ Der Handel ist gesetzlich verpflichtet, Altöl in der Menge kostenlos zurückzun
 * **Originalgebinde:** Zur schnellen und eindeutigen Identifizierung sollten alle Stoffe möglichst in ihren unbeschädigten **Originalgebinden und -verpackungen** abgegeben werden.
 * **Dichte Behälter:** Flüssige Abfälle dürfen keinesfalls lose oder in undichten Gefäßen transportiert werden, sondern müssen in fest verschlossenen Behältern angeliefert werden.
 * **Vorsortierung:** Bitte liefern Sie die Abfälle nach Sorten getrennt an (z. B. getrennte Kisten, Eimer oder Tüten für Medikamente, Spraydosen, Farben/Lacke oder Pflanzenschutzmittel), um den Ablauf am Fahrzeug zu beschleunigen.
-
----
 
 ## ℹ️ Rückfragen & Kontakt
 Für weitere Auskünfte zur Schadstoffsammlung steht die Stadt Winterberg gerne zur Verfügung:  
@@ -581,8 +539,6 @@ Für weitere Auskünfte zur Schadstoffsammlung steht die Stadt Winterberg gerne 
     content_nl: `Verfresten, oplosmiddelen of bestrijdingsmiddelen in de schuur? Op **vrijdag 6 november** en **zaterdag 7 november 2026** rijdt de milieubus weer door Winterberg en alle dorpskernen om klein chemisch afval (KCA) van particulieren gratis en veilig in te zamelen.
 
 Gevaarlijk afval hoort beslist niet bij het gewone restafval of in het riool, omdat het het milieu en het grondwater ernstig kan schaden. Twee keer per jaar organiseert de gemeente Winterberg daarom deze mobiele inzameling direct op locatie.
-
----
 
 ## 📍 Dienstregeling & Haltes van de milieubus
 
@@ -604,8 +560,6 @@ Gevaarlijk afval hoort beslist niet bij het gewone restafval of in het riool, om
 * **Neuastenberg / Lenneplätze:** 13:00 – 13:30 uur (Parkeerplaats naast Hotel Zur Post)
 * **Altastenberg:** 13:45 – 14:15 uur (Parkeerplaats tegenover Landhotel Altastenberg)
 
----
-
 ## ⚖️ Maximale verpakkingsgrootte
 
 Voor een veilige inname bij het inzamelvoertuig gelden maximale hoeveelheden per verpakking:
@@ -617,20 +571,14 @@ Voor een veilige inname bij het inzamelvoertuig gelden maximale hoeveelheden per
 * **Muurverven, kalk, latex:** max. 15 liter
 * **Lege verpakkingen:** max. 25 liter
 
----
-
 ## 🛢️ Belangrijk: Motorolie (Altöl)
 **Afgewerkte motorolie wordt NIET geaccepteerd bij de milieubus!**  
 Verkooppunten zijn wettelijk verplicht om oude olie kosteloos terug te nemen bij aankoop van nieuwe olie. Lever afgewerkte olie in bij de winkel, bouwmarkt of het tankstation waar u deze hebt gekocht.
-
----
 
 ## ❌ Wat wordt verder NIET geaccepteerd?
 * **Bedrijfsafval:** Alleen gevaarlijk afval van particuliere huishoudens.
 * **Autobanden en tl-buizen / spaarlampen.**
 * **Batterijen:** Huishoudbatterijen kunnen gratis worden ingeleverd in het Bürgerbahnhof Winterberg of in de inleverbakken bij winkels.
-
----
 
 ## ⚠️ Veiligheidsvoorschriften
 * **Persoonlijk overhandigen:** Gevaarlijk afval moet persoonlijk aan de medewerkers bij de vrachtwagen worden overhandigd. Het vooraf neerzetten van chemisch afval is ten strengste verboden en geldt als illegale afvaldumping met kans op een boete.
@@ -666,8 +614,6 @@ Für den jährlichen **Falstaff Barguide** werden hunderte Bars von unabhängige
 
 Mit einer **Bewertung von 91 Punkten** knackt die Bu’ket Bar mühelos die magische 90er-Schallmauer und platziert sich in der exklusiven Riege der **„Best of Germany“**-Locations.
 
----
-
 ## Eine Location, die Winterberg extrem aufwertet
 
 Winterberg ist längst mehr als ein Eldorado für Wintersportler, Wanderer und Mountainbiker: Immer mehr Gastronomen setzen auf Qualität, Stil und niveauvollen Genuss. Die Bu’ket Bar von Inhaber Dominic Bruckmann setzt hierbei ganz neue Maßstäbe.
@@ -675,8 +621,6 @@ Winterberg ist längst mehr als ein Eldorado für Wintersportler, Wanderer und M
 Mit ihrem modernen, warmen Interieur, gemütlichen Sitzecken und dem separaten *Patron Room* bringt die Bar ein urbanes Flair ins Sauerland, das man sonst nur in europäischen Metropolen vermuten würde. Neben anspruchsvollen Cocktail-Klassikern und kreativen Signature-Drinks – von perfekt balancierten Sours bis hin zu komplexen Mocktails (alkoholfreie Cocktails) – begeistert die Location durch ihre integrierte Vinothek mit handverlesenen Weinen renommierter Winzer.
 
 Zusätzlich bietet die Bar ein abwechslungsreiches Event-Programm: Von moderierten Weintastings über professionelle Cocktail-Workshops bis hin zu beliebten Pub-Quiz-Abenden und exklusiven Feiern für geschlossene Gesellschaften.
-
----
 
 ## Absolut einen Besuch wert!
 
@@ -703,8 +647,6 @@ Lassen Sie sich von den Cocktail-Kreationen des Bar-Teams verzaubern und erleben
 De **Falstaff** geldt in het Duitstalige gebied als het toonaangevende medium voor gastronomie, wijn en hoogwaardige barkeeperskunst – vergelijkbaar met de *Michelingids* voor de restaurantwereld.
 
 Voor de jaarlijkse bargids beoordelen onafhankelijke deskundigen honderden cocktail- en wijnlocaties op het gebied van drinkkwaliteit, vakkennis, sfeer en assortiment. Met een score van **91 punten** behoort de Bu’ket Bar officieel tot de nationale topklasse.
-
----
 
 ## Een enorme verrijking voor Winterberg
 
@@ -739,8 +681,6 @@ Een absolute aanrader voor iedereen die houdt van goed glas en een gastvrije amb
 
 Wir haben alle wichtigen Veranstaltungen, Zeiten, Eintrittspreise und Highlights für das schaurigste Wochenende des Jahres für Sie zusammengefasst!
 
----
-
 ## 1. Halloween in der Tenne! Kids Edition (15:00 – 18:00 Uhr)
 
 ![Halloween Kids Edition in der Tenne Winterberg](/events-halloween-tenne-kids.jpg)
@@ -754,8 +694,6 @@ Für die Eltern gibt es ein echtes Rundum-Sorglos-Paket: Alle Leistungen sind im
 * **Wichtiger Hinweis:** Die Eltern bringen ihre Kinder bitte um 15:00 Uhr und holen sie um 18:00 Uhr wieder ab. Zudem muss die Einverständniserklärung der Eltern unterschrieben mitgebracht werden.
 * **Tickets:** Digitaler Vorverkauf direkt über den [Tenne-Ticketshop](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-kids-edition-2/).
 
----
-
 ## 2. Halloween-Nacht der Kolpingjugend Züschen an der Skiclubhütte (ab 17:00 Uhr)
 
 ![Halloween-Nacht der Kolpingjugend Züschen](/events-halloween-kolpingjugend-zueschen.png)
@@ -767,8 +705,6 @@ Auch im idyllischen Höhendorf Züschen wird Halloween gebührend gefeiert: Die 
 * **Kosten:** 20,00 € für Mitglieder der Kolpingjugend, 25,00 € für Nicht-Mitglieder.
 * **Anmeldung:** Eine vorherige Anmeldung ist per WhatsApp unter [0151 2073 1587](https://wa.me/4915120731587) erforderlich.
 
----
-
 ## 3. Der verfluchte Keller – Halloween im Hessenkeller (ab 17:00 Uhr)
 
 ![Der verfluchte Keller – Halloween im Hessenkeller Winterberg](/events-halloween-hessenkeller.png)
@@ -779,8 +715,6 @@ Für alle Gruselfreunde ab 16 Jahren öffnet der Hessenkeller am Waltenberg sein
 * **Eintritt:** Freier Eintritt für alle Gäste (Einlass ab 16 Jahren).
 * **Highlights:** Zur Begrüßung wartet ein spezieller Überraschungs-Longdrink, dazu gibt es kleine schaurige Snacks, knisternde Atmosphäre im historischen Kellergewölbe und die passende Soundkulisse.
 * **Ort:** Hessenkeller Winterberg, Am Waltenberg 1, 59955 Winterberg.
-
----
 
 ## 4. Halloween Party im Blackwater Irish Pub mit Owen Casey (ab 21:00 Uhr)
 
@@ -796,8 +730,6 @@ Wenn sich irische Gemütlichkeit mit echtem Halloween-Grusel verbindet, bebt die
 * **Eintritt:** Schlanke 3,00 € an der Abendkasse.
 * **Atmosphäre:** Frisch gezapftes Guinness, kühle Drinks, ausgehöhlte Kürbisse und die legendär-herzliche Pub-Atmosphäre mitten im Herzen Winterbergs.
 
----
-
 ## 5. Die legendäre Halloween-Kultparty in der Tenne (ab 20:00 Uhr)
 
 ![Halloween Party für Erwachsene in der Tenne Winterberg](/events-halloween-tenne-adults.jpg)
@@ -810,8 +742,6 @@ Wer bis in die frühen Morgenstunden tanzen möchte, kommt an der Tenne Winterbe
   * **2. Preis:** 100,00 € in bar
   * **3. Preis:** 50,00 € in bar
 * **Tickets & Einlass:** Samstag, 31.10.2026 ab 20:00 Uhr. Online-Vorverkauf zum Sparpreis von **8,50 €** direkt auf [tenne-winterberg.de](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-2/) oder 10,00 € an der Abendkasse.
-
----
 
 :::contact
 ### Alle Halloween-Events 2026 auf einen Blick
@@ -828,8 +758,6 @@ Wer bis in die frühen Morgenstunden tanzen möchte, kommt an der Tenne Winterbe
 
 Hieronder vindt u het complete overzicht van alle Halloween-activiteiten, aanvangstijden, prijzen en hoogtepunten in Winterberg!
 
----
-
 ## 1. Halloween in de Tenne! Kids Edition (15:00 – 18:00 uur)
 
 ![Halloween Kids Edition in de Tenne Winterberg](/events-halloween-tenne-kids.jpg)
@@ -843,8 +771,6 @@ Voor ouders is er een compleet all-inclusive pakket: alle activiteiten, hapjes e
 * **Belangrijk:** Ouders brengen hun kinderen om 15:00 uur en halen hen om 18:00 uur weer op. Een ondertekende toestemmingsverklaring van de ouders is verplicht bij binnenkomst.
 * **Tickets:** Online tickets zijn vooraf verkrijgbaar via de [Tenne ticketshop](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-kids-edition-2/).
 
----
-
 ## 2. Halloween-nacht van de Kolpingjugend Züschen bij de Skiclubhütte (vanaf 17:00 uur)
 
 ![Halloween-nacht van de Kolpingjugend Züschen](/events-halloween-kolpingjugend-zueschen.png)
@@ -856,8 +782,6 @@ Ook in het idyllische bergdorp Züschen staat Halloween centraal: de jeugdorgani
 * **Kosten:** € 20,00 voor leden van de Kolpingjugend, € 25,00 voor niet-leden.
 * **Aanmelden:** Vooraf aanmelden per WhatsApp via [+49 151 2073 1587](https://wa.me/4915120731587).
 
----
-
 ## 3. De vervloekte kelder – Halloween in de Hessenkeller (vanaf 17:00 uur)
 
 ![De vervloekte kelder – Halloween in de Hessenkeller](/events-halloween-hessenkeller.png)
@@ -868,8 +792,6 @@ Voor jongeren en volwassenen vanaf 16 jaar opent de karakteristieke Hessenkeller
 * **Toegang:** Gratis entree voor iedereen (vanaf 16 jaar).
 * **Hoogtepunten:** Een speciale verrassingslongdrink, lekkere borrelhapjes, een unieke gewelvenkelder-sfeer en passende muziek.
 * **Locatie:** Hessenkeller Winterberg, Am Waltenberg 1, 59955 Winterberg.
-
----
 
 ## 4. Halloween Party in The Blackwater Irish Pub met Owen Casey (vanaf 21:00 uur)
 
@@ -885,8 +807,6 @@ Wanneer Ierse gezelligheid samensmelt met Halloween, staat de Nuhnestraße op z'
 * **Entree:** Slechts € 3,00 aan de kassa.
 * **Ambiance:** Vers getapt Guinness, griezelige kostuums, pompoenen en de warme sfeer van de Ierse pub in het centrum van Winterberg.
 
----
-
 ## 5. De legendarische Halloween-cultparty in Die Tenne (vanaf 20:00 uur)
 
 ![Halloween Party voor volwassenen in Die Tenne Winterberg](/events-halloween-tenne-adults.jpg)
@@ -899,8 +819,6 @@ Wie tot in de vroege uurtjes wil dansen, mag de Halloween-nacht in Die Tenne nie
   * **2e prijs:** € 100,00 contant
   * **3e prijs:** € 50,00 contant
 * **Tickets & aanvang:** Zaterdag 31.10.2026 vanaf 20:00 uur. Online voorverkoop voor **€ 8,50** via [tenne-winterberg.de](https://tenne-winterberg.de/veranstaltung/halloween-in-der-tenne-2/) of € 10,00 aan de avondkassa.
-
----
 
 :::contact
 ### Alle Halloween-events 2026 op een rij

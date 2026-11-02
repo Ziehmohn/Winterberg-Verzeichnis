@@ -276,7 +276,7 @@ export function NewsContentRenderer({ content }: { key?: React.Key; content: str
     <div className="space-y-6">
       {blocks.map((block, index) => {
         const trimmed = block.trim();
-        if (!trimmed) return null;
+        if (!trimmed || /^[\-_*]{3,}$/.test(trimmed)) return null;
 
         // 0. Markdown Images (![alt](src))
         const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
