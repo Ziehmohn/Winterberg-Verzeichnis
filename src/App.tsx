@@ -126,6 +126,7 @@ import FavoritesDrawer from './components/FavoritesDrawer';
 import { useFavorites } from './utils/favorites';
 import { isAdminEmail } from './utils/admin';
 import { PushNotificationStatsCard } from './components/PushNotificationStatsCard';
+import { setupForegroundPushListener } from './services/pushNotificationService';
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   state = { hasError: false, error: null as Error | null };
@@ -446,6 +447,24 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState<string>(defaultCategory);
   const [isNotFound, setIsNotFound] = useState(initialNotFound);
   const [unsubscribeBusinessId, setUnsubscribeBusinessId] = useState<string | null>(null);
+  const [foregroundPushToast, setForegroundPushToast] = useState<{ title: string; body: string; url: string } | null>(null);
+
+  useEffect(() => {
+    let unsubscribe: any = null;
+    setupForegroundPushListener((payload) => {
+      const title = payload.notification?.title || payload.data?.title || 'Winterberg News';
+      const body = payload.notification?.body || payload.data?.body || 'Neuigkeiten aus Winterberg';
+      const rawUrl = payload.data?.url || payload.data?.link || '/news';
+      const url = rawUrl.startsWith('http') ? rawUrl : `${window.location.origin}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl}`;
+      setForegroundPushToast({ title, body, url });
+    }).then(unsub => {
+      unsubscribe = unsub;
+    });
+
+    return () => {
+      if (typeof unsubscribe === 'function') unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -4924,6 +4943,51 @@ export default function App() {
       <DynamicScriptLoader />
       <PwaInstallPrompt lang={lang} />
 
+      {/* Foreground Push Notification Toast */}
+      {foregroundPushToast && (
+        <div className="fixed top-5 right-5 z-[9999] max-w-sm w-full bg-white border-2 border-[#0F4C2E] rounded-xl p-4 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 rounded-lg bg-[#0F4C2E] text-white flex items-center justify-center shrink-0 shadow-xs">
+              <Bell className="w-5 h-5 animate-bounce" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] font-bold text-[#0F4C2E] uppercase tracking-wider mb-0.5">
+                Eilmeldung
+              </div>
+              <div className="text-sm font-bold text-gray-900 truncate">
+                {foregroundPushToast.title}
+              </div>
+              <div className="text-xs text-gray-600 line-clamp-2 mt-0.5">
+                {foregroundPushToast.body}
+              </div>
+              <div className="mt-2.5 flex items-center gap-2">
+                <a
+                  href={foregroundPushToast.url}
+                  onClick={() => setForegroundPushToast(null)}
+                  className="px-3 py-1 bg-[#0F4C2E] hover:bg-[#0b3822] text-white text-xs font-bold rounded transition-colors inline-block"
+                >
+                  Jetzt lesen &rarr;
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setForegroundPushToast(null)}
+                  className="px-2 py-1 text-xs text-gray-500 hover:text-gray-800 cursor-pointer"
+                >
+                  Schließen
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setForegroundPushToast(null)}
+              className="text-gray-400 hover:text-gray-600 cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* User Favorites Drawer (Merkliste) */}
       <FavoritesDrawer
         isOpen={isFavoritesOpen}
@@ -5199,11 +5263,28 @@ function NewsAdminPanel({ theme, activeThemeKey, businesses }: { theme?: any; ac
 
   const handleToggleStatus = async (id: string, currentStatus: 'pending' | 'approved') => {
     const nextStatus = currentStatus === 'pending' ? 'approved' : 'pending';
+    const targetItem = news.find(item => item.id === id);
     try {
       await setDoc(doc(db, 'news', id), { status: nextStatus }, { merge: true });
       setNews(prev => prev.map(item => item.id === id ? { ...item, status: nextStatus } : item));
       invalidateCache(CACHE_KEYS.NEWS);
       bumpRemoteBusinessesVersion(db);
+
+      // If newly approved, trigger push notification to subscribers
+      if (nextStatus === 'approved' && targetItem) {
+        const articleSlug = targetItem.slug || slugify(targetItem.title || '');
+        const cleanContent = (targetItem.content || '').replace(/[#*`_\[\]()]/g, '').trim();
+        fetch('/api/send-news-push', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: targetItem.title,
+            body: cleanContent.slice(0, 140) + (cleanContent.length > 140 ? '...' : ''),
+            url: `/news/${articleSlug}`,
+            imageUrl: targetItem.imageUrl || undefined
+          })
+        }).catch(pushErr => console.warn('Could not dispatch push notification on approval:', pushErr));
+      }
     } catch (e) {
       console.error(e);
       alert('Fehler beim Aktualisieren des Status');
