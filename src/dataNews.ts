@@ -124,7 +124,6 @@ Wil je profiteren van deze flexibele testformule? Wees er dan op tijd bij: aanme
     businessId: "kampmanns-haarstudio-niedersfeld",
     businessName: "Kampmanns Haarstudio",
     businessSlug: "kampmanns-haarstudio-niedersfeld",
-    isBusinessNews: true,
     imageUrl: "/kampmanns-haarstudio-niedersfeld.jpg",
     imageCredit: "Kampmanns Haarstudio / Vivien Schleimer",
     status: 'approved',
