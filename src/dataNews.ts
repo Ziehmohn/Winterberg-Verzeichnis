@@ -126,7 +126,7 @@ Wil je profiteren van deze flexibele testformule? Wees er dan op tijd bij: aanme
     date: "2026-11-02T10:00:00.000Z",
     content: `Große Freude in Niedersfeld: Mit **Kampmanns Haarstudio** am Josefsweg 1 gibt es wieder einen modernen Friseursalon mitten im Dorf! Nach 13 Jahren erfolgreicher Berufserfahrung im Friseurhandwerk hat Inhaberin **Vivien Schleimer** den Schritt in die Selbstständigkeit gewagt und ihren lang gehegten Traum vom eigenen Salon verwirklicht.
 
-Die neu errichteten, stilvollen Räumlichkeiten in markanter Anthrazit-Optik mit warmen Holzlamellen liegen idyllisch auf der Grünfläche direkt neben dem traditionsreichen Josefshaus in Niedersfeld. Hier trifft modernes Salon-Ambiente auf eine gemütliche, persönliche Atmosphäre zum Wohlfühlen.
+Die neu errichteten Räumlichkeiten am Josefsweg 1 liegen direkt neben dem Josefshaus in Niedersfeld. Das Gebäude mit anthrazitfarbener Fassade und Holzlamellen bietet einen modernen Salon in gemütlicher Atmosphäre.
 
 ![Kampmanns Haarstudio in Niedersfeld](/kampmanns-haarstudio-niedersfeld.jpg)
 
@@ -166,7 +166,7 @@ Um jeder Kundin und jedem Kunden die volle Aufmerksamkeit ohne Hektik und lange 
 :::`,
     content_nl: `Groot nieuws voor Niedersfeld: met **Kampmanns Haarstudio** aan de Josefsweg 1 heeft het dorp er weer een eigentijdse, sfeervolle kapsalon bij! Na 13 jaar professionele ervaring in het kappersvak heeft eigenaresse **Vivien Schleimer** de stap naar het zelfstandig ondernemerschap gezet om haar passie in een eigen salon vorm te geven.
 
-Het nieuw gerealiseerde, moderne gebouw met stijlvolle antracietkleurige gevel en warme houten lamellen ligt op een idyllische plek direct naast het historische Josefshaus in Winterberg-Niedersfeld.
+Het nieuw gerealiseerde gebouw aan de Josefsweg 1 bevindt zich direct naast het Josefshaus in Niedersfeld. De salon met antracietkleurige gevel en houten lamellen biedt een moderne en rustige omgeving.
 
 ![Kampmanns Haarstudio in Niedersfeld](/kampmanns-haarstudio-niedersfeld.jpg)
 
