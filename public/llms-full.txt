@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (469 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (470 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1694,6 +1694,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Elektro Hankeln (Markus Hankeln) aan de Ruhrstraße 29 in Winterberg-Niedersfeld is het vertrouwde elektrobedrijf en witgoedspeciaalzaak. Van vakkundige elektro-installaties, verlichting en wallboxen tot de verkoop en reparatie van wasmachines, koelkasten en huishoudelijke apparatuur.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/elektriker/elektro-hankeln-installation-und-haushaltswaren
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/elektriciens/elektro-hankeln-installation-und-haushaltswaren
+
+#### [Kampmanns Haarstudio](https://www.winterberg-verzeichnis.de/handwerk/friseur/kampmanns-haarstudio)
+- **Kategorie:** Handwerk > Friseur
+- **Ort / Ortsteil:** Niedersfeld
+- **Adresse:** Josefsweg 1, 59955 Winterberg-Niedersfeld
+- **Telefon:** 0160 4168757
+- **Beschreibung (DE):** Moderner Friseursalon von Vivien Schleimer in Winterberg-Niedersfeld. Individuelle Beratung, typgerechte Haarschnitte, frische Farbtechniken und kreatives Styling mit Liebe zum Detail in entspannter Wohlfühlatmosphäre.
+- **Beschreibung (NL):** Moderne kapsalon van Vivien Schleimer in Winterberg-Niedersfeld. Persoonlijk advies, eigentijdse kapsels, frisse kleurtechnieken en styling met oog voor detail in een sfeervolle salon.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/handwerk/friseur/kampmanns-haarstudio
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ambacht/kappers/kampmanns-haarstudio
 
 ### Kategorie: Einzelhandel
 

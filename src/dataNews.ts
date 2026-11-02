@@ -2,6 +2,214 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "corpus-pro-winterberg-testaktion-ohne-vertragsbindung-2026",
+    slug: "corpus-pro-winterberg-fitnessstudio-testen-ohne-lange-vertragsbindung",
+    slug_nl: "corpus-pro-winterberg-sportschool-uitproberen-zonder-langdurig-abonnement",
+    title: "Fitnessstudio testen ohne lange Vertragsbindung: Schnupper-Wochen bei corpus pro in Winterberg",
+    title_nl: "Sportschool uitproberen zonder langdurig abonnement: flexibele proefweken bij corpus pro in Winterberg",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "corpus-pro-winterberg",
+    businessName: "corpus pro Winterberg",
+    businessSlug: "ski-bike-sport/fitnessstudios/corpus-pro-winterberg",
+    isBusinessNews: true,
+    imageUrl: "/news-corpus-pro-winterberg.jpg",
+    imageCredit: "Foto: corpus pro Winterberg",
+    status: 'approved',
+    category: 'freizeit',
+    date: "2026-11-02T10:15:00.000Z",
+    content: `Wer fitter, kräftiger oder beweglicher durch den Winter kommen möchte – oder schon jetzt gezielt die Muskulatur für die anstehende Wintersportsaison vorbereiten will –, steht oft vor der gleichen Hürde: Lohnt sich die Anmeldung in einem Fitnessstudio und möchte man sich direkt für ein oder zwei Jahre vertraglich binden? Für alle Interessierten, die das Training im Studio unverbindlich und flexibel kennenlernen möchten, hat das moderne Fitness- und Gesundheitsstudio **corpus pro Winterberg** (Am Hagenblech 73) jetzt eine attraktive Aktion gestartet: Noch bis zum **20. November 2026** kann das Studio wahlweise für **4 Wochen, 8 Wochen oder 16 Wochen** getestet werden – ganz ohne langes Abonnement!
+
+„Die Halbzeit ist eingeläutet! So schnell sind 4 Wochen vergangen und die letzten 4 Wochen unserer Aktion starten jetzt“, teilt das Team von corpus pro Winterberg auf seinem Instagram-Kanal mit. Noch bis zum 20. November haben Fitnessbegeisterte und Neueinsteiger die Wahl zwischen drei flexiblen Schnupper-Modellen:
+
+* **4 Wochen testen:** einmalig für **56 €**
+* **8 Wochen testen:** für **50 € pro Monat** (nur 100 € Gesamttestpreis)
+* **16 Wochen testen:** für **44 € pro Monat** (nur 176 € Gesamttestpreis)
+
+![Testaktion im corpus pro Winterberg – 4, 8 oder 16 Wochen flexibel trainieren](/news-corpus-pro-winterberg-aktion.png)
+
+### Das Rundum-sorglos-Paket: Was ist in der Testphase enthalten?
+
+Das Besondere an dem Angebot: Wer die Testwochen bucht, profitiert ab Tag eins vom vollen Leistungsspektrum des Studios. Bei corpus pro gibt es während der Schnupperzeit keine Einschränkungen – alle wichtigen Bausteine für einen erfolgreichen und gesunden Trainingsstart sind inklusive:
+
+* **Individuelle Trainingsplanerstellung:** Kein zielloses Ausprobieren an Geräten – erfahrene Trainer erstellen einen persönlichen, auf die individuellen Ziele abgestimmten Trainingsplan (z. B. Muskelaufbau, Gewichtsreduktion, Rückenstärkung oder Ausdauer).
+* **Getränke-Flatrate:** Frische Mineral- und Fitnessgetränke an der modernen Schankanlage stehen während jedes Trainings kostenfrei zur Verfügung.
+* **Ganzheitliches Beweglichkeitskonzept:** Neben klassischem Gerätetraining setzt corpus pro auf ein gezieltes Mobilitäts- und Faszientraining, um Verspannungen zu lösen, die Gelenkgesundheit zu fördern und die Beweglichkeit spürbar zu verbessern.
+* **Vielseitiges Kursprogramm:** Abwechslungsreiche Gruppenkurse bringen neue Motivation und Dynamik in den Trainingsalltag.
+* **Maximale Flexibilität – 365 Tage im Jahr von 06:00 bis 00:00 Uhr geöffnet:** Dank eines modernen elektronischen Zugangssystems können Mitglieder und Tester an jedem einzelnen Tag im Jahr von morgens 6 Uhr bis Mitternacht trainieren – egal ob vor der Arbeit, in der Mittagspause oder am späten Abend.
+
+---
+
+### Der perfekte Einstieg für Wintersportler, Berufstätige und Einsteiger
+
+Gerade jetzt im November ist das Schnupper-Angebot eine ideale Gelegenheit: Die Tage werden kürzer, die Skisaison im Sauerland steht vor der Tür und viele Menschen suchen nach einem motivierenden Ausgleich für die dunklere Jahreszeit. Ob zur Vorbereitung der Oberschenkel- und Rumpfmuskulatur auf die Skipiste, zur Vorbeugung von Rückenbeschwerden nach langen Bürotagen oder einfach, um fit und vital durch den Winter zu kommen: Mit der Testphase von vier, acht oder sechzehn Wochen lässt sich ohne jedes finanzielle Risiko herausfinden, wie gut regelmäßige Bewegung tut.
+
+Und wer nach der Schnupperphase merkt, wie gut das Training tut und wie herzlich die Atmosphäre am Hagenblech ist, kann im Anschluss nahtlos dabeibleiben.
+
+---
+
+### Jetzt bis zum 20. November Schnupperphase sichern
+
+Wer die Sonderkonditionen nutzen möchte, sollte die verbleibende Aktionszeit nutzen: Der Einstieg in die flexiblen Testwochen ist noch **bis Freitag, den 20. November 2026** möglich. Interessierte können direkt vor Ort im Studio vorbeischauen, sich vorab telefonisch informieren oder das Team über die Social-Media-Kanäle kontaktieren.
+
+:::contact
+### corpus pro Winterberg – Alle Details zur Testaktion
+* **Studio:** corpus pro Winterberg
+* **Adresse:** Am Hagenblech 73, 59955 Winterberg
+* **Telefon:** [02981 9199837](tel:029819199837)
+* **Öffnungszeiten:** Täglich 06:00 – 00:00 Uhr (365 Tage im Jahr mit Transponder)
+* **Aktionsende Schnupperwochen:** Bis zum 20. November 2026 buchbar
+* **Testkonditionen:** 4 Wochen für 56 € · 8 Wochen für 50 €/Monat · 16 Wochen für 44 €/Monat
+* **Inklusive:** Trainingsplanerstellung, Mineralgetränke, Beweglichkeitskonzept, Kurse & 365-Tage-Nutzung
+* **Website:** [corpus-pro.com](https://corpus-pro.com)
+* **Instagram:** [@corpus.pro.winterberg](https://www.instagram.com/corpus.pro.winterberg/)
+* **Unternehmensprofil im Verzeichnis:** [Zum Profil von corpus pro Winterberg](/ski-bike-sport/fitnessstudios/corpus-pro-winterberg)
+:::
+`,
+    content_nl: `Wie fitter, sterker of soepeler het najaar en de winter in wil gaan – of alvast zijn beenspieren wil voorbereiden op het komende wintersportseizoen in het Sauerland –, stuit vaak op dezelfde drempel: past een sportschool wel bij mij en wil ik direct vastzitten aan een jaar- of tweejarig contract? Voor iedereen die vrijblijvend wil ontdekken of fitnesstraining bij hen past, heeft het moderne fitness- en gezondheidscentrum **corpus pro Winterberg** (Am Hagenblech 73) nu een aantrekkelijke actie gelanceerd: tot en met **20 november 2026** kan de sportschool flexibel worden uitgeprobeerd voor **4 weken, 8 weken of 16 weken** – geheel zonder langdurige contractverplichting!
+
+„De rustperiode is voorbij en de tweede helft van onze actieperiode is ingegaan! Zo snel zijn 4 weken voorbijgegaan en de laatste 4 weken starten nu“, meldt het team van corpus pro op Instagram. Nog tot 20 november hebben sportievelingen en beginners de keuze uit drie transparante proefpakketten:
+
+* **4 weken proberen:** eenmalig **€ 56**
+* **8 weken proberen:** voor **€ 50 per maand** (slechts € 100 totaal)
+* **16 weken proberen:** voor **€ 44 per maand** (slechts € 176 totaal)
+
+![Proefactie bij corpus pro Winterberg – 4, 8 of 16 weken flexibel trainen](/news-corpus-pro-winterberg-aktion.png)
+
+### All-inclusive proefpakket: wat zit er allemaal in?
+
+Het bijzondere aan de proefweken bij corpus pro: wie instapt, profiteert vanaf de allereerste training van het volledige premiumaanbod van de studio. Geen beperkingen of verborgen kosten, maar direct een verantwoorde en complete sportervaring:
+
+* **Persoonlijk trainingsschema op maat:** Geen doelloos uitproberen – ervaren trainers stellen een op maat gemaakt schema op, afgestemd op persoonlijke doelen (spieropbouw, conditie, rugklachten verminderen of afvallen).
+* **Onbeperkt sportdrank:** Verse mineraal- en fitnessdrankjes uit de tap zijn tijdens elke trainingssessie inbegrepen.
+* **Innovatief mobiliteitsconcept:** Naast traditionele fitnessapparatuur biedt corpus pro gerichte mobiliteits- en rekconcepten om spierspanningen te verlichten en de gewrichten soepel te houden.
+* **Gevarieerd groepslesprogramma:** Doe mee met motiverende groepslessen voor extra energie en plezier.
+* **365 dagen per jaar geopend van 06:00 tot 24:00 uur:** Dankzij een modern elektronisch toegangssysteem kun je iedere dag van het jaar sporten wanneer het jou uitkomt – voor het werk, tijdens de lunchpauze of 's avonds laat.
+
+---
+
+### De ideale voorbereiding voor wintersporters en actieve inwoners
+
+Juist nu in november is deze kennismakingsactie een gouden kans: de dagen worden korter en het skiseizoen in Winterberg nadert snel. Of je nu je bovenbenen en romp wilt trainen voor de skipistes, rugklachten van zittend werk wilt aanpakken of gewoon lekker in beweging wilt blijven: met een proefperiode van 1, 2 of 4 maanden test je zonder enig risico wat regelmatig trainen met je doet.
+
+Bevalt de sfeer en het resultaat? Dan kun je na afloop uiteraard ontspannen lid blijven – maar altijd op jouw voorwaarden.
+
+---
+
+### Meld je aan vóór 20 november 2026
+
+Wil je profiteren van deze flexibele testformule? Wees er dan op tijd bij: aanmelden voor de proefweken kan nog **tot en met vrijdag 20 november 2026**. Loop gerust binnen bij de studio aan de Am Hagenblech 73, informeer telefonisch of neem contact op via Instagram.
+
+:::contact
+### corpus pro Winterberg – Details van de proefactie
+* **Studio:** corpus pro Winterberg
+* **Adres:** Am Hagenblech 73, 59955 Winterberg
+* **Telefoon:** [+49 2981 9199837](tel:004929819199837)
+* **Openingstijden:** Dagelijks 06:00 – 24:00 uur (365 dagen per jaar met transponder)
+* **Actie geldig tot:** Inschrijven mogelijk t/m 20 november 2026
+* **Proeftarieven:** 4 weken voor € 56 · 8 weken voor € 50/maand · 16 weken voor € 44/maand
+* **Inclusief:** Trainingsschema, sportdrank, mobiliteitsconcept, groepslessen & 365-dagen toegang
+* **Website:** [corpus-pro.com](https://corpus-pro.com)
+* **Instagram:** [@corpus.pro.winterberg](https://www.instagram.com/corpus.pro.winterberg/)
+* **Bedrijfsprofiel in de gids:** [Bekijk profiel corpus pro Winterberg](/ski-bike-sport/fitnessstudios/corpus-pro-winterberg)
+:::
+`
+  },
+  {
+    id: "kampmanns-haarstudio-niedersfeld-eroeffnung-vivien-schleimer",
+    slug: "kampmanns-haarstudio-niedersfeld-eroeffnung-vivien-schleimer",
+    slug_nl: "kampmanns-haarstudio-niedersfeld-opening-vivien-schleimer",
+    title: "Frischer Wind fürs Haar in Niedersfeld: Vivien Schleimer eröffnet „Kampmanns Haarstudio“ am Josefsweg",
+    title_nl: "Frisse wind voor je haar in Niedersfeld: Vivien Schleimer opent „Kampmanns Haarstudio“ aan de Josefsweg",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "kampmanns-haarstudio-niedersfeld",
+    businessName: "Kampmanns Haarstudio",
+    businessSlug: "kampmanns-haarstudio-niedersfeld",
+    isBusinessNews: true,
+    imageUrl: "/kampmanns-haarstudio-niedersfeld.jpg",
+    imageCredit: "Kampmanns Haarstudio / Vivien Schleimer",
+    status: 'approved',
+    category: 'wirtschaft',
+    date: "2026-11-02T10:00:00.000Z",
+    content: `Große Freude in Niedersfeld: Mit **Kampmanns Haarstudio** am Josefsweg 1 gibt es wieder einen modernen Friseursalon mitten im Dorf! Nach 13 Jahren erfolgreicher Berufserfahrung im Friseurhandwerk hat Inhaberin **Vivien Schleimer** den Schritt in die Selbstständigkeit gewagt und ihren lang gehegten Traum vom eigenen Salon verwirklicht.
+
+Die neu errichteten, stilvollen Räumlichkeiten in markanter Anthrazit-Optik mit warmen Holzlamellen liegen idyllisch auf der Grünfläche direkt neben dem traditionsreichen Josefshaus in Niedersfeld. Hier trifft modernes Salon-Ambiente auf eine gemütliche, persönliche Atmosphäre zum Wohlfühlen.
+
+![Kampmanns Haarstudio in Niedersfeld](/kampmanns-haarstudio-niedersfeld.jpg)
+
+### Handwerkskunst, moderne Trends und Liebe zum Detail
+
+Vivien Schleimer steht für typgerechte Beratung und kreative Handwerkskunst. Im Mittelpunkt ihrer Philosophie steht das Wohlbefinden ihrer Kundinnen und Kunden – vom ersten Moment des Betretens bis zum fertigen Look:
+
+* **Moderne Damen-, Herren- und Kinderhaarschnitte:** Ob zeitloser Schnitt, lässiger Freizeit-Look oder aktuelle Trend-Stylings.
+* **Frische Farben & Strähnentechniken:** Strahlende Colorationen, softe Highlights und typgerechte Farbkonzepte, die den individuellen Stil perfekt unterstreichen.
+* **Typgerechte Beratung & Haarpflege:** Ehrliche Beratung zu Schnitt, Farbe und nachhaltiger Pflege für rundum gesundes Haar.
+* **Gemütliche Wohlfühlatmosphäre:** Kein stressiger Massenbetrieb, sondern persönliche Betreuung mit Zeit, Ruhe und viel Liebe zum Detail.
+
+---
+
+### Vom Spatenstich zur feierlichen Eröffnung
+
+Der Weg zum neuen Salon wurde im Dorf mit großer Begeisterung begleitet. Bereits am 7. August 2026 fand im Beisein von Vertretern der Dorfgemeinschaft und des Verkehrsvereins Niedersfeld der symbolische Spatenstich auf der Grünfläche am Josefsweg statt – das gesamte Dorf freute sich über die Wiederansiedlung des Friseurhandwerks vor Ort. 
+
+Nach zügiger Bauphase öffnete der Salon pünktlich Anfang Oktober seine Türen: Nach den ersten Kundenterminen ab dem 6. Oktober folgte am Samstag, den **10. Oktober 2026**, die offizielle Eröffnungsfeier mit vielen Freunden, Nachbarn und Gratulanten.
+
+„Ich möchte einen Ort schaffen, an dem man vom ersten Augenblick an ankommen, entspannen und sich rundum verwöhnen lassen kann“, freut sich Inhaberin Vivien Schleimer über ihren erfolgreichen Start in Niedersfeld.
+
+---
+
+### Terminvereinbarung flexibel nach Absprache
+
+Um jeder Kundin und jedem Kunden die volle Aufmerksamkeit ohne Hektik und lange Wartezeiten widmen zu können, vergibt Kampmanns Haarstudio Termine flexibel nach vorheriger Vereinbarung – ganz bequem telefonisch oder unkompliziert per WhatsApp.
+
+:::contact
+### Kampmanns Haarstudio – Alle Infos auf einen Blick
+* **Inhaberin:** Vivien Schleimer
+* **Adresse:** Josefsweg 1, 59955 Winterberg-Niedersfeld (neben dem Josefshaus)
+* **Telefon & WhatsApp:** [0160 4168757](tel:01604168757)
+* **Öffnungszeiten:** Termine flexibel nach Vereinbarung (Mo–Sa)
+* **Leistungen:** Damen-, Herren- & Kinderhaarschnitte · Colorationen & Strähnen · Styling & Typberatung
+* **Unternehmensprofil im Verzeichnis:** [Zum Profil von Kampmanns Haarstudio](/unternehmer/handwerk/friseur/kampmanns-haarstudio-niedersfeld)
+:::`,
+    content_nl: `Groot nieuws voor Niedersfeld: met **Kampmanns Haarstudio** aan de Josefsweg 1 heeft het dorp er weer een eigentijdse, sfeervolle kapsalon bij! Na 13 jaar professionele ervaring in het kappersvak heeft eigenaresse **Vivien Schleimer** de stap naar het zelfstandig ondernemerschap gezet om haar passie in een eigen salon vorm te geven.
+
+Het nieuw gerealiseerde, moderne gebouw met stijlvolle antracietkleurige gevel en warme houten lamellen ligt op een idyllische plek direct naast het historische Josefshaus in Winterberg-Niedersfeld.
+
+![Kampmanns Haarstudio in Niedersfeld](/kampmanns-haarstudio-niedersfeld.jpg)
+
+### Vakmanschap, eigentijdse trends en oog voor detail
+
+Bij Vivien Schleimer staat persoonlijke aandacht en creatief vakmanschap centraal. Klanten genieten van een ontspannen verwenmoment in een gezellige ambiance:
+
+* **Eigentijdse dames-, heren- en kinderkapsels:** Van tijdloze coupes tot moderne stylingtrends.
+* **Frisse haarkleuringen & highlights:** Levendige kleuren, stralende balayage en vakkundige folietechnieken.
+* **Persoonlijk stijladvies & haarverzorging:** Eerlijk advies afgestemd op haartype, gezichtsvorm en leefstijl.
+* **Rust en ontspanning:** Geen massale drukte, maar tijd, rust en toewijding voor elke klant.
+
+---
+
+### Van eerste schop in de grond tot feestelijke opening
+
+De komst van de nieuwe studio werd met veel enthousiasme onthaald in Niedersfeld. Na de symbolische start van de werkzaamheden in augustus en een voorspoedige bouwperiode gingen de deuren begin oktober 2026 open. Na de eerste afspraken vanaf 6 oktober volgde op zaterdag **10 oktober 2026** een drukbezochte officiële openingsreceptie met dorpsgenoten, vrienden en belangstellenden.
+
+„Ik wil een plek creëren waar je je vanaf het eerste moment thuis voelt, kunt ontspannen en optimaal wordt verzorgd“, vertelt Vivien Schleimer enthousiast over haar nieuwe kapsalon.
+
+---
+
+### Afspraken flexibel op afspraak
+
+Om iedereen in alle rust en zonder wachttijden van dienst te kunnen zijn, werkt Kampmanns Haarstudio uitsluitend op afspraak – eenvoudig telefonisch of via WhatsApp te reserveren.
+
+:::contact
+### Kampmanns Haarstudio – Gegevens in één oogopslag
+* **Eigenaresse:** Vivien Schleimer
+* **Adres:** Josefsweg 1, 59955 Winterberg-Niedersfeld (naast het Josefshaus)
+* **Telefoon & WhatsApp:** [+49 160 4168757](tel:00491604168757)
+* **Openingstijden:** Flexibel op afspraak (ma–za)
+* **Diensten:** Dames, heren & kinderen · Knippen & stylen · Kleurtechnieken · Verzorging & advies
+* **Bedrijfsprofiel in de gids:** [Bekijk profiel Kampmanns Haarstudio](/unternehmer/handwerk/friseur/kampmanns-haarstudio-niedersfeld)
+:::`,
+  },
+  {
     id: "kitaportal-hsk-anmeldung-kitajahr-2027-2028-winterberg",
     slug: "kitaportal-hsk-anmeldung-kitajahr-2027-2028-winterberg",
     slug_nl: "kitaportal-hsk-aanmelding-kinderopvang-2027-2028-winterberg",
@@ -9,7 +217,8 @@ export const initialNews: NewsArticle[] = [
     title_nl: "Kinderopvang 2027/28 in Winterberg: Nu aanmelden via KiTaPortal HSK – Deadline 13 november",
     author: "Winterberg-Verzeichnis Redaktion",
     imageUrl: "/news-kitaportal-anmeldung-winterberg-2027.jpg",
-    imageCredit: "KiTaPortal HSK / Kindertagespflege Die Windelflitzer",
+    imageCredit: "KI-Symbolbild / Winterberg-Verzeichnis Redaktion",
+    isAiGenerated: true,
     status: 'approved',
     category: 'buergerinfo',
     date: "2026-11-02T09:30:00.000Z",
@@ -17,7 +226,7 @@ export const initialNews: NewsArticle[] = [
 
 Eltern sollten jetzt zeitnah aktiv werden: Die Hauptanmeldefrist für die erste offizielle Vergaberunde endet am **Freitag, den 13. November 2026**.
 
-![Anmeldungen für das Kita-Jahr 2027/28 im KiTaPortal](/news-kitaportal-anmeldung-winterberg-2027.jpg)
+![Kinderbetreuung und KiTaPortal Anmeldung in Winterberg](/news-kitaportal-anmeldung-winterberg-2027.jpg)
 
 ### Wichtiger Stichtag: Warum der 13. November zählt
 Im Hochsauerlandkreis ist das Vergabeverfahren für Betreuungsplätze einheitlich geregelt. Die Einrichtungen und das Kreisjugendamt beginnen ab dem **15. November 2026** mit dem Versand der ersten verbindlichen Platzzusagen für das kommende Kita-Jahr. 
@@ -81,7 +290,7 @@ Im Stadtgebiet Winterberg stehen engagierte und zertifizierte Kindertagespflegep
 
 Ouders dienen nu snel in actie te komen: de hoofddeadline voor de eerste officiële toewijzingsronde sluit op **vrijdag 13 november 2026**.
 
-![Aanmeldingen kinderopvang 2027/28 in het KiTaPortal](/news-kitaportal-anmeldung-winterberg-2027.jpg)
+![Kinderopvang en KiTaPortal aanmelding in Winterberg](/news-kitaportal-anmeldung-winterberg-2027.jpg)
 
 ### Belangrijke deadline: waarom 13 november telt
 In het Hochsauerlandkreis is de toewijzingsprocedure uniform geregeld. De instellingen en het regionale jeugdbureau starten vanaf **15 november 2026** met het versturen van de eerste officiële plaatsingstoezeggingen voor het nieuwe schooljaar.

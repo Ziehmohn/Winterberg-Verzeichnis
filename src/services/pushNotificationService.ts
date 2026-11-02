@@ -162,3 +162,48 @@ export async function unsubscribeFromNewsPush(): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * Setup a foreground push notification listener when the user has the website open.
+ * Shows native browser notification and/or triggers custom UI callback.
+ */
+export async function setupForegroundPushListener(onMessageReceived?: (payload: any) => void) {
+  if (typeof window === 'undefined') return () => {};
+  try {
+    const messaging = await getFirebaseMessaging();
+    if (!messaging) return () => {};
+
+    const { onMessage } = await import('firebase/messaging');
+    return onMessage(messaging, (payload) => {
+      console.log('Foreground Push Message received:', payload);
+      
+      const title = payload.notification?.title || payload.data?.title || 'Winterberg News';
+      const body = payload.notification?.body || payload.data?.body || 'Neuigkeiten aus Winterberg';
+      const icon = payload.notification?.icon || payload.data?.icon || '/pwa-icon-192.png';
+      const url = payload.data?.url || payload.data?.link || '/news';
+
+      // Show native browser notification in foreground if permitted
+      if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+        try {
+          const n = new Notification(title, {
+            body,
+            icon,
+            badge: '/favicon.svg',
+            data: { url }
+          });
+          n.onclick = () => {
+            window.focus();
+            if (url) window.location.href = url;
+          };
+        } catch (_) {}
+      }
+
+      if (onMessageReceived) {
+        onMessageReceived(payload);
+      }
+    });
+  } catch (err) {
+    console.warn('Error setting up foreground push listener:', err);
+    return () => {};
+  }
+}

@@ -32,32 +32,37 @@ if (!self.firebase.apps.length) {
 const messaging = self.firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  console.log('[firebase-messaging-sw.js] Received background message:', payload);
   
   const notificationTitle = payload.notification?.title || payload.data?.title || 'Winterberg News';
+  const rawUrl = payload.data?.url || payload.data?.link || payload.fcmOptions?.link || '/news';
+  const targetUrl = rawUrl.startsWith('http') ? rawUrl : (self.location.origin + (rawUrl.startsWith('/') ? '' : '/') + rawUrl);
+
   const notificationOptions = {
     body: payload.notification?.body || payload.data?.body || 'Neuigkeiten aus Winterberg',
     icon: payload.notification?.icon || payload.data?.icon || '/pwa-icon-192.png',
     badge: '/favicon.svg',
     image: payload.notification?.image || payload.data?.image || undefined,
     data: {
-      url: payload.data?.url || payload.data?.link || '/news',
-      click_action: payload.data?.url || payload.data?.link || '/news'
+      url: targetUrl
     },
-    vibrate: [200, 100, 200]
+    requireInteraction: true,
+    vibrate: [200, 100, 200],
+    tag: 'winterberg-news'
   };
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
+  return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const targetUrl = event.notification.data?.url || event.notification.data?.click_action || '/news';
+  const rawUrl = event.notification.data?.url || '/news';
+  const targetUrl = rawUrl.startsWith('http') ? rawUrl : (self.location.origin + (rawUrl.startsWith('/') ? '' : '/') + rawUrl);
 
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
       for (let client of windowClients) {
-        if (client.url.includes(targetUrl) && 'focus' in client) {
+        if (client.url === targetUrl && 'focus' in client) {
           return client.focus();
         }
       }

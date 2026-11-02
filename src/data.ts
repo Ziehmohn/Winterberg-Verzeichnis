@@ -3368,7 +3368,17 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '02981 9199837',
     website: 'https://corpus-pro.com',
+    image: '/news-corpus-pro-winterberg.jpg',
     imageFallback: 'CP',
+    openingHours: {
+      monday: "06:00 - 24:00",
+      tuesday: "06:00 - 24:00",
+      wednesday: "06:00 - 24:00",
+      thursday: "06:00 - 24:00",
+      friday: "06:00 - 24:00",
+      saturday: "06:00 - 24:00",
+      sunday: "06:00 - 24:00"
+    },
     isPremium: false,
     status: 'approved'
   },
@@ -14751,9 +14761,7 @@ export const businesses: Business[] = [
       "lat": 51.24975,
       "lng": 8.47377
     },
-    "image": "/news-kitaportal-anmeldung-winterberg-2027.jpg",
-    "headerImage": "/news-kitaportal-anmeldung-winterberg-2027.jpg",
-    "imageFallback": "WP",
+        "imageFallback": "WP",
     "status": "approved",
     "isActive": true,
     "featured": false,
@@ -14955,6 +14963,70 @@ export const businesses: Business[] = [
       "tagesmutter niedersfeld",
       "kindertagespflege niedersfeld",
       "kinderbetreuung niedersfeld"
+    ]
+  }
+,
+  {
+    "id": "kampmanns-haarstudio-niedersfeld",
+    "name": "Kampmanns Haarstudio",
+    "category": "Handwerk",
+    "subcategory": "Friseur",
+    "description": "Moderner Friseursalon von Vivien Schleimer in Winterberg-Niedersfeld. Individuelle Beratung, typgerechte Haarschnitte, frische Farbtechniken und kreatives Styling mit Liebe zum Detail in entspannter Wohlfühlatmosphäre.",
+    "description_nl": "Moderne kapsalon van Vivien Schleimer in Winterberg-Niedersfeld. Persoonlijk advies, eigentijdse kapsels, frisse kleurtechnieken en styling met oog voor detail in een sfeervolle salon.",
+    "extendedDescription": "Mit „Kampmanns Haarstudio“ hat sich Vivien Schleimer nach über 13 Jahren Berufserfahrung im Friseurhandwerk ihren Traum vom eigenen Salon erfüllt. In neu errichteten, stilvollen Räumlichkeiten am Josefsweg 1 – idyllisch gelegen auf der Grünfläche neben dem Josefshaus in Niedersfeld – erwartet die Kundinnen und Kunden ein modernes Wohlfühlambiente mit viel Liebe zum Detail.\n\nDas Leistungsspektrum umfasst typgerechte Damen-, Herren- und Kinderhaarschnitte, professionelle Farb- und Strähnentechniken, moderne Stylingtrends sowie individuelle Haarpflegeberatung. Ob klassischer Schnitt, frische Farbnuancen oder kreative Veränderung: Vivien Schleimer nimmt sich Zeit für eine persönliche Beratung in entspannter Atmosphäre ohne Hektik. Termine werden flexibel nach telefonischer Vereinbarung oder unkompliziert per WhatsApp vergeben.",
+    "extendedDescription_nl": "Met „Kampmanns Haarstudio“ heeft Vivien Schleimer na meer dan 13 jaar ervaring in het kappersvak haar droom van een eigen salon verwezenlijkt. In een stijlvolle, nieuw gerealiseerde salon aan de Josefsweg 1 – direct naast het historische Josefshaus in Niedersfeld – worden klanten verwelkomd in een warme, ontspannen sfeer met oog voor detail.\n\nDe salon biedt eigentijdse dames-, heren- en kinderkapsels, professionele kleur- en highlighttechnieken, moderne styling en haarverzorging op maat. Vivien Schleimer neemt de tijd voor persoonlijk advies zonder haast. Afspraken worden flexibel gemaakt via telefoon of WhatsApp.",
+    "address": "Josefsweg 1, 59955 Winterberg-Niedersfeld",
+    "district": "Niedersfeld",
+    "city": "Winterberg",
+    "phone": "0160 4168757",
+    "coordinates": {
+      "lat": 51.26005,
+      "lng": 8.52819
+    },
+    "image": "/kampmanns-haarstudio-niedersfeld.jpg",
+    "imageLink": "/kampmanns-haarstudio-niedersfeld.jpg",
+    "headerImage": "/kampmanns-haarstudio-niedersfeld.jpg",
+    "imageFallback": "KH",
+    "status": "approved",
+    "isActive": true,
+    "featured": false,
+    "services": [
+      "Damen-, Herren- & Kinderhaarschnitte",
+      "Typgerechte, individuelle Beratung",
+      "Moderne Farbtechniken & Strähnen",
+      "Kreatives Styling mit Liebe zum Detail",
+      "Haarpflege & Glanzbehandlungen",
+      "Termine nach Vereinbarung (Telefon & WhatsApp)"
+    ],
+    "services_nl": [
+      "Dames-, heren- en kinderkapsels",
+      "Persoonlijk en stijlbewust advies",
+      "Moderne kleurtechnieken & highlights",
+      "Creatieve styling met oog voor detail",
+      "Haarverzorging & glansbehandelingen",
+      "Afspraken op maat via telefoon en WhatsApp"
+    ],
+    "openingHours": {
+      "monday": "Nach Vereinbarung",
+      "tuesday": "Nach Vereinbarung",
+      "wednesday": "Nach Vereinbarung",
+      "thursday": "Nach Vereinbarung",
+      "friday": "Nach Vereinbarung",
+      "saturday": "Nach Vereinbarung",
+      "sunday": "Geschlossen"
+    },
+    "searchSynonyms": [
+      "vivien schleimer",
+      "kampmanns haarstudio",
+      "kampmann",
+      "kampmanns",
+      "friseur niedersfeld",
+      "friseursalon niedersfeld",
+      "friseurin niedersfeld",
+      "haare schneiden niedersfeld",
+      "friseur winterberg",
+      "josefsweg",
+      "josefshaus niedersfeld"
     ]
   }
 ];

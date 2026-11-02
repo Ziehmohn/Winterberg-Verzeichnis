@@ -2,6 +2,8 @@ import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getMessaging } from 'firebase-admin/messaging';
 
+const SITE_URL = 'https://www.winterberg-verzeichnis.de';
+
 if (!getApps().length) {
   try {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
@@ -55,6 +57,16 @@ export default async function handler(req, res) {
       });
     }
 
+    // Absolute URLs are strictly required by WebPush standards (RFC 8030 / FCM)
+    const fullUrl = url?.startsWith('http') 
+      ? url 
+      : `${SITE_URL}${url?.startsWith('/') ? '' : '/'}${url || 'news'}`;
+    const fullIcon = icon?.startsWith('http') 
+      ? icon 
+      : `${SITE_URL}${icon?.startsWith('/') ? '' : '/'}${icon || 'pwa-icon-192.png'}`;
+    const fullBadge = `${SITE_URL}/favicon.svg`;
+    const fullImageUrl = imageUrl?.startsWith('http') ? imageUrl : undefined;
+
     const batchSize = 450;
     let successCount = 0;
     let failureCount = 0;
@@ -67,21 +79,30 @@ export default async function handler(req, res) {
         notification: {
           title,
           body,
-          imageUrl: imageUrl || undefined
+          imageUrl: fullImageUrl
         },
         data: {
           title,
           body,
-          url: url || '/news',
-          icon: icon || '/pwa-icon-192.png'
+          url: fullUrl,
+          icon: fullIcon,
+          badge: fullBadge
         },
         webpush: {
+          headers: {
+            Urgency: 'high'
+          },
           fcmOptions: {
-            link: url || '/news'
+            link: fullUrl
           },
           notification: {
-            icon: icon || '/pwa-icon-192.png',
-            badge: '/favicon.svg'
+            title,
+            body,
+            icon: fullIcon,
+            badge: fullBadge,
+            requireInteraction: true,
+            renotify: true,
+            tag: `winterberg-news-${Date.now()}`
           }
         }
       });
