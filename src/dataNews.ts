@@ -11,9 +11,8 @@ export const initialNews: NewsArticle[] = [
     businessId: "corpus-pro-winterberg",
     businessName: "corpus pro Winterberg",
     businessSlug: "ski-bike-sport/fitnessstudios/corpus-pro-winterberg",
-    isBusinessNews: true,
     imageUrl: "/news-corpus-pro-winterberg.jpg",
-    imageCredit: "Foto: corpus pro Winterberg",
+    imageCredit: "Foto: Alora Griffiths / Unsplash (Symbolbild)",
     status: 'approved',
     category: 'freizeit',
     date: "2026-11-02T10:15:00.000Z",
@@ -24,8 +23,6 @@ export const initialNews: NewsArticle[] = [
 * **4 Wochen testen:** einmalig für **56 €**
 * **8 Wochen testen:** für **50 € pro Monat** (nur 100 € Gesamttestpreis)
 * **16 Wochen testen:** für **44 € pro Monat** (nur 176 € Gesamttestpreis)
-
-![Testaktion im corpus pro Winterberg – 4, 8 oder 16 Wochen flexibel trainieren](/news-corpus-pro-winterberg-aktion.png)
 
 ### Das Rundum-sorglos-Paket: Was ist in der Testphase enthalten?
 
@@ -72,8 +69,6 @@ Wer die Sonderkonditionen nutzen möchte, sollte die verbleibende Aktionszeit nu
 * **4 weken proberen:** eenmalig **€ 56**
 * **8 weken proberen:** voor **€ 50 per maand** (slechts € 100 totaal)
 * **16 weken proberen:** voor **€ 44 per maand** (slechts € 176 totaal)
-
-![Proefactie bij corpus pro Winterberg – 4, 8 of 16 weken flexibel trainen](/news-corpus-pro-winterberg-aktion.png)
 
 ### All-inclusive proefpakket: wat zit er allemaal in?
 
@@ -216,7 +211,7 @@ Om iedereen in alle rust en zonder wachttijden van dienst te kunnen zijn, werkt 
     title_nl: "Kinderopvang 2027/28 in Winterberg: Nu aanmelden via KiTaPortal HSK – Deadline 13 november",
     author: "Winterberg-Verzeichnis Redaktion",
     imageUrl: "/news-kitaportal-anmeldung-winterberg-2027.jpg",
-    imageCredit: "KI-Symbolbild / Winterberg-Verzeichnis Redaktion",
+    imageCredit: "Bild KI-generiert",
     isAiGenerated: true,
     status: 'approved',
     category: 'buergerinfo',
@@ -224,8 +219,6 @@ Om iedereen in alle rust en zonder wachttijden van dienst te kunnen zijn, werkt 
     content: `Für alle Familien in Winterberg und den umliegenden Dörfern, die für ihr Kind ab August 2027 einen Betreuungsplatz suchen, läuft aktuell die entscheidende Anmeldephase: Ob in einer Kindertagesstätte (Kita) oder in der familiennahen **Kindertagespflege (Tagesmutter / Tagesvater)** – die Anmeldung für das Kindergartenjahr 2027/2028 erfolgt kreisweit zentral über das **KiTaPortal des Hochsauerlandkreises (HSK)**.
 
 Eltern sollten jetzt zeitnah aktiv werden: Die Hauptanmeldefrist für die erste offizielle Vergaberunde endet am **Freitag, den 13. November 2026**.
-
-![Kinderbetreuung und KiTaPortal Anmeldung in Winterberg](/news-kitaportal-anmeldung-winterberg-2027.jpg)
 
 ### Wichtiger Stichtag: Warum der 13. November zählt
 Im Hochsauerlandkreis ist das Vergabeverfahren für Betreuungsplätze einheitlich geregelt. Die Einrichtungen und das Kreisjugendamt beginnen ab dem **15. November 2026** mit dem Versand der ersten verbindlichen Platzzusagen für das kommende Kita-Jahr. 
@@ -288,8 +281,6 @@ Im Stadtgebiet Winterberg stehen engagierte und zertifizierte Kindertagespflegep
     content_nl: `Voor alle gezinnen in Winterberg en de omliggende dorpen die voor hun kind vanaf augustus 2027 een opvangplek zoeken, is de belangrijkste aanmeldperiode aangebroken: of het nu gaat om een kinderdagverblijf (kindergarten/kita) of kleinschalige, huiselijke **gastouderopvang (Kindertagespflege)** – de aanmelding voor het opvangjaar 2027/2028 verloopt centraal via het **KiTaPortal van het Hochsauerlandkreis (HSK)**.
 
 Ouders dienen nu snel in actie te komen: de hoofddeadline voor de eerste officiële toewijzingsronde sluit op **vrijdag 13 november 2026**.
-
-![Kinderopvang en KiTaPortal aanmelding in Winterberg](/news-kitaportal-anmeldung-winterberg-2027.jpg)
 
 ### Belangrijke deadline: waarom 13 november telt
 In het Hochsauerlandkreis is de toewijzingsprocedure uniform geregeld. De instellingen en het regionale jeugdbureau starten vanaf **15 november 2026** met het versturen van de eerste officiële plaatsingstoezeggingen voor het nieuwe schooljaar.
@@ -358,7 +349,7 @@ In Winterberg en de dorpen staan gekwalificeerde gastouders klaar onder pedagogi
     title_nl: "Line dance in Winterberg: Nieuwe beginnerscursus van de Winterberger Country Liners start in november",
     author: "Winterberg-Verzeichnis Redaktion",
     imageUrl: "/event-linedance-winterberg.jpg",
-    imageCredit: "KI-Symbolbild / Winterberg-Verzeichnis Redaktion",
+    imageCredit: "Bild KI-generiert",
     isAiGenerated: true,
     status: 'approved',
     category: 'freizeit',

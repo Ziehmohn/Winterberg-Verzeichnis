@@ -3368,7 +3368,6 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '02981 9199837',
     website: 'https://corpus-pro.com',
-    image: '/news-corpus-pro-winterberg.jpg',
     imageFallback: 'CP',
     openingHours: {
       monday: "06:00 - 24:00",
