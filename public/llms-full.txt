@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (472 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (473 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2349,6 +2349,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Restaurant
 - **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Kolpingstraße 12, 59955 Winterberg-Siedlinghausen
+- **Telefon:** 02983 1339
 - **Webseite:** https://ritmus.de
 - **Beschreibung (DE):** Das Restaurant & Tapas Bar 
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/ritmus-restaurant-und-tapas-bar
@@ -4586,6 +4587,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (DE):** Die Indoor Arena Full-One Lasertag in Winterberg bietet auf über 500 m² klimatisierter Fläche wetterunabhängige Lasertag-Action für Teams und Einzelsportler. Spieler bewegen sich in einer abgedunkelten, mit Hindernissen, Nebeleffekten und Lichtshows ausgestatteten Arena, um mit moderner Sensor- und Phaserausrüstung Punkte zu sammeln. Die Sport- und Freizeitstätte ist besonders für Kindergeburtstage, Junggesellenabschiede sowie Vereins- und Firmenevents konzipiert.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/indoor-arena-full-one-lasertag-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/binnenspeeltuinen/indoor-arena-full-one-lasertag-winterberg
+
+#### [Pilgerkirche Altastenberg (St. Erasmus)](https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/pilgerkirche-altastenberg-st-erasmus)
+- **Kategorie:** Freizeit > Outdoor-Freizeitgebiet
+- **Ort / Ortsteil:** Altastenberg
+- **Adresse:** Am Dorfgarten 6, 59955 Winterberg-Altastenberg
+- **Webseite:** https://www.pvwinterberg.de
+- **Beschreibung (DE):** Die katholische Pfarr- und Pilgerkirche St. Erasmus in Altastenberg ist die höchstgelegene Pilgerkirche Nordrhein-Westfalens. Ein Ort der Ruhe, Spiritualität und kultureller Begegnung mit der renommierten Reihe Kultur & Talk.
+- **Beschreibung (NL):** De katholieke pelgrimskerk St. Erasmus in Altastenberg is de hoogstgelegen pelgrimskerk van Noordrijn-Westfalen. Een plek van rust, spiritualiteit en cultuur met bijzondere vieringen en concerten.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/freizeit/outdoor-freizeitgebiet/pilgerkirche-altastenberg-st-erasmus
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/vrije-tijd/buitenrecreatiegebied/pilgerkirche-altastenberg-st-erasmus
 
 #### [Escape Room Winterberg](https://www.winterberg-verzeichnis.de/freizeit/indoor-spielplaetze/escape-room-winterberg)
 - **Kategorie:** Freizeit > Indoor-Spielplätze
