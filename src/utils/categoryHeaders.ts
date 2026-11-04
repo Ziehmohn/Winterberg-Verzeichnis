@@ -15,6 +15,22 @@ export interface CategoryHeaderData {
 
 export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   // ==========================================
+  // Neueröffnungen in Winterberg
+  // ==========================================
+  'Neueröffnungen': {
+    image: '/neueroeffnungen-winterberg-header.jpg',
+    imageAltDe: 'Neueröffnungen in Winterberg: Moderne Geschäftseröffnungen, Praxen und Betriebe im Stadtgebiet',
+    imageAltNl: 'Nieuwe openingen in Winterberg: Moderne winkels, praktijken en bedrijven in de gemeente',
+    credit: 'Foto: SICHTBAR Winterberg',
+    isAiGenerated: false,
+    titleDe: 'Neueröffnungen in Winterberg',
+    titleNl: 'Nieuwe openingen in Winterberg',
+    subtitleDe: 'Neu im Stadtgebiet: Entdecke aktuelle und angekündigte Neueröffnungen von Geschäften, Praxen und Betrieben in Winterberg und den 14 Ortsteilen.',
+    subtitleNl: 'Nieuw in de stad: Ontdek aangekondigde openingen van winkels, praktijken en horeca in Winterberg en de dorpen.',
+    objectPosition: 'center 40%'
+  },
+
+  // ==========================================
   // Partylocations & Feiern
   // ==========================================
   'Partylocations': {

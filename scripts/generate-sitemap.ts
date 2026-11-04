@@ -136,7 +136,11 @@ const staticPages = [
   'skiTheme',
   'skifahrenWinterberg',
   'handwerkerTheme',
-  'handwerkerFinden'
+  'handwerkerFinden',
+  'partyLocationsTheme',
+  'partyLocations',
+  'openingsTheme',
+  'openings'
 ] as const;
 staticPages.forEach(p => {
   entries.push({

@@ -4950,6 +4950,19 @@ export default function App() {
             >
               {lang === 'nl' ? 'Feestlocaties in Winterberg' : 'Partylocations in Winterberg'}
             </a>
+            <a 
+              href={getPath('/themen/neueroeffnungen-in-winterberg')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/themen/neueroeffnungen-in-winterberg')); 
+                resetToDirectory(); 
+                setIsOpeningsThemeMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              {lang === 'nl' ? 'Nieuwe openingen in Winterberg' : 'Neueröffnungen in Winterberg'}
+            </a>
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>

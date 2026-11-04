@@ -434,6 +434,28 @@ const staticPageConfigs: {
     h1Nl: 'Winterberg HeimatCard',
     h2De: 'Die Gutscheinkarte für Bürger, Gäste & Unternehmen in Winterberg',
     h2Nl: 'De officiële cadeaubon voor Winterberg en omgeving'
+  },
+  {
+    key: 'openingsTheme',
+    titleDe: 'Neueröffnungen in Winterberg | Aktuelle & angekündigte Neueröffnungen',
+    titleNl: 'Nieuwe openingen in Winterberg | Aangekondigde openingen & bedrijven',
+    descDe: 'Entdecken Sie aktuelle und angekündigte Neueröffnungen von Geschäften, Praxen, Gastronomie und Betrieben in Winterberg und den 14 Ortsteilen. Alle Termine, Adressen und Details.',
+    descNl: 'Ontdek aangekondigde openingen van winkels, praktijken en bedrijven in Winterberg en de 14 dorpen. Alle datums, adressen en openingsevenementen.',
+    h1De: 'Neueröffnungen in Winterberg',
+    h1Nl: 'Nieuwe openingen in Winterberg',
+    h2De: 'Aktuelle und angekündigte Praxen, Geschäfte & Betriebe im Stadtgebiet',
+    h2Nl: 'Nieuwe ondernemingen en openingsevenementen in de gemeente Winterberg'
+  },
+  {
+    key: 'openings',
+    titleDe: 'Neueröffnungen in Winterberg | Neue Betriebe & Praxen',
+    titleNl: 'Nieuwe openingen in Winterberg | Nieuwe bedrijven & praktijken',
+    descDe: 'Alle anstehenden Neueröffnungen in Winterberg auf einen Blick. Erfahren Sie von neuen Geschäften, Praxiseröffnungen und Gastronomie.',
+    descNl: 'Alle komende openingen in Winterberg op een rij. Ontdek nieuwe winkels, praktijken en horeca.',
+    h1De: 'Neueröffnungen in Winterberg',
+    h1Nl: 'Nieuwe openingen in Winterberg',
+    h2De: 'Neue Adressen im Stadtgebiet Winterberg',
+    h2Nl: 'Nieuwe adressen in Winterberg en omstreken'
   }
 ];
 
