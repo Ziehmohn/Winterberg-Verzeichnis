@@ -321,6 +321,63 @@ export function matchesKeyword(haystack: string, term: string): boolean {
 }
 
 /**
+ * Splits CamelCase, acronyms, and number-letter boundaries for natural brand-name and compound search.
+ * e.g. "DasWERK" -> "Das WERK", "3WERK" -> "3 WERK", "GreatOak" -> "Great Oak"
+ */
+export function splitCompoundBoundaries(str: string): string {
+  if (!str) return '';
+  return str
+    .replace(/([a-zäöüß])([A-ZÄÖÜ])/g, '$1 $2')
+    .replace(/([A-ZÄÖÜ]+)([A-ZÄÖÜ][a-zäöüß])/g, '$1 $2')
+    .replace(/([0-9])([a-zA-ZäöüÄÖÜß])/g, '$1 $2')
+    .replace(/([a-zA-ZäöüÄÖÜß])([0-9])/g, '$1 $2');
+}
+
+/**
+ * Intelligent matching specifically for business and brand names:
+ * 1. Direct word boundary match on raw name
+ * 2. CamelCase & alphanumeric split boundary match ("DasWERK" -> matches "Werk", "3WERK" -> matches "Werk")
+ * 3. Compact whitespace-insensitive match (e.g. "DasWerk" matches "Das WERK" or vice versa)
+ * 4. Substring in individual name tokens (for search terms >= 3 chars, e.g. "Werk" in "Daswerk")
+ */
+export function matchesBusinessName(busName: string, term: string): boolean {
+  if (!busName || !term) return false;
+  const lowerName = busName.toLowerCase();
+  const lowerTerm = term.toLowerCase().trim();
+  if (!lowerTerm) return false;
+
+  // 1. Direct word boundary match on original name
+  if (matchesKeyword(busName, lowerTerm)) {
+    return true;
+  }
+
+  // 2. Word boundary match on CamelCase / digit split name
+  const splitName = splitCompoundBoundaries(busName);
+  if (splitName !== busName && matchesKeyword(splitName, lowerTerm)) {
+    return true;
+  }
+
+  // 3. Compact whitespace-agnostic matching (handles "DasWerk" queried for "Das WERK" or vice versa)
+  const compactName = lowerName.replace(/[^a-z0-9äöüÄÖÜß]/g, '');
+  const compactTerm = lowerTerm.replace(/[^a-z0-9äöüÄÖÜß]/g, '');
+  if (compactTerm.length >= 3 && compactName.includes(compactTerm)) {
+    return true;
+  }
+
+  // 4. Substring in individual name words (term length >= 3)
+  if (lowerTerm.length >= 3) {
+    const words = lowerName.replace(/[^a-z0-9äöüÄÖÜß]/g, ' ').split(/\s+/).filter(Boolean);
+    for (const w of words) {
+      if (w.includes(lowerTerm)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+/**
  * Resolves all search variants and synonyms for a given subject token
  */
 export function getDomainSynonyms(token: string): string[] {
@@ -397,9 +454,10 @@ export function buildBusinessFulltextCorpus(bus: Business): {
   const productsStr = (bus.products || []).concat(bus.products_nl || []).join(' ');
   const addCategoriesStr = (bus.additionalCategories || []).map(ac => `${ac.category} ${ac.subcategory || ''}`).join(' ');
   const synonymsStr = Array.isArray((bus as any).searchSynonyms) ? (bus as any).searchSynonyms.join(' ') : '';
+  const splitName = splitCompoundBoundaries(bus.name);
 
   const primaryText = normalizeSearchString(
-    `${bus.name} ${bus.category} ${bus.subcategory || ''} ${addCategoriesStr} ${synonymsStr} ${servicesStr} ${productsStr}`
+    `${bus.name} ${splitName !== bus.name ? splitName : ''} ${bus.category} ${bus.subcategory || ''} ${addCategoriesStr} ${synonymsStr} ${servicesStr} ${productsStr}`
   );
 
   const contactStr = bus.contactPerson ? `${bus.contactPerson.name} ${bus.contactPerson.role || ''}` : '';
@@ -436,7 +494,8 @@ export function scoreBusinessMatch(bus: Business, parsed: ParsedSearchQuery): Se
 
   // Direct exact name match always gets top priority
   const normName = normalizeSearchString(bus.name);
-  if (normName === normalized) {
+  const splitNormName = normalizeSearchString(splitCompoundBoundaries(bus.name));
+  if (normName === normalized || splitNormName === normalized) {
     return { business: bus, score: 500, matchedReason: { type: 'name', text: bus.name } };
   }
 
@@ -468,9 +527,17 @@ export function scoreBusinessMatch(bus: Business, parsed: ParsedSearchQuery): Se
 
       const allowedVariants = getDomainSynonyms(subject);
 
-      // 2. Direct name match bonus
+      // 2. Direct name & search synonyms match bonus
       for (const variant of allowedVariants) {
-        if (matchesKeyword(bus.name, variant)) {
+        if (matchesBusinessName(bus.name, variant)) {
+          subjectScore += subjectFound ? 60 : 260;
+          subjectFound = true;
+          matchedReason = { type: 'name', text: bus.name };
+          break;
+        }
+        const syns = Array.isArray((bus as any).searchSynonyms) ? (bus as any).searchSynonyms : [];
+        const matchedSyn = syns.find((s: string) => matchesBusinessName(s, variant) || matchesKeyword(s, variant));
+        if (matchedSyn) {
           subjectScore += subjectFound ? 60 : 260;
           subjectFound = true;
           matchedReason = { type: 'name', text: bus.name };

@@ -210,8 +210,8 @@ export default function BestOfPage({
         <div className="bg-gradient-to-br from-[#0F4C2E] to-[#06301C] rounded-2xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden mb-8">
           <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none" />
           <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-4 shadow-xs">
-              <Trophy className="w-3.5 h-3.5 text-amber-300" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider uppercase text-amber-300 mb-3 drop-shadow-xs">
+              <Trophy className="w-4 h-4 text-amber-300 shrink-0" />
               <span>{isNl ? 'Officiële Ranglijst 2026' : 'Offizielle Bestenliste 2026'}</span>
             </div>
 

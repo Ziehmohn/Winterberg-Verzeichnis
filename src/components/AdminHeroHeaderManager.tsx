@@ -581,7 +581,7 @@ export const AdminHeroHeaderManager: React.FC<AdminHeroHeaderManagerProps> = ({
 
               {/* Preview Content */}
               <div className="relative z-10 max-w-xl">
-                <div className="inline-flex items-center gap-1.5 bg-white/15 border border-white/20 px-3 py-0.5 rounded-full text-[11px] font-bold text-amber-300 mb-3">
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">
                   <span>{formData.badgeText || 'Winterberg & Region • Das offizielle Branchenverzeichnis'}</span>
                 </div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold mb-2 leading-tight">

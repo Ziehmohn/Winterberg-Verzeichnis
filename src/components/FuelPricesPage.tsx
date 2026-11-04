@@ -201,7 +201,7 @@ export const FuelPricesPage: React.FC<FuelPricesPageProps> = ({
         </div>
 
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold tracking-wide text-emerald-100 mb-3 border border-white/20">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-200 mb-3 drop-shadow-xs">
             <span className={`w-2 h-2 rounded-full ${fuelData?.isLive ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
             {fuelData?.isLive
               ? (lang === 'nl' ? 'Live-gegevens van MTS-K / Tankerkönig' : 'Echtzeit-Preise der Markttransparenzstelle (MTS-K)')

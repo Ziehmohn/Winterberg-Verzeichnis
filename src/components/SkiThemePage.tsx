@@ -545,7 +545,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
         <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-blue-600/10 rounded-full blur-2xl pointer-events-none"></div>
 
         <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider text-cyan-200 mb-4 shadow-xs">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3 drop-shadow-xs">
             <Snowflake className="w-4 h-4 text-cyan-300 animate-spin-slow" />
             <span>{isNl ? 'Officiële Wintergids & Pisten-Portal 2026/27' : 'Offizieller Winterguide & Pistenportal 2026/27'}</span>
           </div>

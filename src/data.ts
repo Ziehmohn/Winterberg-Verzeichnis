@@ -3044,7 +3044,8 @@ export const businesses: Business[] = [
     district: 'Winterberg',
     phone: '02983 9799788',
     isPremium: false,
-    imageFallback: 'DW'
+    imageFallback: 'DW',
+    searchSynonyms: ['Werk', 'Das Werk', 'Friseur', 'Friseursalon', 'Haare', 'Styling']
   },
   {
     id: 'hair-anselm-winkler',

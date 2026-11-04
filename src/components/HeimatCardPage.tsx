@@ -503,7 +503,7 @@ export default function HeimatCardPage({ theme, lang, onBack, onSelectBusiness }
       {/* Hero Banner */}
       <div className="relative bg-gradient-to-br from-[#0F4C2E] via-[#145A38] to-[#0A3822] rounded-3xl p-6 sm:p-10 md:p-12 text-white overflow-hidden shadow-xl mb-12">
         <div className="relative z-10 max-w-[780px]">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 text-[#FCD34D] text-xs sm:text-sm font-bold tracking-wide uppercase mb-4 backdrop-blur-xs border border-white/20">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider uppercase text-[#FCD34D] mb-3 drop-shadow-xs">
             <Sparkles size={15} />
             {isNl ? 'De officiële burgerkaart voor Winterberg' : 'Die offizielle Bürgerkarte für Einheimische & Beschäftigte'}
           </div>

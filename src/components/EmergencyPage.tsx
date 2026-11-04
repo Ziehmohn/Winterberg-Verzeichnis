@@ -61,7 +61,7 @@ export const EmergencyPage: React.FC<EmergencyPageProps> = ({
         </div>
 
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold tracking-wide text-rose-100 mb-3 border border-white/25">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-rose-200 mb-3 drop-shadow-xs">
             <span className="w-2 h-2 rounded-full bg-rose-300 animate-pulse" />
             {lang === 'nl' ? '24/7 Nooddienst Winterberg & HSK' : '24/7 Notdienst-Zentrale Winterberg & HSK'}
           </div>

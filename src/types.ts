@@ -269,6 +269,7 @@ export interface Business {
   businessNews?: BusinessNewsArticle[];
   documents?: BusinessDocument[];
   featureBadges?: string[];
+  searchSynonyms?: string[];
   customCta?: CustomActionCta;
   isPremium?: boolean;
   headerImage?: string;

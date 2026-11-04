@@ -250,9 +250,9 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
               </span>
             </nav>
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/20 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-amber-300 mb-4 shadow-sm">
-              <PartyPopper className="w-3.5 h-3.5 text-amber-300" />
+            {/* Eyebrow */}
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-3 drop-shadow-xs">
+              <PartyPopper className="w-4 h-4 text-amber-300 shrink-0" />
               <span>{isNl ? 'Feesten in het Sauerland • Locaties te huur' : 'Feiern im Sauerland • Locations zum Mieten'}</span>
             </div>
 

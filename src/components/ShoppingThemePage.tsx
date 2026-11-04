@@ -400,8 +400,8 @@ export const ShoppingThemePage: React.FC<ShoppingThemePageProps> = ({
         </figure>
 
         <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-2xl xl:max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-amber-300 mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-3 drop-shadow-xs">
+            <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
             <span>{isNl ? 'Shopping Gids Sauerland' : 'Shopping Guide · Winterberg Sauerland'}</span>
           </div>
 

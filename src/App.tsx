@@ -7173,8 +7173,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
             theme={theme} 
             activeThemeKey={activeThemeKey}
             onNavigateHome={() => {
-              setIsAdminMode(false);
-              resetToDirectory();
+              if (onBack) onBack();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />

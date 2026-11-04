@@ -113,8 +113,8 @@ export const SundayOpenPage: React.FC<SundayOpenPageProps> = ({
       {/* Hero Banner */}
       <section className="relative rounded-2xl overflow-hidden shadow-lg mb-8 text-white bg-gradient-to-r from-[#0F4C2E] via-[#166534] to-[#14532D] p-6 sm:p-10">
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-amber-300 mb-4">
-            <Sun className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-3 drop-shadow-xs">
+            <Sun className="w-4 h-4 text-amber-300 shrink-0" />
             {isNl ? 'Koopzondagen Winterberg' : 'Verkaufsoffene Sonntage Winterberg'}
           </div>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">

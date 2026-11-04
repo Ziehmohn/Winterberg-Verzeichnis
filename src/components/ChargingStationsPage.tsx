@@ -129,7 +129,7 @@ export const ChargingStationsPage: React.FC<ChargingStationsPageProps> = ({
       {/* Hero Banner */}
       <section className="relative rounded-2xl overflow-hidden shadow-lg mb-8 text-white bg-gradient-to-r from-[#0F3A40] via-[#15535D] to-[#0A262B] p-6 sm:p-10">
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-cyan-300 mb-4">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-cyan-300 mb-3 drop-shadow-xs">
             <Zap className="w-3.5 h-3.5" />
             {isNl ? 'Elektrisch Rijden in Winterberg' : 'E-Mobilität im Sauerland'}
           </div>

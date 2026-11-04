@@ -101,8 +101,8 @@ export const SkiReportPage: React.FC<SkiReportPageProps> = ({
       {/* Hero Header */}
       <section className="relative rounded-2xl overflow-hidden shadow-lg mb-8 text-white bg-gradient-to-r from-[#1B365D] via-[#1E4D80] to-[#0A2540] p-6 sm:p-10">
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-cyan-200 mb-4">
-            <Snowflake className="w-3.5 h-3.5 animate-spin-slow" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3 drop-shadow-xs">
+            <Snowflake className="w-4 h-4 text-cyan-200 shrink-0" />
             {isNl ? 'Wintersport Arena Sauerland' : 'Wintersport-Arena Sauerland'}
           </div>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
