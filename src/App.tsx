@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw, Snowflake, Bell } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw, Snowflake, Bell, Store } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -4326,6 +4326,24 @@ export default function App() {
                   <Trophy className="w-4 h-4" />
                 </div>
                 <span>{lang === 'nl' ? 'Bestenlijsten' : 'Bestenlisten'}</span>
+              </a>
+
+              <a
+                href={getPath(lang === 'nl' ? '/themas/nieuwe-openingen-in-winterberg' : '/themen/neueroeffnungen-in-winterberg')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/themas/nieuwe-openingen-in-winterberg' : '/themen/neueroeffnungen-in-winterberg'));
+                  resetToDirectory();
+                  setIsOpeningsThemeMode(true);
+                  setIsMobileNavOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3 rounded-lg bg-white border border-[#EDE8E0] hover:border-purple-600 font-display font-bold text-sm text-[#1B211D] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-md bg-purple-50 text-purple-700 flex items-center justify-center shrink-0">
+                  <Store className="w-4 h-4" />
+                </div>
+                <span>{lang === 'nl' ? 'Nieuwe openingen' : 'Neueröffnungen in Winterberg'}</span>
               </a>
 
               <a
