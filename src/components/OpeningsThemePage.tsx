@@ -155,10 +155,10 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
             className="w-full h-full object-cover hero-party-mask"
             style={{ objectPosition: 'center 40%' }}
           />
-          <div className="absolute top-3 right-3 lg:top-4 lg:right-6 flex items-center gap-1.5 z-10 pointer-events-none">
+          <div className="absolute top-3 right-3 lg:top-4 lg:right-6 flex items-center gap-1.5 z-10 pointer-events-none flex-wrap justify-end">
             <span className="text-[10px] leading-none font-semibold text-white/90 bg-black/60 backdrop-blur-xs px-2.5 py-1 rounded-md border border-white/10 flex items-center gap-1 shadow-xs">
-              <Sparkles className="w-2.5 h-2.5 text-amber-300" />
-              <span>{isNl ? 'Nieuw in de stad' : 'Neu im Stadtgebiet'}</span>
+              <Sparkles className="w-2.5 h-2.5 text-[#F2761B]" />
+              <span>{isNl ? 'Afbeelding AI-gegenereerd' : 'Bild KI-generiert'}</span>
             </span>
           </div>
         </figure>
@@ -202,27 +202,15 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
                 : 'Entdecke neue Geschäfte, Praxen, Gastronomie und Betriebe in Winterberg und den 14 Ortsteilen. Erfahre aus erster Hand, welche neuen Adressen eröffnen – inklusive Eröffnungsdaten, Programm, Adressen und vollständigen Profilen.'}
             </p>
 
-            {/* Feature Highlights Chips */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-xs border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
-                <span className="text-base">📍</span>
-                <span className="font-medium">{isNl ? 'Alle 14 dorpen' : 'Alle 14 Ortsteile'}</span>
-              </div>
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-xs border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
-                <span className="text-base">📅</span>
-                <span className="font-medium">{isNl ? 'Datums & Tijden' : 'Termine & Uhrzeiten'}</span>
-              </div>
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-xs border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
-                <span className="text-base">🏢</span>
-                <span className="font-medium">{isNl ? 'Bedrijfsprofielen' : 'Unternehmensprofile'}</span>
-              </div>
+            {/* Action Button */}
+            <div>
               <button
                 type="button"
                 onClick={() => setIsSubmitModalOpen(true)}
-                className="bg-amber-400 hover:bg-amber-300 text-gray-950 font-bold px-3.5 py-1.5 rounded-xl text-xs sm:text-[13px] flex items-center gap-1.5 shadow-sm transition-all cursor-pointer border-none"
+                className="bg-amber-400 hover:bg-amber-300 text-gray-950 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm inline-flex items-center gap-2 shadow-sm hover:shadow-md transition-all cursor-pointer border-none"
               >
-                <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span>{isNl ? 'Opening aanmelden' : 'Neueröffnung einreichen'}</span>
+                <Plus className="w-4 h-4 stroke-[2.5]" />
+                <span>{isNl ? 'Nieuwe opening aanmelden' : 'Neueröffnung einreichen'}</span>
               </button>
             </div>
 
