@@ -117,6 +117,12 @@ export default function BestOfPage({
       // Category Match
       let matchesCat = true;
       if (activeCategory && activeCategory !== 'Alle' && activeCategory !== 'all') {
+        // Strict guard: Tankstellen and non-craft businesses never match Handwerk
+        if (activeCategory === 'Handwerk') {
+          if (b.subcategory === 'Tankstellen' || (b.category === 'Mobilität & KFZ' && b.subcategory !== 'KFZ-Werkstätten')) {
+            return false;
+          }
+        }
         const inAdditional = b.additionalCategories?.some(ac => ac.category === activeCategory || ac.subcategory === activeCategory);
         matchesCat = b.category === activeCategory || b.subcategory === activeCategory || !!inAdditional;
       }

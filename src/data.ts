@@ -5119,7 +5119,7 @@ export const businesses: Business[] = [
     category: 'Einzelhandel',
     subcategory: 'Supermarkt',
     additionalCategories: [
-      { category: 'Handwerk', subcategory: 'Bäckerei' }
+      { category: 'Einzelhandel', subcategory: 'Feinkost & Lebensmittel' }
     ],
     description: 'Traditionelle Familienimkerei in Winterberg-Grönebach. Echter Hochsauerländer Blütenhonig und Bienenhonig aus naturgerechter Bienenhaltung und eigener Ernte im Sauerland.',
     address: 'Am Steinacker 9, 59955 Winterberg-Grönebach',
@@ -5186,7 +5186,7 @@ export const businesses: Business[] = [
     category: 'Einzelhandel',
     subcategory: 'Supermarkt',
     additionalCategories: [
-      { category: 'Handwerk', subcategory: 'Bäckerei' }
+      { category: 'Einzelhandel', subcategory: 'Feinkost & Lebensmittel' }
     ],
     description: 'Traditionelle Imkerei im idyllischen Altenfeld (Winterberg). Echter deutscher Honig, Blütenhonig, Waldhonig und Bienenprodukte aus eigener regionaler Imkerei und schonender Bienenhaltung.',
     address: 'Eichenweg 9, 59955 Winterberg-Altenfeld',

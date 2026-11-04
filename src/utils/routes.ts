@@ -233,9 +233,28 @@ export function getSubcategorySlug(subcategoryName: string, lang: Lang): string 
   return slugify(subcategoryName);
 }
 
+// Common category slug aliases (e.g. plural forms or intuitive search aliases)
+const CATEGORY_SLUG_ALIASES: Record<string, string> = {
+  'handwerker': 'Handwerk',
+  'handwerkers': 'Handwerk',
+  'vakmensen': 'Handwerk',
+  'ambachtslieden': 'Handwerk',
+  'restaurants': 'Gastronomie',
+  'horeca': 'Gastronomie',
+  'hotels': 'Hotels und Unterkünfte',
+  'unterkuenfte': 'Hotels und Unterkünfte',
+  'geschaefte': 'Einzelhandel',
+  'shopping': 'Einzelhandel',
+  'tankstellen': 'Mobilität & KFZ',
+  'werkstaetten': 'Mobilität & KFZ',
+};
+
 // Find DB category name from any slug (DE, NL or direct name)
 export function findCategoryFromSlug(slug: string): string | null {
   const cleanSlug = slugify(decodeURIComponent(slug));
+  if (CATEGORY_SLUG_ALIASES[cleanSlug]) {
+    return CATEGORY_SLUG_ALIASES[cleanSlug];
+  }
   for (const [catName, mapping] of Object.entries(CATEGORY_SLUGS)) {
     if (
       slugify(catName) === cleanSlug ||
@@ -482,6 +501,14 @@ export function getLegacyCategoryRedirect(pathname: string, categoriesList: Arra
   const cleanPath = pathname.split('?')[0].replace(/\/+$/, '');
   const parts = cleanPath.split('/').filter(Boolean);
   if (parts.length === 0) return null;
+
+  // Handle /die-besten/handwerker -> /die-besten/handwerk
+  if ((parts[0] === 'die-besten' || parts[0] === 'best-of') && parts[1] === 'handwerker') {
+    return `/die-besten/handwerk`;
+  }
+  if (parts[0] === 'nl' && (parts[1] === 'de-beste' || parts[1] === 'best-of') && (parts[2] === 'vakmensen' || parts[2] === 'handwerker')) {
+    return `/nl/de-beste/ambacht`;
+  }
 
   const isNl = parts[0] === 'nl';
   const offset = isNl ? 1 : 0;
