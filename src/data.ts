@@ -2,6 +2,50 @@ import { Business, ThemeConfig, ThemeKey, CategoryGroup } from './types';
 
 export const businesses: Business[] = [
   {
+    id: 'nadine-albers-heilpraktikerin-winterberg',
+    name: 'Nadine Albers – Heilpraktikerin',
+    category: 'Gesundheit & Medizin',
+    subcategory: 'Ärzte & Praxen',
+    description: 'Praxis für Naturheilkunde Nadine Albers in Winterberg-Siedlinghausen. Spezialisiert auf ganzheitliche Naturheilkunde, Phytotherapie (Pflanzenheilkunde) und fundierte Irisdiagnostik zur individuellen Ursachenforschung und sanften Behandlung.',
+    description_nl: 'Praktijk voor natuurgeneeskunde Nadine Albers in Winterberg-Siedlinghausen. Gespecialiseerd in holistische natuurgeneeskunde, fytotherapie (kruidengeneeskunde) en gefundeerde irisdiagnostiek.',
+    extendedDescription: 'In ihrer modernen Praxis für Naturheilkunde an der Sorpestraße 2 in Winterberg-Siedlinghausen bietet Heilpraktikerin Nadine Albers individuelle, ganzheitliche Behandlungsansätze. Die Schwerpunkte liegen auf traditioneller und moderner Phytotherapie (Pflanzenheilkunde), sanften naturheilkundlichen Therapieverfahren und der Irisdiagnostik (Augendiagnose).\n\nMithilfe der Irisdiagnostik können konstitutionelle Veranlagungen, Organschwächen und Stoffwechselzusammenhänge frühzeitig erfasst werden. Auf dieser Grundlage entwickelt Nadine Albers passgenaue Therapiepläne, pflanzliche Rezepturen und naturheilkundliche Impulse zur Aktivierung der körpereigenen Selbstheilungskräfte.',
+    extendedDescription_nl: 'In haar moderne praktijk voor natuurgeneeskunde aan de Sorpestraße 2 in Winterberg-Siedlinghausen biedt natuurgeneeskundige Nadine Albers persoonlijke en holistische behandelingen. De focus ligt op fytotherapie (kruidengeneeskunde), natuurgeneeskundige therapiemethoden en irisdiagnostiek (oogdiagnose).\n\nMet behulp van irisdiagnostiek kunnen constitutionele aanleg en disbalansen in een vroeg stadium worden vastgesteld om een gericht behandelplan op te stellen.',
+    address: 'Sorpestraße 2, 59955 Winterberg-Siedlinghausen',
+    district: 'Siedlinghausen',
+    coordinates: { lat: 51.2501, lng: 8.4975 },
+    services: [
+      'Ganzheitliche Naturheilkunde',
+      'Phytotherapie (Pflanzenheilkunde)',
+      'Irisdiagnostik (Augendiagnose)',
+      'Individuelle Konstitutionsanalyse',
+      'Pflanzliche Rezepturen & Teemischungen',
+      'Sanfte Schmerz- & Stoffwechseltherapie'
+    ],
+    services_nl: [
+      'Holistische natuurgeneeskunde',
+      'Fytotherapie (kruidengeneeskunde)',
+      'Irisdiagnostiek (oogdiagnose)',
+      'Individuele constitutie-analyse',
+      'Plantaardige recepten & theemelanges',
+      'Zachte pijn- en stofwisselingstherapie'
+    ],
+    imageFallback: 'NA',
+    uploadedImage: '/nadine-albers-eroeffnung.jpg',
+    headerImage: '/nadine-albers-eroeffnung.jpg',
+    isPremium: false,
+    isActive: true,
+    status: 'approved',
+    openingHours: {
+      monday: 'Termine nach Vereinbarung',
+      tuesday: 'Termine nach Vereinbarung',
+      wednesday: 'Termine nach Vereinbarung',
+      thursday: 'Termine nach Vereinbarung',
+      friday: 'Termine nach Vereinbarung',
+      saturday: 'Geschlossen',
+      sunday: 'Geschlossen'
+    }
+  },
+  {
     id: 'winterberg-touristik',
     name: 'Winterberg Touristik und Wirtschaft GmbH',
     category: 'Dienstleistungen',
@@ -3660,7 +3704,8 @@ export const businesses: Business[] = [
     name: 'JET Tankstelle Winterberg',
     category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
-        description: 'JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.',
+        description: 'JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Tankstellen-Shop für Reiseproviant und Autozubehör, belegten Backwaren, Erfrischungsgetränken, Coffee to Go, Crushed Ice, Autopflege und SB-Waschanlage.',
+    description_nl: 'JET tankstation in Winterberg met voordelige brandstoffen, moderne shop voor onderweg, vers belegde broodjes, koude dranken, coffee to go, autoverzorging en wasboxen.',
     address: 'Lamfert 1, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 9298634',
@@ -3683,7 +3728,8 @@ export const businesses: Business[] = [
     name: 'Aral Tankstelle Winterberg',
     category: 'Mobilität & KFZ',
     subcategory: 'Tankstellen',
-        description: 'Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.',
+        description: 'Aral Tankstelle in Winterberg Am Hagenblech. Rund um die Uhr 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, integriertem REWE To Go Shop für Reiseproviant und Einkäufe, Kaffeespezialitäten, LKW-Diesel und moderner Waschanlage.',
+    description_nl: 'Aral tankstation in Winterberg Am Hagenblech. 24/7 geopend met kwaliteitsbrandstoffen inclusief Ultimate, REWE To Go shop voor onderweg en levensmiddelen, koffie, vrachtwagendiesel en wasstraat.',
     address: 'Am Hagenblech 60, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 92600',
@@ -13888,37 +13934,63 @@ export const businesses: Business[] = [
     "id": "gockelstall-winterberg",
     "name": "Gockelstall Winterberg",
     "category": "Gastronomie",
-    "subcategory": "Restaurant",
+    "subcategory": "Skihütten",
     "additionalCategories": [
       {
         "category": "Gastronomie",
-        "subcategory": "Imbisse"
+        "subcategory": "Restaurant"
+      },
+      {
+        "category": "Gastronomie",
+        "subcategory": "Kneipen und Bars"
       }
     ],
-    "description": "Der Gockelstall in der Winterberger Innenstadt steht für knusprige, frisch gegrillte Hähnchenspezialitäten, saftige Burger, krosse Pommes und herzhafte Sauerländer Snacks. Beliebter Treffpunkt für den schnellen Genuss vor Ort oder bequem zum Mitnehmen.",
-    "description_nl": "Gockelstall in het centrum van Winterberg staat bekend om knapperige vers gegrilde haantjes, sappige burgers, krokante friet en hartige snacks. Geliefde eetgelegenheid voor een snelle hap ter plaatse of afhaal.",
-    "address": "Poststraße 10, 59955 Winterberg",
+    "description": "Kultige Skihütte und beliebte Après-Ski-Location direkt im Skiliftkarussell Winterberg am Herrloh / In der Büre. Im Winter uriger Hüttenzauber, herzhafte Spezialitäten und Schirmbar, im Sommer entspannte Einkehr mit Sonnenterrasse.",
+    "description_nl": "Gezellige skihut en après-ski hotspot direct aan de piste in het Skiliftkarussell Winterberg (Herrloh / In der Büre). 's Winters een authentieke berghut met schirmbar, 's zomers een ontspannen terras en evenementenlocatie.",
+    "extendedDescription": "Der Gockelstall an der Straße In der Büre 23 in Winterberg liegt direkt im Skiliftkarussell am Hang des Herrloh (nahe der Sommerrodelbahn und dem Erlebnisberg Kappe). Als eine der traditionsreichsten und bekanntesten Skihütten Winterbergs vereint der Betrieb urige Gemütlichkeit mit lebendiger Après-Ski-Kultur.\n\nIn der kalten Jahreszeit wärmen sich Wintersportler und Wanderer bei deftigen Sauerländer Spezialitäten, frisch gegrillten Gerichten, wärmenden Heißgetränken und einer ausgelassenen Stimmung an der beliebten Schirmbar auf. Während der Sommermonate verwandelt sich der Gockelstall in eine entspannte Einkehr mit sonniger Außenterrasse für Wanderer, Mountainbiker und Familien oder steht als exklusive Feier- und Eventlocation für Feiern und Gesellschaften zur Verfügung.",
+    "extendedDescription_nl": "Gockelstall aan de straat In der Büre 23 in Winterberg ligt direct aan het Skiliftkarussell op de hellingen van de Herrloh, vlak bij de zomerrodelbaan en de Erlebnisberg Kappe. Als een van de bekendste berghutten van Winterberg combineert het authentieke gastvrijheid met bruisende après-ski.\n\nIn de winter kunnen skiërs en wandelaars genieten van stevige Sauerlandse specialiteiten, warme dranken en feestelijke muziek in de beroemde schirmbar. In de zomermaanden is het royale zonneterras geopend voor wandelaars en fietsers, en kan de sfeervolle locatie exclusief worden afgehuurd voor feesten en bruiloften.",
+    "address": "In der Büre 23, 59955 Winterberg",
     "district": "Winterberg",
     "phone": "02981 928374",
     "website": "https://www.gockelstall.de/",
     "imageFallback": "GS",
-    "headerImage": "/restaurant-winterberg-header.jpg",
+    "headerImage": "/categories/gastronomie.jpg",
     "isActive": true,
     "status": "approved",
-    "isPartyLocation": false,
+    "isPartyLocation": true,
     "services": [
-      "Frisch gegrillte halbe Hähnchen",
-      "Burger & Chicken-Spezialitäten",
-      "Krosse Pommes & frische Salate",
-      "Alle Gerichte auch zum Mitnehmen (Takeaway)",
-      "Gemütliche Sitzplätze im Innenbereich"
+      "Urige Skihütte direkt an der Piste / Skiliftkarussell Herrloh",
+      "Après-Ski Schirmbar mit Party-Stimmung & Musik",
+      "Deftige Hüttenküche & frisch gegrillte Spezialitäten",
+      "Große Sonnenterrasse im Sommer mit Bergblick",
+      "Exklusive Eventlocation für Feiern & geschlossene Gesellschaften"
     ],
     "services_nl": [
-      "Vers gegrilde halve haantjes",
-      "Burgers & kipspecialiteiten",
-      "Friet & verse salades",
-      "Alle maaltijden ook om mee te nemen",
-      "Gezellige zitplaatsen binnen"
+      "Gezellige skihut direct aan de skipiste van het Skiliftkarussell",
+      "Après-ski schirmbar met feestelijke sfeer",
+      "Stevige berggerechten & grillspecialiteiten",
+      "Groot zonneterras in de zomer met uitzicht op de bergen",
+      "Exclusieve evenementenlocatie voor feesten en partijen"
+    ],
+    "products": [
+      "Hüttengerichte & Grillspezialitäten",
+      "Heiße Getränke, Glühwein & Jagatee",
+      "Kühles Pils, Drinks & Schnäpse",
+      "Kaffee & Kuchen"
+    ],
+    "products_nl": [
+      "Hutmaaltijden en grillschotels",
+      "Warme winterdranken, glühwein en jagatee",
+      "Koud bier, drankjes en shots",
+      "Koffie met gebak"
+    ],
+    "searchSynonyms": [
+      "gockelstall winterberg",
+      "gockelstall skihuette",
+      "apres ski gockelstall",
+      "schirmbar gockelstall",
+      "in der buere winterberg",
+      "skihuette herrloh"
     ]
   },
   {
@@ -15027,7 +15099,84 @@ export const businesses: Business[] = [
       "josefsweg",
       "josefshaus niedersfeld"
     ]
-  }
+  },
+{
+    id: "buedchen-winterberg",
+    name: "Büdchen Winterberg",
+    category: "Gastronomie",
+    subcategory: "Imbisse",
+    additionalCategories: [
+      { category: "Gastronomie", subcategory: "Kneipen und Bars" },
+    ],
+    address: "Untere Pforte (Marktplatz), 59955 Winterberg",
+    district: "Winterberg",
+    coordinates: { lat: 51.1953, lng: 8.5338 },
+    website: "https://www.instagram.com/buedchen_winterberg/",
+    image: "/buedchen-winterberg.jpg",
+    rating: 4.8,
+    reviewCount: 16,
+    openingHours: {
+      monday: "11:30 - 20:00",
+      tuesday: "11:30 - 20:00",
+      wednesday: "11:30 - 20:00",
+      thursday: "11:30 - 20:00",
+      friday: "11:30 - 21:00",
+      saturday: "11:30 - 21:00",
+      sunday: "11:30 - 20:00",
+    },
+    description: "Gemütlicher Imbiss direkt auf dem Marktplatz an der Unteren Pforte in Winterberg. Bekannt für ehrliche Wurstspezialitäten aus der Region frisch vom Grill, knusprige Pommes, kühle Drinks und ein frisch gezapftes Bierchen im Freien.",
+    description_nl: "Gezellige snackbar direct op het centrale marktplein aan de Untere Pforte in Winterberg. Beroemd om authentieke streekworst van de grill, knapperige friet, verfrissende drankjes en een koud biertje in de buitenlucht.",
+    extendedDescription: "Das Büdchen Winterberg („Ehrlich. Regional. Vom Grill.“) ist die beliebte Imbiss-Anlaufstelle im Herzen der Stadt, direkt auf dem Marktplatz an der Unteren Pforte. In lockerer Atmosphäre unter freiem Himmel können Gäste und Einheimische das rege Treiben auf dem Platz beobachten und herzhafte Spezialitäten genießen.\n\nAuf der Speisekarte stehen erstklassige Wurstwaren aus der heimischen Region – von der original Sauerländer Rostbratwurst über pikante Currywurst bis hin zu goldgelben, krossen Pommes Frites mit verschiedenen Dips. Dazu gibt es eine erfrischende Getränkeauswahl: von gekühlten Softdrinks über Kaffeespezialitäten bis zum Feierabend-Bierchen an den gemütlichen Stehtischen und Sitzgelegenheiten im Außenbereich. Ob für den schnellen Snack in der Mittagspause, die Stärkung nach dem Stadtbummel oder einen entspannten Drink mit Freunden – Das Büdchen steht für unkomplizierten Genuss mit regionaler Qualität.",
+    extendedDescription_nl: "Büdchen Winterberg („Eerlijk. Regionaal. Van de grill.“) is dé geliefde ontmoetingsplek voor een lekkere snack in het centrum van de stad, gelegen op het sfeervolle marktplein aan de Untere Pforte. Gasten kunnen hier ontspannen buiten zitten of aan de statafels genieten van het gezellige stadsleven.\n\nHet menu biedt kwaliteitsworst van lokale slagers – van traditionele Sauerlandse braadworst tot pittige curryworst en knapperige friet met diverse sauzen. Daarnaast is er een ruim assortiment koude dranken, frisdrank en koud bier verkrijgbaar. Ideaal voor een snelle lunch tijdens het winkelen of een gezellig drankje in het hart van Winterberg.",
+    featured: false,
+    status: "approved",
+    isActive: true,
+    imageFallback: "BW",
+    services: [
+      "Original Wurst aus der Region frisch vom Grill",
+      "Herzhafte Currywurst & Rostbratwurst im Brötchen",
+      "Krosse, goldgelbe Pommes Frites mit klassischen & kreativen Dips",
+      "Kühle Erfrischungsgetränke & frisch gezapftes Bierchen",
+      "Gemütliche Stehtische & Sitzplätze direkt draußen auf dem Marktplatz",
+      "Alle Speisen und Getränke auch bequem zum Mitnehmen (Takeaway)",
+      "Zentrale Lage direkt an der Unteren Pforte",
+    ],
+    services_nl: [
+      "Ambachtelijke streekworst vers van de grill",
+      "Curryworst & braadworst op een knapperig broodje",
+      "Goudgele friet met mayonaise, curry en sauzen",
+      "Koude frisdranken en vers getapt biertje",
+      "Gezellige zitplaatsen en statafels buiten op het plein",
+      "Alles ook eenvoudig mee te nemen (takeaway)",
+      "Centraal gelegen aan de Untere Pforte",
+    ],
+    products: [
+      "Currywurst mit Pommes Frites (Mantaplatte)",
+      "Sauerländer Rostbratwurst vom Grill",
+      "Portion Pommes Frites (groß / normal)",
+      "Gekühltes Veltins Pils & Radler",
+      "Alkoholfreie Erfrischungsgetränke (Cola, Fanta, Sprite, Wasser)",
+    ],
+    products_nl: [
+      "Curryworst met friet (Mantaplatte)",
+      "Sauerlandse braadworst van de grill",
+      "Portie knapperige friet",
+      "Gekoeld pils en radler",
+      "Frisdranken en mineraalwater",
+    ],
+    searchSynonyms: [
+      "buedchen winterberg",
+      "das buedchen winterberg",
+      "buedchen marktplatz",
+      "buedchen untere pforte",
+      "currywurst marktplatz winterberg",
+      "imbiss marktplatz winterberg",
+      "bratwurst winterberg",
+      "pommes marktplatz",
+      "buedchen_winterberg",
+    ],
+  },
+
 ];
 
 export const themes: Record<ThemeKey, ThemeConfig> = {

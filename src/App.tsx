@@ -100,6 +100,7 @@ const ShoppingThemePage = React.lazy(() => import('./components/ShoppingThemePag
 const SkiThemePage = React.lazy(() => import('./components/SkiThemePage'));
 const HandwerkerLandingPage = React.lazy(() => import('./components/HandwerkerLandingPage'));
 const PartyLocationsThemePage = React.lazy(() => import('./components/PartyLocationsThemePage'));
+const OpeningsThemePage = React.lazy(() => import('./components/OpeningsThemePage'));
 const Auftragsboerse = React.lazy(() => import('./components/Auftragsboerse'));
 const TendersAdminPanel = React.lazy(() => import('./components/TendersAdminPanel'));
 import { db, auth, storage } from './firebase';
@@ -203,6 +204,7 @@ export default function App() {
   let initialSkiThemeMode = false;
   let initialHandwerkerLandingMode = false;
   let initialPartyLocationsMode = false;
+  let initialOpeningsThemeMode = false;
   let initialAuftraegeMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
@@ -367,6 +369,15 @@ export default function App() {
         (decodedPart1 === 'themas' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties'))
       ) {
         initialPartyLocationsMode = true;
+      } else if (
+        decodedPart1 === 'neueroeffnungen-in-winterberg' || 
+        decodedPart1 === 'nieuwe-openingen-in-winterberg' || 
+        decodedPart1 === 'neueroeffnungen' || 
+        decodedPart1 === 'nieuwe-openingen' || 
+        (decodedPart1 === 'themen' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'neueroeffnungen-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'neueroeffnungen')) ||
+        (decodedPart1 === 'themas' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'nieuwe-openingen-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'nieuwe-openingen'))
+      ) {
+        initialOpeningsThemeMode = true;
       } else if (
         decodedPart1 === 'auftragsboerse' || 
         decodedPart1 === 'auftraege' || 
@@ -624,6 +635,7 @@ export default function App() {
     if (isSkiThemeMode) return { view: 'ski-theme' };
     if (isHandwerkerLandingMode) return { view: 'handwerker-theme' };
     if (isPartyLocationsMode) return { view: 'party-locations-theme' };
+    if (isOpeningsThemeMode) return { view: 'openings-theme' };
     if (isAuftraegeMode) return { view: 'auftragsboerse' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
@@ -736,6 +748,7 @@ export default function App() {
     if (p === '/skifahren-in-winterberg' || p === '/skien-in-winterberg' || p === '/skifahren' || p === '/skien' || p === '/themen/skifahren-in-winterberg' || p === '/themas/skien-in-winterberg') return buildLocalizedUrl({ view: 'ski-theme' }, lang);
     if (p === '/themen/handwerker-finden-in-winterberg' || p === '/themas/vakmensen-vinden-in-winterberg' || p === '/handwerker-finden-in-winterberg' || p === '/vakmensen-vinden-in-winterberg' || p === '/handwerker-winterberg') return buildLocalizedUrl({ view: 'handwerker-theme' }, lang);
     if (p === '/themen/partylocations-in-winterberg' || p === '/themas/feestlocaties-in-winterberg' || p === '/partylocations-in-winterberg' || p === '/feestlocaties-in-winterberg' || p === '/partylocations' || p === '/feestlocaties') return buildLocalizedUrl({ view: 'party-locations-theme' }, lang);
+    if (p === '/themen/neueroeffnungen-in-winterberg' || p === '/themas/nieuwe-openingen-in-winterberg' || p === '/neueroeffnungen-in-winterberg' || p === '/nieuwe-openingen-in-winterberg' || p === '/neueroeffnungen' || p === '/nieuwe-openingen') return buildLocalizedUrl({ view: 'openings-theme' }, lang);
     if (p === '/auftragsboerse' || p === '/auftraege' || p === '/opdrachten') return buildLocalizedUrl({ view: 'auftragsboerse' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
@@ -792,6 +805,7 @@ export default function App() {
     setIsSkiThemeMode(false);
     setIsHandwerkerLandingMode(false);
     setIsPartyLocationsMode(false);
+    setIsOpeningsThemeMode(false);
     setIsAuftraegeMode(false);
   };
 
@@ -966,6 +980,15 @@ export default function App() {
           (p1 === 'themas' && pathParts[1] && (pathParts[1].toLowerCase() === 'feestlocaties-in-winterberg' || pathParts[1].toLowerCase() === 'feestlocaties'))
         ) {
           setIsPartyLocationsMode(true);
+        } else if (
+          p1 === 'neueroeffnungen-in-winterberg' || 
+          p1 === 'nieuwe-openingen-in-winterberg' || 
+          p1 === 'neueroeffnungen' || 
+          p1 === 'nieuwe-openingen' || 
+          (p1 === 'themen' && pathParts[1] && (pathParts[1].toLowerCase() === 'neueroeffnungen-in-winterberg' || pathParts[1].toLowerCase() === 'neueroeffnungen')) ||
+          (p1 === 'themas' && pathParts[1] && (pathParts[1].toLowerCase() === 'nieuwe-openingen-in-winterberg' || pathParts[1].toLowerCase() === 'nieuwe-openingen'))
+        ) {
+          setIsOpeningsThemeMode(true);
         } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
           if (pathParts[1]) {
             setSelectedEventSlug(decodeURIComponent(pathParts[1]));
@@ -1154,6 +1177,7 @@ export default function App() {
   const [isSkiThemeMode, setIsSkiThemeMode] = useState(initialSkiThemeMode);
   const [isHandwerkerLandingMode, setIsHandwerkerLandingMode] = useState(initialHandwerkerLandingMode);
   const [isPartyLocationsMode, setIsPartyLocationsMode] = useState(initialPartyLocationsMode);
+  const [isOpeningsThemeMode, setIsOpeningsThemeMode] = useState(initialOpeningsThemeMode);
   const [isAuftraegeMode, setIsAuftraegeMode] = useState(initialAuftraegeMode);
   const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
@@ -2358,6 +2382,13 @@ export default function App() {
               window.history.pushState(null, '', getPath(lang === 'nl' ? '/laadpalen' : '/e-ladestationen'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onSelectOpenings={() => {
+              resetToDirectory();
+              setIsOpeningsThemeMode(true);
+              setIsMegaMenuOpen(false);
+              window.history.pushState(null, '', getPath(lang === 'nl' ? '/themas/nieuwe-openingen-in-winterberg' : '/themen/neueroeffnungen-in-winterberg'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             getPath={getPath}
           />
         </div>
@@ -2793,6 +2824,29 @@ export default function App() {
             }}
             onBack={() => {
               setIsPartyLocationsMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateContact={() => {
+              resetToDirectory();
+              setIsSubmitMode(true);
+              window.history.pushState(null, '', getPath('/eintragen'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        ) : isOpeningsThemeMode ? (
+          <OpeningsThemePage
+            businesses={businesses}
+            theme={theme}
+            designSettings={designSettings}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsOpeningsThemeMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsOpeningsThemeMode(false);
               window.history.pushState(null, '', getPath('/'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}

@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-11-02
+# Stand: 2026-11-04
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (470 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (472 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -2934,16 +2934,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/schweden-huette-altastenberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/schweden-huette-altastenberg
 
-#### [Gockelstall Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/restaurant/gockelstall-winterberg)
-- **Kategorie:** Gastronomie > Restaurant
+#### [Gockelstall Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/gockelstall-winterberg)
+- **Kategorie:** Gastronomie > Skihütten
 - **Ort / Ortsteil:** Winterberg
-- **Adresse:** Poststraße 10, 59955 Winterberg
+- **Adresse:** In der Büre 23, 59955 Winterberg
 - **Telefon:** 02981 928374
 - **Webseite:** https://www.gockelstall.de/
-- **Beschreibung (DE):** Der Gockelstall in der Winterberger Innenstadt steht für knusprige, frisch gegrillte Hähnchenspezialitäten, saftige Burger, krosse Pommes und herzhafte Sauerländer Snacks. Beliebter Treffpunkt für den schnellen Genuss vor Ort oder bequem zum Mitnehmen.
-- **Beschreibung (NL):** Gockelstall in het centrum van Winterberg staat bekend om knapperige vers gegrilde haantjes, sappige burgers, krokante friet en hartige snacks. Geliefde eetgelegenheid voor een snelle hap ter plaatse of afhaal.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/restaurant/gockelstall-winterberg
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/restaurants/gockelstall-winterberg
+- **Beschreibung (DE):** Kultige Skihütte und beliebte Après-Ski-Location direkt im Skiliftkarussell Winterberg am Herrloh / In der Büre. Im Winter uriger Hüttenzauber, herzhafte Spezialitäten und Schirmbar, im Sommer entspannte Einkehr mit Sonnenterrasse.
+- **Beschreibung (NL):** Gezellige skihut en après-ski hotspot direct aan de piste in het Skiliftkarussell Winterberg (Herrloh / In der Büre). 's Winters een authentieke berghut met schirmbar, 's zomers een ontspannen terras en evenementenlocatie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/skihuetten/gockelstall-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/skihutten/gockelstall-winterberg
 
 #### [HighFive (Café am Hillebachsee)](https://www.winterberg-verzeichnis.de/gastronomie/cafes/highfive-caf-am-hillebachsee)
 - **Kategorie:** Gastronomie > Cafés
@@ -2966,6 +2966,16 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Snackwagen Hans' Wurst aan de Ruhrstraße 32 in Niedersfeld (naast slagerij Buschmann) serveert klassieke en ambachtelijke snacks: knapperige friet, curryworst, echte Mantaplatte en sappige burgers bereid met streekproducten.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/imbiss-hans-wurst
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/imbiss-hans-wurst
+
+#### [Büdchen Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/imbisse/buedchen-winterberg)
+- **Kategorie:** Gastronomie > Imbisse
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Untere Pforte (Marktplatz), 59955 Winterberg
+- **Webseite:** https://www.instagram.com/buedchen_winterberg/
+- **Beschreibung (DE):** Gemütlicher Imbiss direkt auf dem Marktplatz an der Unteren Pforte in Winterberg. Bekannt für ehrliche Wurstspezialitäten aus der Region frisch vom Grill, knusprige Pommes, kühle Drinks und ein frisch gezapftes Bierchen im Freien.
+- **Beschreibung (NL):** Gezellige snackbar direct op het centrale marktplein aan de Untere Pforte in Winterberg. Beroemd om authentieke streekworst van de grill, knapperige friet, verfrissende drankjes en een koud biertje in de buitenlucht.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/imbisse/buedchen-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/snackbar-en-fastfood/buedchen-winterberg
 
 ### Kategorie: Dienstleistungen
 
@@ -3969,6 +3979,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ### Kategorie: Gesundheit & Medizin
 
+#### [Nadine Albers – Heilpraktikerin](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/nadine-albers-heilpraktikerin)
+- **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
+- **Ort / Ortsteil:** Siedlinghausen
+- **Adresse:** Sorpestraße 2, 59955 Winterberg-Siedlinghausen
+- **Beschreibung (DE):** Praxis für Naturheilkunde Nadine Albers in Winterberg-Siedlinghausen. Spezialisiert auf ganzheitliche Naturheilkunde, Phytotherapie (Pflanzenheilkunde) und fundierte Irisdiagnostik zur individuellen Ursachenforschung und sanften Behandlung.
+- **Beschreibung (NL):** Praktijk voor natuurgeneeskunde Nadine Albers in Winterberg-Siedlinghausen. Gespecialiseerd in holistische natuurgeneeskunde, fytotherapie (kruidengeneeskunde) en gefundeerde irisdiagnostiek.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/nadine-albers-heilpraktikerin
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/gezondheid-en-geneeskunde/artsen-en-praktijken/nadine-albers-heilpraktikerin
+
 #### [Sauerlandpraxis – Wolf Kolbe & Nicole Schramm](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/aerzte-und-praxen/sauerlandpraxis-wolf-kolbe-und-nicole-schramm)
 - **Kategorie:** Gesundheit & Medizin > Ärzte & Praxen
 - **Ort / Ortsteil:** Winterberg
@@ -4410,7 +4429,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Adresse:** Lamfert 1, 59955 Winterberg
 - **Telefon:** 02981 9298634
 - **Webseite:** https://www.jet.de/tankstellen/winterberg/lamfert-1
-- **Beschreibung (DE):** JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Shop, Bistro-Snacks (belegte Baguettes, Bockwurst, Frikadellen, Coffee to Go), Crushed Ice, Autopflege und SB-Waschanlage.
+- **Beschreibung (DE):** JET Marken-Tankstelle in Winterberg mit günstigen Kraftstoffen, modernem Tankstellen-Shop für Reiseproviant und Autozubehör, belegten Backwaren, Erfrischungsgetränken, Coffee to Go, Crushed Ice, Autopflege und SB-Waschanlage.
+- **Beschreibung (NL):** JET tankstation in Winterberg met voordelige brandstoffen, moderne shop voor onderweg, vers belegde broodjes, koude dranken, coffee to go, autoverzorging en wasboxen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/jet-tankstelle-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/tankstations/jet-tankstelle-winterberg
 
@@ -4420,7 +4440,8 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Adresse:** Am Hagenblech 60, 59955 Winterberg
 - **Telefon:** 02981 92600
 - **Webseite:** https://tankstelle.aral.de/winterberg/am-hagenblech-60/14164700
-- **Beschreibung (DE):** Aral Tankstelle in Winterberg Am Hagenblech. 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, REWE To Go Shop, PetitBistro mit frischen Snacks, Kaffeespezialitäten, LKW-Diesel und Waschanlage.
+- **Beschreibung (DE):** Aral Tankstelle in Winterberg Am Hagenblech. Rund um die Uhr 24/7 geöffnet mit Aral Kraftstoffen inklusive Ultimate, integriertem REWE To Go Shop für Reiseproviant und Einkäufe, Kaffeespezialitäten, LKW-Diesel und moderner Waschanlage.
+- **Beschreibung (NL):** Aral tankstation in Winterberg Am Hagenblech. 24/7 geopend met kwaliteitsbrandstoffen inclusief Ultimate, REWE To Go shop voor onderweg en levensmiddelen, koffie, vrachtwagendiesel en wasstraat.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/tankstellen/aral-tankstelle-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/mobiliteit-en-autos/tankstations/aral-tankstelle-winterberg
 

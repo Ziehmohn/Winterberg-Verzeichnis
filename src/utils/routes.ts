@@ -146,6 +146,8 @@ export const STATIC_PAGE_SLUGS = {
   handwerkerFinden: { de: 'handwerker-finden-in-winterberg', nl: 'vakmensen-vinden-in-winterberg' },
   partyLocationsTheme: { de: 'themen/partylocations-in-winterberg', nl: 'themas/feestlocaties-in-winterberg' },
   partyLocations: { de: 'partylocations-in-winterberg', nl: 'feestlocaties-in-winterberg' },
+  openingsTheme: { de: 'themen/neueroeffnungen-in-winterberg', nl: 'themas/nieuwe-openingen-in-winterberg' },
+  openings: { de: 'neueroeffnungen-in-winterberg', nl: 'nieuwe-openingen-in-winterberg' },
 };
 
 export const DISTRICTS = [
@@ -266,7 +268,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'event-detail' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'event-detail' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'openings-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -424,6 +426,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'party-locations-theme':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.partyLocationsTheme[targetLang]}`;
+
+    case 'openings-theme':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.openingsTheme[targetLang]}`;
 
     case 'auftragsboerse':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.auftragsboerse[targetLang]}`;

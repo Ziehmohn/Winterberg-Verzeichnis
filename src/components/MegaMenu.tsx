@@ -26,7 +26,8 @@ import {
   Zap,
   Sun,
   Trash2,
-  Snowflake
+  Snowflake,
+  Store
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -64,6 +65,7 @@ interface MegaMenuProps {
   onSelectSundayOpen?: () => void;
   onSelectWasteCalendar?: () => void;
   onSelectChargingStations?: () => void;
+  onSelectOpenings?: () => void;
   onSelectLocation: (location: string) => void;
   onOpenMap: () => void;
   onOpenSubmit: () => void;
@@ -86,6 +88,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onSelectSundayOpen,
   onSelectWasteCalendar,
   onSelectChargingStations,
+  onSelectOpenings,
   onSelectLocation,
   onOpenMap,
   onOpenSubmit,
@@ -674,8 +677,8 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                     </a>
                   </div>
 
-                  {/* Service Quick Links: Sonntags geöffnete Betriebe & Abfallkalender Winterberg */}
-                  <div className="grid grid-cols-2 gap-2">
+                  {/* Service Quick Links: Sonntags geöffnete Betriebe, Neueröffnungen & Abfallkalender Winterberg */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     <a
                       href={getPath(lang === 'nl' ? '/zondag-geopend' : '/sonntags-geoeffnet')}
                       onClick={(e) => {
@@ -695,10 +698,37 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       </div>
                       <div className="flex flex-col text-left">
                         <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-snug">
-                          {lang === 'nl' ? 'Zondag geopende bedrijven' : 'Sonntags geöffnete Betriebe'}
+                          {lang === 'nl' ? 'Zondag geopend' : 'Sonntags geöffnet'}
                         </span>
                         <span className="text-[10px] text-[#5F6B63]">
-                          {lang === 'nl' ? 'Koopzondagen' : 'Verkaufsoffene Sonntage'}
+                          {lang === 'nl' ? 'Koopzondagen' : 'Verkaufsoffen'}
+                        </span>
+                      </div>
+                    </a>
+
+                    <a
+                      href={getPath(lang === 'nl' ? '/themas/nieuwe-openingen-in-winterberg' : '/themen/neueroeffnungen-in-winterberg')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelectOpenings) {
+                          onSelectOpenings();
+                        } else {
+                          window.history.pushState(null, '', getPath(lang === 'nl' ? '/themas/nieuwe-openingen-in-winterberg' : '/themen/neueroeffnungen-in-winterberg'));
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                        onClose();
+                      }}
+                      className="bg-[#F8FAF9] hover:bg-[#EEF4F0] border border-[#E1EAE4] rounded-lg p-2.5 flex items-center gap-2.5 cursor-pointer no-underline group transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-md bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+                        <Store className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col text-left">
+                        <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-snug">
+                          {lang === 'nl' ? 'Nieuwe openingen' : 'Neueröffnungen'}
+                        </span>
+                        <span className="text-[10px] text-[#5F6B63]">
+                          {lang === 'nl' ? 'Winterberg & Regio' : 'Winterberg & Ortsteile'}
                         </span>
                       </div>
                     </a>
@@ -722,7 +752,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       </div>
                       <div className="flex flex-col text-left">
                         <span className="font-display font-bold text-[12px] text-[#1B211D] group-hover:text-[#0F4C2E] leading-snug">
-                          {lang === 'nl' ? 'Afvalkalender Winterberg' : 'Abfallkalender Winterberg'}
+                          {lang === 'nl' ? 'Afvalkalender' : 'Abfallkalender'}
                         </span>
                         <span className="text-[10px] text-[#5F6B63]">
                           {lang === 'nl' ? '14 dorpen' : '14 Ortsteile'}
