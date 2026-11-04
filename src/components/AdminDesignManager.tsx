@@ -31,6 +31,7 @@ import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { categories } from '../data';
 import { CATEGORY_HEADERS, CategoryHeaderData } from '../utils/categoryHeaders';
+import AdminHeroHeaderManager from './AdminHeroHeaderManager';
 
 interface AdminDesignManagerProps {
   designSettings: DesignSettings;
@@ -263,7 +264,7 @@ export default function AdminDesignManager({
   const [customBodyFont, setCustomBodyFont] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [activeTab, setActiveTab] = useState<'presets' | 'custom' | 'divider' | 'headers'>('presets');
+  const [activeTab, setActiveTab] = useState<'presets' | 'custom' | 'divider' | 'headers' | 'hero'>('presets');
   const [selectedDividerPage, setSelectedDividerPage] = useState<keyof HeaderDividerPageConfig>('category');
   const [dividerAppliedAllMsg, setDividerAppliedAllMsg] = useState(false);
   const [isCreatorModalOpen, setIsCreatorModalOpen] = useState(false);
@@ -544,6 +545,16 @@ export default function AdminDesignManager({
             >
               <Waves className="w-3.5 h-3.5 text-[#F2761B]" />
               Header-Divider (Trenner)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('hero')}
+              className={`px-3 py-1.5 rounded text-xs font-semibold cursor-pointer transition-colors inline-flex items-center gap-1.5 ${
+                activeTab === 'hero' ? 'bg-[#0F4C2E] text-white' : 'text-[#5F6B63] hover:text-black'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#F2761B]" />
+              Startseite Hero (10 Optionen)
             </button>
             <button
               type="button"
@@ -1477,6 +1488,21 @@ export default function AdminDesignManager({
             </div>
           );
         })()}
+
+        {/* Tab: Startseite Hero Header */}
+        {activeTab === 'hero' && (
+          <div className="bg-white rounded-xl border border-[#EDE8E0] p-6 shadow-xs">
+            <AdminHeroHeaderManager
+              designSettings={formData}
+              setDesignSettings={(updated) => {
+                setFormData(updated);
+                setDesignSettings(updated);
+              }}
+              theme={theme}
+              activeThemeKey={activeThemeKey}
+            />
+          </div>
+        )}
       </div>
 
       {/* Live Preview Header Badge */}
@@ -1537,9 +1563,27 @@ export default function AdminDesignManager({
           >
             Musterkarten im Verzeichnis
           </h2>
-          <p className="text-xs text-[#5F6B63] m-0">
+          <p className="text-xs text-[#5F6B63] m-0 mb-3">
             So wirken Firmennamen, Badges und Rubriken mit der eingestellten Schriftkombination.
           </p>
+          <div className="bg-[#FAF8F5] border border-[#EDE8E0] rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-[#E8F1EB] text-[#0F4C2E] flex items-center justify-center shrink-0">
+                <Layers className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-[#1B211D]">
+                  Kachel-Layout wechseln oder umgestalten?
+                </div>
+                <div className="text-xs text-[#5F6B63]">
+                  Im benachbarten Unterreiter <strong>„Kachel-Layouts (15 Optionen)“</strong> stehen 15 verschiedene Kachel-Designs zur Auswahl und sofortigen Aktivierung bereit.
+                </div>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-[#0F4C2E] shrink-0">
+              Siehe Unterreiter oben ↑
+            </span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

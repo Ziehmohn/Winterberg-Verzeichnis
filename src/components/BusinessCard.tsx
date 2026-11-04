@@ -1,16 +1,49 @@
 import React from 'react';
-import { MapPin, Heart, ShieldCheck } from 'lucide-react';
-import { Business } from '../types';
+import { Business, CardLayoutId } from '../types';
 import { useTranslation } from '../i18n';
 import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import { useFavorites } from '../utils/favorites';
-import { formatBusinessAddress, isSundayOpen, isBusinessClaimed } from '../utils';
-import RankingBadge from './RankingBadge';
-import BusinessCategoryIcon from './BusinessCategoryIcon';
+import {
+  CardSharedData,
+  LayoutDefault,
+  LayoutModernCompact,
+  LayoutHorizontalCard,
+  LayoutEditorialMinimal,
+  LayoutHeroOverlay,
+  LayoutBoldBrand,
+  LayoutFloatingAvatar,
+  LayoutAccentSidebar,
+  LayoutBadgeRibbon,
+  LayoutPhotoMosaic,
+  LayoutTagCloudServices,
+  LayoutFlatPaper,
+  LayoutDarkEmerald,
+  LayoutInteractiveFlip,
+  LayoutBentoGrid
+} from './card-layouts/CardLayoutVariants';
 
-interface BusinessCardProps {
+let cachedGlobalLayout: CardLayoutId = 'default';
+if (typeof window !== 'undefined') {
+  try {
+    const raw = localStorage.getItem('siteDesignSettings');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.cardLayout) cachedGlobalLayout = parsed.cardLayout;
+    }
+  } catch (e) {}
+}
+
+export function setGlobalCardLayout(layout: CardLayoutId) {
+  cachedGlobalLayout = layout;
+}
+
+export function getGlobalCardLayout(): CardLayoutId {
+  return cachedGlobalLayout;
+}
+
+export interface BusinessCardProps {
   key?: any;
   business: Business;
   lang?: 'de' | 'nl';
@@ -19,6 +52,7 @@ interface BusinessCardProps {
   onClick: (e: React.MouseEvent) => void;
   className?: string;
   theme?: any;
+  layout?: CardLayoutId;
 }
 
 export default function BusinessCard({
@@ -27,7 +61,8 @@ export default function BusinessCard({
   allBusinesses = [],
   searchQuery = '',
   onClick,
-  className = ''
+  className = '',
+  layout
 }: BusinessCardProps) {
   const { t, lang: contextLang } = useTranslation();
   const lang = propLang || contextLang || 'de';
@@ -54,247 +89,58 @@ export default function BusinessCard({
 
   const lowerSearch = searchQuery.toLowerCase().trim();
 
-  return (
-    <div 
-      onClick={onClick}
-      className={`group bg-white rounded-2xl shadow-sm border ${business.isPremium ? 'border-[#F2761B]/60 hover:border-[#F2761B]' : 'border-[#E7E2DA]'} flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all duration-200 cursor-pointer ${className}`}
-    >
-      {/* Top Image Banner (no overflow-hidden on wrapper so logo extends down!) */}
-      <div className="h-[200px] w-full bg-[#FAF8F5] relative shrink-0">
-        <div className="w-full h-full overflow-hidden rounded-t-2xl">
-          {imageSrc ? (
-            <img 
-              src={imageSrc} 
-              alt={business.name} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#06301C] via-[#0F4C2E] to-[#1B211D] flex items-center justify-center relative overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" 
-                style={{ backgroundImage: 'url(/winterberg-header.webp)' }}
-              />
-              <div className="relative z-10">
-                <BusinessCategoryIcon 
-                  category={business.category} 
-                  subcategory={business.subcategory} 
-                  name={business.name} 
-                  isPremium={business.isPremium} 
-                  size="xl" 
-                  className="shadow-md"
-                />
-              </div>
-            </div>
-          )}
-        </div>
+  const sharedData: CardSharedData = {
+    business,
+    lang,
+    allBusinesses,
+    searchQuery,
+    onClick,
+    className,
+    isFav,
+    toggleFavorite,
+    avgRating,
+    reviewCount,
+    cardUsps,
+    cardRankingBadges,
+    imageSrc,
+    lowerSearch,
+    localized,
+    t
+  };
 
-        {/* Top Badges (Premium + Claimed + Star Rating + Favorite Heart) */}
-        <div className="absolute top-3 left-3 right-3 flex justify-between items-start z-10">
-          <div className="flex items-center gap-1.5 flex-wrap pointer-events-none">
-            {business.isPremium && (
-              <div className="bg-[#FFF1E4] text-[#D65F0C] border border-[#FBD9BC] px-2.5 py-1 rounded-md text-[12px] font-bold shadow-sm backdrop-blur-xs">
-                Premium
-              </div>
-            )}
-            {!business.isPremium && isBusinessClaimed(business) && (
-              <div className="bg-[#E8F1EB]/95 text-[#0F4C2E] border border-[#C5DFCE] px-2.5 py-1 rounded-md text-[11.5px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C2E] shrink-0" />
-                <span>{lang === 'nl' ? 'Geverifieerd' : 'Verifiziert'}</span>
-              </div>
-            )}
-            {business.isPremium && business.hasShop && (
-              <div className="bg-[#0F4C2E] text-white border border-[#0F4C2E]/30 px-2 py-1 rounded-md text-[11px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
-                <span>🛍️</span>
-                <span>{lang === 'nl' ? 'Webshop' : 'Onlineshop'}</span>
-              </div>
-            )}
-            {isSundayOpen(business.openingHours) && (
-              <div className="bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-2 py-1 rounded-md text-[11px] font-bold shadow-sm backdrop-blur-xs flex items-center gap-1">
-                <span>☀️</span>
-                <span>{lang === 'nl' ? 'Zondag open' : 'So. geöffnet'}</span>
-              </div>
-            )}
-          </div>
+  const activeLayout: CardLayoutId = layout || getGlobalCardLayout() || 'default';
 
-          <div className="flex items-center gap-2 ml-auto">
-            {avgRating && (
-              <div className="bg-white/95 backdrop-blur-sm border border-[#E7E2DA] px-2.5 py-1 rounded-md flex items-center gap-1.5 shadow-sm pointer-events-none">
-                <span className="text-[#F2761B] text-[13px] leading-none">★</span>
-                <span className="font-bold text-[13.5px] text-[#1B211D]">{avgRating}</span>
-                <span className="text-[12px] text-[#5F6B63]">({reviewCount})</span>
-              </div>
-            )}
-
-            {/* Favorite Heart Button */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite(business.id);
-              }}
-              title={isFav ? (lang === 'nl' ? 'Verwijderen uit favorieten' : 'Aus Favoriten entfernen') : (lang === 'nl' ? 'Toevoegen aan favorieten' : 'Als Favorit merken')}
-              aria-label={isFav ? 'Aus Favoriten entfernen' : 'Als Favorit merken'}
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md pointer-events-auto shrink-0 ${
-                isFav
-                  ? 'bg-white text-red-500 hover:scale-110 shadow-red-100'
-                  : 'bg-white/90 backdrop-blur-sm text-gray-400 hover:text-red-500 hover:bg-white hover:scale-110'
-              }`}
-            >
-              <Heart className={`w-4 h-4 transition-transform ${isFav ? 'fill-red-500 text-red-500 scale-110' : ''}`} />
-            </button>
-          </div>
-        </div>
-
-        {/* Logo overlayed at bottom-left of image - Top level Z-Index, not clipped! (Premium only) */}
-        {business.isPremium && business.logoUrl && (
-          <div className="absolute -bottom-6 left-5 z-30 pointer-events-none">
-            <div 
-              className="w-[60px] h-[60px] bg-white rounded-xl shadow-lg border border-[#E7E2DA] flex items-center justify-center overflow-hidden p-1.5"
-              style={{ backgroundColor: business.logoBgColor || '#ffffff' }}
-            >
-              <img 
-                src={business.logoUrl} 
-                alt={business.name} 
-                className="max-w-full max-h-full object-contain" 
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Content Area */}
-      <div className={`px-5 ${(business.isPremium && business.logoUrl) ? 'pt-9' : 'pt-5'} pb-5 flex flex-col flex-1 relative z-10 bg-white rounded-b-2xl`}>
-        {/* Category */}
-        <div className="text-[11px] font-bold text-[#F2761B] tracking-wider uppercase mb-1.5 line-clamp-1">
-          {t(business.category)}{business.subcategory ? ` · ${t(business.subcategory)}` : ''}
-        </div>
-
-        {/* Title */}
-        <h3 className="font-display text-[20px] font-bold text-[#1B211D] mb-2.5 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-          {business.name}
-        </h3>
-
-        {/* Ranking Badges (Support multiple Platz 1 badges) */}
-        {cardRankingBadges.length > 0 && (
-          <div className="flex items-center gap-1.5 flex-wrap mb-3">
-            {cardRankingBadges.map((badge, bIdx) => (
-              <RankingBadge key={bIdx} badge={badge} lang={lang} variant="compact" />
-            ))}
-          </div>
-        )}
-
-        {/* AI Extracted Review USPs */}
-        {cardUsps.length > 0 && (
-          <div className="flex items-center gap-1.5 flex-wrap mb-3">
-            {cardUsps.map((usp, uIdx) => (
-              <span
-                key={uIdx}
-                className="inline-flex items-center gap-1.5 bg-[#E8F1EB] border border-[#C5DFCE] text-[#0F4C2E] px-2.5 py-1 rounded-full text-[12px] font-semibold w-fit shadow-2xs"
-              >
-                <span className="text-[#F2761B] text-[11px] leading-none">✓</span>
-                {usp}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Short Description (Max 4 lines) */}
-        {localized.description && (
-          <p className="text-[14.5px] text-[#4A544D] leading-relaxed mb-4 line-clamp-4">
-            {localized.description}
-          </p>
-        )}
-
-        {/* Services Tags (Max 3, +X for Premium) */}
-        {Array.isArray(localized.services) && localized.services.length > 0 && (
-          <div className="flex items-center gap-1.5 flex-wrap mb-2.5">
-            {localized.services.slice(0, 3).map((svc, sIdx) => {
-              const isMatched = lowerSearch && (
-                svc.toLowerCase().includes(lowerSearch) || 
-                (business.services && business.services.some(orig => orig.toLowerCase().includes(lowerSearch)))
-              );
-              return (
-                <span
-                  key={sIdx}
-                  className={`text-[12px] px-2.5 py-1 rounded-md font-medium transition-colors ${
-                    isMatched 
-                      ? 'bg-[#FFF1E4] text-[#D65F0C] font-bold border border-[#F2761B]/40' 
-                      : 'bg-[#FAF8F5] text-[#4A544D] border border-[#E7E2DA]'
-                  }`}
-                >
-                  {isMatched ? `★ ${svc}` : svc}
-                </span>
-              );
-            })}
-            {business.isPremium && localized.services.length > 3 && (
-              <span className="text-[11.5px] text-[#8A928B] font-medium self-center">
-                +{localized.services.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
-              </span>
-            )}
-          </div>
-        )}
-
-        {/* Products Tags (Max 3, +X for Premium) */}
-        {Array.isArray(localized.products) && localized.products.length > 0 && (
-          <div className="flex items-center gap-1.5 flex-wrap mb-3.5">
-            {localized.products.slice(0, 3).map((prod, pIdx) => {
-              const isMatched = lowerSearch && (
-                prod.toLowerCase().includes(lowerSearch) || 
-                (business.products && business.products.some(orig => orig.toLowerCase().includes(lowerSearch)))
-              );
-              return (
-                <span
-                  key={pIdx}
-                  className={`text-[12px] px-2.5 py-1 rounded-md font-medium transition-colors ${
-                    isMatched 
-                      ? 'bg-[#FFF1E4] text-[#D65F0C] font-bold border border-[#F2761B]/40' 
-                      : 'bg-[#FFF8F1] text-[#D65F0C] border border-[#FBD9BC]'
-                  }`}
-                >
-                  {isMatched ? `★ ${prod}` : prod}
-                </span>
-              );
-            })}
-            {business.isPremium && localized.products.length > 3 && (
-              <span className="text-[11.5px] text-[#8A928B] font-medium self-center">
-                +{localized.products.length - 3} {lang === 'nl' ? 'meer' : 'weitere'}
-              </span>
-            )}
-          </div>
-        )}
-
-        {/* Address at Bottom */}
-        <div className="mt-auto pt-3.5 border-t border-[#E7E2DA] flex items-center gap-2 text-[#8A928B]">
-          <MapPin className="w-4 h-4 shrink-0 text-[#8A928B]" />
-          <span className="text-[13.5px] leading-tight truncate">
-            {formatBusinessAddress(business.address, business.district)}
-          </span>
-        </div>
-
-        {/* Subtle claim hint for unclaimed profiles, or claimed indicator for claimed Basic profiles */}
-        {!isBusinessClaimed(business) ? (
-          <div className="mt-2 pt-2 border-t border-dashed border-[#EDE8E0] flex items-center justify-between text-[11.5px] text-[#0F4C2E]">
-            <span className="font-semibold flex items-center gap-1 group-hover:underline">
-              <span>{lang === 'nl' ? 'Uw bedrijf? Nu gratis claimen' : 'Ihr Betrieb? Jetzt kostenlos übernehmen'}</span>
-              <span className="text-[#F2761B] font-bold">→</span>
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-50 text-[#0F4C2E] border border-emerald-200">
-              0 €
-            </span>
-          </div>
-        ) : !business.isPremium ? (
-          <div className="mt-2 pt-2 border-t border-dashed border-[#EDE8E0] flex items-center justify-between text-[11.5px] text-[#0F4C2E]">
-            <span className="font-semibold flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#0F4C2E] shrink-0" />
-              <span>{lang === 'nl' ? 'Door eigenaar geverifieerd' : 'Vom Inhaber verifiziert'}</span>
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#E8F1EB] text-[#0F4C2E] border border-[#C5DFCE]">
-              {lang === 'nl' ? '✓ Geverifieerd' : '✓ Verifiziert'}
-            </span>
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
+  switch (activeLayout) {
+    case 'modern-compact':
+      return <LayoutModernCompact data={sharedData} />;
+    case 'horizontal-card':
+      return <LayoutHorizontalCard data={sharedData} />;
+    case 'editorial-minimal':
+      return <LayoutEditorialMinimal data={sharedData} />;
+    case 'hero-overlay':
+      return <LayoutHeroOverlay data={sharedData} />;
+    case 'bold-brand':
+      return <LayoutBoldBrand data={sharedData} />;
+    case 'floating-avatar':
+      return <LayoutFloatingAvatar data={sharedData} />;
+    case 'accent-sidebar':
+      return <LayoutAccentSidebar data={sharedData} />;
+    case 'badge-ribbon':
+      return <LayoutBadgeRibbon data={sharedData} />;
+    case 'photo-mosaic':
+      return <LayoutPhotoMosaic data={sharedData} />;
+    case 'tag-cloud-services':
+      return <LayoutTagCloudServices data={sharedData} />;
+    case 'flat-paper':
+      return <LayoutFlatPaper data={sharedData} />;
+    case 'dark-emerald':
+      return <LayoutDarkEmerald data={sharedData} />;
+    case 'interactive-flip':
+      return <LayoutInteractiveFlip data={sharedData} />;
+    case 'bento-grid':
+      return <LayoutBentoGrid data={sharedData} />;
+    case 'default':
+    default:
+      return <LayoutDefault data={sharedData} />;
+  }
 }

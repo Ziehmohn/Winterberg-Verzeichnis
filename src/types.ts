@@ -86,6 +86,48 @@ export interface CategoryHeaderConfig {
   objectPosition?: string;
 }
 
+export type HomeHeroStyle = 
+  | 'split-gradient-badge'    // 1. Neueröffnung-Stil (Rechtsfreigestellt mit weichem Verlauf)
+  | 'split-card-glow'         // 2. Moderner Split mit schwebender Fotokarte & Glow
+  | 'cinematic-overlay'       // 3. Cinematische Vollbild-Szenerie mit Dunkelverlauf
+  | 'split-diagonal-cut'      // 4. Dynamischer Diagonalschnitt (Angled Split)
+  | 'magazine-editorial'      // 5. Magazin & Editorial (Gerahmtes Passepartout)
+  | 'panoramic-compact'       // 6. Kompakter Panoramabalken (Fokus auf Suche)
+  | 'split-curved-arch'       // 7. Organischer Rundbogen (Boutique Portal Arch)
+  | 'glassmorphism-card'      // 8. Frosted-Glassmorphism Dock
+  | 'minimal-side-by-side'    // 9. Klares 50/50 Side-by-Side (Moderne Galerie)
+  | 'immersive-gradient-fade'; // 10. Atmosphärischer Horizont-Verlauf
+
+export interface HomeHeroConfig {
+  style: HomeHeroStyle;
+  imageUrl?: string;
+  imageAlt?: string;
+  credit?: string;
+  showCredit?: boolean;
+  badgeText?: string;
+  badgeTextNl?: string;
+  objectPosition?: string;
+  showStats?: boolean;
+  showPopularSearches?: boolean;
+}
+
+export type CardLayoutId = 
+  | 'default'
+  | 'modern-compact'
+  | 'horizontal-card'
+  | 'editorial-minimal'
+  | 'hero-overlay'
+  | 'bold-brand'
+  | 'floating-avatar'
+  | 'accent-sidebar'
+  | 'badge-ribbon'
+  | 'photo-mosaic'
+  | 'tag-cloud-services'
+  | 'flat-paper'
+  | 'dark-emerald'
+  | 'interactive-flip'
+  | 'bento-grid';
+
 export interface DesignSettings {
   headlineFont: string;
   bodyFont: string;
@@ -95,6 +137,8 @@ export interface DesignSettings {
   headerDividers?: HeaderDividerPageConfig;
   customDividers?: CustomDivider[];
   categoryHeaders?: Record<string, CategoryHeaderConfig>;
+  cardLayout?: CardLayoutId;
+  homeHero?: HomeHeroConfig;
 }
 
 export interface Review {
