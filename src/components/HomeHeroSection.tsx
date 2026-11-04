@@ -7,7 +7,6 @@ import {
   ArrowRight, 
   Camera, 
   MapPin, 
-  Store,
   Layers,
   Compass
 } from 'lucide-react';
@@ -62,11 +61,6 @@ export const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({
   const imageSrc = heroConfig.imageUrl || '/winterberg-hero-stefan-peters.jpg';
   const objectPos = heroConfig.objectPosition || 'center 40%';
   const creditText = heroConfig.credit || 'Ferienwelt Winterberg / Stefan Peters';
-
-  // Badge Text
-  const badgeLabel = isNl 
-    ? (heroConfig.badgeTextNl || 'Winterberg & Regio • De officiële bedrijvengids') 
-    : (heroConfig.badgeText || 'Winterberg & Region • Das offizielle Branchenverzeichnis');
 
   // Search box component to reuse across styles
   const renderSearchBox = (isGlass = false) => (
@@ -307,11 +301,6 @@ export const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({
   // Header Title
   const renderTitle = () => (
     <>
-      <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-3 drop-shadow-xs">
-        <Store className="w-4 h-4 text-amber-300 shrink-0" />
-        <span>{badgeLabel}</span>
-      </div>
-
       <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-medium mb-4 leading-tight">
         {isNl ? 'De ' : 'Das '} <br className="md:hidden"/>
         <span className="inline-block relative">
@@ -567,11 +556,6 @@ export const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({
 
         {/* Content & Floating Search Bar overlapping the banner */}
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pb-16 relative z-30 -mt-16 sm:-mt-20">
-          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-3 drop-shadow-xs">
-            <Store className="w-4 h-4 text-amber-300 shrink-0" />
-            <span>{badgeLabel}</span>
-          </div>
-
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-white drop-shadow-md">
             {isNl ? 'De Winterberg Gids' : 'Das Winterberg Verzeichnis'}
           </h1>
