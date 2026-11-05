@@ -61,6 +61,77 @@ export const businesses: Business[] = [
     website: 'https://www.winterberg.de',
     isActive: true,
     events: [
+    {
+        "id": "drk-blutspende-siedlinghausen-november-2026",
+        "title": "DRK-Blutspende im Speisesaal der Schützenhalle Siedlinghausen",
+        "title_nl": "DRK-Bloeddonatie in de Schuttershal Siedlinghausen",
+        "startDate": "2026-11-11",
+        "endDate": "2026-11-12",
+        "startTime": "17:00",
+        "endTime": "20:00",
+        "category": "Sonstiges",
+        "location": "Schützenhalle Siedlinghausen (Speisesaal), Hochsauerlandstraße 34, 59955 Winterberg-Siedlinghausen",
+        "coordinates": {
+                "lat": 51.2505,
+                "lng": 8.4901
+        },
+        "price": "Kostenlos (Lebensretter gesucht)",
+        "imageUrl": "/events-blutspende-siedlinghausen.png",
+        "organizer": "DRK-Blutspendedienst West",
+        "hideOrganizer": true,
+        "externalUrl": "https://www.drk-blutspende.de",
+        "slug": "drk-blutspende-siedlinghausen-november-2026",
+        "slug_nl": "drk-bloeddonatie-siedlinghausen-november-2026",
+        "description": "Blut spenden rettet Leben! Der DRK-Blutspendedienst West lädt an zwei aufeinanderfolgenden Tagen zur Blutspendeaktion in Winterberg-Siedlinghausen ein:\n\n* Mittwoch, 11. November 2026: 17:00 – 20:00 Uhr\n* Donnerstag, 12. November 2026: 17:00 – 20:00 Uhr\n\nVeranstaltungsort: Speisesaal der Schützenhalle Siedlinghausen, Hochsauerlandstraße 34, 59955 Winterberg.\n\nUm Wartezeiten zu vermeiden, wird um eine vorherige Terminreservierung über die Website www.drk-blutspende.de oder die DRK Blutspende-App gebeten. Bitte bringen Sie einen amtlichen Lichtbildausweis sowie Ihren Blutspendeausweis (falls vorhanden) mit.",
+        "description_nl": "Bloed doneren redt levens! De DRK nodigt uit voor een bloeddonatie-actie in Winterberg-Siedlinghausen op twee achtereenvolgende dagen:\n\n* Woensdag 11 november 2026: 17:00 – 20:00 uur\n* Donderdag 12 november 2026: 17:00 – 20:00 uur\n\nLocatie: Eetzaal van de Schuttershal Siedlinghausen, Hochsauerlandstraße 34, 59955 Winterberg.\n\nReservering vooraf via www.drk-blutspende.de of de bloeddonatie-app wordt aangeraden om wachttijden te voorkomen. Geldig identiteitsbewijs meenemen a.u.b."
+},
+    {
+        "id": "buchsonntag-buecherei-st-agatha-niedersfeld-2026",
+        "title": "Buchsonntag in der Bücherei St. Agatha Niedersfeld",
+        "title_nl": "Boekenzondag in bibliotheek St. Agatha Niedersfeld",
+        "startDate": "2026-11-08",
+        "endDate": "2026-11-08",
+        "startTime": "14:30",
+        "endTime": "17:30",
+        "category": "Kultur",
+        "location": "Josefshaus / Dorfgemeinschaftshaus Niedersfeld, Josefsweg 1, 59955 Winterberg-Niedersfeld",
+        "coordinates": {
+                "lat": 51.2588,
+                "lng": 8.5297
+        },
+        "price": "Eintritt frei",
+        "imageUrl": "/events-buchsonntag-buecherei-niedersfeld.jpg",
+        "organizer": "KÖB St. Agatha Niedersfeld / WortReich",
+        "hideOrganizer": true,
+        "slug": "buchsonntag-buecherei-st-agatha-niedersfeld-2026",
+        "slug_nl": "boekenzondag-bibliotheek-st-agatha-niedersfeld-2026",
+        "description": "Die KÖB St. Agatha Niedersfeld (WortReich – Lesen und mehr) lädt am Sonntag, den 8. November 2026 ab 14:30 Uhr herzlich zum traditionellen Buchsonntag ins Josefshaus / Dorfgemeinschaftshaus Niedersfeld ein!\n\nFreuen Sie sich auf einen gemütlichen Sonntagnachmittag mit vielfältigem Programm:\n\n* 📚 Ausstellung der neuen Medien: Schmökern in aktuellen Bestsellern, Romanen, Sachbüchern, Kinder- und Jugendbüchern sowie neuen Medien.\n* 🎁 Geschenkideen & Kalender: Schöne Präsente und Kalender für die bevorstehende Advents- und Weihnachtszeit.\n* ☕ Kuchenbuffet & frische Waffeln: Gemütliches Beisammensein bei duftendem Kaffee, hausgemachten Kuchen und frisch gebackenen Waffeln.\n* ✂️ Für die Kleinen: Bunte Bastelstube und spannendes Kamishibai-Erzähltheater für Kinder jeweils um 15:00 Uhr und 16:00 Uhr.\n\nAlle Leseratten, Familien, Kinder und Interessierten sind herzlich willkommen!",
+        "description_nl": "De bibliotheek KÖB St. Agatha Niedersfeld (WortReich – Lesen und mehr) organiseert op zondag 8 november 2026 vanaf 14:30 uur de jaarlijkse Boekenzondag in het dorpshuis Josefshaus in Niedersfeld.\n\nWat staat er op het programma:\n* 📚 Presentatie van nieuwe media: Boeken, romans, jeugdboeken en luisterverhalen.\n* 🎁 Cadeau-ideeën & kalenders: Leuke geschenken en kalenders voor de feestdagen.\n* ☕ Taartenbuffet & verse wafels: Gezellig samenzijn met koffie, versgebakken taart en wafels.\n* ✂️ Voor kinderen: Knutselhoek en interactief Kamishibai-verteltheater om 15:00 uur en 16:00 uur.\n\nIedereen is van harte welkom!"
+},
+    {
+        "id": "spielenachmittag-buecherei-niedersfeld-2026",
+        "title": "Spielenachmittag für Junggebliebene – KÖB St. Agatha Niedersfeld",
+        "title_nl": "Spellenmiddag voor senioren & speelliefhebbers – Niedersfeld",
+        "startDate": "2026-12-07",
+        "endDate": "2026-12-07",
+        "startTime": "15:00",
+        "endTime": "17:00",
+        "category": "Familie & Kinder",
+        "location": "Josefshaus Niedersfeld, Josefsweg 1, 59955 Winterberg-Niedersfeld",
+        "coordinates": {
+                "lat": 51.2588,
+                "lng": 8.5297
+        },
+        "price": "Kostenlos",
+        "imageUrl": "/events-spielenachmittag-buecherei-niedersfeld.jpg",
+        "organizer": "KÖB St. Agatha Niedersfeld",
+        "hideOrganizer": true,
+        "slug": "spielenachmittag-buecherei-niedersfeld-2026",
+        "slug_nl": "spellenmiddag-bibliotheek-niedersfeld-2026",
+        "description": "Spielen macht Spaß und hält geistig fit! Deshalb lädt die KÖB St. Agatha alle Junggebliebenen an jedem 1. Montag im Monat von 15:00 bis 17:00 Uhr zum fröhlichen und gemeinschaftlichen Spielen ins Josefshaus Niedersfeld ein.\n\nAuf dem Programm stehen beliebte Klassiker für jeden Geschmack:\n* 🃏 Kartenspiele: Skat, Doppelkopf und weitere Runden\n* 🎲 Brettspiele & Knobelklassiker: Rummikub, Mühle, Mensch ärgere Dich nicht u.v.m.\n\nEinfach vorbeikommen, mitspielen und nette Menschen treffen! Nächste Termine: Montag, 07. Dezember 2026, 04. Januar 2027 und 01. Februar 2027.",
+        "description_nl": "Samen spelletjes spelen brengt gezelligheid! De bibliotheek KÖB St. Agatha nodigt alle speelliefhebbers en senioren uit voor een gezellige spellenmiddag: elke 1e maandag van de maand van 15:00 tot 17:00 uur in het Josefshaus Niedersfeld.\n\nPopulair spelaanbod:\n* 🃏 Kaartspellen: Skat, klaverjassen/doppelkopf en kaartspelklassiekers\n* 🎲 Bordspellen: Rummikub, molenspel en diverse gezelschapsspellen\n\nIedereen is van harte welkom om spontaan aan te schuiven!"
+},
+
       {
         id: 'linedance-anfaengerkurs-winterberg-2026',
         title: 'Linedance Anfängerkurs – Winterberger Country Liners',
@@ -81,6 +152,30 @@ export const businesses: Business[] = [
         slug: 'linedance-anfaengerkurs-winterberg-2026',
         slug_nl: 'line-dance-beginnerscursus-winterberg-2026',
         price: 'Anmeldung über VHS'
+      },
+      {
+        id: 'showtanzturnier-silbach-2026',
+        title: '26. Silbacher Showtanzturnier',
+        title_nl: '26e Showdanstoernooi Silbach',
+        startDate: '2026-11-07',
+        endDate: '2026-11-07',
+        startTime: '20:00',
+        endTime: '',
+        category: 'Fest & Party',
+        location: 'Dorfhalle Silbach, Wiesenstr. 11, 59955 Winterberg-Silbach',
+        coordinates: {
+          lat: 51.2263,
+          lng: 8.4727
+        },
+        price: 'Abendkasse',
+        imageUrl: '/events-showtanzturnier-silbach.jpg',
+        organizer: 'Showtanzturnier Silbach',
+        organizer_nl: 'Showdanstoernooi Silbach',
+        externalUrl: 'https://www.instagram.com/showtanzturnier_silbach/',
+        description: 'Die 26. Auflage des beliebten Silbacher Showtanzturniers steht vor der Tür! Am Samstag, 07. November 2026, heißt es in der Dorfhalle Silbach wieder: Bühne frei für spektakuläre Tänze, kreative Kostüme und jede Menge gute Stimmung!\n\nEinlass ist ab 18:30 Uhr, Beginn um 20:00 Uhr.\n\nMit dabei beim Showtanzturnier:\n★ Wilde Weiber Wennemen\n★ Showgarde Rösenbeck\n★ Mündener Sterne\n★ Nordlichter KG Meschede Nord\n★ JuKa `56 Damengarde Belecke\n\nRahmenprogramm:\n★ Die Namenlosen 2.0. Silbach\n★ Prinzengarde Warstein\n★ Valberter Konfettis\n★ Männerballett Die Pfeffis Silbach\n\nIm Anschluss große Aftershowparty mit DJ Robin – Tanzfläche frei!',
+        description_nl: 'De 26e editie van het populaire Showdanstoernooi in Silbach! Op zaterdag 7 november 2026 in de dorpshal van Silbach (Dorfhalle Silbach): spectaculaire choreografieën, schitterende kostuums en een geweldige feeststemming.\n\nZaal open vanaf 18:30 uur, aanvang om 20:00 uur.\n\nDeelnemende dansgroepen:\n★ Wilde Weiber Wennemen\n★ Showgarde Rösenbeck\n★ Mündener Sterne\n★ Nordlichter KG Meschede Nord\n★ JuKa `56 Damengarde Belecke\n\nRandprogramma:\n★ Die Namenlosen 2.0. Silbach\n★ Prinzengarde Warstein\n★ Valberter Konfettis\n★ Männerballett Die Pfeffis Silbach\n\nAansluitend grote aftershowparty met DJ Robin – dansvloer vrij!',
+        slug: 'showtanzturnier-silbach-2026',
+        slug_nl: 'showdanstoernooi-silbach-2026'
       },
       {
         id: 'martinsumzug-groenebach-2026',
@@ -136,6 +231,29 @@ export const businesses: Business[] = [
         slug_nl: 'sint-maartensoptocht-zueschen-2026',
         price: 'Kostenlos'
       },
+      {
+        "id": "martinsumzug-niedersfeld-2026",
+        "title": "Martinszug Niedersfeld 2026",
+        "title_nl": "Sint-Maartensoptocht Niedersfeld 2026",
+        "startDate": "2026-11-11",
+        "endDate": "2026-11-11",
+        "startTime": "17:45",
+        "endTime": "20:00",
+        "category": "Fest & Party",
+        "location": "St. Agatha Kirche & Josefshaus, Josefsweg 1, 59955 Winterberg-Niedersfeld",
+        "coordinates": {
+                "lat": 51.2588,
+                "lng": 8.5297
+        },
+        "price": "Kostenlos",
+        "imageUrl": "/events-martinszug-niedersfeld-2026.jpg",
+        "organizer": "Dorfgemeinschaft Niedersfeld",
+        "hideOrganizer": true,
+        "slug": "martinsumzug-niedersfeld-2026",
+        "slug_nl": "sint-maartensoptocht-niedersfeld-2026",
+        "description": "Die Dorfgemeinschaft Niedersfeld lädt alle Kinder, Familien und Dorfbewohner herzlich zum traditionellen Martinszug am Mittwoch, den 11. November 2026 ein!\n\n### Ablauf des Abends:\n* 17:45 Uhr – Andacht: Feierlicher Beginn mit einer kurzen Andacht in der St. Agatha Kirche in Niedersfeld.\n* Anschließend – Martinsumzug: Aufstellung in der Hittenmitte. Der bunte Laternenumzug zieht durch den Josefsweg, links Steinkamp, an der Dorfhalle vorbei und durch den herbstlichen Kurpark zurück zum Josefshaus. Begleitet wird der Zug von den stimmungsvollen Klängen der Blasmusik Niedersfeld.\n* Gemütlicher Abschluss am Josefshaus: Wärmender Kinderpunsch und Glühwein für alle sowie die traditionelle Verteilung der frischen Stutenkerle an die Kinder!\n\nBringt eure bunten Laternen mit – wir freuen uns auf viele kleine und große Laternenträger!",
+        "description_nl": "De dorpsgemeenschap van Niedersfeld nodigt alle kinderen, ouders en dorpsbewoners van harte uit voor de traditionele Sint-Maartensoptocht op woensdag 11 november 2026!\n\n### Programma:\n* 17:45 uur – Viering: Feestelijke start met een korte viering in de St. Agatha-kerk in Niedersfeld.\n* Aansluitend – Lampionoptocht: De stoet vertrekt vanaf de Hittenmitte via de Josefsweg, Steinkamp, de dorpshal en door het kuurpark terug naar het dorpshuis Josefshaus. De muzikale begeleiding wordt verzorgd door Blasmusik Niedersfeld.\n* Gezellige afsluiting bij het Josefshaus: Warme kinderpunch en glühwein voor iedereen en uitdelen van de traditionele Sint-Maartenbroodjes (Stutenkerle) aan de kinderen.\n\nNeem jullie mooiste lampions mee!"
+},
       {
         id: 'martinsumzug-silbach-2026',
         title: 'Martinsumzug Silbach',
@@ -8868,7 +8986,30 @@ export const businesses: Business[] = [
         ticketUrl: 'https://tenne-winterberg.de/veranstaltung/%f0%9f%8e%89konfetti-baeaem-%f0%9f%8e%8907-11-26/',
         slug: 'konfetti-baaam-tenne-winterberg-2026',
         slug_nl: 'konfetti-baaam-tenne-winterberg-2026'
-      }
+      },
+      {
+        "id": "white-night-tenne-winterberg-2026",
+        "title": "WHITE NIGHT in der Tenne Winterberg",
+        "title_nl": "WHITE NIGHT in Die Tenne Winterberg",
+        "startDate": "2026-11-28",
+        "endDate": "2026-11-29",
+        "startTime": "20:00",
+        "endTime": "05:00",
+        "category": "Fest & Party",
+        "location": "Die Tenne Winterberg, Marktstraße 12, 59955 Winterberg",
+        "coordinates": {
+                "lat": 51.1947,
+                "lng": 8.5342
+        },
+        "price": "Abendkasse & Vorverkauf auf tenne-winterberg.de",
+        "imageUrl": "/events-white-night-tenne-winterberg.jpg",
+        "externalUrl": "https://tenne-winterberg.de",
+        "ticketUrl": "https://tenne-winterberg.de",
+        "slug": "white-night-tenne-winterberg-2026",
+        "slug_nl": "white-night-tenne-winterberg-2026",
+        "description": "Die legendäre WHITE NIGHT in der traditionsreichen Tenne Winterberg! Am Samstag, den 28. November 2026 ab 20:00 Uhr verwandelt sich das gesamte Haus in eine weiße Partyoase – Dresscode White empfohlen!\n\nFreut euch auf ein hochkarätiges DJ-Line-Up und beste Stimmung auf mehreren Floors und an 6 Theken:\n\n* 🎧 Hauptbereich (Main Floor): House, EDM, Classics & Partyhits mit FREDE · BLACKSMITH · DanX · DJ Robin\n* 🍹 Cocktailbar: Bounce, Trance & Proggy mit LF MAAX · Astraya · zen'sc · GIULIENWOOD\n\nFeiert mit Freunden durch die Nacht mitten im Herzen der Winterberger Altstadt! Einlass ab 20:00 Uhr.",
+        "description_nl": "Het legendarische feestconcept WHITE NIGHT in Die Tenne Winterberg! Op zaterdag 28 november 2026 vanaf 20:00 uur verandert de club in een stralend wit feestparadijs (dresscode wit aanbevolen).\n\nGeniet van een ijzersterke line-up met top-dj's op meerdere dansvloeren:\n\n* 🎧 Main Floor: House, EDM, classics & feesthits met FREDE · BLACKSMITH · DanX · DJ Robin\n* 🍹 Cocktailbar: Bounce, trance & proggy met LF MAAX · Astraya · zen'sc · GIULIENWOOD\n\nBeleef een onvergetelijke clubnacht in de historische binnenstad van Winterberg! Aanvang 20:00 uur."
+}
     ]
   },
   {

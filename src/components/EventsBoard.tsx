@@ -209,6 +209,7 @@ const KNOWN_EVENT_VENUES: Record<string, [number, number]> = {
   'siedlinghausen': [51.2505, 8.4901],
   // Silbach
   'silbach': [51.2263, 8.4727],
+  'dorfhalle silbach': [51.2263, 8.4727],
   // Züschen
   'züschen': [51.1578, 8.5663],
   // St. Jakobus Winterberg
