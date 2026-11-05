@@ -628,10 +628,27 @@ export default function App() {
       };
     }
     if (isJobsMode) return { view: 'jobs', jobsCategory: jobsCategory || undefined };
-    if (selectedEventSlug) return { view: 'event-detail', eventSlug: selectedEventSlug };
+    if (selectedEventSlug) {
+      let eventSlugNl: string | undefined;
+      for (const b of businesses) {
+        const ev = b.events?.find(e => e.id === selectedEventSlug || e.slug === selectedEventSlug || e.slug_nl === selectedEventSlug);
+        if (ev) {
+          eventSlugNl = ev.slug_nl || ev.slug || ev.id;
+          break;
+        }
+      }
+      return { view: 'event-detail', eventSlug: selectedEventSlug, eventSlugNl };
+    }
     if (isEventsMode) return { view: 'events' };
     if (isNewsSubmitMode) return { view: 'news-submit' };
-    if (newsId) return { view: 'news-detail', newsSlug: newsId };
+    if (newsId) {
+      const art = initialNews.find(n => n.id === newsId || n.slug === newsId || n.slug_nl === newsId);
+      return {
+        view: 'news-detail',
+        newsSlug: art?.slug || newsId,
+        newsSlugNl: art?.slug_nl || art?.slug || newsId
+      };
+    }
     if (isNewsMode) return { view: 'news' };
     if (isFaqMode) return { view: 'faq' };
     if (isSubmitMode) return { view: 'submit' };

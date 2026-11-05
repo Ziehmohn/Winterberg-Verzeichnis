@@ -772,9 +772,6 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
       if (previousDesc) {
         metaDesc?.setAttribute('content', previousDesc);
       }
-      if (previousCanonical && canonicalLink) {
-        canonicalLink.setAttribute('href', previousCanonical);
-      }
     };
   }, [article?.title, article?.date, article?.content, newsUrl, lang]);
 
