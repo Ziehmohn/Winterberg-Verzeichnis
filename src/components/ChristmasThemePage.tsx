@@ -141,6 +141,15 @@ export const ChristmasThemePage: React.FC<ChristmasThemePageProps> = ({
       if (selectedFilter === 'all-inclusive' && !item.packageTypeDe.toLowerCase().includes('all-inclusive')) {
         return false;
       }
+      if (selectedFilter === 'huette' && !item.subcategory.toLowerCase().includes('hütte')) {
+        return false;
+      }
+      if (selectedFilter === 'hotel' && !item.category.toLowerCase().includes('hotel')) {
+        return false;
+      }
+      if (selectedFilter === 'action' && !item.category.toLowerCase().includes('sport')) {
+        return false;
+      }
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const text = `${item.businessName} ${item.titleDe} ${item.titleNl} ${item.subtitleDe} ${item.subtitleNl} ${item.district} ${item.highlightsDe.join(' ')} ${item.shortDescriptionDe} ${item.packageTypeDe}`.toLowerCase();
@@ -344,14 +353,17 @@ export const ChristmasThemePage: React.FC<ChristmasThemePageProps> = ({
             </div>
 
             {/* Package Filter */}
-            <div className="sm:w-48">
+            <div className="sm:w-52">
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
                 className="w-full px-3 py-2 text-xs sm:text-sm rounded-xl border border-gray-200 dark:border-white/15 bg-[#F9F7F2] dark:bg-[#121614] text-gray-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#8B1E22]"
               >
-                <option value="all">{isNl ? 'Alle formules' : 'Alle Angebote'}</option>
+                <option value="all">{isNl ? 'Alle formules & types' : 'Alle Angebote & Typen'}</option>
                 <option value="all-inclusive">{isNl ? 'All-inclusive formules' : 'All-Inclusive Pakete'}</option>
+                <option value="huette">{isNl ? 'Berghutten & Piste' : 'Skihütten & Alm-Flairs'}</option>
+                <option value="hotel">{isNl ? 'Hotel-Resort & Overnachting' : 'Resort & Übernachtung'}</option>
+                <option value="action">{isNl ? 'Actie & Bobslee-Incentive' : 'Action & EisArena'}</option>
               </select>
             </div>
           </div>
