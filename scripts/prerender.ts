@@ -456,6 +456,28 @@ const staticPageConfigs: {
     h1Nl: 'Nieuwe openingen in Winterberg',
     h2De: 'Neue Adressen im Stadtgebiet Winterberg',
     h2Nl: 'Nieuwe adressen in Winterberg en omstreken'
+  },
+  {
+    key: 'christmasTheme',
+    titleDe: 'Weihnachtsfeier in Winterberg 2026 | Weihnachtsfeier buchen & Hüttenzauber',
+    titleNl: 'Weihnachtsfeier in Winterberg 2026 | Kerstborrel & Locaties boeken',
+    descDe: 'Planen und buchen Sie Ihre Firmen-Weihnachtsfeier 2026 in Winterberg: All-Inclusive Pakete auf urigen Berghütten mit 4-Gänge-Menü, Getränkepauschale und DJ. Jetzt Termine sichern!',
+    descNl: 'Vier uw bedrijfs- of groepskerstfeest 2026 in Winterberg: All-inclusive arrangementen in authentieke berghutten met 4-gangenmenu, dranken en dj. Boek nu uw kerstborrel.',
+    h1De: 'Weihnachtsfeier in Winterberg 2026',
+    h1Nl: 'Weihnachtsfeier in Winterberg 2026',
+    h2De: 'All-Inclusive Hüttengaudi, 4-Gänge-Menü, Getränkepauschale & DJ für Firmen & Gruppen',
+    h2Nl: 'All-inclusive berghutten, 4-gangenmenu, dranken & dj voor bedrijven en groepen'
+  },
+  {
+    key: 'christmas',
+    titleDe: 'Weihnachtsfeier in Winterberg 2026 | Weihnachtsfeier buchen',
+    titleNl: 'Weihnachtsfeier in Winterberg 2026 | Kerstfeest boeken',
+    descDe: 'Die besten Angebote und Locations für Ihre Weihnachtsfeier 2026 in Winterberg: Hüttenabende, Firmenfeiern und All-Inclusive Pakete.',
+    descNl: 'De beste arrangementen en feestlocaties voor uw kerstborrel 2026 in Winterberg: gezellige berghutten en all-inclusive formules.',
+    h1De: 'Weihnachtsfeier in Winterberg 2026',
+    h1Nl: 'Weihnachtsfeier in Winterberg 2026',
+    h2De: 'Weihnachtsfeier buchen in Winterberg & Sauerland',
+    h2Nl: 'Kerstfeest boeken in Winterberg & Sauerland'
   }
 ];
 

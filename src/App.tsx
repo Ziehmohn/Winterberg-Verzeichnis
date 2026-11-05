@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw, Snowflake, Bell, Store, Layout } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw, Snowflake, TreePine, Bell, Store, Layout } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -101,6 +101,7 @@ const SkiThemePage = React.lazy(() => import('./components/SkiThemePage'));
 const HandwerkerLandingPage = React.lazy(() => import('./components/HandwerkerLandingPage'));
 const PartyLocationsThemePage = React.lazy(() => import('./components/PartyLocationsThemePage'));
 const OpeningsThemePage = React.lazy(() => import('./components/OpeningsThemePage'));
+const ChristmasThemePage = React.lazy(() => import('./components/ChristmasThemePage'));
 const Auftragsboerse = React.lazy(() => import('./components/Auftragsboerse'));
 const TendersAdminPanel = React.lazy(() => import('./components/TendersAdminPanel'));
 import { db, auth, storage } from './firebase';
@@ -208,6 +209,7 @@ export default function App() {
   let initialHandwerkerLandingMode = false;
   let initialPartyLocationsMode = false;
   let initialOpeningsThemeMode = false;
+  let initialChristmasThemeMode = false;
   let initialAuftraegeMode = false;
   let initialEmbedMode = false;
   let initialEmbedBusinessId = '';
@@ -381,6 +383,18 @@ export default function App() {
         (decodedPart1 === 'themas' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'nieuwe-openingen-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'nieuwe-openingen'))
       ) {
         initialOpeningsThemeMode = true;
+      } else if (
+        decodedPart1 === 'weihnachtsfeier-in-winterberg-2026' || 
+        decodedPart1 === 'kerstborrel-winterberg-2026' || 
+        decodedPart1 === 'weihnachtsfeier-winterberg' || 
+        decodedPart1 === 'weihnachtsfeier-in-winterberg' || 
+        decodedPart1 === 'weihnachtsfeier-buchen' || 
+        decodedPart1 === 'weihnachtsfeier' || 
+        decodedPart1 === 'kerstborrel' || 
+        (decodedPart1 === 'themen' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase().includes('weihnachtsfeier') || decodeURIComponent(pathParts[1]).toLowerCase().includes('kerstborrel'))) ||
+        (decodedPart1 === 'themas' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase().includes('weihnachtsfeier') || decodeURIComponent(pathParts[1]).toLowerCase().includes('kerstborrel')))
+      ) {
+        initialChristmasThemeMode = true;
       } else if (
         decodedPart1 === 'auftragsboerse' || 
         decodedPart1 === 'auftraege' || 
@@ -639,6 +653,7 @@ export default function App() {
     if (isHandwerkerLandingMode) return { view: 'handwerker-theme' };
     if (isPartyLocationsMode) return { view: 'party-locations-theme' };
     if (isOpeningsThemeMode) return { view: 'openings-theme' };
+    if (isChristmasThemeMode) return { view: 'christmas-theme' };
     if (isAuftraegeMode) return { view: 'auftragsboerse' };
     if (isAllMode) return { view: 'all', location: activeLocation };
     if (activeCategory !== 'Alle') {
@@ -752,6 +767,7 @@ export default function App() {
     if (p === '/themen/handwerker-finden-in-winterberg' || p === '/themas/vakmensen-vinden-in-winterberg' || p === '/handwerker-finden-in-winterberg' || p === '/vakmensen-vinden-in-winterberg' || p === '/handwerker-winterberg') return buildLocalizedUrl({ view: 'handwerker-theme' }, lang);
     if (p === '/themen/partylocations-in-winterberg' || p === '/themas/feestlocaties-in-winterberg' || p === '/partylocations-in-winterberg' || p === '/feestlocaties-in-winterberg' || p === '/partylocations' || p === '/feestlocaties') return buildLocalizedUrl({ view: 'party-locations-theme' }, lang);
     if (p === '/themen/neueroeffnungen-in-winterberg' || p === '/themas/nieuwe-openingen-in-winterberg' || p === '/neueroeffnungen-in-winterberg' || p === '/nieuwe-openingen-in-winterberg' || p === '/neueroeffnungen' || p === '/nieuwe-openingen') return buildLocalizedUrl({ view: 'openings-theme' }, lang);
+    if (p === '/themen/weihnachtsfeier-in-winterberg-2026' || p === '/themas/kerstborrel-winterberg-2026' || p === '/weihnachtsfeier-in-winterberg-2026' || p === '/kerstborrel-winterberg-2026' || p.includes('weihnachtsfeier') || p.includes('kerstborrel')) return buildLocalizedUrl({ view: 'christmas-theme' }, lang);
     if (p === '/auftragsboerse' || p === '/auftraege' || p === '/opdrachten') return buildLocalizedUrl({ view: 'auftragsboerse' }, lang);
 
     const clean = p.startsWith('/') ? p.slice(1) : p;
@@ -809,6 +825,7 @@ export default function App() {
     setIsHandwerkerLandingMode(false);
     setIsPartyLocationsMode(false);
     setIsOpeningsThemeMode(false);
+    setIsChristmasThemeMode(false);
     setIsAuftraegeMode(false);
   };
 
@@ -992,6 +1009,18 @@ export default function App() {
           (p1 === 'themas' && pathParts[1] && (pathParts[1].toLowerCase() === 'nieuwe-openingen-in-winterberg' || pathParts[1].toLowerCase() === 'nieuwe-openingen'))
         ) {
           setIsOpeningsThemeMode(true);
+        } else if (
+          p1 === 'weihnachtsfeier-in-winterberg-2026' || 
+          p1 === 'kerstborrel-winterberg-2026' || 
+          p1 === 'weihnachtsfeier-winterberg' || 
+          p1 === 'weihnachtsfeier-in-winterberg' || 
+          p1 === 'weihnachtsfeier-buchen' || 
+          p1 === 'weihnachtsfeier' || 
+          p1 === 'kerstborrel' || 
+          (p1 === 'themen' && pathParts[1] && (pathParts[1].toLowerCase().includes('weihnachtsfeier') || pathParts[1].toLowerCase().includes('kerstborrel'))) ||
+          (p1 === 'themas' && pathParts[1] && (pathParts[1].toLowerCase().includes('weihnachtsfeier') || pathParts[1].toLowerCase().includes('kerstborrel')))
+        ) {
+          setIsChristmasThemeMode(true);
         } else if (p1 === 'veranstaltungen' || p1 === 'events' || p1 === 'evenementen') {
           if (pathParts[1]) {
             setSelectedEventSlug(decodeURIComponent(pathParts[1]));
@@ -1181,6 +1210,7 @@ export default function App() {
   const [isHandwerkerLandingMode, setIsHandwerkerLandingMode] = useState(initialHandwerkerLandingMode);
   const [isPartyLocationsMode, setIsPartyLocationsMode] = useState(initialPartyLocationsMode);
   const [isOpeningsThemeMode, setIsOpeningsThemeMode] = useState(initialOpeningsThemeMode);
+  const [isChristmasThemeMode, setIsChristmasThemeMode] = useState(initialChristmasThemeMode);
   const [isAuftraegeMode, setIsAuftraegeMode] = useState(initialAuftraegeMode);
   const [onlySundayOpenFilter, setOnlySundayOpenFilter] = useState(false);
   const [isEmbedMode] = useState(initialEmbedMode);
@@ -2864,6 +2894,29 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
+        ) : isChristmasThemeMode ? (
+          <ChristmasThemePage
+            businesses={businesses}
+            theme={theme}
+            designSettings={designSettings}
+            onSelectBusiness={(bus) => {
+              setSelectedBusiness(bus);
+              setIsChristmasThemeMode(false);
+              window.history.pushState(null, '', getBusinessPath(bus, lang));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onBack={() => {
+              setIsChristmasThemeMode(false);
+              window.history.pushState(null, '', getPath('/'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateContact={() => {
+              resetToDirectory();
+              setIsSubmitMode(true);
+              window.history.pushState(null, '', getPath('/eintragen'));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         ) : isImpressumMode ? (
           <Impressum theme={theme} activeThemeKey={activeThemeKey} />
         ) : isAGBMode ? (
@@ -4123,6 +4176,24 @@ export default function App() {
               </a>
 
               <a
+                href={getPath(lang === 'nl' ? '/themas/kerstborrel-winterberg-2026' : '/themen/weihnachtsfeier-in-winterberg-2026')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', getPath(lang === 'nl' ? '/themas/kerstborrel-winterberg-2026' : '/themen/weihnachtsfeier-in-winterberg-2026'));
+                  resetToDirectory();
+                  setIsChristmasThemeMode(true);
+                  setIsMobileNavOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5 p-3 rounded-lg bg-white border border-[#EDE8E0] hover:border-[#8B1E22] font-display font-bold text-sm text-[#1B211D] transition-all shadow-xs"
+              >
+                <div className="w-8 h-8 rounded-md bg-red-50 text-[#8B1E22] flex items-center justify-center shrink-0">
+                  <TreePine className="w-4 h-4" />
+                </div>
+                <span>{lang === 'nl' ? 'Weihnachtsfeier 2026' : 'Weihnachtsfeier in Winterberg 2026'}</span>
+              </a>
+
+              <a
                 href={getPath("/jobs")}
                 onClick={(e) => {
                   e.preventDefault();
@@ -4756,6 +4827,19 @@ export default function App() {
               className="text-white/80 hover:text-white transition-colors"
             >
               {lang === 'nl' ? 'Nieuwe openingen in Winterberg' : 'Neueröffnungen in Winterberg'}
+            </a>
+            <a 
+              href={getPath('/themen/weihnachtsfeier-in-winterberg-2026')} 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                window.history.pushState(null, '', getPath('/themen/weihnachtsfeier-in-winterberg-2026')); 
+                resetToDirectory(); 
+                setIsChristmasThemeMode(true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              }} 
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-1.5"
+            >
+              <span>{lang === 'nl' ? 'Kerstborrel & Winterfeest 2026' : 'Weihnachtsfeier in Winterberg 2026'}</span>
             </a>
           </div>
         </div>

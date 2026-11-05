@@ -710,20 +710,24 @@ export default function EventsBoard({
       </section>
 
       {/* Filter and Search Bar */}
-      <div className="relative bg-[#E4DFD7] border-2 border-[#C8C1B3] rounded-3xl p-5 sm:p-7 shadow-[0_12px_36px_rgba(27,33,29,0.10)] mb-9 space-y-5 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1.5 before:bg-gradient-to-r before:from-purple-600 before:via-[#7E22CE] before:to-amber-400">
+      <div className="relative bg-gradient-to-b from-white via-[#FAF8F5] to-white border border-[#E7E2DA] rounded-3xl p-5 sm:p-7 shadow-[0_12px_40px_rgba(27,33,29,0.06),0_2px_10px_rgba(126,34,206,0.03)] mb-9 space-y-5 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-purple-600 before:via-[#7E22CE] before:to-amber-400">
+        {/* Subtle decorative background glows */}
+        <div className="absolute -top-24 -right-24 w-80 h-80 bg-purple-100/35 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-100/25 rounded-full blur-3xl pointer-events-none" />
+
         {/* Header row inside search box */}
-        <div className="flex flex-wrap items-center justify-between gap-2 -mb-1">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#7E22CE] text-white text-xs font-bold tracking-wide shadow-xs">
+        <div className="relative flex flex-wrap items-center justify-between gap-2 -mb-1">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#7E22CE] border border-purple-200/80 text-xs font-bold tracking-wide shadow-2xs">
             <Filter className="w-3.5 h-3.5" />
             <span>{lang === 'nl' ? 'Filter & Zoeken' : 'Event-Suche & Filter'}</span>
           </div>
-          <span className="text-xs text-[#1B211D] font-semibold bg-white px-3 py-1 rounded-full border border-[#C8C1B3] shadow-2xs">
+          <span className="text-xs text-[#5F6B63] font-semibold bg-white px-3.5 py-1 rounded-full border border-[#EDE8E0] shadow-2xs">
             {filteredEvents.length} {filteredEvents.length === 1 ? (lang === 'nl' ? 'evenement beschikbaar' : 'Event gefunden') : (lang === 'nl' ? 'evenementen beschikbaar' : 'Events gefunden')}
           </span>
         </div>
 
         <div className="relative">
-          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-[#7E22CE] text-white flex items-center justify-center shadow-xs pointer-events-none">
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-gradient-to-br from-[#7E22CE] to-[#6B21A8] text-white flex items-center justify-center shadow-xs pointer-events-none">
             <Search className="w-4 h-4" />
           </div>
           <input
@@ -731,7 +735,7 @@ export default function EventsBoard({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={lang === 'nl' ? 'Zoek op evenement, artiest of organisator...' : 'Event, Künstler oder Veranstalter suchen...'}
-            className="w-full pl-15 pr-11 py-3.5 bg-white border-2 border-[#C8C1B3] hover:border-[#7E22CE]/60 focus:border-[#7E22CE] rounded-2xl text-[15px] text-[#1B211D] placeholder-[#717E75] font-medium focus:outline-none focus:ring-4 focus:ring-[#7E22CE]/20 transition-all shadow-xs"
+            className="w-full pl-15 pr-11 py-3.5 bg-white border border-[#E2DDD3] hover:border-[#7E22CE]/50 focus:border-[#7E22CE] rounded-2xl text-[15px] text-[#1B211D] placeholder-[#8A958E] font-medium focus:outline-none focus:ring-4 focus:ring-[#7E22CE]/15 transition-all shadow-xs"
           />
           {searchQuery && (
             <button 
@@ -746,10 +750,10 @@ export default function EventsBoard({
         </div>
 
         {/* Date & Timeframe Filter Section */}
-        <div className="pt-4 border-t border-[#D0C9BB] space-y-3.5">
+        <div className="relative pt-4 border-t border-[#F0EBE1] space-y-3.5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-[#7E22CE] text-white flex items-center justify-center shadow-xs">
+              <div className="w-7 h-7 rounded-lg bg-purple-100 text-[#7E22CE] flex items-center justify-center shadow-2xs">
                 <CalendarDays className="w-4 h-4" />
               </div>
               <span className="font-display text-xs font-bold uppercase tracking-wider text-[#1B211D]">
@@ -761,7 +765,7 @@ export default function EventsBoard({
               <button
                 type="button"
                 onClick={resetDateFilter}
-                className="inline-flex items-center gap-1 text-xs font-bold text-[#7E22CE] hover:text-[#581C87] hover:underline cursor-pointer self-start sm:self-auto bg-white px-2.5 py-1 rounded-md border border-[#C8C1B3] shadow-2xs"
+                className="inline-flex items-center gap-1 text-xs font-bold text-[#7E22CE] hover:text-[#581C87] hover:underline cursor-pointer self-start sm:self-auto bg-purple-50 hover:bg-purple-100/80 px-2.5 py-1 rounded-lg border border-purple-200/70 shadow-2xs transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>{lang === 'nl' ? 'Periode wissen' : 'Zeitraum zurücksetzen'}</span>
@@ -780,8 +784,8 @@ export default function EventsBoard({
                   onClick={() => handleSelectPreset(preset.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                     isActive 
-                      ? 'bg-[#7E22CE] text-white border border-[#7E22CE] shadow-sm font-bold' 
-                      : 'bg-white text-[#1B211D] border border-[#C8C1B3] hover:bg-[#FAF8F5] hover:border-[#7E22CE]/60 shadow-2xs'
+                      ? 'bg-gradient-to-r from-[#7E22CE] to-[#6B21A8] text-white border border-[#7E22CE] shadow-xs font-bold' 
+                      : 'bg-white text-[#3F4B42] hover:text-[#7E22CE] border border-[#E7E2DA] hover:border-[#7E22CE]/40 hover:bg-purple-50/50 shadow-2xs'
                   }`}
                 >
                   {preset.label}
@@ -791,7 +795,7 @@ export default function EventsBoard({
           </div>
 
           {/* Interactive Date Inputs: Startdatum & Enddatum */}
-          <div className="bg-white border-2 border-[#C8C1B3] rounded-2xl p-4 sm:p-4.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-xs">
+          <div className="bg-gradient-to-br from-[#FAF8F5] to-[#F5F2EB]/50 border border-[#E7E2DA] rounded-2xl p-4 sm:p-4.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end shadow-2xs">
             <div className="lg:col-span-5">
               <label className="block text-xs font-bold text-[#1B211D] mb-1.5 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#7E22CE]" />
@@ -801,7 +805,7 @@ export default function EventsBoard({
                 type="date"
                 value={startDateFilter}
                 onChange={(e) => handleCustomStartDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-[#FAF8F5] hover:bg-white focus:bg-white border border-[#D5CFBE] focus:border-[#7E22CE] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2.5 bg-white border border-[#E2DDD3] hover:border-[#7E22CE]/50 focus:border-[#7E22CE] rounded-xl text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 transition-all cursor-pointer shadow-2xs"
               />
             </div>
 
@@ -815,7 +819,7 @@ export default function EventsBoard({
                 value={endDateFilter}
                 min={startDateFilter || undefined}
                 onChange={(e) => handleCustomEndDate(e.target.value)}
-                className="w-full px-3.5 py-2 bg-[#FAF8F5] hover:bg-white focus:bg-white border border-[#D5CFBE] focus:border-[#7E22CE] rounded-lg text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 transition-all cursor-pointer shadow-xs"
+                className="w-full px-3.5 py-2.5 bg-white border border-[#E2DDD3] hover:border-[#7E22CE]/50 focus:border-[#7E22CE] rounded-xl text-xs sm:text-sm text-[#1B211D] font-medium focus:outline-none focus:ring-2 focus:ring-[#7E22CE]/20 transition-all cursor-pointer shadow-2xs"
               />
             </div>
 
@@ -824,7 +828,7 @@ export default function EventsBoard({
                 <button
                   type="button"
                   onClick={resetDateFilter}
-                  className="w-full py-2 px-3 text-xs font-bold text-[#7E22CE] hover:text-[#581C87] bg-[#FAF8F5] hover:bg-purple-50 rounded-lg border border-[#D5CFBE] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
+                  className="w-full py-2.5 px-3 text-xs font-bold text-[#7E22CE] hover:text-white bg-white hover:bg-[#7E22CE] rounded-xl border border-purple-200 hover:border-[#7E22CE] transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-2xs"
                 >
                   <X className="w-3.5 h-3.5" />
                   <span>{lang === 'nl' ? 'Reset' : 'Zurücksetzen'}</span>
@@ -838,7 +842,8 @@ export default function EventsBoard({
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 pt-4 border-t border-[#D0C9BB]">
+        {/* Categories and View Switch */}
+        <div className="relative flex flex-col md:flex-row md:items-start justify-between gap-3 pt-4 border-t border-[#F0EBE1]">
           <div className="flex flex-wrap items-center gap-1.5 flex-1 min-w-0">
             {uniqueCategories.map((type) => {
               const isActive = selectedCategory === type;
@@ -852,8 +857,8 @@ export default function EventsBoard({
                   key={type} type="button" onClick={() => setSelectedCategory(type)}
                   className={`px-3.5 py-1.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                     isActive 
-                      ? 'bg-[#7E22CE] text-white border border-[#7E22CE] shadow-sm font-bold' 
-                      : 'bg-white text-[#1B211D] border border-[#C8C1B3] hover:bg-[#FAF8F5] hover:border-[#7E22CE]/60 shadow-2xs'
+                      ? 'bg-gradient-to-r from-[#7E22CE] to-[#6B21A8] text-white border border-[#7E22CE] shadow-xs font-bold' 
+                      : 'bg-white text-[#3F4B42] hover:text-[#7E22CE] border border-[#E7E2DA] hover:border-[#7E22CE]/40 hover:bg-purple-50/40 shadow-2xs'
                   }`}
                 >
                   {CatIcon && <CatIcon className="w-3.5 h-3.5" />}
@@ -862,12 +867,12 @@ export default function EventsBoard({
               );
             })}
           </div>
-          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-white p-1 rounded-xl border border-[#C8C1B3] shadow-2xs">
+          <div className="flex items-center gap-1 shrink-0 self-start md:self-auto bg-white p-1 rounded-xl border border-[#E7E2DA] shadow-2xs">
             <button
               type="button"
               onClick={() => setViewMode('list')}
               className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
-                viewMode === 'list' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'
+                viewMode === 'list' ? 'bg-[#7E22CE] text-white shadow-xs font-bold' : 'text-[#5F6B63] hover:text-[#1B211D]'
               }`}
             >
               {lang === 'nl' ? 'Lijst' : 'Liste'}
@@ -876,7 +881,7 @@ export default function EventsBoard({
               type="button"
               onClick={() => setViewMode('grid')}
               className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
-                viewMode === 'grid' ? 'bg-[#7E22CE] text-white shadow-xs' : 'text-[#5F6B63] hover:text-[#1B211D]'
+                viewMode === 'grid' ? 'bg-[#7E22CE] text-white shadow-xs font-bold' : 'text-[#5F6B63] hover:text-[#1B211D]'
               }`}
             >
               {lang === 'nl' ? 'Raster' : 'Raster'}
