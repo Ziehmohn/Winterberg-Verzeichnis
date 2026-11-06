@@ -173,6 +173,12 @@ export const DISTRICTS = [
 export function getDistrictSlug(district: string): string {
   if (!district || district === 'Alle') return '';
   const clean = district.trim().toLowerCase();
+  if (clean === 'winterberg-siedlinghausen' || clean === 'siedlinghausen') return 'siedlinghausen';
+  if (clean === 'winterberg' || clean === 'winterberg-kernstadt' || clean === 'winterberg (kernstadt)' || clean === 'kernstadt') return 'winterberg';
+  if (clean.startsWith('winterberg-')) {
+    const sub = clean.replace('winterberg-', '');
+    return slugify(sub);
+  }
   if (clean.includes('winterberg')) return 'winterberg';
   return slugify(district);
 }
@@ -180,6 +186,7 @@ export function getDistrictSlug(district: string): string {
 export function findDistrictFromSlug(slug: string): string | null {
   if (!slug) return null;
   const clean = slugify(decodeURIComponent(slug));
+  if (clean === 'winterberg-siedlinghausen' || clean === 'siedlinghausen') return 'Siedlinghausen';
   if (clean === 'winterberg' || clean === 'winterberg-kernstadt' || clean === 'kernstadt') return 'Winterberg';
   for (const d of DISTRICTS) {
     if (slugify(d) === clean) return d;

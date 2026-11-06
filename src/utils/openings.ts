@@ -34,6 +34,44 @@ export interface OpeningItem {
 
 export const OPENINGS_DATA: OpeningItem[] = [
   {
+    id: 'ivon-baeckerei-konditorei-winterberg',
+    businessId: 'ivon-baeckerei-konditorei-winterberg',
+    businessName: 'IVON – Bäckerei & Konditorei',
+    subtitleDe: 'Inhaberin Ivon Sommer · Schokoladensommelière, Bäcker- & Konditormeisterin',
+    subtitleNl: 'Eigenares Ivon Sommer · Chocoladesommelier, Meesterbakker & Patissier',
+    titleDe: 'Neueröffnung am 11.11.: IVON Bäckerei & Konditorei',
+    titleNl: 'Nieuwe opening op 11.11: IVON Bakkerij & Chocolade',
+    openingDate: '2026-11-11',
+    openingDateFormattedDe: 'Mittwoch, 11. November 2026',
+    openingDateFormattedNl: 'Woensdag 11 november 2026',
+    openingTimeDe: 'Ab 07:00 Uhr',
+    openingTimeNl: 'Vanaf 07:00 uur',
+    address: 'Hauptstraße 20, 59955 Winterberg',
+    district: 'Winterberg',
+    category: 'Gastronomie',
+    subcategory: 'Bäckerei',
+    focusAreasDe: [
+      'Handwerksbrot & Sauerteig',
+      'Feine Konditorei & Torten',
+      'Schokoladensommelière-Kreationen',
+      'Kaffee & Snacks'
+    ],
+    focusAreasNl: [
+      'Ambachtelijk zuurdesembrood',
+      'Luxe banket & taarten',
+      'Chocoladesommelier creaties',
+      'Koffiespecialiteiten'
+    ],
+    shortDescriptionDe: 'Bäcker- und Konditormeisterin sowie Schokoladensommelière Ivon Sommer eröffnet am 11.11. ihren neuen Genussladen an der Hauptstraße 20 in Winterberg.',
+    shortDescriptionNl: 'Meesterbakker en chocoladesommelier Ivon Sommer opent op 11 november haar nieuwe zaak aan de Hauptstraße 20 in Winterberg met vers brood, patisserie en chocolade.',
+    infoTextDe: 'Große Neueröffnung am Mittwoch, 11. November 2026 in der Winterberger Innenstadt: Trotz Typ-1-Diabetes hat Ivon Sommer ihren Lebenstraum verwirklicht! Als Bäcker- und Konditormeisterin sowie zertifizierte Schokoladensommelière vereint sie traditionelle Handwerkskunst mit erlesenen Schokoladenkreationen. Freue dich auf ofenfrisches, handwerklich gebackenes Brot, meisterhafte Konditoreiwaren, aromatische Kaffeespezialitäten und handgeschöpfte Schokolade an der Hauptstraße 20.',
+    infoTextNl: 'Feestelijke opening op woensdag 11 november 2026: Meesterbakker, patissier en chocoladesommelier Ivon Sommer opent haar eigen ambachtelijke speciaalzaak aan de Hauptstraße 20 in Winterberg met heerlijk ambachtelijk brood, patisserie en verfijnde chocolade.',
+    flyerImage: '/ivon-baeckerei-konditorei.jpg',
+    badgeDe: 'Neueröffnung 11.11.',
+    badgeNl: 'Nieuwe opening 11.11.',
+    status: 'upcoming'
+  },
+  {
     id: 'nadine-albers-heilpraktikerin',
     businessId: 'nadine-albers-heilpraktikerin-winterberg',
     businessName: 'Nadine Albers – Heilpraktikerin',
@@ -82,8 +120,12 @@ export const OPENINGS_MAP: Record<string, OpeningItem> = Object.fromEntries(
  */
 export function generateOpeningIcs(opening: OpeningItem): string {
   const startDate = opening.openingDate.replace(/-/g, '');
-  const dtStart = `${startDate}T150000`;
-  const dtEnd = `${startDate}T190000`;
+  const hourMatch = opening.openingTimeDe.match(/(\d{1,2}):(\d{2})/);
+  const startHour = hourMatch ? hourMatch[1].padStart(2, '0') : '08';
+  const startMin = hourMatch ? hourMatch[2] : '00';
+  const endHour = String(Math.min(parseInt(startHour, 10) + 4, 20)).padStart(2, '0');
+  const dtStart = `${startDate}T${startHour}${startMin}00`;
+  const dtEnd = `${startDate}T${endHour}${startMin}00`;
   const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
   return [

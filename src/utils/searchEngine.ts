@@ -745,8 +745,9 @@ export function searchBusinesses(
 
     // Location filter
     if (activeLocation !== 'Alle') {
-      const busLoc = bus.district || 'Winterberg';
-      if (busLoc !== activeLocation) continue;
+      const normActiveLoc = activeLocation === 'Winterberg-Siedlinghausen' ? 'Siedlinghausen' : activeLocation;
+      const busLoc = bus.district === 'Winterberg-Siedlinghausen' ? 'Siedlinghausen' : (bus.district || 'Winterberg');
+      if (busLoc !== normActiveLoc) continue;
     }
 
     // Category filter

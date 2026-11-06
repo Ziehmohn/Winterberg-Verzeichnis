@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-11-05
+# Stand: 2026-11-06
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -537,17 +537,6 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Die Zwei Löwen biedt stijlvolle vakantieappartementen in het centrum van Winterberg aan de Waltenberg. Restaurants, winkels, skipistes en het kuurpark liggen op slechts enkele minuten loopafstand van de comfortabel ingerichte appartementen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/die-zwei-loewen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiewoningen/die-zwei-loewen
-
-#### [Ferienhäuser Feldlerche & Waldkauz](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaeuser-feldlerche-und-waldkauz)
-- **Kategorie:** Hotels und Unterkünfte > Ferienhäuser
-- **Ort / Ortsteil:** Hallenberg
-- **Adresse:** Vogelecke 3, 59969 Hallenberg
-- **Telefon:** 0172 7277708
-- **Webseite:** http://www.hof-hallenberg.de
-- **Beschreibung (DE):** Die Ferienhäuser Feldlerche & Waldkauz im malerischen Fachwerkstädtchen Hallenberg verbinden historischen Sauerländer Charme mit modernem Wohlfühlkomfort. Die großzügigen Ferienhäuser bieten reichlich Platz für Familien und Reisegruppen, moderne Bäder, komplett ausgestattete Küchen sowie gemütliche Wohnbereiche und Terrassen im geschützten Innenhof.
-- **Beschreibung (NL):** Vakantiehuizen Feldlerche & Waldkauz in het historische vakwerkstadje Hallenberg combineren traditionele charme met modern wooncomfort. Royale vakantiewoningen met privéterras en alle comfort, ideaal voor gezinnen en groepen.
-- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienhaeuser/ferienhaeuser-feldlerche-und-waldkauz
-- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/vakantiehuizen/ferienhaeuser-feldlerche-und-waldkauz
 
 #### [Haus Astenblick ****](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/ferienwohnungen/haus-astenblick)
 - **Kategorie:** Hotels und Unterkünfte > Ferienwohnungen
@@ -1546,7 +1535,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### [Kräling Druck GmbH](https://www.winterberg-verzeichnis.de/handwerk/druckereien/kraeling-druck-gmbh)
 - **Kategorie:** Handwerk > Druckereien
-- **Ort / Ortsteil:** Winterberg
+- **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Hochsauerlandstraße 74, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 666
 - **Webseite:** https://www.kraelingdruck.de
@@ -2052,7 +2041,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### [MOMENT MAL! Kiosk & Schreibwaren](https://www.winterberg-verzeichnis.de/einzelhandel/kioske/moment-mal-kiosk-und-schreibwaren)
 - **Kategorie:** Einzelhandel > Kioske
-- **Ort / Ortsteil:** Winterberg
+- **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Weberstraße 6, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 6889768
 - **Beschreibung (DE):** Kiosk und Gemischtwarenladen MOMENT MAL! in Siedlinghausen. Zeitschriften, Tabakwaren, Getränke, Süßigkeiten, Schreibwaren und freundlicher Dorfkiosk-Service.
@@ -2265,6 +2254,15 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/jysk-winterberg
 
 ### Kategorie: Gastronomie
+
+#### [IVON – Bäckerei & Konditorei](https://www.winterberg-verzeichnis.de/gastronomie/baeckerei/ivon-baeckerei-und-konditorei)
+- **Kategorie:** Gastronomie > Bäckerei
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Hauptstraße 20, 59955 Winterberg
+- **Beschreibung (DE):** Bäckerei, Konditorei & Schokoladenmanufaktur von Meisterin und Schokoladensommelière Ivon Sommer an der Hauptstraße 20 in Winterberg. Handwerkliches Natursauerteigbrot, feinste Patisserie, Pralinen und Kaffeespezialitäten.
+- **Beschreibung (NL):** Bakkerij, patisserie en chocolaterie van meesterbakker en chocoladesommelier Ivon Sommer aan de Hauptstraße 20 in Winterberg. Ambachtelijk zuurdesembrood, luxe gebak, bonbons en koffie.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/baeckerei/ivon-baeckerei-und-konditorei
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/horeca/bakkerij/ivon-baeckerei-und-konditorei
 
 #### [Hessenkeller Winterberg](https://www.winterberg-verzeichnis.de/gastronomie/kneipen-und-bars/hessenkeller-winterberg)
 - **Kategorie:** Gastronomie > Kneipen und Bars
@@ -3350,7 +3348,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### [Kath. Kindergarten St. Marien Siedlinghausen](https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kath-kindergarten-st-marien-siedlinghausen)
 - **Kategorie:** Dienstleistungen > Kindergärten & Kitas
-- **Ort / Ortsteil:** Winterberg
+- **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Wulfhagen 1, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 493
 - **Webseite:** https://www.kath-kitas-hochsauerland-waldeck.de
@@ -3361,7 +3359,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### [St. Josef Grundschule Siedlinghausen](https://www.winterberg-verzeichnis.de/dienstleistungen/schulen/st-josef-grundschule-siedlinghausen)
 - **Kategorie:** Dienstleistungen > Schulen
-- **Ort / Ortsteil:** Winterberg
+- **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Grimmeweg 3, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 430
 - **Webseite:** https://www.grundschule-siedlinghausen.de
@@ -4213,7 +4211,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### [Physio-Fit Astrid Eichler](https://www.winterberg-verzeichnis.de/gesundheit-und-medizin/physiotherapie/physio-fit-astrid-eichler)
 - **Kategorie:** Gesundheit & Medizin > Physiotherapie
-- **Ort / Ortsteil:** Winterberg
+- **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Kolpingstraße 4, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 02983 972265
 - **Beschreibung (DE):** Praxis für Physiotherapie Physio-Fit Astrid Eichler in Siedlinghausen. Gezielte Therapie, Schmerzlinderung und Bewegungstraining für Ihre Gesundheit.
@@ -4499,7 +4497,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 #### [Fahrschule Falko Bauerdick](https://www.winterberg-verzeichnis.de/mobilitaet-und-kfz/fahrschulen/fahrschule-falko-bauerdick)
 - **Kategorie:** Mobilität & KFZ > Fahrschulen
-- **Ort / Ortsteil:** Winterberg
+- **Ort / Ortsteil:** Siedlinghausen
 - **Adresse:** Hochsauerlandstraße 78b, 59955 Winterberg-Siedlinghausen
 - **Telefon:** 0160 1525227
 - **Webseite:** https://fahrschule-bauerdick.de

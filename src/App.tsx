@@ -166,6 +166,21 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   }
 }
 
+export function extractLocation(bus: Business): string {
+  let loc = bus.district;
+  if (!loc) {
+    const addr = bus.address || '';
+    loc = addr.includes(',') ? addr.split(',')[1]?.trim().split(' ')[1] : addr;
+  }
+  if (!loc) return 'Winterberg';
+  if (loc === 'Winterberg-Siedlinghausen') return 'Siedlinghausen';
+  if (loc.startsWith('Winterberg-')) {
+    const sub = loc.replace('Winterberg-', '');
+    if ((DISTRICTS as readonly string[]).includes(sub)) return sub;
+  }
+  return loc;
+}
+
 export default function App() {
 
   const { currentUser, userProfile } = useAuth();
@@ -1412,7 +1427,7 @@ export default function App() {
       currentTitle = isNl ? `Bedrijf aanmelden | ${baseTitle}` : `Unternehmen eintragen | ${baseTitle}`;
       currentDesc = isNl ? `Meld uw bedrijf gratis aan in de officiële Winterberg gids.` : `Tragen Sie Ihr Unternehmen kostenlos im offiziellen Winterberg-Verzeichnis ein.`;
     } else if (matchedBusiness) {
-      const city = matchedBusiness.district || 'Winterberg';
+      const city = extractLocation(matchedBusiness);
       currentTitle = `${matchedBusiness.name} in ${city} | ${baseTitle}`;
       const shortDesc = matchedBusiness.description ? matchedBusiness.description.substring(0, 100).trim() + '...' : '';
       currentDesc = isNl 
@@ -1818,12 +1833,9 @@ export default function App() {
     loadBusinesses();
   }, []);
 
-  const extractLocation = (bus: Business) => {
-    return bus.district || 'Winterberg';
-  };
-
-
-  const availableLocations = Array.from(new Set(businesses.map(b => extractLocation(b)))).sort();
+  const availableLocations: string[] = Array.from(new Set(businesses.map(b => extractLocation(b))))
+    .filter((d): d is string => d !== 'Hallenberg' && d !== 'Winterberg-Siedlinghausen')
+    .sort();
 
   const homeSuggestionsMatches: SearchMatchResult[] = useMemo(() => {
     if (homeSearchInput.trim().length <= 1) return [];
@@ -3058,7 +3070,7 @@ export default function App() {
 
                   <div className="mb-16">
                     <div className="flex flex-wrap gap-[10px]">
-                      {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
+                      {availableLocations.map(d => (
                         <button 
                           key={d}
                           onClick={() => { setActiveLocation(d); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -3066,7 +3078,7 @@ export default function App() {
                         >
                           {d}
                           <span className="bg-[#F3F0EA] rounded px-2 py-0.5 text-[12px] font-semibold text-[#5F6B63]">
-                            {businesses.filter(b => (b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg') === d).length}
+                            {businesses.filter(b => extractLocation(b) === d).length}
                           </span>
                         </button>
                       ))}
@@ -3345,7 +3357,7 @@ export default function App() {
                             className="flex-1 w-full border border-[#D5D0C5] rounded-md px-2.5 sm:px-3 py-1.5 text-[13px] sm:text-[13.5px] font-medium text-[#1B211D] bg-white hover:border-[#0F4C2E]/50 focus:outline-none focus:ring-2 focus:ring-[#F2761B]/20 cursor-pointer transition-colors shadow-2xs truncate"
                           >
                             <option value="Alle">{t("allTowns")}</option>
-                            {Array.from(new Set(businesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort().map(d => (
+                            {availableLocations.map(d => (
                               <option key={d} value={d}>{d}</option>
                             ))}
                           </select>
@@ -3521,7 +3533,7 @@ export default function App() {
 
                 <div className="font-display text-[13px] font-semibold tracking-[0.08em] uppercase text-[#8A928B] mb-[11px]">{lang === 'nl' ? 'Dorp / Wijk' : 'Ortsteil'}</div>
                 <div className="flex gap-[7px] flex-wrap mb-[24px]">
-                  {['Alle', ...Array.from(new Set(initialBusinesses.map(b => b.district || (b.address?.includes(',') ? b.address.split(',')[1]?.trim().split(' ')[1] : b.address) || 'Winterberg'))).sort()].map(d => {
+                  {['Alle', ...availableLocations].map(d => {
                     const isDistActive = activeLocation === d;
                     return (
                       <button
@@ -3903,7 +3915,7 @@ export default function App() {
                                 >
                                   <div>
                                     <div className="font-semibold text-[#1B211D] text-[15.5px] mb-1 leading-tight">{bus.name}</div>
-                                    <div className="text-[13px] text-[#5F6B63]">{bus.district || 'Winterberg'}</div>
+                                    <div className="text-[13px] text-[#5F6B63]">{extractLocation(bus)}</div>
                                   </div>
                                   <div className="mt-3">
                                     <span className="inline-flex items-center gap-1.5 bg-[#E8F1EB] text-[#0F4C2E] px-2.5 py-1 rounded-md text-[12px] font-semibold">
@@ -6337,7 +6349,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
       matchesCategory = bus.category === activeAdminCategory || bus.subcategory === activeAdminCategory || !!inAdditional;
     }
 
-    const busLocation = bus.district || (bus.address && bus.address.split(',')[1]?.trim().split(' ')[1]) || 'Winterberg';
+    const busLocation = extractLocation(bus);
     const matchesLocation = activeAdminLocation === 'Alle' || busLocation === activeAdminLocation;
     
     const searchStr = adminSearchQuery.toLowerCase();
@@ -6654,7 +6666,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                   className="border border-[#E7E2DA] rounded-md px-3 py-1.5 text-[13.5px] bg-[#FAF8F5] focus:outline-none focus:border-[#0F4C2E]"
                 >
                   <option value="Alle">Alle Ortsteile</option>
-                  {Array.from(new Set(allowedBusinesses.map((b: Business) => b.district || (b.address && b.address.split(',')[1]?.trim().split(' ')[1]) || 'Winterberg'))).filter(Boolean).sort().map(d => (
+                  {Array.from(new Set(allowedBusinesses.map((b: Business) => extractLocation(b)))).filter(d => d && d !== 'Hallenberg' && d !== 'Winterberg-Siedlinghausen').sort().map(d => (
                     <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
@@ -7539,7 +7551,7 @@ function AbrechnungAdminPanel({ isAdmin, currentUser, allowedBusinesses, busines
                             </div>
                           </td>
                           <td className="py-3.5 px-4">
-                            <div className="text-[#1B211D] font-medium">{bus.district || 'Winterberg'}</div>
+                            <div className="text-[#1B211D] font-medium">{extractLocation(bus)}</div>
                             <div className="text-[12px] text-[#5F6B63]">{bus.category}{bus.subcategory ? ` · ${bus.subcategory}` : ''}</div>
                           </td>
                           <td className="py-3.5 px-4">
