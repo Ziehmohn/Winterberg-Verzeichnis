@@ -60,10 +60,10 @@ export const OPENINGS_DATA: OpeningItem[] = [
       'Chocoladesommelier creaties',
       'Koffiespecialiteiten'
     ],
-    shortDescriptionDe: 'Bäcker- und Konditormeisterin sowie Schokoladensommelière Ivon Sommer eröffnet am 11.11. ihren neuen Genussladen an der Hauptstraße 20 in Winterberg.',
+    shortDescriptionDe: 'Bäcker- und Konditormeisterin sowie Schokoladensommelière Ivon Sommer eröffnet am 11.11. ihren neuen Laden mit Brot, Kaffee und Schokolade an der Hauptstraße 20 in Winterberg.',
     shortDescriptionNl: 'Meesterbakker en chocoladesommelier Ivon Sommer opent op 11 november haar nieuwe zaak aan de Hauptstraße 20 in Winterberg met vers brood, patisserie en chocolade.',
-    infoTextDe: 'Große Neueröffnung am Mittwoch, 11. November 2026 in der Winterberger Innenstadt: Trotz Typ-1-Diabetes hat Ivon Sommer ihren Lebenstraum verwirklicht! Als Bäcker- und Konditormeisterin sowie zertifizierte Schokoladensommelière vereint sie traditionelle Handwerkskunst mit erlesenen Schokoladenkreationen. Freue dich auf ofenfrisches, handwerklich gebackenes Brot, meisterhafte Konditoreiwaren, aromatische Kaffeespezialitäten und handgeschöpfte Schokolade an der Hauptstraße 20.',
-    infoTextNl: 'Feestelijke opening op woensdag 11 november 2026: Meesterbakker, patissier en chocoladesommelier Ivon Sommer opent haar eigen ambachtelijke speciaalzaak aan de Hauptstraße 20 in Winterberg met heerlijk ambachtelijk brood, patisserie en verfijnde chocolade.',
+    infoTextDe: 'Neueröffnung am Mittwoch, 11. November 2026 an der Hauptstraße 20 in Winterberg: Bäcker- und Konditormeisterin sowie Schokoladensommelière Ivon Sommer eröffnet ihren neuen Laden mitten im Stadtzentrum. Besucher dürfen sich auf ofenfrisches Brot, feine Konditoreiwaren, aromatischen Kaffee und handgemachte Schokolade freuen.',
+    infoTextNl: 'Feestelijke opening op woensdag 11 november 2026 aan de Hauptstraße 20 in Winterberg: Meesterbakker, patissier en chocoladesommelier Ivon Sommer opent haar nieuwe speciaalzaak in het stadscentrum met dagelijks vers brood, verfijnd banket, verse koffie en ambachtelijke chocolade.',
     flyerImage: '/ivon-baeckerei-konditorei.jpg',
     website: 'https://www.instagram.com/ivon_baeckerei.konditorei/',
     badgeDe: 'Neueröffnung 11.11.',
