@@ -2259,6 +2259,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Kategorie:** Gastronomie > Bäckerei
 - **Ort / Ortsteil:** Winterberg
 - **Adresse:** Hauptstraße 20, 59955 Winterberg
+- **Webseite:** https://www.instagram.com/ivon_baeckerei.konditorei/
 - **Beschreibung (DE):** Bäckerei, Konditorei & Schokoladenmanufaktur von Meisterin und Schokoladensommelière Ivon Sommer an der Hauptstraße 20 in Winterberg. Frisches Brot aus Meisterhand, feinste Patisserie, Pralinen und Kaffeespezialitäten.
 - **Beschreibung (NL):** Bakkerij, patisserie en chocolaterie van meesterbakker en chocoladesommelier Ivon Sommer aan de Hauptstraße 20 in Winterberg. Ambachtelijk brood, luxe gebak, bonbons en koffie.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/gastronomie/baeckerei/ivon-baeckerei-und-konditorei

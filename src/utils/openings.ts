@@ -11,8 +11,8 @@ export interface OpeningItem {
   openingDate: string; // YYYY-MM-DD
   openingDateFormattedDe: string;
   openingDateFormattedNl: string;
-  openingTimeDe: string;
-  openingTimeNl: string;
+  openingTimeDe?: string;
+  openingTimeNl?: string;
   address: string;
   district: string;
   category: string;
@@ -44,8 +44,6 @@ export const OPENINGS_DATA: OpeningItem[] = [
     openingDate: '2026-11-11',
     openingDateFormattedDe: 'Mittwoch, 11. November 2026',
     openingDateFormattedNl: 'Woensdag 11 november 2026',
-    openingTimeDe: 'Ab 07:00 Uhr',
-    openingTimeNl: 'Vanaf 07:00 uur',
     address: 'Hauptstraße 20, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Gastronomie',
@@ -67,6 +65,7 @@ export const OPENINGS_DATA: OpeningItem[] = [
     infoTextDe: 'Große Neueröffnung am Mittwoch, 11. November 2026 in der Winterberger Innenstadt: Trotz Typ-1-Diabetes hat Ivon Sommer ihren Lebenstraum verwirklicht! Als Bäcker- und Konditormeisterin sowie zertifizierte Schokoladensommelière vereint sie traditionelle Handwerkskunst mit erlesenen Schokoladenkreationen. Freue dich auf ofenfrisches, handwerklich gebackenes Brot, meisterhafte Konditoreiwaren, aromatische Kaffeespezialitäten und handgeschöpfte Schokolade an der Hauptstraße 20.',
     infoTextNl: 'Feestelijke opening op woensdag 11 november 2026: Meesterbakker, patissier en chocoladesommelier Ivon Sommer opent haar eigen ambachtelijke speciaalzaak aan de Hauptstraße 20 in Winterberg met heerlijk ambachtelijk brood, patisserie en verfijnde chocolade.',
     flyerImage: '/ivon-baeckerei-konditorei.jpg',
+    website: 'https://www.instagram.com/ivon_baeckerei.konditorei/',
     badgeDe: 'Neueröffnung 11.11.',
     badgeNl: 'Nieuwe opening 11.11.',
     status: 'upcoming'
@@ -120,13 +119,16 @@ export const OPENINGS_MAP: Record<string, OpeningItem> = Object.fromEntries(
  */
 export function generateOpeningIcs(opening: OpeningItem): string {
   const startDate = opening.openingDate.replace(/-/g, '');
-  const hourMatch = opening.openingTimeDe.match(/(\d{1,2}):(\d{2})/);
-  const startHour = hourMatch ? hourMatch[1].padStart(2, '0') : '08';
+  const hourMatch = opening.openingTimeDe ? opening.openingTimeDe.match(/(\d{1,2}):(\d{2})/) : null;
+  const startHour = hourMatch ? hourMatch[1].padStart(2, '0') : null;
   const startMin = hourMatch ? hourMatch[2] : '00';
-  const endHour = String(Math.min(parseInt(startHour, 10) + 4, 20)).padStart(2, '0');
-  const dtStart = `${startDate}T${startHour}${startMin}00`;
-  const dtEnd = `${startDate}T${endHour}${startMin}00`;
+  const endHour = startHour ? String(Math.min(parseInt(startHour, 10) + 4, 20)).padStart(2, '0') : null;
+  const dtStart = startHour ? `${startDate}T${startHour}${startMin}00` : startDate;
+  const dtEnd = endHour ? `${startDate}T${endHour}${startMin}00` : startDate;
   const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+  const dtStartProp = startHour ? `DTSTART:${dtStart}` : `DTSTART;VALUE=DATE:${startDate}`;
+  const dtEndProp = endHour ? `DTEND:${dtEnd}` : `DTEND;VALUE=DATE:${startDate}`;
 
   return [
     'BEGIN:VCALENDAR',
@@ -137,8 +139,8 @@ export function generateOpeningIcs(opening: OpeningItem): string {
     'BEGIN:VEVENT',
     `UID:opening-${opening.id}@winterberg-verzeichnis.de`,
     `DTSTAMP:${now}`,
-    `DTSTART:${dtStart}`,
-    `DTEND:${dtEnd}`,
+    dtStartProp,
+    dtEndProp,
     `SUMMARY:${opening.titleDe}`,
     `DESCRIPTION:${opening.shortDescriptionDe.replace(/\n/g, '\\n')}\\n\\nAdresse: ${opening.address}`,
     `LOCATION:${opening.address}`,

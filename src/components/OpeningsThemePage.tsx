@@ -330,7 +330,7 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/flyer:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
                         <Maximize2 className="w-4 h-4" />
-                        <span>{isNl ? 'Flyer vergroten' : 'Flyer vergrößern'}</span>
+                        <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
                       </div>
                     </div>
 
@@ -374,10 +374,12 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
                             <div className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
                               {isNl ? item.openingDateFormattedNl : item.openingDateFormattedDe}
                             </div>
-                            <div className="text-[11px] text-gray-600 dark:text-gray-400 font-medium flex items-center gap-1 mt-0.5">
-                              <Clock className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-                              <span>{isNl ? item.openingTimeNl : item.openingTimeDe}</span>
-                            </div>
+                            {(item.openingTimeDe || item.openingTimeNl) && (
+                              <div className="text-[11px] text-gray-600 dark:text-gray-400 font-medium flex items-center gap-1 mt-0.5">
+                                <Clock className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+                                <span>{isNl ? item.openingTimeNl : item.openingTimeDe}</span>
+                              </div>
+                            )}
                           </div>
                         </div>
 
@@ -476,7 +478,7 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
                         className="text-xs font-semibold text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white flex items-center gap-1 cursor-pointer bg-transparent border-none p-0 ml-auto"
                       >
                         <Maximize2 className="w-3.5 h-3.5" />
-                        <span>{isNl ? 'Flyer tonen' : 'Flyer vergrößern'}</span>
+                        <span>{isNl ? 'Afbeelding tonen' : 'Bild vergrößern'}</span>
                       </button>
                     </div>
 

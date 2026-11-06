@@ -35,18 +35,10 @@ export const businesses: Business[] = [
     isPremium: false,
     isActive: true,
     status: 'approved',
+    website: 'https://www.instagram.com/ivon_baeckerei.konditorei/',
     contactPerson: {
       name: 'Ivon Sommer',
       role: 'Inhaberin, Bäcker- & Konditormeisterin, Schokoladensommelière'
-    },
-    openingHours: {
-      monday: '07:00 - 18:00',
-      tuesday: '07:00 - 18:00',
-      wednesday: '07:00 - 18:00',
-      thursday: '07:00 - 18:00',
-      friday: '07:00 - 18:00',
-      saturday: '07:00 - 16:00',
-      sunday: '08:00 - 16:00'
     }
   },
   {
