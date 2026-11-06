@@ -69,6 +69,10 @@ const getCategoryMeta = (category: string) => {
     return { Icon: Megaphone, bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' };
   if (cat.includes('kulinar') || cat.includes('essen') || cat.includes('food'))
     return { Icon: Utensils, bg: 'bg-lime-50', text: 'text-lime-700', border: 'border-lime-200' };
+  if (cat.includes('familie') || cat.includes('kinder') || cat.includes('kind'))
+    return { Icon: Sparkles, bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' };
+  if (cat.includes('kultur') || cat.includes('brauchtum') || cat.includes('tradition'))
+    return { Icon: Palette, bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-200' };
   return { Icon: Calendar, bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' };
 };
 

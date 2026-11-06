@@ -10,5 +10,8 @@ export const normalizeEventCategory = (category: string = ''): string => {
   if (lower === 'neueröffnung' || lower === 'neueröffnungen' || lower === 'eröffnung' || lower === 'opening' || lower === 'grand opening') {
     return 'Neueröffnungen';
   }
+  if (lower === 'familie' || lower === 'familien' || lower.includes('familie') || lower.includes('kinder')) {
+    return 'Familie & Kinder';
+  }
   return cat;
 };
