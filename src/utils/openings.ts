@@ -51,13 +51,13 @@ export const OPENINGS_DATA: OpeningItem[] = [
     category: 'Gastronomie',
     subcategory: 'Bäckerei',
     focusAreasDe: [
-      'Handwerksbrot & Sauerteig',
+      'Frisches Handwerksbrot',
       'Feine Konditorei & Torten',
       'Schokoladensommelière-Kreationen',
       'Kaffee & Snacks'
     ],
     focusAreasNl: [
-      'Ambachtelijk zuurdesembrood',
+      'Ambachtelijk vers brood',
       'Luxe banket & taarten',
       'Chocoladesommelier creaties',
       'Koffiespecialiteiten'
