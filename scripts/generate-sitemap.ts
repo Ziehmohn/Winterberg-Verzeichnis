@@ -142,7 +142,9 @@ const staticPages = [
   'openingsTheme',
   'openings',
   'christmasTheme',
-  'christmas'
+  'christmas',
+  'silvesterTheme',
+  'silvester'
 ] as const;
 staticPages.forEach(p => {
   entries.push({

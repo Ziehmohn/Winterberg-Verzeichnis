@@ -500,6 +500,28 @@ const staticPageConfigs: {
     h1Nl: 'Weihnachtsfeier in Winterberg 2026',
     h2De: 'Weihnachtsfeier buchen in Winterberg & Sauerland',
     h2Nl: 'Kerstfeest boeken in Winterberg & Sauerland'
+  },
+  {
+    key: 'silvesterTheme',
+    titleDe: 'Silvester feiern in Winterberg 2026 | Partys, Gala-Buffets & Hüttenzauber',
+    titleNl: 'Silvester feiern in Winterberg 2026 | Sylvester Party, Gala & Berghutten',
+    descDe: 'Silvester feiern in Winterberg 2026 / 2027: Die besten Silvesterpartys, Gala-Buffets, Hüttenabende am Skihang, Clubnächte in der Tenne und Open-Air im Winterdorf.',
+    descNl: 'Vier Oud en Nieuw 2026 / 2027 in Winterberg: De beste oudejaarsfeesten, galabuffetten in luxe resorts, gezellige berghutten aan de piste en de openlucht Sylvesterparty.',
+    h1De: 'Silvester feiern in Winterberg 2026',
+    h1Nl: 'Silvester feiern in Winterberg 2026',
+    h2De: 'Die besten Silvesterpartys, Gala-Buffets, Hütten & Open-Air-Events im Sauerland',
+    h2Nl: 'De beste oudejaarsfeesten, galabuffetten, berghutten & openluchtevenementen in het Sauerland'
+  },
+  {
+    key: 'silvester',
+    titleDe: 'Silvester feiern in Winterberg 2026 | Silvesterparty buchen',
+    titleNl: 'Silvester feiern in Winterberg 2026 | Oud en Nieuw vieren',
+    descDe: 'Silvester 2026 in Winterberg planen: Tischreservierung in der Dorf Alm, Silvestergala im Oversum, Skihütte Brabander und Clubparty in der Tenne.',
+    descNl: 'Oud en Nieuw 2026 in Winterberg vieren: tafelreservering in Dorf Alm, Sylvestergala in Oversum, Skihütte Brabander en clubnacht in Die Tenne.',
+    h1De: 'Silvester feiern in Winterberg 2026',
+    h1Nl: 'Silvester feiern in Winterberg 2026',
+    h2De: 'Silvester-Partys, Gala-Abende & Tischreservierungen zum Jahreswechsel',
+    h2Nl: 'Oudejaarsfeesten, gala-avonden & tafelreserveringen voor de jaarwisseling'
   }
 ];
 

@@ -27,7 +27,8 @@ import {
   Sun,
   Trash2,
   Snowflake,
-  Store
+  Store,
+  PartyPopper
 } from 'lucide-react';
 import { Business, CategoryGroup } from '../types';
 import { useTranslation } from '../i18n';
@@ -66,6 +67,7 @@ interface MegaMenuProps {
   onSelectWasteCalendar?: () => void;
   onSelectChargingStations?: () => void;
   onSelectOpenings?: () => void;
+  onSelectSilvester?: () => void;
   onSelectLocation: (location: string) => void;
   onOpenMap: () => void;
   onOpenSubmit: () => void;
@@ -89,6 +91,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   onSelectWasteCalendar,
   onSelectChargingStations,
   onSelectOpenings,
+  onSelectSilvester,
   onSelectLocation,
   onOpenMap,
   onOpenSubmit,
@@ -595,6 +598,41 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       {lang === 'nl' 
                         ? 'Nieuwe winkels, praktijken & horeca in Winterberg en de dorpen.' 
                         : 'Neu im Stadtgebiet: Angekündigte Betriebe, Praxen & Lokale.'}
+                    </p>
+                  </a>
+
+                  {/* Card: Silvester feiern in Winterberg 2026 */}
+                  <a
+                    href={getPath(lang === 'nl' ? '/themas/oud-en-nieuw-vieren-winterberg-2026' : '/themen/silvester-feiern-in-winterberg-2026')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onSelectSilvester) {
+                        onSelectSilvester();
+                      } else {
+                        window.history.pushState(null, '', getPath(lang === 'nl' ? '/themas/oud-en-nieuw-vieren-winterberg-2026' : '/themen/silvester-feiern-in-winterberg-2026'));
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      }
+                      onClose();
+                    }}
+                    className="bg-white border border-[#EDE8E0] hover:border-amber-500 rounded-lg p-3.5 cursor-pointer hover:shadow-[0_8px_20px_rgba(245,158,11,0.12)] hover:-translate-y-0.5 transition-all group no-underline block"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-md bg-amber-50 text-amber-700 border border-amber-200/80 flex items-center justify-center shadow-2xs">
+                          <PartyPopper className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="font-display font-bold text-[14px] text-[#1B211D] group-hover:text-amber-700 transition-colors">
+                          {lang === 'nl' ? 'Oud en Nieuw vieren 2026' : 'Silvester feiern in Winterberg 2026'}
+                        </span>
+                      </div>
+                      <span className="text-[11.5px] font-bold text-amber-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                        {lang === 'nl' ? 'Partys & Gala' : 'Partys & Gala'} <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-[#5F6B63] leading-relaxed m-0 pl-9">
+                      {lang === 'nl'
+                        ? 'Partys, galabuffetten, berghutten & feest in het Winterdorf.'
+                        : 'Partys, Gala-Buffets, Hüttenzauber & Open-Air im Winterdorf.'}
                     </p>
                   </a>
 

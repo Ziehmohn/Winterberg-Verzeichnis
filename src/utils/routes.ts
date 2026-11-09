@@ -152,6 +152,8 @@ export const STATIC_PAGE_SLUGS = {
   openings: { de: 'neueroeffnungen-in-winterberg', nl: 'nieuwe-openingen-in-winterberg' },
   christmasTheme: { de: 'themen/weihnachtsfeier-in-winterberg-2026', nl: 'themas/kerstborrel-winterberg-2026' },
   christmas: { de: 'weihnachtsfeier-in-winterberg-2026', nl: 'kerstborrel-winterberg-2026' },
+  silvesterTheme: { de: 'themen/silvester-feiern-in-winterberg-2026', nl: 'themas/oud-en-nieuw-vieren-winterberg-2026' },
+  silvester: { de: 'silvester-feiern-in-winterberg-2026', nl: 'oud-en-nieuw-vieren-winterberg-2026' },
 };
 
 export const DISTRICTS = [
@@ -298,7 +300,7 @@ export function findSubcategoryFromSlug(slug: string): string | null {
 }
 
 export interface RouteState {
-  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'event-detail' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'event-locations-theme' | 'openings-theme' | 'christmas-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
+  view: 'home' | 'all' | 'category' | 'business' | 'best-of' | 'jobs' | 'events' | 'event-detail' | 'news' | 'news-detail' | 'news-submit' | 'faq' | 'submit' | 'pricing' | 'fuel-prices' | 'emergency' | 'impressum' | 'datenschutz' | 'agb' | 'grounding' | 'heimatkarte' | 'sunday-open' | 'ski-report' | 'webcams' | 'waste-calendar' | 'charging-stations' | 'shopping-theme' | 'ski-theme' | 'handwerker-theme' | 'party-locations-theme' | 'event-locations-theme' | 'openings-theme' | 'christmas-theme' | 'silvester-theme' | 'auftragsboerse' | 'embed' | 'admin' | '404';
   category?: string;
   subcategory?: string;
   businessSlug?: string;
@@ -463,6 +465,9 @@ export function buildLocalizedUrl(state: RouteState, targetLang: Lang, baseUrl =
 
     case 'christmas-theme':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.christmasTheme[targetLang]}`;
+
+    case 'silvester-theme':
+      return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.silvesterTheme[targetLang]}`;
 
     case 'auftragsboerse':
       return `${baseUrl}${prefix}/${STATIC_PAGE_SLUGS.auftragsboerse[targetLang]}`;

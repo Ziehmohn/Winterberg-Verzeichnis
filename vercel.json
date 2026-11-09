@@ -2,6 +2,36 @@
   "installCommand": "npm install --legacy-peer-deps",
   "redirects": [
     {
+      "source": "/silvester-feiern-in-winterberg-2026",
+      "destination": "/themen/silvester-feiern-in-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/silvester-winterberg",
+      "destination": "/themen/silvester-feiern-in-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/silvester-in-winterberg",
+      "destination": "/themen/silvester-feiern-in-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/themen/silvester-parties-in-winterberg-2026",
+      "destination": "/themen/silvester-feiern-in-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/themen/silvester-party-in-winterberg-2026",
+      "destination": "/themen/silvester-feiern-in-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/silvester",
+      "destination": "/themen/silvester-feiern-in-winterberg-2026",
+      "permanent": true
+    },
+    {
       "source": "/themen/partylocations-in-winterberg",
       "destination": "/themen/eventlocations-in-winterberg",
       "permanent": true
