@@ -561,7 +561,7 @@ export interface SystemRedirectEntry {
   source: string;
   target: string;
   isSystem: boolean;
-  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert' | 'News' | 'Ortsteil';
+  type: 'Kategorie' | 'Unternehmen' | 'Deaktiviert' | 'News' | 'Ortsteil' | 'Themen';
   lang: 'de' | 'nl';
   statusCode?: 301 | 302;
 }
@@ -681,6 +681,127 @@ export const BUSINESS_DEDUPLICATION_REDIRECTS: SystemRedirectEntry[] = [
     isSystem: true,
     type: 'News',
     lang: 'de',
+  },
+  // 8. Eventlocations Theme 301 Redirects (Legacy partylocations -> eventlocations)
+  {
+    id: 'theme-partylocations-to-eventlocations-de',
+    source: '/themen/partylocations-in-winterberg',
+    target: '/themen/eventlocations-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'de',
+  },
+  {
+    id: 'theme-partylocations-short-de',
+    source: '/partylocations-in-winterberg',
+    target: '/themen/eventlocations-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'de',
+  },
+  {
+    id: 'theme-partylocations-bare-de',
+    source: '/partylocations',
+    target: '/themen/eventlocations-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'de',
+  },
+  {
+    id: 'theme-eventlocations-short-de',
+    source: '/eventlocations-in-winterberg',
+    target: '/themen/eventlocations-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'de',
+  },
+  {
+    id: 'theme-eventlocations-bare-de',
+    source: '/eventlocations',
+    target: '/themen/eventlocations-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'de',
+  },
+  {
+    id: 'theme-feestlocaties-to-evenementenlocaties-nl',
+    source: '/nl/themas/feestlocaties-in-winterberg',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-feestlocaties-barethemas-nl',
+    source: '/themas/feestlocaties-in-winterberg',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-feestlocaties-short-nl',
+    source: '/nl/feestlocaties-in-winterberg',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-feestlocaties-bare-nl',
+    source: '/feestlocaties-in-winterberg',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-feestlocaties-bareword-nl',
+    source: '/nl/feestlocaties',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-feestlocaties-bareword2-nl',
+    source: '/feestlocaties',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-evenementenlocaties-short-nl',
+    source: '/nl/evenementenlocaties-in-winterberg',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-evenementenlocaties-bare-nl',
+    source: '/evenementenlocaties-in-winterberg',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-evenementenlocaties-word-nl',
+    source: '/nl/evenementenlocaties',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
+  },
+  {
+    id: 'theme-evenementenlocaties-word2-nl',
+    source: '/evenementenlocaties',
+    target: '/nl/themas/evenementenlocaties-in-winterberg',
+    isSystem: true,
+    type: 'Themen',
+    lang: 'nl',
   }
 ];
 

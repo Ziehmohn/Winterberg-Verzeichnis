@@ -99,6 +99,37 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
       }
     });
 
+    // Canonical tag setup
+    const canonicalUrl = isNl
+      ? 'https://www.winterberg-verzeichnis.de/nl/themas/evenementenlocaties-in-winterberg'
+      : 'https://www.winterberg-verzeichnis.de/themen/eventlocations-in-winterberg';
+    let canonicalTag = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonicalTag) {
+      canonicalTag = document.createElement('link');
+      canonicalTag.rel = 'canonical';
+      document.head.appendChild(canonicalTag);
+    }
+    canonicalTag.href = canonicalUrl;
+
+    // Client-side URL normalization: replace legacy party URLs in address bar
+    const expectedPath = isNl
+      ? '/nl/themas/evenementenlocaties-in-winterberg'
+      : '/themen/eventlocations-in-winterberg';
+    const currentPath = window.location.pathname.toLowerCase();
+    if (
+      currentPath.includes('partylocations') ||
+      currentPath.includes('feestlocaties') ||
+      currentPath === '/eventlocations' ||
+      currentPath === '/eventlocations-in-winterberg' ||
+      currentPath === '/evenementenlocaties' ||
+      currentPath === '/evenementenlocaties-in-winterberg' ||
+      currentPath === '/nl/evenementenlocaties' ||
+      currentPath === '/nl/evenementenlocaties-in-winterberg' ||
+      currentPath === '/themas/evenementenlocaties-in-winterberg'
+    ) {
+      window.history.replaceState(null, '', expectedPath);
+    }
+
     return () => {
       const tag = document.getElementById('event-theme-schema');
       if (tag) tag.remove();

@@ -2,6 +2,81 @@
   "installCommand": "npm install --legacy-peer-deps",
   "redirects": [
     {
+      "source": "/themen/partylocations-in-winterberg",
+      "destination": "/themen/eventlocations-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/partylocations-in-winterberg",
+      "destination": "/themen/eventlocations-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/partylocations",
+      "destination": "/themen/eventlocations-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/eventlocations-in-winterberg",
+      "destination": "/themen/eventlocations-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/eventlocations",
+      "destination": "/themen/eventlocations-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/nl/themas/feestlocaties-in-winterberg",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/themas/feestlocaties-in-winterberg",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/nl/feestlocaties-in-winterberg",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/feestlocaties-in-winterberg",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/nl/feestlocaties",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/feestlocaties",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/nl/evenementenlocaties-in-winterberg",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/evenementenlocaties-in-winterberg",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/nl/evenementenlocaties",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
+      "source": "/evenementenlocaties",
+      "destination": "/nl/themas/evenementenlocaties-in-winterberg",
+      "permanent": true
+    },
+    {
       "source": "/alle-unternehmen-ort-:slug",
       "destination": "/alle-unternehmen/:slug",
       "permanent": true
