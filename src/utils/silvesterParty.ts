@@ -37,6 +37,7 @@ export interface SilvesterPartyItem {
   infoTextDe: string;
   infoTextNl: string;
   image: string;
+  isAiGenerated?: boolean;
   flyerImage?: string;
   badgeDe: string;
   badgeNl: string;
@@ -112,8 +113,8 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     shortDescriptionNl: 'Oud en Nieuw in de Dorf Alm Winterberg: vier de jaarwisseling met een sfeervol oudejaarsdiner en vanaf 21:00 uur een bruisende Sylvesterparty met dj, prosecco en een middernachtsnack.',
     infoTextDe: 'Feiert mit der Dorf Alm Winterberg ins neue Jahr 2027! Am 31. Dezember 2026 ist die Dorf Alm tagsüber von 10:00 bis 16:00 Uhr regulär für Sie geöffnet. Am Abend erwartet Sie ein stimmungsvolles Silvester-Essen: Wählen Sie aus der regulären Speisekarte sowie einer feinen Silvester-Zusatzkarte. Sie haben die Wahl zwischen zwei Tischzeiten (17:00 bis 19:00 Uhr für 15 € p.P. oder ab 19:30 Uhr Open End für 25 € p.P. inklusive anschließender Party, Sekt zum Anstoßen und Mitternachtssnack). Wer erst später dazustoßen möchte, kommt ab 21:00 Uhr zur Silvesterparty mit DJ (Eintritt 10 € p.P. inkl. Sekt und Snack). Jetzt frühzeitig Plätze reservieren!',
     infoTextNl: 'Vier het nieuwe jaar in Dorf Alm Winterberg! Op 31 december 2026 geopend van 10:00 tot 16:00 uur voor lunch en borrel. \'s Avonds kunt u kiezen uit de reguliere menukaart en een speciale Sylvester-kaart. Dineroptie 1 van 17:00 tot 19:00 uur (€ 15 p.p.) of dineroptie 2 vanaf 19:30 uur open end inclusief party (€ 25 p.p. inclusief feest met dj, middernachtsproost en snack). Alleen naar het feest komen kan ook: vanaf 21:00 uur voor slechts € 10 p.p. Reserveer snel uw tafel!',
-    image: '/silvester-dorf-alm-winterberg-2026.jpg',
-    flyerImage: '/silvester-dorf-alm-winterberg-2026.jpg',
+    image: '/silvester-dorf-alm-ai.jpg',
+    isAiGenerated: true,
     badgeDe: 'Alm-Party & Menü 2026',
     badgeNl: 'Alm-party & Diner 2026',
     contactEmail: 'winterberg@dorf-alm.de',
@@ -187,7 +188,8 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     shortDescriptionNl: 'Vier een onvergetelijke jaarwisseling 2026/2027 in het luxe Hotel Oversum in Winterberg: Feestelijk galabuffet, all-inclusive dranken, liveband met dansvloer, champagne om middernacht en snack.',
     infoTextDe: 'Feiern Sie den Jahreswechsel mit Stil und Eleganz im Hotel Oversum Ski- & Vitalresort am Winterberger Kurpark! Das Silvester-Arrangement verspricht unvergessliche Tage im winterlichen Sauerland: Entspannen Sie in der 3.000 m² großen Wellnesslandschaft mit Schwimmbädern und Saunabereich, genießen Sie winterliche Wanderungen mit Glühwein und krönen Sie das Jahr am 31. Dezember bei der großen Silvestergala. Freuen Sie sich auf ein exklusives Gala-Buffet, eine ausgewählte Getränkepauschale, Tanzmusik mit mitreißender Live-Band (z. B. „socialclub“), den feierlichen Mitternachtssekt und einen herzhaften Mitternachtssnack. Auch für Familien bestens geeignet dank individuellem Kinderbuffet.',
     infoTextNl: 'Vier de jaarwisseling in stijl en luxe in het Hotel Oversum Ski- & Vitalresort aan het Kurpark van Winterberg! Het meerdaagse Sylvester-arrangement biedt ontspanning in de 3.000 m² grote wellnesswereld, winterwandelingen met glühwein en op 31 december een groots gala. Geniet van een royaal galabuffet, een drankenarrangement tijdens het feest, dansen met een swingende liveband, feestelijk toosten om 00:00 uur en een midnight snack.',
-    image: '/silvester-gala-oversum.jpg',
+    image: '/silvester-oversum-ai.jpg',
+    isAiGenerated: true,
     badgeDe: 'Gala & Wellness 2026',
     badgeNl: 'Gala & Wellness 2026',
     contactEmail: 'info@oversum-vitalresort.de',
@@ -263,7 +265,8 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     shortDescriptionNl: 'Vier Oud en Nieuw 2026 in Skihütte Der Brabander aan de piste: livemuziek, hapjesbuffet, oliebollen, champagne en een spectaculair vuurwerk op de Herrlohberg.',
     infoTextDe: 'Die Skihütte Der Brabander direkt am Skihang Herrloh in Winterberg veranstaltet auch in diesem Jahr ihre legendäre Silvesterparty! Ein ganz besonderes Highlight: Diese Party steht auch Nicht-Hotelgästen und externen Partyfreunden offen. Freuen Sie sich auf fantastische Live-Musik, ein abwechslungsreiches Häppchenbuffet über den Abend hinweg, traditionelle holländische Oliebollen und Apfelküchlein, ein Glas prickelnden Sekt zum Jahreswechsel sowie das berühmte, spektakuläre Brabander-Feuerwerk am Hang. Da die Tickets heiß begehrt und streng limitiert sind, wird eine frühzeitige Online-Buchung über das Buchungsportal dringend empfohlen.',
     infoTextNl: 'Skihütte Der Brabander aan de voet van de Herrloh-pistes organiseert ook dit jaar haar beroemde Sylvesterparty! Het feest is ook toegankelijk voor niet-hotelgasten. Geniet van meeslepende livemuziek, een doorlopend luxe hapjesbuffet, verse ambachtelijke oliebollen en appelbeignets, een toost met prosecco om middernacht en een magisch vuurwerkspektakel op de besneeuwde piste. Tickets zijn beperkt en kunnen vooraf online gereserveerd worden.',
-    image: '/silvester-brabander-skihuette.jpg',
+    image: '/silvester-brabander-ai.jpg',
+    isAiGenerated: true,
     badgeDe: 'Hüttenzauber & Feuerwerk',
     badgeNl: 'Huttensfeer & Vuurwerk',
     contactEmail: 'info@brabander.nl',
@@ -338,8 +341,8 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     shortDescriptionNl: 'Oud en Nieuw vieren in de openlucht op het Winterberger Winterdorf: DJ Marlon draait de beste feesthits op het marktplein Untere Pforte. Geopend tot 01:00 uur \'s nachts – gratis toegang!',
     infoTextDe: 'Das Winterberger Winterdorf auf dem Marktplatz an der Unteren Pforte ist das Herzstück des winterlichen Lebens in der Stadt – und am Silvesterabend der beliebteste Treffpunkt überhaupt! Anders als klassische Weihnachtsmärkte bleibt das Winterdorf über die Feiertage und bis ins neue Jahr geöffnet. Am 31. Dezember 2026 öffnen die urigen Holzhütten bereits ab 11:00 Uhr vormittags. Am Abend verwandelt sich der Marktplatz in eine ausgelassene Open-Air-Silvesterparty mit DJ Marlon an den Turntables. Stoßen Sie mit dampfendem Winzerglühwein, Punsch oder prickelndem Sekt unter freiem Himmel auf das neue Jahr an. Der Eintritt ist frei – einfach vorbeikommen und mitfeiern!',
     infoTextNl: 'Het Winterberger Winterdorf op het marktplein Untere Pforte is het kloppend hart van de winter in de stad. Op 31 december 2026 zijn de sfeervolle houten kraampjes al vanaf 11:00 uur geopend. \'s Avonds transformeert het plein in een bruisend openlucht Sylvesterfeest met DJ Marlon achter de draaitafels. Tel gezamenlijk af naar 2027 met een dampende glühwein of een feestelijk glas prosecco onder de sterren. Toegang is gratis!',
-    image: '/silvester-winterdorf-openair.jpg',
-    flyerImage: '/silvester-winterdorf-dj-marlon-2026.png',
+    image: '/silvester-winterdorf-ai.jpg',
+    isAiGenerated: true,
     badgeDe: 'Open-Air & Eintritt frei',
     badgeNl: 'Open-Air & Gratis entree',
     contactEmail: 'info@winterberger-winterdorf.de',
@@ -412,7 +415,8 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     shortDescriptionNl: 'SILVESTER in Die Tenne 2026: Winterbergs beroemdste club viert de jaarwisseling op 3 floors met 6 bars en top-dj\'s. Koop je tickets in de voorverkoop voor € 15,00 op tenne-winterberg.de!',
     infoTextDe: 'Die Tenne Winterberg in der historischen Marktstraße ist der absolute Hotspot für alle, die das neue Jahr auf der Tanzfläche begrüßen wollen! Zum Jahreswechsel 2026 / 2027 lädt die Tenne zur großen Kult-Silvesterparty ein. Auf drei Floors (Main Floor mit Charts, EDM und Partyhits, stilvolle Cocktailbar sowie der legendäre Rockkeller) sorgen hochkarätige DJs für ausgelassene Clubstimmung. An sechs Theken werden frisch gezapftes Bier, erlesene Cocktails und Shots serviert. Sichern Sie sich Ihr Ticket im Vorverkauf online für 15,00 € direkt über die Eventseite der Tenne, um Wartezeiten am Einlass zu vermeiden.',
     infoTextNl: 'Die Tenne Winterberg in de gezellige Marktstraße is dé plek voor clubbers en feestgangers om het nieuwe jaar in te luiden! Tijdens Oud en Nieuw 2026/2027 organiseert Die Tenne haar legendarische Sylvester-clubnacht. Dans op 3 verschillende zalen op de beste charts, house, dance classics en rock. Zes barzones zorgen voor koude biertjes en heerlijke cocktails. Koop je voorverkoopticket online voor € 15,00 via tenne-winterberg.de.',
-    image: '/silvester-party-tenne.jpg',
+    image: '/silvester-tenne-ai.jpg',
+    isAiGenerated: true,
     badgeDe: 'Club Silvesterparty 15 €',
     badgeNl: 'Club Sylvesterfeest € 15',
     contactEmail: 'info@tenne-winterberg.de',
@@ -488,7 +492,8 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     shortDescriptionNl: 'Vier Oud en Nieuw in Hotel Winterberg Resort: feestelijk diner, dj en dans, proosten om 00:00 uur, kampvuur voor de kinderen, glühwein en huisgemaakt gebak.',
     infoTextDe: 'Begrüßen Sie das Jahr 2027 im Hotel Winterberg Resort! Eingebettet in die idyllische Berglandschaft von Winterberg bietet das Resort ein abwechslungsreiches Festtagsprogramm für die ganze Familie. Über die Silvestertage genießen Gäste nachmittags duftenden Kaffee mit hausgemachtem Kuchen, wärmenden Glühwein, Kinderpunsch und heiße Schokolade. Für die kleinen Gäste gibt es kreative Bastelstunden und gemütliches Stockbrotbacken am Lagerfeuer. Am 31. Dezember verwandelt sich das Restaurant in einen festlichen Festsaal mit stilvoll gedeckten Tischen, Musik, DJ und Tanz bis zum gemeinsamen Mitternachtsanstoßen.',
     infoTextNl: 'Luid het nieuwe jaar feestelijk in bij Hotel Winterberg Resort! Gelegen in de rustgevende natuur biedt het hotel een gevarieerd feestprogramma voor jong en oud. Geniet overdag van koffie met vers gebak, geurige glühwein en marshmallows bij het knisperende kampvuur. Op oudejaarsavond wacht een feestelijk diner, gevolgd door een gezellige feestavond met dj, dansvloer en toosten om middernacht.',
-    image: '/silvester-resort-winterberg.jpg',
+    image: '/silvester-resort-ai.jpg',
+    isAiGenerated: true,
     badgeDe: 'Familie & Hüttenzauber',
     badgeNl: 'Familie & Winterfeest',
     contactEmail: 'info@hotelwinterberg-resort.nl',

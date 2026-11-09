@@ -32,7 +32,8 @@ import {
   ArrowRight,
   ChevronDown,
   ChevronUp,
-  Star
+  Star,
+  Bot
 } from 'lucide-react';
 import { Business, ThemeConfig, DesignSettings } from '../types';
 import HeaderShapeDivider, { getEffectiveDivider } from './HeaderShapeDivider';
@@ -450,22 +451,22 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
                   key={item.id}
                   className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col lg:flex-row group"
                 >
-                  {/* Left Column: Image / Flyer Preview */}
-                  <div className="lg:w-[380px] xl:w-[420px] shrink-0 bg-gradient-to-br from-[#101726] to-[#1E293B] relative flex items-center justify-center p-4 sm:p-6 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
+                  {/* Left Column: Image / Visual Preview */}
+                  <div className="lg:w-[380px] xl:w-[420px] shrink-0 bg-gradient-to-br from-[#101726] to-[#1E293B] relative flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
                     
-                    {/* Flyer / Visual Container */}
+                    {/* Visual Container */}
                     <div 
-                      onClick={() => setPreviewImage({ src: item.flyerImage || item.image, title: item.titleDe })}
+                      onClick={() => setPreviewImage({ src: item.image, title: item.titleDe })}
                       className="relative w-full max-w-[320px] sm:max-w-[360px] lg:max-w-full rounded-xl overflow-hidden shadow-lg group/flyer cursor-pointer border border-white/15 transition-transform duration-300 group-hover:scale-[1.01]"
                     >
                       <img
-                        src={item.flyerImage || item.image}
+                        src={item.image}
                         alt={`${item.businessName} - Silvester 2026`}
                         className="w-full h-auto max-h-[360px] object-cover block"
                         loading="lazy"
                       />
 
-                      {/* Top Badge */}
+                      {/* Top Badge Left */}
                       <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
                         <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md border border-amber-300">
                           <Sparkles className="w-3 h-3 text-slate-950" />
@@ -473,11 +474,25 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
                         </span>
                       </div>
 
+                      {/* Top Badge Right: KI-Hinweis */}
+                      <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 z-10">
+                        <span className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-xs text-amber-200 text-[10px] font-semibold px-2 py-0.5 rounded-md border border-white/20 shadow-md">
+                          <Bot className="w-3 h-3 text-amber-300" />
+                          <span>{isNl ? 'Symbolbild • AI' : 'Symbolbild • KI-generiert'}</span>
+                        </span>
+                      </div>
+
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-black/45 opacity-0 group-hover/flyer:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
                         <Maximize2 className="w-4 h-4 text-amber-300" />
-                        <span>{isNl ? 'Afbeelding / Flyer vergroten' : 'Flyer / Bild vergrößern'}</span>
+                        <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
                       </div>
+                    </div>
+
+                    {/* Sub-label under image */}
+                    <div className="mt-2.5 text-[11px] text-gray-300 dark:text-gray-400 flex items-center gap-1.5 text-center">
+                      <Bot className="w-3 h-3 text-amber-400 shrink-0" />
+                      <span>{isNl ? 'Symbolische afbeelding (met AI gegenereerd)' : 'Symbolbild (mit KI generiert)'}</span>
                     </div>
 
                   </div>
@@ -733,10 +748,16 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
             className="relative max-w-4xl max-h-[92vh] bg-white dark:bg-[#18201B] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-white/10 flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
-                {previewImage.title}
-              </span>
+            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-white/10 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2 truncate">
+                <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
+                  {previewImage.title}
+                </span>
+                <span className="inline-flex items-center gap-1 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[10.5px] font-semibold px-2 py-0.5 rounded-md border border-amber-300 dark:border-amber-700/50 shrink-0">
+                  <Bot className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+                  <span>{isNl ? 'AI-gegenereerd' : 'KI-generiert'}</span>
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setPreviewImage(null)}
@@ -749,8 +770,16 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
               <img
                 src={previewImage.src}
                 alt={previewImage.title}
-                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-md"
+                className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-md"
               />
+            </div>
+            <div className="p-3 bg-amber-50/90 dark:bg-amber-950/40 border-t border-amber-200/80 dark:border-white/10 flex items-center gap-2 text-xs text-amber-900 dark:text-amber-200">
+              <Info className="w-4 h-4 shrink-0 text-amber-600 dark:text-amber-400" />
+              <span>
+                {isNl 
+                  ? 'Opmerking: Deze afbeelding is een sfeerimpressie (met behulp van AI gegenereerd) ter verbeelding van de feestelijke sfeer tijdens dit evenement.' 
+                  : 'Hinweis: Bei dieser Abbildung handelt es sich um ein Symbolbild (mit KI generiert) zur Veranschaulichung der festlichen Veranstaltungsatmosphäre.'}
+              </span>
             </div>
           </div>
         </div>
