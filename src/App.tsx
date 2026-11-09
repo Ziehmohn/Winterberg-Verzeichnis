@@ -381,12 +381,26 @@ export default function App() {
       ) {
         initialHandwerkerLandingMode = true;
       } else if (
+        decodedPart1 === 'eventlocations-in-winterberg' || 
+        decodedPart1 === 'evenementenlocaties-in-winterberg' || 
+        decodedPart1 === 'eventlocations' || 
+        decodedPart1 === 'evenementenlocaties' || 
         decodedPart1 === 'partylocations-in-winterberg' || 
         decodedPart1 === 'feestlocaties-in-winterberg' || 
         decodedPart1 === 'partylocations' || 
         decodedPart1 === 'feestlocaties' || 
-        (decodedPart1 === 'themen' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'partylocations-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'partylocations')) ||
-        (decodedPart1 === 'themas' && pathParts[1] && (decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties-in-winterberg' || decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties'))
+        (decodedPart1 === 'themen' && pathParts[1] && (
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'eventlocations-in-winterberg' ||
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'eventlocations' ||
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'partylocations-in-winterberg' || 
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'partylocations'
+        )) ||
+        (decodedPart1 === 'themas' && pathParts[1] && (
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'evenementenlocaties-in-winterberg' ||
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'evenementenlocaties' ||
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties-in-winterberg' || 
+          decodeURIComponent(pathParts[1]).toLowerCase() === 'feestlocaties'
+        ))
       ) {
         initialPartyLocationsMode = true;
       } else if (
@@ -797,7 +811,7 @@ export default function App() {
     if (p === '/shoppen-in-winterberg' || p === '/winkelen-in-winterberg' || p === '/themen/shoppen-in-winterberg' || p === '/themas/winkelen-in-winterberg') return buildLocalizedUrl({ view: 'shopping-theme' }, lang);
     if (p === '/skifahren-in-winterberg' || p === '/skien-in-winterberg' || p === '/skifahren' || p === '/skien' || p === '/themen/skifahren-in-winterberg' || p === '/themas/skien-in-winterberg') return buildLocalizedUrl({ view: 'ski-theme' }, lang);
     if (p === '/themen/handwerker-finden-in-winterberg' || p === '/themas/vakmensen-vinden-in-winterberg' || p === '/handwerker-finden-in-winterberg' || p === '/vakmensen-vinden-in-winterberg' || p === '/handwerker-winterberg') return buildLocalizedUrl({ view: 'handwerker-theme' }, lang);
-    if (p === '/themen/partylocations-in-winterberg' || p === '/themas/feestlocaties-in-winterberg' || p === '/partylocations-in-winterberg' || p === '/feestlocaties-in-winterberg' || p === '/partylocations' || p === '/feestlocaties') return buildLocalizedUrl({ view: 'party-locations-theme' }, lang);
+    if (p === '/themen/eventlocations-in-winterberg' || p === '/themas/evenementenlocaties-in-winterberg' || p === '/eventlocations-in-winterberg' || p === '/evenementenlocaties-in-winterberg' || p === '/eventlocations' || p === '/evenementenlocaties' || p === '/themen/partylocations-in-winterberg' || p === '/themas/feestlocaties-in-winterberg' || p === '/partylocations-in-winterberg' || p === '/feestlocaties-in-winterberg' || p === '/partylocations' || p === '/feestlocaties') return buildLocalizedUrl({ view: 'party-locations-theme' }, lang);
     if (p === '/themen/neueroeffnungen-in-winterberg' || p === '/themas/nieuwe-openingen-in-winterberg' || p === '/neueroeffnungen-in-winterberg' || p === '/nieuwe-openingen-in-winterberg' || p === '/neueroeffnungen' || p === '/nieuwe-openingen') return buildLocalizedUrl({ view: 'openings-theme' }, lang);
     if (p === '/themen/weihnachtsfeier-in-winterberg-2026' || p === '/themas/kerstborrel-winterberg-2026' || p === '/weihnachtsfeier-in-winterberg-2026' || p === '/kerstborrel-winterberg-2026' || p.includes('weihnachtsfeier') || p.includes('kerstborrel')) return buildLocalizedUrl({ view: 'christmas-theme' }, lang);
     if (p === '/auftragsboerse' || p === '/auftraege' || p === '/opdrachten') return buildLocalizedUrl({ view: 'auftragsboerse' }, lang);
@@ -1024,12 +1038,26 @@ export default function App() {
         ) {
           setIsHandwerkerLandingMode(true);
         } else if (
+          p1 === 'eventlocations-in-winterberg' ||
+          p1 === 'evenementenlocaties-in-winterberg' ||
+          p1 === 'eventlocations' ||
+          p1 === 'evenementenlocaties' ||
           p1 === 'partylocations-in-winterberg' || 
           p1 === 'feestlocaties-in-winterberg' || 
           p1 === 'partylocations' || 
           p1 === 'feestlocaties' || 
-          (p1 === 'themen' && pathParts[1] && (pathParts[1].toLowerCase() === 'partylocations-in-winterberg' || pathParts[1].toLowerCase() === 'partylocations')) ||
-          (p1 === 'themas' && pathParts[1] && (pathParts[1].toLowerCase() === 'feestlocaties-in-winterberg' || pathParts[1].toLowerCase() === 'feestlocaties'))
+          (p1 === 'themen' && pathParts[1] && (
+            pathParts[1].toLowerCase() === 'eventlocations-in-winterberg' ||
+            pathParts[1].toLowerCase() === 'eventlocations' ||
+            pathParts[1].toLowerCase() === 'partylocations-in-winterberg' || 
+            pathParts[1].toLowerCase() === 'partylocations'
+          )) ||
+          (p1 === 'themas' && pathParts[1] && (
+            pathParts[1].toLowerCase() === 'evenementenlocaties-in-winterberg' ||
+            pathParts[1].toLowerCase() === 'evenementenlocaties' ||
+            pathParts[1].toLowerCase() === 'feestlocaties-in-winterberg' || 
+            pathParts[1].toLowerCase() === 'feestlocaties'
+          ))
         ) {
           setIsPartyLocationsMode(true);
         } else if (
@@ -4832,17 +4860,17 @@ export default function App() {
               {lang === 'nl' ? 'Vakmensen vinden in Winterberg' : 'Handwerker finden in Winterberg'}
             </a>
             <a 
-              href={getPath('/themen/partylocations-in-winterberg')} 
+              href={getPath(lang === 'nl' ? '/themas/evenementenlocaties-in-winterberg' : '/themen/eventlocations-in-winterberg')} 
               onClick={(e) => { 
                 e.preventDefault(); 
-                window.history.pushState(null, '', getPath('/themen/partylocations-in-winterberg')); 
+                window.history.pushState(null, '', getPath(lang === 'nl' ? '/themas/evenementenlocaties-in-winterberg' : '/themen/eventlocations-in-winterberg')); 
                 resetToDirectory(); 
                 setIsPartyLocationsMode(true); 
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }} 
               className="text-white/80 hover:text-white transition-colors"
             >
-              {lang === 'nl' ? 'Feestlocaties in Winterberg' : 'Partylocations in Winterberg'}
+              {lang === 'nl' ? 'Evenementenlocaties in Winterberg' : 'Eventlocations in Winterberg'}
             </a>
             <a 
               href={getPath('/themen/neueroeffnungen-in-winterberg')} 

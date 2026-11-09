@@ -425,6 +425,28 @@ const staticPageConfigs: {
     h2Nl: 'Gratis opdrachten plaatsen voor inwoners en huiseigenaren'
   },
   {
+    key: 'partyLocationsTheme',
+    titleDe: 'Eventlocations in Winterberg mieten | Traumhochzeit, Geburtstag & Firmenevent',
+    titleNl: 'Evenementenlocaties in Winterberg huren | Droombruiloft, Verjaardag & Bedrijfsuitje',
+    descDe: 'Die schönsten Eventlocations in Winterberg und den Sauerländer Bergdörfern: Traumhafte Hochzeitsorte, urige Berghütten, Festsäle und Panoramalounges für Hochzeiten, Geburtstage, Firmenfeiern und Weihnachtsfeiern mieten.',
+    descNl: 'Ontdek de mooiste evenementenlocaties in Winterberg en het Sauerland: berghutten, historische schuren, feestzalen en lounges te huur voor bruiloften, verjaardagen en bedrijfsuitjes.',
+    h1De: 'Eventlocations in Winterberg mieten',
+    h1Nl: 'Evenementenlocaties in Winterberg huren',
+    h2De: 'Traumhochzeiten, Geburtstage, Firmenfeiern & Weihnachtsfeiern im Sauerland',
+    h2Nl: 'Droombruiloften, verjaardagen, bedrijfsevenementen & kerstborrels'
+  },
+  {
+    key: 'partyLocations',
+    titleDe: 'Eventlocations in Winterberg mieten | Hochzeiten & Events',
+    titleNl: 'Evenementenlocaties in Winterberg | Bruiloften & Feesten',
+    descDe: 'Exklusive Eventlocations in Winterberg für Hochzeit, Geburtstag, Firmenevent und Vereinsfeiern mieten.',
+    descNl: 'Exclusieve evenementenlocaties in Winterberg voor bruiloften, verjaardagen en bedrijfsevenementen.',
+    h1De: 'Eventlocations in Winterberg',
+    h1Nl: 'Evenementenlocaties in Winterberg',
+    h2De: 'Berghütten, Festsäle & Scheunen für Ihr persönliches Event',
+    h2Nl: 'Berghutten, feestzalen & schuren voor uw feest'
+  },
+  {
     key: 'heimatkarte',
     titleDe: 'Winterberg HeimatCard | Vorteile, Guthaben & Partner | Das Winterberg Verzeichnis',
     titleNl: 'Winterberg HeimatCard | Voordelen & Partners | Het Winterberg Overzicht',

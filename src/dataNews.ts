@@ -2,6 +2,65 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "sahnehang-winterberg-uebernahme-familie-klante",
+    slug: "sahnehang-winterberg-uebernahme-familie-klante",
+    slug_nl: "sahnehang-winterberg-overname-familie-klante",
+    title: "Traditionsreiches Skigebiet am Kahlen Asten verkauft: Familie Klante übernimmt den Sahnehang",
+    title_nl: "Historisch skigebied aan de Kahler Asten verkocht: familie Klante neemt de Sahnehang over",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "koehlerhuette-am-sahnehang",
+    businessName: "Skigebiet Sahnehang & Köhlerhütte",
+    businessSlug: "gastronomie/skihuetten/koehlerhuette-am-sahnehang",
+    imageUrl: "/news-sahnehang-winterberg-klante.jpg",
+    isAiGenerated: true,
+    status: "approved",
+    category: "freizeit",
+    category_nl: "vrije-tijd",
+    date: "2026-11-07T11:15:00.000Z",
+    content: `Für den traditionsreichen Sahnehang in Winterberg gibt es eine Nachfolge: Die heimische Liftbetreiberfamilie Klante übernimmt das Areal am Kahlen Asten und plant gezielte Angebote für Familien und Schulen.
+
+Winterberg – Nachdem im Januar 2026 bekannt geworden war, dass für das Skigebiet Sahnehang ein neuer Eigentümer gesucht wird, herrscht nun Klarheit über die Zukunft des Geländes. Zu dem Areal gehören neben einem Ski- und einem Rodellift auch die Gastronomie Köhlerhütte sowie ein eigener Verleih; [das gesamte Skigebiet stand zuletzt zum Verkauf](https://www.sauerlandkurier.de/hochsauerlandkreis/winterberg/skigebiet-in-winterberg-steht-zum-verkauf-inklusive-lifte-verleih-und-event-location-94130905.html).
+
+Wie das Skiliftkarussell Winterberg mitteilt, übernimmt die Winterberger Liftbetreiberfamilie Klante den Betrieb. Die Familie ist in der Region bereits fest verankert und betreibt mehrere Liftanlagen, Hütten sowie Skiverleihe im Skiliftkarussell. Ziel sei es, an das bewährte Konzept des Sahnehangs anzuknüpfen und das Areal behutsam weiterzuentwickeln.
+
+### Fokus auf Wintersportnachwuchs und Schulklassen
+
+„Wir wollen am Sahnehang vor allem die Angebote für Familien und den Wintersportnachwuchs stärken“, erklärt Betreiber Fabian Klante. Die leicht abfallende Piste in exponierter Höhenlage soll künftig noch besser auf Kinder, Anfänger und Schulklassen zugeschnitten werden. Ein besonderes Augenmerk liegt dabei auf Kooperationen mit Schulen: Schülerinnen und Schüler sollen am Sahnehang die Möglichkeit erhalten, den Wintersport im Rahmen des regulären Sportunterrichts auszuprobieren.
+
+Das Skigebiet liegt auf 836 Metern Höhe direkt am Kahlen Asten und bietet getrennte Hänge für Skifahrer und Rodler. Nach Angaben des Skiliftkarussells gehört der Sahnehang durch die Höhenlage in Kombination mit der technischen Beschneiung zu den schneesichersten Pisten im Sauerland. Wer sich über alle Pisten, Skigebiete und Hütten der Region informieren möchte, findet in unserem Themenbereich [Skifahren in Winterberg](/themen/skifahren-in-winterberg) alle Skigebiete, Flutlichtzeiten und aktuellen Angebote auf einen Blick.
+
+:::contact
+### Skigebiet Sahnehang & Köhlerhütte Winterberg
+* **Lage:** Astenstraße 10, 59955 Winterberg (am Kahlen Asten, 836 m ü. NHN)
+* **Ausstattung:** Skilift, Rodellift mit Rodelhang, Skiverleih sowie Berggastronomie Köhlerhütte
+* **Neuer Betreiber:** Liftbetreiberfamilie Klante (Winterberg)
+* **Schwerpunkt:** Familienangebote, Anfänger & Schulsport
+* **Eintrag im Verzeichnis:** [Köhlerhütte am Sahnehang entdecken](/gastronomie/skihuetten/koehlerhuette-am-sahnehang)
+* **Themenseite:** [Skifahren in Winterberg entdecken](/themen/skifahren-in-winterberg)
+:::`,
+    content_nl: `Voor het traditionele skigebied de Sahnehang in Winterberg is een opvolger gevonden: de lokale skiliftfamilie Klante neemt het gebied aan de Kahler Asten over en legt in de toekomst het accent op gezinnen en scholieren.
+
+Winterberg – Nadat in januari 2026 bekend werd dat er voor het skigebied Sahnehang een nieuwe eigenaar werd gezocht, is er nu duidelijkheid over de toekomst. Het terrein omvat naast een skilift en een roedellift ook de bekende berghut Köhlerhütte en een skiverhuur; [het complete skigebied stond te koop](https://www.sauerlandkurier.de/hochsauerlandkreis/winterberg/skigebiet-in-winterberg-steht-zum-verkauf-inklusive-lifte-verleih-und-event-location-94130905.html).
+
+Zoals het Skiliftkarussell Winterberg bekendmaakt, neemt de Winterbergse ondernemersfamilie Klante het beheer over. De familie is een gevestigde naam in de regio en exploiteert reeds meerdere skiliften, berghutten en verhuurlocaties binnen het Skiliftkarussell. Het doel is voort te bouwen op het beproefde karakter van de Sahnehang en het gebied zorgvuldig verder te ontwikkelen.
+
+### Focus op jonge wintersporters en scholen
+
+„We willen op de Sahnehang vooral het aanbod voor gezinnen en de nieuwe generatie wintersporters versterken“, licht exploitant Fabian Klante toe. De glooiende afdaling op grote hoogte leent zich uitstekend voor kinderen, beginners en schoolklassen. Een specifiek speerpunt vormt de samenwerking met het onderwijs: leerlingen moeten op de Sahnehang de kans krijgen om tijdens de reguliere gymles kennis te maken met de wintersport.
+
+Het skigebied bevindt zich op 836 meter hoogte direct aan de Kahler Asten en beschikt over gescheiden pistes voor skiërs en rodelaars. Volgens het Skiliftkarussell behoort de Sahnehang door de hoge ligging in combinatie met moderne besneeuwing tot de meest sneeuwzekere hellingen van het Sauerland. Wie meer wil weten over alle pistes, skigebieden en berghutten in de regio, vindt in ons themadossier [Skiën in Winterberg](/themas/skien-in-winterberg) een compleet overzicht van alle liften, avondskiën en wintersportfaciliteiten.
+
+:::contact
+### Skigebied Sahnehang & Köhlerhütte Winterberg
+* **Locatie:** Astenstraße 10, 59955 Winterberg (Kahler Asten, 836 m)
+* **Faciliteiten:** Skilift, sleeplift voor rodelaars, skiverhuur & berghut Köhlerhütte
+* **Nieuwe eigenaar:** Liftfamilie Klante (Winterberg)
+* **Doelgroep:** Gezinnen, beginners & schoolklassen
+* **Profiel in de gids:** [Köhlerhütte am Sahnehang bekijken](/nl/gastronomie/skihuetten/koehlerhuette-am-sahnehang)
+* **Themapagina:** [Skiën in Winterberg bekijken](/themas/skien-in-winterberg)
+:::`,
+  },
+  {
     "id": "st-martinsumzuege-winterberg-2026",
     "slug": "st-martinsumzuege-winterberg-2026",
     "slug_nl": "sint-maartensoptochten-winterberg-2026",

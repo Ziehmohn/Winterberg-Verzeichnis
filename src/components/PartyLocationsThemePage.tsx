@@ -5,11 +5,9 @@ import {
   MapPin, 
   Search, 
   Users, 
-  PartyPopper, 
   Calendar, 
   Heart, 
   GlassWater, 
-  Music, 
   Building2, 
   Mountain, 
   Flame, 
@@ -19,7 +17,14 @@ import {
   Filter,
   Cake,
   Briefcase,
-  ExternalLink
+  ExternalLink,
+  Landmark,
+  Snowflake,
+  ShieldCheck,
+  Award,
+  TreePine,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 import { Business, ThemeConfig, DesignSettings } from '../types';
 import BusinessCard from './BusinessCard';
@@ -60,23 +65,23 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
   // SEO setup
   useEffect(() => {
     const pageTitle = isNl
-      ? 'Partylocaties & Feestzalen huren in Winterberg | Bruiloft, Verjaardag & Bedrijfsuitje'
-      : 'Partylocations mieten in Winterberg | Feiern, Hochzeit, Geburtstag & Firmenevent';
+      ? 'Evenementenlocaties in Winterberg huren | Droombruiloft, Verjaardag & Bedrijfsuitje'
+      : 'Eventlocations in Winterberg mieten | Traumhochzeit, Geburtstag & Firmenevents';
     document.title = pageTitle;
 
     const pageDesc = isNl
-      ? 'Ontdek de mooiste partylocaties en feestzalen in Winterberg en Sauerland: berghutten, historische schuren, feestzalen en clubs te huur voor bruiloften, verjaardagen en bedrijfsevenementen.'
-      : 'Entdecke die schönsten Partylocations, Berghütten, Festsäle und Clubs in Winterberg zum Mieten für Hochzeiten, Geburtstage, Firmenfeiern, Weihnachtsfeiern und Vereinsfeste.';
+      ? 'Ontdek de mooiste evenementenlocaties in Winterberg en Sauerland: berghutten, officiële trouwlocaties, feestzalen en panoramalounges te huur voor droombruiloften, verjaardagen, bedrijfsevenementen en kerstborrels.'
+      : 'Entdecke die schönsten Eventlocations in Winterberg zum Mieten: Romantische Berghütten, offizielle Trauorte, Festsäle und Panorama-Lounges für Traumhochzeiten, Geburtstage, Firmenfeiern, Weihnachtsfeiern und Vereinsfeste.';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', pageDesc);
 
     // Schema.org structured data
-    let scriptTag = document.getElementById('party-theme-schema') as HTMLScriptElement;
+    let scriptTag = document.getElementById('event-theme-schema') as HTMLScriptElement;
     if (!scriptTag) {
       scriptTag = document.createElement('script');
       scriptTag.type = 'application/ld+json';
-      scriptTag.id = 'party-theme-schema';
+      scriptTag.id = 'event-theme-schema';
       document.head.appendChild(scriptTag);
     }
     scriptTag.text = JSON.stringify({
@@ -89,18 +94,20 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
         'itemListElement': [
           { '@type': 'ListItem', 'position': 1, 'name': isNl ? 'Home' : 'Startseite', 'item': 'https://www.winterberg-verzeichnis.de' },
           { '@type': 'ListItem', 'position': 2, 'name': isNl ? 'Thema\'s' : 'Themen', 'item': 'https://www.winterberg-verzeichnis.de/themen' },
-          { '@type': 'ListItem', 'position': 3, 'name': isNl ? 'Feestlocaties' : 'Partylocations', 'item': 'https://www.winterberg-verzeichnis.de/themen/partylocations-in-winterberg' }
+          { '@type': 'ListItem', 'position': 3, 'name': isNl ? 'Evenementenlocaties' : 'Eventlocations', 'item': 'https://www.winterberg-verzeichnis.de/themen/eventlocations-in-winterberg' }
         ]
       }
     });
 
     return () => {
-      const tag = document.getElementById('party-theme-schema');
+      const tag = document.getElementById('event-theme-schema');
       if (tag) tag.remove();
+      const oldTag = document.getElementById('party-theme-schema');
+      if (oldTag) oldTag.remove();
     };
   }, [isNl]);
 
-  // Extract all verified party businesses in exact order
+  // Extract all verified party/event businesses in exact order
   const partyBusinesses = useMemo(() => {
     const map = new Map(businesses.map(b => [b.id, b]));
     return PARTY_VENUES_DATA
@@ -118,23 +125,25 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
     return Array.from(set).sort();
   }, [partyBusinesses]);
 
-  // Location type definitions
+  // Location type definitions focusing on real events
   const typeOptions: { id: string; labelDe: string; labelNl: string; icon: React.ComponentType<{ className?: string }> }[] = [
-    { id: 'all', labelDe: 'Alle Locations', labelNl: 'Alle locaties', icon: Building2 },
-    { id: 'huette', labelDe: 'Berghütten & Almen', labelNl: 'Berghutten & Almen', icon: Mountain },
-    { id: 'club', labelDe: 'Clubs & Partylocations', labelNl: 'Clubs & Feestlocaties', icon: Music },
-    { id: 'saal', labelDe: 'Festsäle & Eventhäuser', labelNl: 'Feestzalen & Eventhuizen', icon: Building2 },
-    { id: 'scheune', labelDe: 'Historische Scheunen', labelNl: 'Historische Schuren', icon: Flame }
+    { id: 'all', labelDe: 'Alle Eventlocations', labelNl: 'Alle locaties', icon: Building2 },
+    { id: 'huette', labelDe: 'Berghütten & Panorama-Almen', labelNl: 'Berghutten & Almen', icon: Mountain },
+    { id: 'saal', labelDe: 'Festsäle & Kongresszentren', labelNl: 'Feestzalen & Congres', icon: Building2 },
+    { id: 'scheune', labelDe: 'Historische Scheunen & Trauorte', labelNl: 'Historische Schuren & Trouwlocaties', icon: Landmark },
+    { id: 'lounge', labelDe: 'Exklusive Event-Lounges', labelNl: 'Exclusieve Event-Lounges', icon: Sparkles },
+    { id: 'resort', labelDe: 'Tagungs- & Event-Resorts', labelNl: 'Congres- & Eventresorts', icon: Briefcase }
   ];
 
-  // Occasion definitions
+  // Occasion definitions focusing on weddings, birthdays, company events, Christmas, communities
   const occasionOptions = [
     { id: 'all', labelDe: 'Alle Anlässe', labelNl: 'Alle gelegenheden' },
-    { id: 'hochzeit', labelDe: '💍 Hochzeiten', labelNl: '💍 Bruiloften' },
-    { id: 'geburtstag', labelDe: '🎂 Geburtstage', labelNl: '🎂 Verjaardagen' },
-    { id: 'firmenfeier', labelDe: '🏢 Firmenfeiern & Jubiläen', labelNl: '🏢 Bedrijfsuitjes' },
+    { id: 'hochzeit', labelDe: '💍 Traumhochzeit & Trauung', labelNl: '💍 Droombruiloften' },
+    { id: 'geburtstag', labelDe: '🎂 Geburtstage & Jubiläen', labelNl: '🎂 Verjaardagen' },
+    { id: 'firmenfeier', labelDe: '🏢 Firmenfeiern & Teamevents', labelNl: '🏢 Bedrijfsevenementen' },
     { id: 'weihnachtsfeier', labelDe: '🎄 Weihnachtsfeiern', labelNl: '🎄 Kerstborrels' },
-    { id: 'huette', labelDe: '🏔️ Hüttengaudi & Feiern am Berg', labelNl: '🏔️ Hutfeesten' }
+    { id: 'gemeinschaft', labelDe: '👥 Vereine & Gruppen', labelNl: '👥 Verenigingen & Groepen' },
+    { id: 'huette', labelDe: '🏔️ Hüttenabende & Bergpanorama', labelNl: '🏔️ Huttenavonden' }
   ];
 
   // Counts per type
@@ -164,14 +173,18 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
         const occasions = (meta ? meta.occasionsDe.concat(meta.occasionsNl) : []).map(o => o.toLowerCase());
         const desc = (b.description || '').toLowerCase();
         const searchWord = selectedOccasion.toLowerCase();
-        const matchesOccasion = occasions.some(o => o.includes(searchWord)) || desc.includes(searchWord);
-        if (!matchesOccasion) {
-          // If searching for huette, also match locationType huette
-          if (selectedOccasion === 'huette' && venueType === 'huette') {
-            // allow
-          } else {
-            return false;
-          }
+        
+        let matches = occasions.some(o => o.includes(searchWord)) || desc.includes(searchWord);
+        
+        // Special mappings
+        if (selectedOccasion === 'gemeinschaft') {
+          matches = occasions.some(o => o.includes('verein') || o.includes('gruppe') || o.includes('freizeit') || o.includes('familienfeier') || o.includes('vereniging') || o.includes('groep')) || desc.includes('verein') || desc.includes('gruppe');
+        } else if (selectedOccasion === 'huette') {
+          matches = matches || venueType === 'huette';
+        }
+
+        if (!matches) {
+          return false;
         }
       }
 
@@ -191,7 +204,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
         const matchAddress = (b.address || '').toLowerCase().includes(q);
         const matchDistrict = (b.district || '').toLowerCase().includes(q);
         const matchMeta = meta
-          ? (meta.occasionsDe.join(' ') + ' ' + meta.highlightsDe.join(' ') + ' ' + meta.locationTypeLabelDe).toLowerCase().includes(q)
+          ? (meta.occasionsDe.join(' ') + ' ' + meta.highlightsDe.join(' ') + ' ' + meta.locationTypeLabelDe + ' ' + meta.capacityDe).toLowerCase().includes(q)
           : false;
 
         if (!matchName && !matchDesc && !matchAddress && !matchDistrict && !matchMeta) {
@@ -206,14 +219,14 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
   return (
     <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#121614] text-[#1B211D] dark:text-[#EAE6DF]">
       
-      {/* Hero Header mit fließendem Farbverlauf & atmosphärischem Partybild */}
+      {/* Hero Header mit fließendem Farbverlauf & festlichem Event-Bild */}
       <section className="w-full bg-gradient-to-br from-[#0B3B24] via-[#0F4C2E] to-[#176239] text-white relative overflow-hidden">
         
         {/* Hero Background Image mit weichem horizontalen & vertikalen Verlauf */}
         <figure className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 w-full lg:w-[50%] xl:w-[48%] 2xl:w-[45%] h-56 sm:h-72 md:h-80 lg:h-full m-0 z-0 overflow-hidden pointer-events-none">
           <img
             src="/partylocations-winterberg-header.jpg"
-            alt={isNl ? 'Feestlocaties huren in Winterberg' : 'Partylocations mieten in Winterberg: Urige Berghütten, Festsäle und Clubs'}
+            alt={isNl ? 'Evenementenlocaties huren in Winterberg' : 'Eventlocations in Winterberg: Feste, Traumhochzeiten, Geburtstage und Firmenevents mieten'}
             width={1600}
             height={900}
             fetchPriority="high"
@@ -224,7 +237,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
           <div className="absolute top-3 right-3 lg:top-4 lg:right-6 flex items-center gap-1.5 z-10 pointer-events-none">
             <span className="text-[10px] leading-none font-semibold text-white/90 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/10 flex items-center gap-1 shadow-xs">
               <Sparkles className="w-2.5 h-2.5 text-amber-300" />
-              <span>{isNl ? 'Feesten in Winterberg' : 'Feiern in Winterberg'}</span>
+              <span>{isNl ? 'Events & Feesten in Winterberg' : 'Events & Feiern in Winterberg'}</span>
             </span>
           </div>
         </figure>
@@ -246,46 +259,77 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
               <span className="text-white/60">{isNl ? 'Thema\'s' : 'Themen'}</span>
               <span>/</span>
               <span className="font-semibold text-white">
-                {isNl ? 'Feestlocaties' : 'Partylocations mieten'}
+                {isNl ? 'Evenementenlocaties' : 'Eventlocations in Winterberg'}
               </span>
             </nav>
 
             {/* Eyebrow */}
             <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-3 drop-shadow-xs">
-              <PartyPopper className="w-4 h-4 text-amber-300 shrink-0" />
-              <span>{isNl ? 'Feesten in het Sauerland • Locaties te huur' : 'Feiern im Sauerland • Locations zum Mieten'}</span>
+              <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
+              <span>{isNl ? 'Evenementen & Feesten in het Sauerland • Exclusief te huur' : 'Eventlocations im Sauerland • Exklusiv zum Mieten'}</span>
             </div>
 
             {/* Headline */}
             <h1 className="font-display text-[28px] sm:text-[40px] md:text-[50px] font-extrabold m-0 mb-3 sm:mb-4 leading-[1.1] tracking-tight text-white drop-shadow-sm">
-              {isNl ? 'Partylocaties & Feestzalen in Winterberg' : 'Partylocations in Winterberg mieten'}
+              {isNl ? 'Evenementenlocaties in Winterberg huren' : 'Eventlocations in Winterberg mieten'}
             </h1>
 
-            {/* Compact Intro Text */}
-            <p className="text-sm sm:text-base md:text-[17px] text-white/90 leading-relaxed mb-6 sm:mb-8 max-w-2xl">
+            {/* Subtitle / Focus Callout */}
+            <p className="text-base sm:text-lg md:text-xl font-medium text-amber-200/95 mb-3 leading-snug">
               {isNl
-                ? 'Of het nu gaat om een sprookjesachtige bruiloft, een bijzondere verjaardag, een gezellig berghutfeest, een bedrijfsuitje of kerstborrel: ontdek de beste locaties in Winterberg en omliggende dorpen die je exclusief of gedeeltelijk kunt huren voor jouw eigen feest.'
-                : 'Ob unvergessliche Traumhochzeit, runder Geburtstag, ausgelassene Hüttengaudi, Firmenjubiläum oder stimmungsvolle Weihnachtsfeier: Entdecke die schönsten Partylocations in Winterberg und den Sauerländer Bergdörfern, die du für dein ganz persönliches Event mieten kannst.'}
+                ? 'Voor droombruiloften, bijzondere verjaardagen, bedrijfsevenementen & sfeervolle feesten'
+                : 'Für Traumhochzeiten, runde Geburtstage, Firmenfeiern, Weihnachtsfeiern & private Gesellschaften'}
+            </p>
+
+            {/* Compact Intro Text */}
+            <p className="text-sm sm:text-base md:text-[16px] text-white/90 leading-relaxed mb-6 sm:mb-8 max-w-2xl">
+              {isNl
+                ? 'Of het nu gaat om een romantische bruiloft met ceremonie in de bergen, een bijzondere verjaardag met familie en vrienden, een inspirerend bedrijfsuitje of een sfeervolle kerstborrel: ontdek de beste locaties in Winterberg en de 14 Sauerlandse bergdorpjes die je exclusief of gedeeltelijk kunt huren voor jouw evenement.'
+                : 'Ob unvergessliche Traumhochzeit im Bergpanorama, runder Geburtstag im Kreis der Liebsten, erstklassiges Firmenevent, Vereinsjubiläum oder stimmungsvolle Weihnachtsfeier: Entdecke die schönsten Eventlocations in Winterberg und den 14 Sauerländer Bergdörfern. Von urigen Almhütten und offiziellen Standesamts-Trauorten über historische Fachwerkscheunen bis hin zu großen Festsälen und modernen Lounges.'}
             </p>
 
             {/* Feature Highlights Chips */}
             <div className="flex flex-wrap gap-2 sm:gap-2.5">
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedOccasion('hochzeit')}
+                className="bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2 cursor-pointer"
+              >
                 <span className="text-base">💍</span>
-                <span className="font-medium">{isNl ? 'Bruiloften' : 'Traumhochzeiten'}</span>
-              </div>
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
+                <span className="font-medium">{isNl ? 'Droombruiloften' : 'Traumhochzeiten & Trauorte'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedOccasion('geburtstag')}
+                className="bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2 cursor-pointer"
+              >
                 <span className="text-base">🎂</span>
-                <span className="font-medium">{isNl ? 'Verjaardagen' : 'Runde Geburtstage'}</span>
-              </div>
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
+                <span className="font-medium">{isNl ? 'Ronde Verjaardagen' : 'Runde Geburtstage'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedOccasion('firmenfeier')}
+                className="bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2 cursor-pointer"
+              >
                 <span className="text-base">🏢</span>
-                <span className="font-medium">{isNl ? 'Bedrijfsuitjes' : 'Firmen- & Weihnachtsfeiern'}</span>
-              </div>
-              <div className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2">
-                <span className="text-base">🏔️</span>
-                <span className="font-medium">{isNl ? 'Hutfeesten' : 'Urige Hüttengaudi'}</span>
-              </div>
+                <span className="font-medium">{isNl ? 'Bedrijfsuitjes & Teambuilding' : 'Firmenfeiern & Teamevents'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedOccasion('weihnachtsfeier')}
+                className="bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2 cursor-pointer"
+              >
+                <span className="text-base">🎄</span>
+                <span className="font-medium">{isNl ? 'Kerstborrels' : 'Weihnachtsfeiern'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedOccasion('gemeinschaft')}
+                className="bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl text-xs sm:text-[13px] text-white/95 flex items-center gap-2 cursor-pointer"
+              >
+                <span className="text-base">👥</span>
+                <span className="font-medium">{isNl ? 'Verenigingen & Groepen' : 'Vereine & Gemeinschaften'}</span>
+              </button>
             </div>
 
           </div>
@@ -301,8 +345,127 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
 
       {/* Main Content Area */}
       <main className="max-w-[1240px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
+
+        {/* 4 Occasion Inspiration Quick-Boxes */}
+        <section aria-label="Event-Anlässe Übersicht" className="mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            
+            {/* Box 1: Hochzeiten */}
+            <div 
+              onClick={() => setSelectedOccasion('hochzeit')}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer text-left ${
+                selectedOccasion === 'hochzeit'
+                  ? 'bg-amber-50 dark:bg-amber-950/40 border-amber-400 ring-2 ring-amber-400/50 shadow-sm'
+                  : 'bg-white dark:bg-[#1A221E] border-[#EDE8E0] dark:border-white/10 hover:border-amber-300 dark:hover:border-amber-700/60 hover:-translate-y-0.5 shadow-2xs'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-base">
+                  💍
+                </div>
+                <h3 className="font-bold text-sm text-gray-900 dark:text-white m-0">
+                  {isNl ? 'Droombruiloften' : 'Traumhochzeiten'}
+                </h3>
+              </div>
+              <p className="text-xs text-gray-600 dark:text-gray-400 m-0 leading-relaxed">
+                {isNl 
+                  ? 'Officiële trouwlocaties op de berg, historische vakwerkschuren & feestzalen met kapel.'
+                  : 'Offizielle Standesamts-Trauorte am Berggipfel, historische Scheunen & Festsäle mit Kapelle.'}
+              </p>
+              <div className="mt-2.5 flex items-center gap-1 text-[11px] font-bold text-amber-700 dark:text-amber-300">
+                <span>{isNl ? 'Locaties bekijken' : 'Locations ansehen'}</span>
+                <ChevronRight className="w-3 h-3" />
+              </div>
+            </div>
+
+            {/* Box 2: Firmenfeiern & Teamevents */}
+            <div 
+              onClick={() => setSelectedOccasion('firmenfeier')}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer text-left ${
+                selectedOccasion === 'firmenfeier'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 ring-2 ring-emerald-500/50 shadow-sm'
+                  : 'bg-white dark:bg-[#1A221E] border-[#EDE8E0] dark:border-white/10 hover:border-emerald-400 dark:hover:border-emerald-700/60 hover:-translate-y-0.5 shadow-2xs'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-base">
+                  🏢
+                </div>
+                <h3 className="font-bold text-sm text-gray-900 dark:text-white m-0">
+                  {isNl ? 'Bedrijfsevenementen' : 'Firmen & Teamevents'}
+                </h3>
+              </div>
+              <p className="text-xs text-gray-600 dark:text-gray-400 m-0 leading-relaxed">
+                {isNl
+                  ? 'Sommerfeste, tagungen en incentives in exclusieve lounges aan de bobsleebaan of berghutten.'
+                  : 'Sommerfeste, Tagungen & Incentives in exklusiven Lounges an der Bobbahn oder urigen Almen.'}
+              </p>
+              <div className="mt-2.5 flex items-center gap-1 text-[11px] font-bold text-[#0F4C2E] dark:text-emerald-400">
+                <span>{isNl ? 'Locaties bekijken' : 'Locations ansehen'}</span>
+                <ChevronRight className="w-3 h-3" />
+              </div>
+            </div>
+
+            {/* Box 3: Geburtstage & Familienfeste */}
+            <div 
+              onClick={() => setSelectedOccasion('geburtstag')}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer text-left ${
+                selectedOccasion === 'geburtstag'
+                  ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 ring-2 ring-rose-400/50 shadow-sm'
+                  : 'bg-white dark:bg-[#1A221E] border-[#EDE8E0] dark:border-white/10 hover:border-rose-300 dark:hover:border-rose-700/60 hover:-translate-y-0.5 shadow-2xs'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-xl bg-rose-100 dark:bg-rose-900/50 flex items-center justify-center text-base">
+                  🎂
+                </div>
+                <h3 className="font-bold text-sm text-gray-900 dark:text-white m-0">
+                  {isNl ? 'Ronde Verjaardagen' : 'Geburtstage & Familie'}
+                </h3>
+              </div>
+              <p className="text-xs text-gray-600 dark:text-gray-400 m-0 leading-relaxed">
+                {isNl
+                  ? 'Gezellige privébijeenkomsten met haardvuur, Sauerlandse gerechten en zonnige bergterrassen.'
+                  : 'Runde Geburtstage & Jubiläen im privaten Kreis mit Kaminfeuer, Sauerländer Küche & Sonnenterrasse.'}
+              </p>
+              <div className="mt-2.5 flex items-center gap-1 text-[11px] font-bold text-rose-700 dark:text-rose-300">
+                <span>{isNl ? 'Locaties bekijken' : 'Locations ansehen'}</span>
+                <ChevronRight className="w-3 h-3" />
+              </div>
+            </div>
+
+            {/* Box 4: Weihnachtsfeiern */}
+            <div 
+              onClick={() => setSelectedOccasion('weihnachtsfeier')}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer text-left ${
+                selectedOccasion === 'weihnachtsfeier'
+                  ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-400 ring-2 ring-blue-400/50 shadow-sm'
+                  : 'bg-white dark:bg-[#1A221E] border-[#EDE8E0] dark:border-white/10 hover:border-blue-300 dark:hover:border-blue-700/60 hover:-translate-y-0.5 shadow-2xs'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-base">
+                  🎄
+                </div>
+                <h3 className="font-bold text-sm text-gray-900 dark:text-white m-0">
+                  {isNl ? 'Kerstborrels' : 'Weihnachtsfeiern'}
+                </h3>
+              </div>
+              <p className="text-xs text-gray-600 dark:text-gray-400 m-0 leading-relaxed">
+                {isNl
+                  ? 'Glühwein bij open vuur, feestelijke 4-gangenmenu\'s en authentieke berghutsfeer in de sneeuw.'
+                  : 'Glühweinempfang am offenen Feuer, festliche Menüs und echte Hüttenzauber-Atmosphäre im Schnee.'}
+              </p>
+              <div className="mt-2.5 flex items-center gap-1 text-[11px] font-bold text-blue-700 dark:text-blue-300">
+                <span>{isNl ? 'Locaties bekijken' : 'Locations ansehen'}</span>
+                <ChevronRight className="w-3 h-3" />
+              </div>
+            </div>
+
+          </div>
+        </section>
         
-        {/* Filter- & Suchleiste (Sticky / Prominent) */}
+        {/* Filter- & Suchleiste (Prominent & aufgeräumt) */}
         <section aria-label="Filter und Suche" className="bg-white dark:bg-[#1A221E] rounded-2xl border border-[#EDE8E0] dark:border-white/10 shadow-sm p-4 sm:p-6 mb-8 space-y-4">
           
           {/* Row 1: Suchfeld + Ortsteil Dropdown */}
@@ -314,7 +477,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={isNl ? 'Zoek op locatienaam, dorp of type feest...' : 'Suche nach Location, Ortsteil, Hütte oder Festsaal...'}
+                placeholder={isNl ? 'Zoek op locatienaam, dorp, capaciteit of type event...' : 'Suche nach Location, Ortsteil, Hütte, Festsaal oder Anlass...'}
                 className="w-full pl-10 pr-9 py-2.5 text-sm bg-[#FAF8F5] dark:bg-[#141A16] border border-[#E0D9CE] dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F4C2E] text-gray-900 dark:text-gray-100 placeholder:text-gray-400"
               />
               {searchQuery && (
@@ -345,7 +508,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
             </div>
           </div>
 
-          {/* Row 2: Location-Typ Tabs (Immer direkt sichtbar, kein horizontales Scrollen) */}
+          {/* Row 2: Location-Typ Tabs (Sauber kategorisiert für echte Events) */}
           <div className="border-t border-[#F0EBE1] dark:border-white/5 pt-3">
             <div className="flex flex-wrap items-center gap-2">
               {typeOptions.map(opt => {
@@ -421,12 +584,12 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
         <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
           <div>
             <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#1B211D] dark:text-white m-0">
-              {filteredBusinesses.length} {isNl ? 'Feestlocaties gevonden' : 'Partylocations zum Mieten gefunden'}
+              {filteredBusinesses.length} {isNl ? 'Evenementenlocaties gevonden' : 'Eventlocations zum Mieten gefunden'}
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 m-0 mt-0.5">
               {isNl 
-                ? 'Klik op een locatie om alle details, capaciteit en contactopties te bekijken' 
-                : 'Klicke auf eine Location, um vollständige Details, Kapazitäten und Kontaktdaten aufzurufen'}
+                ? 'Klik op een locatie om details, capaciteiten en directe contactmogelijkheden te bekijken' 
+                : 'Klicke auf eine Location, um vollständige Details, Raumkapazitäten und Kontaktdaten aufzurufen'}
             </p>
           </div>
         </div>
@@ -444,7 +607,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
                 : (isNl ? 'Capaciteit op aanvraag' : 'Kapazität auf Anfrage');
               const topOccasions = meta
                 ? (isNl ? meta.occasionsNl.slice(0, 3) : meta.occasionsDe.slice(0, 3))
-                : ['Feiern & Feste'];
+                : ['Events & Feiern'];
 
               return (
                 <div key={bus.id} className="flex flex-col h-full relative group">
@@ -453,7 +616,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
                   <div className="mb-2 bg-white dark:bg-[#18201B] border border-[#E7E0D3] dark:border-white/10 rounded-xl p-2.5 shadow-2xs flex items-center justify-between gap-2">
                     <div className="flex items-center gap-1.5 min-w-0">
                       <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
-                      <span className="text-xs font-bold text-gray-800 dark:text-gray-100 truncate">
+                      <span className="text-xs font-bold text-gray-800 dark:text-gray-100 truncate" title={locationTypeLabel}>
                         {locationTypeLabel}
                       </span>
                     </div>
@@ -498,7 +661,7 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
                         onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1 text-[11.5px] font-bold text-[#0F4C2E] dark:text-emerald-400 hover:text-amber-600 dark:hover:text-amber-300 transition-colors shrink-0 ml-auto"
                       >
-                        <span>{isNl ? 'Website bezoeken' : 'Event-Website'}</span>
+                        <span>{isNl ? 'Event-Website' : 'Event-Website'}</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
@@ -510,9 +673,9 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
           </div>
         ) : (
           <div className="text-center py-16 bg-white dark:bg-[#1A221E] rounded-2xl border border-dashed border-gray-300 dark:border-gray-700 p-8 shadow-xs">
-            <PartyPopper className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+            <Sparkles className="w-12 h-12 text-gray-400 mx-auto mb-3" />
             <h3 className="text-base font-bold text-gray-800 dark:text-gray-200 mb-1">
-              {isNl ? 'Geen partylocaties gevonden' : 'Keine passenden Partylocations gefunden'}
+              {isNl ? 'Geen passende evenementenlocaties gevonden' : 'Keine passenden Eventlocations gefunden'}
             </h3>
             <p className="text-xs text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-4">
               {isNl
@@ -534,22 +697,105 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
           </div>
         )}
 
+        {/* Informative Event Planning Guide for Organizers */}
+        <section className="mt-14 bg-white dark:bg-[#17201B] rounded-2xl border border-[#EDE8E0] dark:border-white/10 p-6 sm:p-8 shadow-sm">
+          <div className="max-w-3xl mb-6">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-1 block">
+              {isNl ? 'Evenementengids Sauerland' : 'Planungs-Guide für dein Event'}
+            </span>
+            <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 dark:text-white m-0 mb-2">
+              {isNl 
+                ? 'Tips voor het plannen van jouw evenement in Winterberg' 
+                : 'Wissenswertes für Hochzeiten, Firmenfeiern & Feste in Winterberg'}
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed m-0">
+              {isNl
+                ? 'Winterberg biedt de perfecte combinatie van idyllische natuur, uitstekende infrastructuur en professionele gastronomie voor elk type evenement.'
+                : 'Die Ferienwelt Winterberg mit ihren 14 Bergdörfern bietet die ideale Symbiose aus imposanter Naturkulisse, herzlicher Sauerländer Gastlichkeit und professioneller Veranstaltungstechnik.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            
+            {/* Guide Item 1: Trauorte & Hochzeiten */}
+            <div className="space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold text-sm">
+                💍
+              </div>
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white m-0">
+                {isNl ? 'Officiële Trouwlocaties' : 'Offizielle Trauorte'}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed m-0">
+                {isNl
+                  ? 'Het Bobhaus (op de berg) en Borgs Scheune zijn officiële buitenlocaties van de burgerlijke stand van Winterberg. Daarnaast beschikt Gästehaus Grönebach over een eigen kapel.'
+                  : 'Das Bobhaus auf der Kappe und Borgs Scheune in Züschen sind offizielle Außenstellen des Standesamtes Winterberg. Das Gästehaus Grönebach bietet sogar eine eigene Kapelle.'}
+              </p>
+            </div>
+
+            {/* Guide Item 2: Exklusivität */}
+            <div className="space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold text-sm">
+                🔒
+              </div>
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white m-0">
+                {isNl ? 'Besloten Gezelschappen' : 'Exklusiv mieten'}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed m-0">
+                {isNl
+                  ? 'Veel berghutten en feestzalen kunnen volledig exclusief voor uw gezelschap worden afgehuurd, zodat u ongestoord kunt genieten tot in de late uurtjes.'
+                  : 'Fast alle gelisteten Locations können exklusiv als geschlossene Gesellschaft gemietet werden – ohne störende Fremdgäste und mit flexiblen Sperrstunden.'}
+              </p>
+            </div>
+
+            {/* Guide Item 3: Übernachtung */}
+            <div className="space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 flex items-center justify-center font-bold text-sm">
+                🛏️
+              </div>
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white m-0">
+                {isNl ? 'Overnachten ter Plaatse' : 'Übernachtung für Gäste'}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed m-0">
+                {isNl
+                  ? 'Geen zorgen over de terugreis: locaties zoals Gästehaus Grönebach (135 bedden) of Dorint Resort bieden comfortabele accommodatie direct op locatie.'
+                  : 'Keine Heimfahrt im Dunkeln: Häuser wie das Gästehaus Grönebach (135 Betten), Schöner Asten und Dorint Resort bieten Unterkünfte direkt im Gebäude.'}
+              </p>
+            </div>
+
+            {/* Guide Item 4: Rahmenprogramm */}
+            <div className="space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 flex items-center justify-center font-bold text-sm">
+                🏔️
+              </div>
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white m-0">
+                {isNl ? 'Unieke Activiteiten' : 'Rahmenprogramm & Incentives'}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed m-0">
+                {isNl
+                  ? 'Combineer uw feest of zakelijke bijeenkomst met een taxibob-rit in de ijsarena, een fakkelwandeling of een gezellige barbecue op het terras.'
+                  : 'Verbinde dein Event mit Taxibob-Fahrten in der VELTINS-EisArena, geführten Fackelwanderungen, Skikursen oder regionalen Sauerländer Grillbuffets.'}
+              </p>
+            </div>
+
+          </div>
+        </section>
+
         {/* Location Owner CTA Box */}
-        <section className="mt-14 bg-gradient-to-br from-[#0F4C2E] via-[#14532D] to-[#0A331E] rounded-2xl p-6 sm:p-10 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-800">
+        <section className="mt-12 bg-gradient-to-br from-[#0F4C2E] via-[#14532D] to-[#0A331E] rounded-2xl p-6 sm:p-10 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-800">
           <div className="max-w-xl text-center md:text-left">
             <div className="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold text-amber-300 mb-3">
               <Sparkles className="w-3 h-3 text-amber-300" />
-              <span>{isNl ? 'Locatiebeheerder in Winterberg?' : 'Betreibst du eine Partylocation?'}</span>
+              <span>{isNl ? 'Locatiebeheerder in Winterberg?' : 'Betreibst du eine Eventlocation?'}</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight mb-2 text-white">
               {isNl
-                ? 'Verhuur je een zaal, berghut of partyruimte in Winterberg?'
-                : 'Vermietest du eine Hütte, Halle oder Partylocation im Sauerland?'}
+                ? 'Verhuur je een zaal, berghut of eventlocatie in Winterberg?'
+                : 'Vermietest du eine Hütte, einen Festsaal oder eine Eventlocation?'}
             </h3>
             <p className="text-xs sm:text-sm text-white/85 leading-relaxed m-0">
               {isNl
-                ? 'Meld je feestlocatie gratis aan in de Winterberg Bedrijvengids en bereik duizenden feestgangers, bruidsparen en bedrijven die op zoek zijn naar de perfecte plek voor hun evenement.'
-                : 'Trage deine Eventlocation in das Winterberg Verzeichnis ein und erreiche Brautpaare, Geburtstagskinder, Firmen und Vereine, die nach einer passenden Mietlocation in Winterberg suchen.'}
+                ? 'Meld je evenementenlocatie gratis aan in de Winterberg Bedrijvengids en bereik duizenden feestgangers, bruidsparen, bedrijven en verenigingen die op zoek zijn naar de perfecte plek voor hun evenement.'
+                : 'Trage deine Eventlocation in das Winterberg Verzeichnis ein und erreiche Brautpaare, Geburtstagskinder, Firmen und Vereine, die nach einer passenden Mietlocation in Winterberg und den Sauerländer Bergdörfern suchen.'}
             </p>
           </div>
           <div className="shrink-0 flex flex-col sm:flex-row gap-3">
@@ -574,4 +820,5 @@ export const PartyLocationsThemePage: React.FC<PartyLocationsThemePageProps> = (
   );
 };
 
+export const EventLocationsThemePage = PartyLocationsThemePage;
 export default PartyLocationsThemePage;

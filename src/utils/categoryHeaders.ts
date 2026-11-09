@@ -31,18 +31,30 @@ export const CATEGORY_HEADERS: Record<string, CategoryHeaderData> = {
   },
 
   // ==========================================
-  // Partylocations & Feiern
+  // Eventlocations & Feiern
   // ==========================================
-  'Partylocations': {
+  'Eventlocations': {
     image: '/partylocations-winterberg-header.jpg',
-    imageAltDe: 'Partylocations in Winterberg: Atmosphärische Feier in alpiner Eventlocation mit warmen Lichterketten',
-    imageAltNl: 'Feestlocaties in Winterberg: Sfeervolle viering in alpenhut met feestelijke verlichting',
+    imageAltDe: 'Eventlocations in Winterberg: Atmosphärische Feier in alpiner Eventlocation mit warmen Lichterketten',
+    imageAltNl: 'Evenementenlocaties in Winterberg: Sfeervolle viering in alpenhut met feestelijke verlichting',
     credit: 'KI-Symbolbild / SICHTBAR Winterberg',
     isAiGenerated: true,
-    titleDe: 'Partylocations in Winterberg mieten',
-    titleNl: 'Partylocaties & Feestzalen in Winterberg',
-    subtitleDe: 'Feste feiern im Sauerland: Urige Berghütten, historische Scheunen, große Festsäle und Clubs für Hochzeiten, Geburtstage und Firmenevents mieten.',
-    subtitleNl: 'Feesten in het Sauerland: berghutten, historische schuren, feestzalen en clubs te huur voor bruiloften, verjaardagen en bedrijfsuitjes.',
+    titleDe: 'Eventlocations in Winterberg mieten',
+    titleNl: 'Evenementenlocaties & Feestzalen in Winterberg',
+    subtitleDe: 'Events & Feste im Sauerland: Traumhochzeiten, Geburtstage, Firmenfeiern und Weihnachtsfeiern in romantischen Berghütten, historischen Scheunen, Festsälen und Panorama-Lounges mieten.',
+    subtitleNl: 'Evenementen & feesten in het Sauerland: droombruiloften, verjaardagen, bedrijfsuitjes en kerstborrels in sfeervolle berghutten, historische schuren, feestzalen en panoramalounges huren.',
+    objectPosition: 'center 40%'
+  },
+  'Partylocations': {
+    image: '/partylocations-winterberg-header.jpg',
+    imageAltDe: 'Eventlocations in Winterberg: Atmosphärische Feier in alpiner Eventlocation mit warmen Lichterketten',
+    imageAltNl: 'Evenementenlocaties in Winterberg: Sfeervolle viering in alpenhut met feestelijke verlichting',
+    credit: 'KI-Symbolbild / SICHTBAR Winterberg',
+    isAiGenerated: true,
+    titleDe: 'Eventlocations in Winterberg mieten',
+    titleNl: 'Evenementenlocaties & Feestzalen in Winterberg',
+    subtitleDe: 'Events & Feste im Sauerland: Traumhochzeiten, Geburtstage, Firmenfeiern und Weihnachtsfeiern in romantischen Berghütten, historischen Scheunen, Festsälen und Panorama-Lounges mieten.',
+    subtitleNl: 'Evenementen & feesten in het Sauerland: droombruiloften, verjaardagen, bedrijfsuitjes en kerstborrels in sfeervolle berghutten, historische schuren, feestzalen en panoramalounges huren.',
     objectPosition: 'center 40%'
   },
 

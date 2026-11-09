@@ -854,21 +854,29 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             style={{ objectPosition: article.imagePosition || 'center' }}
           />
           
-          {(article.isAiGenerated || article.imageSource || article.imageCredit) && (
-            <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
-              {article.isAiGenerated && (
-                <span>{t('newsAiGenerated')}</span>
-              )}
-              {article.isAiGenerated && (article.imageCredit || article.imageSource) && (
-                <span className="opacity-60">|</span>
-              )}
-              {article.imageCredit ? (
-                <span>{article.imageCredit}</span>
-              ) : article.imageSource ? (
-                <span>{t('newsSource')}: {article.imageSource}</span>
-              ) : null}
-            </div>
-          )}
+          {(() => {
+            const hasAi = !!article.isAiGenerated;
+            const rawCredit = (article.imageCredit || '').trim();
+            const rawSource = (article.imageSource || '').trim();
+            const isDuplicateCredit = hasAi && rawCredit.toLowerCase().includes('ki-generiert');
+            const displayCredit = isDuplicateCredit ? '' : rawCredit;
+            const displaySource = (hasAi && rawSource.toLowerCase().includes('ki-generiert')) ? '' : rawSource;
+            const hasExtra = !!(displayCredit || displaySource);
+
+            if (!hasAi && !hasExtra) return null;
+
+            return (
+              <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
+                {hasAi && <span>{t('newsAiGenerated')}</span>}
+                {hasAi && hasExtra && <span className="opacity-60">|</span>}
+                {displayCredit ? (
+                  <span>{displayCredit}</span>
+                ) : displaySource ? (
+                  <span>{t('newsSource')}: {displaySource}</span>
+                ) : null}
+              </div>
+            );
+          })()}
         </div>
       )}
 

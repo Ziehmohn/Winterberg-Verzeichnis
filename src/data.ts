@@ -8913,6 +8913,7 @@ export const businesses: Business[] = [
     website: 'https://www.veltins-eisarena.de',
     isActive: true,
     status: 'approved',
+    image: '/weihnachtsfeier-winterberg-veltins-eisarena.jpg',
     imageFallback: 'EA',
     services: [
       'Geführte Besichtigungen der Bob- und Rodelbahn (Bobbahnführungen)',
