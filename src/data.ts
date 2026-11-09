@@ -321,6 +321,26 @@ export const businesses: Business[] = [
         price: 'Kostenlos'
       },
       {
+        id: 'martinsumzug-winterberg-2026',
+        title: 'St. Martinsumzug Winterberg',
+        title_nl: 'Sint-Maartensoptocht Winterberg',
+        startDate: '2026-11-12',
+        endDate: '2026-11-12',
+        startTime: '',
+        endTime: '',
+        category: 'Familie & Kinder',
+        location: 'Winterberg (Kernstadt)',
+        coordinates: { lat: 51.1956, lng: 8.5338 },
+        description: 'Traditioneller St. Martinsumzug in der Kernstadt Winterberg am 12. November 2026. Kinder und Familien ziehen mit bunten Laternen durch die Straßen.',
+        description_nl: 'Traditionele Sint-Maartensoptocht in het stadscentrum van Winterberg op 12 november 2026. Kinderen en gezinnen trekken met lampions door het centrum.',
+        imageUrl: '/events-martinsumzug-winterberg.jpg',
+        isAiGenerated: true,
+        imageCredit: 'KI generiert',
+        slug: 'martinsumzug-winterberg-2026',
+        slug_nl: 'sint-maartensoptocht-winterberg-2026',
+        price: 'Kostenlos'
+      },
+      {
         id: 'weihnachtsmarkt-niedersfeld-2026',
         title: 'Weihnachtsmarkt in Niedersfeld',
         title_nl: 'Kerstmarkt in Niedersfeld',
