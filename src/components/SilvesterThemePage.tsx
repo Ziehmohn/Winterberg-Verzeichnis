@@ -27,11 +27,8 @@ import {
   Headphones,
   Music,
   Ticket,
-  HelpCircle,
   Info,
   ArrowRight,
-  ChevronDown,
-  ChevronUp,
   Star,
   Bot
 } from 'lucide-react';
@@ -71,7 +68,6 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
   const [selectedItemForInquiry, setSelectedItemForInquiry] = useState<SilvesterPartyItem | null>(null);
   const [inquirySuccess, setInquirySuccess] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   // Inquiry form fields
   const [inquiryName, setInquiryName] = useState('');
@@ -203,40 +199,6 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
       default: return <Sparkles className="w-4 h-4 text-amber-400" />;
     }
   };
-
-  // Frequently Asked Questions
-  const faqs = [
-    {
-      qDe: 'Müssen Tickets und Tische für Silvester in Winterberg vorab reserviert werden?',
-      qNl: 'Moeten tickets en tafels voor Oud en Nieuw in Winterberg vooraf gereserveerd worden?',
-      aDe: 'Ja, dringend empfohlen! Silvester ist die beliebteste Reisewoche des gesamten Winters im Sauerland. Beliebte Restaurants und Hütten wie die Dorf Alm oder Skihütte Brabander sind oft Wochen im Voraus ausgebucht. Auch Club-Tickets für die Tenne sollten vorab online gesichert werden.',
-      aNl: 'Ja, dat wordt met klem aangeraden! Oud en Nieuw is de drukste vakantieweek van het winterseizoen in Winterberg. Populaire horecagelegenheden en berghutten zijn vaak weken van tevoren volgeboekt. Ook voor clubs zoals Die Tenne is online voorverkoop aan te raden.'
-    },
-    {
-      qDe: 'Ist der Eintritt zur Open-Air Silvesterparty im Winterberger Winterdorf kostenlos?',
-      qNl: 'Is de toegang tot het openlucht oudejaarsfeest in het Winterdorf gratis?',
-      aDe: 'Ja! Das Winterberger Winterdorf auf dem Marktplatz an der Unteren Pforte lädt ohne Eintritt zum Feiern unter freiem Himmel ein. Am 31. Dezember ist bis 01:00 Uhr nachts geöffnet, inklusive DJ Marlon, Winzerglühwein und Hüttenschmankerln.',
-      aNl: 'Ja! Het Winterberger Winterdorf op het plein Untere Pforte is gratis toegankelijk voor iedereen. Op 31 december geopend tot 01:00 uur \'s nachts met DJ Marlon, glühwein en gezellige berghutten.'
-    },
-    {
-      qDe: 'Gibt es in Winterberg ein großes Silvesterfeuerwerk?',
-      qNl: 'Is er in Winterberg een groot vuurwerk met de jaarwisseling?',
-      aDe: 'Ein offizielles, weithin sichtbares Großfeuerwerk findet traditionell an der Skipiste am Herrloh (direkt beim Hotel Der Brabander) statt. Auch an den Aussichtspunkten rund um Winterberg hat man um Mitternacht einen traumhaften Blick über die Täler.',
-      aNl: 'Een van de mooiste en bekendste vuurwerkshows vindt traditioneel plaats op de skipiste van de Herrloh (bij Hotel Der Brabander). Vanaf verschillende uitzichtpunten rond de stad heeft u een magisch uitzicht.'
-    },
-    {
-      qDe: 'Fahren in der Silvesternacht Taxis und Busse in Winterberg?',
-      qNl: 'Rijden er taxi\'s en bussen tijdens de oudejaarsnacht in Winterberg?',
-      aDe: 'Örtliche Taxiunternehmen sind in der Silvesternacht im Dauereinsatz. Aufgrund der extrem hohen Nachfrage kann es jedoch zu Wartezeiten kommen. Es empfiehlt sich, Fahrten frühzeitig vorzubestellen oder Unterkünfte in fußläufiger Entfernung zum Ortszentrum zu wählen.',
-      aNl: 'Lokale taxibedrijven rijden de hele nacht. Vanwege de grote drukte kunnen wachttijden oplopen. Het is verstandig ritten tijdig vooraf af te stemmen of te verblijven op loopafstand van het centrum.'
-    },
-    {
-      qDe: 'Haben Skigebiete und Gastronomie am Neujahrstag (1. Januar) geöffnet?',
-      qNl: 'Zijn de skigebieden en horeca op Nieuwjaarsdag (1 januari) geopend?',
-      aDe: 'Ja! Das Skiliftkarussell Winterberg und die Skigebiete sind am 1. Januar regulär in Betrieb (meist ab ca. 09:00 oder 10:00 Uhr). Auch die Restaurants, Berghütten und das Winterdorf heißen Gäste am Neujahrstag herzlich willkommen.',
-      aNl: 'Ja! De Skiliftkarussell Winterberg en pistes zijn op 1 januari gewoon geopend (meestal vanaf 09:00 of 10:00 uur). Ook berghutten en het Winterdorf zijn op Nieuwjaarsdag geopend voor een ontspannen start van het jaar.'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#0D1210] text-[#1B211D] dark:text-[#EAE6DF]">
@@ -449,20 +411,20 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
               return (
                 <article
                   key={item.id}
-                  className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col lg:flex-row group"
+                  className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col lg:flex-row items-stretch group"
                 >
                   {/* Left Column: Image / Visual Preview */}
-                  <div className="lg:w-[380px] xl:w-[420px] shrink-0 bg-gradient-to-br from-[#101726] to-[#1E293B] relative flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
+                  <div className="lg:w-[460px] xl:w-[500px] 2xl:w-[540px] shrink-0 bg-gradient-to-br from-[#101726] to-[#1E293B] relative flex flex-col justify-between p-4 sm:p-5 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
                     
                     {/* Visual Container */}
                     <div 
                       onClick={() => setPreviewImage({ src: item.image, title: item.titleDe })}
-                      className="relative w-full max-w-[320px] sm:max-w-[360px] lg:max-w-full rounded-xl overflow-hidden shadow-lg group/flyer cursor-pointer border border-white/15 transition-transform duration-300 group-hover:scale-[1.01]"
+                      className="relative w-full flex-1 min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] rounded-xl overflow-hidden shadow-lg group/flyer cursor-pointer border border-white/15 transition-transform duration-300 group-hover:scale-[1.01] bg-black/40 flex items-center justify-center"
                     >
                       <img
                         src={item.image}
                         alt={`${item.businessName} - Silvester 2026`}
-                        className="w-full h-auto max-h-[360px] object-cover block"
+                        className="w-full h-full object-cover block absolute inset-0"
                         loading="lazy"
                       />
 
@@ -490,7 +452,7 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
                     </div>
 
                     {/* Sub-label under image */}
-                    <div className="mt-2.5 text-[11px] text-gray-300 dark:text-gray-400 flex items-center gap-1.5 text-center">
+                    <div className="mt-2.5 text-[11px] text-gray-300 dark:text-gray-400 flex items-center justify-center gap-1.5 text-center shrink-0">
                       <Bot className="w-3 h-3 text-amber-400 shrink-0" />
                       <span>{isNl ? 'Symbolische afbeelding (met AI gegenereerd)' : 'Symbolbild (mit KI generiert)'}</span>
                     </div>
@@ -537,25 +499,32 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
                       </p>
 
                       {/* Schedule & Price Highlight Banner */}
-                      <div className="bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-500/20 rounded-xl p-3 sm:p-3.5 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                        <div className="flex items-start sm:items-center gap-2">
-                          <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400 shrink-0 mt-0.5 sm:mt-0" />
-                          <div>
-                            <div className="text-[11px] uppercase tracking-wider font-bold text-amber-900 dark:text-amber-300">
-                              {isNl ? 'Openingstijden & Programma' : 'Ablauf & Uhrzeiten'}
-                            </div>
-                            <div className="text-xs font-medium text-gray-800 dark:text-gray-200">
-                              {isNl ? item.timeNl : item.timeDe}
+                      <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200/90 dark:border-amber-500/20 rounded-xl p-3.5 sm:p-4 mb-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-5 md:divide-x md:divide-amber-200/80 dark:md:divide-amber-500/20">
+                          {/* Left Column: Schedule / Program */}
+                          <div className="flex items-start gap-2.5 min-w-0">
+                            <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
+                            <div className="min-w-0 flex-1">
+                              <div className="text-[11px] uppercase tracking-wider font-bold text-amber-900 dark:text-amber-300 mb-1">
+                                {isNl ? 'Afloop & Tijden' : 'Ablauf & Uhrzeiten'}
+                              </div>
+                              <div className="text-xs font-medium text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-line break-words">
+                                {isNl ? item.timeNl : item.timeDe}
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="text-left sm:text-right shrink-0 border-t sm:border-t-0 pt-2 sm:pt-0 border-amber-200 dark:border-amber-500/20">
-                          <div className="text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400">
-                            {isNl ? 'Prijzen & Tickets' : 'Kosten & Eintritt'}
-                          </div>
-                          <div className="text-xs sm:text-sm font-extrabold text-[#1E3A8A] dark:text-blue-400">
-                            {isNl ? item.priceInfoNl : item.priceInfoDe}
+                          {/* Right Column: Cost & Tickets */}
+                          <div className="flex items-start gap-2.5 min-w-0 md:pl-5">
+                            <Ticket className="w-4 h-4 text-blue-700 dark:text-blue-400 shrink-0 mt-0.5" />
+                            <div className="min-w-0 flex-1">
+                              <div className="text-[11px] uppercase tracking-wider font-bold text-gray-600 dark:text-gray-300 mb-1">
+                                {isNl ? 'Prijzen & Toegang' : 'Kosten & Eintritt'}
+                              </div>
+                              <div className="text-xs sm:text-[13px] font-bold text-[#1E3A8A] dark:text-blue-300 leading-relaxed whitespace-pre-line break-words">
+                                {isNl ? item.priceInfoNl : item.priceInfoDe}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -692,49 +661,6 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
             </button>
           </div>
         )}
-
-        {/* Silvester Tips & FAQ Section */}
-        <section className="mt-16 bg-gradient-to-br from-[#F8F5EE] to-[#EFE9DD] dark:from-[#151B18] dark:to-[#101412] border border-[#E0D7C5] dark:border-white/10 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xs">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
-              <Info className="w-4 h-4" />
-              <span>{isNl ? 'Tips voor de jaarwisseling in Winterberg' : 'Gut zu wissen • Silvester in Winterberg'}</span>
-            </div>
-            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-[#1B211D] dark:text-white m-0 mb-6">
-              {isNl ? 'Veelgestelde vragen over Oud & Nieuw in Winterberg' : 'Häufige Fragen & Insider-Tipps zum Jahreswechsel in Winterberg'}
-            </h3>
-
-            <div className="space-y-3">
-              {faqs.map((faq, index) => {
-                const isOpen = expandedFaq === index;
-                return (
-                  <div
-                    key={index}
-                    className="bg-white dark:bg-[#1A221E] border border-[#E5DECF] dark:border-white/10 rounded-2xl overflow-hidden transition-all shadow-2xs"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setExpandedFaq(isOpen ? null : index)}
-                      className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-3 cursor-pointer bg-transparent border-none"
-                    >
-                      <span className="font-bold text-xs sm:text-sm text-[#1B211D] dark:text-white leading-snug">
-                        {isNl ? faq.qNl : faq.qDe}
-                      </span>
-                      <span className="shrink-0 text-gray-500">
-                        {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </span>
-                    </button>
-                    {isOpen && (
-                      <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0 text-xs sm:text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed border-t border-gray-100 dark:border-white/5">
-                        {isNl ? faq.aNl : faq.aDe}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
       </main>
 
