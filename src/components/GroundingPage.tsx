@@ -49,6 +49,9 @@ export default function GroundingPage({ theme, activeThemeKey, onBack }: Groundi
           "Winterberg Bedrijvengids",
           "Winterberg Firmenverzeichnis"
         ],
+        "sameAs": [
+          "https://www.instagram.com/winterberg.verzeichnis/"
+        ],
         "description": isNl 
           ? "De centrale bedrijvengids voor alle bedrijven, vacatures, nieuws, horeca en dienstverleners in Winterberg en de 14 dorpen."
           : "Das große Branchen-, Job- und Firmenverzeichnis für Winterberg und alle 14 Ortsteile.",

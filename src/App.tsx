@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw, Snowflake, TreePine, Bell, Store, Layout, PartyPopper } from 'lucide-react';
+import { Search, Menu, X, Check, Bot, MapPin, Phone, Globe, ChevronRight, ChevronDown, Plus, ArrowLeft, ArrowRight, Image as ImageIcon, Trash2, Edit2, LogIn, LogOut, Map as MapIcon, List as ListIcon, Star, Lock, Clock, Settings, SearchCode, BadgeCheck, Sun, Moon, Briefcase, CreditCard, FileText , User, Users, Bed, Utensils, Hammer, ShoppingBag, Code2, Building2, Sparkles, ArrowUpDown, Calendar, AlertCircle, Upload, ExternalLink, Trophy, Medal, Award, Fuel, Siren, Smartphone, Download, Eye, EyeOff, Heart, Palette, Newspaper, MessageSquare, ShieldCheck, Layers, RefreshCw, Snowflake, TreePine, Bell, Store, Layout, PartyPopper, Instagram } from 'lucide-react';
 import { 
   businesses as initialBusinesses, 
   categories, 
@@ -4633,6 +4633,18 @@ export default function App() {
                 ? `De grote gids voor alle bedrijven, vakmensen en dienstverleners in Winterberg en alle dorpen ${availableLocations.filter(l => l !== 'Winterberg').join(', ')}.`
                 : `Das große Verzeichnis für alle Unternehmen, Handwerker und Dienstleister in Winterberg und seinen Ortsteilen ${availableLocations.filter(l => l !== 'Winterberg').join(', ')}.`}
             </p>
+            <div className="mt-5">
+              <a 
+                href="https://www.instagram.com/winterberg.verzeichnis/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Winterberg Verzeichnis auf Instagram"
+                className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-white/10 hover:bg-[#F2761B] text-white text-[13.5px] font-medium transition-all group border border-white/10 shadow-xs"
+              >
+                <Instagram className="w-4 h-4 text-[#F2761B] group-hover:text-white transition-colors" />
+                <span>Instagram: <span className="text-white/90 group-hover:text-white">@winterberg.verzeichnis</span></span>
+              </a>
+            </div>
           </div>
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Gids' : 'Verzeichnis'}</div>
@@ -4899,6 +4911,15 @@ export default function App() {
           <div className="flex flex-col gap-2.5 text-[14.5px]">
             <div className="text-white font-semibold mb-0.5">{lang === 'nl' ? 'Informatie & Links' : 'Informationen & Links'}</div>
             <a 
+              href="https://www.instagram.com/winterberg.verzeichnis/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-2 group"
+            >
+              <Instagram className="w-4 h-4 text-[#F2761B] group-hover:scale-110 transition-transform" />
+              <span>Instagram (@winterberg.verzeichnis)</span>
+            </a>
+            <a 
               href={getPath('/heimatkarte')} 
               onClick={(e) => { 
                 e.preventDefault(); 
@@ -5014,8 +5035,17 @@ export default function App() {
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
-          <div className="max-w-[1180px] mx-auto px-6 py-4 text-[13px] flex items-center justify-between">
+          <div className="max-w-[1180px] mx-auto px-6 py-4 text-[13px] flex flex-col sm:flex-row items-center justify-between gap-3">
             <span>© {new Date().getFullYear()} {lang === 'nl' ? 'De Winterberg Bedrijvengids' : 'Das Winterberg Verzeichnis'} · {t("projectBy")} <a href="https://sichtbar-online.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">SICHTBAR SEO Simon Kräling</a></span>
+            <a 
+              href="https://www.instagram.com/winterberg.verzeichnis/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white/80 hover:text-white transition-colors flex items-center gap-1.5"
+            >
+              <Instagram className="w-4 h-4 text-[#F2761B]" />
+              <span>Instagram</span>
+            </a>
           </div>
         </div>
       </footer>

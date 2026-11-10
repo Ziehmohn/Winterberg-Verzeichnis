@@ -43,6 +43,8 @@ export const SITE = {
   nameNl: 'Het Winterberg Overzicht',
   /** Kanonische Basis-URL (kein abschließender Slash) */
   baseUrl: 'https://www.winterberg-verzeichnis.de',
+  /** Instagram Profil */
+  instagram: 'https://www.instagram.com/winterberg.verzeichnis/',
   /** Stadt */
   city: 'Winterberg',
   /** PLZ */

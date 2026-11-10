@@ -369,215 +369,217 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
           </div>
         </div>
 
-        {/* Full-width Cards List */}
+        {/* 2-Column Cards Grid (2 Events pro Zeile) */}
         {filteredItems.length > 0 ? (
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
             {filteredItems.map((item) => {
               const bus = item.businessId ? businessMap.get(item.businessId) : undefined;
 
               return (
                 <article
                   key={item.id}
-                  className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col group"
+                  className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between h-full group"
                 >
-                  {/* Top Image Banner: Länglich & Widescreen ("über der Überschrift", nicht zu hoch) */}
-                  <div 
-                    onClick={() => setPreviewImage({ src: item.image, title: item.titleDe })}
-                    className="relative w-full h-36 sm:h-44 md:h-48 bg-slate-900 overflow-hidden cursor-pointer group/img border-b border-[#E7E0D3] dark:border-white/10"
-                  >
-                    <img
-                      src={item.image}
-                      alt={`${item.businessName} - Silvester 2026`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.02]"
-                      loading="lazy"
-                    />
+                  <div>
+                    {/* Top Image Banner: Länglich & Widescreen ("über der Überschrift", nicht zu hoch) */}
+                    <div 
+                      onClick={() => setPreviewImage({ src: item.image, title: item.titleDe })}
+                      className="relative w-full h-44 sm:h-48 md:h-52 bg-slate-900 overflow-hidden cursor-pointer group/img border-b border-[#E7E0D3] dark:border-white/10"
+                    >
+                      <img
+                        src={item.image}
+                        alt={`${item.businessName} - Silvester 2026`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.02]"
+                        loading="lazy"
+                      />
 
-                    {/* Top Badge Left: Format & Ort */}
-                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
-                      <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md border border-amber-300">
-                        <Sparkles className="w-3 h-3 text-slate-950" />
-                        <span>{isNl ? item.badgeNl : item.badgeDe}</span>
-                      </span>
-                      <span className="inline-flex items-center gap-1 bg-black/65 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-sm border border-white/15">
-                        <MapPin className="w-3 h-3 text-amber-400" />
-                        <span>{item.address}</span>
-                      </span>
-                    </div>
-
-                    {/* Top Badge Right: ONLY "Bild Ki-generiert" */}
-                    <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
-                      <span className="inline-block bg-black/70 backdrop-blur-xs text-white text-[10.5px] font-medium px-2 py-0.5 rounded border border-white/20 shadow-xs">
-                        Bild Ki-generiert
-                      </span>
-                    </div>
-
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
-                      <Maximize2 className="w-4 h-4 text-amber-300" />
-                      <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
-                    </div>
-                  </div>
-
-                  {/* Card Content: Vorwiegend Text, länglich, strukturiert */}
-                  <div className="p-5 sm:p-7 flex flex-col justify-between flex-1">
-                    <div>
-                      
-                      {/* Top Meta Line: Category, Location & Time */}
-                      <div className="flex items-center justify-between gap-2 flex-wrap mb-2.5">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-[11px] font-bold text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-0.5 rounded-md border border-amber-200 dark:border-amber-800/60 flex items-center gap-1">
-                            <PartyPopper className="w-3 h-3" />
-                            <span>{item.category} • {item.subcategory}</span>
-                          </span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                            <MapPin className="w-3.5 h-3.5 text-gray-400" />
-                            <span>{item.address}</span>
-                          </span>
-                        </div>
-
-                        {/* Date Tag */}
-                        <div className="text-[11.5px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/10 px-2.5 py-0.5 rounded-md flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                          <span>{isNl ? item.dateNl : item.dateDe}</span>
-                        </div>
+                      {/* Top Badge Left: Format & Ort */}
+                      <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
+                        <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md border border-amber-300">
+                          <Sparkles className="w-3 h-3 text-slate-950" />
+                          <span>{isNl ? item.badgeNl : item.badgeDe}</span>
+                        </span>
+                        <span className="inline-flex items-center gap-1 bg-black/65 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-sm border border-white/15">
+                          <MapPin className="w-3 h-3 text-amber-400" />
+                          <span>{item.address}</span>
+                        </span>
                       </div>
 
-                      {/* Business Name */}
-                      <div className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1">
-                        {item.businessName}
+                      {/* Top Badge Right: ONLY "Bild Ki-generiert" */}
+                      <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
+                        <span className="inline-block bg-black/70 backdrop-blur-xs text-white text-[10.5px] font-medium px-2 py-0.5 rounded border border-white/20 shadow-xs">
+                          Bild Ki-generiert
+                        </span>
                       </div>
 
-                      {/* Main Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-[#1B211D] dark:text-white m-0 mb-1 leading-snug">
-                        {isNl ? item.titleNl : item.titleDe}
-                      </h3>
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
+                        <Maximize2 className="w-4 h-4 text-amber-300" />
+                        <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
+                      </div>
+                    </div>
 
-                      {/* Subtitle */}
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 m-0 mb-3.5">
-                        {isNl ? item.subtitleNl : item.subtitleDe}
-                      </p>
+                    {/* Card Content: Vorwiegend Text, länglich, strukturiert */}
+                    <div className="p-5 sm:p-6 flex flex-col justify-between">
+                      <div>
+                        
+                        {/* Top Meta Line: Category, Location & Time */}
+                        <div className="flex items-center justify-between gap-2 flex-wrap mb-2.5">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[11px] font-bold text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-0.5 rounded-md border border-amber-200 dark:border-amber-800/60 flex items-center gap-1">
+                              <PartyPopper className="w-3 h-3" />
+                              <span>{item.category} • {item.subcategory}</span>
+                            </span>
+                            <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                              <MapPin className="w-3.5 h-3.5 text-gray-400" />
+                              <span>{item.address}</span>
+                            </span>
+                          </div>
 
-                      {/* Schedule & Price Highlight Banner */}
-                      <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200/90 dark:border-amber-500/20 rounded-xl p-3.5 sm:p-4 mb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-5 md:divide-x md:divide-amber-200/80 dark:md:divide-amber-500/20">
-                          {/* Left Column: Schedule / Program */}
-                          <div className="flex items-start gap-2.5 min-w-0">
-                            <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
-                            <div className="min-w-0 flex-1">
-                              <div className="text-[11px] uppercase tracking-wider font-bold text-amber-900 dark:text-amber-300 mb-1">
-                                {isNl ? 'Afloop & Tijden' : 'Ablauf & Uhrzeiten'}
+                          {/* Date Tag */}
+                          <div className="text-[11.5px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/10 px-2.5 py-0.5 rounded-md flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                            <span>{isNl ? item.dateNl : item.dateDe}</span>
+                          </div>
+                        </div>
+
+                        {/* Business Name Heading (Größer hervorgehoben) */}
+                        <div className="text-base sm:text-lg font-extrabold uppercase tracking-wide text-amber-600 dark:text-amber-400 mb-1">
+                          {item.businessName}
+                        </div>
+
+                        {/* Main Event Title */}
+                        <h3 className="text-lg sm:text-xl font-bold text-[#1B211D] dark:text-white m-0 mb-1 leading-snug">
+                          {isNl ? item.titleNl : item.titleDe}
+                        </h3>
+
+                        {/* Subtitle */}
+                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 m-0 mb-3.5">
+                          {isNl ? item.subtitleNl : item.subtitleDe}
+                        </p>
+
+                        {/* Schedule & Price Highlight Banner */}
+                        <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200/90 dark:border-amber-500/20 rounded-xl p-3 sm:p-3.5 mb-3.5">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 divide-y sm:divide-y-0 sm:divide-x divide-amber-200/80 dark:md:divide-amber-500/20">
+                            {/* Left Column: Schedule / Program */}
+                            <div className="flex items-start gap-2.5 min-w-0">
+                              <Clock className="w-4 h-4 text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
+                              <div className="min-w-0 flex-1">
+                                <div className="text-[10.5px] uppercase tracking-wider font-bold text-amber-900 dark:text-amber-300 mb-0.5">
+                                  {isNl ? 'Afloop & Tijden' : 'Ablauf & Uhrzeiten'}
+                                </div>
+                                <div className="text-xs font-medium text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-line break-words">
+                                  {isNl ? item.timeNl : item.timeDe}
+                                </div>
                               </div>
-                              <div className="text-xs font-medium text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-line break-words">
-                                {isNl ? item.timeNl : item.timeDe}
+                            </div>
+
+                            {/* Right Column: Cost & Tickets */}
+                            <div className="flex items-start gap-2.5 min-w-0 pt-2.5 sm:pt-0 sm:pl-3">
+                              <Ticket className="w-4 h-4 text-blue-700 dark:text-blue-400 shrink-0 mt-0.5" />
+                              <div className="min-w-0 flex-1">
+                                <div className="text-[10.5px] uppercase tracking-wider font-bold text-gray-600 dark:text-gray-300 mb-0.5">
+                                  {isNl ? 'Prijzen & Toegang' : 'Kosten & Eintritt'}
+                                </div>
+                                <div className="text-xs sm:text-[13px] font-bold text-[#1E3A8A] dark:text-blue-300 leading-relaxed whitespace-pre-line break-words">
+                                  {isNl ? item.priceInfoNl : item.priceInfoDe}
+                                </div>
                               </div>
                             </div>
                           </div>
-
-                          {/* Right Column: Cost & Tickets */}
-                          <div className="flex items-start gap-2.5 min-w-0 md:pl-5">
-                            <Ticket className="w-4 h-4 text-blue-700 dark:text-blue-400 shrink-0 mt-0.5" />
-                            <div className="min-w-0 flex-1">
-                              <div className="text-[11px] uppercase tracking-wider font-bold text-gray-600 dark:text-gray-300 mb-1">
-                                {isNl ? 'Prijzen & Toegang' : 'Kosten & Eintritt'}
-                              </div>
-                              <div className="text-xs sm:text-[13px] font-bold text-[#1E3A8A] dark:text-blue-300 leading-relaxed whitespace-pre-line break-words">
-                                {isNl ? item.priceInfoNl : item.priceInfoDe}
-                              </div>
-                            </div>
-                          </div>
                         </div>
-                      </div>
 
-                      {/* Features 3-Col Box */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
-                        {item.features.map((feat, fIdx) => (
-                          <div
-                            key={fIdx}
-                            className="bg-[#FBF9F4] dark:bg-[#121614] border border-[#EDE7DB] dark:border-white/5 rounded-xl p-2.5 flex flex-col justify-between"
-                          >
-                            <div className="flex items-center gap-2 mb-1">
-                              {getFeatureIcon(feat.icon)}
-                              <span className="text-xs font-bold text-gray-900 dark:text-white leading-tight">
-                                {isNl ? feat.titleNl : feat.titleDe}
-                              </span>
+                        {/* Features 3-Col Box */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3.5">
+                          {item.features.map((feat, fIdx) => (
+                            <div
+                              key={fIdx}
+                              className="bg-[#FBF9F4] dark:bg-[#121614] border border-[#EDE7DB] dark:border-white/5 rounded-xl p-2.5 flex flex-col justify-between"
+                            >
+                              <div className="flex items-center gap-2 mb-1">
+                                {getFeatureIcon(feat.icon)}
+                                <span className="text-xs font-bold text-gray-900 dark:text-white leading-tight">
+                                  {isNl ? feat.titleNl : feat.titleDe}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-snug m-0">
+                                {isNl ? feat.descNl : feat.descDe}
+                              </p>
                             </div>
-                            <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-snug m-0">
-                              {isNl ? feat.descNl : feat.descDe}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Highlights Bullet List */}
-                      <div className="mb-4">
-                        <div className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                          <span>{isNl ? 'Belangrijkste hoogtepunten van dit event:' : 'Die wichtigsten Highlights auf einen Blick:'}</span>
-                        </div>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-1 m-0 p-0 list-none">
-                          {(isNl ? item.highlightsNl : item.highlightsDe).map((hl, hIdx) => (
-                            <li key={hIdx} className="text-xs text-gray-700 dark:text-gray-300 flex items-start gap-1.5">
-                              <span className="text-amber-500 font-bold leading-none mt-0.5">•</span>
-                              <span className="leading-snug">{hl}</span>
-                            </li>
                           ))}
-                        </ul>
+                        </div>
+
+                        {/* Highlights Bullet List */}
+                        <div className="mb-3.5">
+                          <div className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                            <span>{isNl ? 'Belangrijkste hoogtepunten van dit event:' : 'Die wichtigsten Highlights auf einen Blick:'}</span>
+                          </div>
+                          <ul className="grid grid-cols-1 gap-1 m-0 p-0 list-none">
+                            {(isNl ? item.highlightsNl : item.highlightsDe).map((hl, hIdx) => (
+                              <li key={hIdx} className="text-xs text-gray-700 dark:text-gray-300 flex items-start gap-1.5">
+                                <span className="text-amber-500 font-bold leading-none mt-0.5">•</span>
+                                <span className="leading-snug">{hl}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Info Description */}
+                        <p className="text-xs sm:text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed m-0 mb-4 bg-gray-50 dark:bg-white/5 p-3 rounded-xl border border-gray-100 dark:border-white/5">
+                          {isNl ? item.infoTextNl : item.infoTextDe}
+                        </p>
+
                       </div>
 
-                      {/* Info Description */}
-                      <p className="text-xs sm:text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed m-0 mb-4 bg-gray-50 dark:bg-white/5 p-3 rounded-xl border border-gray-100 dark:border-white/5">
-                        {isNl ? item.infoTextNl : item.infoTextDe}
-                      </p>
+                      {/* Bottom Action Footer */}
+                      <div className="pt-3.5 border-t border-[#E7E0D3] dark:border-white/10 flex items-center justify-between gap-2 flex-wrap">
+                        
+                        <div className="flex items-center gap-2 flex-wrap w-full">
+                          {/* Primary CTA: Ticket / Booking link */}
+                          <a
+                            href={item.bookingUrl || item.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 min-w-[140px] px-3.5 py-2 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 text-xs sm:text-sm font-bold rounded-xl shadow-xs hover:shadow-md transition-all inline-flex items-center justify-center gap-1.5 no-underline"
+                          >
+                            <Ticket className="w-3.5 h-3.5" />
+                            <span>
+                              {item.bookingUrl?.includes('ticket') || item.id.includes('tenne') || item.id.includes('brabander')
+                                ? (isNl ? 'Tickets reserveren' : 'Tickets sichern')
+                                : (isNl ? 'Tafel reserveren / Website' : 'Tisch reservieren / Details')}
+                            </span>
+                            <ExternalLink className="w-3 h-3 ml-0.5 opacity-70" />
+                          </a>
 
-                    </div>
+                          {/* Button: Betriebsprofil ansehen (Analoges Styling) */}
+                          {bus && onSelectBusiness && (
+                            <button
+                              type="button"
+                              onClick={() => onSelectBusiness(bus)}
+                              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-white/10 dark:hover:bg-white/20 text-white text-xs sm:text-sm font-semibold rounded-xl shadow-2xs transition-colors inline-flex items-center justify-center gap-1.5 cursor-pointer"
+                            >
+                              <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                              <span>{isNl ? 'Profiel bekijken' : 'Betriebsprofil ansehen'}</span>
+                              <ChevronRight className="w-3 h-3 text-white/60" />
+                            </button>
+                          )}
 
-                    {/* Bottom Action Footer */}
-                    <div className="pt-4 border-t border-[#E7E0D3] dark:border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                      
-                      <div className="flex items-center gap-2 flex-wrap">
-                        {/* Primary CTA: Ticket / Booking link */}
-                        <a
-                          href={item.bookingUrl || item.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 text-xs sm:text-sm font-bold rounded-xl shadow-xs hover:shadow-md transition-all inline-flex items-center gap-1.5 no-underline"
-                        >
-                          <Ticket className="w-3.5 h-3.5" />
-                          <span>
-                            {item.bookingUrl?.includes('ticket') || item.id.includes('tenne') || item.id.includes('brabander')
-                              ? (isNl ? 'Tickets reserveren' : 'Tickets sichern')
-                              : (isNl ? 'Tafel reserveren / Website' : 'Tisch reservieren / Details')}
-                          </span>
-                          <ExternalLink className="w-3 h-3 ml-0.5 opacity-70" />
-                        </a>
+                          {/* ICS Calendar Download */}
+                          <button
+                            type="button"
+                            onClick={(e) => handleDownloadIcs(item, e)}
+                            title={isNl ? 'Opslaan in agenda (.ics)' : 'Termin in Kalender eintragen (.ics)'}
+                            className="p-2 px-2.5 border border-gray-200 dark:border-white/15 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 text-gray-700 dark:text-gray-300 transition-colors inline-flex items-center gap-1 text-xs font-semibold cursor-pointer shrink-0"
+                          >
+                            <Download className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                            <span className="hidden sm:inline">.ICS</span>
+                          </button>
+                        </div>
 
-                        {/* ICS Calendar Download */}
-                        <button
-                          type="button"
-                          onClick={(e) => handleDownloadIcs(item, e)}
-                          title={isNl ? 'Opslaan in agenda (.ics)' : 'Termin in Kalender eintragen (.ics)'}
-                          className="p-2 border border-gray-200 dark:border-white/15 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 text-gray-700 dark:text-gray-300 transition-colors inline-flex items-center gap-1 text-xs cursor-pointer"
-                        >
-                          <Download className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                          <span className="hidden sm:inline">.ICS</span>
-                        </button>
                       </div>
 
-                      {/* Right Link: View Business Profile if exists */}
-                      {bus && onSelectBusiness && (
-                        <button
-                          type="button"
-                          onClick={() => onSelectBusiness(bus)}
-                          className="text-xs font-semibold text-amber-700 dark:text-amber-400 hover:underline inline-flex items-center gap-1 justify-end cursor-pointer bg-transparent border-none p-0"
-                        >
-                          <Building2 className="w-3.5 h-3.5" />
-                          <span>{isNl ? 'Profiel bekijken' : 'Betriebsprofil ansehen'}</span>
-                          <ChevronRight className="w-3 h-3" />
-                        </button>
-                      )}
-
                     </div>
-
                   </div>
                 </article>
               );

@@ -21,6 +21,7 @@ const llmsTxtContent = `# Das Winterberg Verzeichnis | Het Winterberg Overzicht
 ## Projekt- und Betreiberinformationen
 - **Betreiber & Herausgeber:** SICHTBAR SEO – Inh. Simon Kräling, Winterberg
 - **Primäre Domain:** https://www.winterberg-verzeichnis.de
+- **Instagram:** https://www.instagram.com/winterberg.verzeichnis/
 - **Zweisprachig:** Deutsch (Standard, /) und Niederländisch (/nl)
 - **Geografische Abdeckung:** Stadt Winterberg und die 14 Ortsteile Altastenberg, Altenfeld, Elkeringhausen, Grönebach, Hildfeld, Hoheleye, Langewiese, Lenneplätze, Mollseifen, Neuastenberg, Niedersfeld, Siedlinghausen, Silbach, Züschen.
 - **Datenumfang:** 250+ verifizierte Betriebe, lokale Stellenanzeigen, Regionalnachrichten, Branchenübersichten und FAQs.

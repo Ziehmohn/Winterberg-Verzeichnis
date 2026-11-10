@@ -287,6 +287,9 @@ export function generateWebSiteSearchSchema(): any {
     '@type': 'WebSite',
     name: 'Das Winterberg Verzeichnis',
     url: BASE_URL,
+    sameAs: [
+      'https://www.instagram.com/winterberg.verzeichnis/'
+    ],
     potentialAction: {
       '@type': 'SearchAction',
       target: {
