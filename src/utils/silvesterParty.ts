@@ -61,13 +61,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'Oud en Nieuw 2026 in Dorf Alm Winterberg',
     dateDe: 'Donnerstag, 31. Dezember 2026',
     dateNl: 'Donderdag 31 december 2026',
-    timeDe: '10:00 – 16:00 Uhr regulär geöffnet\nSilvester-Essen: 17:00 – 19:00 Uhr oder ab 19:30 Uhr\nSilvesterparty mit DJ: ab 21:00 Uhr (Open End)',
-    timeNl: '10:00 – 16:00 uur regulier geopend\nOudejaarsdiner: 17:00 – 19:00 uur of vanaf 19:30 uur\nSylvesterparty met dj: vanaf 21:00 uur (Open End)',
+    timeDe: '10:00 – 16:00 Uhr: Regulär geöffnet\nAb 17:00 & 19:30 Uhr: Silvester-Essen\nAb 21:00 Uhr: Silvesterparty (Open End)',
+    timeNl: '10:00 – 16:00 uur: Regulier geopend\nVanaf 17:00 & 19:30 uur: Sylvesterdiner\nVanaf 21:00 uur: Feest met dj (Open End)',
     packageTypeDe: 'Silvester-Essen & Party mit DJ',
     packageTypeNl: 'Oudejaarsdiner & feest met dj',
     partyType: 'huette',
-    priceInfoDe: '15 € p.P. (Essen 17–19 Uhr inkl. Begrüßungsgetränk & Brotkorb)\n25 € p.P. (ab 19:30 Uhr inkl. Essen, Party, Sekt & Mitternachtssnack)\n10 € p.P. (nur Party ab 21:00 Uhr inkl. Sekt & Snack)',
-    priceInfoNl: '€ 15 p.p. (diner 17–19u incl. welkomstdrankje & broodmand)\n€ 25 p.p. (vanaf 19:30u incl. diner, party, toost & midnight snack)\n€ 10 p.p. (alleen feest vanaf 21:00u incl. toost & snack)',
+    priceInfoDe: '15 € (Essen 17–19 Uhr)\n25 € (Essen & Party ab 19:30 Uhr)\n10 € (nur Party ab 21:00 Uhr)',
+    priceInfoNl: '€ 15 (diner 17–19u)\n€ 25 (diner & party vanaf 19:30u)\n€ 10 (alleen party vanaf 21:00u)',
     address: 'Am Waltenberg 35, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Gastronomie & Party',
@@ -77,37 +77,35 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'utensils',
         titleDe: 'Silvester-Essen am Abend',
         titleNl: 'Feestelijk oudejaarsdiner',
-        descDe: 'Aus der regulären Speisekarte sowie einer kleinen Silvester-Zusatzkarte wählen (Tischzeiten: 17–19 Uhr oder ab 19:30 Uhr).',
-        descNl: 'Dineren van de reguliere menukaart en een speciale Sylvester-kaart (tijden: 17–19 uur of vanaf 19:30 uur).'
+        descDe: 'Aus der Speisekarte und Silvester-Zusatzkarte wählen.',
+        descNl: 'Dineren van de reguliere kaart en Sylvester-kaart.'
       },
       {
         icon: 'headphones',
         titleDe: 'Silvesterparty mit DJ ab 21:00 Uhr',
         titleNl: 'Sylvesterparty met live-dj vanaf 21:00 uur',
-        descDe: 'Die Party mit DJ startet um 21:00 Uhr. Wer zum Essen ab 19:30 Uhr da ist, feiert einfach direkt weiter.',
-        descNl: 'Het feest met dj start om 21:00 uur. Gasten van het diner vanaf 19:30 uur feesten aansluitend direct mee.'
+        descDe: 'Party mit DJ ab 21:00 Uhr bis Open End.',
+        descNl: 'Feest met live-dj tot in de vroege uurtjes.'
       },
       {
         icon: 'wine',
         titleDe: 'Begrüßungsgetränk & Mitternachtssnack',
         titleNl: 'Welkomstdrankje & midnight snack',
-        descDe: 'Inklusive Begrüßungsgetränk, Brotkorb, Sekt zum Anstoßen um Mitternacht und herzhaftem Mitternachtssnack.',
-        descNl: 'Inclusief welkomstdrankje, broodmand, glas prosecco om middernacht en een hartige middernachtsnack.'
+        descDe: 'Inkl. Begrüßungsgetränk, Sekt und Mitternachtssnack.',
+        descNl: 'Inclusief welkomstdrankje, toost en middernachtsnack.'
       }
     ],
     highlightsDe: [
-      '10:00 – 16:00 Uhr regulär geöffnet',
-      'Silvester-Essen (17:00 – 19:00 Uhr): 15 € p.P. inkl. Begrüßungsgetränk und Brotkorb zzgl. Essen & Getränke',
-      'Silvester-Essen & Party (ab 19:30 Uhr): 25 € p.P. inkl. Begrüßungsgetränk, Brotkorb, anschließender Silvesterparty, Sekt zum Anstoßen & Mitternachtssnack zzgl. Essen & Getränke',
-      'Nur Silvesterparty (ab 21:00 Uhr): Eintritt 10 € p.P. inkl. Sekt zum Anstoßen und Mitternachtssnack',
-      'Die Party mit DJ startet um 21:00 Uhr'
+      'Silvester-Essen & Party mit DJ bis Open End',
+      'Zwei Menüzeiten: 17:00–19:00 Uhr oder ab 19:30 Uhr',
+      'Party-Ticket ab 21:00 Uhr auch separat erhältlich (10 €)',
+      'Inklusive Begrüßungsgetränk, Sekt & Mitternachtssnack'
     ],
     highlightsNl: [
-      '10:00 – 16:00 uur regulier geopend',
-      'Oudejaarsdiner (17:00 – 19:00 uur): € 15 p.p. incl. welkomstdrankje en broodmand excl. eten & drinken',
-      'Diner & feest (vanaf 19:30 uur): € 25 p.p. incl. welkomstdrankje, broodmand, aansluitende party, toost om middernacht & snack excl. eten & drinken',
-      'Alleen feest (vanaf 21:00 uur): Entree € 10 p.p. incl. glas prosecco en midnight snack',
-      'Het feest met dj begint om 21:00 uur'
+      'Sylvesterdiner & feest met dj tot in de vroege uurtjes',
+      'Twee dinertijden: 17:00–19:00 uur of vanaf 19:30 uur',
+      'Feestticket vanaf 21:00 uur ook apart verkrijgbaar (€ 10)',
+      'Inclusief welkomstdrankje, prosecco & midnight snack'
     ],
     shortDescriptionDe: 'Silvester in der Dorf Alm Winterberg: Tagsüber regulär geöffnet, abends Silvester-Essen (17–19 Uhr oder ab 19:30 Uhr) und ab 21:00 Uhr Silvesterparty mit DJ, Sekt zum Anstoßen und Mitternachtssnack.',
     shortDescriptionNl: 'Oud en Nieuw in de Dorf Alm Winterberg: overdag geopend, \'s avonds oudejaarsdiner (17–19 uur of vanaf 19:30 uur) en vanaf 21:00 uur Sylvesterparty met dj, prosecco en midnight snack.',
@@ -136,13 +134,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'Exclusief Oudejaarsgala 2026 in Oversum Vitalresort',
     dateDe: 'Donnerstag, 31. Dezember 2026',
     dateNl: 'Donderdag 31 december 2026',
-    timeDe: 'Silvesterabend: Gala-Buffet & Feier zum Jahreswechsel\nIm Rahmen des mehrtägigen Silvesterarrangements (ab 3 Nächten)',
-    timeNl: 'Oudejaarsavond: Galabuffet & feestelijke viering\nOnderdeel van het meerdaagse Sylvester-arrangement (vanaf 3 overnachtingen)',
+    timeDe: 'Silvesterabend: Festliches Gala-Buffet\nIm 3-Tage-Silvesterarrangement enthalten',
+    timeNl: 'Oudejaarsavond: Feestelijk galabuffet\nInbegrepen in arrangement (vanaf 3 nachten)',
     packageTypeDe: 'Silvester-Gala-Buffet & Getränkepauschale',
     packageTypeNl: 'Galabuffet & drankenarrangement',
     partyType: 'gala',
-    priceInfoDe: 'Gala-Buffet & Getränkepauschale im Arrangement enthalten\nBuchung & Verfügbarkeiten direkt auf Anfrage beim Hotel',
-    priceInfoNl: 'Galabuffet & dranken inbegrepen in arrangement\nBoeking & beschikbaarheid op aanvraag bij het hotel',
+    priceInfoDe: 'Buffet & Getränke im Arrangement\nVerfügbarkeiten auf Anfrage beim Hotel',
+    priceInfoNl: 'Buffet & dranken inbegrepen in pakket\nBeschikbaarheid op aanvraag bij het hotel',
     address: 'Am Kurpark 6, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Hotels & Wellness',
@@ -152,37 +150,35 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'utensils',
         titleDe: 'Silvester-Gala-Buffet & Kinderbuffet',
         titleNl: 'Galabuffet & kinderbuffet',
-        descDe: 'Festliches Silvester-Gala-Buffet mit feiner Speisenauswahl sowie speziellem Kinderbuffet für Familien.',
-        descNl: 'Feestelijk galabuffet met uitgebreide gerechten en een kindvriendelijk buffet voor gezinnen.'
+        descDe: 'Gourmet-Buffet und separates Kinderbuffet.',
+        descNl: 'Gourmetbuffet en kinderbuffet voor gezinnen.'
       },
       {
         icon: 'wine',
         titleDe: 'Getränkepauschale inklusive',
         titleNl: 'Inclusief drankenarrangement',
-        descDe: 'Ausgewählte Getränkepauschale während der Silvesterfeier im Arrangementpreis enthalten.',
-        descNl: 'Geselecteerd drankenarrangement tijdens de feestavond inbegrepen in het arrangement.'
+        descDe: 'Ausgewählte Getränke während des Gala-Abends.',
+        descNl: 'Drankenarrangement tijdens de feestavond.'
       },
       {
         icon: 'music',
         titleDe: 'Live-Musik, Sekt & Mitternachtssnack',
         titleNl: 'Livemuziek, toost & midnight snack',
-        descDe: 'Musikalische Begleitung durch Live-Band, Glas Sekt zum Anstoßen um Mitternacht und Mitternachtssnack.',
-        descNl: 'Muzikale begeleiding door liveband, glas prosecco om middernacht en een middernachtsnack.'
+        descDe: 'Live-Band, Tanz und Mitternachtsanstoßen.',
+        descNl: 'Liveband, dans en toosten om middernacht.'
       }
     ],
     highlightsDe: [
-      'Silvester-Gala-Buffet mit großer Speisenauswahl und separatem Kinderbuffet',
+      'Großes Gourmet-Gala-Buffet & separates Kinderbuffet',
       'Ausgewählte Getränkepauschale während der Feier inklusive',
-      'Musikalische Begleitung mit Live-Band',
-      'Glas Sekt um Mitternacht und herzhafter Mitternachtssnack',
-      'Silvesterarrangement ab 3 Nächten inkl. Frühstücksbuffet, Kuchenbuffet, Glühweinwanderung und Spa-Nutzung'
+      'Live-Band, Tanzfläche & festliche Abendstimmung',
+      'Mitternachtsanstoßen mit Sekt & herzhafter Snack'
     ],
     highlightsNl: [
-      'Groot oudejaars-galabuffet met kindvriendelijk buffet voor gezinnen',
+      'Groot gourmet-galabuffet & apart kinderbuffet',
       'Geselecteerd drankenarrangement tijdens het feest inbegrepen',
-      'Sfeervolle liveband voor muziek en dans',
-      'Glas prosecco om middernacht en een middernachtsnack',
-      'Arrangement vanaf 3 overnachtingen incl. ontbijt, middaggebak, glühweinwandeling en wellness'
+      'Liveband, dansvloer & feestelijke sfeer',
+      'Toosten om middernacht met prosecco & midnight snack'
     ],
     shortDescriptionDe: 'Silvestergala im Oversum Ski- & Vitalresort Winterberg: Silvester-Gala-Buffet, ausgewählte Getränkepauschale, Live-Band, Sekt um Mitternacht und Mitternachtssnack im Rahmen des Silvesterarrangements.',
     shortDescriptionNl: 'Oudejaarsgala in Oversum Ski- & Vitalresort Winterberg: galabuffet, drankenarrangement, liveband, champagne om middernacht en snack als onderdeel van het Sylvester-arrangement.',
@@ -211,13 +207,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'Oudejaarsfeest 2026 in Skihütte Der Brabander',
     dateDe: 'Donnerstag, 31. Dezember 2026',
     dateNl: 'Donderdag 31 december 2026',
-    timeDe: 'Donnerstag, 31. Dezember 2026\nSilvesterparty am Abend bis ins neue Jahr',
-    timeNl: 'Donderdag 31 december 2026\nSylvesterparty \'s avonds tot in het nieuwe jaar',
+    timeDe: 'Silvesterabend an der Herrloh-Piste\nParty bis in die frühen Morgenstunden',
+    timeNl: 'Oudejaarsavond aan de Herrloh-piste\nFeest tot in de vroege ochtend',
     packageTypeDe: 'Skihütten-Silvester & Feuerwerk',
     packageTypeNl: 'Skihut-Sylvester & vuurwerk',
     partyType: 'huette',
-    priceInfoDe: 'Online-Vorverkauf über winterbergbooking.de\nInkl. Häppchenbuffet, Oliebollen & Mitternachtssekt (Getränke exkl.)',
-    priceInfoNl: 'Online voorverkoop via winterbergbooking.de\nIncl. hapjesbuffet, oliebollen & toost om middernacht (dranken excl.)',
+    priceInfoDe: 'Online-Vorverkauf auf winterbergbooking.de\nInkl. Häppchenbuffet, Oliebollen & Sekt',
+    priceInfoNl: 'Voorverkoop via winterbergbooking.de\nIncl. hapjesbuffet, oliebollen & toost',
     address: 'Am Herrloh, In der Büre 32, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Gastronomie & Party',
@@ -227,39 +223,35 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'music',
         titleDe: 'Live-Musik in der Skihütte',
         titleNl: 'Livemuziek in de berghut',
-        descDe: 'Stimmungsvolle Live-Musik direkt an der Piste Herrloh (auch für Nicht-Hotelgäste offen).',
-        descNl: 'Gezellige livemuziek direct aan de skipiste (ook toegankelijk voor niet-hotelgasten).'
+        descDe: 'Live-Musik an der Piste Herrloh.',
+        descNl: 'Livemuziek aan de piste Herrloh.'
       },
       {
         icon: 'utensils',
         titleDe: 'Häppchenbuffet & Oliebollen',
         titleNl: 'Hapjesbuffet & oliebollen',
-        descDe: 'Reichhaltiges Häppchenbuffet, traditionelle holländische Oliebollen und warme Apfelküchlein.',
-        descNl: 'Royaal warm en koud hapjesbuffet, traditionele Nederlandse oliebollen en appelbeignets.'
+        descDe: 'Warmes & kaltes Buffet und Apfelbeignets.',
+        descNl: 'Hapjesbuffet en Hollandse oliebollen.'
       },
       {
         icon: 'sparkles',
         titleDe: 'Mitternachtssekt & Feuerwerk',
         titleNl: 'Toost om 00:00u & vuurwerk',
-        descDe: 'Ein Glas Sekt um Mitternacht zum Anstoßen und spektakuläres Feuerwerk an der Skipiste Herrloh.',
-        descNl: 'Een glas prosecco om middernacht om te proosten en vuurwerk op de skipiste van de Herrloh.'
+        descDe: 'Sektanstoßen und Herrloh-Feuerwerk.',
+        descNl: 'Proosten en vuurwerk op de skipiste.'
       }
     ],
     highlightsDe: [
-      'Silvesterfeier in der Skihütte steht auch externen Besuchern und Nicht-Hotelgästen offen',
-      'Inklusive Live-Musik für ausgelassene Stimmung',
-      'Reichhaltiges Häppchenbuffet über den Abend',
-      'Traditionelle holländische Oliebollen und Apfelküchlein',
-      'Ein Glas Sekt um Mitternacht zum Anstoßen inklusive (weitere Getränke exklusive)',
-      'Spektakuläres Feuerwerk an der Skipiste am Herrloh'
+      'Skihütten-Party auch für externe Besucher offen',
+      'Stimmungsvolle Live-Musik an der Piste Herrloh',
+      'Häppchenbuffet, holländische Oliebollen & Apfelküchlein',
+      'Mitternachtssekt & großes Herrloh-Feuerwerk'
     ],
     highlightsNl: [
-      'Het feest in de skihut is ook toegankelijk voor externe bezoekers en daggasten',
-      'Inclusief gezellige livemuziek',
-      'Royaal hapjesbuffet gedurende de avond',
-      'Traditionele Nederlandse oliebollen en appelbeignets',
-      'Glas prosecco om middernacht inbegrepen (overige dranken exclusief)',
-      'Spectaculair vuurwerk op de Herrloh-skipiste'
+      'Feest in de skihut ook open voor externe bezoekers',
+      'Gezellige livemuziek aan de skipiste Herrloh',
+      'Hapjesbuffet, traditionele oliebollen & appelbeignets',
+      'Prosecco om middernacht & vuurwerk op de piste'
     ],
     shortDescriptionDe: 'Silvesterparty 2026 in der Skihütte Der Brabander: Live-Musik, Häppchenbuffet, traditionelle Oliebollen & Apfelküchlein, Mitternachtssekt und Feuerwerk am Skihang. Tickets im Vorverkauf.',
     shortDescriptionNl: 'Sylvesterparty 2026 in Skihütte Der Brabander: livemuziek, hapjesbuffet, traditionele oliebollen, champagne en vuurwerk aan de piste. Tickets in de voorverkoop.',
@@ -287,13 +279,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'Open-Air Oudejaarsfeest 2026 in Winterberger Winterdorf',
     dateDe: 'Donnerstag, 31. Dezember 2026',
     dateNl: 'Donderdag 31 december 2026',
-    timeDe: 'Donnerstag, 31. Dezember 2026: 11:00 – 01:00 Uhr nachts geöffnet\nSilvesterparty mit DJ Marlon am Abend',
-    timeNl: 'Donderdag 31 december 2026: geopend van 11:00 tot 01:00 uur \'s nachts\nSylvesterparty met DJ Marlon in de avond',
+    timeDe: '11:00 bis 01:00 Uhr nachts geöffnet\nSilvesterparty mit DJ Marlon am Abend',
+    timeNl: '11:00 tot 01:00 uur \'s nachts geopend\nSylvesterparty met DJ Marlon in de avond',
     packageTypeDe: 'Open-Air Silvesterparty unter freiem Himmel',
     packageTypeNl: 'Openlucht Sylvesterfeest in het centrum',
     partyType: 'openair',
-    priceInfoDe: 'Eintritt frei\nOffene Veranstaltung auf dem Marktplatz Untere Pforte',
-    priceInfoNl: 'Gratis toegang\nOpenbaar evenement op het plein Untere Pforte',
+    priceInfoDe: 'Eintritt frei\nOpen-Air auf dem Marktplatz Untere Pforte',
+    priceInfoNl: 'Gratis toegang\nOpenbaar feest op het marktplein',
     address: 'Marktplatz Untere Pforte, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Open Air & Event',
@@ -303,37 +295,35 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'headphones',
         titleDe: 'Silvesterparty mit DJ Marlon',
         titleNl: 'Sylvesterfeest met DJ Marlon',
-        descDe: 'DJ Marlon sorgt auf dem Marktplatz für Stimmung und Musik zum Jahreswechsel.',
-        descNl: 'DJ Marlon verzorgt de feestmuziek op het marktplein voor de jaarwisseling.'
+        descDe: 'DJ Marlon sorgt für Stimmung.',
+        descNl: 'DJ Marlon verzorgt de feestmuziek.'
       },
       {
         icon: 'wine',
-        titleDe: 'Glühwein, Punsch & Sauerländer Spezialitäten',
+        titleDe: 'Glühwein & Hüttenspezialitäten',
         titleNl: 'Glühwein & streekgerechten',
-        descDe: 'Winzer-Glühwein, Punsch und Spezialitäten an den gemütlichen Holzhütten.',
-        descNl: 'Warme glühwein, punch en lekkernijen bij de sfeervolle houten chalets.'
+        descDe: 'Winzer-Glühwein und Punsch.',
+        descNl: 'Warme glühwein en lekkernijen.'
       },
       {
         icon: 'clock',
         titleDe: 'Geöffnet bis 01:00 Uhr nachts',
         titleNl: 'Geopend tot 01:00 uur \'s nachts',
-        descDe: 'Das Winterdorf bleibt an Silvester bis 01:00 Uhr nachts geöffnet – Treffpunkt zum gemeinsamen Anstoßen.',
-        descNl: 'Het Winterdorf blijft op oudejaarsavond geopend tot 01:00 uur \'s nachts.'
+        descDe: 'Treffpunkt zum gemeinsamen Anstoßen.',
+        descNl: 'Trefpunt voor de jaarwisseling.'
       }
     ],
     highlightsDe: [
-      'Silvesterparty mit DJ Marlon',
-      'Geöffnet an Silvester (31. Dezember) bis 01:00 Uhr nachts',
-      'Eintritt frei – keine Voranmeldung oder Tickets nötig',
-      'Zentraler Treffpunkt auf dem Marktplatz an der Unteren Pforte',
-      'Winzer-Glühwein, Punsch und Spezialitäten in den Holzhütten'
+      'Open-Air-Silvesterparty mitten in Winterberg',
+      'DJ Marlon sorgt für Partystimmung bis 01:00 Uhr',
+      'Winzerglühwein, Punsch & Spezialitäten in den Hütten',
+      'Freier Eintritt ohne Voranmeldung'
     ],
     highlightsNl: [
-      'Sylvesterfeest met DJ Marlon',
-      'Geopend op 31 december tot 01:00 uur \'s nachts',
-      'Toegang gratis – geen ticket of reservering nodig',
-      'Centraal trefpunt op het plein Untere Pforte',
-      'Glühwein, punch en hapjes bij de chalets'
+      'Openlucht Sylvesterfeest in hartje Winterberg',
+      'DJ Marlon zorgt voor muziek tot 01:00 uur',
+      'Glühwein, punch en lekkernijen bij de chalets',
+      'Gratis toegang zonder reservering'
     ],
     shortDescriptionDe: 'Silvesterparty im Winterberger Winterdorf: Am 31. Dezember geöffnet bis 01:00 Uhr nachts mit DJ Marlon auf dem Marktplatz Untere Pforte. Eintritt frei!',
     shortDescriptionNl: 'Sylvesterfeest in het Winterberger Winterdorf: op 31 december geopend tot 01:00 uur \'s nachts met DJ Marlon op het plein Untere Pforte. Gratis toegang!',
@@ -361,13 +351,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'SILVESTER in Die Tenne 2026',
     dateDe: 'Donnerstag, 31. Dezember 2026',
     dateNl: 'Donderdag 31 december 2026',
-    timeDe: 'Donnerstag, 31. Dezember 2026\nSilvesterparty am Abend',
-    timeNl: 'Donderdag 31 december 2026\nSylvesterparty in de avond',
+    timeDe: '31. Dezember ab 20:00 Uhr\nClubbing & Tanz bis in den Morgen',
+    timeNl: '31 december vanaf 20:00 uur\nClubbing & dans tot in de ochtend',
     packageTypeDe: 'Club-Silvesterparty',
     packageTypeNl: 'Club-Sylvesterfeest',
     partyType: 'club',
-    priceInfoDe: '15,00 € im Online-Vorverkauf\nDigitales Ticket über tenne-winterberg.de',
-    priceInfoNl: '€ 15,00 in de online voorverkoop\nDigitaal e-ticket via tenne-winterberg.de',
+    priceInfoDe: '15,00 € im Online-Vorverkauf\nDigitales Ticket auf tenne-winterberg.de',
+    priceInfoNl: '€ 15,00 in de voorverkoop\nDigitaal ticket via tenne-winterberg.de',
     address: 'Marktstraße 12, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Club & Nightlife',
@@ -377,35 +367,35 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'headphones',
         titleDe: 'Club-Silvesterparty & Tanz',
         titleNl: 'Club-Sylvesterfeest & dansen',
-        descDe: 'Feiern und Tanzen zum Jahreswechsel in Winterbergs bekanntem Tanzlokal in der Marktstraße.',
-        descNl: 'Feesten en dansen voor de jaarwisseling in de bekende club in de Marktstraße.'
+        descDe: 'Feiern im Kult-Tanzlokal.',
+        descNl: 'Feesten in de bekende discotheek.'
       },
       {
         icon: 'ticket',
         titleDe: '15,00 € Vorverkaufsticket',
         titleNl: '€ 15,00 voorverkoopticket',
-        descDe: 'Digitales Online-Ticket im Vorverkauf über die offizielle Website erhältlich.',
-        descNl: 'Digitaal ticket online verkrijgbaar via de officiële website.'
+        descDe: 'Digitales Online-Ticket.',
+        descNl: 'Digitaal e-ticket.'
       },
       {
         icon: 'wine',
-        titleDe: 'Theken & Drinks',
-        titleNl: 'Bars & drankjes',
-        descDe: 'Erfrischende Getränke, Cocktails und Biere an den Theken der Tenne.',
-        descNl: 'Koude bieren, cocktails en drankjes aan de bars van Die Tenne.'
+        titleDe: 'Theken, Cocktails & Drinks',
+        titleNl: 'Bars, cocktails & drinks',
+        descDe: 'Große Getränkeauswahl.',
+        descNl: 'Drankjes aan de bar.'
       }
     ],
     highlightsDe: [
-      'SILVESTER in der Tenne!',
-      'Datum: 31. Dezember 2026',
-      'Online-Tickets im Vorverkauf für 15,00 € auf tenne-winterberg.de',
-      'Traditionsreiches Tanz- und Partylokal mitten in der Winterberger Altstadt (Marktstraße 12)'
+      'SILVESTER in der Tenne – Der Partyklassiker der Altstadt',
+      'Feiern & Tanzen bis in die frühen Morgenstunden',
+      'Online-Vorverkauf für 15,00 € direkt über die Website',
+      'Einlass am 31. Dezember ab 20:00 Uhr'
     ],
     highlightsNl: [
-      'SILVESTER in Die Tenne!',
-      'Datum: 31 december 2026',
-      'Online voorverkooptickets voor € 15,00 via tenne-winterberg.de',
-      'Bekende uitgaansgelegenheid in het centrum van Winterberg (Marktstraße 12)'
+      'SILVESTER in Die Tenne – Hét clubfeest van het centrum',
+      'Feesten & dansen tot in de vroege ochtenduren',
+      'Online voorverkooptickets voor € 15,00 via de website',
+      'Entree op 31 december vanaf 20:00 uur'
     ],
     shortDescriptionDe: 'SILVESTER in der Tenne 2026: Die Silvesterparty in Winterbergs Traditionsclub in der Marktstraße. Tickets im Online-Vorverkauf für 15,00 € auf tenne-winterberg.de.',
     shortDescriptionNl: 'SILVESTER in Die Tenne 2026: feest de jaarwisseling in de bekende discotheek in de Marktstraße. Online voorverkooptickets voor € 15,00 via tenne-winterberg.de.',
@@ -434,13 +424,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'Oudejaars- & Nieuwjaarsprogramma in Winterberg Resort',
     dateDe: '30. Dezember 2026 bis 1. Januar 2027',
     dateNl: '30 december 2026 t/m 1 januari 2027',
-    timeDe: 'Mehrtägiges Festtagsprogramm (30.12. – 01.01.)\nSilvesterabend mit festlichen Tischen, DJ & Tanz',
-    timeNl: 'Meerdaags feestprogramma (30-12 t/m 01-01)\nOudejaarsavond met feestelijke tafels, dj & dans',
+    timeDe: 'Festliches Silvesterprogramm (30.12. – 01.01.)\nAbendessen an festlichen Tafeln & Tanz',
+    timeNl: 'Feestelijk programma (30-12 t/m 01-01)\nFeestelijk diner & dansen',
     packageTypeDe: 'Silvesterprogramm & Familien-Aktionen',
     packageTypeNl: 'Sylvesterprogramma & familie-activiteiten',
     partyType: 'hotel',
-    priceInfoDe: 'Im Rahmen des Hotelaufenthalts buchbar\nAnfragen zu Programm & Zimmern direkt beim Hotel',
-    priceInfoNl: 'Onderdeel van het verblijfsarrangement\nVragen over kamers & programma rechtstreeks bij het hotel',
+    priceInfoDe: 'Im Rahmen des Hotelaufenthalts buchbar\nDetails & Zimmer direkt beim Hotel',
+    priceInfoNl: 'Onderdeel van het hotelverblijf\nInformatie & kamers direct bij het hotel',
     address: 'In der Renau 1, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Hotels & Wellness',
@@ -450,37 +440,35 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'utensils',
         titleDe: 'Festlich gedeckte Tafeln',
         titleNl: 'Feestelijk gedekte tafels',
-        descDe: 'Festlich gedeckte Tische mit Kerzen, Tannengrün und Servietten zum Silvesteressen.',
-        descNl: 'Feestelijk gedekte tafels met kaarsen, dennengroen en servetten.'
+        descDe: 'Kerzen und Tannengrün zum Silvesteressen.',
+        descNl: 'Kaarsen en dennengroen voor het diner.'
       },
       {
         icon: 'headphones',
         titleDe: 'Musik, DJ, Tanz & Mitternachtstoast',
         titleNl: 'Muziek, dj, dans & toost om 00:00u',
-        descDe: 'Musik, DJ und Tanz sowie gemeinsames Anstoßen um Mitternacht auf das neue Jahr.',
-        descNl: 'Muziek, dj en dansvloer, samen proosten om middernacht op het nieuwe jaar.'
+        descDe: 'DJ-Musik und Mitternachtsanstoßen.',
+        descNl: 'Muziek, dans en proosten om middernacht.'
       },
       {
         icon: 'flame',
-        titleDe: 'Stockbrot am Lagerfeuer & Kinderprogramm',
-        titleNl: 'Broodjes bakken bij kampvuur & kinderpret',
-        descDe: 'Basteln, Plätzchen verzieren und Stockbrotbacken am Lagerfeuer für die Kinder.',
-        descNl: 'Knutselen, koekjes versieren en broodjes bakken bij het kampvuur voor de kids.'
+        titleDe: 'Stockbrot am Lagerfeuer',
+        titleNl: 'Broodjes bakken bij kampvuur',
+        descDe: 'Stockbrotbacken für Kinder.',
+        descNl: 'Broodjes bakken voor de kids.'
       }
     ],
     highlightsDe: [
-      'Silvester- und Neujahrsprogramm über den Jahreswechsel (30.12. – 01.01.)',
-      'Festlich gedeckte Tische mit Kerzen und Tannengrün',
-      'Musik, DJ und Tanz sowie gemeinsames Anstoßen um Mitternacht',
-      'Nachmittagskaffee mit hausgemachtem Kuchen, Glühwein, Kinderpunsch und heißer Schokolade',
-      'Kinderprogramm: Basteln, Plätzchen verzieren und Stockbrotbacken am Lagerfeuer'
+      'Festlich gedeckte Silvestertafeln mit Kerzen & Tannengrün',
+      'Musik, DJ, Tanzfläche & gemeinsamer Mitternachtstoast',
+      'Kinderprogramm mit Stockbrot am Lagerfeuer',
+      'Nachmittagskaffee mit Kuchen, Glühwein & heißer Schokolade'
     ],
     highlightsNl: [
-      'Oudejaars- en nieuwjaarsprogramma rond de jaarwisseling (30-12 t/m 01-01)',
-      'Feestelijk gedekte tafels met kaarsen en dennengroen',
-      'Muziek, dj en dans, gezamenlijk proosten om middernacht',
-      'Middagkoffie met huisgemaakt gebak, glühwein, kinderpunch en warme chocolademelk',
-      'Kinderprogramma: knutselen, koekjes versieren en broodjes bakken bij het kampvuur'
+      'Feestelijk gedekte tafels met kaarsen & dennengroen',
+      'Muziek, dj, dansvloer & toosten om middernacht',
+      'Kinderprogramma met broodjes bakken bij het kampvuur',
+      'Middagkoffie met gebak, glühwein & warme chocolademelk'
     ],
     shortDescriptionDe: 'Silvesterprogramm im Hotel Winterberg Resort: Festlich gedeckte Tafeln, Musik, DJ und Tanz, Mitternachtsanstoßen, Lagerfeuer mit Stockbrot sowie Kaffee, Kuchen und Glühwein.',
     shortDescriptionNl: 'Sylvesterprogramma in Hotel Winterberg Resort: feestelijk gedekte tafels, muziek, dj en dans, toosten om 00:00 uur, kampvuur voor de kids, glühwein en gebak.',
