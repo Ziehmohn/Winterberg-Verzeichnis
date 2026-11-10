@@ -497,13 +497,13 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
     titleNl: 'Möppi\'s grote Oudejaarsparty 2026',
     dateDe: 'Donnerstag, 31. Dezember 2026',
     dateNl: 'Donderdag 31 december 2026',
-    timeDe: 'Donnerstag, 31. Dezember 2026\nGenaue Einlass- & Anfangszeiten folgen zeitnah',
-    timeNl: 'Donderdag 31 december 2026\nExacte aanvangstijden volgen binnenkort',
+    timeDe: 'Silvesterabend an der Skihütte Poppenberg\nGenaue Einlasszeiten folgen in Kürze',
+    timeNl: 'Oudejaarsavond aan de Poppenberg\nExacte aanvangstijden volgen binnenkort',
     packageTypeDe: 'Skihütten-Silvesterparty',
     packageTypeNl: 'Skihut-Sylvesterfeest',
     partyType: 'huette',
-    priceInfoDe: 'Informationen zu Tickets & Eintritt folgen\nVorab-Anfragen direkt beim Betrieb möglich',
-    priceInfoNl: 'Informatie over tickets & toegang volgt\nVooraf informeren mogelijk bij de locatie',
+    priceInfoDe: 'Tickets & Einlass-Infos folgen zeitnah\nVorab-Info direkt an der Skihütte',
+    priceInfoNl: 'Informatie over tickets & entree volgt\nVooraf informeren bij de locatie',
     address: 'In d. Büre 32, 59955 Winterberg',
     district: 'Winterberg',
     category: 'Gastronomie & Party',
@@ -513,35 +513,33 @@ export const SILVESTER_PARTY_DATA: SilvesterPartyItem[] = [
         icon: 'flame',
         titleDe: 'Möppis Hütte am Poppenberg',
         titleNl: 'Möppi\'s Hütte aan de Poppenberg',
-        descDe: 'Die beliebte Skihütte am Skiliftkarussell lädt zum Feiern des Jahreswechsels ein.',
-        descNl: 'De bekende berghut aan de Skiliftkarussell viert samen het nieuwe jaar.'
+        descDe: 'Beliebte Skihütte am Skilift.',
+        descNl: 'Bekende berghut aan de piste.'
       },
       {
         icon: 'sparkles',
         titleDe: 'Große Silvesterparty',
         titleNl: 'Groot oudejaarsfeest',
-        descDe: 'Möppis große Silvesterparty am 31. Dezember 2026 direkt an der Skipiste.',
-        descNl: 'Möppi\'s grote oudejaarsfeest op 31 december 2026 direct aan de skipiste.'
+        descDe: 'Silvesterparty an der Skipiste.',
+        descNl: 'Sylvesterparty aan de skipiste.'
       },
       {
         icon: 'clock',
         titleDe: 'Programm & Details folgen',
         titleNl: 'Programma & details volgen',
-        descDe: 'Weitere Informationen zu Programm, Einlass und Reservierungen folgen rechtzeitig vor dem Event.',
-        descNl: 'Nadere informatie over programma en toegang wordt tijdig bekendgemaakt.'
+        descDe: 'Infos folgen zeitnah.',
+        descNl: 'Details volgen binnenkort.'
       }
     ],
     highlightsDe: [
-      'Möppis große Silvesterparty zum Jahreswechsel 2026 / 2027',
-      'Location: Skihütte Bei Möppi am Poppenberg in Winterberg',
-      'Termin: Donnerstag, 31. Dezember 2026',
-      'Detaillierte Informationen zu Ablauf und Tickets folgen in Kürze direkt über den Betrieb'
+      'Möppis große Silvesterparty am beliebten Poppenberghang',
+      'Uriges Hüttenflair & Winterstimmung zum Jahreswechsel',
+      'Genaue Programmdetails werden zeitnah bekanntgegeben'
     ],
     highlightsNl: [
-      'Möppi\'s grote oudejaarsfeest voor de jaarwisseling 2026 / 2027',
-      'Locatie: Skihütte Bei Möppi aan de Poppenberg in Winterberg',
-      'Datum: donderdag 31 december 2026',
-      'Gedetailleerde informatie over programma en tickets volgt binnenkort'
+      'Möppi\'s grote oudejaarsfeest aan de Poppenberg',
+      'Gezellige berghutsfeer voor de jaarwisseling',
+      'Gedetailleerde programma-info volgt binnenkort'
     ],
     shortDescriptionDe: 'Möppis große Silvesterparty 2026 in der Skihütte Bei Möppi am Poppenberg in Winterberg. Feiert den Jahreswechsel in der Hütte – weitere Infos zu Programm und Ablauf folgen zeitnah!',
     shortDescriptionNl: 'Möppi\'s grote oudejaarsparty 2026 in Skihütte Bei Möppi aan de Poppenberg in Winterberg. Nadere informatie over het programma volgt binnenkort!',
