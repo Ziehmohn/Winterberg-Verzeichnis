@@ -39,11 +39,10 @@ const templateSquare = `<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 64px 70px 60px;
+      padding: 68px 72px 64px;
       color: #FFFFFF;
     }
 
-    /* Background glow & festive sparkles */
     .glow-gold {
       position: absolute;
       width: 750px;
@@ -69,10 +68,9 @@ const templateSquare = `<!DOCTYPE html>
       filter: blur(60px);
     }
 
-    /* TOP ROW */
+    /* TOP ROW (NO BUTTON) */
     .top-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       position: relative;
       z-index: 10;
@@ -94,19 +92,6 @@ const templateSquare = `<!DOCTYPE html>
       box-shadow: 0 8px 24px rgba(255, 232, 20, 0.3);
     }
 
-    .tag-free {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(12px);
-      color: #FFFFFF;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 10px 20px;
-      border-radius: 999px;
-      letter-spacing: 0.03em;
-    }
-
     /* HERO HEADLINE BLOCK */
     .headline-block {
       position: relative;
@@ -126,7 +111,7 @@ const templateSquare = `<!DOCTYPE html>
     }
 
     .main-title {
-      font-size: 58px;
+      font-size: 54px;
       font-weight: 900;
       line-height: 1.08;
       letter-spacing: -0.03em;
@@ -143,7 +128,7 @@ const templateSquare = `<!DOCTYPE html>
     .card-container {
       position: relative;
       z-index: 10;
-      margin: 10px 0;
+      margin: 12px 0;
     }
 
     .proof-badge {
@@ -168,11 +153,11 @@ const templateSquare = `<!DOCTYPE html>
 
     .google-card {
       background: #FFFFFF;
-      border-radius: 22px;
-      padding: 16px 20px 14px;
+      border-radius: 20px;
+      padding: 14px 16px;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1);
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
       overflow: hidden;
     }
@@ -181,29 +166,7 @@ const templateSquare = `<!DOCTYPE html>
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 12px;
-    }
-
-    .card-footer-note {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px solid #ECECEC;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
-      color: #4B5563;
-      font-weight: 600;
-    }
-
-    .card-footer-note span.rank {
-      color: #0F4C2E;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      border-radius: 10px;
     }
 
     /* BENEFIT PILLS */
@@ -220,7 +183,7 @@ const templateSquare = `<!DOCTYPE html>
       background: rgba(255, 255, 255, 0.1);
       border: 1.5px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(14px);
-      padding: 14px 16px;
+      padding: 15px 16px;
       border-radius: 16px;
       display: flex;
       align-items: center;
@@ -236,7 +199,7 @@ const templateSquare = `<!DOCTYPE html>
       flex-shrink: 0;
     }
 
-    /* BOTTOM ROW */
+    /* BOTTOM ROW - NO FAKE BUTTON */
     .bottom-row {
       position: relative;
       z-index: 10;
@@ -244,7 +207,7 @@ const templateSquare = `<!DOCTYPE html>
       align-items: center;
       justify-content: space-between;
       border-top: 1.5px solid rgba(255, 255, 255, 0.18);
-      padding-top: 24px;
+      padding-top: 26px;
     }
 
     .bottom-brand {
@@ -260,38 +223,19 @@ const templateSquare = `<!DOCTYPE html>
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .bottom-texts {
-      display: flex;
-      flex-direction: column;
-    }
-
     .bottom-domain {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       color: #FFFFFF;
       letter-spacing: 0.01em;
     }
 
-    .bottom-sub {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: #A3D8B8;
-    }
-
-    .bottom-cta-badge {
-      background: linear-gradient(135deg, #FFE814 0%, #F59E0B 100%);
-      color: #092C1A;
+    .bottom-region {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 16px;
-      font-weight: 800;
-      padding: 12px 24px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 20px rgba(255, 232, 20, 0.35);
+      font-weight: 600;
+      color: #A3D8B8;
     }
   </style>
 </head>
@@ -299,13 +243,10 @@ const templateSquare = `<!DOCTYPE html>
   <div class="glow-gold"></div>
   <div class="glow-top"></div>
 
-  <!-- TOP HEADER -->
+  <!-- TOP HEADER (NO BUTTON) -->
   <div class="top-row">
     <div class="tag-silvester">
       <span>🍾 SILVESTER 2026</span>
-    </div>
-    <div class="tag-free">
-      ✓ Kostenlos eintragen
     </div>
   </div>
 
@@ -315,21 +256,18 @@ const templateSquare = `<!DOCTYPE html>
       Silvesterparty geplant? Und noch weiß niemand davon?
     </div>
     <h1 class="main-title">
-      Mach deine Party bei Google zur <span class="highlight">Nummer 1! 🚀</span>
+      Mit uns bist du bei Google <br>
+      <span class="highlight">kostenlos oben dabei! 🚀</span>
     </h1>
   </div>
 
   <!-- GOOGLE PROOF CARD -->
   <div class="card-container">
     <div class="proof-badge">
-      ✓ Platz 1 Ranking
+      ⭐ TOP-RANKING SEITE 1
     </div>
     <div class="google-card">
       <img class="google-img" src="${googleDataUri}" alt="Google Suche Winterberg Silvester" />
-      <div class="card-footer-note">
-        <span class="rank">🔍 Suchbegriff: „silvester winterberg 2026“</span>
-        <span>Direkt auf Platz 1 bei Google</span>
-      </div>
     </div>
   </div>
 
@@ -337,7 +275,7 @@ const templateSquare = `<!DOCTYPE html>
   <div class="pills-row">
     <div class="pill">
       <span class="pill-icon">🔥</span>
-      <span>Volle Tanzfläche garantieren</span>
+      <span>Volle Hütte garantieren</span>
     </div>
     <div class="pill">
       <span class="pill-icon">👥</span>
@@ -349,17 +287,14 @@ const templateSquare = `<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- BOTTOM BAR -->
+  <!-- BOTTOM BAR (NO FAKE BUTTON) -->
   <div class="bottom-row">
     <div class="bottom-brand">
       ${iconDataUri ? `<img class="bottom-logo" src="${iconDataUri}" alt="Logo" />` : ''}
-      <div class="bottom-texts">
-        <div class="bottom-domain">winterberg-verzeichnis.de</div>
-        <div class="bottom-sub">Das offizielle Portal für Winterberg & die Region</div>
-      </div>
+      <div class="bottom-domain">winterberg-verzeichnis.de</div>
     </div>
-    <div class="bottom-cta-badge">
-      Link in der Bio 🔗
+    <div class="bottom-region">
+      Das Portal für Winterberg & seine Dörfer
     </div>
   </div>
 </body>
@@ -385,7 +320,7 @@ const templatePortrait = `<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 80px 80px 75px;
+      padding: 85px 80px 80px;
       color: #FFFFFF;
     }
 
@@ -414,10 +349,9 @@ const templatePortrait = `<!DOCTYPE html>
       filter: blur(70px);
     }
 
-    /* TOP ROW */
+    /* TOP ROW (NO BUTTON) */
     .top-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       position: relative;
       z-index: 10;
@@ -439,18 +373,6 @@ const templatePortrait = `<!DOCTYPE html>
       box-shadow: 0 8px 24px rgba(255, 232, 20, 0.35);
     }
 
-    .tag-free {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(12px);
-      color: #FFFFFF;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 19px;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 999px;
-    }
-
     /* HERO HEADLINE BLOCK */
     .headline-block {
       position: relative;
@@ -468,9 +390,9 @@ const templatePortrait = `<!DOCTYPE html>
     }
 
     .main-title {
-      font-size: 68px;
+      font-size: 64px;
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.06;
       letter-spacing: -0.035em;
       color: #FFFFFF;
     }
@@ -483,10 +405,10 @@ const templatePortrait = `<!DOCTYPE html>
 
     .sub-hook {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.85);
-      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.88);
+      margin-top: 16px;
       line-height: 1.35;
     }
 
@@ -494,7 +416,7 @@ const templatePortrait = `<!DOCTYPE html>
     .card-container {
       position: relative;
       z-index: 10;
-      margin: 15px 0 10px;
+      margin: 20px 0 15px;
     }
 
     .proof-badge {
@@ -520,10 +442,10 @@ const templatePortrait = `<!DOCTYPE html>
     .google-card {
       background: #FFFFFF;
       border-radius: 24px;
-      padding: 22px 24px 18px;
+      padding: 18px 20px;
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12);
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
     }
 
@@ -534,48 +456,26 @@ const templatePortrait = `<!DOCTYPE html>
       border-radius: 12px;
     }
 
-    .card-footer-note {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid #ECECEC;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 16px;
-      color: #4B5563;
-      font-weight: 600;
-    }
-
-    .card-footer-note span.rank {
-      color: #0F4C2E;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
     /* 3 FEATURE PILLS */
     .pills-column {
       position: relative;
       z-index: 10;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .pill-item {
       background: rgba(255, 255, 255, 0.1);
       border: 1.5px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(14px);
-      padding: 16px 22px;
-      border-radius: 16px;
+      padding: 18px 24px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       gap: 14px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 700;
       color: #FFFFFF;
     }
@@ -585,7 +485,7 @@ const templatePortrait = `<!DOCTYPE html>
       flex-shrink: 0;
     }
 
-    /* BOTTOM ROW */
+    /* BOTTOM ROW - NO FAKE BUTTON */
     .bottom-row {
       position: relative;
       z-index: 10;
@@ -593,7 +493,7 @@ const templatePortrait = `<!DOCTYPE html>
       align-items: center;
       justify-content: space-between;
       border-top: 1.5px solid rgba(255, 255, 255, 0.18);
-      padding-top: 28px;
+      padding-top: 32px;
     }
 
     .bottom-brand {
@@ -603,44 +503,25 @@ const templatePortrait = `<!DOCTYPE html>
     }
 
     .bottom-logo {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .bottom-texts {
-      display: flex;
-      flex-direction: column;
-    }
-
     .bottom-domain {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 25px;
+      font-size: 26px;
       font-weight: 800;
       color: #FFFFFF;
       letter-spacing: 0.01em;
     }
 
-    .bottom-sub {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: #A3D8B8;
-    }
-
-    .bottom-cta-badge {
-      background: linear-gradient(135deg, #FFE814 0%, #F59E0B 100%);
-      color: #092C1A;
+    .bottom-region {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px;
-      font-weight: 800;
-      padding: 14px 28px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 8px 24px rgba(255, 232, 20, 0.35);
+      font-weight: 600;
+      color: #A3D8B8;
     }
   </style>
 </head>
@@ -648,13 +529,10 @@ const templatePortrait = `<!DOCTYPE html>
   <div class="glow-gold"></div>
   <div class="glow-top"></div>
 
-  <!-- TOP HEADER -->
+  <!-- TOP HEADER (NO BUTTON) -->
   <div class="top-row">
     <div class="tag-silvester">
       <span>🍾 SILVESTER 2026</span>
-    </div>
-    <div class="tag-free">
-      ✓ Kostenlos eintragen
     </div>
   </div>
 
@@ -664,24 +542,21 @@ const templatePortrait = `<!DOCTYPE html>
       Silvesterparty geplant? Und noch weiß niemand davon?
     </div>
     <h1 class="main-title">
-      Mach deine Party bei Google zur <span class="highlight">Nummer 1! 🚀</span>
+      Mit uns bist du bei Google <br>
+      <span class="highlight">kostenlos oben dabei! 🚀</span>
     </h1>
     <p class="sub-hook">
-      Lenke die Aufmerksamkeit tausender feierwütiger Urlauber & Einheimischer direkt auf dein Event.
+      Top-Ranking auf Seite 1: Lenke die Aufmerksamkeit von Feierwütigen & Urlaubern direkt auf dein Event.
     </p>
   </div>
 
   <!-- GOOGLE PROOF CARD -->
   <div class="card-container">
     <div class="proof-badge">
-      ✓ Platz 1 Ranking
+      ⭐ TOP-RANKING SEITE 1
     </div>
     <div class="google-card">
       <img class="google-img" src="${googleDataUri}" alt="Google Suche Winterberg Silvester" />
-      <div class="card-footer-note">
-        <span class="rank">🔍 Suchbegriff: „silvester winterberg 2026“</span>
-        <span>Direkt auf Platz 1 bei Google</span>
-      </div>
     </div>
   </div>
 
@@ -689,7 +564,7 @@ const templatePortrait = `<!DOCTYPE html>
   <div class="pills-column">
     <div class="pill-item">
       <span class="pill-icon">🔥</span>
-      <span>Volle Hütte garantiert: Erreiche Gäste, bevor andere ausgebucht sind</span>
+      <span>Volle Hütte garantiert: Direkt auf Seite 1 bei Google gefunden werden</span>
     </div>
     <div class="pill-item">
       <span class="pill-icon">⚡</span>
@@ -697,17 +572,14 @@ const templatePortrait = `<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- BOTTOM BAR -->
+  <!-- BOTTOM BAR (NO FAKE BUTTON) -->
   <div class="bottom-row">
     <div class="bottom-brand">
       ${iconDataUri ? `<img class="bottom-logo" src="${iconDataUri}" alt="Logo" />` : ''}
-      <div class="bottom-texts">
-        <div class="bottom-domain">winterberg-verzeichnis.de</div>
-        <div class="bottom-sub">Das offizielle Portal für Winterberg & die Region</div>
-      </div>
+      <div class="bottom-domain">winterberg-verzeichnis.de</div>
     </div>
-    <div class="bottom-cta-badge">
-      Link in der Bio 🔗
+    <div class="bottom-region">
+      Das Portal für Winterberg & seine Dörfer
     </div>
   </div>
 </body>
@@ -749,7 +621,7 @@ async function render() {
   console.log('Saved portrait image to:', portraitPublic);
 
   await browser.close();
-  console.log('All Instagram graphics rendered successfully!');
+  console.log('Done rendering with "kostenlos" in headline and no top button!');
 }
 
 render().catch(err => {

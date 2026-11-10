@@ -29,8 +29,7 @@ import {
   Ticket,
   Info,
   ArrowRight,
-  Star,
-  Bot
+  Star
 } from 'lucide-react';
 import { Business, ThemeConfig, DesignSettings } from '../types';
 import HeaderShapeDivider, { getEffectiveDivider } from './HeaderShapeDivider';
@@ -65,17 +64,7 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
   const [selectedPartyType, setSelectedPartyType] = useState<string>('all');
   const [selectedDistrict, setSelectedDistrict] = useState<string>('all');
   const [previewImage, setPreviewImage] = useState<{ src: string; title: string } | null>(null);
-  const [selectedItemForInquiry, setSelectedItemForInquiry] = useState<SilvesterPartyItem | null>(null);
-  const [inquirySuccess, setInquirySuccess] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-
-  // Inquiry form fields
-  const [inquiryName, setInquiryName] = useState('');
-  const [inquiryEmail, setInquiryEmail] = useState('');
-  const [inquiryPhone, setInquiryPhone] = useState('');
-  const [inquiryGuests, setInquiryGuests] = useState('2 Personen');
-  const [inquiryOption, setInquiryOption] = useState('Silvester-Essen & Party');
-  const [inquiryMessage, setInquiryMessage] = useState('');
 
   // SEO setup
   useEffect(() => {
@@ -164,28 +153,6 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
     document.body.removeChild(link);
   };
 
-  const handleSendInquiry = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!selectedItemForInquiry) return;
-
-    const subject = encodeURIComponent(`Silvester 2026 Reservierungsanfrage - ${inquiryName} (${inquiryGuests})`);
-    const body = encodeURIComponent(
-      `Hallo Team von ${selectedItemForInquiry.businessName},\n\n` +
-      `wir interessieren uns für Ihr Silvester-Angebot 2026/2027 in Winterberg:\n\n` +
-      `• Veranstaltung: ${selectedItemForInquiry.titleDe}\n` +
-      `• Gewünschtes Angebot / Option: ${inquiryOption}\n` +
-      `• Name: ${inquiryName}\n` +
-      `• E-Mail: ${inquiryEmail}\n` +
-      `• Telefon: ${inquiryPhone || '-'}\n` +
-      `• Personenanzahl: ${inquiryGuests}\n\n` +
-      `Nachricht / Wünsche:\n${inquiryMessage || 'Bitte teilen Sie uns die aktuellen Verfügbarkeiten und Reservierungsdetails mit.'}\n\n` +
-      `Mit freundlichen Grüßen,\n${inquiryName}\n\n(Gesendet über das Winterberg Verzeichnis - Themenseite Silvester feiern in Winterberg 2026)`
-    );
-
-    window.open(`mailto:${selectedItemForInquiry.contactEmail}?subject=${subject}&body=${body}`, '_blank');
-    setInquirySuccess(true);
-  };
-
   const getFeatureIcon = (iconName: string) => {
     switch (iconName) {
       case 'utensils': return <Utensils className="w-4 h-4 text-amber-500" />;
@@ -226,7 +193,7 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
           <div className="absolute top-3 right-3 lg:top-4 lg:right-6 flex items-center gap-1.5 z-10 pointer-events-none flex-wrap justify-end">
             <span className="text-[10.5px] leading-none font-semibold text-white/95 bg-black/65 backdrop-blur-xs px-2.5 py-1 rounded-md border border-white/20 flex items-center gap-1.5 shadow-md">
               <Sparkles className="w-3 h-3 text-amber-300" />
-              <span>{isNl ? 'Foto: Unsplash • Reële feestimpressie' : 'Foto: Unsplash • Echte Foto, keine KI'}</span>
+              <span>{isNl ? 'Foto: Unsplash' : 'Foto: Unsplash'}</span>
             </span>
           </div>
         </figure>
@@ -411,56 +378,48 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
               return (
                 <article
                   key={item.id}
-                  className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col lg:flex-row items-stretch group"
+                  className="w-full bg-white dark:bg-[#161C19] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col group"
                 >
-                  {/* Left Column: Image / Visual Preview */}
-                  <div className="lg:w-[460px] xl:w-[500px] 2xl:w-[540px] shrink-0 bg-gradient-to-br from-[#101726] to-[#1E293B] relative flex flex-col justify-between p-4 sm:p-5 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
-                    
-                    {/* Visual Container */}
-                    <div 
-                      onClick={() => setPreviewImage({ src: item.image, title: item.titleDe })}
-                      className="relative w-full flex-1 min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] rounded-xl overflow-hidden shadow-lg group/flyer cursor-pointer border border-white/15 transition-transform duration-300 group-hover:scale-[1.01] bg-black/40 flex items-center justify-center"
-                    >
-                      <img
-                        src={item.image}
-                        alt={`${item.businessName} - Silvester 2026`}
-                        className="w-full h-full object-cover block absolute inset-0"
-                        loading="lazy"
-                      />
+                  {/* Top Image Banner: Länglich & Widescreen ("über der Überschrift", nicht zu hoch) */}
+                  <div 
+                    onClick={() => setPreviewImage({ src: item.image, title: item.titleDe })}
+                    className="relative w-full h-36 sm:h-44 md:h-48 bg-slate-900 overflow-hidden cursor-pointer group/img border-b border-[#E7E0D3] dark:border-white/10"
+                  >
+                    <img
+                      src={item.image}
+                      alt={`${item.businessName} - Silvester 2026`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.02]"
+                      loading="lazy"
+                    />
 
-                      {/* Top Badge Left */}
-                      <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
-                        <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md border border-amber-300">
-                          <Sparkles className="w-3 h-3 text-slate-950" />
-                          <span>{isNl ? item.badgeNl : item.badgeDe}</span>
-                        </span>
-                      </div>
-
-                      {/* Top Badge Right: KI-Hinweis */}
-                      <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 z-10">
-                        <span className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-xs text-amber-200 text-[10px] font-semibold px-2 py-0.5 rounded-md border border-white/20 shadow-md">
-                          <Bot className="w-3 h-3 text-amber-300" />
-                          <span>{isNl ? 'Symbolbild • AI' : 'Symbolbild • KI-generiert'}</span>
-                        </span>
-                      </div>
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-black/45 opacity-0 group-hover/flyer:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
-                        <Maximize2 className="w-4 h-4 text-amber-300" />
-                        <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
-                      </div>
+                    {/* Top Badge Left: Format & Ort */}
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
+                      <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md border border-amber-300">
+                        <Sparkles className="w-3 h-3 text-slate-950" />
+                        <span>{isNl ? item.badgeNl : item.badgeDe}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1 bg-black/65 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-sm border border-white/15">
+                        <MapPin className="w-3 h-3 text-amber-400" />
+                        <span>{item.address}</span>
+                      </span>
                     </div>
 
-                    {/* Sub-label under image */}
-                    <div className="mt-2.5 text-[11px] text-gray-300 dark:text-gray-400 flex items-center justify-center gap-1.5 text-center shrink-0">
-                      <Bot className="w-3 h-3 text-amber-400 shrink-0" />
-                      <span>{isNl ? 'Symbolische afbeelding (met AI gegenereerd)' : 'Symbolbild (mit KI generiert)'}</span>
+                    {/* Top Badge Right: ONLY "Bild Ki-generiert" */}
+                    <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
+                      <span className="inline-block bg-black/70 backdrop-blur-xs text-white text-[10.5px] font-medium px-2 py-0.5 rounded border border-white/20 shadow-xs">
+                        Bild Ki-generiert
+                      </span>
                     </div>
 
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
+                      <Maximize2 className="w-4 h-4 text-amber-300" />
+                      <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
+                    </div>
                   </div>
 
-                  {/* Right Column: Full Details */}
-                  <div className="flex-1 p-5 sm:p-7 flex flex-col justify-between">
+                  {/* Card Content: Vorwiegend Text, länglich, strukturiert */}
+                  <div className="p-5 sm:p-7 flex flex-col justify-between flex-1">
                     <div>
                       
                       {/* Top Meta Line: Category, Location & Time */}
@@ -494,7 +453,7 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
                       </h3>
 
                       {/* Subtitle */}
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 m-0 mb-3">
+                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 m-0 mb-3.5">
                         {isNl ? item.subtitleNl : item.subtitleDe}
                       </p>
 
@@ -592,19 +551,6 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
                           <ExternalLink className="w-3 h-3 ml-0.5 opacity-70" />
                         </a>
 
-                        {/* Inquiry Modal Button */}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedItemForInquiry(item);
-                            setInquirySuccess(false);
-                          }}
-                          className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-white/10 dark:hover:bg-white/20 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors inline-flex items-center gap-1.5 cursor-pointer"
-                        >
-                          <Mail className="w-3.5 h-3.5 text-amber-400" />
-                          <span>{isNl ? 'Vrijblijvende aanvraag' : 'Veranstalter anfragen'}</span>
-                        </button>
-
                         {/* ICS Calendar Download */}
                         <button
                           type="button"
@@ -675,15 +621,9 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-white/10 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2 truncate">
-                <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
-                  {previewImage.title}
-                </span>
-                <span className="inline-flex items-center gap-1 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[10.5px] font-semibold px-2 py-0.5 rounded-md border border-amber-300 dark:border-amber-700/50 shrink-0">
-                  <Bot className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-                  <span>{isNl ? 'AI-gegenereerd' : 'KI-generiert'}</span>
-                </span>
-              </div>
+              <span className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
+                {previewImage.title}
+              </span>
               <button
                 type="button"
                 onClick={() => setPreviewImage(null)}
@@ -696,181 +636,8 @@ export const SilvesterThemePage: React.FC<SilvesterThemePageProps> = ({
               <img
                 src={previewImage.src}
                 alt={previewImage.title}
-                className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-md"
+                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-md"
               />
-            </div>
-            <div className="p-3 bg-amber-50/90 dark:bg-amber-950/40 border-t border-amber-200/80 dark:border-white/10 flex items-center gap-2 text-xs text-amber-900 dark:text-amber-200">
-              <Info className="w-4 h-4 shrink-0 text-amber-600 dark:text-amber-400" />
-              <span>
-                {isNl 
-                  ? 'Opmerking: Deze afbeelding is een sfeerimpressie (met behulp van AI gegenereerd) ter verbeelding van de feestelijke sfeer tijdens dit evenement.' 
-                  : 'Hinweis: Bei dieser Abbildung handelt es sich um ein Symbolbild (mit KI generiert) zur Veranschaulichung der festlichen Veranstaltungsatmosphäre.'}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Inquiry Drawer / Modal */}
-      {selectedItemForInquiry && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4"
-          onClick={() => setSelectedItemForInquiry(null)}
-        >
-          <div 
-            className="relative w-full max-w-lg bg-white dark:bg-[#18201B] border border-[#E7E0D3] dark:border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="bg-gradient-to-r from-[#0A1128] to-[#1C2A4A] text-white p-5 sm:p-6 relative">
-              <button
-                type="button"
-                onClick={() => setSelectedItemForInquiry(null)}
-                className="absolute top-4 right-4 text-white/70 hover:text-white p-1 rounded-lg"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <div className="text-[11px] font-bold uppercase tracking-wider text-amber-300 mb-1 flex items-center gap-1">
-                <PartyPopper className="w-3.5 h-3.5" />
-                <span>{selectedItemForInquiry.businessName}</span>
-              </div>
-              <h3 className="text-base sm:text-lg font-bold m-0 leading-tight">
-                {isNl ? 'Vrijblijvende aanvraag Silvester 2026' : 'Anfrage für Silvester 2026'}
-              </h3>
-              <p className="text-xs text-white/80 m-0 mt-1">
-                {isNl 
-                  ? 'Stuur uw aanvraag direct door naar de organisator.' 
-                  : 'Senden Sie Ihre Tisch- oder Reservierungsanfrage direkt an den Gastgeber.'}
-              </p>
-            </div>
-
-            <div className="overflow-y-auto p-5 sm:p-6 flex-1">
-              {inquirySuccess ? (
-                <div className="text-center py-6">
-                  <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-3">
-                    <CheckCircle2 className="w-6 h-6" />
-                  </div>
-                  <h4 className="text-base font-bold text-gray-900 dark:text-white mb-1">
-                    {isNl ? 'E-mailprogramma geopend!' : 'E-Mail erfolgreich vorbereitet!'}
-                  </h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-300 mb-4">
-                    {isNl 
-                      ? 'Uw e-mailclient is geopend met de vooringevulde gegevens. Verstuur het bericht eenvoudig om uw aanvraag af te ronden.'
-                      : 'Ihr Standard-E-Mailprogramm hat sich mit allen vorausgefüllten Reservierungsdaten geöffnet. Senden Sie die Nachricht einfach ab.'}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedItemForInquiry(null)}
-                    className="px-5 py-2 bg-[#1E3A8A] text-white text-xs font-semibold rounded-xl"
-                  >
-                    {isNl ? 'Sluiten' : 'Schließen'}
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSendInquiry} className="space-y-3.5">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                      {isNl ? 'Gewenste optie / arrangement' : 'Gewünschte Option / Arrangement'}
-                    </label>
-                    <input
-                      type="text"
-                      value={inquiryOption}
-                      onChange={(e) => setInquiryOption(e.target.value)}
-                      placeholder="z. B. Silvester-Essen (ab 19:30 Uhr inkl. Party) oder Gala-Buffet"
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-[#121614] text-gray-900 dark:text-white"
-                      required
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                        {isNl ? 'Uw naam' : 'Ihr Name'} *
-                      </label>
-                      <input
-                        type="text"
-                        value={inquiryName}
-                        onChange={(e) => setInquiryName(e.target.value)}
-                        placeholder="Vor- und Nachname"
-                        className="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-[#121614] text-gray-900 dark:text-white"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                        {isNl ? 'Aantal personen' : 'Personenanzahl'} *
-                      </label>
-                      <select
-                        value={inquiryGuests}
-                        onChange={(e) => setInquiryGuests(e.target.value)}
-                        className="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-[#121614] text-gray-900 dark:text-white"
-                      >
-                        <option value="2 Personen">2 Personen</option>
-                        <option value="3-4 Personen">3 - 4 Personen</option>
-                        <option value="5-8 Personen">5 - 8 Personen</option>
-                        <option value="9-15 Personen (Gruppe)">9 - 15 Personen (Gruppe)</option>
-                        <option value="Mehr als 15 Personen">Mehr als 15 Personen</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                        {isNl ? 'E-mailadres' : 'E-Mail-Adresse'} *
-                      </label>
-                      <input
-                        type="email"
-                        value={inquiryEmail}
-                        onChange={(e) => setInquiryEmail(e.target.value)}
-                        placeholder="ihre@email.de"
-                        className="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-[#121614] text-gray-900 dark:text-white"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                        {isNl ? 'Telefoonnummer' : 'Telefonnummer'}
-                      </label>
-                      <input
-                        type="tel"
-                        value={inquiryPhone}
-                        onChange={(e) => setInquiryPhone(e.target.value)}
-                        placeholder="Für Rückfragen"
-                        className="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-[#121614] text-gray-900 dark:text-white"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">
-                      {isNl ? 'Bijzondere wensen / Vragen' : 'Besondere Wünsche oder Fragen'}
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={inquiryMessage}
-                      onChange={(e) => setInquiryMessage(e.target.value)}
-                      placeholder="z. B. vegetarisches Essen, Kinderstuhl, Uhrzeit..."
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 dark:border-white/15 bg-gray-50 dark:bg-[#121614] text-gray-900 dark:text-white resize-none"
-                    />
-                  </div>
-
-                  <div className="pt-2 flex items-center justify-end gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedItemForInquiry(null)}
-                      className="px-4 py-2 border border-gray-200 dark:border-white/15 text-gray-600 dark:text-gray-300 rounded-xl text-xs font-medium"
-                    >
-                      {isNl ? 'Annuleren' : 'Abbrechen'}
-                    </button>
-                    <button
-                      type="submit"
-                      className="px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 font-bold rounded-xl text-xs shadow-md hover:shadow-lg transition-all"
-                    >
-                      {isNl ? 'Aanvraag verzenden' : 'Anfrage vorbereiten & senden'}
-                    </button>
-                  </div>
-                </form>
-              )}
             </div>
           </div>
         </div>
