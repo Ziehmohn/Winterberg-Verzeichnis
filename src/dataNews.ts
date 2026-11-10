@@ -2,6 +2,93 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "winterberg-beliebtheit-social-media-kurort-ranking",
+    slug: "winterberg-beliebtheit-social-media-kurort-ranking",
+    slug_nl: "winterberg-populariteit-social-media-kuuroord-ranking",
+    title: "Hohe Nachfrage im Netz: Winterberg belegt bundesweite Spitzenplätze bei Kleinstädten und Kurorten",
+    title_nl: "Grote belangstelling online: Winterberg behaalt landelijke topnoteringen bij kleine steden en kuuroorden",
+    author: "Winterberg-Verzeichnis Redaktion",
+    imageUrl: "/news-winterberg-beliebtheit-ranking.jpg",
+    imageCredit: "Ferienwelt Winterberg / Stephan Peters",
+    isAiGenerated: false,
+    status: "approved",
+    category: "freizeit",
+    category_nl: "vrije-tijd",
+    date: "2026-11-10T22:30:00.000Z",
+    content: `Winterberg erzielt in mehreren aktuellen Tourismus- und Reiseanalysen Spitzenplätze. Sowohl bei der Sichtbarkeit in den sozialen Medien als auch bei den Online-Suchanfragen nach deutschen Kleinstädten belegt die Sauerländer Stadt bundesweit Rang zwei – und ist damit die meistgesuchte Kleinstadt außerhalb Bayerns. Auch im Ranking der staatlich anerkannten Kurorte schneidet Winterberg stark ab und landet auf Platz drei in Deutschland sowie auf Platz eins bei niederländischen Gästen.
+
+Winterberg – Wie groß das Interesse an einer Urlaubsregion ist, lässt sich heute nicht mehr nur an den Übernachtungszahlen im Beherbergungsgewerbe ablesen. Zunehmend geben auch Daten aus Suchmaschinen und sozialen Netzwerken Aufschluss darüber, wohin Reisende blicken. Gleich drei aktuelle Auswertungen der Reiseportale Fit Reisen und Holidu zeigen nun, dass Winterberg im digitalen Raum zu den gefragtesten Zielen der Bundesrepublik zählt.
+
+### Platz zwei im bundesweiten Social-Media-Ranking
+
+In einer Analyse des Reiseveranstalters Fit Reisen wurde die digitale Sichtbarkeit von insgesamt 985 deutschen Kleinstädten mit unter 20.000 Einwohnern untersucht. Ausgewertet wurden dafür Reichweiten und Interaktionen auf Plattformen wie Instagram, TikTok, YouTube, Pinterest und X.
+
+Im Gesamtergebnis belegt Winterberg den zweiten Platz, den sich die Stadt mit Rothenburg ob der Tauber teilt. Auf Rang eins landete Füssen im Allgäu. Ausschlaggebend für das Ergebnis ist vor allem die hohe Aktivität auf Instagram: Allein unter dem Schlagwort #winterberg finden sich dort mehr als 346.000 Beiträge. Das Material speist sich aus allen Jahreszeiten: Fotos und Videos von Skipisten und Rodelhängen im Winter sowie von den Mountainbike-Strecken, den Wanderwegen rund um den Kahlen Asten und den Aussichtspunkten über die Sauerländer Berglandschaft im Sommer und Herbst.
+
+### Beliebteste Kleinstadt außerhalb Bayerns
+
+Zu einem vergleichbaren Ergebnis kommt eine Untersuchung des Ferienhausportals Holidu. Die Plattform hat anhand von Google-Suchdaten ermittelt, welche deutschen Kleinstädte am häufigsten in Verbindung mit Sehenswürdigkeiten, Ausflugszielen und Freizeitangeboten gesucht werden.
+
+In dieser Auswertung landet Winterberg ebenfalls bundesweit auf dem zweiten Platz – erneut direkt hinter Füssen. Damit ist Winterberg die meistgesuchte und gefragteste Kleinstadt in Deutschland, die nicht in Bayern liegt. Dass die Nachfrage nicht auf die Wintermonate beschränkt ist, belegen die saisonalen Suchkurven: Während im Winter Angebote rund um das Skiliftkarussell und die Veltins-EisArena im Fokus stehen, sorgen der Bikepark, der Erlebnisberg Kappe und Wanderwege wie der Rothaarsteig das restliche Jahr über für kontinuierliche Suchanfragen.
+
+### Rang drei unter 236 Kurorten – Spitzenplatz in den Niederlanden
+
+Neben dem Profil als Sport- und Outdoorstandort punktet Winterberg auch im klassischen Gesundheits- und Erholungssegment. In einer weiteren Studie untersuchte Fit Reisen das monatliche Suchvolumen bei Google und Bing für 236 staatlich anerkannte Kurorte in Deutschland.
+
+Mit durchschnittlich rund 301.000 monatlichen Suchanfragen platziert sich Winterberg bundesweit auf Rang drei. Mehr Zugriffe verzeichnen lediglich Baden-Baden auf Platz eins und Oberstdorf auf Platz zwei. Winterberg trägt den Titel „Heilklimatischer Kurort“ seit 1980; das Reizklima in Höhenlagen von über 800 Metern bildet die Grundlage für Kuraufenthalte und gesundheitsorientierten Urlaub.
+
+Noch deutlicher ist die Positionierung im Ausland: In den Niederlanden ist Winterberg der mit Abstand meistgesuchte deutsche Kurort. Rund 19 Prozent – also fast jede fünfte niederländische Suchanfrage nach einem Kurort in Deutschland – entfallen auf die Stadt im Hochsauerland.
+
+### Stabile Resonanz zu allen Jahreszeiten
+
+Die Ergebnisse der verschiedenen Erhebungen belegen, dass Winterbergs Bekanntheit auf zwei tragenden Säulen ruht: der Tradition als heilklimatischer Erholungsort und der Entwicklung zu einer ganzjährigen Aktivdestination. Dass sich die Stadt in allen drei Rankings unter den besten drei Reisezielen Deutschlands behauptet, unterstreicht die feste Verankerung im überregionalen und grenzüberschreitenden Tourismus.
+
+:::contact
+### Winterberg in den aktuellen Rankings: Die Fakten im Überblick
+* **Social Media (Fit Reisen):** Platz 2 unter 985 deutschen Kleinstädten (zusammen mit Rothenburg ob der Tauber, hinter Füssen); über 346.000 Instagram-Beiträge unter dem Hashtag #winterberg.
+* **Online-Suchvolumen (Holidu):** Platz 2 in Deutschland unter den Städten mit unter 20.000 Einwohnern und Platz 1 außerhalb Bayerns bei der Google-Suche nach Freizeitangeboten und Sehenswürdigkeiten.
+* **Kurort-Ranking (Fit Reisen):** Platz 3 unter 236 staatlich anerkannten Kurorten in Deutschland mit rund 301.000 monatlichen Suchanfragen (hinter Baden-Baden und Oberstdorf).
+* **Internationale Nachfrage:** Platz 1 in den Niederlanden unter allen deutschen Kurorten mit knapp 19 Prozent aller entsprechenden Suchanfragen.
+* **Prädikat:** Staatlich anerkannter heilklimatischer Kurort seit 1980.
+:::`,
+    content_nl: `Winterberg behaalt in meerdere recente toerisme- en reisanalyses absolute kopposities. Zowel wat betreft zichtbaarheid op sociale media als bij online zoekopdrachten naar Duitse kleine steden staat de stad in het Sauerland landelijk op de tweede plaats – en is daarmee de meest gezochte kleine stad buiten Beieren. Ook in de ranglijst van officieel erkende kuuroorden scoort Winterberg uitstekend met een derde plaats in Duitsland en de eerste plaats bij Nederlandse vakantiegangers.
+
+Winterberg – Hoe groot de belangstelling voor een vakantieregio is, blijkt tegenwoordig niet meer alleen uit overnachtingscijfers van hotels en vakantieparken. Steeds vaker geven data uit zoekmachines en sociale netwerken een duidelijk beeld van waar reizigers naar op zoek zijn. Drie recente onderzoeken van de reisportalen Fit Reisen en Holidu tonen aan dat Winterberg online tot de populairste bestemmingen van heel Duitsland behoort.
+
+### Tweede plaats in landelijke social-media-ranking
+
+In een analyse van touroperator Fit Reisen werd de digitale zichtbaarheid van 985 Duitse steden met minder dan 20.000 inwoners onderzocht. Daarbij werd gekeken naar bereik en interactie op platforms als Instagram, TikTok, YouTube, Pinterest en X.
+
+In het eindklassement deelt Winterberg de tweede plaats met de historische stad Rothenburg ob der Tauber. De eerste plaats ging naar Füssen in de Allgäu. Doorslaggevend voor het succes van Winterberg is vooral de sterke aanwezigheid op Instagram: alleen al onder de hashtag #winterberg zijn meer dan 346.000 berichten geplaatst. De beelden beslaan alle seizoenen: van skipistes en rodelhellingen in de winter tot mountainbikeroutes, wandelingen rondom de Kahler Asten en uitzichten over het heuvellandschap in het voorjaar en najaar.
+
+### Meest gezochte kleine stad buiten Beieren
+
+Een vergelijkbaar beeld schetst een onderzoek van vakantiehuisportaal Holidu. Dit platform analyseerde aan de hand van zoekdata van Google welke Duitse kleine steden het vaakst worden gezocht in combinatie met bezienswaardigheden, uitstapjes en recreatie.
+
+Ook in deze lijst staat Winterberg landelijk op de tweede plaats – opnieuw vlak achter Füssen. Daarmee is Winterberg de meest gezochte kleine stad van Duitsland buiten de deelstaat Beieren. Dat de interesse zich geenszins beperkt tot de wintermaanden, blijkt uit het zoekgedrag gedurende het jaar: terwijl in de winter het Skiliftkarussell en de Veltins-EisArena centraal staan, zorgen het Bikepark, de Erlebnisberg Kappe en wandelroutes zoals de Rothaarsteig de rest van het jaar voor een continue stroom aan zoekopdrachten.
+
+### Derde plaats onder 236 kuuroorden – absolute koploper in Nederland
+
+Naast het imago als actieve wintersport- en outdoorbestemming scoort Winterberg ook hoog op het gebied van gezondheid en ontspanning. In een afzonderlijke studie onderzocht Fit Reisen het maandelijkse zoekvolume op Google en Bing voor 236 door de overheid erkende kuuroorden in Duitsland.
+
+Met gemiddeld circa 301.000 maandelijkse zoekopdrachten bezet Winterberg landelijk de derde plaats. Alleen de gerenommeerde kuuroorden Baden-Baden (eerste plaats) en Oberstdorf (tweede plaats) noteerden meer zoekacties. Winterberg draagt het predicaat „Heilklimatischer Kurort“ al sinds 1980; het stimulerende bergklimaat op ruim 800 meter hoogte vormt de basis voor herstel en wellness.
+
+Bij buitenlandse gasten is de koppositie nog duidelijker: in Nederland is Winterberg met afstand het meest gezochte Duitse kuuroord. Ongeveer 19 procent – bijna één op de vijf Nederlandse zoekopdrachten naar een Duits kuuroord – heeft betrekking op Winterberg.
+
+### Het hele jaar door gewild
+
+De uitkomsten van de verschillende onderzoeken laten zien dat de naamsbekendheid van Winterberg op twee sterke pijlers rust: de traditie als heilklimatisch kuuroord en de positie als veelzijdige bestemming voor actieve vakanties in alle seizoenen. Dat de stad in alle drie de ranglijsten in de landelijke top drie eindigt, onderstreept de aantrekkingskracht van Winterberg in zowel Duitsland als over de grens.
+
+:::contact
+### Winterberg in de recente rankings: de feiten op een rij
+* **Social Media (Fit Reisen):** 2e plaats onder 985 Duitse kleine steden (samen met Rothenburg ob der Tauber, achter Füssen); ruim 346.000 Instagram-berichten onder #winterberg.
+* **Online zoekvolume (Holidu):** 2e plaats in Duitsland onder steden tot 20.000 inwoners en 1e plaats buiten Beieren bij zoekopdrachten naar bezienswaardigheden en activiteiten.
+* **Kuuroorden-ranking (Fit Reisen):** 3e plaats onder 236 erkende kuuroorden in Duitsland met circa 301.000 maandelijkse zoekopdrachten (achter Baden-Baden en Oberstdorf).
+* **Internationale belangstelling:** 1e plaats in Nederland onder alle Duitse kuuroorden met een aandeel van circa 19 procent van alle zoekopdrachten.
+* **Predicaat:** Officieel erkend heilklimatischer Kurort sinds 1980.
+:::`,
+  },
+  {
     id: "sahnehang-winterberg-uebernahme-familie-klante",
     slug: "sahnehang-winterberg-uebernahme-familie-klante",
     slug_nl: "sahnehang-winterberg-overname-familie-klante",
