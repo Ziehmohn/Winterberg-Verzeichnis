@@ -7203,6 +7203,7 @@ export const businesses: Business[] = [
     address: 'Am Waltenberg 24, 59955 Winterberg',
     district: 'Winterberg',
     phone: '02981 9271857',
+    email: 'lumawinterberg@gmail.com',
     imageFallback: 'LU',
     isPremium: false,
     status: 'approved',
