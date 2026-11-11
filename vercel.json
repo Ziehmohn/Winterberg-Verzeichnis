@@ -2,6 +2,21 @@
   "installCommand": "npm install --legacy-peer-deps",
   "redirects": [
     {
+      "source": "/veranstaltungen/martinsumzug-silbach-2026",
+      "destination": "/news/st-martinsumzuege-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/nl/evenementen/sint-maartensoptocht-silbach-2026",
+      "destination": "/nl/nieuws/sint-maartensoptochten-winterberg-2026",
+      "permanent": true
+    },
+    {
+      "source": "/evenementen/sint-maartensoptocht-silbach-2026",
+      "destination": "/nl/nieuws/sint-maartensoptochten-winterberg-2026",
+      "permanent": true
+    },
+    {
       "source": "/silvester-feiern-in-winterberg-2026",
       "destination": "/themen/silvester-feiern-in-winterberg-2026",
       "permanent": true

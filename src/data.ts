@@ -300,26 +300,6 @@ export const businesses: Business[] = [
         "description_nl": "De dorpsgemeenschap van Niedersfeld nodigt alle kinderen, ouders en dorpsbewoners van harte uit voor de traditionele Sint-Maartensoptocht op woensdag 11 november 2026!\n\n### Programma:\n* 17:45 uur – Viering: Feestelijke start met een korte viering in de St. Agatha-kerk in Niedersfeld.\n* Aansluitend – Lampionoptocht: De stoet vertrekt vanaf de Hittenmitte via de Josefsweg, Steinkamp, de dorpshal en door het kuurpark terug naar het dorpshuis Josefshaus. De muzikale begeleiding wordt verzorgd door Blasmusik Niedersfeld.\n* Gezellige afsluiting bij het Josefshaus: Warme kinderpunch en glühwein voor iedereen en uitdelen van de traditionele Sint-Maartenbroodjes (Stutenkerle) aan de kinderen.\n\nNeem jullie mooiste lampions mee!"
 },
       {
-        id: 'martinsumzug-silbach-2026',
-        title: 'St. Martinsumzug Silbach',
-        title_nl: 'Sint-Maartensoptocht Silbach',
-        startDate: '2026-11-12',
-        endDate: '2026-11-12',
-        startTime: '17:30',
-        endTime: '',
-        category: 'Familie & Kinder',
-        location: 'St. Josef Kirche, Winterberg-Silbach',
-        description: 'Andacht in der Kirche mit anschließendem Martinszug durch Silbach. Treffpunkt ist um 17:30 Uhr direkt in der Kirche. Veranstalter ist der Kindergarten Silbach.',
-        description_nl: 'Viering in de kerk met aansluitend Sint-Maartensoptocht door Silbach. Start om 17:30 uur in de kerk. Organisatie: Kleuterschool Silbach.',
-        imageUrl: '/events-martinsumzug-winterberg.jpg',
-        isAiGenerated: true,
-        imageCredit: 'KI generiert',
-        externalUrl: 'https://www.silbach.de/fileadmin/old_fileadmin/fileadmin/Kundenbereich/Veranstaltungskalender_2026.pdf',
-        slug: 'martinsumzug-silbach-2026',
-        slug_nl: 'sint-maartensoptocht-silbach-2026',
-        price: 'Kostenlos'
-      },
-      {
         id: 'martinsumzug-winterberg-2026',
         title: 'St. Martinsumzug Winterberg',
         title_nl: 'Sint-Maartensoptocht Winterberg',

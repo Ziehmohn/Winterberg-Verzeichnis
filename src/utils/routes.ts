@@ -576,6 +576,31 @@ export function isBusinessDeactivated(bus: { isActive?: boolean; status?: string
 }
 
 export const BUSINESS_DEDUPLICATION_REDIRECTS: SystemRedirectEntry[] = [
+  // 0. St. Martinsumzug Silbach (abgesagt -> Weiterleitung auf St. Martin News)
+  {
+    id: 'redirect-martinsumzug-silbach-de',
+    source: '/veranstaltungen/martinsumzug-silbach-2026',
+    target: '/news/st-martinsumzuege-winterberg-2026',
+    isSystem: true,
+    type: 'Event',
+    lang: 'de',
+  },
+  {
+    id: 'redirect-martinsumzug-silbach-nl',
+    source: '/nl/evenementen/sint-maartensoptocht-silbach-2026',
+    target: '/nl/nieuws/sint-maartensoptochten-winterberg-2026',
+    isSystem: true,
+    type: 'Event',
+    lang: 'nl',
+  },
+  {
+    id: 'redirect-martinsumzug-silbach-nl-short',
+    source: '/evenementen/sint-maartensoptocht-silbach-2026',
+    target: '/nl/nieuws/sint-maartensoptochten-winterberg-2026',
+    isSystem: true,
+    type: 'Event',
+    lang: 'nl',
+  },
   // 1. Hotel Schneider
   {
     id: 'dedup-hotel-schneider-de',

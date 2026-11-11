@@ -79,6 +79,9 @@
 /nl/vrije-tijd/paardensport    /nl/ski-fiets-sport/paardensport         301!
 /nl/vrije-tijd/yoga/*  /nl/gezondheid-en-geneeskunde/yoga/:splat  301!
 /nl/vrije-tijd/yoga    /nl/gezondheid-en-geneeskunde/yoga         301!
+/veranstaltungen/martinsumzug-silbach-2026    /news/st-martinsumzuege-winterberg-2026         301!
+/nl/evenementen/sint-maartensoptocht-silbach-2026    /nl/nieuws/sint-maartensoptochten-winterberg-2026         301!
+/evenementen/sint-maartensoptocht-silbach-2026    /nl/nieuws/sint-maartensoptochten-winterberg-2026         301!
 /hotels-und-unterkuenfte/hotels/hotel-schneider    /hotels-und-unterkuenfte/hotels/hotel-schneider-winterberg         301!
 /nl/hotels-en-accommodaties/hotels/hotel-schneider    /nl/hotels-en-accommodaties/hotels/hotel-schneider-winterberg         301!
 /gastronomie/restaurants/die-sperre    /gastronomie/restaurants/die-sperre-landhotel-restaurant         301!
