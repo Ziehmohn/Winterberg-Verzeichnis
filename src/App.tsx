@@ -1829,11 +1829,11 @@ export default function App() {
     }
 
     const localVersion = getLocalVersion(CACHE_KEYS.BUSINESSES_VERSION);
+    let remoteVersion: number | null = null;
 
     if (!forceFresh) {
       // 2. Perform 1-Read Version Check against system/metadata
       console.log("[dbCache] Checking remote businesses version (1 Read)...");
-      let remoteVersion: number | null = null;
       try {
         const timeoutPromise = new Promise<null>((_, reject) => setTimeout(() => reject(new Error('TIMEOUT_VERSION')), 5000));
         remoteVersion = await Promise.race([
@@ -1877,7 +1877,7 @@ export default function App() {
       });
       if (loadedBusinesses.length > 0) {
         setCachedItem(CACHE_KEYS.BUSINESSES, loadedBusinesses);
-        const versionToStore = Date.now();
+        const versionToStore = (remoteVersion && remoteVersion > 0) ? remoteVersion : Date.now();
         setLocalVersion(CACHE_KEYS.BUSINESSES_VERSION, versionToStore);
         applyBusinessesMerge(loadedBusinesses);
       }
@@ -6961,14 +6961,30 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                               });
                               
                               if (!res.ok) {
-                                throw new Error('Server error');
+                                let errMsg = 'Serverfehler beim Freischalten';
+                                try {
+                                  const errJson = await res.json();
+                                  if (errJson.error) errMsg = errJson.error;
+                                } catch (_) {}
+                                throw new Error(errMsg);
                               }
                               
-                              const updated = { ...bus, status: 'approved' };
-                              setBusinesses(businesses.map((b: Business) => b.id === bus.id ? updated : b));
-                            } catch (e) {
-                              console.error(e);
-                              alert("Fehler beim Freischalten");
+                              const updated: Business = { ...bus, status: 'approved', isActive: true };
+                              const nextBusinesses = businesses.map((b: Business) => b.id === bus.id ? updated : b);
+                              setBusinesses(nextBusinesses);
+                              setCachedItem(CACHE_KEYS.BUSINESSES, nextBusinesses);
+                              invalidateCache(CACHE_KEYS.BUSINESSES);
+                              try {
+                                await bumpRemoteBusinessesVersion(db);
+                              } catch(e) {}
+                              if (typeof onRefreshBusinesses === 'function') {
+                                await onRefreshBusinesses(true);
+                              } else if (typeof onBusinessAdded === 'function') {
+                                onBusinessAdded();
+                              }
+                            } catch (e: any) {
+                              console.error("Approve error:", e);
+                              alert("Fehler beim Freischalten: " + (e?.message || 'Unbekannter Fehler'));
                             }
                           }}
                           className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"

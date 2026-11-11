@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail, ShoppingBag, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Trash2, Image as ImageIcon, Upload, X, Sparkles, Globe, Plus, Newspaper, ExternalLink, FileText, Check, CheckCircle2, FolderPlus, Tag, Laptop, Tablet, Smartphone, Crosshair, Move, FileDown, FileCheck, PhoneCall, CalendarDays, UtensilsCrossed, BadgePercent, Siren, ShieldCheck, HeartHandshake, User, Mail, ShoppingBag, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Business, CategoryGroup, BusinessNewsArticle, GalleryCategory, GalleryImage, HeaderPositionConfig, BusinessDocument, CustomActionCta, ContactPerson } from '../types';
 import { categories } from '../data';
 import { useTranslation } from '../i18n';
@@ -548,7 +548,9 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       emailNotifications: formData.emailNotifications !== false,
       hasShop: !!formData.hasShop,
       shopUrl: formData.hasShop && formData.shopUrl ? formData.shopUrl.trim() : '',
-      status: formData.status || 'approved',
+      status: isAdmin 
+        ? (formData.status === 'pending' && formData.isActive !== false ? 'approved' : (formData.status || 'approved'))
+        : (businessToEdit?.status || 'approved'),
       isActive: formData.isActive !== false,
       deactivationRedirectType: formData.isActive === false ? (formData.deactivationRedirectType || '301') : null,
       deactivationReason: formData.isActive === false ? (formData.deactivationReason || '') : null,
@@ -659,6 +661,18 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       } else {
         setBusinesses((prev: Business[]) => [...prev, dataToSubmit]);
       }
+
+      // Falls das Unternehmen zuvor 'pending' war und nun freigegeben wurde, Kunden-Mail via Server triggern
+      if (businessToEdit?.status === 'pending' && dataToSubmit.status === 'approved') {
+        try {
+          fetch('/api/approve-business', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: newId })
+          }).catch(e => console.warn("Approve API trigger error:", e));
+        } catch (_) {}
+      }
+
       onBusinessAdded();
     } catch (error: any) {
       console.error("Save error:", error);
@@ -1019,46 +1033,77 @@ export default function AdminPanel({ theme, activeThemeKey, businesses, setBusin
       </div>
         
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Status: Aktiv / Deaktiviert mit 301/302 Redirect-Option (Nur Admin kann Status & Weiterleitungen schalten) */}
+        {/* Status: In Prüfung / Aktiv / Deaktiviert mit 301/302 Redirect-Option (Nur Admin kann Status & Weiterleitungen schalten) */}
         {isAdmin ? (
-          <div className={`p-4 md:p-5 rounded-xl border transition-all ${formData.isActive !== false ? 'bg-[#F4F9F5] border-[#D0E7D8]' : 'bg-[#FFF8F6] border-[#FCD5CC]'}`}>
+          <div className={`p-4 md:p-5 rounded-xl border transition-all ${
+            formData.status === 'pending'
+              ? 'bg-[#FEF9EE] border-[#FBE0A6]'
+              : formData.isActive !== false 
+                ? 'bg-[#F4F9F5] border-[#D0E7D8]' 
+                : 'bg-[#FFF8F6] border-[#FCD5CC]'
+          }`}>
             <div className="flex items-start justify-between flex-wrap gap-4">
               <div className="flex-1 min-w-[260px]">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={`w-3 h-3 rounded-full ${formData.isActive !== false ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} />
+                  <span className={`w-3 h-3 rounded-full ${
+                    formData.status === 'pending'
+                      ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]'
+                      : formData.isActive !== false 
+                        ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' 
+                        : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]'
+                  }`} />
                   <span className="font-bold text-[15.5px] text-[#1B211D]">
-                    Status des Eintrags: {formData.isActive !== false ? 'Aktiv (Öffentlich sichtbar)' : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`}
+                    Status des Eintrags: {
+                      formData.status === 'pending'
+                        ? 'In Prüfung (Wartet auf Freischaltung)'
+                        : formData.isActive !== false 
+                          ? 'Aktiv (Öffentlich sichtbar)' 
+                          : `Deaktiviert (${formData.deactivationRedirectType || '301'} Redirect aktiv)`
+                    }
                   </span>
                 </div>
                 <p className="text-xs text-[#5F6B63] m-0 max-w-[70ch]">
-                  {formData.isActive !== false 
-                    ? 'Das Unternehmen ist öffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
-                    : 'Die Profilseite ist für Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Übersichtsseite (/alle-unternehmen) weitergeleitet.'}
+                  {formData.status === 'pending'
+                    ? 'Das Unternehmen wurde neu eingetragen und ist noch nicht öffentlich sichtbar. Klicken Sie auf "Jetzt freigeben & aktivieren", um den Eintrag öffentlich ins Verzeichnis zu stellen.'
+                    : formData.isActive !== false 
+                      ? 'Das Unternehmen ist öffentlich im Verzeichnis auffindbar, auf der Karte verzeichnet, wird in der Suche vorgeschlagen und von Suchmaschinen indexiert.'
+                      : 'Die Profilseite ist für Besucher gesperrt. Jeder Aufruf der URL wird automatisch auf die Übersichtsseite (/alle-unternehmen) weitergeleitet.'}
                 </p>
               </div>
 
               <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setFormData({ ...formData, isActive: !(formData.isActive !== false) })}
-                  className={`px-4 py-2 rounded-lg font-bold text-xs cursor-pointer transition-all flex items-center gap-2 border ${
-                    formData.isActive !== false
-                      ? 'bg-emerald-700 hover:bg-emerald-800 text-white border-emerald-700'
-                      : 'bg-red-600 hover:bg-red-700 text-white border-red-600'
-                  }`}
-                >
-                  {formData.isActive !== false ? (
-                    <>
-                      <Eye className="w-4 h-4" />
-                      <span>Aktiv</span>
-                    </>
-                  ) : (
-                    <>
-                      <EyeOff className="w-4 h-4" />
-                      <span>Deaktiviert</span>
-                    </>
-                  )}
-                </button>
+                {formData.status === 'pending' ? (
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, status: 'approved', isActive: true })}
+                    className="px-4 py-2 rounded-lg font-bold text-xs cursor-pointer transition-all flex items-center gap-2 border bg-amber-600 hover:bg-amber-700 text-white border-amber-600 shadow-sm"
+                  >
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Jetzt freigeben & aktivieren</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, isActive: !(formData.isActive !== false) })}
+                    className={`px-4 py-2 rounded-lg font-bold text-xs cursor-pointer transition-all flex items-center gap-2 border ${
+                      formData.isActive !== false
+                        ? 'bg-emerald-700 hover:bg-emerald-800 text-white border-emerald-700'
+                        : 'bg-red-600 hover:bg-red-700 text-white border-red-600'
+                    }`}
+                  >
+                    {formData.isActive !== false ? (
+                      <>
+                        <Eye className="w-4 h-4" />
+                        <span>Aktiv</span>
+                      </>
+                    ) : (
+                      <>
+                        <EyeOff className="w-4 h-4" />
+                        <span>Deaktiviert</span>
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
             </div>
 
