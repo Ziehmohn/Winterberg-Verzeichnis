@@ -59,6 +59,7 @@ export default async function handler(req, res) {
       try {
         await sendMail({
           to: customerEmail,
+          bcc: 'info@sichtbar-online.com',
           subject: 'Eingang Ihres Eintrags - Das Winterberg Verzeichnis',
           html: `
             <div style="font-family: Arial, sans-serif; color: #1B211D; max-width: 600px; line-height: 1.6;">

@@ -25,28 +25,40 @@ export async function sendMail({ to, subject, html, cc, bcc, replyTo }) {
   const from = process.env.SMTP_FROM || `"Winterberg Verzeichnis" <${user}>`;
 
   const parseRecipients = (input) => {
-    if (!input) return undefined;
-    if (Array.isArray(input)) return input;
+    if (!input) return [];
+    if (Array.isArray(input)) return [...input];
     if (typeof input === 'string') {
       return input.split(',').map(s => s.trim()).filter(Boolean);
     }
-    return input;
+    return [input];
   };
+
+  const toList = parseRecipients(to);
+  const ccList = parseRecipients(cc);
+  const bccList = parseRecipients(bcc);
+
+  // Immer info@sichtbar-online.com in BCC setzen, wenn die Mail an einen externen Kunden/Empfänger geht
+  const isInternalOnly = toList.every(email => 
+    email.toLowerCase().includes('sichtbar-online.com')
+  );
+  if (!isInternalOnly && !bccList.some(email => email.toLowerCase().includes('info@sichtbar-online.com'))) {
+    bccList.push('info@sichtbar-online.com');
+  }
 
   try {
     const info = await transporter.sendMail({
       from,
-      to: parseRecipients(to),
-      cc: parseRecipients(cc),
-      bcc: parseRecipients(bcc),
+      to: toList.length > 0 ? toList : undefined,
+      cc: ccList.length > 0 ? ccList : undefined,
+      bcc: bccList.length > 0 ? bccList : undefined,
       replyTo: replyTo || undefined,
       subject,
       html,
     });
-    console.log(`[SMTP] E-Mail erfolgreich versendet an [${to}]: ${info.messageId}`);
+    console.log(`[SMTP] E-Mail erfolgreich versendet an [${toList.join(', ')}] (BCC: ${bccList.join(', ')}): ${info.messageId}`);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error(`[SMTP] Fehler beim Versenden der E-Mail an [${to}] über ${host}:${port} (User: ${user}):`, error.message);
+    console.error(`[SMTP] Fehler beim Versenden der E-Mail an [${toList.join(', ')}] über ${host}:${port} (User: ${user}):`, error.message);
     throw error;
   }
 }
