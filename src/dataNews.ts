@@ -2,6 +2,81 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "nikolaus-hausbesuche-silbach-club-der-soehne-2026",
+    slug: "nikolaus-hausbesuche-silbach-club-der-soehne-2026",
+    slug_nl: "sinterklaas-huisbezoeken-silbach-club-der-soehne-2026",
+    title: "Nikolaus an der Haustür: Silbacher Stammtisch „Club der Söhne“ organisiert Hausbesuche",
+    title_nl: "Sinterklaas aan de deur: Stammtisch „Club der Söhne“ uit Silbach organiseert huisbezoeken",
+    author: "Winterberg-Verzeichnis Redaktion",
+    imageUrl: "/news-nikolaus-silbach-club-der-soehne-2026.jpg",
+    imageCredit: "Club der Söhne Silbach",
+    isAiGenerated: false,
+    status: "approved",
+    category: "freizeit",
+    category_nl: "vrije-tijd",
+    date: "2026-11-14T21:45:00.000Z",
+    content: `Am Nikolaustag kommt der Nikolaus in Silbach direkt zu den Familien nach Hause: Der Silbacher Stammtisch „Club der Söhne“ setzt seine Tradition fort und organisiert am Sonntag, 6. Dezember 2026, wieder persönliche Hausbesuche für Kinder bis einschließlich zehn Jahre. Anmeldungen nimmt der Stammtisch bis zum 1. Dezember per WhatsApp entgegen.
+
+Winterberg-Silbach – Dass das Dorfleben vom Zusammenhalt lebt, zeigt sich in Silbach auch in der Vorweihnachtszeit: Die Mitglieder des heimischen Stammtischs „Club der Söhne“ schicken am zweiten Adventssonntag wieder den Nikolaus durch den Ort. Ab 14:00 Uhr macht sich der bärtige Gast auf den Weg durch die Straßen des Bergdorfs, um den Kindern direkt an der Haustür eine Freude zu machen.
+
+### Hausbesuche für Kinder bis einschließlich zehn Jahre
+
+Die Aktion richtet sich an Familien mit Kindern bis zum Alter von zehn Jahren. Damit der Nikolaus bei jedem Besuch individuell auf das Kind eingehen kann, sammelt der Stammtisch im Vorfeld neben den Kontaktdaten auch kurze Begebenheiten aus dem Alltag der Kleinen – etwa was im vergangenen Jahr besonders gut geklappt hat oder worüber die Familie schmunzeln musste.
+
+### Anmeldung per WhatsApp bis zum 1. Dezember
+
+Für die zeitliche Einteilung und die Routenplanung durch das Dorf bittet der „Club der Söhne“ um eine vorherige Anmeldung bis spätestens Dienstag, 1. Dezember 2026. 
+
+Die Anmeldung erfolgt per WhatsApp an die Mobilfunknummer **0170-2267660**. Benötigt werden dazu folgende Angaben:
+
+* Vollständiger Name des Kindes
+* Genaue Adresse in Silbach
+* Eine kleine Anekdote oder Besonderheit über das Kind
+
+Anhand der Rückmeldungen planen die Silbacher die Route des Nikolaus, damit am Sonntagnachmittag alle angemeldeten Kinder rechtzeitig besucht werden können.
+
+:::contact
+### Nikolausbesuche 2026 in Silbach im Überblick
+* **Aktion:** Hausbesuche des Nikolaus direkt an der Haustür
+* **Veranstalter:** Stammtisch „Club der Söhne“ (Winterberg-Silbach)
+* **Termin:** Sonntag, 6. Dezember 2026, ab 14:00 Uhr
+* **Teilnahme:** Kinder bis einschließlich 10 Jahre
+* **Anmeldefrist:** Bis Dienstag, 1. Dezember 2026
+* **Anmeldeweg:** Per WhatsApp an 0170-2267660
+* **Benötigte Angaben:** Name des Kindes, Adresse in Silbach, kleine Anekdote
+:::`,
+    content_nl: `Op sinterklaasdag komt de Sint in Silbach persoonlijk aan de deur: de plaatselijke Stammtisch „Club der Söhne“ zet een vertrouwde traditie voort en organiseert op zondag 6 december 2026 weer huisbezoeken voor kinderen tot en met tien jaar. Aanmelden kan tot en met 1 december via WhatsApp.
+
+Winterberg-Silbach – Dat het dorpsleven draait om saamhorigheid, blijkt in Silbach ook in de aanloop naar kerst: de leden van de dorpsstammtisch „Club der Söhne“ sturen op de tweede adventszondag de goedheiligman op pad. Vanaf 14:00 uur trekt het gezelschap door de straten van het bergdorp om de kinderen aan huis te verrassen.
+
+### Huisbezoeken voor kinderen tot en met tien jaar
+
+Het initiatief is bedoeld voor gezinnen met kinderen tot en met 10 jaar. Om ervoor te zorgen dat het bezoek persoonlijk is en de Sint tijdens zijn ronde echt contact kan maken met ieder kind, verzamelt de organisatie bij de aanmelding ook korte anekdotes of weetjes uit het afgelopen jaar – bijvoorbeeld wat er goed ging of een leuke gebeurtenis.
+
+### Aanmelden via WhatsApp tot en met 1 december
+
+Voor de routeplanning door het dorp vraagt de „Club der Söhne“ om een tijdige aanmelding uiterlijk op dinsdag 1 december 2026.
+
+Aanmelden kan via een WhatsApp-bericht naar het nummer **0170-2267660**. Daarbij zijn de volgende gegevens nodig:
+
+* Volledige naam van het kind
+* Adres in Silbach
+* Een korte anekdote of bijzonderheid over het kind
+
+Met deze gegevens stippelen de organisatoren de route uit, zodat alle aangemelde kinderen op zondagmiddag een persoonlijk bezoekje aan de deur kunnen verwachten.
+
+:::contact
+### Sinterklaasbezoeken 2026 in Silbach in het kort
+* **Activiteit:** Huisbezoek van de Sint aan de voordeur
+* **Organisatie:** Stammtisch „Club der Söhne“ (Winterberg-Silbach)
+* **Datum & tijd:** Zondag 6 december 2026, vanaf 14:00 uur
+* **Doelgroep:** Kinderen tot en met 10 jaar
+* **Aanmelddeadline:** Dinsdag 1 december 2026
+* **Aanmeldwijze:** Via WhatsApp naar 0170-2267660
+* **Benodigde gegevens:** Naam van het kind, adres in Silbach, korte anekdote
+:::`,
+  },
+  {
     id: "winterberg-beliebtheit-social-media-kurort-ranking",
     slug: "winterberg-beliebtheit-social-media-kurort-ranking",
     slug_nl: "winterberg-populariteit-social-media-kuuroord-ranking",
