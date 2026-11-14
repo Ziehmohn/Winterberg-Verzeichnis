@@ -356,6 +356,30 @@ export const businesses: Business[] = [
         price: 'Kostenlos'
       },
       {
+        id: 'nikolaus-hausbesuche-silbach-2026',
+        title: 'Nikolaus-Hausbesuche in Silbach – Stammtisch „Club der Söhne“',
+        title_nl: 'Sinterklaas-huisbezoeken in Silbach – Stammtisch „Club der Söhne“',
+        startDate: '2026-12-06',
+        endDate: '2026-12-06',
+        startTime: '14:00',
+        endTime: '',
+        category: 'Familie & Kinder',
+        location: 'Winterberg-Silbach (Hausbesuche an der Haustür)',
+        coordinates: {
+          lat: 51.2263,
+          lng: 8.4727
+        },
+        price: 'Kostenlos (Anmeldung bis 01.12. erforderlich)',
+        imageUrl: '/news-nikolaus-silbach-club-der-soehne-2026.jpg',
+        imageCredit: 'Club der Söhne Silbach',
+        organizer: 'Stammtisch Club der Söhne Silbach',
+        organizer_nl: 'Stammtisch Club der Söhne Silbach',
+        description: 'Der Silbacher Stammtisch „Club der Söhne“ führt seine bewährte Tradition fort und organisiert am Sonntag, 6. Dezember 2026, ab 14:00 Uhr persönliche Hausbesuche des Nikolaus für Kinder bis einschließlich 10 Jahre.\n\nAnmeldung bis spätestens 1. Dezember 2026 per WhatsApp an 0170-2267660 unter Angabe von:\n* Name des Kindes\n* Adresse in Silbach\n* Kleine Anekdote / Begebenheit über das Kind für den Nikolausbesuch.',
+        description_nl: 'De dorpsstammtisch „Club der Söhne“ uit Silbach organiseert op zondag 6 december 2026 vanaf 14:00 uur weer persoonlijke huisbezoeken van de goedheiligman voor kinderen tot en met 10 jaar.\n\nAanmelden kan tot en met 1 december 2026 via WhatsApp naar 0170-2267660 met vermelding van:\n* Naam van het kind\n* Adres in Silbach\n* Korte anekdote of bijzonderheid over het kind voor het bezoek.',
+        slug: 'nikolaus-hausbesuche-silbach-2026',
+        slug_nl: 'sinterklaas-huisbezoeken-silbach-2026'
+      },
+      {
         id: 'eberspaecher-rodel-weltcup-2026',
         title: 'EBERSPÄCHER Rodel-Weltcup',
         startDate: '2026-11-28',

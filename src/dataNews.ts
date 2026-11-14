@@ -35,6 +35,8 @@ Die Anmeldung erfolgt per WhatsApp an die Mobilfunknummer **0170-2267660**. Ben�
 
 Anhand der Rückmeldungen planen die Silbacher die Route des Nikolaus, damit am Sonntagnachmittag alle angemeldeten Kinder rechtzeitig besucht werden können.
 
+[Zum Event: Nikolaus-Hausbesuche in Silbach](/veranstaltungen/nikolaus-hausbesuche-silbach-2026)
+
 :::contact
 ### Nikolausbesuche 2026 in Silbach im Überblick
 * **Aktion:** Hausbesuche des Nikolaus direkt an der Haustür
@@ -44,6 +46,7 @@ Anhand der Rückmeldungen planen die Silbacher die Route des Nikolaus, damit am 
 * **Anmeldefrist:** Bis Dienstag, 1. Dezember 2026
 * **Anmeldeweg:** Per WhatsApp an 0170-2267660
 * **Benötigte Angaben:** Name des Kindes, Adresse in Silbach, kleine Anekdote
+* **Veranstaltungskalender:** [Event-Details zu den Nikolausbesuchen](/veranstaltungen/nikolaus-hausbesuche-silbach-2026)
 :::`,
     content_nl: `Op sinterklaasdag komt de Sint in Silbach persoonlijk aan de deur: de plaatselijke Stammtisch „Club der Söhne“ zet een vertrouwde traditie voort en organiseert op zondag 6 december 2026 weer huisbezoeken voor kinderen tot en met tien jaar. Aanmelden kan tot en met 1 december via WhatsApp.
 
@@ -65,6 +68,8 @@ Aanmelden kan via een WhatsApp-bericht naar het nummer **0170-2267660**. Daarbij
 
 Met deze gegevens stippelen de organisatoren de route uit, zodat alle aangemelde kinderen op zondagmiddag een persoonlijk bezoekje aan de deur kunnen verwachten.
 
+[Bekijk evenement: Sinterklaas-huisbezoeken in Silbach](/nl/evenementen/sinterklaas-huisbezoeken-silbach-2026)
+
 :::contact
 ### Sinterklaasbezoeken 2026 in Silbach in het kort
 * **Activiteit:** Huisbezoek van de Sint aan de voordeur
@@ -74,6 +79,7 @@ Met deze gegevens stippelen de organisatoren de route uit, zodat alle aangemelde
 * **Aanmelddeadline:** Dinsdag 1 december 2026
 * **Aanmeldwijze:** Via WhatsApp naar 0170-2267660
 * **Benodigde gegevens:** Naam van het kind, adres in Silbach, korte anekdote
+* **Evenementenagenda:** [Evenementdetails bekijken in de agenda](/nl/evenementen/sinterklaas-huisbezoeken-silbach-2026)
 :::`,
   },
   {
