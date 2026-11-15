@@ -70,7 +70,45 @@ async function startServer() {
   const PORT = 3000;
 
 
+  // Lightweight in-memory rate limiter for public API endpoints
+  const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+  const getClientIp = (req: express.Request): string =>
+    (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
+
+  const checkRateLimit = (key: string, maxRequests: number, windowMs: number): boolean => {
+    const now = Date.now();
+    const entry = rateLimitStore.get(key);
+    if (!entry || now > entry.resetAt) {
+      rateLimitStore.set(key, { count: 1, resetAt: now + windowMs });
+      return true;
+    }
+    if (entry.count >= maxRequests) return false;
+    entry.count++;
+    return true;
+  };
+
+  const isAllowedOrigin = (req: express.Request): boolean => {
+    if (process.env.NODE_ENV !== 'production') return true;
+    const origin = (req.headers.origin || req.headers.referer || '').toLowerCase();
+    if (!origin) return true;
+    return (
+      origin.includes('winterberg-verzeichnis.de') ||
+      origin.includes('vercel.app') ||
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1')
+    );
+  };
+
+  let lastRedirectsRefresh = 0;
   app.post('/api/refresh-redirects', (req, res) => {
+    if (!isAllowedOrigin(req)) {
+      return res.status(403).json({ error: 'Forbidden origin' });
+    }
+    const now = Date.now();
+    if (now - lastRedirectsRefresh < 10_000) {
+      return res.status(429).json({ error: 'Too many refresh requests' });
+    }
+    lastRedirectsRefresh = now;
     fetchRedirects();
     res.json({ success: true });
   });
@@ -173,6 +211,13 @@ async function startServer() {
     if (!text || typeof text !== 'string') {
       return res.status(400).json({ error: 'Text parameter is required' });
     }
+    if (text.length > 2000) {
+      return res.status(400).json({ error: 'Text exceeds maximum length of 2000 characters' });
+    }
+    const ip = getClientIp(req);
+    if (!checkRateLimit(`translate:${ip}`, 60, 60_000)) {
+      return res.status(429).json({ error: 'Rate limit exceeded' });
+    }
 
     try {
       const upstreamUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(from)}&tl=${encodeURIComponent(to)}&dt=t`;
@@ -207,9 +252,35 @@ async function startServer() {
   // Email Route
   app.post('/api/send-mail', async (req, res) => {
     try {
-      const { to, subject, html, cc, bcc, replyTo } = req.body;
+      if (!isAllowedOrigin(req)) {
+        return res.status(403).json({ error: 'Forbidden origin' });
+      }
+      const ip = getClientIp(req);
+      if (!checkRateLimit(`mail:${ip}`, 10, 15 * 60_000)) {
+        return res.status(429).json({ error: 'Zu viele E-Mail-Anfragen. Bitte später erneut versuchen.' });
+      }
+
+      const { to, subject, html, cc, bcc, replyTo } = req.body || {};
       if (!to || !subject || !html) {
         return res.status(400).json({ error: 'Missing required fields' });
+      }
+      if (typeof subject !== 'string' || subject.length > 200 || /[\r\n]/.test(subject)) {
+        return res.status(400).json({ error: 'Invalid subject' });
+      }
+      if (typeof html !== 'string' || html.length > 100_000) {
+        return res.status(400).json({ error: 'Email content too large' });
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const toList = Array.isArray(to) ? to : String(to).split(',').map(x => x.trim()).filter(Boolean);
+      if (toList.length === 0 || toList.length > 3 || !toList.every(addr => emailRegex.test(addr))) {
+        return res.status(400).json({ error: 'Invalid recipient address' });
+      }
+      if (cc || bcc) {
+        return res.status(400).json({ error: 'CC/BCC is not permitted' });
+      }
+      if (replyTo && (typeof replyTo !== 'string' || !emailRegex.test(replyTo.trim()))) {
+        return res.status(400).json({ error: 'Invalid replyTo address' });
       }
 
       // Read SMTP credentials from env
@@ -718,10 +789,25 @@ async function startServer() {
     const distPath = path.join(process.cwd(), 'dist');
 
     // First check if a static file exists (including prerendered index.html in subfolders)
-    app.use(express.static(distPath));
+    // Immutable long-term cache for content-hashed Vite assets
+    app.use('/assets', express.static(path.join(distPath, 'assets'), {
+      maxAge: '1y',
+      immutable: true,
+    }));
+
+    app.use(express.static(distPath, {
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+        } else {
+          res.setHeader('Cache-Control', 'public, max-age=86400');
+        }
+      },
+    }));
 
     // Fallback to the SPA index.html for any unmatched routes
     app.use((req, res) => {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }

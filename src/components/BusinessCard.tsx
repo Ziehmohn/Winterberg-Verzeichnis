@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Business, CardLayoutId } from '../types';
 import { useTranslation } from '../i18n';
 import { getLocalizedBusiness } from '../utils/translator';
@@ -6,24 +6,29 @@ import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import { useFavorites } from '../utils/favorites';
 import { getBusinessPath } from '../utils/routes';
-import {
-  CardSharedData,
-  LayoutDefault,
-  LayoutModernCompact,
-  LayoutHorizontalCard,
-  LayoutEditorialMinimal,
-  LayoutHeroOverlay,
-  LayoutBoldBrand,
-  LayoutFloatingAvatar,
-  LayoutAccentSidebar,
-  LayoutBadgeRibbon,
-  LayoutPhotoMosaic,
-  LayoutTagCloudServices,
-  LayoutFlatPaper,
-  LayoutDarkEmerald,
-  LayoutInteractiveFlip,
-  LayoutBentoGrid
-} from './card-layouts/CardLayoutVariants';
+import { CardSharedData, LayoutDefault } from './card-layouts/CardLayoutDefault';
+
+const lazyVariant = <K extends keyof typeof import('./card-layouts/CardLayoutVariants')>(name: K) =>
+  React.lazy(() =>
+    import('./card-layouts/CardLayoutVariants').then((m) => ({
+      default: m[name] as React.ComponentType<{ data: CardSharedData }>,
+    }))
+  );
+
+const LayoutModernCompact = lazyVariant('LayoutModernCompact');
+const LayoutHorizontalCard = lazyVariant('LayoutHorizontalCard');
+const LayoutEditorialMinimal = lazyVariant('LayoutEditorialMinimal');
+const LayoutHeroOverlay = lazyVariant('LayoutHeroOverlay');
+const LayoutBoldBrand = lazyVariant('LayoutBoldBrand');
+const LayoutFloatingAvatar = lazyVariant('LayoutFloatingAvatar');
+const LayoutAccentSidebar = lazyVariant('LayoutAccentSidebar');
+const LayoutBadgeRibbon = lazyVariant('LayoutBadgeRibbon');
+const LayoutPhotoMosaic = lazyVariant('LayoutPhotoMosaic');
+const LayoutTagCloudServices = lazyVariant('LayoutTagCloudServices');
+const LayoutFlatPaper = lazyVariant('LayoutFlatPaper');
+const LayoutDarkEmerald = lazyVariant('LayoutDarkEmerald');
+const LayoutInteractiveFlip = lazyVariant('LayoutInteractiveFlip');
+const LayoutBentoGrid = lazyVariant('LayoutBentoGrid');
 
 let cachedGlobalLayout: CardLayoutId = 'default';
 if (typeof window !== 'undefined') {
@@ -112,37 +117,61 @@ export default function BusinessCard({
 
   const activeLayout: CardLayoutId = layout || getGlobalCardLayout() || 'default';
 
+  if (activeLayout === 'default') {
+    return <LayoutDefault data={sharedData} />;
+  }
+
+  let VariantComponent: React.ComponentType<{ data: CardSharedData }> = LayoutDefault;
   switch (activeLayout) {
     case 'modern-compact':
-      return <LayoutModernCompact data={sharedData} />;
+      VariantComponent = LayoutModernCompact;
+      break;
     case 'horizontal-card':
-      return <LayoutHorizontalCard data={sharedData} />;
+      VariantComponent = LayoutHorizontalCard;
+      break;
     case 'editorial-minimal':
-      return <LayoutEditorialMinimal data={sharedData} />;
+      VariantComponent = LayoutEditorialMinimal;
+      break;
     case 'hero-overlay':
-      return <LayoutHeroOverlay data={sharedData} />;
+      VariantComponent = LayoutHeroOverlay;
+      break;
     case 'bold-brand':
-      return <LayoutBoldBrand data={sharedData} />;
+      VariantComponent = LayoutBoldBrand;
+      break;
     case 'floating-avatar':
-      return <LayoutFloatingAvatar data={sharedData} />;
+      VariantComponent = LayoutFloatingAvatar;
+      break;
     case 'accent-sidebar':
-      return <LayoutAccentSidebar data={sharedData} />;
+      VariantComponent = LayoutAccentSidebar;
+      break;
     case 'badge-ribbon':
-      return <LayoutBadgeRibbon data={sharedData} />;
+      VariantComponent = LayoutBadgeRibbon;
+      break;
     case 'photo-mosaic':
-      return <LayoutPhotoMosaic data={sharedData} />;
+      VariantComponent = LayoutPhotoMosaic;
+      break;
     case 'tag-cloud-services':
-      return <LayoutTagCloudServices data={sharedData} />;
+      VariantComponent = LayoutTagCloudServices;
+      break;
     case 'flat-paper':
-      return <LayoutFlatPaper data={sharedData} />;
+      VariantComponent = LayoutFlatPaper;
+      break;
     case 'dark-emerald':
-      return <LayoutDarkEmerald data={sharedData} />;
+      VariantComponent = LayoutDarkEmerald;
+      break;
     case 'interactive-flip':
-      return <LayoutInteractiveFlip data={sharedData} />;
+      VariantComponent = LayoutInteractiveFlip;
+      break;
     case 'bento-grid':
-      return <LayoutBentoGrid data={sharedData} />;
-    case 'default':
+      VariantComponent = LayoutBentoGrid;
+      break;
     default:
       return <LayoutDefault data={sharedData} />;
   }
+
+  return (
+    <Suspense fallback={<LayoutDefault data={sharedData} />}>
+      <VariantComponent data={sharedData} />
+    </Suspense>
+  );
 }

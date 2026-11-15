@@ -40,18 +40,8 @@ interface AdminDesignManagerProps {
   activeThemeKey: string;
 }
 
-export function loadGoogleFont(fontName: string) {
-  if (!fontName) return;
-  const cleanFont = fontName.trim().replace(/\s+/g, '+');
-  const id = `google-font-${cleanFont.toLowerCase()}`;
-  if (!document.getElementById(id)) {
-    const link = document.createElement('link');
-    link.id = id;
-    link.rel = 'stylesheet';
-    link.href = `https://fonts.googleapis.com/css2?family=${cleanFont}:wght@300;400;500;600;700;800&display=swap`;
-    document.head.appendChild(link);
-  }
-}
+import { loadGoogleFont } from '../utils/fontLoader';
+export { loadGoogleFont };
 
 export const POPULAR_HEADLINE_FONTS = [
   'Manrope',
