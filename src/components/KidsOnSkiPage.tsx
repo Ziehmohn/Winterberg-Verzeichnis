@@ -263,8 +263,8 @@ export const KidsOnSkiPage: React.FC<KidsOnSkiPageProps> = ({
             </p>
             <p>
               {isNl
-                ? 'Het aanbod in Winterberg wordt georganiseerd door de Winterberg Touristik und Wirtschaft GmbH in samenwerking met deelnemende hotels, vakantieparken, skischolen, skiverhuurders en het Skiliftkarussell Winterberg. Het aantal plaatsen per winterseizoen is beperkt (ca. 200 plaatsen).'
-                : 'Das Angebot wird vor Ort von der Winterberg Touristik und Wirtschaft GmbH in Kooperation mit teilnehmenden Unterkünften, Skischulen, Skiverleihen und den Bergbahnen umgesetzt. Das Kontingent pro Wintersaison ist begrenzt (ca. 200 Plätze).'}
+                ? 'Het aanbod in Winterberg wordt georganiseerd door de Winterberg Touristik und Wirtschaft GmbH in samenwerking met deelnemende hotels, vakantieparken, skischolen, skiverhuurders en het Skiliftkarussell Winterberg.'
+                : 'Das Angebot wird vor Ort von der Winterberg Touristik und Wirtschaft GmbH in Kooperation mit teilnehmenden Unterkünften, Skischulen, Skiverleihen und den Bergbahnen umgesetzt.'}
             </p>
           </div>
         </section>
@@ -380,8 +380,8 @@ export const KidsOnSkiPage: React.FC<KidsOnSkiPageProps> = ({
           </div>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
             {isNl
-              ? 'Let op: beperkte beschikbaarheid per actieweek. De exacte beschikbaarheid hangt af van het vrije contingent van de betreffende accommodatie.'
-              : 'Hinweis: Begrenztes Kontingent pro Aktionswoche. Maßgeblich sind die freien Kapazitäten der jeweiligen Partnerunterkunft.'}
+              ? 'Maatgevend is de beschikbaarheid van de betreffende partneraccommodatie in de gekozen actieweek.'
+              : 'Maßgeblich ist die Verfügbarkeit der jeweiligen Partnerunterkunft in der gewählten Aktionswoche.'}
           </p>
         </section>
 
@@ -520,8 +520,8 @@ export const KidsOnSkiPage: React.FC<KidsOnSkiPageProps> = ({
               <div>
                 <strong>{isNl ? 'Bevestiging / voucher ontvangen:' : 'Bestätigung bzw. Gutschein erhalten:'}</strong>{' '}
                 {isNl
-                  ? 'Na controle van de voorwaarden en het beschikbare contingent ontvangt u per e-mail de bevestiging of voucher voor de gratis skiles, skiverhuur en skipas.'
-                  : 'Nach Prüfung der Teilnahmebedingungen und des Kontingents wird die Bestätigung bzw. der Gutschein für Skikurs, Skiverleih und Skipass per E-Mail zugesandt.'}
+                  ? 'Na controle van de deelnamevoorwaarden ontvangt u per e-mail de bevestiging of voucher voor de gratis skiles, skiverhuur en skipas.'
+                  : 'Nach Prüfung der Teilnahmebedingungen wird die Bestätigung bzw. der Gutschein für Skikurs, Skiverleih und Skipass per E-Mail zugesandt.'}
               </div>
             </li>
             <li className="flex gap-3">

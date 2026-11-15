@@ -670,8 +670,27 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
               {isNl ? '5 nachten, 4× skiles, verhuur & skipas' : '5 Nächte, 4× Skikurs, Verleih & 4-Tage-Skipass'}
             </div>
             <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Aanmelding' : 'Teilnahme'}</strong>
-              {isNl ? 'Beperkt aantal plaatsen via partnerbedrijven' : 'Limitiertes Kontingent über Partnerbetriebe'}
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Aanbieder & info' : 'Anbieter & Infos'}</strong>
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
+                <a
+                  href="https://www.winterberg.de/aktivitaeten-erlebnisse/winter/kids-on-ski/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1"
+                >
+                  winterberg.de
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a
+                  href="https://kids-on-ski.com/de/skigebiet/winterberg/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1"
+                >
+                  kids-on-ski.com
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
