@@ -5,6 +5,7 @@ import { getLocalizedBusiness } from '../utils/translator';
 import { getBusinessReviewUsps } from '../utils/reviewUsps';
 import { getBusinessRankingBadges } from '../utils/bestOfRankingBadges';
 import { useFavorites } from '../utils/favorites';
+import { getBusinessPath } from '../utils/routes';
 import {
   CardSharedData,
   LayoutDefault,
@@ -92,6 +93,7 @@ export default function BusinessCard({
   const sharedData: CardSharedData = {
     business,
     lang,
+    businessUrl: getBusinessPath(business, lang),
     allBusinesses,
     searchQuery,
     onClick,

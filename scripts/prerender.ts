@@ -8,6 +8,7 @@ import {
   STATIC_PAGE_SLUGS,
   getCategorySlug,
   getSubcategorySlug,
+  getBusinessPath,
   slugify,
   buildLocalizedUrl,
   getAlternateUrls,
@@ -46,6 +47,7 @@ interface PageSEO {
   ogType?: string;
   ogImage?: string;
   jsonLd?: any;
+  bodyHtml?: string;
 }
 
 const pagesToPrerender: PageSEO[] = [];
@@ -60,6 +62,61 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
+const activeBusinesses = businesses.filter((b: any) => !isBusinessDeactivated(b));
+
+function renderCategoryLinksHtml(lang: 'de' | 'nl'): string {
+  const prefix = lang === 'nl' ? '/nl' : '';
+  const links = categories.map(c => {
+    const cSlug = getCategorySlug(c.name, lang);
+    return `<a href="${prefix}/${cSlug}" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #E7E2DA;border-radius:999px;color:#0F4C2E;text-decoration:none;font-size:13px;font-weight:600">${escapeHtml(c.name)}</a>`;
+  }).join('');
+  return `<nav aria-label="${lang === 'nl' ? 'Categorieën' : 'Kategorien'}" style="max-width:1180px;margin:0 auto 20px;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px">${links}</nav>`;
+}
+
+function renderBusinessCardsHtml(list: any[], lang: 'de' | 'nl', extraTopHtml = ''): string {
+  const cards = list.slice(0, 24).map((b: any) => {
+    const loc = getLocalizedBusiness(b, lang);
+    const href = getBusinessPath(b, lang);
+    const desc = (loc.description || '').trim().slice(0, 160);
+    const locationText = b.district ? `${b.address ? b.address + ', ' : ''}${b.district}` : (b.address || 'Winterberg');
+    return `<article class="sk-card" style="animation:none">
+      <div style="font-size:11px;font-weight:700;color:#F2761B;text-transform:uppercase;margin-bottom:4px">${escapeHtml(b.category)}${b.subcategory ? ` · ${escapeHtml(b.subcategory)}` : ''}</div>
+      <h3 style="margin:0 0 8px;font-size:18px;line-height:1.25"><a href="${escapeHtml(href)}" style="color:#1B211D;text-decoration:none;font-weight:700">${escapeHtml(b.name)}</a></h3>
+      ${desc ? `<p style="margin:0 0 10px;font-size:14px;line-height:1.5;color:#4A544D">${escapeHtml(desc)}${loc.description && loc.description.length > 160 ? '…' : ''}</p>` : ''}
+      <div style="font-size:13px;color:#5F6B63">${escapeHtml(locationText)}</div>
+    </article>`;
+  }).join('\n          ');
+
+  return `${extraTopHtml}<main class="sk-cards">\n          ${cards}\n        </main>`;
+}
+
+function renderBusinessDetailHtml(b: any, lang: 'de' | 'nl'): string {
+  const loc = getLocalizedBusiness(b, lang);
+  const prefix = lang === 'nl' ? '/nl' : '';
+  const catSlug = getCategorySlug(b.category, lang);
+  const subSlug = b.subcategory ? getSubcategorySlug(b.subcategory, lang) : '';
+  const fullDesc = (loc.description || '').trim();
+  const services = Array.isArray(loc.services) ? loc.services : [];
+  const products = Array.isArray(loc.products) ? loc.products : [];
+
+  return `<main class="sk-cards">
+          <article class="sk-card" style="animation:none;grid-column:1 / -1">
+            <nav aria-label="Breadcrumb" style="font-size:13px;color:#5F6B63;margin-bottom:12px">
+              <a href="${prefix || '/'}" style="color:#0F4C2E;text-decoration:none">Start</a> ›
+              <a href="${prefix}/${catSlug}" style="color:#0F4C2E;text-decoration:none">${escapeHtml(b.category)}</a>${subSlug ? ` › <a href="${prefix}/${catSlug}/${subSlug}" style="color:#0F4C2E;text-decoration:none">${escapeHtml(b.subcategory)}</a>` : ''}
+            </nav>
+            ${fullDesc ? `<p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#1B211D">${escapeHtml(fullDesc)}</p>` : ''}
+            <dl style="margin:0;display:grid;gap:8px;font-size:14px;color:#4A544D">
+              ${b.address ? `<div><strong>${lang === 'nl' ? 'Adres' : 'Adresse'}:</strong> ${escapeHtml(b.address)}${b.district ? `, ${escapeHtml(b.district)}` : ''}</div>` : ''}
+              ${b.phone ? `<div><strong>${lang === 'nl' ? 'Telefoon' : 'Telefon'}:</strong> <a href="tel:${escapeHtml(b.phone)}" style="color:#0F4C2E">${escapeHtml(b.phone)}</a></div>` : ''}
+              ${b.website ? `<div><strong>Website:</strong> <a href="${escapeHtml(b.website)}" rel="noopener noreferrer" style="color:#0F4C2E">${escapeHtml(b.website)}</a></div>` : ''}
+            </dl>
+            ${services.length > 0 ? `<p style="margin:14px 0 0;font-size:13px;color:#5F6B63"><strong>${lang === 'nl' ? 'Diensten' : 'Leistungen'}:</strong> ${escapeHtml(services.join(', '))}</p>` : ''}
+            ${products.length > 0 ? `<p style="margin:6px 0 0;font-size:13px;color:#5F6B63"><strong>${lang === 'nl' ? 'Producten' : 'Produkte'}:</strong> ${escapeHtml(products.join(', '))}</p>` : ''}
+          </article>
+        </main>`;
+}
+
 // 1. Homepage DE & NL
 pagesToPrerender.push({
   path: '',
@@ -71,7 +128,8 @@ pagesToPrerender.push({
   alternateXDefault: `${baseUrl}/`,
   lang: 'de',
   h1: 'Winterberger Unternehmen',
-  h2: 'Das große Branchen- und Firmenverzeichnis für Winterberg und Umgebung'
+  h2: 'Das große Branchen- und Firmenverzeichnis für Winterberg und Umgebung',
+  bodyHtml: renderBusinessCardsHtml(activeBusinesses.slice(0, 12), 'de', renderCategoryLinksHtml('de'))
 });
 
 pagesToPrerender.push({
@@ -84,7 +142,8 @@ pagesToPrerender.push({
   alternateXDefault: `${baseUrl}/`,
   lang: 'nl',
   h1: 'Bedrijven in Winterberg',
-  h2: 'De grote bedrijvengids voor Winterberg en omgeving'
+  h2: 'De grote bedrijvengids voor Winterberg en omgeving',
+  bodyHtml: renderBusinessCardsHtml(activeBusinesses.slice(0, 12), 'nl', renderCategoryLinksHtml('nl'))
 });
 
 // 2. All businesses
@@ -98,7 +157,8 @@ pagesToPrerender.push({
   alternateXDefault: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
   lang: 'de',
   h1: 'Alle Unternehmen in Winterberg',
-  h2: 'Vollständige Übersicht aller Betriebe, Handwerker und Dienstleister'
+  h2: 'Vollständige Übersicht aller Betriebe, Handwerker und Dienstleister',
+  bodyHtml: renderBusinessCardsHtml(activeBusinesses, 'de', renderCategoryLinksHtml('de'))
 });
 
 pagesToPrerender.push({
@@ -111,7 +171,8 @@ pagesToPrerender.push({
   alternateXDefault: `${baseUrl}/${STATIC_PAGE_SLUGS.all.de}`,
   lang: 'nl',
   h1: 'Alle bedrijven in Winterberg',
-  h2: 'Compleet overzicht van alle bedrijven en dienstverleners'
+  h2: 'Compleet overzicht van alle bedrijven en dienstverleners',
+  bodyHtml: renderBusinessCardsHtml(activeBusinesses, 'nl', renderCategoryLinksHtml('nl'))
 });
 
 
@@ -120,6 +181,7 @@ DISTRICTS.forEach(district => {
   const dSlug = getDistrictSlug(district);
   const pathDe = `${STATIC_PAGE_SLUGS.all.de}/${dSlug}`;
   const pathNl = `nl/${STATIC_PAGE_SLUGS.all.nl}/${dSlug}`;
+  const districtBusinesses = activeBusinesses.filter((b: any) => (b.district || '').toLowerCase() === district.toLowerCase());
 
   pagesToPrerender.push({
     path: pathDe,
@@ -131,7 +193,8 @@ DISTRICTS.forEach(district => {
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'de',
     h1: `Unternehmen in ${district}`,
-    h2: `Lokale Betriebe, Handwerker und Dienstleister im Winterberger Ortsteil ${district}`
+    h2: `Lokale Betriebe, Handwerker und Dienstleister im Winterberger Ortsteil ${district}`,
+    bodyHtml: renderBusinessCardsHtml(districtBusinesses, 'de')
   });
 
   pagesToPrerender.push({
@@ -144,7 +207,8 @@ DISTRICTS.forEach(district => {
     alternateXDefault: `${baseUrl}/${pathDe}`,
     lang: 'nl',
     h1: `Bedrijven in ${district}`,
-    h2: `Lokale ondernemingen, vakmensen en dienstverleners in Winterberg-${district}`
+    h2: `Lokale ondernemingen, vakmensen en dienstverleners in Winterberg-${district}`,
+    bodyHtml: renderBusinessCardsHtml(districtBusinesses, 'nl')
   });
 });
 
@@ -390,6 +454,17 @@ const staticPageConfigs: {
     h1Nl: 'Skiën in Winterberg – Pistes, Skihutten, Skipasprijzen & Avondskiën',
     h2De: 'Offizielle Skipasspreise 2026/27, Skiliftkarussell, Hüttenguide & Flutlicht',
     h2Nl: 'Officiële tarieven 2026/27, Skiliftkarussell, berghuttengids en avondskiën'
+  },
+  {
+    key: 'kidsOnSkiTheme',
+    titleDe: 'Kids on Ski Winterberg: Kostenloser Skiurlaub für Kinder (3–5 Jahre)',
+    titleNl: 'Kids on Ski Winterberg: Gratis skivakantie voor kinderen (3–5 jaar)',
+    descDe: 'Sachliche Übersicht zu Kids on Ski in Winterberg (Winterberg Touristik und Wirtschaft GmbH): Zielgruppe, Leistungen, Zeiträume 2026/27, Partnerbetriebe und Anmeldung.',
+    descNl: 'Feitelijke informatie over Kids on Ski in Winterberg: voorwaarden, inbegrepen diensten, actieperiodes 2026/27, deelnemende bedrijven en aanmelding.',
+    h1De: 'Kids on Ski Winterberg – Kostenloser Skiurlaub für Kinder (3–5 Jahre)',
+    h1Nl: 'Kids on Ski Winterberg – Gratis skivakantie voor kinderen (3–5 jaar)',
+    h2De: 'Leistungen, Aktionszeiträume, teilnehmende Partnerbetriebe & Anmeldung',
+    h2Nl: 'Diensten, actieperiodes, deelnemende bedrijven & aanmelding'
   },
   {
     key: 'skifahrenWinterberg',
@@ -687,7 +762,8 @@ categories.forEach(c => {
     lang: 'de',
     h1: `${c.name} in Winterberg`,
     h2: `Übersicht aller Fachbetriebe für ${c.name} in der Region`,
-    jsonLd: generateCollectionPageSchema(c.name, undefined, catBusinesses as any, 'de')
+    jsonLd: generateCollectionPageSchema(c.name, undefined, catBusinesses as any, 'de'),
+    bodyHtml: renderBusinessCardsHtml(catBusinesses.filter((b: any) => !isBusinessDeactivated(b)), 'de')
   });
 
   pagesToPrerender.push({
@@ -701,7 +777,8 @@ categories.forEach(c => {
     lang: 'nl',
     h1: `${c.name} in Winterberg`,
     h2: `Overzicht van alle bedrijven voor ${c.name} in de regio`,
-    jsonLd: generateCollectionPageSchema(c.name, undefined, catBusinesses as any, 'nl')
+    jsonLd: generateCollectionPageSchema(c.name, undefined, catBusinesses as any, 'nl'),
+    bodyHtml: renderBusinessCardsHtml(catBusinesses.filter((b: any) => !isBusinessDeactivated(b)), 'nl')
   });
 
   // Subcategories
@@ -721,7 +798,8 @@ categories.forEach(c => {
       lang: 'de',
       h1: `${sub} in Winterberg`,
       h2: `Geprüfte Adressen & Spezialisten für ${sub}`,
-      jsonLd: generateCollectionPageSchema(c.name, sub, subBusinesses as any, 'de')
+      jsonLd: generateCollectionPageSchema(c.name, sub, subBusinesses as any, 'de'),
+      bodyHtml: renderBusinessCardsHtml(subBusinesses.filter((b: any) => !isBusinessDeactivated(b)), 'de')
     });
 
     pagesToPrerender.push({
@@ -735,7 +813,8 @@ categories.forEach(c => {
       lang: 'nl',
       h1: `${sub} in Winterberg`,
       h2: `Geverifieerde adressen & specialisten voor ${sub}`,
-      jsonLd: generateCollectionPageSchema(c.name, sub, subBusinesses as any, 'nl')
+      jsonLd: generateCollectionPageSchema(c.name, sub, subBusinesses as any, 'nl'),
+      bodyHtml: renderBusinessCardsHtml(subBusinesses.filter((b: any) => !isBusinessDeactivated(b)), 'nl')
     });
   });
 });
@@ -805,6 +884,9 @@ businesses.forEach((b: any) => {
     }
   }
 
+  const detailHtmlDe = renderBusinessDetailHtml(b, 'de');
+  const detailHtmlNl = renderBusinessDetailHtml(b, 'nl');
+
   // DE Business Page (Canonical clean URL)
   pagesToPrerender.push({
     path: pathDe,
@@ -819,7 +901,8 @@ businesses.forEach((b: any) => {
     h2: `Über ${b.name} in ${city}`,
     ogType: 'business.business',
     ogImage: bImg,
-    jsonLd: schemaJsonLdDe
+    jsonLd: schemaJsonLdDe,
+    bodyHtml: detailHtmlDe
   });
 
   // NL Business Page (Canonical clean URL)
@@ -836,7 +919,8 @@ businesses.forEach((b: any) => {
     h2: `Over ${b.name} in ${city}`,
     ogType: 'business.business',
     ogImage: bImg,
-    jsonLd: schemaJsonLdNl
+    jsonLd: schemaJsonLdNl,
+    bodyHtml: detailHtmlNl
   });
 
   // Also pre-render legacy alias URL
@@ -857,7 +941,8 @@ businesses.forEach((b: any) => {
       h2: `Über ${b.name} in ${city}`,
       ogType: 'business.business',
       ogImage: bImg,
-      jsonLd: schemaJsonLdDe
+      jsonLd: schemaJsonLdDe,
+      bodyHtml: detailHtmlDe
     });
 
     pagesToPrerender.push({
@@ -873,7 +958,8 @@ businesses.forEach((b: any) => {
       h2: `Over ${b.name} in ${city}`,
       ogType: 'business.business',
       ogImage: bImg,
-      jsonLd: schemaJsonLdNl
+      jsonLd: schemaJsonLdNl,
+      bodyHtml: detailHtmlNl
     });
   }
 });
@@ -1211,6 +1297,13 @@ pagesToPrerender.forEach(page => {
     }
   }
   html = html.replace(/<p id="sk-desc"[^>]*>[\s\S]*?<\/p>/i, descTag);
+
+  if (page.bodyHtml) {
+    html = html.replace(
+      /<!-- PRERENDER_CONTENT_START -->[\s\S]*?<!-- PRERENDER_CONTENT_END -->/,
+      page.bodyHtml
+    );
+  }
 
   // 6. Add Canonical & Hreflang Tags before </head>
   const seoHeadTags = `

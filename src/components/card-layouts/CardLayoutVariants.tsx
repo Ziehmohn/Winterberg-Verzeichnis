@@ -8,6 +8,7 @@ import BusinessCategoryIcon from '../BusinessCategoryIcon';
 export interface CardSharedData {
   business: Business;
   lang: 'de' | 'nl';
+  businessUrl: string;
   allBusinesses: Business[];
   searchQuery: string;
   onClick: (e: React.MouseEvent) => void;
@@ -27,6 +28,36 @@ export interface CardSharedData {
 // ----------------------------------------------------------------------
 // Common subcomponents to ensure consistent behavior across layouts
 // ----------------------------------------------------------------------
+
+export function BusinessTitleLink({
+  href,
+  onClick,
+  className = '',
+  children,
+}: {
+  href: string;
+  onClick: (e: React.MouseEvent) => void;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      onClick={(e) => {
+        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey && e.button === 0) {
+          e.preventDefault();
+          e.stopPropagation();
+          onClick(e);
+        } else {
+          e.stopPropagation();
+        }
+      }}
+      className={`text-inherit no-underline ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
 
 export function FavoriteButton({ isFav, toggleFavorite, businessId, lang, className = '' }: { 
   isFav: boolean; 
@@ -268,7 +299,9 @@ export function LayoutDefault({ data }: { data: CardSharedData }) {
         </div>
 
         <h3 className="font-display text-[20px] font-bold text-[#1B211D] mb-2.5 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-          {business.name}
+          <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+            {business.name}
+          </BusinessTitleLink>
         </h3>
 
         {cardRankingBadges.length > 0 && (
@@ -353,7 +386,9 @@ export function LayoutModernCompact({ data }: { data: CardSharedData }) {
             </div>
           ) : null}
           <h3 className="font-display text-[17px] font-bold text-[#1B211D] leading-tight group-hover:text-[#0F4C2E] transition-colors line-clamp-2">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
         </div>
 
@@ -422,7 +457,9 @@ export function LayoutHorizontalCard({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[21px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           <div className="flex items-center gap-2 flex-wrap mb-3">
@@ -499,7 +536,9 @@ export function LayoutEditorialMinimal({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[20px] font-semibold text-[#1B211D] mb-2 leading-snug group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {localized.description && (
@@ -549,7 +588,9 @@ export function LayoutHeroOverlay({ data }: { data: CardSharedData }) {
             {t(business.category)}
           </span>
           <h3 className="font-display text-[21px] font-bold text-white leading-tight mb-1 drop-shadow-sm group-hover:text-[#FDBA74] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
           <div className="flex items-center gap-2 text-xs text-white/80">
             {avgRating && (
@@ -615,7 +656,9 @@ export function LayoutBoldBrand({ data }: { data: CardSharedData }) {
             {t(business.category)}
           </span>
           <h3 className="font-display text-[18px] font-bold text-[#1B211D] leading-tight truncate group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
         </div>
 
@@ -697,7 +740,9 @@ export function LayoutFloatingAvatar({ data }: { data: CardSharedData }) {
             {t(business.category)}
           </span>
           <h3 className="font-display text-[19px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {avgRating && (
@@ -756,7 +801,9 @@ export function LayoutAccentSidebar({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[19px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {cardUsps.length > 0 && (
@@ -840,7 +887,9 @@ export function LayoutBadgeRibbon({ data }: { data: CardSharedData }) {
           </span>
 
           <h3 className="font-display text-[19px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {localized.description && (
@@ -913,7 +962,9 @@ export function LayoutPhotoMosaic({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[18px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {localized.description && (
@@ -968,7 +1019,9 @@ export function LayoutTagCloudServices({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[18px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           <div className="text-[11px] uppercase tracking-wider text-[#8A928B] font-bold mb-1.5">
@@ -1020,7 +1073,9 @@ export function LayoutFlatPaper({ data }: { data: CardSharedData }) {
           </span>
 
           <h3 className="font-display text-[20px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {avgRating && (
@@ -1073,7 +1128,9 @@ export function LayoutDarkEmerald({ data }: { data: CardSharedData }) {
             {t(business.category)}
           </span>
           <h3 className="font-display text-[18px] font-bold text-white truncate leading-tight">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
         </div>
         <FavoriteButton isFav={isFav} toggleFavorite={toggleFavorite} businessId={business.id} lang={lang} className="bg-white/20 text-white hover:text-white" />
@@ -1145,7 +1202,9 @@ export function LayoutInteractiveFlip({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[19px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {cardUsps.length > 0 && (
@@ -1225,7 +1284,9 @@ export function LayoutBentoGrid({ data }: { data: CardSharedData }) {
           </div>
 
           <h3 className="font-display text-[18px] font-bold text-[#1B211D] mb-2 leading-tight group-hover:text-[#0F4C2E] transition-colors">
-            {business.name}
+            <BusinessTitleLink href={data.businessUrl} onClick={onClick}>
+              {business.name}
+            </BusinessTitleLink>
           </h3>
 
           {cardUsps.length > 0 && (
