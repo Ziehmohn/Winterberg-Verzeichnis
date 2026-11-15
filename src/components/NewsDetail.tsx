@@ -866,11 +866,29 @@ export default function NewsDetail({ newsId, theme, activeThemeKey, onBack }: Ne
             if (!hasAi && !hasExtra) return null;
 
             return (
-              <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide pointer-events-none flex items-center gap-1.5 shadow-sm">
+              <div className="absolute bottom-3 right-3 bg-black/65 backdrop-blur-md text-white/95 text-[11.5px] font-medium px-2.5 py-1 rounded-md tracking-wide flex items-center gap-1.5 shadow-sm">
                 {hasAi && <span>{t('newsAiGenerated')}</span>}
                 {hasAi && hasExtra && <span className="opacity-60">|</span>}
                 {displayCredit ? (
-                  <span>{displayCredit}</span>
+                  <span>
+                    {displayCredit.split(/(\[[^\]]+\]\([^)]+\))/g).map((part, idx) => {
+                      const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                      if (match) {
+                        return (
+                          <a
+                            key={idx}
+                            href={match[2]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline hover:text-sky-200 transition-colors"
+                          >
+                            {match[1]}
+                          </a>
+                        );
+                      }
+                      return <React.Fragment key={idx}>{part}</React.Fragment>;
+                    })}
+                  </span>
                 ) : displaySource ? (
                   <span>{t('newsSource')}: {displaySource}</span>
                 ) : null}

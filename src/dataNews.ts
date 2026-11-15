@@ -9,7 +9,7 @@ export const initialNews: NewsArticle[] = [
     title_nl: "Kids on Ski in Winterberg 2026/27: Gratis skivakantie voor kinderen van 3 tot 5 jaar",
     author: "Winterberg-Verzeichnis Redaktion",
     imageUrl: "/news-kids-on-ski-winterberg-2026.avif",
-    imageCredit: "Foto: MD ARIF JAWED / Unsplash",
+    imageCredit: "Foto von [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) auf [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)",
     isAiGenerated: false,
     status: "approved",
     category: "freizeit",
@@ -46,7 +46,7 @@ Nach Auswahl eines Aktionszeitraums und Buchung einer teilnehmenden Partnerunter
 * [Projektseite & Formular auf kids-on-ski.com](https://kids-on-ski.com/de/skigebiet/winterberg/)
 * [Alle Fakten & teilnehmenden Partnerbetriebe im Winterberg-Verzeichnis](/themen/skifahren-in-winterberg/kids-on-ski)
 
-*Bildnachweis: Foto von [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) auf [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*`,
+Foto von [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) auf [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText).`,
     content_nl: `Via het programma „Kids on Ski“ van de Winterberg Touristik und Wirtschaft GmbH kunnen kinderen van 3 tot en met 5 jaar in geselecteerde actieweken van het seizoen 2026/27 kosteloos kennismaken met de skisport. Inbegrepen zijn verblijf op de kamer van de ouders, skiles, huuruitrusting en skipas.
 
 ### Waar gaat het over en voor wie is het?
@@ -78,7 +78,7 @@ Na het kiezen van een actieweek en het boeken van een deelnemende partneraccommo
 * [Projectpagina & formulier op kids-on-ski.com](https://kids-on-ski.com/de/skigebiet/winterberg/)
 * [Alle feiten & deelnemende partnerbedrijven in het Winterberg-Verzeichnis](/nl/themas/skien-in-winterberg/kids-on-ski)
 
-*Bronvermelding foto: Foto van [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) op [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*`,
+Foto von [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) auf [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText).`,
   },
   {
     id: "nikolaus-hausbesuche-silbach-club-der-soehne-2026",
