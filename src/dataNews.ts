@@ -2,6 +2,85 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "kids-on-ski-winterberg-2026",
+    slug: "kids-on-ski-winterberg-2026",
+    slug_nl: "kids-on-ski-winterberg-2026",
+    title: "Kids on Ski in Winterberg 2026/27: Kostenloser Skiurlaub für Kinder von 3 bis 5 Jahren",
+    title_nl: "Kids on Ski in Winterberg 2026/27: Gratis skivakantie voor kinderen van 3 tot 5 jaar",
+    author: "Winterberg-Verzeichnis Redaktion",
+    imageUrl: "/news-kids-on-ski-winterberg-2026.avif",
+    imageCredit: "Foto: MD ARIF JAWED / Unsplash",
+    isAiGenerated: false,
+    status: "approved",
+    category: "freizeit",
+    category_nl: "vrije-tijd",
+    date: "2026-11-15T14:55:00.000Z",
+    content: `Über das Förderprogramm „Kids on Ski“ der Winterberg Touristik und Wirtschaft GmbH können Kinder im Alter von 3 bis 5 Jahren in festgelegten Aktionswochen der Saison 2026/27 kostenlos den Einstieg in den Skisport machen. Enthalten sind Unterkunft im Zimmer der Eltern, Skikurs, Leihausrüstung und Skipass.
+
+### Worum geht’s und für wen ist das Angebot?
+
+Das Programm richtet sich an nicht schulpflichtige Kinder im Alter von **3 bis 5 Jahren**. Vorkenntnisse sind nicht notwendig – das Angebot richtet sich an angehende Wintersportler, die ihre ersten Schwünge im Schnee machen möchten. Voraussetzung ist die Buchung eines Aufenthalts in einem der teilnehmenden Partnerbetriebe in Winterberg (in der Regel bei Anreise mit mindestens zwei vollzahlenden Begleitpersonen).
+
+### Inbegriffene Leistungen für das Kind
+
+* **Unterkunft:** 5 Übernachtungen (Sonntag bis Freitag) kostenlos im Zimmer der Eltern bzw. Begleitpersonen inklusive der gebuchten Verpflegung
+* **Skikurs:** 4 × Halbtagesskikurs (Montag bis Donnerstag, jeweils ca. 2 Stunden; Aufzahlung auf Ganztagskurs optional je nach Skischule möglich)
+* **Skiverleih:** Komplette Leihausrüstung (Ski, Skischuhe und Helm) für 4 Tage
+* **Skipass:** Kostenloser 4-Tages-Skipass für das Skigebiet
+
+### Aktionszeiträume Saison 2026/27 (jeweils So–Fr)
+
+* **KW 49:** 29. November – 04. Dezember 2026
+* **KW 50:** 06. – 11. Dezember 2026
+* **KW 51:** 13. – 18. Dezember 2026
+* **KW 03:** 17. – 22. Januar 2027
+* **KW 11:** 14. – 19. März 2027
+* **KW 14:** 04. – 09. April 2027
+* **KW 15:** 11. – 16. April 2027
+
+### Wie kann ich mitmachen?
+
+Nach Auswahl eines Aktionszeitraums und Buchung einer teilnehmenden Partnerunterkunft in Winterberg kann auf den jeweiligen offiziellen Seiten über die dortigen Formulare direkt eine Anfrage abgesendet werden:
+
+* [Offizielle Infos & Anfrageformular auf winterberg.de](https://www.winterberg.de/aktivitaeten-erlebnisse/winter/kids-on-ski/)
+* [Projektseite & Formular auf kids-on-ski.com](https://kids-on-ski.com/de/skigebiet/winterberg/)
+* [Alle Fakten & teilnehmenden Partnerbetriebe im Winterberg-Verzeichnis](/themen/skifahren-in-winterberg/kids-on-ski)
+
+*Bildnachweis: Foto von [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) auf [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*`,
+    content_nl: `Via het programma „Kids on Ski“ van de Winterberg Touristik und Wirtschaft GmbH kunnen kinderen van 3 tot en met 5 jaar in geselecteerde actieweken van het seizoen 2026/27 kosteloos kennismaken met de skisport. Inbegrepen zijn verblijf op de kamer van de ouders, skiles, huuruitrusting en skipas.
+
+### Waar gaat het over en voor wie is het?
+
+Het programma is bedoeld voor niet-leerplichtige kinderen van **3 tot en met 5 jaar**. Voorkennis is niet vereist – het aanbod richt zich op beginnende wintersporters die hun eerste bochten in de sneeuw willen maken. Voorwaarde is het boeken van een verblijf bij een deelnemend partnerbedrijf in Winterberg (doorgaans met minimaal twee volbetalende begeleiders).
+
+### Inbegrepen diensten voor het kind
+
+* **Accommodatie:** 5 overnachtingen (zondag t/m vrijdag) gratis op de kamer van de ouders inclusief de geboekte verzorging
+* **Skiles:** 4 × halve-dag-skiles (maandag t/m donderdag, ca. 2 uur per dag; uitbreiding naar hele dag optioneel mogelijk afhankelijk van de skischool)
+* **Skiverhuur:** Complete huuruitrusting (ski’s, skischoenen en helm) voor 4 dagen
+* **Skipas:** Gratis 4-daagse skipas voor het skigebiet
+
+### Actieperiodes seizoen 2026/27 (telkens zo–vr)
+
+* **KW 49:** 29 november – 4 december 2026
+* **KW 50:** 6 – 11 december 2026
+* **KW 51:** 13 – 18 december 2026
+* **KW 03:** 17 – 22 januari 2027
+* **KW 11:** 14 – 19 maart 2027
+* **KW 14:** 4 – 9 april 2027
+* **KW 15:** 11 – 16 april 2027
+
+### Hoe kan ik meedoen?
+
+Na het kiezen van een actieweek en het boeken van een deelnemende partneraccommodatie in Winterberg kan op de officiële pagina’s via de beschikbare formulieren direct een aanvraag worden verstuurd:
+
+* [Officiële informatie & aanvraagformulier op winterberg.de](https://www.winterberg.de/aktivitaeten-erlebnisse/winter/kids-on-ski/)
+* [Projectpagina & formulier op kids-on-ski.com](https://kids-on-ski.com/de/skigebiet/winterberg/)
+* [Alle feiten & deelnemende partnerbedrijven in het Winterberg-Verzeichnis](/nl/themas/skien-in-winterberg/kids-on-ski)
+
+*Bronvermelding foto: Foto van [MD ARIF JAWED](https://unsplash.com/de/@arifpsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) op [Unsplash](https://unsplash.com/de/fotos/ein-kleines-kind-das-auf-einem-snowboard-im-schnee-sitzt-Q6sMGUXtYeE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*`,
+  },
+  {
     id: "nikolaus-hausbesuche-silbach-club-der-soehne-2026",
     slug: "nikolaus-hausbesuche-silbach-club-der-soehne-2026",
     slug_nl: "sinterklaas-huisbezoeken-silbach-club-der-soehne-2026",
