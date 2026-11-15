@@ -40,6 +40,7 @@ interface SkiThemePageProps {
   onBack?: () => void;
   onNavigateCategory?: (category: string, subcategory?: string) => void;
   onNavigateSkiReport?: () => void;
+  onNavigateKidsOnSki?: () => void;
 }
 
 // Official Ticket Prices Season 2026/27 (from skiliftkarussell.de)
@@ -317,7 +318,8 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
   onSelectNewsArticle,
   onBack,
   onNavigateCategory,
-  onNavigateSkiReport
+  onNavigateSkiReport,
+  onNavigateKidsOnSki
 }) => {
   const { t, lang } = useTranslation();
   const isNl = lang === 'nl';
@@ -610,12 +612,68 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
             <a href="#ski-news" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
               📰 News
             </a>
+            <a href="#kids-on-ski" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
+              ❄️ Kids on Ski (3–5 J.)
+            </a>
           </div>
         </div>
 
         {/* Decorative Mountain Contour */}
         <div className="absolute right-4 -bottom-10 opacity-10 pointer-events-none hidden lg:block">
           <Mountain className="w-96 h-96 text-white" />
+        </div>
+      </section>
+
+      {/* SECTION: KIDS ON SKI (KOSTENLOSER SKIURLAUB FÜR KINDER 3-5 JAHRE) */}
+      <section id="kids-on-ski" className="mb-12 scroll-mt-24">
+        <div className="bg-white dark:bg-[#1E2420] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400 mb-1.5">
+                <Snowflake className="w-4 h-4" />
+                <span>Winterberg Touristik und Wirtschaft GmbH</span>
+              </div>
+              <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">
+                {isNl
+                  ? 'Kids on Ski: Gratis skivakantie voor kinderen (3–5 jaar)'
+                  : 'Kids on Ski: Kostenloser Skiurlaub für Kinder (3–5 Jahre)'}
+              </h2>
+            </div>
+            <a
+              href={isNl ? '/nl/themas/skien-in-winterberg/kids-on-ski' : '/themen/skifahren-in-winterberg/kids-on-ski'}
+              onClick={(e) => {
+                if (onNavigateKidsOnSki) {
+                  e.preventDefault();
+                  onNavigateKidsOnSki();
+                }
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold transition-colors shrink-0 self-start md:self-auto"
+            >
+              <span>{isNl ? 'Alle feiten, data & partners bekijken' : 'Alle Fakten, Zeiträume & Partner ansehen'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            {isNl
+              ? 'Via het programma „Kids on Ski“ van de Winterberg Touristik und Wirtschaft GmbH kunnen niet-leerplichtige kinderen van 3 tot 5 jaar zonder ski-ervaring in geselecteerde actieweken kosteloos leren skiën. Inbegrepen zijn 5 overnachtingen op de kamer van de ouders (bij partnerbedrijven), 4× halve-dag-skiles, 4 dagen skiverhuur en een 4-daagse skipas.'
+              : 'Über das Programm „Kids on Ski“ der Winterberg Touristik und Wirtschaft GmbH erhalten nicht schulpflichtige Kinder im Alter von 3 bis 5 Jahren ohne Vorkenntnisse in festgelegten Aktionswochen einen kostenlosen Einstieg in den Skisport. Enthalten sind 5 Übernachtungen im Zimmer der Eltern (bei Partnerbetrieben), 4 × Halbtagesskikurs, 4 Tage Skiverleih sowie ein 4-Tages-Skipass.'}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Doelgroep' : 'Zielgruppe'}</strong>
+              {isNl ? 'Kinderen van 3–5 jaar (beginners)' : 'Kinder 3–5 Jahre (Anfänger ohne Vorkenntnisse)'}
+            </div>
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Inbegrepen' : 'Leistungen'}</strong>
+              {isNl ? '5 nachten, 4× skiles, verhuur & skipas' : '5 Nächte, 4× Skikurs, Verleih & 4-Tage-Skipass'}
+            </div>
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Aanmelding' : 'Teilnahme'}</strong>
+              {isNl ? 'Beperkt aantal plaatsen via partnerbedrijven' : 'Limitiertes Kontingent über Partnerbetriebe'}
+            </div>
+          </div>
         </div>
       </section>
 

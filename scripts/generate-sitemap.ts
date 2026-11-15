@@ -134,6 +134,7 @@ const staticPages = [
   'shoppingTheme',
   'shoppenWinterberg',
   'skiTheme',
+  'kidsOnSkiTheme',
   'skifahrenWinterberg',
   'handwerkerTheme',
   'handwerkerFinden',
