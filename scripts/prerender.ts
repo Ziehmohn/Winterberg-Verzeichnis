@@ -601,8 +601,13 @@ const staticPageConfigs: {
 ];
 
 staticPageConfigs.forEach(cfg => {
-  const deSlug = STATIC_PAGE_SLUGS[cfg.key].de;
-  const nlSlug = STATIC_PAGE_SLUGS[cfg.key].nl;
+  const slugEntry = STATIC_PAGE_SLUGS[cfg.key];
+  if (!slugEntry) {
+    console.warn(`⚠️ Skipping prerender for missing STATIC_PAGE_SLUGS key: ${String(cfg.key)}`);
+    return;
+  }
+  const deSlug = slugEntry.de;
+  const nlSlug = slugEntry.nl;
   const ogImgDe = cfg.key === 'heimatkarte' ? `${baseUrl}/news-winterberg-heimatcard.jpg` : `${baseUrl}/og-image.jpg`;
   const ogImgNl = cfg.key === 'heimatkarte' ? `${baseUrl}/news-winterberg-heimatcard.jpg` : `${baseUrl}/og-image-nl.jpg`;
 
