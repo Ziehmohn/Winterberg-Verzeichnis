@@ -663,7 +663,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
             <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
               <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Doelgroep' : 'Zielgruppe'}</strong>
-              {isNl ? 'Kinderen van 3–5 jaar (beginners)' : 'Kinder 3–5 Jahre (Anfänger ohne Vorkenntnisse)'}
+              {isNl ? 'Kinderen 3–5 jaar (voorkennis niet vereist)' : 'Kinder 3–5 Jahre (Vorkenntnisse nicht notwendig)'}
             </div>
             <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
               <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Inbegrepen' : 'Leistungen'}</strong>

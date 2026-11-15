@@ -286,8 +286,10 @@ export const KidsOnSkiPage: React.FC<KidsOnSkiPageProps> = ({
             <li className="flex items-start gap-2.5">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
               <span>
-                <strong>{isNl ? 'Ervaring:' : 'Vorkenntnisse:'}</strong>{' '}
-                {isNl ? 'Uitsluitend voor beginners zonder eerdere ski-ervaring.' : 'Ausschließlich für Anfänger ohne Vorkenntnisse im Skifahren.'}
+                <strong>{isNl ? 'Voorkennis:' : 'Vorkenntnisse:'}</strong>{' '}
+                {isNl
+                  ? 'Voorkennis niet vereist. Het aanbod is gericht op beginnende wintersporters die hun eerste bochten in de sneeuw willen maken.'
+                  : 'Vorkenntnisse nicht notwendig. Das Angebot richtet sich an angehende Wintersportler, die Ihre ersten Schwünge im Schnee machen möchten.'}
               </span>
             </li>
             <li className="flex items-start gap-2.5">
@@ -509,10 +511,10 @@ export const KidsOnSkiPage: React.FC<KidsOnSkiPageProps> = ({
             <li className="flex gap-3">
               <span className="w-6 h-6 rounded-full bg-sky-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
               <div>
-                <strong>{isNl ? 'Kind registreren via het officiële portaal:' : 'Kind über das offizielle Portal registrieren:'}</strong>{' '}
+                <strong>{isNl ? 'Aanvraag versturen via de officiële pagina’s:' : 'Anfrage über das Formular auf den jeweiligen Seiten absenden:'}</strong>{' '}
                 {isNl
-                  ? 'Na bevestiging van de accommodatie het kind met de boekingsgegevens aanmelden via het officiële aanmeldingsformulier van Winterberg Touristik / Kids on Ski.'
-                  : 'Nach Bestätigung der Unterkunftsbuchung das Kind mit den Buchungsdaten über das offizielle Registrierungsformular von Winterberg bzw. Kids on Ski anmelden.'}
+                  ? 'Op de officiële pagina’s van winterberg.de en kids-on-ski.com zijn aanvraag- en aanmeldformulieren beschikbaar waarmee u direct een aanvraag voor uw kind kunt versturen (met uw boekingsgegevens).'
+                  : 'Auf den jeweiligen Seiten von winterberg.de und kids-on-ski.com stehen Formulare zur Verfügung, über die Sie direkt eine Anfrage für Ihr Kind absenden können (mit Ihren Buchungsdaten).'}
               </div>
             </li>
             <li className="flex gap-3">
