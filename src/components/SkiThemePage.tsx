@@ -524,6 +524,52 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
 
   const [activeNewsIndex, setActiveNewsIndex] = useState(0);
   const currentHeroNews = skiNews[activeNewsIndex] || skiNews[0];
+  const [activeSection, setActiveSection] = useState<string>('skigebiete');
+  const [stickyTopOffset, setStickyTopOffset] = useState<number>(60);
+
+  // Measure main site header height so sticky on-page nav sits flush underneath
+  useEffect(() => {
+    const updateHeaderOffset = () => {
+      const headerEl = document.querySelector('header');
+      if (headerEl) {
+        setStickyTopOffset(Math.round(headerEl.getBoundingClientRect().height));
+      }
+    };
+    updateHeaderOffset();
+    window.addEventListener('resize', updateHeaderOffset);
+    return () => window.removeEventListener('resize', updateHeaderOffset);
+  }, []);
+
+  // Scroll-spy for On-Page-Navigation active state
+  useEffect(() => {
+    const sectionIds = [
+      'skigebiete',
+      'skihuetten',
+      'ticketpreise',
+      'flutlicht',
+      'pistenbericht',
+      'kids-on-ski',
+      'umfragen',
+      'community-ugc',
+      'faq',
+    ];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-140px 0px -55% 0px', threshold: 0.01 }
+    );
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const getNewsExcerpt = (raw?: string) => {
     if (!raw) return '';
@@ -617,13 +663,13 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
               </div>
             </div>
 
-            {/* Right Column: Ski-News Slider on Hero */}
+            {/* Right Column: White Ski-News Slider Card on Hero */}
             {currentHeroNews && (
               <div className="lg:col-span-5">
-                <div className="bg-[#0B1726]/85 backdrop-blur-md border border-white/15 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="bg-white dark:bg-[#1E2621] text-gray-900 dark:text-white border border-black/10 dark:border-white/15 rounded-2xl overflow-hidden shadow-2xl">
                   {/* Slider Header */}
-                  <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-white/5">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-300">
+                  <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-200 dark:border-gray-800 bg-[#F7F5F0] dark:bg-[#151B17]">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400">
                       <Newspaper className="w-3.5 h-3.5" />
                       <span>{isNl ? 'Actueel Skinieuws' : 'Aktuelle Ski-News'}</span>
                     </div>
@@ -632,18 +678,18 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
                         type="button"
                         aria-label={isNl ? 'Vorige nieuwsbericht' : 'Vorherige News'}
                         onClick={() => setActiveNewsIndex((prev) => (prev - 1 + skiNews.length) % skiNews.length)}
-                        className="p-1 rounded-md hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                        className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors cursor-pointer"
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
-                      <span className="text-[11px] font-medium text-white/70 tabular-nums min-w-[32px] text-center">
+                      <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-400 tabular-nums min-w-[32px] text-center">
                         {activeNewsIndex + 1} / {skiNews.length}
                       </span>
                       <button
                         type="button"
                         aria-label={isNl ? 'Volgende nieuwsbericht' : 'Nächste News'}
                         onClick={() => setActiveNewsIndex((prev) => (prev + 1) % skiNews.length)}
-                        className="p-1 rounded-md hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                        className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors cursor-pointer"
                       >
                         <ChevronRight className="w-4 h-4" />
                       </button>
@@ -657,24 +703,24 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
                         <img
                           src={currentHeroNews.imageUrl}
                           alt={isNl ? (currentHeroNews.title_nl || currentHeroNews.title) : currentHeroNews.title}
-                          className="w-24 h-20 sm:w-28 sm:h-22 rounded-lg object-cover shrink-0 border border-white/10"
+                          className="w-24 h-20 sm:w-28 sm:h-22 rounded-lg object-cover shrink-0 border border-gray-200 dark:border-gray-700"
                         />
                       )}
                       <div className="min-w-0 flex-1">
-                        <span className="text-[11px] text-sky-300 font-medium block mb-1">
+                        <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium block mb-1">
                           {new Date(currentHeroNews.date).toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}
                         </span>
-                        <h2 className="text-sm sm:text-base font-bold text-white leading-snug line-clamp-2">
+                        <h2 className="text-sm sm:text-base font-extrabold text-gray-900 dark:text-white leading-snug line-clamp-2">
                           {isNl ? (currentHeroNews.title_nl || currentHeroNews.title) : currentHeroNews.title}
                         </h2>
                       </div>
                     </div>
 
-                    <p className="text-xs text-white/75 leading-relaxed line-clamp-2 mb-3.5">
+                    <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2 mb-3.5">
                       {getNewsExcerpt(isNl ? (currentHeroNews.content_nl || currentHeroNews.content) : currentHeroNews.content)}
                     </p>
 
-                    <div className="flex items-center justify-between gap-3 pt-2.5 border-t border-white/10">
+                    <div className="flex items-center justify-between gap-3 pt-2.5 border-t border-gray-100 dark:border-gray-800">
                       <button
                         type="button"
                         onClick={() => {
@@ -687,7 +733,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
                             window.dispatchEvent(new PopStateEvent('popstate'));
                           }
                         }}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-sky-300 transition-colors bg-transparent border-none p-0 cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C2E] dark:text-emerald-400 hover:underline transition-colors bg-transparent border-none p-0 cursor-pointer"
                       >
                         <span>{isNl ? 'Artikel lezen' : 'Meldung lesen'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -702,7 +748,9 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
                             aria-label={`News ${idx + 1}`}
                             onClick={() => setActiveNewsIndex(idx)}
                             className={`h-1.5 rounded-full transition-all cursor-pointer border-none ${
-                              idx === activeNewsIndex ? 'w-5 bg-sky-400' : 'w-1.5 bg-white/30 hover:bg-white/50'
+                              idx === activeNewsIndex
+                                ? 'w-5 bg-[#0F4C2E] dark:bg-emerald-400'
+                                : 'w-1.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400'
                             }`}
                           />
                         ))}
@@ -729,38 +777,51 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
         </div>
       </section>
 
-      {/* ON-PAGE NAVIGATION BAR */}
+      {/* ON-PAGE NAVIGATION BAR (STICKY BELOW SITE HEADER) */}
       <nav
         aria-label={isNl ? 'Paginanavigatie' : 'Seitennavigation'}
-        className="sticky top-0 z-30 w-full bg-white/95 dark:bg-[#161B18]/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-2xs"
+        style={{ top: `${stickyTopOffset}px` }}
+        className="sticky z-40 w-full bg-white/95 dark:bg-[#161B18]/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-xs"
       >
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center gap-6 overflow-x-auto scrollbar-none">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center overflow-x-auto scrollbar-none">
           {[
-            { href: '#skigebiete', label: isNl ? 'Skigebieden' : 'Skigebiete' },
-            { href: '#skihuetten', label: isNl ? 'Skihutten' : 'Skihütten' },
-            { href: '#ticketpreise', label: isNl ? 'Skipasprijzen' : 'Ticketpreise' },
-            { href: '#flutlicht', label: isNl ? 'Avondskiën' : 'Flutlichtfahren' },
-            { href: '#pistenbericht', label: isNl ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams' },
-            { href: '#kids-on-ski', label: 'Kids on Ski' },
-            { href: '#umfragen', label: isNl ? 'Pisten-poll' : 'Pisten-Umfrage' },
-            { href: '#community-ugc', label: isNl ? 'Tips & Reviews' : 'Tipps & Bewertungen' },
-            { href: '#faq', label: 'FAQ' },
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="py-3.5 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0F4C2E] dark:hover:text-emerald-400 border-b-2 border-transparent hover:border-[#0F4C2E] dark:hover:border-emerald-400 whitespace-nowrap transition-colors no-underline"
-            >
-              {item.label}
-            </a>
-          ))}
+            { id: 'skigebiete', href: '#skigebiete', label: isNl ? 'Skigebieden' : 'Skigebiete' },
+            { id: 'skihuetten', href: '#skihuetten', label: isNl ? 'Skihutten' : 'Skihütten' },
+            { id: 'ticketpreise', href: '#ticketpreise', label: isNl ? 'Skipasprijzen' : 'Ticketpreise' },
+            { id: 'flutlicht', href: '#flutlicht', label: isNl ? 'Avondskiën' : 'Flutlichtfahren' },
+            { id: 'pistenbericht', href: '#pistenbericht', label: isNl ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams' },
+            { id: 'kids-on-ski', href: '#kids-on-ski', label: 'Kids on Ski' },
+            { id: 'umfragen', href: '#umfragen', label: isNl ? 'Pisten-poll' : 'Pisten-Umfrage' },
+            { id: 'community-ugc', href: '#community-ugc', label: isNl ? 'Tips & Reviews' : 'Tipps & Bewertungen' },
+            { id: 'faq', href: '#faq', label: 'FAQ' },
+          ].map((item, idx) => {
+            const isActive = activeSection === item.id;
+            return (
+              <React.Fragment key={item.href}>
+                {idx > 0 && (
+                  <span className="h-4 w-px bg-gray-200 dark:bg-gray-700 shrink-0" aria-hidden="true" />
+                )}
+                <a
+                  href={item.href}
+                  onClick={() => setActiveSection(item.id)}
+                  className={`px-3.5 first:pl-0 py-3.5 text-xs sm:text-sm whitespace-nowrap transition-colors no-underline border-b-2 ${
+                    isActive
+                      ? 'font-bold text-[#0F4C2E] dark:text-emerald-400 border-[#0F4C2E] dark:border-emerald-400'
+                      : 'font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0F4C2E] dark:hover:text-emerald-400 border-transparent hover:border-[#0F4C2E]/40'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </React.Fragment>
+            );
+          })}
         </div>
       </nav>
 
       <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-10 pb-24">
 
       {/* SECTION 3: SKIGEBIETE IM DETAIL */}
-      <section id="skigebiete" className="mb-14 scroll-mt-20">
+      <section id="skigebiete" className="mb-14 scroll-mt-32">
         <div className="mb-6">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
             <Mountain className="w-4 h-4" />
@@ -831,7 +892,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION 4: SKIHÜTTEN & GASTRONOMIE */}
-      <section id="skihuetten" className="mb-14 scroll-mt-20">
+      <section id="skihuetten" className="mb-14 scroll-mt-32">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
@@ -937,7 +998,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION 1: TICKETPREISE SAISON 2026/27 (OFFIZIELL) */}
-      <section id="ticketpreise" className="mb-14 scroll-mt-20">
+      <section id="ticketpreise" className="mb-14 scroll-mt-32">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
@@ -1056,7 +1117,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION 2: FLUTLICHTFAHREN (NACHTSKI) */}
-      <section id="flutlicht" className="mb-14 scroll-mt-20">
+      <section id="flutlicht" className="mb-14 scroll-mt-32">
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 p-6 sm:p-10 text-white shadow-xl border border-indigo-900/50">
           {/* Decorative Glowing Moon & Stars */}
           <div className="absolute top-4 right-6 text-amber-200/20 pointer-events-none">
@@ -1127,7 +1188,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION 9: LIVE WEBCAMS & SCHNEEBERICHT BANNER */}
-      <section id="pistenbericht" className="mb-14 scroll-mt-16">
+      <section id="pistenbericht" className="mb-14 scroll-mt-32">
         <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-emerald-900 via-teal-900 to-[#0F4C2E] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/20 rounded-full text-xs font-bold mb-3">
@@ -1164,7 +1225,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION: KIDS ON SKI (KOSTENLOSER SKIURLAUB FÜR KINDER 3-5 JAHRE) */}
-      <section id="kids-on-ski" className="mb-12 scroll-mt-24">
+      <section id="kids-on-ski" className="mb-12 scroll-mt-32">
         <div className="bg-white dark:bg-[#1E2420] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
             <div>
@@ -1236,7 +1297,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION 5: INTERAKTIVE UMFRAGE: LIEBLINGSPISTE */}
-      <section id="umfragen" className="mb-14 scroll-mt-20">
+      <section id="umfragen" className="mb-14 scroll-mt-32">
         <div className="mb-6">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0284C7] dark:text-sky-400 mb-2">
             <Vote className="w-4 h-4" />
@@ -1396,7 +1457,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       </section>
 
       {/* SECTION 6: UGC - MEINUNGEN, REZENSIONEN & INSIDER-TIPPS */}
-      <section id="community-ugc" className="mb-14 scroll-mt-20">
+      <section id="community-ugc" className="mb-14 scroll-mt-32">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
@@ -1513,7 +1574,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
 
 
       {/* SECTION 10: FAQ ACCORDION (SKI THEME) */}
-      <section id="faq" className="mb-14 scroll-mt-16">
+      <section id="faq" className="mb-14 scroll-mt-32">
         <div className="mb-6">
           <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">
             {isNl ? 'Veelgestelde vragen over skiën in Winterberg' : 'Häufige Fragen rund ums Skifahren in Winterberg'}
