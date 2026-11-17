@@ -2,6 +2,34 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "skiliftkarussell-winterberg-saisonstart-advent-2026",
+    slug: "skiliftkarussell-winterberg-saisonstart-advent-2026",
+    slug_nl: "skiliftkarussell-winterberg-seizoensstart-advent-2026",
+    title: "Skisaison in Winterberg startet: Zwei Lifte öffnen zum ersten Adventswochenende",
+    title_nl: "Skiseizoen in Winterberg van start: Twee liften open in het eerste adventsweekend",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "skiliftkarussell-winterberg",
+    businessName: "Skiliftkarussell Winterberg",
+    businessSlug: "pistenbericht",
+    imageUrl: "/news-skisaison-winterberg-eroeffnung.jpg",
+    imageCredit: "Foto: Winterberg-Verzeichnis Redaktion",
+    isAiGenerated: false,
+    status: "approved",
+    category: "freizeit",
+    category_nl: "vrije-tijd",
+    date: "2026-11-17T16:36:00.000Z",
+    content: `Zum ersten Adventswochenende nehmen in Winterberg zwei Lifte den Betrieb auf. Seit knapp zwei Wochen arbeiten die Betreiber mit Allwetter-Schnee-Erzeugern und sind damit nicht auf Minusgrade angewiesen.
+
+Winterberg – Die Wintersport-Arena Sauerland startet am Freitag, 27. November, mit einem zunächst kleinen Angebot in die Wintersaison. Im Skiliftkarussell Winterberg gehen dann die Lifte am Rauhen Busch und am Poppenberg in Betrieb. Weitere Anlagen sollen folgen, sobald es das Wetter zulässt. Das teilten die Verantwortlichen der Wintersport-Arena mit.
+
+Weitere Infos zu den Skigebieten und aktuellen Bedingungen gibt es auf der Themenseite [Skifahren in Winterberg](/themen/skifahren-in-winterberg) sowie im [Pistenbericht](/pistenbericht).`,
+    content_nl: `In het eerste adventsweekend gaan in Winterberg twee liften open. Sinds bijna twee weken werken de exploitanten met allwetter-sneeuwmakers en zijn daarmee niet afhankelijk van temperaturen onder het vriespunt.
+
+Winterberg – De Wintersport-Arena Sauerland begint op vrijdag 27 november met een vooralsnog klein aanbod aan het winterseizoen. In het Skiliftkarussell Winterberg gaan dan de liften bij de Rauher Busch en de Poppenberg in bedrijf. Verdere installaties volgen zodra het weer dit toelaat. Dat hebben de verantwoordelijken van de Wintersport-Arena bekendgemaakt.
+
+Meer informatie over de skigebieden en actuele omstandigheden vindt u op de themapagina [Skiën in Winterberg](/nl/themas/skien-in-winterberg) en in het [Pistebericht](/nl/skigebied-piste).`,
+  },
+  {
     id: "kids-on-ski-winterberg-2026",
     slug: "kids-on-ski-winterberg-2026",
     slug_nl: "kids-on-ski-winterberg-2026",
