@@ -66,9 +66,46 @@ export const OPENINGS_DATA: OpeningItem[] = [
     infoTextNl: 'Feestelijke opening op woensdag 11 november 2026 aan de Hauptstraße 20 in Winterberg: Meesterbakker, patissier en chocoladesommelier Ivon Sommer opent haar nieuwe speciaalzaak in het stadscentrum met dagelijks vers brood, verfijnd banket, verse koffie en ambachtelijke chocolade.',
     flyerImage: '/ivon-baeckerei-konditorei.jpg',
     website: 'https://www.instagram.com/ivon_baeckerei.konditorei/',
-    badgeDe: 'Neueröffnung 11.11.',
-    badgeNl: 'Nieuwe opening 11.11.',
-    status: 'upcoming'
+    badgeDe: 'Neu eröffnet',
+    badgeNl: 'Nu geopend',
+    status: 'opened'
+  },
+  {
+    id: 'sannes-mobiler-hundefriseur',
+    businessId: 'sannes-mobiler-hundefriseur-winterberg',
+    businessName: "Sanne's mobiler Hundefriseur",
+    subtitleDe: 'Inhaberin Susanne Hase · Liebevolle Pflege direkt bei Ihnen vor Ort',
+    subtitleNl: 'Eigenares Susanne Hase · Liefdevolle verzorging direct bij u thuis',
+    titleDe: "Neueröffnung ab 01.12.: Sanne's mobiler Hundefriseur",
+    titleNl: "Nieuwe opening vanaf 01.12.: Sanne's mobiler Hundefriseur",
+    openingDate: '2026-12-01',
+    openingDateFormattedDe: 'Dienstag, 1. Dezember 2026',
+    openingDateFormattedNl: 'Dinsdag 1 december 2026',
+    address: 'Mobil vor Ort – Winterberg und Umgebung',
+    district: 'Winterberg',
+    category: 'Dienstleistungen',
+    subcategory: 'Tierpflege & Hundefriseur',
+    focusAreasDe: [
+      'Waschen & Föhnen',
+      'Schneiden & Bürsten',
+      'Mobile Pflege direkt vor Ort',
+      'Individuelle & stressfreie Betreuung'
+    ],
+    focusAreasNl: [
+      'Wassen & föhnen',
+      'Knippen & borstelen',
+      'Mobiele verzorging aan huis',
+      'Individuele & stressvrije zorg'
+    ],
+    shortDescriptionDe: "Ab dem 1. Dezember 2026 startet Susanne Hase mit Sanne's mobiler Hundefriseur in Winterberg und Umgebung – für eine bequeme, sanfte und stressfreie Fellpflege direkt vor Ort.",
+    shortDescriptionNl: "Vanaf 1 december 2026 start Susanne Hase met Sanne's mobiler Hundefriseur in Winterberg en omgeving – voor comfortabele en stressvrije vachtverzorging aan huis.",
+    infoTextDe: "Ab dem 01. Dezember 2026 bietet Susanne Hase mit 'Sanne's mobiler Hundefriseur' professionelle und liebevolle Hundepflege direkt bei Ihnen vor Ort an. Ob Waschen, Schneiden, Föhnen oder Bürsten – jeder Hund erhält eine individuelle Pflege in gewohnter, stressfreier Umgebung. Einsatzgebiet ist Winterberg und Umgebung. Termine können bereits jetzt telefonisch oder per WhatsApp unter 0173 911 7943 vereinbart werden.",
+    infoTextNl: "Vanaf 1 december 2026 biedt Susanne Hase met 'Sanne's mobiler Hundefriseur' professionele en liefdevolle hondenverzorging direct bij u thuis. Of het nu gaat om wassen, knippen, föhnen of borstelen – elke hond krijgt individuele verzorging in een vertrouwde, stressvrije omgeving in Winterberg en omgeving. Afspraken zijn nu al mogelijk via telefoon of WhatsApp op 0173 911 7943.",
+    flyerImage: '/sannes-mobiler-hundefriseur.jpg',
+    badgeDe: 'Ab 01.12.2026',
+    badgeNl: 'Vanaf 01.12.2026',
+    status: 'upcoming',
+    contactPhone: '0173 911 7943'
   },
   {
     id: 'nadine-albers-heilpraktikerin',

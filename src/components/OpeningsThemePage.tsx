@@ -16,7 +16,8 @@ import {
   X,
   Navigation,
   Download,
-  Share2
+  Share2,
+  Phone
 } from 'lucide-react';
 import { Business, ThemeConfig, DesignSettings } from '../types';
 import HeaderShapeDivider, { getEffectiveDivider } from './HeaderShapeDivider';
@@ -110,9 +111,21 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
     return Array.from(set).sort();
   }, []);
 
-  // Filtered openings
-  const filteredOpenings = useMemo(() => {
-    return OPENINGS_DATA.filter(item => {
+  // Filtered openings split into upcoming (no time limit) and recently opened (last 4 weeks)
+  const { upcomingOpenings, recentOpenings } = useMemo(() => {
+    const now = new Date();
+    const toLocalDateStr = (d: Date) => {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    };
+    const todayStr = toLocalDateStr(now);
+    const fourWeeksAgo = new Date(now);
+    fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
+    const fourWeeksAgoStr = toLocalDateStr(fourWeeksAgo);
+
+    const filtered = OPENINGS_DATA.filter(item => {
       if (selectedDistrict !== 'all' && item.district !== selectedDistrict) {
         return false;
       }
@@ -123,6 +136,16 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
       }
       return true;
     });
+
+    const upcoming = filtered
+      .filter(item => item.openingDate >= todayStr)
+      .sort((a, b) => a.openingDate.localeCompare(b.openingDate));
+
+    const recent = filtered
+      .filter(item => item.openingDate < todayStr && item.openingDate >= fourWeeksAgoStr)
+      .sort((a, b) => b.openingDate.localeCompare(a.openingDate));
+
+    return { upcomingOpenings: upcoming, recentOpenings: recent };
   }, [searchQuery, selectedDistrict]);
 
   const handleDownloadIcs = (item: OpeningItem, e: React.MouseEvent) => {
@@ -135,6 +158,213 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const renderOpeningCard = (item: OpeningItem, isRecent = false) => {
+    const bus = businessMap.get(item.businessId);
+    const locationLabel = item.district.toLowerCase().includes('winterberg')
+      ? item.district
+      : `Winterberg-${item.district}`;
+
+    return (
+      <article
+        key={item.id}
+        className="w-full bg-white dark:bg-[#18201B] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col lg:flex-row group"
+      >
+        {/* Left Column: Image / Flyer Preview */}
+        <div className="lg:w-[360px] xl:w-[400px] shrink-0 bg-gradient-to-br from-[#F8F6F0] to-[#EFEADF] dark:from-[#1E2721] dark:to-[#151D18] relative flex items-center justify-center p-4 sm:p-6 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
+          
+          {/* Flyer Container with subtle shadow & frame */}
+          <div 
+            onClick={() => setPreviewImage({ src: item.flyerImage, title: item.titleDe })}
+            className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-full rounded-xl overflow-hidden shadow-md group/flyer cursor-pointer border border-black/5 dark:border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
+          >
+            <img
+              src={item.flyerImage}
+              alt={`${item.businessName} - Neueröffnung Flyer`}
+              className="w-full h-auto object-cover block"
+              loading="lazy"
+            />
+
+            {/* Top Badges */}
+            <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
+              <span className={`inline-flex items-center gap-1 ${isRecent ? 'bg-[#0F4C2E]' : 'bg-[#F2761B]'} text-white text-[10.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md shadow-xs`}>
+                <Sparkles className="w-2.5 h-2.5" />
+                <span>{isNl ? item.badgeNl : item.badgeDe}</span>
+              </span>
+            </div>
+
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/flyer:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
+              <Maximize2 className="w-4 h-4" />
+              <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Right Column: Full Details */}
+        <div className="flex-1 p-5 sm:p-7 flex flex-col justify-between">
+          <div>
+            
+            {/* Top Meta Line: Category & Ortsteil */}
+            <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800/60">
+                  {item.category} • {item.subcategory}
+                </span>
+                <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-2.5 py-0.5 rounded-md flex items-center gap-1">
+                  <MapPin className="w-3 h-3 text-[#F2761B]" />
+                  <span>{item.district}</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Business Title & Subtitle */}
+            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-gray-900 dark:text-white m-0 tracking-tight">
+              {item.businessName}
+            </h3>
+            <div className="text-xs sm:text-sm font-semibold text-[#0F4C2E] dark:text-emerald-400 mt-0.5 mb-4">
+              {isNl ? item.subtitleNl : item.subtitleDe}
+            </div>
+
+            {/* Prominent Date, Time & Address Box */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 bg-gradient-to-r from-amber-50/70 via-[#FFFBF2] to-amber-50/50 dark:from-[#212A23] dark:to-[#1B221C] border border-amber-200/80 dark:border-amber-700/30 rounded-xl mb-4">
+              <div className="flex items-start gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-800 dark:text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                  <Calendar className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10.5px] font-bold uppercase tracking-wider text-amber-900/80 dark:text-amber-300/80">
+                    {isNl ? 'Openingsdatum' : 'Eröffnungsdatum'}
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                    {isNl ? item.openingDateFormattedNl : item.openingDateFormattedDe}
+                  </div>
+                  {(item.openingTimeDe || item.openingTimeNl) && (
+                    <div className="text-[11px] text-gray-600 dark:text-gray-400 font-medium flex items-center gap-1 mt-0.5">
+                      <Clock className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+                      <span>{isNl ? item.openingTimeNl : item.openingTimeDe}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-emerald-600/15 text-emerald-800 dark:text-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10.5px] font-bold uppercase tracking-wider text-emerald-900/80 dark:text-emerald-300/80">
+                    {isNl ? 'Locatie & Gebied' : 'Adresse & Standort'}
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
+                    {item.address}
+                  </div>
+                  <div className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
+                    {locationLabel}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Focus Areas / Services Chips */}
+            <div className="mb-4">
+              <div className="text-[11px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
+                {isNl ? 'Diensten & Specialisaties' : 'Schwerpunkte & Leistungen'}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {(isNl ? item.focusAreasNl : item.focusAreasDe).map((area, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[11.5px] font-semibold bg-[#F2F7F4] dark:bg-[#202923] text-[#0F4C2E] dark:text-emerald-300 px-2.5 py-1 rounded-lg border border-[#D9E6DD] dark:border-white/5 flex items-center gap-1"
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <span>{area}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Info Text */}
+            <div className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed bg-[#FAF8F5] dark:bg-[#151D18] p-3.5 rounded-xl border border-dashed border-[#E3DBD0] dark:border-white/10 mb-5">
+              <span className="font-semibold text-gray-900 dark:text-white block mb-0.5">
+                ℹ️ {isNl ? 'Informatie over de opening:' : 'Details zur Neueröffnung:'}
+              </span>
+              {isNl ? item.infoTextNl : item.infoTextDe}
+            </div>
+
+          </div>
+
+          {/* Action Buttons Bar */}
+          <div className="pt-3 border-t border-gray-100 dark:border-white/10 flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
+              
+              {/* Primary Button: View Business Profile (only when profile exists) */}
+              {bus && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onSelectBusiness) {
+                      onSelectBusiness(bus);
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#0F4C2E] hover:bg-[#14532D] text-white font-bold text-xs sm:text-sm shadow-xs hover:shadow-md transition-all cursor-pointer"
+                >
+                  <Building2 className="w-4 h-4" />
+                  <span>{isNl ? 'Bedrijfsprofiel bekijken' : 'Unternehmensprofil aufrufen'}</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              )}
+
+              {/* Phone / WhatsApp Contact Button if contactPhone is provided */}
+              {item.contactPhone && (
+                <a
+                  href={`tel:${item.contactPhone.replace(/\s+/g, '')}`}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0F4C2E] hover:bg-[#14532D] text-white font-bold text-xs sm:text-sm shadow-xs hover:shadow-md transition-all cursor-pointer no-underline"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>{item.contactPhone}</span>
+                </a>
+              )}
+
+              {/* Calendar ICS Export Button */}
+              <button
+                type="button"
+                onClick={(e) => handleDownloadIcs(item, e)}
+                title={isNl ? 'In agenda opslaan' : 'Termin im Kalender speichern (.ics)'}
+                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-800 dark:text-gray-200 font-semibold text-xs transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
+                <span>{isNl ? 'Agenda (.ics)' : 'Termin merken (.ics)'}</span>
+              </button>
+
+              {/* Route / Google Maps Button */}
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.businessName}, ${item.address}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-800 dark:text-gray-200 font-semibold text-xs transition-colors cursor-pointer no-underline"
+              >
+                <Navigation className="w-3.5 h-3.5 text-blue-600" />
+                <span>{isNl ? 'Route' : 'Route planen'}</span>
+              </a>
+            </div>
+
+            {/* Lightbox Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setPreviewImage({ src: item.flyerImage, title: item.titleDe })}
+              className="text-xs font-semibold text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white flex items-center gap-1 cursor-pointer bg-transparent border-none p-0 ml-auto"
+            >
+              <Maximize2 className="w-3.5 h-3.5" />
+              <span>{isNl ? 'Afbeelding tonen' : 'Bild vergrößern'}</span>
+            </button>
+          </div>
+
+        </div>
+      </article>
+    );
   };
 
   return (
@@ -279,215 +509,7 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
           </button>
         </div>
 
-        {/* Section Header */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
-          <div>
-            <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#1B211D] dark:text-white m-0">
-              {filteredOpenings.length} {isNl ? 'aangekondigde opening(en)' : 'angekündigte Neueröffnung(en)'}
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 m-0 mt-0.5">
-              {isNl 
-                ? 'Klik op een opening om het volledige bedrijfsprofiel en details te bekijken.' 
-                : 'Klicke auf das Unternehmensprofil oder den Flyer für weitere Informationen.'}
-            </p>
-          </div>
-        </div>
-
-        {/* Full-width Cards List */}
-        {filteredOpenings.length > 0 ? (
-          <div className="space-y-6">
-            {filteredOpenings.map((item) => {
-              const bus = businessMap.get(item.businessId);
-
-              return (
-                <article
-                  key={item.id}
-                  className="w-full bg-white dark:bg-[#18201B] border border-[#E7E0D3] dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col lg:flex-row group"
-                >
-                  {/* Left Column: Image / Flyer Preview */}
-                  <div className="lg:w-[360px] xl:w-[400px] shrink-0 bg-gradient-to-br from-[#F8F6F0] to-[#EFEADF] dark:from-[#1E2721] dark:to-[#151D18] relative flex items-center justify-center p-4 sm:p-6 overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E7E0D3] dark:border-white/10">
-                    
-                    {/* Flyer Container with subtle shadow & frame */}
-                    <div 
-                      onClick={() => setPreviewImage({ src: item.flyerImage, title: item.titleDe })}
-                      className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-full rounded-xl overflow-hidden shadow-md group/flyer cursor-pointer border border-black/5 dark:border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
-                    >
-                      <img
-                        src={item.flyerImage}
-                        alt={`${item.businessName} - Neueröffnung Flyer`}
-                        className="w-full h-auto object-cover block"
-                        loading="lazy"
-                      />
-
-                      {/* Top Badges */}
-                      <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 flex-wrap z-10">
-                        <span className="inline-flex items-center gap-1 bg-[#F2761B] text-white text-[10.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md shadow-xs">
-                          <Sparkles className="w-2.5 h-2.5" />
-                          <span>{isNl ? item.badgeNl : item.badgeDe}</span>
-                        </span>
-                      </div>
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/flyer:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-semibold backdrop-blur-2xs">
-                        <Maximize2 className="w-4 h-4" />
-                        <span>{isNl ? 'Afbeelding vergroten' : 'Bild vergrößern'}</span>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  {/* Right Column: Full Details */}
-                  <div className="flex-1 p-5 sm:p-7 flex flex-col justify-between">
-                    <div>
-                      
-                      {/* Top Meta Line: Category & Ortsteil */}
-                      <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800/60">
-                            {item.category} • {item.subcategory}
-                          </span>
-                          <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-2.5 py-0.5 rounded-md flex items-center gap-1">
-                            <MapPin className="w-3 h-3 text-[#F2761B]" />
-                            <span>{item.district}</span>
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Business Title & Subtitle */}
-                      <h3 className="font-display text-xl sm:text-2xl font-extrabold text-gray-900 dark:text-white m-0 tracking-tight">
-                        {item.businessName}
-                      </h3>
-                      <div className="text-xs sm:text-sm font-semibold text-[#0F4C2E] dark:text-emerald-400 mt-0.5 mb-4">
-                        {isNl ? item.subtitleNl : item.subtitleDe}
-                      </div>
-
-                      {/* Prominent Date, Time & Address Box */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 bg-gradient-to-r from-amber-50/70 via-[#FFFBF2] to-amber-50/50 dark:from-[#212A23] dark:to-[#1B221C] border border-amber-200/80 dark:border-amber-700/30 rounded-xl mb-4">
-                        <div className="flex items-start gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-800 dark:text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
-                            <Calendar className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <div className="text-[10.5px] font-bold uppercase tracking-wider text-amber-900/80 dark:text-amber-300/80">
-                              {isNl ? 'Openingsdatum' : 'Eröffnungsdatum'}
-                            </div>
-                            <div className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
-                              {isNl ? item.openingDateFormattedNl : item.openingDateFormattedDe}
-                            </div>
-                            {(item.openingTimeDe || item.openingTimeNl) && (
-                              <div className="text-[11px] text-gray-600 dark:text-gray-400 font-medium flex items-center gap-1 mt-0.5">
-                                <Clock className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-                                <span>{isNl ? item.openingTimeNl : item.openingTimeDe}</span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-emerald-600/15 text-emerald-800 dark:text-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
-                            <MapPin className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <div className="text-[10.5px] font-bold uppercase tracking-wider text-emerald-900/80 dark:text-emerald-300/80">
-                              {isNl ? 'Locatie & Adres' : 'Adresse & Standort'}
-                            </div>
-                            <div className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
-                              {item.address}
-                            </div>
-                            <div className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
-                              Winterberg-{item.district}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Focus Areas / Services Chips */}
-                      <div className="mb-4">
-                        <div className="text-[11px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
-                          {isNl ? 'Diensten & Specialisaties' : 'Schwerpunkte & Leistungen'}
-                        </div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {(isNl ? item.focusAreasNl : item.focusAreasDe).map((area, idx) => (
-                            <span
-                              key={idx}
-                              className="text-[11.5px] font-semibold bg-[#F2F7F4] dark:bg-[#202923] text-[#0F4C2E] dark:text-emerald-300 px-2.5 py-1 rounded-lg border border-[#D9E6DD] dark:border-white/5 flex items-center gap-1"
-                            >
-                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                              <span>{area}</span>
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Info Text */}
-                      <div className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed bg-[#FAF8F5] dark:bg-[#151D18] p-3.5 rounded-xl border border-dashed border-[#E3DBD0] dark:border-white/10 mb-5">
-                        <span className="font-semibold text-gray-900 dark:text-white block mb-0.5">
-                          ℹ️ {isNl ? 'Informatie over de opening:' : 'Details zur Praxiseröffnung:'}
-                        </span>
-                        {isNl ? item.infoTextNl : item.infoTextDe}
-                      </div>
-
-                    </div>
-
-                    {/* Action Buttons Bar */}
-                    <div className="pt-3 border-t border-gray-100 dark:border-white/10 flex items-center justify-between gap-3 flex-wrap">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        
-                        {/* Primary Button: View Business Profile */}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (bus && onSelectBusiness) {
-                              onSelectBusiness(bus);
-                            }
-                          }}
-                          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#0F4C2E] hover:bg-[#14532D] text-white font-bold text-xs sm:text-sm shadow-xs hover:shadow-md transition-all cursor-pointer"
-                        >
-                          <Building2 className="w-4 h-4" />
-                          <span>{isNl ? 'Bedrijfsprofiel bekijken' : 'Unternehmensprofil aufrufen'}</span>
-                          <ChevronRight className="w-3.5 h-3.5" />
-                        </button>
-
-                        {/* Calendar ICS Export Button */}
-                        <button
-                          type="button"
-                          onClick={(e) => handleDownloadIcs(item, e)}
-                          title={isNl ? 'In agenda opslaan' : 'Termin im Kalender speichern (.ics)'}
-                          className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-800 dark:text-gray-200 font-semibold text-xs transition-colors cursor-pointer"
-                        >
-                          <Download className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-                          <span>{isNl ? 'Agenda (.ics)' : 'Termin merken (.ics)'}</span>
-                        </button>
-
-                        {/* Route / Google Maps Button */}
-                        <a
-                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.businessName}, ${item.address}`)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-800 dark:text-gray-200 font-semibold text-xs transition-colors cursor-pointer no-underline"
-                        >
-                          <Navigation className="w-3.5 h-3.5 text-blue-600" />
-                          <span>{isNl ? 'Route' : 'Route planen'}</span>
-                        </a>
-                      </div>
-
-                      {/* Lightbox Trigger Button */}
-                      <button
-                        type="button"
-                        onClick={() => setPreviewImage({ src: item.flyerImage, title: item.titleDe })}
-                        className="text-xs font-semibold text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white flex items-center gap-1 cursor-pointer bg-transparent border-none p-0 ml-auto"
-                      >
-                        <Maximize2 className="w-3.5 h-3.5" />
-                        <span>{isNl ? 'Afbeelding tonen' : 'Bild vergrößern'}</span>
-                      </button>
-                    </div>
-
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        ) : (
+        {upcomingOpenings.length === 0 && recentOpenings.length === 0 ? (
           <div className="text-center py-16 bg-white dark:bg-[#1A221E] rounded-2xl border border-dashed border-gray-300 dark:border-gray-700 p-8 shadow-xs">
             <Store className="w-12 h-12 text-gray-400 mx-auto mb-3" />
             <h3 className="text-base font-bold text-gray-800 dark:text-gray-200 mb-1">
@@ -508,6 +530,50 @@ export const OpeningsThemePage: React.FC<OpeningsThemePageProps> = ({
             >
               {isNl ? 'Filters wissen' : 'Filter zurücksetzen'}
             </button>
+          </div>
+        ) : (
+          <div className="space-y-12">
+            {/* Top Section: Kommende & aktuelle Neueröffnungen (alle bekannten, ohne Zeitlimit) */}
+            {upcomingOpenings.length > 0 && (
+              <section>
+                <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+                  <div>
+                    <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#1B211D] dark:text-white m-0">
+                      {upcomingOpenings.length} {isNl ? 'aankomende opening(en)' : 'kommende Neueröffnung(en)'}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 m-0 mt-0.5">
+                      {isNl 
+                        ? 'Alle bekende aankomende openingen – klik op de flyer of details voor meer informatie.' 
+                        : 'Alle angekündigten Neueröffnungen in Winterberg und den Ortsteilen im Überblick.'}
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  {upcomingOpenings.map((item) => renderOpeningCard(item, false))}
+                </div>
+              </section>
+            )}
+
+            {/* Bottom Section: Kürzlich eröffnete Betriebe (letzte 4 Wochen) */}
+            {recentOpenings.length > 0 && (
+              <section className="pt-8 border-t border-[#E7E0D3] dark:border-white/10">
+                <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+                  <div>
+                    <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#1B211D] dark:text-white m-0">
+                      {isNl ? 'Recent geopend (afgelopen 4 weken)' : 'Kürzlich eröffnet (letzte 4 Wochen)'}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 m-0 mt-0.5">
+                      {isNl 
+                        ? `${recentOpenings.length} zaak/zaken die de afgelopen 4 weken zijn geopend.` 
+                        : `${recentOpenings.length} Neueröffnung(en), die in den letzten vier Wochen bereits gestartet sind.`}
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  {recentOpenings.map((item) => renderOpeningCard(item, true))}
+                </div>
+              </section>
+            )}
           </div>
         )}
 
