@@ -43,6 +43,11 @@ export default async function handler(req, res) {
     }
     const data = docSnap.data();
 
+    // Idempotenz-Schutz: Wenn bereits freigeschaltet, nicht erneut freischalten und keine doppelte E-Mail senden
+    if (data?.status === 'approved') {
+      return res.status(200).json({ success: true, alreadyApproved: true });
+    }
+
     // Status auf approved setzen und isActive auf true
     await docRef.update({ 
       status: 'approved',

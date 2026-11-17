@@ -82,7 +82,6 @@ export default async function handler(req, res) {
     try {
       await sendMail({
         to: 'info@sichtbar-online.com',
-        cc: 'simon.kraeling@sichtbar-online.com',
         subject: `Neues Unternehmen eingetragen: ${data.name}`,
         html: `
           <div style="font-family: Arial, sans-serif; color: #1B211D; max-width: 600px; line-height: 1.6;">

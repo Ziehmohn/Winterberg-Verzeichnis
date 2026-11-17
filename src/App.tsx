@@ -6409,6 +6409,7 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
   const [deactivatingBusiness, setDeactivatingBusiness] = useState<Business | null>(null);
   const [deactivationType, setDeactivationType] = useState<'301' | '302'>('301');
   const [deactivationReason, setDeactivationReason] = useState<string>('');
+  const [approvingBusinessId, setApprovingBusinessId] = useState<string | null>(null);
 
   const handleLogout = () => {
     signOut(auth);
@@ -7020,7 +7021,10 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
 
                       {isAdmin && bus.status === 'pending' && (
                         <button 
+                          disabled={approvingBusinessId === bus.id}
                           onClick={async () => {
+                            if (approvingBusinessId === bus.id) return;
+                            setApprovingBusinessId(bus.id);
                             try {
                               const res = await fetch('/api/approve-business', {
                                 method: 'POST',
@@ -7053,11 +7057,13 @@ function AdminDashboard({ theme, activeThemeKey, businesses, setBusinesses, onBu
                             } catch (e: any) {
                               console.error("Approve error:", e);
                               alert("Fehler beim Freischalten: " + (e?.message || 'Unbekannter Fehler'));
+                            } finally {
+                              setApprovingBusinessId(null);
                             }
                           }}
-                          className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC]"
+                          className="bg-[#E8F1EB] text-[#0F4C2E] border-none rounded-md px-3.5 py-2 text-[13.5px] font-medium cursor-pointer hover:bg-[#D6E7DC] disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Freigeben
+                          {approvingBusinessId === bus.id ? 'Wird freigegeben...' : 'Freigeben'}
                         </button>
                       )}
 

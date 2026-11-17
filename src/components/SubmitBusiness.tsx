@@ -149,47 +149,7 @@ export default function SubmitBusiness({ theme, activeThemeKey, onCancel, pricin
           throw new Error(data.error || 'Fehler beim Weiterleiten zu Stripe');
         }
       } else {
-        // Basic Plan Email Notifications
-        const userEmail = formData.email || user?.email;
-        if (userEmail) {
-          await fetch('/api/send-mail', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              to: userEmail,
-              subject: 'Eingang Ihres Eintrags - Das Winterberg Verzeichnis',
-              html: `
-                <div style="font-family: sans-serif; color: #1B211D;">
-                  <p>Hallo,</p>
-                  <p>wir haben Ihren neuen Eintrag für <strong>${formData.name}</strong> erhalten.</p>
-                  <p>Unser Team wird die Daten in Kürze prüfen. Sobald Ihr Unternehmensprofil freigeschaltet wurde, informieren wir Sie per E-Mail.</p>
-                  <p>Viele Grüße,<br>Ihr Team vom Winterberg Verzeichnis</p>
-                </div>
-              `
-            })
-          });
-        }
-        
-        await fetch('/api/send-mail', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            to: 'info@sichtbar-online.com',
-            cc: 'simon.kraeling@sichtbar-online.com',
-            subject: `Neuer Unternehmenseintrag (Basis): ${formData.name}`,
-            html: `
-              <div style="font-family: sans-serif; color: #1B211D;">
-                <p>Es liegt ein neuer kostenloser Basiseintrag zur Prüfung vor:</p>
-                <ul>
-                  <li><strong>Unternehmen:</strong> ${formData.name}</li>
-                  <li><strong>Kategorie:</strong> ${formData.category}</li>
-                  <li><strong>E-Mail:</strong> ${userEmail || '-'}</li>
-                </ul>
-                <p>Bitte prüfen Sie den Eintrag im Adminbereich.</p>
-              </div>
-            `
-          })
-        });
+        // Eingangsbestätigung an den Kunden und Admin-Benachrichtigung werden bereits in /api/create-business versendet
       }
       
       setIsSuccess(true);

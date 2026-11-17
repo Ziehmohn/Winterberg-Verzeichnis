@@ -80,7 +80,6 @@ export default function ClaimBusinessModal({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           to: 'info@sichtbar-online.com',
-          cc: 'simon.kraeling@sichtbar-online.com',
           subject: `Neue Profil-Anfrage (Basis): ${business.name}`,
           html: `
             <div style="font-family: sans-serif; color: #1B211D;">

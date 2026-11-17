@@ -88,7 +88,7 @@ export default async function handler(req, res) {
 
           try {
             await sendMail({
-              to: 'simon.kraeling@sichtbar-online.com, info@sichtbar-online.com',
+              to: 'info@sichtbar-online.com',
               subject: `Zahlung erhalten: ${busName}`,
               html: `
                 <h3>Neue Zahlung eingegangen</h3>

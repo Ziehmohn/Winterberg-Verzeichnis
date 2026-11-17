@@ -27,9 +27,9 @@ export default async function handler(req, res) {
       <p>Bitte logge dich ins Admin-Dashboard ein, um dies zu überprüfen.</p>
     `;
 
-    // Send to both admin emails
+    // Send to admin email (info@ forwards to simon.kraeling@)
     await sendMail({
-      to: 'simon.kraeling@sichtbar-online.com, info@sichtbar-online.com',
+      to: 'info@sichtbar-online.com',
       subject: `Fehlermeldung: ${businessName || businessId}`,
       html: emailHtml
     });
