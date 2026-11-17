@@ -21,11 +21,13 @@ import {
   MapPin,
   Flame,
   ChevronDown,
+  ChevronLeft,
   Info,
   Check,
   Award,
   Video,
-  ArrowRight
+  ArrowRight,
+  Newspaper
 } from 'lucide-react';
 import { Business, ThemeConfig } from '../types';
 import { getBusinessPath } from '../utils/routes';
@@ -514,185 +516,423 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
       n.id.includes('ski') || 
       n.id.includes('winterdorf') || 
       n.id.includes('nordhang') || 
-      n.slug.includes('ski') ||
+      (n.slug || '').includes('ski') ||
       (n.content || '').toLowerCase().includes('skiliftkarussell') ||
       (n.content || '').toLowerCase().includes('skigebiet')
-    ).slice(0, 3);
+    ).slice(0, 5);
   }, []);
 
+  const [activeNewsIndex, setActiveNewsIndex] = useState(0);
+  const currentHeroNews = skiNews[activeNewsIndex] || skiNews[0];
+
+  const getNewsExcerpt = (raw?: string) => {
+    if (!raw) return '';
+    return raw
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/:::[\s\S]*?:::/g, '')
+      .replace(/^#+\s*/gm, '')
+      .replace(/[*_`>]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
   return (
-    <main className="flex-1 w-full max-w-[1180px] mx-auto px-4 sm:px-6 py-6 pb-24 font-sans text-[#1B211D] dark:text-gray-100">
-      
-      {/* Breadcrumbs */}
-      <nav className="flex items-center gap-1.5 text-xs text-[#5F6B63] mb-6 flex-wrap" aria-label="Breadcrumb">
-        <button
-          type="button"
-          onClick={onBack}
-          className="hover:text-[#0F4C2E] underline underline-offset-2 bg-transparent border-none p-0 cursor-pointer text-xs"
-        >
-          {isNl ? 'Home' : 'Startseite'}
-        </button>
-        <span>/</span>
-        <span className="text-gray-400">{isNl ? 'Themapagina\'s' : 'Themenseiten'}</span>
-        <span>/</span>
-        <span className="font-semibold text-[#1B211D] dark:text-white">
-          {isNl ? 'Skiën in Winterberg' : 'Skifahren in Winterberg'}
-        </span>
-      </nav>
+    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#121614] text-[#1B211D] dark:text-[#EAE6DF] font-sans">
 
-      {/* HERO SECTION */}
-      <section className="relative rounded-3xl overflow-hidden shadow-xl mb-10 text-white bg-gradient-to-br from-[#0c2340] via-[#133e68] to-[#081726] p-6 sm:p-10 lg:p-12 border border-white/10">
-        {/* Subtle decorative mountain glow */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
-        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-blue-600/10 rounded-full blur-2xl pointer-events-none"></div>
+      {/* FULL-WIDTH HERO HEADER WITH INTEGRATED NEWS SLIDER */}
+      <section className="w-full bg-[#091C30] text-white relative overflow-hidden border-b border-white/10 shadow-lg">
+        {/* Background Hero Image */}
+        <img
+          src="/news-skisaison-winterberg-eroeffnung.jpg"
+          alt={isNl ? 'Skiën in Winterberg – Skiliftkarussell' : 'Skifahren in Winterberg – Skiliftkarussell Winterberg'}
+          width={1600}
+          height={900}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        {/* Editorial Dark Gradient Overlay for high contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071626]/95 via-[#091D33]/85 to-[#071626]/75" />
 
-        <div className="relative z-10 max-w-3xl">
-          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3 drop-shadow-xs">
-            <Snowflake className="w-4 h-4 text-cyan-300 animate-spin-slow" />
-            <span>{isNl ? 'Officiële Wintergids & Pisten-Portal 2026/27' : 'Offizieller Winterguide & Pistenportal 2026/27'}</span>
-          </div>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-5 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 lg:pb-12 relative z-10">
+          {/* Breadcrumbs */}
+          <nav className="flex items-center gap-1.5 text-xs text-white/75 mb-5 flex-wrap" aria-label="Breadcrumb">
+            <button
+              type="button"
+              onClick={onBack}
+              className="hover:text-white underline underline-offset-2 bg-transparent border-none p-0 cursor-pointer text-xs text-white/75"
+            >
+              {isNl ? 'Home' : 'Startseite'}
+            </button>
+            <span>/</span>
+            <span className="text-white/60">{isNl ? 'Themapagina\'s' : 'Themen'}</span>
+            <span>/</span>
+            <span className="font-semibold text-white">
+              {isNl ? 'Skiën in Winterberg' : 'Skifahren in Winterberg'}
+            </span>
+          </nav>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4 drop-shadow-xs">
-            {isNl 
-              ? 'Skiën in Winterberg: Pistes, Skihutten, Skipasprijzen & Avondskiën' 
-              : 'Skifahren in Winterberg: Pisten, Hütten, Ticketpreise & Flutlicht'}
-          </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-center">
+            {/* Left Column: Title, Intro & Key Facts */}
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-300 mb-2.5">
+                <Snowflake className="w-4 h-4 text-sky-300 shrink-0" />
+                <span>{isNl ? 'Winterberg & Sauerland • Seizoen 2026/27' : 'Winterberg & Sauerland • Saison 2026/27'}</span>
+              </div>
 
-          <p className="text-base sm:text-lg text-white/90 leading-relaxed font-normal mb-8 max-w-2xl">
-            {isNl
-              ? 'Alles voor je perfecte wintersportdag in het Sauerland: de 5 grote skigebieden, de officiële skipasprijzen voor het seizoen 2026/27, de gezelligste skihutten, magisch avondskiën en community-tips.'
-              : 'Alles für Ihren perfekten Skitag im Sauerland: Die 5 Skigebiete, aktuelle Ticketpreise der Saison 2026/27, der große Hüttenguide, Flutlicht-Highlights, aktuelle News und interaktive Community-Umfragen.'}
-          </p>
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight leading-[1.12] mb-3.5 text-white">
+                {isNl
+                  ? 'Skiën in Winterberg: Pistes, Skihutten & Skipasprijzen'
+                  : 'Skifahren in Winterberg: Skigebiete, Hütten & Ticketpreise'}
+              </h1>
 
-          {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3.5 rounded-2xl">
-              <span className="text-xs text-white/70 block font-medium">{isNl ? 'Skigebieden' : 'Skigebiete'}</span>
-              <span className="text-2xl font-black text-cyan-300">5 Gebiete</span>
-              <span className="text-[11px] text-white/60 block">{isNl ? '55+ km Pistes' : '55+ km Pisten'}</span>
+              <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-6 max-w-2xl">
+                {isNl
+                  ? 'Alle informatie voor uw wintersportdag in het Sauerland: de 5 skigebieden, berghutten aan de piste, officiële skipasprijzen voor 2026/27, avondskiën en live pisteberichten.'
+                  : 'Alle Informationen für Ihren Skitag im Sauerland: die fünf Skigebiete, Skihütten direkt an der Piste, aktuelle Ticketpreise für die Saison 2026/27, Flutlichtzeiten und der Live-Pistenbericht.'}
+              </p>
+
+              {/* Clean Editorial Key Facts Bar */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-4 border-t border-white/15 text-sm">
+                <div>
+                  <span className="block text-[11px] uppercase tracking-wider text-white/60">{isNl ? 'Skigebieden' : 'Skigebiete'}</span>
+                  <span className="font-bold text-white">{isNl ? '5 gebieden · 55+ km' : '5 Gebiete · 55+ km'}</span>
+                </div>
+                <div className="hidden sm:block h-7 w-px bg-white/15" />
+                <div>
+                  <span className="block text-[11px] uppercase tracking-wider text-white/60">Skiliftkarussell</span>
+                  <span className="font-bold text-white">{isNl ? '27 liften' : '27 Liftanlagen'}</span>
+                </div>
+                <div className="hidden sm:block h-7 w-px bg-white/15" />
+                <div>
+                  <span className="block text-[11px] uppercase tracking-wider text-white/60">{isNl ? 'Dagkaart 26/27' : 'Tagesticket 26/27'}</span>
+                  <span className="font-bold text-white">53,- € <span className="font-normal text-white/70 text-xs">({isNl ? 'Kind 30,- €' : 'Kind* 30,- €'})</span></span>
+                </div>
+                <div className="hidden sm:block h-7 w-px bg-white/15" />
+                <div>
+                  <span className="block text-[11px] uppercase tracking-wider text-white/60">{isNl ? 'Avondskiën' : 'Flutlicht'}</span>
+                  <span className="font-bold text-white">{isNl ? 'Wo, Vr, Za · 18:30' : 'Mi, Fr, Sa · 18:30'}</span>
+                </div>
+              </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3.5 rounded-2xl">
-              <span className="text-xs text-white/70 block font-medium">{isNl ? 'Liften Karussell' : 'Lifte Karussell'}</span>
-              <span className="text-2xl font-black text-cyan-300">27 Anlagen</span>
-              <span className="text-[11px] text-white/60 block">{isNl ? '14 Sesselbahnen' : '14 Sesselbahnen'}</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3.5 rounded-2xl">
-              <span className="text-xs text-white/70 block font-medium">{isNl ? 'Avondskiën' : 'Flutlichtpisten'}</span>
-              <span className="text-2xl font-black text-amber-300">14 Pisten</span>
-              <span className="text-[11px] text-white/60 block">{isNl ? 'Mi, Fr, Sa (18:30)' : 'Mi, Fr, Sa 18:30'}</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 p-3.5 rounded-2xl">
-              <span className="text-xs text-white/70 block font-medium">{isNl ? 'Dagkaart 26/27' : 'Tagesticket 26/27'}</span>
-              <span className="text-2xl font-black text-emerald-300">53,- €</span>
-              <span className="text-[11px] text-white/60 block">{isNl ? 'Kinderen 30,- €' : 'Kinder* 30,- €'}</span>
-            </div>
-          </div>
 
-          {/* Jump Anchor Navigation Pills */}
-          <div className="flex items-center gap-2 flex-wrap text-xs font-semibold">
-            <span className="text-white/60 mr-1 hidden sm:inline">{isNl ? 'Snel naar:' : 'Direkt zu:'}</span>
-            <a href="#ticketpreise" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              🎫 {isNl ? 'Prijzen 2026/27' : 'Ticketpreise 26/27'}
-            </a>
-            <a href="#flutlicht" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              💡 {isNl ? 'Avondskiën' : 'Flutlichtfahren'}
-            </a>
-            <a href="#skigebiete" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              🎿 {isNl ? 'Skigebieden' : 'Skigebiete'}
-            </a>
-            <a href="#skihuetten" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              ☕ {isNl ? 'Skihutten' : 'Skihütten'}
-            </a>
-            <a href="#umfragen" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              🗳️ {isNl ? 'Piste-Poll' : 'Pisten-Umfrage'}
-            </a>
-            <a href="#community-ugc" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              💬 {isNl ? 'Reviews & Tips' : 'Bewertungen & Tipps'}
-            </a>
-            <a href="#ski-news" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              📰 News
-            </a>
-            <a href="#kids-on-ski" className="px-3 py-1.5 bg-white/15 hover:bg-white/25 rounded-full text-white transition-colors border border-white/20">
-              ❄️ Kids on Ski (3–5 J.)
-            </a>
+            {/* Right Column: Ski-News Slider on Hero */}
+            {currentHeroNews && (
+              <div className="lg:col-span-5">
+                <div className="bg-[#0B1726]/85 backdrop-blur-md border border-white/15 rounded-2xl overflow-hidden shadow-2xl">
+                  {/* Slider Header */}
+                  <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-white/5">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-300">
+                      <Newspaper className="w-3.5 h-3.5" />
+                      <span>{isNl ? 'Actueel Skinieuws' : 'Aktuelle Ski-News'}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        aria-label={isNl ? 'Vorige nieuwsbericht' : 'Vorherige News'}
+                        onClick={() => setActiveNewsIndex((prev) => (prev - 1 + skiNews.length) % skiNews.length)}
+                        className="p-1 rounded-md hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <span className="text-[11px] font-medium text-white/70 tabular-nums min-w-[32px] text-center">
+                        {activeNewsIndex + 1} / {skiNews.length}
+                      </span>
+                      <button
+                        type="button"
+                        aria-label={isNl ? 'Volgende nieuwsbericht' : 'Nächste News'}
+                        onClick={() => setActiveNewsIndex((prev) => (prev + 1) % skiNews.length)}
+                        className="p-1 rounded-md hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Active News Slide */}
+                  <div className="p-4">
+                    <div className="flex gap-3.5 items-start mb-3">
+                      {currentHeroNews.imageUrl && (
+                        <img
+                          src={currentHeroNews.imageUrl}
+                          alt={isNl ? (currentHeroNews.title_nl || currentHeroNews.title) : currentHeroNews.title}
+                          className="w-24 h-20 sm:w-28 sm:h-22 rounded-lg object-cover shrink-0 border border-white/10"
+                        />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <span className="text-[11px] text-sky-300 font-medium block mb-1">
+                          {new Date(currentHeroNews.date).toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}
+                        </span>
+                        <h2 className="text-sm sm:text-base font-bold text-white leading-snug line-clamp-2">
+                          {isNl ? (currentHeroNews.title_nl || currentHeroNews.title) : currentHeroNews.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-white/75 leading-relaxed line-clamp-2 mb-3.5">
+                      {getNewsExcerpt(isNl ? (currentHeroNews.content_nl || currentHeroNews.content) : currentHeroNews.content)}
+                    </p>
+
+                    <div className="flex items-center justify-between gap-3 pt-2.5 border-t border-white/10">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const targetSlug = (isNl && currentHeroNews.slug_nl) ? currentHeroNews.slug_nl : (currentHeroNews.slug || currentHeroNews.id);
+                          if (onSelectNewsArticle) {
+                            onSelectNewsArticle(targetSlug);
+                          } else {
+                            const prefix = isNl ? '/nl' : '';
+                            window.history.pushState(null, '', `${prefix}/news/${targetSlug}`);
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                          }
+                        }}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-sky-300 transition-colors bg-transparent border-none p-0 cursor-pointer"
+                      >
+                        <span>{isNl ? 'Artikel lezen' : 'Meldung lesen'}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+
+                      {/* Slide Dots */}
+                      <div className="flex items-center gap-1.5">
+                        {skiNews.map((item, idx) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            aria-label={`News ${idx + 1}`}
+                            onClick={() => setActiveNewsIndex(idx)}
+                            className={`h-1.5 rounded-full transition-all cursor-pointer border-none ${
+                              idx === activeNewsIndex ? 'w-5 bg-sky-400' : 'w-1.5 bg-white/30 hover:bg-white/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Decorative Mountain Contour */}
-        <div className="absolute right-4 -bottom-10 opacity-10 pointer-events-none hidden lg:block">
-          <Mountain className="w-96 h-96 text-white" />
+        {/* Photo Credit */}
+        <div className="absolute bottom-2 right-3 z-10 text-[10px] text-white/60">
+          Foto:{' '}
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Skiliftkarussell_Winterberg_2014_-_3.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-white/90"
+          >
+            Thomas Dahlstrøm Nielsen (CC BY 4.0)
+          </a>
         </div>
       </section>
 
-      {/* SECTION: KIDS ON SKI (KOSTENLOSER SKIURLAUB FÜR KINDER 3-5 JAHRE) */}
-      <section id="kids-on-ski" className="mb-12 scroll-mt-24">
-        <div className="bg-white dark:bg-[#1E2420] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400 mb-1.5">
-                <Snowflake className="w-4 h-4" />
-                <span>Winterberg Touristik und Wirtschaft GmbH</span>
-              </div>
-              <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                {isNl
-                  ? 'Kids on Ski: Gratis skivakantie voor kinderen (3–5 jaar)'
-                  : 'Kids on Ski: Kostenloser Skiurlaub für Kinder (3–5 Jahre)'}
-              </h2>
-            </div>
+      {/* ON-PAGE NAVIGATION BAR */}
+      <nav
+        aria-label={isNl ? 'Paginanavigatie' : 'Seitennavigation'}
+        className="sticky top-0 z-30 w-full bg-white/95 dark:bg-[#161B18]/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-2xs"
+      >
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center gap-6 overflow-x-auto scrollbar-none">
+          {[
+            { href: '#skigebiete', label: isNl ? 'Skigebieden' : 'Skigebiete' },
+            { href: '#skihuetten', label: isNl ? 'Skihutten' : 'Skihütten' },
+            { href: '#ticketpreise', label: isNl ? 'Skipasprijzen' : 'Ticketpreise' },
+            { href: '#flutlicht', label: isNl ? 'Avondskiën' : 'Flutlichtfahren' },
+            { href: '#pistenbericht', label: isNl ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams' },
+            { href: '#kids-on-ski', label: 'Kids on Ski' },
+            { href: '#umfragen', label: isNl ? 'Pisten-poll' : 'Pisten-Umfrage' },
+            { href: '#community-ugc', label: isNl ? 'Tips & Reviews' : 'Tipps & Bewertungen' },
+            { href: '#faq', label: 'FAQ' },
+          ].map((item) => (
             <a
-              href={isNl ? '/nl/themas/skien-in-winterberg/kids-on-ski' : '/themen/skifahren-in-winterberg/kids-on-ski'}
-              onClick={(e) => {
-                if (onNavigateKidsOnSki) {
-                  e.preventDefault();
-                  onNavigateKidsOnSki();
-                }
-              }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold transition-colors shrink-0 self-start md:self-auto"
+              key={item.href}
+              href={item.href}
+              className="py-3.5 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0F4C2E] dark:hover:text-emerald-400 border-b-2 border-transparent hover:border-[#0F4C2E] dark:hover:border-emerald-400 whitespace-nowrap transition-colors no-underline"
             >
-              <span>{isNl ? 'Alle feiten, data & partners bekijken' : 'Alle Fakten, Zeiträume & Partner ansehen'}</span>
-              <ArrowRight className="w-4 h-4" />
+              {item.label}
             </a>
+          ))}
+        </div>
+      </nav>
+
+      <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-10 pb-24">
+
+      {/* SECTION 3: SKIGEBIETE IM DETAIL */}
+      <section id="skigebiete" className="mb-14 scroll-mt-20">
+        <div className="mb-6">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
+            <Mountain className="w-4 h-4" />
+            <span>{isNl ? 'Overzicht van de 5 Gebieden' : 'Wintersport-Vielfalt im Stadtgebiet'}</span>
           </div>
-
-          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+            {isNl ? 'De 5 Skigebieden in & rond Winterberg' : 'Die 5 Skigebiete in und rund um Winterberg'}
+          </h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
             {isNl
-              ? 'Via het programma „Kids on Ski“ van de Winterberg Touristik und Wirtschaft GmbH kunnen niet-leerplichtige kinderen van 3 tot 5 jaar zonder ski-ervaring in geselecteerde actieweken kosteloos leren skiën. Inbegrepen zijn 5 overnachtingen op de kamer van de ouders (bij partnerbedrijven), 4× halve-dag-skiles, 4 dagen skiverhuur en een 4-daagse skipas.'
-              : 'Über das Programm „Kids on Ski“ der Winterberg Touristik und Wirtschaft GmbH erhalten nicht schulpflichtige Kinder im Alter von 3 bis 5 Jahren ohne Vorkenntnisse in festgelegten Aktionswochen einen kostenlosen Einstieg in den Skisport. Enthalten sind 5 Übernachtungen im Zimmer der Eltern (bei Partnerbetrieben), 4 × Halbtagesskikurs, 4 Tage Skiverleih sowie ein 4-Tages-Skipass.'}
+              ? 'Van het enorme Skiliftkarussell met 27 liften tot het hoogst gelegen skidorp Altastenberg en de sneeuwzekere hellingen van de Kahler Asten.'
+              : 'Vom weitläufigen Skiliftkarussell mit 27 Liftanlagen über das FIS-Weltcupdorf Altastenberg bis zu den schneesicheren Sonnenhängen an Postwiese und Kahlem Asten.'}
           </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Doelgroep' : 'Zielgruppe'}</strong>
-              {isNl ? 'Kinderen 3–5 jaar (voorkennis niet vereist)' : 'Kinder 3–5 Jahre (Vorkenntnisse nicht notwendig)'}
-            </div>
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Inbegrepen' : 'Leistungen'}</strong>
-              {isNl ? '5 nachten, 4× skiles, verhuur & skipas' : '5 Nächte, 4× Skikurs, Verleih & 4-Tage-Skipass'}
-            </div>
-            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Aanbieder & info' : 'Anbieter & Infos'}</strong>
-              <div className="flex flex-wrap gap-x-3 gap-y-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SKI_RESORTS_DATA.map((resort) => (
+            <div
+              key={resort.id}
+              className="bg-white dark:bg-[#1E2621] rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex justify-between items-start gap-2 mb-2">
+                  <h3 className="font-extrabold text-lg text-gray-900 dark:text-white leading-snug">
+                    {isNl ? (resort.name_nl || resort.name) : resort.name}
+                  </h3>
+                  <a
+                    href={resort.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 text-gray-400 hover:text-[#0F4C2E] dark:hover:text-emerald-400"
+                    title="Website öffnen"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                  {isNl ? (resort.description_nl || resort.description) : resort.description}
+                </p>
+
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  <div className="bg-gray-50 dark:bg-[#151B17] p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 text-center">
+                    <span className="text-[11px] text-gray-500 block">{isNl ? 'Liften' : 'Liftanlagen'}</span>
+                    <span className="text-base font-extrabold text-gray-900 dark:text-white">{resort.totalLifts} Lifte</span>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-[#151B17] p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 text-center">
+                    <span className="text-[11px] text-gray-500 block">{isNl ? 'Pistekilometers' : 'Pistenkilometer'}</span>
+                    <span className="text-base font-extrabold text-[#0F4C2E] dark:text-emerald-400">{resort.totalSlopesKm} km</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">
                 <a
-                  href="https://www.winterberg.de/aktivitaeten-erlebnisse/winter/kids-on-ski/"
+                  href={resort.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1"
+                  className="font-bold text-[#0F4C2E] dark:text-emerald-400 hover:underline flex items-center gap-1"
                 >
-                  winterberg.de
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-                <a
-                  href="https://kids-on-ski.com/de/skigebiet/winterberg/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1"
-                >
-                  kids-on-ski.com
-                  <ExternalLink className="w-3 h-3" />
+                  <span>{isNl ? 'Pistekaart bekijken' : 'Offizielle Website & Pistenplan'}</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 4: SKIHÜTTEN & GASTRONOMIE */}
+      <section id="skihuetten" className="mb-14 scroll-mt-20">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
+              <Coffee className="w-4 h-4" />
+              <span>{isNl ? 'Echte Berghutsfeer' : 'Einkehrschwung & Kulinarik'}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+              {isNl ? 'De Gezelligste Skihutten in Winterberg' : 'Die besten Skihütten & Almen im Skigebiet'}
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
+              {isNl
+                ? 'Van knisperend open haardvuur en Sauerlandse erwtensoep tot zinderende après-ski: ontdek waar je het beste stopt voor een pauze.'
+                : 'Vom knisternden Kaminfeuer bei hausgemachter Sauerländer Erbsensuppe bis zur legendären Stimmung bei Möppi – alle Skihütten mit direkter Pistenanbindung.'}
+            </p>
           </div>
+
+          {onNavigateCategory && (
+            <button
+              type="button"
+              onClick={() => onNavigateCategory('Gastronomie', 'Skihütten')}
+              className="inline-flex items-center gap-1 text-xs font-bold text-[#0F4C2E] dark:text-emerald-400 hover:underline bg-transparent border-none p-0 cursor-pointer self-start sm:self-auto"
+            >
+              <span>{isNl ? 'Alle skihutten in de gids bekijken' : 'Alle Skihütten im Verzeichnis aufrufen'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SKI_HUTS_DATA.map((hut) => {
+            const matchedBus = hut.businessNameMatch 
+              ? businesses.find(b => b.name.toLowerCase().includes(hut.businessNameMatch!.toLowerCase()))
+              : undefined;
+
+            return (
+              <div
+                key={hut.id}
+                className="bg-white dark:bg-[#1E2621] rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="font-extrabold text-lg text-gray-900 dark:text-white leading-snug">
+                      {hut.name}
+                    </h3>
+                    {hut.hasFloodlightOpen && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/80 dark:text-amber-300 shrink-0">
+                        <Moon className="w-2.5 h-2.5" />
+                        {isNl ? 'Avondski' : 'Flutlicht'}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 mb-3">
+                    <MapPin className="w-3.5 h-3.5 text-[#0F4C2E] dark:text-emerald-400 shrink-0" />
+                    <span>{isNl ? hut.location_nl : hut.location}</span>
+                  </div>
+
+                  <div className="p-2.5 bg-gray-50 dark:bg-[#151B17] rounded-xl border border-gray-100 dark:border-gray-800 text-xs mb-3">
+                    <span className="font-bold text-gray-800 dark:text-gray-200 block mb-0.5">
+                      📍 {hut.piste}
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      {isNl ? hut.highlight_nl : hut.highlight}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                    {isNl ? hut.description_nl : hut.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {hut.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-[11px] font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-gray-100 dark:border-gray-800">
+                  {matchedBus ? (
+                    <button
+                      type="button"
+                      onClick={() => onSelectBusiness ? onSelectBusiness(matchedBus) : null}
+                      className="w-full py-2 px-3 bg-[#0F4C2E] hover:bg-[#14532D] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    >
+                      <span>{isNl ? 'Profiel & Openingstijden bekijken' : 'Eintrag im Verzeichnis aufrufen'}</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  ) : (
+                    <div className="text-xs text-gray-400 italic text-center py-1">
+                      {isNl ? 'Direct aan de piste bereikbaar' : 'Direkt an der Piste gelegen'}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -886,180 +1126,112 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
         </div>
       </section>
 
-      {/* SECTION 3: SKIGEBIETE IM DETAIL */}
-      <section id="skigebiete" className="mb-14 scroll-mt-20">
-        <div className="mb-6">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
-            <Mountain className="w-4 h-4" />
-            <span>{isNl ? 'Overzicht van de 5 Gebieden' : 'Wintersport-Vielfalt im Stadtgebiet'}</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
-            {isNl ? 'De 5 Skigebieden in & rond Winterberg' : 'Die 5 Skigebiete in und rund um Winterberg'}
-          </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
-            {isNl
-              ? 'Van het enorme Skiliftkarussell met 27 liften tot het hoogst gelegen skidorp Altastenberg en de sneeuwzekere hellingen van de Kahler Asten.'
-              : 'Vom weitläufigen Skiliftkarussell mit 27 Liftanlagen über das FIS-Weltcupdorf Altastenberg bis zu den schneesicheren Sonnenhängen an Postwiese und Kahlem Asten.'}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKI_RESORTS_DATA.map((resort) => (
-            <div
-              key={resort.id}
-              className="bg-white dark:bg-[#1E2621] rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex justify-between items-start gap-2 mb-2">
-                  <h3 className="font-extrabold text-lg text-gray-900 dark:text-white leading-snug">
-                    {isNl ? (resort.name_nl || resort.name) : resort.name}
-                  </h3>
-                  <a
-                    href={resort.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 text-gray-400 hover:text-[#0F4C2E] dark:hover:text-emerald-400"
-                    title="Website öffnen"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
-
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                  {isNl ? (resort.description_nl || resort.description) : resort.description}
-                </p>
-
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                  <div className="bg-gray-50 dark:bg-[#151B17] p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 text-center">
-                    <span className="text-[11px] text-gray-500 block">{isNl ? 'Liften' : 'Liftanlagen'}</span>
-                    <span className="text-base font-extrabold text-gray-900 dark:text-white">{resort.totalLifts} Lifte</span>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-[#151B17] p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 text-center">
-                    <span className="text-[11px] text-gray-500 block">{isNl ? 'Pistekilometers' : 'Pistenkilometer'}</span>
-                    <span className="text-base font-extrabold text-[#0F4C2E] dark:text-emerald-400">{resort.totalSlopesKm} km</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">
-                <a
-                  href={resort.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-[#0F4C2E] dark:text-emerald-400 hover:underline flex items-center gap-1"
-                >
-                  <span>{isNl ? 'Pistekaart bekijken' : 'Offizielle Website & Pistenplan'}</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+      {/* SECTION 9: LIVE WEBCAMS & SCHNEEBERICHT BANNER */}
+      <section id="pistenbericht" className="mb-14 scroll-mt-16">
+        <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-emerald-900 via-teal-900 to-[#0F4C2E] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/20 rounded-full text-xs font-bold mb-3">
+              <Video className="w-4 h-4 text-emerald-300" />
+              <span>{isNl ? 'Live Beelden & Piste-Status' : 'Live-Bilder & Schneebericht'}</span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 4: SKIHÜTTEN & GASTRONOMIE */}
-      <section id="skihuetten" className="mb-14 scroll-mt-20">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
-              <Coffee className="w-4 h-4" />
-              <span>{isNl ? 'Echte Berghutsfeer' : 'Einkehrschwung & Kulinarik'}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
-              {isNl ? 'De Gezelligste Skihutten in Winterberg' : 'Die besten Skihütten & Almen im Skigebiet'}
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
+            <h3 className="text-xl sm:text-2xl font-black mb-2">
+              {isNl ? 'Wil je de actuele sneeuwhoogtes & webcams zien?' : 'Möchten Sie die Live-Webcams und Schneehöhen prüfen?'}
+            </h3>
+            <p className="text-sm text-white/90 leading-relaxed">
               {isNl
-                ? 'Van knisperend open haardvuur en Sauerlandse erwtensoep tot zinderende après-ski: ontdek waar je het beste stopt voor een pauze.'
-                : 'Vom knisternden Kaminfeuer bei hausgemachter Sauerländer Erbsensuppe bis zur legendären Stimmung bei Möppi – alle Skihütten mit direkter Pistenanbindung.'}
+                ? 'Bekijk de 360° HD-livestreams van de St. Georg Schanze, Möppis Hütte, Bremberg en Kahler Asten direct in ons portaal.'
+                : 'Werfen Sie einen Blick auf die hochauflösenden 360°-Webcams an der St. Georg Schanze, Möppis Hütte, Kappe und Brembergkopf.'}
             </p>
           </div>
 
-          {onNavigateCategory && (
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
             <button
               type="button"
-              onClick={() => onNavigateCategory('Gastronomie', 'Skihütten')}
-              className="inline-flex items-center gap-1 text-xs font-bold text-[#0F4C2E] dark:text-emerald-400 hover:underline bg-transparent border-none p-0 cursor-pointer self-start sm:self-auto"
+              onClick={() => {
+                if (onNavigateSkiReport) {
+                  onNavigateSkiReport();
+                } else {
+                  window.history.pushState(null, '', isNl ? '/nl/skigebied-piste' : '/pistenbericht');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="px-6 py-3 rounded-xl bg-white text-[#0F4C2E] hover:bg-gray-100 font-extrabold text-sm transition-all text-center shadow-md cursor-pointer"
             >
-              <span>{isNl ? 'Alle skihutten in de gids bekijken' : 'Alle Skihütten im Verzeichnis aufrufen'}</span>
-              <ArrowRight className="w-4 h-4" />
+              {isNl ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams'}
             </button>
-          )}
+          </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKI_HUTS_DATA.map((hut) => {
-            const matchedBus = hut.businessNameMatch 
-              ? businesses.find(b => b.name.toLowerCase().includes(hut.businessNameMatch!.toLowerCase()))
-              : undefined;
-
-            return (
-              <div
-                key={hut.id}
-                className="bg-white dark:bg-[#1E2621] rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="font-extrabold text-lg text-gray-900 dark:text-white leading-snug">
-                      {hut.name}
-                    </h3>
-                    {hut.hasFloodlightOpen && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950/80 dark:text-amber-300 shrink-0">
-                        <Moon className="w-2.5 h-2.5" />
-                        {isNl ? 'Avondski' : 'Flutlicht'}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 mb-3">
-                    <MapPin className="w-3.5 h-3.5 text-[#0F4C2E] dark:text-emerald-400 shrink-0" />
-                    <span>{isNl ? hut.location_nl : hut.location}</span>
-                  </div>
-
-                  <div className="p-2.5 bg-gray-50 dark:bg-[#151B17] rounded-xl border border-gray-100 dark:border-gray-800 text-xs mb-3">
-                    <span className="font-bold text-gray-800 dark:text-gray-200 block mb-0.5">
-                      📍 {hut.piste}
-                    </span>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      {isNl ? hut.highlight_nl : hut.highlight}
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                    {isNl ? hut.description_nl : hut.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {hut.tags.map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-[11px] font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-gray-100 dark:border-gray-800">
-                  {matchedBus ? (
-                    <button
-                      type="button"
-                      onClick={() => onSelectBusiness ? onSelectBusiness(matchedBus) : null}
-                      className="w-full py-2 px-3 bg-[#0F4C2E] hover:bg-[#14532D] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                    >
-                      <span>{isNl ? 'Profiel & Openingstijden bekijken' : 'Eintrag im Verzeichnis aufrufen'}</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
-                  ) : (
-                    <div className="text-xs text-gray-400 italic text-center py-1">
-                      {isNl ? 'Direct aan de piste bereikbaar' : 'Direkt an der Piste gelegen'}
-                    </div>
-                  )}
-                </div>
+      {/* SECTION: KIDS ON SKI (KOSTENLOSER SKIURLAUB FÜR KINDER 3-5 JAHRE) */}
+      <section id="kids-on-ski" className="mb-12 scroll-mt-24">
+        <div className="bg-white dark:bg-[#1E2420] rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400 mb-1.5">
+                <Snowflake className="w-4 h-4" />
+                <span>Winterberg Touristik und Wirtschaft GmbH</span>
               </div>
-            );
-          })}
+              <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">
+                {isNl
+                  ? 'Kids on Ski: Gratis skivakantie voor kinderen (3–5 jaar)'
+                  : 'Kids on Ski: Kostenloser Skiurlaub für Kinder (3–5 Jahre)'}
+              </h2>
+            </div>
+            <a
+              href={isNl ? '/nl/themas/skien-in-winterberg/kids-on-ski' : '/themen/skifahren-in-winterberg/kids-on-ski'}
+              onClick={(e) => {
+                if (onNavigateKidsOnSki) {
+                  e.preventDefault();
+                  onNavigateKidsOnSki();
+                }
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold transition-colors shrink-0 self-start md:self-auto"
+            >
+              <span>{isNl ? 'Alle feiten, data & partners bekijken' : 'Alle Fakten, Zeiträume & Partner ansehen'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            {isNl
+              ? 'Via het programma „Kids on Ski“ van de Winterberg Touristik und Wirtschaft GmbH kunnen niet-leerplichtige kinderen van 3 tot 5 jaar zonder ski-ervaring in geselecteerde actieweken kosteloos leren skiën. Inbegrepen zijn 5 overnachtingen op de kamer van de ouders (bij partnerbedrijven), 4× halve-dag-skiles, 4 dagen skiverhuur en een 4-daagse skipas.'
+              : 'Über das Programm „Kids on Ski“ der Winterberg Touristik und Wirtschaft GmbH erhalten nicht schulpflichtige Kinder im Alter von 3 bis 5 Jahren ohne Vorkenntnisse in festgelegten Aktionswochen einen kostenlosen Einstieg in den Skisport. Enthalten sind 5 Übernachtungen im Zimmer der Eltern (bei Partnerbetrieben), 4 × Halbtagesskikurs, 4 Tage Skiverleih sowie ein 4-Tages-Skipass.'}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Doelgroep' : 'Zielgruppe'}</strong>
+              {isNl ? 'Kinderen 3–5 jaar (voorkennis niet vereist)' : 'Kinder 3–5 Jahre (Vorkenntnisse nicht notwendig)'}
+            </div>
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Inbegrepen' : 'Leistungen'}</strong>
+              {isNl ? '5 nachten, 4× skiles, verhuur & skipas' : '5 Nächte, 4× Skikurs, Verleih & 4-Tage-Skipass'}
+            </div>
+            <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <strong className="block text-gray-900 dark:text-white mb-0.5">{isNl ? 'Aanbieder & info' : 'Anbieter & Infos'}</strong>
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
+                <a
+                  href="https://www.winterberg.de/aktivitaeten-erlebnisse/winter/kids-on-ski/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1"
+                >
+                  winterberg.de
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a
+                  href="https://kids-on-ski.com/de/skigebiet/winterberg/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1"
+                >
+                  kids-on-ski.com
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1340,125 +1512,8 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
 
 
 
-      {/* SECTION 8: WINTERSPORT-NEWS (QUERVERLINKT) */}
-      <section id="ski-news" className="mb-14 scroll-mt-20">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F4C2E] dark:text-emerald-400 mb-2">
-              <Sparkles className="w-4 h-4" />
-              <span>{isNl ? 'Laatste Nieuws' : 'Aktuelle Wintersport-Nachrichten'}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
-              {isNl ? 'Berichten rondom Pistes & Skiseizoen' : 'News rund um Skisaison & Winterberg'}
-            </h2>
-          </div>
-
-          <a
-            href="/news"
-            onClick={(e) => {
-              e.preventDefault();
-              window.history.pushState(null, '', isNl ? '/nl/nieuws' : '/news');
-              window.dispatchEvent(new PopStateEvent('popstate'));
-            }}
-            className="text-xs font-bold text-[#0F4C2E] dark:text-emerald-400 hover:underline flex items-center gap-1"
-          >
-            <span>{isNl ? 'Alle nieuwsberichten bekijken' : 'Alle News im Überblick'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {skiNews.map((article) => (
-            <div
-              key={article.id}
-              className="bg-white dark:bg-[#1E2621] rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
-            >
-              <div>
-                <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
-                  <img
-                    src={article.imageUrl}
-                    alt={isNl ? (article.title_nl || article.title) : article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-2.5 left-2.5 bg-[#0F4C2E] text-white px-2 py-0.5 rounded text-[10px] font-bold">
-                    {article.businessName || 'Wintersport'}
-                  </div>
-                </div>
-
-                <div className="p-5">
-                  <span className="text-[11px] text-gray-400 block mb-1.5">
-                    {new Date(article.date).toLocaleDateString(isNl ? 'nl-NL' : 'de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}
-                  </span>
-                  <h3 className="font-bold text-base text-gray-900 dark:text-white leading-snug line-clamp-2 mb-2 group-hover:text-[#0F4C2E] dark:group-hover:text-emerald-400 transition-colors">
-                    {isNl ? (article.title_nl || article.title) : article.title}
-                  </h3>
-                </div>
-              </div>
-
-              <div className="px-5 pb-5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (onSelectNewsArticle) {
-                      onSelectNewsArticle(article.slug);
-                    } else {
-                      const prefix = isNl ? '/nl' : '';
-                      const newsPath = `${prefix}/news/${(isNl && article.slug_nl) ? article.slug_nl : article.slug}`;
-                      window.history.pushState(null, '', newsPath);
-                      window.dispatchEvent(new PopStateEvent('popstate'));
-                    }
-                  }}
-                  className="w-full py-2 px-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-colors cursor-pointer"
-                >
-                  <span>{isNl ? 'Lees het hele artikel' : 'Artikel lesen'}</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 9: LIVE WEBCAMS & SCHNEEBERICHT BANNER */}
-      <section className="mb-14">
-        <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-emerald-900 via-teal-900 to-[#0F4C2E] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/20 rounded-full text-xs font-bold mb-3">
-              <Video className="w-4 h-4 text-emerald-300" />
-              <span>{isNl ? 'Live Beelden & Piste-Status' : 'Live-Bilder & Schneebericht'}</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black mb-2">
-              {isNl ? 'Wil je de actuele sneeuwhoogtes & webcams zien?' : 'Möchten Sie die Live-Webcams und Schneehöhen prüfen?'}
-            </h3>
-            <p className="text-sm text-white/90 leading-relaxed">
-              {isNl
-                ? 'Bekijk de 360° HD-livestreams van de St. Georg Schanze, Möppis Hütte, Bremberg en Kahler Asten direct in ons portaal.'
-                : 'Werfen Sie einen Blick auf die hochauflösenden 360°-Webcams an der St. Georg Schanze, Möppis Hütte, Kappe und Brembergkopf.'}
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
-            <button
-              type="button"
-              onClick={() => {
-                if (onNavigateSkiReport) {
-                  onNavigateSkiReport();
-                } else {
-                  window.history.pushState(null, '', isNl ? '/nl/skigebied-piste' : '/pistenbericht');
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                }
-              }}
-              className="px-6 py-3 rounded-xl bg-white text-[#0F4C2E] hover:bg-gray-100 font-extrabold text-sm transition-all text-center shadow-md cursor-pointer"
-            >
-              {isNl ? 'Pistebericht & Webcams' : 'Schneebericht & Webcams'}
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 10: FAQ ACCORDION (SKI THEME) */}
-      <section className="mb-14">
+      <section id="faq" className="mb-14 scroll-mt-16">
         <div className="mb-6">
           <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">
             {isNl ? 'Veelgestelde vragen over skiën in Winterberg' : 'Häufige Fragen rund ums Skifahren in Winterberg'}
@@ -1645,6 +1700,7 @@ export const SkiThemePage: React.FC<SkiThemePageProps> = ({
         </div>
       )}
     </main>
+    </div>
   );
 };
 
