@@ -2,6 +2,61 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "tag-der-offenen-tuer-gsg-winterberg-2026",
+    slug: "tag-der-offenen-tuer-gsg-winterberg-2026",
+    slug_nl: "open-dag-gsg-winterberg-2026",
+    title: "Tag der offenen Tür am Geschwister-Scholl-Gymnasium Winterberg: Orientierung für Viert- und Zehntklässler",
+    title_nl: "Open dag bij het Geschwister-Scholl-Gymnasium Winterberg: oriëntatie voor groep 8- en vierdeklassers",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "geschwister-scholl-gymnasium-winterberg",
+    businessName: "Geschwister-Scholl-Gymnasium Winterberg",
+    imageUrl: "/news-gsg-tag-der-offenen-tuer.jpg",
+    imageCredit: "Foto: [Wolsberg](https://commons.wikimedia.org/wiki/User:Wolsberg) / [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gsg_winterberg.jpg) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0))",
+    isAiGenerated: false,
+    status: "approved",
+    category: "bildung-und-soziales",
+    category_nl: "onderwijs-en-sociaal",
+    date: "2026-11-18T18:56:00.000Z",
+    content: `Für viele Schülerinnen und Schüler steht in den kommenden Monaten eine wegweisende Entscheidung an: Welche weiterführende Schule passt nach der vierten Klasse – oder welcher Weg ist nach dem zehnten Schuljahr an einer anderen Schule der richtige? Wer sich vor diesem Schritt ein eigenes Bild verschaffen möchte, hat am **21. November 2026** in Winterberg eine gute Gelegenheit dazu. Von **09:00 bis 15:00 Uhr** lädt das **Geschwister-Scholl-Gymnasium** an der **Ursulinenstraße 24** zum **Tag der offenen Tür** ein.
+
+## Einblicke in Unterricht, Gebäude und Schulleben
+
+Ein Besuch lohnt sich vor allem, weil sich die Schule dort direkt im Gespräch und durch eigene Eindrücke kennenlernen lässt. Auf dem Programm stehen Schulführungen sowie Probeunterricht und Mitmachangebote, bei denen Kinder und Jugendliche selbst erleben können, wie am Gymnasium gearbeitet wird.
+
+Gleichzeitig bietet der Tag Raum für Beratung und persönlichen Austausch. Gerade für Viertklässler und Zehntklässler anderer Schulen sowie ihre Eltern ist das eine sinnvolle Möglichkeit, offene Fragen zur Schullaufbahn und zum Alltag am Gymnasium direkt vor Ort zu klären. Begleitet wird das Programm von einem Schulweihnachtsmarkt.
+
+## Was das Geschwister-Scholl-Gymnasium auszeichnet
+
+Unter dem Leitbild „Gemeinsam Schule Gestalten“ setzt das Winterberger Gymnasium auf mehrere Schwerpunkte. Die Schule ist als **Eliteschule des Sports** und **NRW Sportschule** ausgewiesen und trägt zudem den Titel **Schule ohne Rassismus – Schule mit Courage**. Neben diesen Profilbereichen prägen **Theater und Musik** sowie Gemeinschaft und Zusammenhalt das Schulleben.
+
+## Termin, Anmeldung und Kontakt
+
+Der Tag der offenen Tür findet am **21. November 2026** von **09:00 bis 15:00 Uhr** am **Geschwister-Scholl-Gymnasium Winterberg** (Ursulinenstraße 24, 59955 Winterberg) statt. Eine vorherige Anmeldung ist über den QR-Code auf der Ankündigung möglich.
+
+* **Telefon:** 02981-92160
+* **E-Mail:** verwaltung@gymnasium-winterberg.de
+* **Website:** www.gymnasium-winterberg.de`,
+    content_nl: `Voor veel leerlingen staat er de komende maanden een belangrijke keuze voor de deur: welke middelbare school past na de basisschool – of welke vervolgstap is na de vierde klas van een andere school de juiste? Wie zich vooraf een eigen beeld wil vormen, krijgt daarvoor op **21 november 2026** in Winterberg de gelegenheid. Van **09:00 tot 15:00 uur** opent het **Geschwister-Scholl-Gymnasium** aan de **Ursulinenstraße 24** zijn deuren tijdens de **open dag**.
+
+## Kijkje in de lessen, het gebouw en het schoolleven
+
+Een bezoek loont vooral omdat leerlingen en ouders de school direct via gesprekken en eigen indrukken kunnen leren kennen. Op het programma staan rondleidingen door de school, proeflessen en doe-activiteiten waarbij kinderen en jongeren zelf kunnen ervaren hoe er op het gymnasium wordt gewerkt.
+
+Tegelijkertijd is er ruimte voor advies en persoonlijk contact. Juist voor leerlingen uit groep 8 en scholieren die na het tiende leerjaar van een andere school willen overstappen, is dit een goede kans om vragen over de schoolloopbaan en de dagelijkse praktijk ter plaatse te bespreken. Het programma wordt begeleid door een kerstmarkt van de school.
+
+## Waar het Geschwister-Scholl-Gymnasium voor staat
+
+Onder het motto „Gemeinsam Schule Gestalten“ legt het gymnasium in Winterberg meerdere accenten. De school is erkend als **Eliteschule des Sports** en **NRW Sportschule** en draagt daarnaast de titel **Schule ohne Rassismus – Schule mit Courage**. Naast deze speerpunten spelen ook **theater en muziek** en onderlinge verbondenheid een belangrijke rol in het schoolleven.
+
+## Datum, aanmelding en contact
+
+De open dag vindt plaats op **21 november 2026** van **09:00 tot 15:00 uur** bij het **Geschwister-Scholl-Gymnasium Winterberg** (Ursulinenstraße 24, 59955 Winterberg). Vooraf aanmelden is mogelijk via de QR-code op de aankondiging.
+
+* **Telefoon:** 02981-92160
+* **E-mail:** verwaltung@gymnasium-winterberg.de
+* **Website:** www.gymnasium-winterberg.de`,
+  },
+  {
     id: "skiliftkarussell-winterberg-saisonstart-advent-2026",
     slug: "skiliftkarussell-winterberg-saisonstart-advent-2026",
     slug_nl: "skiliftkarussell-winterberg-seizoensstart-advent-2026",
