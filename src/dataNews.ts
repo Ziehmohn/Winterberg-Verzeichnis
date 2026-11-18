@@ -14,8 +14,8 @@ export const initialNews: NewsArticle[] = [
     imageCredit: "Foto: [Wolsberg](https://commons.wikimedia.org/wiki/User:Wolsberg) / [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gsg_winterberg.jpg) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0))",
     isAiGenerated: false,
     status: "approved",
-    category: "bildung-und-soziales",
-    category_nl: "onderwijs-en-sociaal",
+    category: "bildung",
+    category_nl: "school-en-onderwijs",
     date: "2026-11-18T18:56:00.000Z",
     content: `Für viele Schülerinnen und Schüler steht in den kommenden Monaten eine wegweisende Entscheidung an: Welche weiterführende Schule passt nach der vierten Klasse – oder welcher Weg ist nach dem zehnten Schuljahr an einer anderen Schule der richtige? Wer sich vor diesem Schritt ein eigenes Bild verschaffen möchte, hat am **21. November 2026** in Winterberg eine gute Gelegenheit dazu. Von **09:00 bis 15:00 Uhr** lädt das **Geschwister-Scholl-Gymnasium** an der **Ursulinenstraße 24** zum **Tag der offenen Tür** ein.
 
@@ -251,8 +251,8 @@ Met deze gegevens stippelen de organisatoren de route uit, zodat alle aangemelde
     imageCredit: "Bild KI-generiert",
     isAiGenerated: true,
     status: "approved",
-    category: "freizeit",
-    category_nl: "vrije-tijd",
+    category: "wirtschaft",
+    category_nl: "economie",
     date: "2026-11-10T22:30:00.000Z",
     content: `Winterberg erzielt in mehreren aktuellen Tourismus- und Reiseanalysen Spitzenplätze. Sowohl bei der Sichtbarkeit in den sozialen Medien als auch bei den Online-Suchanfragen nach deutschen Kleinstädten belegt die Sauerländer Stadt bundesweit Rang zwei – und ist damit die meistgesuchte Kleinstadt außerhalb Bayerns. Auch im Ranking der staatlich anerkannten Kurorte schneidet Winterberg stark ab und landet auf Platz drei in Deutschland sowie auf Platz eins bei niederländischen Gästen.
 
@@ -787,8 +787,8 @@ Na afloop van de 6 basislessen is er de mogelijkheid om aan te sluiten bij de va
     imageUrl: "/die-grube-logo.png",
     imageCredit: "Die Grube / Technologiezentrum für elektronische Musik",
     status: 'approved',
-    category: 'freizeit',
-    category_nl: 'vrije-tijd',
+    category: 'events',
+    category_nl: 'evenementen',
     date: "2026-10-29T08:00:00.000Z",
     content: `Die traditionsreiche Discothek „Die Grube“ in Winterberg-Siedlinghausen steht vor ihrer Wiedereröffnung. Nach dem vorübergehenden Aus im Januar 2023 übernimmt nun eine neue Betreibergeneration das Ruder, um der geschichtsträchtigen Feierstätte neues Leben einzuhauchen.
 

@@ -27,7 +27,8 @@ import {
   Compass,
   Briefcase,
   HeartPulse,
-  Sparkles
+  Sparkles,
+  GraduationCap
 } from 'lucide-react';
 
 interface NewsBoardProps {
@@ -288,9 +289,11 @@ export default function NewsBoard({ theme, activeThemeKey, onNewsClick }: NewsBo
   const getCategoryIcon = (catId: string) => {
     switch (catId) {
       case 'all': return <Sparkles className="w-3.5 h-3.5 shrink-0" />;
+      case 'buergerinfo': return <Building2 className="w-3.5 h-3.5 shrink-0 text-blue-700" />;
       case 'gastronomie': return <UtensilsCrossed className="w-3.5 h-3.5 shrink-0 text-amber-700" />;
       case 'events': return <PartyPopper className="w-3.5 h-3.5 shrink-0 text-rose-700" />;
       case 'freizeit': return <Compass className="w-3.5 h-3.5 shrink-0 text-sky-700" />;
+      case 'bildung': return <GraduationCap className="w-3.5 h-3.5 shrink-0 text-indigo-700" />;
       case 'wirtschaft': return <Briefcase className="w-3.5 h-3.5 shrink-0 text-emerald-700" />;
       case 'gesundheit': return <HeartPulse className="w-3.5 h-3.5 shrink-0 text-teal-700" />;
       default: return null;

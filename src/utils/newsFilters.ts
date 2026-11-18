@@ -39,6 +39,12 @@ export const NEWS_CATEGORIES: NewsCategoryConfig[] = [
     badgeClass: 'bg-sky-50 text-sky-900 border-sky-200/80 hover:bg-sky-100/70'
   },
   { 
+    id: 'bildung', 
+    nameDe: 'Schule & Bildung', 
+    nameNl: 'School & Onderwijs',
+    badgeClass: 'bg-indigo-50 text-indigo-900 border-indigo-200/80 hover:bg-indigo-100/70'
+  },
+  { 
     id: 'wirtschaft', 
     nameDe: 'Wirtschaft & Handel', 
     nameNl: 'Economie & Handel',
@@ -59,6 +65,7 @@ export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArt
     if (c === 'gastronomie' || c.includes('gastro') || c.includes('essen') || c.includes('horeca')) return 'gastronomie';
     if (c === 'events' || c.includes('event') || c.includes('kultur') || c.includes('party')) return 'events';
     if (c === 'freizeit' || c.includes('sport') || c.includes('ski') || c.includes('wander')) return 'freizeit';
+    if (c === 'bildung' || c === 'schule' || c === 'bildung-und-soziales' || c.includes('bildung') || c.includes('schule') || c.includes('onderwijs')) return 'bildung';
     if (c === 'wirtschaft' || c.includes('wirtsch') || c.includes('handel') || c.includes('business')) return 'wirtschaft';
     if (c === 'gesundheit' || c.includes('gesund') || c.includes('arzt') || c.includes('praxis')) return 'gesundheit';
   }
@@ -74,7 +81,10 @@ export function normalizeNewsCategory(rawCat?: string, article?: Partial<NewsArt
     if (text.includes('halloween') || text.includes('winterdorf') || text.includes('kino') || text.includes('film') || text.includes('konzert') || text.includes('gospel') || text.includes('party')) {
       return 'events';
     }
-    if (text.includes('ski') || text.includes('lift') || text.includes('wander') || text.includes('rad') || text.includes('rundfahrt')) {
+    if (/\b(schule|gymnasium|grundschule|realschule|gesamtschule|schülerinnen|schüler)\b/i.test(text)) {
+      return 'bildung';
+    }
+    if (text.includes('ski') || text.includes('lift') || text.includes('wander') || /\b(rad|radsport|fahrrad|mountainbike)\b/i.test(text) || text.includes('rundfahrt')) {
       return 'freizeit';
     }
     if (text.includes('arzt') || text.includes('praxis') || text.includes('therap') || text.includes('gesund') || text.includes('psych')) {
