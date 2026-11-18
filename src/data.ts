@@ -1475,10 +1475,6 @@ export const businesses: Business[] = [
     name: 'Bu\'ket Bar Winterberg',
     category: 'Gastronomie',
     subcategory: 'Kneipen und Bars',
-    additionalCategories: [
-      { category: 'Dienstleistungen', subcategory: 'Tagungszentren' },
-      { category: 'Einzelhandel', subcategory: 'Feinkost & Lebensmittel' }
-    ],
     description: 'Die Bu’ket Bar in Winterberg ist eine stilvolle Cocktail- und Weinbar mit angeschlossener Vinothek und exklusiver Eventlocation. Die Location kann für geschlossene Gesellschaften, Geburtstage, Firmenfeiern und Feiern im Freundeskreis (bis ca. 40 Personen) exklusiv gemietet werden. Zudem werden professionelle Cocktailkurse und moderierte Weintastings im separaten Patron Room angeboten.',
     description_nl: 'Bu’ket Bar in Winterberg is een stijlvolle cocktail- en wijnbar met vinotheek en exclusieve evenementenlocatie. De locatie kan exclusief worden afgehuurd voor besloten feesten, verjaardagen en bedrijfsuitjes tot 40 personen. Daarnaast worden er cocktailworkshops en wijnproeverijen georganiseerd in de sfeervolle Patron Room.',
     address: 'Poststraße 1, 59955 Winterberg',
@@ -3381,7 +3377,27 @@ export const businesses: Business[] = [
     address: 'Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg',
     district: 'Neuastenberg',
     isPremium: false,
-    status: 'approved'
+    status: 'approved',
+    events: [
+      {
+        id: 'postmas-gasthof-zur-post-neuastenberg-2026',
+        title: 'POSTMAS – Kleiner Wintermarkt am Gasthof zur Post',
+        title_nl: 'POSTMAS – Kleine wintermarkt bij Gasthof zur Post',
+        startDate: '2026-12-12',
+        endDate: '2026-12-13',
+        startTime: '14:00',
+        endTime: '21:00',
+        category: 'Märkte & Messen',
+        location: 'Am Carport, Gasthof zur Post, Neuastenberger Str. 49, 59955 Winterberg-Neuastenberg',
+        coordinates: { lat: 51.1636, lng: 8.4812 },
+        imageUrl: '/events-postmas-gasthof-zur-post-2026.jpg',
+        organizer: 'Gasthof zur Post Neuastenberg',
+        description: 'POSTMAS – Kleiner Wintermarkt am Gasthof zur Post in Neuastenberg (am Carport).\n\nFreuen Sie sich auf Glühwein, gutes Essen und Hausgemachtes in gemütlicher Winteratmosphäre.\n\nÖffnungszeiten:\n• Samstag, 12. Dezember 2026: 14:00 – 21:00 Uhr\n• Sonntag, 13. Dezember 2026: 12:00 – 19:00 Uhr',
+        description_nl: 'POSTMAS – Kleine wintermarkt bij Gasthof zur Post in Neuastenberg (bij de carport).\n\nGeniet van glühwein, lekker eten en huisgemaakte lekkernijen in een gezellige wintersfeer.\n\nOpeningstijden:\n• Zaterdag 12 december 2026: 14:00 – 21:00 uur\n• Zondag 13 december 2026: 12:00 – 19:00 uur',
+        slug: 'postmas-wintermarkt-gasthof-zur-post-neuastenberg-2026',
+        slug_nl: 'postmas-wintermarkt-gasthof-zur-post-neuastenberg-2026'
+      }
+    ]
   },
   {
     id: 'clemens-altastenberg',
