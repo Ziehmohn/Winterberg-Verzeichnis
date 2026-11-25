@@ -2,6 +2,155 @@ import { NewsArticle } from './types';
 
 export const initialNews: NewsArticle[] = [
   {
+    id: "weihnachtsshopping-winterberg-2026",
+    slug: "weihnachtsshopping-winterberg-2026",
+    slug_nl: "kerstshoppen-winterberg-2026",
+    title: "Weihnachtsshopping 2026 in Winterberg: 41 Betriebe beteiligen sich an der Adventsaktion",
+    title_nl: "Kerstshoppen 2026 in Winterberg: 41 bedrijven doen mee aan de adventsactie",
+    author: "Winterberg-Verzeichnis Redaktion",
+    businessId: "winterberg-touristik",
+    businessName: "Winterberg Touristik und Wirtschaft GmbH",
+    businessSlug: "dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh",
+    imageUrl: "/news-weihnachtsshopping-winterberg-2026.jpg",
+    imagePosition: "50% 52%",
+    imageCredit: "Grafik: Stadtmarketing Winterberg / Einkaufswelt Winterberg",
+    isAiGenerated: false,
+    status: "approved",
+    category: "wirtschaft",
+    category_nl: "economie-en-handel",
+    date: "2026-11-25T16:30:00.000Z",
+    content: `Vom 1. Adventswochenende bis einschließlich Silvester läuft in Winterberg wieder das Weihnachtsshopping. Zwischen dem 28. November und dem 31. Dezember 2026 wirbt der Stadtmarketing Winterberg mit seinen Dörfern e.V. gemeinsam mit der Einkaufswelt Winterberg für den Einkauf vor Ort – im Einzelhandel, bei Dienstleistern sowie in Gastronomie und Hotellerie.
+
+Insgesamt 41 Betriebe beteiligen sich am Weihnachtsshopping 2026. Der Schwerpunkt liegt in der Winterberger Kernstadt, unter anderem entlang der Straßen Am Waltenberg, Hauptstraße, Poststraße, Neue Mitte, Untere Pforte und Remmeswiese. In der Gastronomie und Hotellerie machen neben Winterberger Häusern auch Betriebe aus Elkeringhausen, Langewiese und Siedlinghausen mit.
+
+Alle 41 teilnehmenden Betriebe stehen in den folgenden Listen und sind direkt auf ihre Profile im Winterberg-Verzeichnis verlinkt.
+
+## Einkauf & Dienstleistung
+
+* [Autohaus Friedrich Hoffmann](/mobilitaet-und-kfz/autohaeuser/autohaus-friedrich-hoffmann) – Remmeswiese 24, Winterberg
+* [Bau- & Heimwerkermarkt Müllenhoff](/einzelhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg) – Remmeswiese 23, Winterberg
+* [Blumen Klotz](/einzelhandel/blumengeschaefte/blumen-klotz) – Am Waltenberg 31, Winterberg
+* [Bekleidungsfabrik Bessmann](/einzelhandel/bekleidung/bessmann-mode-und-sport-outlet) – Neue Mitte 3 und Poststraße 6, Winterberg
+* [CB House of Beauty](/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff) – Wernsdorferstraße 39, Winterberg
+* [Christian Leisse – Herrenausstatter & Damenmode](/einzelhandel/bekleidung/herrenausstatter-christian-leisse) – Am Waltenberg 2, Winterberg
+* [Comes – Schönes für Haus & Garten](/einzelhandel/haushaltswaren-und-deko/comes-gruenes-warenhaus) – Remmeswiese 12, Winterberg
+* [Der Lakritzmann](/einzelhandel/feinkost-und-lebensmittel/der-lakritzmann) – Am Waltenberg 30, Winterberg
+* [E-Center Löffler](/einzelhandel/supermarkt/e-center-loeffler) – Neue Mitte 4, Winterberg
+* [FrauenZimmer](/einzelhandel/bekleidung/frauen-zimmer-winterberg) – Untere Pforte 4, Winterberg
+* [Insider Fashion Store](/einzelhandel/bekleidung/insider-fashion-store-winterberg) – Am Waltenberg 19, Winterberg
+* [IS Moden](/einzelhandel/bekleidung/is-moden-winterberg) – Am Waltenberg 15, Winterberg
+* [iSmartFix Reparaturservice & IT](/dienstleistungen/it-software/ismartfix-reparaturservice-und-it) – Poststraße 9, Winterberg
+* [Juwelier Eiloff](/einzelhandel/juweliere-und-uhren/juwelier-eiloff) – Am Waltenberg 9, Winterberg
+* [Kur-Apotheke](/gesundheit-und-medizin/apotheken/kur-apotheke) – Poststraße 9, Winterberg
+* [Liftstation – Snowboard & Skateshop](/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop) – Hauptstraße 2, Winterberg
+* [Lu Brillenschmiede](/gesundheit-und-medizin/optiker/lu-brillenschmiede) – Hellenstraße 6, Winterberg
+* [Lütkemeier – Damenmode](/einzelhandel/bekleidung/luetkemeier-modehaus) – Am Waltenberg 30, Winterberg
+* [Modehaus Schnurbusch](/einzelhandel/bekleidung/modehaus-schnurbusch) – Hauptstraße 1, Winterberg
+* [Mode Menke](/ski-bike-sport/sport-und-outdoor/sport-und-mode-menke) – Am Waltenberg 5, Winterberg
+* [MODEORTH](/einzelhandel/bekleidung/modeorth-winterberg-gmbh) – Hauptstraße 11, Winterberg
+* [Outdoor 842](/ski-bike-sport/sport-und-outdoor/outdoor-842) – Am Waltenberg 16, Winterberg
+* [Outdoor 842 Bike+Kids](/ski-bike-sport/sport-und-outdoor/outdoor-842-bike-kids) – Am Waltenberg 16, Winterberg
+* [Parfümerie Becker](/einzelhandel/parfuemerie/parfuemerie-becker-gmbh) – Am Waltenberg 22, Winterberg
+* [Pfiffikus](/einzelhandel/spielwaren/pfiffikus-winterberg) – Hauptstraße 12, Winterberg
+* [Pfälzer Weinlädchen](/gastronomie/weinstuben/weinlaedchen-pfaelzer) – Hauptstraße 32, Winterberg
+* [See you by V&K Optik Kuhnert](/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg) – Am Waltenberg 6, Winterberg
+* [Sonderpreis Baumarkt Winterberg](/einzelhandel/baumaerkte/sonderpreis-baumarkt-winterberg) – Remmeswiese 3 (in der Ankündigung „Remmesweise 3“), Winterberg
+* [Street Point](/einzelhandel/bekleidung/street-point-winterberg) – Hauptstraße 4, Winterberg
+* [Tischlein deck dich](/einzelhandel/haushaltswaren-und-deko/tischlein-deck-dich) – Am Waltenberg 40, Winterberg
+* [Wineland](/gastronomie/weinstuben/wineland) – Am Waltenberg 16, Winterberg
+* [Winterberger Strumpfhaus](/einzelhandel/bekleidung/winterberger-strumpfhaus) – Am Waltenberg 24, Winterberg
+* [Winterberg Touristik und Wirtschaft](/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh) – Am Kurpark 4, Winterberg
+* [Wortreich – Lesen und mehr](/einzelhandel/buchhandlungen/buchhandlung-wortreich-winterberg) – Untere Pforte 4, Winterberg
+* [Zeitlos by B & J](/einzelhandel/bekleidung/zeitlos) – Am Waltenberg 19, Winterberg
+
+## Hotellerie & Gastronomie
+
+* [AVITAL Resort Winterberg](/hotels-und-unterkuenfte/hotels/avital-resort-winterberg) – Auf der Wallme 5, Winterberg
+* [Bistorant Uppu](/gastronomie/restaurant/bistorant-uppu) – Am Waltenberg 19, Winterberg
+* [Hotel Oversum Winterberg](/hotels-und-unterkuenfte/hotels/hotel-oversum-ski-und-vital-resort-winterberg) – Am Kurpark 6, Winterberg
+* [Landhotel Grimmeblick](/hotels-und-unterkuenfte/hotels/landhotel-grimmeblick) – Am langen Acker 5, Elkeringhausen
+* [Landhotel Flora & Fauna](/hotels-und-unterkuenfte/hotels/landhotel-flora-und-fauna) – Grenzweg 2, Langewiese
+* [RitmuS – Restaurant & Tapas Bar](/gastronomie/restaurant/ritmus-restaurant-und-tapas-bar) – Kolpingstraße 12, Siedlinghausen
+
+Weitere Geschäfte und Tipps für den Einkauf in der Stadt stehen auf der Themenseite [Shoppen in Winterberg](/themen/shoppen-in-winterberg). Der Aktionszeitraum ist außerdem im Veranstaltungskalender hinterlegt: [Zum Event Weihnachtsshopping 2026](/veranstaltungen/weihnachtsshopping-winterberg-2026).
+
+:::contact
+### Weihnachtsshopping 2026 im Überblick
+* **Zeitraum:** 28.11. – 31.12.2026 (1. Adventswochenende bis einschließlich Silvester)
+* **Veranstalter:** Stadtmarketing Winterberg mit seinen Dörfern e.V.
+* **Adresse:** Am Kurpark 4, 59955 Winterberg
+* **Telefon:** 02981 925033
+* **E-Mail:** stadtmarketing@winterberg.de
+* **Offizielle Website:** [Informationen auf winterberg.de](https://www.winterberg.de/service-kontakt/stadtmarketing/weihnachtsshopping-2024/)
+* **Verzeichniseintrag:** [Winterberg Touristik und Wirtschaft GmbH](/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh)
+:::`,
+    content_nl: `Vanaf het eerste adventsweekend tot en met oudjaarsdag staat in Winterberg weer het Weihnachtsshopping op het programma. Tussen 28 november en 31 december 2026 roept Stadtmarketing Winterberg mit seinen Dörfern e.V. samen met Einkaufswelt Winterberg op om kerstcadeaus en inkopen lokaal te doen – bij de detailhandel, dienstverleners en in de horeca.
+
+In totaal doen 41 bedrijven mee aan het Weihnachtsshopping 2026. De meeste winkels bevinden zich in het centrum van Winterberg, onder meer aan de Am Waltenberg, Hauptstraße, Poststraße, Neue Mitte, Untere Pforte en Remmeswiese. In de horeca en hotellerie doen naast adressen in Winterberg zelf ook bedrijven in Elkeringhausen, Langewiese en Siedlinghausen mee.
+
+In de overzichten hieronder staan alle 41 deelnemende adressen, direct gekoppeld aan hun bedrijfsprofiel in het Winterberg-Verzeichnis.
+
+## Winkels & Dienstverlening
+
+* [Autohaus Friedrich Hoffmann](/nl/mobiliteit-en-autos/autodealers/autohaus-friedrich-hoffmann) – Remmeswiese 24, Winterberg
+* [Bau- & Heimwerkermarkt Müllenhoff](/nl/detailhandel/bouwmarkten/hagebau-kompakt-muellenhoff-winterberg) – Remmeswiese 23, Winterberg
+* [Blumen Klotz](/nl/detailhandel/bloemenwinkels/blumen-klotz) – Am Waltenberg 31, Winterberg
+* [Bekleidungsfabrik Bessmann](/nl/detailhandel/kleding/bessmann-mode-und-sport-outlet) – Neue Mitte 3 en Poststraße 6, Winterberg
+* [CB House of Beauty](/nl/gezondheid-en-geneeskunde/schoonheidssalons/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff) – Wernsdorferstraße 39, Winterberg
+* [Christian Leisse – Herrenausstatter & Damenmode](/nl/detailhandel/kleding/herrenausstatter-christian-leisse) – Am Waltenberg 2, Winterberg
+* [Comes – Schönes für Haus & Garten](/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/comes-gruenes-warenhaus) – Remmeswiese 12, Winterberg
+* [Der Lakritzmann](/nl/detailhandel/delicatessen-en-levensmiddelen/der-lakritzmann) – Am Waltenberg 30, Winterberg
+* [E-Center Löffler](/nl/detailhandel/supermarkt/e-center-loeffler) – Neue Mitte 4, Winterberg
+* [FrauenZimmer](/nl/detailhandel/kleding/frauen-zimmer-winterberg) – Untere Pforte 4, Winterberg
+* [Insider Fashion Store](/nl/detailhandel/kleding/insider-fashion-store-winterberg) – Am Waltenberg 19, Winterberg
+* [IS Moden](/nl/detailhandel/kleding/is-moden-winterberg) – Am Waltenberg 15, Winterberg
+* [iSmartFix Reparaturservice & IT](/nl/dienstverlening/it-en-software/ismartfix-reparaturservice-und-it) – Poststraße 9, Winterberg
+* [Juwelier Eiloff](/nl/detailhandel/juweliers-en-horloges/juwelier-eiloff) – Am Waltenberg 9, Winterberg
+* [Kur-Apotheke](/nl/gezondheid-en-geneeskunde/apotheken/kur-apotheke) – Poststraße 9, Winterberg
+* [Liftstation – Snowboard & Skateshop](/nl/ski-fiets-sport/sport-en-outdoor/liftstation-snowboard-und-skateshop) – Hauptstraße 2, Winterberg
+* [Lu Brillenschmiede](/nl/gezondheid-en-geneeskunde/opticiens/lu-brillenschmiede) – Hellenstraße 6, Winterberg
+* [Lütkemeier – Damenmode](/nl/detailhandel/kleding/luetkemeier-modehaus) – Am Waltenberg 30, Winterberg
+* [Modehaus Schnurbusch](/nl/detailhandel/kleding/modehaus-schnurbusch) – Hauptstraße 1, Winterberg
+* [Mode Menke](/nl/ski-fiets-sport/sport-en-outdoor/sport-und-mode-menke) – Am Waltenberg 5, Winterberg
+* [MODEORTH](/nl/detailhandel/kleding/modeorth-winterberg-gmbh) – Hauptstraße 11, Winterberg
+* [Outdoor 842](/nl/ski-fiets-sport/sport-en-outdoor/outdoor-842) – Am Waltenberg 16, Winterberg
+* [Outdoor 842 Bike+Kids](/nl/ski-fiets-sport/sport-en-outdoor/outdoor-842-bike-kids) – Am Waltenberg 16, Winterberg
+* [Parfümerie Becker](/nl/detailhandel/parfumerie/parfuemerie-becker-gmbh) – Am Waltenberg 22, Winterberg
+* [Pfiffikus](/nl/detailhandel/speelgoed/pfiffikus-winterberg) – Hauptstraße 12, Winterberg
+* [Pfälzer Weinlädchen](/nl/horeca/wijnlokalen/weinlaedchen-pfaelzer) – Hauptstraße 32, Winterberg
+* [See you by V&K Optik Kuhnert](/nl/gezondheid-en-geneeskunde/opticiens/see-you-by-vundk-optik-kuhnert-winterberg) – Am Waltenberg 6, Winterberg
+* [Sonderpreis Baumarkt Winterberg](/nl/detailhandel/bouwmarkten/sonderpreis-baumarkt-winterberg) – Remmeswiese 3 (in de aankondiging „Remmesweise 3“), Winterberg
+* [Street Point](/nl/detailhandel/kleding/street-point-winterberg) – Hauptstraße 4, Winterberg
+* [Tischlein deck dich](/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/tischlein-deck-dich) – Am Waltenberg 40, Winterberg
+* [Wineland](/nl/horeca/wijnlokalen/wineland) – Am Waltenberg 16, Winterberg
+* [Winterberger Strumpfhaus](/nl/detailhandel/kleding/winterberger-strumpfhaus) – Am Waltenberg 24, Winterberg
+* [Winterberg Touristik und Wirtschaft](/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh) – Am Kurpark 4, Winterberg
+* [Wortreich – Lesen und mehr](/nl/detailhandel/boekhandels/buchhandlung-wortreich-winterberg) – Untere Pforte 4, Winterberg
+* [Zeitlos by B & J](/nl/detailhandel/kleding/zeitlos) – Am Waltenberg 19, Winterberg
+
+## Hotellerie & Horeca
+
+* [AVITAL Resort Winterberg](/nl/hotels-en-accommodaties/hotels/avital-resort-winterberg) – Auf der Wallme 5, Winterberg
+* [Bistorant Uppu](/nl/horeca/restaurants/bistorant-uppu) – Am Waltenberg 19, Winterberg
+* [Hotel Oversum Winterberg](/nl/hotels-en-accommodaties/hotels/hotel-oversum-ski-und-vital-resort-winterberg) – Am Kurpark 6, Winterberg
+* [Landhotel Grimmeblick](/nl/hotels-en-accommodaties/hotels/landhotel-grimmeblick) – Am langen Acker 5, Elkeringhausen
+* [Landhotel Flora & Fauna](/nl/hotels-en-accommodaties/hotels/landhotel-flora-und-fauna) – Grenzweg 2, Langewiese
+* [RitmuS – Restaurant & Tapas Bar](/nl/horeca/restaurants/ritmus-restaurant-und-tapas-bar) – Kolpingstraße 12, Siedlinghausen
+
+Meer winkels en tips voor een dagje winkelen staan op de themapagina [Winkelen in Winterberg](/nl/themas/winkelen-in-winterberg). De actieperiode staat ook in de evenementenkalender: [Naar het evenement Kerstshoppen 2026](/nl/evenementen/kerstshoppen-winterberg-2026).
+
+:::contact
+### Kerstshoppen 2026 in het kort
+* **Periode:** 28-11 t/m 31-12-2026 (1e adventsweekend t/m oudjaarsdag)
+* **Organisator:** Stadtmarketing Winterberg mit seinen Dörfern e.V.
+* **Adres:** Am Kurpark 4, 59955 Winterberg
+* **Telefoon:** 02981 925033
+* **E-mail:** stadtmarketing@winterberg.de
+* **Officiële website:** [Informatie op winterberg.de](https://www.winterberg.de/service-kontakt/stadtmarketing/weihnachtsshopping-2024/)
+* **Bedrijfsprofiel:** [Winterberg Touristik und Wirtschaft GmbH](/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh)
+:::`,
+  },
+  {
     id: "tag-der-offenen-tuer-gsg-winterberg-2026",
     slug: "tag-der-offenen-tuer-gsg-winterberg-2026",
     slug_nl: "open-dag-gsg-winterberg-2026",

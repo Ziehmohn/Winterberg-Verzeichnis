@@ -1,5 +1,5 @@
 # Das Winterberg Verzeichnis – Vollständiger KI- und Datenkatalog (llms-full.txt)
-# Stand: 2026-11-17
+# Stand: 2026-11-25
 # Website: https://www.winterberg-verzeichnis.de
 # Betreiber: SICHTBAR SEO Simon Kräling, Winterberg
 
@@ -27,7 +27,7 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 
 ---
 
-## 2. Vollständiges Unternehmensverzeichnis (473 Einträge)
+## 2. Vollständiges Unternehmensverzeichnis (479 Einträge)
 
 ### Kategorie: Hotels und Unterkünfte
 
@@ -1020,6 +1020,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** Het 3-sterren Hotel Marleen in Winterberg-Siedlinghausen biedt comfortabele kamers, all-inclusive arrangementen en een idyllische ligging aan een beekje in het Sauerland.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/hotel-marleen
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/hotel-marleen
+
+#### [Landhotel Flora & Fauna](https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-flora-und-fauna)
+- **Kategorie:** Hotels und Unterkünfte > Hotels
+- **Ort / Ortsteil:** Langewiese
+- **Adresse:** Grenzweg 2, 59955 Winterberg-Langewiese
+- **Telefon:** 0170 2737873
+- **Webseite:** https://www.landhotel-florafauna.de
+- **Beschreibung (DE):** Landhotel am Grenzweg 2 in Winterberg-Langewiese mit 21 Zimmern, À-la-carte-Restaurant, Saunabereich und eigenen Alpakas im Garten.
+- **Beschreibung (NL):** Landhotel aan de Grenzweg 2 in Winterberg-Langewiese met 21 kamers, à-la-carterestaurant, sauna en alpaca's in de tuin.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/hotels-und-unterkuenfte/hotels/landhotel-flora-und-fauna
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/hotels-en-accommodaties/hotels/landhotel-flora-und-fauna
 
 ### Kategorie: Handwerk
 
@@ -2252,6 +2263,39 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** JYSK aan de Remmeswiese in Winterberg biedt Scandinavische meubelen, bedden, matrassen, tuinmeubelen en woonaccessoires voor aantrekkelijke prijzen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/haushaltswaren-und-deko/jysk-winterberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/jysk-winterberg
+
+#### [Blumen Klotz](https://www.winterberg-verzeichnis.de/einzelhandel/blumengeschaefte/blumen-klotz)
+- **Kategorie:** Einzelhandel > Blumengeschäfte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 31, 59955 Winterberg
+- **Telefon:** 02981 9297287
+- **Webseite:** https://www.blumen-klotz.de
+- **Beschreibung (DE):** Blumenfachgeschäft Am Waltenberg 31 in Winterberg mit Schnittblumen, Sträußen, Topfpflanzen und Dekorationsartikeln sowie Fleurop-Service.
+- **Beschreibung (NL):** Bloemenzaak aan de Am Waltenberg 31 in Winterberg met snijbloemen, boeketten, kamerplanten, woondecoratie en Fleurop-service.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/blumengeschaefte/blumen-klotz
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bloemenwinkels/blumen-klotz
+
+#### [Der Lakritzmann](https://www.winterberg-verzeichnis.de/einzelhandel/feinkost-und-lebensmittel/der-lakritzmann)
+- **Kategorie:** Einzelhandel > Feinkost & Lebensmittel
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 30, 59955 Winterberg
+- **Telefon:** 02981 8999832
+- **Webseite:** https://www.der-lakritzmann.de
+- **Beschreibung (DE):** Spezialgeschäft für Lakritz und Süßholzprodukte Am Waltenberg 30 in Winterberg mit rund 3.000 Sorten aus verschiedenen Ländern.
+- **Beschreibung (NL):** Speciaalzaak voor drop en zoethoutproducten aan de Am Waltenberg 30 in Winterberg met circa 3.000 soorten uit diverse landen.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/feinkost-und-lebensmittel/der-lakritzmann
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/delicatessen-en-levensmiddelen/der-lakritzmann
+
+#### [Sonderpreis Baumarkt Winterberg](https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/sonderpreis-baumarkt-winterberg)
+- **Kategorie:** Einzelhandel > Baumärkte
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Remmeswiese 3, 59955 Winterberg
+- **Telefon:** 02981 9293700
+- **Webseite:** https://www.sonderpreis-baumarkt.de
+- **Beschreibung (DE):** Baumarkt-Discounter an der Remmeswiese 3 in Winterberg mit Werkzeugen, Heimwerkerbedarf, Gartenartikeln und lose verkauften Schrauben zum Kilopreis.
+- **Beschreibung (NL):** Bouwmarkt-discounter aan de Remmeswiese 3 in Winterberg met gereedschap, doe-het-zelfartikelen, tuinbenodigdheden en losse schroeven per kilo.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/einzelhandel/baumaerkte/sonderpreis-baumarkt-winterberg
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/detailhandel/bouwmarkten/sonderpreis-baumarkt-winterberg
 
 ### Kategorie: Gastronomie
 
@@ -3662,6 +3706,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/kindergaerten-und-kitas/kindertagespflege-zwergenwald-dorothe-sassenberg
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/kinderdagverblijven/kindertagespflege-zwergenwald-dorothe-sassenberg
 
+#### [iSmartFix Reparaturservice & IT](https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/ismartfix-reparaturservice-und-it)
+- **Kategorie:** Dienstleistungen > IT & Software
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Poststraße 9, 59955 Winterberg
+- **Telefon:** 02981 9022963
+- **Webseite:** https://www.ismartfix.de
+- **Beschreibung (DE):** Technik- und Reparaturdienstleister an der Poststraße 9 in Winterberg für Smartphones, Tablets, Smartwatches, Laptops und Spielekonsolen sowie IT-Service.
+- **Beschreibung (NL):** Reparatie- en IT-dienstverlener aan de Poststraße 9 in Winterberg voor smartphones, tablets, smartwatches, laptops en spelconsoles.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/dienstleistungen/it-software/ismartfix-reparaturservice-und-it
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/dienstverlening/it-en-software/ismartfix-reparaturservice-und-it
+
 ### Kategorie: Ski, Bike & Sport
 
 #### [Tennisplätze Niedersfeld](https://www.winterberg-verzeichnis.de/ski-bike-sport/tennisplaetze/tennisplaetze-niedersfeld)
@@ -3976,6 +4031,17 @@ Das Winterberg Verzeichnis ist die zentrale Plattform für Wirtschaft, Handwerk,
 - **Beschreibung (NL):** SCHOOL OF SKILLZ in Winterberg is jouw professionele mountainbikeschool voor rijvaardigheidscursussen, 1:1 coaching en actievolle MTB-camps in het Sauerland en de Alpen.
 - **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/school-of-skillz
 - **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/school-of-skillz
+
+#### [Outdoor 842 Bike+Kids](https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoor-842-bike-kids)
+- **Kategorie:** Ski, Bike & Sport > Sport & Outdoor
+- **Ort / Ortsteil:** Winterberg
+- **Adresse:** Am Waltenberg 16, 59955 Winterberg
+- **Telefon:** 02981 928443
+- **Webseite:** https://outdoor842.de/
+- **Beschreibung (DE):** Outdoor- und Bike-Angebot von Outdoor 842 Am Waltenberg 16 in Winterberg mit Fokus auf Bike-Zubehör, Kinderrucksäcke und Funktionsausrüstung.
+- **Beschreibung (NL):** Outdoor- en bike-aanbod van Outdoor 842 aan de Am Waltenberg 16 in Winterberg met aandacht voor fietsaccessoires, kinderrugzakken en functionele uitrusting.
+- **URL (DE):** https://www.winterberg-verzeichnis.de/ski-bike-sport/sport-und-outdoor/outdoor-842-bike-kids
+- **URL (NL):** https://www.winterberg-verzeichnis.de/nl/ski-fiets-sport/sport-en-outdoor/outdoor-842-bike-kids
 
 ### Kategorie: Gesundheit & Medizin
 
