@@ -23,6 +23,12 @@ export const initialNews: NewsArticle[] = [
 
 Insgesamt 41 Betriebe beteiligen sich am Weihnachtsshopping 2026. Der Schwerpunkt liegt in der Winterberger Kernstadt, unter anderem entlang der Straßen Am Waltenberg, Hauptstraße, Poststraße, Neue Mitte, Untere Pforte und Remmeswiese. In der Gastronomie und Hotellerie machen neben Winterberger Häusern auch Betriebe aus Elkeringhausen, Langewiese und Siedlinghausen mit.
 
+## Stempelkarte und Verlosung: So funktioniert das Gewinnspiel
+
+Mit dem Weihnachtsshopping ist auch wieder eine Stempelkarten-Aktion verbunden. Wer im Aktionszeitraum in den teilnehmenden Betrieben einkauft, bekommt unabhängig vom Einkaufswert pro Einkauf einen Stempel auf seine Karte. Blanko-Stempelkarten gibt es direkt in den Geschäften und in der Tourist-Information Winterberg.
+
+Wer sechs Stempel gesammelt hat – davon mindestens drei aus verschiedenen Betrieben –, kann sein Los bis zum **06.01.2027** in eine der drei Losboxen einwerfen: bei der [Tourist-Information Winterberg](/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh) (Am Kurpark 4), bei der [Sparkasse Mitten im Sauerland](/dienstleistungen/banken/sparkasse-mitten-im-sauerland-beratungscenter) (Am Waltenberg 23) oder bei der [Volksbank Sauerland eG](/dienstleistungen/banken/volksbank-sauerland-eg-beratungszentrum-winterberg) (Poststraße 6). Bei der Verlosung am **11.01.2027** gibt es Gutscheine und Sachpreise der beteiligten Betriebe zu gewinnen.
+
 Alle 41 teilnehmenden Betriebe stehen in den folgenden Listen und sind direkt auf ihre Profile im Winterberg-Verzeichnis verlinkt.
 
 ## Einkauf & Dienstleistung
@@ -87,6 +93,12 @@ Weitere Geschäfte und Tipps für den Einkauf in der Stadt stehen auf der Themen
     content_nl: `Vanaf het eerste adventsweekend tot en met oudjaarsdag staat in Winterberg weer het Weihnachtsshopping op het programma. Tussen 28 november en 31 december 2026 roept Stadtmarketing Winterberg mit seinen Dörfern e.V. samen met Einkaufswelt Winterberg op om kerstcadeaus en inkopen lokaal te doen – bij de detailhandel, dienstverleners en in de horeca.
 
 In totaal doen 41 bedrijven mee aan het Weihnachtsshopping 2026. De meeste winkels bevinden zich in het centrum van Winterberg, onder meer aan de Am Waltenberg, Hauptstraße, Poststraße, Neue Mitte, Untere Pforte en Remmeswiese. In de horeca en hotellerie doen naast adressen in Winterberg zelf ook bedrijven in Elkeringhausen, Langewiese en Siedlinghausen mee.
+
+## Stempelkaart en verloting: zo werkt de winactie
+
+Aan het Weihnachtsshopping is ook weer een stempelkaartactie gekoppeld. Wie tijdens de actieperiode bij de deelnemende bedrijven winkelt, krijgt ongeacht het aankoopbedrag één stempel per aankoop. De stempelkaarten liggen klaar in de winkels en bij de Tourist-Information Winterberg.
+
+Wie zes stempels heeft verzameld – waarvan minimaal drie bij verschillende bedrijven – kan de kaart tot en met **06-01-2027** in een van de drie stembussen doen: bij de [Tourist-Information Winterberg](/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh) (Am Kurpark 4), bij de [Sparkasse Mitten im Sauerland](/nl/dienstverlening/banken/sparkasse-mitten-im-sauerland-beratungscenter) (Am Waltenberg 23) of bij de [Volksbank Sauerland eG](/nl/dienstverlening/banken/volksbank-sauerland-eg-beratungszentrum-winterberg) (Poststraße 6). Bij de verloting op **11-01-2027** zijn tegoedbonnen en prijzen van de deelnemende bedrijven te winnen.
 
 In de overzichten hieronder staan alle 41 deelnemende adressen, direct gekoppeld aan hun bedrijfsprofiel in het Winterberg-Verzeichnis.
 
