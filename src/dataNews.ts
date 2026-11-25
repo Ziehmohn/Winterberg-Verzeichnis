@@ -29,45 +29,62 @@ Mit dem Weihnachtsshopping ist auch wieder eine Stempelkarten-Aktion verbunden. 
 
 Wer sechs Stempel gesammelt hat – davon mindestens drei aus verschiedenen Betrieben –, kann sein Los bis zum **06.01.2027** in eine der drei Losboxen einwerfen: bei der [Tourist-Information Winterberg](/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh) (Am Kurpark 4), bei der [Sparkasse Mitten im Sauerland](/dienstleistungen/banken/sparkasse-mitten-im-sauerland-beratungscenter) (Am Waltenberg 23) oder bei der [Volksbank Sauerland eG](/dienstleistungen/banken/volksbank-sauerland-eg-beratungszentrum-winterberg) (Poststraße 6). Bei der Verlosung am **11.01.2027** gibt es Gutscheine und Sachpreise der beteiligten Betriebe zu gewinnen.
 
-Alle 41 teilnehmenden Betriebe stehen in den folgenden Listen und sind direkt auf ihre Profile im Winterberg-Verzeichnis verlinkt.
+Alle 41 teilnehmenden Betriebe sind im Folgenden nach Branchen sortiert und direkt auf ihre Profile im Winterberg-Verzeichnis verlinkt.
 
 ## Einkauf & Dienstleistung
 
-* [Autohaus Friedrich Hoffmann](/mobilitaet-und-kfz/autohaeuser/autohaus-friedrich-hoffmann) – Remmeswiese 24, Winterberg
-* [Bau- & Heimwerkermarkt Müllenhoff](/einzelhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg) – Remmeswiese 23, Winterberg
-* [Blumen Klotz](/einzelhandel/blumengeschaefte/blumen-klotz) – Am Waltenberg 31, Winterberg
+### Mode, Bekleidung & Schmuck
+
 * [Bekleidungsfabrik Bessmann](/einzelhandel/bekleidung/bessmann-mode-und-sport-outlet) – Neue Mitte 3 und Poststraße 6, Winterberg
-* [CB House of Beauty](/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff) – Wernsdorferstraße 39, Winterberg
 * [Christian Leisse – Herrenausstatter & Damenmode](/einzelhandel/bekleidung/herrenausstatter-christian-leisse) – Am Waltenberg 2, Winterberg
-* [Comes – Schönes für Haus & Garten](/einzelhandel/haushaltswaren-und-deko/comes-gruenes-warenhaus) – Remmeswiese 12, Winterberg
-* [Der Lakritzmann](/einzelhandel/feinkost-und-lebensmittel/der-lakritzmann) – Am Waltenberg 30, Winterberg
-* [E-Center Löffler](/einzelhandel/supermarkt/e-center-loeffler) – Neue Mitte 4, Winterberg
 * [FrauenZimmer](/einzelhandel/bekleidung/frauen-zimmer-winterberg) – Untere Pforte 4, Winterberg
 * [Insider Fashion Store](/einzelhandel/bekleidung/insider-fashion-store-winterberg) – Am Waltenberg 19, Winterberg
 * [IS Moden](/einzelhandel/bekleidung/is-moden-winterberg) – Am Waltenberg 15, Winterberg
-* [iSmartFix Reparaturservice & IT](/dienstleistungen/it-software/ismartfix-reparaturservice-und-it) – Poststraße 9, Winterberg
 * [Juwelier Eiloff](/einzelhandel/juweliere-und-uhren/juwelier-eiloff) – Am Waltenberg 9, Winterberg
-* [Kur-Apotheke](/gesundheit-und-medizin/apotheken/kur-apotheke) – Poststraße 9, Winterberg
-* [Liftstation – Snowboard & Skateshop](/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop) – Hauptstraße 2, Winterberg
-* [Lu Brillenschmiede](/gesundheit-und-medizin/optiker/lu-brillenschmiede) – Hellenstraße 6, Winterberg
 * [Lütkemeier – Damenmode](/einzelhandel/bekleidung/luetkemeier-modehaus) – Am Waltenberg 30, Winterberg
 * [Modehaus Schnurbusch](/einzelhandel/bekleidung/modehaus-schnurbusch) – Hauptstraße 1, Winterberg
-* [Mode Menke](/ski-bike-sport/sport-und-outdoor/sport-und-mode-menke) – Am Waltenberg 5, Winterberg
 * [MODEORTH](/einzelhandel/bekleidung/modeorth-winterberg-gmbh) – Hauptstraße 11, Winterberg
+* [Street Point](/einzelhandel/bekleidung/street-point-winterberg) – Hauptstraße 4, Winterberg
+* [Winterberger Strumpfhaus](/einzelhandel/bekleidung/winterberger-strumpfhaus) – Am Waltenberg 24, Winterberg
+* [Zeitlos by B & J](/einzelhandel/bekleidung/zeitlos) – Am Waltenberg 19, Winterberg
+
+### Sport, Outdoor & Bike
+
+* [Liftstation – Snowboard & Skateshop](/ski-bike-sport/sport-und-outdoor/liftstation-snowboard-und-skateshop) – Hauptstraße 2, Winterberg
+* [Mode Menke](/ski-bike-sport/sport-und-outdoor/sport-und-mode-menke) – Am Waltenberg 5, Winterberg
 * [Outdoor 842](/ski-bike-sport/sport-und-outdoor/outdoor-842) – Am Waltenberg 16, Winterberg
 * [Outdoor 842 Bike+Kids](/ski-bike-sport/sport-und-outdoor/outdoor-842-bike-kids) – Am Waltenberg 16, Winterberg
-* [Parfümerie Becker](/einzelhandel/parfuemerie/parfuemerie-becker-gmbh) – Am Waltenberg 22, Winterberg
+
+### Haus, Deko, Blumen, Bücher & Spielwaren
+
+* [Blumen Klotz](/einzelhandel/blumengeschaefte/blumen-klotz) – Am Waltenberg 31, Winterberg
+* [Comes – Schönes für Haus & Garten](/einzelhandel/haushaltswaren-und-deko/comes-gruenes-warenhaus) – Remmeswiese 12, Winterberg
 * [Pfiffikus](/einzelhandel/spielwaren/pfiffikus-winterberg) – Hauptstraße 12, Winterberg
-* [Pfälzer Weinlädchen](/gastronomie/weinstuben/weinlaedchen-pfaelzer) – Hauptstraße 32, Winterberg
-* [See you by V&K Optik Kuhnert](/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg) – Am Waltenberg 6, Winterberg
-* [Sonderpreis Baumarkt Winterberg](/einzelhandel/baumaerkte/sonderpreis-baumarkt-winterberg) – Remmeswiese 3 (in der Ankündigung „Remmesweise 3“), Winterberg
-* [Street Point](/einzelhandel/bekleidung/street-point-winterberg) – Hauptstraße 4, Winterberg
 * [Tischlein deck dich](/einzelhandel/haushaltswaren-und-deko/tischlein-deck-dich) – Am Waltenberg 40, Winterberg
-* [Wineland](/gastronomie/weinstuben/wineland) – Am Waltenberg 16, Winterberg
-* [Winterberger Strumpfhaus](/einzelhandel/bekleidung/winterberger-strumpfhaus) – Am Waltenberg 24, Winterberg
-* [Winterberg Touristik und Wirtschaft](/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh) – Am Kurpark 4, Winterberg
 * [Wortreich – Lesen und mehr](/einzelhandel/buchhandlungen/buchhandlung-wortreich-winterberg) – Untere Pforte 4, Winterberg
-* [Zeitlos by B & J](/einzelhandel/bekleidung/zeitlos) – Am Waltenberg 19, Winterberg
+
+### Lebensmittel, Feinkost & Wein
+
+* [Der Lakritzmann](/einzelhandel/feinkost-und-lebensmittel/der-lakritzmann) – Am Waltenberg 30, Winterberg
+* [E-Center Löffler](/einzelhandel/supermarkt/e-center-loeffler) – Neue Mitte 4, Winterberg
+* [Pfälzer Weinlädchen](/gastronomie/weinstuben/weinlaedchen-pfaelzer) – Hauptstraße 32, Winterberg
+* [Wineland](/gastronomie/weinstuben/wineland) – Am Waltenberg 16, Winterberg
+
+### Optik, Beauty, Parfümerie & Apotheke
+
+* [CB House of Beauty](/gesundheit-und-medizin/kosmetikstudios/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff) – Wernsdorferstraße 39, Winterberg
+* [Kur-Apotheke](/gesundheit-und-medizin/apotheken/kur-apotheke) – Poststraße 9, Winterberg
+* [Lu Brillenschmiede](/gesundheit-und-medizin/optiker/lu-brillenschmiede) – Hellenstraße 6, Winterberg
+* [Parfümerie Becker](/einzelhandel/parfuemerie/parfuemerie-becker-gmbh) – Am Waltenberg 22, Winterberg
+* [See you by V&K Optik Kuhnert](/gesundheit-und-medizin/optiker/see-you-by-vundk-optik-kuhnert-winterberg) – Am Waltenberg 6, Winterberg
+
+### Baumarkt, Autohaus, IT & Tourismus
+
+* [Autohaus Friedrich Hoffmann](/mobilitaet-und-kfz/autohaeuser/autohaus-friedrich-hoffmann) – Remmeswiese 24, Winterberg
+* [Bau- & Heimwerkermarkt Müllenhoff](/einzelhandel/baumaerkte/hagebau-kompakt-muellenhoff-winterberg) – Remmeswiese 23, Winterberg
+* [Sonderpreis Baumarkt Winterberg](/einzelhandel/baumaerkte/sonderpreis-baumarkt-winterberg) – Remmeswiese 3 (in der Ankündigung „Remmesweise 3“), Winterberg
+* [iSmartFix Reparaturservice & IT](/dienstleistungen/it-software/ismartfix-reparaturservice-und-it) – Poststraße 9, Winterberg
+* [Winterberg Touristik und Wirtschaft](/dienstleistungen/tourismus/winterberg-touristik-und-wirtschaft-gmbh) – Am Kurpark 4, Winterberg
 
 ## Hotellerie & Gastronomie
 
@@ -100,45 +117,62 @@ Aan het Weihnachtsshopping is ook weer een stempelkaartactie gekoppeld. Wie tijd
 
 Wie zes stempels heeft verzameld – waarvan minimaal drie bij verschillende bedrijven – kan de kaart tot en met **06-01-2027** in een van de drie stembussen doen: bij de [Tourist-Information Winterberg](/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh) (Am Kurpark 4), bij de [Sparkasse Mitten im Sauerland](/nl/dienstverlening/banken/sparkasse-mitten-im-sauerland-beratungscenter) (Am Waltenberg 23) of bij de [Volksbank Sauerland eG](/nl/dienstverlening/banken/volksbank-sauerland-eg-beratungszentrum-winterberg) (Poststraße 6). Bij de verloting op **11-01-2027** zijn tegoedbonnen en prijzen van de deelnemende bedrijven te winnen.
 
-In de overzichten hieronder staan alle 41 deelnemende adressen, direct gekoppeld aan hun bedrijfsprofiel in het Winterberg-Verzeichnis.
+In de overzichten hieronder zijn alle 41 deelnemende adressen per branche gegroepeerd en direct gekoppeld aan hun bedrijfsprofiel in het Winterberg-Verzeichnis.
 
 ## Winkels & Dienstverlening
 
-* [Autohaus Friedrich Hoffmann](/nl/mobiliteit-en-autos/autodealers/autohaus-friedrich-hoffmann) – Remmeswiese 24, Winterberg
-* [Bau- & Heimwerkermarkt Müllenhoff](/nl/detailhandel/bouwmarkten/hagebau-kompakt-muellenhoff-winterberg) – Remmeswiese 23, Winterberg
-* [Blumen Klotz](/nl/detailhandel/bloemenwinkels/blumen-klotz) – Am Waltenberg 31, Winterberg
+### Mode, Kleding & Sieraden
+
 * [Bekleidungsfabrik Bessmann](/nl/detailhandel/kleding/bessmann-mode-und-sport-outlet) – Neue Mitte 3 en Poststraße 6, Winterberg
-* [CB House of Beauty](/nl/gezondheid-en-geneeskunde/schoonheidssalons/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff) – Wernsdorferstraße 39, Winterberg
 * [Christian Leisse – Herrenausstatter & Damenmode](/nl/detailhandel/kleding/herrenausstatter-christian-leisse) – Am Waltenberg 2, Winterberg
-* [Comes – Schönes für Haus & Garten](/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/comes-gruenes-warenhaus) – Remmeswiese 12, Winterberg
-* [Der Lakritzmann](/nl/detailhandel/delicatessen-en-levensmiddelen/der-lakritzmann) – Am Waltenberg 30, Winterberg
-* [E-Center Löffler](/nl/detailhandel/supermarkt/e-center-loeffler) – Neue Mitte 4, Winterberg
 * [FrauenZimmer](/nl/detailhandel/kleding/frauen-zimmer-winterberg) – Untere Pforte 4, Winterberg
 * [Insider Fashion Store](/nl/detailhandel/kleding/insider-fashion-store-winterberg) – Am Waltenberg 19, Winterberg
 * [IS Moden](/nl/detailhandel/kleding/is-moden-winterberg) – Am Waltenberg 15, Winterberg
-* [iSmartFix Reparaturservice & IT](/nl/dienstverlening/it-en-software/ismartfix-reparaturservice-und-it) – Poststraße 9, Winterberg
 * [Juwelier Eiloff](/nl/detailhandel/juweliers-en-horloges/juwelier-eiloff) – Am Waltenberg 9, Winterberg
-* [Kur-Apotheke](/nl/gezondheid-en-geneeskunde/apotheken/kur-apotheke) – Poststraße 9, Winterberg
-* [Liftstation – Snowboard & Skateshop](/nl/ski-fiets-sport/sport-en-outdoor/liftstation-snowboard-und-skateshop) – Hauptstraße 2, Winterberg
-* [Lu Brillenschmiede](/nl/gezondheid-en-geneeskunde/opticiens/lu-brillenschmiede) – Hellenstraße 6, Winterberg
 * [Lütkemeier – Damenmode](/nl/detailhandel/kleding/luetkemeier-modehaus) – Am Waltenberg 30, Winterberg
 * [Modehaus Schnurbusch](/nl/detailhandel/kleding/modehaus-schnurbusch) – Hauptstraße 1, Winterberg
-* [Mode Menke](/nl/ski-fiets-sport/sport-en-outdoor/sport-und-mode-menke) – Am Waltenberg 5, Winterberg
 * [MODEORTH](/nl/detailhandel/kleding/modeorth-winterberg-gmbh) – Hauptstraße 11, Winterberg
+* [Street Point](/nl/detailhandel/kleding/street-point-winterberg) – Hauptstraße 4, Winterberg
+* [Winterberger Strumpfhaus](/nl/detailhandel/kleding/winterberger-strumpfhaus) – Am Waltenberg 24, Winterberg
+* [Zeitlos by B & J](/nl/detailhandel/kleding/zeitlos) – Am Waltenberg 19, Winterberg
+
+### Sport, Outdoor & Bike
+
+* [Liftstation – Snowboard & Skateshop](/nl/ski-fiets-sport/sport-en-outdoor/liftstation-snowboard-und-skateshop) – Hauptstraße 2, Winterberg
+* [Mode Menke](/nl/ski-fiets-sport/sport-en-outdoor/sport-und-mode-menke) – Am Waltenberg 5, Winterberg
 * [Outdoor 842](/nl/ski-fiets-sport/sport-en-outdoor/outdoor-842) – Am Waltenberg 16, Winterberg
 * [Outdoor 842 Bike+Kids](/nl/ski-fiets-sport/sport-en-outdoor/outdoor-842-bike-kids) – Am Waltenberg 16, Winterberg
-* [Parfümerie Becker](/nl/detailhandel/parfumerie/parfuemerie-becker-gmbh) – Am Waltenberg 22, Winterberg
+
+### Huis, Decoratie, Bloemen, Boeken & Speelgoed
+
+* [Blumen Klotz](/nl/detailhandel/bloemenwinkels/blumen-klotz) – Am Waltenberg 31, Winterberg
+* [Comes – Schönes für Haus & Garten](/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/comes-gruenes-warenhaus) – Remmeswiese 12, Winterberg
 * [Pfiffikus](/nl/detailhandel/speelgoed/pfiffikus-winterberg) – Hauptstraße 12, Winterberg
-* [Pfälzer Weinlädchen](/nl/horeca/wijnlokalen/weinlaedchen-pfaelzer) – Hauptstraße 32, Winterberg
-* [See you by V&K Optik Kuhnert](/nl/gezondheid-en-geneeskunde/opticiens/see-you-by-vundk-optik-kuhnert-winterberg) – Am Waltenberg 6, Winterberg
-* [Sonderpreis Baumarkt Winterberg](/nl/detailhandel/bouwmarkten/sonderpreis-baumarkt-winterberg) – Remmeswiese 3 (in de aankondiging „Remmesweise 3“), Winterberg
-* [Street Point](/nl/detailhandel/kleding/street-point-winterberg) – Hauptstraße 4, Winterberg
 * [Tischlein deck dich](/nl/detailhandel/huishoudelijke-artikelen-en-decoratie/tischlein-deck-dich) – Am Waltenberg 40, Winterberg
-* [Wineland](/nl/horeca/wijnlokalen/wineland) – Am Waltenberg 16, Winterberg
-* [Winterberger Strumpfhaus](/nl/detailhandel/kleding/winterberger-strumpfhaus) – Am Waltenberg 24, Winterberg
-* [Winterberg Touristik und Wirtschaft](/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh) – Am Kurpark 4, Winterberg
 * [Wortreich – Lesen und mehr](/nl/detailhandel/boekhandels/buchhandlung-wortreich-winterberg) – Untere Pforte 4, Winterberg
-* [Zeitlos by B & J](/nl/detailhandel/kleding/zeitlos) – Am Waltenberg 19, Winterberg
+
+### Levensmiddelen, Delicatessen & Wijn
+
+* [Der Lakritzmann](/nl/detailhandel/delicatessen-en-levensmiddelen/der-lakritzmann) – Am Waltenberg 30, Winterberg
+* [E-Center Löffler](/nl/detailhandel/supermarkt/e-center-loeffler) – Neue Mitte 4, Winterberg
+* [Pfälzer Weinlädchen](/nl/horeca/wijnlokalen/weinlaedchen-pfaelzer) – Hauptstraße 32, Winterberg
+* [Wineland](/nl/horeca/wijnlokalen/wineland) – Am Waltenberg 16, Winterberg
+
+### Optiek, Beauty, Parfumerie & Apotheek
+
+* [CB House of Beauty](/nl/gezondheid-en-geneeskunde/schoonheidssalons/cb-house-of-beauty-und-aesthetik-by-carolin-berghoff) – Wernsdorferstraße 39, Winterberg
+* [Kur-Apotheke](/nl/gezondheid-en-geneeskunde/apotheken/kur-apotheke) – Poststraße 9, Winterberg
+* [Lu Brillenschmiede](/nl/gezondheid-en-geneeskunde/opticiens/lu-brillenschmiede) – Hellenstraße 6, Winterberg
+* [Parfümerie Becker](/nl/detailhandel/parfumerie/parfuemerie-becker-gmbh) – Am Waltenberg 22, Winterberg
+* [See you by V&K Optik Kuhnert](/nl/gezondheid-en-geneeskunde/opticiens/see-you-by-vundk-optik-kuhnert-winterberg) – Am Waltenberg 6, Winterberg
+
+### Bouwmarkt, Autodealer, IT & Toerisme
+
+* [Autohaus Friedrich Hoffmann](/nl/mobiliteit-en-autos/autodealers/autohaus-friedrich-hoffmann) – Remmeswiese 24, Winterberg
+* [Bau- & Heimwerkermarkt Müllenhoff](/nl/detailhandel/bouwmarkten/hagebau-kompakt-muellenhoff-winterberg) – Remmeswiese 23, Winterberg
+* [Sonderpreis Baumarkt Winterberg](/nl/detailhandel/bouwmarkten/sonderpreis-baumarkt-winterberg) – Remmeswiese 3 (in de aankondiging „Remmesweise 3“), Winterberg
+* [iSmartFix Reparaturservice & IT](/nl/dienstverlening/it-en-software/ismartfix-reparaturservice-und-it) – Poststraße 9, Winterberg
+* [Winterberg Touristik und Wirtschaft](/nl/dienstverlening/toerisme/winterberg-touristik-und-wirtschaft-gmbh) – Am Kurpark 4, Winterberg
 
 ## Hotellerie & Horeca
 
